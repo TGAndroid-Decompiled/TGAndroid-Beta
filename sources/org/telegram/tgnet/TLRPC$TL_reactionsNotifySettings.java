@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_reactionsNotifySettings extends TLObject {
     public int flags;
     public TLRPC$ReactionNotificationsFrom messages_notify_from;

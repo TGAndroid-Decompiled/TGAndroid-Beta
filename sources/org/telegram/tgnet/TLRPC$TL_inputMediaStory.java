@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_inputMediaStory extends TLRPC$InputMedia {
     public int id;
     public TLRPC$InputPeer peer;

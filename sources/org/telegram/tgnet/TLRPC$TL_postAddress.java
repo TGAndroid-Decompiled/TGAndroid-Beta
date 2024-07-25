@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_postAddress extends TLObject {
     public String city;
     public String country_iso2;

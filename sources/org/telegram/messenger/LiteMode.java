@@ -15,7 +15,6 @@ import org.telegram.tgnet.TLRPC$TL_jsonObject;
 import org.telegram.tgnet.TLRPC$TL_jsonObjectValue;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
-
 public class LiteMode {
     private static int BATTERY_HIGH = 10;
     private static int BATTERY_LOW = 10;
@@ -72,8 +71,7 @@ public class LiteMode {
                     onPowerSaverApplied(true);
                 }
                 return PRESET_POWER_SAVER;
-            }
-            if (lastPowerSaverApplied) {
+            } else if (lastPowerSaverApplied) {
                 lastPowerSaverApplied = false;
                 onPowerSaverApplied(false);
             }
@@ -182,6 +180,7 @@ public class LiteMode {
                     i = PRESET_HIGH;
                 }
             } else {
+                boolean z = false;
                 if (globalMainSettings.contains("light_mode")) {
                     if ((globalMainSettings.getInt("light_mode", SharedConfig.getDevicePerformanceClass() == 0 ? 1 : 0) & 1) > 0) {
                         i = PRESET_LOW;
@@ -193,7 +192,7 @@ public class LiteMode {
                     i = globalMainSettings.getBoolean("loopStickers", true) ? i | 2 : i & (-3);
                 }
                 if (globalMainSettings.contains("autoplay_video")) {
-                    i = globalMainSettings.getBoolean("autoplay_video", true) || globalMainSettings.getBoolean("autoplay_video_liteforce", false) ? i | 1024 : i & (-1025);
+                    i = (globalMainSettings.getBoolean("autoplay_video", true) || globalMainSettings.getBoolean("autoplay_video_liteforce", false)) ? true : true ? i | 1024 : i & (-1025);
                 }
                 if (globalMainSettings.contains("autoplay_gif")) {
                     i = globalMainSettings.getBoolean("autoplay_gif", true) ? i | 2048 : i & (-2049);

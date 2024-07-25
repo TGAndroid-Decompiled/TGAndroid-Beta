@@ -964,8 +964,6 @@
     <string name="ChooseTheme">Kies thema</string>
     <string name="ChooseYourLanguage">Kies je taal</string>
     <string name="ChooseYourLanguageOther">Overige</string>
-    <string name="ChromeCustomTabs">In-app browser</string>
-    <string name="ChromeCustomTabsInfo">Externe links in de app openen</string>
     <string name="ClearButton">Wissen</string>
     <string name="ClearCache">Cache Wissen</string>
     <string name="ClearCacheFewChatsTitle">Lege cache voor %1$s</string>

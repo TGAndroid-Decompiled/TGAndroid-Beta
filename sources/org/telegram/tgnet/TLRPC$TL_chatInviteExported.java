@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 import org.telegram.messenger.LiteMode;
-
 public class TLRPC$TL_chatInviteExported extends TLRPC$ExportedChatInvite {
     public long admin_id;
     public int date;

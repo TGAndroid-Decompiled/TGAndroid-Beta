@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_account_changeAuthorizationSettings extends TLObject {
     public boolean call_requests_disabled;
     public boolean confirmed;

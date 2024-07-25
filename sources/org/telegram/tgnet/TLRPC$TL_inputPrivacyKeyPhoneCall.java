@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_inputPrivacyKeyPhoneCall extends TLRPC$InputPrivacyKey {
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {

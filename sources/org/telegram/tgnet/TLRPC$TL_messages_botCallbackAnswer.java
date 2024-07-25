@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_botCallbackAnswer extends TLObject {
     public boolean alert;
     public int cache_time;

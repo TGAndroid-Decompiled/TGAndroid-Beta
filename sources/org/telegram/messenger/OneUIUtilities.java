@@ -2,7 +2,6 @@ package org.telegram.messenger;
 
 import android.os.Build;
 import java.lang.reflect.Field;
-
 public class OneUIUtilities {
     public static final int ONE_UI_4_0 = 40000;
     private static Boolean isOneUI;

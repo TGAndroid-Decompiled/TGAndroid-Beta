@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_inlineBotSwitchPM extends TLObject {
     public String start_param;
     public String text;

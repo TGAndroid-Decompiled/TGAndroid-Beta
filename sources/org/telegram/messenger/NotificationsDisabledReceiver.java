@@ -8,7 +8,6 @@ import android.content.SharedPreferences;
 import android.os.SystemClock;
 import android.text.TextUtils;
 import org.telegram.tgnet.ConnectionsManager;
-
 @TargetApi(28)
 public class NotificationsDisabledReceiver extends BroadcastReceiver {
     @Override

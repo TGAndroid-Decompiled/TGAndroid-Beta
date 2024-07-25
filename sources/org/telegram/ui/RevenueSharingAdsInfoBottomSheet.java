@@ -27,7 +27,6 @@ import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.RLottieImageView;
-
 public class RevenueSharingAdsInfoBottomSheet extends BottomSheet {
     private final Paint topIconBgPaint;
 

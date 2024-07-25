@@ -3,10 +3,10 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.tl.TL_stories$StoryItem;
-
 public abstract class TLRPC$MessageMedia extends TLObject {
     public String address;
     public TLRPC$Document alt_document;
+    public String attachPath;
     public TLRPC$Audio audio_unused;
     public byte[] bytes;
     public String captionLegacy;

@@ -7,7 +7,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.util.Property;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
@@ -16,7 +15,6 @@ import androidx.annotation.Keep;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-
 public class ShutterButton extends View {
     private ShutterButtonDelegate delegate;
     private DecelerateInterpolator interpolator;
@@ -81,9 +79,9 @@ public class ShutterButton extends View {
     private void setHighlighted(boolean z) {
         AnimatorSet animatorSet = new AnimatorSet();
         if (z) {
-            animatorSet.playTogether(ObjectAnimator.ofFloat(this, (Property<ShutterButton, Float>) View.SCALE_X, 1.06f), ObjectAnimator.ofFloat(this, (Property<ShutterButton, Float>) View.SCALE_Y, 1.06f));
+            animatorSet.playTogether(ObjectAnimator.ofFloat(this, View.SCALE_X, 1.06f), ObjectAnimator.ofFloat(this, View.SCALE_Y, 1.06f));
         } else {
-            animatorSet.playTogether(ObjectAnimator.ofFloat(this, (Property<ShutterButton, Float>) View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(this, (Property<ShutterButton, Float>) View.SCALE_Y, 1.0f));
+            animatorSet.playTogether(ObjectAnimator.ofFloat(this, View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(this, View.SCALE_Y, 1.0f));
             animatorSet.setStartDelay(40L);
         }
         animatorSet.setDuration(120L);
@@ -108,39 +106,33 @@ public class ShutterButton extends View {
         int measuredHeight = getMeasuredHeight() / 2;
         this.shadowDrawable.setBounds(measuredWidth - AndroidUtilities.dp(36.0f), measuredHeight - AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f) + measuredWidth, AndroidUtilities.dp(36.0f) + measuredHeight);
         this.shadowDrawable.draw(canvas);
-        if (!this.pressed && getScaleX() == 1.0f) {
-            if (this.redProgress != 0.0f) {
-                this.redProgress = 0.0f;
-                return;
-            }
-            return;
-        }
-        float scaleX = (getScaleX() - 1.0f) / 0.06f;
-        this.whitePaint.setAlpha((int) (255.0f * scaleX));
-        float f = measuredWidth;
-        float f2 = measuredHeight;
-        canvas.drawCircle(f, f2, AndroidUtilities.dp(26.0f), this.whitePaint);
-        if (this.state != State.RECORDING) {
-            if (this.redProgress != 0.0f) {
+        if (this.pressed || getScaleX() != 1.0f) {
+            float scaleX = (getScaleX() - 1.0f) / 0.06f;
+            this.whitePaint.setAlpha((int) (255.0f * scaleX));
+            float f = measuredWidth;
+            float f2 = measuredHeight;
+            canvas.drawCircle(f, f2, AndroidUtilities.dp(26.0f), this.whitePaint);
+            if (this.state == State.RECORDING) {
+                if (this.redProgress != 1.0f) {
+                    long abs = Math.abs(System.currentTimeMillis() - this.lastUpdateTime);
+                    if (abs > 17) {
+                        abs = 17;
+                    }
+                    long j = this.totalTime + abs;
+                    this.totalTime = j;
+                    if (j > 120) {
+                        this.totalTime = 120L;
+                    }
+                    this.redProgress = this.interpolator.getInterpolation(((float) this.totalTime) / 120.0f);
+                    invalidate();
+                }
+                canvas.drawCircle(f, f2, AndroidUtilities.dp(26.5f) * scaleX * this.redProgress, this.redPaint);
+            } else if (this.redProgress != 0.0f) {
                 canvas.drawCircle(f, f2, AndroidUtilities.dp(26.5f) * scaleX, this.redPaint);
-                return;
             }
-            return;
+        } else if (this.redProgress != 0.0f) {
+            this.redProgress = 0.0f;
         }
-        if (this.redProgress != 1.0f) {
-            long abs = Math.abs(System.currentTimeMillis() - this.lastUpdateTime);
-            if (abs > 17) {
-                abs = 17;
-            }
-            long j = this.totalTime + abs;
-            this.totalTime = j;
-            if (j > 120) {
-                this.totalTime = 120L;
-            }
-            this.redProgress = this.interpolator.getInterpolation(((float) this.totalTime) / 120.0f);
-            invalidate();
-        }
-        canvas.drawCircle(f, f2, AndroidUtilities.dp(26.5f) * scaleX * this.redProgress, this.redPaint);
     }
 
     @Override

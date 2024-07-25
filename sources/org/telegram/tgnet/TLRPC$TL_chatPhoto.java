@@ -4,7 +4,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLoader;
-
 public class TLRPC$TL_chatPhoto extends TLRPC$ChatPhoto {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

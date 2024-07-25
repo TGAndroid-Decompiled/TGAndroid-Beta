@@ -11,7 +11,6 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
-
 @SuppressLint({"ViewConstructor"})
 public class DateEndCell extends FrameLayout {
     private final Theme.ResourcesProvider resourcesProvider;

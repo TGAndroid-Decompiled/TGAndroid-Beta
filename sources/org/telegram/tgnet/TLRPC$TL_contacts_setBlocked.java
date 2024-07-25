@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_contacts_setBlocked extends TLObject {
     public int flags;
     public ArrayList<TLRPC$InputPeer> id = new ArrayList<>();

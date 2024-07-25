@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_account_updateEmojiStatus extends TLObject {
     public TLRPC$EmojiStatus emoji_status;
 

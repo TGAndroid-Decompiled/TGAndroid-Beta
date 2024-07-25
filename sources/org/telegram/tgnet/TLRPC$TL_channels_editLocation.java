@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channels_editLocation extends TLObject {
     public String address;
     public TLRPC$InputChannel channel;

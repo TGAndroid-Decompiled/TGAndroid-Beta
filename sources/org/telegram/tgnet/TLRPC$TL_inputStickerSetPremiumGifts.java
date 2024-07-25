@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_inputStickerSetPremiumGifts extends TLRPC$InputStickerSet {
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {

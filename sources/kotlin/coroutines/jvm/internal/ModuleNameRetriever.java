@@ -2,7 +2,6 @@ package kotlin.coroutines.jvm.internal;
 
 import java.lang.reflect.Method;
 import kotlin.jvm.internal.Intrinsics;
-
 public final class ModuleNameRetriever {
     private static Cache cache;
     public static final ModuleNameRetriever INSTANCE = new ModuleNameRetriever();

@@ -2,7 +2,6 @@ package org.telegram.ui.Delegates;
 
 import android.view.View;
 import org.telegram.ui.Components.RecyclerListView;
-
 public final class MemberRequestsDelegate$$ExternalSyntheticLambda10 implements RecyclerListView.OnItemClickListener {
     public final MemberRequestsDelegate f$0;
 

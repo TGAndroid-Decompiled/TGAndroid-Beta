@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$PageListOrderedItem extends TLObject {
     public static TLRPC$PageListOrderedItem TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$PageListOrderedItem tLRPC$TL_pageListOrderedItemBlocks;

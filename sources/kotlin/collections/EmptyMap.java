@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 import kotlin.jvm.internal.Intrinsics;
-
 public final class EmptyMap implements Map, Serializable {
     public static final EmptyMap INSTANCE = new EmptyMap();
 

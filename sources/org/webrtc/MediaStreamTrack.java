@@ -1,5 +1,4 @@
 package org.webrtc;
-
 public class MediaStreamTrack {
     public static final String AUDIO_TRACK_KIND = "audio";
     public static final String VIDEO_TRACK_KIND = "video";
@@ -28,7 +27,7 @@ public class MediaStreamTrack {
     public enum MediaType {
         MEDIA_TYPE_AUDIO(0),
         MEDIA_TYPE_VIDEO(1);
-
+        
         private final int nativeIndex;
 
         MediaType(int i) {
@@ -42,6 +41,7 @@ public class MediaStreamTrack {
 
         @CalledByNative("MediaType")
         static MediaType fromNativeIndex(int i) {
+            MediaType[] values;
             for (MediaType mediaType : values()) {
                 if (mediaType.getNative() == i) {
                     return mediaType;

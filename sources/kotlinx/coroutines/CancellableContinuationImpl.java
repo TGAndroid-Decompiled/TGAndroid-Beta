@@ -11,7 +11,6 @@ import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.Intrinsics;
 import kotlinx.coroutines.internal.DispatchedContinuation;
 import kotlinx.coroutines.internal.StackTraceRecoveryKt;
-
 public class CancellableContinuationImpl<T> extends DispatchedTask<T> implements CancellableContinuation<T>, CoroutineStackFrame {
     private static final AtomicIntegerFieldUpdater _decision$FU = AtomicIntegerFieldUpdater.newUpdater(CancellableContinuationImpl.class, "_decision");
     private static final AtomicReferenceFieldUpdater _state$FU = AtomicReferenceFieldUpdater.newUpdater(CancellableContinuationImpl.class, Object.class, "_state");
@@ -102,21 +101,21 @@ public class CancellableContinuationImpl<T> extends DispatchedTask<T> implements
                     throw new AssertionError();
                 }
             }
-            if (!DebugKt.getASSERTIONS_ENABLED()) {
+            if (DebugKt.getASSERTIONS_ENABLED()) {
+                if (function1 == null) {
+                    return obj;
+                }
+                throw new AssertionError();
+            }
+            return obj;
+        } else if (DispatchedTaskKt.isCancellableMode(i) || obj2 != null) {
+            if (function1 == null && !(notCompleted instanceof CancelHandler) && obj2 == null) {
                 return obj;
             }
-            if (function1 == null) {
-                return obj;
-            }
-            throw new AssertionError();
-        }
-        if (!DispatchedTaskKt.isCancellableMode(i) && obj2 == null) {
+            return new CompletedContinuation(obj, notCompleted instanceof CancelHandler ? (CancelHandler) notCompleted : null, function1, obj2, null, 16, null);
+        } else {
             return obj;
         }
-        if (function1 == null && !(notCompleted instanceof CancelHandler) && obj2 == null) {
-            return obj;
-        }
-        return new CompletedContinuation(obj, notCompleted instanceof CancelHandler ? (CancelHandler) notCompleted : null, function1, obj2, null, 16, null);
     }
 
     static void resumeImpl$default(CancellableContinuationImpl cancellableContinuationImpl, Object obj, int i, Function1 function1, int i2, Object obj2) {
@@ -162,11 +161,11 @@ public class CancellableContinuationImpl<T> extends DispatchedTask<T> implements
             return null;
         }
         Continuation<T> delegate$kotlinx_coroutines_core = getDelegate$kotlinx_coroutines_core();
-        if (!DebugKt.getRECOVER_STACK_TRACES() || !(delegate$kotlinx_coroutines_core instanceof CoroutineStackFrame)) {
-            return exceptionalResult$kotlinx_coroutines_core;
+        if (DebugKt.getRECOVER_STACK_TRACES() && (delegate$kotlinx_coroutines_core instanceof CoroutineStackFrame)) {
+            recoverFromStackFrame = StackTraceRecoveryKt.recoverFromStackFrame(exceptionalResult$kotlinx_coroutines_core, (CoroutineStackFrame) delegate$kotlinx_coroutines_core);
+            return recoverFromStackFrame;
         }
-        recoverFromStackFrame = StackTraceRecoveryKt.recoverFromStackFrame(exceptionalResult$kotlinx_coroutines_core, (CoroutineStackFrame) delegate$kotlinx_coroutines_core);
-        return recoverFromStackFrame;
+        return exceptionalResult$kotlinx_coroutines_core;
     }
 
     public String toString() {

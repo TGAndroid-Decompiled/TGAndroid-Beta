@@ -16,7 +16,6 @@ import org.webrtc.ThreadUtils;
 import org.webrtc.VideoDecoder;
 import org.webrtc.VideoFrame;
 import org.webrtc.VideoSink;
-
 class AndroidVideoDecoder implements VideoDecoder, VideoSink {
     private static final int DEQUEUE_INPUT_TIMEOUT_US = 500000;
     private static final int DEQUEUE_OUTPUT_BUFFER_TIMEOUT_US = 100000;
@@ -183,46 +182,46 @@ class AndroidVideoDecoder implements VideoDecoder, VideoSink {
         }
         int i3 = encodedImage.encodedWidth;
         int i4 = encodedImage.encodedHeight;
-        if (i3 * i4 > 0 && ((i3 != i || i4 != i2) && (reinitDecode = reinitDecode(i3, i4)) != VideoCodecStatus.OK)) {
-            return reinitDecode;
-        }
-        if (this.keyFrameRequired && encodedImage.frameType != EncodedImage.FrameType.VideoFrameKey) {
-            Logging.e(TAG, "decode() - key frame required first");
-            return VideoCodecStatus.NO_OUTPUT;
-        }
-        try {
-            int dequeueInputBuffer = this.codec.dequeueInputBuffer(500000L);
-            if (dequeueInputBuffer < 0) {
-                Logging.e(TAG, "decode() - no HW buffers available; decoder falling behind");
-                return VideoCodecStatus.ERROR;
+        if (i3 * i4 <= 0 || ((i3 == i && i4 == i2) || (reinitDecode = reinitDecode(i3, i4)) == VideoCodecStatus.OK)) {
+            if (this.keyFrameRequired && encodedImage.frameType != EncodedImage.FrameType.VideoFrameKey) {
+                Logging.e(TAG, "decode() - key frame required first");
+                return VideoCodecStatus.NO_OUTPUT;
             }
             try {
-                ByteBuffer byteBuffer2 = this.codec.getInputBuffers()[dequeueInputBuffer];
-                if (byteBuffer2.capacity() < remaining) {
-                    Logging.e(TAG, "decode() - HW buffer too small");
+                int dequeueInputBuffer = this.codec.dequeueInputBuffer(500000L);
+                if (dequeueInputBuffer < 0) {
+                    Logging.e(TAG, "decode() - no HW buffers available; decoder falling behind");
                     return VideoCodecStatus.ERROR;
                 }
-                byteBuffer2.put(encodedImage.buffer);
-                this.frameInfos.offer(new FrameInfo(SystemClock.elapsedRealtime(), encodedImage.rotation));
                 try {
-                    this.codec.queueInputBuffer(dequeueInputBuffer, 0, remaining, TimeUnit.NANOSECONDS.toMicros(encodedImage.captureTimeNs), 0);
-                    if (this.keyFrameRequired) {
-                        this.keyFrameRequired = false;
+                    ByteBuffer byteBuffer2 = this.codec.getInputBuffers()[dequeueInputBuffer];
+                    if (byteBuffer2.capacity() < remaining) {
+                        Logging.e(TAG, "decode() - HW buffer too small");
+                        return VideoCodecStatus.ERROR;
                     }
-                    return VideoCodecStatus.OK;
-                } catch (IllegalStateException e) {
-                    Logging.e(TAG, "queueInputBuffer failed", e);
-                    this.frameInfos.pollLast();
+                    byteBuffer2.put(encodedImage.buffer);
+                    this.frameInfos.offer(new FrameInfo(SystemClock.elapsedRealtime(), encodedImage.rotation));
+                    try {
+                        this.codec.queueInputBuffer(dequeueInputBuffer, 0, remaining, TimeUnit.NANOSECONDS.toMicros(encodedImage.captureTimeNs), 0);
+                        if (this.keyFrameRequired) {
+                            this.keyFrameRequired = false;
+                        }
+                        return VideoCodecStatus.OK;
+                    } catch (IllegalStateException e) {
+                        Logging.e(TAG, "queueInputBuffer failed", e);
+                        this.frameInfos.pollLast();
+                        return VideoCodecStatus.ERROR;
+                    }
+                } catch (IllegalStateException e2) {
+                    Logging.e(TAG, "getInputBuffers failed", e2);
                     return VideoCodecStatus.ERROR;
                 }
-            } catch (IllegalStateException e2) {
-                Logging.e(TAG, "getInputBuffers failed", e2);
+            } catch (IllegalStateException e3) {
+                Logging.e(TAG, "dequeueInputBuffer failed", e3);
                 return VideoCodecStatus.ERROR;
             }
-        } catch (IllegalStateException e3) {
-            Logging.e(TAG, "dequeueInputBuffer failed", e3);
-            return VideoCodecStatus.ERROR;
         }
+        return reinitDecode;
     }
 
     @Override
@@ -259,15 +258,15 @@ class AndroidVideoDecoder implements VideoDecoder, VideoSink {
             if (!ThreadUtils.joinUninterruptibly(this.outputThread, 5000L)) {
                 Logging.e(TAG, "Media decoder release timeout", new RuntimeException());
                 return VideoCodecStatus.TIMEOUT;
-            }
-            if (this.shutdownException != null) {
+            } else if (this.shutdownException != null) {
                 Logging.e(TAG, "Media decoder release error", new RuntimeException(this.shutdownException));
                 this.shutdownException = null;
                 return VideoCodecStatus.ERROR;
+            } else {
+                this.codec = null;
+                this.outputThread = null;
+                return VideoCodecStatus.OK;
             }
-            this.codec = null;
-            this.outputThread = null;
-            return VideoCodecStatus.OK;
         } finally {
             this.codec = null;
             this.outputThread = null;
@@ -300,24 +299,22 @@ class AndroidVideoDecoder implements VideoDecoder, VideoSink {
             int dequeueOutputBuffer = this.codec.dequeueOutputBuffer(bufferInfo, 100000L);
             if (dequeueOutputBuffer == -2) {
                 reformat(this.codec.getOutputFormat());
-                return;
-            }
-            if (dequeueOutputBuffer < 0) {
+            } else if (dequeueOutputBuffer < 0) {
                 Logging.v(TAG, "dequeueOutputBuffer returned " + dequeueOutputBuffer);
-                return;
-            }
-            FrameInfo poll = this.frameInfos.poll();
-            Integer num = null;
-            int i = 0;
-            if (poll != null) {
-                num = Integer.valueOf((int) (SystemClock.elapsedRealtime() - poll.decodeStartTimeMs));
-                i = poll.rotation;
-            }
-            this.hasDecodedFirstFrame = true;
-            if (this.surfaceTextureHelper != null) {
-                deliverTextureFrame(dequeueOutputBuffer, bufferInfo, i, num);
             } else {
-                deliverByteFrame(dequeueOutputBuffer, bufferInfo, i, num);
+                FrameInfo poll = this.frameInfos.poll();
+                Integer num = null;
+                int i = 0;
+                if (poll != null) {
+                    num = Integer.valueOf((int) (SystemClock.elapsedRealtime() - poll.decodeStartTimeMs));
+                    i = poll.rotation;
+                }
+                this.hasDecodedFirstFrame = true;
+                if (this.surfaceTextureHelper != null) {
+                    deliverTextureFrame(dequeueOutputBuffer, bufferInfo, i, num);
+                } else {
+                    deliverByteFrame(dequeueOutputBuffer, bufferInfo, i, num);
+                }
             }
         } catch (IllegalStateException e) {
             Logging.e(TAG, "deliverDecodedFrame failed", e);

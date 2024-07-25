@@ -22,7 +22,6 @@ import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.GroupCallUserCell;
 import org.telegram.ui.Stories.StoriesGradientTools;
-
 public class AvatarsDrawable {
     private boolean attached;
     boolean centered;
@@ -95,8 +94,7 @@ public class AvatarsDrawable {
                 if (i3 >= 3) {
                     z3 = false;
                     break;
-                }
-                if (this.currentStates[i3].id == this.animatingStates[i2].id) {
+                } else if (this.currentStates[i3].id == this.animatingStates[i2].id) {
                     drawingStateArr[i3] = null;
                     if (i2 == i3) {
                         this.animatingStates[i2].animationType = -1;
@@ -320,12 +318,14 @@ public class AvatarsDrawable {
                 chat = MessagesController.getInstance(i2).getChat(Long.valueOf(-peerId));
                 this.animatingStates[i].avatarDrawable.setInfo(i2, chat);
             }
-            if (this.currentStyle != 4) {
-                this.animatingStates[i].lastSpeakTime = tLRPC$TL_groupCallParticipant.active_date;
-            } else if (peerId == AccountInstance.getInstance(i2).getUserConfig().getClientUserId()) {
-                this.animatingStates[i].lastSpeakTime = 0L;
-            } else if (this.isInCall) {
-                this.animatingStates[i].lastSpeakTime = tLRPC$TL_groupCallParticipant.lastActiveDate;
+            if (this.currentStyle == 4) {
+                if (peerId == AccountInstance.getInstance(i2).getUserConfig().getClientUserId()) {
+                    this.animatingStates[i].lastSpeakTime = 0L;
+                } else if (this.isInCall) {
+                    this.animatingStates[i].lastSpeakTime = tLRPC$TL_groupCallParticipant.lastActiveDate;
+                } else {
+                    this.animatingStates[i].lastSpeakTime = tLRPC$TL_groupCallParticipant.active_date;
+                }
             } else {
                 this.animatingStates[i].lastSpeakTime = tLRPC$TL_groupCallParticipant.active_date;
             }

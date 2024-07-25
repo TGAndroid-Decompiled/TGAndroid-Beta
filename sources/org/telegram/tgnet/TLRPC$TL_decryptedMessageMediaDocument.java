@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_decryptedMessageMediaDocument extends TLRPC$DecryptedMessageMedia {
     public byte[] thumb;
 

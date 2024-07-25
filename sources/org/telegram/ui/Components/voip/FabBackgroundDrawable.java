@@ -8,7 +8,6 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import androidx.annotation.Keep;
 import org.telegram.messenger.AndroidUtilities;
-
 public class FabBackgroundDrawable extends Drawable {
     private Paint bgPaint = new Paint(1);
     private Bitmap shadowBitmap;
@@ -35,6 +34,7 @@ public class FabBackgroundDrawable extends Drawable {
 
     @Override
     public void draw(Canvas canvas) {
+        int i;
         if (this.shadowBitmap == null) {
             onBoundsChange(getBounds());
         }
@@ -44,11 +44,12 @@ public class FabBackgroundDrawable extends Drawable {
             canvas.drawBitmap(bitmap, getBounds().centerX() - (this.shadowBitmap.getWidth() / 2), getBounds().centerY() - (this.shadowBitmap.getHeight() / 2), this.shadowPaint);
         }
         float f = min / 2;
-        canvas.drawCircle(f, f, r0 - AndroidUtilities.dp(4.0f), this.bgPaint);
+        canvas.drawCircle(f, f, i - AndroidUtilities.dp(4.0f), this.bgPaint);
     }
 
     @Override
     protected void onBoundsChange(Rect rect) {
+        int i;
         int min = Math.min(rect.width(), rect.height());
         if (min <= 0) {
             this.shadowBitmap = null;
@@ -56,7 +57,7 @@ public class FabBackgroundDrawable extends Drawable {
         }
         this.shadowBitmap = Bitmap.createBitmap(min, min, Bitmap.Config.ALPHA_8);
         float f = min / 2;
-        new Canvas(this.shadowBitmap).drawCircle(f, f, r5 - AndroidUtilities.dp(4.0f), new Paint(1));
+        new Canvas(this.shadowBitmap).drawCircle(f, f, i - AndroidUtilities.dp(4.0f), new Paint(1));
     }
 
     @Keep

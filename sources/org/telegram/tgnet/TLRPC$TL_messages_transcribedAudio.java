@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_transcribedAudio extends TLObject {
     public int flags;
     public boolean pending;

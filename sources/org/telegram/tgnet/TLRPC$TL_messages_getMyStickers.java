@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_getMyStickers extends TLObject {
     public int limit;
     public long offset_id;

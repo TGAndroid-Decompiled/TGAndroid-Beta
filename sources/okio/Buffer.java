@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.ByteChannel;
 import java.nio.charset.Charset;
-
 public final class Buffer implements BufferedSource, BufferedSink, Cloneable, ByteChannel {
     Segment head;
     long size;
@@ -156,29 +155,29 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
 
     public String readString(long j, Charset charset) throws EOFException {
         Util.checkOffsetAndCount(this.size, 0L, j);
-        if (charset == null) {
-            throw new IllegalArgumentException("charset == null");
+        if (charset != null) {
+            if (j > 2147483647L) {
+                throw new IllegalArgumentException("byteCount > Integer.MAX_VALUE: " + j);
+            } else if (j == 0) {
+                return "";
+            } else {
+                Segment segment = this.head;
+                int i = segment.pos;
+                if (i + j > segment.limit) {
+                    return new String(readByteArray(j), charset);
+                }
+                String str = new String(segment.data, i, (int) j, charset);
+                int i2 = (int) (segment.pos + j);
+                segment.pos = i2;
+                this.size -= j;
+                if (i2 == segment.limit) {
+                    this.head = segment.pop();
+                    SegmentPool.recycle(segment);
+                }
+                return str;
+            }
         }
-        if (j > 2147483647L) {
-            throw new IllegalArgumentException("byteCount > Integer.MAX_VALUE: " + j);
-        }
-        if (j == 0) {
-            return "";
-        }
-        Segment segment = this.head;
-        int i = segment.pos;
-        if (i + j > segment.limit) {
-            return new String(readByteArray(j), charset);
-        }
-        String str = new String(segment.data, i, (int) j, charset);
-        int i2 = (int) (segment.pos + j);
-        segment.pos = i2;
-        this.size -= j;
-        if (i2 == segment.limit) {
-            this.head = segment.pop();
-            SegmentPool.recycle(segment);
-        }
-        return str;
+        throw new IllegalArgumentException("charset == null");
     }
 
     public byte[] readByteArray() {
@@ -255,20 +254,21 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
     }
 
     public void skip(long j) throws EOFException {
+        Segment segment;
         while (j > 0) {
             if (this.head == null) {
                 throw new EOFException();
             }
-            int min = (int) Math.min(j, r0.limit - r0.pos);
+            int min = (int) Math.min(j, segment.limit - segment.pos);
             long j2 = min;
             this.size -= j2;
             j -= j2;
-            Segment segment = this.head;
-            int i = segment.pos + min;
-            segment.pos = i;
-            if (i == segment.limit) {
-                this.head = segment.pop();
-                SegmentPool.recycle(segment);
+            Segment segment2 = this.head;
+            int i = segment2.pos + min;
+            segment2.pos = i;
+            if (i == segment2.limit) {
+                this.head = segment2.pop();
+                SegmentPool.recycle(segment2);
             }
         }
     }
@@ -280,67 +280,66 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
 
     @Override
     public Buffer writeUtf8(String str, int i, int i2) {
-        if (str == null) {
-            throw new IllegalArgumentException("string == null");
-        }
-        if (i < 0) {
-            throw new IllegalArgumentException("beginIndex < 0: " + i);
-        }
-        if (i2 < i) {
-            throw new IllegalArgumentException("endIndex < beginIndex: " + i2 + " < " + i);
-        }
-        if (i2 > str.length()) {
-            throw new IllegalArgumentException("endIndex > string.length: " + i2 + " > " + str.length());
-        }
-        while (i < i2) {
-            char charAt = str.charAt(i);
-            if (charAt < 128) {
-                Segment writableSegment = writableSegment(1);
-                byte[] bArr = writableSegment.data;
-                int i3 = writableSegment.limit - i;
-                int min = Math.min(i2, 8192 - i3);
-                int i4 = i + 1;
-                bArr[i + i3] = (byte) charAt;
-                while (i4 < min) {
-                    char charAt2 = str.charAt(i4);
-                    if (charAt2 >= 128) {
-                        break;
-                    }
-                    bArr[i4 + i3] = (byte) charAt2;
-                    i4++;
-                }
-                int i5 = writableSegment.limit;
-                int i6 = (i3 + i4) - i5;
-                writableSegment.limit = i5 + i6;
-                this.size += i6;
-                i = i4;
+        if (str != null) {
+            if (i < 0) {
+                throw new IllegalArgumentException("beginIndex < 0: " + i);
+            } else if (i2 < i) {
+                throw new IllegalArgumentException("endIndex < beginIndex: " + i2 + " < " + i);
+            } else if (i2 > str.length()) {
+                throw new IllegalArgumentException("endIndex > string.length: " + i2 + " > " + str.length());
             } else {
-                if (charAt < 2048) {
-                    writeByte((charAt >> 6) | 192);
-                    writeByte((charAt & '?') | 128);
-                } else if (charAt < 55296 || charAt > 57343) {
-                    writeByte((charAt >> '\f') | 224);
-                    writeByte(((charAt >> 6) & 63) | 128);
-                    writeByte((charAt & '?') | 128);
-                } else {
-                    int i7 = i + 1;
-                    char charAt3 = i7 < i2 ? str.charAt(i7) : (char) 0;
-                    if (charAt > 56319 || charAt3 < 56320 || charAt3 > 57343) {
-                        writeByte(63);
-                        i = i7;
+                while (i < i2) {
+                    char charAt = str.charAt(i);
+                    if (charAt < 128) {
+                        Segment writableSegment = writableSegment(1);
+                        byte[] bArr = writableSegment.data;
+                        int i3 = writableSegment.limit - i;
+                        int min = Math.min(i2, 8192 - i3);
+                        int i4 = i + 1;
+                        bArr[i + i3] = (byte) charAt;
+                        while (i4 < min) {
+                            char charAt2 = str.charAt(i4);
+                            if (charAt2 >= 128) {
+                                break;
+                            }
+                            bArr[i4 + i3] = (byte) charAt2;
+                            i4++;
+                        }
+                        int i5 = writableSegment.limit;
+                        int i6 = (i3 + i4) - i5;
+                        writableSegment.limit = i5 + i6;
+                        this.size += i6;
+                        i = i4;
                     } else {
-                        int i8 = (((charAt & 10239) << 10) | (9215 & charAt3)) + 65536;
-                        writeByte((i8 >> 18) | 240);
-                        writeByte(((i8 >> 12) & 63) | 128);
-                        writeByte(((i8 >> 6) & 63) | 128);
-                        writeByte((i8 & 63) | 128);
-                        i += 2;
+                        if (charAt < 2048) {
+                            writeByte((charAt >> 6) | 192);
+                            writeByte((charAt & '?') | 128);
+                        } else if (charAt < 55296 || charAt > 57343) {
+                            writeByte((charAt >> '\f') | 224);
+                            writeByte(((charAt >> 6) & 63) | 128);
+                            writeByte((charAt & '?') | 128);
+                        } else {
+                            int i7 = i + 1;
+                            char charAt3 = i7 < i2 ? str.charAt(i7) : (char) 0;
+                            if (charAt > 56319 || charAt3 < 56320 || charAt3 > 57343) {
+                                writeByte(63);
+                                i = i7;
+                            } else {
+                                int i8 = (((charAt & 10239) << 10) | (9215 & charAt3)) + 65536;
+                                writeByte((i8 >> 18) | 240);
+                                writeByte(((i8 >> 12) & 63) | 128);
+                                writeByte(((i8 >> 6) & 63) | 128);
+                                writeByte((i8 & 63) | 128);
+                                i += 2;
+                            }
+                        }
+                        i++;
                     }
                 }
-                i++;
+                return this;
             }
         }
-        return this;
+        throw new IllegalArgumentException("string == null");
     }
 
     @Override
@@ -446,21 +445,21 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
 
     @Override
     public long read(Buffer buffer, long j) {
-        if (buffer == null) {
-            throw new IllegalArgumentException("sink == null");
+        if (buffer != null) {
+            if (j < 0) {
+                throw new IllegalArgumentException("byteCount < 0: " + j);
+            }
+            long j2 = this.size;
+            if (j2 == 0) {
+                return -1L;
+            }
+            if (j > j2) {
+                j = j2;
+            }
+            buffer.write(this, j);
+            return j;
         }
-        if (j < 0) {
-            throw new IllegalArgumentException("byteCount < 0: " + j);
-        }
-        long j2 = this.size;
-        if (j2 == 0) {
-            return -1L;
-        }
-        if (j > j2) {
-            j = j2;
-        }
-        buffer.write(this, j);
-        return j;
+        throw new IllegalArgumentException("sink == null");
     }
 
     @Override
@@ -470,63 +469,63 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
 
     public long indexOf(ByteString byteString, long j) throws IOException {
         byte[] bArr;
-        if (byteString.size() == 0) {
-            throw new IllegalArgumentException("bytes is empty");
-        }
-        long j2 = 0;
-        if (j < 0) {
-            throw new IllegalArgumentException("fromIndex < 0");
-        }
-        Segment segment = this.head;
-        long j3 = -1;
-        if (segment == null) {
-            return -1L;
-        }
-        long j4 = this.size;
-        if (j4 - j < j) {
-            while (j4 > j) {
-                segment = segment.prev;
-                j4 -= segment.limit - segment.pos;
+        if (byteString.size() != 0) {
+            long j2 = 0;
+            if (j < 0) {
+                throw new IllegalArgumentException("fromIndex < 0");
             }
-        } else {
-            while (true) {
-                long j5 = (segment.limit - segment.pos) + j2;
-                if (j5 >= j) {
-                    break;
+            Segment segment = this.head;
+            long j3 = -1;
+            if (segment == null) {
+                return -1L;
+            }
+            long j4 = this.size;
+            if (j4 - j < j) {
+                while (j4 > j) {
+                    segment = segment.prev;
+                    j4 -= segment.limit - segment.pos;
                 }
-                segment = segment.next;
-                j2 = j5;
-            }
-            j4 = j2;
-        }
-        byte b = byteString.getByte(0);
-        int size = byteString.size();
-        long j6 = 1 + (this.size - size);
-        long j7 = j;
-        Segment segment2 = segment;
-        long j8 = j4;
-        while (j8 < j6) {
-            byte[] bArr2 = segment2.data;
-            int min = (int) Math.min(segment2.limit, (segment2.pos + j6) - j8);
-            int i = (int) ((segment2.pos + j7) - j8);
-            while (i < min) {
-                if (bArr2[i] == b) {
-                    bArr = bArr2;
-                    if (rangeEquals(segment2, i + 1, byteString, 1, size)) {
-                        return (i - segment2.pos) + j8;
+            } else {
+                while (true) {
+                    long j5 = (segment.limit - segment.pos) + j2;
+                    if (j5 >= j) {
+                        break;
                     }
-                } else {
-                    bArr = bArr2;
+                    segment = segment.next;
+                    j2 = j5;
                 }
-                i++;
-                bArr2 = bArr;
+                j4 = j2;
             }
-            j8 += segment2.limit - segment2.pos;
-            segment2 = segment2.next;
-            j7 = j8;
-            j3 = -1;
+            byte b = byteString.getByte(0);
+            int size = byteString.size();
+            long j6 = 1 + (this.size - size);
+            long j7 = j;
+            Segment segment2 = segment;
+            long j8 = j4;
+            while (j8 < j6) {
+                byte[] bArr2 = segment2.data;
+                int min = (int) Math.min(segment2.limit, (segment2.pos + j6) - j8);
+                int i = (int) ((segment2.pos + j7) - j8);
+                while (i < min) {
+                    if (bArr2[i] == b) {
+                        bArr = bArr2;
+                        if (rangeEquals(segment2, i + 1, byteString, 1, size)) {
+                            return (i - segment2.pos) + j8;
+                        }
+                    } else {
+                        bArr = bArr2;
+                    }
+                    i++;
+                    bArr2 = bArr;
+                }
+                j8 += segment2.limit - segment2.pos;
+                segment2 = segment2.next;
+                j7 = j8;
+                j3 = -1;
+            }
+            return j3;
         }
-        return j3;
+        throw new IllegalArgumentException("bytes is empty");
     }
 
     @Override
@@ -629,46 +628,46 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable, By
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof Buffer)) {
-            return false;
-        }
-        Buffer buffer = (Buffer) obj;
-        long j = this.size;
-        if (j != buffer.size) {
-            return false;
-        }
-        long j2 = 0;
-        if (j == 0) {
+        if (obj instanceof Buffer) {
+            Buffer buffer = (Buffer) obj;
+            long j = this.size;
+            if (j != buffer.size) {
+                return false;
+            }
+            long j2 = 0;
+            if (j == 0) {
+                return true;
+            }
+            Segment segment = this.head;
+            Segment segment2 = buffer.head;
+            int i = segment.pos;
+            int i2 = segment2.pos;
+            while (j2 < this.size) {
+                long min = Math.min(segment.limit - i, segment2.limit - i2);
+                int i3 = 0;
+                while (i3 < min) {
+                    int i4 = i + 1;
+                    int i5 = i2 + 1;
+                    if (segment.data[i] != segment2.data[i2]) {
+                        return false;
+                    }
+                    i3++;
+                    i = i4;
+                    i2 = i5;
+                }
+                if (i == segment.limit) {
+                    segment = segment.next;
+                    i = segment.pos;
+                }
+                if (i2 == segment2.limit) {
+                    segment2 = segment2.next;
+                    i2 = segment2.pos;
+                }
+                j2 += min;
+            }
             return true;
         }
-        Segment segment = this.head;
-        Segment segment2 = buffer.head;
-        int i = segment.pos;
-        int i2 = segment2.pos;
-        while (j2 < this.size) {
-            long min = Math.min(segment.limit - i, segment2.limit - i2);
-            int i3 = 0;
-            while (i3 < min) {
-                int i4 = i + 1;
-                int i5 = i2 + 1;
-                if (segment.data[i] != segment2.data[i2]) {
-                    return false;
-                }
-                i3++;
-                i = i4;
-                i2 = i5;
-            }
-            if (i == segment.limit) {
-                segment = segment.next;
-                i = segment.pos;
-            }
-            if (i2 == segment2.limit) {
-                segment2 = segment2.next;
-                i2 = segment2.pos;
-            }
-            j2 += min;
-        }
-        return true;
+        return false;
     }
 
     public int hashCode() {

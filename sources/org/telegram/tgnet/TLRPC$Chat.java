@@ -3,7 +3,6 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 import org.telegram.messenger.FileLoaderPriorityQueue;
 import org.telegram.messenger.LiteMode;
-
 public abstract class TLRPC$Chat extends TLObject {
     public long access_hash;
     public TLRPC$TL_chatAdminRights admin_rights;

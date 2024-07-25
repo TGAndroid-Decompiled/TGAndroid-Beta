@@ -2,7 +2,6 @@ package org.telegram.PhoneFormat;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-
 public class CallingCodeInfo {
     public String callingCode;
     public ArrayList<String> intlPrefixes;

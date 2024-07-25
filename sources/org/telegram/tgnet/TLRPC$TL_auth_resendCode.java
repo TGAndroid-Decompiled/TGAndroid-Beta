@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_auth_resendCode extends TLObject {
     public int flags;
     public String phone_code_hash;

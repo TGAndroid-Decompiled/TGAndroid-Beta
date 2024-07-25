@@ -51,7 +51,6 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.ContentPreviewViewer;
 import org.telegram.ui.PhotoViewer;
 import org.webrtc.MediaStreamTrack;
-
 public class MentionsContainerView extends BlurredFrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private MentionsAdapter adapter;
     private boolean allowBlur;
@@ -137,7 +136,7 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
     protected void onScrolled(boolean z, boolean z2) {
     }
 
-    public MentionsContainerView(Context context, long j, long j2, BaseFragment baseFragment, SizeNotifierFrameLayout sizeNotifierFrameLayout, Theme.ResourcesProvider resourcesProvider) {
+    public MentionsContainerView(Context context, long j, long j2, final BaseFragment baseFragment, SizeNotifierFrameLayout sizeNotifierFrameLayout, Theme.ResourcesProvider resourcesProvider) {
         super(context, sizeNotifierFrameLayout);
         this.shouldLiftMentions = false;
         this.rect = new android.graphics.Rect();
@@ -154,7 +153,8 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
         this.hideT = 0.0f;
         this.switchLayoutManagerOnEnd = false;
         this.botContextProvider = new PhotoViewer.EmptyPhotoViewerProvider() {
-            AnonymousClass5() {
+            {
+                MentionsContainerView.this = this;
             }
 
             @Override
@@ -181,14 +181,14 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
         MentionsListView mentionsListView = new MentionsListView(context, resourcesProvider);
         this.listView = mentionsListView;
         mentionsListView.setTranslationY(AndroidUtilities.dp(6.0f));
-        AnonymousClass1 anonymousClass1 = new LinearLayoutManager(context) {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context) {
             @Override
             public boolean supportsPredictiveItemAnimations() {
                 return false;
             }
 
-            AnonymousClass1(Context context2) {
-                super(context2);
+            {
+                MentionsContainerView.this = this;
             }
 
             @Override
@@ -197,14 +197,13 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
                 MentionsContainerView.this.listView.setTranslationY((z ? -1 : 1) * AndroidUtilities.dp(6.0f));
             }
         };
-        this.linearLayoutManager = anonymousClass1;
-        anonymousClass1.setOrientation(1);
-        AnonymousClass2 anonymousClass2 = new ExtendedGridLayoutManager(context2, 100, false, false) {
+        this.linearLayoutManager = linearLayoutManager;
+        linearLayoutManager.setOrientation(1);
+        ExtendedGridLayoutManager extendedGridLayoutManager = new ExtendedGridLayoutManager(context, 100, false, false) {
             private Size size = new Size();
 
-            AnonymousClass2(Context context2, int i, boolean z, boolean z2) {
-                super(context2, i, z, z2);
-                this.size = new Size();
+            {
+                MentionsContainerView.this = this;
             }
 
             @Override
@@ -284,9 +283,10 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
                 return super.getFlowItemCount() - 1;
             }
         };
-        this.gridLayoutManager = anonymousClass2;
-        anonymousClass2.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-            AnonymousClass3() {
+        this.gridLayoutManager = extendedGridLayoutManager;
+        extendedGridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            {
+                MentionsContainerView.this = this;
             }
 
             @Override
@@ -318,11 +318,9 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
         this.listView.setItemAnimator(defaultItemAnimator);
         this.listView.setClipToPadding(false);
         this.listView.setLayoutManager(this.linearLayoutManager);
-        MentionsAdapter mentionsAdapter = new MentionsAdapter(context2, false, j, j2, new MentionsAdapter.MentionsAdapterDelegate() {
-            final BaseFragment val$baseFragment;
-
-            AnonymousClass4(BaseFragment baseFragment2) {
-                r2 = baseFragment2;
+        MentionsAdapter mentionsAdapter = new MentionsAdapter(context, false, j, j2, new MentionsAdapter.MentionsAdapterDelegate() {
+            {
+                MentionsContainerView.this = this;
             }
 
             @Override
@@ -331,11 +329,12 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
                     return;
                 }
                 AndroidUtilities.cancelRunOnUIThread(MentionsContainerView.this.updateVisibilityRunnable);
-                AndroidUtilities.runOnUIThread(MentionsContainerView.this.updateVisibilityRunnable, r2.getFragmentBeginToShow() ? 0L : 100L);
+                AndroidUtilities.runOnUIThread(MentionsContainerView.this.updateVisibilityRunnable, baseFragment.getFragmentBeginToShow() ? 0L : 100L);
             }
 
             @Override
             public void needChangePanelVisibility(boolean z) {
+                boolean z2 = false;
                 if (MentionsContainerView.this.getNeededLayoutManager() != MentionsContainerView.this.getCurrentLayoutManager() && MentionsContainerView.this.canOpen()) {
                     if (MentionsContainerView.this.adapter.getLastItemCount() > 0) {
                         MentionsContainerView.this.switchLayoutManagerOnEnd = true;
@@ -347,7 +346,10 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
                 if (z && !MentionsContainerView.this.canOpen()) {
                     z = false;
                 }
-                MentionsContainerView.this.updateVisibility((!z || MentionsContainerView.this.adapter.getItemCountInternal() > 0) ? z : false);
+                if (!z || MentionsContainerView.this.adapter.getItemCountInternal() > 0) {
+                    z2 = z;
+                }
+                MentionsContainerView.this.updateVisibility(z2);
             }
 
             @Override
@@ -366,176 +368,6 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
         this.listView.setAdapter(paddedListAdapter);
         addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
         setReversed(false);
-    }
-
-    public class AnonymousClass1 extends LinearLayoutManager {
-        @Override
-        public boolean supportsPredictiveItemAnimations() {
-            return false;
-        }
-
-        AnonymousClass1(Context context2) {
-            super(context2);
-        }
-
-        @Override
-        public void setReverseLayout(boolean z) {
-            super.setReverseLayout(z);
-            MentionsContainerView.this.listView.setTranslationY((z ? -1 : 1) * AndroidUtilities.dp(6.0f));
-        }
-    }
-
-    public class AnonymousClass2 extends ExtendedGridLayoutManager {
-        private Size size = new Size();
-
-        AnonymousClass2(Context context2, int i, boolean z, boolean z2) {
-            super(context2, i, z, z2);
-            this.size = new Size();
-        }
-
-        @Override
-        protected Size getSizeForItem(int i) {
-            TLRPC$PhotoSize closestPhotoSizeWithSize;
-            if (i != 0) {
-                int i2 = i - 1;
-                if (MentionsContainerView.this.adapter.getBotContextSwitch() != null || MentionsContainerView.this.adapter.getBotWebViewSwitch() != null) {
-                    i2++;
-                }
-                Size size = this.size;
-                size.width = 0.0f;
-                size.height = 0.0f;
-                Object item = MentionsContainerView.this.adapter.getItem(i2);
-                if (item instanceof TLRPC$BotInlineResult) {
-                    TLRPC$BotInlineResult tLRPC$BotInlineResult = (TLRPC$BotInlineResult) item;
-                    TLRPC$Document tLRPC$Document = tLRPC$BotInlineResult.document;
-                    int i3 = 0;
-                    if (tLRPC$Document != null) {
-                        TLRPC$PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 90);
-                        Size size2 = this.size;
-                        size2.width = closestPhotoSizeWithSize2 != null ? closestPhotoSizeWithSize2.w : 100.0f;
-                        size2.height = closestPhotoSizeWithSize2 != null ? closestPhotoSizeWithSize2.h : 100.0f;
-                        while (i3 < tLRPC$BotInlineResult.document.attributes.size()) {
-                            TLRPC$DocumentAttribute tLRPC$DocumentAttribute = tLRPC$BotInlineResult.document.attributes.get(i3);
-                            if ((tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeImageSize) || (tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeVideo)) {
-                                Size size3 = this.size;
-                                size3.width = tLRPC$DocumentAttribute.w;
-                                size3.height = tLRPC$DocumentAttribute.h;
-                                break;
-                            }
-                            i3++;
-                        }
-                    } else if (tLRPC$BotInlineResult.content != null) {
-                        while (i3 < tLRPC$BotInlineResult.content.attributes.size()) {
-                            TLRPC$DocumentAttribute tLRPC$DocumentAttribute2 = tLRPC$BotInlineResult.content.attributes.get(i3);
-                            if ((tLRPC$DocumentAttribute2 instanceof TLRPC$TL_documentAttributeImageSize) || (tLRPC$DocumentAttribute2 instanceof TLRPC$TL_documentAttributeVideo)) {
-                                Size size4 = this.size;
-                                size4.width = tLRPC$DocumentAttribute2.w;
-                                size4.height = tLRPC$DocumentAttribute2.h;
-                                break;
-                            }
-                            i3++;
-                        }
-                    } else if (tLRPC$BotInlineResult.thumb != null) {
-                        while (i3 < tLRPC$BotInlineResult.thumb.attributes.size()) {
-                            TLRPC$DocumentAttribute tLRPC$DocumentAttribute3 = tLRPC$BotInlineResult.thumb.attributes.get(i3);
-                            if ((tLRPC$DocumentAttribute3 instanceof TLRPC$TL_documentAttributeImageSize) || (tLRPC$DocumentAttribute3 instanceof TLRPC$TL_documentAttributeVideo)) {
-                                Size size5 = this.size;
-                                size5.width = tLRPC$DocumentAttribute3.w;
-                                size5.height = tLRPC$DocumentAttribute3.h;
-                                break;
-                            }
-                            i3++;
-                        }
-                    } else {
-                        TLRPC$Photo tLRPC$Photo = tLRPC$BotInlineResult.photo;
-                        if (tLRPC$Photo != null && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo.sizes, AndroidUtilities.photoSize.intValue())) != null) {
-                            Size size6 = this.size;
-                            size6.width = closestPhotoSizeWithSize.w;
-                            size6.height = closestPhotoSizeWithSize.h;
-                        }
-                    }
-                }
-                return this.size;
-            }
-            this.size.width = getWidth();
-            this.size.height = MentionsContainerView.this.paddedAdapter.getPadding();
-            return this.size;
-        }
-
-        @Override
-        public int getFlowItemCount() {
-            if (MentionsContainerView.this.adapter.getBotContextSwitch() != null || MentionsContainerView.this.adapter.getBotWebViewSwitch() != null) {
-                return getItemCount() - 2;
-            }
-            return super.getFlowItemCount() - 1;
-        }
-    }
-
-    public class AnonymousClass3 extends GridLayoutManager.SpanSizeLookup {
-        AnonymousClass3() {
-        }
-
-        @Override
-        public int getSpanSize(int i) {
-            if (i == 0) {
-                return 100;
-            }
-            int i2 = i - 1;
-            Object item = MentionsContainerView.this.adapter.getItem(i2);
-            if (item instanceof TLRPC$TL_inlineBotSwitchPM) {
-                return 100;
-            }
-            if (item instanceof TLRPC$Document) {
-                return 20;
-            }
-            if (MentionsContainerView.this.adapter.getBotContextSwitch() != null || MentionsContainerView.this.adapter.getBotWebViewSwitch() != null) {
-                i2--;
-            }
-            return MentionsContainerView.this.gridLayoutManager.getSpanSizeForItem(i2);
-        }
-    }
-
-    public class AnonymousClass4 implements MentionsAdapter.MentionsAdapterDelegate {
-        final BaseFragment val$baseFragment;
-
-        AnonymousClass4(BaseFragment baseFragment2) {
-            r2 = baseFragment2;
-        }
-
-        @Override
-        public void onItemCountUpdate(int i, int i2) {
-            if (MentionsContainerView.this.listView.getLayoutManager() == MentionsContainerView.this.gridLayoutManager || !MentionsContainerView.this.shown) {
-                return;
-            }
-            AndroidUtilities.cancelRunOnUIThread(MentionsContainerView.this.updateVisibilityRunnable);
-            AndroidUtilities.runOnUIThread(MentionsContainerView.this.updateVisibilityRunnable, r2.getFragmentBeginToShow() ? 0L : 100L);
-        }
-
-        @Override
-        public void needChangePanelVisibility(boolean z) {
-            if (MentionsContainerView.this.getNeededLayoutManager() != MentionsContainerView.this.getCurrentLayoutManager() && MentionsContainerView.this.canOpen()) {
-                if (MentionsContainerView.this.adapter.getLastItemCount() > 0) {
-                    MentionsContainerView.this.switchLayoutManagerOnEnd = true;
-                    MentionsContainerView.this.updateVisibility(false);
-                    return;
-                }
-                MentionsContainerView.this.listView.setLayoutManager(MentionsContainerView.this.getNeededLayoutManager());
-            }
-            if (z && !MentionsContainerView.this.canOpen()) {
-                z = false;
-            }
-            MentionsContainerView.this.updateVisibility((!z || MentionsContainerView.this.adapter.getItemCountInternal() > 0) ? z : false);
-        }
-
-        @Override
-        public void onContextSearch(boolean z) {
-            MentionsContainerView.this.onContextSearch(z);
-        }
-
-        @Override
-        public void onContextClick(TLRPC$BotInlineResult tLRPC$BotInlineResult) {
-            MentionsContainerView.this.onContextClick(tLRPC$BotInlineResult);
-        }
     }
 
     public void onPanTransitionStart() {
@@ -594,13 +426,15 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
 
     @Override
     public void dispatchDraw(Canvas canvas) {
+        PaddedListAdapter paddedListAdapter;
         float min;
+        PaddedListAdapter paddedListAdapter2;
         boolean isReversed = isReversed();
         this.containerPadding = AndroidUtilities.dp(((this.adapter.isStickers() || this.adapter.isBotContext()) && this.adapter.isMediaLayout() && this.adapter.getBotContextSwitch() == null && this.adapter.getBotWebViewSwitch() == null ? 2 : 0) + 2);
         float dp = AndroidUtilities.dp(6.0f);
         float f = this.containerTop;
         if (isReversed) {
-            float min2 = Math.min(Math.max(0.0f, (this.paddedAdapter.paddingViewAttached ? r4.paddingView.getTop() : getHeight()) + this.listView.getTranslationY()) + this.containerPadding, (1.0f - this.hideT) * getHeight());
+            float min2 = Math.min(Math.max(0.0f, (this.paddedAdapter.paddingViewAttached ? paddedListAdapter2.paddingView.getTop() : getHeight()) + this.listView.getTranslationY()) + this.containerPadding, (1.0f - this.hideT) * getHeight());
             android.graphics.Rect rect = this.rect;
             this.containerTop = 0.0f;
             int measuredWidth = getMeasuredWidth();
@@ -615,7 +449,7 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
                 this.containerPadding += AndroidUtilities.dp(2.0f);
                 dp += AndroidUtilities.dp(2.0f);
             }
-            float max = Math.max(0.0f, (this.paddedAdapter.paddingViewAttached ? r4.paddingView.getBottom() : 0) + this.listView.getTranslationY()) - this.containerPadding;
+            float max = Math.max(0.0f, (this.paddedAdapter.paddingViewAttached ? paddedListAdapter.paddingView.getBottom() : 0) + this.listView.getTranslationY()) - this.containerPadding;
             this.containerTop = max;
             float max2 = Math.max(max, this.hideT * getHeight());
             android.graphics.Rect rect2 = this.rect;
@@ -707,7 +541,8 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
                 }
                 if (getVisibility() == 8) {
                     this.hideT = 1.0f;
-                    this.listView.setTranslationY(isReversed ? -(this.listViewPadding + AndroidUtilities.dp(12.0f)) : r2.computeVerticalScrollOffset() + this.listViewPadding);
+                    MentionsListView mentionsListView = this.listView;
+                    mentionsListView.setTranslationY(isReversed ? -(this.listViewPadding + AndroidUtilities.dp(12.0f)) : mentionsListView.computeVerticalScrollOffset() + this.listViewPadding);
                 }
             }
             setVisibility(0);
@@ -740,88 +575,86 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
         SpringAnimation springAnimation;
         if (this.listView == null || this.paddedAdapter == null) {
             this.scrollRangeUpdateTries = 0;
-            return;
-        }
-        if (this.listViewHiding && (springAnimation = this.listViewTranslationAnimator) != null && springAnimation.isRunning() && z) {
+        } else if (this.listViewHiding && (springAnimation = this.listViewTranslationAnimator) != null && springAnimation.isRunning() && z) {
             this.scrollRangeUpdateTries = 0;
-            return;
-        }
-        boolean isReversed = isReversed();
-        if (z) {
-            f = (-this.containerPadding) - AndroidUtilities.dp(6.0f);
         } else {
-            int computeVerticalScrollRange = this.listView.computeVerticalScrollRange();
-            float padding = (computeVerticalScrollRange - this.paddedAdapter.getPadding()) + this.containerPadding;
-            if (computeVerticalScrollRange <= 0 && this.adapter.getItemCountInternal() > 0 && (i = this.scrollRangeUpdateTries) < 3) {
-                this.scrollRangeUpdateTries = i + 1;
-                updateVisibility(true);
-                return;
-            }
-            f = padding;
-        }
-        this.scrollRangeUpdateTries = 0;
-        float f2 = this.listViewPadding;
-        float max = isReversed ? -Math.max(0.0f, f2 - f) : Math.max(0.0f, f2 - f) + (-f2);
-        if (z && !isReversed) {
-            max += this.listView.computeVerticalScrollOffset();
-        }
-        final float f3 = max;
-        SpringAnimation springAnimation2 = this.listViewTranslationAnimator;
-        if (springAnimation2 != null) {
-            springAnimation2.cancel();
-        }
-        Integer num = null;
-        if (z2) {
-            this.listViewHiding = z;
-            final float translationY = this.listView.getTranslationY();
-            final float f4 = this.hideT;
-            final float f5 = z ? 1.0f : 0.0f;
-            if (translationY == f3) {
-                this.listViewTranslationAnimator = null;
-                Integer valueOf = Integer.valueOf(z ? 8 : 0);
-                if (this.switchLayoutManagerOnEnd && z) {
-                    this.switchLayoutManagerOnEnd = false;
-                    this.listView.setLayoutManager(getNeededLayoutManager());
-                    this.shown = true;
-                    updateVisibility(true);
-                }
-                num = valueOf;
+            boolean isReversed = isReversed();
+            if (z) {
+                f = (-this.containerPadding) - AndroidUtilities.dp(6.0f);
             } else {
-                SpringAnimation spring = new SpringAnimation(new FloatValueHolder(translationY)).setSpring(new SpringForce(f3).setDampingRatio(1.0f).setStiffness(550.0f));
-                this.listViewTranslationAnimator = spring;
-                spring.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
-                    @Override
-                    public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f6, float f7) {
-                        MentionsContainerView.this.lambda$updateListViewTranslation$1(f4, f5, translationY, f3, dynamicAnimation, f6, f7);
+                int computeVerticalScrollRange = this.listView.computeVerticalScrollRange();
+                float padding = (computeVerticalScrollRange - this.paddedAdapter.getPadding()) + this.containerPadding;
+                if (computeVerticalScrollRange <= 0 && this.adapter.getItemCountInternal() > 0 && (i = this.scrollRangeUpdateTries) < 3) {
+                    this.scrollRangeUpdateTries = i + 1;
+                    updateVisibility(true);
+                    return;
+                }
+                f = padding;
+            }
+            this.scrollRangeUpdateTries = 0;
+            float f2 = this.listViewPadding;
+            float max = isReversed ? -Math.max(0.0f, f2 - f) : Math.max(0.0f, f2 - f) + (-f2);
+            if (z && !isReversed) {
+                max += this.listView.computeVerticalScrollOffset();
+            }
+            final float f3 = max;
+            SpringAnimation springAnimation2 = this.listViewTranslationAnimator;
+            if (springAnimation2 != null) {
+                springAnimation2.cancel();
+            }
+            Integer num = null;
+            if (z2) {
+                this.listViewHiding = z;
+                final float translationY = this.listView.getTranslationY();
+                final float f4 = this.hideT;
+                final float f5 = z ? 1.0f : 0.0f;
+                if (translationY == f3) {
+                    this.listViewTranslationAnimator = null;
+                    Integer valueOf = Integer.valueOf(z ? 8 : 0);
+                    if (this.switchLayoutManagerOnEnd && z) {
+                        this.switchLayoutManagerOnEnd = false;
+                        this.listView.setLayoutManager(getNeededLayoutManager());
+                        this.shown = true;
+                        updateVisibility(true);
                     }
-                });
-                if (z) {
+                    num = valueOf;
+                } else {
+                    SpringAnimation spring = new SpringAnimation(new FloatValueHolder(translationY)).setSpring(new SpringForce(f3).setDampingRatio(1.0f).setStiffness(550.0f));
+                    this.listViewTranslationAnimator = spring;
+                    spring.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
+                        @Override
+                        public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f6, float f7) {
+                            MentionsContainerView.this.lambda$updateListViewTranslation$1(f4, f5, translationY, f3, dynamicAnimation, f6, f7);
+                        }
+                    });
+                    if (z) {
+                        this.listViewTranslationAnimator.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
+                            @Override
+                            public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z3, float f6, float f7) {
+                                MentionsContainerView.this.lambda$updateListViewTranslation$2(z, dynamicAnimation, z3, f6, f7);
+                            }
+                        });
+                    }
                     this.listViewTranslationAnimator.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                         @Override
                         public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z3, float f6, float f7) {
-                            MentionsContainerView.this.lambda$updateListViewTranslation$2(z, dynamicAnimation, z3, f6, f7);
+                            MentionsContainerView.lambda$updateListViewTranslation$3(dynamicAnimation, z3, f6, f7);
                         }
                     });
+                    this.listViewTranslationAnimator.start();
                 }
-                this.listViewTranslationAnimator.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
-                    @Override
-                    public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z3, float f6, float f7) {
-                        MentionsContainerView.lambda$updateListViewTranslation$3(dynamicAnimation, z3, f6, f7);
-                    }
-                });
-                this.listViewTranslationAnimator.start();
+            } else {
+                this.hideT = z ? 1.0f : 0.0f;
+                this.listView.setTranslationY(f3);
+                if (z) {
+                    num = 8;
+                }
             }
-        } else {
-            this.hideT = z ? 1.0f : 0.0f;
-            this.listView.setTranslationY(f3);
-            if (z) {
-                num = 8;
+            if (num == null || getVisibility() == num.intValue()) {
+                return;
             }
+            setVisibility(num.intValue());
         }
-        if (num == null || getVisibility() == num.intValue()) {
-            return;
-        }
-        setVisibility(num.intValue());
     }
 
     public void lambda$updateListViewTranslation$1(float f, float f2, float f3, float f4, DynamicAnimation dynamicAnimation, float f5, float f6) {
@@ -846,24 +679,6 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
 
     public void setDialogId(long j) {
         this.adapter.setDialogId(j);
-    }
-
-    public class AnonymousClass5 extends PhotoViewer.EmptyPhotoViewerProvider {
-        AnonymousClass5() {
-        }
-
-        @Override
-        public org.telegram.ui.PhotoViewer.PlaceProviderObject getPlaceForPhoto(org.telegram.messenger.MessageObject r5, org.telegram.tgnet.TLRPC$FileLocation r6, int r7, boolean r8) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.MentionsContainerView.AnonymousClass5.getPlaceForPhoto(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, int, boolean):org.telegram.ui.PhotoViewer$PlaceProviderObject");
-        }
-
-        @Override
-        public void sendButtonPressed(int i, VideoEditedInfo videoEditedInfo, boolean z, int i2, boolean z2) {
-            if (i < 0 || i >= MentionsContainerView.this.botContextResults.size()) {
-                return;
-            }
-            MentionsContainerView.this.delegate.sendBotInlineResult((TLRPC$BotInlineResult) MentionsContainerView.this.botContextResults.get(i), z, i2);
-        }
     }
 
     public void withDelegate(final Delegate delegate) {
@@ -972,8 +787,10 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
 
         public MentionsListView(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context, resourcesProvider);
-            setOnScrollListener(new RecyclerView.OnScrollListener(MentionsContainerView.this) {
-                AnonymousClass1(MentionsContainerView mentionsContainerView) {
+            MentionsContainerView.this = r1;
+            setOnScrollListener(new RecyclerView.OnScrollListener(r1) {
+                {
+                    MentionsListView.this = this;
                 }
 
                 @Override
@@ -988,11 +805,13 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
                     if ((findLastVisibleItemPosition == -1 ? 0 : findLastVisibleItemPosition) > 0 && findLastVisibleItemPosition > MentionsContainerView.this.adapter.getLastItemCount() - 5) {
                         MentionsContainerView.this.adapter.searchForContextBotForNextOffset();
                     }
-                    MentionsContainerView.this.onScrolled(!r2.canScrollVertically(-1), true ^ MentionsListView.this.canScrollVertically(1));
+                    MentionsListView mentionsListView = MentionsListView.this;
+                    MentionsContainerView.this.onScrolled(!mentionsListView.canScrollVertically(-1), true ^ MentionsListView.this.canScrollVertically(1));
                 }
             });
-            addItemDecoration(new RecyclerView.ItemDecoration(MentionsContainerView.this) {
-                AnonymousClass2(MentionsContainerView mentionsContainerView) {
+            addItemDecoration(new RecyclerView.ItemDecoration(r1) {
+                {
+                    MentionsListView.this = this;
                 }
 
                 @Override
@@ -1011,10 +830,9 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
                     }
                     if (MentionsContainerView.this.adapter.getBotContextSwitch() == null && MentionsContainerView.this.adapter.getBotWebViewSwitch() == null) {
                         rect.top = AndroidUtilities.dp(2.0f);
+                    } else if (i == 0) {
+                        return;
                     } else {
-                        if (i == 0) {
-                            return;
-                        }
                         i--;
                         if (!MentionsContainerView.this.gridLayoutManager.isFirstRow(i)) {
                             rect.top = AndroidUtilities.dp(2.0f);
@@ -1023,59 +841,6 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
                     rect.right = MentionsContainerView.this.gridLayoutManager.isLastInRow(i) ? 0 : AndroidUtilities.dp(2.0f);
                 }
             });
-        }
-
-        public class AnonymousClass1 extends RecyclerView.OnScrollListener {
-            AnonymousClass1(MentionsContainerView mentionsContainerView) {
-            }
-
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int i) {
-                MentionsListView.this.isScrolling = i != 0;
-                MentionsListView.this.isDragging = i == 1;
-            }
-
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int i, int i2) {
-                int findLastVisibleItemPosition = MentionsListView.this.getLayoutManager() == MentionsContainerView.this.gridLayoutManager ? MentionsContainerView.this.gridLayoutManager.findLastVisibleItemPosition() : MentionsContainerView.this.linearLayoutManager.findLastVisibleItemPosition();
-                if ((findLastVisibleItemPosition == -1 ? 0 : findLastVisibleItemPosition) > 0 && findLastVisibleItemPosition > MentionsContainerView.this.adapter.getLastItemCount() - 5) {
-                    MentionsContainerView.this.adapter.searchForContextBotForNextOffset();
-                }
-                MentionsContainerView.this.onScrolled(!r2.canScrollVertically(-1), true ^ MentionsListView.this.canScrollVertically(1));
-            }
-        }
-
-        public class AnonymousClass2 extends RecyclerView.ItemDecoration {
-            AnonymousClass2(MentionsContainerView mentionsContainerView) {
-            }
-
-            @Override
-            public void getItemOffsets(android.graphics.Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
-                int childAdapterPosition;
-                rect.left = 0;
-                rect.right = 0;
-                rect.top = 0;
-                rect.bottom = 0;
-                if (recyclerView.getLayoutManager() != MentionsContainerView.this.gridLayoutManager || (childAdapterPosition = recyclerView.getChildAdapterPosition(view)) == 0) {
-                    return;
-                }
-                int i = childAdapterPosition - 1;
-                if (MentionsContainerView.this.adapter.isStickers()) {
-                    return;
-                }
-                if (MentionsContainerView.this.adapter.getBotContextSwitch() == null && MentionsContainerView.this.adapter.getBotWebViewSwitch() == null) {
-                    rect.top = AndroidUtilities.dp(2.0f);
-                } else {
-                    if (i == 0) {
-                        return;
-                    }
-                    i--;
-                    if (!MentionsContainerView.this.gridLayoutManager.isFirstRow(i)) {
-                        rect.top = AndroidUtilities.dp(2.0f);
-                    }
-                }
-                rect.right = MentionsContainerView.this.gridLayoutManager.isLastInRow(i) ? 0 : AndroidUtilities.dp(2.0f);
-            }
         }
 
         @Override

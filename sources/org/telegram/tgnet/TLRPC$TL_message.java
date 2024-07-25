@@ -3,7 +3,6 @@ package org.telegram.tgnet;
 import android.text.TextUtils;
 import org.telegram.messenger.FileLoaderPriorityQueue;
 import org.telegram.messenger.LiteMode;
-
 public class TLRPC$TL_message extends TLRPC$Message {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

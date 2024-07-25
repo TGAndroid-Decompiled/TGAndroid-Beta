@@ -24,7 +24,6 @@ import org.webrtc.CalledByNative;
 import org.webrtc.Logging;
 import org.webrtc.ThreadUtils;
 import org.webrtc.audio.JavaAudioDeviceModule;
-
 public class WebRtcAudioRecord {
     private static final int AUDIO_RECORD_START = 0;
     private static final int AUDIO_RECORD_STOP = 1;
@@ -274,7 +273,8 @@ public class WebRtcAudioRecord {
         try {
             this.audioRecord.startRecording();
             if (this.audioRecord.getRecordingState() != 3) {
-                reportWebRtcAudioRecordStartError(JavaAudioDeviceModule.AudioRecordStartErrorCode.AUDIO_RECORD_START_STATE_MISMATCH, "AudioRecord.startRecording failed - incorrect state: " + this.audioRecord.getRecordingState());
+                JavaAudioDeviceModule.AudioRecordStartErrorCode audioRecordStartErrorCode = JavaAudioDeviceModule.AudioRecordStartErrorCode.AUDIO_RECORD_START_STATE_MISMATCH;
+                reportWebRtcAudioRecordStartError(audioRecordStartErrorCode, "AudioRecord.startRecording failed - incorrect state: " + this.audioRecord.getRecordingState());
                 return false;
             }
             AudioRecordThread audioRecordThread = new AudioRecordThread("AudioRecordJavaThread");
@@ -283,7 +283,8 @@ public class WebRtcAudioRecord {
             scheduleLogRecordingConfigurationsTask(this.audioRecord);
             return true;
         } catch (IllegalStateException e) {
-            reportWebRtcAudioRecordStartError(JavaAudioDeviceModule.AudioRecordStartErrorCode.AUDIO_RECORD_START_EXCEPTION, "AudioRecord.startRecording failed: " + e.getMessage());
+            JavaAudioDeviceModule.AudioRecordStartErrorCode audioRecordStartErrorCode2 = JavaAudioDeviceModule.AudioRecordStartErrorCode.AUDIO_RECORD_START_EXCEPTION;
+            reportWebRtcAudioRecordStartError(audioRecordStartErrorCode2, "AudioRecord.startRecording failed: " + e.getMessage());
             return false;
         }
     }
@@ -337,20 +338,20 @@ public class WebRtcAudioRecord {
         if (Build.VERSION.SDK_INT < 24) {
             Logging.w(TAG, "AudioManager#getActiveRecordingConfigurations() requires N or higher");
             return 0;
-        }
-        if (audioRecord == null) {
+        } else if (audioRecord == null) {
             return 0;
-        }
-        List<AudioRecordingConfiguration> activeRecordingConfigurations = this.audioManager.getActiveRecordingConfigurations();
-        int size = activeRecordingConfigurations.size();
-        Logging.d(TAG, "Number of active recording sessions: " + size);
-        if (size > 0) {
-            logActiveRecordingConfigs(audioRecord.getAudioSessionId(), activeRecordingConfigurations);
-            if (z) {
-                this.audioSourceMatchesRecordingSessionRef.set(Boolean.valueOf(verifyAudioConfig(audioRecord.getAudioSource(), audioRecord.getAudioSessionId(), audioRecord.getFormat(), audioRecord.getRoutedDevice(), activeRecordingConfigurations)));
+        } else {
+            List<AudioRecordingConfiguration> activeRecordingConfigurations = this.audioManager.getActiveRecordingConfigurations();
+            int size = activeRecordingConfigurations.size();
+            Logging.d(TAG, "Number of active recording sessions: " + size);
+            if (size > 0) {
+                logActiveRecordingConfigs(audioRecord.getAudioSessionId(), activeRecordingConfigurations);
+                if (z) {
+                    this.audioSourceMatchesRecordingSessionRef.set(Boolean.valueOf(verifyAudioConfig(audioRecord.getAudioSource(), audioRecord.getAudioSessionId(), audioRecord.getFormat(), audioRecord.getRoutedDevice(), activeRecordingConfigurations)));
+                }
             }
+            return size;
         }
-        return size;
     }
 
     public static void assertTrue(boolean z) {

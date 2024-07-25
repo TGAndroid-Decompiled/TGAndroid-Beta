@@ -2,7 +2,6 @@ package org.telegram.tgnet.tl;
 
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
-
 public class TL_stats$BroadcastRevenueTransaction extends TLObject {
     public static TL_stats$BroadcastRevenueTransaction TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TL_stats$BroadcastRevenueTransaction tL_stats$TL_broadcastRevenueTransactionRefund;

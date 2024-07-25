@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_phoneCallProtocol extends TLRPC$PhoneCallProtocol {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -14,11 +13,11 @@ public class TLRPC$TL_phoneCallProtocol extends TLRPC$PhoneCallProtocol {
             if (z) {
                 throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
             }
-        } else {
-            int readInt323 = abstractSerializedData.readInt32(z);
-            for (int i = 0; i < readInt323; i++) {
-                this.library_versions.add(abstractSerializedData.readString(z));
-            }
+            return;
+        }
+        int readInt323 = abstractSerializedData.readInt32(z);
+        for (int i = 0; i < readInt323; i++) {
+            this.library_versions.add(abstractSerializedData.readString(z));
         }
     }
 

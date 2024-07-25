@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_help_peerColorProfileSet extends TLRPC$help_PeerColorSet {
     public ArrayList<Integer> palette_colors = new ArrayList<>();
     public ArrayList<Integer> bg_colors = new ArrayList<>();
@@ -36,11 +35,11 @@ public class TLRPC$TL_help_peerColorProfileSet extends TLRPC$help_PeerColorSet {
             if (z) {
                 throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt325)));
             }
-        } else {
-            int readInt326 = abstractSerializedData.readInt32(z);
-            for (int i3 = 0; i3 < readInt326; i3++) {
-                this.story_colors.add(Integer.valueOf(abstractSerializedData.readInt32(z)));
-            }
+            return;
+        }
+        int readInt326 = abstractSerializedData.readInt32(z);
+        for (int i3 = 0; i3 < readInt326; i3++) {
+            this.story_colors.add(Integer.valueOf(abstractSerializedData.readInt32(z)));
         }
     }
 

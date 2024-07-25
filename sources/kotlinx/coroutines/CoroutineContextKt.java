@@ -3,20 +3,19 @@ package kotlinx.coroutines;
 import kotlin.coroutines.Continuation;
 import kotlin.coroutines.CoroutineContext;
 import kotlin.coroutines.jvm.internal.CoroutineStackFrame;
-
 public final class CoroutineContextKt {
     public static final UndispatchedCoroutine<?> updateUndispatchedCompletion(Continuation<?> continuation, CoroutineContext coroutineContext, Object obj) {
-        if (!(continuation instanceof CoroutineStackFrame)) {
+        if (continuation instanceof CoroutineStackFrame) {
+            if (coroutineContext.get(UndispatchedMarker.INSTANCE) != null) {
+                UndispatchedCoroutine<?> undispatchedCompletion = undispatchedCompletion((CoroutineStackFrame) continuation);
+                if (undispatchedCompletion != null) {
+                    undispatchedCompletion.saveThreadContext(coroutineContext, obj);
+                }
+                return undispatchedCompletion;
+            }
             return null;
         }
-        if (!(coroutineContext.get(UndispatchedMarker.INSTANCE) != null)) {
-            return null;
-        }
-        UndispatchedCoroutine<?> undispatchedCompletion = undispatchedCompletion((CoroutineStackFrame) continuation);
-        if (undispatchedCompletion != null) {
-            undispatchedCompletion.saveThreadContext(coroutineContext, obj);
-        }
-        return undispatchedCompletion;
+        return null;
     }
 
     public static final UndispatchedCoroutine<?> undispatchedCompletion(CoroutineStackFrame coroutineStackFrame) {
@@ -31,14 +30,14 @@ public final class CoroutineContextKt {
     public static final String getCoroutineName(CoroutineContext coroutineContext) {
         CoroutineId coroutineId;
         String name;
-        if (!DebugKt.getDEBUG() || (coroutineId = (CoroutineId) coroutineContext.get(CoroutineId.Key)) == null) {
-            return null;
+        if (DebugKt.getDEBUG() && (coroutineId = (CoroutineId) coroutineContext.get(CoroutineId.Key)) != null) {
+            CoroutineName coroutineName = (CoroutineName) coroutineContext.get(CoroutineName.Key);
+            String str = "coroutine";
+            if (coroutineName != null && (name = coroutineName.getName()) != null) {
+                str = name;
+            }
+            return str + '#' + coroutineId.getId();
         }
-        CoroutineName coroutineName = (CoroutineName) coroutineContext.get(CoroutineName.Key);
-        String str = "coroutine";
-        if (coroutineName != null && (name = coroutineName.getName()) != null) {
-            str = name;
-        }
-        return str + '#' + coroutineId.getId();
+        return null;
     }
 }

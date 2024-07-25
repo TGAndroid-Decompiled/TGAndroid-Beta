@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_textUnderline extends TLRPC$RichText {
     public TLRPC$RichText text;
 

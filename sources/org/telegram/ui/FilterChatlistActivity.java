@@ -84,7 +84,6 @@ import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.TextStyleSpan;
 import org.telegram.ui.FilterChatlistActivity;
-
 public class FilterChatlistActivity extends BaseFragment {
     private ListAdapter adapter;
     private ActionBarMenuItem doneButton;
@@ -156,7 +155,7 @@ public class FilterChatlistActivity extends BaseFragment {
             public void onItemClick(int i) {
                 if (i == -1) {
                     if (FilterChatlistActivity.this.checkDiscard()) {
-                        FilterChatlistActivity.this.lambda$onBackPressed$306();
+                        FilterChatlistActivity.this.finishFragment();
                     }
                 } else if (i == 1) {
                     if (Math.abs(FilterChatlistActivity.this.doneButtonAlpha - 1.0f) < 0.1f) {
@@ -374,14 +373,12 @@ public class FilterChatlistActivity extends BaseFragment {
         this.saving = false;
         if (tLRPC$TL_error != null && "INVITES_TOO_MUCH".equals(tLRPC$TL_error.text)) {
             showDialog(new LimitReachedBottomSheet(this, getContext(), 12, this.currentAccount, null));
-            return;
-        }
-        if (tLRPC$TL_error != null && "INVITE_PEERS_TOO_MUCH".equals(tLRPC$TL_error.text)) {
+        } else if (tLRPC$TL_error != null && "INVITE_PEERS_TOO_MUCH".equals(tLRPC$TL_error.text)) {
             showDialog(new LimitReachedBottomSheet(this, getContext(), 4, this.currentAccount, null));
         } else if (tLRPC$TL_error != null && "CHATLISTS_TOO_MUCH".equals(tLRPC$TL_error.text)) {
             showDialog(new LimitReachedBottomSheet(this, getContext(), 13, this.currentAccount, null));
         } else {
-            lambda$onBackPressed$306();
+            finishFragment();
         }
     }
 
@@ -591,7 +588,7 @@ public class FilterChatlistActivity extends BaseFragment {
                 if (FilterChatlistActivity.this.onDelete != null) {
                     FilterChatlistActivity.this.onDelete.run(FilterChatlistActivity.this.invite);
                 }
-                FilterChatlistActivity.this.lambda$onBackPressed$306();
+                FilterChatlistActivity.this.finishFragment();
             }
 
             @Override
@@ -722,14 +719,12 @@ public class FilterChatlistActivity extends BaseFragment {
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
             String str;
             String str2;
-            TLRPC$Chat tLRPC$Chat;
+            TLRPC$User tLRPC$User;
             int itemViewType = viewHolder.getItemViewType();
             if (itemViewType == 0) {
                 FilterChatlistActivity.this.hintCountCell = (HintInnerCell) viewHolder.itemView;
                 FilterChatlistActivity.this.updateHintCell(false);
-                return;
-            }
-            if (itemViewType == 2) {
+            } else if (itemViewType == 2) {
                 TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
                 textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(FilterChatlistActivity.this.getContext(), i == FilterChatlistActivity.this.chatsSectionRow ? R.drawable.greydivider_bottom : R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
                 if (i == FilterChatlistActivity.this.chatsSectionRow) {
@@ -744,94 +739,90 @@ public class FilterChatlistActivity extends BaseFragment {
                     }
                 }
                 textInfoPrivacyCell.setFixedSize(12);
-                return;
-            }
-            if (itemViewType == 3) {
-                InviteLinkCell inviteLinkCell = (InviteLinkCell) viewHolder.itemView;
-                TL_chatlists$TL_exportedChatlistInvite tL_chatlists$TL_exportedChatlistInvite = FilterChatlistActivity.this.invite;
-                inviteLinkCell.setLink(tL_chatlists$TL_exportedChatlistInvite != null ? tL_chatlists$TL_exportedChatlistInvite.url : null, false);
-                return;
-            }
-            if (itemViewType != 4) {
-                if (itemViewType == 5) {
-                    FolderBottomSheet.HeaderCell headerCell = (FolderBottomSheet.HeaderCell) viewHolder.itemView;
-                    if (headerCell == FilterChatlistActivity.this.headerCountCell) {
-                        FilterChatlistActivity.this.headerCountCell = null;
-                    }
-                    if (i != FilterChatlistActivity.this.linkHeaderRow) {
-                        FilterChatlistActivity.this.headerCountCell = headerCell;
-                        FilterChatlistActivity filterChatlistActivity2 = FilterChatlistActivity.this;
-                        if (filterChatlistActivity2.invite != null && !filterChatlistActivity2.allowedPeers.isEmpty()) {
-                            FilterChatlistActivity.this.updateHeaderCell(false);
-                            return;
-                        } else {
+            } else {
+                if (itemViewType == 3) {
+                    InviteLinkCell inviteLinkCell = (InviteLinkCell) viewHolder.itemView;
+                    TL_chatlists$TL_exportedChatlistInvite tL_chatlists$TL_exportedChatlistInvite = FilterChatlistActivity.this.invite;
+                    inviteLinkCell.setLink(tL_chatlists$TL_exportedChatlistInvite != null ? tL_chatlists$TL_exportedChatlistInvite.url : null, false);
+                } else if (itemViewType != 4) {
+                    if (itemViewType == 5) {
+                        FolderBottomSheet.HeaderCell headerCell = (FolderBottomSheet.HeaderCell) viewHolder.itemView;
+                        if (headerCell == FilterChatlistActivity.this.headerCountCell) {
+                            FilterChatlistActivity.this.headerCountCell = null;
+                        }
+                        if (i != FilterChatlistActivity.this.linkHeaderRow) {
+                            FilterChatlistActivity.this.headerCountCell = headerCell;
+                            FilterChatlistActivity filterChatlistActivity2 = FilterChatlistActivity.this;
+                            if (filterChatlistActivity2.invite != null && !filterChatlistActivity2.allowedPeers.isEmpty()) {
+                                FilterChatlistActivity.this.updateHeaderCell(false);
+                                return;
+                            }
                             headerCell.setText(LocaleController.getString("FilterInviteHeaderChatsNo", R.string.FilterInviteHeaderChatsNo), false);
                             headerCell.setAction("", null);
                             return;
                         }
+                        headerCell.setText(LocaleController.getString("InviteLink", R.string.InviteLink), false);
+                        headerCell.setAction("", null);
                     }
-                    headerCell.setText(LocaleController.getString("InviteLink", R.string.InviteLink), false);
-                    headerCell.setAction("", null);
-                    return;
-                }
-                return;
-            }
-            GroupCreateUserCell groupCreateUserCell = (GroupCreateUserCell) viewHolder.itemView;
-            long longValue = ((Long) FilterChatlistActivity.this.peers.get(i - FilterChatlistActivity.this.chatsStartRow)).longValue();
-            if (longValue >= 0) {
-                TLRPC$User user = FilterChatlistActivity.this.getMessagesController().getUser(Long.valueOf(longValue));
-                if (user != 0) {
-                    str2 = UserObject.getUserName(user);
-                    tLRPC$Chat = user;
                 } else {
-                    str2 = null;
-                    tLRPC$Chat = user;
-                }
-            } else {
-                TLRPC$Chat chat = FilterChatlistActivity.this.getMessagesController().getChat(Long.valueOf(-longValue));
-                if (chat != null) {
-                    r3 = chat.title;
-                    if (chat.participants_count != 0) {
-                        if (ChatObject.isChannelAndNotMegaGroup(chat)) {
-                            str = LocaleController.formatPluralStringComma("Subscribers", chat.participants_count);
+                    GroupCreateUserCell groupCreateUserCell = (GroupCreateUserCell) viewHolder.itemView;
+                    long longValue = ((Long) FilterChatlistActivity.this.peers.get(i - FilterChatlistActivity.this.chatsStartRow)).longValue();
+                    if (longValue >= 0) {
+                        TLRPC$User user = FilterChatlistActivity.this.getMessagesController().getUser(Long.valueOf(longValue));
+                        if (user != null) {
+                            str2 = UserObject.getUserName(user);
+                            tLRPC$User = user;
                         } else {
-                            str = LocaleController.formatPluralStringComma("Members", chat.participants_count);
+                            str2 = null;
+                            tLRPC$User = user;
                         }
-                    } else if (ChatObject.isChannelAndNotMegaGroup(chat)) {
-                        str = LocaleController.getString("ChannelPublic");
                     } else {
-                        str = LocaleController.getString("MegaPublic");
+                        TLRPC$Chat chat = FilterChatlistActivity.this.getMessagesController().getChat(Long.valueOf(-longValue));
+                        if (chat != null) {
+                            r3 = chat.title;
+                            if (chat.participants_count != 0) {
+                                if (ChatObject.isChannelAndNotMegaGroup(chat)) {
+                                    str = LocaleController.formatPluralStringComma("Subscribers", chat.participants_count);
+                                } else {
+                                    str = LocaleController.formatPluralStringComma("Members", chat.participants_count);
+                                }
+                            } else if (ChatObject.isChannelAndNotMegaGroup(chat)) {
+                                str = LocaleController.getString("ChannelPublic");
+                            } else {
+                                str = LocaleController.getString("MegaPublic");
+                            }
+                        } else {
+                            str = null;
+                        }
+                        String str3 = r3;
+                        r3 = str;
+                        str2 = str3;
+                        tLRPC$User = chat;
                     }
-                } else {
-                    str = null;
+                    if (FilterChatlistActivity.this.allowedPeers.contains(Long.valueOf(longValue))) {
+                        groupCreateUserCell.setForbiddenCheck(false);
+                        groupCreateUserCell.setChecked(FilterChatlistActivity.this.selectedPeers.contains(Long.valueOf(longValue)), false);
+                    } else {
+                        groupCreateUserCell.setForbiddenCheck(true);
+                        groupCreateUserCell.setChecked(false, false);
+                        if (tLRPC$User instanceof TLRPC$User) {
+                            if (((TLRPC$User) tLRPC$User).bot) {
+                                r3 = LocaleController.getString("FilterInviteBot", R.string.FilterInviteBot);
+                            } else {
+                                r3 = LocaleController.getString("FilterInviteUser", R.string.FilterInviteUser);
+                            }
+                        } else if (tLRPC$User instanceof TLRPC$Chat) {
+                            if (ChatObject.isChannelAndNotMegaGroup(tLRPC$User)) {
+                                r3 = LocaleController.getString("FilterInviteChannel", R.string.FilterInviteChannel);
+                            } else {
+                                r3 = LocaleController.getString("FilterInviteGroup", R.string.FilterInviteGroup);
+                            }
+                        }
+                    }
+                    groupCreateUserCell.setTag(Long.valueOf(longValue));
+                    groupCreateUserCell.setObject(tLRPC$User, str2, r3);
                 }
-                String str3 = r3;
-                r3 = str;
-                str2 = str3;
-                tLRPC$Chat = chat;
             }
-            if (FilterChatlistActivity.this.allowedPeers.contains(Long.valueOf(longValue))) {
-                groupCreateUserCell.setForbiddenCheck(false);
-                groupCreateUserCell.setChecked(FilterChatlistActivity.this.selectedPeers.contains(Long.valueOf(longValue)), false);
-            } else {
-                groupCreateUserCell.setForbiddenCheck(true);
-                groupCreateUserCell.setChecked(false, false);
-                if (tLRPC$Chat instanceof TLRPC$User) {
-                    if (((TLRPC$User) tLRPC$Chat).bot) {
-                        r3 = LocaleController.getString("FilterInviteBot", R.string.FilterInviteBot);
-                    } else {
-                        r3 = LocaleController.getString("FilterInviteUser", R.string.FilterInviteUser);
-                    }
-                } else if (tLRPC$Chat instanceof TLRPC$Chat) {
-                    if (ChatObject.isChannelAndNotMegaGroup(tLRPC$Chat)) {
-                        r3 = LocaleController.getString("FilterInviteChannel", R.string.FilterInviteChannel);
-                    } else {
-                        r3 = LocaleController.getString("FilterInviteGroup", R.string.FilterInviteGroup);
-                    }
-                }
-            }
-            groupCreateUserCell.setTag(Long.valueOf(longValue));
-            groupCreateUserCell.setObject(tLRPC$Chat, str2, r3);
         }
 
         @Override
@@ -992,26 +983,26 @@ public class FilterChatlistActivity extends BaseFragment {
     }
 
     public boolean checkDiscard() {
-        if (this.selectedPeers.isEmpty() || !this.peersChanged) {
-            return true;
+        if (!this.selectedPeers.isEmpty() && this.peersChanged) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
+            builder.setTitle(LocaleController.getString("UnsavedChanges", R.string.UnsavedChanges));
+            builder.setMessage(LocaleController.getString("UnsavedChangesMessage", R.string.UnsavedChangesMessage));
+            builder.setPositiveButton(LocaleController.getString("ApplyTheme", R.string.ApplyTheme), new DialogInterface.OnClickListener() {
+                @Override
+                public final void onClick(DialogInterface dialogInterface, int i) {
+                    FilterChatlistActivity.this.lambda$checkDiscard$9(dialogInterface, i);
+                }
+            });
+            builder.setNegativeButton(LocaleController.getString("PassportDiscard", R.string.PassportDiscard), new DialogInterface.OnClickListener() {
+                @Override
+                public final void onClick(DialogInterface dialogInterface, int i) {
+                    FilterChatlistActivity.this.lambda$checkDiscard$10(dialogInterface, i);
+                }
+            });
+            showDialog(builder.create());
+            return false;
         }
-        AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-        builder.setTitle(LocaleController.getString("UnsavedChanges", R.string.UnsavedChanges));
-        builder.setMessage(LocaleController.getString("UnsavedChangesMessage", R.string.UnsavedChangesMessage));
-        builder.setPositiveButton(LocaleController.getString("ApplyTheme", R.string.ApplyTheme), new DialogInterface.OnClickListener() {
-            @Override
-            public final void onClick(DialogInterface dialogInterface, int i) {
-                FilterChatlistActivity.this.lambda$checkDiscard$9(dialogInterface, i);
-            }
-        });
-        builder.setNegativeButton(LocaleController.getString("PassportDiscard", R.string.PassportDiscard), new DialogInterface.OnClickListener() {
-            @Override
-            public final void onClick(DialogInterface dialogInterface, int i) {
-                FilterChatlistActivity.this.lambda$checkDiscard$10(dialogInterface, i);
-            }
-        });
-        showDialog(builder.create());
-        return false;
+        return true;
     }
 
     public void lambda$checkDiscard$9(DialogInterface dialogInterface, int i) {
@@ -1019,7 +1010,7 @@ public class FilterChatlistActivity extends BaseFragment {
     }
 
     public void lambda$checkDiscard$10(DialogInterface dialogInterface, int i) {
-        lambda$onBackPressed$306();
+        finishFragment();
     }
 
     public static class InviteLinkCell extends FrameLayout {
@@ -1232,7 +1223,7 @@ public class FilterChatlistActivity extends BaseFragment {
 
         public void lambda$new$2(View view) {
             if (Build.VERSION.SDK_INT >= 21 && (this.linkBox.getBackground() instanceof RippleDrawable)) {
-                this.linkBox.getBackground().setState(new int[]{android.R.attr.state_pressed, android.R.attr.state_enabled});
+                this.linkBox.getBackground().setState(new int[]{16842919, 16842910});
                 postDelayed(new Runnable() {
                     @Override
                     public final void run() {
@@ -1521,17 +1512,20 @@ public class FilterChatlistActivity extends BaseFragment {
         public void getPointOnScreen(FrameLayout frameLayout, FrameLayout frameLayout2, float[] fArr) {
             float f = 0.0f;
             float f2 = 0.0f;
-            while (frameLayout != frameLayout2) {
-                f += frameLayout.getY();
-                f2 += frameLayout.getX();
-                if (frameLayout instanceof ScrollView) {
-                    f -= frameLayout.getScrollY();
+            FrameLayout frameLayout3 = frameLayout;
+            while (frameLayout3 != frameLayout2) {
+                f += frameLayout3.getY();
+                f2 += frameLayout3.getX();
+                if (frameLayout3 instanceof ScrollView) {
+                    f -= frameLayout3.getScrollY();
                 }
-                if (!(frameLayout.getParent() instanceof View)) {
+                if (!(frameLayout3.getParent() instanceof View)) {
                     break;
                 }
-                frameLayout = (View) frameLayout.getParent();
-                if (!(frameLayout instanceof ViewGroup)) {
+                ?? r4 = (View) frameLayout3.getParent();
+                boolean z = r4 instanceof ViewGroup;
+                frameLayout3 = r4;
+                if (!z) {
                     return;
                 }
             }

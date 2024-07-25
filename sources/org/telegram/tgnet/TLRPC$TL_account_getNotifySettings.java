@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_account_getNotifySettings extends TLObject {
     public TLRPC$InputNotifyPeer peer;
 

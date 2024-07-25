@@ -14,7 +14,6 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.SeekBarView;
-
 public class BrightnessControlCell extends FrameLayout {
     private ImageView leftImageView;
     Theme.ResourcesProvider resourcesProvider;
@@ -75,11 +74,11 @@ public class BrightnessControlCell extends FrameLayout {
             this.leftImageView.setImageResource(R.drawable.msg_brightness_low);
             this.rightImageView.setImageResource(R.drawable.msg_brightness_high);
             this.size = 48;
-        } else {
-            this.leftImageView.setImageResource(R.drawable.msg_brightness_high);
-            this.rightImageView.setImageResource(R.drawable.msg_brightness_low);
-            this.size = 43;
+            return;
         }
+        this.leftImageView.setImageResource(R.drawable.msg_brightness_high);
+        this.rightImageView.setImageResource(R.drawable.msg_brightness_low);
+        this.size = 43;
     }
 
     @Override

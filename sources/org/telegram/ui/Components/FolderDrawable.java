@@ -9,7 +9,6 @@ import android.graphics.Path;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
-
 public class FolderDrawable extends Drawable {
     private final Drawable drawable;
     private final Paint fillPaint;

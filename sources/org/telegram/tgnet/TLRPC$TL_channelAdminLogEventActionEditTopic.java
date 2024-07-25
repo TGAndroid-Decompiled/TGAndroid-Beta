@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channelAdminLogEventActionEditTopic extends TLRPC$ChannelAdminLogEventAction {
     public TLRPC$ForumTopic new_topic;
     public TLRPC$ForumTopic prev_topic;

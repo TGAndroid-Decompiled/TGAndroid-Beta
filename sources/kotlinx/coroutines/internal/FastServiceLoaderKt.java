@@ -2,20 +2,19 @@ package kotlinx.coroutines.internal;
 
 import kotlin.Result;
 import kotlin.ResultKt;
-
 public final class FastServiceLoaderKt {
     private static final boolean ANDROID_DETECTED;
 
     static {
-        Object m156constructorimpl;
+        Object m159constructorimpl;
         try {
             Result.Companion companion = Result.Companion;
-            m156constructorimpl = Result.m156constructorimpl(Class.forName("android.os.Build"));
+            m159constructorimpl = Result.m159constructorimpl(Class.forName("android.os.Build"));
         } catch (Throwable th) {
             Result.Companion companion2 = Result.Companion;
-            m156constructorimpl = Result.m156constructorimpl(ResultKt.createFailure(th));
+            m159constructorimpl = Result.m159constructorimpl(ResultKt.createFailure(th));
         }
-        ANDROID_DETECTED = Result.m159isSuccessimpl(m156constructorimpl);
+        ANDROID_DETECTED = Result.m162isSuccessimpl(m159constructorimpl);
     }
 
     public static final boolean getANDROID_DETECTED() {

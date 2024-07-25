@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updateChatParticipantDelete extends TLRPC$Update {
     public long chat_id;
     public long user_id;

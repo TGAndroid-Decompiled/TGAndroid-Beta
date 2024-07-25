@@ -64,9 +64,7 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ThemeEditorView;
 import org.telegram.ui.Components.WallpaperUpdater;
 import org.telegram.ui.LaunchActivity;
-
 public class ThemeEditorView {
-
     @SuppressLint({"StaticFieldLeak"})
     private static volatile ThemeEditorView Instance;
     private ArrayList<ThemeDescription> currentThemeDesription;
@@ -251,13 +249,13 @@ public class ThemeEditorView {
             }
 
             public boolean lambda$new$1(TextView textView, int i, KeyEvent keyEvent) {
-                if (keyEvent == null) {
+                if (keyEvent != null) {
+                    if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
+                        AndroidUtilities.hideKeyboard(this.searchEditText);
+                        return false;
+                    }
                     return false;
                 }
-                if ((keyEvent.getAction() != 1 || keyEvent.getKeyCode() != 84) && (keyEvent.getAction() != 0 || keyEvent.getKeyCode() != 66)) {
-                    return false;
-                }
-                AndroidUtilities.hideKeyboard(this.searchEditText);
                 return false;
             }
 
@@ -374,11 +372,11 @@ public class ThemeEditorView {
             }
 
             public static boolean lambda$new$0(TextView textView, int i, KeyEvent keyEvent) {
-                if (i != 6) {
-                    return false;
+                if (i == 6) {
+                    AndroidUtilities.hideKeyboard(textView);
+                    return true;
                 }
-                AndroidUtilities.hideKeyboard(textView);
-                return true;
+                return false;
             }
 
             @Override
@@ -397,52 +395,49 @@ public class ThemeEditorView {
                 int i = this.colorWheelRadius;
                 canvas.drawBitmap(bitmap, width - i, height - i, (Paint) null);
                 double radians = (float) Math.toRadians(this.colorHSV[0]);
-                double d = -Math.cos(radians);
-                double d2 = this.colorHSV[1];
-                Double.isNaN(d2);
-                double d3 = d * d2;
-                double d4 = this.colorWheelRadius;
-                Double.isNaN(d4);
-                int i2 = ((int) (d3 * d4)) + width;
-                double d5 = -Math.sin(radians);
+                double d = this.colorHSV[1];
+                Double.isNaN(d);
+                double d2 = (-Math.cos(radians)) * d;
+                double d3 = this.colorWheelRadius;
+                Double.isNaN(d3);
                 float[] fArr = this.colorHSV;
-                double d6 = fArr[1];
+                double d4 = fArr[1];
+                Double.isNaN(d4);
+                double d5 = (-Math.sin(radians)) * d4;
+                double d6 = this.colorWheelRadius;
                 Double.isNaN(d6);
-                double d7 = d5 * d6;
-                double d8 = this.colorWheelRadius;
-                Double.isNaN(d8);
                 float[] fArr2 = this.hsvTemp;
                 fArr2[0] = fArr[0];
                 fArr2[1] = fArr[1];
                 fArr2[2] = 1.0f;
-                drawPointerArrow(canvas, i2, ((int) (d7 * d8)) + height, Color.HSVToColor(fArr2));
-                int i3 = this.colorWheelRadius;
-                int i4 = width + i3 + this.paramValueSliderWidth;
-                int i5 = height - i3;
+                drawPointerArrow(canvas, ((int) (d2 * d3)) + width, ((int) (d5 * d6)) + height, Color.HSVToColor(fArr2));
+                int i2 = this.colorWheelRadius;
+                int i3 = width + i2 + this.paramValueSliderWidth;
+                int i4 = height - i2;
                 int dp = AndroidUtilities.dp(9.0f);
-                int i6 = this.colorWheelRadius * 2;
+                int i5 = this.colorWheelRadius * 2;
                 if (this.colorGradient == null) {
-                    this.colorGradient = new LinearGradient(i4, i5, i4 + dp, i5 + i6, new int[]{-16777216, Color.HSVToColor(this.hsvTemp)}, (float[]) null, Shader.TileMode.CLAMP);
+                    this.colorGradient = new LinearGradient(i3, i4, i3 + dp, i4 + i5, new int[]{-16777216, Color.HSVToColor(this.hsvTemp)}, (float[]) null, Shader.TileMode.CLAMP);
                 }
                 this.valueSliderPaint.setShader(this.colorGradient);
-                float f2 = i5;
-                float f3 = i5 + i6;
-                canvas.drawRect(i4, f2, i4 + dp, f3, this.valueSliderPaint);
-                int i7 = dp / 2;
+                float f2 = i4;
+                float f3 = i4 + i5;
+                canvas.drawRect(i3, f2, i3 + dp, f3, this.valueSliderPaint);
+                int i6 = dp / 2;
                 float[] fArr3 = this.colorHSV;
-                float f4 = i6;
-                drawPointerArrow(canvas, i4 + i7, (int) ((fArr3[2] * f4) + f2), Color.HSVToColor(fArr3));
-                int i8 = i4 + (this.paramValueSliderWidth * 2);
+                float f4 = i5;
+                drawPointerArrow(canvas, i3 + i6, (int) ((fArr3[2] * f4) + f2), Color.HSVToColor(fArr3));
+                int i7 = i3 + (this.paramValueSliderWidth * 2);
                 if (this.alphaGradient == null) {
                     int HSVToColor = Color.HSVToColor(this.hsvTemp);
                     f = f3;
-                    this.alphaGradient = new LinearGradient(i8, f2, i8 + dp, f, new int[]{HSVToColor, HSVToColor & 16777215}, (float[]) null, Shader.TileMode.CLAMP);
+                    this.alphaGradient = new LinearGradient(i7, f2, i7 + dp, f, new int[]{HSVToColor, HSVToColor & 16777215}, (float[]) null, Shader.TileMode.CLAMP);
                 } else {
                     f = f3;
                 }
                 this.valueSliderPaint.setShader(this.alphaGradient);
-                canvas.drawRect(i8, f2, dp + i8, f, this.valueSliderPaint);
-                drawPointerArrow(canvas, i8 + i7, (int) (f2 + ((1.0f - this.alpha) * f4)), (Color.HSVToColor(this.colorHSV) & 16777215) | (((int) (this.alpha * 255.0f)) << 24));
+                canvas.drawRect(i7, f2, dp + i7, f, this.valueSliderPaint);
+                drawPointerArrow(canvas, i7 + i6, (int) (f2 + ((1.0f - this.alpha) * f4)), (Color.HSVToColor(this.colorHSV) & 16777215) | (((int) (this.alpha * 255.0f)) << 24));
             }
 
             private void drawPointerArrow(Canvas canvas, int i, int i2, int i3) {
@@ -502,7 +497,7 @@ public class ThemeEditorView {
                 Property property2 = View.ALPHA;
                 float[] fArr = new float[1];
                 fArr[0] = z ? 0.2f : 1.0f;
-                animatorArr[1] = ObjectAnimator.ofFloat(viewGroup, (Property<ViewGroup, Float>) property2, fArr);
+                animatorArr[1] = ObjectAnimator.ofFloat(viewGroup, property2, fArr);
                 animatorSet.playTogether(animatorArr);
                 EditorAlert.this.colorChangeAnimation.setDuration(150L);
                 EditorAlert.this.colorChangeAnimation.setInterpolator(this.decelerateInterpolator);
@@ -521,10 +516,14 @@ public class ThemeEditorView {
                 int alpha = Color.alpha(i);
                 if (!EditorAlert.this.ignoreTextChange) {
                     EditorAlert.this.ignoreTextChange = true;
-                    this.colorEditText[0].setText("" + red);
-                    this.colorEditText[1].setText("" + green);
-                    this.colorEditText[2].setText("" + blue);
-                    this.colorEditText[3].setText("" + alpha);
+                    EditTextBoldCursor editTextBoldCursor = this.colorEditText[0];
+                    editTextBoldCursor.setText("" + red);
+                    EditTextBoldCursor editTextBoldCursor2 = this.colorEditText[1];
+                    editTextBoldCursor2.setText("" + green);
+                    EditTextBoldCursor editTextBoldCursor3 = this.colorEditText[2];
+                    editTextBoldCursor3.setText("" + blue);
+                    EditTextBoldCursor editTextBoldCursor4 = this.colorEditText[3];
+                    editTextBoldCursor4.setText("" + alpha);
                     for (int i2 = 0; i2 < 4; i2++) {
                         EditTextBoldCursor[] editTextBoldCursorArr = this.colorEditText;
                         editTextBoldCursorArr[i2].setSelection(editTextBoldCursorArr[i2].length());
@@ -818,7 +817,7 @@ public class ThemeEditorView {
 
         public void lambda$new$2(View view) {
             Theme.saveCurrentTheme(ThemeEditorView.this.themeInfo, true, false, false);
-            setOnDismissListener(null);
+            setOnDismissListener((DialogInterface.OnDismissListener) null);
             dismiss();
             ThemeEditorView.this.close();
         }
@@ -860,7 +859,7 @@ public class ThemeEditorView {
             Property property = View.ALPHA;
             float[] fArr = new float[1];
             fArr[0] = z ? 1.0f : 0.0f;
-            animatorArr[0] = ObjectAnimator.ofFloat(view, (Property<View, Float>) property, fArr);
+            animatorArr[0] = ObjectAnimator.ofFloat(view, property, fArr);
             animatorSet.playTogether(animatorArr);
             this.shadowAnimation[i].setDuration(150L);
             this.shadowAnimation[i].addListener(new AnimatorListenerAdapter() {
@@ -910,18 +909,18 @@ public class ThemeEditorView {
                 this.listView.setAlpha(0.0f);
                 AnimatorSet animatorSet = new AnimatorSet();
                 Animator[] animatorArr = new Animator[8];
-                animatorArr[0] = ObjectAnimator.ofFloat(this.colorPicker, (Property<ColorPicker, Float>) View.ALPHA, 0.0f);
-                animatorArr[1] = ObjectAnimator.ofFloat(this.bottomLayout, (Property<FrameLayout, Float>) View.ALPHA, 0.0f);
-                animatorArr[2] = ObjectAnimator.ofFloat(this.listView, (Property<RecyclerListView, Float>) View.ALPHA, 1.0f);
-                animatorArr[3] = ObjectAnimator.ofFloat(this.frameLayout, (Property<FrameLayout, Float>) View.ALPHA, 1.0f);
+                animatorArr[0] = ObjectAnimator.ofFloat(this.colorPicker, View.ALPHA, 0.0f);
+                animatorArr[1] = ObjectAnimator.ofFloat(this.bottomLayout, View.ALPHA, 0.0f);
+                animatorArr[2] = ObjectAnimator.ofFloat(this.listView, View.ALPHA, 1.0f);
+                animatorArr[3] = ObjectAnimator.ofFloat(this.frameLayout, View.ALPHA, 1.0f);
                 View[] viewArr = this.shadow;
                 View view = viewArr[0];
                 Property property = View.ALPHA;
                 float[] fArr = new float[1];
                 fArr[0] = viewArr[0].getTag() == null ? 1.0f : 0.0f;
-                animatorArr[4] = ObjectAnimator.ofFloat(view, (Property<View, Float>) property, fArr);
-                animatorArr[5] = ObjectAnimator.ofFloat(this.searchEmptyView, (Property<EmptyTextProgressView, Float>) View.ALPHA, 1.0f);
-                animatorArr[6] = ObjectAnimator.ofFloat(this.bottomSaveLayout, (Property<FrameLayout, Float>) View.ALPHA, 1.0f);
+                animatorArr[4] = ObjectAnimator.ofFloat(view, property, fArr);
+                animatorArr[5] = ObjectAnimator.ofFloat(this.searchEmptyView, View.ALPHA, 1.0f);
+                animatorArr[6] = ObjectAnimator.ofFloat(this.bottomSaveLayout, View.ALPHA, 1.0f);
                 animatorArr[7] = ObjectAnimator.ofInt(this, "scrollOffsetY", this.previousScrollPosition);
                 animatorSet.playTogether(animatorArr);
                 animatorSet.setDuration(150L);
@@ -948,7 +947,7 @@ public class ThemeEditorView {
             this.bottomLayout.setAlpha(0.0f);
             this.previousScrollPosition = this.scrollOffsetY;
             AnimatorSet animatorSet2 = new AnimatorSet();
-            animatorSet2.playTogether(ObjectAnimator.ofFloat(this.colorPicker, (Property<ColorPicker, Float>) View.ALPHA, 1.0f), ObjectAnimator.ofFloat(this.bottomLayout, (Property<FrameLayout, Float>) View.ALPHA, 1.0f), ObjectAnimator.ofFloat(this.listView, (Property<RecyclerListView, Float>) View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.frameLayout, (Property<FrameLayout, Float>) View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.shadow[0], (Property<View, Float>) View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.searchEmptyView, (Property<EmptyTextProgressView, Float>) View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.bottomSaveLayout, (Property<FrameLayout, Float>) View.ALPHA, 0.0f), ObjectAnimator.ofInt(this, "scrollOffsetY", this.listView.getPaddingTop()));
+            animatorSet2.playTogether(ObjectAnimator.ofFloat(this.colorPicker, View.ALPHA, 1.0f), ObjectAnimator.ofFloat(this.bottomLayout, View.ALPHA, 1.0f), ObjectAnimator.ofFloat(this.listView, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.frameLayout, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.shadow[0], View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.searchEmptyView, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.bottomSaveLayout, View.ALPHA, 0.0f), ObjectAnimator.ofInt(this, "scrollOffsetY", this.listView.getPaddingTop()));
             animatorSet2.setDuration(150L);
             animatorSet2.setInterpolator(ThemeEditorView.this.decelerateInterpolator);
             animatorSet2.addListener(new AnimatorListenerAdapter() {
@@ -964,20 +963,20 @@ public class ThemeEditorView {
         }
 
         public int getCurrentTop() {
-            if (this.listView.getChildCount() == 0) {
+            if (this.listView.getChildCount() != 0) {
+                int i = 0;
+                View childAt = this.listView.getChildAt(0);
+                RecyclerListView.Holder holder = (RecyclerListView.Holder) this.listView.findContainingViewHolder(childAt);
+                if (holder != null) {
+                    int paddingTop = this.listView.getPaddingTop();
+                    if (holder.getAdapterPosition() == 0 && childAt.getTop() >= 0) {
+                        i = childAt.getTop();
+                    }
+                    return paddingTop - i;
+                }
                 return -1000;
             }
-            int i = 0;
-            View childAt = this.listView.getChildAt(0);
-            RecyclerListView.Holder holder = (RecyclerListView.Holder) this.listView.findContainingViewHolder(childAt);
-            if (holder == null) {
-                return -1000;
-            }
-            int paddingTop = this.listView.getPaddingTop();
-            if (holder.getAdapterPosition() == 0 && childAt.getTop() >= 0) {
-                i = childAt.getTop();
-            }
-            return paddingTop - i;
+            return -1000;
         }
 
         @SuppressLint({"NewApi"})
@@ -1087,9 +1086,7 @@ public class ThemeEditorView {
                         return;
                     }
                     String translitString = LocaleController.getInstance().getTranslitString(lowerCase);
-                    if (lowerCase.equals(translitString) || translitString.length() == 0) {
-                        translitString = null;
-                    }
+                    translitString = (lowerCase.equals(translitString) || translitString.length() == 0) ? null : null;
                     int i2 = (translitString != null ? 1 : 0) + 1;
                     String[] strArr = new String[i2];
                     strArr[0] = lowerCase;
@@ -1141,16 +1138,17 @@ public class ThemeEditorView {
                     EditorAlert.this.listView.setAdapter(EditorAlert.this.searchAdapter);
                     EditorAlert.this.searchAdapter.notifyDataSetChanged();
                 }
-                boolean z = !this.searchResult.isEmpty() && arrayList.isEmpty();
-                boolean z2 = this.searchResult.isEmpty() && arrayList.isEmpty();
-                if (z) {
+                boolean z = true;
+                boolean z2 = !this.searchResult.isEmpty() && arrayList.isEmpty();
+                z = (this.searchResult.isEmpty() && arrayList.isEmpty()) ? false : false;
+                if (z2) {
                     EditorAlert editorAlert2 = EditorAlert.this;
                     editorAlert2.topBeforeSwitch = editorAlert2.getCurrentTop();
                 }
                 this.searchResult = arrayList;
                 this.searchNames = arrayList2;
                 notifyDataSetChanged();
-                if (!z2 && !z && EditorAlert.this.topBeforeSwitch > 0) {
+                if (!z && !z2 && EditorAlert.this.topBeforeSwitch > 0) {
                     EditorAlert.this.layoutManager.scrollToPositionWithOffset(0, -EditorAlert.this.topBeforeSwitch);
                     EditorAlert.this.topBeforeSwitch = -1000;
                 }
@@ -1384,7 +1382,7 @@ public class ThemeEditorView {
     private void showWithAnimation() {
         this.windowView.setBackgroundResource(R.drawable.theme_picker);
         AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.playTogether(ObjectAnimator.ofFloat(this.windowView, (Property<FrameLayout, Float>) View.ALPHA, 0.0f, 1.0f), ObjectAnimator.ofFloat(this.windowView, (Property<FrameLayout, Float>) View.SCALE_X, 0.0f, 1.0f), ObjectAnimator.ofFloat(this.windowView, (Property<FrameLayout, Float>) View.SCALE_Y, 0.0f, 1.0f));
+        animatorSet.playTogether(ObjectAnimator.ofFloat(this.windowView, View.ALPHA, 0.0f, 1.0f), ObjectAnimator.ofFloat(this.windowView, View.SCALE_X, 0.0f, 1.0f), ObjectAnimator.ofFloat(this.windowView, View.SCALE_Y, 0.0f, 1.0f));
         animatorSet.setInterpolator(this.decelerateInterpolator);
         animatorSet.setDuration(150L);
         animatorSet.start();
@@ -1416,7 +1414,7 @@ public class ThemeEditorView {
         }
         try {
             AnimatorSet animatorSet = new AnimatorSet();
-            animatorSet.playTogether(ObjectAnimator.ofFloat(this.windowView, (Property<FrameLayout, Float>) View.ALPHA, 1.0f, 0.0f), ObjectAnimator.ofFloat(this.windowView, (Property<FrameLayout, Float>) View.SCALE_X, 1.0f, 0.0f), ObjectAnimator.ofFloat(this.windowView, (Property<FrameLayout, Float>) View.SCALE_Y, 1.0f, 0.0f));
+            animatorSet.playTogether(ObjectAnimator.ofFloat(this.windowView, View.ALPHA, 1.0f, 0.0f), ObjectAnimator.ofFloat(this.windowView, View.SCALE_X, 1.0f, 0.0f), ObjectAnimator.ofFloat(this.windowView, View.SCALE_Y, 1.0f, 0.0f));
             animatorSet.setInterpolator(this.decelerateInterpolator);
             animatorSet.setDuration(150L);
             animatorSet.addListener(new AnimatorListenerAdapter() {

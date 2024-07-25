@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channels_searchPosts extends TLObject {
     public String hashtag;
     public int limit;

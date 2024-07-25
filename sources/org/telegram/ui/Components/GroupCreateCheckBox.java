@@ -11,7 +11,6 @@ import android.view.View;
 import androidx.annotation.Keep;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
-
 public class GroupCreateCheckBox extends View {
     private static Paint eraser;
     private static Paint eraser2;
@@ -132,10 +131,10 @@ public class GroupCreateCheckBox extends View {
         this.isChecked = z;
         if (this.attachedToWindow && z2) {
             animateToCheckedState(z);
-        } else {
-            cancelCheckAnimator();
-            setProgress(z ? 1.0f : 0.0f);
+            return;
         }
+        cancelCheckAnimator();
+        setProgress(z ? 1.0f : 0.0f);
     }
 
     public void setInnerRadDiff(int i) {

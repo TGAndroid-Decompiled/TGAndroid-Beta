@@ -1,7 +1,6 @@
 package org.telegram.ui.Components.Paint;
 
 import android.graphics.PointF;
-
 public class Point {
     public boolean edge;
     public double x;
@@ -28,11 +27,11 @@ public class Point {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof Point)) {
-            return false;
+        if (obj instanceof Point) {
+            Point point = (Point) obj;
+            return this.x == point.x && this.y == point.y && this.z == point.z;
         }
-        Point point = (Point) obj;
-        return this.x == point.x && this.y == point.y && this.z == point.z;
+        return false;
     }
 
     public Point multiplySum(Point point, double d) {

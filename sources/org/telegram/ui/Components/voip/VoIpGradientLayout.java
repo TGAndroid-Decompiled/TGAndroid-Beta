@@ -16,7 +16,6 @@ import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
 import org.telegram.ui.Components.MotionBackgroundDrawable;
-
 @SuppressLint({"ViewConstructor"})
 public class VoIpGradientLayout extends FrameLayout {
     private boolean allowAnimations;

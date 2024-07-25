@@ -16,7 +16,6 @@ import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.CheckBoxCell;
 import org.telegram.ui.Components.LayoutHelper;
-
 public class WebAppDisclaimerAlert {
     private AlertDialog alert;
     private CheckBoxCell cell;
@@ -86,7 +85,8 @@ public class WebAppDisclaimerAlert {
     }
 
     public static void lambda$show$3(WebAppDisclaimerAlert webAppDisclaimerAlert, View view) {
-        webAppDisclaimerAlert.cell.setChecked(!r3.isChecked(), true);
+        CheckBoxCell checkBoxCell = webAppDisclaimerAlert.cell;
+        checkBoxCell.setChecked(!checkBoxCell.isChecked(), true);
         webAppDisclaimerAlert.positiveButton.setEnabled(webAppDisclaimerAlert.cell.isChecked());
         webAppDisclaimerAlert.positiveButton.animate().alpha(webAppDisclaimerAlert.cell.isChecked() ? 1.0f : 0.5f).start();
     }

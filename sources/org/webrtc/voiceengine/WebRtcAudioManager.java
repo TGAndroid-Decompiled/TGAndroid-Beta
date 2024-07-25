@@ -9,7 +9,6 @@ import java.util.TimerTask;
 import org.webrtc.ContextUtils;
 import org.webrtc.Logging;
 import org.webrtc.MediaStreamTrack;
-
 public class WebRtcAudioManager {
     private static final int BITS_PER_SAMPLE = 16;
     private static final boolean DEBUG = false;
@@ -108,9 +107,7 @@ public class WebRtcAudioManager {
                 int mode = VolumeLogger.this.audioManager.getMode();
                 if (mode == 1) {
                     Logging.d(WebRtcAudioManager.TAG, "STREAM_RING stream volume: " + VolumeLogger.this.audioManager.getStreamVolume(2) + " (max=" + this.maxRingVolume + ")");
-                    return;
-                }
-                if (mode == 3) {
+                } else if (mode == 3) {
                     Logging.d(WebRtcAudioManager.TAG, "VOICE_CALL stream volume: " + VolumeLogger.this.audioManager.getStreamVolume(0) + " (max=" + this.maxVoiceCallVolume + ")");
                 }
             }
@@ -165,10 +162,10 @@ public class WebRtcAudioManager {
         } else {
             deviceIsBlacklistedForOpenSLESUsage = WebRtcAudioUtils.deviceIsBlacklistedForOpenSLESUsage();
         }
-        if (!deviceIsBlacklistedForOpenSLESUsage) {
+        if (deviceIsBlacklistedForOpenSLESUsage) {
+            Logging.d(TAG, Build.MODEL + " is blacklisted for OpenSL ES usage!");
             return true;
         }
-        Logging.d(TAG, Build.MODEL + " is blacklisted for OpenSL ES usage!");
         return true;
     }
 
@@ -212,14 +209,14 @@ public class WebRtcAudioManager {
         if (WebRtcAudioUtils.runningOnEmulator()) {
             Logging.d(TAG, "Running emulator, overriding sample rate to 8 kHz.");
             return 8000;
-        }
-        if (WebRtcAudioUtils.isDefaultSampleRateOverridden()) {
+        } else if (WebRtcAudioUtils.isDefaultSampleRateOverridden()) {
             Logging.d(TAG, "Default sample rate is overriden to " + WebRtcAudioUtils.getDefaultSampleRateHz() + " Hz");
             return WebRtcAudioUtils.getDefaultSampleRateHz();
+        } else {
+            int sampleRateForApiLevel = getSampleRateForApiLevel();
+            Logging.d(TAG, "Sample rate is set to " + sampleRateForApiLevel + " Hz");
+            return sampleRateForApiLevel;
         }
-        int sampleRateForApiLevel = getSampleRateForApiLevel();
-        Logging.d(TAG, "Sample rate is set to " + sampleRateForApiLevel + " Hz");
-        return sampleRateForApiLevel;
     }
 
     private int getSampleRateForApiLevel() {

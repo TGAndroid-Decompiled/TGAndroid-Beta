@@ -1,7 +1,6 @@
 package org.aspectj.runtime.reflect;
 
 import java.lang.reflect.Modifier;
-
 class StringMaker {
     static StringMaker longStringMaker;
     static StringMaker middleStringMaker;
@@ -49,17 +48,17 @@ class StringMaker {
     }
 
     public String makeModifiersString(int i) {
-        if (!this.includeModifiers) {
-            return "";
+        if (this.includeModifiers) {
+            String modifier = Modifier.toString(i);
+            if (modifier.length() == 0) {
+                return "";
+            }
+            StringBuffer stringBuffer = new StringBuffer();
+            stringBuffer.append(modifier);
+            stringBuffer.append(" ");
+            return stringBuffer.toString();
         }
-        String modifier = Modifier.toString(i);
-        if (modifier.length() == 0) {
-            return "";
-        }
-        StringBuffer stringBuffer = new StringBuffer();
-        stringBuffer.append(modifier);
-        stringBuffer.append(" ");
-        return stringBuffer.toString();
+        return "";
     }
 
     String stripPackageName(String str) {

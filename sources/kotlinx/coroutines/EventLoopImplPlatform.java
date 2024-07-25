@@ -2,7 +2,6 @@ package kotlinx.coroutines;
 
 import java.util.concurrent.locks.LockSupport;
 import kotlinx.coroutines.EventLoopImplBase;
-
 public abstract class EventLoopImplPlatform extends EventLoop {
     protected abstract Thread getThread();
 

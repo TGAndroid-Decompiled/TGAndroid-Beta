@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_upload_webFile extends TLObject {
     public NativeByteBuffer bytes;
     public TLRPC$storage_FileType file_type;

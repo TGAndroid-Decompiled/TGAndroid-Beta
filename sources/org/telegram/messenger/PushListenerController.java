@@ -15,7 +15,6 @@ import org.telegram.tgnet.TLRPC$TL_help_saveAppLog;
 import org.telegram.tgnet.TLRPC$TL_inputAppEvent;
 import org.telegram.tgnet.TLRPC$TL_jsonNull;
 import org.telegram.tgnet.TLRPC$TL_updates;
-
 public class PushListenerController {
     public static final int NOTIFICATION_ID = 1;
     public static final int PUSH_TYPE_FIREBASE = 2;
@@ -442,7 +441,7 @@ public class PushListenerController {
                 return LocaleController.formatString(R.string.PushReactStory, objArr);
             case 29:
                 return LocaleController.formatString(R.string.PushReactVideo, objArr);
-            case R.styleable.AppCompatTheme_actionModeTheme:
+            case 30:
                 return LocaleController.formatString(R.string.PushReactDoc, objArr);
             case R.styleable.AppCompatTheme_actionModeWebSearchDrawable:
                 return LocaleController.formatString(R.string.PushReactGeo, objArr);

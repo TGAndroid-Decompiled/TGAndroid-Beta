@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_pageTableCell extends TLObject {
     public boolean align_center;
     public boolean align_right;

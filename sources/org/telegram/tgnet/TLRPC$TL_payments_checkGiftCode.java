@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_payments_checkGiftCode extends TLObject {
     public static int constructor = -1907247935;
     public String slug;

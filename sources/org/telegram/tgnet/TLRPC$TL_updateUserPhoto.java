@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updateUserPhoto extends TLRPC$Update {
     public int date;
     public TLRPC$UserProfilePhoto photo;

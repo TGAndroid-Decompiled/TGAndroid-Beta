@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import org.telegram.messenger.LiteMode;
-
 public class TLRPC$TL_inputPeerNotifySettings extends TLObject {
     public int flags;
     public int mute_until;

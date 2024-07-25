@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_starsRevenueStatus extends TLObject {
     public long available_balance;
     public long current_balance;

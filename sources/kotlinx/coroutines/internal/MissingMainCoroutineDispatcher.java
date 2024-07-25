@@ -5,7 +5,6 @@ import kotlin.coroutines.CoroutineContext;
 import kotlin.jvm.internal.Intrinsics;
 import kotlinx.coroutines.Delay;
 import kotlinx.coroutines.MainCoroutineDispatcher;
-
 public final class MissingMainCoroutineDispatcher extends MainCoroutineDispatcher implements Delay {
     private final Throwable cause;
     private final String errorHint;
@@ -27,7 +26,7 @@ public final class MissingMainCoroutineDispatcher extends MainCoroutineDispatche
     }
 
     @Override
-    public Void mo160dispatch(CoroutineContext coroutineContext, Runnable runnable) {
+    public Void mo163dispatch(CoroutineContext coroutineContext, Runnable runnable) {
         missing();
         throw new KotlinNothingValueException();
     }

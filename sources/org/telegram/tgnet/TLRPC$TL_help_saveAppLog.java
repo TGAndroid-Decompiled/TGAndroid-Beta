@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_help_saveAppLog extends TLObject {
     public ArrayList<TLRPC$TL_inputAppEvent> events = new ArrayList<>();
 

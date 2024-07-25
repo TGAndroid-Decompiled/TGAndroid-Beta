@@ -16,7 +16,6 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC$TL_messages_stickerSet;
 import org.telegram.ui.ActionBar.Theme;
-
 public class ContactsEmptyView extends LinearLayout implements NotificationCenter.NotificationCenterDelegate {
     private int currentAccount;
     private LoadingStickerDrawable drawable;
@@ -96,10 +95,10 @@ public class ContactsEmptyView extends LinearLayout implements NotificationCente
         TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet = stickerSetByName;
         if (tLRPC$TL_messages_stickerSet != null && tLRPC$TL_messages_stickerSet.documents.size() >= 1) {
             this.stickerView.setImage(ImageLocation.getForDocument(tLRPC$TL_messages_stickerSet.documents.get(0)), "130_130", "tgs", this.drawable, tLRPC$TL_messages_stickerSet);
-        } else {
-            MediaDataController.getInstance(this.currentAccount).loadStickersByEmojiOrName(AndroidUtilities.STICKERS_PLACEHOLDER_PACK_NAME, false, true);
-            this.stickerView.setImageDrawable(this.drawable);
+            return;
         }
+        MediaDataController.getInstance(this.currentAccount).loadStickersByEmojiOrName(AndroidUtilities.STICKERS_PLACEHOLDER_PACK_NAME, false, true);
+        this.stickerView.setImageDrawable(this.drawable);
     }
 
     @Override

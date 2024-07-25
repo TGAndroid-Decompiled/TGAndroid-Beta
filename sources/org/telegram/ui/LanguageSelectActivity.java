@@ -41,7 +41,6 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.EmptyTextProgressView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
-
 public class LanguageSelectActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private EmptyTextProgressView emptyView;
     private ListAdapter listAdapter;
@@ -78,7 +77,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    LanguageSelectActivity.this.lambda$onBackPressed$306();
+                    LanguageSelectActivity.this.finishFragment();
                 }
             }
         });
@@ -465,6 +464,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
 
         @Override
         public int getItemCount() {
+            int i = 0;
             if (this.search) {
                 if (LanguageSelectActivity.this.searchResult == null) {
                     return 0;
@@ -478,7 +478,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
             if (!LanguageSelectActivity.this.unofficialLanguages.isEmpty()) {
                 size += LanguageSelectActivity.this.unofficialLanguages.size() + 1;
             }
-            return (!LanguageSelectActivity.this.getMessagesController().premiumFeaturesBlocked() ? 1 : 0) + 4 + ((LanguageSelectActivity.this.getChatValue() || LanguageSelectActivity.this.getContextValue()) ? 1 : 0) + 1 + size;
+            return (!LanguageSelectActivity.this.getMessagesController().premiumFeaturesBlocked()) + 4 + ((LanguageSelectActivity.this.getChatValue() || LanguageSelectActivity.this.getContextValue()) ? 1 : 1) + 1 + size;
         }
 
         @Override

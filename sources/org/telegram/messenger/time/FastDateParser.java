@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
 import java.util.SortedMap;
@@ -22,7 +21,6 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.telegram.messenger.R;
-
 public class FastDateParser implements DateParser, Serializable {
     private static final long serialVersionUID = 2;
     private final int century;
@@ -157,11 +155,11 @@ public class FastDateParser implements DateParser, Serializable {
     }
 
     public boolean equals(Object obj) {
-        if (!(obj instanceof FastDateParser)) {
-            return false;
+        if (obj instanceof FastDateParser) {
+            FastDateParser fastDateParser = (FastDateParser) obj;
+            return this.pattern.equals(fastDateParser.pattern) && this.timeZone.equals(fastDateParser.timeZone) && this.locale.equals(fastDateParser.locale);
         }
-        FastDateParser fastDateParser = (FastDateParser) obj;
-        return this.pattern.equals(fastDateParser.pattern) && this.timeZone.equals(fastDateParser.timeZone) && this.locale.equals(fastDateParser.locale);
+        return false;
     }
 
     public int hashCode() {
@@ -185,13 +183,13 @@ public class FastDateParser implements DateParser, Serializable {
     @Override
     public Date parse(String str) throws ParseException {
         Date parse = parse(str, new ParsePosition(0));
-        if (parse != null) {
-            return parse;
+        if (parse == null) {
+            if (this.locale.equals(JAPANESE_IMPERIAL)) {
+                throw new ParseException("(The " + this.locale + " locale does not support dates before 1868 AD)\nUnparseable date: \"" + str + "\" does not match " + this.parsePattern.pattern(), 0);
+            }
+            throw new ParseException("Unparseable date: \"" + str + "\" does not match " + this.parsePattern.pattern(), 0);
         }
-        if (this.locale.equals(JAPANESE_IMPERIAL)) {
-            throw new ParseException("(The " + this.locale + " locale does not support dates before 1868 AD)\nUnparseable date: \"" + str + "\" does not match " + this.parsePattern.pattern(), 0);
-        }
-        throw new ParseException("Unparseable date: \"" + str + "\" does not match " + this.parsePattern.pattern(), 0);
+        return parse;
     }
 
     @Override
@@ -254,19 +252,18 @@ public class FastDateParser implements DateParser, Serializable {
 
     private static String[] getDisplayNameArray(int i, boolean z, Locale locale) {
         DateFormatSymbols dateFormatSymbols = new DateFormatSymbols(locale);
-        if (i == 0) {
-            return dateFormatSymbols.getEras();
+        if (i != 0) {
+            if (i == 2) {
+                return z ? dateFormatSymbols.getMonths() : dateFormatSymbols.getShortMonths();
+            } else if (i == 7) {
+                return z ? dateFormatSymbols.getWeekdays() : dateFormatSymbols.getShortWeekdays();
+            } else if (i != 9) {
+                return null;
+            } else {
+                return dateFormatSymbols.getAmPmStrings();
+            }
         }
-        if (i == 2) {
-            return z ? dateFormatSymbols.getMonths() : dateFormatSymbols.getShortMonths();
-        }
-        if (i == 7) {
-            return z ? dateFormatSymbols.getWeekdays() : dateFormatSymbols.getShortWeekdays();
-        }
-        if (i != 9) {
-            return null;
-        }
-        return dateFormatSymbols.getAmPmStrings();
+        return dateFormatSymbols.getEras();
     }
 
     private static void insertValuesInMap(Map<String, Integer> map, String[] strArr) {
@@ -333,7 +330,7 @@ public class FastDateParser implements DateParser, Serializable {
                     if (str.length() > 2) {
                         return new CopyQuotedStrategy(str.substring(1, str.length() - 1));
                     }
-                    break;
+                    return new CopyQuotedStrategy(str);
                 case R.styleable.AppCompatTheme_listPreferredItemPaddingLeft:
                     return MILLISECOND_STRATEGY;
                 case R.styleable.AppCompatTheme_panelMenuListTheme:
@@ -374,9 +371,9 @@ public class FastDateParser implements DateParser, Serializable {
                                 case R.styleable.AppCompatTheme_listMenuViewStyle:
                                     return str.length() >= 3 ? getLocaleSpecificStrategy(2, calendar) : NUMBER_MONTH_STRATEGY;
                             }
+                            return new CopyQuotedStrategy(str);
                     }
             }
-            return new CopyQuotedStrategy(str);
         }
         return getLocaleSpecificStrategy(15, calendar);
     }
@@ -447,9 +444,8 @@ public class FastDateParser implements DateParser, Serializable {
         @Override
         boolean addRegex(FastDateParser fastDateParser, StringBuilder sb) {
             sb.append('(');
-            Iterator<String> it = this.keyValues.keySet().iterator();
-            while (it.hasNext()) {
-                FastDateParser.escapeRegex(sb, it.next(), false).append('|');
+            for (String str : this.keyValues.keySet()) {
+                FastDateParser.escapeRegex(sb, str, false).append('|');
             }
             sb.setCharAt(sb.length() - 1, ')');
             return true;
@@ -461,9 +457,8 @@ public class FastDateParser implements DateParser, Serializable {
             if (num == null) {
                 StringBuilder sb = new StringBuilder(str);
                 sb.append(" not in (");
-                Iterator<String> it = this.keyValues.keySet().iterator();
-                while (it.hasNext()) {
-                    sb.append(it.next());
+                for (String str2 : this.keyValues.keySet()) {
+                    sb.append(str2);
                     sb.append(' ');
                 }
                 sb.setCharAt(sb.length() - 1, ')');
@@ -519,6 +514,7 @@ public class FastDateParser implements DateParser, Serializable {
 
         TimeZoneStrategy(Locale locale) {
             super();
+            String[][] zoneStrings;
             this.tzNames = new TreeMap(String.CASE_INSENSITIVE_ORDER);
             for (String[] strArr : DateFormatSymbols.getInstance(locale).getZoneStrings()) {
                 if (!strArr[0].startsWith("GMT")) {
@@ -541,9 +537,8 @@ public class FastDateParser implements DateParser, Serializable {
             }
             StringBuilder sb = new StringBuilder();
             sb.append("(GMT[+\\-]\\d{0,1}\\d{2}|[+\\-]\\d{2}:?\\d{2}|");
-            Iterator<String> it = this.tzNames.keySet().iterator();
-            while (it.hasNext()) {
-                FastDateParser.escapeRegex(sb, it.next(), false).append('|');
+            for (String str : this.tzNames.keySet()) {
+                FastDateParser.escapeRegex(sb, str, false).append('|');
             }
             sb.setCharAt(sb.length() - 1, ')');
             this.validTimeZoneChars = sb.toString();

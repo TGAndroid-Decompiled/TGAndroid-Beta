@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_togglePeerTranslations extends TLObject {
     public boolean disabled;
     public int flags;

@@ -10,7 +10,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
-
 public class SnowflakesEffect {
     private int color;
     private long lastAnimationTime;
@@ -71,24 +70,21 @@ public class SnowflakesEffect {
                     Canvas canvas3 = canvas2;
                     double d4 = dpf22;
                     Double.isNaN(d4);
-                    float f4 = (float) ((cos2 * d3) - (sin2 * d4));
                     double sin3 = Math.sin(d2);
                     Double.isNaN(d3);
                     double cos3 = Math.cos(d2);
                     Double.isNaN(d4);
-                    float f5 = dp + f3;
-                    float f6 = dp2 + (sin * 0.66f);
-                    canvas3.drawLine(f5, f6, dp + f4, dp2 + ((float) ((sin3 * d3) + (cos3 * d4))), SnowflakesEffect.this.particleThinPaint);
-                    double d5 = -Math.cos(d2);
+                    float f4 = dp + f3;
+                    float f5 = dp2 + (sin * 0.66f);
+                    canvas3.drawLine(f4, f5, dp + ((float) ((cos2 * d3) - (sin2 * d4))), dp2 + ((float) ((sin3 * d3) + (cos3 * d4))), SnowflakesEffect.this.particleThinPaint);
                     Double.isNaN(d3);
-                    double d6 = d5 * d3;
+                    double d5 = (-Math.cos(d2)) * d3;
                     double sin4 = Math.sin(d2);
                     Double.isNaN(d4);
-                    double d7 = -Math.sin(d2);
                     Double.isNaN(d3);
                     double cos4 = Math.cos(d2);
                     Double.isNaN(d4);
-                    canvas3.drawLine(f5, f6, dp + ((float) (d6 - (sin4 * d4))), dp2 + ((float) ((d7 * d3) + (cos4 * d4))), SnowflakesEffect.this.particleThinPaint);
+                    canvas3.drawLine(f4, f5, dp + ((float) (d5 - (sin4 * d4))), dp2 + ((float) (((-Math.sin(d2)) * d3) + (cos4 * d4))), SnowflakesEffect.this.particleThinPaint);
                     f += 1.0471976f;
                     i++;
                     canvas2 = canvas3;
@@ -96,8 +92,8 @@ public class SnowflakesEffect {
             }
             SnowflakesEffect.this.bitmapPaint.setAlpha((int) (this.alpha * 255.0f));
             canvas.save();
-            float f7 = this.scale;
-            canvas.scale(f7, f7, this.x, this.y);
+            float f6 = this.scale;
+            canvas.scale(f6, f6, this.x, this.y);
             SnowflakesEffect snowflakesEffect2 = SnowflakesEffect.this;
             canvas.drawBitmap(snowflakesEffect2.particleBitmap, this.x, this.y, snowflakesEffect2.bitmapPaint);
             canvas.restore();

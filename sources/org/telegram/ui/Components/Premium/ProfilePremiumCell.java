@@ -6,7 +6,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Components.Premium.StarParticlesView;
-
 public class ProfilePremiumCell extends TextCell {
     StarParticlesView.Drawable drawable;
 

@@ -13,7 +13,6 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.SeekBarView;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
-
 public class BlurSettingsBottomSheet extends BottomSheet {
     public static float blurAlpha = 1.0f - (Color.alpha(Theme.getColor(Theme.key_chat_BlurAlpha)) / 255.0f);
     public static float blurRadius = 1.0f;
@@ -61,7 +60,8 @@ public class BlurSettingsBottomSheet extends BottomSheet {
             @Override
             public void onSeekBarDrag(boolean z, float f) {
                 BlurSettingsBottomSheet.saturation = f;
-                textView.setText("Saturation " + (f * 5.0f));
+                TextView textView2 = textView;
+                textView2.setText("Saturation " + (f * 5.0f));
                 BlurSettingsBottomSheet.this.contentView.invalidateBlurredViews();
                 BlurSettingsBottomSheet.this.contentView.invalidateBlur();
             }
@@ -95,7 +95,8 @@ public class BlurSettingsBottomSheet extends BottomSheet {
 
             @Override
             public void onSeekBarDrag(boolean z, float f) {
-                textView2.setText("Alpha " + BlurSettingsBottomSheet.blurAlpha);
+                TextView textView3 = textView2;
+                textView3.setText("Alpha " + BlurSettingsBottomSheet.blurAlpha);
                 BlurSettingsBottomSheet.blurAlpha = f;
                 BlurSettingsBottomSheet.this.contentView.invalidateBlur();
             }

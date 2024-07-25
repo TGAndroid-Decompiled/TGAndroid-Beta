@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channelLocation extends TLRPC$ChannelLocation {
     public String address;
     public TLRPC$GeoPoint geo_point;

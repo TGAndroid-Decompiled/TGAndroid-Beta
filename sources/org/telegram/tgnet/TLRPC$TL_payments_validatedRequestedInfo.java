@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_payments_validatedRequestedInfo extends TLObject {
     public int flags;
     public String id;

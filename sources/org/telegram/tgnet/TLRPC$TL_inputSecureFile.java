@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_inputSecureFile extends TLRPC$InputSecureFile {
     public long access_hash;
     public long id;

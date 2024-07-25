@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channels_getParticipant extends TLObject {
     public TLRPC$InputChannel channel;
     public TLRPC$InputPeer participant;

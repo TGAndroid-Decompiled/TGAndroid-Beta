@@ -10,7 +10,6 @@ import androidx.core.graphics.ColorUtils;
 import java.util.HashSet;
 import java.util.Objects;
 import org.telegram.ui.ActionBar.Theme;
-
 public class DarkThemeResourceProvider implements Theme.ResourcesProvider {
     Paint actionPaint;
     ColorFilter animatedEmojiColorFilter;

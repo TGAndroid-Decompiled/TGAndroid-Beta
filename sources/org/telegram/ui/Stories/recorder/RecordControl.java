@@ -31,7 +31,6 @@ import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.Point;
 import org.telegram.ui.Stories.recorder.FlashViews;
-
 public class RecordControl extends View implements FlashViews.Invertable {
     public float amplitude;
     public final AnimatedFloat animatedAmplitude;
@@ -264,18 +263,18 @@ public class RecordControl extends View implements FlashViews.Invertable {
         }
         if (photoEntry != null && (str = photoEntry.thumbPath) != null) {
             this.galleryImage.setImage(ImageLocation.getForPath(str), "80_80", null, null, this.noGalleryDrawable, 0L, null, null, 0);
-            return;
-        }
-        if (photoEntry != null && photoEntry.path != null) {
+        } else if (photoEntry != null && photoEntry.path != null) {
             if (photoEntry.isVideo) {
-                this.galleryImage.setImage(ImageLocation.getForPath("vthumb://" + photoEntry.imageId + ":" + photoEntry.path), "80_80", null, null, this.noGalleryDrawable, 0L, null, null, 0);
+                ImageReceiver imageReceiver = this.galleryImage;
+                imageReceiver.setImage(ImageLocation.getForPath("vthumb://" + photoEntry.imageId + ":" + photoEntry.path), "80_80", null, null, this.noGalleryDrawable, 0L, null, null, 0);
                 return;
             }
             this.galleryImage.setOrientation(photoEntry.orientation, photoEntry.invert, true);
-            this.galleryImage.setImage(ImageLocation.getForPath("thumb://" + photoEntry.imageId + ":" + photoEntry.path), "80_80", null, null, this.noGalleryDrawable, 0L, null, null, 0);
-            return;
+            ImageReceiver imageReceiver2 = this.galleryImage;
+            imageReceiver2.setImage(ImageLocation.getForPath("thumb://" + photoEntry.imageId + ":" + photoEntry.path), "80_80", null, null, this.noGalleryDrawable, 0L, null, null, 0);
+        } else {
+            this.galleryImage.setImageBitmap(this.noGalleryDrawable);
         }
-        this.galleryImage.setImageBitmap(this.noGalleryDrawable);
     }
 
     @Override
@@ -443,6 +442,7 @@ public class RecordControl extends View implements FlashViews.Invertable {
         float clamp = Utilities.clamp(motionEvent.getX() + 0.0f, this.rightCx, this.leftCx);
         float y = motionEvent.getY() + 0.0f;
         boolean isPressed = isPressed(clamp, y, this.rightCx, this.cy, AndroidUtilities.dp(7.0f), true);
+        boolean z = false;
         if (this.recordingLoading) {
             this.recordButton.setPressed(false);
             this.flipButton.setPressed(false);
@@ -454,7 +454,7 @@ public class RecordControl extends View implements FlashViews.Invertable {
         }
         if (action == 0) {
             this.touch = true;
-            this.discardParentTouch = this.recordButton.isPressed() || this.flipButton.isPressed();
+            this.discardParentTouch = (this.recordButton.isPressed() || this.flipButton.isPressed()) ? true : true;
             System.currentTimeMillis();
             this.touchX = clamp;
             if (Math.abs(clamp - this.cx) < AndroidUtilities.dp(50.0f)) {
@@ -531,11 +531,11 @@ public class RecordControl extends View implements FlashViews.Invertable {
                 invalidate();
             }
             this.flipButtonWasPressed = isPressed;
-            return r12;
+            return z;
         }
-        r12 = true;
+        z = true;
         this.flipButtonWasPressed = isPressed;
-        return r12;
+        return z;
     }
 
     public void lambda$onTouchEvent$4() {

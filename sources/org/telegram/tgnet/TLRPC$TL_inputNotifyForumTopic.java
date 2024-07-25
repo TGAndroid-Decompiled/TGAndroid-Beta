@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_inputNotifyForumTopic extends TLRPC$InputNotifyPeer {
     public TLRPC$InputPeer peer;
     public int top_msg_id;

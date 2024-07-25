@@ -2,7 +2,6 @@ package kotlin.coroutines;
 
 import kotlin.coroutines.CoroutineContext;
 import kotlin.jvm.internal.Intrinsics;
-
 public interface ContinuationInterceptor extends CoroutineContext.Element {
     public static final Key Key = Key.$$INSTANCE;
 
@@ -22,20 +21,20 @@ public interface ContinuationInterceptor extends CoroutineContext.Element {
             Intrinsics.checkNotNullParameter(key, "key");
             if (key instanceof AbstractCoroutineContextKey) {
                 AbstractCoroutineContextKey abstractCoroutineContextKey = (AbstractCoroutineContextKey) key;
-                if (!abstractCoroutineContextKey.isSubKey$kotlin_stdlib(continuationInterceptor.getKey())) {
+                if (abstractCoroutineContextKey.isSubKey$kotlin_stdlib(continuationInterceptor.getKey())) {
+                    E e = (E) abstractCoroutineContextKey.tryCast$kotlin_stdlib(continuationInterceptor);
+                    if (e instanceof CoroutineContext.Element) {
+                        return e;
+                    }
                     return null;
                 }
-                E e = (E) abstractCoroutineContextKey.tryCast$kotlin_stdlib(continuationInterceptor);
-                if (e instanceof CoroutineContext.Element) {
-                    return e;
-                }
+                return null;
+            } else if (ContinuationInterceptor.Key == key) {
+                Intrinsics.checkNotNull(continuationInterceptor, "null cannot be cast to non-null type E of kotlin.coroutines.ContinuationInterceptor.get");
+                return continuationInterceptor;
+            } else {
                 return null;
             }
-            if (ContinuationInterceptor.Key != key) {
-                return null;
-            }
-            Intrinsics.checkNotNull(continuationInterceptor, "null cannot be cast to non-null type E of kotlin.coroutines.ContinuationInterceptor.get");
-            return continuationInterceptor;
         }
 
         public static CoroutineContext minusKey(ContinuationInterceptor continuationInterceptor, CoroutineContext.Key<?> key) {

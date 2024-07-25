@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_account_getThemes extends TLObject {
     public String format;
     public long hash;

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_updateDialogFilter extends TLObject {
     public TLRPC$TL_dialogFilter filter;
     public int flags;

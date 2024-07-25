@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_messages_search extends TLObject {
     public int add_offset;
     public TLRPC$MessagesFilter filter;

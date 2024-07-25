@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_sendEncrypted extends TLObject {
     public NativeByteBuffer data;
     public int flags;

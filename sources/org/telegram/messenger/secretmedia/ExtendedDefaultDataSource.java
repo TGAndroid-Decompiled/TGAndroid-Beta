@@ -20,7 +20,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import org.telegram.messenger.FileStreamLoadOperation;
-
 public final class ExtendedDefaultDataSource implements DataSource {
     private static final String SCHEME_ASSET = "asset";
     private static final String SCHEME_CONTENT = "content";

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_upload_reuploadCdnFile extends TLObject {
     public byte[] file_token;
     public byte[] request_token;

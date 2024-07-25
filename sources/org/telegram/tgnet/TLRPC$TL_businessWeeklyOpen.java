@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_businessWeeklyOpen extends TLObject {
     public int end_minute;
     public int start_minute;

@@ -38,7 +38,6 @@ import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.Components.EmptyStubSpan;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.MessageEnterTransitionContainer;
-
 public class TextMessageEnterTransition implements MessageEnterTransitionContainer.Transition {
     private AnimatedEmojiSpan.EmojiGroupedSpans animatedEmojiStack;
     private ValueAnimator animator;

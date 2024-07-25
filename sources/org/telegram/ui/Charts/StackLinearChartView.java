@@ -10,7 +10,6 @@ import org.telegram.ui.Charts.data.ChartData;
 import org.telegram.ui.Charts.data.StackLinearChartData;
 import org.telegram.ui.Charts.view_data.LineViewData;
 import org.telegram.ui.Charts.view_data.StackLinearViewData;
-
 public class StackLinearChartView<T extends StackLinearViewData> extends BaseChartView<StackLinearChartData, T> {
     private float[] mapPoints;
     private Matrix matrix;
@@ -51,13 +50,13 @@ public class StackLinearChartView<T extends StackLinearViewData> extends BaseCha
     private int quarterForPoint(float f, float f2) {
         float centerX = this.chartArea.centerX();
         float centerY = this.chartArea.centerY() + AndroidUtilities.dp(16.0f);
-        if (f >= centerX && f2 <= centerY) {
-            return 0;
+        if (f < centerX || f2 > centerY) {
+            if (f < centerX || f2 < centerY) {
+                return (f >= centerX || f2 < centerY) ? 3 : 2;
+            }
+            return 1;
         }
-        if (f < centerX || f2 < centerY) {
-            return (f >= centerX || f2 < centerY) ? 3 : 2;
-        }
-        return 1;
+        return 0;
     }
 
     @Override

@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_photos_deletePhotos extends TLObject {
     public ArrayList<TLRPC$InputPhoto> id = new ArrayList<>();
 

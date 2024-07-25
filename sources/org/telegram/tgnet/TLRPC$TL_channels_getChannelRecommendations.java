@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channels_getChannelRecommendations extends TLObject {
     public static int constructor = 631707458;
     public TLRPC$InputChannel channel;

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$ReactionNotificationsFrom extends TLObject {
     public static TLRPC$ReactionNotificationsFrom TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$ReactionNotificationsFrom tLRPC$TL_reactionNotificationsFromAll = i != -1161583078 ? i != 1268654752 ? null : new TLRPC$TL_reactionNotificationsFromAll() : new TLRPC$TL_reactionNotificationsFromContacts();

@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import org.telegram.messenger.LiteMode;
-
 public class TLRPC$TL_channelAdminRights_layer92 extends TLObject {
     public boolean add_admins;
     public boolean ban_users;

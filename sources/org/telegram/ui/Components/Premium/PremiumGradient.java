@@ -22,7 +22,6 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.Theme;
-
 public class PremiumGradient {
     private static PremiumGradient instance;
     private final PremiumGradientTools goldGradient;
@@ -212,10 +211,11 @@ public class PremiumGradient {
                 return;
             }
             int i5 = i4 - i2;
+            int i6 = i5 + i5;
             chekColors();
             this.matrix.reset();
-            this.matrix.postScale((i3 - i) / 100.0f, (i5 + i5) / 100.0f, 75.0f, 50.0f);
-            this.matrix.postTranslate(f, (-r6) + f2);
+            this.matrix.postScale((i3 - i) / 100.0f, i6 / 100.0f, 75.0f, 50.0f);
+            this.matrix.postTranslate(f, (-i6) + f2);
             this.shader.setLocalMatrix(this.matrix);
         }
 
@@ -225,10 +225,7 @@ public class PremiumGradient {
 
         private int getColor(int i) {
             int themeColorByKey = getThemeColorByKey(i);
-            if (!this.darkColors) {
-                return themeColorByKey;
-            }
-            return Color.argb(Color.alpha(themeColorByKey), Color.red(themeColorByKey) - 15, Color.green(themeColorByKey) - 15, Color.blue(themeColorByKey) - 15);
+            return this.darkColors ? Color.argb(Color.alpha(themeColorByKey), Color.red(themeColorByKey) - 15, Color.green(themeColorByKey) - 15, Color.blue(themeColorByKey) - 15) : themeColorByKey;
         }
 
         public void chekColors() {

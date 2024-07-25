@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channelAdminLogEventActionChangeEmojiStatus extends TLRPC$ChannelAdminLogEventAction {
     public TLRPC$EmojiStatus new_value;
     public TLRPC$EmojiStatus prev_value;

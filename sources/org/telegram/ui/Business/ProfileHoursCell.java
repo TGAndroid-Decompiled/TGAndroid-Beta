@@ -18,7 +18,6 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.ClickableAnimatedTextView;
 import org.telegram.ui.Components.LayoutHelper;
-
 public class ProfileHoursCell extends LinearLayout {
     private ImageView arrowView;
     private boolean expanded;

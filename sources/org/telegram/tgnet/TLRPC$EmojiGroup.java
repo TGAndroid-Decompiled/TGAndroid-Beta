@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$EmojiGroup extends TLObject {
     public ArrayList<String> emoticons = new ArrayList<>();
     public long icon_emoji_id;
@@ -20,11 +19,11 @@ public class TLRPC$EmojiGroup extends TLObject {
                         if (z2) {
                             throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
                         }
-                    } else {
-                        int readInt322 = abstractSerializedData2.readInt32(z2);
-                        for (int i2 = 0; i2 < readInt322; i2++) {
-                            this.emoticons.add(abstractSerializedData2.readString(z2));
-                        }
+                        return;
+                    }
+                    int readInt322 = abstractSerializedData2.readInt32(z2);
+                    for (int i2 = 0; i2 < readInt322; i2++) {
+                        this.emoticons.add(abstractSerializedData2.readString(z2));
                     }
                 }
 
@@ -52,11 +51,11 @@ public class TLRPC$EmojiGroup extends TLObject {
                         if (z2) {
                             throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
                         }
-                    } else {
-                        int readInt322 = abstractSerializedData2.readInt32(z2);
-                        for (int i2 = 0; i2 < readInt322; i2++) {
-                            this.emoticons.add(abstractSerializedData2.readString(z2));
-                        }
+                        return;
+                    }
+                    int readInt322 = abstractSerializedData2.readInt32(z2);
+                    for (int i2 = 0; i2 < readInt322; i2++) {
+                        this.emoticons.add(abstractSerializedData2.readString(z2));
                     }
                 }
 

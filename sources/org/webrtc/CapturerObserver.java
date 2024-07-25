@@ -1,5 +1,4 @@
 package org.webrtc;
-
 public interface CapturerObserver {
     void onCapturerStarted(boolean z);
 

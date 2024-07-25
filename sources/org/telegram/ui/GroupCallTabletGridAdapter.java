@@ -14,7 +14,6 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.voip.GroupCallGridCell;
 import org.telegram.ui.Components.voip.GroupCallMiniTextureView;
 import org.telegram.ui.Components.voip.GroupCallRenderersContainer;
-
 public class GroupCallTabletGridAdapter extends RecyclerListView.SelectionAdapter {
     private final GroupCallActivity activity;
     private ArrayList<GroupCallMiniTextureView> attachedRenderers;
@@ -67,10 +66,8 @@ public class GroupCallTabletGridAdapter extends RecyclerListView.SelectionAdapte
     public void attachRenderer(GroupCallGridCell groupCallGridCell, boolean z) {
         if (z && groupCallGridCell.getRenderer() == null) {
             groupCallGridCell.setRenderer(GroupCallMiniTextureView.getOrCreate(this.attachedRenderers, this.renderersContainer, null, null, groupCallGridCell, groupCallGridCell.getParticipant(), this.groupCall, this.activity));
+        } else if (z || groupCallGridCell.getRenderer() == null) {
         } else {
-            if (z || groupCallGridCell.getRenderer() == null) {
-                return;
-            }
             groupCallGridCell.getRenderer().setTabletGridView(null);
             groupCallGridCell.setRenderer(null);
         }

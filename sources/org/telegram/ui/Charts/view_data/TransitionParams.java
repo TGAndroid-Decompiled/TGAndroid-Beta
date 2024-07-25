@@ -1,5 +1,4 @@
 package org.telegram.ui.Charts.view_data;
-
 public class TransitionParams {
     public float[] angle;
     public float[] endX;

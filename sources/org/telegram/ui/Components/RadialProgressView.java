@@ -11,7 +11,6 @@ import android.view.animation.DecelerateInterpolator;
 import androidx.annotation.Keep;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
-
 public class RadialProgressView extends View {
     private AccelerateInterpolator accelerateInterpolator;
     private float animatedProgress;
@@ -142,7 +141,11 @@ public class RadialProgressView extends View {
 
     @Override
     public void onDraw(Canvas canvas) {
-        this.cicleRect.set((getMeasuredWidth() - this.size) / 2, (getMeasuredHeight() - this.size) / 2, r0 + r2, r1 + r2);
+        int measuredWidth = (getMeasuredWidth() - this.size) / 2;
+        int measuredHeight = getMeasuredHeight();
+        int i = this.size;
+        int i2 = (measuredHeight - i) / 2;
+        this.cicleRect.set(measuredWidth, i2, measuredWidth + i, i2 + i);
         RectF rectF = this.cicleRect;
         float f = this.radOffset;
         float f2 = this.currentCircleLength;

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$PeerLocated extends TLObject {
     public static TLRPC$PeerLocated TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$PeerLocated tLRPC$TL_peerLocated;

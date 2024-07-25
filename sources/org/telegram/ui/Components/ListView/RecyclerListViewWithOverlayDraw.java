@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.view.View;
 import org.telegram.ui.Components.RecyclerListView;
-
 public class RecyclerListViewWithOverlayDraw extends RecyclerListView {
     boolean invalidated;
 

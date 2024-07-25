@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_account_updateBusinessWorkHours extends TLObject {
     public TLRPC$TL_businessWorkHours business_work_hours;
     public int flags;

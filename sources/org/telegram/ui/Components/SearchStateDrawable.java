@@ -8,7 +8,6 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import com.google.zxing.common.detector.MathUtils;
 import org.telegram.messenger.AndroidUtilities;
-
 public class SearchStateDrawable extends Drawable {
     private float cx;
     private float cy;
@@ -82,11 +81,8 @@ public class SearchStateDrawable extends Drawable {
             if (i != 2) {
                 AndroidUtilities.cancelRunOnUIThread(this.delaySetProgress);
                 this.delaySetProgress = null;
-                return;
             }
-            return;
-        }
-        if (!z2 && i == 2) {
+        } else if (!z2 && i == 2) {
             if (this.delaySetProgress == null) {
                 Runnable runnable = new Runnable() {
                     @Override
@@ -96,44 +92,43 @@ public class SearchStateDrawable extends Drawable {
                 };
                 this.delaySetProgress = runnable;
                 AndroidUtilities.runOnUIThread(runnable, 65L);
-                return;
             }
-            return;
-        }
-        Runnable runnable2 = this.delaySetProgress;
-        if (runnable2 != null) {
-            AndroidUtilities.cancelRunOnUIThread(runnable2);
-        }
-        boolean z3 = false;
-        if (this.progress.get() < 1.0f && z) {
-            setIconState(this.toState, false);
-        }
-        if (i == 2) {
-            this.progressAngleFrom = 180.0f;
-            this.progressStart = -1L;
-        } else if (this.toState == 2) {
-            if (i == 0) {
-                this.progressAngleTo = -45.0f;
-            } else {
-                this.progressAngleTo = 0.0f;
-            }
-        }
-        if (z) {
-            int i2 = this.toState;
-            this.fromState = i2;
-            this.toState = i;
-            if (i2 == 2 && i != 2) {
-                z3 = true;
-            }
-            this.waitingForProgressToEnd = z3;
-            this.progress.set(0.0f, true);
         } else {
-            this.toState = i;
-            this.fromState = i;
-            this.waitingForProgressToEnd = false;
-            this.progress.set(1.0f, true);
+            Runnable runnable2 = this.delaySetProgress;
+            if (runnable2 != null) {
+                AndroidUtilities.cancelRunOnUIThread(runnable2);
+            }
+            boolean z3 = false;
+            if (this.progress.get() < 1.0f && z) {
+                setIconState(this.toState, false);
+            }
+            if (i == 2) {
+                this.progressAngleFrom = 180.0f;
+                this.progressStart = -1L;
+            } else if (this.toState == 2) {
+                if (i == 0) {
+                    this.progressAngleTo = -45.0f;
+                } else {
+                    this.progressAngleTo = 0.0f;
+                }
+            }
+            if (z) {
+                int i2 = this.toState;
+                this.fromState = i2;
+                this.toState = i;
+                if (i2 == 2 && i != 2) {
+                    z3 = true;
+                }
+                this.waitingForProgressToEnd = z3;
+                this.progress.set(0.0f, true);
+            } else {
+                this.toState = i;
+                this.fromState = i;
+                this.waitingForProgressToEnd = false;
+                this.progress.set(1.0f, true);
+            }
+            invalidateSelf();
         }
-        invalidateSelf();
     }
 
     public void lambda$setIconState$0(int i, boolean z) {

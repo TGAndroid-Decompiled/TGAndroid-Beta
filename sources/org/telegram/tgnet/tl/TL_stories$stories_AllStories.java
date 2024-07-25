@@ -2,7 +2,6 @@ package org.telegram.tgnet.tl;
 
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
-
 public abstract class TL_stories$stories_AllStories extends TLObject {
     public static TL_stories$stories_AllStories TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TL_stories$stories_AllStories tL_stories$TL_stories_allStoriesNotModified;

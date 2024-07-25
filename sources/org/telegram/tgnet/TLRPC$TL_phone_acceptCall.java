@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_phone_acceptCall extends TLObject {
     public byte[] g_b;
     public TLRPC$TL_inputPhoneCall peer;

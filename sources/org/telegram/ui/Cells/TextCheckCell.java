@@ -29,7 +29,6 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.Switch;
-
 public class TextCheckCell extends FrameLayout {
     public static final Property<TextCheckCell, Float> ANIMATION_PROGRESS = new AnimationProperties.FloatProperty<TextCheckCell>("animationProgress") {
         @Override
@@ -252,18 +251,18 @@ public class TextCheckCell extends FrameLayout {
             Property property = View.ALPHA;
             float[] fArr = new float[1];
             fArr[0] = z ? 1.0f : 0.5f;
-            arrayList.add(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property, fArr));
+            arrayList.add(ObjectAnimator.ofFloat(textView, property, fArr));
             Switch r2 = this.checkBox;
             Property property2 = View.ALPHA;
             float[] fArr2 = new float[1];
             fArr2[0] = z ? 1.0f : 0.5f;
-            arrayList.add(ObjectAnimator.ofFloat(r2, (Property<Switch, Float>) property2, fArr2));
+            arrayList.add(ObjectAnimator.ofFloat(r2, property2, fArr2));
             if (this.valueTextView.getVisibility() == 0) {
                 TextView textView2 = this.valueTextView;
                 Property property3 = View.ALPHA;
                 float[] fArr3 = new float[1];
                 fArr3[0] = z ? 1.0f : 0.5f;
-                arrayList.add(ObjectAnimator.ofFloat(textView2, (Property<TextView, Float>) property3, fArr3));
+                arrayList.add(ObjectAnimator.ofFloat(textView2, property3, fArr3));
                 return;
             }
             return;
@@ -326,8 +325,7 @@ public class TextCheckCell extends FrameLayout {
     public void setAnimationProgress(float f) {
         this.animationProgress = f;
         float lastTouchX = getLastTouchX();
-        float max = Math.max(lastTouchX, getMeasuredWidth() - lastTouchX) + AndroidUtilities.dp(40.0f);
-        this.checkBox.setOverrideColorProgress(lastTouchX, getMeasuredHeight() / 2, max * this.animationProgress);
+        this.checkBox.setOverrideColorProgress(lastTouchX, getMeasuredHeight() / 2, (Math.max(lastTouchX, getMeasuredWidth() - lastTouchX) + AndroidUtilities.dp(40.0f)) * this.animationProgress);
     }
 
     public void setBackgroundColorAnimatedReverse(final int i) {

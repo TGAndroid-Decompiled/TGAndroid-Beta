@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_requestSimpleWebView extends TLObject {
     public TLRPC$InputUser bot;
     public boolean compact;

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_help_getAppUpdate extends TLObject {
     public String source;
 

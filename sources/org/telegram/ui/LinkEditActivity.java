@@ -43,7 +43,6 @@ import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.SlideChooseView;
-
 public class LinkEditActivity extends BaseFragment {
     private TextCheckCell approveCell;
     private TextView buttonTextView;
@@ -107,7 +106,7 @@ public class LinkEditActivity extends BaseFragment {
             @Override
             public void onItemClick(int i2) {
                 if (i2 == -1) {
-                    LinkEditActivity.this.lambda$onBackPressed$306();
+                    LinkEditActivity.this.finishFragment();
                     AndroidUtilities.hideKeyboard(LinkEditActivity.this.usesEditText);
                 }
             }
@@ -323,9 +322,9 @@ public class LinkEditActivity extends BaseFragment {
         int i6 = Theme.key_windowBackgroundGrayShadow;
         textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(context, i5, i6));
         if (z) {
-            textInfoPrivacyCell.setText(LocaleController.getString("ApproveNewMembersDescription", R.string.ApproveNewMembersDescription));
+            textInfoPrivacyCell.setText(LocaleController.getString(R.string.ApproveNewMembersDescription));
+            linearLayout.addView(textInfoPrivacyCell);
         }
-        linearLayout.addView(textInfoPrivacyCell);
         HeaderCell headerCell = new HeaderCell(context);
         this.timeHeaderCell = headerCell;
         headerCell.setText(LocaleController.getString("LimitByPeriod", R.string.LimitByPeriod));
@@ -551,9 +550,9 @@ public class LinkEditActivity extends BaseFragment {
     public void lambda$createView$3(int i) {
         if (i < this.dispalyedDates.size()) {
             this.timeEditText.setText(LocaleController.formatDateAudio(this.dispalyedDates.get(i).intValue() + getConnectionsManager().getCurrentTime(), false));
-        } else {
-            this.timeEditText.setText("");
+            return;
         }
+        this.timeEditText.setText("");
     }
 
     public void lambda$createView$4(int i) {
@@ -583,7 +582,7 @@ public class LinkEditActivity extends BaseFragment {
 
     public void lambda$createView$5(DialogInterface dialogInterface, int i) {
         this.callback.revokeLink(this.inviteToEdit);
-        lambda$onBackPressed$306();
+        finishFragment();
     }
 
     public void onCreateClicked(android.view.View r9) {
@@ -610,7 +609,7 @@ public class LinkEditActivity extends BaseFragment {
             if (callback != null) {
                 callback.onLinkCreated(tLObject);
             }
-            lambda$onBackPressed$306();
+            finishFragment();
             return;
         }
         AlertsCreator.showSimpleAlert(this, tLRPC$TL_error.text);
@@ -639,7 +638,7 @@ public class LinkEditActivity extends BaseFragment {
             if (callback != null) {
                 callback.onLinkEdited(this.inviteToEdit, tLObject);
             }
-            lambda$onBackPressed$306();
+            finishFragment();
             return;
         }
         AlertsCreator.showSimpleAlert(this, tLRPC$TL_error.text);
@@ -805,10 +804,10 @@ public class LinkEditActivity extends BaseFragment {
     }
 
     @Override
-    public void lambda$onBackPressed$306() {
+    public void finishFragment() {
         this.scrollView.getLayoutParams().height = this.scrollView.getHeight();
         this.finished = true;
-        super.lambda$onBackPressed$306();
+        super.finishFragment();
     }
 
     @Override

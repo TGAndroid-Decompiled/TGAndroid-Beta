@@ -19,7 +19,6 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.LaunchActivity;
-
 public class OverlayActionBarLayoutDialog extends Dialog implements INavigationLayout.INavigationLayoutDelegate {
     private INavigationLayout actionBarLayout;
     private FrameLayout frameLayout;
@@ -178,12 +177,13 @@ public class OverlayActionBarLayoutDialog extends Dialog implements INavigationL
         if (this.passcodeView.getVisibility() == 0) {
             if (getOwnerActivity() != null) {
                 getOwnerActivity().finish();
+                return;
             }
-        } else {
-            this.actionBarLayout.onBackPressed();
-            if (this.actionBarLayout.getFragmentStack().size() <= 1) {
-                dismiss();
-            }
+            return;
+        }
+        this.actionBarLayout.onBackPressed();
+        if (this.actionBarLayout.getFragmentStack().size() <= 1) {
+            dismiss();
         }
     }
 

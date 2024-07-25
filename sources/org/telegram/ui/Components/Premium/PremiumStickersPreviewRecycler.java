@@ -26,7 +26,6 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.PremiumStickersPreviewRecycler;
 import org.telegram.ui.Components.RecyclerListView;
-
 public class PremiumStickersPreviewRecycler extends RecyclerListView implements NotificationCenter.NotificationCenterDelegate, PagerHeaderView {
     boolean autoPlayEnabled;
     Runnable autoScrollRunnable;
@@ -229,14 +228,18 @@ public class PremiumStickersPreviewRecycler extends RecyclerListView implements 
             }
             Collections.sort(this.sortedView, this.comparator);
             if ((this.firstDraw || this.checkEffect) && this.sortedView.size() > 0 && !this.premiumStickers.isEmpty()) {
-                StickerView stickerView2 = this.sortedView.get(r1.size() - 1);
+                ArrayList<StickerView> arrayList = this.sortedView;
+                StickerView stickerView2 = arrayList.get(arrayList.size() - 1);
                 this.oldSelectedView = stickerView2;
                 drawEffectForView(stickerView2, !this.firstDraw);
                 this.firstDraw = false;
                 this.checkEffect = false;
             } else {
-                if (this.oldSelectedView != this.sortedView.get(r2.size() - 1)) {
-                    this.oldSelectedView = this.sortedView.get(r1.size() - 1);
+                View view = this.oldSelectedView;
+                ArrayList<StickerView> arrayList2 = this.sortedView;
+                if (view != arrayList2.get(arrayList2.size() - 1)) {
+                    ArrayList<StickerView> arrayList3 = this.sortedView;
+                    this.oldSelectedView = arrayList3.get(arrayList3.size() - 1);
                     if (this.haptic) {
                         performHapticFeedback(3);
                     }
@@ -506,10 +509,10 @@ public class PremiumStickersPreviewRecycler extends RecyclerListView implements 
                 scheduleAutoScroll();
                 this.checkEffect = true;
                 invalidate();
-            } else {
-                AndroidUtilities.cancelRunOnUIThread(this.autoScrollRunnable);
-                drawEffectForView(null, true);
+                return;
             }
+            AndroidUtilities.cancelRunOnUIThread(this.autoScrollRunnable);
+            drawEffectForView(null, true);
         }
     }
 }

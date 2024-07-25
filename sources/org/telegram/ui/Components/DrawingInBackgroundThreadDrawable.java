@@ -10,7 +10,6 @@ import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.ActionBar.Theme;
-
 public class DrawingInBackgroundThreadDrawable implements NotificationCenter.NotificationCenterDelegate {
     public static DispatchQueuePool queuePool;
     boolean attachedToWindow;
@@ -47,10 +46,8 @@ public class DrawingInBackgroundThreadDrawable implements NotificationCenter.Not
             DrawingInBackgroundThreadDrawable drawingInBackgroundThreadDrawable = DrawingInBackgroundThreadDrawable.this;
             if (!drawingInBackgroundThreadDrawable.attachedToWindow) {
                 drawingInBackgroundThreadDrawable.recycleBitmaps();
+            } else if (drawingInBackgroundThreadDrawable.frameGuid != drawingInBackgroundThreadDrawable.lastFrameId) {
             } else {
-                if (drawingInBackgroundThreadDrawable.frameGuid != drawingInBackgroundThreadDrawable.lastFrameId) {
-                    return;
-                }
                 DrawingInBackgroundThreadDrawable.this.needSwapBitmaps = true;
             }
         }
@@ -206,13 +203,9 @@ public class DrawingInBackgroundThreadDrawable implements NotificationCenter.Not
                     }
                     this.paused = true;
                     onPaused();
-                    return;
                 }
-                return;
             }
-            return;
-        }
-        if (i == NotificationCenter.startAllHeavyOperations) {
+        } else if (i == NotificationCenter.startAllHeavyOperations) {
             Integer num2 = (Integer) objArr[0];
             if (this.currentLayerNum >= num2.intValue() || (i3 = this.currentOpenedLayerFlags) == 0) {
                 return;
@@ -256,12 +249,12 @@ public class DrawingInBackgroundThreadDrawable implements NotificationCenter.Not
             DispatchQueue[] dispatchQueueArr = this.pool;
             int i2 = this.pointer;
             DispatchQueue dispatchQueue = dispatchQueueArr[i2];
-            if (dispatchQueue != null) {
-                return dispatchQueue;
+            if (dispatchQueue == null) {
+                DispatchQueue dispatchQueue2 = new DispatchQueue("draw_background_queue_" + this.pointer);
+                dispatchQueueArr[i2] = dispatchQueue2;
+                return dispatchQueue2;
             }
-            DispatchQueue dispatchQueue2 = new DispatchQueue("draw_background_queue_" + this.pointer);
-            dispatchQueueArr[i2] = dispatchQueue2;
-            return dispatchQueue2;
+            return dispatchQueue;
         }
     }
 

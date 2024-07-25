@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_inputMediaWebPage extends TLRPC$InputMedia {
     public boolean force_large_media;
     public boolean force_small_media;

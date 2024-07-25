@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_payments_getStarsRevenueStats extends TLObject {
     public boolean dark;
     public int flags;

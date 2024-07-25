@@ -41,7 +41,6 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.utils.BitmapsCache;
 import org.telegram.ui.Components.RLottieDrawable;
-
 public class RLottieDrawable extends BitmapDrawable implements Animatable, BitmapsCache.Cacheable {
     public static Gson gson;
     public static DispatchQueue lottieCacheGenerateQueue;
@@ -474,10 +473,10 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
         getPaint().setFlags(2);
         if (TextUtils.isEmpty(readRes)) {
             this.timeBetweenFrames = 16;
-        } else {
-            this.nativePtr = createWithJson(readRes, "dice", iArr, null);
-            this.timeBetweenFrames = Math.max(16, (int) (1000.0f / iArr[1]));
+            return;
         }
+        this.nativePtr = createWithJson(readRes, "dice", iArr, null);
+        this.timeBetweenFrames = Math.max(16, (int) (1000.0f / iArr[1]));
     }
 
     public void checkDispatchOnAnimationEnd() {
@@ -836,9 +835,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
         checkRunningTasks();
         if (this.loadingInBackground || this.secondLoadingInBackground) {
             this.destroyAfterLoading = true;
-            return;
-        }
-        if (this.loadFrameTask == null && this.cacheGenerateTask == null && !this.generatingCache) {
+        } else if (this.loadFrameTask == null && this.cacheGenerateTask == null && !this.generatingCache) {
             recycleNativePtr(z);
             BitmapsCache bitmapsCache = this.bitmapsCache;
             if (bitmapsCache != null) {
@@ -846,9 +843,9 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
                 this.bitmapsCache = null;
             }
             recycleResources();
-            return;
+        } else {
+            this.destroyWhenDone = true;
         }
-        this.destroyWhenDone = true;
     }
 
     public void setAutoRepeat(int i) {
@@ -893,13 +890,13 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
     }
 
     public boolean restart(boolean z) {
-        if (!z && ((this.autoRepeat < 2 || this.autoRepeatPlayCount == 0) && this.autoRepeatCount < 0)) {
-            return false;
+        if (z || ((this.autoRepeat >= 2 && this.autoRepeatPlayCount != 0) || this.autoRepeatCount >= 0)) {
+            this.autoRepeatPlayCount = 0;
+            this.autoRepeat = 2;
+            start();
+            return true;
         }
-        this.autoRepeatPlayCount = 0;
-        this.autoRepeat = 2;
-        start();
-        return true;
+        return false;
     }
 
     public void setVibrationPattern(HashMap<Integer, Integer> hashMap) {
@@ -960,25 +957,25 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
         if (this.loadFrameTask != null || this.nextRenderingBitmap != null || !canLoadFrames() || this.loadingInBackground || this.destroyWhenDone || (!this.isRunning && (!(z = this.decodeSingleFrame) || (z && this.singleFrameDecoded)))) {
             return false;
         }
-        if (this.generatingCache && !this.allowDrawFramesWhileCacheGenerating) {
-            return false;
+        if (!this.generatingCache || this.allowDrawFramesWhileCacheGenerating) {
+            if (!this.newColorUpdates.isEmpty()) {
+                this.pendingColorUpdates.putAll(this.newColorUpdates);
+                this.newColorUpdates.clear();
+            }
+            int[] iArr = this.newReplaceColors;
+            if (iArr != null) {
+                this.pendingReplaceColors = iArr;
+                this.newReplaceColors = null;
+            }
+            this.loadFrameTask = this.loadFrameRunnable;
+            if (this.shouldLimitFps && Thread.currentThread() == ApplicationLoader.applicationHandler.getLooper().getThread()) {
+                DispatchQueuePoolBackground.execute(this.loadFrameTask, this.frameWaitSync != null);
+            } else {
+                loadFrameRunnableQueue.execute(this.loadFrameTask);
+            }
+            return true;
         }
-        if (!this.newColorUpdates.isEmpty()) {
-            this.pendingColorUpdates.putAll(this.newColorUpdates);
-            this.newColorUpdates.clear();
-        }
-        int[] iArr = this.newReplaceColors;
-        if (iArr != null) {
-            this.pendingReplaceColors = iArr;
-            this.newReplaceColors = null;
-        }
-        this.loadFrameTask = this.loadFrameRunnable;
-        if (this.shouldLimitFps && Thread.currentThread() == ApplicationLoader.applicationHandler.getLooper().getThread()) {
-            DispatchQueuePoolBackground.execute(this.loadFrameTask, this.frameWaitSync != null);
-        } else {
-            loadFrameRunnableQueue.execute(this.loadFrameTask);
-        }
-        return true;
+        return false;
     }
 
     public boolean isHeavyDrawable() {
@@ -1227,22 +1224,16 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
         if (this.isRunning) {
             if (this.renderingBitmap == null && this.nextRenderingBitmap == null) {
                 scheduleNextGetFrame();
-                return;
-            }
-            if (this.nextRenderingBitmap != null) {
+            } else if (this.nextRenderingBitmap != null) {
                 if (this.renderingBitmap == null || (j3 >= i && !this.skipFrameUpdate)) {
                     HashMap<Integer, Integer> hashMap = this.vibrationPattern;
                     if (hashMap != null && this.currentParentView != null && this.allowVibration && (num = hashMap.get(Integer.valueOf(this.currentFrame - 1))) != null) {
                         this.currentParentView.performHapticFeedback(num.intValue() == 1 ? 0 : 3, 2);
                     }
                     setCurrentFrame(j2, j3, i, false);
-                    return;
                 }
-                return;
             }
-            return;
-        }
-        if ((this.forceFrameRedraw || (this.decodeSingleFrame && j3 >= i)) && this.nextRenderingBitmap != null) {
+        } else if ((this.forceFrameRedraw || (this.decodeSingleFrame && j3 >= i)) && this.nextRenderingBitmap != null) {
             setCurrentFrame(j2, j3, i, true);
         }
     }

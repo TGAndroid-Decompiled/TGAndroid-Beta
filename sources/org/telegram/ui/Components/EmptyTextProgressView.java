@@ -15,7 +15,6 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
-
 public class EmptyTextProgressView extends FrameLayout {
     private boolean inLayout;
     private RLottieImageView lottieImageView;
@@ -61,7 +60,7 @@ public class EmptyTextProgressView extends FrameLayout {
         rLottieImageView.setScaleType(ImageView.ScaleType.FIT_XY);
         this.lottieImageView.setImportantForAccessibility(2);
         this.lottieImageView.setVisibility(8);
-        this.textViewLayout.addView(this.lottieImageView, LayoutHelper.createLinear(ImageReceiver.DEFAULT_CROSSFADE_DURATION, ImageReceiver.DEFAULT_CROSSFADE_DURATION, 17, 0, 0, 0, 20));
+        this.textViewLayout.addView(this.lottieImageView, LayoutHelper.createLinear((int) ImageReceiver.DEFAULT_CROSSFADE_DURATION, (int) ImageReceiver.DEFAULT_CROSSFADE_DURATION, 17, 0, 0, 0, 20));
         TextView textView = new TextView(context);
         this.textView = textView;
         textView.setTextSize(1, 20.0f);

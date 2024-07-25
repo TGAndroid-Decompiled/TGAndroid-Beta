@@ -19,7 +19,6 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Components.URLSpanNoUnderline;
-
 public class SettingsSuggestionCell extends LinearLayout {
     private int currentAccount;
     private int currentType;
@@ -113,18 +112,21 @@ public class SettingsSuggestionCell extends LinearLayout {
                 this.noButton.setVisibility(0);
                 this.noButton.setText(LocaleController.getString("YourPasswordRememberNo", R.string.YourPasswordRememberNo));
                 return;
-            }
-            if (i == 2) {
+            } else if (i == 2) {
                 this.textView.setText(LocaleController.getString(R.string.GraceSuggestionTitle));
                 this.detailTextView.setText(LocaleController.getString(R.string.GraceSuggestionMessage));
                 this.yesButton.setText(LocaleController.getString(R.string.GraceSuggestionButton));
                 this.noButton.setVisibility(8);
                 return;
+            } else {
+                return;
             }
-            return;
         }
         TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(UserConfig.getInstance(this.currentAccount).clientUserId));
-        this.textView.setText(LocaleController.formatString("CheckPhoneNumber", R.string.CheckPhoneNumber, PhoneFormat.getInstance().format("+" + user.phone)));
+        TextView textView = this.textView;
+        int i2 = R.string.CheckPhoneNumber;
+        PhoneFormat phoneFormat = PhoneFormat.getInstance();
+        textView.setText(LocaleController.formatString("CheckPhoneNumber", i2, phoneFormat.format("+" + user.phone)));
         String string = LocaleController.getString("CheckPhoneNumberInfo", R.string.CheckPhoneNumberInfo);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
         int indexOf = string.indexOf("**");

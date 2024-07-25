@@ -49,7 +49,6 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.TypefaceSpan;
 import org.telegram.ui.Components.ViewPagerFixed;
 import org.telegram.ui.DataUsage2Activity;
-
 public class DataUsage2Activity extends BaseFragment {
     private boolean changeStatusBar;
     private ViewPagerFixed pager;
@@ -85,7 +84,7 @@ public class DataUsage2Activity extends BaseFragment {
             @Override
             public void onItemClick(int i3) {
                 if (i3 == -1) {
-                    DataUsage2Activity.this.lambda$onBackPressed$306();
+                    DataUsage2Activity.this.finishFragment();
                 }
             }
         });
@@ -147,16 +146,16 @@ public class DataUsage2Activity extends BaseFragment {
 
         @Override
         public String getItemTitle(int i) {
-            if (i == 0) {
-                return LocaleController.getString("NetworkUsageAllTab", R.string.NetworkUsageAllTab);
-            }
-            if (i == 1) {
+            if (i != 0) {
+                if (i != 1) {
+                    if (i != 2) {
+                        return i != 3 ? "" : LocaleController.getString("NetworkUsageRoamingTab", R.string.NetworkUsageRoamingTab);
+                    }
+                    return LocaleController.getString("NetworkUsageWiFiTab", R.string.NetworkUsageWiFiTab);
+                }
                 return LocaleController.getString("NetworkUsageMobileTab", R.string.NetworkUsageMobileTab);
             }
-            if (i != 2) {
-                return i != 3 ? "" : LocaleController.getString("NetworkUsageRoamingTab", R.string.NetworkUsageRoamingTab);
-            }
-            return LocaleController.getString("NetworkUsageWiFiTab", R.string.NetworkUsageWiFiTab);
+            return LocaleController.getString("NetworkUsageAllTab", R.string.NetworkUsageAllTab);
         }
     }
 
@@ -212,20 +211,14 @@ public class DataUsage2Activity extends BaseFragment {
                 if (itemInner != null) {
                     int i2 = itemInner.index;
                     if (i2 >= 0) {
-                        this.collapsed[i2] = !r0[i2];
+                        boolean[] zArr = this.collapsed;
+                        zArr[i2] = !zArr[i2];
                         updateRows(true);
-                        return;
-                    } else {
-                        if (i2 == -2) {
-                            DataUsage2Activity.this.presentFragment(new DataAutoDownloadActivity(this.currentType - 1));
-                            return;
-                        }
-                        return;
+                    } else if (i2 == -2) {
+                        DataUsage2Activity.this.presentFragment(new DataAutoDownloadActivity(this.currentType - 1));
                     }
                 }
-                return;
-            }
-            if (view instanceof TextCell) {
+            } else if (view instanceof TextCell) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(DataUsage2Activity.this.getParentActivity());
                 builder.setTitle(LocaleController.getString("ResetStatisticsAlertTitle", R.string.ResetStatisticsAlertTitle));
                 builder.setMessage(LocaleController.getString("ResetStatisticsAlert", R.string.ResetStatisticsAlert));
@@ -386,7 +379,30 @@ public class DataUsage2Activity extends BaseFragment {
                     int i8 = ((ItemInner) arrayList.get(i7)).index;
                     if (i8 >= 0 && !this.collapsed[i8]) {
                         Size size = this.segments[i8];
-                        if (DataUsage2Activity.stats[size.index] == 0) {
+                        if (DataUsage2Activity.stats[size.index] != 0) {
+                            if (DataUsage2Activity.stats[size.index] != 1) {
+                                if (size.outSize > 0 || size.outCount > 0) {
+                                    i7++;
+                                    arrayList.add(i7, ItemInner.asCell(-1, 0, 0, TextUtils.concat(spannableString2, " ", AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("FilesSentCount", size.outCount))), AndroidUtilities.formatFileSize(size.outSize)));
+                                }
+                                if (size.inSize > 0 || size.inCount > 0) {
+                                    i7++;
+                                    arrayList.add(i7, ItemInner.asCell(-1, 0, 0, TextUtils.concat(spannableString3, " ", AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("FilesReceivedCount", size.inCount))), AndroidUtilities.formatFileSize(size.inSize)));
+                                }
+                            } else {
+                                if (size.outSize > 0 || size.outCount > 0) {
+                                    i7++;
+                                    arrayList.add(i7, ItemInner.asCell(-1, 0, 0, TextUtils.concat(spannableString2, " ", LocaleController.getString("BytesSent", R.string.BytesSent)), AndroidUtilities.formatFileSize(size.outSize)));
+                                }
+                                if (size.inSize > 0 || size.inCount > 0) {
+                                    i7++;
+                                    arrayList.add(i7, ItemInner.asCell(-1, 0, 0, TextUtils.concat(spannableString3, " ", LocaleController.getString("BytesReceived", R.string.BytesReceived)), AndroidUtilities.formatFileSize(size.inSize)));
+                                } else {
+                                    i = 1;
+                                    i7 += i;
+                                }
+                            }
+                        } else {
                             if (size.outSize > 0 || size.outCount > 0) {
                                 i7++;
                                 arrayList.add(i7, ItemInner.asCell(-1, 0, 0, LocaleController.formatPluralStringComma("OutgoingCallsCount", size.outCount), AndroidUtilities.formatFileSize(size.outSize)));
@@ -394,27 +410,6 @@ public class DataUsage2Activity extends BaseFragment {
                             if (size.inSize > 0 || size.inCount > 0) {
                                 i7++;
                                 arrayList.add(i7, ItemInner.asCell(-1, 0, 0, LocaleController.formatPluralStringComma("IncomingCallsCount", size.inCount), AndroidUtilities.formatFileSize(size.inSize)));
-                            }
-                        } else if (DataUsage2Activity.stats[size.index] != 1) {
-                            if (size.outSize > 0 || size.outCount > 0) {
-                                i7++;
-                                arrayList.add(i7, ItemInner.asCell(-1, 0, 0, TextUtils.concat(spannableString2, " ", AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("FilesSentCount", size.outCount))), AndroidUtilities.formatFileSize(size.outSize)));
-                            }
-                            if (size.inSize > 0 || size.inCount > 0) {
-                                i7++;
-                                arrayList.add(i7, ItemInner.asCell(-1, 0, 0, TextUtils.concat(spannableString3, " ", AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("FilesReceivedCount", size.inCount))), AndroidUtilities.formatFileSize(size.inSize)));
-                            }
-                        } else {
-                            if (size.outSize > 0 || size.outCount > 0) {
-                                i7++;
-                                arrayList.add(i7, ItemInner.asCell(-1, 0, 0, TextUtils.concat(spannableString2, " ", LocaleController.getString("BytesSent", R.string.BytesSent)), AndroidUtilities.formatFileSize(size.outSize)));
-                            }
-                            if (size.inSize > 0 || size.inCount > 0) {
-                                i7++;
-                                arrayList.add(i7, ItemInner.asCell(-1, 0, 0, TextUtils.concat(spannableString3, " ", LocaleController.getString("BytesReceived", R.string.BytesReceived)), AndroidUtilities.formatFileSize(size.inSize)));
-                            } else {
-                                i = 1;
-                                i7 += i;
                             }
                         }
                         i = 1;
@@ -541,29 +536,29 @@ public class DataUsage2Activity extends BaseFragment {
 
             @Override
             public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-                View view;
+                TextCell textCell;
                 if (i == 0) {
                     ListView.this.chart = new AnonymousClass1(ListView.this.getContext(), DataUsage2Activity.colors.length, DataUsage2Activity.colors, 1, DataUsage2Activity.particles);
                     ListView.this.chart.setInterceptTouch(false);
-                    view = ListView.this.chart;
+                    textCell = ListView.this.chart;
                 } else if (i == 1) {
                     ListView listView = ListView.this;
-                    view = new SubtitleCell(DataUsage2Activity.this, listView.getContext());
+                    textCell = new SubtitleCell(DataUsage2Activity.this, listView.getContext());
                 } else if (i == 3) {
-                    view = new TextInfoPrivacyCell(ListView.this.getContext());
+                    textCell = new TextInfoPrivacyCell(ListView.this.getContext());
                 } else if (i == 4) {
                     View headerCell = new HeaderCell(ListView.this.getContext());
                     headerCell.setBackgroundColor(ListView.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                    view = headerCell;
+                    textCell = headerCell;
                 } else if (i == 5) {
-                    TextCell textCell = new TextCell(ListView.this.getContext());
-                    textCell.setTextColor(ListView.this.getThemedColor(Theme.key_text_RedRegular));
-                    textCell.setBackgroundColor(ListView.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                    view = textCell;
+                    TextCell textCell2 = new TextCell(ListView.this.getContext());
+                    textCell2.setTextColor(ListView.this.getThemedColor(Theme.key_text_RedRegular));
+                    textCell2.setBackgroundColor(ListView.this.getThemedColor(Theme.key_windowBackgroundWhite));
+                    textCell = textCell2;
                 } else if (i == 6) {
-                    view = new RoundingCell(ListView.this.getContext());
+                    textCell = new RoundingCell(ListView.this.getContext());
                 } else if (i == 7) {
-                    view = new View(ListView.this.getContext()) {
+                    textCell = new View(ListView.this.getContext()) {
                         {
                             setBackgroundColor(ListView.this.getThemedColor(Theme.key_windowBackgroundWhite));
                         }
@@ -575,9 +570,9 @@ public class DataUsage2Activity extends BaseFragment {
                     };
                 } else {
                     ListView listView2 = ListView.this;
-                    view = new Cell(DataUsage2Activity.this, listView2.getContext());
+                    textCell = new Cell(DataUsage2Activity.this, listView2.getContext());
                 }
-                return new RecyclerListView.Holder(view);
+                return new RecyclerListView.Holder(textCell);
             }
 
             @Override
@@ -605,13 +600,10 @@ public class DataUsage2Activity extends BaseFragment {
                     }
                     if (z) {
                         subtitleCell.setBackground(Theme.getThemedDrawableByKey(ListView.this.getContext(), R.drawable.greydivider_top, Theme.key_windowBackgroundGrayShadow));
-                        return;
                     } else {
                         subtitleCell.setBackground(null);
-                        return;
                     }
-                }
-                if (itemViewType == 2) {
+                } else if (itemViewType == 2) {
                     Cell cell = (Cell) viewHolder.itemView;
                     int i5 = i + 1;
                     cell.set(itemInner.imageColor, itemInner.imageResId, itemInner.text, itemInner.valueText, i5 < getItemCount() && ((ItemInner) ListView.this.itemInners.get(i5)).viewType == itemViewType);
@@ -619,39 +611,32 @@ public class DataUsage2Activity extends BaseFragment {
                         bool = Boolean.valueOf(ListView.this.collapsed[itemInner.index]);
                     }
                     cell.setArrow(bool);
-                    return;
-                }
-                if (itemViewType != 3) {
+                } else if (itemViewType != 3) {
                     if (itemViewType == 4) {
                         ((HeaderCell) viewHolder.itemView).setText(itemInner.text);
-                        return;
                     } else if (itemViewType == 5) {
                         ((TextCell) viewHolder.itemView).setText(itemInner.text.toString(), false);
-                        return;
-                    } else {
-                        if (itemViewType == 6) {
-                            ((RoundingCell) viewHolder.itemView).setTop(true);
-                            return;
-                        }
-                        return;
+                    } else if (itemViewType == 6) {
+                        ((RoundingCell) viewHolder.itemView).setTop(true);
                     }
-                }
-                TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
-                boolean z2 = i > 0 && itemInner.viewType != ((ItemInner) ListView.this.itemInners.get(i + (-1))).viewType;
-                int i6 = i + 1;
-                if (i6 < ListView.this.itemInners.size() && ((ItemInner) ListView.this.itemInners.get(i6)).viewType != itemInner.viewType) {
-                    z = true;
-                }
-                if (z2 && z) {
-                    textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(ListView.this.getContext(), R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
-                } else if (z2) {
-                    textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(ListView.this.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
-                } else if (z) {
-                    textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(ListView.this.getContext(), R.drawable.greydivider_top, Theme.key_windowBackgroundGrayShadow));
                 } else {
-                    textInfoPrivacyCell.setBackground(null);
+                    TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
+                    boolean z2 = i > 0 && itemInner.viewType != ((ItemInner) ListView.this.itemInners.get(i + (-1))).viewType;
+                    int i6 = i + 1;
+                    if (i6 < ListView.this.itemInners.size() && ((ItemInner) ListView.this.itemInners.get(i6)).viewType != itemInner.viewType) {
+                        z = true;
+                    }
+                    if (z2 && z) {
+                        textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(ListView.this.getContext(), R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
+                    } else if (z2) {
+                        textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(ListView.this.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+                    } else if (z) {
+                        textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(ListView.this.getContext(), R.drawable.greydivider_top, Theme.key_windowBackgroundGrayShadow));
+                    } else {
+                        textInfoPrivacyCell.setBackground(null);
+                    }
+                    textInfoPrivacyCell.setText(itemInner.text);
                 }
-                textInfoPrivacyCell.setText(itemInner.text);
             }
 
             @Override
@@ -768,19 +753,19 @@ public class DataUsage2Activity extends BaseFragment {
         }
 
         public boolean equals(Object obj) {
-            if (!(obj instanceof ItemInner)) {
-                return false;
+            if (obj instanceof ItemInner) {
+                ItemInner itemInner = (ItemInner) obj;
+                int i = itemInner.viewType;
+                int i2 = this.viewType;
+                if (i != i2) {
+                    return false;
+                }
+                if (i2 == 1 || i2 == 4 || i2 == 3 || i2 == 5) {
+                    return TextUtils.equals(this.text, itemInner.text);
+                }
+                return i2 == 2 ? itemInner.index == this.index && TextUtils.equals(this.text, itemInner.text) && itemInner.imageColor == this.imageColor && itemInner.imageResId == this.imageResId : itemInner.key == this.key;
             }
-            ItemInner itemInner = (ItemInner) obj;
-            int i = itemInner.viewType;
-            int i2 = this.viewType;
-            if (i != i2) {
-                return false;
-            }
-            if (i2 == 1 || i2 == 4 || i2 == 3 || i2 == 5) {
-                return TextUtils.equals(this.text, itemInner.text);
-            }
-            return i2 == 2 ? itemInner.index == this.index && TextUtils.equals(this.text, itemInner.text) && itemInner.imageColor == this.imageColor && itemInner.imageResId == this.imageResId : itemInner.key == this.key;
+            return false;
         }
     }
 
@@ -916,10 +901,10 @@ public class DataUsage2Activity extends BaseFragment {
             if (LocaleController.isRTL) {
                 this.linearLayout.addView(this.valueTextView, LayoutHelper.createLinear(-2, -2, 19));
                 this.linearLayout.addView(this.linearLayout2, LayoutHelper.createLinear(0, -2, 2.0f, 21));
-            } else {
-                this.linearLayout.addView(this.linearLayout2, LayoutHelper.createLinear(0, -2, 2.0f, 16));
-                this.linearLayout.addView(this.valueTextView, LayoutHelper.createLinear(-2, -2, 21));
+                return;
             }
+            this.linearLayout.addView(this.linearLayout2, LayoutHelper.createLinear(0, -2, 2.0f, 16));
+            this.linearLayout.addView(this.valueTextView, LayoutHelper.createLinear(-2, -2, 21));
         }
 
         public void set(int i, int i2, CharSequence charSequence, CharSequence charSequence2, boolean z) {
@@ -939,10 +924,10 @@ public class DataUsage2Activity extends BaseFragment {
         public void setArrow(Boolean bool) {
             if (bool == null) {
                 this.arrowView.setVisibility(8);
-            } else {
-                this.arrowView.setVisibility(0);
-                this.arrowView.animate().rotation(bool.booleanValue() ? 0.0f : 180.0f).setDuration(360L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
+                return;
             }
+            this.arrowView.setVisibility(0);
+            this.arrowView.animate().rotation(bool.booleanValue() ? 0.0f : 180.0f).setDuration(360L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
         }
 
         @Override

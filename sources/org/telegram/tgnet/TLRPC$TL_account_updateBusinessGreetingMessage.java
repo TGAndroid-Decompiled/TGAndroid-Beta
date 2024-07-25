@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_account_updateBusinessGreetingMessage extends TLObject {
     public int flags;
     public TLRPC$TL_inputBusinessGreetingMessage message;

@@ -12,7 +12,6 @@ import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC$Document;
-
 public class TextPaintImageReceiverSpan extends ReplacementSpan {
     private boolean alignTop;
     private int height;
@@ -84,8 +83,8 @@ public class TextPaintImageReceiverSpan extends ReplacementSpan {
         if (this.alignTop) {
             this.imageReceiver.setImageCoords((int) f, i3 - 1, this.width, this.height);
         } else {
-            int dp = (i5 - AndroidUtilities.dp(4.0f)) - i3;
-            this.imageReceiver.setImageCoords((int) f, i3 + ((dp - r4) / 2), this.width, this.height);
+            int i6 = this.height;
+            this.imageReceiver.setImageCoords((int) f, i3 + ((((i5 - AndroidUtilities.dp(4.0f)) - i3) - i6) / 2), this.width, i6);
         }
         this.imageReceiver.draw(canvas);
         canvas.restore();

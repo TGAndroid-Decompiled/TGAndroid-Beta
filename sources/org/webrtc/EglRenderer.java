@@ -21,7 +21,6 @@ import org.webrtc.GlGenericDrawer;
 import org.webrtc.GlUtil;
 import org.webrtc.RendererCommon;
 import org.webrtc.VideoSink;
-
 public class EglRenderer implements VideoSink {
     private static final long LOG_INTERVAL_SEC = 4;
     private static final String TAG = "EglRenderer";
@@ -175,10 +174,10 @@ public class EglRenderer implements VideoSink {
         if (context == null) {
             logD("EglBase10.create context");
             this.eglBase = EglBase.CC.createEgl10(iArr);
-        } else {
-            logD("EglBase.create shared context");
-            this.eglBase = EglBase.CC.create(context, iArr);
+            return;
         }
+        logD("EglBase.create shared context");
+        this.eglBase = EglBase.CC.create(context, iArr);
     }
 
     public void init(EglBase.Context context, int[] iArr, RendererCommon.GlDrawer glDrawer) {

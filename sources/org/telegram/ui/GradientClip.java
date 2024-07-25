@@ -8,7 +8,6 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.graphics.Shader;
-
 public class GradientClip {
     private LinearGradient gradient;
     private final Paint[] paint = new Paint[4];

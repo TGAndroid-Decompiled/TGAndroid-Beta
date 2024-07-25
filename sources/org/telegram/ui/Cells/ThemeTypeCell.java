@@ -14,7 +14,6 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
-
 public class ThemeTypeCell extends FrameLayout {
     private ImageView checkImage;
     private boolean needDivider;

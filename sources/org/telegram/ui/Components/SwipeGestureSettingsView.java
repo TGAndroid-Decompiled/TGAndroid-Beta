@@ -19,7 +19,6 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.NumberPicker;
-
 public class SwipeGestureSettingsView extends FrameLayout {
     int[] backgroundKeys;
     float colorProgress;
@@ -250,10 +249,7 @@ public class SwipeGestureSettingsView extends FrameLayout {
         super.onInitializeAccessibilityEvent(accessibilityEvent);
         if (accessibilityEvent.getEventType() == 1) {
             int value = this.picker.getValue() + 1;
-            if (value > this.picker.getMaxValue() || value < 0) {
-                value = 0;
-            }
-            setContentDescription(this.strings[value]);
+            setContentDescription(this.strings[(value > this.picker.getMaxValue() || value < 0) ? 0 : 0]);
             this.picker.changeValueByOne(true);
         }
     }

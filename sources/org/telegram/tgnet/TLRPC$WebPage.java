@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 import org.telegram.messenger.LiteMode;
-
 public abstract class TLRPC$WebPage extends TLObject {
     public ArrayList<TLRPC$WebPageAttribute> attributes = new ArrayList<>();
     public String author;

@@ -2,7 +2,6 @@ package org.telegram.tgnet.tl;
 
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLRPC$Peer;
-
 public class TL_stories$TL_peerStories extends TL_stories$PeerStories {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

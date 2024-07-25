@@ -12,12 +12,10 @@ import android.widget.RemoteViewsService;
 import androidx.core.content.FileProvider;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC$PhotoSize;
-
 public class FeedRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory, NotificationCenter.NotificationCenterDelegate {
     private AccountInstance accountInstance;
     private int classGuid;
@@ -74,9 +72,8 @@ public class FeedRemoteViewsFactory implements RemoteViewsService.RemoteViewsFac
     protected void grantUriAccessToWidget(Context context, Uri uri) {
         Intent intent = new Intent("android.intent.action.MAIN");
         intent.addCategory("android.intent.category.HOME");
-        Iterator<ResolveInfo> it = context.getPackageManager().queryIntentActivities(intent, 65536).iterator();
-        while (it.hasNext()) {
-            context.grantUriPermission(it.next().activityInfo.packageName, uri, 1);
+        for (ResolveInfo resolveInfo : context.getPackageManager().queryIntentActivities(intent, 65536)) {
+            context.grantUriPermission(resolveInfo.activityInfo.packageName, uri, 1);
         }
     }
 
@@ -103,7 +100,8 @@ public class FeedRemoteViewsFactory implements RemoteViewsService.RemoteViewsFac
             if (pathToAttach.exists()) {
                 int i4 = R.id.feed_widget_item_image;
                 remoteViews.setViewVisibility(i4, 0);
-                Uri uriForFile = FileProvider.getUriForFile(this.mContext, ApplicationLoader.getApplicationId() + ".provider", pathToAttach);
+                Context context = this.mContext;
+                Uri uriForFile = FileProvider.getUriForFile(context, ApplicationLoader.getApplicationId() + ".provider", pathToAttach);
                 grantUriAccessToWidget(this.mContext, uriForFile);
                 remoteViews.setImageViewUri(i4, uriForFile);
             } else {

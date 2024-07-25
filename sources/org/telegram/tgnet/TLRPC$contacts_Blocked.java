@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public abstract class TLRPC$contacts_Blocked extends TLObject {
     public int count;
     public ArrayList<TLRPC$TL_peerBlocked> blocked = new ArrayList<>();

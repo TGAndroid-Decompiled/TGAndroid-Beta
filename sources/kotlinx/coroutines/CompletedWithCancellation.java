@@ -3,7 +3,6 @@ package kotlinx.coroutines;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.Intrinsics;
-
 public final class CompletedWithCancellation {
     public final Function1<Throwable, Unit> onCancellation;
     public final Object result;
@@ -12,11 +11,11 @@ public final class CompletedWithCancellation {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof CompletedWithCancellation)) {
-            return false;
+        if (obj instanceof CompletedWithCancellation) {
+            CompletedWithCancellation completedWithCancellation = (CompletedWithCancellation) obj;
+            return Intrinsics.areEqual(this.result, completedWithCancellation.result) && Intrinsics.areEqual(this.onCancellation, completedWithCancellation.onCancellation);
         }
-        CompletedWithCancellation completedWithCancellation = (CompletedWithCancellation) obj;
-        return Intrinsics.areEqual(this.result, completedWithCancellation.result) && Intrinsics.areEqual(this.onCancellation, completedWithCancellation.onCancellation);
+        return false;
     }
 
     public int hashCode() {

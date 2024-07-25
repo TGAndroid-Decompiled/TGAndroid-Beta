@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_messages_dialogFilters extends TLObject {
     public ArrayList<TLRPC$DialogFilter> filters = new ArrayList<>();
     public int flags;

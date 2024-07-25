@@ -5,7 +5,6 @@ import kotlin.jvm.internal.Intrinsics;
 import kotlin.ranges.IntProgression;
 import kotlin.ranges.IntRange;
 import kotlin.ranges.RangesKt;
-
 public class StringsKt__StringsKt extends StringsKt__StringsJVMKt {
     public static CharSequence trim(CharSequence charSequence) {
         Intrinsics.checkNotNullParameter(charSequence, "<this>");
@@ -141,13 +140,15 @@ public class StringsKt__StringsKt extends StringsKt__StringsJVMKt {
             while (true) {
                 if (i2 >= length) {
                     z2 = false;
+                    continue;
                     break;
-                }
-                if (CharsKt__CharKt.equals(chars[i2], charAt, z)) {
+                } else if (CharsKt__CharKt.equals(chars[i2], charAt, z)) {
                     z2 = true;
+                    continue;
                     break;
+                } else {
+                    i2++;
                 }
-                i2++;
             }
             if (z2) {
                 return nextInt;
@@ -170,12 +171,12 @@ public class StringsKt__StringsKt extends StringsKt__StringsJVMKt {
             while (true) {
                 if (i2 >= length) {
                     break;
-                }
-                if (CharsKt__CharKt.equals(chars[i2], charAt, z)) {
+                } else if (CharsKt__CharKt.equals(chars[i2], charAt, z)) {
                     z2 = true;
                     break;
+                } else {
+                    i2++;
                 }
-                i2++;
             }
             if (z2) {
                 return coerceAtMost;

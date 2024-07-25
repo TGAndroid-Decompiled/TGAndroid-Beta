@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_reactionEmoji extends TLRPC$Reaction {
     public String emoticon;
 

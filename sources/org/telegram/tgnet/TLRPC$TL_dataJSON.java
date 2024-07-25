@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_dataJSON extends TLObject {
     public String data;
 

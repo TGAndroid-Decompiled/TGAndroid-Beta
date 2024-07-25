@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_affectedHistory extends TLObject {
     public int offset;
     public int pts;

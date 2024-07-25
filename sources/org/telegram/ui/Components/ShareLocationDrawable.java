@@ -5,7 +5,6 @@ import android.graphics.ColorFilter;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-
 public class ShareLocationDrawable extends Drawable {
     private int currentType;
     private Drawable drawable;
@@ -29,15 +28,11 @@ public class ShareLocationDrawable extends Drawable {
             this.drawable = context.getResources().getDrawable(R.drawable.filled_extend_location).mutate();
             this.drawableLeft = context.getResources().getDrawable(R.drawable.smallanimationpinleft).mutate();
             this.drawableRight = context.getResources().getDrawable(R.drawable.smallanimationpinright).mutate();
-            return;
-        }
-        if (i == 5) {
+        } else if (i == 5) {
             this.drawable = context.getResources().getDrawable(R.drawable.filled_stop_location).mutate();
             this.drawableLeft = context.getResources().getDrawable(R.drawable.smallanimationpinleft).mutate();
             this.drawableRight = context.getResources().getDrawable(R.drawable.smallanimationpinright).mutate();
-            return;
-        }
-        if (i == 3) {
+        } else if (i == 3) {
             this.drawable = context.getResources().getDrawable(R.drawable.nearby_l).mutate();
             this.drawableLeft = context.getResources().getDrawable(R.drawable.animationpinleft).mutate();
             this.drawableRight = context.getResources().getDrawable(R.drawable.animationpinright).mutate();

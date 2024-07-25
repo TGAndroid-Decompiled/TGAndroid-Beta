@@ -4,7 +4,6 @@ import android.media.AudioManager;
 import java.util.Timer;
 import java.util.TimerTask;
 import org.webrtc.Logging;
-
 class VolumeLogger {
     private static final String TAG = "VolumeLogger";
     private static final String THREAD_NAME = "WebRtcVolumeLevelLoggerThread";
@@ -41,9 +40,7 @@ class VolumeLogger {
             int mode = VolumeLogger.this.audioManager.getMode();
             if (mode == 1) {
                 Logging.d(VolumeLogger.TAG, "STREAM_RING stream volume: " + VolumeLogger.this.audioManager.getStreamVolume(2) + " (max=" + this.maxRingVolume + ")");
-                return;
-            }
-            if (mode == 3) {
+            } else if (mode == 3) {
                 Logging.d(VolumeLogger.TAG, "VOICE_CALL stream volume: " + VolumeLogger.this.audioManager.getStreamVolume(0) + " (max=" + this.maxVoiceCallVolume + ")");
             }
         }

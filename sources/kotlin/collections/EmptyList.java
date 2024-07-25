@@ -8,7 +8,6 @@ import java.util.ListIterator;
 import java.util.RandomAccess;
 import kotlin.jvm.internal.CollectionToArray;
 import kotlin.jvm.internal.Intrinsics;
-
 public final class EmptyList implements List, Serializable, RandomAccess {
     public static final EmptyList INSTANCE = new EmptyList();
 

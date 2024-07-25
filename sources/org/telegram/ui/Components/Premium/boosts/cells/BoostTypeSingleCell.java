@@ -9,7 +9,6 @@ import org.telegram.tgnet.tl.TL_stories$TL_prepaidGiveaway;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
-
 @SuppressLint({"ViewConstructor"})
 public class BoostTypeSingleCell extends BoostTypeCell {
     @Override

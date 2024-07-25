@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channelAdminLogEvent extends TLObject {
     public TLRPC$ChannelAdminLogEventAction action;
     public int date;

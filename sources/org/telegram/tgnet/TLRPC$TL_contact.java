@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_contact extends TLObject {
     public boolean mutual;
     public long user_id;

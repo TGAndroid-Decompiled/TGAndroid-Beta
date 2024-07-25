@@ -10,7 +10,6 @@ import android.graphics.Shader;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-
 public class GradientTools {
     int color1;
     int color2;
@@ -101,13 +100,11 @@ public class GradientTools {
         if (this.shader == null) {
             return;
         }
-        float width = this.bounds.width() / 60.0f;
-        float height = this.bounds.height() / 80.0f;
         this.matrix.reset();
         Matrix matrix = this.matrix;
         RectF rectF = this.bounds;
         matrix.postTranslate(rectF.left, rectF.top);
-        this.matrix.preScale(width, height);
+        this.matrix.preScale(this.bounds.width() / 60.0f, this.bounds.height() / 80.0f);
         this.shader.setLocalMatrix(this.matrix);
     }
 

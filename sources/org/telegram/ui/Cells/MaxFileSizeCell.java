@@ -18,7 +18,6 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.SeekBarView;
-
 public class MaxFileSizeCell extends FrameLayout {
     private long currentSize;
     private SeekBarView seekBarView;
@@ -84,7 +83,7 @@ public class MaxFileSizeCell extends FrameLayout {
                 } else {
                     f -= 0.25f;
                     if (f < 0.25f) {
-                        f2 = FileLoaderPriorityQueue.PRIORITY_VALUE_MAX;
+                        f2 = (float) FileLoaderPriorityQueue.PRIORITY_VALUE_MAX;
                         f3 = 9437184.0f;
                     } else {
                         f -= 0.25f;

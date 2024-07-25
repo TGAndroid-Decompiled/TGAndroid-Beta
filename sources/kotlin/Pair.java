@@ -2,7 +2,6 @@ package kotlin;
 
 import java.io.Serializable;
 import kotlin.jvm.internal.Intrinsics;
-
 public final class Pair<A, B> implements Serializable {
     private final A first;
     private final B second;
@@ -19,11 +18,11 @@ public final class Pair<A, B> implements Serializable {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof Pair)) {
-            return false;
+        if (obj instanceof Pair) {
+            Pair pair = (Pair) obj;
+            return Intrinsics.areEqual(this.first, pair.first) && Intrinsics.areEqual(this.second, pair.second);
         }
-        Pair pair = (Pair) obj;
-        return Intrinsics.areEqual(this.first, pair.first) && Intrinsics.areEqual(this.second, pair.second);
+        return false;
     }
 
     public int hashCode() {

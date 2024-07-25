@@ -32,7 +32,6 @@ import org.telegram.ui.Components.FlickerLoadingView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Stories.StoriesController;
-
 public class MessagesSearchAdapter extends RecyclerListView.SelectionAdapter implements NotificationCenter.NotificationCenterDelegate {
     public boolean containsStories;
     public int flickerCount;
@@ -70,6 +69,7 @@ public class MessagesSearchAdapter extends RecyclerListView.SelectionAdapter imp
         if (str.startsWith("$")) {
             str = "";
         }
+        boolean z2 = true;
         if (str.startsWith("#")) {
             str = str.substring(1);
         }
@@ -77,7 +77,7 @@ public class MessagesSearchAdapter extends RecyclerListView.SelectionAdapter imp
         if (TextUtils.equals(searchStoriesList != null ? searchStoriesList.query : "", str)) {
             return;
         }
-        boolean z2 = this.containsStories;
+        boolean z3 = this.containsStories;
         AndroidUtilities.cancelRunOnUIThread(this.loadStories);
         StoriesController.SearchStoriesList searchStoriesList2 = this.storiesList;
         if (searchStoriesList2 != null) {
@@ -92,7 +92,7 @@ public class MessagesSearchAdapter extends RecyclerListView.SelectionAdapter imp
             }
         }
         StoriesController.SearchStoriesList searchStoriesList3 = this.storiesList;
-        if ((searchStoriesList3 != null && searchStoriesList3.getCount() > 0) != z2) {
+        if (((searchStoriesList3 == null || searchStoriesList3.getCount() <= 0) ? false : false) != z3) {
             notifyDataSetChanged();
         }
     }
@@ -137,9 +137,9 @@ public class MessagesSearchAdapter extends RecyclerListView.SelectionAdapter imp
         if (itemCount < itemCount2) {
             notifyItemRangeChanged(itemCount - i3, i3);
             notifyItemRangeInserted(itemCount, itemCount2 - itemCount);
-        } else {
-            super.notifyDataSetChanged();
+            return;
         }
+        super.notifyDataSetChanged();
     }
 
     @Override
@@ -213,9 +213,7 @@ public class MessagesSearchAdapter extends RecyclerListView.SelectionAdapter imp
                 z = true;
             }
             dialogCell.setDialog(dialogId, messageObject, i4, z, false);
-            return;
-        }
-        if (viewHolder.getItemViewType() == 2) {
+        } else if (viewHolder.getItemViewType() == 2) {
             ((StoriesView) viewHolder.itemView).set(this.storiesList);
         }
     }

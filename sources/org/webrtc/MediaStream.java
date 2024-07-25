@@ -3,7 +3,6 @@ package org.webrtc;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
 public class MediaStream {
     private static final String TAG = "MediaStream";
     private long nativeStream;
@@ -28,29 +27,29 @@ public class MediaStream {
 
     public boolean addTrack(AudioTrack audioTrack) {
         checkMediaStreamExists();
-        if (!nativeAddAudioTrackToNativeStream(this.nativeStream, audioTrack.getNativeAudioTrack())) {
-            return false;
+        if (nativeAddAudioTrackToNativeStream(this.nativeStream, audioTrack.getNativeAudioTrack())) {
+            this.audioTracks.add(audioTrack);
+            return true;
         }
-        this.audioTracks.add(audioTrack);
-        return true;
+        return false;
     }
 
     public boolean addTrack(VideoTrack videoTrack) {
         checkMediaStreamExists();
-        if (!nativeAddVideoTrackToNativeStream(this.nativeStream, videoTrack.getNativeVideoTrack())) {
-            return false;
+        if (nativeAddVideoTrackToNativeStream(this.nativeStream, videoTrack.getNativeVideoTrack())) {
+            this.videoTracks.add(videoTrack);
+            return true;
         }
-        this.videoTracks.add(videoTrack);
-        return true;
+        return false;
     }
 
     public boolean addPreservedTrack(VideoTrack videoTrack) {
         checkMediaStreamExists();
-        if (!nativeAddVideoTrackToNativeStream(this.nativeStream, videoTrack.getNativeVideoTrack())) {
-            return false;
+        if (nativeAddVideoTrackToNativeStream(this.nativeStream, videoTrack.getNativeVideoTrack())) {
+            this.preservedVideoTracks.add(videoTrack);
+            return true;
         }
-        this.preservedVideoTracks.add(videoTrack);
-        return true;
+        return false;
     }
 
     public boolean removeTrack(AudioTrack audioTrack) {

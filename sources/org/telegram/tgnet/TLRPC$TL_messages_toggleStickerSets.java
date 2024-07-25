@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_messages_toggleStickerSets extends TLObject {
     public boolean archive;
     public int flags;

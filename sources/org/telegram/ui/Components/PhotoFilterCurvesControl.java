@@ -11,7 +11,6 @@ import android.view.View;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.PhotoFilterView;
-
 public class PhotoFilterCurvesControl extends View {
     private int activeSegment;
     private Rect actualArea;
@@ -77,46 +76,43 @@ public class PhotoFilterCurvesControl extends View {
         float y = motionEvent.getY();
         if (i == 1) {
             selectSegmentWithPoint(x);
-            return;
-        }
-        if (i != 2) {
+        } else if (i != 2) {
             if (i == 3 || i == 4 || i == 5) {
                 unselectSegments();
-                return;
             }
-            return;
+        } else {
+            float min = Math.min(2.0f, (this.lastY - y) / 8.0f);
+            PhotoFilterView.CurvesValue curvesValue = null;
+            PhotoFilterView.CurvesToolValue curvesToolValue = this.curveValue;
+            int i2 = curvesToolValue.activeType;
+            if (i2 == 0) {
+                curvesValue = curvesToolValue.luminanceCurve;
+            } else if (i2 == 1) {
+                curvesValue = curvesToolValue.redCurve;
+            } else if (i2 == 2) {
+                curvesValue = curvesToolValue.greenCurve;
+            } else if (i2 == 3) {
+                curvesValue = curvesToolValue.blueCurve;
+            }
+            int i3 = this.activeSegment;
+            if (i3 == 1) {
+                curvesValue.blacksLevel = Math.max(0.0f, Math.min(100.0f, curvesValue.blacksLevel + min));
+            } else if (i3 == 2) {
+                curvesValue.shadowsLevel = Math.max(0.0f, Math.min(100.0f, curvesValue.shadowsLevel + min));
+            } else if (i3 == 3) {
+                curvesValue.midtonesLevel = Math.max(0.0f, Math.min(100.0f, curvesValue.midtonesLevel + min));
+            } else if (i3 == 4) {
+                curvesValue.highlightsLevel = Math.max(0.0f, Math.min(100.0f, curvesValue.highlightsLevel + min));
+            } else if (i3 == 5) {
+                curvesValue.whitesLevel = Math.max(0.0f, Math.min(100.0f, curvesValue.whitesLevel + min));
+            }
+            invalidate();
+            PhotoFilterCurvesControlDelegate photoFilterCurvesControlDelegate = this.delegate;
+            if (photoFilterCurvesControlDelegate != null) {
+                photoFilterCurvesControlDelegate.valueChanged();
+            }
+            this.lastY = y;
         }
-        float min = Math.min(2.0f, (this.lastY - y) / 8.0f);
-        PhotoFilterView.CurvesValue curvesValue = null;
-        PhotoFilterView.CurvesToolValue curvesToolValue = this.curveValue;
-        int i2 = curvesToolValue.activeType;
-        if (i2 == 0) {
-            curvesValue = curvesToolValue.luminanceCurve;
-        } else if (i2 == 1) {
-            curvesValue = curvesToolValue.redCurve;
-        } else if (i2 == 2) {
-            curvesValue = curvesToolValue.greenCurve;
-        } else if (i2 == 3) {
-            curvesValue = curvesToolValue.blueCurve;
-        }
-        int i3 = this.activeSegment;
-        if (i3 == 1) {
-            curvesValue.blacksLevel = Math.max(0.0f, Math.min(100.0f, curvesValue.blacksLevel + min));
-        } else if (i3 == 2) {
-            curvesValue.shadowsLevel = Math.max(0.0f, Math.min(100.0f, curvesValue.shadowsLevel + min));
-        } else if (i3 == 3) {
-            curvesValue.midtonesLevel = Math.max(0.0f, Math.min(100.0f, curvesValue.midtonesLevel + min));
-        } else if (i3 == 4) {
-            curvesValue.highlightsLevel = Math.max(0.0f, Math.min(100.0f, curvesValue.highlightsLevel + min));
-        } else if (i3 == 5) {
-            curvesValue.whitesLevel = Math.max(0.0f, Math.min(100.0f, curvesValue.whitesLevel + min));
-        }
-        invalidate();
-        PhotoFilterCurvesControlDelegate photoFilterCurvesControlDelegate = this.delegate;
-        if (photoFilterCurvesControlDelegate != null) {
-            photoFilterCurvesControlDelegate.valueChanged();
-        }
-        this.lastY = y;
     }
 
     private void selectSegmentWithPoint(float f) {

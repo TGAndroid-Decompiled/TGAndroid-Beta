@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$PollAnswer extends TLObject {
     public byte[] option;
     public TLRPC$TL_textWithEntities text = new TLRPC$TL_textWithEntities();

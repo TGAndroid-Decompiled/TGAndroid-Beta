@@ -34,7 +34,6 @@ import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Stories.recorder.PreviewButtons;
-
 public class PreviewButtons extends FrameLayout {
     private ValueAnimator appearAnimator;
     private float appearT;
@@ -43,12 +42,14 @@ public class PreviewButtons extends FrameLayout {
     private boolean isShareEnabled;
     private Utilities.Callback<Integer> onClickListener;
     private View shadowView;
+    private boolean shareArrow;
     public ShareButtonView shareButton;
     private String shareText;
 
     public PreviewButtons(Context context) {
         super(context);
         this.buttons = new ArrayList<>();
+        this.shareArrow = true;
         this.isShareEnabled = true;
         View view = new View(context);
         this.shadowView = view;
@@ -59,9 +60,10 @@ public class PreviewButtons extends FrameLayout {
         addButton(1, R.drawable.msg_photo_text2, LocaleController.getString(R.string.AccDescrPlaceText));
         addButton(3, R.drawable.msg_photo_settings, LocaleController.getString(R.string.AccDescrPhotoAdjust));
         int i = R.string.Send;
-        String string = LocaleController.getString("Send", i);
+        String string = LocaleController.getString(i);
         this.shareText = string;
-        ShareButtonView shareButtonView = new ShareButtonView(context, string);
+        this.shareArrow = true;
+        ShareButtonView shareButtonView = new ShareButtonView(context, string, true);
         this.shareButton = shareButtonView;
         shareButtonView.setContentDescription(LocaleController.getString(i));
         addView(this.shareButton, LayoutHelper.createFrame(-2, -2.0f));
@@ -87,12 +89,15 @@ public class PreviewButtons extends FrameLayout {
         return false;
     }
 
-    public void setShareText(String str) {
-        if (TextUtils.equals(str, this.shareText)) {
+    public void setShareText(String str, boolean z) {
+        if (TextUtils.equals(str, this.shareText) && z == this.shareArrow) {
             return;
         }
         removeView(this.shareButton);
-        ShareButtonView shareButtonView = new ShareButtonView(getContext(), str);
+        Context context = getContext();
+        this.shareText = str;
+        this.shareArrow = z;
+        ShareButtonView shareButtonView = new ShareButtonView(context, str, z);
         this.shareButton = shareButtonView;
         shareButtonView.setContentDescription(str);
         addView(this.shareButton, LayoutHelper.createFrame(-2, -2.0f));
@@ -209,22 +214,23 @@ public class PreviewButtons extends FrameLayout {
     }
 
     public class ShareButtonView extends View {
+        private boolean arrow;
         ValueAnimator backAnimator;
         private final Paint buttonPaint;
         private final Paint darkenPaint;
         public boolean enabled;
         private AnimatedFloat enabledT;
-        private final int h;
+        private int h;
         private float left;
         float pressedProgress;
         private final StaticLayout staticLayout;
         private final TextPaint textPaint;
-        private final int w;
+        private int w;
         private float width;
 
-        public ShareButtonView(Context context, String str) {
+        public ShareButtonView(Context context, String str, boolean z) {
             super(context);
-            SpannableStringBuilder append;
+            CharSequence upperCase;
             TextPaint textPaint = new TextPaint(1);
             this.textPaint = textPaint;
             Paint paint = new Paint(1);
@@ -233,27 +239,35 @@ public class PreviewButtons extends FrameLayout {
             this.darkenPaint = paint2;
             this.enabledT = new AnimatedFloat(this, 0L, 220L, CubicBezierInterpolator.EASE_OUT_QUINT);
             this.enabled = true;
+            this.arrow = z;
             paint.setColor(-15098625);
             paint2.setColor(1610612736);
             textPaint.setTextSize(AndroidUtilities.dp(13.0f));
             textPaint.setColor(-1);
             textPaint.setTypeface(AndroidUtilities.bold());
-            SpannableString spannableString = new SpannableString(">");
-            Drawable mutate = getResources().getDrawable(R.drawable.attach_arrow_right).mutate();
-            mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-            mutate.setBounds(0, 0, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
-            spannableString.setSpan(new ImageSpan(mutate, 2), 0, spannableString.length(), 33);
-            if (LocaleController.isRTL) {
-                append = new SpannableStringBuilder(spannableString).append((CharSequence) "\u2009").append((CharSequence) str.toUpperCase());
+            if (z) {
+                SpannableString spannableString = new SpannableString(">");
+                Drawable mutate = getResources().getDrawable(R.drawable.attach_arrow_right).mutate();
+                mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+                mutate.setBounds(0, 0, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
+                spannableString.setSpan(new ImageSpan(mutate, 2), 0, spannableString.length(), 33);
+                if (LocaleController.isRTL) {
+                    upperCase = new SpannableStringBuilder(spannableString).append((CharSequence) "\u2009").append((CharSequence) str.toUpperCase());
+                } else {
+                    upperCase = new SpannableStringBuilder(str.toUpperCase()).append((CharSequence) "\u2009").append((CharSequence) spannableString);
+                }
             } else {
-                append = new SpannableStringBuilder(str.toUpperCase()).append((CharSequence) "\u2009").append((CharSequence) spannableString);
+                upperCase = str.toUpperCase();
             }
-            StaticLayout staticLayout = new StaticLayout(append, textPaint, AndroidUtilities.dp(180.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            StaticLayout staticLayout = new StaticLayout(upperCase, textPaint, AndroidUtilities.dp(180.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.staticLayout = staticLayout;
             this.left = staticLayout.getLineCount() > 0 ? staticLayout.getLineLeft(0) : 0.0f;
             float lineWidth = staticLayout.getLineCount() > 0 ? staticLayout.getLineWidth(0) : 0.0f;
             this.width = lineWidth;
             this.w = ((int) lineWidth) + AndroidUtilities.dp(48.0f);
+            if (!z) {
+                this.w = Math.max(AndroidUtilities.dp(80.0f), this.w);
+            }
             this.h = AndroidUtilities.dp(40.0f);
             setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -300,7 +314,7 @@ public class PreviewButtons extends FrameLayout {
             rectF.set(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(4.0f), getWidth() - AndroidUtilities.dp(10.0f), getHeight() - AndroidUtilities.dp(4.0f));
             canvas.drawRoundRect(rectF, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f), this.buttonPaint);
             canvas.save();
-            canvas.translate(AndroidUtilities.dp(26.0f) - this.left, (getHeight() - this.staticLayout.getHeight()) / 2.0f);
+            canvas.translate((((this.w - this.width) / 2.0f) + AndroidUtilities.dp(this.arrow ? 3.0f : 0.0f)) - this.left, (getHeight() - this.staticLayout.getHeight()) / 2.0f);
             this.staticLayout.draw(canvas);
             canvas.restore();
             canvas.restoreToCount(saveCount);

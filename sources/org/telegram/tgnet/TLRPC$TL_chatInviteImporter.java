@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_chatInviteImporter extends TLObject {
     public String about;
     public long approved_by;

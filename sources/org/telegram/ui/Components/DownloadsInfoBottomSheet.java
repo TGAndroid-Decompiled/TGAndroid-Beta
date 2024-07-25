@@ -19,7 +19,6 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.CacheControlActivity;
-
 public class DownloadsInfoBottomSheet extends BottomSheet {
     public static void show(Activity activity, BaseFragment baseFragment) {
         if (baseFragment == null || activity == null) {
@@ -54,7 +53,7 @@ public class DownloadsInfoBottomSheet extends BottomSheet {
         StickerImageView stickerImageView = new StickerImageView(context, this.currentAccount);
         stickerImageView.setStickerNum(9);
         stickerImageView.getImageReceiver().setAutoRepeat(1);
-        linearLayout.addView(stickerImageView, LayoutHelper.createLinear(R.styleable.AppCompatTheme_textColorAlertDialogListItem, R.styleable.AppCompatTheme_textColorAlertDialogListItem, 1, 0, 26, 0, 0));
+        linearLayout.addView(stickerImageView, LayoutHelper.createLinear((int) R.styleable.AppCompatTheme_textColorAlertDialogListItem, (int) R.styleable.AppCompatTheme_textColorAlertDialogListItem, 1, 0, 26, 0, 0));
         TextView textView = new TextView(context);
         textView.setGravity(1);
         int i2 = Theme.key_dialogTextBlack;

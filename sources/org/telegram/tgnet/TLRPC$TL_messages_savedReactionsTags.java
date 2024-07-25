@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_savedReactionsTags extends TLRPC$messages_SavedReactionTags {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

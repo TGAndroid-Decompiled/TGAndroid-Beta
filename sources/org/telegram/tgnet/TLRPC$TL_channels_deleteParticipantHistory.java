@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channels_deleteParticipantHistory extends TLObject {
     public TLRPC$InputChannel channel;
     public TLRPC$InputPeer participant;

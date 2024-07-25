@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_inputMediaDocument extends TLRPC$InputMedia {
     public TLRPC$InputDocument id;
     public String query;

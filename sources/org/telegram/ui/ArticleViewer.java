@@ -17,7 +17,9 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -29,6 +31,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Looper;
 import android.text.Editable;
 import android.text.Layout;
 import android.text.Spannable;
@@ -38,20 +41,18 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.style.MetricAffectingSpan;
+import android.text.style.URLSpan;
+import android.util.Log;
 import android.util.Property;
 import android.util.SparseArray;
-import android.view.ActionMode;
 import android.view.DisplayCutout;
 import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.Surface;
 import android.view.SurfaceView;
 import android.view.TextureView;
 import android.view.VelocityTracker;
 import android.view.View;
-import android.view.ViewAnimationUtils;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.WindowInsets;
@@ -61,7 +62,9 @@ import android.view.animation.DecelerateInterpolator;
 import android.webkit.CookieManager;
 import android.webkit.JavascriptInterface;
 import android.webkit.RenderProcessGoneDetail;
+import android.webkit.WebBackForwardList;
 import android.webkit.WebChromeClient;
+import android.webkit.WebHistoryItem;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
@@ -74,6 +77,8 @@ import android.widget.Toast;
 import androidx.annotation.Keep;
 import androidx.collection.LongSparseArray;
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.ColorUtils;
+import androidx.core.util.Consumer;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.GridLayoutManagerFixed;
@@ -83,6 +88,7 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import java.io.File;
+import java.net.IDN;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -90,6 +96,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
@@ -105,11 +112,13 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
+import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
@@ -123,6 +132,7 @@ import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$DocumentAttribute;
 import org.telegram.tgnet.TLRPC$FileLocation;
 import org.telegram.tgnet.TLRPC$GeoPoint;
+import org.telegram.tgnet.TLRPC$InputInvoice;
 import org.telegram.tgnet.TLRPC$MessageEntity;
 import org.telegram.tgnet.TLRPC$Page;
 import org.telegram.tgnet.TLRPC$PageBlock;
@@ -135,8 +145,10 @@ import org.telegram.tgnet.TLRPC$TL_contacts_resolvedPeer;
 import org.telegram.tgnet.TLRPC$TL_documentAttributeAudio;
 import org.telegram.tgnet.TLRPC$TL_documentAttributeVideo;
 import org.telegram.tgnet.TLRPC$TL_error;
+import org.telegram.tgnet.TLRPC$TL_message;
 import org.telegram.tgnet.TLRPC$TL_messageActionChatAddUser;
 import org.telegram.tgnet.TLRPC$TL_messageEntityUrl;
+import org.telegram.tgnet.TLRPC$TL_messageMediaWebPage;
 import org.telegram.tgnet.TLRPC$TL_messages_getWebPage;
 import org.telegram.tgnet.TLRPC$TL_messages_messages;
 import org.telegram.tgnet.TLRPC$TL_messages_webPage;
@@ -173,6 +185,7 @@ import org.telegram.tgnet.TLRPC$TL_pagePart_layer82;
 import org.telegram.tgnet.TLRPC$TL_pageRelatedArticle;
 import org.telegram.tgnet.TLRPC$TL_pageTableCell;
 import org.telegram.tgnet.TLRPC$TL_pageTableRow;
+import org.telegram.tgnet.TLRPC$TL_peerUser;
 import org.telegram.tgnet.TLRPC$TL_photo;
 import org.telegram.tgnet.TLRPC$TL_textAnchor;
 import org.telegram.tgnet.TLRPC$TL_textBold;
@@ -199,32 +212,42 @@ import org.telegram.tgnet.TLRPC$Updates;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$WebPage;
 import org.telegram.tgnet.TLRPC$messages_Messages;
-import org.telegram.ui.ActionBar.ActionBarMenuItem;
+import org.telegram.ui.ActionBar.ActionBar;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BackDrawable;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
-import org.telegram.ui.ActionBar.SimpleTextView;
+import org.telegram.ui.ActionBar.BottomSheetTabDialog;
+import org.telegram.ui.ActionBar.BottomSheetTabs;
+import org.telegram.ui.ActionBar.BottomSheetTabsOverlay;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ArticleViewer;
+import org.telegram.ui.Cells.CheckBoxCell;
 import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.TextSelectionHelper;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.AnchorSpan;
 import org.telegram.ui.Components.AnimatedArrowDrawable;
+import org.telegram.ui.Components.AnimatedColor;
+import org.telegram.ui.Components.AnimatedFloat;
+import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.AnimationProperties;
 import org.telegram.ui.Components.AvatarDrawable;
+import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.BulletinFactory;
-import org.telegram.ui.Components.CloseProgressDrawable2;
 import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.ContextProgressView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LineProgressView;
 import org.telegram.ui.Components.LinkPath;
 import org.telegram.ui.Components.LinkSpanDrawable;
+import org.telegram.ui.Components.LoadingDrawable;
 import org.telegram.ui.Components.RadialProgress2;
 import org.telegram.ui.Components.RadioButton;
 import org.telegram.ui.Components.RecyclerListView;
@@ -232,6 +255,7 @@ import org.telegram.ui.Components.SeekBar;
 import org.telegram.ui.Components.SeekBarView;
 import org.telegram.ui.Components.ShareAlert;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
+import org.telegram.ui.Components.SmoothScroller;
 import org.telegram.ui.Components.StaticLayoutEx;
 import org.telegram.ui.Components.TableLayout;
 import org.telegram.ui.Components.TextPaintImageReceiverSpan;
@@ -245,9 +269,20 @@ import org.telegram.ui.Components.VideoPlayer;
 import org.telegram.ui.Components.WebPlayerView;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.PinchToZoomHelper;
-
+import org.telegram.ui.Stories.DarkThemeResourceProvider;
+import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
+import org.telegram.ui.Stories.recorder.KeyboardNotifier;
+import org.telegram.ui.bots.ChatAttachAlertBotWebViewLayout;
+import org.telegram.ui.web.AddressBarList;
+import org.telegram.ui.web.BookmarksFragment;
+import org.telegram.ui.web.BotWebViewContainer;
+import org.telegram.ui.web.BrowserHistory;
+import org.telegram.ui.web.HistoryFragment;
+import org.telegram.ui.web.RestrictedDomainsList;
+import org.telegram.ui.web.SearchEngine;
+import org.telegram.ui.web.WebActionBar;
+import org.telegram.ui.web.WebBrowserSettings;
 public class ArticleViewer implements NotificationCenter.NotificationCenterDelegate {
-
     @SuppressLint({"StaticFieldLeak"})
     private static volatile ArticleViewer Instance;
     private static TextPaint channelNamePaint;
@@ -272,16 +307,15 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
     private static Paint webpageMarkPaint;
     private static Paint webpageSearchPaint;
     private static Paint webpageUrlPaint;
-    private WebpageAdapter[] adapter;
+    private WebActionBar actionBar;
+    private AddressBarList addressBarList;
     private int anchorsOffsetMeasuredWidth;
     private Runnable animationEndRunnable;
     private int animationInProgress;
     private boolean attachedToWindow;
-    private ImageView backButton;
-    private BackDrawable backDrawable;
     private Paint backgroundPaint;
+    private FrameLayout bulletinContainer;
     private Drawable chat_redLocationIcon;
-    private ImageView clearButton;
     private boolean closeAnimationInProgress;
     private boolean collapsed;
     private FrameLayout containerView;
@@ -300,26 +334,27 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
     private FrameLayout fullscreenVideoContainer;
     private WebPlayerView fullscreenedVideo;
     private boolean hasCutout;
-    private FrameLayout headerView;
-    private boolean ignoreOnTextChange;
     private boolean isVisible;
     private boolean keyboardVisible;
     private Object lastInsets;
     private int lastReqId;
     private int lastSearchIndex;
     private Drawable layerShadowDrawable;
-    private LinearLayoutManager[] layoutManager;
     private Runnable lineProgressTickRunnable;
-    private LineProgressView lineProgressView;
     private BottomSheet linkSheet;
-    private RecyclerListView[] listView;
     private TLRPC$Chat loadedChannel;
     private boolean loadingChannel;
-    private ActionBarMenuItem menuButton;
-    private FrameLayout menuContainer;
+    private TextPaintUrlSpan loadingLink;
+    private LoadingDrawable loadingLinkDrawable;
+    private View loadingLinkView;
+    private Browser.Progress loadingProgress;
+    private DrawingText loadingText;
     private final AnimationNotificationsLocker notificationsLocker;
     private int openUrlReqId;
+    private final AnimatedColor page0Background;
+    private final AnimatedColor page1Background;
     private AnimatorSet pageSwitchAnimation;
+    public PageLayout[] pages;
     private Activity parentActivity;
     private BaseFragment parentFragment;
     PinchToZoomHelper pinchToZoomHelper;
@@ -335,14 +370,14 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
     private AnimatorSet progressViewAnimation;
     private AnimatorSet runAfterKeyboardClose;
     private Paint scrimPaint;
-    private FrameLayout searchContainer;
-    private SimpleTextView searchCountText;
+    private AnimatedTextView searchCountText;
     private ImageView searchDownButton;
-    private EditTextBoldCursor searchField;
     private FrameLayout searchPanel;
+    private float searchPanelAlpha;
+    private ValueAnimator searchPanelAnimator;
+    private float searchPanelTranslation;
     private ArrayList<SearchResult> searchResults;
     private Runnable searchRunnable;
-    private View searchShadow;
     private String searchText;
     private ImageView searchUpButton;
     private int selectedFont;
@@ -351,7 +386,6 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
     private Drawable slideDotDrawable;
     TextSelectionHelper.ArticleTextSelectionHelper textSelectionHelper;
     TextSelectionHelper.ArticleTextSelectionHelper textSelectionHelperBottomSheet;
-    private SimpleTextView titleTextView;
     private long transitionAnimationStartTime;
     VideoPlayerHolderBase videoPlayer;
     private LongSparseArray<BlockVideoCellState> videoStates;
@@ -369,32 +403,31 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             return Float.valueOf(windowView.getInnerTranslationX());
         }
     };
-    private static TextPaint audioTimePaint = new TextPaint(1);
-    private static SparseArray<TextPaint> photoCaptionTextPaints = new SparseArray<>();
-    private static SparseArray<TextPaint> photoCreditTextPaints = new SparseArray<>();
-    private static SparseArray<TextPaint> titleTextPaints = new SparseArray<>();
-    private static SparseArray<TextPaint> kickerTextPaints = new SparseArray<>();
-    private static SparseArray<TextPaint> headerTextPaints = new SparseArray<>();
-    private static SparseArray<TextPaint> subtitleTextPaints = new SparseArray<>();
-    private static SparseArray<TextPaint> subheaderTextPaints = new SparseArray<>();
-    private static SparseArray<TextPaint> authorTextPaints = new SparseArray<>();
-    private static SparseArray<TextPaint> footerTextPaints = new SparseArray<>();
-    private static SparseArray<TextPaint> paragraphTextPaints = new SparseArray<>();
-    private static SparseArray<TextPaint> listTextPaints = new SparseArray<>();
-    private static SparseArray<TextPaint> preformattedTextPaints = new SparseArray<>();
-    private static SparseArray<TextPaint> quoteTextPaints = new SparseArray<>();
-    private static SparseArray<TextPaint> embedPostTextPaints = new SparseArray<>();
-    private static SparseArray<TextPaint> embedPostCaptionTextPaints = new SparseArray<>();
-    private static SparseArray<TextPaint> mediaCaptionTextPaints = new SparseArray<>();
-    private static SparseArray<TextPaint> mediaCreditTextPaints = new SparseArray<>();
-    private static SparseArray<TextPaint> relatedArticleTextPaints = new SparseArray<>();
-    private static SparseArray<TextPaint> detailsTextPaints = new SparseArray<>();
-    private static SparseArray<TextPaint> tableTextPaints = new SparseArray<>();
+    private static final TextPaint audioTimePaint = new TextPaint(1);
+    private static final SparseArray<TextPaint> photoCaptionTextPaints = new SparseArray<>();
+    private static final SparseArray<TextPaint> photoCreditTextPaints = new SparseArray<>();
+    private static final SparseArray<TextPaint> titleTextPaints = new SparseArray<>();
+    private static final SparseArray<TextPaint> kickerTextPaints = new SparseArray<>();
+    private static final SparseArray<TextPaint> headerTextPaints = new SparseArray<>();
+    private static final SparseArray<TextPaint> subtitleTextPaints = new SparseArray<>();
+    private static final SparseArray<TextPaint> subheaderTextPaints = new SparseArray<>();
+    private static final SparseArray<TextPaint> authorTextPaints = new SparseArray<>();
+    private static final SparseArray<TextPaint> footerTextPaints = new SparseArray<>();
+    private static final SparseArray<TextPaint> paragraphTextPaints = new SparseArray<>();
+    private static final SparseArray<TextPaint> listTextPaints = new SparseArray<>();
+    private static final SparseArray<TextPaint> preformattedTextPaints = new SparseArray<>();
+    private static final SparseArray<TextPaint> quoteTextPaints = new SparseArray<>();
+    private static final SparseArray<TextPaint> embedPostTextPaints = new SparseArray<>();
+    private static final SparseArray<TextPaint> embedPostCaptionTextPaints = new SparseArray<>();
+    private static final SparseArray<TextPaint> mediaCaptionTextPaints = new SparseArray<>();
+    private static final SparseArray<TextPaint> mediaCreditTextPaints = new SparseArray<>();
+    private static final SparseArray<TextPaint> relatedArticleTextPaints = new SparseArray<>();
+    private static final SparseArray<TextPaint> detailsTextPaints = new SparseArray<>();
+    private static final SparseArray<TextPaint> tableTextPaints = new SparseArray<>();
     private ArrayList<BlockEmbedCell> createdWebViews = new ArrayList<>();
     private int lastBlockNum = 1;
     private DecelerateInterpolator interpolator = new DecelerateInterpolator(1.5f);
-    private ArrayList<TLRPC$WebPage> pagesStack = new ArrayList<>();
-    private boolean animateClear = true;
+    public final ArrayList<Object> pagesStack = new ArrayList<>();
     private Paint headerPaint = new Paint();
     private Paint statusBarPaint = new Paint();
     private Paint navigationBarPaint = new Paint();
@@ -405,30 +438,27 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
     private CheckForTap pendingCheckForTap = null;
     private LinkSpanDrawable.LinkCollector links = new LinkSpanDrawable.LinkCollector();
 
-    public static boolean lambda$setParentActivity$21(View view, MotionEvent motionEvent) {
+    public static boolean lambda$setParentActivity$38(View view, MotionEvent motionEvent) {
         return true;
     }
 
-    public void updateWindowLayoutParamsForSearch() {
+    public Theme.ResourcesProvider getResourcesProvider() {
+        return null;
     }
 
-    static int access$13708(ArticleViewer articleViewer) {
+    static int access$12508(ArticleViewer articleViewer) {
         int i = articleViewer.lastBlockNum;
         articleViewer.lastBlockNum = i + 1;
         return i;
     }
 
-    static int access$20500() {
-        return getGrayTextColor();
-    }
-
-    static int access$2104(ArticleViewer articleViewer) {
+    static int access$2004(ArticleViewer articleViewer) {
         int i = articleViewer.pressCount + 1;
         articleViewer.pressCount = i;
         return i;
     }
 
-    public ArticleViewer(boolean z, Context context) {
+    public ArticleViewer() {
         new LinkPath();
         this.notificationsLocker = new AnimationNotificationsLocker(new int[]{NotificationCenter.dialogsNeedReload, NotificationCenter.closeChats});
         this.selectedFont = 0;
@@ -436,7 +466,55 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         this.searchResults = new ArrayList<>();
         this.lastSearchIndex = -1;
         this.videoStates = new LongSparseArray<>();
-        this.sheet = z ? new Sheet(this, context) : null;
+        Runnable runnable = new Runnable() {
+            @Override
+            public final void run() {
+                ArticleViewer.this.lambda$new$64();
+            }
+        };
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+        this.page0Background = new AnimatedColor(runnable, 320L, cubicBezierInterpolator);
+        this.page1Background = new AnimatedColor(new Runnable() {
+            @Override
+            public final void run() {
+                ArticleViewer.this.lambda$new$65();
+            }
+        }, 320L, cubicBezierInterpolator);
+        this.sheet = null;
+    }
+
+    public ArticleViewer(BaseFragment baseFragment) {
+        new LinkPath();
+        this.notificationsLocker = new AnimationNotificationsLocker(new int[]{NotificationCenter.dialogsNeedReload, NotificationCenter.closeChats});
+        this.selectedFont = 0;
+        this.fontCells = new FontCell[2];
+        this.searchResults = new ArrayList<>();
+        this.lastSearchIndex = -1;
+        this.videoStates = new LongSparseArray<>();
+        Runnable runnable = new Runnable() {
+            @Override
+            public final void run() {
+                ArticleViewer.this.lambda$new$64();
+            }
+        };
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+        this.page0Background = new AnimatedColor(runnable, 320L, cubicBezierInterpolator);
+        this.page1Background = new AnimatedColor(new Runnable() {
+            @Override
+            public final void run() {
+                ArticleViewer.this.lambda$new$65();
+            }
+        }, 320L, cubicBezierInterpolator);
+        this.sheet = new Sheet(baseFragment);
+        setParentActivity(baseFragment.getParentActivity(), baseFragment);
+    }
+
+    public boolean isLastArticle() {
+        if (this.pagesStack.isEmpty()) {
+            return false;
+        }
+        ArrayList<Object> arrayList = this.pagesStack;
+        return arrayList.get(arrayList.size() - 1) instanceof TLRPC$WebPage;
     }
 
     public static ArticleViewer getInstance() {
@@ -445,12 +523,16 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             synchronized (ArticleViewer.class) {
                 articleViewer = Instance;
                 if (articleViewer == null) {
-                    articleViewer = new ArticleViewer(false, null);
+                    articleViewer = new ArticleViewer();
                     Instance = articleViewer;
                 }
             }
         }
         return articleViewer;
+    }
+
+    public static ArticleViewer makeSheet(BaseFragment baseFragment) {
+        return new ArticleViewer(baseFragment);
     }
 
     public static boolean hasInstance() {
@@ -685,7 +767,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             TextPaint textPaint = new TextPaint(1);
             this.textPaint = textPaint;
             textPaint.setTextSize(AndroidUtilities.dp(16.0f));
-            SeekBarView seekBarView = new SeekBarView(context);
+            SeekBarView seekBarView = new SeekBarView(context, ArticleViewer.this.getResourcesProvider());
             this.sizeBar = seekBarView;
             seekBarView.setReportChanges(true);
             this.sizeBar.setSeparatorsCount((this.endFontSize - this.startFontSize) + 1);
@@ -702,7 +784,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                         SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
                         edit.putInt("iv_font_size", SharedConfig.ivFontSize);
                         edit.commit();
-                        ArticleViewer.this.adapter[0].searchTextOffset.clear();
+                        ArticleViewer.this.pages[0].getAdapter().searchTextOffset.clear();
                         ArticleViewer.this.updatePaintSize();
                         TextSizeCell.this.invalidate();
                     }
@@ -723,7 +805,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
         @Override
         protected void onDraw(Canvas canvas) {
-            this.textPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteValueText));
+            this.textPaint.setColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundWhiteValueText));
             canvas.drawText("" + SharedConfig.ivFontSize, getMeasuredWidth() - AndroidUtilities.dp(39.0f), AndroidUtilities.dp(28.0f), this.textPaint);
         }
 
@@ -747,23 +829,23 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    public static class FontCell extends FrameLayout {
+    public class FontCell extends FrameLayout {
         private RadioButton radioButton;
         private TextView textView;
 
-        public FontCell(Context context) {
+        public FontCell(ArticleViewer articleViewer, Context context) {
             super(context);
-            setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor(Theme.key_listSelector), 2));
+            setBackgroundDrawable(Theme.createSelectorDrawable(articleViewer.getThemedColor(Theme.key_listSelector), 2));
             RadioButton radioButton = new RadioButton(context);
             this.radioButton = radioButton;
             radioButton.setSize(AndroidUtilities.dp(20.0f));
-            this.radioButton.setColor(Theme.getColor(Theme.key_dialogRadioBackground), Theme.getColor(Theme.key_dialogRadioBackgroundChecked));
+            this.radioButton.setColor(articleViewer.getThemedColor(Theme.key_dialogRadioBackground), articleViewer.getThemedColor(Theme.key_dialogRadioBackgroundChecked));
             RadioButton radioButton2 = this.radioButton;
             boolean z = LocaleController.isRTL;
             addView(radioButton2, LayoutHelper.createFrame(22, 22.0f, (z ? 5 : 3) | 48, z ? 0 : 22, 13.0f, z ? 22 : 0, 0.0f));
             TextView textView = new TextView(context);
             this.textView = textView;
-            textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
+            textView.setTextColor(articleViewer.getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
             this.textView.setTextSize(1, 16.0f);
             this.textView.setLines(1);
             this.textView.setMaxLines(1);
@@ -809,7 +891,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 ArticleViewer articleViewer = ArticleViewer.this;
                 articleViewer.pendingCheckForLongPress = new CheckForLongPress();
             }
-            ArticleViewer.this.pendingCheckForLongPress.currentPressCount = ArticleViewer.access$2104(ArticleViewer.this);
+            ArticleViewer.this.pendingCheckForLongPress.currentPressCount = ArticleViewer.access$2004(ArticleViewer.this);
             if (ArticleViewer.this.windowView != null) {
                 ArticleViewer.this.windowView.postDelayed(ArticleViewer.this.pendingCheckForLongPress, ViewConfiguration.getLongPressTimeout() - ViewConfiguration.getTapTimeout());
             }
@@ -824,8 +906,10 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         private int bY;
         private final Paint blackPaint;
         private float innerTranslationX;
+        private boolean lastWebviewAllowedScroll;
         private boolean maybeStartTracking;
         private boolean movingPage;
+        private boolean openingPage;
         private boolean selfLayout;
         private int startMovingHeaderHeight;
         private boolean startedTracking;
@@ -844,7 +928,11 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         public WindowInsets dispatchApplyWindowInsets(WindowInsets windowInsets) {
             DisplayCutout displayCutout;
             List<Rect> boundingRects;
-            WindowInsets windowInsets2 = (WindowInsets) ArticleViewer.this.lastInsets;
+            ArticleViewer articleViewer = ArticleViewer.this;
+            if (articleViewer.sheet != null) {
+                return super.dispatchApplyWindowInsets(windowInsets);
+            }
+            WindowInsets windowInsets2 = (WindowInsets) articleViewer.lastInsets;
             ArticleViewer.this.lastInsets = windowInsets;
             if ((windowInsets2 == null || !windowInsets2.toString().equals(windowInsets.toString())) && ArticleViewer.this.windowView != null) {
                 ArticleViewer.this.windowView.requestLayout();
@@ -859,14 +947,13 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         protected void onMeasure(int i, int i2) {
             int size = View.MeasureSpec.getSize(i);
             int size2 = View.MeasureSpec.getSize(i2);
-            int i3 = Build.VERSION.SDK_INT;
-            if (i3 >= 21 && ArticleViewer.this.lastInsets != null) {
+            if (Build.VERSION.SDK_INT >= 21 && ArticleViewer.this.lastInsets != null) {
                 setMeasuredDimension(size, size2);
                 WindowInsets windowInsets = (WindowInsets) ArticleViewer.this.lastInsets;
                 if (AndroidUtilities.incorrectDisplaySizeFix) {
-                    int i4 = AndroidUtilities.displaySize.y;
-                    if (size2 > i4) {
-                        size2 = i4;
+                    int i3 = AndroidUtilities.displaySize.y;
+                    if (size2 > i3) {
+                        size2 = i3;
                     }
                     size2 += AndroidUtilities.statusBarHeight;
                 }
@@ -886,14 +973,17 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             } else {
                 setMeasuredDimension(size, size2);
             }
-            ArticleViewer.this.menuButton.setAdditionalYOffset(((-(ArticleViewer.this.currentHeaderHeight - AndroidUtilities.dp(56.0f))) / 2) + (i3 < 21 ? AndroidUtilities.statusBarHeight : 0));
-            ArticleViewer.this.keyboardVisible = size2 < AndroidUtilities.displaySize.y - AndroidUtilities.dp(100.0f);
+            ArticleViewer articleViewer = ArticleViewer.this;
+            if (articleViewer.sheet == null) {
+                articleViewer.keyboardVisible = size2 < AndroidUtilities.displaySize.y - AndroidUtilities.dp(100.0f);
+            }
             ArticleViewer.this.containerView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
             ArticleViewer.this.fullscreenVideoContainer.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
         }
 
         @Override
         public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+            ArrayList<Object> arrayList;
             if (ArticleViewer.this.pinchToZoomHelper.isInOverlayMode()) {
                 motionEvent.offsetLocation(-ArticleViewer.this.containerView.getX(), -ArticleViewer.this.containerView.getY());
                 return ArticleViewer.this.pinchToZoomHelper.onTouchEvent(motionEvent);
@@ -905,7 +995,12 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 return true;
             }
             if (overlayView.checkOnTap(motionEvent)) {
-                motionEvent.setAction(3);
+                PageLayout[] pageLayoutArr = ArticleViewer.this.pages;
+                if (pageLayoutArr != null && pageLayoutArr[0] != null && pageLayoutArr[0].isWeb() && (arrayList = ArticleViewer.this.pagesStack) != null && arrayList.size() <= 1) {
+                    motionEvent.setAction(1);
+                } else {
+                    motionEvent.setAction(3);
+                }
             }
             if (motionEvent.getAction() == 0 && ArticleViewer.this.textSelectionHelper.isInSelectionMode() && (motionEvent.getY() < ArticleViewer.this.containerView.getTop() || motionEvent.getY() > ArticleViewer.this.containerView.getBottom())) {
                 if (ArticleViewer.this.textSelectionHelper.getOverlayView(getContext()).onTouchEvent(obtain)) {
@@ -919,19 +1014,26 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         @Override
         protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
             int i5;
+            ArticleViewer articleViewer;
             if (this.selfLayout) {
                 return;
             }
             int i6 = i3 - i;
             int i7 = 0;
             if (ArticleViewer.this.anchorsOffsetMeasuredWidth != i6) {
-                for (int i8 = 0; i8 < ArticleViewer.this.listView.length; i8++) {
-                    Iterator it = ArticleViewer.this.adapter[i8].anchorsOffset.entrySet().iterator();
-                    while (it.hasNext()) {
-                        ((Map.Entry) it.next()).setValue(-1);
+                int i8 = 0;
+                while (true) {
+                    articleViewer = ArticleViewer.this;
+                    PageLayout[] pageLayoutArr = articleViewer.pages;
+                    if (i8 >= pageLayoutArr.length) {
+                        break;
                     }
+                    for (Map.Entry entry : pageLayoutArr[i8].adapter.anchorsOffset.entrySet()) {
+                        entry.setValue(-1);
+                    }
+                    i8++;
                 }
-                ArticleViewer.this.anchorsOffsetMeasuredWidth = i6;
+                articleViewer.anchorsOffsetMeasuredWidth = i6;
             }
             if (Build.VERSION.SDK_INT < 21 || ArticleViewer.this.lastInsets == null) {
                 i5 = 0;
@@ -1035,15 +1137,22 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             this.maybeStartTracking = false;
             this.startedTracking = true;
             this.startedTrackingX = (int) motionEvent.getX();
-            if (ArticleViewer.this.pagesStack.size() > 1) {
+            if (ArticleViewer.this.pagesStack.size() > 1 && (ArticleViewer.this.actionBar == null || (!ArticleViewer.this.actionBar.isSearching() && !ArticleViewer.this.actionBar.isAddressing()))) {
                 this.movingPage = true;
                 this.startMovingHeaderHeight = ArticleViewer.this.currentHeaderHeight;
-                ArticleViewer.this.listView[1].setVisibility(0);
-                ArticleViewer.this.listView[1].setAlpha(1.0f);
-                ArticleViewer.this.listView[1].setTranslationX(0.0f);
-                ArticleViewer.this.listView[0].setBackgroundColor(ArticleViewer.this.backgroundPaint.getColor());
+                ArticleViewer.this.pages[1].setVisibility(0);
+                ArticleViewer.this.pages[1].setAlpha(1.0f);
+                ArticleViewer.this.pages[1].setTranslationX(0.0f);
                 ArticleViewer articleViewer = ArticleViewer.this;
-                articleViewer.updateInterfaceForCurrentPage((TLRPC$WebPage) articleViewer.pagesStack.get(ArticleViewer.this.pagesStack.size() - 2), true, -1);
+                articleViewer.pages[0].setBackgroundColor(articleViewer.sheet == null ? 0 : articleViewer.backgroundPaint.getColor());
+                ArticleViewer articleViewer2 = ArticleViewer.this;
+                ArrayList<Object> arrayList = articleViewer2.pagesStack;
+                articleViewer2.updateInterfaceForCurrentPage(arrayList.get(arrayList.size() - 2), true, -1);
+                if (ArticleViewer.this.containerView.indexOfChild(ArticleViewer.this.pages[0]) < ArticleViewer.this.containerView.indexOfChild(ArticleViewer.this.pages[1])) {
+                    int indexOfChild = ArticleViewer.this.containerView.indexOfChild(ArticleViewer.this.pages[0]);
+                    ArticleViewer.this.containerView.removeView(ArticleViewer.this.pages[1]);
+                    ArticleViewer.this.containerView.addView(ArticleViewer.this.pages[1], indexOfChild);
+                }
             } else {
                 this.movingPage = false;
             }
@@ -1051,6 +1160,9 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         public boolean handleTouchEvent(MotionEvent motionEvent) {
+            Sheet sheet;
+            boolean z;
+            Sheet sheet2;
             if (ArticleViewer.this.pageSwitchAnimation != null || ArticleViewer.this.closeAnimationInProgress || ArticleViewer.this.fullscreenVideoContainer.getVisibility() == 0 || ArticleViewer.this.textSelectionHelper.isInSelectionMode()) {
                 return false;
             }
@@ -1070,19 +1182,42 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 int max = Math.max(0, (int) (motionEvent.getX() - this.startedTrackingX));
                 int abs = Math.abs(((int) motionEvent.getY()) - this.startedTrackingY);
                 this.tracker.addMovement(motionEvent);
-                if (this.maybeStartTracking && !this.startedTracking && max >= AndroidUtilities.getPixelsInCM(0.4f, true) && Math.abs(max) / 3 > abs) {
-                    prepareForMoving(motionEvent);
-                } else if (this.startedTracking) {
-                    ArticleViewer.this.pressedLinkOwnerLayout = null;
-                    ArticleViewer.this.pressedLinkOwnerView = null;
-                    if (this.movingPage) {
-                        ArticleViewer.this.listView[0].setTranslationX(max);
-                    } else {
-                        float f = max;
-                        ArticleViewer.this.containerView.setTranslationX(f);
-                        setInnerTranslationX(f);
+                PageLayout[] pageLayoutArr = ArticleViewer.this.pages;
+                if (pageLayoutArr[0] != null && pageLayoutArr[0].isWeb()) {
+                    PageLayout[] pageLayoutArr2 = ArticleViewer.this.pages;
+                    if (!pageLayoutArr2[0].swipeContainer.allowedScrollX || pageLayoutArr2[0].swipeContainer.isScrolling) {
+                        z = false;
+                        this.lastWebviewAllowedScroll = z;
+                        sheet2 = ArticleViewer.this.sheet;
+                        if ((sheet2 != null || !sheet2.nestedVerticalScroll) && this.maybeStartTracking && !this.startedTracking && max >= AndroidUtilities.getPixelsInCM(0.4f, true) && Math.abs(max) / 3 > abs && this.lastWebviewAllowedScroll) {
+                            prepareForMoving(motionEvent);
+                        } else if (this.startedTracking) {
+                            ArticleViewer.this.pressedLinkOwnerLayout = null;
+                            ArticleViewer.this.pressedLinkOwnerView = null;
+                            if (this.movingPage) {
+                                PageLayout[] pageLayoutArr3 = ArticleViewer.this.pages;
+                                if (pageLayoutArr3[0] != null) {
+                                    pageLayoutArr3[0].setTranslationX(max);
+                                }
+                            }
+                            ArticleViewer articleViewer = ArticleViewer.this;
+                            Sheet sheet3 = articleViewer.sheet;
+                            if (sheet3 == null) {
+                                float f = max;
+                                articleViewer.containerView.setTranslationX(f);
+                                setInnerTranslationX(f);
+                            } else {
+                                sheet3.setBackProgress(max / getWidth());
+                            }
+                        }
                     }
                 }
+                z = true;
+                this.lastWebviewAllowedScroll = z;
+                sheet2 = ArticleViewer.this.sheet;
+                if (sheet2 != null) {
+                }
+                prepareForMoving(motionEvent);
             } else if (motionEvent != null && motionEvent.getPointerId(0) == this.startedTrackingPointerId && (motionEvent.getAction() == 3 || motionEvent.getAction() == 1 || motionEvent.getAction() == 6)) {
                 if (this.tracker == null) {
                     this.tracker = VelocityTracker.obtain();
@@ -1090,56 +1225,86 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 this.tracker.computeCurrentVelocity(1000);
                 float xVelocity = this.tracker.getXVelocity();
                 float yVelocity = this.tracker.getYVelocity();
-                if (!this.startedTracking && xVelocity >= 3500.0f && xVelocity > Math.abs(yVelocity)) {
+                Sheet sheet4 = ArticleViewer.this.sheet;
+                if ((sheet4 == null || !sheet4.nestedVerticalScroll) && !this.startedTracking && xVelocity >= 3500.0f && xVelocity > Math.abs(yVelocity)) {
                     prepareForMoving(motionEvent);
                 }
                 if (this.startedTracking) {
-                    View view = this.movingPage ? ArticleViewer.this.listView[0] : ArticleViewer.this.containerView;
-                    float x = view.getX();
-                    final boolean z = x < ((float) view.getMeasuredWidth()) / 3.0f && (xVelocity < 3500.0f || xVelocity < yVelocity);
+                    FrameLayout frameLayout = this.movingPage ? ArticleViewer.this.pages[0] : ArticleViewer.this.containerView;
+                    float x = (this.movingPage || (sheet = ArticleViewer.this.sheet) == null) ? frameLayout.getX() : sheet.getBackProgress() * ArticleViewer.this.sheet.windowView.getWidth();
+                    final boolean z2 = (x < ((float) frameLayout.getMeasuredWidth()) * 0.3f && (xVelocity < 2500.0f || xVelocity < yVelocity)) || !this.lastWebviewAllowedScroll;
                     AnimatorSet animatorSet = new AnimatorSet();
-                    if (!z) {
-                        x = view.getMeasuredWidth() - x;
+                    if (!z2) {
+                        x = frameLayout.getMeasuredWidth() - x;
                         if (this.movingPage) {
-                            animatorSet.playTogether(ObjectAnimator.ofFloat(ArticleViewer.this.listView[0], (Property<RecyclerListView, Float>) View.TRANSLATION_X, view.getMeasuredWidth()));
+                            animatorSet.playTogether(ObjectAnimator.ofFloat(ArticleViewer.this.pages[0], View.TRANSLATION_X, frameLayout.getMeasuredWidth()));
                         } else {
-                            animatorSet.playTogether(ObjectAnimator.ofFloat(ArticleViewer.this.containerView, (Property<FrameLayout, Float>) View.TRANSLATION_X, view.getMeasuredWidth()), ObjectAnimator.ofFloat(this, ArticleViewer.ARTICLE_VIEWER_INNER_TRANSLATION_X, view.getMeasuredWidth()));
+                            ArticleViewer articleViewer2 = ArticleViewer.this;
+                            Sheet sheet5 = articleViewer2.sheet;
+                            if (sheet5 != null) {
+                                animatorSet.playTogether(sheet5.animateBackProgressTo(1.0f));
+                            } else {
+                                animatorSet.playTogether(ObjectAnimator.ofFloat(articleViewer2.containerView, View.TRANSLATION_X, frameLayout.getMeasuredWidth()), ObjectAnimator.ofFloat(this, ArticleViewer.ARTICLE_VIEWER_INNER_TRANSLATION_X, frameLayout.getMeasuredWidth()));
+                            }
                         }
                     } else if (this.movingPage) {
-                        animatorSet.playTogether(ObjectAnimator.ofFloat(ArticleViewer.this.listView[0], (Property<RecyclerListView, Float>) View.TRANSLATION_X, 0.0f));
+                        animatorSet.playTogether(ObjectAnimator.ofFloat(ArticleViewer.this.pages[0], View.TRANSLATION_X, 0.0f));
                     } else {
-                        animatorSet.playTogether(ObjectAnimator.ofFloat(ArticleViewer.this.containerView, (Property<FrameLayout, Float>) View.TRANSLATION_X, 0.0f), ObjectAnimator.ofFloat(this, ArticleViewer.ARTICLE_VIEWER_INNER_TRANSLATION_X, 0.0f));
+                        ArticleViewer articleViewer3 = ArticleViewer.this;
+                        Sheet sheet6 = articleViewer3.sheet;
+                        if (sheet6 != null) {
+                            animatorSet.playTogether(sheet6.animateBackProgressTo(0.0f));
+                        } else {
+                            animatorSet.playTogether(ObjectAnimator.ofFloat(articleViewer3.containerView, View.TRANSLATION_X, 0.0f), ObjectAnimator.ofFloat(this, ArticleViewer.ARTICLE_VIEWER_INNER_TRANSLATION_X, 0.0f));
+                        }
                     }
-                    animatorSet.setDuration(Math.max((int) ((200.0f / view.getMeasuredWidth()) * x), 50));
+                    animatorSet.setDuration(Math.max((int) ((420.0f / frameLayout.getMeasuredWidth()) * x), 250));
+                    animatorSet.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
                     animatorSet.addListener(new AnimatorListenerAdapter() {
                         @Override
                         public void onAnimationEnd(Animator animator) {
                             if (WindowView.this.movingPage) {
-                                ArticleViewer.this.listView[0].setBackgroundDrawable(null);
-                                if (!z) {
-                                    WebpageAdapter webpageAdapter = ArticleViewer.this.adapter[1];
-                                    ArticleViewer.this.adapter[1] = ArticleViewer.this.adapter[0];
-                                    ArticleViewer.this.adapter[0] = webpageAdapter;
-                                    RecyclerListView recyclerListView = ArticleViewer.this.listView[1];
-                                    ArticleViewer.this.listView[1] = ArticleViewer.this.listView[0];
-                                    ArticleViewer.this.listView[0] = recyclerListView;
-                                    LinearLayoutManager linearLayoutManager = ArticleViewer.this.layoutManager[1];
-                                    ArticleViewer.this.layoutManager[1] = ArticleViewer.this.layoutManager[0];
-                                    ArticleViewer.this.layoutManager[0] = linearLayoutManager;
-                                    ArticleViewer.this.pagesStack.remove(ArticleViewer.this.pagesStack.size() - 1);
-                                    ArticleViewer articleViewer = ArticleViewer.this;
-                                    articleViewer.textSelectionHelper.setParentView(articleViewer.listView[0]);
-                                    ArticleViewer articleViewer2 = ArticleViewer.this;
-                                    articleViewer2.textSelectionHelper.layoutManager = articleViewer2.layoutManager[0];
-                                    ArticleViewer.this.titleTextView.setText(ArticleViewer.this.adapter[0].currentPage.site_name == null ? "" : ArticleViewer.this.adapter[0].currentPage.site_name);
-                                    ArticleViewer.this.textSelectionHelper.clear(true);
-                                    ArticleViewer.this.headerView.invalidate();
+                                Object obj = null;
+                                ArticleViewer.this.pages[0].setBackgroundDrawable(null);
+                                if (!z2) {
+                                    ArticleViewer articleViewer4 = ArticleViewer.this;
+                                    PageLayout[] pageLayoutArr4 = articleViewer4.pages;
+                                    PageLayout pageLayout = pageLayoutArr4[1];
+                                    pageLayoutArr4[1] = pageLayoutArr4[0];
+                                    pageLayoutArr4[0] = pageLayout;
+                                    articleViewer4.actionBar.swap();
+                                    ArticleViewer.this.page0Background.set(ArticleViewer.this.pages[0].getBackgroundColor(), true);
+                                    ArticleViewer.this.page1Background.set(ArticleViewer.this.pages[1].getBackgroundColor(), true);
+                                    Sheet sheet7 = ArticleViewer.this.sheet;
+                                    if (sheet7 != null) {
+                                        sheet7.updateLastVisible();
+                                    }
+                                    ArrayList<Object> arrayList = ArticleViewer.this.pagesStack;
+                                    obj = arrayList.remove(arrayList.size() - 1);
+                                    ArticleViewer articleViewer5 = ArticleViewer.this;
+                                    articleViewer5.textSelectionHelper.setParentView(articleViewer5.pages[0].listView);
+                                    ArticleViewer articleViewer6 = ArticleViewer.this;
+                                    TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper = articleViewer6.textSelectionHelper;
+                                    articleTextSelectionHelper.layoutManager = articleViewer6.pages[0].layoutManager;
+                                    articleTextSelectionHelper.clear(true);
+                                    ArticleViewer.this.updateTitle(false);
+                                    ArticleViewer.this.updatePages();
                                 }
-                                ArticleViewer.this.listView[1].setVisibility(8);
-                                ArticleViewer.this.headerView.invalidate();
-                            } else if (!z) {
-                                ArticleViewer.this.saveCurrentPagePosition();
-                                ArticleViewer.this.onClosed();
+                                ArticleViewer.this.pages[1].cleanup();
+                                ArticleViewer.this.pages[1].setVisibility(8);
+                                if (obj instanceof CachedWeb) {
+                                    ((CachedWeb) obj).destroy();
+                                }
+                            } else if (!z2) {
+                                ArticleViewer articleViewer7 = ArticleViewer.this;
+                                Sheet sheet8 = articleViewer7.sheet;
+                                if (sheet8 == null) {
+                                    articleViewer7.saveCurrentPagePosition();
+                                    ArticleViewer.this.onClosed();
+                                } else {
+                                    sheet8.release();
+                                    ArticleViewer.this.destroy();
+                                }
                             }
                             WindowView.this.movingPage = false;
                             WindowView.this.startedTracking = false;
@@ -1172,7 +1337,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     ArticleViewer.this.textSelectionHelper.clear();
                 }
             }
-            return this.startedTracking;
+            return this.startedTracking && this.lastWebviewAllowedScroll;
         }
 
         @Override
@@ -1193,25 +1358,29 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
         @Override
         protected void onDraw(Canvas canvas) {
-            int measuredWidth = getMeasuredWidth();
-            float f = measuredWidth;
-            float measuredHeight = getMeasuredHeight();
-            canvas.drawRect(this.innerTranslationX, 0.0f, f, measuredHeight, ArticleViewer.this.backgroundPaint);
-            if (Build.VERSION.SDK_INT < 21 || ArticleViewer.this.lastInsets == null) {
-                return;
-            }
-            WindowInsets windowInsets = (WindowInsets) ArticleViewer.this.lastInsets;
-            canvas.drawRect(this.innerTranslationX, 0.0f, f, windowInsets.getSystemWindowInsetTop(), ArticleViewer.this.statusBarPaint);
-            if (ArticleViewer.this.hasCutout) {
-                int systemWindowInsetLeft = windowInsets.getSystemWindowInsetLeft();
-                if (systemWindowInsetLeft != 0) {
-                    canvas.drawRect(0.0f, 0.0f, systemWindowInsetLeft, measuredHeight, ArticleViewer.this.statusBarPaint);
+            int measuredHeight;
+            int systemWindowInsetRight;
+            if (ArticleViewer.this.sheet == null) {
+                int measuredWidth = getMeasuredWidth();
+                float f = measuredWidth;
+                float measuredHeight2 = getMeasuredHeight();
+                canvas.drawRect(this.innerTranslationX, 0.0f, f, measuredHeight2, ArticleViewer.this.backgroundPaint);
+                if (Build.VERSION.SDK_INT < 21 || ArticleViewer.this.lastInsets == null) {
+                    return;
                 }
-                if (windowInsets.getSystemWindowInsetRight() != 0) {
-                    canvas.drawRect(measuredWidth - r3, 0.0f, f, measuredHeight, ArticleViewer.this.statusBarPaint);
+                WindowInsets windowInsets = (WindowInsets) ArticleViewer.this.lastInsets;
+                canvas.drawRect(this.innerTranslationX, 0.0f, f, windowInsets.getSystemWindowInsetTop(), ArticleViewer.this.statusBarPaint);
+                if (ArticleViewer.this.hasCutout) {
+                    int systemWindowInsetLeft = windowInsets.getSystemWindowInsetLeft();
+                    if (systemWindowInsetLeft != 0) {
+                        canvas.drawRect(0.0f, 0.0f, systemWindowInsetLeft, measuredHeight2, ArticleViewer.this.statusBarPaint);
+                    }
+                    if (windowInsets.getSystemWindowInsetRight() != 0) {
+                        canvas.drawRect(measuredWidth - systemWindowInsetRight, 0.0f, f, measuredHeight2, ArticleViewer.this.statusBarPaint);
+                    }
                 }
+                canvas.drawRect(0.0f, measuredHeight - windowInsets.getStableInsetBottom(), f, measuredHeight2, ArticleViewer.this.navigationBarPaint);
             }
-            canvas.drawRect(0.0f, r1 - windowInsets.getStableInsetBottom(), f, measuredHeight, ArticleViewer.this.navigationBarPaint);
         }
 
         @Override
@@ -1236,11 +1405,21 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         @Override
         public boolean dispatchKeyEventPreIme(KeyEvent keyEvent) {
             if (keyEvent != null && keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1) {
-                if (ArticleViewer.this.searchField.isFocused()) {
-                    ArticleViewer.this.searchField.clearFocus();
-                    AndroidUtilities.hideKeyboard(ArticleViewer.this.searchField);
+                if (ArticleViewer.this.actionBar.searchEditText.isFocused()) {
+                    ArticleViewer.this.actionBar.searchEditText.clearFocus();
+                    AndroidUtilities.hideKeyboard(ArticleViewer.this.actionBar.searchEditText);
+                } else if (ArticleViewer.this.actionBar.addressEditText.isFocused()) {
+                    ArticleViewer.this.actionBar.addressEditText.clearFocus();
+                    AndroidUtilities.hideKeyboard(ArticleViewer.this.actionBar.addressEditText);
+                } else if (ArticleViewer.this.keyboardVisible) {
+                    AndroidUtilities.hideKeyboard(this);
                 } else {
-                    ArticleViewer.this.close(true, false);
+                    PageLayout[] pageLayoutArr = ArticleViewer.this.pages;
+                    if (pageLayoutArr[0] != null && pageLayoutArr[0].isWeb() && ArticleViewer.this.pages[0].getWebView() != null && ArticleViewer.this.pages[0].getWebView().canGoBack()) {
+                        ArticleViewer.this.pages[0].getWebView().goBack();
+                    } else {
+                        ArticleViewer.this.close(true, false);
+                    }
                 }
                 return true;
             }
@@ -1304,8 +1483,8 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             ArticleViewer.this.drawBlockSelection = true;
             ArticleViewer articleViewer5 = ArticleViewer.this;
             articleViewer5.showPopup(articleViewer5.pressedLinkOwnerView, 48, 0, dp);
-            ArticleViewer.this.listView[0].setLayoutFrozen(true);
-            ArticleViewer.this.listView[0].setLayoutFrozen(false);
+            ArticleViewer.this.pages[0].listView.setLayoutFrozen(true);
+            ArticleViewer.this.pages[0].listView.setLayoutFrozen(false);
         }
     }
 
@@ -1332,31 +1511,31 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         } else if (!z) {
             return;
         }
-        int color = Theme.getColor(Theme.key_windowBackgroundWhite);
-        webpageSearchPaint.setColor((((((float) Color.red(color)) * 0.2126f) + (((float) Color.green(color)) * 0.7152f)) + (((float) Color.blue(color)) * 0.0722f)) / 255.0f <= 0.705f ? -3041234 : -6551);
+        int themedColor = getThemedColor(Theme.key_windowBackgroundWhite);
+        webpageSearchPaint.setColor((((((float) Color.red(themedColor)) * 0.2126f) + (((float) Color.green(themedColor)) * 0.7152f)) + (((float) Color.blue(themedColor)) * 0.0722f)) / 255.0f <= 0.705f ? -3041234 : -6551);
         Paint paint3 = webpageUrlPaint;
         int i = Theme.key_windowBackgroundWhiteLinkSelection;
-        paint3.setColor(Theme.getColor(i) & 872415231);
+        paint3.setColor(getThemedColor(i) & 872415231);
         webpageUrlPaint.setPathEffect(LinkPath.getRoundedEffect());
-        urlPaint.setColor(Theme.getColor(i) & 872415231);
+        urlPaint.setColor(getThemedColor(i) & 872415231);
         urlPaint.setPathEffect(LinkPath.getRoundedEffect());
         Paint paint4 = tableHalfLinePaint;
         int i2 = Theme.key_windowBackgroundWhiteInputField;
-        paint4.setColor(Theme.getColor(i2));
-        tableLinePaint.setColor(Theme.getColor(i2));
+        paint4.setColor(getThemedColor(i2));
+        tableLinePaint.setColor(getThemedColor(i2));
         photoBackgroundPaint.setColor(AndroidUtilities.LIGHT_STATUS_BAR_OVERLAY);
-        dividerPaint.setColor(Theme.getColor(Theme.key_divider));
-        webpageMarkPaint.setColor(Theme.getColor(i) & 872415231);
+        dividerPaint.setColor(getThemedColor(Theme.key_divider));
+        webpageMarkPaint.setColor(getThemedColor(i) & 872415231);
         webpageMarkPaint.setPathEffect(LinkPath.getRoundedEffect());
-        int color2 = Theme.getColor(Theme.key_switchTrack);
-        int red = Color.red(color2);
-        int green = Color.green(color2);
-        int blue = Color.blue(color2);
+        int themedColor2 = getThemedColor(Theme.key_switchTrack);
+        int red = Color.red(themedColor2);
+        int green = Color.green(themedColor2);
+        int blue = Color.blue(themedColor2);
         tableStripPaint.setColor(Color.argb(20, red, green, blue));
         tableHeaderPaint.setColor(Color.argb(34, red, green, blue));
-        int color3 = Theme.getColor(i);
-        preformattedBackgroundPaint.setColor(Color.argb(20, Color.red(color3), Color.green(color3), Color.blue(color3)));
-        quoteLinePaint.setColor(Theme.getColor(Theme.key_chat_inReplyLine));
+        int themedColor3 = getThemedColor(i);
+        preformattedBackgroundPaint.setColor(Color.argb(20, Color.red(themedColor3), Color.green(themedColor3), Color.blue(themedColor3)));
+        quoteLinePaint.setColor(getThemedColor(Theme.key_chat_inReplyLine));
     }
 
     public void showCopyPopup(final String str) {
@@ -1395,41 +1574,45 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
     public void lambda$showCopyPopup$0(String str, DialogInterface dialogInterface, int i) {
         String str2;
-        if (this.parentActivity == null) {
-            return;
-        }
-        if (i != 0) {
-            if (i == 1) {
-                if (str.startsWith("mailto:")) {
-                    str = str.substring(7);
-                } else if (str.startsWith("tel:")) {
-                    str = str.substring(4);
-                }
-                AndroidUtilities.addToClipboard(str);
+        if (this.parentActivity != null) {
+            if (this.pages[0].adapter.currentPage == null) {
                 return;
             }
-            return;
-        }
-        int lastIndexOf = str.lastIndexOf(35);
-        if (lastIndexOf != -1) {
-            String lowerCase = !TextUtils.isEmpty(this.adapter[0].currentPage.cached_page.url) ? this.adapter[0].currentPage.cached_page.url.toLowerCase() : this.adapter[0].currentPage.url.toLowerCase();
-            try {
-                str2 = URLDecoder.decode(str.substring(lastIndexOf + 1), "UTF-8");
-            } catch (Exception unused) {
-                str2 = "";
-            }
-            if (str.toLowerCase().contains(lowerCase)) {
-                if (TextUtils.isEmpty(str2)) {
-                    this.layoutManager[0].scrollToPositionWithOffset(0, 0);
-                    checkScrollAnimated();
+            int i2 = 1;
+            if (i != 0) {
+                if (i == 1) {
+                    if (str.startsWith("mailto:")) {
+                        str = str.substring(7);
+                    } else if (str.startsWith("tel:")) {
+                        str = str.substring(4);
+                    }
+                    AndroidUtilities.addToClipboard(str);
                     return;
-                } else {
-                    scrollToAnchor(str2);
+                }
+                return;
+            }
+            int lastIndexOf = str.lastIndexOf(35);
+            if (lastIndexOf != -1) {
+                String lowerCase = !TextUtils.isEmpty(this.pages[0].adapter.currentPage.cached_page.url) ? this.pages[0].adapter.currentPage.cached_page.url.toLowerCase() : this.pages[0].adapter.currentPage.url.toLowerCase();
+                try {
+                    str2 = URLDecoder.decode(str.substring(lastIndexOf + 1), "UTF-8");
+                } catch (Exception unused) {
+                    str2 = "";
+                }
+                if (str.toLowerCase().contains(lowerCase)) {
+                    if (TextUtils.isEmpty(str2)) {
+                        LinearLayoutManager linearLayoutManager = this.pages[0].layoutManager;
+                        Sheet sheet = this.sheet;
+                        linearLayoutManager.scrollToPositionWithOffset((sheet == null || !sheet.halfSize()) ? 0 : 0, this.sheet != null ? AndroidUtilities.dp(32.0f) : 0);
+                        checkScrollAnimated();
+                        return;
+                    }
+                    scrollToAnchor(str2, false);
                     return;
                 }
             }
+            Browser.openUrl(this.parentActivity, str);
         }
-        Browser.openUrl(this.parentActivity, str);
     }
 
     public void lambda$showCopyPopup$1(DialogInterface dialogInterface) {
@@ -1466,7 +1649,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             this.popupLayout.setShownFromBottom(false);
             TextView textView = new TextView(this.parentActivity);
             this.deleteView = textView;
-            textView.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor(Theme.key_listSelector), 2));
+            textView.setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor(Theme.key_listSelector), 2));
             this.deleteView.setGravity(16);
             this.deleteView.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
             this.deleteView.setTextSize(1, 15.0f);
@@ -1495,10 +1678,10 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 }
             });
         }
-        this.deleteView.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem));
+        this.deleteView.setTextColor(getThemedColor(Theme.key_actionBarDefaultSubmenuItem));
         ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout2 = this.popupLayout;
         if (actionBarPopupWindowLayout2 != null) {
-            actionBarPopupWindowLayout2.setBackgroundColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuBackground));
+            actionBarPopupWindowLayout2.setBackgroundColor(getThemedColor(Theme.key_actionBarDefaultSubmenuBackground));
         }
         this.popupLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE));
         this.popupWindow.setFocusable(true);
@@ -1508,14 +1691,14 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
     public boolean lambda$showPopup$2(View view, MotionEvent motionEvent) {
         ActionBarPopupWindow actionBarPopupWindow;
-        if (motionEvent.getActionMasked() != 0 || (actionBarPopupWindow = this.popupWindow) == null || !actionBarPopupWindow.isShowing()) {
+        if (motionEvent.getActionMasked() == 0 && (actionBarPopupWindow = this.popupWindow) != null && actionBarPopupWindow.isShowing()) {
+            view.getHitRect(this.popupRect);
+            if (this.popupRect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                return false;
+            }
+            this.popupWindow.dismiss();
             return false;
         }
-        view.getHitRect(this.popupRect);
-        if (this.popupRect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-            return false;
-        }
-        this.popupWindow.dismiss();
         return false;
     }
 
@@ -1560,22 +1743,22 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             if (blockCaption2 instanceof TLRPC$TL_textEmpty) {
                 blockCaption2 = null;
             }
-            if (blockCaption != null && blockCaption2 == null) {
-                return blockCaption;
-            }
-            if (blockCaption == null && blockCaption2 != null) {
+            if (blockCaption == null || blockCaption2 != null) {
+                if (blockCaption != null || blockCaption2 == null) {
+                    if (blockCaption == null || blockCaption2 == null) {
+                        return null;
+                    }
+                    TLRPC$TL_textPlain tLRPC$TL_textPlain = new TLRPC$TL_textPlain();
+                    tLRPC$TL_textPlain.text = " ";
+                    TLRPC$TL_textConcat tLRPC$TL_textConcat = new TLRPC$TL_textConcat();
+                    tLRPC$TL_textConcat.texts.add(blockCaption);
+                    tLRPC$TL_textConcat.texts.add(tLRPC$TL_textPlain);
+                    tLRPC$TL_textConcat.texts.add(blockCaption2);
+                    return tLRPC$TL_textConcat;
+                }
                 return blockCaption2;
             }
-            if (blockCaption == null || blockCaption2 == null) {
-                return null;
-            }
-            TLRPC$TL_textPlain tLRPC$TL_textPlain = new TLRPC$TL_textPlain();
-            tLRPC$TL_textPlain.text = " ";
-            TLRPC$TL_textConcat tLRPC$TL_textConcat = new TLRPC$TL_textConcat();
-            tLRPC$TL_textConcat.texts.add(blockCaption);
-            tLRPC$TL_textConcat.texts.add(tLRPC$TL_textPlain);
-            tLRPC$TL_textConcat.texts.add(blockCaption2);
-            return tLRPC$TL_textConcat;
+            return blockCaption;
         }
         if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockEmbedPost) {
             TLRPC$TL_pageBlockEmbedPost tLRPC$TL_pageBlockEmbedPost = (TLRPC$TL_pageBlockEmbedPost) tLRPC$PageBlock;
@@ -1617,10 +1800,9 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             if (i == 1) {
                 return tLRPC$TL_pageBlockEmbed.caption.credit;
             }
+        } else if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockBlockquote) {
+            return ((TLRPC$TL_pageBlockBlockquote) tLRPC$PageBlock).caption;
         } else {
-            if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockBlockquote) {
-                return ((TLRPC$TL_pageBlockBlockquote) tLRPC$PageBlock).caption;
-            }
             if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockVideo) {
                 TLRPC$TL_pageBlockVideo tLRPC$TL_pageBlockVideo = (TLRPC$TL_pageBlockVideo) tLRPC$PageBlock;
                 if (i == 0) {
@@ -1629,10 +1811,9 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 if (i == 1) {
                     return tLRPC$TL_pageBlockVideo.caption.credit;
                 }
+            } else if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockPullquote) {
+                return ((TLRPC$TL_pageBlockPullquote) tLRPC$PageBlock).caption;
             } else {
-                if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockPullquote) {
-                    return ((TLRPC$TL_pageBlockPullquote) tLRPC$PageBlock).caption;
-                }
                 if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockAudio) {
                     TLRPC$TL_pageBlockAudio tLRPC$TL_pageBlockAudio = (TLRPC$TL_pageBlockAudio) tLRPC$PageBlock;
                     if (i == 0) {
@@ -1641,10 +1822,9 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     if (i == 1) {
                         return tLRPC$TL_pageBlockAudio.caption.credit;
                     }
+                } else if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockCover) {
+                    return getBlockCaption(((TLRPC$TL_pageBlockCover) tLRPC$PageBlock).cover, i);
                 } else {
-                    if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockCover) {
-                        return getBlockCaption(((TLRPC$TL_pageBlockCover) tLRPC$PageBlock).cover, i);
-                    }
                     if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockMap) {
                         TLRPC$TL_pageBlockMap tLRPC$TL_pageBlockMap = (TLRPC$TL_pageBlockMap) tLRPC$PageBlock;
                         if (i == 0) {
@@ -1664,12 +1844,12 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         if (view instanceof BlockListItemCell) {
             BlockListItemCell blockListItemCell = (BlockListItemCell) view;
             return blockListItemCell.blockLayout != null ? getLastNonListCell(blockListItemCell.blockLayout.itemView) : view;
-        }
-        if (!(view instanceof BlockOrderedListItemCell)) {
+        } else if (view instanceof BlockOrderedListItemCell) {
+            BlockOrderedListItemCell blockOrderedListItemCell = (BlockOrderedListItemCell) view;
+            return blockOrderedListItemCell.blockLayout != null ? getLastNonListCell(blockOrderedListItemCell.blockLayout.itemView) : view;
+        } else {
             return view;
         }
-        BlockOrderedListItemCell blockOrderedListItemCell = (BlockOrderedListItemCell) view;
-        return blockOrderedListItemCell.blockLayout != null ? getLastNonListCell(blockOrderedListItemCell.blockLayout.itemView) : view;
     }
 
     public boolean isListItemBlock(TLRPC$PageBlock tLRPC$PageBlock) {
@@ -1680,12 +1860,12 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         if (tLRPC$PageBlock instanceof TL_pageBlockListItem) {
             TL_pageBlockListItem tL_pageBlockListItem = (TL_pageBlockListItem) tLRPC$PageBlock;
             return tL_pageBlockListItem.blockItem != null ? getLastNonListPageBlock(tL_pageBlockListItem.blockItem) : tL_pageBlockListItem.blockItem;
-        }
-        if (!(tLRPC$PageBlock instanceof TL_pageBlockOrderedListItem)) {
+        } else if (tLRPC$PageBlock instanceof TL_pageBlockOrderedListItem) {
+            TL_pageBlockOrderedListItem tL_pageBlockOrderedListItem = (TL_pageBlockOrderedListItem) tLRPC$PageBlock;
+            return tL_pageBlockOrderedListItem.blockItem != null ? getLastNonListPageBlock(tL_pageBlockOrderedListItem.blockItem) : tL_pageBlockOrderedListItem.blockItem;
+        } else {
             return tLRPC$PageBlock;
         }
-        TL_pageBlockOrderedListItem tL_pageBlockOrderedListItem = (TL_pageBlockOrderedListItem) tLRPC$PageBlock;
-        return tL_pageBlockOrderedListItem.blockItem != null ? getLastNonListPageBlock(tL_pageBlockOrderedListItem.blockItem) : tL_pageBlockOrderedListItem.blockItem;
     }
 
     private boolean openAllParentBlocks(TL_pageBlockDetailsChild tL_pageBlockDetailsChild) {
@@ -1698,22 +1878,22 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             }
             tLRPC$TL_pageBlockDetails.open = true;
             return true;
-        }
-        if (!(lastNonListPageBlock instanceof TL_pageBlockDetailsChild)) {
+        } else if (!(lastNonListPageBlock instanceof TL_pageBlockDetailsChild)) {
             return false;
-        }
-        TL_pageBlockDetailsChild tL_pageBlockDetailsChild2 = (TL_pageBlockDetailsChild) lastNonListPageBlock;
-        TLRPC$PageBlock lastNonListPageBlock2 = getLastNonListPageBlock(tL_pageBlockDetailsChild2.block);
-        if (lastNonListPageBlock2 instanceof TLRPC$TL_pageBlockDetails) {
-            TLRPC$TL_pageBlockDetails tLRPC$TL_pageBlockDetails2 = (TLRPC$TL_pageBlockDetails) lastNonListPageBlock2;
-            if (!tLRPC$TL_pageBlockDetails2.open) {
-                tLRPC$TL_pageBlockDetails2.open = true;
-                z = true;
-                return !openAllParentBlocks(tL_pageBlockDetailsChild2) || z;
+        } else {
+            TL_pageBlockDetailsChild tL_pageBlockDetailsChild2 = (TL_pageBlockDetailsChild) lastNonListPageBlock;
+            TLRPC$PageBlock lastNonListPageBlock2 = getLastNonListPageBlock(tL_pageBlockDetailsChild2.block);
+            if (lastNonListPageBlock2 instanceof TLRPC$TL_pageBlockDetails) {
+                TLRPC$TL_pageBlockDetails tLRPC$TL_pageBlockDetails2 = (TLRPC$TL_pageBlockDetails) lastNonListPageBlock2;
+                if (!tLRPC$TL_pageBlockDetails2.open) {
+                    tLRPC$TL_pageBlockDetails2.open = true;
+                    z = true;
+                    return !openAllParentBlocks(tL_pageBlockDetailsChild2) || z;
+                }
             }
-        }
-        z = false;
-        if (openAllParentBlocks(tL_pageBlockDetailsChild2)) {
+            z = false;
+            if (openAllParentBlocks(tL_pageBlockDetailsChild2)) {
+            }
         }
     }
 
@@ -1721,12 +1901,12 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         if (tLRPC$PageBlock instanceof TL_pageBlockListItem) {
             ((TL_pageBlockListItem) tLRPC$PageBlock).blockItem = tLRPC$PageBlock2;
             return tLRPC$PageBlock;
-        }
-        if (!(tLRPC$PageBlock instanceof TL_pageBlockOrderedListItem)) {
+        } else if (tLRPC$PageBlock instanceof TL_pageBlockOrderedListItem) {
+            ((TL_pageBlockOrderedListItem) tLRPC$PageBlock).blockItem = tLRPC$PageBlock2;
+            return tLRPC$PageBlock;
+        } else {
             return tLRPC$PageBlock2;
         }
-        ((TL_pageBlockOrderedListItem) tLRPC$PageBlock).blockItem = tLRPC$PageBlock2;
-        return tLRPC$PageBlock;
     }
 
     public TLRPC$PageBlock wrapInTableBlock(TLRPC$PageBlock tLRPC$PageBlock, TLRPC$PageBlock tLRPC$PageBlock2) {
@@ -1736,169 +1916,479 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             tL_pageBlockListItem2.parent = tL_pageBlockListItem.parent;
             tL_pageBlockListItem2.blockItem = wrapInTableBlock(tL_pageBlockListItem.blockItem, tLRPC$PageBlock2);
             return tL_pageBlockListItem2;
-        }
-        if (!(tLRPC$PageBlock instanceof TL_pageBlockOrderedListItem)) {
+        } else if (tLRPC$PageBlock instanceof TL_pageBlockOrderedListItem) {
+            TL_pageBlockOrderedListItem tL_pageBlockOrderedListItem = (TL_pageBlockOrderedListItem) tLRPC$PageBlock;
+            TL_pageBlockOrderedListItem tL_pageBlockOrderedListItem2 = new TL_pageBlockOrderedListItem();
+            tL_pageBlockOrderedListItem2.parent = tL_pageBlockOrderedListItem.parent;
+            tL_pageBlockOrderedListItem2.blockItem = wrapInTableBlock(tL_pageBlockOrderedListItem.blockItem, tLRPC$PageBlock2);
+            return tL_pageBlockOrderedListItem2;
+        } else {
             return tLRPC$PageBlock2;
         }
-        TL_pageBlockOrderedListItem tL_pageBlockOrderedListItem = (TL_pageBlockOrderedListItem) tLRPC$PageBlock;
-        TL_pageBlockOrderedListItem tL_pageBlockOrderedListItem2 = new TL_pageBlockOrderedListItem();
-        tL_pageBlockOrderedListItem2.parent = tL_pageBlockOrderedListItem.parent;
-        tL_pageBlockOrderedListItem2.blockItem = wrapInTableBlock(tL_pageBlockOrderedListItem.blockItem, tLRPC$PageBlock2);
-        return tL_pageBlockOrderedListItem2;
     }
 
-    public void updateInterfaceForCurrentPage(TLRPC$WebPage tLRPC$WebPage, boolean z, int i) {
-        TLRPC$WebPage tLRPC$WebPage2;
+    public void updateInterfaceForCurrentPage(Object obj, boolean z, int i) {
         int i2;
         int dp;
-        if (tLRPC$WebPage == null || tLRPC$WebPage.cached_page == null) {
-            return;
-        }
-        if (!z && i != 0) {
-            WebpageAdapter[] webpageAdapterArr = this.adapter;
-            WebpageAdapter webpageAdapter = webpageAdapterArr[1];
-            webpageAdapterArr[1] = webpageAdapterArr[0];
-            webpageAdapterArr[0] = webpageAdapter;
-            RecyclerListView[] recyclerListViewArr = this.listView;
-            RecyclerListView recyclerListView = recyclerListViewArr[1];
-            recyclerListViewArr[1] = recyclerListViewArr[0];
-            recyclerListViewArr[0] = recyclerListView;
-            LinearLayoutManager[] linearLayoutManagerArr = this.layoutManager;
-            LinearLayoutManager linearLayoutManager = linearLayoutManagerArr[1];
-            linearLayoutManagerArr[1] = linearLayoutManagerArr[0];
-            linearLayoutManagerArr[0] = linearLayoutManager;
-            int indexOfChild = this.containerView.indexOfChild(recyclerListViewArr[0]);
-            int indexOfChild2 = this.containerView.indexOfChild(this.listView[1]);
-            if (i == 1) {
-                if (indexOfChild < indexOfChild2) {
-                    this.containerView.removeView(this.listView[0]);
-                    this.containerView.addView(this.listView[0], indexOfChild2);
+        Object obj2 = obj;
+        if (obj2 != null) {
+            if ((!(obj2 instanceof TLRPC$WebPage) || ((TLRPC$WebPage) obj2).cached_page == null) && !(obj2 instanceof CachedWeb)) {
+                return;
+            }
+            if (!z && i != 0) {
+                PageLayout[] pageLayoutArr = this.pages;
+                PageLayout pageLayout = pageLayoutArr[1];
+                pageLayoutArr[1] = pageLayoutArr[0];
+                pageLayoutArr[0] = pageLayout;
+                this.actionBar.swap();
+                this.page0Background.set(this.pages[0].getBackgroundColor(), true);
+                this.page1Background.set(this.pages[1].getBackgroundColor(), true);
+                Sheet sheet = this.sheet;
+                if (sheet != null) {
+                    sheet.updateLastVisible();
                 }
-            } else if (indexOfChild2 < indexOfChild) {
-                this.containerView.removeView(this.listView[0]);
-                this.containerView.addView(this.listView[0], indexOfChild);
-            }
-            this.pageSwitchAnimation = new AnimatorSet();
-            this.listView[0].setVisibility(0);
-            final int i3 = i == 1 ? 0 : 1;
-            this.listView[i3].setBackgroundColor(this.backgroundPaint.getColor());
-            if (Build.VERSION.SDK_INT >= 18) {
-                this.listView[i3].setLayerType(2, null);
-            }
-            if (i == 1) {
-                this.pageSwitchAnimation.playTogether(ObjectAnimator.ofFloat(this.listView[0], (Property<RecyclerListView, Float>) View.TRANSLATION_X, AndroidUtilities.dp(56.0f), 0.0f), ObjectAnimator.ofFloat(this.listView[0], (Property<RecyclerListView, Float>) View.ALPHA, 0.0f, 1.0f));
-            } else if (i == -1) {
-                this.listView[0].setAlpha(1.0f);
-                this.listView[0].setTranslationX(0.0f);
-                this.pageSwitchAnimation.playTogether(ObjectAnimator.ofFloat(this.listView[1], (Property<RecyclerListView, Float>) View.TRANSLATION_X, 0.0f, AndroidUtilities.dp(56.0f)), ObjectAnimator.ofFloat(this.listView[1], (Property<RecyclerListView, Float>) View.ALPHA, 1.0f, 0.0f));
-            }
-            this.pageSwitchAnimation.setDuration(150L);
-            this.pageSwitchAnimation.setInterpolator(this.interpolator);
-            this.pageSwitchAnimation.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    ArticleViewer.this.listView[1].setVisibility(8);
-                    ArticleViewer articleViewer = ArticleViewer.this;
-                    articleViewer.textSelectionHelper.setParentView(articleViewer.listView[0]);
-                    ArticleViewer articleViewer2 = ArticleViewer.this;
-                    articleViewer2.textSelectionHelper.layoutManager = articleViewer2.layoutManager[0];
-                    ArticleViewer.this.listView[i3].setBackgroundDrawable(null);
-                    if (Build.VERSION.SDK_INT >= 18) {
-                        ArticleViewer.this.listView[i3].setLayerType(0, null);
+                int indexOfChild = this.containerView.indexOfChild(this.pages[0]);
+                int indexOfChild2 = this.containerView.indexOfChild(this.pages[1]);
+                if (i == 1) {
+                    if (indexOfChild < indexOfChild2) {
+                        this.containerView.removeView(this.pages[0]);
+                        this.containerView.addView(this.pages[0], indexOfChild2);
                     }
-                    ArticleViewer.this.pageSwitchAnimation = null;
+                } else if (indexOfChild2 < indexOfChild) {
+                    this.containerView.removeView(this.pages[0]);
+                    this.containerView.addView(this.pages[0], indexOfChild);
                 }
-            });
-            this.pageSwitchAnimation.start();
-        }
-        if (!z) {
-            SimpleTextView simpleTextView = this.titleTextView;
-            String str = tLRPC$WebPage.site_name;
-            if (str == null) {
-                str = "";
-            }
-            simpleTextView.setText(str);
-            this.textSelectionHelper.clear(true);
-            this.headerView.invalidate();
-        }
-        if (z) {
-            ArrayList<TLRPC$WebPage> arrayList = this.pagesStack;
-            tLRPC$WebPage2 = arrayList.get(arrayList.size() - 2);
-        } else {
-            tLRPC$WebPage2 = tLRPC$WebPage;
-        }
-        this.adapter[z ? 1 : 0].isRtl = tLRPC$WebPage.cached_page.rtl;
-        this.adapter[z ? 1 : 0].cleanup();
-        this.adapter[z ? 1 : 0].currentPage = tLRPC$WebPage2;
-        int size = tLRPC$WebPage2.cached_page.blocks.size();
-        while (i2 < size) {
-            TLRPC$PageBlock tLRPC$PageBlock = tLRPC$WebPage2.cached_page.blocks.get(i2);
-            if (i2 == 0) {
-                tLRPC$PageBlock.first = true;
-                if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockCover) {
-                    TLRPC$TL_pageBlockCover tLRPC$TL_pageBlockCover = (TLRPC$TL_pageBlockCover) tLRPC$PageBlock;
-                    TLRPC$RichText blockCaption = getBlockCaption(tLRPC$TL_pageBlockCover, 0);
-                    TLRPC$RichText blockCaption2 = getBlockCaption(tLRPC$TL_pageBlockCover, 1);
-                    if (((blockCaption != null && !(blockCaption instanceof TLRPC$TL_textEmpty)) || (blockCaption2 != null && !(blockCaption2 instanceof TLRPC$TL_textEmpty))) && size > 1) {
-                        TLRPC$PageBlock tLRPC$PageBlock2 = tLRPC$WebPage2.cached_page.blocks.get(1);
-                        if (tLRPC$PageBlock2 instanceof TLRPC$TL_pageBlockChannel) {
-                            this.adapter[z ? 1 : 0].channelBlock = (TLRPC$TL_pageBlockChannel) tLRPC$PageBlock2;
+                this.pageSwitchAnimation = new AnimatorSet();
+                this.pages[0].setVisibility(0);
+                final int i3 = i == 1 ? 0 : 1;
+                this.pages[i3].setBackgroundColor(this.sheet == null ? 0 : this.backgroundPaint.getColor());
+                if (Build.VERSION.SDK_INT >= 18) {
+                    this.pages[i3].setLayerType(2, null);
+                }
+                if (i == 1) {
+                    this.pages[0].setTranslationX(AndroidUtilities.displaySize.x);
+                    this.pageSwitchAnimation.playTogether(ObjectAnimator.ofFloat(this.pages[0], View.TRANSLATION_X, AndroidUtilities.displaySize.x, 0.0f));
+                } else if (i == -1) {
+                    this.pages[0].setTranslationX(0.0f);
+                    this.pageSwitchAnimation.playTogether(ObjectAnimator.ofFloat(this.pages[1], View.TRANSLATION_X, 0.0f, AndroidUtilities.displaySize.x));
+                }
+                this.pageSwitchAnimation.setDuration(320L);
+                this.pageSwitchAnimation.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+                this.pageSwitchAnimation.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animator) {
+                        ArticleViewer.this.pages[1].cleanup();
+                        ArticleViewer.this.pages[1].setVisibility(8);
+                        ArticleViewer articleViewer = ArticleViewer.this;
+                        articleViewer.textSelectionHelper.setParentView(articleViewer.pages[0].listView);
+                        ArticleViewer articleViewer2 = ArticleViewer.this;
+                        TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper = articleViewer2.textSelectionHelper;
+                        PageLayout[] pageLayoutArr2 = articleViewer2.pages;
+                        articleTextSelectionHelper.layoutManager = pageLayoutArr2[0].layoutManager;
+                        pageLayoutArr2[i3].setBackgroundDrawable(null);
+                        if (Build.VERSION.SDK_INT >= 18) {
+                            ArticleViewer.this.pages[i3].setLayerType(0, null);
                         }
+                        ArticleViewer.this.pageSwitchAnimation = null;
+                        ArticleViewer.this.windowView.openingPage = false;
                     }
+                });
+                this.windowView.openingPage = true;
+                WebActionBar webActionBar = this.actionBar;
+                PageLayout[] pageLayoutArr2 = this.pages;
+                webActionBar.setMenuColors(pageLayoutArr2[0] != null ? pageLayoutArr2[0].getBackgroundColor() : getThemedColor(Theme.key_iv_ab_background));
+                WebActionBar webActionBar2 = this.actionBar;
+                PageLayout[] pageLayoutArr3 = this.pages;
+                webActionBar2.setColors(pageLayoutArr3[0] != null ? pageLayoutArr3[0].getActionBarColor() : getThemedColor(Theme.key_iv_ab_background), true);
+                AnimatorSet animatorSet = this.pageSwitchAnimation;
+                Objects.requireNonNull(animatorSet);
+                AndroidUtilities.runOnUIThread(new ArticleViewer$$ExternalSyntheticLambda23(animatorSet));
+            }
+            if (!z) {
+                this.textSelectionHelper.clear(true);
+            }
+            WebpageAdapter webpageAdapter = this.pages[z ? 1 : 0].adapter;
+            if (z) {
+                ArrayList<Object> arrayList = this.pagesStack;
+                obj2 = arrayList.get(arrayList.size() - 2);
+            }
+            this.pages[z ? 1 : 0].cleanup();
+            if (obj2 instanceof TLRPC$WebPage) {
+                TLRPC$WebPage tLRPC$WebPage = (TLRPC$WebPage) obj2;
+                this.pages[z ? 1 : 0].setWeb(null);
+                this.pages[z ? 1 : 0].setType(0);
+                webpageAdapter.isRtl = tLRPC$WebPage.cached_page.rtl;
+                webpageAdapter.currentPage = tLRPC$WebPage;
+                int size = tLRPC$WebPage.cached_page.blocks.size();
+                while (i2 < size) {
+                    TLRPC$PageBlock tLRPC$PageBlock = tLRPC$WebPage.cached_page.blocks.get(i2);
+                    if (i2 == 0) {
+                        tLRPC$PageBlock.first = true;
+                        if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockCover) {
+                            TLRPC$TL_pageBlockCover tLRPC$TL_pageBlockCover = (TLRPC$TL_pageBlockCover) tLRPC$PageBlock;
+                            TLRPC$RichText blockCaption = getBlockCaption(tLRPC$TL_pageBlockCover, 0);
+                            TLRPC$RichText blockCaption2 = getBlockCaption(tLRPC$TL_pageBlockCover, 1);
+                            if (((blockCaption != null && !(blockCaption instanceof TLRPC$TL_textEmpty)) || (blockCaption2 != null && !(blockCaption2 instanceof TLRPC$TL_textEmpty))) && size > 1) {
+                                TLRPC$PageBlock tLRPC$PageBlock2 = tLRPC$WebPage.cached_page.blocks.get(1);
+                                if (tLRPC$PageBlock2 instanceof TLRPC$TL_pageBlockChannel) {
+                                    webpageAdapter.channelBlock = (TLRPC$TL_pageBlockChannel) tLRPC$PageBlock2;
+                                }
+                            }
+                        }
+                    } else {
+                        i2 = (i2 == 1 && webpageAdapter.channelBlock != null) ? i2 + 1 : 0;
+                    }
+                    webpageAdapter.addBlock(webpageAdapter, tLRPC$PageBlock, 0, 0, i2 == size + (-1) ? i2 : 0);
                 }
-            } else {
-                i2 = (i2 == 1 && this.adapter[z ? 1 : 0].channelBlock != null) ? i2 + 1 : 0;
+                webpageAdapter.notifyDataSetChanged();
+                if (this.pagesStack.size() == 1 || i == -1) {
+                    SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("articles", 0);
+                    String str = "article" + tLRPC$WebPage.id;
+                    int i4 = sharedPreferences.getInt(str, -1);
+                    boolean z2 = sharedPreferences.getBoolean(str + "r", true);
+                    Point point = AndroidUtilities.displaySize;
+                    if (z2 == (point.x <= point.y ? 0 : 1)) {
+                        dp = sharedPreferences.getInt(str + "o", 0) - this.pages[z ? 1 : 0].listView.getPaddingTop();
+                    } else {
+                        dp = AndroidUtilities.dp(10.0f);
+                    }
+                    if (i4 != -1) {
+                        this.pages[z ? 1 : 0].layoutManager.scrollToPositionWithOffset(i4, dp);
+                    }
+                } else {
+                    LinearLayoutManager linearLayoutManager = this.pages[z ? 1 : 0].layoutManager;
+                    Sheet sheet2 = this.sheet;
+                    linearLayoutManager.scrollToPositionWithOffset((sheet2 == null || !sheet2.halfSize()) ? 0 : 0, this.sheet != null ? AndroidUtilities.dp(32.0f) : 0);
+                }
+            } else if (obj2 instanceof CachedWeb) {
+                this.pages[z ? 1 : 0].setType(1);
+                this.pages[z ? 1 : 0].scrollToTop(false);
+                this.pages[z ? 1 : 0].setWeb((CachedWeb) obj2);
             }
-            WebpageAdapter[] webpageAdapterArr2 = this.adapter;
-            webpageAdapterArr2[z ? 1 : 0].addBlock(webpageAdapterArr2[z ? 1 : 0], tLRPC$PageBlock, 0, 0, i2 == size + (-1) ? i2 : 0);
-        }
-        this.adapter[z ? 1 : 0].notifyDataSetChanged();
-        if (this.pagesStack.size() == 1 || i == -1) {
-            SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("articles", 0);
-            String str2 = "article" + tLRPC$WebPage2.id;
-            int i4 = sharedPreferences.getInt(str2, -1);
-            boolean z2 = sharedPreferences.getBoolean(str2 + "r", true);
-            Point point = AndroidUtilities.displaySize;
-            if (z2 == (point.x > point.y)) {
-                dp = sharedPreferences.getInt(str2 + "o", 0) - this.listView[z ? 1 : 0].getPaddingTop();
-            } else {
-                dp = AndroidUtilities.dp(10.0f);
+            if (!z) {
+                checkScrollAnimated();
             }
-            if (i4 != -1) {
-                this.layoutManager[z ? 1 : 0].scrollToPositionWithOffset(i4, dp);
-            }
-        } else {
-            this.layoutManager[z ? 1 : 0].scrollToPositionWithOffset(0, 0);
+            updateTitle(false);
+            updatePages();
         }
-        if (z) {
-            return;
+    }
+
+    public BotWebViewContainer.MyWebView getLastWebView() {
+        PageLayout[] pageLayoutArr = this.pages;
+        if (pageLayoutArr[0] == null || !pageLayoutArr[0].isWeb()) {
+            return null;
         }
-        checkScrollAnimated();
+        if (this.pages[0].getWebView() == null) {
+            this.pages[0].webViewContainer.checkCreateWebView();
+        }
+        return this.pages[0].getWebView();
     }
 
     private boolean addPageToStack(TLRPC$WebPage tLRPC$WebPage, String str, int i) {
         saveCurrentPagePosition();
         this.pagesStack.add(tLRPC$WebPage);
-        showSearch(false);
+        this.actionBar.showSearch(false, true);
         updateInterfaceForCurrentPage(tLRPC$WebPage, false, i);
-        return scrollToAnchor(str);
+        return scrollToAnchor(str, false);
     }
 
-    private boolean scrollToAnchor(String str) {
+    private boolean addPageToStack(String str, int i) {
+        saveCurrentPagePosition();
+        CachedWeb cachedWeb = new CachedWeb(this, str);
+        this.pagesStack.add(cachedWeb);
+        this.actionBar.showSearch(false, true);
+        updateInterfaceForCurrentPage(cachedWeb, false, i);
+        return false;
+    }
+
+    public void goBack() {
+        if (this.pagesStack.size() <= 1) {
+            this.windowView.movingPage = false;
+            this.windowView.startedTracking = false;
+            FrameLayout frameLayout = this.containerView;
+            Sheet sheet = this.sheet;
+            float backProgress = sheet != null ? sheet.getBackProgress() * this.sheet.windowView.getWidth() : frameLayout.getX();
+            AnimatorSet animatorSet = new AnimatorSet();
+            float measuredWidth = frameLayout.getMeasuredWidth() - backProgress;
+            Sheet sheet2 = this.sheet;
+            if (sheet2 != null) {
+                animatorSet.playTogether(sheet2.animateBackProgressTo(1.0f));
+            } else {
+                animatorSet.playTogether(ObjectAnimator.ofFloat(this.containerView, View.TRANSLATION_X, frameLayout.getMeasuredWidth()), ObjectAnimator.ofFloat(this.windowView, ARTICLE_VIEWER_INNER_TRANSLATION_X, frameLayout.getMeasuredWidth()));
+            }
+            animatorSet.setDuration(Math.max((int) ((420.0f / frameLayout.getMeasuredWidth()) * measuredWidth), 250));
+            animatorSet.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+            animatorSet.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    if (ArticleViewer.this.windowView.movingPage) {
+                        ArticleViewer.this.pages[0].setBackgroundDrawable(null);
+                        ArticleViewer articleViewer = ArticleViewer.this;
+                        PageLayout[] pageLayoutArr = articleViewer.pages;
+                        PageLayout pageLayout = pageLayoutArr[1];
+                        pageLayoutArr[1] = pageLayoutArr[0];
+                        pageLayoutArr[0] = pageLayout;
+                        articleViewer.actionBar.swap();
+                        ArticleViewer.this.page0Background.set(ArticleViewer.this.pages[0].getBackgroundColor(), true);
+                        ArticleViewer.this.page1Background.set(ArticleViewer.this.pages[1].getBackgroundColor(), true);
+                        Sheet sheet3 = ArticleViewer.this.sheet;
+                        if (sheet3 != null) {
+                            sheet3.updateLastVisible();
+                        }
+                        ArrayList<Object> arrayList = ArticleViewer.this.pagesStack;
+                        Object remove = arrayList.remove(arrayList.size() - 1);
+                        ArticleViewer articleViewer2 = ArticleViewer.this;
+                        articleViewer2.textSelectionHelper.setParentView(articleViewer2.pages[0].listView);
+                        ArticleViewer articleViewer3 = ArticleViewer.this;
+                        TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper = articleViewer3.textSelectionHelper;
+                        articleTextSelectionHelper.layoutManager = articleViewer3.pages[0].layoutManager;
+                        articleTextSelectionHelper.clear(true);
+                        ArticleViewer.this.updateTitle(false);
+                        ArticleViewer.this.updatePages();
+                        ArticleViewer.this.pages[1].cleanup();
+                        ArticleViewer.this.pages[1].setVisibility(8);
+                        if (remove instanceof CachedWeb) {
+                            ((CachedWeb) remove).destroy();
+                        }
+                    } else {
+                        ArticleViewer articleViewer4 = ArticleViewer.this;
+                        Sheet sheet4 = articleViewer4.sheet;
+                        if (sheet4 == null) {
+                            articleViewer4.saveCurrentPagePosition();
+                            ArticleViewer.this.onClosed();
+                        } else {
+                            sheet4.release();
+                            ArticleViewer.this.destroy();
+                        }
+                    }
+                    ArticleViewer.this.windowView.movingPage = false;
+                    ArticleViewer.this.windowView.startedTracking = false;
+                    ArticleViewer.this.closeAnimationInProgress = false;
+                }
+            });
+            animatorSet.start();
+            this.closeAnimationInProgress = true;
+            return;
+        }
+        this.windowView.openingPage = true;
+        this.pages[1].setVisibility(0);
+        this.pages[1].setAlpha(1.0f);
+        this.pages[1].setTranslationX(0.0f);
+        this.pages[0].setBackgroundColor(this.sheet == null ? 0 : this.backgroundPaint.getColor());
+        ArrayList<Object> arrayList = this.pagesStack;
+        updateInterfaceForCurrentPage(arrayList.get(arrayList.size() - 2), true, -1);
+        PageLayout pageLayout = this.pages[0];
+        pageLayout.getX();
+        AnimatorSet animatorSet2 = new AnimatorSet();
+        pageLayout.getMeasuredWidth();
+        animatorSet2.playTogether(ObjectAnimator.ofFloat(this.pages[0], View.TRANSLATION_X, pageLayout.getMeasuredWidth()));
+        animatorSet2.setDuration(420L);
+        animatorSet2.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+        animatorSet2.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                if (!ArticleViewer.this.windowView.openingPage) {
+                    ArticleViewer.this.saveCurrentPagePosition();
+                    ArticleViewer.this.onClosed();
+                } else {
+                    ArticleViewer.this.pages[0].setBackgroundDrawable(null);
+                    ArticleViewer articleViewer = ArticleViewer.this;
+                    PageLayout[] pageLayoutArr = articleViewer.pages;
+                    PageLayout pageLayout2 = pageLayoutArr[1];
+                    pageLayoutArr[1] = pageLayoutArr[0];
+                    pageLayoutArr[0] = pageLayout2;
+                    articleViewer.actionBar.swap();
+                    ArticleViewer.this.page0Background.set(ArticleViewer.this.pages[0].getBackgroundColor(), true);
+                    ArticleViewer.this.page1Background.set(ArticleViewer.this.pages[1].getBackgroundColor(), true);
+                    Sheet sheet3 = ArticleViewer.this.sheet;
+                    if (sheet3 != null) {
+                        sheet3.updateLastVisible();
+                    }
+                    ArrayList<Object> arrayList2 = ArticleViewer.this.pagesStack;
+                    Object remove = arrayList2.remove(arrayList2.size() - 1);
+                    ArticleViewer articleViewer2 = ArticleViewer.this;
+                    articleViewer2.textSelectionHelper.setParentView(articleViewer2.pages[0].listView);
+                    ArticleViewer articleViewer3 = ArticleViewer.this;
+                    TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper = articleViewer3.textSelectionHelper;
+                    articleTextSelectionHelper.layoutManager = articleViewer3.pages[0].layoutManager;
+                    articleTextSelectionHelper.clear(true);
+                    ArticleViewer.this.updateTitle(false);
+                    ArticleViewer.this.updatePages();
+                    ArticleViewer.this.pages[1].cleanup();
+                    ArticleViewer.this.pages[1].setVisibility(8);
+                    if (remove instanceof CachedWeb) {
+                        ((CachedWeb) remove).destroy();
+                    }
+                }
+                ArticleViewer.this.windowView.openingPage = false;
+                ArticleViewer.this.windowView.startedTracking = false;
+                ArticleViewer.this.closeAnimationInProgress = false;
+            }
+        });
+        animatorSet2.start();
+        WebActionBar webActionBar = this.actionBar;
+        PageLayout[] pageLayoutArr = this.pages;
+        webActionBar.setMenuColors(pageLayoutArr[0] != null ? pageLayoutArr[0].getBackgroundColor() : getThemedColor(Theme.key_iv_ab_background));
+        WebActionBar webActionBar2 = this.actionBar;
+        PageLayout[] pageLayoutArr2 = this.pages;
+        webActionBar2.setColors(pageLayoutArr2[0] != null ? pageLayoutArr2[0].getActionBarColor() : getThemedColor(Theme.key_iv_ab_background), true);
+        this.closeAnimationInProgress = true;
+    }
+
+    public void lambda$setParentActivity$25(final int i) {
+        if (this.pagesStack.size() <= 1) {
+            this.windowView.movingPage = false;
+            this.windowView.startedTracking = false;
+            FrameLayout frameLayout = this.containerView;
+            Sheet sheet = this.sheet;
+            float backProgress = sheet != null ? sheet.getBackProgress() * this.sheet.windowView.getWidth() : frameLayout.getX();
+            AnimatorSet animatorSet = new AnimatorSet();
+            float measuredWidth = frameLayout.getMeasuredWidth() - backProgress;
+            Sheet sheet2 = this.sheet;
+            if (sheet2 != null) {
+                animatorSet.playTogether(sheet2.animateBackProgressTo(1.0f));
+            } else {
+                animatorSet.playTogether(ObjectAnimator.ofFloat(this.containerView, View.TRANSLATION_X, frameLayout.getMeasuredWidth()), ObjectAnimator.ofFloat(this.windowView, ARTICLE_VIEWER_INNER_TRANSLATION_X, frameLayout.getMeasuredWidth()));
+            }
+            animatorSet.setDuration(Math.max((int) ((420.0f / frameLayout.getMeasuredWidth()) * measuredWidth), 250));
+            animatorSet.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+            animatorSet.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    if (ArticleViewer.this.windowView.movingPage) {
+                        ArticleViewer.this.pages[0].setBackgroundDrawable(null);
+                        ArticleViewer articleViewer = ArticleViewer.this;
+                        PageLayout[] pageLayoutArr = articleViewer.pages;
+                        PageLayout pageLayout = pageLayoutArr[1];
+                        pageLayoutArr[1] = pageLayoutArr[0];
+                        pageLayoutArr[0] = pageLayout;
+                        articleViewer.actionBar.swap();
+                        ArticleViewer.this.page0Background.set(ArticleViewer.this.pages[0].getBackgroundColor(), true);
+                        ArticleViewer.this.page1Background.set(ArticleViewer.this.pages[1].getBackgroundColor(), true);
+                        Sheet sheet3 = ArticleViewer.this.sheet;
+                        if (sheet3 != null) {
+                            sheet3.updateLastVisible();
+                        }
+                        ArrayList<Object> arrayList = ArticleViewer.this.pagesStack;
+                        Object remove = arrayList.remove(arrayList.size() - 1);
+                        ArticleViewer articleViewer2 = ArticleViewer.this;
+                        articleViewer2.textSelectionHelper.setParentView(articleViewer2.pages[0].listView);
+                        ArticleViewer articleViewer3 = ArticleViewer.this;
+                        TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper = articleViewer3.textSelectionHelper;
+                        articleTextSelectionHelper.layoutManager = articleViewer3.pages[0].layoutManager;
+                        articleTextSelectionHelper.clear(true);
+                        ArticleViewer.this.updateTitle(false);
+                        ArticleViewer.this.updatePages();
+                        ArticleViewer.this.pages[1].cleanup();
+                        ArticleViewer.this.pages[1].setVisibility(8);
+                        if (remove instanceof CachedWeb) {
+                            ((CachedWeb) remove).destroy();
+                        }
+                    } else {
+                        ArticleViewer articleViewer4 = ArticleViewer.this;
+                        Sheet sheet4 = articleViewer4.sheet;
+                        if (sheet4 == null) {
+                            articleViewer4.saveCurrentPagePosition();
+                            ArticleViewer.this.onClosed();
+                        } else {
+                            sheet4.release();
+                            ArticleViewer.this.destroy();
+                        }
+                    }
+                    ArticleViewer.this.windowView.movingPage = false;
+                    ArticleViewer.this.windowView.startedTracking = false;
+                    ArticleViewer.this.closeAnimationInProgress = false;
+                }
+            });
+            animatorSet.start();
+            this.closeAnimationInProgress = true;
+            return;
+        }
+        this.windowView.openingPage = true;
+        this.pages[1].setVisibility(0);
+        this.pages[1].setAlpha(1.0f);
+        this.pages[1].setTranslationX(0.0f);
+        this.pages[0].setBackgroundColor(this.sheet == null ? 0 : this.backgroundPaint.getColor());
+        updateInterfaceForCurrentPage(this.pagesStack.get(i), true, -1);
+        PageLayout pageLayout = this.pages[0];
+        pageLayout.getX();
+        AnimatorSet animatorSet2 = new AnimatorSet();
+        pageLayout.getMeasuredWidth();
+        animatorSet2.playTogether(ObjectAnimator.ofFloat(this.pages[0], View.TRANSLATION_X, pageLayout.getMeasuredWidth()));
+        animatorSet2.setDuration(420L);
+        animatorSet2.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+        animatorSet2.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                if (!ArticleViewer.this.windowView.openingPage) {
+                    ArticleViewer.this.saveCurrentPagePosition();
+                    ArticleViewer.this.onClosed();
+                } else {
+                    ArrayList arrayList = new ArrayList();
+                    ArticleViewer.this.pages[0].setBackgroundDrawable(null);
+                    ArticleViewer articleViewer = ArticleViewer.this;
+                    PageLayout[] pageLayoutArr = articleViewer.pages;
+                    PageLayout pageLayout2 = pageLayoutArr[1];
+                    pageLayoutArr[1] = pageLayoutArr[0];
+                    pageLayoutArr[0] = pageLayout2;
+                    articleViewer.actionBar.swap();
+                    ArticleViewer.this.page0Background.set(ArticleViewer.this.pages[0].getBackgroundColor(), true);
+                    ArticleViewer.this.page1Background.set(ArticleViewer.this.pages[1].getBackgroundColor(), true);
+                    Sheet sheet3 = ArticleViewer.this.sheet;
+                    if (sheet3 != null) {
+                        sheet3.updateLastVisible();
+                    }
+                    for (int size = ArticleViewer.this.pagesStack.size() - 1; size > i; size--) {
+                        arrayList.add(ArticleViewer.this.pagesStack.remove(size));
+                    }
+                    ArticleViewer articleViewer2 = ArticleViewer.this;
+                    articleViewer2.textSelectionHelper.setParentView(articleViewer2.pages[0].listView);
+                    ArticleViewer articleViewer3 = ArticleViewer.this;
+                    TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper = articleViewer3.textSelectionHelper;
+                    articleTextSelectionHelper.layoutManager = articleViewer3.pages[0].layoutManager;
+                    articleTextSelectionHelper.clear(true);
+                    ArticleViewer.this.updateTitle(false);
+                    ArticleViewer.this.updatePages();
+                    ArticleViewer.this.pages[1].cleanup();
+                    ArticleViewer.this.pages[1].setVisibility(8);
+                    Iterator it = arrayList.iterator();
+                    while (it.hasNext()) {
+                        Object next = it.next();
+                        if (next instanceof CachedWeb) {
+                            ((CachedWeb) next).destroy();
+                        }
+                    }
+                }
+                ArticleViewer.this.windowView.openingPage = false;
+                ArticleViewer.this.windowView.startedTracking = false;
+                ArticleViewer.this.closeAnimationInProgress = false;
+            }
+        });
+        animatorSet2.start();
+        WebActionBar webActionBar = this.actionBar;
+        PageLayout[] pageLayoutArr = this.pages;
+        webActionBar.setMenuColors(pageLayoutArr[0] != null ? pageLayoutArr[0].getBackgroundColor() : getThemedColor(Theme.key_iv_ab_background));
+        WebActionBar webActionBar2 = this.actionBar;
+        PageLayout[] pageLayoutArr2 = this.pages;
+        webActionBar2.setColors(pageLayoutArr2[0] != null ? pageLayoutArr2[0].getActionBarColor() : getThemedColor(Theme.key_iv_ab_background), true);
+        this.closeAnimationInProgress = true;
+    }
+
+    private boolean scrollToAnchor(String str, boolean z) {
         Integer num = 0;
         if (TextUtils.isEmpty(str)) {
             return false;
         }
         String lowerCase = str.toLowerCase();
-        Integer num2 = (Integer) this.adapter[0].anchors.get(lowerCase);
+        Integer num2 = (Integer) this.pages[0].adapter.anchors.get(lowerCase);
         if (num2 != null) {
-            TLRPC$TL_textAnchor tLRPC$TL_textAnchor = (TLRPC$TL_textAnchor) this.adapter[0].anchorsParent.get(lowerCase);
+            TLRPC$TL_textAnchor tLRPC$TL_textAnchor = (TLRPC$TL_textAnchor) this.pages[0].adapter.anchorsParent.get(lowerCase);
             if (tLRPC$TL_textAnchor != null) {
                 TLRPC$TL_pageBlockParagraph tLRPC$TL_pageBlockParagraph = new TLRPC$TL_pageBlockParagraph();
                 tLRPC$TL_pageBlockParagraph.text = tLRPC$TL_textAnchor.text;
-                int typeForBlock = this.adapter[0].getTypeForBlock(tLRPC$TL_pageBlockParagraph);
-                RecyclerView.ViewHolder onCreateViewHolder = this.adapter[0].onCreateViewHolder(null, typeForBlock);
-                this.adapter[0].bindBlockToHolder(typeForBlock, onCreateViewHolder, tLRPC$TL_pageBlockParagraph, 0, 0);
+                int typeForBlock = this.pages[0].adapter.getTypeForBlock(tLRPC$TL_pageBlockParagraph);
+                RecyclerView.ViewHolder onCreateViewHolder = this.pages[0].adapter.onCreateViewHolder(null, typeForBlock);
+                this.pages[0].adapter.bindBlockToHolder(typeForBlock, onCreateViewHolder, tLRPC$TL_pageBlockParagraph, 0, 0);
                 BottomSheet.Builder builder = new BottomSheet.Builder(this.parentActivity);
                 builder.setApplyTopPadding(false);
                 builder.setApplyBottomPadding(false);
@@ -1909,9 +2399,9 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 articleTextSelectionHelper.setParentView(linearLayout);
                 this.textSelectionHelperBottomSheet.setCallback(new TextSelectionHelper.Callback() {
                     @Override
-                    public void onStateChanged(boolean z) {
+                    public void onStateChanged(boolean z2) {
                         if (ArticleViewer.this.linkSheet != null) {
-                            ArticleViewer.this.linkSheet.setDisableScroll(z);
+                            ArticleViewer.this.linkSheet.setDisableScroll(z2);
                         }
                     }
                 });
@@ -1925,7 +2415,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 textView.setTextSize(1, 16.0f);
                 textView.setTypeface(AndroidUtilities.bold());
                 textView.setText(LocaleController.getString("InstantViewReference", R.string.InstantViewReference));
-                textView.setGravity((this.adapter[0].isRtl ? 5 : 3) | 16);
+                textView.setGravity((this.pages[0].adapter.isRtl ? 5 : 3) | 16);
                 textView.setTextColor(getTextColor());
                 textView.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
                 linearLayout.addView(textView, new LinearLayout.LayoutParams(-1, AndroidUtilities.dp(48.0f) + 1));
@@ -1979,25 +2469,25 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 BottomSheet create = builder.create();
                 this.linkSheet = create;
                 showDialog(create);
-            } else if (num2.intValue() >= 0 && num2.intValue() < this.adapter[0].blocks.size()) {
-                TLRPC$PageBlock tLRPC$PageBlock = (TLRPC$PageBlock) this.adapter[0].blocks.get(num2.intValue());
+            } else if (num2.intValue() >= 0 && num2.intValue() < this.pages[0].adapter.blocks.size()) {
+                TLRPC$PageBlock tLRPC$PageBlock = (TLRPC$PageBlock) this.pages[0].adapter.blocks.get(num2.intValue());
                 TLRPC$PageBlock lastNonListPageBlock = getLastNonListPageBlock(tLRPC$PageBlock);
                 if ((lastNonListPageBlock instanceof TL_pageBlockDetailsChild) && openAllParentBlocks((TL_pageBlockDetailsChild) lastNonListPageBlock)) {
-                    this.adapter[0].updateRows();
-                    this.adapter[0].notifyDataSetChanged();
+                    this.pages[0].adapter.updateRows();
+                    this.pages[0].adapter.notifyDataSetChanged();
                 }
-                int indexOf = this.adapter[0].localBlocks.indexOf(tLRPC$PageBlock);
+                int indexOf = this.pages[0].adapter.localBlocks.indexOf(tLRPC$PageBlock);
                 if (indexOf != -1) {
                     num2 = Integer.valueOf(indexOf);
                 }
-                Integer num3 = (Integer) this.adapter[0].anchorsOffset.get(lowerCase);
+                Integer num3 = (Integer) this.pages[0].adapter.anchorsOffset.get(lowerCase);
                 if (num3 != null) {
                     if (num3.intValue() == -1) {
-                        int typeForBlock2 = this.adapter[0].getTypeForBlock(tLRPC$PageBlock);
-                        RecyclerView.ViewHolder onCreateViewHolder2 = this.adapter[0].onCreateViewHolder(null, typeForBlock2);
-                        this.adapter[0].bindBlockToHolder(typeForBlock2, onCreateViewHolder2, tLRPC$PageBlock, 0, 0);
-                        onCreateViewHolder2.itemView.measure(View.MeasureSpec.makeMeasureSpec(this.listView[0].getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
-                        Integer num4 = (Integer) this.adapter[0].anchorsOffset.get(lowerCase);
+                        int typeForBlock2 = this.pages[0].adapter.getTypeForBlock(tLRPC$PageBlock);
+                        RecyclerView.ViewHolder onCreateViewHolder2 = this.pages[0].adapter.onCreateViewHolder(null, typeForBlock2);
+                        this.pages[0].adapter.bindBlockToHolder(typeForBlock2, onCreateViewHolder2, tLRPC$PageBlock, 0, 0);
+                        onCreateViewHolder2.itemView.measure(View.MeasureSpec.makeMeasureSpec(this.pages[0].listView.getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
+                        Integer num4 = (Integer) this.pages[0].adapter.anchorsOffset.get(lowerCase);
                         if (num4.intValue() != -1) {
                             num = num4;
                         }
@@ -2005,7 +2495,16 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                         num = num3;
                     }
                 }
-                this.layoutManager[0].scrollToPositionWithOffset(num2.intValue(), (this.currentHeaderHeight - AndroidUtilities.dp(56.0f)) - num.intValue());
+                if (z) {
+                    SmoothScroller smoothScroller = new SmoothScroller(this.pages[0].getContext());
+                    int intValue = num2.intValue();
+                    Sheet sheet = this.sheet;
+                    smoothScroller.setTargetPosition(intValue + ((sheet == null || !sheet.halfSize()) ? 0 : 1));
+                    smoothScroller.setOffset((this.currentHeaderHeight - AndroidUtilities.dp(56.0f)) - num.intValue());
+                    this.pages[0].layoutManager.startSmoothScroll(smoothScroller);
+                } else {
+                    this.pages[0].layoutManager.scrollToPositionWithOffset(num2.intValue(), (this.currentHeaderHeight - AndroidUtilities.dp(56.0f)) - num.intValue());
+                }
             }
             return true;
         }
@@ -2016,9 +2515,12 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         if (this.pagesStack.size() < 2) {
             return false;
         }
-        ArrayList<TLRPC$WebPage> arrayList = this.pagesStack;
-        arrayList.remove(arrayList.size() - 1);
-        ArrayList<TLRPC$WebPage> arrayList2 = this.pagesStack;
+        ArrayList<Object> arrayList = this.pagesStack;
+        Object remove = arrayList.remove(arrayList.size() - 1);
+        if (remove instanceof CachedWeb) {
+            ((CachedWeb) remove).destroy();
+        }
+        ArrayList<Object> arrayList2 = this.pagesStack;
         updateInterfaceForCurrentPage(arrayList2.get(arrayList2.size() - 1), false, -1);
         return true;
     }
@@ -2081,20 +2583,20 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 return getTextFlags(tLRPC$RichText.parentRichText) | LiteMode.FLAG_CALLS_ANIMATIONS;
             }
             return getTextFlags(tLRPC$RichText.parentRichText) | 8;
-        }
-        if (tLRPC$RichText instanceof TLRPC$TL_textSubscript) {
+        } else if (tLRPC$RichText instanceof TLRPC$TL_textSubscript) {
             return getTextFlags(tLRPC$RichText.parentRichText) | 128;
+        } else {
+            if (tLRPC$RichText instanceof TLRPC$TL_textSuperscript) {
+                return getTextFlags(tLRPC$RichText.parentRichText) | LiteMode.FLAG_CHAT_BLUR;
+            }
+            if (tLRPC$RichText instanceof TLRPC$TL_textMarked) {
+                return getTextFlags(tLRPC$RichText.parentRichText) | 64;
+            }
+            if (tLRPC$RichText != null) {
+                return getTextFlags(tLRPC$RichText.parentRichText);
+            }
+            return 0;
         }
-        if (tLRPC$RichText instanceof TLRPC$TL_textSuperscript) {
-            return getTextFlags(tLRPC$RichText.parentRichText) | LiteMode.FLAG_CHAT_BLUR;
-        }
-        if (tLRPC$RichText instanceof TLRPC$TL_textMarked) {
-            return getTextFlags(tLRPC$RichText.parentRichText) | 64;
-        }
-        if (tLRPC$RichText != null) {
-            return getTextFlags(tLRPC$RichText.parentRichText);
-        }
-        return 0;
     }
 
     private TLRPC$RichText getLastRichText(TLRPC$RichText tLRPC$RichText) {
@@ -2125,17 +2627,17 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         if (tLRPC$RichText instanceof TLRPC$TL_textAnchor) {
             getLastRichText(((TLRPC$TL_textAnchor) tLRPC$RichText).text);
             return tLRPC$RichText;
-        }
-        if (tLRPC$RichText instanceof TLRPC$TL_textSubscript) {
+        } else if (tLRPC$RichText instanceof TLRPC$TL_textSubscript) {
             return getLastRichText(((TLRPC$TL_textSubscript) tLRPC$RichText).text);
+        } else {
+            if (tLRPC$RichText instanceof TLRPC$TL_textSuperscript) {
+                return getLastRichText(((TLRPC$TL_textSuperscript) tLRPC$RichText).text);
+            }
+            if (tLRPC$RichText instanceof TLRPC$TL_textMarked) {
+                return getLastRichText(((TLRPC$TL_textMarked) tLRPC$RichText).text);
+            }
+            return tLRPC$RichText instanceof TLRPC$TL_textPhone ? getLastRichText(((TLRPC$TL_textPhone) tLRPC$RichText).text) : tLRPC$RichText;
         }
-        if (tLRPC$RichText instanceof TLRPC$TL_textSuperscript) {
-            return getLastRichText(((TLRPC$TL_textSuperscript) tLRPC$RichText).text);
-        }
-        if (tLRPC$RichText instanceof TLRPC$TL_textMarked) {
-            return getLastRichText(((TLRPC$TL_textMarked) tLRPC$RichText).text);
-        }
-        return tLRPC$RichText instanceof TLRPC$TL_textPhone ? getLastRichText(((TLRPC$TL_textPhone) tLRPC$RichText).text) : tLRPC$RichText;
     }
 
     public CharSequence getText(WebpageAdapter webpageAdapter, View view, TLRPC$RichText tLRPC$RichText, TLRPC$RichText tLRPC$RichText2, TLRPC$PageBlock tLRPC$PageBlock, int i) {
@@ -2147,6 +2649,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         int i3;
         Object textPaintUrlSpan;
         Object textPaintUrlSpan2;
+        TextPaint textPaint = null;
         if (tLRPC$RichText2 == null) {
             return null;
         }
@@ -2169,7 +2672,10 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(getText(tLRPC$WebPage, view, tLRPC$RichText, ((TLRPC$TL_textEmail) tLRPC$RichText2).text, tLRPC$PageBlock, i));
             MetricAffectingSpan[] metricAffectingSpanArr = (MetricAffectingSpan[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), MetricAffectingSpan.class);
             if (spannableStringBuilder.length() != 0) {
-                spannableStringBuilder.setSpan(new TextPaintUrlSpan((metricAffectingSpanArr == null || metricAffectingSpanArr.length == 0) ? getTextPaint(tLRPC$RichText, tLRPC$RichText2, tLRPC$PageBlock) : null, "mailto:" + getUrl(tLRPC$RichText2)), 0, spannableStringBuilder.length(), 33);
+                if (metricAffectingSpanArr == null || metricAffectingSpanArr.length == 0) {
+                    textPaint = getTextPaint(tLRPC$RichText, tLRPC$RichText2, tLRPC$PageBlock);
+                }
+                spannableStringBuilder.setSpan(new TextPaintUrlSpan(textPaint, "mailto:" + getUrl(tLRPC$RichText2)), 0, spannableStringBuilder.length(), 33);
             }
             return spannableStringBuilder;
         }
@@ -2178,120 +2684,121 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             TLRPC$TL_textUrl tLRPC$TL_textUrl = (TLRPC$TL_textUrl) tLRPC$RichText2;
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(getText(tLRPC$WebPage, view, tLRPC$RichText, tLRPC$TL_textUrl.text, tLRPC$PageBlock, i));
             MetricAffectingSpan[] metricAffectingSpanArr2 = (MetricAffectingSpan[]) spannableStringBuilder2.getSpans(0, spannableStringBuilder2.length(), MetricAffectingSpan.class);
-            TextPaint textPaint = (metricAffectingSpanArr2 == null || metricAffectingSpanArr2.length == 0) ? getTextPaint(tLRPC$RichText, tLRPC$RichText2, tLRPC$PageBlock) : null;
+            TextPaint textPaint2 = (metricAffectingSpanArr2 == null || metricAffectingSpanArr2.length == 0) ? getTextPaint(tLRPC$RichText, tLRPC$RichText2, tLRPC$PageBlock) : null;
             if (tLRPC$TL_textUrl.webpage_id != 0) {
-                textPaintUrlSpan2 = new TextPaintWebpageUrlSpan(textPaint, getUrl(tLRPC$RichText2));
+                textPaintUrlSpan2 = new TextPaintWebpageUrlSpan(textPaint2, getUrl(tLRPC$RichText2));
             } else {
-                textPaintUrlSpan2 = new TextPaintUrlSpan(textPaint, getUrl(tLRPC$RichText2));
+                textPaintUrlSpan2 = new TextPaintUrlSpan(textPaint2, getUrl(tLRPC$RichText2));
             }
             if (spannableStringBuilder2.length() != 0) {
                 spannableStringBuilder2.setSpan(textPaintUrlSpan2, 0, spannableStringBuilder2.length(), 33);
             }
             return spannableStringBuilder2;
-        }
-        if (tLRPC$RichText2 instanceof TLRPC$TL_textPlain) {
+        } else if (tLRPC$RichText2 instanceof TLRPC$TL_textPlain) {
             return ((TLRPC$TL_textPlain) tLRPC$RichText2).text;
-        }
-        if (tLRPC$RichText2 instanceof TLRPC$TL_textAnchor) {
-            TLRPC$TL_textAnchor tLRPC$TL_textAnchor = (TLRPC$TL_textAnchor) tLRPC$RichText2;
-            SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(getText(tLRPC$WebPage, view, tLRPC$RichText, tLRPC$TL_textAnchor.text, tLRPC$PageBlock, i));
-            spannableStringBuilder3.setSpan(new AnchorSpan(tLRPC$TL_textAnchor.name), 0, spannableStringBuilder3.length(), 17);
-            return spannableStringBuilder3;
-        }
-        ?? r2 = "";
-        if (tLRPC$RichText2 instanceof TLRPC$TL_textEmpty) {
-            return "";
-        }
-        if (tLRPC$RichText2 instanceof TLRPC$TL_textConcat) {
-            SpannableStringBuilder spannableStringBuilder4 = new SpannableStringBuilder();
-            int size = tLRPC$RichText2.texts.size();
-            int i4 = 0;
-            while (i4 < size) {
-                TLRPC$RichText tLRPC$RichText3 = tLRPC$RichText2.texts.get(i4);
-                TLRPC$RichText lastRichText = getLastRichText(tLRPC$RichText3);
-                boolean z = i >= 0 && (tLRPC$RichText3 instanceof TLRPC$TL_textUrl) && ((TLRPC$TL_textUrl) tLRPC$RichText3).webpage_id != j;
-                if (z && spannableStringBuilder4.length() != 0 && spannableStringBuilder4.charAt(spannableStringBuilder4.length() - 1) != '\n') {
-                    spannableStringBuilder4.append((CharSequence) " ");
-                    spannableStringBuilder4.setSpan(new TextSelectionHelper.IgnoreCopySpannable(), spannableStringBuilder4.length() - 1, spannableStringBuilder4.length(), 33);
-                }
-                int i5 = i4;
-                int i6 = size;
-                CharSequence text = getText(tLRPC$WebPage, view, tLRPC$RichText, tLRPC$RichText3, tLRPC$PageBlock, i);
-                int textFlags = getTextFlags(lastRichText);
-                int length = spannableStringBuilder4.length();
-                spannableStringBuilder4.append(text);
-                if (textFlags != 0 && !(text instanceof SpannableStringBuilder)) {
-                    if ((textFlags & 8) != 0 || (textFlags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
-                        String url = getUrl(tLRPC$RichText3);
-                        if (url == null) {
-                            url = getUrl(tLRPC$RichText);
-                        }
-                        if ((textFlags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
-                            textPaintUrlSpan = new TextPaintWebpageUrlSpan(getTextPaint(tLRPC$RichText, lastRichText, tLRPC$PageBlock), url);
-                        } else {
-                            textPaintUrlSpan = new TextPaintUrlSpan(getTextPaint(tLRPC$RichText, lastRichText, tLRPC$PageBlock), url);
-                        }
-                        if (length != spannableStringBuilder4.length()) {
-                            spannableStringBuilder4.setSpan(textPaintUrlSpan, length, spannableStringBuilder4.length(), 33);
-                        }
-                    } else if (length != spannableStringBuilder4.length()) {
-                        spannableStringBuilder4.setSpan(new TextPaintSpan(getTextPaint(tLRPC$RichText, lastRichText, tLRPC$PageBlock)), length, spannableStringBuilder4.length(), 33);
+        } else {
+            if (tLRPC$RichText2 instanceof TLRPC$TL_textAnchor) {
+                TLRPC$TL_textAnchor tLRPC$TL_textAnchor = (TLRPC$TL_textAnchor) tLRPC$RichText2;
+                SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(getText(tLRPC$WebPage, view, tLRPC$RichText, tLRPC$TL_textAnchor.text, tLRPC$PageBlock, i));
+                spannableStringBuilder3.setSpan(new AnchorSpan(tLRPC$TL_textAnchor.name), 0, spannableStringBuilder3.length(), 17);
+                return spannableStringBuilder3;
+            }
+            ?? r2 = "";
+            if (tLRPC$RichText2 instanceof TLRPC$TL_textEmpty) {
+                return "";
+            }
+            if (tLRPC$RichText2 instanceof TLRPC$TL_textConcat) {
+                SpannableStringBuilder spannableStringBuilder4 = new SpannableStringBuilder();
+                int size = tLRPC$RichText2.texts.size();
+                int i4 = 0;
+                while (i4 < size) {
+                    TLRPC$RichText tLRPC$RichText3 = tLRPC$RichText2.texts.get(i4);
+                    TLRPC$RichText lastRichText = getLastRichText(tLRPC$RichText3);
+                    boolean z = i >= 0 && (tLRPC$RichText3 instanceof TLRPC$TL_textUrl) && ((TLRPC$TL_textUrl) tLRPC$RichText3).webpage_id != j;
+                    if (z && spannableStringBuilder4.length() != 0 && spannableStringBuilder4.charAt(spannableStringBuilder4.length() - 1) != '\n') {
+                        spannableStringBuilder4.append((CharSequence) " ");
+                        spannableStringBuilder4.setSpan(new TextSelectionHelper.IgnoreCopySpannable(), spannableStringBuilder4.length() - 1, spannableStringBuilder4.length(), 33);
                     }
+                    int i5 = i4;
+                    int i6 = size;
+                    CharSequence text = getText(tLRPC$WebPage, view, tLRPC$RichText, tLRPC$RichText3, tLRPC$PageBlock, i);
+                    int textFlags = getTextFlags(lastRichText);
+                    int length = spannableStringBuilder4.length();
+                    spannableStringBuilder4.append(text);
+                    if (textFlags != 0 && !(text instanceof SpannableStringBuilder)) {
+                        if ((textFlags & 8) != 0 || (textFlags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+                            String url = getUrl(tLRPC$RichText3);
+                            if (url == null) {
+                                url = getUrl(tLRPC$RichText);
+                            }
+                            if ((textFlags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+                                textPaintUrlSpan = new TextPaintWebpageUrlSpan(getTextPaint(tLRPC$RichText, lastRichText, tLRPC$PageBlock), url);
+                            } else {
+                                textPaintUrlSpan = new TextPaintUrlSpan(getTextPaint(tLRPC$RichText, lastRichText, tLRPC$PageBlock), url);
+                            }
+                            if (length != spannableStringBuilder4.length()) {
+                                spannableStringBuilder4.setSpan(textPaintUrlSpan, length, spannableStringBuilder4.length(), 33);
+                            }
+                        } else if (length != spannableStringBuilder4.length()) {
+                            spannableStringBuilder4.setSpan(new TextPaintSpan(getTextPaint(tLRPC$RichText, lastRichText, tLRPC$PageBlock)), length, spannableStringBuilder4.length(), 33);
+                        }
+                    }
+                    if (z && i5 != i6 - 1) {
+                        spannableStringBuilder4.append((CharSequence) " ");
+                        spannableStringBuilder4.setSpan(new TextSelectionHelper.IgnoreCopySpannable(), spannableStringBuilder4.length() - 1, spannableStringBuilder4.length(), 33);
+                    }
+                    i4 = i5 + 1;
+                    size = i6;
+                    j = 0;
                 }
-                if (z && i5 != i6 - 1) {
-                    spannableStringBuilder4.append((CharSequence) " ");
-                    spannableStringBuilder4.setSpan(new TextSelectionHelper.IgnoreCopySpannable(), spannableStringBuilder4.length() - 1, spannableStringBuilder4.length(), 33);
+                return spannableStringBuilder4;
+            } else if (tLRPC$RichText2 instanceof TLRPC$TL_textSubscript) {
+                return getText(tLRPC$WebPage, view, tLRPC$RichText, ((TLRPC$TL_textSubscript) tLRPC$RichText2).text, tLRPC$PageBlock, i);
+            } else {
+                if (tLRPC$RichText2 instanceof TLRPC$TL_textSuperscript) {
+                    return getText(tLRPC$WebPage, view, tLRPC$RichText, ((TLRPC$TL_textSuperscript) tLRPC$RichText2).text, tLRPC$PageBlock, i);
                 }
-                i4 = i5 + 1;
-                size = i6;
-                j = 0;
-            }
-            return spannableStringBuilder4;
-        }
-        if (tLRPC$RichText2 instanceof TLRPC$TL_textSubscript) {
-            return getText(tLRPC$WebPage, view, tLRPC$RichText, ((TLRPC$TL_textSubscript) tLRPC$RichText2).text, tLRPC$PageBlock, i);
-        }
-        if (tLRPC$RichText2 instanceof TLRPC$TL_textSuperscript) {
-            return getText(tLRPC$WebPage, view, tLRPC$RichText, ((TLRPC$TL_textSuperscript) tLRPC$RichText2).text, tLRPC$PageBlock, i);
-        }
-        if (tLRPC$RichText2 instanceof TLRPC$TL_textMarked) {
-            SpannableStringBuilder spannableStringBuilder5 = new SpannableStringBuilder(getText(tLRPC$WebPage, view, tLRPC$RichText, ((TLRPC$TL_textMarked) tLRPC$RichText2).text, tLRPC$PageBlock, i));
-            MetricAffectingSpan[] metricAffectingSpanArr3 = (MetricAffectingSpan[]) spannableStringBuilder5.getSpans(0, spannableStringBuilder5.length(), MetricAffectingSpan.class);
-            if (spannableStringBuilder5.length() != 0) {
-                spannableStringBuilder5.setSpan(new TextPaintMarkSpan((metricAffectingSpanArr3 == null || metricAffectingSpanArr3.length == 0) ? getTextPaint(tLRPC$RichText, tLRPC$RichText2, tLRPC$PageBlock) : null), 0, spannableStringBuilder5.length(), 33);
-            }
-            return spannableStringBuilder5;
-        }
-        if (tLRPC$RichText2 instanceof TLRPC$TL_textPhone) {
-            SpannableStringBuilder spannableStringBuilder6 = new SpannableStringBuilder(getText(tLRPC$WebPage, view, tLRPC$RichText, ((TLRPC$TL_textPhone) tLRPC$RichText2).text, tLRPC$PageBlock, i));
-            MetricAffectingSpan[] metricAffectingSpanArr4 = (MetricAffectingSpan[]) spannableStringBuilder6.getSpans(0, spannableStringBuilder6.length(), MetricAffectingSpan.class);
-            if (spannableStringBuilder6.length() != 0) {
-                spannableStringBuilder6.setSpan(new TextPaintUrlSpan((metricAffectingSpanArr4 == null || metricAffectingSpanArr4.length == 0) ? getTextPaint(tLRPC$RichText, tLRPC$RichText2, tLRPC$PageBlock) : null, "tel:" + getUrl(tLRPC$RichText2)), 0, spannableStringBuilder6.length(), 33);
-            }
-            return spannableStringBuilder6;
-        }
-        if (tLRPC$RichText2 instanceof TLRPC$TL_textImage) {
-            TLRPC$Document documentWithId = WebPageUtils.getDocumentWithId(tLRPC$WebPage, ((TLRPC$TL_textImage) tLRPC$RichText2).document_id);
-            if (documentWithId != null) {
-                r2 = new SpannableStringBuilder("*");
-                int dp = AndroidUtilities.dp(r0.w);
-                int dp2 = AndroidUtilities.dp(r0.h);
-                int abs = Math.abs(i);
-                if (dp > abs) {
-                    i2 = (int) (dp2 * (abs / dp));
-                    i3 = abs;
+                if (tLRPC$RichText2 instanceof TLRPC$TL_textMarked) {
+                    SpannableStringBuilder spannableStringBuilder5 = new SpannableStringBuilder(getText(tLRPC$WebPage, view, tLRPC$RichText, ((TLRPC$TL_textMarked) tLRPC$RichText2).text, tLRPC$PageBlock, i));
+                    MetricAffectingSpan[] metricAffectingSpanArr3 = (MetricAffectingSpan[]) spannableStringBuilder5.getSpans(0, spannableStringBuilder5.length(), MetricAffectingSpan.class);
+                    if (spannableStringBuilder5.length() != 0) {
+                        spannableStringBuilder5.setSpan(new TextPaintMarkSpan((metricAffectingSpanArr3 == null || metricAffectingSpanArr3.length == 0) ? getTextPaint(tLRPC$RichText, tLRPC$RichText2, tLRPC$PageBlock) : null), 0, spannableStringBuilder5.length(), 33);
+                    }
+                    return spannableStringBuilder5;
+                } else if (tLRPC$RichText2 instanceof TLRPC$TL_textPhone) {
+                    SpannableStringBuilder spannableStringBuilder6 = new SpannableStringBuilder(getText(tLRPC$WebPage, view, tLRPC$RichText, ((TLRPC$TL_textPhone) tLRPC$RichText2).text, tLRPC$PageBlock, i));
+                    MetricAffectingSpan[] metricAffectingSpanArr4 = (MetricAffectingSpan[]) spannableStringBuilder6.getSpans(0, spannableStringBuilder6.length(), MetricAffectingSpan.class);
+                    if (spannableStringBuilder6.length() != 0) {
+                        TextPaint textPaint3 = (metricAffectingSpanArr4 == null || metricAffectingSpanArr4.length == 0) ? getTextPaint(tLRPC$RichText, tLRPC$RichText2, tLRPC$PageBlock) : null;
+                        spannableStringBuilder6.setSpan(new TextPaintUrlSpan(textPaint3, "tel:" + getUrl(tLRPC$RichText2)), 0, spannableStringBuilder6.length(), 33);
+                    }
+                    return spannableStringBuilder6;
+                } else if (tLRPC$RichText2 instanceof TLRPC$TL_textImage) {
+                    TLRPC$TL_textImage tLRPC$TL_textImage = (TLRPC$TL_textImage) tLRPC$RichText2;
+                    TLRPC$Document documentWithId = WebPageUtils.getDocumentWithId(tLRPC$WebPage, tLRPC$TL_textImage.document_id);
+                    if (documentWithId != null) {
+                        r2 = new SpannableStringBuilder("*");
+                        int dp = AndroidUtilities.dp(tLRPC$TL_textImage.w);
+                        int dp2 = AndroidUtilities.dp(tLRPC$TL_textImage.h);
+                        int abs = Math.abs(i);
+                        if (dp > abs) {
+                            i2 = (int) (dp2 * (abs / dp));
+                            i3 = abs;
+                        } else {
+                            i2 = dp2;
+                            i3 = dp;
+                        }
+                        if (view != null) {
+                            int themedColor = getThemedColor(Theme.key_windowBackgroundWhite);
+                            r2.setSpan(new TextPaintImageReceiverSpan(view, documentWithId, tLRPC$WebPage, i3, i2, false, (((((float) Color.red(themedColor)) * 0.2126f) + (((float) Color.green(themedColor)) * 0.7152f)) + (((float) Color.blue(themedColor)) * 0.0722f)) / 255.0f <= 0.705f), 0, r2.length(), 33);
+                        }
+                    }
+                    return r2;
                 } else {
-                    i2 = dp2;
-                    i3 = dp;
-                }
-                if (view != null) {
-                    int color = Theme.getColor(Theme.key_windowBackgroundWhite);
-                    r2.setSpan(new TextPaintImageReceiverSpan(view, documentWithId, tLRPC$WebPage, i3, i2, false, (((((float) Color.red(color)) * 0.2126f) + (((float) Color.green(color)) * 0.7152f)) + (((float) Color.blue(color)) * 0.0722f)) / 255.0f <= 0.705f), 0, r2.length(), 33);
+                    return "not supported " + tLRPC$RichText2;
                 }
             }
-            return r2;
         }
-        return "not supported " + tLRPC$RichText2;
     }
 
     public static CharSequence getPlainText(TLRPC$RichText tLRPC$RichText) {
@@ -2335,21 +2842,21 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 sb.append(getPlainText(tLRPC$RichText.texts.get(i)));
             }
             return sb;
-        }
-        if (tLRPC$RichText instanceof TLRPC$TL_textSubscript) {
+        } else if (tLRPC$RichText instanceof TLRPC$TL_textSubscript) {
             return getPlainText(((TLRPC$TL_textSubscript) tLRPC$RichText).text);
+        } else {
+            if (tLRPC$RichText instanceof TLRPC$TL_textSuperscript) {
+                return getPlainText(((TLRPC$TL_textSuperscript) tLRPC$RichText).text);
+            }
+            if (tLRPC$RichText instanceof TLRPC$TL_textMarked) {
+                return getPlainText(((TLRPC$TL_textMarked) tLRPC$RichText).text);
+            }
+            if (tLRPC$RichText instanceof TLRPC$TL_textPhone) {
+                return getPlainText(((TLRPC$TL_textPhone) tLRPC$RichText).text);
+            }
+            boolean z = tLRPC$RichText instanceof TLRPC$TL_textImage;
+            return "";
         }
-        if (tLRPC$RichText instanceof TLRPC$TL_textSuperscript) {
-            return getPlainText(((TLRPC$TL_textSuperscript) tLRPC$RichText).text);
-        }
-        if (tLRPC$RichText instanceof TLRPC$TL_textMarked) {
-            return getPlainText(((TLRPC$TL_textMarked) tLRPC$RichText).text);
-        }
-        if (tLRPC$RichText instanceof TLRPC$TL_textPhone) {
-            return getPlainText(((TLRPC$TL_textPhone) tLRPC$RichText).text);
-        }
-        boolean z = tLRPC$RichText instanceof TLRPC$TL_textImage;
-        return "";
     }
 
     public static String getUrl(TLRPC$RichText tLRPC$RichText) {
@@ -2381,15 +2888,15 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
     }
 
     public int getTextColor() {
-        return Theme.getColor(Theme.key_windowBackgroundWhiteBlackText);
+        return getThemedColor(Theme.key_windowBackgroundWhiteBlackText);
     }
 
     public int getLinkTextColor() {
-        return Theme.getColor(Theme.key_windowBackgroundWhiteLinkText);
+        return getThemedColor(Theme.key_windowBackgroundWhiteLinkText);
     }
 
-    private static int getGrayTextColor() {
-        return Theme.getColor(Theme.key_windowBackgroundWhiteGrayText);
+    public int getGrayTextColor() {
+        return getThemedColor(Theme.key_windowBackgroundWhiteGrayText);
     }
 
     private TextPaint getTextPaint(TLRPC$RichText tLRPC$RichText, TLRPC$RichText tLRPC$RichText2, TLRPC$PageBlock tLRPC$PageBlock) {
@@ -2677,6 +3184,45 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ArticleViewer.checkLayoutForLinks(org.telegram.ui.ArticleViewer$WebpageAdapter, android.view.MotionEvent, android.view.View, org.telegram.ui.ArticleViewer$DrawingText, int, int):boolean");
     }
 
+    public Browser.Progress makeProgress(final LinkSpanDrawable<TextPaintUrlSpan> linkSpanDrawable, final DrawingText drawingText) {
+        if (linkSpanDrawable == null) {
+            return null;
+        }
+        return new Browser.Progress() {
+            @Override
+            public void init() {
+                ArticleViewer.this.loadingText = drawingText;
+                ArticleViewer articleViewer = ArticleViewer.this;
+                DrawingText drawingText2 = drawingText;
+                articleViewer.loadingLinkView = drawingText2 != null ? drawingText2.latestParentView : null;
+                ArticleViewer.this.loadingLink = (TextPaintUrlSpan) linkSpanDrawable.getSpan();
+                ArticleViewer.this.links.removeLoading(ArticleViewer.this.loadingLinkDrawable, true);
+                DrawingText drawingText3 = drawingText;
+                if (drawingText3 != null) {
+                    ArticleViewer.this.loadingLinkDrawable = LinkSpanDrawable.LinkCollector.makeLoading(drawingText3.textLayout, linkSpanDrawable.getSpan(), 0.0f);
+                    int themedColor = ArticleViewer.this.getThemedColor(Theme.key_chat_linkSelectBackground);
+                    ArticleViewer.this.loadingLinkDrawable.setColors(Theme.multAlpha(themedColor, 0.8f), Theme.multAlpha(themedColor, 1.3f), Theme.multAlpha(themedColor, 1.0f), Theme.multAlpha(themedColor, 4.0f));
+                    ArticleViewer.this.loadingLinkDrawable.strokePaint.setStrokeWidth(AndroidUtilities.dpf2(1.25f));
+                    ArticleViewer.this.links.addLoading(ArticleViewer.this.loadingLinkDrawable, drawingText);
+                }
+                if (ArticleViewer.this.loadingLinkView != null) {
+                    ArticleViewer.this.loadingLinkView.invalidate();
+                }
+                super.init();
+            }
+
+            @Override
+            public void end() {
+                ArticleViewer.this.links.removeLoading(ArticleViewer.this.loadingLinkDrawable, true);
+                if (ArticleViewer.this.loadingLinkView != null) {
+                    ArticleViewer.this.loadingLinkView.invalidate();
+                }
+                ArticleViewer.this.loadingLink = null;
+                super.end();
+            }
+        };
+    }
+
     public void removePressedLink() {
         if (this.pressedLink == null && this.pressedLinkOwnerView == null) {
             return;
@@ -2691,37 +3237,85 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    public void openWebpageUrl(String str, final String str2) {
+    public void openWebpageUrl(String str, final String str2, final Browser.Progress progress) {
+        Sheet sheet;
+        Browser.Progress progress2 = this.loadingProgress;
+        if (progress2 != null) {
+            progress2.cancel();
+        }
+        this.loadingProgress = progress;
         if (this.openUrlReqId != 0) {
             ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.openUrlReqId, false);
             this.openUrlReqId = 0;
         }
-        final int i = this.lastReqId + 1;
-        this.lastReqId = i;
-        showProgressView(true, true);
-        final TLRPC$TL_messages_getWebPage tLRPC$TL_messages_getWebPage = new TLRPC$TL_messages_getWebPage();
-        tLRPC$TL_messages_getWebPage.url = str;
-        tLRPC$TL_messages_getWebPage.hash = 0;
-        this.openUrlReqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_getWebPage, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ArticleViewer.this.lambda$openWebpageUrl$7(i, str2, tLRPC$TL_messages_getWebPage, tLObject, tLRPC$TL_error);
+        boolean[] zArr = new boolean[1];
+        if (Browser.openInExternalApp(this.parentActivity, str, false)) {
+            if (!this.pagesStack.isEmpty() || (sheet = this.sheet) == null) {
+                return;
             }
-        });
+            sheet.dismiss(false);
+        } else if (Browser.isInternalUri(Uri.parse(str), zArr)) {
+            if (progress != null) {
+                progress.onEnd(new Runnable() {
+                    @Override
+                    public final void run() {
+                        ArticleViewer.this.lambda$openWebpageUrl$6();
+                    }
+                });
+            } else {
+                Sheet sheet2 = this.sheet;
+                if (sheet2 != null) {
+                    sheet2.dismiss(true);
+                }
+            }
+            Browser.openUrl(this.parentActivity, Uri.parse(str), true, true, false, progress, null, true);
+        } else {
+            final int i = this.lastReqId + 1;
+            this.lastReqId = i;
+            showProgressView(true, true);
+            final TLRPC$TL_messages_getWebPage tLRPC$TL_messages_getWebPage = new TLRPC$TL_messages_getWebPage();
+            tLRPC$TL_messages_getWebPage.url = str;
+            tLRPC$TL_messages_getWebPage.hash = 0;
+            this.openUrlReqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_getWebPage, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                    ArticleViewer.this.lambda$openWebpageUrl$8(i, progress, str2, tLRPC$TL_messages_getWebPage, tLObject, tLRPC$TL_error);
+                }
+            });
+            if (progress != null) {
+                progress.onCancel(new Runnable() {
+                    @Override
+                    public final void run() {
+                        ArticleViewer.this.lambda$openWebpageUrl$9(i);
+                    }
+                });
+                progress.init();
+            }
+        }
     }
 
-    public void lambda$openWebpageUrl$7(final int i, final String str, final TLRPC$TL_messages_getWebPage tLRPC$TL_messages_getWebPage, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$openWebpageUrl$6() {
+        Sheet sheet = this.sheet;
+        if (sheet != null) {
+            sheet.dismiss(true);
+        }
+    }
+
+    public void lambda$openWebpageUrl$8(final int i, final Browser.Progress progress, final String str, final TLRPC$TL_messages_getWebPage tLRPC$TL_messages_getWebPage, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ArticleViewer.this.lambda$openWebpageUrl$6(i, tLObject, str, tLRPC$TL_messages_getWebPage);
+                ArticleViewer.this.lambda$openWebpageUrl$7(i, progress, tLObject, str, tLRPC$TL_messages_getWebPage);
             }
         });
     }
 
-    public void lambda$openWebpageUrl$6(int i, TLObject tLObject, String str, TLRPC$TL_messages_getWebPage tLRPC$TL_messages_getWebPage) {
+    public void lambda$openWebpageUrl$7(int i, Browser.Progress progress, TLObject tLObject, String str, TLRPC$TL_messages_getWebPage tLRPC$TL_messages_getWebPage) {
         if (this.openUrlReqId == 0 || i != this.lastReqId) {
             return;
+        }
+        if (progress != null) {
+            progress.end();
         }
         this.openUrlReqId = 0;
         showProgressView(true, false);
@@ -2735,7 +3329,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     addPageToStack(tLRPC$WebPage, str, 1);
                     return;
                 } else {
-                    Browser.openUrl(this.parentActivity, tLRPC$TL_messages_getWebPage.url);
+                    addPageToStack(tLRPC$TL_messages_getWebPage.url, 1);
                     return;
                 }
             }
@@ -2746,8 +3340,16 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     return;
                 }
             }
-            Browser.openUrl(this.parentActivity, tLRPC$TL_messages_getWebPage.url);
+            addPageToStack(tLRPC$TL_messages_getWebPage.url, 1);
         }
+    }
+
+    public void lambda$openWebpageUrl$9(int i) {
+        if (this.lastReqId != i || this.openUrlReqId == 0) {
+            return;
+        }
+        ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.openUrlReqId, false);
+        this.openUrlReqId = 0;
     }
 
     @Override
@@ -2755,18 +3357,19 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         BlockAudioCell blockAudioCell;
         MessageObject messageObject;
         if (i == NotificationCenter.messagePlayingDidStart) {
-            if (this.listView == null) {
+            MessageObject messageObject2 = (MessageObject) objArr[0];
+            if (this.pages == null) {
                 return;
             }
             int i3 = 0;
             while (true) {
-                RecyclerListView[] recyclerListViewArr = this.listView;
-                if (i3 >= recyclerListViewArr.length) {
+                PageLayout[] pageLayoutArr = this.pages;
+                if (i3 >= pageLayoutArr.length) {
                     return;
                 }
-                int childCount = recyclerListViewArr[i3].getChildCount();
+                int childCount = pageLayoutArr[i3].listView.getChildCount();
                 for (int i4 = 0; i4 < childCount; i4++) {
-                    View childAt = this.listView[i3].getChildAt(i4);
+                    View childAt = this.pages[i3].listView.getChildAt(i4);
                     if (childAt instanceof BlockAudioCell) {
                         ((BlockAudioCell) childAt).updateButtonState(true);
                     }
@@ -2774,18 +3377,18 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 i3++;
             }
         } else if (i == NotificationCenter.messagePlayingDidReset || i == NotificationCenter.messagePlayingPlayStateChanged) {
-            if (this.listView == null) {
+            if (this.pages == null) {
                 return;
             }
             int i5 = 0;
             while (true) {
-                RecyclerListView[] recyclerListViewArr2 = this.listView;
-                if (i5 >= recyclerListViewArr2.length) {
+                PageLayout[] pageLayoutArr2 = this.pages;
+                if (i5 >= pageLayoutArr2.length) {
                     return;
                 }
-                int childCount2 = recyclerListViewArr2[i5].getChildCount();
+                int childCount2 = pageLayoutArr2[i5].listView.getChildCount();
                 for (int i6 = 0; i6 < childCount2; i6++) {
-                    View childAt2 = this.listView[i5].getChildAt(i6);
+                    View childAt2 = this.pages[i5].listView.getChildAt(i6);
                     if (childAt2 instanceof BlockAudioCell) {
                         BlockAudioCell blockAudioCell2 = (BlockAudioCell) childAt2;
                         if (blockAudioCell2.getMessageObject() != null) {
@@ -2795,25 +3398,22 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 }
                 i5++;
             }
-        } else {
-            if (i != NotificationCenter.messagePlayingProgressDidChanged) {
-                return;
-            }
+        } else if (i == NotificationCenter.messagePlayingProgressDidChanged) {
             Integer num = (Integer) objArr[0];
-            if (this.listView == null) {
+            if (this.pages == null) {
                 return;
             }
             int i7 = 0;
             while (true) {
-                RecyclerListView[] recyclerListViewArr3 = this.listView;
-                if (i7 >= recyclerListViewArr3.length) {
+                PageLayout[] pageLayoutArr3 = this.pages;
+                if (i7 >= pageLayoutArr3.length) {
                     return;
                 }
-                int childCount3 = recyclerListViewArr3[i7].getChildCount();
+                int childCount3 = pageLayoutArr3[i7].listView.getChildCount();
                 int i8 = 0;
                 while (true) {
                     if (i8 < childCount3) {
-                        View childAt3 = this.listView[i7].getChildAt(i8);
+                        View childAt3 = this.pages[i7].listView.getChildAt(i8);
                         if ((childAt3 instanceof BlockAudioCell) && (messageObject = (blockAudioCell = (BlockAudioCell) childAt3).getMessageObject()) != null && messageObject.getId() == num.intValue()) {
                             MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
                             if (playingMessageObject != null) {
@@ -2836,74 +3436,165 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         refreshThemeColors();
         updatePaintColors();
         if (this.windowView != null) {
-            this.listView[0].invalidateViews();
-            this.listView[1].invalidateViews();
+            this.pages[0].listView.invalidateViews();
+            this.pages[1].listView.invalidateViews();
             this.windowView.invalidate();
             this.searchPanel.invalidate();
             if (f == 1.0f) {
-                this.adapter[0].notifyDataSetChanged();
-                this.adapter[1].notifyDataSetChanged();
+                this.pages[0].adapter.notifyDataSetChanged();
+                this.pages[1].adapter.notifyDataSetChanged();
             }
         }
     }
 
     public void updatePaintSize() {
         for (int i = 0; i < 2; i++) {
-            this.adapter[i].notifyDataSetChanged();
+            this.pages[i].adapter.notifyDataSetChanged();
+            this.pages[i].adapter.resetCachedHeights();
         }
     }
 
     private void updatePaintFonts() {
+        int i = 0;
         ApplicationLoader.applicationContext.getSharedPreferences("articles", 0).edit().putInt("font_type", this.selectedFont).commit();
-        int i = this.selectedFont;
-        Typeface typeface = i == 0 ? Typeface.DEFAULT : Typeface.SERIF;
-        Typeface typeface2 = i == 0 ? AndroidUtilities.getTypeface("fonts/ritalic.ttf") : Typeface.create("serif", 2);
+        int i2 = this.selectedFont;
+        Typeface typeface = i2 == 0 ? Typeface.DEFAULT : Typeface.SERIF;
+        Typeface typeface2 = i2 == 0 ? AndroidUtilities.getTypeface("fonts/ritalic.ttf") : Typeface.create("serif", 2);
         Typeface bold = this.selectedFont == 0 ? AndroidUtilities.bold() : Typeface.create("serif", 1);
         Typeface typeface3 = this.selectedFont == 0 ? AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM_ITALIC) : Typeface.create("serif", 3);
-        for (int i2 = 0; i2 < quoteTextPaints.size(); i2++) {
-            updateFontEntry(quoteTextPaints.keyAt(i2), quoteTextPaints.valueAt(i2), typeface, typeface3, bold, typeface2);
+        int i3 = 0;
+        while (true) {
+            SparseArray<TextPaint> sparseArray = quoteTextPaints;
+            if (i3 >= sparseArray.size()) {
+                break;
+            }
+            updateFontEntry(sparseArray.keyAt(i3), sparseArray.valueAt(i3), typeface, typeface3, bold, typeface2);
+            i3++;
         }
-        for (int i3 = 0; i3 < preformattedTextPaints.size(); i3++) {
-            updateFontEntry(preformattedTextPaints.keyAt(i3), preformattedTextPaints.valueAt(i3), typeface, typeface3, bold, typeface2);
+        int i4 = 0;
+        while (true) {
+            SparseArray<TextPaint> sparseArray2 = preformattedTextPaints;
+            if (i4 >= sparseArray2.size()) {
+                break;
+            }
+            updateFontEntry(sparseArray2.keyAt(i4), sparseArray2.valueAt(i4), typeface, typeface3, bold, typeface2);
+            i4++;
         }
-        for (int i4 = 0; i4 < paragraphTextPaints.size(); i4++) {
-            updateFontEntry(paragraphTextPaints.keyAt(i4), paragraphTextPaints.valueAt(i4), typeface, typeface3, bold, typeface2);
+        int i5 = 0;
+        while (true) {
+            SparseArray<TextPaint> sparseArray3 = paragraphTextPaints;
+            if (i5 >= sparseArray3.size()) {
+                break;
+            }
+            updateFontEntry(sparseArray3.keyAt(i5), sparseArray3.valueAt(i5), typeface, typeface3, bold, typeface2);
+            i5++;
         }
-        for (int i5 = 0; i5 < listTextPaints.size(); i5++) {
-            updateFontEntry(listTextPaints.keyAt(i5), listTextPaints.valueAt(i5), typeface, typeface3, bold, typeface2);
+        int i6 = 0;
+        while (true) {
+            SparseArray<TextPaint> sparseArray4 = listTextPaints;
+            if (i6 >= sparseArray4.size()) {
+                break;
+            }
+            updateFontEntry(sparseArray4.keyAt(i6), sparseArray4.valueAt(i6), typeface, typeface3, bold, typeface2);
+            i6++;
         }
-        for (int i6 = 0; i6 < embedPostTextPaints.size(); i6++) {
-            updateFontEntry(embedPostTextPaints.keyAt(i6), embedPostTextPaints.valueAt(i6), typeface, typeface3, bold, typeface2);
+        int i7 = 0;
+        while (true) {
+            SparseArray<TextPaint> sparseArray5 = embedPostTextPaints;
+            if (i7 >= sparseArray5.size()) {
+                break;
+            }
+            updateFontEntry(sparseArray5.keyAt(i7), sparseArray5.valueAt(i7), typeface, typeface3, bold, typeface2);
+            i7++;
         }
-        for (int i7 = 0; i7 < mediaCaptionTextPaints.size(); i7++) {
-            updateFontEntry(mediaCaptionTextPaints.keyAt(i7), mediaCaptionTextPaints.valueAt(i7), typeface, typeface3, bold, typeface2);
+        int i8 = 0;
+        while (true) {
+            SparseArray<TextPaint> sparseArray6 = mediaCaptionTextPaints;
+            if (i8 >= sparseArray6.size()) {
+                break;
+            }
+            updateFontEntry(sparseArray6.keyAt(i8), sparseArray6.valueAt(i8), typeface, typeface3, bold, typeface2);
+            i8++;
         }
-        for (int i8 = 0; i8 < mediaCreditTextPaints.size(); i8++) {
-            updateFontEntry(mediaCreditTextPaints.keyAt(i8), mediaCreditTextPaints.valueAt(i8), typeface, typeface3, bold, typeface2);
+        int i9 = 0;
+        while (true) {
+            SparseArray<TextPaint> sparseArray7 = mediaCreditTextPaints;
+            if (i9 >= sparseArray7.size()) {
+                break;
+            }
+            updateFontEntry(sparseArray7.keyAt(i9), sparseArray7.valueAt(i9), typeface, typeface3, bold, typeface2);
+            i9++;
         }
-        for (int i9 = 0; i9 < photoCaptionTextPaints.size(); i9++) {
-            updateFontEntry(photoCaptionTextPaints.keyAt(i9), photoCaptionTextPaints.valueAt(i9), typeface, typeface3, bold, typeface2);
+        int i10 = 0;
+        while (true) {
+            SparseArray<TextPaint> sparseArray8 = photoCaptionTextPaints;
+            if (i10 >= sparseArray8.size()) {
+                break;
+            }
+            updateFontEntry(sparseArray8.keyAt(i10), sparseArray8.valueAt(i10), typeface, typeface3, bold, typeface2);
+            i10++;
         }
-        for (int i10 = 0; i10 < photoCreditTextPaints.size(); i10++) {
-            updateFontEntry(photoCreditTextPaints.keyAt(i10), photoCreditTextPaints.valueAt(i10), typeface, typeface3, bold, typeface2);
+        int i11 = 0;
+        while (true) {
+            SparseArray<TextPaint> sparseArray9 = photoCreditTextPaints;
+            if (i11 >= sparseArray9.size()) {
+                break;
+            }
+            updateFontEntry(sparseArray9.keyAt(i11), sparseArray9.valueAt(i11), typeface, typeface3, bold, typeface2);
+            i11++;
         }
-        for (int i11 = 0; i11 < authorTextPaints.size(); i11++) {
-            updateFontEntry(authorTextPaints.keyAt(i11), authorTextPaints.valueAt(i11), typeface, typeface3, bold, typeface2);
+        int i12 = 0;
+        while (true) {
+            SparseArray<TextPaint> sparseArray10 = authorTextPaints;
+            if (i12 >= sparseArray10.size()) {
+                break;
+            }
+            updateFontEntry(sparseArray10.keyAt(i12), sparseArray10.valueAt(i12), typeface, typeface3, bold, typeface2);
+            i12++;
         }
-        for (int i12 = 0; i12 < footerTextPaints.size(); i12++) {
-            updateFontEntry(footerTextPaints.keyAt(i12), footerTextPaints.valueAt(i12), typeface, typeface3, bold, typeface2);
+        int i13 = 0;
+        while (true) {
+            SparseArray<TextPaint> sparseArray11 = footerTextPaints;
+            if (i13 >= sparseArray11.size()) {
+                break;
+            }
+            updateFontEntry(sparseArray11.keyAt(i13), sparseArray11.valueAt(i13), typeface, typeface3, bold, typeface2);
+            i13++;
         }
-        for (int i13 = 0; i13 < embedPostCaptionTextPaints.size(); i13++) {
-            updateFontEntry(embedPostCaptionTextPaints.keyAt(i13), embedPostCaptionTextPaints.valueAt(i13), typeface, typeface3, bold, typeface2);
+        int i14 = 0;
+        while (true) {
+            SparseArray<TextPaint> sparseArray12 = embedPostCaptionTextPaints;
+            if (i14 >= sparseArray12.size()) {
+                break;
+            }
+            updateFontEntry(sparseArray12.keyAt(i14), sparseArray12.valueAt(i14), typeface, typeface3, bold, typeface2);
+            i14++;
         }
-        for (int i14 = 0; i14 < relatedArticleTextPaints.size(); i14++) {
-            updateFontEntry(relatedArticleTextPaints.keyAt(i14), relatedArticleTextPaints.valueAt(i14), typeface, typeface3, bold, typeface2);
+        int i15 = 0;
+        while (true) {
+            SparseArray<TextPaint> sparseArray13 = relatedArticleTextPaints;
+            if (i15 >= sparseArray13.size()) {
+                break;
+            }
+            updateFontEntry(sparseArray13.keyAt(i15), sparseArray13.valueAt(i15), typeface, typeface3, bold, typeface2);
+            i15++;
         }
-        for (int i15 = 0; i15 < detailsTextPaints.size(); i15++) {
-            updateFontEntry(detailsTextPaints.keyAt(i15), detailsTextPaints.valueAt(i15), typeface, typeface3, bold, typeface2);
+        int i16 = 0;
+        while (true) {
+            SparseArray<TextPaint> sparseArray14 = detailsTextPaints;
+            if (i16 >= sparseArray14.size()) {
+                break;
+            }
+            updateFontEntry(sparseArray14.keyAt(i16), sparseArray14.valueAt(i16), typeface, typeface3, bold, typeface2);
+            i16++;
         }
-        for (int i16 = 0; i16 < tableTextPaints.size(); i16++) {
-            updateFontEntry(tableTextPaints.keyAt(i16), tableTextPaints.valueAt(i16), typeface, typeface3, bold, typeface2);
+        while (true) {
+            SparseArray<TextPaint> sparseArray15 = tableTextPaints;
+            if (i >= sparseArray15.size()) {
+                return;
+            }
+            updateFontEntry(sparseArray15.keyAt(i), sparseArray15.valueAt(i), typeface, typeface3, bold, typeface2);
+            i++;
         }
     }
 
@@ -2911,31 +3602,18 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         int i2 = i & 1;
         if (i2 != 0 && (i & 2) != 0) {
             textPaint.setTypeface(typeface2);
-            return;
-        }
-        if (i2 != 0) {
+        } else if (i2 != 0) {
             textPaint.setTypeface(typeface3);
         } else if ((i & 2) != 0) {
             textPaint.setTypeface(typeface4);
+        } else if ((i & 4) != 0) {
         } else {
-            if ((i & 4) != 0) {
-                return;
-            }
             textPaint.setTypeface(typeface);
         }
     }
 
     private void updatePaintColors() {
-        this.backgroundPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-        int i = 0;
-        while (true) {
-            RecyclerListView[] recyclerListViewArr = this.listView;
-            if (i >= recyclerListViewArr.length) {
-                break;
-            }
-            recyclerListViewArr[i].setGlowColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-            i++;
-        }
+        this.backgroundPaint.setColor(getThemedColor(Theme.key_windowBackgroundWhite));
         TextPaint textPaint = listTextPointerPaint;
         if (textPaint != null) {
             textPaint.setColor(getTextColor());
@@ -3003,9 +3681,9 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    public void setParentActivity(Activity activity, BaseFragment baseFragment) {
+    public void setParentActivity(final Activity activity, BaseFragment baseFragment) {
         this.parentFragment = baseFragment;
-        int currentAccount = baseFragment != null ? baseFragment.getCurrentAccount() : UserConfig.selectedAccount;
+        int currentAccount = (baseFragment == null || (baseFragment instanceof EmptyBaseFragment)) ? UserConfig.selectedAccount : baseFragment.getCurrentAccount();
         this.currentAccount = currentAccount;
         NotificationCenter.getInstance(currentAccount).addObserver(this, NotificationCenter.messagePlayingProgressDidChanged);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.messagePlayingDidReset);
@@ -3031,8 +3709,8 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         this.windowView.setFocusable(false);
         FrameLayout frameLayout = new FrameLayout(activity) {
             @Override
-            protected boolean drawChild(android.graphics.Canvas r11, android.view.View r12, long r13) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ArticleViewer.AnonymousClass7.drawChild(android.graphics.Canvas, android.view.View, long):boolean");
+            protected boolean drawChild(android.graphics.Canvas r13, android.view.View r14, long r15) {
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ArticleViewer.AnonymousClass12.drawChild(android.graphics.Canvas, android.view.View, long):boolean");
             }
 
             @Override
@@ -3042,14 +3720,14 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         };
         this.containerView = frameLayout;
         this.windowView.addView(frameLayout, LayoutHelper.createFrame(-1, -1, 51));
-        if (Build.VERSION.SDK_INT >= 21) {
+        if (Build.VERSION.SDK_INT >= 21 && this.sheet == null) {
             this.windowView.setFitsSystemWindows(true);
             this.containerView.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
                 @Override
                 public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-                    WindowInsets lambda$setParentActivity$8;
-                    lambda$setParentActivity$8 = ArticleViewer.lambda$setParentActivity$8(view, windowInsets);
-                    return lambda$setParentActivity$8;
+                    WindowInsets lambda$setParentActivity$10;
+                    lambda$setParentActivity$10 = ArticleViewer.lambda$setParentActivity$10(view, windowInsets);
+                    return lambda$setParentActivity$10;
                 }
             });
         }
@@ -3064,91 +3742,28 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         this.fullscreenAspectRatioView.setBackgroundColor(-16777216);
         this.fullscreenVideoContainer.addView(this.fullscreenAspectRatioView, LayoutHelper.createFrame(-1, -1, 17));
         this.fullscreenTextureView = new TextureView(activity);
-        this.listView = new RecyclerListView[2];
-        this.adapter = new WebpageAdapter[2];
-        this.layoutManager = new LinearLayoutManager[2];
+        this.pages = new PageLayout[2];
         int i = 0;
-        while (i < this.listView.length) {
-            WebpageAdapter[] webpageAdapterArr = this.adapter;
-            final WebpageAdapter webpageAdapter = new WebpageAdapter(this.parentActivity);
-            webpageAdapterArr[i] = webpageAdapter;
-            this.listView[i] = new RecyclerListView(activity) {
-                @Override
-                protected void onLayout(boolean z, int i2, int i3, int i4, int i5) {
-                    super.onLayout(z, i2, i3, i4, i5);
-                    int childCount = getChildCount();
-                    for (int i6 = 0; i6 < childCount; i6++) {
-                        View childAt = getChildAt(i6);
-                        if ((childAt.getTag() instanceof Integer) && ((Integer) childAt.getTag()).intValue() == 90 && childAt.getBottom() < getMeasuredHeight()) {
-                            int measuredHeight = getMeasuredHeight();
-                            childAt.layout(0, measuredHeight - childAt.getMeasuredHeight(), childAt.getMeasuredWidth(), measuredHeight);
-                            return;
-                        }
-                    }
-                }
-
-                @Override
-                public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-                    if (ArticleViewer.this.pressedLinkOwnerLayout == null || ArticleViewer.this.pressedLink != null || ((ArticleViewer.this.popupWindow != null && ArticleViewer.this.popupWindow.isShowing()) || (motionEvent.getAction() != 1 && motionEvent.getAction() != 3))) {
-                        if (ArticleViewer.this.pressedLinkOwnerLayout != null && ArticleViewer.this.pressedLink != null && motionEvent.getAction() == 1) {
-                            ArticleViewer articleViewer = ArticleViewer.this;
-                            articleViewer.checkLayoutForLinks(webpageAdapter, motionEvent, articleViewer.pressedLinkOwnerView, ArticleViewer.this.pressedLinkOwnerLayout, 0, 0);
-                        }
-                    } else {
-                        ArticleViewer.this.pressedLink = null;
-                        ArticleViewer.this.pressedLinkOwnerLayout = null;
-                        ArticleViewer.this.pressedLinkOwnerView = null;
-                    }
-                    return super.onInterceptTouchEvent(motionEvent);
-                }
-
-                @Override
-                public boolean onTouchEvent(MotionEvent motionEvent) {
-                    if (ArticleViewer.this.pressedLinkOwnerLayout != null && ArticleViewer.this.pressedLink == null && ((ArticleViewer.this.popupWindow == null || !ArticleViewer.this.popupWindow.isShowing()) && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3))) {
-                        ArticleViewer.this.pressedLink = null;
-                        ArticleViewer.this.pressedLinkOwnerLayout = null;
-                        ArticleViewer.this.pressedLinkOwnerView = null;
-                    }
-                    return super.onTouchEvent(motionEvent);
-                }
-
-                @Override
-                public void setTranslationX(float f) {
-                    super.setTranslationX(f);
-                    if (ArticleViewer.this.windowView.movingPage) {
-                        ArticleViewer.this.containerView.invalidate();
-                        ArticleViewer articleViewer = ArticleViewer.this;
-                        articleViewer.setCurrentHeaderHeight((int) (articleViewer.windowView.startMovingHeaderHeight + ((AndroidUtilities.dp(56.0f) - ArticleViewer.this.windowView.startMovingHeaderHeight) * (f / getMeasuredWidth()))));
-                    }
-                }
-
-                @Override
-                protected void dispatchDraw(Canvas canvas) {
-                    ArticleViewer.this.checkVideoPlayer();
-                    super.dispatchDraw(canvas);
-                }
-            };
-            ((DefaultItemAnimator) this.listView[i].getItemAnimator()).setDelayAnimations(false);
-            RecyclerListView recyclerListView = this.listView[i];
-            LinearLayoutManager[] linearLayoutManagerArr = this.layoutManager;
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.parentActivity, 1, false);
-            linearLayoutManagerArr[i] = linearLayoutManager;
-            recyclerListView.setLayoutManager(linearLayoutManager);
-            this.listView[i].setAdapter(webpageAdapter);
-            this.listView[i].setClipToPadding(false);
-            this.listView[i].setVisibility(i == 0 ? 0 : 8);
-            this.listView[i].setPadding(0, AndroidUtilities.dp(56.0f), 0, 0);
-            this.listView[i].setTopGlowOffset(AndroidUtilities.dp(56.0f));
-            this.containerView.addView(this.listView[i], LayoutHelper.createFrame(-1, -1.0f));
-            this.listView[i].setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
+        while (true) {
+            PageLayout[] pageLayoutArr = this.pages;
+            if (i >= pageLayoutArr.length) {
+                break;
+            }
+            final PageLayout pageLayout = new PageLayout(activity, getResourcesProvider());
+            pageLayoutArr[i] = pageLayout;
+            pageLayout.setVisibility(i == 0 ? 0 : 8);
+            FrameLayout frameLayout3 = this.containerView;
+            Sheet sheet = this.sheet;
+            frameLayout3.addView(pageLayout, LayoutHelper.createFrame(-1, -1.0f, 119, 0.0f, (sheet == null || sheet.halfSize()) ? 0.0f : 56.0f, 0.0f, 0.0f));
+            pageLayout.listView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
                 @Override
                 public final boolean onItemClick(View view, int i2) {
-                    boolean lambda$setParentActivity$9;
-                    lambda$setParentActivity$9 = ArticleViewer.this.lambda$setParentActivity$9(view, i2);
-                    return lambda$setParentActivity$9;
+                    boolean lambda$setParentActivity$11;
+                    lambda$setParentActivity$11 = ArticleViewer.this.lambda$setParentActivity$11(view, i2);
+                    return lambda$setParentActivity$11;
                 }
             });
-            this.listView[i].setOnItemClickListener(new RecyclerListView.OnItemClickListenerExtended() {
+            pageLayout.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListenerExtended() {
                 @Override
                 public boolean hasDoubleTap(View view, int i2) {
                     return RecyclerListView.OnItemClickListenerExtended.CC.$default$hasDoubleTap(this, view, i2);
@@ -3161,254 +3776,139 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
                 @Override
                 public final void onItemClick(View view, int i2, float f, float f2) {
-                    ArticleViewer.this.lambda$setParentActivity$12(webpageAdapter, view, i2, f, f2);
-                }
-            });
-            this.listView[i].setOnScrollListener(new RecyclerView.OnScrollListener() {
-                @Override
-                public void onScrollStateChanged(RecyclerView recyclerView, int i2) {
-                    if (i2 == 0) {
-                        ArticleViewer.this.textSelectionHelper.stopScrolling();
-                    }
-                }
-
-                @Override
-                public void onScrolled(RecyclerView recyclerView, int i2, int i3) {
-                    if (recyclerView.getChildCount() == 0) {
-                        return;
-                    }
-                    recyclerView.invalidate();
-                    ArticleViewer.this.textSelectionHelper.onParentScrolled();
-                    ArticleViewer.this.headerView.invalidate();
-                    ArticleViewer.this.checkScroll(i3);
+                    ArticleViewer.this.lambda$setParentActivity$14(pageLayout, view, i2, f, f2);
                 }
             });
             i++;
         }
+        FrameLayout frameLayout4 = new FrameLayout(activity);
+        this.bulletinContainer = frameLayout4;
+        FrameLayout frameLayout5 = this.containerView;
+        Sheet sheet2 = this.sheet;
+        frameLayout5.addView(frameLayout4, LayoutHelper.createFrame(-1, -1.0f, 119, 0.0f, (sheet2 == null || sheet2.halfSize()) ? 0.0f : 56.0f, 0.0f, 0.0f));
         this.headerPaint.setColor(-16777216);
         this.statusBarPaint.setColor(-16777216);
         this.headerProgressPaint.setColor(-14408666);
         this.navigationBarPaint.setColor(-16777216);
-        FrameLayout frameLayout3 = new FrameLayout(activity) {
+        WebActionBar webActionBar = new WebActionBar(activity, getResourcesProvider()) {
             @Override
-            protected void onDraw(Canvas canvas) {
-                float measuredWidth = getMeasuredWidth();
-                float measuredHeight = getMeasuredHeight();
-                canvas.drawRect(0.0f, 0.0f, measuredWidth, measuredHeight, ArticleViewer.this.headerPaint);
-                if (ArticleViewer.this.layoutManager == null) {
-                    return;
+            protected void onSearchUpdated(String str) {
+                ArticleViewer.this.processSearch(str.toLowerCase());
+            }
+
+            @Override
+            protected void onColorsUpdated() {
+                Sheet sheet3 = ArticleViewer.this.sheet;
+                if (sheet3 != null) {
+                    sheet3.checkNavColor();
                 }
-                int findFirstVisibleItemPosition = ArticleViewer.this.layoutManager[0].findFirstVisibleItemPosition();
-                int findLastVisibleItemPosition = ArticleViewer.this.layoutManager[0].findLastVisibleItemPosition();
-                int itemCount = ArticleViewer.this.layoutManager[0].getItemCount() - 2;
-                View findViewByPosition = findLastVisibleItemPosition >= itemCount ? ArticleViewer.this.layoutManager[0].findViewByPosition(itemCount) : ArticleViewer.this.layoutManager[0].findViewByPosition(findFirstVisibleItemPosition);
-                if (findViewByPosition == null) {
-                    return;
+            }
+
+            @Override
+            protected void onScrolledProgress(float f) {
+                ArticleViewer.this.pages[0].addProgress(f);
+            }
+
+            @Override
+            protected void onAddressColorsChanged(int i2, int i3) {
+                if (ArticleViewer.this.addressBarList != null) {
+                    ArticleViewer.this.addressBarList.setColors(i2, i3);
                 }
-                float f = measuredWidth / (r5 - 1);
-                ArticleViewer.this.layoutManager[0].getChildCount();
-                float measuredHeight2 = findViewByPosition.getMeasuredHeight();
-                canvas.drawRect(0.0f, 0.0f, (findFirstVisibleItemPosition * f) + (findLastVisibleItemPosition >= itemCount ? (((itemCount - findFirstVisibleItemPosition) * f) * (ArticleViewer.this.listView[0].getMeasuredHeight() - findViewByPosition.getTop())) / measuredHeight2 : (1.0f - ((Math.min(0, findViewByPosition.getTop() - ArticleViewer.this.listView[0].getPaddingTop()) + measuredHeight2) / measuredHeight2)) * f), measuredHeight, ArticleViewer.this.headerProgressPaint);
+            }
+
+            @Override
+            protected void onAddressingProgress(float f) {
+                super.onAddressingProgress(f);
+                if (ArticleViewer.this.addressBarList != null) {
+                    ArticleViewer.this.addressBarList.setOpenProgress(f);
+                }
+                Sheet sheet3 = ArticleViewer.this.sheet;
+                if (sheet3 != null) {
+                    sheet3.checkNavColor();
+                }
+            }
+
+            @Override
+            protected void onMeasure(int i2, int i3) {
+                super.onMeasure(i2, i3);
+                ((ViewGroup.MarginLayoutParams) ArticleViewer.this.addressBarList.getLayoutParams()).topMargin = getMeasuredHeight();
+            }
+
+            @Override
+            public void showAddress(boolean z, boolean z2) {
+                super.showAddress(z, z2);
+                if (ArticleViewer.this.addressBarList != null) {
+                    ArticleViewer.this.addressBarList.setOpened(z);
+                }
             }
         };
-        this.headerView = frameLayout3;
-        frameLayout3.setWillNotDraw(false);
-        this.containerView.addView(this.headerView, LayoutHelper.createFrame(-1, 56.0f));
-        this.headerView.setOnClickListener(new View.OnClickListener() {
+        this.actionBar = webActionBar;
+        webActionBar.occupyStatusBar(this.sheet != null);
+        this.containerView.addView(this.actionBar, LayoutHelper.createFrame(-1, -2, 48));
+        this.actionBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ArticleViewer.this.lambda$setParentActivity$13(view);
+                ArticleViewer.this.lambda$setParentActivity$20(activity, view);
             }
         });
-        SimpleTextView simpleTextView = new SimpleTextView(activity);
-        this.titleTextView = simpleTextView;
-        simpleTextView.setGravity(19);
-        this.titleTextView.setTextSize(20);
-        this.titleTextView.setTypeface(AndroidUtilities.bold());
-        this.titleTextView.setTextColor(-5000269);
-        this.titleTextView.setPivotX(0.0f);
-        this.titleTextView.setPivotY(AndroidUtilities.dp(28.0f));
-        this.headerView.addView(this.titleTextView, LayoutHelper.createFrame(-1, 56.0f, 51, 72.0f, 0.0f, 96.0f, 0.0f));
-        LineProgressView lineProgressView = new LineProgressView(activity);
-        this.lineProgressView = lineProgressView;
-        lineProgressView.setProgressColor(-1);
-        this.lineProgressView.setPivotX(0.0f);
-        this.lineProgressView.setPivotY(AndroidUtilities.dp(2.0f));
-        this.headerView.addView(this.lineProgressView, LayoutHelper.createFrame(-1, 2.0f, 83, 0.0f, 0.0f, 0.0f, 1.0f));
+        this.actionBar.addressEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (ArticleViewer.this.actionBar.isAddressing() && ArticleViewer.this.addressBarList != null) {
+                    ArticleViewer.this.addressBarList.setInput(editable == null ? null : editable.toString());
+                }
+            }
+        });
+        AddressBarList addressBarList = new AddressBarList(activity);
+        this.addressBarList = addressBarList;
+        addressBarList.setOpenProgress(0.0f);
+        this.addressBarList.listView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int i2, int i3) {
+                if (ArticleViewer.this.addressBarList.listView.scrollingByUser) {
+                    AndroidUtilities.hideKeyboard(ArticleViewer.this.actionBar.addressEditText);
+                }
+            }
+        });
+        this.containerView.addView(this.addressBarList, LayoutHelper.createFrame(-1, -1.0f));
         this.lineProgressTickRunnable = new Runnable() {
             @Override
             public final void run() {
-                ArticleViewer.this.lambda$setParentActivity$14();
+                ArticleViewer.this.lambda$setParentActivity$21();
             }
         };
-        FrameLayout frameLayout4 = new FrameLayout(activity);
-        this.menuContainer = frameLayout4;
-        this.headerView.addView(frameLayout4, LayoutHelper.createFrame(48, 56, 53));
-        View view = new View(activity);
-        this.searchShadow = view;
-        view.setBackgroundResource(R.drawable.header_shadow);
-        this.searchShadow.setAlpha(0.0f);
-        this.containerView.addView(this.searchShadow, LayoutHelper.createFrame(-1, 3.0f, 51, 0.0f, 56.0f, 0.0f, 0.0f));
-        FrameLayout frameLayout5 = new FrameLayout(this.parentActivity);
-        this.searchContainer = frameLayout5;
-        frameLayout5.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-        this.searchContainer.setVisibility(4);
-        int i2 = Build.VERSION.SDK_INT;
-        if (i2 < 21) {
-            this.searchContainer.setAlpha(0.0f);
-        }
-        this.headerView.addView(this.searchContainer, LayoutHelper.createFrame(-1, 56.0f));
-        EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(this, this.parentActivity) {
+        this.actionBar.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onTouchEvent(MotionEvent motionEvent) {
-                if (motionEvent.getAction() == 0 && !AndroidUtilities.showKeyboard(this)) {
-                    clearFocus();
-                    requestFocus();
-                }
-                return super.onTouchEvent(motionEvent);
-            }
-        };
-        this.searchField = editTextBoldCursor;
-        editTextBoldCursor.setCursorWidth(1.5f);
-        EditTextBoldCursor editTextBoldCursor2 = this.searchField;
-        int i3 = Theme.key_windowBackgroundWhiteBlackText;
-        editTextBoldCursor2.setTextColor(Theme.getColor(i3));
-        this.searchField.setCursorColor(Theme.getColor(i3));
-        this.searchField.setTextSize(1, 18.0f);
-        this.searchField.setHintTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteHintText));
-        this.searchField.setSingleLine(true);
-        EditTextBoldCursor editTextBoldCursor3 = this.searchField;
-        int i4 = R.string.Search;
-        editTextBoldCursor3.setHint(LocaleController.getString("Search", i4));
-        this.searchField.setBackgroundResource(0);
-        this.searchField.setPadding(0, 0, 0, 0);
-        this.searchField.setInputType(this.searchField.getInputType() | 524288);
-        if (i2 < 23) {
-            this.searchField.setCustomSelectionActionModeCallback(new ActionMode.Callback(this) {
-                @Override
-                public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-                    return false;
-                }
-
-                @Override
-                public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-                    return false;
-                }
-
-                @Override
-                public void onDestroyActionMode(ActionMode actionMode) {
-                }
-
-                @Override
-                public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
-                    return false;
-                }
-            });
-        }
-        this.searchField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public final boolean onEditorAction(TextView textView, int i5, KeyEvent keyEvent) {
-                boolean lambda$setParentActivity$15;
-                lambda$setParentActivity$15 = ArticleViewer.this.lambda$setParentActivity$15(textView, i5, keyEvent);
-                return lambda$setParentActivity$15;
+            public final void onClick(View view) {
+                ArticleViewer.this.lambda$setParentActivity$22(view);
             }
         });
-        this.searchField.addTextChangedListener(new AnonymousClass13());
-        this.searchField.setImeOptions(33554435);
-        this.searchField.setTextIsSelectable(false);
-        this.searchContainer.addView(this.searchField, LayoutHelper.createFrame(-1, 36.0f, 16, 72.0f, 0.0f, 48.0f, 0.0f));
-        ImageView imageView = new ImageView(this.parentActivity) {
+        this.actionBar.backButton.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            protected void onDetachedFromWindow() {
-                super.onDetachedFromWindow();
-                clearAnimation();
-                if (getTag() == null) {
-                    ArticleViewer.this.clearButton.setVisibility(4);
-                    ArticleViewer.this.clearButton.setAlpha(0.0f);
-                    ArticleViewer.this.clearButton.setRotation(45.0f);
-                    ArticleViewer.this.clearButton.setScaleX(0.0f);
-                    ArticleViewer.this.clearButton.setScaleY(0.0f);
-                    return;
-                }
-                ArticleViewer.this.clearButton.setAlpha(1.0f);
-                ArticleViewer.this.clearButton.setRotation(0.0f);
-                ArticleViewer.this.clearButton.setScaleX(1.0f);
-                ArticleViewer.this.clearButton.setScaleY(1.0f);
-            }
-        };
-        this.clearButton = imageView;
-        imageView.setImageDrawable(new CloseProgressDrawable2(this) {
-            @Override
-            protected int getCurrentColor() {
-                return Theme.getColor(Theme.key_windowBackgroundWhiteBlackText);
+            public final boolean onLongClick(View view) {
+                boolean lambda$setParentActivity$26;
+                lambda$setParentActivity$26 = ArticleViewer.this.lambda$setParentActivity$26(view);
+                return lambda$setParentActivity$26;
             }
         });
-        this.clearButton.setScaleType(ImageView.ScaleType.CENTER);
-        this.clearButton.setAlpha(0.0f);
-        this.clearButton.setRotation(45.0f);
-        this.clearButton.setScaleX(0.0f);
-        this.clearButton.setScaleY(0.0f);
-        this.clearButton.setOnClickListener(new View.OnClickListener() {
+        this.actionBar.setMenuListener(new Utilities.Callback() {
             @Override
-            public final void onClick(View view2) {
-                ArticleViewer.this.lambda$setParentActivity$16(view2);
+            public final void run(Object obj) {
+                ArticleViewer.this.lambda$setParentActivity$36(activity, (Integer) obj);
             }
         });
-        this.clearButton.setContentDescription(LocaleController.getString("ClearButton", R.string.ClearButton));
-        this.searchContainer.addView(this.clearButton, LayoutHelper.createFrame(48, -1, 21));
-        ImageView imageView2 = new ImageView(activity);
-        this.backButton = imageView2;
-        imageView2.setScaleType(ImageView.ScaleType.CENTER);
-        BackDrawable backDrawable = new BackDrawable(false);
-        this.backDrawable = backDrawable;
-        backDrawable.setAnimationTime(200.0f);
-        this.backDrawable.setColor(Theme.getColor(i3));
-        this.backDrawable.setRotatedColor(-5000269);
-        this.backDrawable.setRotation(1.0f, false);
-        this.backButton.setImageDrawable(this.backDrawable);
-        this.backButton.setBackgroundDrawable(Theme.createSelectorDrawable(1090519039));
-        this.headerView.addView(this.backButton, LayoutHelper.createFrame(54, 56.0f));
-        this.backButton.setOnClickListener(new View.OnClickListener() {
+        this.actionBar.forwardButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view2) {
-                ArticleViewer.this.lambda$setParentActivity$17(view2);
-            }
-        });
-        this.backButton.setContentDescription(LocaleController.getString("AccDescrGoBack", R.string.AccDescrGoBack));
-        ActionBarMenuItem actionBarMenuItem = new ActionBarMenuItem(this.parentActivity, null, 1090519039, -5000269) {
-            @Override
-            public void toggleSubMenu() {
-                super.toggleSubMenu();
-                ArticleViewer.this.listView[0].stopScroll();
-                ArticleViewer.this.checkScrollAnimated();
-            }
-        };
-        this.menuButton = actionBarMenuItem;
-        actionBarMenuItem.setLayoutInScreen(true);
-        this.menuButton.setDuplicateParentStateEnabled(false);
-        this.menuButton.setClickable(true);
-        this.menuButton.setIcon(R.drawable.ic_ab_other);
-        this.menuButton.addSubItem(1, R.drawable.msg_search, LocaleController.getString("Search", i4));
-        this.menuButton.addSubItem(2, R.drawable.msg_share, LocaleController.getString("ShareFile", R.string.ShareFile));
-        this.menuButton.addSubItem(3, R.drawable.msg_openin, LocaleController.getString("OpenInExternalApp", R.string.OpenInExternalApp));
-        this.menuButton.addSubItem(4, R.drawable.msg_settings_old, LocaleController.getString("Settings", R.string.Settings));
-        this.menuButton.setBackgroundDrawable(Theme.createSelectorDrawable(1090519039));
-        this.menuButton.setContentDescription(LocaleController.getString("AccDescrMoreOptions", R.string.AccDescrMoreOptions));
-        this.menuContainer.addView(this.menuButton, LayoutHelper.createFrame(48, 56.0f));
-        ContextProgressView contextProgressView = new ContextProgressView(activity, 2);
-        this.progressView = contextProgressView;
-        contextProgressView.setVisibility(8);
-        this.menuContainer.addView(this.progressView, LayoutHelper.createFrame(48, 56.0f));
-        this.menuButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view2) {
-                ArticleViewer.this.lambda$setParentActivity$18(view2);
-            }
-        });
-        this.menuButton.setDelegate(new ActionBarMenuItem.ActionBarMenuItemDelegate() {
-            @Override
-            public final void onItemClick(int i5) {
-                ArticleViewer.this.lambda$setParentActivity$20(i5);
+            public final void onClick(View view) {
+                ArticleViewer.this.lambda$setParentActivity$37(view);
             }
         });
         FrameLayout frameLayout6 = new FrameLayout(this, this.parentActivity) {
@@ -3423,55 +3923,67 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         this.searchPanel = frameLayout6;
         frameLayout6.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public final boolean onTouch(View view2, MotionEvent motionEvent) {
-                boolean lambda$setParentActivity$21;
-                lambda$setParentActivity$21 = ArticleViewer.lambda$setParentActivity$21(view2, motionEvent);
-                return lambda$setParentActivity$21;
+            public final boolean onTouch(View view, MotionEvent motionEvent) {
+                boolean lambda$setParentActivity$38;
+                lambda$setParentActivity$38 = ArticleViewer.lambda$setParentActivity$38(view, motionEvent);
+                return lambda$setParentActivity$38;
             }
         });
         this.searchPanel.setWillNotDraw(false);
+        this.searchPanel.setTranslationY(AndroidUtilities.dp(51.0f));
         this.searchPanel.setVisibility(4);
         this.searchPanel.setFocusable(true);
         this.searchPanel.setFocusableInTouchMode(true);
         this.searchPanel.setClickable(true);
         this.searchPanel.setPadding(0, AndroidUtilities.dp(3.0f), 0, 0);
         this.containerView.addView(this.searchPanel, LayoutHelper.createFrame(-1, 51, 80));
-        ImageView imageView3 = new ImageView(this.parentActivity);
-        this.searchUpButton = imageView3;
-        imageView3.setScaleType(ImageView.ScaleType.CENTER);
+        new KeyboardNotifier(this.windowView, new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                ArticleViewer.this.lambda$setParentActivity$39((Integer) obj);
+            }
+        });
+        ImageView imageView = new ImageView(this.parentActivity);
+        this.searchUpButton = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
         this.searchUpButton.setImageResource(R.drawable.msg_go_up);
-        this.searchUpButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i3), PorterDuff.Mode.MULTIPLY));
-        ImageView imageView4 = this.searchUpButton;
-        int i5 = Theme.key_actionBarActionModeDefaultSelector;
-        imageView4.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor(i5), 1));
+        ImageView imageView2 = this.searchUpButton;
+        int i2 = Theme.key_windowBackgroundWhiteBlackText;
+        imageView2.setColorFilter(new PorterDuffColorFilter(getThemedColor(i2), PorterDuff.Mode.MULTIPLY));
+        ImageView imageView3 = this.searchUpButton;
+        int i3 = Theme.key_actionBarActionModeDefaultSelector;
+        imageView3.setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor(i3), 1));
         this.searchPanel.addView(this.searchUpButton, LayoutHelper.createFrame(48, 48.0f, 53, 0.0f, 0.0f, 48.0f, 0.0f));
         this.searchUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view2) {
-                ArticleViewer.this.lambda$setParentActivity$22(view2);
+            public final void onClick(View view) {
+                ArticleViewer.this.lambda$setParentActivity$40(view);
             }
         });
         this.searchUpButton.setContentDescription(LocaleController.getString("AccDescrSearchNext", R.string.AccDescrSearchNext));
-        ImageView imageView5 = new ImageView(this.parentActivity);
-        this.searchDownButton = imageView5;
-        imageView5.setScaleType(ImageView.ScaleType.CENTER);
+        ImageView imageView4 = new ImageView(this.parentActivity);
+        this.searchDownButton = imageView4;
+        imageView4.setScaleType(ImageView.ScaleType.CENTER);
         this.searchDownButton.setImageResource(R.drawable.msg_go_down);
-        this.searchDownButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i3), PorterDuff.Mode.MULTIPLY));
-        this.searchDownButton.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor(i5), 1));
+        this.searchDownButton.setColorFilter(new PorterDuffColorFilter(getThemedColor(i2), PorterDuff.Mode.MULTIPLY));
+        this.searchDownButton.setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor(i3), 1));
         this.searchPanel.addView(this.searchDownButton, LayoutHelper.createFrame(48, 48.0f, 53, 0.0f, 0.0f, 0.0f, 0.0f));
         this.searchDownButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view2) {
-                ArticleViewer.this.lambda$setParentActivity$23(view2);
+            public final void onClick(View view) {
+                ArticleViewer.this.lambda$setParentActivity$41(view);
             }
         });
         this.searchDownButton.setContentDescription(LocaleController.getString("AccDescrSearchPrev", R.string.AccDescrSearchPrev));
-        SimpleTextView simpleTextView2 = new SimpleTextView(this.parentActivity);
-        this.searchCountText = simpleTextView2;
-        simpleTextView2.setTextColor(Theme.getColor(i3));
-        this.searchCountText.setTextSize(15);
+        AnimatedTextView animatedTextView = new AnimatedTextView(this.parentActivity, true, true, true);
+        this.searchCountText = animatedTextView;
+        animatedTextView.setScaleProperty(0.6f);
+        this.searchCountText.setAnimationProperties(0.4f, 0L, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
+        this.searchCountText.setTextColor(getThemedColor(i2));
+        this.searchCountText.setTextSize(AndroidUtilities.dp(15.0f));
         this.searchCountText.setTypeface(AndroidUtilities.bold());
         this.searchCountText.setGravity(3);
+        this.searchCountText.getDrawable().setOverrideFullWidth(AndroidUtilities.displaySize.x);
         this.searchPanel.addView(this.searchCountText, LayoutHelper.createFrame(-2, -2.0f, 19, 18.0f, 0.0f, 108.0f, 0.0f));
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
         this.windowLayoutParams = layoutParams;
@@ -3482,38 +3994,39 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         layoutParams.type = 98;
         layoutParams.softInputMode = 48;
         layoutParams.flags = 131072;
-        int i6 = 1792;
-        int color = Theme.getColor(Theme.key_windowBackgroundGray, null, true);
-        if ((AndroidUtilities.computePerceivedBrightness(color) >= 0.721f) && i2 >= 26) {
-            i6 = 1808;
+        int i4 = 1792;
+        int color = this.sheet == null ? Theme.getColor(Theme.key_windowBackgroundGray, null, true) : getThemedColor(Theme.key_windowBackgroundGray);
+        if ((AndroidUtilities.computePerceivedBrightness(color) >= 0.721f) && Build.VERSION.SDK_INT >= 26) {
+            i4 = 1808;
         }
         this.navigationBarPaint.setColor(color);
         WindowManager.LayoutParams layoutParams2 = this.windowLayoutParams;
-        layoutParams2.systemUiVisibility = i6;
-        if (i2 >= 21) {
+        layoutParams2.systemUiVisibility = i4;
+        int i5 = Build.VERSION.SDK_INT;
+        if (i5 >= 21) {
             layoutParams2.flags |= -2147417856;
-            if (i2 >= 28) {
+            if (i5 >= 28) {
                 layoutParams2.layoutInDisplayCutoutMode = 1;
             }
         }
         TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper = new TextSelectionHelper.ArticleTextSelectionHelper();
         this.textSelectionHelper = articleTextSelectionHelper;
-        articleTextSelectionHelper.setParentView(this.listView[0]);
+        articleTextSelectionHelper.setParentView(this.pages[0].listView);
         if (MessagesController.getInstance(this.currentAccount).getTranslateController().isContextTranslateEnabled()) {
             this.textSelectionHelper.setOnTranslate(new TextSelectionHelper.OnTranslateListener() {
                 @Override
                 public final void run(CharSequence charSequence, String str, String str2, Runnable runnable) {
-                    ArticleViewer.this.lambda$setParentActivity$24(charSequence, str, str2, runnable);
+                    ArticleViewer.this.lambda$setParentActivity$42(charSequence, str, str2, runnable);
                 }
             });
         }
         TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper2 = this.textSelectionHelper;
-        articleTextSelectionHelper2.layoutManager = this.layoutManager[0];
+        articleTextSelectionHelper2.layoutManager = this.pages[0].layoutManager;
         articleTextSelectionHelper2.setCallback(new TextSelectionHelper.Callback() {
             @Override
             public void onStateChanged(boolean z) {
                 if (z) {
-                    ArticleViewer.this.showSearch(false);
+                    ArticleViewer.this.actionBar.showSearch(false, true);
                 }
             }
 
@@ -3531,7 +4044,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         pinchToZoomHelper.setClipBoundsListener(new PinchToZoomHelper.ClipBoundsListener() {
             @Override
             public final void getClipTopBottom(float[] fArr) {
-                ArticleViewer.this.lambda$setParentActivity$25(fArr);
+                ArticleViewer.this.lambda$setParentActivity$43(fArr);
             }
         });
         this.pinchToZoomHelper.setCallback(new PinchToZoomHelper.Callback() {
@@ -3547,120 +4060,116 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
             @Override
             public void onZoomStarted(MessageObject messageObject) {
-                if (ArticleViewer.this.listView[0] != null) {
-                    ArticleViewer.this.listView[0].cancelClickRunnables(true);
+                PageLayout[] pageLayoutArr2 = ArticleViewer.this.pages;
+                if (pageLayoutArr2[0] != null) {
+                    pageLayoutArr2[0].listView.cancelClickRunnables(true);
                 }
             }
         });
         updatePaintColors();
     }
 
-    public static WindowInsets lambda$setParentActivity$8(View view, WindowInsets windowInsets) {
+    public static WindowInsets lambda$setParentActivity$10(View view, WindowInsets windowInsets) {
         if (Build.VERSION.SDK_INT >= 30) {
             return WindowInsets.CONSUMED;
         }
         return windowInsets.consumeSystemWindowInsets();
     }
 
-    public boolean lambda$setParentActivity$9(View view, int i) {
-        if (!(view instanceof BlockRelatedArticlesCell)) {
-            return false;
+    public boolean lambda$setParentActivity$11(View view, int i) {
+        if (view instanceof BlockRelatedArticlesCell) {
+            BlockRelatedArticlesCell blockRelatedArticlesCell = (BlockRelatedArticlesCell) view;
+            showCopyPopup(blockRelatedArticlesCell.currentBlock.parent.articles.get(blockRelatedArticlesCell.currentBlock.num).url);
+            return true;
         }
-        BlockRelatedArticlesCell blockRelatedArticlesCell = (BlockRelatedArticlesCell) view;
-        showCopyPopup(blockRelatedArticlesCell.currentBlock.parent.articles.get(blockRelatedArticlesCell.currentBlock.num).url);
-        return true;
+        return false;
     }
 
-    public void lambda$setParentActivity$12(WebpageAdapter webpageAdapter, View view, int i, float f, float f2) {
-        TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper = this.textSelectionHelper;
-        if (articleTextSelectionHelper != null) {
-            if (articleTextSelectionHelper.isInSelectionMode()) {
+    public void lambda$setParentActivity$14(PageLayout pageLayout, View view, int i, float f, float f2) {
+        if (this.sheet == null || i - 1 >= 0) {
+            TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper = this.textSelectionHelper;
+            if (articleTextSelectionHelper != null) {
+                if (articleTextSelectionHelper.isInSelectionMode()) {
+                    this.textSelectionHelper.clear();
+                    return;
+                }
                 this.textSelectionHelper.clear();
-                return;
             }
-            this.textSelectionHelper.clear();
-        }
-        if ((view instanceof ReportCell) && webpageAdapter.currentPage != null) {
-            ReportCell reportCell = (ReportCell) view;
-            if (this.previewsReqId == 0) {
-                if (!reportCell.hasViews || f >= view.getMeasuredWidth() / 2) {
-                    TLObject userOrChat = MessagesController.getInstance(this.currentAccount).getUserOrChat("previews");
-                    if (!(userOrChat instanceof TLRPC$TL_user)) {
-                        final int i2 = UserConfig.selectedAccount;
-                        final long j = webpageAdapter.currentPage.id;
-                        showProgressView(true, true);
-                        TLRPC$TL_contacts_resolveUsername tLRPC$TL_contacts_resolveUsername = new TLRPC$TL_contacts_resolveUsername();
-                        tLRPC$TL_contacts_resolveUsername.username = "previews";
-                        this.previewsReqId = ConnectionsManager.getInstance(i2).sendRequest(tLRPC$TL_contacts_resolveUsername, new RequestDelegate() {
-                            @Override
-                            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                                ArticleViewer.this.lambda$setParentActivity$11(i2, j, tLObject, tLRPC$TL_error);
-                            }
-                        });
-                        return;
+            WebpageAdapter adapter = pageLayout.getAdapter();
+            if ((view instanceof ReportCell) && adapter.currentPage != null) {
+                ReportCell reportCell = (ReportCell) view;
+                if (this.previewsReqId == 0) {
+                    if (!reportCell.hasViews || f >= view.getMeasuredWidth() / 2) {
+                        TLObject userOrChat = MessagesController.getInstance(this.currentAccount).getUserOrChat("previews");
+                        if (!(userOrChat instanceof TLRPC$TL_user)) {
+                            final int i2 = UserConfig.selectedAccount;
+                            final long j = adapter.currentPage.id;
+                            showProgressView(true, true);
+                            TLRPC$TL_contacts_resolveUsername tLRPC$TL_contacts_resolveUsername = new TLRPC$TL_contacts_resolveUsername();
+                            tLRPC$TL_contacts_resolveUsername.username = "previews";
+                            this.previewsReqId = ConnectionsManager.getInstance(i2).sendRequest(tLRPC$TL_contacts_resolveUsername, new RequestDelegate() {
+                                @Override
+                                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                                    ArticleViewer.this.lambda$setParentActivity$13(i2, j, tLObject, tLRPC$TL_error);
+                                }
+                            });
+                            return;
+                        }
+                        openPreviewsChat((TLRPC$User) userOrChat, adapter.currentPage.id);
                     }
-                    openPreviewsChat((TLRPC$User) userOrChat, webpageAdapter.currentPage.id);
-                    return;
                 }
-                return;
-            }
-            return;
-        }
-        if (i < 0 || i >= webpageAdapter.localBlocks.size()) {
-            return;
-        }
-        TLRPC$PageBlock tLRPC$PageBlock = (TLRPC$PageBlock) webpageAdapter.localBlocks.get(i);
-        TLRPC$PageBlock lastNonListPageBlock = getLastNonListPageBlock(tLRPC$PageBlock);
-        if (lastNonListPageBlock instanceof TL_pageBlockDetailsChild) {
-            lastNonListPageBlock = ((TL_pageBlockDetailsChild) lastNonListPageBlock).block;
-        }
-        if (lastNonListPageBlock instanceof TLRPC$TL_pageBlockChannel) {
-            MessagesController.getInstance(this.currentAccount).openByUserName(ChatObject.getPublicUsername(((TLRPC$TL_pageBlockChannel) lastNonListPageBlock).channel), this.parentFragment, 2);
-            close(false, true);
-            return;
-        }
-        if (lastNonListPageBlock instanceof TL_pageBlockRelatedArticlesChild) {
-            TL_pageBlockRelatedArticlesChild tL_pageBlockRelatedArticlesChild = (TL_pageBlockRelatedArticlesChild) lastNonListPageBlock;
-            openWebpageUrl(tL_pageBlockRelatedArticlesChild.parent.articles.get(tL_pageBlockRelatedArticlesChild.num).url, null);
-            return;
-        }
-        if (lastNonListPageBlock instanceof TLRPC$TL_pageBlockDetails) {
-            View lastNonListCell = getLastNonListCell(view);
-            if (lastNonListCell instanceof BlockDetailsCell) {
-                this.pressedLinkOwnerLayout = null;
-                this.pressedLinkOwnerView = null;
-                if (webpageAdapter.blocks.indexOf(tLRPC$PageBlock) < 0) {
-                    return;
+            } else if (i < 0 || i >= adapter.localBlocks.size()) {
+            } else {
+                TLRPC$PageBlock tLRPC$PageBlock = (TLRPC$PageBlock) adapter.localBlocks.get(i);
+                TLRPC$PageBlock lastNonListPageBlock = getLastNonListPageBlock(tLRPC$PageBlock);
+                if (lastNonListPageBlock instanceof TL_pageBlockDetailsChild) {
+                    lastNonListPageBlock = ((TL_pageBlockDetailsChild) lastNonListPageBlock).block;
                 }
-                TLRPC$TL_pageBlockDetails tLRPC$TL_pageBlockDetails = (TLRPC$TL_pageBlockDetails) lastNonListPageBlock;
-                tLRPC$TL_pageBlockDetails.open = !tLRPC$TL_pageBlockDetails.open;
-                int itemCount = webpageAdapter.getItemCount();
-                webpageAdapter.updateRows();
-                int abs = Math.abs(webpageAdapter.getItemCount() - itemCount);
-                BlockDetailsCell blockDetailsCell = (BlockDetailsCell) lastNonListCell;
-                blockDetailsCell.arrow.setAnimationProgressAnimated(tLRPC$TL_pageBlockDetails.open ? 0.0f : 1.0f);
-                blockDetailsCell.invalidate();
-                if (abs != 0) {
-                    if (tLRPC$TL_pageBlockDetails.open) {
-                        webpageAdapter.notifyItemRangeInserted(i + 1, abs);
-                    } else {
-                        webpageAdapter.notifyItemRangeRemoved(i + 1, abs);
+                if (lastNonListPageBlock instanceof TLRPC$TL_pageBlockChannel) {
+                    MessagesController.getInstance(this.currentAccount).openByUserName(ChatObject.getPublicUsername(((TLRPC$TL_pageBlockChannel) lastNonListPageBlock).channel), this.parentFragment, 2);
+                    close(false, true);
+                } else if (lastNonListPageBlock instanceof TL_pageBlockRelatedArticlesChild) {
+                    TL_pageBlockRelatedArticlesChild tL_pageBlockRelatedArticlesChild = (TL_pageBlockRelatedArticlesChild) lastNonListPageBlock;
+                    openWebpageUrl(tL_pageBlockRelatedArticlesChild.parent.articles.get(tL_pageBlockRelatedArticlesChild.num).url, null, null);
+                } else if (lastNonListPageBlock instanceof TLRPC$TL_pageBlockDetails) {
+                    View lastNonListCell = getLastNonListCell(view);
+                    if (lastNonListCell instanceof BlockDetailsCell) {
+                        this.pressedLinkOwnerLayout = null;
+                        this.pressedLinkOwnerView = null;
+                        if (adapter.blocks.indexOf(tLRPC$PageBlock) < 0) {
+                            return;
+                        }
+                        TLRPC$TL_pageBlockDetails tLRPC$TL_pageBlockDetails = (TLRPC$TL_pageBlockDetails) lastNonListPageBlock;
+                        tLRPC$TL_pageBlockDetails.open = !tLRPC$TL_pageBlockDetails.open;
+                        int itemCount = adapter.getItemCount();
+                        adapter.updateRows();
+                        int abs = Math.abs(adapter.getItemCount() - itemCount);
+                        BlockDetailsCell blockDetailsCell = (BlockDetailsCell) lastNonListCell;
+                        blockDetailsCell.arrow.setAnimationProgressAnimated(tLRPC$TL_pageBlockDetails.open ? 0.0f : 1.0f);
+                        blockDetailsCell.invalidate();
+                        if (abs != 0) {
+                            if (tLRPC$TL_pageBlockDetails.open) {
+                                adapter.notifyItemRangeInserted(i + 1, abs);
+                            } else {
+                                adapter.notifyItemRangeRemoved(i + 1, abs);
+                            }
+                        }
                     }
                 }
             }
         }
     }
 
-    public void lambda$setParentActivity$11(final int i, final long j, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$setParentActivity$13(final int i, final long j, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ArticleViewer.this.lambda$setParentActivity$10(tLObject, i, j);
+                ArticleViewer.this.lambda$setParentActivity$12(tLObject, i, j);
             }
         });
     }
 
-    public void lambda$setParentActivity$10(TLObject tLObject, int i, long j) {
+    public void lambda$setParentActivity$12(TLObject tLObject, int i, long j) {
         if (this.previewsReqId == 0) {
             return;
         }
@@ -3677,214 +4186,739 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    public void lambda$setParentActivity$13(View view) {
-        this.listView[0].smoothScrollToPosition(0);
+    public void lambda$setParentActivity$20(final Activity activity, View view) {
+        if (this.actionBar.longClicked) {
+            return;
+        }
+        final PageLayout pageLayout = this.pages[0];
+        if (pageLayout.isWeb()) {
+            if (pageLayout.getWebView() == null || this.actionBar.isAddressing()) {
+                return;
+            }
+            if (this.addressBarList != null) {
+                BotWebViewContainer.MyWebView webView = pageLayout.getWebView();
+                String title = webView != null ? webView.getTitle() : null;
+                final String magic2tonsite = BotWebViewContainer.magic2tonsite(webView != null ? webView.getUrl() : null);
+                AddressBarList addressBarList = this.addressBarList;
+                Bitmap favicon = webView != null ? webView.getFavicon() : null;
+                if (TextUtils.isEmpty(title)) {
+                    title = LocaleController.getString(R.string.WebEmpty);
+                }
+                addressBarList.setCurrent(favicon, title, TextUtils.isEmpty(magic2tonsite) ? "about:blank" : magic2tonsite, new Runnable() {
+                    @Override
+                    public final void run() {
+                        ArticleViewer.this.lambda$setParentActivity$15(magic2tonsite);
+                    }
+                }, new Utilities.Callback() {
+                    @Override
+                    public final void run(Object obj) {
+                        ArticleViewer.this.lambda$setParentActivity$16(pageLayout, activity, (String) obj);
+                    }
+                }, new Utilities.Callback() {
+                    @Override
+                    public final void run(Object obj) {
+                        ArticleViewer.this.lambda$setParentActivity$17((String) obj);
+                    }
+                }, new ArticleViewer$$ExternalSyntheticLambda59(this), new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view2) {
+                        ArticleViewer.this.lambda$setParentActivity$18(magic2tonsite, pageLayout, view2);
+                    }
+                });
+            }
+            this.actionBar.showAddress("", new Utilities.Callback() {
+                @Override
+                public final void run(Object obj) {
+                    ArticleViewer.lambda$setParentActivity$19(ArticleViewer.PageLayout.this, activity, (String) obj);
+                }
+            });
+        } else if (this.sheet != null) {
+            SmoothScroller smoothScroller = new SmoothScroller(activity);
+            if (this.sheet.halfSize()) {
+                smoothScroller.setTargetPosition(1);
+                smoothScroller.setOffset(-AndroidUtilities.dp(32.0f));
+            } else {
+                smoothScroller.setTargetPosition(0);
+            }
+            pageLayout.layoutManager.startSmoothScroll(smoothScroller);
+        } else {
+            pageLayout.listView.smoothScrollToPosition(0);
+        }
     }
 
-    public void lambda$setParentActivity$14() {
-        float currentProgress = 0.7f - this.lineProgressView.getCurrentProgress();
+    public void lambda$setParentActivity$15(String str) {
+        EditTextBoldCursor editTextBoldCursor = this.actionBar.addressEditText;
+        if (TextUtils.isEmpty(str)) {
+            str = "about:blank";
+        }
+        editTextBoldCursor.setText(str);
+        EditTextBoldCursor editTextBoldCursor2 = this.actionBar.addressEditText;
+        editTextBoldCursor2.setSelection(editTextBoldCursor2.getText().length());
+        AndroidUtilities.showKeyboard(this.actionBar.addressEditText);
+    }
+
+    public void lambda$setParentActivity$16(PageLayout pageLayout, Activity activity, String str) {
+        if (TextUtils.isEmpty(str) || pageLayout.getWebView() == null) {
+            return;
+        }
+        AddressBarList.pushRecentSearch(activity, str);
+        this.actionBar.showAddress(false, true);
+        pageLayout.getWebView().loadUrl(SearchEngine.getCurrent().getSearchURL(str));
+        pageLayout.getWebView().setTitle(null);
+        updateTitle(true);
+    }
+
+    public void lambda$setParentActivity$17(String str) {
+        if (TextUtils.isEmpty(str)) {
+            return;
+        }
+        this.actionBar.addressEditText.setText(str);
+        EditTextBoldCursor editTextBoldCursor = this.actionBar.addressEditText;
+        editTextBoldCursor.setSelection(editTextBoldCursor.getText().length());
+        AndroidUtilities.showKeyboard(this.actionBar.addressEditText);
+    }
+
+    public void lambda$setParentActivity$18(String str, PageLayout pageLayout, View view) {
+        this.actionBar.showAddress(false, true);
+        AndroidUtilities.hideKeyboard(this.actionBar.addressEditText);
+        if (TextUtils.isEmpty(str)) {
+            str = "about:blank";
+        }
+        AndroidUtilities.addToClipboard(str);
+        BulletinFactory.of(pageLayout.webViewContainer, getResourcesProvider()).createCopyLinkBulletin().show(true);
+    }
+
+    public static void lambda$setParentActivity$19(PageLayout pageLayout, Activity activity, String str) {
+        if (TextUtils.isEmpty(str) || pageLayout.getWebView() == null) {
+            return;
+        }
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str.trim());
+        AndroidUtilities.addLinksSafe(spannableStringBuilder, 1, false, true);
+        URLSpan[] uRLSpanArr = (URLSpan[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), URLSpan.class);
+        int length = spannableStringBuilder.length();
+        int i = 0;
+        for (int i2 = 0; i2 < uRLSpanArr.length; i2++) {
+            length = Math.min(spannableStringBuilder.getSpanStart(uRLSpanArr[i2]), length);
+            i = Math.max(spannableStringBuilder.getSpanEnd(uRLSpanArr[i2]), i);
+        }
+        Uri parse = Uri.parse(str);
+        if ((uRLSpanArr.length > 0 && length == 0 && i > 0) || (parse != null && parse.getScheme() != null)) {
+            if (parse.getScheme() == null && parse.getHost() == null && parse.getPath() != null) {
+                str = Browser.replace(parse, "https", parse.getPath(), "/");
+            }
+            pageLayout.getWebView().loadUrl(str);
+            return;
+        }
+        AddressBarList.pushRecentSearch(activity, str);
+        pageLayout.getWebView().loadUrl(SearchEngine.getCurrent().getSearchURL(str));
+    }
+
+    public void lambda$setParentActivity$21() {
+        float currentProgress = 0.7f - this.actionBar.lineProgressView.getCurrentProgress();
         if (currentProgress > 0.0f) {
             float f = currentProgress < 0.25f ? 0.01f : 0.02f;
-            LineProgressView lineProgressView = this.lineProgressView;
+            LineProgressView lineProgressView = this.actionBar.lineProgressView;
             lineProgressView.setProgress(lineProgressView.getCurrentProgress() + f, true);
             AndroidUtilities.runOnUIThread(this.lineProgressTickRunnable, 100L);
         }
     }
 
-    public boolean lambda$setParentActivity$15(TextView textView, int i, KeyEvent keyEvent) {
-        if (keyEvent == null) {
-            return false;
-        }
-        if ((keyEvent.getAction() != 1 || keyEvent.getKeyCode() != 84) && (keyEvent.getAction() != 0 || keyEvent.getKeyCode() != 66)) {
-            return false;
-        }
-        AndroidUtilities.hideKeyboard(this.searchField);
-        return false;
-    }
-
-    public class AnonymousClass13 implements TextWatcher {
-        @Override
-        public void afterTextChanged(Editable editable) {
-        }
-
-        @Override
-        public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-        }
-
-        AnonymousClass13() {
-        }
-
-        @Override
-        public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-            if (ArticleViewer.this.ignoreOnTextChange) {
-                ArticleViewer.this.ignoreOnTextChange = false;
-                return;
-            }
-            ArticleViewer.this.processSearch(charSequence.toString().toLowerCase());
-            if (ArticleViewer.this.clearButton != null) {
-                if (TextUtils.isEmpty(charSequence)) {
-                    if (ArticleViewer.this.clearButton.getTag() != null) {
-                        ArticleViewer.this.clearButton.setTag(null);
-                        ArticleViewer.this.clearButton.clearAnimation();
-                        if (ArticleViewer.this.animateClear) {
-                            ArticleViewer.this.clearButton.animate().setInterpolator(new DecelerateInterpolator()).alpha(0.0f).setDuration(180L).scaleY(0.0f).scaleX(0.0f).rotation(45.0f).withEndAction(new Runnable() {
-                                @Override
-                                public final void run() {
-                                    ArticleViewer.AnonymousClass13.this.lambda$onTextChanged$0();
-                                }
-                            }).start();
-                            return;
-                        }
-                        ArticleViewer.this.clearButton.setAlpha(0.0f);
-                        ArticleViewer.this.clearButton.setRotation(45.0f);
-                        ArticleViewer.this.clearButton.setScaleX(0.0f);
-                        ArticleViewer.this.clearButton.setScaleY(0.0f);
-                        ArticleViewer.this.clearButton.setVisibility(4);
-                        ArticleViewer.this.animateClear = true;
-                        return;
-                    }
-                    return;
-                }
-                if (ArticleViewer.this.clearButton.getTag() == null) {
-                    ArticleViewer.this.clearButton.setTag(1);
-                    ArticleViewer.this.clearButton.clearAnimation();
-                    ArticleViewer.this.clearButton.setVisibility(0);
-                    if (ArticleViewer.this.animateClear) {
-                        ArticleViewer.this.clearButton.animate().setInterpolator(new DecelerateInterpolator()).alpha(1.0f).setDuration(180L).scaleY(1.0f).scaleX(1.0f).rotation(0.0f).start();
-                        return;
-                    }
-                    ArticleViewer.this.clearButton.setAlpha(1.0f);
-                    ArticleViewer.this.clearButton.setRotation(0.0f);
-                    ArticleViewer.this.clearButton.setScaleX(1.0f);
-                    ArticleViewer.this.clearButton.setScaleY(1.0f);
-                    ArticleViewer.this.animateClear = true;
-                }
-            }
-        }
-
-        public void lambda$onTextChanged$0() {
-            ArticleViewer.this.clearButton.setVisibility(4);
-        }
-    }
-
-    public void lambda$setParentActivity$16(View view) {
-        if (this.searchField.length() != 0) {
-            this.searchField.setText("");
-        }
-        this.searchField.requestFocus();
-        AndroidUtilities.showKeyboard(this.searchField);
-    }
-
-    public void lambda$setParentActivity$17(View view) {
-        if (this.searchContainer.getTag() != null) {
-            showSearch(false);
+    public void lambda$setParentActivity$22(View view) {
+        if (this.actionBar.isSearching()) {
+            this.actionBar.showSearch(false, true);
+        } else if (this.actionBar.isAddressing()) {
+            this.actionBar.showAddress(false, true);
+        } else if (isFirstArticle() && this.pages[0].hasBackButton()) {
+            this.pages[0].back();
+        } else if (this.pagesStack.size() > 1) {
+            goBack();
         } else {
-            close(true, true);
-        }
-    }
-
-    public void lambda$setParentActivity$18(View view) {
-        this.menuButton.toggleSubMenu();
-    }
-
-    public void lambda$setParentActivity$20(int i) {
-        if (this.adapter[0].currentPage == null || this.parentActivity == null) {
-            return;
-        }
-        if (i == 1) {
-            showSearch(true);
-            return;
-        }
-        if (i == 2) {
-            showDialog(new ShareAlert(this.parentActivity, null, this.adapter[0].currentPage.url, false, this.adapter[0].currentPage.url, false));
-            return;
-        }
-        if (i == 3) {
-            String str = !TextUtils.isEmpty(this.adapter[0].currentPage.cached_page.url) ? this.adapter[0].currentPage.cached_page.url : this.adapter[0].currentPage.url;
-            Activity activity = this.parentActivity;
-            if (activity == null || activity.isFinishing()) {
-                return;
+            Sheet sheet = this.sheet;
+            if (sheet != null) {
+                sheet.dismiss(false);
+            } else {
+                close(true, true);
             }
-            Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(str));
-            intent.putExtra("create_new_tab", true);
-            intent.putExtra("com.android.browser.application_id", this.parentActivity.getPackageName());
-            this.parentActivity.startActivity(intent);
-            return;
         }
-        if (i == 4) {
-            BottomSheet.Builder builder = new BottomSheet.Builder(this.parentActivity);
-            builder.setApplyTopPadding(false);
-            LinearLayout linearLayout = new LinearLayout(this.parentActivity);
-            linearLayout.setPadding(0, 0, 0, AndroidUtilities.dp(4.0f));
-            linearLayout.setOrientation(1);
-            HeaderCell headerCell = new HeaderCell(this.parentActivity);
-            headerCell.setText(LocaleController.getString("FontSize", R.string.FontSize));
-            linearLayout.addView(headerCell, LayoutHelper.createLinear(-2, -2, 51, 3, 1, 3, 0));
-            linearLayout.addView(new TextSizeCell(this.parentActivity), LayoutHelper.createLinear(-1, -2, 51, 3, 0, 3, 0));
-            HeaderCell headerCell2 = new HeaderCell(this.parentActivity);
-            headerCell2.setText(LocaleController.getString("FontType", R.string.FontType));
-            linearLayout.addView(headerCell2, LayoutHelper.createLinear(-2, -2, 51, 3, 4, 3, 2));
-            int i2 = 0;
-            while (i2 < 2) {
-                this.fontCells[i2] = new FontCell(this.parentActivity);
-                if (i2 == 0) {
-                    this.fontCells[i2].setTextAndTypeface(LocaleController.getString("Default", R.string.Default), Typeface.DEFAULT);
-                } else if (i2 == 1) {
-                    this.fontCells[i2].setTextAndTypeface("Serif", Typeface.SERIF);
+    }
+
+    public boolean lambda$setParentActivity$26(View view) {
+        if (this.pages[0] == null) {
+            return false;
+        }
+        Sheet sheet = this.sheet;
+        final ItemOptions makeOptions = ItemOptions.makeOptions(sheet != null ? sheet.windowView : this.windowView, view);
+        int backgroundColor = this.pages[0].getBackgroundColor();
+        int i = AndroidUtilities.computePerceivedBrightness(this.pages[0].getBackgroundColor()) >= 0.721f ? -16777216 : -1;
+        int multAlpha = Theme.multAlpha(i, 0.65f);
+        Theme.multAlpha(this.actionBar.getTextColor(), 0.65f);
+        final BotWebViewContainer.MyWebView webView = this.pages[0].getWebView();
+        if (webView != null) {
+            WebBackForwardList copyBackForwardList = webView.copyBackForwardList();
+            final int currentIndex = copyBackForwardList.getCurrentIndex();
+            if (copyBackForwardList.getCurrentIndex() > 0) {
+                for (final int i2 = 0; i2 < currentIndex; i2++) {
+                    WebHistoryItem itemAtIndex = copyBackForwardList.getItemAtIndex(i2);
+                    makeOptions.add(itemAtIndex.getTitle(), new Runnable() {
+                        @Override
+                        public final void run() {
+                            ArticleViewer.lambda$setParentActivity$23(currentIndex, i2, webView);
+                        }
+                    });
+                    ActionBarMenuSubItem last = makeOptions.getLast();
+                    if (last != null) {
+                        last.setSubtext(itemAtIndex.getUrl());
+                        final Bitmap favicon = webView.getFavicon(itemAtIndex.getUrl());
+                        if (favicon == null) {
+                            favicon = itemAtIndex.getFavicon();
+                        }
+                        final Paint paint = new Paint(3);
+                        last.setTextAndIcon(itemAtIndex.getTitle(), 0, new Drawable(this) {
+                            @Override
+                            public int getOpacity() {
+                                return -2;
+                            }
+
+                            @Override
+                            public void setAlpha(int i3) {
+                            }
+
+                            @Override
+                            public void setColorFilter(ColorFilter colorFilter) {
+                            }
+
+                            @Override
+                            public void draw(Canvas canvas) {
+                                if (favicon != null) {
+                                    canvas.save();
+                                    canvas.translate(getBounds().left, getBounds().top);
+                                    canvas.scale(getBounds().width() / favicon.getWidth(), getBounds().height() / favicon.getHeight());
+                                    canvas.drawBitmap(favicon, 0.0f, 0.0f, paint);
+                                    canvas.restore();
+                                }
+                            }
+
+                            @Override
+                            public int getIntrinsicHeight() {
+                                return AndroidUtilities.dp(24.0f);
+                            }
+
+                            @Override
+                            public int getIntrinsicWidth() {
+                                return AndroidUtilities.dp(24.0f);
+                            }
+                        });
+                        last.setTextColor(i);
+                        last.setSubtextColor(multAlpha);
+                    }
                 }
-                this.fontCells[i2].select(i2 == this.selectedFont, false);
-                this.fontCells[i2].setTag(Integer.valueOf(i2));
-                this.fontCells[i2].setOnClickListener(new View.OnClickListener() {
+            }
+        }
+        for (final int size = this.pagesStack.size() - 2; size >= 0; size--) {
+            Object obj = this.pagesStack.get(size);
+            if (obj instanceof CachedWeb) {
+                CachedWeb cachedWeb = (CachedWeb) obj;
+                makeOptions.add(cachedWeb.getTitle(), new Runnable() {
                     @Override
-                    public final void onClick(View view) {
-                        ArticleViewer.this.lambda$setParentActivity$19(view);
+                    public final void run() {
+                        ArticleViewer.this.lambda$setParentActivity$24(size);
                     }
                 });
-                linearLayout.addView(this.fontCells[i2], LayoutHelper.createLinear(-1, 50));
-                i2++;
+                ActionBarMenuSubItem last2 = makeOptions.getLast();
+                if (last2 != null) {
+                    last2.setSubtext(cachedWeb.lastUrl);
+                    final Bitmap favicon2 = webView != null ? webView.getFavicon(cachedWeb.lastUrl) : null;
+                    if (favicon2 == null) {
+                        favicon2 = cachedWeb.favicon;
+                    }
+                    final Paint paint2 = new Paint(3);
+                    last2.setTextAndIcon(cachedWeb.getTitle(), 0, new Drawable(this) {
+                        @Override
+                        public int getOpacity() {
+                            return -2;
+                        }
+
+                        @Override
+                        public void setAlpha(int i3) {
+                        }
+
+                        @Override
+                        public void setColorFilter(ColorFilter colorFilter) {
+                        }
+
+                        @Override
+                        public void draw(Canvas canvas) {
+                            if (favicon2 != null) {
+                                canvas.save();
+                                canvas.translate(getBounds().left, getBounds().top);
+                                canvas.scale(getBounds().width() / favicon2.getWidth(), getBounds().height() / favicon2.getHeight());
+                                canvas.drawBitmap(favicon2, 0.0f, 0.0f, paint2);
+                                canvas.restore();
+                            }
+                        }
+
+                        @Override
+                        public int getIntrinsicHeight() {
+                            return AndroidUtilities.dp(24.0f);
+                        }
+
+                        @Override
+                        public int getIntrinsicWidth() {
+                            return AndroidUtilities.dp(24.0f);
+                        }
+                    });
+                    last2.setTextColor(i);
+                    last2.setSubtextColor(multAlpha);
+                    last2.setColors(i, i);
+                }
+            } else if (obj instanceof TLRPC$WebPage) {
+                TLRPC$WebPage tLRPC$WebPage = (TLRPC$WebPage) obj;
+                makeOptions.add(tLRPC$WebPage.title, new Runnable() {
+                    @Override
+                    public final void run() {
+                        ArticleViewer.this.lambda$setParentActivity$25(size);
+                    }
+                });
+                ActionBarMenuSubItem last3 = makeOptions.getLast();
+                if (last3 != null) {
+                    last3.setTextAndIcon(tLRPC$WebPage.title, R.drawable.msg_instant);
+                    last3.setTextColor(i);
+                    if (!TextUtils.isEmpty(tLRPC$WebPage.site_name)) {
+                        last3.setSubtext(tLRPC$WebPage.site_name);
+                    }
+                    last3.setSubtextColor(multAlpha);
+                    last3.imageView.getLayoutParams().width = AndroidUtilities.dp(24.0f);
+                    last3.imageView.setScaleX(1.45f);
+                    last3.imageView.setScaleY(1.45f);
+                    last3.setColors(i, i);
+                }
             }
-            builder.setCustomView(linearLayout);
-            BottomSheet create = builder.create();
-            this.linkSheet = create;
-            showDialog(create);
+        }
+        makeOptions.setScrimViewBackground(Theme.createCircleDrawable(AndroidUtilities.dp(40.0f), this.actionBar.getBackgroundColor()));
+        makeOptions.setBackgroundColor(backgroundColor);
+        makeOptions.updateColors();
+        if (makeOptions.getItemsCount() <= 0) {
+            return false;
+        }
+        checkScrollAnimated(new Runnable() {
+            @Override
+            public final void run() {
+                ItemOptions.this.show();
+            }
+        });
+        return true;
+    }
+
+    public static void lambda$setParentActivity$23(int i, int i2, BotWebViewContainer.MyWebView myWebView) {
+        for (int i3 = 0; i3 < i - i2; i3++) {
+            myWebView.goBack();
         }
     }
 
-    public void lambda$setParentActivity$19(View view) {
+    public void lambda$setParentActivity$36(Activity activity, Integer num) {
+        String str;
+        FrameLayout frameLayout;
+        String str2;
+        if ((this.pages[0].isArticle() && this.pages[0].adapter.currentPage == null) || this.parentActivity == null) {
+            return;
+        }
+        if (num.intValue() == 1) {
+            this.actionBar.showSearch(true, true);
+            return;
+        }
+        if (num.intValue() == 2) {
+            if (this.pages[0].isWeb()) {
+                if (this.pages[0].getWebView() == null) {
+                    return;
+                }
+                str2 = this.pages[0].getWebView().getUrl();
+            } else if (this.pages[0].adapter.currentPage == null) {
+                return;
+            } else {
+                str2 = this.pages[0].adapter.currentPage.url;
+            }
+            String str3 = str2;
+            showDialog(new ShareAlert(this.parentActivity, null, str3, false, str3, false, AndroidUtilities.computePerceivedBrightness(this.actionBar.getBackgroundColor()) < 0.721f ? new DarkThemeResourceProvider() : null));
+        } else if (num.intValue() == 6) {
+            if (this.pages[0].isWeb()) {
+                if (this.pages[0].getWebView() == null) {
+                    return;
+                }
+                str = this.pages[0].getWebView().getUrl();
+                frameLayout = this.pages[0].webViewContainer;
+            } else if (this.pages[0].adapter.currentPage == null) {
+                return;
+            } else {
+                str = this.pages[0].adapter.currentPage.url;
+                frameLayout = this.pages[0];
+            }
+            final long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
+            SendMessagesHelper.getInstance(this.currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(str, clientUserId));
+            TLRPC$TL_message tLRPC$TL_message = new TLRPC$TL_message();
+            TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
+            tLRPC$TL_message.peer_id = tLRPC$TL_peerUser;
+            tLRPC$TL_peerUser.user_id = clientUserId;
+            TLRPC$TL_peerUser tLRPC$TL_peerUser2 = new TLRPC$TL_peerUser();
+            tLRPC$TL_message.from_id = tLRPC$TL_peerUser2;
+            tLRPC$TL_peerUser2.user_id = clientUserId;
+            tLRPC$TL_message.message = str;
+            TLRPC$TL_messageMediaWebPage tLRPC$TL_messageMediaWebPage = new TLRPC$TL_messageMediaWebPage();
+            tLRPC$TL_message.media = tLRPC$TL_messageMediaWebPage;
+            tLRPC$TL_messageMediaWebPage.webpage = new TLRPC$TL_webPage();
+            TLRPC$WebPage tLRPC$WebPage = tLRPC$TL_message.media.webpage;
+            tLRPC$WebPage.url = str;
+            tLRPC$WebPage.display_url = str;
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.bookmarkAdded, new MessageObject(this.currentAccount, tLRPC$TL_message, false, false));
+            BulletinFactory.of(frameLayout, getResourcesProvider()).createSimpleBulletin(R.raw.saved_messages, AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.WebBookmarkedToast), new Runnable() {
+                @Override
+                public final void run() {
+                    ArticleViewer.this.lambda$setParentActivity$27(clientUserId);
+                }
+            })).show(true);
+        } else if (num.intValue() == 7) {
+            BaseFragment.BottomSheetParams bottomSheetParams = new BaseFragment.BottomSheetParams();
+            bottomSheetParams.transitionFromLeft = true;
+            BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+            if (safeLastFragment != null) {
+                safeLastFragment.showAsSheet(new BookmarksFragment(this.sheet != null ? new Runnable() {
+                    @Override
+                    public final void run() {
+                        ArticleViewer.this.lambda$setParentActivity$28();
+                    }
+                } : null, new ArticleViewer$$ExternalSyntheticLambda59(this)), bottomSheetParams);
+            }
+        } else if (num.intValue() == 8) {
+            BaseFragment.BottomSheetParams bottomSheetParams2 = new BaseFragment.BottomSheetParams();
+            bottomSheetParams2.transitionFromLeft = true;
+            BaseFragment safeLastFragment2 = LaunchActivity.getSafeLastFragment();
+            if (safeLastFragment2 != null) {
+                safeLastFragment2.showAsSheet(new HistoryFragment(this.sheet != null ? new Runnable() {
+                    @Override
+                    public final void run() {
+                        ArticleViewer.this.lambda$setParentActivity$29();
+                    }
+                } : null, new Utilities.Callback() {
+                    @Override
+                    public final void run(Object obj) {
+                        ArticleViewer.this.openHistoryEntry((BrowserHistory.Entry) obj);
+                    }
+                }), bottomSheetParams2);
+            }
+        } else if (num.intValue() == 9) {
+            if (this.pages[0].getWebView() != null) {
+                this.pages[0].getWebView().goForward();
+            }
+        } else if (num.intValue() == 3) {
+            if (!this.pages[0].isWeb() || this.pages[0].getWebView() == null) {
+                return;
+            }
+            final String url = this.pages[0].getWebView().getUrl();
+            String openURL = this.pages[0].getWebView().getOpenURL();
+            Activity activity2 = this.parentActivity;
+            if (activity2 == null || activity2.isFinishing()) {
+                return;
+            }
+            final String hostAuthority = AndroidUtilities.getHostAuthority(openURL, true);
+            final String hostAuthority2 = AndroidUtilities.getHostAuthority(url, true);
+            final Runnable runnable = new Runnable() {
+                @Override
+                public final void run() {
+                    ArticleViewer.this.lambda$setParentActivity$30(url);
+                }
+            };
+            final Utilities.Callback callback = new Utilities.Callback() {
+                @Override
+                public final void run(Object obj) {
+                    ArticleViewer.this.lambda$setParentActivity$31(hostAuthority2, hostAuthority, (Boolean) obj);
+                }
+            };
+            if (!RestrictedDomainsList.getInstance().isRestricted(hostAuthority2) && RestrictedDomainsList.getInstance().incrementOpen(hostAuthority2) >= 2) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(activity, getResourcesProvider());
+                builder.setTitle(LocaleController.getString(R.string.BrowserExternalTitle));
+                LinearLayout linearLayout = new LinearLayout(activity);
+                linearLayout.setOrientation(1);
+                TextView textView = new TextView(activity);
+                if (Build.VERSION.SDK_INT >= 21) {
+                    textView.setLetterSpacing(0.025f);
+                }
+                textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
+                textView.setTextSize(1, 16.0f);
+                linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 0, 24, 0, 24, 0));
+                final CheckBoxCell checkBoxCell = new CheckBoxCell(activity, 1, null);
+                checkBoxCell.getTextView().getLayoutParams().width = -1;
+                checkBoxCell.getTextView().setSingleLine(false);
+                checkBoxCell.getTextView().setMaxLines(3);
+                checkBoxCell.getTextView().setTextSize(1, 16.0f);
+                checkBoxCell.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view) {
+                        ArticleViewer.lambda$setParentActivity$32(CheckBoxCell.this, view);
+                    }
+                });
+                checkBoxCell.setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector), 9, 9));
+                linearLayout.addView(checkBoxCell, LayoutHelper.createLinear(-1, -2, 3, 8, 6, 8, 4));
+                textView.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.BrowserExternalText)));
+                checkBoxCell.setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BrowserExternalCheck, hostAuthority2)), "", false, false);
+                builder.setView(linearLayout);
+                builder.setPositiveButton(LocaleController.getString(R.string.Continue), new DialogInterface.OnClickListener() {
+                    @Override
+                    public final void onClick(DialogInterface dialogInterface, int i) {
+                        ArticleViewer.lambda$setParentActivity$33(CheckBoxCell.this, callback, runnable, dialogInterface, i);
+                    }
+                });
+                builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new DialogInterface.OnClickListener() {
+                    @Override
+                    public final void onClick(DialogInterface dialogInterface, int i) {
+                        ArticleViewer.lambda$setParentActivity$34(CheckBoxCell.this, callback, dialogInterface, i);
+                    }
+                });
+                builder.show();
+                return;
+            }
+            runnable.run();
+        } else if (num.intValue() == 4) {
+            if (this.pages[0].isWeb()) {
+                openWebSettings();
+                return;
+            }
+            BottomSheet.Builder builder2 = new BottomSheet.Builder(this.parentActivity);
+            builder2.setApplyTopPadding(false);
+            LinearLayout linearLayout2 = new LinearLayout(this.parentActivity);
+            linearLayout2.setPadding(0, 0, 0, AndroidUtilities.dp(4.0f));
+            linearLayout2.setOrientation(1);
+            HeaderCell headerCell = new HeaderCell(this.parentActivity, getResourcesProvider());
+            headerCell.setText(LocaleController.getString(R.string.FontSize));
+            linearLayout2.addView(headerCell, LayoutHelper.createLinear(-2, -2, 51, 3, 1, 3, 0));
+            linearLayout2.addView(new TextSizeCell(this.parentActivity), LayoutHelper.createLinear(-1, -2, 51, 3, 0, 3, 0));
+            HeaderCell headerCell2 = new HeaderCell(this.parentActivity, getResourcesProvider());
+            headerCell2.setText(LocaleController.getString("FontType", R.string.FontType));
+            linearLayout2.addView(headerCell2, LayoutHelper.createLinear(-2, -2, 51, 3, 4, 3, 2));
+            int i = 0;
+            while (i < 2) {
+                this.fontCells[i] = new FontCell(this, this.parentActivity);
+                if (i == 0) {
+                    this.fontCells[i].setTextAndTypeface(LocaleController.getString("Default", R.string.Default), Typeface.DEFAULT);
+                } else if (i == 1) {
+                    this.fontCells[i].setTextAndTypeface("Serif", Typeface.SERIF);
+                }
+                this.fontCells[i].select(i == this.selectedFont, false);
+                this.fontCells[i].setTag(Integer.valueOf(i));
+                this.fontCells[i].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view) {
+                        ArticleViewer.this.lambda$setParentActivity$35(view);
+                    }
+                });
+                linearLayout2.addView(this.fontCells[i], LayoutHelper.createLinear(-1, 50));
+                i++;
+            }
+            builder2.setCustomView(linearLayout2);
+            BottomSheet create = builder2.create();
+            this.linkSheet = create;
+            showDialog(create);
+        } else if (num.intValue() == 5 && this.pages[0].isWeb() && this.pages[0].getWebView() != null) {
+            this.pages[0].getWebView().reload();
+        }
+    }
+
+    public void lambda$setParentActivity$27(long j) {
+        Sheet sheet = this.sheet;
+        if (sheet != null) {
+            sheet.dismiss(true);
+        }
+        BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+        if (safeLastFragment != null) {
+            safeLastFragment.presentFragment(ChatActivity.of(j));
+        }
+    }
+
+    public void lambda$setParentActivity$28() {
+        this.sheet.dismiss(true);
+    }
+
+    public void lambda$setParentActivity$29() {
+        this.sheet.dismiss(true);
+    }
+
+    public void lambda$setParentActivity$30(String str) {
+        Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(str));
+        intent.putExtra("create_new_tab", true);
+        intent.putExtra("com.android.browser.application_id", this.parentActivity.getPackageName());
+        this.parentActivity.startActivity(intent);
+    }
+
+    public void lambda$setParentActivity$31(String str, String str2, Boolean bool) {
+        RestrictedDomainsList restrictedDomainsList = RestrictedDomainsList.getInstance();
+        String[] strArr = new String[2];
+        strArr[0] = str;
+        strArr[1] = (TextUtils.isEmpty(str2) || TextUtils.equals(str2, str)) ? null : null;
+        restrictedDomainsList.setRestricted(true, strArr);
+        if (!bool.booleanValue()) {
+            showRestrictedWebsiteToast();
+        } else {
+            LaunchActivity.whenResumed = new Runnable() {
+                @Override
+                public final void run() {
+                    ArticleViewer.this.showRestrictedWebsiteToast();
+                }
+            };
+        }
+    }
+
+    public static void lambda$setParentActivity$32(CheckBoxCell checkBoxCell, View view) {
+        checkBoxCell.setChecked(!checkBoxCell.isChecked(), true);
+    }
+
+    public static void lambda$setParentActivity$33(CheckBoxCell checkBoxCell, Utilities.Callback callback, Runnable runnable, DialogInterface dialogInterface, int i) {
+        if (checkBoxCell.isChecked()) {
+            callback.run(Boolean.TRUE);
+        }
+        runnable.run();
+    }
+
+    public static void lambda$setParentActivity$34(CheckBoxCell checkBoxCell, Utilities.Callback callback, DialogInterface dialogInterface, int i) {
+        if (checkBoxCell.isChecked()) {
+            callback.run(Boolean.FALSE);
+        }
+    }
+
+    public void lambda$setParentActivity$35(View view) {
         int intValue = ((Integer) view.getTag()).intValue();
         this.selectedFont = intValue;
         int i = 0;
-        while (i < 2) {
-            this.fontCells[i].select(i == intValue, true);
-            i++;
+        int i2 = 0;
+        while (i2 < 2) {
+            this.fontCells[i2].select(i2 == intValue, true);
+            i2++;
         }
         updatePaintFonts();
-        for (int i2 = 0; i2 < this.listView.length; i2++) {
-            this.adapter[i2].notifyDataSetChanged();
+        while (true) {
+            PageLayout[] pageLayoutArr = this.pages;
+            if (i >= pageLayoutArr.length) {
+                return;
+            }
+            pageLayoutArr[i].adapter.notifyDataSetChanged();
+            i++;
         }
     }
 
-    public void lambda$setParentActivity$22(View view) {
+    public void lambda$setParentActivity$37(View view) {
+        Sheet sheet = this.sheet;
+        if (sheet != null) {
+            sheet.dismiss(true);
+        }
+    }
+
+    public void lambda$setParentActivity$39(Integer num) {
+        FrameLayout frameLayout = this.searchPanel;
+        float f = -num.intValue();
+        this.searchPanelTranslation = f;
+        frameLayout.setTranslationY(f + (AndroidUtilities.dp(51.0f) * (1.0f - this.searchPanelAlpha)));
+    }
+
+    public void lambda$setParentActivity$40(View view) {
+        if (this.pages[0].isWeb()) {
+            if (this.pages[0].getWebView() != null) {
+                this.pages[0].getWebView().findNext(false);
+                return;
+            }
+            return;
+        }
         scrollToSearchIndex(this.currentSearchIndex - 1);
     }
 
-    public void lambda$setParentActivity$23(View view) {
+    public void lambda$setParentActivity$41(View view) {
+        if (this.pages[0].isWeb()) {
+            if (this.pages[0].getWebView() != null) {
+                this.pages[0].getWebView().findNext(true);
+                return;
+            }
+            return;
+        }
         scrollToSearchIndex(this.currentSearchIndex + 1);
     }
 
-    public void lambda$setParentActivity$24(CharSequence charSequence, String str, String str2, Runnable runnable) {
+    public void lambda$setParentActivity$42(CharSequence charSequence, String str, String str2, Runnable runnable) {
         TranslateAlert2.showAlert(this.parentActivity, this.parentFragment, this.currentAccount, str, str2, charSequence, null, false, null, runnable);
     }
 
-    public void lambda$setParentActivity$25(float[] fArr) {
+    public void lambda$setParentActivity$43(float[] fArr) {
         fArr[0] = this.currentHeaderHeight;
-        fArr[1] = this.listView[0].getMeasuredHeight();
+        fArr[1] = this.pages[0].listView.getMeasuredHeight();
+    }
+
+    public void showRestrictedWebsiteToast() {
+        LaunchActivity launchActivity;
+        FrameLayout frameLayout;
+        if (!this.attachedToWindow || (launchActivity = LaunchActivity.instance) == null || launchActivity.isFinishing()) {
+            return;
+        }
+        if (this.pages[0].isWeb()) {
+            if (this.pages[0].getWebView() == null) {
+                return;
+            }
+            frameLayout = this.pages[0].webViewContainer;
+        } else if (this.pages[0].adapter.currentPage == null) {
+            return;
+        } else {
+            frameLayout = this.pages[0];
+        }
+        BulletinFactory.of(frameLayout, getResourcesProvider()).createSimpleBulletin(R.raw.chats_infotip, AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.BrowserExternalRestricted), new Runnable() {
+            @Override
+            public final void run() {
+                ArticleViewer.this.openWebSettings();
+            }
+        }), 4).show(true);
+    }
+
+    public void openBookmark(String str) {
+        if (this.parentActivity == null) {
+            return;
+        }
+        this.actionBar.showAddress(false, true);
+        if (Browser.isInternalUri(Uri.parse(str), null)) {
+            Sheet sheet = this.sheet;
+            if (sheet != null) {
+                sheet.dismiss(true);
+            }
+            Browser.openAsInternalIntent(this.parentActivity, str);
+        } else if (Browser.openInExternalApp(this.parentActivity, str, false)) {
+        } else {
+            PageLayout[] pageLayoutArr = this.pages;
+            if (pageLayoutArr[0] == null || pageLayoutArr[0].getWebView() == null) {
+                Browser.openInTelegramBrowser(this.parentActivity, str, null);
+            } else {
+                this.pages[0].getWebView().loadUrl(str);
+            }
+        }
+    }
+
+    public void openHistoryEntry(BrowserHistory.Entry entry) {
+        if (this.parentActivity == null || entry == null) {
+            return;
+        }
+        this.actionBar.showAddress(false, true);
+        PageLayout[] pageLayoutArr = this.pages;
+        if (pageLayoutArr[0] == null || pageLayoutArr[0].getWebView() == null) {
+            Browser.openInTelegramBrowser(this.parentActivity, entry.url, null);
+        } else {
+            this.pages[0].getWebView().loadUrl(entry.url, entry.meta);
+        }
+    }
+
+    public void openWebSettings() {
+        BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+        if (safeLastFragment != null) {
+            BaseFragment.BottomSheetParams bottomSheetParams = new BaseFragment.BottomSheetParams();
+            bottomSheetParams.transitionFromLeft = true;
+            safeLastFragment.showAsSheet(new WebBrowserSettings(), bottomSheetParams);
+        }
     }
 
     public void checkVideoPlayer() {
         BlockVideoCell blockVideoCell;
-        RecyclerListView recyclerListView = this.listView[0];
-        if (recyclerListView == null && this.attachedToWindow) {
+        RecyclerListView recyclerListView = this.pages[0].listView;
+        if (recyclerListView == null || !this.attachedToWindow) {
             return;
         }
         float f = 0.0f;
@@ -3925,152 +4959,33 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         this.currentPlayer = blockVideoCell2;
     }
 
-    public void showSearch(final boolean z) {
-        FrameLayout frameLayout = this.searchContainer;
-        if (frameLayout != null) {
-            if ((frameLayout.getTag() != null) == z) {
-                return;
-            }
-            this.searchContainer.setTag(z ? 1 : null);
-            this.searchResults.clear();
-            this.searchText = null;
-            this.adapter[0].searchTextOffset.clear();
-            this.currentSearchIndex = 0;
-            if (this.attachedToWindow) {
-                AnimatorSet animatorSet = new AnimatorSet();
-                animatorSet.setDuration(250L);
-                if (z) {
-                    this.searchContainer.setVisibility(0);
-                    this.backDrawable.setRotation(0.0f, true);
-                } else {
-                    this.menuButton.setVisibility(0);
-                    this.listView[0].invalidateViews();
-                    AndroidUtilities.hideKeyboard(this.searchField);
-                    updateWindowLayoutParamsForSearch();
-                }
-                ArrayList arrayList = new ArrayList();
-                if (Build.VERSION.SDK_INT >= 21) {
-                    if (z) {
-                        this.searchContainer.setAlpha(1.0f);
-                    }
-                    int left = this.menuContainer.getLeft() + (this.menuContainer.getMeasuredWidth() / 2);
-                    int top = this.menuContainer.getTop() + (this.menuContainer.getMeasuredHeight() / 2);
-                    float sqrt = (float) Math.sqrt((left * left) + (top * top));
-                    FrameLayout frameLayout2 = this.searchContainer;
-                    float f = z ? 0.0f : sqrt;
-                    if (!z) {
-                        sqrt = 0.0f;
-                    }
-                    Animator createCircularReveal = ViewAnimationUtils.createCircularReveal(frameLayout2, left, top, f, sqrt);
-                    arrayList.add(createCircularReveal);
-                    createCircularReveal.addListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animator) {
-                            if (z) {
-                                return;
-                            }
-                            ArticleViewer.this.searchContainer.setAlpha(0.0f);
-                        }
-                    });
-                } else {
-                    FrameLayout frameLayout3 = this.searchContainer;
-                    Property property = View.ALPHA;
-                    float[] fArr = new float[1];
-                    fArr[0] = z ? 1.0f : 0.0f;
-                    arrayList.add(ObjectAnimator.ofFloat(frameLayout3, (Property<FrameLayout, Float>) property, fArr));
-                }
-                if (!z) {
-                    arrayList.add(ObjectAnimator.ofFloat(this.searchPanel, (Property<FrameLayout, Float>) View.ALPHA, 0.0f));
-                }
-                View view = this.searchShadow;
-                Property property2 = View.ALPHA;
-                float[] fArr2 = new float[1];
-                fArr2[0] = z ? 1.0f : 0.0f;
-                arrayList.add(ObjectAnimator.ofFloat(view, (Property<View, Float>) property2, fArr2));
-                animatorSet.playTogether(arrayList);
-                animatorSet.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animator) {
-                        if (z) {
-                            ArticleViewer.this.updateWindowLayoutParamsForSearch();
-                            ArticleViewer.this.searchField.requestFocus();
-                            AndroidUtilities.showKeyboard(ArticleViewer.this.searchField);
-                            ArticleViewer.this.menuButton.setVisibility(4);
-                            return;
-                        }
-                        ArticleViewer.this.searchContainer.setVisibility(4);
-                        ArticleViewer.this.searchPanel.setVisibility(4);
-                        ArticleViewer.this.searchField.setText("");
-                    }
-
-                    @Override
-                    public void onAnimationStart(Animator animator) {
-                        if (z) {
-                            return;
-                        }
-                        ArticleViewer.this.backDrawable.setRotation(1.0f, true);
-                    }
-                });
-                animatorSet.setInterpolator(CubicBezierInterpolator.EASE_OUT);
-                if (!z && !AndroidUtilities.usingHardwareInput && this.keyboardVisible) {
-                    this.runAfterKeyboardClose = animatorSet;
-                    AndroidUtilities.runOnUIThread(new Runnable() {
-                        @Override
-                        public final void run() {
-                            ArticleViewer.this.lambda$showSearch$26();
-                        }
-                    }, 300L);
-                    return;
-                } else {
-                    animatorSet.start();
-                    return;
-                }
-            }
-            this.searchContainer.setAlpha(z ? 1.0f : 0.0f);
-            this.menuButton.setVisibility(z ? 4 : 0);
-            this.backDrawable.setRotation(z ? 0.0f : 1.0f, false);
-            this.searchShadow.setAlpha(z ? 1.0f : 0.0f);
-            if (z) {
-                this.searchContainer.setVisibility(0);
+    public void updateSearchButtons() {
+        int i;
+        int size;
+        if (this.searchResults != null || this.pages[0].isWeb()) {
+            if (this.pages[0].isWeb()) {
+                i = this.pages[0].getWebView() == null ? 0 : this.pages[0].getWebView().getSearchIndex();
+                size = this.pages[0].getWebView() == null ? 0 : this.pages[0].getWebView().getSearchCount();
             } else {
-                this.searchContainer.setVisibility(4);
-                this.searchPanel.setVisibility(4);
-                this.searchField.setText("");
+                i = this.currentSearchIndex;
+                size = this.searchResults.size();
             }
-            updateWindowLayoutParamsForSearch();
-        }
-    }
-
-    public void lambda$showSearch$26() {
-        AnimatorSet animatorSet = this.runAfterKeyboardClose;
-        if (animatorSet != null) {
-            animatorSet.start();
-            this.runAfterKeyboardClose = null;
-        }
-    }
-
-    private void updateSearchButtons() {
-        ArrayList<SearchResult> arrayList = this.searchResults;
-        if (arrayList == null) {
-            return;
-        }
-        this.searchUpButton.setEnabled((arrayList.isEmpty() || this.currentSearchIndex == 0) ? false : true);
-        this.searchDownButton.setEnabled((this.searchResults.isEmpty() || this.currentSearchIndex == this.searchResults.size() - 1) ? false : true);
-        ImageView imageView = this.searchUpButton;
-        imageView.setAlpha(imageView.isEnabled() ? 1.0f : 0.5f);
-        ImageView imageView2 = this.searchDownButton;
-        imageView2.setAlpha(imageView2.isEnabled() ? 1.0f : 0.5f);
-        int size = this.searchResults.size();
-        if (size < 0) {
-            this.searchCountText.setText("");
-            return;
-        }
-        if (size == 0) {
-            this.searchCountText.setText(LocaleController.getString("NoResult", R.string.NoResult));
-        } else if (size == 1) {
-            this.searchCountText.setText(LocaleController.getString("OneResult", R.string.OneResult));
-        } else {
-            this.searchCountText.setText(String.format(LocaleController.getPluralString("CountOfResults", size), Integer.valueOf(this.currentSearchIndex + 1), Integer.valueOf(size)));
+            this.searchUpButton.setEnabled(size > 0 && i != 0);
+            this.searchDownButton.setEnabled(size > 0 && i != size + (-1));
+            ImageView imageView = this.searchUpButton;
+            imageView.setAlpha(imageView.isEnabled() ? 1.0f : 0.5f);
+            ImageView imageView2 = this.searchDownButton;
+            imageView2.setAlpha(imageView2.isEnabled() ? 1.0f : 0.5f);
+            this.searchCountText.cancelAnimation();
+            if (size < 0) {
+                this.searchCountText.setText("");
+            } else if (size == 0) {
+                this.searchCountText.setText(LocaleController.getString("NoResult", R.string.NoResult));
+            } else if (size == 1) {
+                this.searchCountText.setText(LocaleController.getString("OneResult", R.string.OneResult));
+            } else {
+                this.searchCountText.setText(String.format(LocaleController.getPluralString("CountOfResults", size), Integer.valueOf(i + 1), Integer.valueOf(size)));
+            }
         }
     }
 
@@ -4092,38 +5007,64 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         if (TextUtils.isEmpty(str)) {
             this.searchResults.clear();
             this.searchText = str;
-            this.adapter[0].searchTextOffset.clear();
-            this.searchPanel.setVisibility(4);
-            this.listView[0].invalidateViews();
-            scrollToSearchIndex(0);
+            this.pages[0].adapter.searchTextOffset.clear();
+            showSearchPanel(false);
+            if (this.pages[0].isWeb()) {
+                if (this.pages[0].getWebView() != null) {
+                    this.pages[0].getWebView().search("", new Runnable() {
+                        @Override
+                        public final void run() {
+                            ArticleViewer.this.updateSearchButtons();
+                        }
+                    });
+                    updateSearchButtons();
+                }
+            } else {
+                this.pages[0].listView.invalidateViews();
+                scrollToSearchIndex(0);
+            }
             this.lastSearchIndex = -1;
             return;
         }
         final int i = this.lastSearchIndex + 1;
         this.lastSearchIndex = i;
+        if (this.pages[0].isWeb()) {
+            showSearchPanel(true);
+            if (this.pages[0].getWebView() != null) {
+                this.pages[0].getWebView().search(str, new Runnable() {
+                    @Override
+                    public final void run() {
+                        ArticleViewer.this.updateSearchButtons();
+                    }
+                });
+                updateSearchButtons();
+                return;
+            }
+            return;
+        }
         Runnable runnable2 = new Runnable() {
             @Override
             public final void run() {
-                ArticleViewer.this.lambda$processSearch$29(str, i);
+                ArticleViewer.this.lambda$processSearch$46(str, i);
             }
         };
         this.searchRunnable = runnable2;
         AndroidUtilities.runOnUIThread(runnable2, 400L);
     }
 
-    public void lambda$processSearch$29(final String str, final int i) {
-        final HashMap hashMap = new HashMap(this.adapter[0].textToBlocks);
-        final ArrayList arrayList = new ArrayList(this.adapter[0].textBlocks);
+    public void lambda$processSearch$46(final String str, final int i) {
+        final HashMap hashMap = new HashMap(this.pages[0].adapter.textToBlocks);
+        final ArrayList arrayList = new ArrayList(this.pages[0].adapter.textBlocks);
         this.searchRunnable = null;
         Utilities.searchQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                ArticleViewer.this.lambda$processSearch$28(arrayList, hashMap, str, i);
+                ArticleViewer.this.lambda$processSearch$45(arrayList, hashMap, str, i);
             }
         });
     }
 
-    public void lambda$processSearch$28(ArrayList arrayList, HashMap hashMap, final String str, final int i) {
+    public void lambda$processSearch$45(ArrayList arrayList, HashMap hashMap, final String str, final int i) {
         TLRPC$PageBlock tLRPC$PageBlock;
         String lowerCase;
         String str2;
@@ -4138,10 +5079,9 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             TLRPC$PageBlock tLRPC$PageBlock3 = (TLRPC$PageBlock) hashMap.get(obj);
             if (obj instanceof TLRPC$RichText) {
                 TLRPC$RichText tLRPC$RichText = (TLRPC$RichText) obj;
-                WebpageAdapter webpageAdapter = this.adapter[c];
                 String str3 = null;
                 tLRPC$PageBlock = tLRPC$PageBlock3;
-                CharSequence text = getText(webpageAdapter, (View) null, tLRPC$RichText, tLRPC$RichText, tLRPC$PageBlock3, 1000);
+                CharSequence text = getText(this.pages[c].adapter, (View) null, tLRPC$RichText, tLRPC$RichText, tLRPC$PageBlock3, 1000);
                 str2 = str3;
                 if (!TextUtils.isEmpty(text)) {
                     lowerCase = text.toString().toLowerCase();
@@ -4187,29 +5127,75 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ArticleViewer.this.lambda$processSearch$27(i, arrayList2, str);
+                ArticleViewer.this.lambda$processSearch$44(i, arrayList2, str);
             }
         });
     }
 
-    public void lambda$processSearch$27(int i, ArrayList arrayList, String str) {
+    public void lambda$processSearch$44(int i, ArrayList arrayList, String str) {
         if (i == this.lastSearchIndex) {
-            this.searchPanel.setAlpha(1.0f);
-            this.searchPanel.setVisibility(0);
+            showSearchPanel(true);
             this.searchResults = arrayList;
             this.searchText = str;
-            this.adapter[0].searchTextOffset.clear();
-            this.listView[0].invalidateViews();
+            this.pages[0].adapter.searchTextOffset.clear();
+            this.pages[0].listView.invalidateViews();
             scrollToSearchIndex(0);
         }
+    }
+
+    public void showSearchPanel(final boolean z) {
+        this.searchPanel.setVisibility(0);
+        ValueAnimator valueAnimator = this.searchPanelAnimator;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        float[] fArr = new float[2];
+        fArr[0] = this.searchPanelAlpha;
+        fArr[1] = z ? 1.0f : 0.0f;
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+        this.searchPanelAnimator = ofFloat;
+        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                ArticleViewer.this.lambda$showSearchPanel$47(valueAnimator2);
+            }
+        });
+        this.searchPanelAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                ArticleViewer.this.searchPanelAlpha = z ? 1.0f : 0.0f;
+                ArticleViewer.this.searchPanel.setTranslationY(ArticleViewer.this.searchPanelTranslation + ((1.0f - ArticleViewer.this.searchPanelAlpha) * AndroidUtilities.dp(51.0f)));
+                if (z) {
+                    return;
+                }
+                ArticleViewer.this.searchPanel.setVisibility(8);
+            }
+        });
+        this.searchPanelAnimator.setDuration(320L);
+        this.searchPanelAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+        this.searchPanelAnimator.start();
+    }
+
+    public void lambda$showSearchPanel$47(ValueAnimator valueAnimator) {
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.searchPanelAlpha = floatValue;
+        this.searchPanel.setTranslationY(this.searchPanelTranslation + ((1.0f - floatValue) * AndroidUtilities.dp(51.0f)));
     }
 
     private void scrollToSearchIndex(int r12) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ArticleViewer.scrollToSearchIndex(int):void");
     }
 
-    public void checkScrollAnimated() {
+    private void checkScrollAnimated() {
+        checkScrollAnimated(null);
+    }
+
+    private void checkScrollAnimated(final Runnable runnable) {
         if (this.currentHeaderHeight == AndroidUtilities.dp(56.0f)) {
+            if (runnable != null) {
+                runnable.run();
+                return;
+            }
             return;
         }
         ValueAnimator duration = ValueAnimator.ofObject(new IntEvaluator(), Integer.valueOf(this.currentHeaderHeight), Integer.valueOf(AndroidUtilities.dp(56.0f))).setDuration(180L);
@@ -4217,60 +5203,54 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                ArticleViewer.this.lambda$checkScrollAnimated$30(valueAnimator);
+                ArticleViewer.this.lambda$checkScrollAnimated$48(valueAnimator);
             }
         });
+        duration.addListener(new AnimatorListenerAdapter(this) {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                super.onAnimationEnd(animator);
+                Runnable runnable2 = runnable;
+                if (runnable2 != null) {
+                    runnable2.run();
+                }
+            }
+        });
+        if (runnable != null) {
+            duration.setDuration(duration.getDuration() / 2);
+        }
         duration.start();
     }
 
-    public void lambda$checkScrollAnimated$30(ValueAnimator valueAnimator) {
+    public void lambda$checkScrollAnimated$48(ValueAnimator valueAnimator) {
         setCurrentHeaderHeight(((Integer) valueAnimator.getAnimatedValue()).intValue());
     }
 
     public void setCurrentHeaderHeight(int i) {
-        if (this.searchContainer.getTag() != null) {
+        WebActionBar webActionBar = this.actionBar;
+        if (webActionBar == null || webActionBar.isSearching() || this.actionBar.isAddressing()) {
             return;
         }
-        int dp = AndroidUtilities.dp(56.0f);
-        int dp2 = AndroidUtilities.dp(24.0f);
-        if (i < dp2) {
-            i = dp2;
-        } else if (i > dp) {
-            i = dp;
-        }
-        float f = dp - dp2;
-        if (f == 0.0f) {
-            f = 1.0f;
-        }
-        this.currentHeaderHeight = i;
-        float f2 = (((i - dp2) / f) * 0.2f) + 0.8f;
-        this.backButton.setScaleX(f2);
-        this.backButton.setScaleY(f2);
-        this.backButton.setTranslationY((dp - this.currentHeaderHeight) / 2);
-        this.menuContainer.setScaleX(f2);
-        this.menuContainer.setScaleY(f2);
-        this.titleTextView.setScaleX(f2);
-        this.titleTextView.setScaleY(f2);
-        this.lineProgressView.setScaleY((((i - dp2) / f) * 0.5f) + 0.5f);
-        this.menuContainer.setTranslationY((dp - this.currentHeaderHeight) / 2);
-        this.titleTextView.setTranslationY((dp - this.currentHeaderHeight) / 2);
-        this.headerView.setTranslationY(this.currentHeaderHeight - dp);
-        this.searchShadow.setTranslationY(this.currentHeaderHeight - dp);
-        int i2 = 0;
-        this.menuButton.setAdditionalYOffset(((-(this.currentHeaderHeight - dp)) / 2) + (Build.VERSION.SDK_INT < 21 ? AndroidUtilities.statusBarHeight : 0));
+        int clamp = Utilities.clamp(i, AndroidUtilities.dp(56.0f), AndroidUtilities.dp(24.0f));
+        this.currentHeaderHeight = clamp;
+        this.actionBar.setHeight(clamp);
         this.textSelectionHelper.setTopOffset(this.currentHeaderHeight);
+        int i2 = 0;
         while (true) {
-            RecyclerListView[] recyclerListViewArr = this.listView;
-            if (i2 >= recyclerListViewArr.length) {
+            PageLayout[] pageLayoutArr = this.pages;
+            if (i2 >= pageLayoutArr.length) {
                 return;
             }
-            recyclerListViewArr[i2].setTopGlowOffset(this.currentHeaderHeight);
+            pageLayoutArr[i2].listView.setTopGlowOffset(this.currentHeaderHeight);
             i2++;
         }
     }
 
     public void checkScroll(int i) {
-        setCurrentHeaderHeight(this.currentHeaderHeight - i);
+        Sheet sheet = this.sheet;
+        if (sheet == null || sheet.attachedToActionBar) {
+            setCurrentHeaderHeight(this.currentHeaderHeight - i);
+        }
     }
 
     private void openPreviewsChat(TLRPC$User tLRPC$User, long j) {
@@ -4285,161 +5265,205 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
     }
 
     public boolean open(MessageObject messageObject) {
-        return open(messageObject, null, null, true);
+        return open(messageObject, null, null, null, null);
     }
 
     public boolean open(TLRPC$TL_webPage tLRPC$TL_webPage, String str) {
-        return open(null, tLRPC$TL_webPage, str, true);
+        return open(null, tLRPC$TL_webPage, str, null, null);
     }
 
-    private boolean open(final MessageObject messageObject, TLRPC$WebPage tLRPC$WebPage, String str, boolean z) {
+    public boolean open(String str) {
+        return open(null, null, null, str, null);
+    }
+
+    public boolean open(String str, Browser.Progress progress) {
+        return open(null, null, null, str, progress);
+    }
+
+    private boolean open(final MessageObject messageObject, TLRPC$WebPage tLRPC$WebPage, String str, String str2, final Browser.Progress progress) {
         final TLRPC$WebPage tLRPC$WebPage2;
-        String str2;
-        int lastIndexOf;
         String str3;
-        if (this.parentActivity == null || ((this.isVisible && !this.collapsed) || (messageObject == null && tLRPC$WebPage == null))) {
-            return false;
-        }
-        if (messageObject != null) {
-            TLRPC$WebPage tLRPC$WebPage3 = messageObject.messageOwner.media.webpage;
-            for (int i = 0; i < messageObject.messageOwner.entities.size(); i++) {
-                TLRPC$MessageEntity tLRPC$MessageEntity = messageObject.messageOwner.entities.get(i);
-                if (tLRPC$MessageEntity instanceof TLRPC$TL_messageEntityUrl) {
-                    try {
-                        String str4 = messageObject.messageOwner.message;
-                        int i2 = tLRPC$MessageEntity.offset;
-                        String lowerCase = str4.substring(i2, tLRPC$MessageEntity.length + i2).toLowerCase();
-                        if (!TextUtils.isEmpty(tLRPC$WebPage3.cached_page.url)) {
-                            str3 = tLRPC$WebPage3.cached_page.url.toLowerCase();
-                        } else {
-                            str3 = tLRPC$WebPage3.url.toLowerCase();
-                        }
-                        if (lowerCase.contains(str3) || str3.contains(lowerCase)) {
-                            int lastIndexOf2 = lowerCase.lastIndexOf(35);
-                            if (lastIndexOf2 == -1) {
-                                break;
-                            }
-                            str2 = lowerCase.substring(lastIndexOf2 + 1);
-                            break;
-                        }
-                    } catch (Exception e) {
-                        FileLog.e(e);
-                    }
-                }
-            }
-            str2 = null;
-            tLRPC$WebPage2 = tLRPC$WebPage3;
-        } else if (str == null || (lastIndexOf = str.lastIndexOf(35)) == -1) {
-            tLRPC$WebPage2 = tLRPC$WebPage;
-            str2 = null;
-        } else {
-            str2 = str.substring(lastIndexOf + 1);
-            tLRPC$WebPage2 = tLRPC$WebPage;
-        }
-        this.pagesStack.clear();
-        this.collapsed = false;
-        this.containerView.setTranslationX(0.0f);
-        this.containerView.setTranslationY(0.0f);
-        this.listView[0].setTranslationY(0.0f);
-        this.listView[0].setTranslationX(0.0f);
-        this.listView[1].setTranslationX(0.0f);
-        this.listView[0].setAlpha(1.0f);
-        this.windowView.setInnerTranslationX(0.0f);
-        this.layoutManager[0].scrollToPositionWithOffset(0, 0);
-        if (z) {
-            setCurrentHeaderHeight(AndroidUtilities.dp(56.0f));
-        } else {
-            checkScrollAnimated();
-        }
-        boolean addPageToStack = addPageToStack(tLRPC$WebPage2, str2, 0);
-        if (z) {
-            final String str5 = (addPageToStack || str2 == null) ? null : str2;
-            TLRPC$TL_messages_getWebPage tLRPC$TL_messages_getWebPage = new TLRPC$TL_messages_getWebPage();
-            tLRPC$TL_messages_getWebPage.url = tLRPC$WebPage2.url;
-            TLRPC$Page tLRPC$Page = tLRPC$WebPage2.cached_page;
-            if ((tLRPC$Page instanceof TLRPC$TL_pagePart_layer82) || tLRPC$Page.part) {
-                tLRPC$TL_messages_getWebPage.hash = 0;
-            } else {
-                tLRPC$TL_messages_getWebPage.hash = tLRPC$WebPage2.hash;
-            }
-            final int i3 = UserConfig.selectedAccount;
-            ConnectionsManager.getInstance(i3).sendRequest(tLRPC$TL_messages_getWebPage, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    ArticleViewer.this.lambda$open$32(i3, tLRPC$WebPage2, messageObject, str5, tLObject, tLRPC$TL_error);
-                }
-            });
-        }
-        this.lastInsets = null;
-        if (this.sheet != null) {
-            AndroidUtilities.removeFromParent(this.windowView);
-            this.sheet.windowView.addView(this.windowView, LayoutHelper.createFrame(-1, -1.0f));
-        } else if (!this.isVisible) {
-            WindowManager windowManager = (WindowManager) this.parentActivity.getSystemService("window");
-            if (this.attachedToWindow) {
-                try {
-                    windowManager.removeView(this.windowView);
-                } catch (Exception unused) {
-                }
-            }
-            try {
-                int i4 = Build.VERSION.SDK_INT;
-                if (i4 >= 21) {
-                    WindowManager.LayoutParams layoutParams = this.windowLayoutParams;
-                    layoutParams.flags = -2013200384;
-                    if (i4 >= 28) {
-                        layoutParams.layoutInDisplayCutoutMode = 1;
-                    }
-                }
-                this.windowView.setFocusable(false);
-                this.containerView.setFocusable(false);
-                windowManager.addView(this.windowView, this.windowLayoutParams);
-            } catch (Exception e2) {
-                FileLog.e(e2);
+        int lastIndexOf;
+        BotWebViewContainer.MyWebView webView;
+        String lowerCase;
+        if (this.parentActivity != null) {
+            if (this.sheet == null && this.isVisible && !this.collapsed) {
                 return false;
             }
-        } else {
-            this.windowLayoutParams.flags &= -17;
-            ((WindowManager) this.parentActivity.getSystemService("window")).updateViewLayout(this.windowView, this.windowLayoutParams);
-        }
-        this.isVisible = true;
-        this.animationInProgress = 1;
-        this.windowView.setAlpha(0.0f);
-        this.containerView.setAlpha(0.0f);
-        final AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.playTogether(ObjectAnimator.ofFloat(this.windowView, (Property<WindowView, Float>) View.ALPHA, 0.0f, 1.0f), ObjectAnimator.ofFloat(this.containerView, (Property<FrameLayout, Float>) View.ALPHA, 0.0f, 1.0f), ObjectAnimator.ofFloat(this.windowView, (Property<WindowView, Float>) View.TRANSLATION_X, AndroidUtilities.dp(56.0f), 0.0f));
-        this.animationEndRunnable = new Runnable() {
-            @Override
-            public final void run() {
-                ArticleViewer.this.lambda$open$33();
+            if (messageObject != null) {
+                TLRPC$WebPage tLRPC$WebPage3 = messageObject.messageOwner.media.webpage;
+                for (int i = 0; i < messageObject.messageOwner.entities.size(); i++) {
+                    TLRPC$MessageEntity tLRPC$MessageEntity = messageObject.messageOwner.entities.get(i);
+                    if (tLRPC$MessageEntity instanceof TLRPC$TL_messageEntityUrl) {
+                        try {
+                            String str4 = messageObject.messageOwner.message;
+                            int i2 = tLRPC$MessageEntity.offset;
+                            String lowerCase2 = str4.substring(i2, tLRPC$MessageEntity.length + i2).toLowerCase();
+                            if (!TextUtils.isEmpty(tLRPC$WebPage3.cached_page.url)) {
+                                lowerCase = tLRPC$WebPage3.cached_page.url.toLowerCase();
+                            } else {
+                                lowerCase = tLRPC$WebPage3.url.toLowerCase();
+                            }
+                            if (lowerCase2.contains(lowerCase) || lowerCase.contains(lowerCase2)) {
+                                int lastIndexOf2 = lowerCase2.lastIndexOf(35);
+                                if (lastIndexOf2 == -1) {
+                                    break;
+                                }
+                                str3 = lowerCase2.substring(lastIndexOf2 + 1);
+                                break;
+                            }
+                        } catch (Exception e) {
+                            FileLog.e(e);
+                        }
+                    }
+                }
+                str3 = null;
+                tLRPC$WebPage2 = tLRPC$WebPage3;
+            } else if (str == null || (lastIndexOf = str.lastIndexOf(35)) == -1) {
+                tLRPC$WebPage2 = tLRPC$WebPage;
+                str3 = null;
+            } else {
+                str3 = str.substring(lastIndexOf + 1);
+                tLRPC$WebPage2 = tLRPC$WebPage;
             }
-        };
-        animatorSet.setDuration(150L);
-        animatorSet.setInterpolator(this.interpolator);
-        animatorSet.addListener(new AnonymousClass22());
-        this.transitionAnimationStartTime = System.currentTimeMillis();
+            int i3 = (this.sheet == null || this.pagesStack.isEmpty()) ? 0 : 1;
+            this.collapsed = false;
+            if (i3 == 0) {
+                this.pagesStack.clear();
+                this.containerView.setTranslationX(0.0f);
+                Sheet sheet = this.sheet;
+                if (sheet != null) {
+                    sheet.setBackProgress(0.0f);
+                }
+                this.containerView.setTranslationY(0.0f);
+                this.pages[0].setTranslationY(0.0f);
+                this.pages[0].setTranslationX(0.0f);
+                this.pages[1].setTranslationX(0.0f);
+                this.pages[0].setAlpha(1.0f);
+                this.windowView.setInnerTranslationX(0.0f);
+                this.pages[0].scrollToTop(false);
+                setCurrentHeaderHeight(AndroidUtilities.dp(56.0f));
+            }
+            if (tLRPC$WebPage2 != null) {
+                str3 = (addPageToStack(tLRPC$WebPage2, str3, i3) || str3 == null) ? null : null;
+                TLRPC$TL_messages_getWebPage tLRPC$TL_messages_getWebPage = new TLRPC$TL_messages_getWebPage();
+                tLRPC$TL_messages_getWebPage.url = tLRPC$WebPage2.url;
+                TLRPC$Page tLRPC$Page = tLRPC$WebPage2.cached_page;
+                if ((tLRPC$Page instanceof TLRPC$TL_pagePart_layer82) || tLRPC$Page.part) {
+                    tLRPC$TL_messages_getWebPage.hash = 0;
+                } else {
+                    tLRPC$TL_messages_getWebPage.hash = tLRPC$WebPage2.hash;
+                }
+                final int i4 = UserConfig.selectedAccount;
+                final boolean z = i3;
+                final String str5 = str3;
+                ConnectionsManager.getInstance(i4).sendRequest(tLRPC$TL_messages_getWebPage, new RequestDelegate() {
+                    @Override
+                    public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                        ArticleViewer.this.lambda$open$50(i4, tLRPC$WebPage2, messageObject, z, str5, tLObject, tLRPC$TL_error);
+                    }
+                });
+            } else {
+                addPageToStack(str2, i3);
+            }
+            this.lastInsets = null;
+            if (this.sheet != null) {
+                if (i3 == 0) {
+                    AndroidUtilities.removeFromParent(this.windowView);
+                    this.sheet.setContainerView(this.windowView);
+                    this.sheet.windowView.addView(this.windowView, LayoutHelper.createFrame(-1, -1.0f));
+                }
+            } else if (!this.isVisible) {
+                WindowManager windowManager = (WindowManager) this.parentActivity.getSystemService("window");
+                if (this.attachedToWindow) {
+                    try {
+                        windowManager.removeView(this.windowView);
+                    } catch (Exception unused) {
+                    }
+                }
+                try {
+                    int i5 = Build.VERSION.SDK_INT;
+                    if (i5 >= 21) {
+                        WindowManager.LayoutParams layoutParams = this.windowLayoutParams;
+                        layoutParams.flags = -2013200384;
+                        if (i5 >= 28) {
+                            layoutParams.layoutInDisplayCutoutMode = 1;
+                        }
+                    }
+                    this.windowView.setFocusable(false);
+                    this.containerView.setFocusable(false);
+                    windowManager.addView(this.windowView, this.windowLayoutParams);
+                } catch (Exception e2) {
+                    FileLog.e(e2);
+                    return false;
+                }
+            } else {
+                this.windowLayoutParams.flags &= -17;
+                ((WindowManager) this.parentActivity.getSystemService("window")).updateViewLayout(this.windowView, this.windowLayoutParams);
+            }
+            this.isVisible = true;
+            this.animationInProgress = 1;
+            if (i3 == 0) {
+                if (this.sheet == null) {
+                    this.windowView.setAlpha(0.0f);
+                    this.containerView.setAlpha(0.0f);
+                    final AnimatorSet animatorSet = new AnimatorSet();
+                    animatorSet.playTogether(ObjectAnimator.ofFloat(this.windowView, View.ALPHA, 0.0f, 1.0f), ObjectAnimator.ofFloat(this.containerView, View.ALPHA, 0.0f, 1.0f), ObjectAnimator.ofFloat(this.windowView, View.TRANSLATION_X, AndroidUtilities.dp(56.0f), 0.0f));
+                    this.animationEndRunnable = new Runnable() {
+                        @Override
+                        public final void run() {
+                            ArticleViewer.this.lambda$open$53();
+                        }
+                    };
+                    animatorSet.setDuration(150L);
+                    animatorSet.setInterpolator(this.interpolator);
+                    animatorSet.addListener(new AnonymousClass23());
+                    this.transitionAnimationStartTime = System.currentTimeMillis();
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            ArticleViewer.this.lambda$open$54(animatorSet);
+                        }
+                    });
+                } else if (i3 == 0) {
+                    if (progress != null && (webView = this.pages[0].getWebView()) != null) {
+                        final boolean[] zArr = {false};
+                        progress.onCancel(new Runnable() {
+                            @Override
+                            public final void run() {
+                                ArticleViewer.this.lambda$open$51(zArr);
+                            }
+                        });
+                        progress.init();
+                        webView.whenPageLoaded(new Runnable() {
+                            @Override
+                            public final void run() {
+                                ArticleViewer.this.lambda$open$52(progress, zArr);
+                            }
+                        }, 1200L);
+                        return true;
+                    }
+                    this.sheet.show();
+                }
+            }
+            if (Build.VERSION.SDK_INT >= 18) {
+                this.containerView.setLayerType(2, null);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    public void lambda$open$50(final int i, final TLRPC$WebPage tLRPC$WebPage, final MessageObject messageObject, final boolean z, final String str, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ArticleViewer.this.lambda$open$34(animatorSet);
-            }
-        });
-        if (Build.VERSION.SDK_INT >= 18) {
-            this.containerView.setLayerType(2, null);
-        }
-        return true;
-    }
-
-    public void lambda$open$32(final int i, final TLRPC$WebPage tLRPC$WebPage, final MessageObject messageObject, final String str, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                ArticleViewer.this.lambda$open$31(tLObject, i, tLRPC$WebPage, messageObject, str);
+                ArticleViewer.this.lambda$open$49(tLObject, i, tLRPC$WebPage, messageObject, z, str);
             }
         });
     }
 
-    public void lambda$open$31(TLObject tLObject, int i, TLRPC$WebPage tLRPC$WebPage, MessageObject messageObject, String str) {
+    public void lambda$open$49(TLObject tLObject, int i, TLRPC$WebPage tLRPC$WebPage, MessageObject messageObject, boolean z, String str) {
         TLRPC$Page tLRPC$Page;
         TLObject tLObject2 = tLObject;
         int i2 = 0;
@@ -4461,21 +5485,23 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     tLRPC$TL_messages_messages.messages.add(messageObject.messageOwner);
                     MessagesStorage.getInstance(i).putMessages((TLRPC$messages_Messages) tLRPC$TL_messages_messages, messageObject.getDialogId(), -2, 0, false, messageObject.scheduled ? 1 : 0, 0L);
                 }
-                this.pagesStack.set(0, tLRPC$TL_webPage);
+                if (z) {
+                    this.pagesStack.add(tLRPC$TL_webPage);
+                } else {
+                    this.pagesStack.set(0, tLRPC$TL_webPage);
+                }
                 if (this.pagesStack.size() == 1) {
                     ApplicationLoader.applicationContext.getSharedPreferences("articles", 0).edit().remove("article" + tLRPC$TL_webPage.id).commit();
-                    updateInterfaceForCurrentPage(tLRPC$TL_webPage, false, 0);
+                    updateInterfaceForCurrentPage(tLRPC$TL_webPage, false, z ? 1 : 0);
                     if (str != null) {
-                        scrollToAnchor(str);
+                        scrollToAnchor(str, false);
                     }
                 }
             }
             LongSparseArray<TLRPC$WebPage> longSparseArray = new LongSparseArray<>(1);
             longSparseArray.put(tLRPC$TL_webPage.id, tLRPC$TL_webPage);
             MessagesStorage.getInstance(i).putWebPages(longSparseArray);
-            return;
-        }
-        if (tLObject2 instanceof TLRPC$TL_webPageNotModified) {
+        } else if (tLObject2 instanceof TLRPC$TL_webPageNotModified) {
             TLRPC$TL_webPageNotModified tLRPC$TL_webPageNotModified = (TLRPC$TL_webPageNotModified) tLObject2;
             if (tLRPC$WebPage == null || (tLRPC$Page = tLRPC$WebPage.cached_page) == null) {
                 return;
@@ -4486,14 +5512,14 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 tLRPC$Page.views = i4;
                 tLRPC$Page.flags |= 8;
                 while (true) {
-                    WebpageAdapter[] webpageAdapterArr = this.adapter;
-                    if (i2 >= webpageAdapterArr.length) {
+                    PageLayout[] pageLayoutArr = this.pages;
+                    if (i2 >= pageLayoutArr.length) {
                         break;
                     }
-                    if (webpageAdapterArr[i2].currentPage == tLRPC$WebPage) {
-                        RecyclerView.ViewHolder findViewHolderForAdapterPosition = this.listView[i2].findViewHolderForAdapterPosition(this.adapter[i2].getItemCount() - 1);
+                    if (pageLayoutArr[i2].adapter.currentPage == tLRPC$WebPage) {
+                        RecyclerView.ViewHolder findViewHolderForAdapterPosition = this.pages[i2].listView.findViewHolderForAdapterPosition(this.pages[i2].adapter.getItemCount() - 1);
                         if (findViewHolderForAdapterPosition != null) {
-                            this.adapter[i2].onViewAttachedToWindow(findViewHolderForAdapterPosition);
+                            this.pages[i2].adapter.onViewAttachedToWindow(findViewHolderForAdapterPosition);
                         }
                     }
                     i2++;
@@ -4507,7 +5533,27 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    public void lambda$open$33() {
+    public void lambda$open$51(boolean[] zArr) {
+        zArr[0] = true;
+        this.sheet.dismissInstant();
+    }
+
+    public void lambda$open$52(Browser.Progress progress, boolean[] zArr) {
+        progress.end();
+        if (zArr[0]) {
+            return;
+        }
+        final Sheet sheet = this.sheet;
+        Objects.requireNonNull(sheet);
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                ArticleViewer.Sheet.this.show();
+            }
+        }, 80L);
+    }
+
+    public void lambda$open$53() {
         FrameLayout frameLayout = this.containerView;
         if (frameLayout == null || this.windowView == null) {
             return;
@@ -4519,8 +5565,8 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         AndroidUtilities.hideKeyboard(this.parentActivity.getCurrentFocus());
     }
 
-    public class AnonymousClass22 extends AnimatorListenerAdapter {
-        AnonymousClass22() {
+    public class AnonymousClass23 extends AnimatorListenerAdapter {
+        AnonymousClass23() {
         }
 
         @Override
@@ -4528,7 +5574,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ArticleViewer.AnonymousClass22.this.lambda$onAnimationEnd$0();
+                    ArticleViewer.AnonymousClass23.this.lambda$onAnimationEnd$0();
                 }
             });
         }
@@ -4542,7 +5588,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    public void lambda$open$34(AnimatorSet animatorSet) {
+    public void lambda$open$54(AnimatorSet animatorSet) {
         this.notificationsLocker.lock();
         animatorSet.start();
     }
@@ -4551,39 +5597,33 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         if (z) {
             AndroidUtilities.cancelRunOnUIThread(this.lineProgressTickRunnable);
             if (z2) {
-                this.lineProgressView.setProgress(0.0f, false);
-                this.lineProgressView.setProgress(0.3f, true);
+                this.actionBar.lineProgressView.setProgress(0.0f, false);
+                this.actionBar.lineProgressView.setProgress(0.3f, true);
                 AndroidUtilities.runOnUIThread(this.lineProgressTickRunnable, 100L);
                 return;
             }
-            this.lineProgressView.setProgress(1.0f, true);
+            this.actionBar.lineProgressView.setProgress(1.0f, true);
             return;
         }
         AnimatorSet animatorSet = this.progressViewAnimation;
         if (animatorSet != null) {
             animatorSet.cancel();
         }
-        this.progressViewAnimation = new AnimatorSet();
+        AnimatorSet animatorSet2 = new AnimatorSet();
+        this.progressViewAnimation = animatorSet2;
         if (z2) {
             this.progressView.setVisibility(0);
-            this.menuContainer.setEnabled(false);
-            this.progressViewAnimation.playTogether(ObjectAnimator.ofFloat(this.menuButton, (Property<ActionBarMenuItem, Float>) View.SCALE_X, 0.1f), ObjectAnimator.ofFloat(this.menuButton, (Property<ActionBarMenuItem, Float>) View.SCALE_Y, 0.1f), ObjectAnimator.ofFloat(this.menuButton, (Property<ActionBarMenuItem, Float>) View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.progressView, (Property<ContextProgressView, Float>) View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(this.progressView, (Property<ContextProgressView, Float>) View.SCALE_Y, 1.0f), ObjectAnimator.ofFloat(this.progressView, (Property<ContextProgressView, Float>) View.ALPHA, 1.0f));
+            this.progressViewAnimation.playTogether(ObjectAnimator.ofFloat(this.progressView, View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(this.progressView, View.SCALE_Y, 1.0f), ObjectAnimator.ofFloat(this.progressView, View.ALPHA, 1.0f));
         } else {
-            this.menuButton.setVisibility(0);
-            this.menuContainer.setEnabled(true);
-            this.progressViewAnimation.playTogether(ObjectAnimator.ofFloat(this.progressView, (Property<ContextProgressView, Float>) View.SCALE_X, 0.1f), ObjectAnimator.ofFloat(this.progressView, (Property<ContextProgressView, Float>) View.SCALE_Y, 0.1f), ObjectAnimator.ofFloat(this.progressView, (Property<ContextProgressView, Float>) View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.menuButton, (Property<ActionBarMenuItem, Float>) View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(this.menuButton, (Property<ActionBarMenuItem, Float>) View.SCALE_Y, 1.0f), ObjectAnimator.ofFloat(this.menuButton, (Property<ActionBarMenuItem, Float>) View.ALPHA, 1.0f));
+            animatorSet2.playTogether(ObjectAnimator.ofFloat(this.progressView, View.SCALE_X, 0.1f), ObjectAnimator.ofFloat(this.progressView, View.SCALE_Y, 0.1f), ObjectAnimator.ofFloat(this.progressView, View.ALPHA, 0.0f));
         }
         this.progressViewAnimation.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator) {
-                if (ArticleViewer.this.progressViewAnimation == null || !ArticleViewer.this.progressViewAnimation.equals(animator)) {
+                if (ArticleViewer.this.progressViewAnimation == null || !ArticleViewer.this.progressViewAnimation.equals(animator) || z2) {
                     return;
                 }
-                if (!z2) {
-                    ArticleViewer.this.progressView.setVisibility(4);
-                } else {
-                    ArticleViewer.this.menuButton.setVisibility(4);
-                }
+                ArticleViewer.this.progressView.setVisibility(4);
             }
 
             @Override
@@ -4600,14 +5640,13 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
     public void saveCurrentPagePosition() {
         int findFirstVisibleItemPosition;
-        if (this.adapter[0].currentPage == null || (findFirstVisibleItemPosition = this.layoutManager[0].findFirstVisibleItemPosition()) == -1) {
+        if (this.pages[0].adapter.currentPage == null || (findFirstVisibleItemPosition = this.pages[0].layoutManager.findFirstVisibleItemPosition()) == -1) {
             return;
         }
-        View findViewByPosition = this.layoutManager[0].findViewByPosition(findFirstVisibleItemPosition);
+        View findViewByPosition = this.pages[0].layoutManager.findViewByPosition(findFirstVisibleItemPosition);
         int top = findViewByPosition != null ? findViewByPosition.getTop() : 0;
-        SharedPreferences.Editor edit = ApplicationLoader.applicationContext.getSharedPreferences("articles", 0).edit();
-        String str = "article" + this.adapter[0].currentPage.id;
-        SharedPreferences.Editor putInt = edit.putInt(str, findFirstVisibleItemPosition).putInt(str + "o", top);
+        String str = "article" + this.pages[0].adapter.currentPage.id;
+        SharedPreferences.Editor putInt = ApplicationLoader.applicationContext.getSharedPreferences("articles", 0).edit().putInt(str, findFirstVisibleItemPosition).putInt(str + "o", top);
         String str2 = str + "r";
         Point point = AndroidUtilities.displaySize;
         putInt.putBoolean(str2, point.x > point.y).commit();
@@ -4616,56 +5655,44 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
     private void refreshThemeColors() {
         TextView textView = this.deleteView;
         if (textView != null) {
-            textView.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor(Theme.key_listSelector), 2));
-            this.deleteView.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem));
+            textView.setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor(Theme.key_listSelector), 2));
+            this.deleteView.setTextColor(getThemedColor(Theme.key_actionBarDefaultSubmenuItem));
         }
         ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = this.popupLayout;
         if (actionBarPopupWindowLayout != null) {
-            actionBarPopupWindowLayout.setBackgroundColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuBackground));
-        }
-        FrameLayout frameLayout = this.searchContainer;
-        if (frameLayout != null) {
-            frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-        }
-        EditTextBoldCursor editTextBoldCursor = this.searchField;
-        if (editTextBoldCursor != null) {
-            int i = Theme.key_windowBackgroundWhiteBlackText;
-            editTextBoldCursor.setTextColor(Theme.getColor(i));
-            this.searchField.setCursorColor(Theme.getColor(i));
-            this.searchField.setHintTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteHintText));
+            actionBarPopupWindowLayout.setBackgroundColor(getThemedColor(Theme.key_actionBarDefaultSubmenuBackground));
         }
         ImageView imageView = this.searchUpButton;
         if (imageView != null) {
-            imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText), PorterDuff.Mode.MULTIPLY));
-            this.searchUpButton.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor(Theme.key_actionBarActionModeDefaultSelector), 1));
+            imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_windowBackgroundWhiteBlackText), PorterDuff.Mode.MULTIPLY));
+            this.searchUpButton.setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor(Theme.key_actionBarActionModeDefaultSelector), 1));
         }
         ImageView imageView2 = this.searchDownButton;
         if (imageView2 != null) {
-            imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText), PorterDuff.Mode.MULTIPLY));
-            this.searchDownButton.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor(Theme.key_actionBarActionModeDefaultSelector), 1));
+            imageView2.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_windowBackgroundWhiteBlackText), PorterDuff.Mode.MULTIPLY));
+            this.searchDownButton.setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor(Theme.key_actionBarActionModeDefaultSelector), 1));
         }
-        SimpleTextView simpleTextView = this.searchCountText;
-        if (simpleTextView != null) {
-            simpleTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
+        AnimatedTextView animatedTextView = this.searchCountText;
+        if (animatedTextView != null) {
+            animatedTextView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
         }
-        ActionBarMenuItem actionBarMenuItem = this.menuButton;
-        if (actionBarMenuItem != null) {
-            actionBarMenuItem.redrawPopup(Theme.getColor(Theme.key_actionBarDefaultSubmenuBackground));
-            this.menuButton.setPopupItemsColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem), false);
-            this.menuButton.setPopupItemsColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItemIcon), true);
-        }
-        ImageView imageView3 = this.clearButton;
-        if (imageView3 != null) {
-            imageView3.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText), PorterDuff.Mode.MULTIPLY));
-        }
-        BackDrawable backDrawable = this.backDrawable;
-        if (backDrawable != null) {
-            backDrawable.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
+        WebActionBar webActionBar = this.actionBar;
+        if (webActionBar != null) {
+            PageLayout[] pageLayoutArr = this.pages;
+            webActionBar.setMenuColors(pageLayoutArr[0] != null ? pageLayoutArr[0].getBackgroundColor() : getThemedColor(Theme.key_iv_ab_background));
+            WebActionBar webActionBar2 = this.actionBar;
+            PageLayout[] pageLayoutArr2 = this.pages;
+            webActionBar2.setColors(pageLayoutArr2[0] != null ? pageLayoutArr2[0].getActionBarColor() : getThemedColor(Theme.key_iv_ab_background), true);
         }
     }
 
     public void close(boolean z, boolean z2) {
         if (this.parentActivity == null || this.closeAnimationInProgress || !this.isVisible || checkAnimation()) {
+            return;
+        }
+        Sheet sheet = this.sheet;
+        if (sheet != null) {
+            sheet.dismiss(z);
             return;
         }
         if (this.fullscreenVideoContainer.getVisibility() == 0) {
@@ -4688,75 +5715,77 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             this.textSelectionHelper.clear();
             return;
         }
-        if (this.searchContainer.getTag() != null) {
-            showSearch(false);
-            return;
-        }
-        if (this.openUrlReqId != 0) {
-            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.openUrlReqId, true);
-            this.openUrlReqId = 0;
-            showProgressView(true, false);
-        }
-        if (this.previewsReqId != 0) {
-            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.previewsReqId, true);
-            this.previewsReqId = 0;
-            showProgressView(true, false);
-        }
-        saveCurrentPagePosition();
-        if (z && !z2 && removeLastPageFromStack()) {
-            return;
-        }
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.messagePlayingProgressDidChanged);
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.messagePlayingDidReset);
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.messagePlayingPlayStateChanged);
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.messagePlayingDidStart);
-        this.parentFragment = null;
-        try {
-            Dialog dialog = this.visibleDialog;
-            if (dialog != null) {
-                dialog.dismiss();
-                this.visibleDialog = null;
+        if (this.actionBar.isSearching()) {
+            this.actionBar.showSearch(false, true);
+        } else if (this.actionBar.isAddressing()) {
+            this.actionBar.showAddress(false, true);
+        } else {
+            if (this.openUrlReqId != 0) {
+                ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.openUrlReqId, true);
+                this.openUrlReqId = 0;
+                showProgressView(true, false);
             }
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-        AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.playTogether(ObjectAnimator.ofFloat(this.windowView, (Property<WindowView, Float>) View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.containerView, (Property<FrameLayout, Float>) View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.windowView, (Property<WindowView, Float>) View.TRANSLATION_X, 0.0f, AndroidUtilities.dp(56.0f)));
-        this.animationInProgress = 2;
-        this.animationEndRunnable = new Runnable() {
-            @Override
-            public final void run() {
-                ArticleViewer.this.lambda$close$37();
+            if (this.previewsReqId != 0) {
+                ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.previewsReqId, true);
+                this.previewsReqId = 0;
+                showProgressView(true, false);
             }
-        };
-        animatorSet.setDuration(150L);
-        animatorSet.setInterpolator(this.interpolator);
-        animatorSet.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                if (ArticleViewer.this.animationEndRunnable != null) {
-                    ArticleViewer.this.animationEndRunnable.run();
-                    ArticleViewer.this.animationEndRunnable = null;
+            saveCurrentPagePosition();
+            if (z && !z2 && removeLastPageFromStack()) {
+                return;
+            }
+            NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.messagePlayingProgressDidChanged);
+            NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.messagePlayingDidReset);
+            NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.messagePlayingPlayStateChanged);
+            NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.messagePlayingDidStart);
+            this.parentFragment = null;
+            try {
+                Dialog dialog = this.visibleDialog;
+                if (dialog != null) {
+                    dialog.dismiss();
+                    this.visibleDialog = null;
+                }
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+            AnimatorSet animatorSet = new AnimatorSet();
+            animatorSet.playTogether(ObjectAnimator.ofFloat(this.windowView, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.containerView, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.windowView, View.TRANSLATION_X, 0.0f, AndroidUtilities.dp(56.0f)));
+            this.animationInProgress = 2;
+            this.animationEndRunnable = new Runnable() {
+                @Override
+                public final void run() {
+                    ArticleViewer.this.lambda$close$55();
+                }
+            };
+            animatorSet.setDuration(150L);
+            animatorSet.setInterpolator(this.interpolator);
+            animatorSet.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    if (ArticleViewer.this.animationEndRunnable != null) {
+                        ArticleViewer.this.animationEndRunnable.run();
+                        ArticleViewer.this.animationEndRunnable = null;
+                    }
+                }
+            });
+            this.transitionAnimationStartTime = System.currentTimeMillis();
+            if (Build.VERSION.SDK_INT >= 18) {
+                this.containerView.setLayerType(2, null);
+            }
+            animatorSet.start();
+            for (int i = 0; i < this.videoStates.size(); i++) {
+                BlockVideoCellState valueAt = this.videoStates.valueAt(i);
+                Bitmap bitmap = valueAt.lastFrameBitmap;
+                if (bitmap != null) {
+                    bitmap.recycle();
+                    valueAt.lastFrameBitmap = null;
                 }
             }
-        });
-        this.transitionAnimationStartTime = System.currentTimeMillis();
-        if (Build.VERSION.SDK_INT >= 18) {
-            this.containerView.setLayerType(2, null);
+            this.videoStates.clear();
         }
-        animatorSet.start();
-        for (int i = 0; i < this.videoStates.size(); i++) {
-            BlockVideoCellState valueAt = this.videoStates.valueAt(i);
-            Bitmap bitmap = valueAt.lastFrameBitmap;
-            if (bitmap != null) {
-                bitmap.recycle();
-                valueAt.lastFrameBitmap = null;
-            }
-        }
-        this.videoStates.clear();
     }
 
-    public void lambda$close$37() {
+    public void lambda$close$55() {
         FrameLayout frameLayout = this.containerView;
         if (frameLayout == null) {
             return;
@@ -4770,27 +5799,34 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
     public void onClosed() {
         this.isVisible = false;
-        for (int i = 0; i < this.listView.length; i++) {
-            this.adapter[i].cleanup();
+        int i = 0;
+        while (true) {
+            PageLayout[] pageLayoutArr = this.pages;
+            if (i < pageLayoutArr.length) {
+                pageLayoutArr[i].cleanup();
+                i++;
+            } else {
+                try {
+                    break;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+            }
         }
-        try {
-            this.parentActivity.getWindow().clearFlags(128);
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
+        this.parentActivity.getWindow().clearFlags(128);
         for (int i2 = 0; i2 < this.createdWebViews.size(); i2++) {
             this.createdWebViews.get(i2).destroyWebView(false);
         }
         this.containerView.post(new Runnable() {
             @Override
             public final void run() {
-                ArticleViewer.this.lambda$onClosed$38();
+                ArticleViewer.this.lambda$onClosed$56();
             }
         });
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.articleClosed, new Object[0]);
     }
 
-    public void lambda$onClosed$38() {
+    public void lambda$onClosed$56() {
         try {
             if (this.windowView.getParent() != null) {
                 ((WindowManager) this.parentActivity.getSystemService("window")).removeView(this.windowView);
@@ -4811,21 +5847,21 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_contacts_resolveUsername, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ArticleViewer.this.lambda$loadChannel$40(webpageAdapter, i, blockChannelCell, tLObject, tLRPC$TL_error);
+                ArticleViewer.this.lambda$loadChannel$58(webpageAdapter, i, blockChannelCell, tLObject, tLRPC$TL_error);
             }
         });
     }
 
-    public void lambda$loadChannel$40(final WebpageAdapter webpageAdapter, final int i, final BlockChannelCell blockChannelCell, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadChannel$58(final WebpageAdapter webpageAdapter, final int i, final BlockChannelCell blockChannelCell, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ArticleViewer.this.lambda$loadChannel$39(webpageAdapter, tLRPC$TL_error, tLObject, i, blockChannelCell);
+                ArticleViewer.this.lambda$loadChannel$57(webpageAdapter, tLRPC$TL_error, tLObject, i, blockChannelCell);
             }
         });
     }
 
-    public void lambda$loadChannel$39(WebpageAdapter webpageAdapter, TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, int i, BlockChannelCell blockChannelCell) {
+    public void lambda$loadChannel$57(WebpageAdapter webpageAdapter, TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, int i, BlockChannelCell blockChannelCell) {
         this.loadingChannel = false;
         if (this.parentFragment == null || webpageAdapter.blocks.isEmpty()) {
             return;
@@ -4859,18 +5895,18 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_channels_joinChannel, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ArticleViewer.this.lambda$joinChannel$44(blockChannelCell, i, tLRPC$TL_channels_joinChannel, tLRPC$Chat, tLObject, tLRPC$TL_error);
+                ArticleViewer.this.lambda$joinChannel$62(blockChannelCell, i, tLRPC$TL_channels_joinChannel, tLRPC$Chat, tLObject, tLRPC$TL_error);
             }
         });
     }
 
-    public void lambda$joinChannel$44(final BlockChannelCell blockChannelCell, final int i, final TLRPC$TL_channels_joinChannel tLRPC$TL_channels_joinChannel, final TLRPC$Chat tLRPC$Chat, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$joinChannel$62(final BlockChannelCell blockChannelCell, final int i, final TLRPC$TL_channels_joinChannel tLRPC$TL_channels_joinChannel, final TLRPC$Chat tLRPC$Chat, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         boolean z;
         if (tLRPC$TL_error != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ArticleViewer.this.lambda$joinChannel$41(blockChannelCell, i, tLRPC$TL_error, tLRPC$TL_channels_joinChannel);
+                    ArticleViewer.this.lambda$joinChannel$59(blockChannelCell, i, tLRPC$TL_error, tLRPC$TL_channels_joinChannel);
                 }
             });
             return;
@@ -4902,7 +5938,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ArticleViewer.lambda$joinChannel$43(i, tLRPC$Chat);
+                ArticleViewer.lambda$joinChannel$61(i, tLRPC$Chat);
             }
         }, 1000L);
         MessagesStorage messagesStorage = MessagesStorage.getInstance(i);
@@ -4910,12 +5946,12 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         messagesStorage.updateDialogsWithDeletedMessages(-j, j, new ArrayList<>(), null, true);
     }
 
-    public void lambda$joinChannel$41(BlockChannelCell blockChannelCell, int i, TLRPC$TL_error tLRPC$TL_error, TLRPC$TL_channels_joinChannel tLRPC$TL_channels_joinChannel) {
+    public void lambda$joinChannel$59(BlockChannelCell blockChannelCell, int i, TLRPC$TL_error tLRPC$TL_error, TLRPC$TL_channels_joinChannel tLRPC$TL_channels_joinChannel) {
         blockChannelCell.setState(0, false);
         AlertsCreator.processError(i, tLRPC$TL_error, this.parentFragment, tLRPC$TL_channels_joinChannel, Boolean.TRUE);
     }
 
-    public static void lambda$joinChannel$43(int i, TLRPC$Chat tLRPC$Chat) {
+    public static void lambda$joinChannel$61(int i, TLRPC$Chat tLRPC$Chat) {
         MessagesController.getInstance(i).loadFullChat(tLRPC$Chat.id, 0, true);
     }
 
@@ -4936,13 +5972,15 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         if (this.parentActivity == null || (windowView = this.windowView) == null) {
             return;
         }
-        try {
-            if (windowView.getParent() != null) {
-                ((WindowManager) this.parentActivity.getSystemService("window")).removeViewImmediate(this.windowView);
+        if (this.sheet == null) {
+            try {
+                if (windowView.getParent() != null) {
+                    ((WindowManager) this.parentActivity.getSystemService("window")).removeViewImmediate(this.windowView);
+                }
+                this.windowView = null;
+            } catch (Exception e) {
+                FileLog.e(e);
             }
-            this.windowView = null;
-        } catch (Exception e) {
-            FileLog.e(e);
         }
         for (int i = 0; i < this.createdWebViews.size(); i++) {
             this.createdWebViews.get(i).destroyWebView(true);
@@ -4981,7 +6019,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             this.visibleDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
-                    ArticleViewer.this.lambda$showDialog$45(dialogInterface);
+                    ArticleViewer.this.lambda$showDialog$63(dialogInterface);
                 }
             });
             dialog.show();
@@ -4990,7 +6028,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    public void lambda$showDialog$45(DialogInterface dialogInterface) {
+    public void lambda$showDialog$63(DialogInterface dialogInterface) {
         this.visibleDialog = null;
     }
 
@@ -5054,11 +6092,11 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     return null;
                 }
                 return FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(closestPhotoSizeWithSize, true);
-            }
-            if (!(tLRPC$PageBlock instanceof TLRPC$TL_pageBlockVideo) || (documentWithId = getDocumentWithId(tLRPC$WebPage, ((TLRPC$TL_pageBlockVideo) tLRPC$PageBlock).video_id)) == null) {
+            } else if (!(tLRPC$PageBlock instanceof TLRPC$TL_pageBlockVideo) || (documentWithId = getDocumentWithId(tLRPC$WebPage, ((TLRPC$TL_pageBlockVideo) tLRPC$PageBlock).video_id)) == null) {
                 return null;
+            } else {
+                return FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(documentWithId, true);
             }
-            return FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(documentWithId, true);
         }
     }
 
@@ -5066,7 +6104,10 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         private TLRPC$TL_pageBlockChannel channelBlock;
         private Context context;
         private TLRPC$WebPage currentPage;
+        public int fullHeight;
         private boolean isRtl;
+        private final boolean padding;
+        public int[] sumItemHeights;
         private ArrayList<TLRPC$PageBlock> localBlocks = new ArrayList<>();
         private ArrayList<TLRPC$PageBlock> blocks = new ArrayList<>();
         private ArrayList<TLRPC$PageBlock> photoBlocks = new ArrayList<>();
@@ -5078,9 +6119,16 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         private HashMap<Object, TLRPC$PageBlock> textToBlocks = new HashMap<>();
         private ArrayList<Object> textBlocks = new ArrayList<>();
         private HashMap<String, Integer> searchTextOffset = new HashMap<>();
+        private final Runnable calculateContentHeightRunnable = new Runnable() {
+            @Override
+            public final void run() {
+                ArticleViewer.WebpageAdapter.this.lambda$new$1();
+            }
+        };
 
-        public WebpageAdapter(Context context) {
+        public WebpageAdapter(Context context, boolean z) {
             this.context = context;
+            this.padding = z;
         }
 
         public TLRPC$Photo getPhotoWithId(long j) {
@@ -5098,56 +6146,32 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             tLRPC$RichText2.parentRichText = tLRPC$RichText;
             if (tLRPC$RichText2 instanceof TLRPC$TL_textFixed) {
                 setRichTextParents(tLRPC$RichText2, ((TLRPC$TL_textFixed) tLRPC$RichText2).text);
-                return;
-            }
-            if (tLRPC$RichText2 instanceof TLRPC$TL_textItalic) {
+            } else if (tLRPC$RichText2 instanceof TLRPC$TL_textItalic) {
                 setRichTextParents(tLRPC$RichText2, ((TLRPC$TL_textItalic) tLRPC$RichText2).text);
-                return;
-            }
-            if (tLRPC$RichText2 instanceof TLRPC$TL_textBold) {
+            } else if (tLRPC$RichText2 instanceof TLRPC$TL_textBold) {
                 setRichTextParents(tLRPC$RichText2, ((TLRPC$TL_textBold) tLRPC$RichText2).text);
-                return;
-            }
-            if (tLRPC$RichText2 instanceof TLRPC$TL_textUnderline) {
+            } else if (tLRPC$RichText2 instanceof TLRPC$TL_textUnderline) {
                 setRichTextParents(tLRPC$RichText2, ((TLRPC$TL_textUnderline) tLRPC$RichText2).text);
-                return;
-            }
-            if (tLRPC$RichText2 instanceof TLRPC$TL_textStrike) {
+            } else if (tLRPC$RichText2 instanceof TLRPC$TL_textStrike) {
                 setRichTextParents(tLRPC$RichText2, ((TLRPC$TL_textStrike) tLRPC$RichText2).text);
-                return;
-            }
-            if (tLRPC$RichText2 instanceof TLRPC$TL_textEmail) {
+            } else if (tLRPC$RichText2 instanceof TLRPC$TL_textEmail) {
                 setRichTextParents(tLRPC$RichText2, ((TLRPC$TL_textEmail) tLRPC$RichText2).text);
-                return;
-            }
-            if (tLRPC$RichText2 instanceof TLRPC$TL_textPhone) {
+            } else if (tLRPC$RichText2 instanceof TLRPC$TL_textPhone) {
                 setRichTextParents(tLRPC$RichText2, ((TLRPC$TL_textPhone) tLRPC$RichText2).text);
-                return;
-            }
-            if (tLRPC$RichText2 instanceof TLRPC$TL_textUrl) {
+            } else if (tLRPC$RichText2 instanceof TLRPC$TL_textUrl) {
                 setRichTextParents(tLRPC$RichText2, ((TLRPC$TL_textUrl) tLRPC$RichText2).text);
-                return;
-            }
-            if (tLRPC$RichText2 instanceof TLRPC$TL_textConcat) {
+            } else if (tLRPC$RichText2 instanceof TLRPC$TL_textConcat) {
                 int size = tLRPC$RichText2.texts.size();
                 for (int i = 0; i < size; i++) {
                     setRichTextParents(tLRPC$RichText2, tLRPC$RichText2.texts.get(i));
                 }
-                return;
-            }
-            if (tLRPC$RichText2 instanceof TLRPC$TL_textSubscript) {
+            } else if (tLRPC$RichText2 instanceof TLRPC$TL_textSubscript) {
                 setRichTextParents(tLRPC$RichText2, ((TLRPC$TL_textSubscript) tLRPC$RichText2).text);
-                return;
-            }
-            if (tLRPC$RichText2 instanceof TLRPC$TL_textSuperscript) {
+            } else if (tLRPC$RichText2 instanceof TLRPC$TL_textSuperscript) {
                 setRichTextParents(tLRPC$RichText2, ((TLRPC$TL_textSuperscript) tLRPC$RichText2).text);
-                return;
-            }
-            if (tLRPC$RichText2 instanceof TLRPC$TL_textMarked) {
+            } else if (tLRPC$RichText2 instanceof TLRPC$TL_textMarked) {
                 setRichTextParents(tLRPC$RichText2, ((TLRPC$TL_textMarked) tLRPC$RichText2).text);
-                return;
-            }
-            if (tLRPC$RichText2 instanceof TLRPC$TL_textAnchor) {
+            } else if (tLRPC$RichText2 instanceof TLRPC$TL_textAnchor) {
                 TLRPC$TL_textAnchor tLRPC$TL_textAnchor = (TLRPC$TL_textAnchor) tLRPC$RichText2;
                 setRichTextParents(tLRPC$RichText2, tLRPC$TL_textAnchor.text);
                 String lowerCase = tLRPC$TL_textAnchor.name.toLowerCase();
@@ -5179,204 +6203,150 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 setRichTextParents(null, tLRPC$TL_pageBlockEmbedPost.caption.credit);
                 addTextBlock(tLRPC$TL_pageBlockEmbedPost.caption.text, tLRPC$TL_pageBlockEmbedPost);
                 addTextBlock(tLRPC$TL_pageBlockEmbedPost.caption.credit, tLRPC$TL_pageBlockEmbedPost);
-                return;
-            }
-            if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockParagraph) {
+            } else if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockParagraph) {
                 TLRPC$TL_pageBlockParagraph tLRPC$TL_pageBlockParagraph = (TLRPC$TL_pageBlockParagraph) tLRPC$PageBlock;
                 setRichTextParents(null, tLRPC$TL_pageBlockParagraph.text);
                 addTextBlock(tLRPC$TL_pageBlockParagraph.text, tLRPC$TL_pageBlockParagraph);
-                return;
-            }
-            if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockKicker) {
+            } else if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockKicker) {
                 TLRPC$TL_pageBlockKicker tLRPC$TL_pageBlockKicker = (TLRPC$TL_pageBlockKicker) tLRPC$PageBlock;
                 setRichTextParents(null, tLRPC$TL_pageBlockKicker.text);
                 addTextBlock(tLRPC$TL_pageBlockKicker.text, tLRPC$TL_pageBlockKicker);
-                return;
-            }
-            if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockFooter) {
+            } else if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockFooter) {
                 TLRPC$TL_pageBlockFooter tLRPC$TL_pageBlockFooter = (TLRPC$TL_pageBlockFooter) tLRPC$PageBlock;
                 setRichTextParents(null, tLRPC$TL_pageBlockFooter.text);
                 addTextBlock(tLRPC$TL_pageBlockFooter.text, tLRPC$TL_pageBlockFooter);
-                return;
-            }
-            if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockHeader) {
+            } else if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockHeader) {
                 TLRPC$TL_pageBlockHeader tLRPC$TL_pageBlockHeader = (TLRPC$TL_pageBlockHeader) tLRPC$PageBlock;
                 setRichTextParents(null, tLRPC$TL_pageBlockHeader.text);
                 addTextBlock(tLRPC$TL_pageBlockHeader.text, tLRPC$TL_pageBlockHeader);
-                return;
-            }
-            if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockPreformatted) {
+            } else if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockPreformatted) {
                 TLRPC$TL_pageBlockPreformatted tLRPC$TL_pageBlockPreformatted = (TLRPC$TL_pageBlockPreformatted) tLRPC$PageBlock;
                 setRichTextParents(null, tLRPC$TL_pageBlockPreformatted.text);
                 addTextBlock(tLRPC$TL_pageBlockPreformatted.text, tLRPC$TL_pageBlockPreformatted);
-                return;
-            }
-            if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockSubheader) {
+            } else if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockSubheader) {
                 TLRPC$TL_pageBlockSubheader tLRPC$TL_pageBlockSubheader = (TLRPC$TL_pageBlockSubheader) tLRPC$PageBlock;
                 setRichTextParents(null, tLRPC$TL_pageBlockSubheader.text);
                 addTextBlock(tLRPC$TL_pageBlockSubheader.text, tLRPC$TL_pageBlockSubheader);
-                return;
-            }
-            int i = 0;
-            if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockSlideshow) {
-                TLRPC$TL_pageBlockSlideshow tLRPC$TL_pageBlockSlideshow = (TLRPC$TL_pageBlockSlideshow) tLRPC$PageBlock;
-                setRichTextParents(null, tLRPC$TL_pageBlockSlideshow.caption.text);
-                setRichTextParents(null, tLRPC$TL_pageBlockSlideshow.caption.credit);
-                addTextBlock(tLRPC$TL_pageBlockSlideshow.caption.text, tLRPC$TL_pageBlockSlideshow);
-                addTextBlock(tLRPC$TL_pageBlockSlideshow.caption.credit, tLRPC$TL_pageBlockSlideshow);
-                int size = tLRPC$TL_pageBlockSlideshow.items.size();
-                while (i < size) {
-                    setRichTextParents(tLRPC$TL_pageBlockSlideshow.items.get(i));
-                    i++;
-                }
-                return;
-            }
-            if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockPhoto) {
-                TLRPC$TL_pageBlockPhoto tLRPC$TL_pageBlockPhoto = (TLRPC$TL_pageBlockPhoto) tLRPC$PageBlock;
-                setRichTextParents(null, tLRPC$TL_pageBlockPhoto.caption.text);
-                setRichTextParents(null, tLRPC$TL_pageBlockPhoto.caption.credit);
-                addTextBlock(tLRPC$TL_pageBlockPhoto.caption.text, tLRPC$TL_pageBlockPhoto);
-                addTextBlock(tLRPC$TL_pageBlockPhoto.caption.credit, tLRPC$TL_pageBlockPhoto);
-                return;
-            }
-            if (tLRPC$PageBlock instanceof TL_pageBlockListItem) {
-                TL_pageBlockListItem tL_pageBlockListItem = (TL_pageBlockListItem) tLRPC$PageBlock;
-                if (tL_pageBlockListItem.textItem != null) {
-                    setRichTextParents(null, tL_pageBlockListItem.textItem);
-                    addTextBlock(tL_pageBlockListItem.textItem, tL_pageBlockListItem);
-                    return;
-                } else {
-                    if (tL_pageBlockListItem.blockItem != null) {
-                        setRichTextParents(tL_pageBlockListItem.blockItem);
-                        return;
-                    }
-                    return;
-                }
-            }
-            if (tLRPC$PageBlock instanceof TL_pageBlockOrderedListItem) {
-                TL_pageBlockOrderedListItem tL_pageBlockOrderedListItem = (TL_pageBlockOrderedListItem) tLRPC$PageBlock;
-                if (tL_pageBlockOrderedListItem.textItem != null) {
-                    setRichTextParents(null, tL_pageBlockOrderedListItem.textItem);
-                    addTextBlock(tL_pageBlockOrderedListItem.textItem, tL_pageBlockOrderedListItem);
-                    return;
-                } else {
-                    if (tL_pageBlockOrderedListItem.blockItem != null) {
-                        setRichTextParents(tL_pageBlockOrderedListItem.blockItem);
-                        return;
-                    }
-                    return;
-                }
-            }
-            if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockCollage) {
-                TLRPC$TL_pageBlockCollage tLRPC$TL_pageBlockCollage = (TLRPC$TL_pageBlockCollage) tLRPC$PageBlock;
-                setRichTextParents(null, tLRPC$TL_pageBlockCollage.caption.text);
-                setRichTextParents(null, tLRPC$TL_pageBlockCollage.caption.credit);
-                addTextBlock(tLRPC$TL_pageBlockCollage.caption.text, tLRPC$TL_pageBlockCollage);
-                addTextBlock(tLRPC$TL_pageBlockCollage.caption.credit, tLRPC$TL_pageBlockCollage);
-                int size2 = tLRPC$TL_pageBlockCollage.items.size();
-                while (i < size2) {
-                    setRichTextParents(tLRPC$TL_pageBlockCollage.items.get(i));
-                    i++;
-                }
-                return;
-            }
-            if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockEmbed) {
-                TLRPC$TL_pageBlockEmbed tLRPC$TL_pageBlockEmbed = (TLRPC$TL_pageBlockEmbed) tLRPC$PageBlock;
-                setRichTextParents(null, tLRPC$TL_pageBlockEmbed.caption.text);
-                setRichTextParents(null, tLRPC$TL_pageBlockEmbed.caption.credit);
-                addTextBlock(tLRPC$TL_pageBlockEmbed.caption.text, tLRPC$TL_pageBlockEmbed);
-                addTextBlock(tLRPC$TL_pageBlockEmbed.caption.credit, tLRPC$TL_pageBlockEmbed);
-                return;
-            }
-            if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockSubtitle) {
-                TLRPC$TL_pageBlockSubtitle tLRPC$TL_pageBlockSubtitle = (TLRPC$TL_pageBlockSubtitle) tLRPC$PageBlock;
-                setRichTextParents(null, tLRPC$TL_pageBlockSubtitle.text);
-                addTextBlock(tLRPC$TL_pageBlockSubtitle.text, tLRPC$TL_pageBlockSubtitle);
-                return;
-            }
-            if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockBlockquote) {
-                TLRPC$TL_pageBlockBlockquote tLRPC$TL_pageBlockBlockquote = (TLRPC$TL_pageBlockBlockquote) tLRPC$PageBlock;
-                setRichTextParents(null, tLRPC$TL_pageBlockBlockquote.text);
-                setRichTextParents(null, tLRPC$TL_pageBlockBlockquote.caption);
-                addTextBlock(tLRPC$TL_pageBlockBlockquote.text, tLRPC$TL_pageBlockBlockquote);
-                addTextBlock(tLRPC$TL_pageBlockBlockquote.caption, tLRPC$TL_pageBlockBlockquote);
-                return;
-            }
-            if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockDetails) {
-                TLRPC$TL_pageBlockDetails tLRPC$TL_pageBlockDetails = (TLRPC$TL_pageBlockDetails) tLRPC$PageBlock;
-                setRichTextParents(null, tLRPC$TL_pageBlockDetails.title);
-                addTextBlock(tLRPC$TL_pageBlockDetails.title, tLRPC$TL_pageBlockDetails);
-                int size3 = tLRPC$TL_pageBlockDetails.blocks.size();
-                while (i < size3) {
-                    setRichTextParents(tLRPC$TL_pageBlockDetails.blocks.get(i));
-                    i++;
-                }
-                return;
-            }
-            if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockVideo) {
-                TLRPC$TL_pageBlockVideo tLRPC$TL_pageBlockVideo = (TLRPC$TL_pageBlockVideo) tLRPC$PageBlock;
-                setRichTextParents(null, tLRPC$TL_pageBlockVideo.caption.text);
-                setRichTextParents(null, tLRPC$TL_pageBlockVideo.caption.credit);
-                addTextBlock(tLRPC$TL_pageBlockVideo.caption.text, tLRPC$TL_pageBlockVideo);
-                addTextBlock(tLRPC$TL_pageBlockVideo.caption.credit, tLRPC$TL_pageBlockVideo);
-                return;
-            }
-            if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockPullquote) {
-                TLRPC$TL_pageBlockPullquote tLRPC$TL_pageBlockPullquote = (TLRPC$TL_pageBlockPullquote) tLRPC$PageBlock;
-                setRichTextParents(null, tLRPC$TL_pageBlockPullquote.text);
-                setRichTextParents(null, tLRPC$TL_pageBlockPullquote.caption);
-                addTextBlock(tLRPC$TL_pageBlockPullquote.text, tLRPC$TL_pageBlockPullquote);
-                addTextBlock(tLRPC$TL_pageBlockPullquote.caption, tLRPC$TL_pageBlockPullquote);
-                return;
-            }
-            if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockAudio) {
-                TLRPC$TL_pageBlockAudio tLRPC$TL_pageBlockAudio = (TLRPC$TL_pageBlockAudio) tLRPC$PageBlock;
-                setRichTextParents(null, tLRPC$TL_pageBlockAudio.caption.text);
-                setRichTextParents(null, tLRPC$TL_pageBlockAudio.caption.credit);
-                addTextBlock(tLRPC$TL_pageBlockAudio.caption.text, tLRPC$TL_pageBlockAudio);
-                addTextBlock(tLRPC$TL_pageBlockAudio.caption.credit, tLRPC$TL_pageBlockAudio);
-                return;
-            }
-            if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockTable) {
-                TLRPC$TL_pageBlockTable tLRPC$TL_pageBlockTable = (TLRPC$TL_pageBlockTable) tLRPC$PageBlock;
-                setRichTextParents(null, tLRPC$TL_pageBlockTable.title);
-                addTextBlock(tLRPC$TL_pageBlockTable.title, tLRPC$TL_pageBlockTable);
-                int size4 = tLRPC$TL_pageBlockTable.rows.size();
-                for (int i2 = 0; i2 < size4; i2++) {
-                    TLRPC$TL_pageTableRow tLRPC$TL_pageTableRow = tLRPC$TL_pageBlockTable.rows.get(i2);
-                    int size5 = tLRPC$TL_pageTableRow.cells.size();
-                    for (int i3 = 0; i3 < size5; i3++) {
-                        TLRPC$TL_pageTableCell tLRPC$TL_pageTableCell = tLRPC$TL_pageTableRow.cells.get(i3);
-                        setRichTextParents(null, tLRPC$TL_pageTableCell.text);
-                        addTextBlock(tLRPC$TL_pageTableCell.text, tLRPC$TL_pageBlockTable);
-                    }
-                }
-                return;
-            }
-            if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockTitle) {
-                TLRPC$TL_pageBlockTitle tLRPC$TL_pageBlockTitle = (TLRPC$TL_pageBlockTitle) tLRPC$PageBlock;
-                setRichTextParents(null, tLRPC$TL_pageBlockTitle.text);
-                addTextBlock(tLRPC$TL_pageBlockTitle.text, tLRPC$TL_pageBlockTitle);
-                return;
-            }
-            if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockCover) {
-                setRichTextParents(((TLRPC$TL_pageBlockCover) tLRPC$PageBlock).cover);
-                return;
-            }
-            if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockAuthorDate) {
-                TLRPC$TL_pageBlockAuthorDate tLRPC$TL_pageBlockAuthorDate = (TLRPC$TL_pageBlockAuthorDate) tLRPC$PageBlock;
-                setRichTextParents(null, tLRPC$TL_pageBlockAuthorDate.author);
-                addTextBlock(tLRPC$TL_pageBlockAuthorDate.author, tLRPC$TL_pageBlockAuthorDate);
             } else {
-                if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockMap) {
+                int i = 0;
+                if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockSlideshow) {
+                    TLRPC$TL_pageBlockSlideshow tLRPC$TL_pageBlockSlideshow = (TLRPC$TL_pageBlockSlideshow) tLRPC$PageBlock;
+                    setRichTextParents(null, tLRPC$TL_pageBlockSlideshow.caption.text);
+                    setRichTextParents(null, tLRPC$TL_pageBlockSlideshow.caption.credit);
+                    addTextBlock(tLRPC$TL_pageBlockSlideshow.caption.text, tLRPC$TL_pageBlockSlideshow);
+                    addTextBlock(tLRPC$TL_pageBlockSlideshow.caption.credit, tLRPC$TL_pageBlockSlideshow);
+                    int size = tLRPC$TL_pageBlockSlideshow.items.size();
+                    while (i < size) {
+                        setRichTextParents(tLRPC$TL_pageBlockSlideshow.items.get(i));
+                        i++;
+                    }
+                } else if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockPhoto) {
+                    TLRPC$TL_pageBlockPhoto tLRPC$TL_pageBlockPhoto = (TLRPC$TL_pageBlockPhoto) tLRPC$PageBlock;
+                    setRichTextParents(null, tLRPC$TL_pageBlockPhoto.caption.text);
+                    setRichTextParents(null, tLRPC$TL_pageBlockPhoto.caption.credit);
+                    addTextBlock(tLRPC$TL_pageBlockPhoto.caption.text, tLRPC$TL_pageBlockPhoto);
+                    addTextBlock(tLRPC$TL_pageBlockPhoto.caption.credit, tLRPC$TL_pageBlockPhoto);
+                } else if (tLRPC$PageBlock instanceof TL_pageBlockListItem) {
+                    TL_pageBlockListItem tL_pageBlockListItem = (TL_pageBlockListItem) tLRPC$PageBlock;
+                    if (tL_pageBlockListItem.textItem != null) {
+                        setRichTextParents(null, tL_pageBlockListItem.textItem);
+                        addTextBlock(tL_pageBlockListItem.textItem, tL_pageBlockListItem);
+                    } else if (tL_pageBlockListItem.blockItem != null) {
+                        setRichTextParents(tL_pageBlockListItem.blockItem);
+                    }
+                } else if (tLRPC$PageBlock instanceof TL_pageBlockOrderedListItem) {
+                    TL_pageBlockOrderedListItem tL_pageBlockOrderedListItem = (TL_pageBlockOrderedListItem) tLRPC$PageBlock;
+                    if (tL_pageBlockOrderedListItem.textItem != null) {
+                        setRichTextParents(null, tL_pageBlockOrderedListItem.textItem);
+                        addTextBlock(tL_pageBlockOrderedListItem.textItem, tL_pageBlockOrderedListItem);
+                    } else if (tL_pageBlockOrderedListItem.blockItem != null) {
+                        setRichTextParents(tL_pageBlockOrderedListItem.blockItem);
+                    }
+                } else if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockCollage) {
+                    TLRPC$TL_pageBlockCollage tLRPC$TL_pageBlockCollage = (TLRPC$TL_pageBlockCollage) tLRPC$PageBlock;
+                    setRichTextParents(null, tLRPC$TL_pageBlockCollage.caption.text);
+                    setRichTextParents(null, tLRPC$TL_pageBlockCollage.caption.credit);
+                    addTextBlock(tLRPC$TL_pageBlockCollage.caption.text, tLRPC$TL_pageBlockCollage);
+                    addTextBlock(tLRPC$TL_pageBlockCollage.caption.credit, tLRPC$TL_pageBlockCollage);
+                    int size2 = tLRPC$TL_pageBlockCollage.items.size();
+                    while (i < size2) {
+                        setRichTextParents(tLRPC$TL_pageBlockCollage.items.get(i));
+                        i++;
+                    }
+                } else if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockEmbed) {
+                    TLRPC$TL_pageBlockEmbed tLRPC$TL_pageBlockEmbed = (TLRPC$TL_pageBlockEmbed) tLRPC$PageBlock;
+                    setRichTextParents(null, tLRPC$TL_pageBlockEmbed.caption.text);
+                    setRichTextParents(null, tLRPC$TL_pageBlockEmbed.caption.credit);
+                    addTextBlock(tLRPC$TL_pageBlockEmbed.caption.text, tLRPC$TL_pageBlockEmbed);
+                    addTextBlock(tLRPC$TL_pageBlockEmbed.caption.credit, tLRPC$TL_pageBlockEmbed);
+                } else if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockSubtitle) {
+                    TLRPC$TL_pageBlockSubtitle tLRPC$TL_pageBlockSubtitle = (TLRPC$TL_pageBlockSubtitle) tLRPC$PageBlock;
+                    setRichTextParents(null, tLRPC$TL_pageBlockSubtitle.text);
+                    addTextBlock(tLRPC$TL_pageBlockSubtitle.text, tLRPC$TL_pageBlockSubtitle);
+                } else if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockBlockquote) {
+                    TLRPC$TL_pageBlockBlockquote tLRPC$TL_pageBlockBlockquote = (TLRPC$TL_pageBlockBlockquote) tLRPC$PageBlock;
+                    setRichTextParents(null, tLRPC$TL_pageBlockBlockquote.text);
+                    setRichTextParents(null, tLRPC$TL_pageBlockBlockquote.caption);
+                    addTextBlock(tLRPC$TL_pageBlockBlockquote.text, tLRPC$TL_pageBlockBlockquote);
+                    addTextBlock(tLRPC$TL_pageBlockBlockquote.caption, tLRPC$TL_pageBlockBlockquote);
+                } else if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockDetails) {
+                    TLRPC$TL_pageBlockDetails tLRPC$TL_pageBlockDetails = (TLRPC$TL_pageBlockDetails) tLRPC$PageBlock;
+                    setRichTextParents(null, tLRPC$TL_pageBlockDetails.title);
+                    addTextBlock(tLRPC$TL_pageBlockDetails.title, tLRPC$TL_pageBlockDetails);
+                    int size3 = tLRPC$TL_pageBlockDetails.blocks.size();
+                    while (i < size3) {
+                        setRichTextParents(tLRPC$TL_pageBlockDetails.blocks.get(i));
+                        i++;
+                    }
+                } else if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockVideo) {
+                    TLRPC$TL_pageBlockVideo tLRPC$TL_pageBlockVideo = (TLRPC$TL_pageBlockVideo) tLRPC$PageBlock;
+                    setRichTextParents(null, tLRPC$TL_pageBlockVideo.caption.text);
+                    setRichTextParents(null, tLRPC$TL_pageBlockVideo.caption.credit);
+                    addTextBlock(tLRPC$TL_pageBlockVideo.caption.text, tLRPC$TL_pageBlockVideo);
+                    addTextBlock(tLRPC$TL_pageBlockVideo.caption.credit, tLRPC$TL_pageBlockVideo);
+                } else if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockPullquote) {
+                    TLRPC$TL_pageBlockPullquote tLRPC$TL_pageBlockPullquote = (TLRPC$TL_pageBlockPullquote) tLRPC$PageBlock;
+                    setRichTextParents(null, tLRPC$TL_pageBlockPullquote.text);
+                    setRichTextParents(null, tLRPC$TL_pageBlockPullquote.caption);
+                    addTextBlock(tLRPC$TL_pageBlockPullquote.text, tLRPC$TL_pageBlockPullquote);
+                    addTextBlock(tLRPC$TL_pageBlockPullquote.caption, tLRPC$TL_pageBlockPullquote);
+                } else if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockAudio) {
+                    TLRPC$TL_pageBlockAudio tLRPC$TL_pageBlockAudio = (TLRPC$TL_pageBlockAudio) tLRPC$PageBlock;
+                    setRichTextParents(null, tLRPC$TL_pageBlockAudio.caption.text);
+                    setRichTextParents(null, tLRPC$TL_pageBlockAudio.caption.credit);
+                    addTextBlock(tLRPC$TL_pageBlockAudio.caption.text, tLRPC$TL_pageBlockAudio);
+                    addTextBlock(tLRPC$TL_pageBlockAudio.caption.credit, tLRPC$TL_pageBlockAudio);
+                } else if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockTable) {
+                    TLRPC$TL_pageBlockTable tLRPC$TL_pageBlockTable = (TLRPC$TL_pageBlockTable) tLRPC$PageBlock;
+                    setRichTextParents(null, tLRPC$TL_pageBlockTable.title);
+                    addTextBlock(tLRPC$TL_pageBlockTable.title, tLRPC$TL_pageBlockTable);
+                    int size4 = tLRPC$TL_pageBlockTable.rows.size();
+                    for (int i2 = 0; i2 < size4; i2++) {
+                        TLRPC$TL_pageTableRow tLRPC$TL_pageTableRow = tLRPC$TL_pageBlockTable.rows.get(i2);
+                        int size5 = tLRPC$TL_pageTableRow.cells.size();
+                        for (int i3 = 0; i3 < size5; i3++) {
+                            TLRPC$TL_pageTableCell tLRPC$TL_pageTableCell = tLRPC$TL_pageTableRow.cells.get(i3);
+                            setRichTextParents(null, tLRPC$TL_pageTableCell.text);
+                            addTextBlock(tLRPC$TL_pageTableCell.text, tLRPC$TL_pageBlockTable);
+                        }
+                    }
+                } else if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockTitle) {
+                    TLRPC$TL_pageBlockTitle tLRPC$TL_pageBlockTitle = (TLRPC$TL_pageBlockTitle) tLRPC$PageBlock;
+                    setRichTextParents(null, tLRPC$TL_pageBlockTitle.text);
+                    addTextBlock(tLRPC$TL_pageBlockTitle.text, tLRPC$TL_pageBlockTitle);
+                } else if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockCover) {
+                    setRichTextParents(((TLRPC$TL_pageBlockCover) tLRPC$PageBlock).cover);
+                } else if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockAuthorDate) {
+                    TLRPC$TL_pageBlockAuthorDate tLRPC$TL_pageBlockAuthorDate = (TLRPC$TL_pageBlockAuthorDate) tLRPC$PageBlock;
+                    setRichTextParents(null, tLRPC$TL_pageBlockAuthorDate.author);
+                    addTextBlock(tLRPC$TL_pageBlockAuthorDate.author, tLRPC$TL_pageBlockAuthorDate);
+                } else if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockMap) {
                     TLRPC$TL_pageBlockMap tLRPC$TL_pageBlockMap = (TLRPC$TL_pageBlockMap) tLRPC$PageBlock;
                     setRichTextParents(null, tLRPC$TL_pageBlockMap.caption.text);
                     setRichTextParents(null, tLRPC$TL_pageBlockMap.caption.credit);
                     addTextBlock(tLRPC$TL_pageBlockMap.caption.text, tLRPC$TL_pageBlockMap);
                     addTextBlock(tLRPC$TL_pageBlockMap.caption.credit, tLRPC$TL_pageBlockMap);
-                    return;
-                }
-                if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockRelatedArticles) {
+                } else if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockRelatedArticles) {
                     TLRPC$TL_pageBlockRelatedArticles tLRPC$TL_pageBlockRelatedArticles = (TLRPC$TL_pageBlockRelatedArticles) tLRPC$PageBlock;
                     setRichTextParents(null, tLRPC$TL_pageBlockRelatedArticles.title);
                     addTextBlock(tLRPC$TL_pageBlockRelatedArticles.title, tLRPC$TL_pageBlockRelatedArticles);
@@ -5396,162 +6366,161 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     tLRPC$TL_pageBlockPhoto.thumb = FileLoader.getClosestPhotoSizeWithSize(photoWithId.sizes, 56, true);
                     tLRPC$TL_pageBlockPhoto.thumbObject = photoWithId;
                     this.photoBlocks.add(tLRPC$PageBlock);
-                    return;
                 }
-                return;
-            }
-            if ((tLRPC$PageBlock instanceof TLRPC$TL_pageBlockVideo) && WebPageUtils.isVideo(webpageAdapter.currentPage, tLRPC$PageBlock)) {
+            } else if ((tLRPC$PageBlock instanceof TLRPC$TL_pageBlockVideo) && WebPageUtils.isVideo(webpageAdapter.currentPage, tLRPC$PageBlock)) {
                 TLRPC$TL_pageBlockVideo tLRPC$TL_pageBlockVideo = (TLRPC$TL_pageBlockVideo) tLRPC$PageBlock;
                 TLRPC$Document documentWithId = getDocumentWithId(tLRPC$TL_pageBlockVideo.video_id);
                 if (documentWithId != null) {
                     tLRPC$TL_pageBlockVideo.thumb = FileLoader.getClosestPhotoSizeWithSize(documentWithId.thumbs, 56, true);
                     tLRPC$TL_pageBlockVideo.thumbObject = documentWithId;
                     this.photoBlocks.add(tLRPC$PageBlock);
-                    return;
                 }
-                return;
-            }
-            int i = 0;
-            if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockSlideshow) {
-                TLRPC$TL_pageBlockSlideshow tLRPC$TL_pageBlockSlideshow = (TLRPC$TL_pageBlockSlideshow) tLRPC$PageBlock;
-                int size = tLRPC$TL_pageBlockSlideshow.items.size();
-                while (i < size) {
-                    TLRPC$PageBlock tLRPC$PageBlock2 = tLRPC$TL_pageBlockSlideshow.items.get(i);
-                    tLRPC$PageBlock2.groupId = ArticleViewer.this.lastBlockNum;
-                    addAllMediaFromBlock(webpageAdapter, tLRPC$PageBlock2);
-                    i++;
+            } else {
+                int i = 0;
+                if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockSlideshow) {
+                    TLRPC$TL_pageBlockSlideshow tLRPC$TL_pageBlockSlideshow = (TLRPC$TL_pageBlockSlideshow) tLRPC$PageBlock;
+                    int size = tLRPC$TL_pageBlockSlideshow.items.size();
+                    while (i < size) {
+                        TLRPC$PageBlock tLRPC$PageBlock2 = tLRPC$TL_pageBlockSlideshow.items.get(i);
+                        tLRPC$PageBlock2.groupId = ArticleViewer.this.lastBlockNum;
+                        addAllMediaFromBlock(webpageAdapter, tLRPC$PageBlock2);
+                        i++;
+                    }
+                    ArticleViewer.access$12508(ArticleViewer.this);
+                } else if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockCollage) {
+                    TLRPC$TL_pageBlockCollage tLRPC$TL_pageBlockCollage = (TLRPC$TL_pageBlockCollage) tLRPC$PageBlock;
+                    int size2 = tLRPC$TL_pageBlockCollage.items.size();
+                    while (i < size2) {
+                        TLRPC$PageBlock tLRPC$PageBlock3 = tLRPC$TL_pageBlockCollage.items.get(i);
+                        tLRPC$PageBlock3.groupId = ArticleViewer.this.lastBlockNum;
+                        addAllMediaFromBlock(webpageAdapter, tLRPC$PageBlock3);
+                        i++;
+                    }
+                    ArticleViewer.access$12508(ArticleViewer.this);
+                } else if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockCover) {
+                    addAllMediaFromBlock(webpageAdapter, ((TLRPC$TL_pageBlockCover) tLRPC$PageBlock).cover);
                 }
-                ArticleViewer.access$13708(ArticleViewer.this);
-                return;
-            }
-            if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockCollage) {
-                TLRPC$TL_pageBlockCollage tLRPC$TL_pageBlockCollage = (TLRPC$TL_pageBlockCollage) tLRPC$PageBlock;
-                int size2 = tLRPC$TL_pageBlockCollage.items.size();
-                while (i < size2) {
-                    TLRPC$PageBlock tLRPC$PageBlock3 = tLRPC$TL_pageBlockCollage.items.get(i);
-                    tLRPC$PageBlock3.groupId = ArticleViewer.this.lastBlockNum;
-                    addAllMediaFromBlock(webpageAdapter, tLRPC$PageBlock3);
-                    i++;
-                }
-                ArticleViewer.access$13708(ArticleViewer.this);
-                return;
-            }
-            if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockCover) {
-                addAllMediaFromBlock(webpageAdapter, ((TLRPC$TL_pageBlockCover) tLRPC$PageBlock).cover);
             }
         }
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View view;
+            TextView textView;
             View blockVideoCell;
-            if (i != 90) {
+            if (i == 90) {
+                textView = new ReportCell(this.context);
+            } else if (i == 2147483646) {
+                textView = new View(this, this.context) {
+                    @Override
+                    protected void onMeasure(int i2, int i3) {
+                        super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec((int) (AndroidUtilities.displaySize.y * 0.4f), 1073741824));
+                    }
+                };
+            } else {
                 switch (i) {
                     case 0:
-                        view = new BlockParagraphCell(this.context, this);
+                        textView = new BlockParagraphCell(this.context, this);
                         break;
                     case 1:
-                        view = new BlockHeaderCell(this.context, this);
+                        textView = new BlockHeaderCell(this.context, this);
                         break;
                     case 2:
-                        view = new BlockDividerCell(this.context);
+                        textView = new BlockDividerCell(this.context);
                         break;
                     case 3:
-                        view = new BlockEmbedCell(this.context, this);
+                        textView = new BlockEmbedCell(this.context, this);
                         break;
                     case 4:
-                        view = new BlockSubtitleCell(this.context, this);
+                        textView = new BlockSubtitleCell(this.context, this);
                         break;
                     case 5:
                         blockVideoCell = new BlockVideoCell(this.context, this, 0);
-                        view = blockVideoCell;
+                        textView = blockVideoCell;
                         break;
                     case 6:
-                        view = new BlockPullquoteCell(this.context, this);
+                        textView = new BlockPullquoteCell(this.context, this);
                         break;
                     case 7:
-                        view = new BlockBlockquoteCell(this.context, this);
+                        textView = new BlockBlockquoteCell(this.context, this);
                         break;
                     case 8:
-                        view = new BlockSlideshowCell(this.context, this);
+                        textView = new BlockSlideshowCell(this.context, this);
                         break;
                     case 9:
                         blockVideoCell = new BlockPhotoCell(this.context, this, 0);
-                        view = blockVideoCell;
+                        textView = blockVideoCell;
                         break;
                     case 10:
-                        view = new BlockAuthorDateCell(this.context, this);
+                        textView = new BlockAuthorDateCell(this.context, this);
                         break;
                     case 11:
-                        view = new BlockTitleCell(this.context, this);
+                        textView = new BlockTitleCell(this.context, this);
                         break;
                     case 12:
-                        view = new BlockListItemCell(this.context, this);
+                        textView = new BlockListItemCell(this.context, this);
                         break;
                     case 13:
-                        view = new BlockFooterCell(this.context, this);
+                        textView = new BlockFooterCell(this.context, this);
                         break;
                     case 14:
-                        view = new BlockPreformattedCell(this.context, this);
+                        textView = new BlockPreformattedCell(this.context, this);
                         break;
                     case 15:
-                        view = new BlockSubheaderCell(this.context, this);
+                        textView = new BlockSubheaderCell(this.context, this);
                         break;
                     case 16:
-                        view = new BlockEmbedPostCell(this.context, this);
+                        textView = new BlockEmbedPostCell(this.context, this);
                         break;
                     case 17:
-                        view = new BlockCollageCell(this.context, this);
+                        textView = new BlockCollageCell(this.context, this);
                         break;
                     case 18:
                         blockVideoCell = new BlockChannelCell(this.context, this, 0);
-                        view = blockVideoCell;
+                        textView = blockVideoCell;
                         break;
                     case 19:
-                        view = new BlockAudioCell(this.context, this);
+                        textView = new BlockAudioCell(this.context, this);
                         break;
                     case 20:
-                        view = new BlockKickerCell(this.context, this);
+                        textView = new BlockKickerCell(this.context, this);
                         break;
                     case 21:
-                        view = new BlockOrderedListItemCell(this.context, this);
+                        textView = new BlockOrderedListItemCell(this.context, this);
                         break;
                     case 22:
                         blockVideoCell = new BlockMapCell(this.context, this, 0);
-                        view = blockVideoCell;
+                        textView = blockVideoCell;
                         break;
                     case 23:
-                        view = new BlockRelatedArticlesCell(this.context, this);
+                        textView = new BlockRelatedArticlesCell(this.context, this);
                         break;
                     case 24:
-                        view = new BlockDetailsCell(this.context, this);
+                        textView = new BlockDetailsCell(this.context, this);
                         break;
                     case 25:
-                        view = new BlockTableCell(this.context, this);
+                        textView = new BlockTableCell(this.context, this);
                         break;
                     case 26:
-                        view = new BlockRelatedArticlesHeaderCell(this.context, this);
+                        textView = new BlockRelatedArticlesHeaderCell(this.context, this);
                         break;
                     case 27:
-                        view = new BlockDetailsBottomCell(this.context);
+                        textView = new BlockDetailsBottomCell(this.context);
                         break;
                     case 28:
-                        view = new BlockRelatedArticlesShadowCell(this.context);
+                        textView = new BlockRelatedArticlesShadowCell(this.context);
                         break;
                     default:
-                        TextView textView = new TextView(this.context);
-                        textView.setBackgroundColor(-65536);
-                        textView.setTextColor(-16777216);
-                        textView.setTextSize(1, 20.0f);
-                        view = textView;
+                        TextView textView2 = new TextView(this.context);
+                        textView2.setBackgroundColor(-65536);
+                        textView2.setTextColor(-16777216);
+                        textView2.setTextSize(1, 20.0f);
+                        textView = textView2;
                         break;
                 }
-            } else {
-                view = new ReportCell(this.context);
             }
-            view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-            view.setFocusable(true);
-            return new RecyclerListView.Holder(view);
+            textView.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+            textView.setFocusable(true);
+            return new RecyclerListView.Holder(textView);
         }
 
         @Override
@@ -5562,9 +6531,14 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-            if (i < this.localBlocks.size()) {
-                bindBlockToHolder(viewHolder.getItemViewType(), viewHolder, this.localBlocks.get(i), i, this.localBlocks.size());
+            if (this.padding) {
+                i--;
             }
+            int i2 = i;
+            if (i2 < 0 || i2 >= this.localBlocks.size()) {
+                return;
+            }
+            bindBlockToHolder(viewHolder.getItemViewType(), viewHolder, this.localBlocks.get(i2), i2, this.localBlocks.size());
         }
 
         @Override
@@ -5592,6 +6566,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                         ((BlockHeaderCell) viewHolder.itemView).setBlock((TLRPC$TL_pageBlockHeader) tLRPC$PageBlock2);
                         return;
                     case 2:
+                        BlockDividerCell blockDividerCell = (BlockDividerCell) viewHolder.itemView;
                         return;
                     case 3:
                         ((BlockEmbedCell) viewHolder.itemView).setBlock((TLRPC$TL_pageBlockEmbed) tLRPC$PageBlock2);
@@ -5671,6 +6646,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                         ((BlockRelatedArticlesHeaderCell) viewHolder.itemView).setBlock((TLRPC$TL_pageBlockRelatedArticles) tLRPC$PageBlock2);
                         return;
                     case 27:
+                        BlockDetailsBottomCell blockDetailsBottomCell = (BlockDetailsBottomCell) viewHolder.itemView;
                         return;
                     default:
                         return;
@@ -5775,6 +6751,12 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
         @Override
         public int getItemViewType(int i) {
+            if (this.padding) {
+                if (i == 0) {
+                    return 2147483646;
+                }
+                i--;
+            }
             if (i == this.localBlocks.size()) {
                 return 90;
             }
@@ -5784,10 +6766,11 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         @Override
         public int getItemCount() {
             TLRPC$WebPage tLRPC$WebPage = this.currentPage;
-            if (tLRPC$WebPage == null || tLRPC$WebPage.cached_page == null) {
-                return 0;
+            int i = 0;
+            if (tLRPC$WebPage != null && tLRPC$WebPage.cached_page != null) {
+                i = 0 + this.localBlocks.size() + 1;
             }
-            return this.localBlocks.size() + 1;
+            return this.padding ? i + 1 : i;
         }
 
         private boolean isBlockOpened(TL_pageBlockDetailsChild tL_pageBlockDetailsChild) {
@@ -5795,15 +6778,26 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             if (lastNonListPageBlock instanceof TLRPC$TL_pageBlockDetails) {
                 return ((TLRPC$TL_pageBlockDetails) lastNonListPageBlock).open;
             }
-            if (!(lastNonListPageBlock instanceof TL_pageBlockDetailsChild)) {
+            if (lastNonListPageBlock instanceof TL_pageBlockDetailsChild) {
+                TL_pageBlockDetailsChild tL_pageBlockDetailsChild2 = (TL_pageBlockDetailsChild) lastNonListPageBlock;
+                TLRPC$PageBlock lastNonListPageBlock2 = ArticleViewer.this.getLastNonListPageBlock(tL_pageBlockDetailsChild2.block);
+                if (!(lastNonListPageBlock2 instanceof TLRPC$TL_pageBlockDetails) || ((TLRPC$TL_pageBlockDetails) lastNonListPageBlock2).open) {
+                    return isBlockOpened(tL_pageBlockDetailsChild2);
+                }
                 return false;
             }
-            TL_pageBlockDetailsChild tL_pageBlockDetailsChild2 = (TL_pageBlockDetailsChild) lastNonListPageBlock;
-            TLRPC$PageBlock lastNonListPageBlock2 = ArticleViewer.this.getLastNonListPageBlock(tL_pageBlockDetailsChild2.block);
-            if (!(lastNonListPageBlock2 instanceof TLRPC$TL_pageBlockDetails) || ((TLRPC$TL_pageBlockDetails) lastNonListPageBlock2).open) {
-                return isBlockOpened(tL_pageBlockDetailsChild2);
-            }
             return false;
+        }
+
+        public void resetCachedHeights() {
+            for (int i = 0; i < this.localBlocks.size(); i++) {
+                TLRPC$PageBlock tLRPC$PageBlock = this.localBlocks.get(i);
+                if (tLRPC$PageBlock != null) {
+                    tLRPC$PageBlock.cachedWidth = 0;
+                    tLRPC$PageBlock.cachedHeight = 0;
+                }
+            }
+            calculateContentHeight();
         }
 
         public void updateRows() {
@@ -5816,6 +6810,24 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     this.localBlocks.add(tLRPC$PageBlock);
                 }
             }
+            if (this.localBlocks.size() < 100) {
+                calculateContentHeight();
+            }
+        }
+
+        public void calculateContentHeight() {
+            Utilities.globalQueue.cancelRunnable(this.calculateContentHeightRunnable);
+            Utilities.globalQueue.postRunnable(this.calculateContentHeightRunnable, 100L);
+        }
+
+        public void lambda$new$1() {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ArticleViewer.WebpageAdapter.lambda$new$1():void");
+        }
+
+        public void lambda$new$0(int i, int[] iArr, int[] iArr2) {
+            this.fullHeight = i;
+            this.sumItemHeights = iArr2;
+            ArticleViewer.this.updatePages();
         }
 
         public void cleanup() {
@@ -6167,9 +7179,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 this.buttonState = 1;
                 this.radialProgress.setIcon(getIconForCurrentState(), true, z);
                 invalidate();
-                return;
-            }
-            if (i == 1) {
+            } else if (i == 1) {
                 this.cancelLoading = true;
                 if (!this.isGif) {
                     FileLoader.getInstance(ArticleViewer.this.currentAccount).cancelLoadFile(this.currentDocument);
@@ -6179,9 +7189,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 this.buttonState = 0;
                 this.radialProgress.setIcon(getIconForCurrentState(), false, z);
                 invalidate();
-                return;
-            }
-            if (i != 2) {
+            } else if (i != 2) {
                 if (i == 3) {
                     ArticleViewer.this.openPhoto(this.currentBlock, this.parentAdapter);
                 }
@@ -6266,7 +7274,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                         this.aspectRatioFrameLayout.setAspectRatio(tLRPC$TL_documentAttributeVideo.w / tLRPC$TL_documentAttributeVideo.h, 0);
                     }
                 }
-                Uri prepareUri = FileStreamLoadOperation.prepareUri(ArticleViewer.this.currentAccount, tLRPC$Document, this.parentAdapter.currentPage);
+                Uri prepareUri = this.parentAdapter.currentPage == null ? null : FileStreamLoadOperation.prepareUri(ArticleViewer.this.currentAccount, tLRPC$Document, this.parentAdapter.currentPage);
                 if (prepareUri == null) {
                     return;
                 }
@@ -6289,9 +7297,9 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             if (this.isGif) {
                 this.buttonState = 2;
                 didPressedButton(true);
-            } else {
-                updateButtonState(true);
+                return;
             }
+            updateButtonState(true);
         }
 
         @Override
@@ -6421,10 +7429,11 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             }
             this.isFirst = z;
             SeekBar seekBar = this.seekBar;
-            int color = Theme.getColor(Theme.key_chat_inAudioSeekbar);
-            int color2 = Theme.getColor(Theme.key_chat_inAudioCacheSeekbar);
+            int themedColor = ArticleViewer.this.getThemedColor(Theme.key_chat_inAudioSeekbar);
+            int themedColor2 = ArticleViewer.this.getThemedColor(Theme.key_chat_inAudioCacheSeekbar);
+            ArticleViewer articleViewer = ArticleViewer.this;
             int i = Theme.key_chat_inAudioSeekbarFill;
-            seekBar.setColors(color, color2, Theme.getColor(i), Theme.getColor(i), Theme.getColor(Theme.key_chat_inAudioSeekbarSelected));
+            seekBar.setColors(themedColor, themedColor2, articleViewer.getThemedColor(i), ArticleViewer.this.getThemedColor(i), ArticleViewer.this.getThemedColor(Theme.key_chat_inAudioSeekbarSelected));
             updateButtonState(false);
             requestLayout();
         }
@@ -6447,8 +7456,9 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             TLRPC$TL_pageBlockAudio tLRPC$TL_pageBlockAudio = this.currentBlock;
             int i3 = 1;
             if (tLRPC$TL_pageBlockAudio != null) {
-                if (tLRPC$TL_pageBlockAudio.level > 0) {
-                    this.textX = AndroidUtilities.dp(r0 * 14) + AndroidUtilities.dp(18.0f);
+                int i4 = tLRPC$TL_pageBlockAudio.level;
+                if (i4 > 0) {
+                    this.textX = AndroidUtilities.dp(i4 * 14) + AndroidUtilities.dp(18.0f);
                 } else {
                     this.textX = AndroidUtilities.dp(18.0f);
                 }
@@ -6458,8 +7468,8 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 int dp4 = AndroidUtilities.dp(5.0f);
                 this.buttonY = dp4;
                 RadialProgress2 radialProgress2 = this.radialProgress;
-                int i4 = this.buttonX;
-                radialProgress2.setProgressRect(i4, dp4, i4 + dp3, dp4 + dp3);
+                int i5 = this.buttonX;
+                radialProgress2.setProgressRect(i5, dp4, i5 + dp3, dp4 + dp3);
                 ArticleViewer articleViewer = ArticleViewer.this;
                 TLRPC$TL_pageBlockAudio tLRPC$TL_pageBlockAudio2 = this.currentBlock;
                 DrawingText createLayoutForText = articleViewer.createLayoutForText(this, null, tLRPC$TL_pageBlockAudio2.caption.text, dp2, this.textY, tLRPC$TL_pageBlockAudio2, this.parentAdapter);
@@ -6469,16 +7479,16 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     this.creditOffset = dp5;
                     dp += dp5 + AndroidUtilities.dp(8.0f);
                 }
-                int i5 = dp;
+                int i6 = dp;
                 ArticleViewer articleViewer2 = ArticleViewer.this;
                 TLRPC$TL_pageBlockAudio tLRPC$TL_pageBlockAudio3 = this.currentBlock;
                 DrawingText createLayoutForText2 = articleViewer2.createLayoutForText(this, null, tLRPC$TL_pageBlockAudio3.caption.credit, dp2, this.textY + this.creditOffset, tLRPC$TL_pageBlockAudio3, this.parentAdapter.isRtl ? StaticLayoutEx.ALIGN_RIGHT() : Layout.Alignment.ALIGN_NORMAL, this.parentAdapter);
                 this.creditLayout = createLayoutForText2;
                 if (createLayoutForText2 != null) {
-                    i5 += AndroidUtilities.dp(4.0f) + this.creditLayout.getHeight();
+                    i6 += AndroidUtilities.dp(4.0f) + this.creditLayout.getHeight();
                 }
                 if (!this.isFirst && this.currentBlock.level <= 0) {
-                    i5 += AndroidUtilities.dp(8.0f);
+                    i6 += AndroidUtilities.dp(8.0f);
                 }
                 String musicAuthor = this.currentMessageObject.getMusicAuthor(false);
                 String musicTitle = this.currentMessageObject.getMusicTitle(false);
@@ -6507,7 +7517,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     this.seekBarY = this.buttonY + ((dp3 - AndroidUtilities.dp(30.0f)) / 2);
                 }
                 this.seekBar.setSize(dp7, AndroidUtilities.dp(30.0f));
-                i3 = i5;
+                i3 = i6;
             }
             setMeasuredDimension(size, i3);
             updatePlayingMessageProgress();
@@ -6520,7 +7530,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 return;
             }
             this.radialProgress.setColorKeys(Theme.key_chat_inLoader, Theme.key_chat_inLoaderSelected, Theme.key_chat_inMediaIcon, Theme.key_chat_inMediaIconSelected);
-            this.radialProgress.setProgressColor(Theme.getColor(Theme.key_chat_inFileProgress));
+            this.radialProgress.setProgressColor(ArticleViewer.this.getThemedColor(Theme.key_chat_inFileProgress));
             this.radialProgress.draw(canvas);
             canvas.save();
             canvas.translate(this.seekBarX, this.seekBarY);
@@ -6563,8 +7573,10 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 DrawingText drawingText3 = this.creditLayout;
                 int i4 = this.textX;
                 drawingText3.x = i4;
-                drawingText3.y = this.textY + this.creditOffset;
-                canvas.translate(i4, r5 + r6);
+                int i5 = this.textY;
+                int i6 = this.creditOffset;
+                drawingText3.y = i5 + i6;
+                canvas.translate(i4, i5 + i6);
                 ArticleViewer.this.drawTextSelection(canvas, this, i);
                 this.creditLayout.draw(canvas, this);
                 canvas.restore();
@@ -6663,28 +7675,20 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     this.buttonState = 1;
                     this.radialProgress.setIcon(getIconForCurrentState(), false, z);
                     invalidate();
-                    return;
                 }
-                return;
-            }
-            if (i == 1) {
+            } else if (i == 1) {
                 if (MediaController.getInstance().lambda$startAudioAgain$7(this.currentMessageObject)) {
                     this.buttonState = 0;
                     this.radialProgress.setIcon(getIconForCurrentState(), false, z);
                     invalidate();
-                    return;
                 }
-                return;
-            }
-            if (i == 2) {
+            } else if (i == 2) {
                 this.radialProgress.setProgress(0.0f, false);
                 FileLoader.getInstance(ArticleViewer.this.currentAccount).loadFile(this.currentDocument, this.parentAdapter.currentPage, 1, 1);
                 this.buttonState = 3;
                 this.radialProgress.setIcon(getIconForCurrentState(), true, z);
                 invalidate();
-                return;
-            }
-            if (i == 3) {
+            } else if (i == 3) {
                 FileLoader.getInstance(ArticleViewer.this.currentAccount).cancelLoadFile(this.currentDocument);
                 this.buttonState = 2;
                 this.radialProgress.setIcon(getIconForCurrentState(), false, z);
@@ -6981,12 +7985,13 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             TLRPC$TL_pageBlockParagraph tLRPC$TL_pageBlockParagraph = this.currentBlock;
             int i3 = 0;
             if (tLRPC$TL_pageBlockParagraph != null) {
-                if (tLRPC$TL_pageBlockParagraph.level == 0) {
+                int i4 = tLRPC$TL_pageBlockParagraph.level;
+                if (i4 == 0) {
                     this.textY = AndroidUtilities.dp(8.0f);
                     this.textX = AndroidUtilities.dp(18.0f);
                 } else {
                     this.textY = 0;
-                    this.textX = AndroidUtilities.dp((r15 * 14) + 18);
+                    this.textX = AndroidUtilities.dp((i4 * 14) + 18);
                 }
                 DrawingText createLayoutForText = ArticleViewer.this.createLayoutForText(this, null, this.currentBlock.text, (size - AndroidUtilities.dp(18.0f)) - this.textX, this.textY, this.currentBlock, this.parentAdapter.isRtl ? StaticLayoutEx.ALIGN_RIGHT() : Layout.Alignment.ALIGN_NORMAL, 0, this.parentAdapter);
                 this.textLayout = createLayoutForText;
@@ -7055,9 +8060,9 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         private WebpageAdapter parentAdapter;
         private int textX;
         private int textY;
-        private WebPlayerView videoView;
+        private final WebPlayerView videoView;
         private boolean wasUserInteraction;
-        private TouchyWebView webView;
+        private final TouchyWebView webView;
 
         public class TelegramWebviewProxy {
             private TelegramWebviewProxy() {
@@ -7110,117 +8115,122 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             super(context);
             this.parentAdapter = webpageAdapter;
             setWillNotDraw(false);
-            WebPlayerView webPlayerView = new WebPlayerView(context, false, false, new WebPlayerView.WebPlayerViewDelegate(ArticleViewer.this) {
-                @Override
-                public boolean checkInlinePermissions() {
-                    return false;
-                }
+            if (Looper.myLooper() == Looper.getMainLooper()) {
+                WebPlayerView webPlayerView = new WebPlayerView(context, false, false, new WebPlayerView.WebPlayerViewDelegate(ArticleViewer.this) {
+                    @Override
+                    public boolean checkInlinePermissions() {
+                        return false;
+                    }
 
-                @Override
-                public ViewGroup getTextureViewContainer() {
-                    return null;
-                }
+                    @Override
+                    public ViewGroup getTextureViewContainer() {
+                        return null;
+                    }
 
-                @Override
-                public void onInlineSurfaceTextureReady() {
-                }
+                    @Override
+                    public void onInlineSurfaceTextureReady() {
+                    }
 
-                @Override
-                public TextureView onSwitchInlineMode(View view, boolean z, int i, int i2, int i3, boolean z2) {
-                    return null;
-                }
+                    @Override
+                    public TextureView onSwitchInlineMode(View view, boolean z, int i, int i2, int i3, boolean z2) {
+                        return null;
+                    }
 
-                @Override
-                public void prepareToSwitchInlineMode(boolean z, Runnable runnable, float f, boolean z2) {
-                }
+                    @Override
+                    public void prepareToSwitchInlineMode(boolean z, Runnable runnable, float f, boolean z2) {
+                    }
 
-                @Override
-                public void onInitFailed() {
-                    BlockEmbedCell.this.webView.setVisibility(0);
-                    BlockEmbedCell.this.videoView.setVisibility(4);
-                    BlockEmbedCell.this.videoView.loadVideo(null, null, null, null, false);
-                    HashMap hashMap = new HashMap();
-                    hashMap.put("Referer", ApplicationLoader.applicationContext.getPackageName());
-                    BlockEmbedCell.this.webView.loadUrl(BlockEmbedCell.this.currentBlock.url, hashMap);
-                }
+                    @Override
+                    public void onInitFailed() {
+                        BlockEmbedCell.this.webView.setVisibility(0);
+                        BlockEmbedCell.this.videoView.setVisibility(4);
+                        BlockEmbedCell.this.videoView.loadVideo(null, null, null, null, false);
+                        HashMap hashMap = new HashMap();
+                        hashMap.put("Referer", ApplicationLoader.applicationContext.getPackageName());
+                        BlockEmbedCell.this.webView.loadUrl(BlockEmbedCell.this.currentBlock.url, hashMap);
+                    }
 
-                @Override
-                public void onVideoSizeChanged(float f, int i) {
-                    ArticleViewer.this.fullscreenAspectRatioView.setAspectRatio(f, i);
-                }
-
-                @Override
-                public TextureView onSwitchToFullscreen(View view, boolean z, float f, int i, boolean z2) {
-                    if (z) {
-                        ArticleViewer.this.fullscreenAspectRatioView.addView(ArticleViewer.this.fullscreenTextureView, LayoutHelper.createFrame(-1, -1.0f));
-                        ArticleViewer.this.fullscreenAspectRatioView.setVisibility(0);
+                    @Override
+                    public void onVideoSizeChanged(float f, int i) {
                         ArticleViewer.this.fullscreenAspectRatioView.setAspectRatio(f, i);
-                        BlockEmbedCell blockEmbedCell = BlockEmbedCell.this;
-                        ArticleViewer.this.fullscreenedVideo = blockEmbedCell.videoView;
-                        ArticleViewer.this.fullscreenVideoContainer.addView(view, LayoutHelper.createFrame(-1, -1.0f));
-                        ArticleViewer.this.fullscreenVideoContainer.setVisibility(0);
-                    } else {
-                        ArticleViewer.this.fullscreenAspectRatioView.removeView(ArticleViewer.this.fullscreenTextureView);
-                        ArticleViewer.this.fullscreenedVideo = null;
-                        ArticleViewer.this.fullscreenAspectRatioView.setVisibility(8);
-                        ArticleViewer.this.fullscreenVideoContainer.setVisibility(4);
                     }
-                    return ArticleViewer.this.fullscreenTextureView;
-                }
 
-                @Override
-                public void onSharePressed() {
-                    if (ArticleViewer.this.parentActivity == null) {
-                        return;
-                    }
-                    ArticleViewer.this.showDialog(new ShareAlert(ArticleViewer.this.parentActivity, null, BlockEmbedCell.this.currentBlock.url, false, BlockEmbedCell.this.currentBlock.url, false));
-                }
-
-                @Override
-                public void onPlayStateChanged(WebPlayerView webPlayerView2, boolean z) {
-                    if (z) {
-                        if (ArticleViewer.this.currentPlayingVideo != null && ArticleViewer.this.currentPlayingVideo != webPlayerView2) {
-                            ArticleViewer.this.currentPlayingVideo.pause();
+                    @Override
+                    public TextureView onSwitchToFullscreen(View view, boolean z, float f, int i, boolean z2) {
+                        if (z) {
+                            ArticleViewer.this.fullscreenAspectRatioView.addView(ArticleViewer.this.fullscreenTextureView, LayoutHelper.createFrame(-1, -1.0f));
+                            ArticleViewer.this.fullscreenAspectRatioView.setVisibility(0);
+                            ArticleViewer.this.fullscreenAspectRatioView.setAspectRatio(f, i);
+                            BlockEmbedCell blockEmbedCell = BlockEmbedCell.this;
+                            ArticleViewer.this.fullscreenedVideo = blockEmbedCell.videoView;
+                            ArticleViewer.this.fullscreenVideoContainer.addView(view, LayoutHelper.createFrame(-1, -1.0f));
+                            ArticleViewer.this.fullscreenVideoContainer.setVisibility(0);
+                        } else {
+                            ArticleViewer.this.fullscreenAspectRatioView.removeView(ArticleViewer.this.fullscreenTextureView);
+                            ArticleViewer.this.fullscreenedVideo = null;
+                            ArticleViewer.this.fullscreenAspectRatioView.setVisibility(8);
+                            ArticleViewer.this.fullscreenVideoContainer.setVisibility(4);
                         }
-                        ArticleViewer.this.currentPlayingVideo = webPlayerView2;
+                        return ArticleViewer.this.fullscreenTextureView;
+                    }
+
+                    @Override
+                    public void onSharePressed() {
+                        if (ArticleViewer.this.parentActivity == null) {
+                            return;
+                        }
+                        ArticleViewer.this.showDialog(new ShareAlert(ArticleViewer.this.parentActivity, null, BlockEmbedCell.this.currentBlock.url, false, BlockEmbedCell.this.currentBlock.url, false));
+                    }
+
+                    @Override
+                    public void onPlayStateChanged(WebPlayerView webPlayerView2, boolean z) {
+                        if (z) {
+                            if (ArticleViewer.this.currentPlayingVideo != null && ArticleViewer.this.currentPlayingVideo != webPlayerView2) {
+                                ArticleViewer.this.currentPlayingVideo.pause();
+                            }
+                            ArticleViewer.this.currentPlayingVideo = webPlayerView2;
+                            try {
+                                ArticleViewer.this.parentActivity.getWindow().addFlags(128);
+                                return;
+                            } catch (Exception e) {
+                                FileLog.e(e);
+                                return;
+                            }
+                        }
+                        if (ArticleViewer.this.currentPlayingVideo == webPlayerView2) {
+                            ArticleViewer.this.currentPlayingVideo = null;
+                        }
                         try {
-                            ArticleViewer.this.parentActivity.getWindow().addFlags(128);
-                            return;
-                        } catch (Exception e) {
-                            FileLog.e(e);
-                            return;
+                            ArticleViewer.this.parentActivity.getWindow().clearFlags(128);
+                        } catch (Exception e2) {
+                            FileLog.e(e2);
                         }
                     }
-                    if (ArticleViewer.this.currentPlayingVideo == webPlayerView2) {
-                        ArticleViewer.this.currentPlayingVideo = null;
-                    }
-                    try {
-                        ArticleViewer.this.parentActivity.getWindow().clearFlags(128);
-                    } catch (Exception e2) {
-                        FileLog.e(e2);
-                    }
+                });
+                this.videoView = webPlayerView;
+                addView(webPlayerView);
+                ArticleViewer.this.createdWebViews.add(this);
+                TouchyWebView touchyWebView = new TouchyWebView(context);
+                this.webView = touchyWebView;
+                touchyWebView.getSettings().setJavaScriptEnabled(true);
+                touchyWebView.getSettings().setDomStorageEnabled(true);
+                touchyWebView.getSettings().setAllowContentAccess(true);
+                int i = Build.VERSION.SDK_INT;
+                if (i >= 17) {
+                    touchyWebView.getSettings().setMediaPlaybackRequiresUserGesture(false);
+                    touchyWebView.addJavascriptInterface(new TelegramWebviewProxy(), "TelegramWebviewProxy");
                 }
-            });
-            this.videoView = webPlayerView;
-            addView(webPlayerView);
-            ArticleViewer.this.createdWebViews.add(this);
-            TouchyWebView touchyWebView = new TouchyWebView(context);
-            this.webView = touchyWebView;
-            touchyWebView.getSettings().setJavaScriptEnabled(true);
-            this.webView.getSettings().setDomStorageEnabled(true);
-            this.webView.getSettings().setAllowContentAccess(true);
-            int i = Build.VERSION.SDK_INT;
-            if (i >= 17) {
-                this.webView.getSettings().setMediaPlaybackRequiresUserGesture(false);
-                this.webView.addJavascriptInterface(new TelegramWebviewProxy(), "TelegramWebviewProxy");
+                if (i >= 21) {
+                    touchyWebView.getSettings().setMixedContentMode(0);
+                    CookieManager.getInstance().setAcceptThirdPartyCookies(touchyWebView, true);
+                }
+                touchyWebView.setWebChromeClient(new AnonymousClass2(ArticleViewer.this));
+                touchyWebView.setWebViewClient(new AnonymousClass3(ArticleViewer.this));
+                addView(touchyWebView);
+                return;
             }
-            if (i >= 21) {
-                this.webView.getSettings().setMixedContentMode(0);
-                CookieManager.getInstance().setAcceptThirdPartyCookies(this.webView, true);
-            }
-            this.webView.setWebChromeClient(new AnonymousClass2(ArticleViewer.this));
-            this.webView.setWebViewClient(new AnonymousClass3(ArticleViewer.this));
-            addView(this.webView);
+            this.videoView = null;
+            this.webView = null;
         }
 
         public class AnonymousClass2 extends WebChromeClient {
@@ -7277,15 +8287,15 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             @Override
             public boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
                 LaunchActivity launchActivity = LaunchActivity.instance;
-                if (launchActivity != null && launchActivity.isFinishing()) {
+                if (launchActivity == null || !launchActivity.isFinishing()) {
+                    new AlertDialog.Builder(BlockEmbedCell.this.getContext(), null).setTitle(LocaleController.getString(R.string.ChromeCrashTitle)).setMessage(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new Runnable() {
+                        @Override
+                        public final void run() {
+                            ArticleViewer.BlockEmbedCell.AnonymousClass3.this.lambda$onRenderProcessGone$0();
+                        }
+                    })).setPositiveButton(LocaleController.getString(R.string.OK), null).show();
                     return true;
                 }
-                new AlertDialog.Builder(BlockEmbedCell.this.getContext(), null).setTitle(LocaleController.getString(R.string.ChromeCrashTitle)).setMessage(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new Runnable() {
-                    @Override
-                    public final void run() {
-                        ArticleViewer.BlockEmbedCell.AnonymousClass3.this.lambda$onRenderProcessGone$0();
-                    }
-                })).setPositiveButton(LocaleController.getString(R.string.OK), null).show();
                 return true;
             }
 
@@ -7305,70 +8315,103 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView webView, String str) {
-                if (!BlockEmbedCell.this.wasUserInteraction) {
-                    return false;
+                if (BlockEmbedCell.this.wasUserInteraction) {
+                    Browser.openUrl(ArticleViewer.this.parentActivity, str);
+                    return true;
                 }
-                Browser.openUrl(ArticleViewer.this.parentActivity, str);
-                return true;
+                return false;
             }
         }
 
         public void destroyWebView(boolean z) {
             try {
-                this.webView.stopLoading();
-                this.webView.loadUrl("about:blank");
-                if (z) {
-                    this.webView.destroy();
+                TouchyWebView touchyWebView = this.webView;
+                if (touchyWebView != null) {
+                    touchyWebView.stopLoading();
+                    this.webView.loadUrl("about:blank");
+                    if (z) {
+                        this.webView.destroy();
+                    }
                 }
                 this.currentBlock = null;
             } catch (Exception e) {
                 FileLog.e(e);
             }
-            this.videoView.destroy();
+            WebPlayerView webPlayerView = this.videoView;
+            if (webPlayerView != null) {
+                webPlayerView.destroy();
+            }
         }
 
         public void setBlock(TLRPC$TL_pageBlockEmbed tLRPC$TL_pageBlockEmbed) {
             TLRPC$TL_pageBlockEmbed tLRPC$TL_pageBlockEmbed2 = this.currentBlock;
             this.currentBlock = tLRPC$TL_pageBlockEmbed;
-            this.webView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+            TouchyWebView touchyWebView = this.webView;
+            if (touchyWebView != null) {
+                touchyWebView.setBackgroundColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundWhite));
+            }
             TLRPC$TL_pageBlockEmbed tLRPC$TL_pageBlockEmbed3 = this.currentBlock;
             if (tLRPC$TL_pageBlockEmbed2 != tLRPC$TL_pageBlockEmbed3) {
                 this.wasUserInteraction = false;
-                if (tLRPC$TL_pageBlockEmbed3.allow_scrolling) {
-                    this.webView.setVerticalScrollBarEnabled(true);
-                    this.webView.setHorizontalScrollBarEnabled(true);
-                } else {
-                    this.webView.setVerticalScrollBarEnabled(false);
-                    this.webView.setHorizontalScrollBarEnabled(false);
+                TouchyWebView touchyWebView2 = this.webView;
+                if (touchyWebView2 != null) {
+                    if (tLRPC$TL_pageBlockEmbed3.allow_scrolling) {
+                        touchyWebView2.setVerticalScrollBarEnabled(true);
+                        this.webView.setHorizontalScrollBarEnabled(true);
+                    } else {
+                        touchyWebView2.setVerticalScrollBarEnabled(false);
+                        this.webView.setHorizontalScrollBarEnabled(false);
+                    }
                 }
                 this.exactWebViewHeight = 0;
-                try {
-                    this.webView.loadUrl("about:blank");
-                } catch (Exception e) {
-                    FileLog.e(e);
+                TouchyWebView touchyWebView3 = this.webView;
+                if (touchyWebView3 != null) {
+                    try {
+                        touchyWebView3.loadUrl("about:blank");
+                    } catch (Exception e) {
+                        FileLog.e(e);
+                    }
                 }
                 try {
                     TLRPC$TL_pageBlockEmbed tLRPC$TL_pageBlockEmbed4 = this.currentBlock;
                     String str = tLRPC$TL_pageBlockEmbed4.html;
                     if (str != null) {
-                        this.webView.loadDataWithBaseURL("https://telegram.org/embed", str, "text/html", "UTF-8", null);
-                        this.videoView.setVisibility(4);
-                        this.videoView.loadVideo(null, null, null, null, false);
-                        this.webView.setVisibility(0);
+                        TouchyWebView touchyWebView4 = this.webView;
+                        if (touchyWebView4 != null) {
+                            touchyWebView4.loadDataWithBaseURL("https://telegram.org/embed", str, "text/html", "UTF-8", null);
+                            this.webView.setVisibility(0);
+                        }
+                        WebPlayerView webPlayerView = this.videoView;
+                        if (webPlayerView != null) {
+                            webPlayerView.setVisibility(4);
+                            this.videoView.loadVideo(null, null, null, null, false);
+                        }
                     } else {
                         long j = tLRPC$TL_pageBlockEmbed4.poster_photo_id;
                         if (this.videoView.loadVideo(tLRPC$TL_pageBlockEmbed.url, j != 0 ? this.parentAdapter.getPhotoWithId(j) : null, this.parentAdapter.currentPage, null, false)) {
-                            this.webView.setVisibility(4);
-                            this.videoView.setVisibility(0);
-                            this.webView.stopLoading();
-                            this.webView.loadUrl("about:blank");
+                            TouchyWebView touchyWebView5 = this.webView;
+                            if (touchyWebView5 != null) {
+                                touchyWebView5.setVisibility(4);
+                                this.webView.stopLoading();
+                                this.webView.loadUrl("about:blank");
+                            }
+                            WebPlayerView webPlayerView2 = this.videoView;
+                            if (webPlayerView2 != null) {
+                                webPlayerView2.setVisibility(0);
+                            }
                         } else {
-                            this.webView.setVisibility(0);
-                            this.videoView.setVisibility(4);
-                            this.videoView.loadVideo(null, null, null, null, false);
-                            HashMap hashMap = new HashMap();
-                            hashMap.put("Referer", ApplicationLoader.applicationContext.getPackageName());
-                            this.webView.loadUrl(this.currentBlock.url, hashMap);
+                            TouchyWebView touchyWebView6 = this.webView;
+                            if (touchyWebView6 != null) {
+                                touchyWebView6.setVisibility(0);
+                                HashMap hashMap = new HashMap();
+                                hashMap.put("Referer", ApplicationLoader.applicationContext.getPackageName());
+                                this.webView.loadUrl(this.currentBlock.url, hashMap);
+                            }
+                            WebPlayerView webPlayerView3 = this.videoView;
+                            if (webPlayerView3 != null) {
+                                webPlayerView3.setVisibility(4);
+                                this.videoView.loadVideo(null, null, null, null, false);
+                            }
                         }
                     }
                 } catch (Exception e2) {
@@ -7406,13 +8449,17 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         @Override
         protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
             TouchyWebView touchyWebView = this.webView;
-            int i5 = this.listX;
-            touchyWebView.layout(i5, 0, touchyWebView.getMeasuredWidth() + i5, this.webView.getMeasuredHeight());
-            if (this.videoView.getParent() == this) {
-                WebPlayerView webPlayerView = this.videoView;
-                int i6 = this.listX;
-                webPlayerView.layout(i6, 0, webPlayerView.getMeasuredWidth() + i6, this.videoView.getMeasuredHeight());
+            if (touchyWebView != null) {
+                int i5 = this.listX;
+                touchyWebView.layout(i5, 0, touchyWebView.getMeasuredWidth() + i5, this.webView.getMeasuredHeight());
             }
+            WebPlayerView webPlayerView = this.videoView;
+            if (webPlayerView == null || webPlayerView.getParent() != this) {
+                return;
+            }
+            WebPlayerView webPlayerView2 = this.videoView;
+            int i6 = this.listX;
+            webPlayerView2.layout(i6, 0, webPlayerView2.getMeasuredWidth() + i6, this.videoView.getMeasuredHeight());
         }
 
         @Override
@@ -7577,10 +8624,8 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 }
                 int length = ArticleViewer.this.searchText.length() + indexOf;
                 if (indexOf == 0 || AndroidUtilities.isPunctuationCharacter(lowerCase.charAt(indexOf - 1))) {
-                    HashMap hashMap = ArticleViewer.this.adapter[0].searchTextOffset;
-                    String str = ArticleViewer.this.searchText + this.currentBlock + drawingText.parentText + indexOf;
                     StaticLayout staticLayout = drawingText.textLayout;
-                    hashMap.put(str, Integer.valueOf(staticLayout.getLineTop(staticLayout.getLineForOffset(indexOf)) + i2));
+                    ArticleViewer.this.pages[0].adapter.searchTextOffset.put(ArticleViewer.this.searchText + this.currentBlock + drawingText.parentText + indexOf, Integer.valueOf(staticLayout.getLineTop(staticLayout.getLineForOffset(indexOf)) + i2));
                 }
                 i3 = length;
             }
@@ -7589,7 +8634,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         public void setBlock(TLRPC$TL_pageBlockTable tLRPC$TL_pageBlockTable) {
             int i;
             this.currentBlock = tLRPC$TL_pageBlockTable;
-            AndroidUtilities.setScrollViewEdgeEffectColor(this.scrollView, Theme.getColor(Theme.key_windowBackgroundWhite));
+            AndroidUtilities.setScrollViewEdgeEffectColor(this.scrollView, ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundWhite));
             this.tableLayout.removeAllChildrens();
             this.tableLayout.setDrawLines(this.currentBlock.bordered);
             this.tableLayout.setStriped(this.currentBlock.striped);
@@ -7662,8 +8707,9 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             int size = View.MeasureSpec.getSize(i);
             TLRPC$TL_pageBlockTable tLRPC$TL_pageBlockTable = this.currentBlock;
             if (tLRPC$TL_pageBlockTable != null) {
-                if (tLRPC$TL_pageBlockTable.level > 0) {
-                    int dp2 = AndroidUtilities.dp(r14 * 14);
+                int i5 = tLRPC$TL_pageBlockTable.level;
+                if (i5 > 0) {
+                    int dp2 = AndroidUtilities.dp(i5 * 14);
                     this.listX = dp2;
                     dp = dp2 + AndroidUtilities.dp(18.0f);
                     this.textX = dp;
@@ -7853,10 +8899,11 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     int i2 = 0;
                     int i3 = 0;
                     while (true) {
-                        if (i2 >= groupedMessagePosition.siblingHeights.length) {
+                        float[] fArr = groupedMessagePosition.siblingHeights;
+                        if (i2 >= fArr.length) {
                             break;
                         }
-                        i3 += (int) Math.ceil(r2[i2] * max);
+                        i3 += (int) Math.ceil(fArr[i2] * max);
                         i2++;
                     }
                     int dp2 = i3 + ((groupedMessagePosition.maxY - groupedMessagePosition.minY) * AndroidUtilities.dp2(11.0f));
@@ -7938,12 +8985,12 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                         BlockPhotoCell blockPhotoCell = (BlockPhotoCell) viewHolder.itemView;
                         blockPhotoCell.groupPosition = BlockCollageCell.this.group.positions.get(tLRPC$PageBlock);
                         blockPhotoCell.setBlock((TLRPC$TL_pageBlockPhoto) tLRPC$PageBlock, true, true);
-                    } else {
-                        BlockVideoCell blockVideoCell = (BlockVideoCell) viewHolder.itemView;
-                        blockVideoCell.groupPosition = BlockCollageCell.this.group.positions.get(tLRPC$PageBlock);
-                        TLRPC$TL_pageBlockVideo tLRPC$TL_pageBlockVideo = (TLRPC$TL_pageBlockVideo) tLRPC$PageBlock;
-                        blockVideoCell.setBlock(tLRPC$TL_pageBlockVideo, (BlockVideoCellState) ArticleViewer.this.videoStates.get(tLRPC$TL_pageBlockVideo.video_id), true, true);
+                        return;
                     }
+                    BlockVideoCell blockVideoCell = (BlockVideoCell) viewHolder.itemView;
+                    blockVideoCell.groupPosition = BlockCollageCell.this.group.positions.get(tLRPC$PageBlock);
+                    TLRPC$TL_pageBlockVideo tLRPC$TL_pageBlockVideo = (TLRPC$TL_pageBlockVideo) tLRPC$PageBlock;
+                    blockVideoCell.setBlock(tLRPC$TL_pageBlockVideo, (BlockVideoCellState) ArticleViewer.this.videoStates.get(tLRPC$TL_pageBlockVideo.video_id), true, true);
                 }
 
                 @Override
@@ -7971,7 +9018,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 this.group.calculate();
             }
             this.innerAdapter.notifyDataSetChanged();
-            this.innerListView.setGlowColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+            this.innerListView.setGlowColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundWhite));
             requestLayout();
         }
 
@@ -7990,8 +9037,9 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             int size = View.MeasureSpec.getSize(i);
             TLRPC$TL_pageBlockCollage tLRPC$TL_pageBlockCollage = this.currentBlock;
             if (tLRPC$TL_pageBlockCollage != null) {
-                if (tLRPC$TL_pageBlockCollage.level > 0) {
-                    int dp2 = AndroidUtilities.dp(r15 * 14) + AndroidUtilities.dp(18.0f);
+                int i5 = tLRPC$TL_pageBlockCollage.level;
+                if (i5 > 0) {
+                    int dp2 = AndroidUtilities.dp(i5 * 14) + AndroidUtilities.dp(18.0f);
                     this.listX = dp2;
                     this.textX = dp2;
                     i3 = size - (dp2 + AndroidUtilities.dp(18.0f));
@@ -8129,11 +9177,12 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
                 @Override
                 public void onPageScrolled(int i, float f, int i2) {
+                    BlockSlideshowCell blockSlideshowCell;
                     float measuredWidth = BlockSlideshowCell.this.innerListView.getMeasuredWidth();
                     if (measuredWidth == 0.0f) {
                         return;
                     }
-                    BlockSlideshowCell.this.pageOffset = (((i * measuredWidth) + i2) - (r0.currentPage * measuredWidth)) / measuredWidth;
+                    BlockSlideshowCell.this.pageOffset = (((i * measuredWidth) + i2) - (blockSlideshowCell.currentPage * measuredWidth)) / measuredWidth;
                     BlockSlideshowCell.this.dotsContainer.invalidate();
                 }
 
@@ -8202,7 +9251,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             };
             this.innerAdapter = pagerAdapter;
             viewPager2.setAdapter(pagerAdapter);
-            AndroidUtilities.setViewPagerEdgeEffectColor(this.innerListView, Theme.getColor(Theme.key_windowBackgroundWhite));
+            AndroidUtilities.setViewPagerEdgeEffectColor(this.innerListView, ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundWhite));
             addView(this.innerListView);
             View view = new View(context, ArticleViewer.this) {
                 @Override
@@ -8467,9 +9516,9 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         public void fillTextLayoutBlocks(ArrayList<TextSelectionHelper.TextLayoutBlock> arrayList) {
             RecyclerView.ViewHolder viewHolder = this.blockLayout;
             if (viewHolder != null) {
-                KeyEvent.Callback callback = viewHolder.itemView;
-                if (callback instanceof TextSelectionHelper.ArticleSelectableView) {
-                    ((TextSelectionHelper.ArticleSelectableView) callback).fillTextLayoutBlocks(arrayList);
+                View view = viewHolder.itemView;
+                if (view instanceof TextSelectionHelper.ArticleSelectableView) {
+                    ((TextSelectionHelper.ArticleSelectableView) view).fillTextLayoutBlocks(arrayList);
                 }
             }
             DrawingText drawingText = this.textLayout;
@@ -8593,9 +9642,9 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         public void fillTextLayoutBlocks(ArrayList<TextSelectionHelper.TextLayoutBlock> arrayList) {
             RecyclerView.ViewHolder viewHolder = this.blockLayout;
             if (viewHolder != null) {
-                KeyEvent.Callback callback = viewHolder.itemView;
-                if (callback instanceof TextSelectionHelper.ArticleSelectableView) {
-                    ((TextSelectionHelper.ArticleSelectableView) callback).fillTextLayoutBlocks(arrayList);
+                View view = viewHolder.itemView;
+                if (view instanceof TextSelectionHelper.ArticleSelectableView) {
+                    ((TextSelectionHelper.ArticleSelectableView) view).fillTextLayoutBlocks(arrayList);
                 }
             }
             DrawingText drawingText = this.textLayout;
@@ -8626,7 +9675,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             this.textX = AndroidUtilities.dp(50.0f);
             this.textY = AndroidUtilities.dp(11.0f) + 1;
             this.parentAdapter = webpageAdapter;
-            this.arrow = new AnimatedArrowDrawable(ArticleViewer.access$20500(), true);
+            this.arrow = new AnimatedArrowDrawable(ArticleViewer.this.getGrayTextColor(), true);
         }
 
         @Override
@@ -8713,12 +9762,12 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    public static class BlockRelatedArticlesShadowCell extends View {
+    public class BlockRelatedArticlesShadowCell extends View {
         private CombinedDrawable shadowDrawable;
 
         public BlockRelatedArticlesShadowCell(Context context) {
             super(context);
-            CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawable(context, R.drawable.greydivider_bottom, -16777216));
+            CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawable(context, R.drawable.greydivider_bottom, -16777216));
             this.shadowDrawable = combinedDrawable;
             combinedDrawable.setFullsize(true);
             setBackgroundDrawable(this.shadowDrawable);
@@ -8727,7 +9776,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         @Override
         protected void onMeasure(int i, int i2) {
             setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.dp(12.0f));
-            Theme.setCombinedDrawableColor(this.shadowDrawable, Theme.getColor(Theme.key_windowBackgroundGray), false);
+            Theme.setCombinedDrawableColor(this.shadowDrawable, ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray), false);
         }
     }
 
@@ -8830,10 +9879,11 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             boolean z;
             int i4;
             String str;
+            int dp;
             int size = View.MeasureSpec.getSize(i);
             this.divider = this.currentBlock.num != this.currentBlock.parent.articles.size() - 1;
             TLRPC$TL_pageRelatedArticle tLRPC$TL_pageRelatedArticle = this.currentBlock.parent.articles.get(this.currentBlock.num);
-            int dp = AndroidUtilities.dp(SharedConfig.ivFontSize - 16);
+            int dp2 = AndroidUtilities.dp(SharedConfig.ivFontSize - 16);
             long j = tLRPC$TL_pageRelatedArticle.photo_id;
             TLRPC$Photo photoWithId = j != 0 ? this.parentAdapter.getPhotoWithId(j) : null;
             if (photoWithId != null) {
@@ -8844,38 +9894,37 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             } else {
                 this.drawImage = false;
             }
-            int dp2 = AndroidUtilities.dp(60.0f);
-            int dp3 = size - AndroidUtilities.dp(36.0f);
+            int dp3 = AndroidUtilities.dp(60.0f);
+            int dp4 = size - AndroidUtilities.dp(36.0f);
             if (this.drawImage) {
-                float dp4 = AndroidUtilities.dp(44.0f);
-                this.imageView.setImageCoords((size - r1) - AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), dp4, dp4);
-                dp3 = (int) (dp3 - (this.imageView.getImageWidth() + AndroidUtilities.dp(6.0f)));
+                float dp5 = AndroidUtilities.dp(44.0f);
+                this.imageView.setImageCoords((size - dp) - AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), dp5, dp5);
+                dp4 = (int) (dp4 - (this.imageView.getImageWidth() + AndroidUtilities.dp(6.0f)));
             }
-            int i5 = dp3;
-            int dp5 = AndroidUtilities.dp(18.0f);
+            int i5 = dp4;
+            int dp6 = AndroidUtilities.dp(18.0f);
             String str2 = tLRPC$TL_pageRelatedArticle.title;
             if (str2 != null) {
-                i3 = dp2;
+                i3 = dp3;
                 this.textLayout = ArticleViewer.this.createLayoutForText(this, str2, null, i5, this.textY, this.currentBlock, Layout.Alignment.ALIGN_NORMAL, 3, this.parentAdapter);
             } else {
-                i3 = dp2;
+                i3 = dp3;
             }
             DrawingText drawingText = this.textLayout;
             if (drawingText != null) {
                 int lineCount = drawingText.getLineCount();
                 int i6 = 4 - lineCount;
-                this.textOffset = this.textLayout.getHeight() + AndroidUtilities.dp(6.0f) + dp;
-                dp5 += this.textLayout.getHeight();
+                this.textOffset = this.textLayout.getHeight() + AndroidUtilities.dp(6.0f) + dp2;
+                dp6 += this.textLayout.getHeight();
                 int i7 = 0;
                 while (true) {
                     if (i7 >= lineCount) {
                         z = false;
                         break;
+                    } else if (this.textLayout.getLineLeft(i7) != 0.0f) {
+                        z = true;
+                        break;
                     } else {
-                        if (this.textLayout.getLineLeft(i7) != 0.0f) {
-                            z = true;
-                            break;
-                        }
                         i7++;
                     }
                 }
@@ -8902,15 +9951,15 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             DrawingText createLayoutForText = ArticleViewer.this.createLayoutForText(this, str, null, i5, this.textOffset + this.textY, this.currentBlock, (this.parentAdapter.isRtl || z) ? StaticLayoutEx.ALIGN_RIGHT() : Layout.Alignment.ALIGN_NORMAL, i4, this.parentAdapter);
             this.textLayout2 = createLayoutForText;
             if (createLayoutForText != null) {
-                dp5 += createLayoutForText.getHeight();
+                dp6 += createLayoutForText.getHeight();
                 if (this.textLayout != null) {
-                    dp5 += AndroidUtilities.dp(6.0f) + dp;
+                    dp6 += AndroidUtilities.dp(6.0f) + dp2;
                 }
                 DrawingText drawingText3 = this.textLayout2;
                 drawingText3.x = this.textX;
                 drawingText3.y = this.textY + this.textOffset;
             }
-            setMeasuredDimension(size, Math.max(i3, dp5) + (this.divider ? 1 : 0));
+            setMeasuredDimension(size, Math.max(i3, dp6) + (this.divider ? 1 : 0));
         }
 
         @Override
@@ -9046,7 +10095,8 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
         @Override
         protected void onDraw(Canvas canvas) {
-            this.rect.set(getMeasuredWidth() / 3, AndroidUtilities.dp(8.0f), r0 * 2, AndroidUtilities.dp(10.0f));
+            int measuredWidth = getMeasuredWidth() / 3;
+            this.rect.set(measuredWidth, AndroidUtilities.dp(8.0f), measuredWidth * 2, AndroidUtilities.dp(10.0f));
             canvas.drawRoundRect(this.rect, AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), ArticleViewer.dividerPaint);
         }
     }
@@ -9253,8 +10303,9 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             int size = View.MeasureSpec.getSize(i);
             if (this.currentBlock != null) {
                 int dp = size - AndroidUtilities.dp(50.0f);
-                if (this.currentBlock.level > 0) {
-                    dp -= AndroidUtilities.dp(r0 * 14);
+                int i4 = this.currentBlock.level;
+                if (i4 > 0) {
+                    dp -= AndroidUtilities.dp(i4 * 14);
                 }
                 ArticleViewer articleViewer = ArticleViewer.this;
                 TLRPC$TL_pageBlockBlockquote tLRPC$TL_pageBlockBlockquote = this.currentBlock;
@@ -9326,7 +10377,8 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             if (!this.parentAdapter.isRtl) {
                 canvas.drawRect(AndroidUtilities.dp((this.currentBlock.level * 14) + 18), AndroidUtilities.dp(6.0f), AndroidUtilities.dp((this.currentBlock.level * 14) + 20), getMeasuredHeight() - AndroidUtilities.dp(6.0f), ArticleViewer.quoteLinePaint);
             } else {
-                canvas.drawRect(getMeasuredWidth() - AndroidUtilities.dp(20.0f), AndroidUtilities.dp(6.0f), r0 + AndroidUtilities.dp(2.0f), getMeasuredHeight() - AndroidUtilities.dp(6.0f), ArticleViewer.quoteLinePaint);
+                int measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(20.0f);
+                canvas.drawRect(measuredWidth, AndroidUtilities.dp(6.0f), measuredWidth + AndroidUtilities.dp(2.0f), getMeasuredHeight() - AndroidUtilities.dp(6.0f), ArticleViewer.quoteLinePaint);
             }
             if (this.currentBlock.level > 0) {
                 canvas.drawRect(AndroidUtilities.dp(18.0f), 0.0f, AndroidUtilities.dp(20.0f), getMeasuredHeight() - (this.currentBlock.bottom ? AndroidUtilities.dp(6.0f) : 0), ArticleViewer.quoteLinePaint);
@@ -9496,9 +10548,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 this.buttonState = 1;
                 this.radialProgress.setIcon(getIconForCurrentState(), true, z);
                 invalidate();
-                return;
-            }
-            if (i == 1) {
+            } else if (i == 1) {
                 this.imageView.cancelLoadImage();
                 this.buttonState = 0;
                 this.radialProgress.setIcon(getIconForCurrentState(), false, z);
@@ -9638,7 +10688,8 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     TLRPC$GeoPoint tLRPC$GeoPoint = this.currentBlock.geo;
                     double d = tLRPC$GeoPoint.lat;
                     double d2 = tLRPC$GeoPoint._long;
-                    ArticleViewer.this.parentActivity.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("geo:" + d + "," + d2 + "?q=" + d + "," + d2)));
+                    Activity activity = ArticleViewer.this.parentActivity;
+                    activity.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("geo:" + d + "," + d2 + "?q=" + d + "," + d2)));
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
@@ -9660,7 +10711,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             if (this.currentBlock == null) {
                 return;
             }
-            Theme.chat_docBackPaint.setColor(Theme.getColor(Theme.key_chat_inLocationBackground));
+            Theme.chat_docBackPaint.setColor(ArticleViewer.this.getThemedColor(Theme.key_chat_inLocationBackground));
             canvas.drawRect(this.imageView.getImageX(), this.imageView.getImageY(), this.imageView.getImageX2(), this.imageView.getImageY2(), Theme.chat_docBackPaint);
             int centerX = (int) (this.imageView.getCenterX() - (Theme.chat_locationDrawable[0].getIntrinsicWidth() / 2));
             int centerY = (int) (this.imageView.getCenterY() - (Theme.chat_locationDrawable[0].getIntrinsicHeight() / 2));
@@ -9786,13 +10837,13 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         public void setBlock(TLRPC$TL_pageBlockChannel tLRPC$TL_pageBlockChannel) {
             this.currentBlock = tLRPC$TL_pageBlockChannel;
             if (this.currentType == 0) {
-                int color = Theme.getColor(Theme.key_switchTrack);
-                int red = Color.red(color);
-                int green = Color.green(color);
-                int blue = Color.blue(color);
+                int themedColor = ArticleViewer.this.getThemedColor(Theme.key_switchTrack);
+                int red = Color.red(themedColor);
+                int green = Color.green(themedColor);
+                int blue = Color.blue(themedColor);
                 this.textView.setTextColor(ArticleViewer.this.getLinkTextColor());
                 this.backgroundPaint.setColor(Color.argb(34, red, green, blue));
-                this.imageView.setColorFilter(new PorterDuffColorFilter(ArticleViewer.access$20500(), PorterDuff.Mode.MULTIPLY));
+                this.imageView.setColorFilter(new PorterDuffColorFilter(ArticleViewer.this.getGrayTextColor(), PorterDuff.Mode.MULTIPLY));
             } else {
                 this.textView.setTextColor(-1);
                 this.backgroundPaint.setColor(2130706432);
@@ -9827,47 +10878,47 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 Property property = View.ALPHA;
                 float[] fArr = new float[1];
                 fArr[0] = i == 0 ? 1.0f : 0.0f;
-                animatorArr[0] = ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property, fArr);
+                animatorArr[0] = ObjectAnimator.ofFloat(textView, property, fArr);
                 TextView textView2 = this.textView;
                 Property property2 = View.SCALE_X;
                 float[] fArr2 = new float[1];
                 fArr2[0] = i == 0 ? 1.0f : 0.1f;
-                animatorArr[1] = ObjectAnimator.ofFloat(textView2, (Property<TextView, Float>) property2, fArr2);
+                animatorArr[1] = ObjectAnimator.ofFloat(textView2, property2, fArr2);
                 TextView textView3 = this.textView;
                 Property property3 = View.SCALE_Y;
                 float[] fArr3 = new float[1];
                 fArr3[0] = i == 0 ? 1.0f : 0.1f;
-                animatorArr[2] = ObjectAnimator.ofFloat(textView3, (Property<TextView, Float>) property3, fArr3);
+                animatorArr[2] = ObjectAnimator.ofFloat(textView3, property3, fArr3);
                 ContextProgressView contextProgressView = this.progressView;
                 Property property4 = View.ALPHA;
                 float[] fArr4 = new float[1];
                 fArr4[0] = i == 1 ? 1.0f : 0.0f;
-                animatorArr[3] = ObjectAnimator.ofFloat(contextProgressView, (Property<ContextProgressView, Float>) property4, fArr4);
+                animatorArr[3] = ObjectAnimator.ofFloat(contextProgressView, property4, fArr4);
                 ContextProgressView contextProgressView2 = this.progressView;
                 Property property5 = View.SCALE_X;
                 float[] fArr5 = new float[1];
                 fArr5[0] = i == 1 ? 1.0f : 0.1f;
-                animatorArr[4] = ObjectAnimator.ofFloat(contextProgressView2, (Property<ContextProgressView, Float>) property5, fArr5);
+                animatorArr[4] = ObjectAnimator.ofFloat(contextProgressView2, property5, fArr5);
                 ContextProgressView contextProgressView3 = this.progressView;
                 Property property6 = View.SCALE_Y;
                 float[] fArr6 = new float[1];
                 fArr6[0] = i == 1 ? 1.0f : 0.1f;
-                animatorArr[5] = ObjectAnimator.ofFloat(contextProgressView3, (Property<ContextProgressView, Float>) property6, fArr6);
+                animatorArr[5] = ObjectAnimator.ofFloat(contextProgressView3, property6, fArr6);
                 ImageView imageView = this.imageView;
                 Property property7 = View.ALPHA;
                 float[] fArr7 = new float[1];
                 fArr7[0] = i == 2 ? 1.0f : 0.0f;
-                animatorArr[6] = ObjectAnimator.ofFloat(imageView, (Property<ImageView, Float>) property7, fArr7);
+                animatorArr[6] = ObjectAnimator.ofFloat(imageView, property7, fArr7);
                 ImageView imageView2 = this.imageView;
                 Property property8 = View.SCALE_X;
                 float[] fArr8 = new float[1];
                 fArr8[0] = i == 2 ? 1.0f : 0.1f;
-                animatorArr[7] = ObjectAnimator.ofFloat(imageView2, (Property<ImageView, Float>) property8, fArr8);
+                animatorArr[7] = ObjectAnimator.ofFloat(imageView2, property8, fArr8);
                 ImageView imageView3 = this.imageView;
                 Property property9 = View.SCALE_Y;
                 float[] fArr9 = new float[1];
                 fArr9[0] = i == 2 ? 1.0f : 0.1f;
-                animatorArr[8] = ObjectAnimator.ofFloat(imageView3, (Property<ImageView, Float>) property9, fArr9);
+                animatorArr[8] = ObjectAnimator.ofFloat(imageView3, property9, fArr9);
                 animatorSet2.playTogether(animatorArr);
                 this.currentAnimation.setDuration(150L);
                 this.currentAnimation.start();
@@ -9984,7 +11035,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         @Override
         protected void onMeasure(int i, int i2) {
             Spannable spannable;
-            CharSequence charSequence;
+            ?? r15;
             int indexOf;
             int size = View.MeasureSpec.getSize(i);
             TLRPC$TL_pageBlockAuthorDate tLRPC$TL_pageBlockAuthorDate = this.currentBlock;
@@ -10003,25 +11054,25 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     spannable = null;
                 }
                 if (this.currentBlock.published_date != 0 && !TextUtils.isEmpty(text)) {
-                    charSequence = LocaleController.formatString("ArticleDateByAuthor", R.string.ArticleDateByAuthor, LocaleController.getInstance().getChatFullDate().format(this.currentBlock.published_date * 1000), text);
+                    r15 = LocaleController.formatString("ArticleDateByAuthor", R.string.ArticleDateByAuthor, LocaleController.getInstance().getChatFullDate().format(this.currentBlock.published_date * 1000), text);
                 } else if (!TextUtils.isEmpty(text)) {
-                    charSequence = LocaleController.formatString("ArticleByAuthor", R.string.ArticleByAuthor, text);
+                    r15 = LocaleController.formatString("ArticleByAuthor", R.string.ArticleByAuthor, text);
                 } else {
-                    charSequence = LocaleController.getInstance().getChatFullDate().format(this.currentBlock.published_date * 1000);
+                    r15 = LocaleController.getInstance().getChatFullDate().format(this.currentBlock.published_date * 1000);
                 }
                 if (metricAffectingSpanArr != null) {
                     try {
-                        if (metricAffectingSpanArr.length > 0 && (indexOf = TextUtils.indexOf((CharSequence) charSequence, text)) != -1) {
-                            charSequence = Spannable.Factory.getInstance().newSpannable(charSequence);
+                        if (metricAffectingSpanArr.length > 0 && (indexOf = TextUtils.indexOf((CharSequence) r15, text)) != -1) {
+                            r15 = Spannable.Factory.getInstance().newSpannable(r15);
                             for (int i4 = 0; i4 < metricAffectingSpanArr.length; i4++) {
-                                charSequence.setSpan(metricAffectingSpanArr[i4], spannable.getSpanStart(metricAffectingSpanArr[i4]) + indexOf, spannable.getSpanEnd(metricAffectingSpanArr[i4]) + indexOf, 33);
+                                r15.setSpan(metricAffectingSpanArr[i4], spannable.getSpanStart(metricAffectingSpanArr[i4]) + indexOf, spannable.getSpanEnd(metricAffectingSpanArr[i4]) + indexOf, 33);
                             }
                         }
                     } catch (Exception e) {
                         FileLog.e(e);
                     }
                 }
-                DrawingText createLayoutForText = ArticleViewer.this.createLayoutForText(this, charSequence, null, size - AndroidUtilities.dp(36.0f), this.textY, this.currentBlock, this.parentAdapter);
+                DrawingText createLayoutForText = ArticleViewer.this.createLayoutForText(this, r15, null, size - AndroidUtilities.dp(36.0f), this.textY, this.currentBlock, this.parentAdapter);
                 this.textLayout = createLayoutForText;
                 if (createLayoutForText != null) {
                     int dp = AndroidUtilities.dp(16.0f) + this.textLayout.getHeight() + 0;
@@ -10259,12 +11310,13 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             TLRPC$TL_pageBlockFooter tLRPC$TL_pageBlockFooter = this.currentBlock;
             int i3 = 0;
             if (tLRPC$TL_pageBlockFooter != null) {
-                if (tLRPC$TL_pageBlockFooter.level == 0) {
+                int i4 = tLRPC$TL_pageBlockFooter.level;
+                if (i4 == 0) {
                     this.textY = AndroidUtilities.dp(8.0f);
                     this.textX = AndroidUtilities.dp(18.0f);
                 } else {
                     this.textY = 0;
-                    this.textX = AndroidUtilities.dp((r14 * 14) + 18);
+                    this.textX = AndroidUtilities.dp((i4 * 14) + 18);
                 }
                 DrawingText createLayoutForText = ArticleViewer.this.createLayoutForText(this, null, this.currentBlock.text, (size - AndroidUtilities.dp(18.0f)) - this.textX, this.textY, this.currentBlock, this.parentAdapter.isRtl ? StaticLayoutEx.ALIGN_RIGHT() : Layout.Alignment.ALIGN_NORMAL, this.parentAdapter);
                 this.textLayout = createLayoutForText;
@@ -10527,7 +11579,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    public static class ReportCell extends FrameLayout {
+    public class ReportCell extends FrameLayout {
         private boolean hasViews;
         private TextView textView;
         private TextView viewsTextView;
@@ -10566,10 +11618,10 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 this.textView.setGravity(21);
                 this.viewsTextView.setText(LocaleController.formatPluralStringComma("Views", i));
             }
-            int color = Theme.getColor(Theme.key_switchTrack);
-            this.textView.setTextColor(ArticleViewer.access$20500());
-            this.viewsTextView.setTextColor(ArticleViewer.access$20500());
-            this.textView.setBackgroundColor(Color.argb(34, Color.red(color), Color.green(color), Color.blue(color)));
+            int themedColor = ArticleViewer.this.getThemedColor(Theme.key_switchTrack);
+            this.textView.setTextColor(ArticleViewer.this.getGrayTextColor());
+            this.viewsTextView.setTextColor(ArticleViewer.this.getGrayTextColor());
+            this.textView.setBackgroundColor(Color.argb(34, Color.red(themedColor), Color.green(themedColor), Color.blue(themedColor)));
         }
     }
 
@@ -10640,7 +11692,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
         @Override
         public boolean isHardwarePlayer(int i) {
-            return i < this.pageBlocks.size() && i >= 0 && !WebPageUtils.isVideo(this.page, get(i)) && ArticleViewer.this.adapter[0].getTypeForBlock(get(i)) == 5;
+            return i < this.pageBlocks.size() && i >= 0 && !WebPageUtils.isVideo(this.page, get(i)) && ArticleViewer.this.pages[0].adapter.getTypeForBlock(get(i)) == 5;
         }
 
         @Override
@@ -10687,22 +11739,22 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 }
                 iArr[0] = -1;
                 return null;
-            }
-            if (!(tLObject instanceof TLRPC$Document) || (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(((TLRPC$Document) tLObject).thumbs, 90)) == null) {
+            } else if (!(tLObject instanceof TLRPC$Document) || (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(((TLRPC$Document) tLObject).thumbs, 90)) == null) {
                 return null;
+            } else {
+                iArr[0] = closestPhotoSizeWithSize.size;
+                if (iArr[0] == 0) {
+                    iArr[0] = -1;
+                }
+                return closestPhotoSizeWithSize;
             }
-            iArr[0] = closestPhotoSizeWithSize.size;
-            if (iArr[0] == 0) {
-                iArr[0] = -1;
-            }
-            return closestPhotoSizeWithSize;
         }
 
         @Override
         public void updateSlideshowCell(TLRPC$PageBlock tLRPC$PageBlock) {
-            int childCount = ArticleViewer.this.listView[0].getChildCount();
+            int childCount = ArticleViewer.this.pages[0].listView.getChildCount();
             for (int i = 0; i < childCount; i++) {
-                View childAt = ArticleViewer.this.listView[0].getChildAt(i);
+                View childAt = ArticleViewer.this.pages[0].listView.getChildAt(i);
                 if (childAt instanceof BlockSlideshowCell) {
                     BlockSlideshowCell blockSlideshowCell = (BlockSlideshowCell) childAt;
                     int indexOf = blockSlideshowCell.currentBlock.items.indexOf(tLRPC$PageBlock);
@@ -10731,14 +11783,14 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         @Override
         public PhotoViewer.PlaceProviderObject getPlaceForPhoto(MessageObject messageObject, TLRPC$FileLocation tLRPC$FileLocation, int i, boolean z) {
             ImageReceiver imageReceiverFromListView;
-            if (i < 0 || i >= this.pageBlocks.size() || (imageReceiverFromListView = getImageReceiverFromListView(ArticleViewer.this.listView[0], this.pageBlocks.get(i), this.tempArr)) == null) {
+            if (i < 0 || i >= this.pageBlocks.size() || (imageReceiverFromListView = getImageReceiverFromListView(ArticleViewer.this.pages[0].listView, this.pageBlocks.get(i), this.tempArr)) == null) {
                 return null;
             }
             PhotoViewer.PlaceProviderObject placeProviderObject = new PhotoViewer.PlaceProviderObject();
             int[] iArr = this.tempArr;
             placeProviderObject.viewX = iArr[0];
             placeProviderObject.viewY = iArr[1];
-            placeProviderObject.parentView = ArticleViewer.this.listView[0];
+            placeProviderObject.parentView = ArticleViewer.this.pages[0].listView;
             placeProviderObject.imageReceiver = imageReceiverFromListView;
             placeProviderObject.thumb = imageReceiverFromListView.getBitmapSafe();
             placeProviderObject.radius = imageReceiverFromListView.getRoundRadius(true);
@@ -10763,63 +11815,59 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             VideoPlayerHolderBase videoPlayerHolderBase;
             if (view instanceof BlockPhotoCell) {
                 BlockPhotoCell blockPhotoCell = (BlockPhotoCell) view;
-                if (blockPhotoCell.currentBlock != tLRPC$PageBlock) {
-                    return null;
+                if (blockPhotoCell.currentBlock == tLRPC$PageBlock) {
+                    view.getLocationInWindow(iArr);
+                    return blockPhotoCell.imageView;
                 }
-                view.getLocationInWindow(iArr);
-                return blockPhotoCell.imageView;
-            }
-            if (view instanceof BlockVideoCell) {
+                return null;
+            } else if (view instanceof BlockVideoCell) {
                 BlockVideoCell blockVideoCell = (BlockVideoCell) view;
-                if (blockVideoCell.currentBlock != tLRPC$PageBlock) {
-                    return null;
-                }
-                view.getLocationInWindow(iArr);
-                ArticleViewer articleViewer = ArticleViewer.this;
-                if (blockVideoCell == articleViewer.currentPlayer && (videoPlayerHolderBase = articleViewer.videoPlayer) != null && videoPlayerHolderBase.firstFrameRendered && blockVideoCell.textureView.getSurfaceTexture() != null) {
-                    if (Build.VERSION.SDK_INT < 24) {
-                        blockVideoCell.imageView.setImageBitmap(blockVideoCell.textureView.getBitmap());
-                    } else {
-                        Surface surface = new Surface(blockVideoCell.textureView.getSurfaceTexture());
-                        Bitmap createBitmap = Bitmap.createBitmap(blockVideoCell.textureView.getMeasuredWidth(), blockVideoCell.textureView.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
-                        AndroidUtilities.getBitmapFromSurface(surface, createBitmap);
-                        surface.release();
-                        blockVideoCell.imageView.setImageBitmap(createBitmap);
+                if (blockVideoCell.currentBlock == tLRPC$PageBlock) {
+                    view.getLocationInWindow(iArr);
+                    ArticleViewer articleViewer = ArticleViewer.this;
+                    if (blockVideoCell == articleViewer.currentPlayer && (videoPlayerHolderBase = articleViewer.videoPlayer) != null && videoPlayerHolderBase.firstFrameRendered && blockVideoCell.textureView.getSurfaceTexture() != null) {
+                        if (Build.VERSION.SDK_INT < 24) {
+                            blockVideoCell.imageView.setImageBitmap(blockVideoCell.textureView.getBitmap());
+                        } else {
+                            Surface surface = new Surface(blockVideoCell.textureView.getSurfaceTexture());
+                            Bitmap createBitmap = Bitmap.createBitmap(blockVideoCell.textureView.getMeasuredWidth(), blockVideoCell.textureView.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+                            AndroidUtilities.getBitmapFromSurface(surface, createBitmap);
+                            surface.release();
+                            blockVideoCell.imageView.setImageBitmap(createBitmap);
+                        }
+                        blockVideoCell.firstFrameRendered = false;
+                        blockVideoCell.textureView.setAlpha(0.0f);
                     }
-                    blockVideoCell.firstFrameRendered = false;
-                    blockVideoCell.textureView.setAlpha(0.0f);
+                    return blockVideoCell.imageView;
                 }
-                return blockVideoCell.imageView;
-            }
-            if (view instanceof BlockCollageCell) {
+                return null;
+            } else if (view instanceof BlockCollageCell) {
                 ImageReceiver imageReceiverFromListView = getImageReceiverFromListView(((BlockCollageCell) view).innerListView, tLRPC$PageBlock, iArr);
                 if (imageReceiverFromListView != null) {
                     return imageReceiverFromListView;
                 }
                 return null;
-            }
-            if (view instanceof BlockSlideshowCell) {
+            } else if (view instanceof BlockSlideshowCell) {
                 ImageReceiver imageReceiverFromListView2 = getImageReceiverFromListView(((BlockSlideshowCell) view).innerListView, tLRPC$PageBlock, iArr);
                 if (imageReceiverFromListView2 != null) {
                     return imageReceiverFromListView2;
                 }
                 return null;
-            }
-            if (view instanceof BlockListItemCell) {
+            } else if (view instanceof BlockListItemCell) {
                 BlockListItemCell blockListItemCell = (BlockListItemCell) view;
                 if (blockListItemCell.blockLayout == null || (imageReceiverView2 = getImageReceiverView(blockListItemCell.blockLayout.itemView, tLRPC$PageBlock, iArr)) == null) {
                     return null;
                 }
                 return imageReceiverView2;
-            }
-            if (!(view instanceof BlockOrderedListItemCell)) {
+            } else if (view instanceof BlockOrderedListItemCell) {
+                BlockOrderedListItemCell blockOrderedListItemCell = (BlockOrderedListItemCell) view;
+                if (blockOrderedListItemCell.blockLayout == null || (imageReceiverView = getImageReceiverView(blockOrderedListItemCell.blockLayout.itemView, tLRPC$PageBlock, iArr)) == null) {
+                    return null;
+                }
+                return imageReceiverView;
+            } else {
                 return null;
             }
-            BlockOrderedListItemCell blockOrderedListItemCell = (BlockOrderedListItemCell) view;
-            if (blockOrderedListItemCell.blockLayout == null || (imageReceiverView = getImageReceiverView(blockOrderedListItemCell.blockLayout.itemView, tLRPC$PageBlock, iArr)) == null) {
-                return null;
-            }
-            return imageReceiverView;
         }
 
         @Override
@@ -10834,7 +11882,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             VideoPlayer videoPlayer = PhotoViewer.getInstance().getVideoPlayer();
             TextureView videoTextureView = PhotoViewer.getInstance().getVideoTextureView();
             SurfaceView videoSurfaceView = PhotoViewer.getInstance().getVideoSurfaceView();
-            BlockVideoCell viewFromListView = getViewFromListView(ArticleViewer.this.listView[0], tLRPC$PageBlock);
+            BlockVideoCell viewFromListView = getViewFromListView(ArticleViewer.this.pages[0].listView, tLRPC$PageBlock);
             if (viewFromListView != null && videoPlayer != null && videoTextureView != null) {
                 ArticleViewer.this.videoStates.put(viewFromListView.currentBlock.video_id, viewFromListView.setState(BlockVideoCellState.fromPlayer(videoPlayer, viewFromListView, videoTextureView)));
                 viewFromListView.firstFrameRendered = false;
@@ -10869,41 +11917,924 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    public class Sheet implements BaseFragment.AttachedSheet {
-        public WindowView windowView;
+    public int getThemedColor(int i) {
+        return Theme.getColor(i, getResourcesProvider());
+    }
 
-        @Override
-        public boolean attachedToParent() {
+    public boolean isFirstArticle() {
+        return this.pagesStack.size() > 0 && (this.pagesStack.get(0) instanceof TLRPC$WebPage);
+    }
+
+    public void lambda$new$64() {
+        AndroidUtilities.runOnUIThread(new ArticleViewer$$ExternalSyntheticLambda27(this));
+    }
+
+    public void lambda$new$65() {
+        AndroidUtilities.runOnUIThread(new ArticleViewer$$ExternalSyntheticLambda27(this));
+    }
+
+    public void updatePages() {
+        if (this.actionBar != null) {
+            PageLayout[] pageLayoutArr = this.pages;
+            if (pageLayoutArr[0] == null || pageLayoutArr[1] == null) {
+                return;
+            }
+            float f = 0.0f;
+            float translationX = pageLayoutArr[0].getVisibility() != 0 ? 0.0f : 1.0f - (this.pages[0].getTranslationX() / this.pages[0].getWidth());
+            float f2 = 1.0f - translationX;
+            this.actionBar.setProgress(0, this.pages[0].getProgress());
+            this.actionBar.setProgress(1, this.pages[1].getProgress());
+            this.actionBar.setTransitionProgress(f2);
+            if (!this.actionBar.isAddressing() && !this.actionBar.isSearching() && (this.windowView.movingPage || this.windowView.openingPage)) {
+                if (isFirstArticle()) {
+                    this.actionBar.backButtonDrawable.setRotation(1.0f - AndroidUtilities.lerp((this.pages[0].hasBackButton() || this.pagesStack.size() > 1) ? 1.0f : 0.0f, (this.pages[1].hasBackButton() || this.pagesStack.size() > 2) ? 1.0f : 1.0f, f2), false);
+                    this.actionBar.forwardButtonDrawable.setState(false);
+                    this.actionBar.setBackButtonCached(false);
+                } else {
+                    this.actionBar.forwardButtonDrawable.setState(false);
+                    this.actionBar.setBackButtonCached(false);
+                }
+                this.actionBar.setHasForward(this.pages[0].hasForwardButton());
+            }
+            this.actionBar.setBackgroundColor(0, this.page0Background.set(this.pages[0].getActionBarColor(), this.windowView.movingPage || this.windowView.openingPage));
+            this.actionBar.setBackgroundColor(1, this.page1Background.set(this.pages[1].getActionBarColor(), this.windowView.movingPage || this.windowView.openingPage));
+            this.actionBar.setColors(ColorUtils.blendARGB(this.pages[0].getActionBarColor(), this.pages[1].getActionBarColor(), f2), false);
+            this.actionBar.setMenuType((translationX > 0.5f ? this.pages[0] : this.pages[1]).type);
+            Sheet sheet = this.sheet;
+            if (sheet != null) {
+                sheet.windowView.invalidate();
+                return;
+            }
+            WindowView windowView = this.windowView;
+            if (windowView != null) {
+                windowView.invalidate();
+            }
+        }
+    }
+
+    public void updateTitle(boolean z) {
+        this.actionBar.setTitle(0, this.pages[0].getTitle(), z);
+        this.actionBar.setSubtitle(0, this.pages[0].getSubtitle(), false);
+        this.actionBar.setTitle(1, this.pages[1].getTitle(), z);
+        this.actionBar.setSubtitle(1, this.pages[1].getSubtitle(), false);
+    }
+
+    public class PageLayout extends FrameLayout {
+        public final WebpageAdapter adapter;
+        public boolean backButton;
+        public final ErrorContainer errorContainer;
+        private boolean errorShown;
+        private int errorShownCode;
+        private String errorShownDescription;
+        public boolean forwardButton;
+        private String lastFormattedUrl;
+        private String lastUrl;
+        private boolean lastVisible;
+        public final LinearLayoutManager layoutManager;
+        public final RecyclerListView listView;
+        public float overrideProgress;
+        public boolean paused;
+        private boolean swipeBack;
+        public final ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer swipeContainer;
+        public int type;
+        private CachedWeb web;
+        public int webActionBarColor;
+        public int webBackgroundColor;
+        public final BotWebViewContainer webViewContainer;
+
+        public void pause() {
+            if (this.paused) {
+                return;
+            }
+            if (getWebView() != null) {
+                getWebView().onPause();
+            }
+            this.paused = true;
+        }
+
+        public void resume() {
+            if (this.paused) {
+                if (getWebView() != null) {
+                    getWebView().onResume();
+                }
+                this.paused = false;
+            }
+        }
+
+        public PageLayout(Context context, Theme.ResourcesProvider resourcesProvider) {
+            super(context);
+            int i = Theme.key_iv_ab_background;
+            this.webActionBarColor = ArticleViewer.this.getThemedColor(i);
+            this.webBackgroundColor = ArticleViewer.this.getThemedColor(i);
+            this.paused = false;
+            this.overrideProgress = -1.0f;
+            new GradientClip();
+            WebpageListView webpageListView = new WebpageListView(context, resourcesProvider, ArticleViewer.this) {
+                {
+                    ArticleViewer articleViewer = ArticleViewer.this;
+                }
+
+                @Override
+                protected void onLayout(boolean z, int i2, int i3, int i4, int i5) {
+                    super.onLayout(z, i2, i3, i4, i5);
+                    PageLayout.this.overrideProgress = -1.0f;
+                }
+            };
+            this.listView = webpageListView;
+            webpageListView.setClipToPadding(false);
+            float f = 56.0f;
+            webpageListView.setPadding(0, AndroidUtilities.dp(56.0f), 0, 0);
+            webpageListView.setTopGlowOffset(AndroidUtilities.dp(56.0f));
+            ((DefaultItemAnimator) webpageListView.getItemAnimator()).setDelayAnimations(false);
+            Sheet sheet = ArticleViewer.this.sheet;
+            WebpageAdapter webpageAdapter = new WebpageAdapter(context, sheet != null && sheet.halfSize());
+            this.adapter = webpageAdapter;
+            webpageListView.setAdapter(webpageAdapter);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, 1, false);
+            this.layoutManager = linearLayoutManager;
+            webpageListView.setLayoutManager(linearLayoutManager);
+            webpageListView.setOnScrollListener(new RecyclerView.OnScrollListener(ArticleViewer.this) {
+                @Override
+                public void onScrollStateChanged(RecyclerView recyclerView, int i2) {
+                    if (i2 == 0) {
+                        ArticleViewer.this.textSelectionHelper.stopScrolling();
+                    }
+                }
+
+                @Override
+                public void onScrolled(RecyclerView recyclerView, int i2, int i3) {
+                    if (recyclerView.getChildCount() == 0) {
+                        return;
+                    }
+                    recyclerView.invalidate();
+                    ArticleViewer.this.textSelectionHelper.onParentScrolled();
+                    ArticleViewer articleViewer = ArticleViewer.this;
+                    Sheet sheet2 = articleViewer.sheet;
+                    if (sheet2 == null) {
+                        if (articleViewer.windowView != null) {
+                            ArticleViewer.this.windowView.invalidate();
+                        }
+                    } else {
+                        sheet2.windowView.invalidate();
+                    }
+                    ArticleViewer.this.updatePages();
+                    ArticleViewer.this.checkScroll(i3);
+                }
+            });
+            addView(webpageListView, LayoutHelper.createFrame(-1, -1.0f));
+            ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer webViewSwipeContainer = new ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer(getContext(), ArticleViewer.this) {
+                private boolean ignoreLayout;
+
+                @Override
+                protected void onMeasure(int i2, int i3) {
+                    this.ignoreLayout = true;
+                    setOffsetY(View.MeasureSpec.getSize(i3) * 0.4f);
+                    this.ignoreLayout = false;
+                    int size = View.MeasureSpec.getSize(i3);
+                    Sheet sheet2 = ArticleViewer.this.sheet;
+                    super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec((size - AndroidUtilities.dp((sheet2 == null || sheet2.halfSize()) ? 56.0f : 0.0f)) - AndroidUtilities.statusBarHeight, 1073741824));
+                }
+
+                @Override
+                public void requestLayout() {
+                    if (this.ignoreLayout) {
+                        return;
+                    }
+                    super.requestLayout();
+                }
+            };
+            this.swipeContainer = webViewSwipeContainer;
+            webViewSwipeContainer.setShouldWaitWebViewScroll(true);
+            webViewSwipeContainer.setFullSize(true);
+            webViewSwipeContainer.setAllowFullSizeSwipe(true);
+            BotWebViewContainer botWebViewContainer = new BotWebViewContainer(getContext(), resourcesProvider, ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundWhite), false, ArticleViewer.this) {
+                @Override
+                public void onWebViewCreated() {
+                    super.onWebViewCreated();
+                    PageLayout pageLayout = PageLayout.this;
+                    pageLayout.swipeContainer.setWebView(pageLayout.webViewContainer.getWebView());
+                }
+
+                @Override
+                protected void onURLChanged(String str, boolean z, boolean z2) {
+                    PageLayout pageLayout = PageLayout.this;
+                    boolean z3 = true;
+                    pageLayout.backButton = !z;
+                    pageLayout.forwardButton = !z2;
+                    ArticleViewer.this.updateTitle(true);
+                    PageLayout pageLayout2 = PageLayout.this;
+                    ArticleViewer articleViewer = ArticleViewer.this;
+                    if (pageLayout2 != articleViewer.pages[0] || articleViewer.actionBar.isAddressing() || ArticleViewer.this.actionBar.isSearching() || ArticleViewer.this.windowView.movingPage || ArticleViewer.this.windowView.openingPage) {
+                        return;
+                    }
+                    if (ArticleViewer.this.isFirstArticle()) {
+                        BackDrawable backDrawable = ArticleViewer.this.actionBar.backButtonDrawable;
+                        PageLayout pageLayout3 = PageLayout.this;
+                        backDrawable.setRotation((pageLayout3.backButton || ArticleViewer.this.pagesStack.size() > 1) ? 0.0f : 1.0f, true);
+                        WebActionBar webActionBar = ArticleViewer.this.actionBar;
+                        PageLayout pageLayout4 = PageLayout.this;
+                        if (!pageLayout4.backButton && ArticleViewer.this.pagesStack.size() <= 1) {
+                            z3 = false;
+                        }
+                        webActionBar.setBackButtonCached(z3);
+                        ArticleViewer.this.actionBar.forwardButtonDrawable.setState(PageLayout.this.hasForwardButton());
+                    } else {
+                        ArticleViewer.this.actionBar.setBackButtonCached(false);
+                        ArticleViewer.this.actionBar.forwardButtonDrawable.setState(false);
+                    }
+                    ArticleViewer.this.actionBar.setHasForward(PageLayout.this.forwardButton);
+                }
+
+                @Override
+                protected void onTitleChanged(String str) {
+                    ArticleViewer.this.updateTitle(true);
+                }
+
+                @Override
+                protected void onFaviconChanged(Bitmap bitmap) {
+                    super.onFaviconChanged(bitmap);
+                }
+
+                @Override
+                protected void onErrorShown(boolean z, int i2, String str) {
+                    if (z) {
+                        PageLayout.this.errorContainer.set(getWebView() != null ? getWebView().getUrl() : null, PageLayout.this.errorShownCode = i2, PageLayout.this.errorShownDescription = str);
+                        PageLayout pageLayout = PageLayout.this;
+                        ErrorContainer errorContainer = pageLayout.errorContainer;
+                        ArticleViewer articleViewer = ArticleViewer.this;
+                        int i3 = Theme.key_iv_ab_background;
+                        errorContainer.setDark(AndroidUtilities.computePerceivedBrightness(articleViewer.getThemedColor(i3)) <= 0.721f, false);
+                        PageLayout pageLayout2 = PageLayout.this;
+                        pageLayout2.errorContainer.setBackgroundColor(ArticleViewer.this.getThemedColor(i3));
+                    }
+                    PageLayout pageLayout3 = PageLayout.this;
+                    AndroidUtilities.updateViewVisibilityAnimated(pageLayout3.errorContainer, pageLayout3.errorShown = z, 1.0f, false);
+                    invalidate();
+                }
+            };
+            this.webViewContainer = botWebViewContainer;
+            botWebViewContainer.setOnCloseRequestedListener(new Runnable() {
+                @Override
+                public final void run() {
+                    ArticleViewer.PageLayout.this.lambda$new$0();
+                }
+            });
+            botWebViewContainer.setWebViewProgressListener(new Consumer() {
+                @Override
+                public final void accept(Object obj) {
+                    ArticleViewer.PageLayout.this.lambda$new$1((Float) obj);
+                }
+            });
+            botWebViewContainer.setDelegate(new BotWebViewContainer.Delegate(ArticleViewer.this) {
+                @Override
+                public boolean isClipboardAvailable() {
+                    return BotWebViewContainer.Delegate.CC.$default$isClipboardAvailable(this);
+                }
+
+                @Override
+                public void onSendWebViewData(String str) {
+                    BotWebViewContainer.Delegate.CC.$default$onSendWebViewData(this, str);
+                }
+
+                @Override
+                public void onSetBackButtonVisible(boolean z) {
+                }
+
+                @Override
+                public void onSetSettingsButtonVisible(boolean z) {
+                }
+
+                @Override
+                public void onSetupMainButton(boolean z, boolean z2, String str, int i2, int i3, boolean z3) {
+                }
+
+                @Override
+                public void onWebAppExpand() {
+                }
+
+                @Override
+                public void onWebAppOpenInvoice(TLRPC$InputInvoice tLRPC$InputInvoice, String str, TLObject tLObject) {
+                }
+
+                @Override
+                public void onWebAppReady() {
+                    BotWebViewContainer.Delegate.CC.$default$onWebAppReady(this);
+                }
+
+                @Override
+                public void onWebAppSetActionBarColor(int i2, int i3, boolean z) {
+                }
+
+                @Override
+                public void onWebAppSetBackgroundColor(int i2) {
+                }
+
+                @Override
+                public void onWebAppSetupClosingBehavior(boolean z) {
+                }
+
+                @Override
+                public void onWebAppSwipingBehavior(boolean z) {
+                }
+
+                @Override
+                public void onWebAppSwitchInlineQuery(TLRPC$User tLRPC$User, String str, List<String> list) {
+                }
+
+                @Override
+                public void onCloseRequested(Runnable runnable) {
+                    PageLayout pageLayout = PageLayout.this;
+                    ArticleViewer articleViewer = ArticleViewer.this;
+                    if (articleViewer.pages[0] == pageLayout) {
+                        articleViewer.goBack();
+                    }
+                }
+
+                @Override
+                public void onCloseToTabs() {
+                    Sheet sheet2 = ArticleViewer.this.sheet;
+                    if (sheet2 != null) {
+                        sheet2.dismiss(true);
+                    }
+                }
+
+                @Override
+                public void onInstantClose() {
+                    PageLayout pageLayout = PageLayout.this;
+                    ArticleViewer articleViewer = ArticleViewer.this;
+                    Sheet sheet2 = articleViewer.sheet;
+                    if (sheet2 != null) {
+                        sheet2.dismissInstant();
+                    } else if (articleViewer.pages[0] == pageLayout) {
+                        articleViewer.goBack();
+                    }
+                }
+
+                @Override
+                public void onWebAppBackgroundChanged(boolean z, int i2) {
+                    if (z) {
+                        PageLayout pageLayout = PageLayout.this;
+                        pageLayout.webActionBarColor = Theme.blendOver(ArticleViewer.this.getThemedColor(Theme.key_iv_ab_background), i2);
+                        PageLayout pageLayout2 = PageLayout.this;
+                        ArticleViewer articleViewer = ArticleViewer.this;
+                        if (pageLayout2 == articleViewer.pages[0]) {
+                            articleViewer.actionBar.setColors(PageLayout.this.webActionBarColor, true);
+                        }
+                    } else {
+                        PageLayout.this.webBackgroundColor = Theme.blendOver(-1, i2);
+                        PageLayout pageLayout3 = PageLayout.this;
+                        ArticleViewer articleViewer2 = ArticleViewer.this;
+                        if (pageLayout3 == articleViewer2.pages[0]) {
+                            articleViewer2.actionBar.setMenuColors(PageLayout.this.webBackgroundColor);
+                        }
+                    }
+                    ArticleViewer.this.updatePages();
+                }
+            });
+            botWebViewContainer.setWebViewScrollListener(new BotWebViewContainer.WebViewScrollListener(ArticleViewer.this) {
+                @Override
+                public void onWebViewScrolled(WebView webView, int i2, int i3) {
+                    ArticleViewer.this.updatePages();
+                }
+            });
+            webViewSwipeContainer.addView(botWebViewContainer, LayoutHelper.createFrame(-1, -1.0f));
+            ErrorContainer errorContainer = new ErrorContainer(context);
+            this.errorContainer = errorContainer;
+            webViewSwipeContainer.addView(errorContainer, LayoutHelper.createFrame(-1, -1.0f));
+            errorContainer.buttonView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    ArticleViewer.PageLayout.this.lambda$new$2(view);
+                }
+            });
+            webViewSwipeContainer.setScrollEndListener(new Runnable() {
+                @Override
+                public final void run() {
+                    ArticleViewer.PageLayout.this.lambda$new$3();
+                }
+            });
+            webViewSwipeContainer.setDelegate(new ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer.Delegate() {
+                @Override
+                public final void onDismiss() {
+                    ArticleViewer.PageLayout.this.lambda$new$4();
+                }
+            });
+            webViewSwipeContainer.setScrollListener(new Runnable() {
+                @Override
+                public final void run() {
+                    ArticleViewer.PageLayout.this.lambda$new$5();
+                }
+            });
+            Sheet sheet2 = ArticleViewer.this.sheet;
+            if (sheet2 != null && !sheet2.halfSize()) {
+                f = 0.0f;
+            }
+            webViewSwipeContainer.setTopActionBarOffsetY(AndroidUtilities.dp(f) + AndroidUtilities.statusBarHeight);
+            addView(webViewSwipeContainer, LayoutHelper.createFrame(-1, -1.0f));
+            cleanup();
+            setType(0);
+        }
+
+        public void lambda$new$0() {
+            LaunchActivity launchActivity = LaunchActivity.instance;
+            if (launchActivity == null) {
+                return;
+            }
+            BottomSheetTabs bottomSheetTabs = launchActivity.getBottomSheetTabs();
+            if (bottomSheetTabs == null || !bottomSheetTabs.tryRemoveTabWith(ArticleViewer.this)) {
+                ArticleViewer.this.close(true, true);
+            }
+        }
+
+        public void lambda$new$1(Float f) {
+            ArticleViewer articleViewer = ArticleViewer.this;
+            if (this == articleViewer.pages[0]) {
+                articleViewer.actionBar.lineProgressView.setProgress(f.floatValue(), true);
+            }
+        }
+
+        public void lambda$new$2(View view) {
+            BotWebViewContainer.MyWebView webView = this.webViewContainer.getWebView();
+            if (webView != null) {
+                webView.reload();
+            }
+        }
+
+        public void lambda$new$3() {
+            this.webViewContainer.invalidateViewPortHeight(true);
+        }
+
+        public void lambda$new$4() {
+            Sheet sheet = ArticleViewer.this.sheet;
+            if (sheet != null) {
+                this.swipeBack = true;
+                sheet.dismiss(true);
+            }
+        }
+
+        public void lambda$new$5() {
+            this.webViewContainer.invalidateViewPortHeight();
+            this.errorContainer.layout.setTranslationY((((-this.swipeContainer.getOffsetY()) + this.swipeContainer.getTopActionBarOffsetY()) - this.swipeContainer.getSwipeOffsetY()) / 2.0f);
+            ArticleViewer.this.updatePages();
+        }
+
+        public boolean isWeb() {
+            return this.type == 1;
+        }
+
+        public boolean isArticle() {
+            return this.type == 0;
+        }
+
+        public void setType(int i) {
+            if (this.type != i) {
+                cleanup();
+            }
+            this.type = i;
+            this.listView.setVisibility(isArticle() ? 0 : 8);
+            this.swipeContainer.setVisibility(isWeb() ? 0 : 8);
+        }
+
+        public String getTitle() {
+            BotWebViewContainer.MyWebView webView;
+            if (!isArticle() || this.adapter.currentPage == null || this.adapter.currentPage.site_name == null) {
+                return (!isWeb() || (webView = this.webViewContainer.getWebView()) == null) ? "" : webView.getTitle();
+            }
+            return this.adapter.currentPage.site_name;
+        }
+
+        public int getBackgroundColor() {
+            if (isWeb()) {
+                if (this.errorShown) {
+                    return ArticleViewer.this.getThemedColor(Theme.key_iv_ab_background);
+                }
+                return this.webBackgroundColor;
+            }
+            return ArticleViewer.this.getThemedColor(Theme.key_iv_ab_background);
+        }
+
+        public int getActionBarColor() {
+            if (isWeb()) {
+                return this.webActionBarColor;
+            }
+            return ArticleViewer.this.getThemedColor(Theme.key_iv_ab_background);
+        }
+
+        public String getSubtitle() {
+            BotWebViewContainer.MyWebView webView;
+            if (!isWeb() || (webView = this.webViewContainer.getWebView()) == null) {
+                return "";
+            }
+            if (TextUtils.equals(this.lastUrl, webView.getUrl())) {
+                return this.lastFormattedUrl;
+            }
+            try {
+                String url = webView.getUrl();
+                this.lastUrl = url;
+                Uri parse = Uri.parse(BotWebViewContainer.magic2tonsite(url));
+                String uri = (parse.getScheme() == null || !(parse.getScheme().equalsIgnoreCase("http") || parse.getScheme().equalsIgnoreCase("https"))) ? parse.toString() : parse.getSchemeSpecificPart();
+                try {
+                    try {
+                        Uri parse2 = Uri.parse(uri);
+                        uri = Browser.replaceHostname(parse2, IDN.toUnicode(parse2.getHost(), 1), null);
+                    } catch (Exception e) {
+                        FileLog.e(e);
+                    }
+                } catch (Exception e2) {
+                    FileLog.e((Throwable) e2, false);
+                }
+                uri = URLDecoder.decode(uri.replaceAll("\\+", "%2b"), "UTF-8");
+                if (uri.startsWith("//")) {
+                    uri = uri.substring(2);
+                }
+                if (uri.startsWith("www.")) {
+                    uri = uri.substring(4);
+                }
+                if (uri.endsWith("/")) {
+                    uri = uri.substring(0, uri.length() - 1);
+                }
+                int indexOf = uri.indexOf("#");
+                if (indexOf >= 0) {
+                    uri = uri.substring(0, indexOf);
+                }
+                this.lastFormattedUrl = uri;
+                return uri;
+            } catch (Exception unused) {
+                return webView.getUrl();
+            }
+        }
+
+        public void setLastVisible(boolean z) {
+            if (this.lastVisible != z) {
+                this.lastVisible = z;
+                this.webViewContainer.setKeyboardFocusable(z);
+            }
+        }
+
+        public boolean hasBackButton() {
+            return this.backButton;
+        }
+
+        public void back() {
+            if (!isWeb() || getWebView() == null) {
+                return;
+            }
+            getWebView().goBack();
+        }
+
+        public boolean hasForwardButton() {
+            return this.forwardButton;
+        }
+
+        public float getListTop() {
+            if (isArticle()) {
+                float height = this.listView.getHeight();
+                for (int i = 0; i < this.listView.getChildCount(); i++) {
+                    View childAt = this.listView.getChildAt(i);
+                    RecyclerListView recyclerListView = this.listView;
+                    if (((recyclerListView == null || recyclerListView.getLayoutManager() == null) ? 0 : this.listView.getLayoutManager().getItemViewType(childAt)) == 2147483646) {
+                        height = Math.min(height, childAt.getBottom());
+                    } else {
+                        height = Math.min(height, childAt.getTop());
+                    }
+                }
+                return height;
+            } else if (isWeb()) {
+                return this.swipeContainer.getTranslationY();
+            } else {
+                return 0.0f;
+            }
+        }
+
+        public float getProgress() {
+            BotWebViewContainer.MyWebView webView;
+            Sheet sheet;
+            int itemCount;
+            View findViewByPosition;
+            float min;
+            if (isArticle()) {
+                float f = this.overrideProgress;
+                if (f >= 0.0f) {
+                    return f;
+                }
+                int findFirstVisibleItemPosition = this.layoutManager.findFirstVisibleItemPosition();
+                View findViewByPosition2 = this.layoutManager.findViewByPosition(findFirstVisibleItemPosition);
+                if (findViewByPosition2 == null) {
+                    return 0.0f;
+                }
+                int[] iArr = this.adapter.sumItemHeights;
+                int i = 0;
+                if (iArr == null) {
+                    int findLastVisibleItemPosition = this.layoutManager.findLastVisibleItemPosition();
+                    Sheet sheet2 = ArticleViewer.this.sheet;
+                    if (sheet2 != null && sheet2.halfSize()) {
+                        if (findFirstVisibleItemPosition < 1) {
+                            findFirstVisibleItemPosition = 1;
+                        }
+                        if (findLastVisibleItemPosition < 1) {
+                            findLastVisibleItemPosition = 1;
+                        }
+                    }
+                    int itemCount2 = this.layoutManager.getItemCount() - 2;
+                    if (findLastVisibleItemPosition >= itemCount2) {
+                        findViewByPosition = this.layoutManager.findViewByPosition(itemCount2);
+                    } else {
+                        findViewByPosition = this.layoutManager.findViewByPosition(findFirstVisibleItemPosition);
+                    }
+                    if (findViewByPosition == null) {
+                        return 0.0f;
+                    }
+                    float width = getWidth() / (itemCount - 1);
+                    float measuredHeight = findViewByPosition.getMeasuredHeight();
+                    if (findLastVisibleItemPosition >= itemCount2) {
+                        min = (((itemCount2 - findFirstVisibleItemPosition) * width) * (this.listView.getMeasuredHeight() - findViewByPosition.getTop())) / measuredHeight;
+                    } else {
+                        min = (1.0f - ((Math.min(0, findViewByPosition.getTop() - this.listView.getPaddingTop()) + measuredHeight) / measuredHeight)) * width;
+                    }
+                    return ((findFirstVisibleItemPosition * width) + min) / getWidth();
+                }
+                if (iArr != null) {
+                    int i2 = findFirstVisibleItemPosition - 1;
+                    int i3 = (i2 < 0 || i2 >= iArr.length) ? 0 : iArr[i2];
+                    if (findFirstVisibleItemPosition != 0 || (sheet = ArticleViewer.this.sheet) == null || !sheet.halfSize()) {
+                        i = -findViewByPosition2.getTop();
+                    }
+                    i += i3;
+                }
+                return Utilities.clamp01(i / Math.max(1, this.adapter.fullHeight - this.listView.getHeight()));
+            } else if (!isWeb() || (webView = this.webViewContainer.getWebView()) == null) {
+                return 0.0f;
+            } else {
+                return webView.getScrollProgress();
+            }
+        }
+
+        public void addProgress(float f) {
+            BotWebViewContainer.MyWebView webView;
+            float clamp01 = Utilities.clamp01(getProgress() + f);
+            if (isArticle() || !isWeb() || (webView = this.webViewContainer.getWebView()) == null) {
+                return;
+            }
+            webView.setScrollProgress(clamp01);
+            ArticleViewer.this.updatePages();
+        }
+
+        public boolean isAtTop() {
+            if (isArticle()) {
+                return !this.listView.canScrollVertically(-1);
+            }
+            isWeb();
             return false;
         }
 
-        @Override
-        public void dismiss() {
+        public void scrollToTop(boolean z) {
+            if (!isArticle()) {
+                if (isWeb()) {
+                    if (z) {
+                        ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer webViewSwipeContainer = this.swipeContainer;
+                        webViewSwipeContainer.stickTo((-webViewSwipeContainer.getOffsetY()) + this.swipeContainer.getTopActionBarOffsetY());
+                        return;
+                    }
+                    ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer webViewSwipeContainer2 = this.swipeContainer;
+                    webViewSwipeContainer2.setSwipeOffsetY((-webViewSwipeContainer2.getOffsetY()) + this.swipeContainer.getTopActionBarOffsetY());
+                    return;
+                }
+                return;
+            }
+            int i = 1;
+            if (z) {
+                SmoothScroller smoothScroller = new SmoothScroller(getContext());
+                Sheet sheet = ArticleViewer.this.sheet;
+                if (sheet != null && sheet.halfSize()) {
+                    smoothScroller.setTargetPosition(1);
+                    smoothScroller.setOffset(-AndroidUtilities.dp(32.0f));
+                } else {
+                    smoothScroller.setTargetPosition(0);
+                }
+                this.layoutManager.startSmoothScroll(smoothScroller);
+                return;
+            }
+            LinearLayoutManager linearLayoutManager = this.layoutManager;
+            Sheet sheet2 = ArticleViewer.this.sheet;
+            linearLayoutManager.scrollToPositionWithOffset((sheet2 == null || !sheet2.halfSize()) ? 0 : 0, ArticleViewer.this.sheet != null ? AndroidUtilities.dp(32.0f) : 0);
+        }
+
+        public RecyclerListView getListView() {
+            return this.listView;
+        }
+
+        public WebpageAdapter getAdapter() {
+            return this.adapter;
+        }
+
+        public BotWebViewContainer getWebContainer() {
+            return this.webViewContainer;
+        }
+
+        public BotWebViewContainer.MyWebView getWebView() {
+            BotWebViewContainer botWebViewContainer = this.webViewContainer;
+            if (botWebViewContainer != null) {
+                return botWebViewContainer.getWebView();
+            }
+            return null;
+        }
+
+        public void cleanup() {
+            this.backButton = false;
+            this.forwardButton = false;
+            setWeb(null);
+            this.webViewContainer.destroyWebView();
+            this.webViewContainer.resetWebView();
+            ArticleViewer articleViewer = ArticleViewer.this;
+            int i = Theme.key_iv_ab_background;
+            this.webActionBarColor = articleViewer.getThemedColor(i);
+            int themedColor = ArticleViewer.this.getThemedColor(i);
+            this.webBackgroundColor = themedColor;
+            this.errorContainer.setDark(AndroidUtilities.computePerceivedBrightness(themedColor) <= 0.721f, true);
+            this.errorContainer.setBackgroundColor(this.webBackgroundColor);
+            ErrorContainer errorContainer = this.errorContainer;
+            this.errorShown = false;
+            AndroidUtilities.updateViewVisibilityAnimated(errorContainer, false, 1.0f, false);
+            this.adapter.cleanup();
+            invalidate();
+        }
+
+        public void setWeb(CachedWeb cachedWeb) {
+            CachedWeb cachedWeb2 = this.web;
+            if (cachedWeb2 != cachedWeb) {
+                if (cachedWeb2 != null) {
+                    cachedWeb2.detach(this);
+                }
+                this.web = cachedWeb;
+                if (cachedWeb != null) {
+                    cachedWeb.attach(this);
+                }
+            }
         }
 
         @Override
-        public void dismiss(boolean z) {
-            BaseFragment.AttachedSheet.CC.$default$dismiss(this, z);
+        public void setTranslationX(float f) {
+            super.setTranslationX(f);
+            ArticleViewer.this.updatePages();
+            if (ArticleViewer.this.windowView.openingPage) {
+                ArticleViewer.this.containerView.invalidate();
+            }
+            if (ArticleViewer.this.windowView.movingPage) {
+                ArticleViewer.this.containerView.invalidate();
+                float measuredWidth = f / getMeasuredWidth();
+                ArticleViewer articleViewer = ArticleViewer.this;
+                articleViewer.setCurrentHeaderHeight((int) (articleViewer.windowView.startMovingHeaderHeight + ((AndroidUtilities.dp(56.0f) - ArticleViewer.this.windowView.startMovingHeaderHeight) * measuredWidth)));
+            }
+            Sheet sheet = ArticleViewer.this.sheet;
+            if (sheet != null) {
+                sheet.updateTranslation();
+            }
         }
 
         @Override
-        public int getNavigationBarColor(int i) {
-            return 0;
+        protected void dispatchDraw(Canvas canvas) {
+            super.dispatchDraw(canvas);
         }
 
         @Override
-        public boolean isFullyVisible() {
+        protected void onAttachedToWindow() {
+            ErrorContainer errorContainer;
+            super.onAttachedToWindow();
+            if (!this.errorShown || (errorContainer = this.errorContainer) == null) {
+                return;
+            }
+            ArticleViewer articleViewer = ArticleViewer.this;
+            int i = Theme.key_iv_ab_background;
+            errorContainer.setDark(AndroidUtilities.computePerceivedBrightness(articleViewer.getThemedColor(i)) <= 0.721f, false);
+            this.errorContainer.setBackgroundColor(ArticleViewer.this.getThemedColor(i));
+        }
+    }
+
+    public class CachedWeb extends BottomSheetTabs.WebTabData {
+        public CachedWeb(ArticleViewer articleViewer, String str) {
+            this.lastUrl = str;
+        }
+
+        public void attach(PageLayout pageLayout) {
+            if (pageLayout == null) {
+                return;
+            }
+            BotWebViewContainer.MyWebView myWebView = this.webView;
+            if (myWebView != null) {
+                myWebView.onResume();
+                pageLayout.webViewContainer.replaceWebView(this.webView, this.proxy);
+                return;
+            }
+            String str = this.lastUrl;
+            if (str != null) {
+                pageLayout.webViewContainer.loadUrl(UserConfig.selectedAccount, str);
+            }
+        }
+
+        public void detach(PageLayout pageLayout) {
+            if (pageLayout == null) {
+                return;
+            }
+            pageLayout.webViewContainer.preserveWebView();
+            this.webView = pageLayout.webViewContainer.getWebView();
+            this.proxy = pageLayout.webViewContainer.getProxy();
+            BotWebViewContainer.MyWebView myWebView = this.webView;
+            if (myWebView != null) {
+                myWebView.onPause();
+                this.title = this.webView.getTitle();
+                this.favicon = this.webView.getFavicon();
+                this.lastUrl = this.webView.getUrl();
+            }
+        }
+    }
+
+    public class WebpageListView extends RecyclerListView {
+        public WebpageListView(Context context, Theme.ResourcesProvider resourcesProvider) {
+            super(context, resourcesProvider);
+        }
+
+        @Override
+        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+            super.onLayout(z, i, i2, i3, i4);
+            int childCount = getChildCount();
+            for (int i5 = 0; i5 < childCount; i5++) {
+                View childAt = getChildAt(i5);
+                if ((childAt.getTag() instanceof Integer) && ((Integer) childAt.getTag()).intValue() == 90 && childAt.getBottom() < getMeasuredHeight()) {
+                    int measuredHeight = getMeasuredHeight();
+                    childAt.layout(0, measuredHeight - childAt.getMeasuredHeight(), childAt.getMeasuredWidth(), measuredHeight);
+                    return;
+                }
+            }
+        }
+
+        @Override
+        public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+            if (ArticleViewer.this.pressedLinkOwnerLayout == null || ArticleViewer.this.pressedLink != null || ((ArticleViewer.this.popupWindow != null && ArticleViewer.this.popupWindow.isShowing()) || (motionEvent.getAction() != 1 && motionEvent.getAction() != 3))) {
+                if (ArticleViewer.this.pressedLinkOwnerLayout != null && ArticleViewer.this.pressedLink != null && motionEvent.getAction() == 1 && (getAdapter() instanceof WebpageAdapter)) {
+                    ArticleViewer.this.checkLayoutForLinks((WebpageAdapter) getAdapter(), motionEvent, ArticleViewer.this.pressedLinkOwnerView, ArticleViewer.this.pressedLinkOwnerLayout, 0, 0);
+                }
+            } else {
+                ArticleViewer.this.pressedLink = null;
+                ArticleViewer.this.pressedLinkOwnerLayout = null;
+                ArticleViewer.this.pressedLinkOwnerView = null;
+            }
+            return super.onInterceptTouchEvent(motionEvent);
+        }
+
+        @Override
+        public boolean onTouchEvent(MotionEvent motionEvent) {
+            if (ArticleViewer.this.pressedLinkOwnerLayout != null && ArticleViewer.this.pressedLink == null && ((ArticleViewer.this.popupWindow == null || !ArticleViewer.this.popupWindow.isShowing()) && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3))) {
+                ArticleViewer.this.pressedLink = null;
+                ArticleViewer.this.pressedLinkOwnerLayout = null;
+                ArticleViewer.this.pressedLinkOwnerView = null;
+            }
+            return super.onTouchEvent(motionEvent);
+        }
+
+        @Override
+        protected void dispatchDraw(Canvas canvas) {
+            ArticleViewer.this.checkVideoPlayer();
+            super.dispatchDraw(canvas);
+        }
+
+        @Override
+        public void onScrolled(int i, int i2) {
+            Sheet.WindowView windowView;
+            super.onScrolled(i, i2);
+            Sheet sheet = ArticleViewer.this.sheet;
+            if (sheet == null || (windowView = sheet.windowView) == null) {
+                return;
+            }
+            windowView.invalidate();
+        }
+    }
+
+    public class Sheet implements BaseFragment.AttachedSheet, BottomSheetTabsOverlay.Sheet {
+        public boolean attachedToActionBar;
+        private float backProgress;
+        public View containerView;
+        public final Context context;
+        private BottomSheetTabDialog dialog;
+        private ValueAnimator dismissAnimator;
+        private float dismissProgress;
+        private boolean dismissing;
+        private boolean dismissingIntoTabs;
+        public BaseFragment fragment;
+        private boolean lastVisible;
+        public boolean nestedVerticalScroll;
+        private Runnable onDismissListener;
+        private ValueAnimator openAnimator;
+        private float openProgress;
+        public Theme.ResourcesProvider resourcesProvider;
+        private boolean wasFullyVisible;
+        public final WindowView windowView;
+
+        private boolean imageAtTop() {
             return false;
         }
 
-        @Override
-        public boolean isShown() {
-            return false;
-        }
-
-        @Override
-        public boolean onBackPressed() {
-            return false;
+        public final boolean halfSize() {
+            return true;
         }
 
         @Override
@@ -10911,27 +12842,834 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
-        public void setOnDismissListener(Runnable runnable) {
-        }
-
-        @Override
         public boolean showDialog(Dialog dialog) {
             return false;
         }
 
-        public Sheet(ArticleViewer articleViewer, Context context) {
-            this.windowView = new WindowView(this, context);
+        public ArticleViewer getArticleViewer() {
+            return ArticleViewer.this;
+        }
+
+        public Sheet(BaseFragment baseFragment) {
+            this.fragment = baseFragment;
+            this.resourcesProvider = baseFragment.getResourceProvider();
+            Context context = baseFragment.getContext();
+            this.context = context;
+            WindowView windowView = new WindowView(context);
+            this.windowView = windowView;
+            new KeyboardNotifier(windowView, true, new Utilities.Callback() {
+                @Override
+                public final void run(Object obj) {
+                    ArticleViewer.Sheet.this.lambda$new$0((Integer) obj);
+                }
+            });
+        }
+
+        public void lambda$new$0(Integer num) {
+            ArticleViewer.this.keyboardVisible = num.intValue() - AndroidUtilities.navigationBarHeight > AndroidUtilities.dp(20.0f);
+        }
+
+        public void setContainerView(View view) {
+            this.containerView = view;
+            updateTranslation();
         }
 
         @Override
-        public WindowView getWindowView() {
+        public WindowView mo954getWindowView() {
             return this.windowView;
         }
 
-        public class WindowView extends SizeNotifierFrameLayout {
-            public WindowView(Sheet sheet, Context context) {
-                super(context);
+        @Override
+        public boolean setDialog(BottomSheetTabDialog bottomSheetTabDialog) {
+            this.dialog = bottomSheetTabDialog;
+            return true;
+        }
+
+        @Override
+        public BottomSheetTabs.WebTabData saveState() {
+            BottomSheetTabs.WebTabData webTabData = new BottomSheetTabs.WebTabData();
+            webTabData.title = ArticleViewer.this.actionBar.getTitle();
+            ArticleViewer articleViewer = ArticleViewer.this;
+            webTabData.articleViewer = articleViewer;
+            PageLayout[] pageLayoutArr = articleViewer.pages;
+            webTabData.actionBarColor = pageLayoutArr[0] != null ? pageLayoutArr[0].getActionBarColor() : articleViewer.getThemedColor(Theme.key_iv_ab_background);
+            ArticleViewer articleViewer2 = ArticleViewer.this;
+            PageLayout[] pageLayoutArr2 = articleViewer2.pages;
+            webTabData.backgroundColor = pageLayoutArr2[0] != null ? pageLayoutArr2[0].getBackgroundColor() : articleViewer2.getThemedColor(Theme.key_iv_ab_background);
+            webTabData.overrideActionBarColor = true;
+            webTabData.articleProgress = !this.attachedToActionBar ? 0.0f : ArticleViewer.this.pages[0].getProgress();
+            PageLayout[] pageLayoutArr3 = ArticleViewer.this.pages;
+            webTabData.view2 = pageLayoutArr3[0];
+            webTabData.favicon = (pageLayoutArr3[0] == null || pageLayoutArr3[0].getWebView() == null) ? null : ArticleViewer.this.pages[0].getWebView().getFavicon();
+            View view = webTabData.view2;
+            if (view != null) {
+                webTabData.viewWidth = view.getWidth();
+                webTabData.viewHeight = webTabData.view2.getHeight();
+            }
+            webTabData.viewScroll = getListTop();
+            webTabData.themeIsDark = Theme.isCurrentThemeDark();
+            return webTabData;
+        }
+
+        @Override
+        public boolean isShown() {
+            return !this.dismissing;
+        }
+
+        public void attachInternal(BaseFragment baseFragment) {
+            this.fragment = baseFragment;
+            this.resourcesProvider = baseFragment.getResourceProvider();
+            if (baseFragment instanceof ChatActivity) {
+                ChatActivity chatActivity = (ChatActivity) baseFragment;
+                if (chatActivity.getChatActivityEnterView() != null) {
+                    chatActivity.getChatActivityEnterView().closeKeyboard();
+                    chatActivity.getChatActivityEnterView().hidePopup(true, false);
+                }
+            }
+            BottomSheetTabDialog bottomSheetTabDialog = this.dialog;
+            if (bottomSheetTabDialog != null) {
+                bottomSheetTabDialog.attach();
+            } else {
+                AndroidUtilities.removeFromParent(this.windowView);
+                if (baseFragment.getLayoutContainer() != null) {
+                    baseFragment.getLayoutContainer().addView(this.windowView);
+                }
+            }
+            PageLayout[] pageLayoutArr = ArticleViewer.this.pages;
+            if (pageLayoutArr[0] != null) {
+                pageLayoutArr[0].resume();
+            }
+            PageLayout[] pageLayoutArr2 = ArticleViewer.this.pages;
+            if (pageLayoutArr2[1] != null) {
+                pageLayoutArr2[1].resume();
             }
         }
+
+        public void show() {
+            if (this.dismissing) {
+                return;
+            }
+            attachInternal(this.fragment);
+            animateOpen(true, true, null);
+        }
+
+        @Override
+        public void dismiss() {
+            dismiss(true);
+        }
+
+        @Override
+        public void dismiss(boolean z) {
+            if (this.dismissing) {
+                return;
+            }
+            this.dismissing = true;
+            this.dismissingIntoTabs = z;
+            if (z) {
+                LaunchActivity.instance.getBottomSheetTabsOverlay().dismissSheet(this);
+            }
+            animateDismiss(true, true, z ? null : new Runnable() {
+                @Override
+                public final void run() {
+                    ArticleViewer.Sheet.this.lambda$dismiss$1();
+                }
+            });
+            checkNavColor();
+        }
+
+        public void lambda$dismiss$1() {
+            release();
+            ArticleViewer.this.destroy();
+        }
+
+        @Override
+        public void release() {
+            PageLayout[] pageLayoutArr = ArticleViewer.this.pages;
+            if (pageLayoutArr[0] != null && pageLayoutArr[0].swipeBack) {
+                PageLayout[] pageLayoutArr2 = ArticleViewer.this.pages;
+                pageLayoutArr2[0].swipeContainer.setSwipeOffsetY((-pageLayoutArr2[0].swipeContainer.offsetY) + pageLayoutArr2[0].swipeContainer.topActionBarOffsetY);
+                ArticleViewer.this.pages[0].swipeBack = false;
+            }
+            PageLayout[] pageLayoutArr3 = ArticleViewer.this.pages;
+            if (pageLayoutArr3[0] != null) {
+                pageLayoutArr3[0].pause();
+            }
+            PageLayout[] pageLayoutArr4 = ArticleViewer.this.pages;
+            if (pageLayoutArr4[1] != null) {
+                pageLayoutArr4[1].pause();
+            }
+            BottomSheetTabDialog bottomSheetTabDialog = this.dialog;
+            if (bottomSheetTabDialog != null) {
+                bottomSheetTabDialog.detach();
+            } else {
+                this.fragment.removeSheet(this);
+                AndroidUtilities.removeFromParent(this.windowView);
+            }
+            Runnable runnable = this.onDismissListener;
+            if (runnable != null) {
+                runnable.run();
+                this.onDismissListener = null;
+            }
+        }
+
+        public void dismissInstant() {
+            if (this.dismissing) {
+                return;
+            }
+            this.dismissing = true;
+            release();
+            ArticleViewer.this.destroy();
+        }
+
+        @Override
+        public boolean isFullyVisible() {
+            return this.attachedToActionBar && this.dismissProgress <= 0.0f && this.openProgress >= 1.0f && this.backProgress <= 0.0f;
+        }
+
+        public void checkFullyVisible() {
+            if (this.wasFullyVisible != isFullyVisible()) {
+                this.wasFullyVisible = isFullyVisible();
+                BaseFragment baseFragment = this.fragment;
+                if (baseFragment != null && (baseFragment.getParentLayout() instanceof ActionBarLayout)) {
+                    ActionBarLayout actionBarLayout = (ActionBarLayout) this.fragment.getParentLayout();
+                    ActionBarLayout.LayoutContainer layoutContainer = actionBarLayout.containerView;
+                    if (layoutContainer != null) {
+                        layoutContainer.invalidate();
+                    }
+                    ActionBarLayout.LayoutContainer layoutContainer2 = actionBarLayout.sheetContainer;
+                    if (layoutContainer2 != null) {
+                        layoutContainer2.invalidate();
+                    }
+                } else if (this.windowView.getParent() instanceof View) {
+                    ((View) this.windowView.getParent()).invalidate();
+                }
+            }
+        }
+
+        @Override
+        public boolean attachedToParent() {
+            return this.windowView.isAttachedToWindow();
+        }
+
+        @Override
+        public boolean onAttachedBackPressed() {
+            if (!ArticleViewer.this.keyboardVisible) {
+                if (ArticleViewer.this.actionBar.isSearching()) {
+                    ArticleViewer.this.actionBar.showSearch(false, true);
+                    return true;
+                } else if (ArticleViewer.this.actionBar.isAddressing()) {
+                    ArticleViewer.this.actionBar.showAddress(false, true);
+                    return true;
+                } else {
+                    dismiss();
+                    return true;
+                }
+            }
+            AndroidUtilities.hideKeyboard(this.windowView);
+            return true;
+        }
+
+        @Override
+        public int getNavigationBarColor(int i) {
+            float min = this.dismissingIntoTabs ? 0.0f : Math.min(this.openProgress, 1.0f - this.dismissProgress) * (1.0f - this.backProgress);
+            int backgroundColor = getBackgroundColor();
+            if (ArticleViewer.this.actionBar != null) {
+                backgroundColor = ColorUtils.blendARGB(backgroundColor, ArticleViewer.this.actionBar.addressBackgroundColor, ArticleViewer.this.actionBar.addressingProgress);
+            }
+            return ColorUtils.blendARGB(i, backgroundColor, min);
+        }
+
+        @Override
+        public boolean isAttachedLightStatusBar() {
+            return this.attachedToActionBar && (this.dismissingIntoTabs ? 0.0f : Math.min(this.openProgress, 1.0f - this.dismissProgress) * (1.0f - this.backProgress)) > 0.25f && AndroidUtilities.computePerceivedBrightness(getActionBarColor()) >= 0.721f;
+        }
+
+        @Override
+        public void setOnDismissListener(Runnable runnable) {
+            this.onDismissListener = runnable;
+        }
+
+        public void reset() {
+            this.dismissing = false;
+            this.dismissingIntoTabs = false;
+            ValueAnimator valueAnimator = this.openAnimator;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+            }
+            ValueAnimator valueAnimator2 = this.dismissAnimator;
+            if (valueAnimator2 != null) {
+                valueAnimator2.cancel();
+            }
+            this.dismissProgress = 0.0f;
+            this.openProgress = 0.0f;
+            checkFullyVisible();
+            updateTranslation();
+            this.windowView.invalidate();
+        }
+
+        public void animateOpen(final boolean z, boolean z2, final Runnable runnable) {
+            ValueAnimator valueAnimator = this.openAnimator;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+            }
+            if (z2) {
+                float[] fArr = new float[2];
+                fArr[0] = this.openProgress;
+                fArr[1] = z ? 1.0f : 0.0f;
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+                this.openAnimator = ofFloat;
+                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                        ArticleViewer.Sheet.this.lambda$animateOpen$2(valueAnimator2);
+                    }
+                });
+                this.openAnimator.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animator) {
+                        Sheet.this.openProgress = z ? 1.0f : 0.0f;
+                        Sheet.this.updateTranslation();
+                        Sheet.this.checkNavColor();
+                        Runnable runnable2 = runnable;
+                        if (runnable2 != null) {
+                            runnable2.run();
+                        }
+                        Sheet.this.checkFullyVisible();
+                    }
+                });
+                if (z) {
+                    this.openAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+                    this.openAnimator.setDuration(320L);
+                } else {
+                    this.openAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT);
+                    this.openAnimator.setDuration(180L);
+                }
+                this.openAnimator.start();
+                return;
+            }
+            this.openProgress = z ? 1.0f : 0.0f;
+            updateTranslation();
+            if (runnable != null) {
+                runnable.run();
+            }
+            checkFullyVisible();
+        }
+
+        public void lambda$animateOpen$2(ValueAnimator valueAnimator) {
+            this.openProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            updateTranslation();
+            checkNavColor();
+            checkFullyVisible();
+        }
+
+        public void animateDismiss(final boolean z, boolean z2, final Runnable runnable) {
+            ValueAnimator valueAnimator = this.dismissAnimator;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+            }
+            if (z2) {
+                float[] fArr = new float[2];
+                fArr[0] = this.dismissProgress;
+                fArr[1] = z ? 1.0f : 0.0f;
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+                this.dismissAnimator = ofFloat;
+                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                        ArticleViewer.Sheet.this.lambda$animateDismiss$3(valueAnimator2);
+                    }
+                });
+                this.dismissAnimator.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animator) {
+                        Sheet.this.dismissProgress = z ? 1.0f : 0.0f;
+                        if (!Sheet.this.dismissingIntoTabs) {
+                            Sheet.this.updateTranslation();
+                        }
+                        Sheet.this.checkNavColor();
+                        Runnable runnable2 = runnable;
+                        if (runnable2 != null) {
+                            runnable2.run();
+                        }
+                        Sheet.this.checkFullyVisible();
+                    }
+                });
+                this.dismissAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+                this.dismissAnimator.setDuration(250L);
+                this.dismissAnimator.start();
+                return;
+            }
+            this.dismissProgress = z ? 1.0f : 0.0f;
+            if (!this.dismissingIntoTabs) {
+                updateTranslation();
+            }
+            if (runnable != null) {
+                runnable.run();
+            }
+            checkFullyVisible();
+        }
+
+        public void lambda$animateDismiss$3(ValueAnimator valueAnimator) {
+            this.dismissProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            if (!this.dismissingIntoTabs) {
+                updateTranslation();
+            }
+            checkNavColor();
+            checkFullyVisible();
+        }
+
+        public int getListTop() {
+            PageLayout[] pageLayoutArr = ArticleViewer.this.pages;
+            int i = 0;
+            float translationX = (pageLayoutArr[0] == null || pageLayoutArr[0].getVisibility() != 0) ? 0.0f : 1.0f - (ArticleViewer.this.pages[0].getTranslationX() / ArticleViewer.this.pages[0].getWidth());
+            float f = 1.0f - translationX;
+            PageLayout[] pageLayoutArr2 = ArticleViewer.this.pages;
+            if (pageLayoutArr2[0] != null && pageLayoutArr2[0].getVisibility() == 0) {
+                i = 0 + ((int) (ArticleViewer.this.pages[0].getListTop() * translationX * ArticleViewer.this.pages[0].getAlpha()));
+            }
+            PageLayout[] pageLayoutArr3 = ArticleViewer.this.pages;
+            return (pageLayoutArr3[1] == null || pageLayoutArr3[1].getVisibility() != 0) ? i : i + ((int) (ArticleViewer.this.pages[1].getListTop() * f * ArticleViewer.this.pages[1].getAlpha()));
+        }
+
+        public void checkNavColor() {
+            BottomSheetTabDialog bottomSheetTabDialog = this.dialog;
+            AndroidUtilities.setLightStatusBar(bottomSheetTabDialog != null ? bottomSheetTabDialog.windowView : this.windowView, isAttachedLightStatusBar());
+            BottomSheetTabDialog bottomSheetTabDialog2 = this.dialog;
+            if (bottomSheetTabDialog2 != null) {
+                bottomSheetTabDialog2.updateNavigationBarColor();
+                return;
+            }
+            LaunchActivity.instance.checkSystemBarColors(true, true, true, false);
+            AndroidUtilities.setLightNavigationBar(mo954getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
+        }
+
+        public int getBackgroundColor() {
+            return ColorUtils.blendARGB(ArticleViewer.this.pages[0].getBackgroundColor(), ArticleViewer.this.pages[1].getBackgroundColor(), 1.0f - (ArticleViewer.this.pages[0].getVisibility() != 0 ? 0.0f : 1.0f - (ArticleViewer.this.pages[0].getTranslationX() / ArticleViewer.this.pages[0].getWidth())));
+        }
+
+        public int getActionBarColor() {
+            return ColorUtils.blendARGB(ArticleViewer.this.pages[0].getActionBarColor(), ArticleViewer.this.pages[1].getActionBarColor(), 1.0f - (ArticleViewer.this.pages[0].getVisibility() != 0 ? 0.0f : 1.0f - (ArticleViewer.this.pages[0].getTranslationX() / ArticleViewer.this.pages[0].getWidth())));
+        }
+
+        public int getListPaddingTop() {
+            return AndroidUtilities.dp(imageAtTop() ? 0.0f : 20.0f);
+        }
+
+        public int getEmptyPadding() {
+            int dp = AndroidUtilities.dp(16.0f);
+            View view = this.containerView;
+            return (dp + (view == null ? AndroidUtilities.displaySize.y : view.getHeight())) - (getListTop() - getListPaddingTop());
+        }
+
+        public void updateTranslation() {
+            View view = this.containerView;
+            if (view == null) {
+                return;
+            }
+            view.setTranslationY(getEmptyPadding() * Math.max(1.0f - this.openProgress, this.dismissingIntoTabs ? 0.0f : this.dismissProgress));
+            this.windowView.invalidate();
+        }
+
+        public class WindowView extends SizeNotifierFrameLayout implements BaseFragment.AttachedSheetWindow, BottomSheetTabsOverlay.SheetView {
+            private final AnimatedFloat attachedActionBar;
+            private final Paint backgroundPaint;
+            private final Path clipPath;
+            private Path clipPath2;
+            private RectF clipRect;
+            private boolean drawingFromOverlay;
+            private final Paint handlePaint;
+            private final RectF rect;
+            private final Paint scrimPaint;
+            private final Paint shadowPaint;
+            private boolean stoppedAtFling;
+
+            public WindowView(Context context) {
+                super(context);
+                this.scrimPaint = new Paint(1);
+                this.shadowPaint = new Paint(1);
+                this.backgroundPaint = new Paint(1);
+                this.handlePaint = new Paint(1);
+                new Paint(1);
+                this.attachedActionBar = new AnimatedFloat(this, 0L, 280L, CubicBezierInterpolator.EASE_OUT_QUINT);
+                this.clipPath = new Path();
+                this.rect = new RectF();
+                new RectF();
+                this.clipRect = new RectF();
+                this.clipPath2 = new Path();
+            }
+
+            @Override
+            protected void onMeasure(int i, int i2) {
+                super.onMeasure(i, i2);
+                Sheet.this.updateTranslation();
+            }
+
+            @Override
+            public void dispatchDraw(Canvas canvas) {
+                Paint paint;
+                if (this.drawingFromOverlay) {
+                    return;
+                }
+                float min = Math.min(Sheet.this.openProgress, 1.0f - Sheet.this.dismissProgress);
+                this.scrimPaint.setColor(-16777216);
+                this.scrimPaint.setAlpha((int) (64.0f * min * (1.0f - Sheet.this.backProgress)));
+                canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.scrimPaint);
+                int listTop = Sheet.this.getListTop() - Sheet.this.getListPaddingTop();
+                boolean z = listTop < AndroidUtilities.statusBarHeight + ActionBar.getCurrentActionBarHeight() && min > 0.95f;
+                Sheet sheet = Sheet.this;
+                if (sheet.attachedToActionBar != z) {
+                    sheet.attachedToActionBar = z;
+                    sheet.checkFullyVisible();
+                    Sheet.this.checkNavColor();
+                }
+                float f = this.attachedActionBar.set(z);
+                int lerp = AndroidUtilities.lerp(listTop, 0, Utilities.clamp(f, 1.0f, 0.0f));
+                float emptyPadding = Sheet.this.getEmptyPadding() * Math.max(1.0f - Sheet.this.openProgress, Sheet.this.dismissProgress);
+                canvas.save();
+                canvas.translate(getWidth() * Sheet.this.backProgress, emptyPadding);
+                float f2 = lerp;
+                this.rect.set(0.0f, f2, getWidth(), getHeight() + AndroidUtilities.dp(16.0f));
+                float f3 = 1.0f - f;
+                float dp = AndroidUtilities.dp(16.0f) * f3;
+                if (f < 1.0f) {
+                    this.shadowPaint.setColor(0);
+                    this.shadowPaint.setShadowLayer(AndroidUtilities.dp(18.0f), 0.0f, -AndroidUtilities.dp(3.0f), Theme.multAlpha(-16777216, min * 0.26f));
+                    canvas.drawRoundRect(this.rect, dp, dp, this.shadowPaint);
+                }
+                if (dp <= 0.0f) {
+                    canvas.clipRect(this.rect);
+                } else {
+                    this.clipPath.rewind();
+                    this.clipPath.addRoundRect(this.rect, dp, dp, Path.Direction.CW);
+                    canvas.clipPath(this.clipPath);
+                }
+                this.backgroundPaint.setColor(ArticleViewer.this.pages[1].getBackgroundColor());
+                canvas.drawRect(this.rect, this.backgroundPaint);
+                this.backgroundPaint.setColor(ArticleViewer.this.pages[0].getBackgroundColor());
+                RectF rectF = AndroidUtilities.rectTmp;
+                rectF.set(this.rect);
+                rectF.left = ArticleViewer.this.pages[0].getX();
+                canvas.drawRect(rectF, this.backgroundPaint);
+                ArticleViewer.this.actionBar.drawShadow = z && Sheet.this.getListPaddingTop() + listTop <= AndroidUtilities.statusBarHeight + ArticleViewer.this.currentHeaderHeight;
+                if (f > 0.0f) {
+                    canvas.save();
+                    canvas.translate(ArticleViewer.this.actionBar.getX(), ArticleViewer.this.actionBar.getY());
+                    ArticleViewer.this.actionBar.drawBackground(canvas, AndroidUtilities.lerp(ArticleViewer.this.actionBar.getHeight(), listTop + Sheet.this.getListPaddingTop(), f), f, true);
+                    canvas.restore();
+                }
+                canvas.translate(0.0f, -emptyPadding);
+                if (!AndroidUtilities.makingGlobalBlurBitmap && (!ArticleViewer.this.pages[0].isWeb() || canvas.isHardwareAccelerated())) {
+                    super.dispatchDraw(canvas);
+                }
+                canvas.translate(0.0f, emptyPadding);
+                if (f < 1.0f) {
+                    this.handlePaint.setColor(ColorUtils.blendARGB(Theme.multAlpha(AndroidUtilities.computePerceivedBrightness(Sheet.this.getBackgroundColor()) < 0.721f ? -1 : -16777216, 0.15f), -16777216, f));
+                    this.handlePaint.setAlpha((int) (paint.getAlpha() * f3));
+                    float width = getWidth() / 2.0f;
+                    float listPaddingTop = (f2 + (Sheet.this.getListPaddingTop() / 2.0f)) - (AndroidUtilities.dp(8.0f) * f);
+                    float lerp2 = AndroidUtilities.lerp(AndroidUtilities.dp(32.0f), AndroidUtilities.dp(48.0f), f) / 2.0f;
+                    this.rect.set(width - lerp2, listPaddingTop - AndroidUtilities.dp(2.0f), width + lerp2, listPaddingTop + AndroidUtilities.dp(2.0f));
+                    RectF rectF2 = this.rect;
+                    canvas.drawRoundRect(rectF2, rectF2.height() / 2.0f, this.rect.height() / 2.0f, this.handlePaint);
+                }
+                canvas.restore();
+            }
+
+            @Override
+            public void setDrawingFromOverlay(boolean z) {
+                if (this.drawingFromOverlay != z) {
+                    this.drawingFromOverlay = z;
+                    invalidate();
+                }
+            }
+
+            @Override
+            public RectF getRect() {
+                RectF rectF = this.clipRect;
+                Sheet sheet = Sheet.this;
+                rectF.set(0.0f, (sheet.attachedToActionBar ? 0 : sheet.getListTop() - Sheet.this.getListPaddingTop()) + (Sheet.this.getEmptyPadding() * Math.max(1.0f - Sheet.this.openProgress, Sheet.this.dismissProgress)), getWidth(), getHeight());
+                return this.clipRect;
+            }
+
+            @Override
+            public float drawInto(Canvas canvas, RectF rectF, float f, RectF rectF2, float f2, boolean z) {
+                Sheet sheet;
+                rectF2.set(getRect());
+                AndroidUtilities.lerp(rectF2, rectF, f, rectF2);
+                float min = Math.min(Sheet.this.openProgress, 1.0f - Sheet.this.dismissProgress);
+                float f3 = 1.0f - f;
+                this.scrimPaint.setColor(-16777216);
+                this.scrimPaint.setAlpha((int) (min * f3 * 144.0f * (1.0f - Sheet.this.backProgress)));
+                canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.scrimPaint);
+                float lerp = AndroidUtilities.lerp(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(10.0f), f);
+                this.backgroundPaint.setColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundWhite));
+                this.clipPath2.rewind();
+                this.clipPath2.addRoundRect(rectF2, lerp, lerp, Path.Direction.CW);
+                canvas.drawPath(this.clipPath2, this.backgroundPaint);
+                if (getChildCount() == 1) {
+                    if (Sheet.this.attachedToActionBar) {
+                        canvas.save();
+                        canvas.clipPath(this.clipPath2);
+                        canvas.translate(0.0f, rectF2.top);
+                        ArticleViewer.this.actionBar.draw(canvas);
+                        canvas.restore();
+                    }
+                    View childAt = getChildAt(0);
+                    canvas.save();
+                    float lerp2 = z ? 1.0f : AndroidUtilities.lerp(1.0f, 0.99f, f);
+                    float f4 = lerp2 - 1.0f;
+                    if (Math.abs(f4) > 0.01f) {
+                        canvas.scale(lerp2, lerp2, rectF2.centerX(), rectF2.centerY());
+                    }
+                    canvas.clipPath(this.clipPath2);
+                    if (Math.abs(f4) > 0.01f) {
+                        float f5 = 1.0f / lerp2;
+                        canvas.scale(f5, f5, rectF2.centerX(), rectF2.centerY());
+                    }
+                    canvas.translate(0.0f, (-Sheet.this.getListTop()) + rectF2.top + ((Sheet.this.attachedToActionBar ? ArticleViewer.this.actionBar.getMeasuredHeight() : 0) * f3));
+                    childAt.draw(canvas);
+                    canvas.restore();
+                }
+                return lerp;
+            }
+
+            @Override
+            public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+                if (motionEvent.getAction() == 0) {
+                    float y = motionEvent.getY();
+                    Sheet sheet = Sheet.this;
+                    if (y < (sheet.attachedToActionBar ? 0 : sheet.getListTop())) {
+                        Sheet.this.dismiss(true);
+                        return true;
+                    }
+                }
+                return super.dispatchTouchEvent(motionEvent);
+            }
+
+            @Override
+            public boolean onNestedFling(View view, float f, float f2, boolean z) {
+                return super.onNestedFling(view, f, f2, z);
+            }
+
+            @Override
+            public boolean onNestedPreFling(View view, float f, float f2) {
+                boolean onNestedPreFling = super.onNestedPreFling(view, f, f2);
+                if (Sheet.this.halfSize()) {
+                    if (ArticleViewer.this.pages[0].isAtTop() && f2 < -1000.0f) {
+                        Sheet.this.dismiss(true);
+                    } else {
+                        Sheet.this.animateDismiss(false, true, null);
+                    }
+                }
+                this.stoppedAtFling = true;
+                return onNestedPreFling;
+            }
+
+            @Override
+            public void onNestedScroll(View view, int i, int i2, int i3, int i4) {
+                super.onNestedScroll(view, i, i2, i3, i4);
+            }
+
+            @Override
+            public void onNestedPreScroll(View view, int i, int i2, int[] iArr) {
+                Sheet sheet = Sheet.this;
+                if (!sheet.nestedVerticalScroll) {
+                    sheet.nestedVerticalScroll = i2 != 0;
+                }
+                if (ArticleViewer.this.pages[0].isAtTop() && Sheet.this.halfSize()) {
+                    iArr[1] = Math.min((int) (Sheet.this.getEmptyPadding() * Sheet.this.dismissProgress), i2);
+                    Sheet sheet2 = Sheet.this;
+                    sheet2.dismissProgress = Utilities.clamp(sheet2.dismissProgress - (i2 / Sheet.this.getEmptyPadding()), 1.0f, 0.0f);
+                    Sheet.this.updateTranslation();
+                    Sheet.this.checkFullyVisible();
+                }
+            }
+
+            @Override
+            public void onNestedScrollAccepted(View view, View view2, int i) {
+                super.onNestedScrollAccepted(view, view2, i);
+            }
+
+            @Override
+            public boolean onStartNestedScroll(View view, View view2, int i) {
+                this.stoppedAtFling = false;
+                return Sheet.this.halfSize() && i == 2;
+            }
+
+            @Override
+            public void onStopNestedScroll(View view) {
+                Sheet sheet = Sheet.this;
+                sheet.nestedVerticalScroll = false;
+                if (sheet.halfSize() && !this.stoppedAtFling) {
+                    if (Sheet.this.dismissProgress > 0.25f) {
+                        Sheet.this.dismiss(true);
+                    } else {
+                        Sheet.this.animateDismiss(false, true, null);
+                    }
+                }
+                super.onStopNestedScroll(view);
+            }
+        }
+
+        public void setBackProgress(float f) {
+            this.backProgress = f;
+            this.windowView.invalidate();
+            checkNavColor();
+            checkFullyVisible();
+        }
+
+        public float getBackProgress() {
+            return this.backProgress;
+        }
+
+        public ValueAnimator animateBackProgressTo(float f) {
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.backProgress, f);
+            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                    ArticleViewer.Sheet.this.lambda$animateBackProgressTo$4(valueAnimator);
+                }
+            });
+            return ofFloat;
+        }
+
+        public void lambda$animateBackProgressTo$4(ValueAnimator valueAnimator) {
+            setBackProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
+        }
+
+        @Override
+        public void setLastVisible(boolean z) {
+            this.lastVisible = z;
+            ArticleViewer.this.pages[0].setLastVisible(z);
+            ArticleViewer.this.pages[1].setLastVisible(false);
+        }
+
+        public void updateLastVisible() {
+            ArticleViewer.this.pages[0].setLastVisible(this.lastVisible);
+            ArticleViewer.this.pages[1].setLastVisible(false);
+        }
+    }
+
+    public static class ErrorContainer extends FrameLayout {
+        private final ButtonWithCounterView buttonView;
+        private final TextView codeView;
+        private boolean dark;
+        private ValueAnimator darkAnimator;
+        private final TextView descriptionView;
+        private final BackupImageView imageView;
+        private boolean imageViewSet;
+        public final LinearLayout layout;
+        private final TextView titleView;
+
+        public ErrorContainer(Context context) {
+            super(context);
+            this.dark = true;
+            setVisibility(8);
+            LinearLayout linearLayout = new LinearLayout(context);
+            this.layout = linearLayout;
+            linearLayout.setPadding(AndroidUtilities.dp(32.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(32.0f), AndroidUtilities.dp(24.0f));
+            linearLayout.setOrientation(1);
+            linearLayout.setGravity(3);
+            addView(linearLayout, LayoutHelper.createFrame(-2, -2, 17));
+            BackupImageView backupImageView = new BackupImageView(context);
+            this.imageView = backupImageView;
+            linearLayout.addView(backupImageView, LayoutHelper.createLinear(100, 100));
+            TextView textView = new TextView(context);
+            this.titleView = textView;
+            textView.setTextSize(1, 19.0f);
+            textView.setTypeface(AndroidUtilities.bold());
+            textView.setTextColor(-1);
+            linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2, 3, 0, 4, 0, 2));
+            TextView textView2 = new TextView(context);
+            this.descriptionView = textView2;
+            textView2.setTextSize(1, 15.0f);
+            textView2.setTextColor(-1);
+            textView2.setSingleLine(false);
+            textView2.setMaxLines(3);
+            linearLayout.addView(textView2, LayoutHelper.createLinear(-2, -2, 3, 0, 0, 0, 1));
+            TextView textView3 = new TextView(context);
+            this.codeView = textView3;
+            textView3.setTextSize(1, 12.0f);
+            textView3.setTextColor(-1);
+            textView3.setAlpha(0.4f);
+            linearLayout.addView(textView3, LayoutHelper.createLinear(-2, -2, 3));
+            ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, null);
+            this.buttonView = buttonWithCounterView;
+            buttonWithCounterView.setMinWidth(AndroidUtilities.dp(140.0f));
+            buttonWithCounterView.setText(LocaleController.getString(R.string.Refresh), false);
+            linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-2, 40, 3, 0, 12, 0, 0));
+        }
+
+        public void setDark(boolean z, boolean z2) {
+            if (this.dark == z) {
+                return;
+            }
+            this.dark = z;
+            ValueAnimator valueAnimator = this.darkAnimator;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+            }
+            if (z2) {
+                float[] fArr = new float[2];
+                fArr[0] = z ? 0.0f : 1.0f;
+                fArr[1] = z ? 1.0f : 0.0f;
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+                this.darkAnimator = ofFloat;
+                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                        ArticleViewer.ErrorContainer.this.lambda$setDark$0(valueAnimator2);
+                    }
+                });
+                this.darkAnimator.start();
+                return;
+            }
+            this.titleView.setTextColor(!z ? -16777216 : -1);
+            this.descriptionView.setTextColor(!z ? -16777216 : -1);
+            this.codeView.setTextColor(z ? -1 : -16777216);
+        }
+
+        public void lambda$setDark$0(ValueAnimator valueAnimator) {
+            float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            this.titleView.setTextColor(ColorUtils.blendARGB(-16777216, -1, floatValue));
+            this.descriptionView.setTextColor(ColorUtils.blendARGB(-16777216, -1, floatValue));
+            this.codeView.setTextColor(ColorUtils.blendARGB(-16777216, -1, floatValue));
+        }
+
+        public void set(String str, int i, String str2) {
+            this.titleView.setText(LocaleController.getString(R.string.WebErrorTitle));
+            this.descriptionView.setText(AndroidUtilities.replaceTags((str == null || Uri.parse(str) == null || Uri.parse(str).getAuthority() == null) ? LocaleController.getString(R.string.WebErrorInfo) : LocaleController.formatString(R.string.WebErrorInfoDomain, Uri.parse(str).getAuthority())));
+            this.codeView.setText(str2);
+        }
+
+        @Override
+        public void setVisibility(int i) {
+            super.setVisibility(i);
+            if (i != 0 || this.imageViewSet) {
+                return;
+            }
+            this.imageViewSet = true;
+            MediaDataController.getInstance(UserConfig.selectedAccount).setPlaceholderImage(this.imageView, AndroidUtilities.STICKERS_PLACEHOLDER_PACK_NAME, "🧐", "100_100");
+        }
+    }
+
+    public void destroy() {
+        for (int i = 0; i < this.pagesStack.size(); i++) {
+            Object obj = this.pagesStack.get(i);
+            if (obj instanceof CachedWeb) {
+                PageLayout[] pageLayoutArr = this.pages;
+                if (pageLayoutArr[0] != null && pageLayoutArr[0].web == obj) {
+                    ((CachedWeb) obj).detach(this.pages[0]);
+                }
+                PageLayout[] pageLayoutArr2 = this.pages;
+                if (pageLayoutArr2[1] != null && pageLayoutArr2[1].web == obj) {
+                    ((CachedWeb) obj).detach(this.pages[1]);
+                }
+                ((CachedWeb) obj).destroy();
+            }
+        }
+        this.pagesStack.clear();
+        destroyArticleViewer();
+        Log.i("lolkek", "articleViewer.destroy()", new Exception());
     }
 }

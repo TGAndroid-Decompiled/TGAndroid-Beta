@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_getEmojiKeywordsDifference extends TLObject {
     public int from_version;
     public String lang_code;

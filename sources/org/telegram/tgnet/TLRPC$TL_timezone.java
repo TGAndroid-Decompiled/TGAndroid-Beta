@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_timezone extends TLObject {
     public String id;
     public String name;

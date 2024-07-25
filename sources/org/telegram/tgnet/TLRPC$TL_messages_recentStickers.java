@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_messages_recentStickers extends TLRPC$messages_RecentStickers {
     public long hash;
     public ArrayList<TLRPC$TL_stickerPack> packs = new ArrayList<>();
@@ -46,11 +45,11 @@ public class TLRPC$TL_messages_recentStickers extends TLRPC$messages_RecentStick
             if (z) {
                 throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt325)));
             }
-        } else {
-            int readInt326 = abstractSerializedData.readInt32(z);
-            for (int i3 = 0; i3 < readInt326; i3++) {
-                this.dates.add(Integer.valueOf(abstractSerializedData.readInt32(z)));
-            }
+            return;
+        }
+        int readInt326 = abstractSerializedData.readInt32(z);
+        for (int i3 = 0; i3 < readInt326; i3++) {
+            this.dates.add(Integer.valueOf(abstractSerializedData.readInt32(z)));
         }
     }
 

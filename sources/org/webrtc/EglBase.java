@@ -5,7 +5,6 @@ import android.view.Surface;
 import java.util.ArrayList;
 import org.webrtc.EglBase10;
 import org.webrtc.EglBase14;
-
 public interface EglBase {
     public static final int EGL_OPENGL_ES2_BIT = 4;
     public static final int EGL_OPENGL_ES3_BIT = 64;
@@ -82,14 +81,14 @@ public interface EglBase {
         public static EglBase create(Context context, int[] iArr) {
             if (context == null) {
                 return EglBase14Impl.isEGL14Supported() ? createEgl14(iArr) : createEgl10(iArr);
-            }
-            if (context instanceof EglBase14.Context) {
+            } else if (context instanceof EglBase14.Context) {
                 return createEgl14((EglBase14.Context) context, iArr);
+            } else {
+                if (context instanceof EglBase10.Context) {
+                    return createEgl10((EglBase10.Context) context, iArr);
+                }
+                throw new IllegalArgumentException("Unrecognized Context");
             }
-            if (context instanceof EglBase10.Context) {
-                return createEgl10((EglBase10.Context) context, iArr);
-            }
-            throw new IllegalArgumentException("Unrecognized Context");
         }
 
         public static EglBase10 createEgl10(int[] iArr) {
@@ -160,7 +159,7 @@ public interface EglBase {
                 arrayList.add(1);
             }
             if (this.isRecordable) {
-                arrayList.add(Integer.valueOf(EglBase.EGL_RECORDABLE_ANDROID));
+                arrayList.add(Integer.valueOf((int) EglBase.EGL_RECORDABLE_ANDROID));
                 arrayList.add(1);
             }
             arrayList.add(12344);

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_editChatAbout extends TLObject {
     public String about;
     public TLRPC$InputPeer peer;

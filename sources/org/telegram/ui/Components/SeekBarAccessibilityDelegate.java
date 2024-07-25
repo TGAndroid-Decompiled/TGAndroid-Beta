@@ -8,7 +8,6 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import androidx.core.view.ViewCompat;
 import java.util.HashMap;
 import java.util.Map;
-
 public abstract class SeekBarAccessibilityDelegate extends View.AccessibilityDelegate {
     private static final CharSequence SEEK_BAR_CLASS_NAME = android.widget.SeekBar.class.getName();
     private final Map<View, Runnable> accessibilityEventRunnables = new HashMap(4);
@@ -43,14 +42,14 @@ public abstract class SeekBarAccessibilityDelegate extends View.AccessibilityDel
     }
 
     public boolean performAccessibilityActionInternal(View view, int i, Bundle bundle) {
-        if (i != 4096 && i != 8192) {
-            return false;
+        if (i == 4096 || i == 8192) {
+            doScroll(view, i == 8192);
+            if (view != null) {
+                postAccessibilityEventRunnable(view);
+            }
+            return true;
         }
-        doScroll(view, i == 8192);
-        if (view != null) {
-            postAccessibilityEventRunnable(view);
-        }
-        return true;
+        return false;
     }
 
     public final boolean performAccessibilityActionInternal(int i, Bundle bundle) {

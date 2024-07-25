@@ -3,7 +3,6 @@ package org.telegram.messenger;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$TL_inputFile;
 import org.telegram.tgnet.TLRPC$TL_secureFile;
-
 public class SecureDocument extends TLObject {
     public byte[] fileHash;
     public byte[] fileSecret;

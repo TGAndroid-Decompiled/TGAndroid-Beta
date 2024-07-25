@@ -29,7 +29,6 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.MessageSeenCheckDrawable;
 import org.telegram.ui.Components.StatusBadgeComponent;
 import org.telegram.ui.Stories.StoriesUtilities;
-
 public class ReactedUserHolderView extends FrameLayout {
     public static int STYLE_DEFAULT = 0;
     public static int STYLE_STORY = 1;
@@ -90,9 +89,9 @@ public class ReactedUserHolderView extends FrameLayout {
                 if (i == ReactedUserHolderView.STYLE_STORY) {
                     ReactedUserHolderView.this.params.originalAvatarRect.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                     StoriesUtilities.drawAvatarWithStory(ReactedUserHolderView.this.dialogId, canvas, getImageReceiver(), ReactedUserHolderView.this.params);
-                } else {
-                    super.onDraw(canvas);
+                    return;
                 }
+                super.onDraw(canvas);
             }
 
             @Override

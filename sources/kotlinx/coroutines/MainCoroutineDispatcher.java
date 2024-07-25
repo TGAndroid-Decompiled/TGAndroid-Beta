@@ -1,15 +1,14 @@
 package kotlinx.coroutines;
-
 public abstract class MainCoroutineDispatcher extends CoroutineDispatcher {
     public abstract MainCoroutineDispatcher getImmediate();
 
     @Override
     public String toString() {
         String stringInternalImpl = toStringInternalImpl();
-        if (stringInternalImpl != null) {
-            return stringInternalImpl;
+        if (stringInternalImpl == null) {
+            return DebugStringsKt.getClassSimpleName(this) + '@' + DebugStringsKt.getHexAddress(this);
         }
-        return DebugStringsKt.getClassSimpleName(this) + '@' + DebugStringsKt.getHexAddress(this);
+        return stringInternalImpl;
     }
 
     public final String toStringInternalImpl() {

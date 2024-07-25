@@ -2,7 +2,6 @@ package org.telegram.tgnet.tl;
 
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLRPC$Message;
-
 public class TL_stats$TL_publicForwardMessage extends TL_stats$PublicForward {
     public TLRPC$Message message;
 

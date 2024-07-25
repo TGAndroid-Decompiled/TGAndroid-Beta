@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_account_getChatThemes extends TLObject {
     public long hash;
 

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_botApp extends TLObject {
     public TLRPC$BotApp app;
     public int flags;

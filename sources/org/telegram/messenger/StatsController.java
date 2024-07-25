@@ -2,7 +2,6 @@ package org.telegram.messenger;
 
 import java.io.RandomAccessFile;
 import org.telegram.messenger.utils.ImmutableByteArrayOutputStream;
-
 public class StatsController extends BaseController {
     private static final int OLD_TYPES_COUNT = 7;
     private static final int TYPES_COUNT = 8;

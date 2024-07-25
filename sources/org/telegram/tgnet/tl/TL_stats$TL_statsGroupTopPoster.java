@@ -2,7 +2,6 @@ package org.telegram.tgnet.tl;
 
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
-
 public class TL_stats$TL_statsGroupTopPoster extends TLObject {
     public int avg_chars;
     public int messages;

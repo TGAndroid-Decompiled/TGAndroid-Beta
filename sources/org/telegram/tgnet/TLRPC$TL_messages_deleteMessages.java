@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_messages_deleteMessages extends TLObject {
     public int flags;
     public ArrayList<Integer> id = new ArrayList<>();
@@ -34,11 +33,11 @@ public class TLRPC$TL_messages_deleteMessages extends TLObject {
             if (z) {
                 throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
             }
-        } else {
-            int readInt323 = abstractSerializedData.readInt32(z);
-            for (int i = 0; i < readInt323; i++) {
-                this.id.add(Integer.valueOf(abstractSerializedData.readInt32(z)));
-            }
+            return;
+        }
+        int readInt323 = abstractSerializedData.readInt32(z);
+        for (int i = 0; i < readInt323; i++) {
+            this.id.add(Integer.valueOf(abstractSerializedData.readInt32(z)));
         }
     }
 

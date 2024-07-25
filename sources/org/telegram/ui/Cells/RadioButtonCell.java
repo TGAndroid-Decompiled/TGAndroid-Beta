@@ -11,7 +11,6 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RadioButton;
-
 public class RadioButtonCell extends FrameLayout {
     private boolean needDivider;
     private RadioButton radioButton;

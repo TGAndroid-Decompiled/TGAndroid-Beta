@@ -11,7 +11,6 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.LayoutHelper;
-
 public class EditTextSettingsCell extends FrameLayout {
     private boolean needDivider;
     private EditTextBoldCursor textView;

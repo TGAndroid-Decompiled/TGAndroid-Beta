@@ -3,7 +3,6 @@ package org.telegram.tgnet.tl;
 import java.util.ArrayList;
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
-
 public class TL_stats$TL_broadcastStats extends TLObject {
     public static int constructor = 963421692;
     public TL_stats$TL_statsPercentValue enabled_notifications;

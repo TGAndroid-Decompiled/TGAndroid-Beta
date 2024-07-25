@@ -23,7 +23,6 @@ import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.boosts.cells.BaseCell;
 import org.telegram.ui.Components.StatusBadgeComponent;
-
 @SuppressLint({"ViewConstructor"})
 public class SelectorUserCell extends BaseCell {
     private TL_stories$TL_myBoost boost;
@@ -34,29 +33,29 @@ public class SelectorUserCell extends BaseCell {
     StatusBadgeComponent statusBadgeComponent;
     private TLRPC$User user;
 
-    @Override
-    protected boolean needCheck() {
-        return true;
-    }
-
-    public SelectorUserCell(Context context, Theme.ResourcesProvider resourcesProvider, boolean z) {
+    public SelectorUserCell(Context context, boolean z, Theme.ResourcesProvider resourcesProvider, boolean z2) {
         super(context, resourcesProvider);
         this.isOnline = new boolean[1];
         this.statusBadgeComponent = new StatusBadgeComponent(this);
         this.titleTextView.setTypeface(AndroidUtilities.bold());
         this.radioButton.setVisibility(8);
-        CheckBox2 checkBox2 = new CheckBox2(context, 21, resourcesProvider);
-        this.checkBox = checkBox2;
         if (z) {
-            checkBox2.setColor(Theme.key_checkbox, Theme.key_checkboxDisabled, Theme.key_dialogRoundCheckBoxCheck);
+            CheckBox2 checkBox2 = new CheckBox2(context, 21, resourcesProvider);
+            this.checkBox = checkBox2;
+            if (z2) {
+                checkBox2.setColor(Theme.key_checkbox, Theme.key_checkboxDisabled, Theme.key_dialogRoundCheckBoxCheck);
+            } else {
+                checkBox2.setColor(Theme.key_dialogRoundCheckBox, Theme.key_checkboxDisabled, Theme.key_dialogRoundCheckBoxCheck);
+            }
+            checkBox2.setDrawUnchecked(true);
+            checkBox2.setDrawBackgroundAsArc(10);
+            addView(checkBox2);
+            checkBox2.setChecked(false, false);
+            checkBox2.setLayoutParams(LayoutHelper.createFrame(24, 24.0f, (LocaleController.isRTL ? 5 : 3) | 16, 13.0f, 0.0f, 14.0f, 0.0f));
+            updateLayouts();
         } else {
-            checkBox2.setColor(Theme.key_dialogRoundCheckBox, Theme.key_checkboxDisabled, Theme.key_dialogRoundCheckBoxCheck);
+            this.checkBox = null;
         }
-        checkBox2.setDrawUnchecked(true);
-        checkBox2.setDrawBackgroundAsArc(10);
-        addView(checkBox2);
-        checkBox2.setChecked(false, false);
-        checkBox2.setLayoutParams(LayoutHelper.createFrame(24, 24.0f, (LocaleController.isRTL ? 5 : 3) | 16, 13.0f, 0.0f, 14.0f, 0.0f));
         ImageView imageView = new ImageView(context);
         this.optionsView = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -69,9 +68,9 @@ public class SelectorUserCell extends BaseCell {
         if (onClickListener != null) {
             this.optionsView.setVisibility(0);
             this.optionsView.setOnClickListener(onClickListener);
-        } else {
-            this.optionsView.setVisibility(8);
+            return;
         }
+        this.optionsView.setVisibility(8);
     }
 
     @Override
@@ -100,19 +99,27 @@ public class SelectorUserCell extends BaseCell {
 
     @Override
     public void setChecked(boolean z, boolean z2) {
-        if (this.checkBox.getVisibility() == 0) {
+        CheckBox2 checkBox2 = this.checkBox;
+        if (checkBox2 != null && checkBox2.getVisibility() == 0) {
             this.checkBox.setChecked(z, z2);
         }
     }
 
     public void setCheckboxAlpha(float f, boolean z) {
-        if (!z) {
-            this.checkBox.animate().cancel();
-            this.checkBox.setAlpha(f);
-        } else if (Math.abs(this.checkBox.getAlpha() - f) > 0.1d) {
-            this.checkBox.animate().cancel();
-            this.checkBox.animate().alpha(f).start();
+        CheckBox2 checkBox2 = this.checkBox;
+        if (checkBox2 == null) {
+            return;
         }
+        if (z) {
+            if (Math.abs(checkBox2.getAlpha() - f) > 0.1d) {
+                this.checkBox.animate().cancel();
+                this.checkBox.animate().alpha(f).start();
+                return;
+            }
+            return;
+        }
+        checkBox2.animate().cancel();
+        this.checkBox.setAlpha(f);
     }
 
     public void setUser(TLRPC$User tLRPC$User) {
@@ -127,7 +134,10 @@ public class SelectorUserCell extends BaseCell {
         zArr[0] = false;
         setSubtitle(LocaleController.formatUserStatus(UserConfig.selectedAccount, tLRPC$User, zArr));
         this.subtitleTextView.setTextColor(Theme.getColor(this.isOnline[0] ? Theme.key_dialogTextBlue2 : Theme.key_dialogTextGray3, this.resourcesProvider));
-        this.checkBox.setAlpha(1.0f);
+        CheckBox2 checkBox2 = this.checkBox;
+        if (checkBox2 != null) {
+            checkBox2.setAlpha(1.0f);
+        }
         this.titleTextView.setRightDrawable(this.statusBadgeComponent.updateDrawable(tLRPC$User, Theme.getColor(Theme.key_chats_verifiedBackground), false));
     }
 
@@ -192,11 +202,11 @@ public class SelectorUserCell extends BaseCell {
             this.titleTextView.animate().alpha(1.0f).start();
             this.subtitleTextView.animate().alpha(1.0f).start();
             setCheckboxAlpha(1.0f, true);
-        } else {
-            this.titleTextView.setAlpha(1.0f);
-            this.subtitleTextView.setAlpha(1.0f);
-            setCheckboxAlpha(1.0f, false);
+            return;
         }
+        this.titleTextView.setAlpha(1.0f);
+        this.subtitleTextView.setAlpha(1.0f);
+        setCheckboxAlpha(1.0f, false);
     }
 
     private String buildCountDownTime(long j) {
@@ -213,5 +223,10 @@ public class SelectorUserCell extends BaseCell {
         sb.append(":");
         sb.append(String.format("%02d", Long.valueOf(j5)));
         return sb.toString();
+    }
+
+    @Override
+    protected boolean needCheck() {
+        return this.checkBox != null;
     }
 }

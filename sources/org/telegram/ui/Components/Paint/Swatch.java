@@ -1,5 +1,4 @@
 package org.telegram.ui.Components.Paint;
-
 public class Swatch {
     public float brushWeight;
     public int color;

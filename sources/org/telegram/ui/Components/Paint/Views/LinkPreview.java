@@ -36,7 +36,6 @@ import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.Text;
-
 public class LinkPreview extends View {
     private boolean animated;
     public int backgroundColor;
@@ -48,7 +47,7 @@ public class LinkPreview extends View {
     private float descriptionLayoutLeft;
     private float descriptionLayoutWidth;
     private final TextPaint descriptionPaint;
-    private float h;
+    public float h;
     private boolean hasDescription;
     public boolean hasPhoto;
     private boolean hasSiteName;
@@ -86,7 +85,7 @@ public class LinkPreview extends View {
     private Text titleText;
     public int type;
     private boolean video;
-    private float w;
+    public float w;
     private WebPagePreview webpage;
     private final AnimatedFloat width;
 
@@ -138,8 +137,9 @@ public class LinkPreview extends View {
         this.video = true;
     }
 
-    private void setupLayout() {
+    public void setupLayout() {
         WebPagePreview webPagePreview;
+        double d;
         int color1;
         int i;
         int i2;
@@ -285,11 +285,10 @@ public class LinkPreview extends View {
         } else {
             int i9 = this.maxWidth;
             int i10 = this.padx;
-            float f13 = (i9 - i10) - i10;
             RectF rectF = this.padding;
-            float f14 = f13 - ((((rectF.left + 30.0f) + 3.25f) + rectF.right) * this.density);
+            float f13 = ((i9 - i10) - i10) - ((((rectF.left + 30.0f) + 3.25f) + rectF.right) * this.density);
             this.textScale = 1.0f;
-            this.layout = new StaticLayout(TextUtils.ellipsize(fromUrl, this.layoutPaint, (int) Math.ceil(r10), TextUtils.TruncateAt.END), this.layoutPaint, (int) Math.ceil(f14), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.layout = new StaticLayout(TextUtils.ellipsize(fromUrl, this.layoutPaint, (int) Math.ceil(d), TextUtils.TruncateAt.END), this.layoutPaint, (int) Math.ceil(f13), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.layoutWidth = 0.0f;
             this.layoutLeft = Float.MAX_VALUE;
             for (int i11 = 0; i11 < this.layout.getLineCount(); i11++) {
@@ -299,13 +298,13 @@ public class LinkPreview extends View {
             if (this.layout.getLineCount() > 2) {
                 this.textScale = 0.3f;
             } else {
-                this.textScale = Math.min(1.0f, f14 / this.layoutWidth);
+                this.textScale = Math.min(1.0f, f13 / this.layoutWidth);
             }
             RectF rectF2 = this.padding;
-            float f15 = rectF2.left + 30.0f + 3.25f + rectF2.right;
-            float f16 = this.density;
-            this.w = (f15 * f16) + (this.layoutWidth * this.textScale);
-            this.h = ((rectF2.top + rectF2.bottom) * f16) + Math.max(f16 * 30.0f, this.layout.getHeight() * this.textScale);
+            float f14 = rectF2.left + 30.0f + 3.25f + rectF2.right;
+            float f15 = this.density;
+            this.w = (f14 * f15) + (this.layoutWidth * this.textScale);
+            this.h = ((rectF2.top + rectF2.bottom) * f15) + Math.max(f15 * 30.0f, this.layout.getHeight() * this.textScale);
         }
         if (!this.animated) {
             this.captionAbove.set(this.messageAbove, true);

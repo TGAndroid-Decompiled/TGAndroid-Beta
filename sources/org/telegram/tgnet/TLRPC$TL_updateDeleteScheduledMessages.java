@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_updateDeleteScheduledMessages extends TLRPC$Update {
     public ArrayList<Integer> messages = new ArrayList<>();
     public TLRPC$Peer peer;
@@ -14,11 +13,11 @@ public class TLRPC$TL_updateDeleteScheduledMessages extends TLRPC$Update {
             if (z) {
                 throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
             }
-        } else {
-            int readInt322 = abstractSerializedData.readInt32(z);
-            for (int i = 0; i < readInt322; i++) {
-                this.messages.add(Integer.valueOf(abstractSerializedData.readInt32(z)));
-            }
+            return;
+        }
+        int readInt322 = abstractSerializedData.readInt32(z);
+        for (int i = 0; i < readInt322; i++) {
+            this.messages.add(Integer.valueOf(abstractSerializedData.readInt32(z)));
         }
     }
 

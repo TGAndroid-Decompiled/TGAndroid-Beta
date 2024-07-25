@@ -2,7 +2,6 @@ package kotlin.io;
 
 import java.io.Closeable;
 import kotlin.ExceptionsKt__ExceptionsKt;
-
 public final class CloseableKt {
     public static final void closeFinally(Closeable closeable, Throwable th) {
         if (closeable != null) {

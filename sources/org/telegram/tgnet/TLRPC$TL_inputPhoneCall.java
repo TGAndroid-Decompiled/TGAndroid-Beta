@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_inputPhoneCall extends TLObject {
     public long access_hash;
     public long id;

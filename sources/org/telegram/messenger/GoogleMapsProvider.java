@@ -37,7 +37,6 @@ import java.util.Map;
 import java.util.Objects;
 import org.telegram.messenger.GoogleMapsProvider;
 import org.telegram.messenger.IMapsProvider;
-
 public class GoogleMapsProvider implements IMapsProvider {
     @Override
     public String getMapsAppPackageName() {
@@ -111,10 +110,8 @@ public class GoogleMapsProvider implements IMapsProvider {
                 this.googleMap.setMapType(1);
             } else if (i == 1) {
                 this.googleMap.setMapType(2);
+            } else if (i != 2) {
             } else {
-                if (i != 2) {
-                    return;
-                }
                 this.googleMap.setMapType(4);
             }
         }

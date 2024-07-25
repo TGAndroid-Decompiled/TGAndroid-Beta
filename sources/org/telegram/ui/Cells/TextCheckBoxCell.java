@@ -12,7 +12,6 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CheckBoxSquare;
 import org.telegram.ui.Components.LayoutHelper;
-
 public class TextCheckBoxCell extends FrameLayout {
     private CheckBoxSquare checkBox;
     private boolean needDivider;

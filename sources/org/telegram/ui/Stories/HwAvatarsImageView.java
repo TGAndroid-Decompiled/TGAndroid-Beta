@@ -3,7 +3,6 @@ package org.telegram.ui.Stories;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import org.telegram.ui.Components.AvatarsImageView;
-
 @SuppressLint({"ViewConstructor"})
 class HwAvatarsImageView extends AvatarsImageView {
     public HwAvatarsImageView(Context context, boolean z) {

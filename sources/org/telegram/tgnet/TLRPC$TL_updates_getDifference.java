@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updates_getDifference extends TLObject {
     public int date;
     public int flags;

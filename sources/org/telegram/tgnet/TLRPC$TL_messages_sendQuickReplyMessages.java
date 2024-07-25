@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_messages_sendQuickReplyMessages extends TLObject {
     public TLRPC$InputPeer peer;
     public int shortcut_id;

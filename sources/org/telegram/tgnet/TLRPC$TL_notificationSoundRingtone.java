@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_notificationSoundRingtone extends TLRPC$NotificationSound {
     public long id;
 

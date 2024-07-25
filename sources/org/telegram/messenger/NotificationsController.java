@@ -101,7 +101,6 @@ import org.telegram.ui.Components.spoilers.SpoilerEffect;
 import org.telegram.ui.PopupNotificationActivity;
 import org.telegram.ui.Stories.recorder.StoryEntry;
 import org.webrtc.MediaStreamTrack;
-
 public class NotificationsController extends BaseController {
     public static final String EXTRA_VOICE_REPLY = "extra_voice_reply";
     private static volatile NotificationsController[] Instance = null;
@@ -584,7 +583,7 @@ public class NotificationsController extends BaseController {
 
     public void lambda$forceShowPopupForReply$5(ArrayList arrayList) {
         this.popupReplyMessages = arrayList;
-        Intent intent = new Intent(ApplicationLoader.applicationContext, (Class<?>) PopupNotificationActivity.class);
+        Intent intent = new Intent(ApplicationLoader.applicationContext, PopupNotificationActivity.class);
         intent.putExtra("force", true);
         intent.putExtra("currentAccount", this.currentAccount);
         intent.setFlags(268763140);
@@ -1090,7 +1089,7 @@ public class NotificationsController extends BaseController {
         this.popupMessages.addAll(0, arrayList);
         if (ApplicationLoader.mainInterfacePaused || !ApplicationLoader.isScreenOn) {
             if (i == 3 || ((i == 1 && ApplicationLoader.isScreenOn) || (i == 2 && !ApplicationLoader.isScreenOn))) {
-                Intent intent = new Intent(ApplicationLoader.applicationContext, (Class<?>) PopupNotificationActivity.class);
+                Intent intent = new Intent(ApplicationLoader.applicationContext, PopupNotificationActivity.class);
                 intent.setFlags(268763140);
                 try {
                     ApplicationLoader.applicationContext.startActivity(intent);
@@ -1488,9 +1487,8 @@ public class NotificationsController extends BaseController {
             if (messageObject.messageOwner.entities.get(i) instanceof TLRPC$TL_messageEntitySpoiler) {
                 TLRPC$TL_messageEntitySpoiler tLRPC$TL_messageEntitySpoiler = (TLRPC$TL_messageEntitySpoiler) messageObject.messageOwner.entities.get(i);
                 for (int i2 = 0; i2 < tLRPC$TL_messageEntitySpoiler.length; i2++) {
-                    int i3 = tLRPC$TL_messageEntitySpoiler.offset + i2;
                     char[] cArr = this.spoilerChars;
-                    sb.setCharAt(i3, cArr[i2 % cArr.length]);
+                    sb.setCharAt(tLRPC$TL_messageEntitySpoiler.offset + i2, cArr[i2 % cArr.length]);
                 }
             }
         }
@@ -1503,11 +1501,12 @@ public class NotificationsController extends BaseController {
 
     private void scheduleNotificationRepeat() {
         try {
-            Intent intent = new Intent(ApplicationLoader.applicationContext, (Class<?>) NotificationRepeat.class);
+            Intent intent = new Intent(ApplicationLoader.applicationContext, NotificationRepeat.class);
             intent.putExtra("currentAccount", this.currentAccount);
             PendingIntent service = PendingIntent.getService(ApplicationLoader.applicationContext, 0, intent, ConnectionsManager.FileTypeVideo);
-            if (getAccountInstance().getNotificationsSettings().getInt("repeat_messages", 60) > 0 && this.personalCount > 0) {
-                this.alarmManager.set(2, SystemClock.elapsedRealtime() + (r1 * 60 * 1000), service);
+            int i = getAccountInstance().getNotificationsSettings().getInt("repeat_messages", 60);
+            if (i > 0 && this.personalCount > 0) {
+                this.alarmManager.set(2, SystemClock.elapsedRealtime() + (i * 60 * 1000), service);
             } else {
                 this.alarmManager.cancel(service);
             }
@@ -1686,9 +1685,9 @@ public class NotificationsController extends BaseController {
         if (i >= 11 && i <= 22) {
             notificationManager.cancel(this.notificationId);
             showOrUpdateNotification(true);
-        } else {
-            scheduleNotificationRepeat();
+            return;
         }
+        scheduleNotificationRepeat();
     }
 
     private boolean isEmptyVibration(long[] jArr) {
@@ -1794,7 +1793,8 @@ public class NotificationsController extends BaseController {
                 }
                 String string = notificationsSettings.getString(str, null);
                 if (string != null) {
-                    edit.remove(str).remove(str + "_s");
+                    SharedPreferences.Editor remove = edit.remove(str);
+                    remove.remove(str + "_s");
                     try {
                         systemNotificationManager.deleteNotificationChannel(string);
                     } catch (Exception e) {
@@ -1820,7 +1820,8 @@ public class NotificationsController extends BaseController {
                 }
                 String string2 = notificationsSettings.getString(str2, null);
                 if (string2 != null) {
-                    edit.remove(str2).remove(str2 + "_s");
+                    SharedPreferences.Editor remove2 = edit.remove(str2);
+                    remove2.remove(str2 + "_s");
                     try {
                         systemNotificationManager.deleteNotificationChannel(string2);
                     } catch (Exception e2) {
@@ -1974,58 +1975,54 @@ public class NotificationsController extends BaseController {
         List<NotificationChannelGroup> notificationChannelGroups = systemNotificationManager.getNotificationChannelGroups();
         String str2 = "channels" + this.currentAccount;
         String str3 = "groups" + this.currentAccount;
-        String str4 = "private" + this.currentAccount;
-        String str5 = "stories" + this.currentAccount;
-        String str6 = "reactions" + this.currentAccount;
-        String str7 = "other" + this.currentAccount;
         int size2 = notificationChannelGroups.size();
-        String str8 = str7;
-        String str9 = str6;
-        String str10 = str5;
-        String str11 = str4;
+        String str4 = "other" + this.currentAccount;
+        String str5 = "reactions" + this.currentAccount;
+        String str6 = "stories" + this.currentAccount;
+        String str7 = "private" + this.currentAccount;
         for (int i2 = 0; i2 < size2; i2++) {
             String id2 = notificationChannelGroups.get(i2).getId();
             if (str2 != null && str2.equals(id2)) {
                 str2 = null;
             } else if (str3 != null && str3.equals(id2)) {
                 str3 = null;
-            } else if (str10 != null && str10.equals(id2)) {
-                str10 = null;
-            } else if (str9 != null && str9.equals(id2)) {
-                str9 = null;
-            } else if (str11 != null && str11.equals(id2)) {
-                str11 = null;
-            } else if (str8 != null && str8.equals(id2)) {
-                str8 = null;
+            } else if (str6 != null && str6.equals(id2)) {
+                str6 = null;
+            } else if (str5 != null && str5.equals(id2)) {
+                str5 = null;
+            } else if (str7 != null && str7.equals(id2)) {
+                str7 = null;
+            } else if (str4 != null && str4.equals(id2)) {
+                str4 = null;
             }
-            if (str2 == null && str10 == null && str9 == null && str3 == null && str11 == null && str8 == null) {
+            if (str2 == null && str6 == null && str5 == null && str3 == null && str7 == null && str4 == null) {
                 break;
             }
         }
-        if (str2 != null || str3 != null || str9 != null || str10 != null || str11 != null || str8 != null) {
+        if (str2 != null || str3 != null || str5 != null || str6 != null || str7 != null || str4 != null) {
             TLRPC$User user = getMessagesController().getUser(Long.valueOf(getUserConfig().getClientUserId()));
             if (user == null) {
                 getUserConfig().getCurrentUser();
             }
-            String str12 = user != null ? " (" + ContactsController.formatName(user.first_name, user.last_name) + ")" : "";
+            String str8 = user != null ? " (" + ContactsController.formatName(user.first_name, user.last_name) + ")" : "";
             ArrayList arrayList = new ArrayList();
             if (str2 != null) {
-                arrayList.add(new NotificationChannelGroup(str2, LocaleController.getString("NotificationsChannels", R.string.NotificationsChannels) + str12));
+                arrayList.add(new NotificationChannelGroup(str2, LocaleController.getString("NotificationsChannels", R.string.NotificationsChannels) + str8));
             }
             if (str3 != null) {
-                arrayList.add(new NotificationChannelGroup(str3, LocaleController.getString("NotificationsGroups", R.string.NotificationsGroups) + str12));
+                arrayList.add(new NotificationChannelGroup(str3, LocaleController.getString("NotificationsGroups", R.string.NotificationsGroups) + str8));
             }
-            if (str10 != null) {
-                arrayList.add(new NotificationChannelGroup(str10, LocaleController.getString(R.string.NotificationsStories) + str12));
+            if (str6 != null) {
+                arrayList.add(new NotificationChannelGroup(str6, LocaleController.getString(R.string.NotificationsStories) + str8));
             }
-            if (str9 != null) {
-                arrayList.add(new NotificationChannelGroup(str9, LocaleController.getString(R.string.NotificationsReactions) + str12));
+            if (str5 != null) {
+                arrayList.add(new NotificationChannelGroup(str5, LocaleController.getString(R.string.NotificationsReactions) + str8));
             }
-            if (str11 != null) {
-                arrayList.add(new NotificationChannelGroup(str11, LocaleController.getString("NotificationsPrivateChats", R.string.NotificationsPrivateChats) + str12));
+            if (str7 != null) {
+                arrayList.add(new NotificationChannelGroup(str7, LocaleController.getString("NotificationsPrivateChats", R.string.NotificationsPrivateChats) + str8));
             }
-            if (str8 != null) {
-                arrayList.add(new NotificationChannelGroup(str8, LocaleController.getString("NotificationsOther", R.string.NotificationsOther) + str12));
+            if (str4 != null) {
+                arrayList.add(new NotificationChannelGroup(str4, LocaleController.getString("NotificationsOther", R.string.NotificationsOther) + str8));
             }
             systemNotificationManager.createNotificationChannelGroups(arrayList);
         }
@@ -2175,13 +2172,13 @@ public class NotificationsController extends BaseController {
             return null;
         }
         int indexOf = str.indexOf(32);
-        if (indexOf < 0) {
-            return str;
+        if (indexOf >= 0) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(str.substring(0, indexOf));
+            sb.append(str.endsWith("…") ? "…" : "");
+            return sb.toString();
         }
-        StringBuilder sb = new StringBuilder();
-        sb.append(str.substring(0, indexOf));
-        sb.append(str.endsWith("…") ? "…" : "");
-        return sb.toString();
+        return str;
     }
 
     private Pair<Integer, Boolean> parseStoryPushes(ArrayList<String> arrayList, ArrayList<Object> arrayList2) {
@@ -2541,7 +2538,8 @@ public class NotificationsController extends BaseController {
     public void clearDialogNotificationsSettings(long j, long j2) {
         SharedPreferences.Editor edit = getAccountInstance().getNotificationsSettings().edit();
         String sharedPrefKey = getSharedPrefKey(j, j2);
-        edit.remove(NotificationsSettingsFacade.PROPERTY_NOTIFY + sharedPrefKey).remove(NotificationsSettingsFacade.PROPERTY_CUSTOM + sharedPrefKey);
+        SharedPreferences.Editor remove = edit.remove(NotificationsSettingsFacade.PROPERTY_NOTIFY + sharedPrefKey);
+        remove.remove(NotificationsSettingsFacade.PROPERTY_CUSTOM + sharedPrefKey);
         getMessagesStorage().setDialogFlags(j, 0L);
         TLRPC$Dialog tLRPC$Dialog = getMessagesController().dialogs_dict.get(j);
         if (tLRPC$Dialog != null) {
@@ -2752,8 +2750,7 @@ public class NotificationsController extends BaseController {
             TLRPC$TL_notificationSoundRingtone tLRPC$TL_notificationSoundRingtone = new TLRPC$TL_notificationSoundRingtone();
             tLRPC$TL_notificationSoundRingtone.id = j;
             return tLRPC$TL_notificationSoundRingtone;
-        }
-        if (string != null) {
+        } else if (string != null) {
             if (string.equalsIgnoreCase("NoSound")) {
                 return new TLRPC$TL_notificationSoundNone();
             }
@@ -2761,8 +2758,9 @@ public class NotificationsController extends BaseController {
             tLRPC$TL_notificationSoundLocal.title = sharedPreferences.getString(str, null);
             tLRPC$TL_notificationSoundLocal.data = string;
             return tLRPC$TL_notificationSoundLocal;
+        } else {
+            return new TLRPC$TL_notificationSoundDefault();
         }
-        return new TLRPC$TL_notificationSoundDefault();
     }
 
     public boolean isGlobalNotificationsEnabled(long j, boolean z, boolean z2) {
@@ -2832,9 +2830,8 @@ public class NotificationsController extends BaseController {
 
     public void lambda$loadTopicsNotificationsExceptions$51(long j, final Consumer consumer) {
         final HashSet hashSet = new HashSet();
-        Iterator<Map.Entry<String, ?>> it = MessagesController.getNotificationsSettings(this.currentAccount).getAll().entrySet().iterator();
-        while (it.hasNext()) {
-            String key = it.next().getKey();
+        for (Map.Entry<String, ?> entry : MessagesController.getNotificationsSettings(this.currentAccount).getAll().entrySet()) {
+            String key = entry.getKey();
             if (key.startsWith(NotificationsSettingsFacade.PROPERTY_NOTIFY + j)) {
                 int intValue = Utilities.parseInt((CharSequence) key.replace(NotificationsSettingsFacade.PROPERTY_NOTIFY + j, "")).intValue();
                 if (intValue != 0 && getMessagesController().isDialogMuted(j, intValue) != getMessagesController().isDialogMuted(j, 0L)) {
@@ -2932,9 +2929,8 @@ public class NotificationsController extends BaseController {
     private void updateStoryPushesRunnable() {
         long j = Long.MAX_VALUE;
         for (int i = 0; i < this.storyPushMessages.size(); i++) {
-            Iterator<Pair<Long, Long>> it = this.storyPushMessages.get(i).dateByIds.values().iterator();
-            while (it.hasNext()) {
-                j = Math.min(j, ((Long) it.next().second).longValue());
+            for (Pair<Long, Long> pair : this.storyPushMessages.get(i).dateByIds.values()) {
+                j = Math.min(j, ((Long) pair.second).longValue());
             }
         }
         DispatchQueue dispatchQueue = notificationsQueue;

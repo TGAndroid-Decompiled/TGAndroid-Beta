@@ -44,7 +44,6 @@ import org.telegram.tgnet.TLRPC$TL_readParticipantDate;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$Vector;
 import org.telegram.ui.ActionBar.Theme;
-
 public class ReactedHeaderView extends FrameLayout {
     private AvatarsImageView avatarsImageView;
     private int currentAccount;
@@ -213,8 +212,7 @@ public class ReactedHeaderView extends FrameLayout {
             while (true) {
                 if (i >= this.users.size()) {
                     break;
-                }
-                if (MessageObject.getObjectPeerId(this.users.get(i).user) == MessageObject.getObjectPeerId(userSeen.user)) {
+                } else if (MessageObject.getObjectPeerId(this.users.get(i).user) == MessageObject.getObjectPeerId(userSeen.user)) {
                     if (userSeen.date > 0) {
                         this.users.get(i).date = userSeen.date;
                     }
@@ -356,11 +354,10 @@ public class ReactedHeaderView extends FrameLayout {
                     if (i2 >= this.users.size()) {
                         z3 = false;
                         break;
+                    } else if (this.users.get(i2).dialogId == next.id) {
+                        z3 = true;
+                        break;
                     } else {
-                        if (this.users.get(i2).dialogId == next.id) {
-                            z3 = true;
-                            break;
-                        }
                         i2++;
                     }
                 }
@@ -379,11 +376,10 @@ public class ReactedHeaderView extends FrameLayout {
                     if (i3 >= this.users.size()) {
                         z2 = false;
                         break;
+                    } else if (this.users.get(i3).dialogId == (-next2.id)) {
+                        z2 = true;
+                        break;
                     } else {
-                        if (this.users.get(i3).dialogId == (-next2.id)) {
-                            z2 = true;
-                            break;
-                        }
                         i3++;
                     }
                 }

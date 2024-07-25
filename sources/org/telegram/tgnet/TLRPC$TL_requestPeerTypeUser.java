@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_requestPeerTypeUser extends TLRPC$RequestPeerType {
     public Boolean bot;
     public Boolean premium;

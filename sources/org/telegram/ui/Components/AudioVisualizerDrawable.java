@@ -7,7 +7,6 @@ import java.util.Random;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
 import org.telegram.ui.ActionBar.Theme;
-
 public class AudioVisualizerDrawable {
     private float idleScale;
     private boolean idleScaleInc;

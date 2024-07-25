@@ -1,5 +1,4 @@
 package org.webrtc;
-
 public interface VideoSink {
 
     public final class CC {

@@ -14,7 +14,6 @@ import org.telegram.SQLite.SQLiteException;
 import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.messenger.CacheByChatsController;
 import org.telegram.ui.Storage.CacheModel;
-
 public class FilePathDatabase {
     private static final String DATABASE_BACKUP_NAME = "file_to_path_backup";
     private static final String DATABASE_NAME = "file_to_path";
@@ -80,11 +79,10 @@ public class FilePathDatabase {
                 if (!z && restoreBackup()) {
                     createDatabase(i + 1, true);
                     return;
-                } else {
-                    this.cacheFile.delete();
-                    this.shmCacheFile.delete();
-                    createDatabase(i + 1, false);
                 }
+                this.cacheFile.delete();
+                this.shmCacheFile.delete();
+                createDatabase(i + 1, false);
             }
             if (BuildVars.DEBUG_VERSION) {
                 FileLog.e(e);
@@ -143,15 +141,15 @@ public class FilePathDatabase {
             filesDirFixed = file;
         }
         File file2 = new File(filesDirFixed, "file_to_path_backup.db");
-        if (!file2.exists()) {
-            return false;
+        if (file2.exists()) {
+            try {
+                return AndroidUtilities.copyFile(file2, this.cacheFile);
+            } catch (IOException e) {
+                FileLog.e(e);
+                return false;
+            }
         }
-        try {
-            return AndroidUtilities.copyFile(file2, this.cacheFile);
-        } catch (IOException e) {
-            FileLog.e(e);
-            return false;
-        }
+        return false;
     }
 
     public java.lang.String getPath(final long r19, final int r21, final int r22, boolean r23) {
@@ -300,7 +298,8 @@ public class FilePathDatabase {
         ensureDatabaseCreated();
         try {
             try {
-                if (this.database.queryFinalized("SELECT document_id FROM paths WHERE path = '" + str + "'", new Object[0]).next()) {
+                SQLiteDatabase sQLiteDatabase = this.database;
+                if (sQLiteDatabase.queryFinalized("SELECT document_id FROM paths WHERE path = '" + str + "'", new Object[0]).next()) {
                     zArr[0] = true;
                 }
             } catch (Exception e) {
@@ -364,7 +363,8 @@ public class FilePathDatabase {
         int i3 = 0;
         try {
             try {
-                sQLiteCursor = this.database.queryFinalized("SELECT dialog_id, message_id, message_type FROM paths_by_dialog_id WHERE path = '" + shield(file.getPath()) + "'", new Object[0]);
+                SQLiteDatabase sQLiteDatabase = this.database;
+                sQLiteCursor = sQLiteDatabase.queryFinalized("SELECT dialog_id, message_id, message_type FROM paths_by_dialog_id WHERE path = '" + shield(file.getPath()) + "'", new Object[0]);
                 if (sQLiteCursor.next()) {
                     j = sQLiteCursor.longValue(0);
                     i = sQLiteCursor.intValue(1);
@@ -423,7 +423,8 @@ public class FilePathDatabase {
             ensureDatabaseCreated();
             this.database.beginTransaction();
             for (int i = 0; i < list.size(); i++) {
-                this.database.executeFast("DELETE FROM paths_by_dialog_id WHERE path = '" + shield(((CacheModel.FileInfo) list.get(i)).file.getPath()) + "'").stepThis().dispose();
+                SQLiteDatabase sQLiteDatabase = this.database;
+                sQLiteDatabase.executeFast("DELETE FROM paths_by_dialog_id WHERE path = '" + shield(((CacheModel.FileInfo) list.get(i)).file.getPath()) + "'").stepThis().dispose();
             }
         } finally {
             try {
@@ -518,7 +519,8 @@ public class FilePathDatabase {
         ensureDatabaseCreated();
         try {
             try {
-                SQLiteCursor queryFinalized = this.database.queryFinalized("SELECT flags FROM paths WHERE path = '" + str + "'", new Object[0]);
+                SQLiteDatabase sQLiteDatabase = this.database;
+                SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized("SELECT flags FROM paths WHERE path = '" + str + "'", new Object[0]);
                 if (queryFinalized.next()) {
                     boolean z = true;
                     if ((queryFinalized.intValue(0) & 1) == 0) {

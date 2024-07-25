@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public abstract class TLRPC$ReplyMarkup extends TLObject {
     public int flags;
     public boolean is_persistent;

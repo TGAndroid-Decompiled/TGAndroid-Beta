@@ -27,7 +27,6 @@ import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Stories.PeerStoriesView;
 import org.telegram.ui.Stories.StoryCaptionView;
-
 public class PreviewHighlightView extends FrameLayout {
     private final FrameLayout bottom;
     private int currentAccount;
@@ -128,9 +127,8 @@ public class PreviewHighlightView extends FrameLayout {
         if (z) {
             if (this.shownTop == z2) {
                 return;
-            } else {
-                this.shownTop = z2;
             }
+            this.shownTop = z2;
         } else if (this.shownBottom == z2) {
             return;
         } else {

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_account_saveSecureValue extends TLObject {
     public long secure_secret_id;
     public TLRPC$TL_inputSecureValue value;

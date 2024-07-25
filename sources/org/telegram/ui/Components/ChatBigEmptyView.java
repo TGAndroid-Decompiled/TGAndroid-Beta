@@ -13,7 +13,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
-
 public class ChatBigEmptyView extends LinearLayout {
     private ArrayList<ImageView> imageViews;
     private final Theme.ResourcesProvider resourcesProvider;

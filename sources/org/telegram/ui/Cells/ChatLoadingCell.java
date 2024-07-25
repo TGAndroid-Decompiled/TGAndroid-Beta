@@ -10,7 +10,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RadialProgressView;
-
 public class ChatLoadingCell extends FrameLayout {
     private int backgroundHeight;
     private FrameLayout frameLayout;

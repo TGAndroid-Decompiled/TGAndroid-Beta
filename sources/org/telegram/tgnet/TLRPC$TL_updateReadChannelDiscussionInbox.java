@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updateReadChannelDiscussionInbox extends TLRPC$Update {
     public long broadcast_id;
     public int broadcast_post;

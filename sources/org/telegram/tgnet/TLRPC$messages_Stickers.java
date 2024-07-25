@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$messages_Stickers extends TLObject {
     public static TLRPC$messages_Stickers TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$messages_Stickers tLRPC$messages_Stickers;

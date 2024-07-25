@@ -18,7 +18,6 @@ import org.telegram.tgnet.TLRPC$TL_keyboardButtonWebView;
 import org.telegram.tgnet.TLRPC$TL_replyKeyboardMarkup;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
-
 public class BotKeyboardView extends LinearLayout {
     private TLRPC$TL_replyKeyboardMarkup botButtons;
     private int buttonHeight;
@@ -57,9 +56,8 @@ public class BotKeyboardView extends LinearLayout {
         AndroidUtilities.setScrollViewEdgeEffectColor(scrollView, getThemedColor(i));
         setBackgroundColor(getThemedColor(i));
         for (int i2 = 0; i2 < this.buttonViews.size(); i2++) {
-            TextView textView = this.buttonViews.get(i2);
             int i3 = Theme.key_chat_botKeyboardButtonText;
-            textView.setTextColor(getThemedColor(i3));
+            this.buttonViews.get(i2).setTextColor(getThemedColor(i3));
             this.buttonViews.get(i2).setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(4.0f), getThemedColor(Theme.key_chat_botKeyboardButtonBackground), getThemedColor(Theme.key_chat_botKeyboardButtonBackgroundPressed)));
             this.buttonIcons.get(i2).setColorFilter(getThemedColor(i3));
         }

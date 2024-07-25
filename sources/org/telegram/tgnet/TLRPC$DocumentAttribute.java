@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$DocumentAttribute extends TLObject {
     public String alt;
     public double duration;
@@ -15,6 +14,7 @@ public abstract class TLRPC$DocumentAttribute extends TLObject {
     public TLRPC$InputStickerSet stickerset;
     public boolean supports_streaming;
     public String title;
+    public double video_start_ts;
     public boolean voice;
     public int w;
     public byte[] waveform;
@@ -43,7 +43,40 @@ public abstract class TLRPC$DocumentAttribute extends TLObject {
                 };
                 break;
             case -745541182:
-                tLRPC$TL_documentAttributeHasStickers = new TLRPC$TL_documentAttributeVideo();
+                tLRPC$TL_documentAttributeHasStickers = new TLRPC$TL_documentAttributeVideo() {
+                    @Override
+                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                        int readInt32 = abstractSerializedData2.readInt32(z2);
+                        this.flags = readInt32;
+                        this.round_message = (readInt32 & 1) != 0;
+                        this.supports_streaming = (readInt32 & 2) != 0;
+                        this.nosound = (readInt32 & 8) != 0;
+                        this.duration = abstractSerializedData2.readDouble(z2);
+                        this.w = abstractSerializedData2.readInt32(z2);
+                        this.h = abstractSerializedData2.readInt32(z2);
+                        if ((this.flags & 4) != 0) {
+                            this.preload_prefix_size = abstractSerializedData2.readInt32(z2);
+                        }
+                    }
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(-745541182);
+                        int i2 = this.round_message ? this.flags | 1 : this.flags & (-2);
+                        this.flags = i2;
+                        int i3 = this.supports_streaming ? i2 | 2 : i2 & (-3);
+                        this.flags = i3;
+                        int i4 = this.nosound ? i3 | 8 : i3 & (-9);
+                        this.flags = i4;
+                        abstractSerializedData2.writeInt32(i4);
+                        abstractSerializedData2.writeDouble(this.duration);
+                        abstractSerializedData2.writeInt32(this.w);
+                        abstractSerializedData2.writeInt32(this.h);
+                        if ((this.flags & 4) != 0) {
+                            abstractSerializedData2.writeInt32(this.preload_prefix_size);
+                        }
+                    }
+                };
                 break;
             case -556656416:
                 tLRPC$TL_documentAttributeHasStickers = new TLRPC$TL_documentAttributeAudio() {
@@ -100,6 +133,9 @@ public abstract class TLRPC$DocumentAttribute extends TLObject {
                 break;
             case 358154344:
                 tLRPC$TL_documentAttributeHasStickers = new TLRPC$TL_documentAttributeFilename();
+                break;
+            case 389652397:
+                tLRPC$TL_documentAttributeHasStickers = new TLRPC$TL_documentAttributeVideo();
                 break;
             case 978674434:
                 tLRPC$TL_documentAttributeHasStickers = new TLRPC$TL_documentAttributeSticker_layer55();

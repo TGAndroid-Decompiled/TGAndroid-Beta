@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channelParticipantsBanned extends TLRPC$ChannelParticipantsFilter {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

@@ -16,6 +16,7 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.StaticLayout;
 import android.text.TextUtils;
 import android.text.style.CharacterStyle;
 import android.text.style.URLSpan;
@@ -70,7 +71,6 @@ import org.telegram.ui.Components.MessagePreviewView;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ViewPagerFixed;
 import org.telegram.ui.PinchToZoomHelper;
-
 public class MessagePreviewView extends FrameLayout {
     Runnable changeBoundsRunnable;
     final ChatActivity chatActivity;
@@ -198,7 +198,7 @@ public class MessagePreviewView extends FrameLayout {
                     Property property = View.ALPHA;
                     float[] fArr = new float[1];
                     fArr[0] = !z ? 1.0f : 0.0f;
-                    arrayList.add(ObjectAnimator.ofFloat(actionBarMenuSubItem2, (Property<ActionBarMenuSubItem, Float>) property, fArr));
+                    arrayList.add(ObjectAnimator.ofFloat(actionBarMenuSubItem2, property, fArr));
                 }
                 ActionBarMenuSubItem actionBarMenuSubItem3 = this.clearQuoteButton;
                 if (actionBarMenuSubItem3 != null) {
@@ -207,7 +207,7 @@ public class MessagePreviewView extends FrameLayout {
                     Property property2 = View.ALPHA;
                     float[] fArr2 = new float[1];
                     fArr2[0] = z ? 1.0f : 0.0f;
-                    arrayList.add(ObjectAnimator.ofFloat(actionBarMenuSubItem4, (Property<ActionBarMenuSubItem, Float>) property2, fArr2));
+                    arrayList.add(ObjectAnimator.ofFloat(actionBarMenuSubItem4, property2, fArr2));
                 }
                 ActionBarMenuSubItem actionBarMenuSubItem5 = this.replyAnotherChatButton;
                 if (actionBarMenuSubItem5 != null) {
@@ -216,7 +216,7 @@ public class MessagePreviewView extends FrameLayout {
                     Property property3 = View.ALPHA;
                     float[] fArr3 = new float[1];
                     fArr3[0] = !z ? 1.0f : 0.0f;
-                    arrayList.add(ObjectAnimator.ofFloat(actionBarMenuSubItem6, (Property<ActionBarMenuSubItem, Float>) property3, fArr3));
+                    arrayList.add(ObjectAnimator.ofFloat(actionBarMenuSubItem6, property3, fArr3));
                 }
                 ActionBarMenuSubItem actionBarMenuSubItem7 = this.quoteAnotherChatButton;
                 if (actionBarMenuSubItem7 != null) {
@@ -225,7 +225,7 @@ public class MessagePreviewView extends FrameLayout {
                     Property property4 = View.ALPHA;
                     float[] fArr4 = new float[1];
                     fArr4[0] = z ? 1.0f : 0.0f;
-                    arrayList.add(ObjectAnimator.ofFloat(actionBarMenuSubItem8, (Property<ActionBarMenuSubItem, Float>) property4, fArr4));
+                    arrayList.add(ObjectAnimator.ofFloat(actionBarMenuSubItem8, property4, fArr4));
                 }
                 this.quoteSwitcher.playTogether(arrayList);
                 this.quoteSwitcher.setDuration(360L);
@@ -291,23 +291,23 @@ public class MessagePreviewView extends FrameLayout {
         public MessageObject getReplyMessage(MessageObject messageObject) {
             MessageObject.GroupedMessages valueAt;
             MessagePreviewParams.Messages messages = MessagePreviewView.this.messagePreviewParams.replyMessage;
-            if (messages == null) {
-                return null;
-            }
-            LongSparseArray<MessageObject.GroupedMessages> longSparseArray = messages.groupedMessagesMap;
-            if (longSparseArray != null && longSparseArray.size() > 0 && (valueAt = MessagePreviewView.this.messagePreviewParams.replyMessage.groupedMessagesMap.valueAt(0)) != null) {
-                if (valueAt.isDocuments) {
-                    if (messageObject != null) {
-                        return messageObject;
+            if (messages != null) {
+                LongSparseArray<MessageObject.GroupedMessages> longSparseArray = messages.groupedMessagesMap;
+                if (longSparseArray != null && longSparseArray.size() > 0 && (valueAt = MessagePreviewView.this.messagePreviewParams.replyMessage.groupedMessagesMap.valueAt(0)) != null) {
+                    if (valueAt.isDocuments) {
+                        if (messageObject != null) {
+                            return messageObject;
+                        }
+                        ChatActivity.ReplyQuote replyQuote = MessagePreviewView.this.messagePreviewParams.quote;
+                        if (replyQuote != null) {
+                            return replyQuote.message;
+                        }
                     }
-                    ChatActivity.ReplyQuote replyQuote = MessagePreviewView.this.messagePreviewParams.quote;
-                    if (replyQuote != null) {
-                        return replyQuote.message;
-                    }
+                    return valueAt.captionMessage;
                 }
-                return valueAt.captionMessage;
+                return MessagePreviewView.this.messagePreviewParams.replyMessage.messages.get(0);
             }
-            return MessagePreviewView.this.messagePreviewParams.replyMessage.messages.get(0);
+            return null;
         }
 
         public Page(android.content.Context r26, int r27) {
@@ -346,7 +346,7 @@ public class MessagePreviewView extends FrameLayout {
             }
 
             @Override
-            public void onAllAnimationsDone() {
+            protected void onAllAnimationsDone() {
                 super.onAllAnimationsDone();
                 Runnable runnable = this.finishRunnable;
                 if (runnable != null) {
@@ -684,10 +684,10 @@ public class MessagePreviewView extends FrameLayout {
             if (MessagePreviewView.this.messagePreviewParams.webpageTop) {
                 RecyclerListView recyclerListView = this.chatListView;
                 recyclerListView.smoothScrollBy(0, -recyclerListView.computeVerticalScrollOffset(), 250, ChatListItemAnimator.DEFAULT_INTERPOLATOR);
-            } else {
-                RecyclerListView recyclerListView2 = this.chatListView;
-                recyclerListView2.smoothScrollBy(0, recyclerListView2.computeVerticalScrollRange() - (this.chatListView.computeVerticalScrollOffset() + this.chatListView.computeVerticalScrollExtent()), 250, ChatListItemAnimator.DEFAULT_INTERPOLATOR);
+                return;
             }
+            RecyclerListView recyclerListView2 = this.chatListView;
+            recyclerListView2.smoothScrollBy(0, recyclerListView2.computeVerticalScrollRange() - (this.chatListView.computeVerticalScrollOffset() + this.chatListView.computeVerticalScrollExtent()), 250, ChatListItemAnimator.DEFAULT_INTERPOLATOR);
         }
 
         public void showQuoteLengthError() {
@@ -717,11 +717,10 @@ public class MessagePreviewView extends FrameLayout {
                     this.actionBar.setTitle(LocaleController.getString(R.string.PreviewQuoteUpdate), z);
                     this.actionBar.setSubtitle(LocaleController.getString(R.string.PreviewQuoteUpdateSubtitle), z);
                     return;
-                } else {
-                    this.actionBar.setTitle(LocaleController.getString(R.string.MessageOptionsReplyTitle), z);
-                    this.actionBar.setSubtitle(MessagePreviewView.this.messagePreviewParams.replyMessage.hasText ? LocaleController.getString(R.string.MessageOptionsReplySubtitle) : "", z);
-                    return;
                 }
+                this.actionBar.setTitle(LocaleController.getString(R.string.MessageOptionsReplyTitle), z);
+                this.actionBar.setSubtitle(MessagePreviewView.this.messagePreviewParams.replyMessage.hasText ? LocaleController.getString(R.string.MessageOptionsReplySubtitle) : "", z);
+                return;
             }
             ActionBar actionBar = this.actionBar;
             MessagePreviewParams.Messages messages = MessagePreviewView.this.messagePreviewParams.forwardMessages;
@@ -1027,11 +1026,11 @@ public class MessagePreviewView extends FrameLayout {
                 this.chatPreviewContainer.setTranslationY(0.0f);
                 this.menu.setTranslationY(0.0f);
             } else {
-                this.actionBar.setTranslationY(i);
+                this.actionBar.setTranslationY(Math.max(0, i));
                 if (Build.VERSION.SDK_INT >= 21) {
                     this.chatPreviewContainer.invalidateOutline();
                 }
-                this.chatPreviewContainer.setTranslationY(f);
+                this.chatPreviewContainer.setTranslationY(Math.max(0.0f, f));
                 this.menu.setTranslationY((f + this.chatPreviewContainer.getMeasuredHeight()) - AndroidUtilities.dp(2.0f));
             }
             this.textSelectionOverlay.setTranslationX(this.chatPreviewContainer.getX());
@@ -1446,28 +1445,28 @@ public class MessagePreviewView extends FrameLayout {
                     @Override
                     public CharacterStyle getProgressLoadingLink(ChatMessageCell chatMessageCell2) {
                         Page page2 = Page.this;
-                        if (page2.currentTab != 2) {
-                            return null;
+                        if (page2.currentTab == 2) {
+                            MessagePreviewParams messagePreviewParams = MessagePreviewView.this.messagePreviewParams;
+                            if (messagePreviewParams.singleLink) {
+                                return null;
+                            }
+                            return messagePreviewParams.currentLink;
                         }
-                        MessagePreviewParams messagePreviewParams = MessagePreviewView.this.messagePreviewParams;
-                        if (messagePreviewParams.singleLink) {
-                            return null;
-                        }
-                        return messagePreviewParams.currentLink;
+                        return null;
                     }
 
                     @Override
                     public boolean isProgressLoading(ChatMessageCell chatMessageCell2, int i3) {
                         Page page2 = Page.this;
-                        if (page2.currentTab != 2 || i3 != 1) {
-                            return false;
+                        if (page2.currentTab == 2 && i3 == 1) {
+                            MessagePreviewParams messagePreviewParams = MessagePreviewView.this.messagePreviewParams;
+                            if (messagePreviewParams.singleLink) {
+                                return false;
+                            }
+                            TLRPC$WebPage tLRPC$WebPage = messagePreviewParams.webpage;
+                            return tLRPC$WebPage == null || (tLRPC$WebPage instanceof TLRPC$TL_webPagePending);
                         }
-                        MessagePreviewParams messagePreviewParams = MessagePreviewView.this.messagePreviewParams;
-                        if (messagePreviewParams.singleLink) {
-                            return false;
-                        }
-                        TLRPC$WebPage tLRPC$WebPage = messagePreviewParams.webpage;
-                        return tLRPC$WebPage == null || (tLRPC$WebPage instanceof TLRPC$TL_webPagePending);
+                        return false;
                     }
                 });
                 return new RecyclerListView.Holder(chatMessageCell);
@@ -1487,9 +1486,8 @@ public class MessagePreviewView extends FrameLayout {
                 if (page.currentTab == 2) {
                     MessagePreviewView.this.messagePreviewParams.checkCurrentLink(page.messages.previewMessages.get(i));
                 }
-                MessageObject messageObject = Page.this.messages.previewMessages.get(i);
                 MessagePreviewParams.Messages messages2 = Page.this.messages;
-                chatMessageCell.setMessageObject(messageObject, messages2.groupedMessagesMap.get(messages2.previewMessages.get(i).getGroupId()), true, true);
+                chatMessageCell.setMessageObject(Page.this.messages.previewMessages.get(i), messages2.groupedMessagesMap.get(messages2.previewMessages.get(i).getGroupId()), true, true);
                 if (Page.this.currentTab == 1) {
                     chatMessageCell.setDelegate(new ChatMessageCell.ChatMessageCellDelegate(this) {
                         @Override
@@ -1708,13 +1706,13 @@ public class MessagePreviewView extends FrameLayout {
                         }
 
                         @Override
-                        public void didStartVideoStream(MessageObject messageObject2) {
-                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didStartVideoStream(this, messageObject2);
+                        public void didStartVideoStream(MessageObject messageObject) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didStartVideoStream(this, messageObject);
                         }
 
                         @Override
-                        public boolean doNotShowLoadingReply(MessageObject messageObject2) {
-                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$doNotShowLoadingReply(this, messageObject2);
+                        public boolean doNotShowLoadingReply(MessageObject messageObject) {
+                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$doNotShowLoadingReply(this, messageObject);
                         }
 
                         @Override
@@ -1778,13 +1776,13 @@ public class MessagePreviewView extends FrameLayout {
                         }
 
                         @Override
-                        public void needOpenWebView(MessageObject messageObject2, String str, String str2, String str3, String str4, int i2, int i3) {
-                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$needOpenWebView(this, messageObject2, str, str2, str3, str4, i2, i3);
+                        public void needOpenWebView(MessageObject messageObject, String str, String str2, String str3, String str4, int i2, int i3) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$needOpenWebView(this, messageObject, str, str2, str3, str4, i2, i3);
                         }
 
                         @Override
-                        public boolean needPlayMessage(ChatMessageCell chatMessageCell2, MessageObject messageObject2, boolean z) {
-                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$needPlayMessage(this, chatMessageCell2, messageObject2, z);
+                        public boolean needPlayMessage(ChatMessageCell chatMessageCell2, MessageObject messageObject, boolean z) {
+                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$needPlayMessage(this, chatMessageCell2, messageObject, z);
                         }
 
                         @Override
@@ -1808,8 +1806,8 @@ public class MessagePreviewView extends FrameLayout {
                         }
 
                         @Override
-                        public void setShouldNotRepeatSticker(MessageObject messageObject2) {
-                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$setShouldNotRepeatSticker(this, messageObject2);
+                        public void setShouldNotRepeatSticker(MessageObject messageObject) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$setShouldNotRepeatSticker(this, messageObject);
                         }
 
                         @Override
@@ -1818,8 +1816,8 @@ public class MessagePreviewView extends FrameLayout {
                         }
 
                         @Override
-                        public boolean shouldRepeatSticker(MessageObject messageObject2) {
-                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldRepeatSticker(this, messageObject2);
+                        public boolean shouldRepeatSticker(MessageObject messageObject) {
+                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldRepeatSticker(this, messageObject);
                         }
 
                         @Override
@@ -1884,6 +1882,7 @@ public class MessagePreviewView extends FrameLayout {
                 int i2;
                 ArrayList<MessageObject.TextLayoutBlock> arrayList;
                 CharSequence charSequence;
+                StaticLayout staticLayout;
                 float lineTop;
                 MessageObject.TextLayoutBlocks textLayoutBlocks;
                 if (chatMessageCell == null || (messageObject = chatMessageCell.getMessageObject()) == null || messageObject.getGroupId() != 0) {
@@ -1913,7 +1912,7 @@ public class MessagePreviewView extends FrameLayout {
                             if (i - i4 > charSequence3.length() - 1) {
                                 lineTop = i2 + ((int) (textLayoutBlock.textYOffset(arrayList, chatMessageCell.transitionParams) + textLayoutBlock.padTop + textLayoutBlock.height));
                             } else {
-                                lineTop = r6.getLineTop(r6.getLineForOffset(i - textLayoutBlock.charactersOffset)) + i2 + textLayoutBlock.textYOffset(arrayList, chatMessageCell.transitionParams) + textLayoutBlock.padTop;
+                                lineTop = staticLayout.getLineTop(staticLayout.getLineForOffset(i - textLayoutBlock.charactersOffset)) + i2 + textLayoutBlock.textYOffset(arrayList, chatMessageCell.transitionParams) + textLayoutBlock.padTop;
                             }
                             return (int) lineTop;
                         }
@@ -1933,12 +1932,12 @@ public class MessagePreviewView extends FrameLayout {
         }
 
         public MessageObject.GroupedMessages getValidGroupedMessage(MessageObject messageObject) {
-            if (messageObject.getGroupId() == 0) {
+            if (messageObject.getGroupId() != 0) {
+                MessageObject.GroupedMessages groupedMessages = this.messages.groupedMessagesMap.get(messageObject.getGroupId());
+                if (groupedMessages == null || (groupedMessages.messages.size() > 1 && groupedMessages.getPosition(messageObject) != null)) {
+                    return groupedMessages;
+                }
                 return null;
-            }
-            MessageObject.GroupedMessages groupedMessages = this.messages.groupedMessagesMap.get(messageObject.getGroupId());
-            if (groupedMessages == null || (groupedMessages.messages.size() > 1 && groupedMessages.getPosition(messageObject) != null)) {
-                return groupedMessages;
             }
             return null;
         }
@@ -2066,12 +2065,12 @@ public class MessagePreviewView extends FrameLayout {
         while (true) {
             if (i2 >= this.tabsView.tabs.size()) {
                 break;
-            }
-            if (this.tabsView.tabs.get(i2).id == num.intValue()) {
+            } else if (this.tabsView.tabs.get(i2).id == num.intValue()) {
                 i = i2;
                 break;
+            } else {
+                i2++;
             }
-            i2++;
         }
         if (this.viewPager.getCurrentPosition() == i) {
             return;
@@ -2210,23 +2209,24 @@ public class MessagePreviewView extends FrameLayout {
 
         @Override
         protected void dispatchDraw(Canvas canvas) {
+            boolean z = true;
             if (this.tabs.size() <= 1) {
                 return;
             }
             float f = this.selectedTab;
             double d = f;
             int floor = (int) Math.floor(d);
-            boolean z = floor >= 0 && floor < this.tabs.size();
+            boolean z2 = floor >= 0 && floor < this.tabs.size();
             int ceil = (int) Math.ceil(d);
-            boolean z2 = ceil >= 0 && ceil < this.tabs.size();
-            if (z && z2) {
+            z = (ceil < 0 || ceil >= this.tabs.size()) ? false : false;
+            if (z2 && z) {
                 AndroidUtilities.lerp(this.tabs.get(floor).bounds, this.tabs.get(ceil).bounds, f - floor, this.selectRect);
-            } else if (z) {
-                this.selectRect.set(this.tabs.get(floor).bounds);
             } else if (z2) {
+                this.selectRect.set(this.tabs.get(floor).bounds);
+            } else if (z) {
                 this.selectRect.set(this.tabs.get(ceil).bounds);
             }
-            if (z || z2) {
+            if (z2 || z) {
                 canvas.drawRoundRect(this.selectRect, AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), this.bgPaint);
             }
             for (int i = 0; i < this.tabs.size(); i++) {

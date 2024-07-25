@@ -80,7 +80,6 @@ import org.telegram.ui.Components.TimerParticles;
 import org.telegram.ui.Components.VideoPlayer;
 import org.telegram.ui.SecretVoicePlayer;
 import org.telegram.ui.Stories.recorder.HintView2;
-
 public class SecretVoicePlayer extends Dialog {
     private AudioVisualizerDrawable audioVisualizerDrawable;
     private AlertDialog backDialog;
@@ -319,14 +318,12 @@ public class SecretVoicePlayer extends Dialog {
         if (chatMessageCell != null) {
             int[] iArr = new int[2];
             chatMessageCell.getLocationOnScreen(iArr);
-            float f = iArr[0] - this.insets.left;
             int width = this.windowView.getWidth();
             Rect rect = this.insets;
-            this.tx = f - ((((width - rect.left) - rect.right) - this.cell.getWidth()) / 2.0f);
-            float f2 = iArr[1] - this.insets.top;
+            this.tx = (iArr[0] - this.insets.left) - ((((width - rect.left) - rect.right) - this.cell.getWidth()) / 2.0f);
             int height = this.windowView.getHeight();
             Rect rect2 = this.insets;
-            this.ty = f2 - (((((height - rect2.top) - rect2.bottom) - this.cell.getHeight()) - this.heightdiff) / 2.0f);
+            this.ty = (iArr[1] - this.insets.top) - (((((height - rect2.top) - rect2.bottom) - this.cell.getHeight()) - this.heightdiff) / 2.0f);
             if (!this.hasDestTranslation) {
                 this.hasDestTranslation = true;
                 this.dtx = 0.0f;
@@ -1106,9 +1103,9 @@ public class SecretVoicePlayer extends Dialog {
             if (i != 4) {
                 AndroidUtilities.cancelRunOnUIThread(SecretVoicePlayer.this.checkTimeRunnable);
                 AndroidUtilities.runOnUIThread(SecretVoicePlayer.this.checkTimeRunnable, 16L);
-            } else {
-                SecretVoicePlayer.this.dismiss();
+                return;
             }
+            SecretVoicePlayer.this.dismiss();
         }
 
         @Override
@@ -1182,9 +1179,7 @@ public class SecretVoicePlayer extends Dialog {
         if (alertDialog != null) {
             alertDialog.dismiss();
             this.backDialog = null;
-            return;
-        }
-        if (!this.dismissing && (messageObject = this.messageObject) != null && !messageObject.isOutOwner()) {
+        } else if (!this.dismissing && (messageObject = this.messageObject) != null && !messageObject.isOutOwner()) {
             AlertDialog create = new AlertDialog.Builder(getContext(), this.resourcesProvider).setTitle(LocaleController.getString(this.isRound ? R.string.VideoOnceCloseTitle : R.string.VoiceOnceCloseTitle)).setMessage(LocaleController.getString(this.isRound ? R.string.VideoOnceCloseMessage : R.string.VoiceOnceCloseMessage)).setPositiveButton(LocaleController.getString(R.string.Continue), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
@@ -1201,11 +1196,10 @@ public class SecretVoicePlayer extends Dialog {
             TextView textView = (TextView) this.backDialog.getButton(-2);
             if (textView != null) {
                 textView.setTextColor(Theme.getColor(Theme.key_text_RedBold));
-                return;
             }
-            return;
+        } else {
+            super.onBackPressed();
         }
-        super.onBackPressed();
     }
 
     public void lambda$onBackPressed$3(DialogInterface dialogInterface, int i) {

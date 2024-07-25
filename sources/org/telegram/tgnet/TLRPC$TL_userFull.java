@@ -2,8 +2,8 @@ package org.telegram.tgnet;
 
 import org.telegram.messenger.FileLoaderPriorityQueue;
 import org.telegram.messenger.LiteMode;
+import org.telegram.tgnet.tl.TL_bots$BotInfo;
 import org.telegram.tgnet.tl.TL_stories$PeerStories;
-
 public class TLRPC$TL_userFull extends TLRPC$UserFull {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -41,7 +41,7 @@ public class TLRPC$TL_userFull extends TLRPC$UserFull {
         }
         this.notify_settings = TLRPC$PeerNotifySettings.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         if ((this.flags & 8) != 0) {
-            this.bot_info = TLRPC$BotInfo.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            this.bot_info = TL_bots$BotInfo.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
         if ((this.flags & 64) != 0) {
             this.pinned_msg_id = abstractSerializedData.readInt32(z);

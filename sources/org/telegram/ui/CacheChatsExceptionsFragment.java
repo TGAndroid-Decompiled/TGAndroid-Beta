@@ -32,7 +32,6 @@ import org.telegram.ui.Components.ListView.AdapterWithDiffUtils;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.DialogsActivity;
 import org.telegram.ui.KeepMediaPopupView;
-
 public class CacheChatsExceptionsFragment extends BaseFragment {
     Adapter adapter;
     int currentType;
@@ -55,7 +54,7 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    CacheChatsExceptionsFragment.this.lambda$onBackPressed$306();
+                    CacheChatsExceptionsFragment.this.finishFragment();
                 }
             }
         });
@@ -116,9 +115,7 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
                 }
             });
             presentFragment(dialogsActivity);
-            return;
-        }
-        if (this.items.get(i).viewType == 2) {
+        } else if (this.items.get(i).viewType == 2) {
             final CacheByChatsController.KeepMediaException keepMediaException = this.items.get(i).exception;
             KeepMediaPopupView keepMediaPopupView = new KeepMediaPopupView(this, view.getContext());
             keepMediaPopupView.updateForDialog(false);
@@ -129,9 +126,7 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
                     CacheChatsExceptionsFragment.this.lambda$createView$1(keepMediaException, i3, i4);
                 }
             });
-            return;
-        }
-        if (this.items.get(i).viewType == 4) {
+        } else if (this.items.get(i).viewType == 4) {
             AlertDialog create = AlertsCreator.createSimpleAlert(getContext(), LocaleController.getString("NotificationsDeleteAllExceptionTitle", R.string.NotificationsDeleteAllExceptionTitle), LocaleController.getString("NotificationsDeleteAllExceptionAlert", R.string.NotificationsDeleteAllExceptionAlert), LocaleController.getString("Delete", R.string.Delete), new Runnable() {
                 @Override
                 public final void run() {
@@ -144,7 +139,7 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
     }
 
     public boolean lambda$createView$0(DialogsActivity dialogsActivity, DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
-        dialogsActivity.lambda$onBackPressed$306();
+        dialogsActivity.finishFragment();
         int i = 0;
         CacheByChatsController.KeepMediaException keepMediaException = null;
         int i2 = 0;
@@ -158,12 +153,12 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
                 if (i3 >= this.exceptionsDialogs.size()) {
                     z2 = false;
                     break;
-                }
-                if (this.exceptionsDialogs.get(i3).dialogId == ((MessagesStorage.TopicKey) arrayList.get(i2)).dialogId) {
+                } else if (this.exceptionsDialogs.get(i3).dialogId == ((MessagesStorage.TopicKey) arrayList.get(i2)).dialogId) {
                     keepMediaException = this.exceptionsDialogs.get(i3);
                     break;
+                } else {
+                    i3++;
                 }
-                i3++;
             }
             if (!z2) {
                 int i4 = CacheByChatsController.KEEP_MEDIA_FOREVER;
@@ -213,7 +208,7 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
         this.exceptionsDialogs.clear();
         getMessagesController().getCacheByChatsController().saveKeepMediaExceptions(this.currentType, this.exceptionsDialogs);
         updateRows();
-        lambda$onBackPressed$306();
+        finishFragment();
     }
 
     public void showPopupFor(final CacheByChatsController.KeepMediaException keepMediaException) {
@@ -243,7 +238,8 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
         if (findViewHolderForAdapterPosition != null) {
             KeepMediaPopupView keepMediaPopupView = new KeepMediaPopupView(this, getContext());
             keepMediaPopupView.updateForDialog(true);
-            keepMediaPopupView.setParentWindow(AlertsCreator.createSimplePopup(this, keepMediaPopupView, findViewHolderForAdapterPosition.itemView, r2.getMeasuredWidth() / 2.0f, findViewHolderForAdapterPosition.itemView.getMeasuredHeight() / 2.0f));
+            View view = findViewHolderForAdapterPosition.itemView;
+            keepMediaPopupView.setParentWindow(AlertsCreator.createSimplePopup(this, keepMediaPopupView, view, view.getMeasuredWidth() / 2.0f, findViewHolderForAdapterPosition.itemView.getMeasuredHeight() / 2.0f));
             keepMediaPopupView.setCallback(new KeepMediaPopupView.Callback() {
                 @Override
                 public final void onKeepMediaChange(int i3, int i4) {
@@ -269,16 +265,6 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
     private void updateRows() {
         ArrayList<? extends AdapterWithDiffUtils.Item> arrayList;
         boolean z = false;
-        int i = 1;
-        CacheByChatsController.KeepMediaException keepMediaException = null;
-        Object[] objArr = 0;
-        Object[] objArr2 = 0;
-        Object[] objArr3 = 0;
-        Object[] objArr4 = 0;
-        Object[] objArr5 = 0;
-        Object[] objArr6 = 0;
-        Object[] objArr7 = 0;
-        Object[] objArr8 = 0;
         if ((this.isPaused || this.adapter == null) ? false : true) {
             arrayList = new ArrayList<>();
             arrayList.addAll(this.items);
@@ -286,18 +272,17 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
             arrayList = null;
         }
         this.items.clear();
-        this.items.add(new Item(i, keepMediaException));
+        this.items.add(new Item(1, null));
         Iterator<CacheByChatsController.KeepMediaException> it = this.exceptionsDialogs.iterator();
         while (it.hasNext()) {
             this.items.add(new Item(2, it.next()));
             z = true;
         }
-        int i2 = 3;
         if (z) {
-            this.items.add(new Item(i2, objArr6 == true ? 1 : 0));
-            this.items.add(new Item(4, objArr4 == true ? 1 : 0));
+            this.items.add(new Item(3, null));
+            this.items.add(new Item(4, null));
         }
-        this.items.add(new Item(i2, objArr2 == true ? 1 : 0));
+        this.items.add(new Item(3, null));
         Adapter adapter = this.adapter;
         if (adapter != null) {
             if (arrayList != null) {

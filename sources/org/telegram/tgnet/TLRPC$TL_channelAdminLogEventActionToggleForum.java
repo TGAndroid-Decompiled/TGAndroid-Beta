@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channelAdminLogEventActionToggleForum extends TLRPC$ChannelAdminLogEventAction {
     public boolean new_value;
 

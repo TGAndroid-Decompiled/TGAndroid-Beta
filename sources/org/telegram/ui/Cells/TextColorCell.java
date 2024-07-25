@@ -14,7 +14,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
-
 public class TextColorCell extends FrameLayout {
     private static Paint colorPaint;
     public static final int[] colors = {-1031100, -29183, -12769, -8792480, -12521994, -12140801, -2984711, -45162, -4473925};
@@ -65,11 +64,11 @@ public class TextColorCell extends FrameLayout {
             Property property = View.ALPHA;
             float[] fArr = new float[1];
             fArr[0] = z ? 1.0f : 0.5f;
-            arrayList.add(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property, fArr));
+            arrayList.add(ObjectAnimator.ofFloat(textView, property, fArr));
             Property property2 = View.ALPHA;
             float[] fArr2 = new float[1];
             fArr2[0] = z ? 1.0f : 0.5f;
-            arrayList.add(ObjectAnimator.ofFloat(this, (Property<TextColorCell, Float>) property2, fArr2));
+            arrayList.add(ObjectAnimator.ofFloat(this, property2, fArr2));
             return;
         }
         this.textView.setAlpha(z ? 1.0f : 0.5f);

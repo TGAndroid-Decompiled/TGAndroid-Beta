@@ -17,7 +17,6 @@ import android.text.TextPaint;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.CornerPath;
 import org.telegram.ui.Components.EditTextBoldCursor;
-
 public class EditTextOutline extends EditTextBoldCursor {
     public RectF framePadding;
     private boolean isFrameDirty;
@@ -217,9 +216,8 @@ public class EditTextOutline extends EditTextBoldCursor {
                     rectF5.bottom = Math.max(rectF5.bottom, getPaddingTop() + this.lines[i4].bottom);
                 }
                 RectF rectF6 = this.framePadding;
-                float measuredWidth2 = getMeasuredWidth();
                 RectF rectF7 = this.framePadding;
-                rectF6.right = measuredWidth2 - rectF7.right;
+                rectF6.right = getMeasuredWidth() - rectF7.right;
                 rectF7.bottom = getMeasuredHeight() - this.framePadding.bottom;
             }
             this.path.rewind();

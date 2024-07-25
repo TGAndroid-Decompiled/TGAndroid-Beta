@@ -19,7 +19,6 @@ import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.ui.ActionBar.Theme;
-
 public class ThemePreviewDrawable extends BitmapDrawable {
     public ThemePreviewDrawable(File file, DocumentObject.ThemeDocument themeDocument) {
         super(createPreview(file, themeDocument));
@@ -153,9 +152,8 @@ public class ThemePreviewDrawable extends BitmapDrawable {
                         }
                         paint4.setAlpha(255);
                         float max = Math.max(560 / bitmap.getWidth(), 678 / bitmap.getHeight());
-                        int width = (int) (bitmap.getWidth() * max);
                         canvas.save();
-                        canvas.translate((560 - width) / 2, (678 - ((int) (bitmap.getHeight() * max))) / 2);
+                        canvas.translate((560 - ((int) (bitmap.getWidth() * max))) / 2, (678 - ((int) (bitmap.getHeight() * max))) / 2);
                         canvas.scale(max, max);
                         canvas.drawBitmap(bitmap, 0.0f, 0.0f, paint4);
                         canvas.restore();
@@ -185,9 +183,9 @@ public class ThemePreviewDrawable extends BitmapDrawable {
             mutate.draw(canvas);
         }
         if (drawable2 != null) {
-            int width2 = (createBitmap.getWidth() - drawable2.getIntrinsicWidth()) - 10;
+            int width = (createBitmap.getWidth() - drawable2.getIntrinsicWidth()) - 10;
             int intrinsicHeight2 = (120 - drawable2.getIntrinsicHeight()) / 2;
-            drawable2.setBounds(width2, intrinsicHeight2, drawable2.getIntrinsicWidth() + width2, drawable2.getIntrinsicHeight() + intrinsicHeight2);
+            drawable2.setBounds(width, intrinsicHeight2, drawable2.getIntrinsicWidth() + width, drawable2.getIntrinsicHeight() + intrinsicHeight2);
             drawable2.draw(canvas);
         }
         messageDrawableArr[1].setBounds(161, 216, createBitmap.getWidth() - 20, 308);
@@ -207,9 +205,9 @@ public class ThemePreviewDrawable extends BitmapDrawable {
             mutate3.draw(canvas);
         }
         if (mutate4 != null) {
-            int width3 = (createBitmap.getWidth() - mutate4.getIntrinsicWidth()) - 22;
+            int width2 = (createBitmap.getWidth() - mutate4.getIntrinsicWidth()) - 22;
             int height2 = (createBitmap.getHeight() - 120) + ((120 - mutate4.getIntrinsicHeight()) / 2);
-            mutate4.setBounds(width3, height2, mutate4.getIntrinsicWidth() + width3, mutate4.getIntrinsicHeight() + height2);
+            mutate4.setBounds(width2, height2, mutate4.getIntrinsicWidth() + width2, mutate4.getIntrinsicHeight() + height2);
             mutate4.draw(canvas);
         }
         return createBitmap;

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_account_sendConfirmPhoneCode extends TLObject {
     public String hash;
     public TLRPC$TL_codeSettings settings;

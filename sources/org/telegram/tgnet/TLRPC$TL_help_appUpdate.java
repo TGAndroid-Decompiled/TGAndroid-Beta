@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_help_appUpdate extends TLRPC$help_AppUpdate {
     public boolean can_not_skip;
     public TLRPC$Document document;

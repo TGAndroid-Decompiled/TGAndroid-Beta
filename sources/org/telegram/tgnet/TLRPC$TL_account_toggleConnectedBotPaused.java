@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_account_toggleConnectedBotPaused extends TLObject {
     public boolean paused;
     public TLRPC$InputPeer peer;

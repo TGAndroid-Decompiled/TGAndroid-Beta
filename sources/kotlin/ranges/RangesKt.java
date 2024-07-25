@@ -1,5 +1,4 @@
 package kotlin.ranges;
-
 public final class RangesKt extends RangesKt___RangesKt {
     public static int coerceAtLeast(int i, int i2) {
         return RangesKt___RangesKt.coerceAtLeast(i, i2);

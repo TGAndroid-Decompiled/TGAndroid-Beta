@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_searchEmojiStickerSets extends TLObject {
     public static int constructor = -1833678516;
     public boolean exclude_featured;

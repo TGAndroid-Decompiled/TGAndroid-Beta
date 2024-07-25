@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_inputCheckPasswordEmpty extends TLRPC$InputCheckPasswordSRP {
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {

@@ -1,5 +1,4 @@
 package org.webrtc;
-
 public interface Predicate<T> {
     Predicate<T> and(Predicate<? super T> predicate);
 

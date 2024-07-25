@@ -9,7 +9,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
-
 public class LoginOrView extends View {
     private Paint linePaint;
     private View measureAfter;

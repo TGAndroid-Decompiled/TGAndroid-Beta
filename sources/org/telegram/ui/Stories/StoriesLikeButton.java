@@ -14,7 +14,6 @@ import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Stories.PeerStoriesView;
-
 public class StoriesLikeButton extends View {
     private boolean allowDrawReaction;
     ImageReceiver animateReactionImageReceiver;
@@ -51,11 +50,8 @@ public class StoriesLikeButton extends View {
                 this.sharedResources.likeDrawableFilled.setBounds(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getMeasuredHeight() - getPaddingBottom());
                 this.sharedResources.likeDrawableFilled.setAlpha((int) (f * 255.0f));
                 this.sharedResources.likeDrawableFilled.draw(canvas);
-                return;
             }
-            return;
-        }
-        if (this.allowDrawReaction) {
+        } else if (this.allowDrawReaction) {
             AnimatedEmojiDrawable animatedEmojiDrawable = this.emojiDrawable;
             ImageReceiver imageReceiver = animatedEmojiDrawable != null ? animatedEmojiDrawable.getImageReceiver() : this.reactionImageReceiver;
             if (this.drawAnimateImageReciever && this.animateReactionImageReceiver.getBitmap() != null) {

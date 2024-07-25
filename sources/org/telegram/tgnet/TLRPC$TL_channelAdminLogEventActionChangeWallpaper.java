@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channelAdminLogEventActionChangeWallpaper extends TLRPC$ChannelAdminLogEventAction {
     public TLRPC$WallPaper new_value;
     public TLRPC$WallPaper prev_value;

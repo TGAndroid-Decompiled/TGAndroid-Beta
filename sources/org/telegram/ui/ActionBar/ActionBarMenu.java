@@ -11,7 +11,6 @@ import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Adapters.FiltersView;
 import org.telegram.ui.Components.RLottieDrawable;
-
 public class ActionBarMenu extends LinearLayout {
     public boolean drawBlur;
     private ArrayList<Integer> ids;

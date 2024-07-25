@@ -7,7 +7,6 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.ViewConfiguration;
-
 public class GestureDetectorFixDoubleTap {
     private final GestureDetectorCompatImpl mImpl;
 
@@ -64,27 +63,21 @@ public class GestureDetectorFixDoubleTap {
                 if (i == 1) {
                     GestureDetectorCompatImplBase gestureDetectorCompatImplBase = GestureDetectorCompatImplBase.this;
                     gestureDetectorCompatImplBase.mListener.onShowPress(gestureDetectorCompatImplBase.mCurrentDownEvent);
-                    return;
-                }
-                if (i == 2) {
+                } else if (i == 2) {
                     GestureDetectorCompatImplBase.this.dispatchLongPress();
-                    return;
-                }
-                if (i == 3) {
+                } else if (i == 3) {
                     GestureDetectorCompatImplBase gestureDetectorCompatImplBase2 = GestureDetectorCompatImplBase.this;
                     GestureDetector.OnDoubleTapListener onDoubleTapListener = gestureDetectorCompatImplBase2.mDoubleTapListener;
                     if (onDoubleTapListener != null) {
                         if (!gestureDetectorCompatImplBase2.mStillDown) {
                             onDoubleTapListener.onSingleTapConfirmed(gestureDetectorCompatImplBase2.mCurrentDownEvent);
-                            return;
                         } else {
                             gestureDetectorCompatImplBase2.mDeferConfirmSingleTap = true;
-                            return;
                         }
                     }
-                    return;
+                } else {
+                    throw new RuntimeException("Unknown message " + message);
                 }
-                throw new RuntimeException("Unknown message " + message);
             }
         }
 
@@ -167,12 +160,12 @@ public class GestureDetectorFixDoubleTap {
         }
 
         private boolean isConsideredDoubleTap(MotionEvent motionEvent, MotionEvent motionEvent2, MotionEvent motionEvent3) {
-            if (!this.mAlwaysInBiggerTapRegion || motionEvent3.getEventTime() - motionEvent2.getEventTime() > 220) {
-                return false;
+            if (this.mAlwaysInBiggerTapRegion && motionEvent3.getEventTime() - motionEvent2.getEventTime() <= 220) {
+                int x = ((int) motionEvent.getX()) - ((int) motionEvent3.getX());
+                int y = ((int) motionEvent.getY()) - ((int) motionEvent3.getY());
+                return (x * x) + (y * y) < this.mDoubleTapSlopSquare;
             }
-            int x = ((int) motionEvent.getX()) - ((int) motionEvent3.getX());
-            int y = ((int) motionEvent.getY()) - ((int) motionEvent3.getY());
-            return (x * x) + (y * y) < this.mDoubleTapSlopSquare;
+            return false;
         }
 
         void dispatchLongPress() {

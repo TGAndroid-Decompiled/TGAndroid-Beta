@@ -34,7 +34,6 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.BlurringShader;
 import org.telegram.ui.Components.Paint.Shader;
-
 public class BlurringShader {
     private Bitmap bitmap;
     private boolean bitmapAvailable;
@@ -116,6 +115,8 @@ public class BlurringShader {
     }
 
     public boolean setup(float f, boolean z, int i) {
+        int i2;
+        int i3;
         this.width = (int) Math.round(Math.sqrt(f * 324.0f));
         this.height = (int) Math.round(Math.sqrt(324.0f / f));
         this.padding = i;
@@ -129,11 +130,11 @@ public class BlurringShader {
         this.posBuffer = asFloatBuffer;
         asFloatBuffer.put(fArr);
         this.posBuffer.position(0);
-        for (int i2 = 0; i2 < 4; i2++) {
-            int i3 = i2 * 2;
-            fArr[i3] = fArr[i3] * ((r10 - i) / this.width);
-            int i4 = i3 + 1;
-            fArr[i4] = fArr[i4] * ((r10 - i) / this.height);
+        for (int i4 = 0; i4 < 4; i4++) {
+            int i5 = i4 * 2;
+            fArr[i5] = fArr[i5] * ((i2 - i) / this.width);
+            int i6 = i5 + 1;
+            fArr[i6] = fArr[i6] * ((i3 - i) / this.height);
         }
         ByteBuffer allocateDirect2 = ByteBuffer.allocateDirect(32);
         allocateDirect2.order(ByteOrder.nativeOrder());
@@ -152,8 +153,8 @@ public class BlurringShader {
         if (readRes == null || readRes2 == null) {
             return false;
         }
-        for (int i5 = 0; i5 < 2; i5++) {
-            if (i5 == 1) {
+        for (int i7 = 0; i7 < 2; i7++) {
+            if (i7 == 1) {
                 readRes2 = "#extension GL_OES_EGL_image_external : require\n" + readRes2.replace("sampler2D tex", "samplerExternalOES tex");
             }
             int loadShader = FilterShaders.loadShader(35633, readRes);
@@ -173,30 +174,30 @@ public class BlurringShader {
                 GLES20.glDeleteProgram(glCreateProgram);
                 return false;
             }
-            this.program[i5] = new Program(glCreateProgram);
+            this.program[i7] = new Program(glCreateProgram);
         }
         GLES20.glGenFramebuffers(3, this.framebuffer, 0);
         GLES20.glGenTextures(3, this.texture, 0);
-        int i6 = 0;
-        while (i6 < 3) {
-            GLES20.glBindTexture(3553, this.texture[i6]);
-            GLES20.glTexImage2D(3553, 0, 6408, this.width + (i6 == 2 ? i * 2 : 0), this.height + (i6 == 2 ? i * 2 : 0), 0, 6408, 5121, null);
+        int i8 = 0;
+        while (i8 < 3) {
+            GLES20.glBindTexture(3553, this.texture[i8]);
+            GLES20.glTexImage2D(3553, 0, 6408, this.width + (i8 == 2 ? i * 2 : 0), this.height + (i8 == 2 ? i * 2 : 0), 0, 6408, 5121, null);
             GLES20.glTexParameteri(3553, 10242, 33071);
             GLES20.glTexParameteri(3553, 10243, 33071);
             GLES20.glTexParameteri(3553, 10241, 9729);
             GLES20.glTexParameteri(3553, 10240, 9729);
-            GLES20.glBindFramebuffer(36160, this.framebuffer[i6]);
-            GLES20.glFramebufferTexture2D(36160, 36064, 3553, this.texture[i6], 0);
+            GLES20.glBindFramebuffer(36160, this.framebuffer[i8]);
+            GLES20.glFramebufferTexture2D(36160, 36064, 3553, this.texture[i8], 0);
             if (GLES20.glCheckFramebufferStatus(36160) != 36053) {
                 return false;
             }
-            i6++;
+            i8++;
         }
         GLES20.glBindFramebuffer(36160, 0);
         if (z) {
-            int i7 = i * 2;
-            this.bitmap = Bitmap.createBitmap(this.width + i7, this.height + i7, Bitmap.Config.ARGB_8888);
-            this.buffer = ByteBuffer.allocateDirect((this.width + i7) * (i7 + this.height) * 4);
+            int i9 = i * 2;
+            this.bitmap = Bitmap.createBitmap(this.width + i9, this.height + i9, Bitmap.Config.ARGB_8888);
+            this.buffer = ByteBuffer.allocateDirect((this.width + i9) * (i9 + this.height) * 4);
         }
         return true;
     }
@@ -306,10 +307,10 @@ public class BlurringShader {
 
     public Bitmap getBitmap() {
         synchronized (this.bitmapLock) {
-            if (!this.bitmapAvailable) {
-                return null;
+            if (this.bitmapAvailable) {
+                return this.bitmap;
             }
-            return this.bitmap;
+            return null;
         }
     }
 
@@ -636,9 +637,10 @@ public class BlurringShader {
                 canvas.drawRect(0.0f, 0.0f, round + i9, i9, this.clearPaint);
                 int i10 = this.padding;
                 canvas.drawRect(0.0f, i10, i10, i10 + round2, this.clearPaint);
-                canvas.drawRect(r0 + round, this.padding, r0 + round + r0, r0 + round2, this.clearPaint);
                 int i11 = this.padding;
-                canvas.drawRect(0.0f, i11 + round2, round + i11 + i11, round2 + i11 + i11, this.clearPaint);
+                canvas.drawRect(i11 + round, i11, i11 + round + i11, i11 + round2, this.clearPaint);
+                int i12 = this.padding;
+                canvas.drawRect(0.0f, i12 + round2, round + i12 + i12, round2 + i12 + i12, this.clearPaint);
             }
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -847,13 +849,13 @@ public class BlurringShader {
                 this.bitmapShader = bitmapShader2;
                 this.paint.setShader(bitmapShader2);
             }
-            if (!setupMatrix(bitmap.getWidth(), bitmap.getHeight())) {
-                return null;
+            if (setupMatrix(bitmap.getWidth(), bitmap.getHeight())) {
+                this.matrix.postTranslate(-f2, -f3);
+                this.bitmapShader.setLocalMatrix(this.matrix);
+                this.paint.setAlpha((int) (f * 255.0f));
+                return this.paint;
             }
-            this.matrix.postTranslate(-f2, -f3);
-            this.bitmapShader.setLocalMatrix(this.matrix);
-            this.paint.setAlpha((int) (f * 255.0f));
-            return this.paint;
+            return null;
         }
 
         public Paint[] getPaints(float f, float f2, float f3) {

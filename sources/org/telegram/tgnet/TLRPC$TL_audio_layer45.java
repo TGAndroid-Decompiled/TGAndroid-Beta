@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_audio_layer45 extends TLRPC$Audio {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

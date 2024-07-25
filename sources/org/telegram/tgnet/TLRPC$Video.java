@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$Video extends TLObject {
     public long access_hash;
     public String caption;

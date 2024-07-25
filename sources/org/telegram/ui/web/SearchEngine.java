@@ -1,0 +1,87 @@
+package org.telegram.ui.web;
+
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.Utilities;
+public class SearchEngine {
+    private static ArrayList<SearchEngine> searchEngines;
+    public final String autocomplete_url;
+    public final String name;
+    public final String search_url;
+
+    public SearchEngine(String str, String str2, String str3, String str4) {
+        this.name = str;
+        this.search_url = str2;
+        this.autocomplete_url = str3;
+    }
+
+    public String getSearchURL(String str) {
+        if (this.search_url == null) {
+            return null;
+        }
+        return this.search_url + URLEncoder.encode(str);
+    }
+
+    public String getAutocompleteURL(String str) {
+        if (this.autocomplete_url == null) {
+            return null;
+        }
+        return this.autocomplete_url + URLEncoder.encode(str);
+    }
+
+    public ArrayList<String> extractSuggestions(String str) {
+        ArrayList<String> arrayList = new ArrayList<>();
+        try {
+            JSONArray jSONArray = new JSONArray(str).getJSONArray(1);
+            for (int i = 0; i < jSONArray.length(); i++) {
+                arrayList.add(jSONArray.getString(i));
+            }
+        } catch (Exception e) {
+            FileLog.e(e);
+            try {
+                JSONArray jSONArray2 = new JSONObject(str).getJSONObject("gossip").getJSONArray("results");
+                for (int i2 = 0; i2 < jSONArray2.length(); i2++) {
+                    arrayList.add(jSONArray2.getJSONObject(i2).getString("key"));
+                }
+            } catch (Exception e2) {
+                FileLog.e(e2);
+            }
+        }
+        return arrayList;
+    }
+
+    public static ArrayList<SearchEngine> getSearchEngines() {
+        if (searchEngines == null) {
+            searchEngines = new ArrayList<>();
+            int i = 1;
+            while (true) {
+                String nullable = nullable(LocaleController.getString("SearchEngine" + i + "Name"));
+                if (nullable == null) {
+                    break;
+                }
+                String nullable2 = nullable(LocaleController.getString("SearchEngine" + i + "SearchURL"));
+                String nullable3 = nullable(LocaleController.getString("SearchEngine" + i + "AutocompleteURL"));
+                searchEngines.add(new SearchEngine(nullable, nullable2, nullable3, nullable(LocaleController.getString("SearchEngine" + i + "PrivacyPolicyURL"))));
+                i++;
+            }
+        }
+        return searchEngines;
+    }
+
+    private static String nullable(String str) {
+        if (str == null || str.startsWith("LOC_ERR") || "reserved".equals(str)) {
+            return null;
+        }
+        return str;
+    }
+
+    public static SearchEngine getCurrent() {
+        ArrayList<SearchEngine> searchEngines2 = getSearchEngines();
+        return searchEngines2.get(Utilities.clamp(SharedConfig.searchEngineType, searchEngines2.size() - 1, 0));
+    }
+}

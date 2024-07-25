@@ -1,5 +1,4 @@
 package org.telegram.messenger;
-
 public class SegmentTree {
     private long[] array;
     private Node[] heap;
@@ -76,12 +75,12 @@ public class SegmentTree {
         if (contains(i2, i3, node.from, node.to)) {
             return this.heap[i].max;
         }
-        if (!intersects(i2, i3, node.from, node.to)) {
-            return 0L;
+        if (intersects(i2, i3, node.from, node.to)) {
+            propagate(i);
+            int i4 = i * 2;
+            return Math.max(rMaxQ(i4, i2, i3), rMaxQ(i4 + 1, i2, i3));
         }
-        propagate(i);
-        int i4 = i * 2;
-        return Math.max(rMaxQ(i4, i2, i3), rMaxQ(i4 + 1, i2, i3));
+        return 0L;
     }
 
     public long rMinQ(int i, int i2) {
@@ -114,12 +113,12 @@ public class SegmentTree {
         if (contains(i2, i3, node.from, node.to)) {
             return this.heap[i].min;
         }
-        if (!intersects(i2, i3, node.from, node.to)) {
-            return 2147483647L;
+        if (intersects(i2, i3, node.from, node.to)) {
+            propagate(i);
+            int i4 = i * 2;
+            return Math.min(rMinQ(i4, i2, i3), rMinQ(i4 + 1, i2, i3));
         }
-        propagate(i);
-        int i4 = i * 2;
-        return Math.min(rMinQ(i4, i2, i3), rMinQ(i4 + 1, i2, i3));
+        return 2147483647L;
     }
 
     private void propagate(int i) {

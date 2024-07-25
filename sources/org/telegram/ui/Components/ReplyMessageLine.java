@@ -26,7 +26,6 @@ import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
-
 public class ReplyMessageLine {
     public int backgroundColor;
     public final AnimatedColor backgroundColorAnimated;
@@ -545,7 +544,8 @@ public class ReplyMessageLine {
             this.backgroundPath.rewind();
             this.backgroundPath.addRoundRect(rectF, this.radii, Path.Direction.CW);
             this.backgroundPaint.setColor(this.backgroundColorAnimated.set(this.backgroundColor));
-            this.backgroundPaint.setAlpha((int) (r3.getAlpha() * f));
+            Paint paint = this.backgroundPaint;
+            paint.setAlpha((int) (paint.getAlpha() * f));
             canvas.drawPath(this.backgroundPath, this.backgroundPaint);
         }
         if (this.emoji == null) {

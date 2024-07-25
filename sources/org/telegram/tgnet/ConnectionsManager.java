@@ -67,7 +67,6 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.LoginActivity;
-
 public class ConnectionsManager extends BaseController {
     private static final int CORE_POOL_SIZE;
     public static final int CPU_COUNT;
@@ -336,7 +335,7 @@ public class ConnectionsManager extends BaseController {
             sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig" + this.currentAccount, 0);
         }
         this.forceTryIpV6 = sharedPreferences.getBoolean("forceTryIpV6", false);
-        init(SharedConfig.buildVersion(), 183, BuildVars.APP_ID, str9, str10, str2, str4, str8, file2, FileLog.getNetworkLogPath(), regId, certificateSHA256Fingerprint, rawOffset, getUserConfig().getClientUserId(), getUserConfig().getCurrentUser() != null ? getUserConfig().getCurrentUser().premium : false, isPushConnectionEnabled);
+        init(SharedConfig.buildVersion(), 185, BuildVars.APP_ID, str9, str10, str2, str4, str8, file2, FileLog.getNetworkLogPath(), regId, certificateSHA256Fingerprint, rawOffset, getUserConfig().getClientUserId(), getUserConfig().getCurrentUser() != null ? getUserConfig().getCurrentUser().premium : false, isPushConnectionEnabled);
     }
 
     private String getRegId() {
@@ -347,12 +346,12 @@ public class ConnectionsManager extends BaseController {
         if (TextUtils.isEmpty(str) && !TextUtils.isEmpty(SharedConfig.pushStringStatus)) {
             str = SharedConfig.pushStringStatus;
         }
-        if (!TextUtils.isEmpty(str)) {
-            return str;
+        if (TextUtils.isEmpty(str)) {
+            String str2 = "__" + (SharedConfig.pushType == 2 ? "FIREBASE" : "HUAWEI") + "_GENERATING_SINCE_" + getCurrentTime() + "__";
+            SharedConfig.pushStringStatus = str2;
+            return str2;
         }
-        String str2 = "__" + (SharedConfig.pushType == 2 ? "FIREBASE" : "HUAWEI") + "_GENERATING_SINCE_" + getCurrentTime() + "__";
-        SharedConfig.pushStringStatus = str2;
-        return str2;
+        return str;
     }
 
     public boolean isPushConnectionEnabled() {
@@ -552,20 +551,17 @@ public class ConnectionsManager extends BaseController {
             if (requestCallbacks != null) {
                 connectionsManager.requestCallbacks.remove(Integer.valueOf(i2));
                 FileLog.d("{rc} onRequestClear(" + i + ", " + i2 + ", " + z + "): " + connectionsManager.requestCallbacks.size() + " requests' callbacks");
-                return;
             }
-            return;
-        }
-        if (requestCallbacks != null) {
+        } else if (requestCallbacks != null) {
             Runnable runnable = requestCallbacks.onCancelled;
             if (runnable != null) {
                 runnable.run();
             }
             connectionsManager.requestCallbacks.remove(Integer.valueOf(i2));
             FileLog.d("{rc} onRequestClear(" + i + ", " + i2 + ", " + z + "): request to cancel is found " + connectionsManager.requestCallbacks.size() + " requests' callbacks");
-            return;
+        } else {
+            FileLog.d("{rc} onRequestClear(" + i + ", " + i2 + ", " + z + "): request to cancel is not found " + connectionsManager.requestCallbacks.size() + " requests' callbacks");
         }
-        FileLog.d("{rc} onRequestClear(" + i + ", " + i2 + ", " + z + "): request to cancel is not found " + connectionsManager.requestCallbacks.size() + " requests' callbacks");
     }
 
     public static void onRequestComplete(int i, int i2, long j, int i3, String str, int i4, long j2, long j3) {
@@ -810,10 +806,8 @@ public class ConnectionsManager extends BaseController {
                 this.lastPauseTime = System.currentTimeMillis();
             }
             native_pauseNetwork(this.currentAccount);
+        } else if (this.appPaused) {
         } else {
-            if (this.appPaused) {
-                return;
-            }
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.d("reset app pause time");
             }
@@ -843,9 +837,7 @@ public class ConnectionsManager extends BaseController {
                         ConnectionsManager.lambda$onUnparsedMessageReceived$8(i, TLdeserialize);
                     }
                 });
-                return;
-            }
-            if (BuildVars.LOGS_ENABLED) {
+            } else if (BuildVars.LOGS_ENABLED) {
                 FileLog.d(String.format("java received unknown constructor 0x%x", Integer.valueOf(readInt32)));
             }
         } catch (Exception e) {
@@ -915,13 +907,13 @@ public class ConnectionsManager extends BaseController {
     }
 
     public static int getInitFlags() {
-        if (!EmuDetector.with(ApplicationLoader.applicationContext).detect()) {
-            return 0;
+        if (EmuDetector.with(ApplicationLoader.applicationContext).detect()) {
+            if (BuildVars.LOGS_ENABLED) {
+                FileLog.d("detected emu");
+            }
+            return 1024;
         }
-        if (BuildVars.LOGS_ENABLED) {
-            FileLog.d("detected emu");
-        }
-        return 1024;
+        return 0;
     }
 
     public static void onBytesSent(int i, int i2, int i3) {
@@ -969,9 +961,7 @@ public class ConnectionsManager extends BaseController {
             mozillaDnsLoadTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
             FileLog.d("9. currentTask = mozilla");
             currentTask = mozillaDnsLoadTask;
-            return;
-        }
-        if (i == 1) {
+        } else if (i == 1) {
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.d("start google txt task");
             }
@@ -979,15 +969,15 @@ public class ConnectionsManager extends BaseController {
             googleDnsLoadTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
             FileLog.d("11. currentTask = dnstxt");
             currentTask = googleDnsLoadTask;
-            return;
+        } else {
+            if (BuildVars.LOGS_ENABLED) {
+                FileLog.d("start firebase task");
+            }
+            FirebaseTask firebaseTask = new FirebaseTask(i2);
+            firebaseTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
+            FileLog.d("12. currentTask = firebase");
+            currentTask = firebaseTask;
         }
-        if (BuildVars.LOGS_ENABLED) {
-            FileLog.d("start firebase task");
-        }
-        FirebaseTask firebaseTask = new FirebaseTask(i2);
-        firebaseTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
-        FileLog.d("12. currentTask = firebase");
-        currentTask = firebaseTask;
     }
 
     public static void lambda$onProxyError$15() {

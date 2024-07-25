@@ -4,7 +4,6 @@ import kotlin.coroutines.CoroutineContext;
 import kotlin.coroutines.CoroutineContext.Element;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.Intrinsics;
-
 public abstract class AbstractCoroutineContextKey<B extends CoroutineContext.Element, E extends B> implements CoroutineContext.Key<E> {
     private final Function1<CoroutineContext.Element, E> safeCast;
     private final CoroutineContext.Key<?> topmostKey;

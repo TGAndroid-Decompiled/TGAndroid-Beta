@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$auth_SentCode extends TLObject {
     public TLRPC$auth_Authorization authorization;
     public int flags;

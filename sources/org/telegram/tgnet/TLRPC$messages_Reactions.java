@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$messages_Reactions extends TLObject {
     public static TLRPC$messages_Reactions TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$messages_Reactions tLRPC$TL_messages_reactions = i != -1334846497 ? i != -352454890 ? null : new TLRPC$TL_messages_reactions() : new TLRPC$messages_Reactions() {

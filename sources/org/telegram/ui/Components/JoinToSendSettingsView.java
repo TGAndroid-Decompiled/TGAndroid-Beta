@@ -15,7 +15,6 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.TextCheckCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
-
 public class JoinToSendSettingsView extends LinearLayout {
     private final int MAXSPEC;
     private TLRPC$Chat currentChat;

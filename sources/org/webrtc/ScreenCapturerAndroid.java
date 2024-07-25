@@ -9,7 +9,6 @@ import android.media.projection.MediaProjectionManager;
 import android.view.Surface;
 import org.telegram.messenger.FileLog;
 import org.webrtc.VideoSink;
-
 @TargetApi(21)
 public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
     private static final int DISPLAY_FLAGS = 3;
@@ -70,20 +69,15 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
         if (this.mediaProjection != null || this.mediaProjectionManager == null) {
             return;
         }
-        try {
-            checkNotDisposed();
-            this.width = i;
-            this.height = i2;
-            MediaProjection mediaProjection = this.mediaProjectionManager.getMediaProjection(-1, this.mediaProjectionPermissionResultData);
-            this.mediaProjection = mediaProjection;
-            mediaProjection.registerCallback(this.mediaProjectionCallback, this.surfaceTextureHelper.getHandler());
-            createVirtualDisplay();
-            this.capturerObserver.onCapturerStarted(true);
-            this.surfaceTextureHelper.startListening(this);
-        } catch (Throwable th) {
-            this.mediaProjectionCallback.onStop();
-            FileLog.e(th);
-        }
+        checkNotDisposed();
+        this.width = i;
+        this.height = i2;
+        MediaProjection mediaProjection = this.mediaProjectionManager.getMediaProjection(-1, this.mediaProjectionPermissionResultData);
+        this.mediaProjection = mediaProjection;
+        mediaProjection.registerCallback(this.mediaProjectionCallback, this.surfaceTextureHelper.getHandler());
+        createVirtualDisplay();
+        this.capturerObserver.onCapturerStarted(true);
+        this.surfaceTextureHelper.startListening(this);
     }
 
     @Override

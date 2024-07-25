@@ -3,7 +3,6 @@ package kotlinx.coroutines.internal;
 import java.util.List;
 import kotlin.KotlinNothingValueException;
 import kotlinx.coroutines.MainCoroutineDispatcher;
-
 public final class MainDispatchersKt {
     private static final boolean SUPPORT_MISSING = true;
 
@@ -33,11 +32,11 @@ public final class MainDispatchersKt {
         if (SUPPORT_MISSING) {
             return new MissingMainCoroutineDispatcher(th, str);
         }
-        if (th != null) {
-            throw th;
+        if (th == null) {
+            throwMissingMainDispatcherException();
+            throw new KotlinNothingValueException();
         }
-        throwMissingMainDispatcherException();
-        throw new KotlinNothingValueException();
+        throw th;
     }
 
     public static final Void throwMissingMainDispatcherException() {

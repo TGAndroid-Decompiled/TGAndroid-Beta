@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_messages_searchResultsPositions extends TLObject {
     public int count;
     public ArrayList<TLRPC$TL_searchResultPosition> positions = new ArrayList<>();

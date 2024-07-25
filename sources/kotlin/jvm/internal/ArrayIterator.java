@@ -4,7 +4,6 @@ import j$.util.Iterator;
 import j$.util.function.Consumer;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-
 final class ArrayIterator<T> implements Iterator<T>, j$.util.Iterator {
     private final T[] array;
     private int index;

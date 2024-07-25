@@ -14,7 +14,6 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.messenger.video.MediaCodecVideoConvertor;
 import org.telegram.ui.Stories.recorder.StoryEntry;
-
 public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
     private static final int EGL_CONTEXT_CLIENT_VERSION = 12440;
     private static final int EGL_OPENGL_ES2_BIT = 4;
@@ -111,18 +110,17 @@ public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
 
     public void awaitNewImage() {
         synchronized (this.mFrameSyncObject) {
-            do {
-                if (!this.mFrameAvailable) {
-                    try {
-                        this.mFrameSyncObject.wait(2500L);
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
+            while (!this.mFrameAvailable) {
+                try {
+                    this.mFrameSyncObject.wait(2500L);
+                    if (!this.mFrameAvailable) {
+                        throw new RuntimeException("Surface frame wait timed out");
                     }
-                } else {
-                    this.mFrameAvailable = false;
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
                 }
-            } while (this.mFrameAvailable);
-            throw new RuntimeException("Surface frame wait timed out");
+            }
+            this.mFrameAvailable = false;
         }
         this.mSurfaceTexture.updateTexImage();
     }

@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_pageTableRow extends TLObject {
     public ArrayList<TLRPC$TL_pageTableCell> cells = new ArrayList<>();
 

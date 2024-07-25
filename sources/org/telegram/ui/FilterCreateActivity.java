@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
@@ -104,7 +105,6 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.FilterCreateActivity;
 import org.telegram.ui.PeerColorActivity;
 import org.telegram.ui.UsersSelectActivity;
-
 public class FilterCreateActivity extends BaseFragment {
     private ListAdapter adapter;
     private CreateLinkCell createLinkCell;
@@ -423,14 +423,15 @@ public class FilterCreateActivity extends BaseFragment {
             this.actionBar.setTitle(Emoji.replaceEmoji((CharSequence) this.filter.name, textPaint.getFontMetricsInt(), AndroidUtilities.dp(20.0f), false));
         }
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
-            AnonymousClass1() {
+            {
+                FilterCreateActivity.this = this;
             }
 
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
                     if (FilterCreateActivity.this.checkDiscard()) {
-                        FilterCreateActivity.this.lambda$onBackPressed$306();
+                        FilterCreateActivity.this.finishFragment();
                     }
                 } else if (i == 1) {
                     FilterCreateActivity.this.processDone();
@@ -442,14 +443,14 @@ public class FilterCreateActivity extends BaseFragment {
         this.fragmentView = frameLayout;
         FrameLayout frameLayout2 = frameLayout;
         frameLayout2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
-        AnonymousClass2 anonymousClass2 = new RecyclerListView(context) {
+        RecyclerListView recyclerListView = new RecyclerListView(context) {
             @Override
             public boolean requestFocus(int i, Rect rect) {
                 return false;
             }
 
-            AnonymousClass2(Context context2) {
-                super(context2);
+            {
+                FilterCreateActivity.this = this;
             }
 
             @Override
@@ -461,14 +462,14 @@ public class FilterCreateActivity extends BaseFragment {
                 return Integer.valueOf(getThemedColor(Theme.key_listSelector));
             }
         };
-        this.listView = anonymousClass2;
-        anonymousClass2.setLayoutManager(new LinearLayoutManager(context2, 1, false));
+        this.listView = recyclerListView;
+        recyclerListView.setLayoutManager(new LinearLayoutManager(context, 1, false));
         this.listView.setVerticalScrollBarEnabled(false);
         frameLayout2.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
-        RecyclerListView recyclerListView = this.listView;
-        ListAdapter listAdapter = new ListAdapter(context2);
+        RecyclerListView recyclerListView2 = this.listView;
+        ListAdapter listAdapter = new ListAdapter(context);
         this.adapter = listAdapter;
-        recyclerListView.setAdapter(listAdapter);
+        recyclerListView2.setAdapter(listAdapter);
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i) {
@@ -494,42 +495,6 @@ public class FilterCreateActivity extends BaseFragment {
         return this.fragmentView;
     }
 
-    class AnonymousClass1 extends ActionBar.ActionBarMenuOnItemClick {
-        AnonymousClass1() {
-        }
-
-        @Override
-        public void onItemClick(int i) {
-            if (i == -1) {
-                if (FilterCreateActivity.this.checkDiscard()) {
-                    FilterCreateActivity.this.lambda$onBackPressed$306();
-                }
-            } else if (i == 1) {
-                FilterCreateActivity.this.processDone();
-            }
-        }
-    }
-
-    class AnonymousClass2 extends RecyclerListView {
-        @Override
-        public boolean requestFocus(int i, Rect rect) {
-            return false;
-        }
-
-        AnonymousClass2(Context context2) {
-            super(context2);
-        }
-
-        @Override
-        public Integer getSelectorColor(int i) {
-            ItemInner itemInner = (i < 0 || i >= FilterCreateActivity.this.items.size()) ? null : (ItemInner) FilterCreateActivity.this.items.get(i);
-            if (itemInner != null && itemInner.isRed) {
-                return Integer.valueOf(Theme.multAlpha(getThemedColor(Theme.key_text_RedRegular), 0.12f));
-            }
-            return Integer.valueOf(getThemedColor(Theme.key_listSelector));
-        }
-    }
-
     public void lambda$createView$7(View view, int i) {
         final ItemInner itemInner;
         if (getParentActivity() == null || (itemInner = this.items.get(i)) == null) {
@@ -541,8 +506,7 @@ public class FilterCreateActivity extends BaseFragment {
                 UserCell userCell = (UserCell) view;
                 showRemoveAlert(itemInner, userCell.getName(), userCell.getCurrentObject(), itemInner.include);
                 return;
-            }
-            if (i2 == 7) {
+            } else if (i2 == 7) {
                 Runnable runnable = new Runnable() {
                     @Override
                     public final void run() {
@@ -556,17 +520,15 @@ public class FilterCreateActivity extends BaseFragment {
                     runnable.run();
                     return;
                 }
-            }
-            if (i2 == 8 || (i2 == 4 && itemInner.iconResId == R.drawable.msg2_link2)) {
+            } else if (i2 == 8 || (i2 == 4 && itemInner.iconResId == R.drawable.msg2_link2)) {
                 onClickCreateLink(view);
                 return;
+            } else if (itemInner.viewType == 2) {
+                PollEditTextCell pollEditTextCell = (PollEditTextCell) view;
+                pollEditTextCell.getTextView().requestFocus();
+                AndroidUtilities.showKeyboard(pollEditTextCell.getTextView());
+                return;
             } else {
-                if (itemInner.viewType == 2) {
-                    PollEditTextCell pollEditTextCell = (PollEditTextCell) view;
-                    pollEditTextCell.getTextView().requestFocus();
-                    AndroidUtilities.showKeyboard(pollEditTextCell.getTextView());
-                    return;
-                }
                 return;
             }
         }
@@ -582,12 +544,12 @@ public class FilterCreateActivity extends BaseFragment {
 
     public boolean lambda$createView$8(View view, int i) {
         ItemInner itemInner = this.items.get(i);
-        if (itemInner == null || !(view instanceof UserCell)) {
-            return false;
+        if (itemInner != null && (view instanceof UserCell)) {
+            UserCell userCell = (UserCell) view;
+            showRemoveAlert(itemInner, userCell.getName(), userCell.getCurrentObject(), itemInner.include);
+            return true;
         }
-        UserCell userCell = (UserCell) view;
-        showRemoveAlert(itemInner, userCell.getName(), userCell.getCurrentObject(), itemInner.include);
-        return true;
+        return false;
     }
 
     private void onClickCreateLink(View view) {
@@ -598,40 +560,32 @@ public class FilterCreateActivity extends BaseFragment {
             BotWebViewVibrationEffect.APP_ERROR.vibrate();
             this.doNotCloseWhenSave = true;
             showSaveHint();
-            return;
-        }
-        if (!canCreateLink()) {
+        } else if (!canCreateLink()) {
             float f2 = -this.shiftDp;
             this.shiftDp = f2;
             AndroidUtilities.shakeViewSpring(view, f2);
             BotWebViewVibrationEffect.APP_ERROR.vibrate();
             if (TextUtils.isEmpty(this.newFilterName) && TextUtils.isEmpty(this.filter.name)) {
                 BulletinFactory.of(this).createErrorBulletin(LocaleController.getString("FilterInviteErrorEmptyName", R.string.FilterInviteErrorEmptyName)).show();
-                return;
-            }
-            if ((this.newFilterFlags & ((MessagesController.DIALOG_FILTER_FLAG_CHATLIST | MessagesController.DIALOG_FILTER_FLAG_CHATLIST_ADMIN) ^ (-1))) != 0) {
+            } else if ((this.newFilterFlags & ((MessagesController.DIALOG_FILTER_FLAG_CHATLIST | MessagesController.DIALOG_FILTER_FLAG_CHATLIST_ADMIN) ^ (-1))) != 0) {
                 if (!this.newNeverShow.isEmpty()) {
                     BulletinFactory.of(this).createErrorBulletin(LocaleController.getString("FilterInviteErrorTypesExcluded", R.string.FilterInviteErrorTypesExcluded)).show();
-                    return;
                 } else {
                     BulletinFactory.of(this).createErrorBulletin(LocaleController.getString("FilterInviteErrorTypes", R.string.FilterInviteErrorTypes)).show();
-                    return;
                 }
-            }
-            if (this.newAlwaysShow.isEmpty()) {
+            } else if (this.newAlwaysShow.isEmpty()) {
                 BulletinFactory.of(this).createErrorBulletin(LocaleController.getString("FilterInviteErrorEmpty", R.string.FilterInviteErrorEmpty)).show();
-                return;
             } else {
                 BulletinFactory.of(this).createErrorBulletin(LocaleController.getString("FilterInviteErrorExcluded", R.string.FilterInviteErrorExcluded)).show();
-                return;
             }
+        } else {
+            save(false, new Runnable() {
+                @Override
+                public final void run() {
+                    FilterCreateActivity.this.lambda$onClickCreateLink$12();
+                }
+            });
         }
-        save(false, new Runnable() {
-            @Override
-            public final void run() {
-                FilterCreateActivity.this.lambda$onClickCreateLink$12();
-            }
-        });
     }
 
     public void lambda$onClickCreateLink$12() {
@@ -645,9 +599,7 @@ public class FilterCreateActivity extends BaseFragment {
         }
         if (arrayList.size() > (getUserConfig().isPremium() ? getMessagesController().dialogFiltersChatsLimitPremium : getMessagesController().dialogFiltersChatsLimitDefault)) {
             showDialog(new LimitReachedBottomSheet(this, getContext(), 4, this.currentAccount, null));
-            return;
-        }
-        if (!arrayList.isEmpty()) {
+        } else if (!arrayList.isEmpty()) {
             TL_chatlists$TL_chatlists_exportChatlistInvite tL_chatlists$TL_chatlists_exportChatlistInvite = new TL_chatlists$TL_chatlists_exportChatlistInvite();
             TL_chatlists$TL_inputChatlistDialogFilter tL_chatlists$TL_inputChatlistDialogFilter = new TL_chatlists$TL_inputChatlistDialogFilter();
             tL_chatlists$TL_chatlists_exportChatlistInvite.chatlist = tL_chatlists$TL_inputChatlistDialogFilter;
@@ -660,12 +612,12 @@ public class FilterCreateActivity extends BaseFragment {
                     FilterCreateActivity.this.lambda$onClickCreateLink$11(tLObject, tLRPC$TL_error);
                 }
             });
-            return;
+        } else {
+            FilterChatlistActivity filterChatlistActivity = new FilterChatlistActivity(this.filter, null);
+            filterChatlistActivity.setOnEdit(new FilterCreateActivity$$ExternalSyntheticLambda22(this));
+            filterChatlistActivity.setOnDelete(new FilterCreateActivity$$ExternalSyntheticLambda23(this));
+            presentFragment(filterChatlistActivity);
         }
-        FilterChatlistActivity filterChatlistActivity = new FilterChatlistActivity(this.filter, null);
-        filterChatlistActivity.setOnEdit(new FilterCreateActivity$$ExternalSyntheticLambda22(this));
-        filterChatlistActivity.setOnDelete(new FilterCreateActivity$$ExternalSyntheticLambda23(this));
-        presentFragment(filterChatlistActivity);
     }
 
     public void lambda$onClickCreateLink$11(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
@@ -702,11 +654,7 @@ public class FilterCreateActivity extends BaseFragment {
     private void showSaveHint() {
         HintView hintView = this.saveHintView;
         if (hintView == null || hintView.getVisibility() != 0) {
-            AnonymousClass3 anonymousClass3 = new HintView(this, getContext(), 6, true) {
-                AnonymousClass3(FilterCreateActivity this, Context context, int i, boolean z) {
-                    super(context, i, z);
-                }
-
+            HintView hintView2 = new HintView(this, getContext(), 6, true) {
                 @Override
                 public void setVisibility(int i) {
                     super.setVisibility(i);
@@ -718,31 +666,14 @@ public class FilterCreateActivity extends BaseFragment {
                     }
                 }
             };
-            this.saveHintView = anonymousClass3;
-            anonymousClass3.textView.setMaxWidth(AndroidUtilities.displaySize.x);
+            this.saveHintView = hintView2;
+            hintView2.textView.setMaxWidth(AndroidUtilities.displaySize.x);
             this.saveHintView.setExtraTranslationY(AndroidUtilities.dp(-16.0f));
             this.saveHintView.setText(LocaleController.getString("FilterFinishCreating", R.string.FilterFinishCreating));
             ViewGroup.MarginLayoutParams marginLayoutParams = new ViewGroup.MarginLayoutParams(-2, -2);
             marginLayoutParams.rightMargin = AndroidUtilities.dp(3.0f);
             getParentLayout().getOverlayContainerView().addView(this.saveHintView, marginLayoutParams);
             this.saveHintView.showForView(this.doneItem, true);
-        }
-    }
-
-    public class AnonymousClass3 extends HintView {
-        AnonymousClass3(FilterCreateActivity this, Context context, int i, boolean z) {
-            super(context, i, z);
-        }
-
-        @Override
-        public void setVisibility(int i) {
-            super.setVisibility(i);
-            if (i != 0) {
-                try {
-                    ((ViewGroup) getParent()).removeView(this);
-                } catch (Exception unused) {
-                }
-            }
         }
     }
 
@@ -783,12 +714,12 @@ public class FilterCreateActivity extends BaseFragment {
         while (true) {
             if (i2 >= this.invites.size()) {
                 break;
-            }
-            if (TextUtils.equals(this.invites.get(i2).url, tL_chatlists$TL_exportedChatlistInvite.url)) {
+            } else if (TextUtils.equals(this.invites.get(i2).url, tL_chatlists$TL_exportedChatlistInvite.url)) {
                 i = i2;
                 break;
+            } else {
+                i2++;
             }
-            i2++;
         }
         if (i < 0) {
             this.invites.add(tL_chatlists$TL_exportedChatlistInvite);
@@ -828,7 +759,7 @@ public class FilterCreateActivity extends BaseFragment {
     }
 
     public void lambda$deleteFolder$13(Boolean bool) {
-        lambda$onBackPressed$306();
+        finishFragment();
     }
 
     public void lambda$deleteFolder$16(DialogInterface dialogInterface, int i) {
@@ -869,7 +800,7 @@ public class FilterCreateActivity extends BaseFragment {
         }
         getMessagesController().removeFilter(this.filter);
         getMessagesStorage().deleteDialogFilter(this.filter);
-        lambda$onBackPressed$306();
+        finishFragment();
     }
 
     private void onUpdate(boolean z, ArrayList<Long> arrayList, ArrayList<Long> arrayList2) {
@@ -1043,37 +974,37 @@ public class FilterCreateActivity extends BaseFragment {
     }
 
     public boolean checkDiscard() {
-        if (this.doneItem.getAlpha() != 1.0f) {
-            return true;
-        }
-        AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-        if (this.creatingNew) {
-            builder.setTitle(LocaleController.getString("FilterDiscardNewTitle", R.string.FilterDiscardNewTitle));
-            builder.setMessage(LocaleController.getString("FilterDiscardNewAlert", R.string.FilterDiscardNewAlert));
-            builder.setPositiveButton(LocaleController.getString("FilterDiscardNewSave", R.string.FilterDiscardNewSave), new DialogInterface.OnClickListener() {
-                @Override
-                public final void onClick(DialogInterface dialogInterface, int i) {
-                    FilterCreateActivity.this.lambda$checkDiscard$18(dialogInterface, i);
-                }
-            });
-        } else {
-            builder.setTitle(LocaleController.getString("FilterDiscardTitle", R.string.FilterDiscardTitle));
-            builder.setMessage(LocaleController.getString("FilterDiscardAlert", R.string.FilterDiscardAlert));
-            builder.setPositiveButton(LocaleController.getString("ApplyTheme", R.string.ApplyTheme), new DialogInterface.OnClickListener() {
-                @Override
-                public final void onClick(DialogInterface dialogInterface, int i) {
-                    FilterCreateActivity.this.lambda$checkDiscard$19(dialogInterface, i);
-                }
-            });
-        }
-        builder.setNegativeButton(LocaleController.getString("PassportDiscard", R.string.PassportDiscard), new DialogInterface.OnClickListener() {
-            @Override
-            public final void onClick(DialogInterface dialogInterface, int i) {
-                FilterCreateActivity.this.lambda$checkDiscard$20(dialogInterface, i);
+        if (this.doneItem.getAlpha() == 1.0f) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
+            if (this.creatingNew) {
+                builder.setTitle(LocaleController.getString("FilterDiscardNewTitle", R.string.FilterDiscardNewTitle));
+                builder.setMessage(LocaleController.getString("FilterDiscardNewAlert", R.string.FilterDiscardNewAlert));
+                builder.setPositiveButton(LocaleController.getString("FilterDiscardNewSave", R.string.FilterDiscardNewSave), new DialogInterface.OnClickListener() {
+                    @Override
+                    public final void onClick(DialogInterface dialogInterface, int i) {
+                        FilterCreateActivity.this.lambda$checkDiscard$18(dialogInterface, i);
+                    }
+                });
+            } else {
+                builder.setTitle(LocaleController.getString("FilterDiscardTitle", R.string.FilterDiscardTitle));
+                builder.setMessage(LocaleController.getString("FilterDiscardAlert", R.string.FilterDiscardAlert));
+                builder.setPositiveButton(LocaleController.getString("ApplyTheme", R.string.ApplyTheme), new DialogInterface.OnClickListener() {
+                    @Override
+                    public final void onClick(DialogInterface dialogInterface, int i) {
+                        FilterCreateActivity.this.lambda$checkDiscard$19(dialogInterface, i);
+                    }
+                });
             }
-        });
-        showDialog(builder.create());
-        return false;
+            builder.setNegativeButton(LocaleController.getString("PassportDiscard", R.string.PassportDiscard), new DialogInterface.OnClickListener() {
+                @Override
+                public final void onClick(DialogInterface dialogInterface, int i) {
+                    FilterCreateActivity.this.lambda$checkDiscard$20(dialogInterface, i);
+                }
+            });
+            showDialog(builder.create());
+            return false;
+        }
+        return true;
     }
 
     public void lambda$checkDiscard$18(DialogInterface dialogInterface, int i) {
@@ -1085,7 +1016,7 @@ public class FilterCreateActivity extends BaseFragment {
     }
 
     public void lambda$checkDiscard$20(DialogInterface dialogInterface, int i) {
-        lambda$onBackPressed$306();
+        finishFragment();
     }
 
     private void showRemoveAlert(final ItemInner itemInner, CharSequence charSequence, Object obj, final boolean z) {
@@ -1160,7 +1091,7 @@ public class FilterCreateActivity extends BaseFragment {
             this.actionBar.setTitleAnimated(Emoji.replaceEmoji((CharSequence) this.filter.name, textPaint.getFontMetricsInt(), AndroidUtilities.dp(20.0f), false), true, 220L);
             return;
         }
-        lambda$onBackPressed$306();
+        finishFragment();
     }
 
     private void save(boolean z, final Runnable runnable) {
@@ -1358,17 +1289,18 @@ public class FilterCreateActivity extends BaseFragment {
         if (!z) {
             if (runnable != null) {
                 runnable.run();
+                return;
             }
-        } else {
-            if (alertDialog != null) {
-                try {
-                    alertDialog.dismiss();
-                } catch (Exception e) {
-                    FileLog.e(e);
-                }
-            }
-            processAddFilter(dialogFilter, i, str, i2, arrayList, arrayList2, z2, z3, z4, z5, baseFragment, runnable);
+            return;
         }
+        if (alertDialog != null) {
+            try {
+                alertDialog.dismiss();
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+        }
+        processAddFilter(dialogFilter, i, str, i2, arrayList, arrayList2, z2, z3, z4, z5, baseFragment, runnable);
     }
 
     @Override
@@ -1549,22 +1481,21 @@ public class FilterCreateActivity extends BaseFragment {
             int i2 = this.viewType;
             if (i2 == 0) {
                 return this.newSpan == itemInner.newSpan;
-            }
-            if (i2 == 1) {
+            } else if (i2 == 1) {
                 return this.did == itemInner.did && TextUtils.equals(this.chatType, itemInner.chatType) && this.flags == itemInner.flags;
-            }
-            if (i2 != 7 || (tL_chatlists$TL_exportedChatlistInvite = this.link) == (tL_chatlists$TL_exportedChatlistInvite2 = itemInner.link)) {
+            } else if (i2 != 7 || (tL_chatlists$TL_exportedChatlistInvite = this.link) == (tL_chatlists$TL_exportedChatlistInvite2 = itemInner.link)) {
                 return true;
-            }
-            if (TextUtils.equals(tL_chatlists$TL_exportedChatlistInvite.url, tL_chatlists$TL_exportedChatlistInvite2.url)) {
-                TL_chatlists$TL_exportedChatlistInvite tL_chatlists$TL_exportedChatlistInvite3 = this.link;
-                boolean z = tL_chatlists$TL_exportedChatlistInvite3.revoked;
-                TL_chatlists$TL_exportedChatlistInvite tL_chatlists$TL_exportedChatlistInvite4 = itemInner.link;
-                if (z == tL_chatlists$TL_exportedChatlistInvite4.revoked && TextUtils.equals(tL_chatlists$TL_exportedChatlistInvite3.title, tL_chatlists$TL_exportedChatlistInvite4.title) && this.link.peers.size() == itemInner.link.peers.size()) {
-                    return true;
+            } else {
+                if (TextUtils.equals(tL_chatlists$TL_exportedChatlistInvite.url, tL_chatlists$TL_exportedChatlistInvite2.url)) {
+                    TL_chatlists$TL_exportedChatlistInvite tL_chatlists$TL_exportedChatlistInvite3 = this.link;
+                    boolean z = tL_chatlists$TL_exportedChatlistInvite3.revoked;
+                    TL_chatlists$TL_exportedChatlistInvite tL_chatlists$TL_exportedChatlistInvite4 = itemInner.link;
+                    if (z == tL_chatlists$TL_exportedChatlistInvite4.revoked && TextUtils.equals(tL_chatlists$TL_exportedChatlistInvite3.title, tL_chatlists$TL_exportedChatlistInvite4.title) && this.link.peers.size() == itemInner.link.peers.size()) {
+                        return true;
+                    }
                 }
+                return false;
             }
-            return false;
         }
     }
 
@@ -1572,6 +1503,7 @@ public class FilterCreateActivity extends BaseFragment {
         private Context mContext;
 
         public ListAdapter(Context context) {
+            FilterCreateActivity.this = r1;
             this.mContext = context;
         }
 
@@ -1586,55 +1518,8 @@ public class FilterCreateActivity extends BaseFragment {
             return FilterCreateActivity.this.items.size();
         }
 
-        class AnonymousClass1 implements TextWatcher {
-            final PollEditTextCell val$cell;
-
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-            }
-
-            AnonymousClass1(PollEditTextCell pollEditTextCell) {
-                r2 = pollEditTextCell;
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                if (r2.getTag() != null) {
-                    return;
-                }
-                String obj = editable.toString();
-                if (!TextUtils.equals(obj, FilterCreateActivity.this.newFilterName)) {
-                    FilterCreateActivity.this.nameChangedManually = !TextUtils.isEmpty(obj);
-                    FilterCreateActivity.this.newFilterName = obj;
-                    if (FilterCreateActivity.this.folderTagsHeader != null) {
-                        FilterCreateActivity.this.folderTagsHeader.setPreviewText((FilterCreateActivity.this.newFilterName == null ? "" : FilterCreateActivity.this.newFilterName).toUpperCase(), true);
-                    }
-                }
-                RecyclerView.ViewHolder findViewHolderForAdapterPosition = FilterCreateActivity.this.listView.findViewHolderForAdapterPosition(FilterCreateActivity.this.nameRow);
-                if (findViewHolderForAdapterPosition != null) {
-                    FilterCreateActivity.this.setTextLeft(findViewHolderForAdapterPosition.itemView);
-                }
-                FilterCreateActivity.this.checkDoneButton(true);
-            }
-        }
-
         public void lambda$onCreateViewHolder$0(PollEditTextCell pollEditTextCell, View view, boolean z) {
             pollEditTextCell.getTextView2().setAlpha((z || FilterCreateActivity.this.newFilterName.length() > 12) ? 1.0f : 0.0f);
-        }
-
-        class AnonymousClass2 extends LinkCell {
-            AnonymousClass2(Context context, BaseFragment baseFragment, int i, int i2) {
-                super(context, baseFragment, i, i2);
-            }
-
-            @Override
-            protected void onDelete(TL_chatlists$TL_exportedChatlistInvite tL_chatlists$TL_exportedChatlistInvite) {
-                FilterCreateActivity.this.onDelete(tL_chatlists$TL_exportedChatlistInvite);
-            }
         }
 
         @Override
@@ -1658,23 +1543,21 @@ public class FilterCreateActivity extends BaseFragment {
                     pollEditTextCell.createErrorTextView();
                     pollEditTextCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                     pollEditTextCell.addTextWatcher(new TextWatcher() {
-                        final PollEditTextCell val$cell;
-
                         @Override
-                        public void beforeTextChanged(CharSequence charSequence, int i2, int i22, int i3) {
+                        public void beforeTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
                         }
 
                         @Override
-                        public void onTextChanged(CharSequence charSequence, int i2, int i22, int i3) {
+                        public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
                         }
 
-                        AnonymousClass1(final PollEditTextCell pollEditTextCell2) {
-                            r2 = pollEditTextCell2;
+                        {
+                            ListAdapter.this = this;
                         }
 
                         @Override
                         public void afterTextChanged(Editable editable) {
-                            if (r2.getTag() != null) {
+                            if (pollEditTextCell.getTag() != null) {
                                 return;
                             }
                             String obj = editable.toString();
@@ -1692,16 +1575,16 @@ public class FilterCreateActivity extends BaseFragment {
                             FilterCreateActivity.this.checkDoneButton(true);
                         }
                     });
-                    EditTextBoldCursor textView = pollEditTextCell2.getTextView();
-                    pollEditTextCell2.setShowNextButton(true);
+                    EditTextBoldCursor textView = pollEditTextCell.getTextView();
+                    pollEditTextCell.setShowNextButton(true);
                     textView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                         @Override
                         public final void onFocusChange(View view, boolean z) {
-                            FilterCreateActivity.ListAdapter.this.lambda$onCreateViewHolder$0(pollEditTextCell2, view, z);
+                            FilterCreateActivity.ListAdapter.this.lambda$onCreateViewHolder$0(pollEditTextCell, view, z);
                         }
                     });
                     textView.setImeOptions(268435462);
-                    userCell = pollEditTextCell2;
+                    userCell = pollEditTextCell;
                     headerCell = userCell;
                     break;
                 case 3:
@@ -1722,8 +1605,8 @@ public class FilterCreateActivity extends BaseFragment {
                     Context context = this.mContext;
                     FilterCreateActivity filterCreateActivity = FilterCreateActivity.this;
                     headerCell = new LinkCell(context, filterCreateActivity, ((BaseFragment) filterCreateActivity).currentAccount, FilterCreateActivity.this.filter.id) {
-                        AnonymousClass2(Context context2, BaseFragment filterCreateActivity2, int i2, int i22) {
-                            super(context2, filterCreateActivity2, i2, i22);
+                        {
+                            ListAdapter.this = this;
                         }
 
                         @Override
@@ -2214,7 +2097,7 @@ public class FilterCreateActivity extends BaseFragment {
             }
         }
 
-        public void setRevoked(boolean z, boolean z2) {
+        public void setRevoked(final boolean z, boolean z2) {
             if ((z ? 1.0f : 0.0f) != this.revokeT) {
                 ValueAnimator valueAnimator = this.valueAnimator;
                 if (valueAnimator != null) {
@@ -2234,16 +2117,14 @@ public class FilterCreateActivity extends BaseFragment {
                         }
                     });
                     this.valueAnimator.addListener(new AnimatorListenerAdapter() {
-                        final boolean val$value;
-
-                        AnonymousClass1(boolean z3) {
-                            r2 = z3;
+                        {
+                            LinkCell.this = this;
                         }
 
                         @Override
                         public void onAnimationEnd(Animator animator) {
                             LinkCell linkCell = LinkCell.this;
-                            linkCell.revokeT = r2 ? 1.0f : 0.0f;
+                            linkCell.revokeT = z ? 1.0f : 0.0f;
                             linkCell.invalidate();
                         }
                     });
@@ -2252,7 +2133,7 @@ public class FilterCreateActivity extends BaseFragment {
                     this.valueAnimator.start();
                     return;
                 }
-                this.revokeT = z3 ? 1.0f : 0.0f;
+                this.revokeT = z ? 1.0f : 0.0f;
                 invalidate();
             }
         }
@@ -2260,21 +2141,6 @@ public class FilterCreateActivity extends BaseFragment {
         public void lambda$setRevoked$1(ValueAnimator valueAnimator) {
             this.revokeT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             invalidate();
-        }
-
-        public class AnonymousClass1 extends AnimatorListenerAdapter {
-            final boolean val$value;
-
-            AnonymousClass1(boolean z3) {
-                r2 = z3;
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                LinkCell linkCell = LinkCell.this;
-                linkCell.revokeT = r2 ? 1.0f : 0.0f;
-                linkCell.invalidate();
-            }
         }
 
         public void setInvite(TL_chatlists$TL_exportedChatlistInvite tL_chatlists$TL_exportedChatlistInvite, boolean z) {
@@ -2418,13 +2284,15 @@ public class FilterCreateActivity extends BaseFragment {
     }
 
     public static void hideNew(int i) {
-        MessagesController.getGlobalMainSettings().edit().putBoolean("n_" + i, true).apply();
+        SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
+        edit.putBoolean("n_" + i, true).apply();
     }
 
     public static CharSequence withNew(int i, CharSequence charSequence, boolean z) {
         Context context;
         if (i >= 0) {
-            if (MessagesController.getGlobalMainSettings().getBoolean("n_" + i, false) || (context = ApplicationLoader.applicationContext) == null) {
+            SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
+            if (globalMainSettings.getBoolean("n_" + i, false) || (context = ApplicationLoader.applicationContext) == null) {
                 return charSequence;
             }
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence);
@@ -2716,176 +2584,11 @@ public class FilterCreateActivity extends BaseFragment {
             }
         }
 
-        public class AnonymousClass1 extends AdapterWithDiffUtils {
-            AnonymousClass1() {
-            }
-
-            private RecyclerView.Adapter realAdapter() {
-                return ((BottomSheetWithRecyclerListView) FilterInvitesBottomSheet.this).recyclerListView.getAdapter();
-            }
-
-            @Override
-            public void notifyItemChanged(int i) {
-                realAdapter().notifyItemChanged(i + 1);
-            }
-
-            @Override
-            public void notifyItemInserted(int i) {
-                realAdapter().notifyItemInserted(i + 1);
-            }
-
-            @Override
-            public void notifyItemMoved(int i, int i2) {
-                realAdapter().notifyItemMoved(i + 1, i2);
-            }
-
-            @Override
-            public void notifyItemRangeChanged(int i, int i2) {
-                realAdapter().notifyItemRangeChanged(i + 1, i2);
-            }
-
-            @Override
-            public void notifyItemRangeChanged(int i, int i2, Object obj) {
-                realAdapter().notifyItemRangeChanged(i + 1, i2, obj);
-            }
-
-            @Override
-            public void notifyItemRangeInserted(int i, int i2) {
-                realAdapter().notifyItemRangeInserted(i + 1, i2);
-            }
-
-            @Override
-            public void notifyItemRangeRemoved(int i, int i2) {
-                realAdapter().notifyItemRangeRemoved(i + 1, i2);
-            }
-
-            @Override
-            public void notifyItemRemoved(int i) {
-                realAdapter().notifyItemRemoved(i + 1);
-            }
-
-            @Override
-            public void notifyDataSetChanged() {
-                realAdapter().notifyDataSetChanged();
-            }
-
-            @Override
-            public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-                int itemViewType = viewHolder.getItemViewType();
-                return itemViewType == 8 || itemViewType == 7;
-            }
-
-            @Override
-            public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-                View textInfoPrivacyCell;
-                if (i == 8) {
-                    textInfoPrivacyCell = new CreateLinkCell(FilterInvitesBottomSheet.this.getContext());
-                    textInfoPrivacyCell.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground));
-                } else if (i == 7) {
-                    textInfoPrivacyCell = new C00441(FilterInvitesBottomSheet.this.getContext(), null, ((BottomSheet) FilterInvitesBottomSheet.this).currentAccount, FilterInvitesBottomSheet.this.filter.id);
-                    textInfoPrivacyCell.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground));
-                } else if (i == 6 || i == 3) {
-                    textInfoPrivacyCell = new TextInfoPrivacyCell(FilterInvitesBottomSheet.this.getContext());
-                    textInfoPrivacyCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
-                } else {
-                    FilterInvitesBottomSheet filterInvitesBottomSheet = FilterInvitesBottomSheet.this;
-                    textInfoPrivacyCell = new HeaderView(filterInvitesBottomSheet.getContext());
-                }
-                return new RecyclerListView.Holder(textInfoPrivacyCell);
-            }
-
-            public class C00441 extends LinkCell {
-                C00441(Context context, BaseFragment baseFragment, int i, int i2) {
-                    super(context, baseFragment, i, i2);
-                }
-
-                @Override
-                public void options() {
-                    ItemOptions makeOptions = ItemOptions.makeOptions(FilterInvitesBottomSheet.this.container, this);
-                    makeOptions.add(R.drawable.msg_copy, LocaleController.getString("CopyLink", R.string.CopyLink), new Runnable() {
-                        @Override
-                        public final void run() {
-                            FilterCreateActivity.FilterInvitesBottomSheet.AnonymousClass1.C00441.this.copy();
-                        }
-                    });
-                    makeOptions.add(R.drawable.msg_qrcode, LocaleController.getString("GetQRCode", R.string.GetQRCode), new Runnable() {
-                        @Override
-                        public final void run() {
-                            FilterCreateActivity.FilterInvitesBottomSheet.AnonymousClass1.C00441.this.qrcode();
-                        }
-                    });
-                    makeOptions.add(R.drawable.msg_delete, (CharSequence) LocaleController.getString("DeleteLink", R.string.DeleteLink), true, new Runnable() {
-                        @Override
-                        public final void run() {
-                            FilterCreateActivity.FilterInvitesBottomSheet.AnonymousClass1.C00441.this.deleteLink();
-                        }
-                    });
-                    if (LocaleController.isRTL) {
-                        makeOptions.setGravity(3);
-                    }
-                    makeOptions.show();
-                }
-
-                public void copy() {
-                    String str = this.lastUrl;
-                    if (str != null && AndroidUtilities.addToClipboard(str)) {
-                        BulletinFactory.of(FilterInvitesBottomSheet.this.bulletinContainer, null).createCopyLinkBulletin().show();
-                    }
-                }
-
-                @Override
-                protected void onDelete(TL_chatlists$TL_exportedChatlistInvite tL_chatlists$TL_exportedChatlistInvite) {
-                    FilterInvitesBottomSheet.this.invites.remove(tL_chatlists$TL_exportedChatlistInvite);
-                    FilterInvitesBottomSheet.this.updateCreateInviteButton();
-                    FilterInvitesBottomSheet.this.updateRows(true);
-                }
-            }
-
-            @Override
-            public int getItemViewType(int i) {
-                return ((ItemInner) FilterInvitesBottomSheet.this.items.get(i)).viewType;
-            }
-
-            @Override
-            public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-                int itemViewType = viewHolder.getItemViewType();
-                ItemInner itemInner = (ItemInner) FilterInvitesBottomSheet.this.items.get(i);
-                int i2 = i + 1;
-                boolean z = i2 < FilterInvitesBottomSheet.this.items.size() && !((ItemInner) FilterInvitesBottomSheet.this.items.get(i2)).isShadow();
-                if (itemViewType == 7) {
-                    ((LinkCell) viewHolder.itemView).setInvite(itemInner.link, z);
-                    return;
-                }
-                if (itemViewType != 6 && itemViewType != 3) {
-                    if (itemViewType != 0 && itemViewType == 8) {
-                        CreateLinkCell createLinkCell = (CreateLinkCell) viewHolder.itemView;
-                        createLinkCell.setText(LocaleController.getString("CreateNewInviteLink", R.string.CreateNewInviteLink));
-                        createLinkCell.setDivider(z);
-                        return;
-                    }
-                    return;
-                }
-                TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
-                if (itemViewType == 6) {
-                    textInfoPrivacyCell.setFixedSize(0);
-                    textInfoPrivacyCell.setText(itemInner.text);
-                } else {
-                    textInfoPrivacyCell.setFixedSize(12);
-                    textInfoPrivacyCell.setText("");
-                }
-                textInfoPrivacyCell.setForeground(Theme.getThemedDrawableByKey(FilterInvitesBottomSheet.this.getContext(), z ? R.drawable.greydivider : R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
-            }
-
-            @Override
-            public int getItemCount() {
-                return FilterInvitesBottomSheet.this.items.size();
-            }
-        }
-
         @Override
         protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
-            AnonymousClass1 anonymousClass1 = new AdapterWithDiffUtils() {
-                AnonymousClass1() {
+            AdapterWithDiffUtils adapterWithDiffUtils = new AdapterWithDiffUtils() {
+                {
+                    FilterInvitesBottomSheet.this = this;
                 }
 
                 private RecyclerView.Adapter realAdapter() {
@@ -2965,6 +2668,7 @@ public class FilterCreateActivity extends BaseFragment {
                 public class C00441 extends LinkCell {
                     C00441(Context context, BaseFragment baseFragment, int i, int i2) {
                         super(context, baseFragment, i, i2);
+                        AnonymousClass1.this = r1;
                     }
 
                     @Override
@@ -3018,30 +2722,28 @@ public class FilterCreateActivity extends BaseFragment {
                 public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
                     int itemViewType = viewHolder.getItemViewType();
                     ItemInner itemInner = (ItemInner) FilterInvitesBottomSheet.this.items.get(i);
+                    boolean z = true;
                     int i2 = i + 1;
-                    boolean z = i2 < FilterInvitesBottomSheet.this.items.size() && !((ItemInner) FilterInvitesBottomSheet.this.items.get(i2)).isShadow();
+                    z = (i2 >= FilterInvitesBottomSheet.this.items.size() || ((ItemInner) FilterInvitesBottomSheet.this.items.get(i2)).isShadow()) ? false : false;
                     if (itemViewType == 7) {
                         ((LinkCell) viewHolder.itemView).setInvite(itemInner.link, z);
-                        return;
-                    }
-                    if (itemViewType != 6 && itemViewType != 3) {
+                    } else if (itemViewType != 6 && itemViewType != 3) {
                         if (itemViewType != 0 && itemViewType == 8) {
                             CreateLinkCell createLinkCell = (CreateLinkCell) viewHolder.itemView;
                             createLinkCell.setText(LocaleController.getString("CreateNewInviteLink", R.string.CreateNewInviteLink));
                             createLinkCell.setDivider(z);
-                            return;
                         }
-                        return;
-                    }
-                    TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
-                    if (itemViewType == 6) {
-                        textInfoPrivacyCell.setFixedSize(0);
-                        textInfoPrivacyCell.setText(itemInner.text);
                     } else {
-                        textInfoPrivacyCell.setFixedSize(12);
-                        textInfoPrivacyCell.setText("");
+                        TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
+                        if (itemViewType == 6) {
+                            textInfoPrivacyCell.setFixedSize(0);
+                            textInfoPrivacyCell.setText(itemInner.text);
+                        } else {
+                            textInfoPrivacyCell.setFixedSize(12);
+                            textInfoPrivacyCell.setText("");
+                        }
+                        textInfoPrivacyCell.setForeground(Theme.getThemedDrawableByKey(FilterInvitesBottomSheet.this.getContext(), z ? R.drawable.greydivider : R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
                     }
-                    textInfoPrivacyCell.setForeground(Theme.getThemedDrawableByKey(FilterInvitesBottomSheet.this.getContext(), z ? R.drawable.greydivider : R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
                 }
 
                 @Override
@@ -3049,8 +2751,8 @@ public class FilterCreateActivity extends BaseFragment {
                     return FilterInvitesBottomSheet.this.items.size();
                 }
             };
-            this.adapter = anonymousClass1;
-            return anonymousClass1;
+            this.adapter = adapterWithDiffUtils;
+            return adapterWithDiffUtils;
         }
 
         public class HeaderView extends FrameLayout {
@@ -3062,6 +2764,7 @@ public class FilterCreateActivity extends BaseFragment {
             public HeaderView(Context context) {
                 super(context);
                 String string;
+                FilterInvitesBottomSheet.this = r12;
                 ImageView imageView = new ImageView(context);
                 this.imageView = imageView;
                 imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -3071,7 +2774,7 @@ public class FilterCreateActivity extends BaseFragment {
                 addView(imageView, LayoutHelper.createFrame(54, 44.0f, 49, 0.0f, 22.0f, 0.0f, 0.0f));
                 TextView textView = new TextView(context);
                 this.titleView = textView;
-                textView.setText(FilterInvitesBottomSheet.this.getTitle());
+                textView.setText(r12.getTitle());
                 textView.setTypeface(AndroidUtilities.bold());
                 textView.setTextSize(1, 20.0f);
                 int i = Theme.key_dialogTextBlack;
@@ -3080,7 +2783,7 @@ public class FilterCreateActivity extends BaseFragment {
                 addView(textView, LayoutHelper.createFrame(-2, -2.0f, 49, 20.0f, 84.0f, 20.0f, 0.0f));
                 TextView textView2 = new TextView(context);
                 this.subtitleView = textView2;
-                if (FilterInvitesBottomSheet.this.invites.isEmpty()) {
+                if (r12.invites.isEmpty()) {
                     string = LocaleController.getString("FolderLinkShareSubtitleEmpty", R.string.FolderLinkShareSubtitleEmpty);
                 } else {
                     string = LocaleController.getString("FolderLinkShareSubtitle", R.string.FolderLinkShareSubtitle);
@@ -3229,23 +2932,23 @@ public class FilterCreateActivity extends BaseFragment {
         public final AnimatedTextView previewView;
 
         public HeaderCellColorPreview(Context context) {
-            super(context, Theme.key_windowBackgroundWhiteBlueHeader, 22, 15, false, ((BaseFragment) FilterCreateActivity.this).resourceProvider);
+            super(context, Theme.key_windowBackgroundWhiteBlueHeader, 22, 15, false, ((BaseFragment) r19).resourceProvider);
+            FilterCreateActivity.this = r19;
             TextView textView = new TextView(getContext());
             this.noTag = textView;
             textView.setTextSize(1, 14.0f);
-            textView.setTextColor(FilterCreateActivity.this.getThemedColor(Theme.key_windowBackgroundWhiteGrayText2));
-            textView.setText(LocaleController.getString(FilterCreateActivity.this.getUserConfig().isPremium() ? R.string.FolderTagNoColor : R.string.FolderTagNoColorPremium));
+            textView.setTextColor(r19.getThemedColor(Theme.key_windowBackgroundWhiteGrayText2));
+            textView.setText(LocaleController.getString(r19.getUserConfig().isPremium() ? R.string.FolderTagNoColor : R.string.FolderTagNoColorPremium));
             textView.setGravity(5);
             int i = (LocaleController.isRTL ? 3 : 5) | 48;
             int i2 = this.padding;
             addView(textView, LayoutHelper.createFrame(-1, -1.0f, i, i2, 16.66f, i2, this.bottomMargin));
             textView.setAlpha(0.0f);
-            AnonymousClass1 anonymousClass1 = new AnimatedTextView(getContext(), false, true, true, FilterCreateActivity.this) {
+            AnimatedTextView animatedTextView = new AnimatedTextView(getContext(), false, true, true, r19) {
                 private final Paint backgroundPaint = new Paint(1);
 
-                AnonymousClass1(Context context2, boolean z, boolean z2, boolean z3, FilterCreateActivity filterCreateActivity) {
-                    super(context2, z, z2, z3);
-                    this.backgroundPaint = new Paint(1);
+                {
+                    HeaderCellColorPreview.this = this;
                 }
 
                 @Override
@@ -3259,35 +2962,15 @@ public class FilterCreateActivity extends BaseFragment {
                     super.dispatchDraw(canvas);
                 }
             };
-            this.previewView = anonymousClass1;
-            this.animatedColor = new AnimatedColor(anonymousClass1, 0L, 320L, CubicBezierInterpolator.EASE_OUT_QUINT);
-            anonymousClass1.setTextSize(AndroidUtilities.dp(10.0f));
-            anonymousClass1.setTypeface(AndroidUtilities.bold());
-            anonymousClass1.setGravity(5);
-            anonymousClass1.setPadding(AndroidUtilities.dp(4.66f), 0, AndroidUtilities.dp(4.66f), 0);
+            this.previewView = animatedTextView;
+            this.animatedColor = new AnimatedColor(animatedTextView, 0L, 320L, CubicBezierInterpolator.EASE_OUT_QUINT);
+            animatedTextView.setTextSize(AndroidUtilities.dp(10.0f));
+            animatedTextView.setTypeface(AndroidUtilities.bold());
+            animatedTextView.setGravity(5);
+            animatedTextView.setPadding(AndroidUtilities.dp(4.66f), 0, AndroidUtilities.dp(4.66f), 0);
             int i3 = LocaleController.isRTL ? 3 : 5;
             int i4 = this.padding;
-            addView(anonymousClass1, LayoutHelper.createFrame(-1, -1.0f, i3 | 48, i4, 16.66f, i4, this.bottomMargin));
-        }
-
-        public class AnonymousClass1 extends AnimatedTextView {
-            private final Paint backgroundPaint = new Paint(1);
-
-            AnonymousClass1(Context context2, boolean z, boolean z2, boolean z3, FilterCreateActivity filterCreateActivity) {
-                super(context2, z, z2, z3);
-                this.backgroundPaint = new Paint(1);
-            }
-
-            @Override
-            protected void dispatchDraw(Canvas canvas) {
-                int i3 = HeaderCellColorPreview.this.animatedColor.set(HeaderCellColorPreview.this.currentColor);
-                setTextColor(i3);
-                this.backgroundPaint.setColor(Theme.multAlpha(i3, Theme.isCurrentThemeDark() ? 0.2f : 0.1f));
-                RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set((getWidth() - getDrawable().getCurrentWidth()) - AndroidUtilities.dpf2(9.32f), (getHeight() - AndroidUtilities.dpf2(14.66f)) / 2.0f, getWidth(), (getHeight() + AndroidUtilities.dpf2(14.66f)) / 2.0f);
-                canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.backgroundPaint);
-                super.dispatchDraw(canvas);
-            }
+            addView(animatedTextView, LayoutHelper.createFrame(-1, -1.0f, i3 | 48, i4, 16.66f, i4, this.bottomMargin));
         }
 
         public void setPreviewColor(int i, boolean z) {

@@ -5,7 +5,6 @@ import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$Peer;
 import org.telegram.tgnet.TLRPC$User;
-
 public class TL_chatlists$TL_chatlists_chatlistInviteAlready extends TL_chatlists$chatlist_ChatlistInvite {
     public int filter_id;
     public ArrayList<TLRPC$Peer> missing_peers = new ArrayList<>();

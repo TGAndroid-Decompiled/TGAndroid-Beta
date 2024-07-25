@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updateStarsBalance extends TLRPC$Update {
     public long balance;
 

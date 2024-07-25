@@ -14,7 +14,6 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
-
 public class JoinCallByUrlAlert extends BottomSheet {
     private boolean joinAfterDismiss;
 

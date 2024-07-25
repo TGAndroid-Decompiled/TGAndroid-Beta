@@ -3,10 +3,8 @@ package org.webrtc;
 import android.content.Context;
 import android.os.Build;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import org.webrtc.NetworkChangeDetector;
-
 public class NetworkMonitor {
     private static final String TAG = "NetworkMonitor";
     private volatile NetworkChangeDetector.ConnectionType currentConnectionType;
@@ -170,40 +168,35 @@ public class NetworkMonitor {
     }
 
     private void notifyObserversOfConnectionTypeChange(NetworkChangeDetector.ConnectionType connectionType) {
-        ArrayList arrayList;
-        Iterator<Long> it = getNativeNetworkObserversSync().iterator();
-        while (it.hasNext()) {
-            nativeNotifyConnectionTypeChanged(it.next().longValue());
+        ArrayList<NetworkObserver> arrayList;
+        for (Long l : getNativeNetworkObserversSync()) {
+            nativeNotifyConnectionTypeChanged(l.longValue());
         }
         synchronized (this.networkObservers) {
             arrayList = new ArrayList(this.networkObservers);
         }
-        Iterator it2 = arrayList.iterator();
-        while (it2.hasNext()) {
-            ((NetworkObserver) it2.next()).onConnectionTypeChanged(connectionType);
+        for (NetworkObserver networkObserver : arrayList) {
+            networkObserver.onConnectionTypeChanged(connectionType);
         }
     }
 
     public void notifyObserversOfNetworkConnect(NetworkChangeDetector.NetworkInformation networkInformation) {
-        Iterator<Long> it = getNativeNetworkObserversSync().iterator();
-        while (it.hasNext()) {
-            nativeNotifyOfNetworkConnect(it.next().longValue(), networkInformation);
+        for (Long l : getNativeNetworkObserversSync()) {
+            nativeNotifyOfNetworkConnect(l.longValue(), networkInformation);
         }
     }
 
     public void notifyObserversOfNetworkDisconnect(long j) {
-        Iterator<Long> it = getNativeNetworkObserversSync().iterator();
-        while (it.hasNext()) {
-            nativeNotifyOfNetworkDisconnect(it.next().longValue(), j);
+        for (Long l : getNativeNetworkObserversSync()) {
+            nativeNotifyOfNetworkDisconnect(l.longValue(), j);
         }
     }
 
     public void notifyObserversOfNetworkPreference(List<NetworkChangeDetector.ConnectionType> list, int i) {
         List<Long> nativeNetworkObserversSync = getNativeNetworkObserversSync();
         for (NetworkChangeDetector.ConnectionType connectionType : list) {
-            Iterator<Long> it = nativeNetworkObserversSync.iterator();
-            while (it.hasNext()) {
-                nativeNotifyOfNetworkPreference(it.next().longValue(), connectionType, i);
+            for (Long l : nativeNetworkObserversSync) {
+                nativeNotifyOfNetworkPreference(l.longValue(), connectionType, i);
             }
         }
     }

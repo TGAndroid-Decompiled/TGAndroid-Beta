@@ -34,7 +34,6 @@ import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SimpleThemeDescription;
 import org.telegram.ui.SelectAnimatedEmojiDialog;
-
 public class ReactionsDoubleTapManageActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private LinearLayout contentView;
     int infoRow;
@@ -62,7 +61,7 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    ReactionsDoubleTapManageActivity.this.lambda$onBackPressed$306();
+                    ReactionsDoubleTapManageActivity.this.finishFragment();
                 }
             }
         });
@@ -81,36 +80,36 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
 
             @Override
             public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-                View view;
+                SetDefaultReactionCell setDefaultReactionCell;
                 if (i == 0) {
                     ThemePreviewMessagesCell themePreviewMessagesCell = new ThemePreviewMessagesCell(context, ((BaseFragment) ReactionsDoubleTapManageActivity.this).parentLayout, 2);
                     if (Build.VERSION.SDK_INT >= 19) {
                         themePreviewMessagesCell.setImportantForAccessibility(4);
                     }
                     themePreviewMessagesCell.fragment = ReactionsDoubleTapManageActivity.this;
-                    view = themePreviewMessagesCell;
+                    setDefaultReactionCell = themePreviewMessagesCell;
                 } else if (i == 2) {
                     TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(context);
                     textInfoPrivacyCell.setText(LocaleController.getString("DoubleTapPreviewRational", R.string.DoubleTapPreviewRational));
                     textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(context, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
-                    view = textInfoPrivacyCell;
+                    setDefaultReactionCell = textInfoPrivacyCell;
                 } else if (i == 3) {
-                    SetDefaultReactionCell setDefaultReactionCell = new SetDefaultReactionCell(context);
-                    setDefaultReactionCell.update(false);
-                    view = setDefaultReactionCell;
+                    SetDefaultReactionCell setDefaultReactionCell2 = new SetDefaultReactionCell(context);
+                    setDefaultReactionCell2.update(false);
+                    setDefaultReactionCell = setDefaultReactionCell2;
                 } else if (i == 4) {
-                    View view2 = new View(this, context) {
+                    View view = new View(this, context) {
                         @Override
                         protected void onMeasure(int i2, int i3) {
                             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(16.0f), 1073741824));
                         }
                     };
-                    view2.setBackground(Theme.getThemedDrawableByKey(context, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
-                    view = view2;
+                    view.setBackground(Theme.getThemedDrawableByKey(context, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+                    setDefaultReactionCell = view;
                 } else {
-                    view = new AvailableReactionCell(context, true, true);
+                    setDefaultReactionCell = new AvailableReactionCell(context, true, true);
                 }
-                return new RecyclerListView.Holder(view);
+                return new RecyclerListView.Holder(setDefaultReactionCell);
             }
 
             @Override
@@ -118,9 +117,8 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
                 if (getItemViewType(i) != 1) {
                     return;
                 }
-                AvailableReactionCell availableReactionCell = (AvailableReactionCell) viewHolder.itemView;
                 TLRPC$TL_availableReaction tLRPC$TL_availableReaction = (TLRPC$TL_availableReaction) ReactionsDoubleTapManageActivity.this.getAvailableReactions().get(i - ReactionsDoubleTapManageActivity.this.reactionsStartRow);
-                availableReactionCell.bind(tLRPC$TL_availableReaction, tLRPC$TL_availableReaction.reaction.contains(MediaDataController.getInstance(((BaseFragment) ReactionsDoubleTapManageActivity.this).currentAccount).getDoubleTapReaction()), ((BaseFragment) ReactionsDoubleTapManageActivity.this).currentAccount);
+                ((AvailableReactionCell) viewHolder.itemView).bind(tLRPC$TL_availableReaction, tLRPC$TL_availableReaction.reaction.contains(MediaDataController.getInstance(((BaseFragment) ReactionsDoubleTapManageActivity.this).currentAccount).getDoubleTapReaction()), ((BaseFragment) ReactionsDoubleTapManageActivity.this).currentAccount);
             }
 
             @Override
@@ -166,13 +164,10 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
             if (availableReactionCell.locked && !getUserConfig().isPremium()) {
                 showDialog(new PremiumFeatureBottomSheet(this, 4, true));
                 return;
-            } else {
-                MediaDataController.getInstance(this.currentAccount).setDoubleTapReaction(availableReactionCell.react.reaction);
-                this.listView.getAdapter().notifyItemRangeChanged(0, this.listView.getAdapter().getItemCount());
-                return;
             }
-        }
-        if (view instanceof SetDefaultReactionCell) {
+            MediaDataController.getInstance(this.currentAccount).setDoubleTapReaction(availableReactionCell.react.reaction);
+            this.listView.getAdapter().notifyItemRangeChanged(0, this.listView.getAdapter().getItemCount());
+        } else if (view instanceof SetDefaultReactionCell) {
             showSelectStatusDialog((SetDefaultReactionCell) view);
         }
     }

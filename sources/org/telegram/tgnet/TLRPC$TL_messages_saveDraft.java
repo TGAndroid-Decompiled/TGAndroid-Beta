@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_messages_saveDraft extends TLObject {
     public long effect;
     public ArrayList<TLRPC$MessageEntity> entities = new ArrayList<>();

@@ -1,5 +1,4 @@
 package kotlinx.coroutines.scheduling;
-
 final class TaskContextImpl implements TaskContext {
     private final int taskMode;
 

@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_inputBusinessRecipients extends TLObject {
     public boolean contacts;
     public boolean exclude_selected;
@@ -38,11 +37,11 @@ public class TLRPC$TL_inputBusinessRecipients extends TLObject {
                 if (z) {
                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
                 }
-            } else {
-                int readInt323 = abstractSerializedData.readInt32(z);
-                for (int i = 0; i < readInt323; i++) {
-                    this.users.add(TLRPC$InputUser.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z));
-                }
+                return;
+            }
+            int readInt323 = abstractSerializedData.readInt32(z);
+            for (int i = 0; i < readInt323; i++) {
+                this.users.add(TLRPC$InputUser.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z));
             }
         }
     }

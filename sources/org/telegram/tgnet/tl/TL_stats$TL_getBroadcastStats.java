@@ -3,7 +3,6 @@ package org.telegram.tgnet.tl;
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$InputChannel;
-
 public class TL_stats$TL_getBroadcastStats extends TLObject {
     public TLRPC$InputChannel channel;
     public boolean dark;

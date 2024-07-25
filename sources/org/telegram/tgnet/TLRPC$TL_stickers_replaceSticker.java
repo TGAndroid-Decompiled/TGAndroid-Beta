@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_stickers_replaceSticker extends TLObject {
     public TLRPC$TL_inputStickerSetItem new_sticker;
     public TLRPC$InputDocument sticker;

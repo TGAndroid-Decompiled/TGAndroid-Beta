@@ -18,7 +18,6 @@ import org.telegram.messenger.SvgHelper;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$PhotoSize;
 import org.telegram.ui.ActionBar.Theme;
-
 public class RLottieImageView extends ImageView {
     private boolean attachedToWindow;
     private boolean autoRepeat;

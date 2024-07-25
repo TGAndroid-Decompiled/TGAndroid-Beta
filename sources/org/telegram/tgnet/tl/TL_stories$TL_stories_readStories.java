@@ -4,7 +4,6 @@ import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$InputPeer;
 import org.telegram.tgnet.TLRPC$Vector;
-
 public class TL_stories$TL_stories_readStories extends TLObject {
     public int max_id;
     public TLRPC$InputPeer peer;

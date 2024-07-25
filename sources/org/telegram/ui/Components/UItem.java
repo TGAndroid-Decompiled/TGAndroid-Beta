@@ -1,6 +1,7 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.LongSparseArray;
 import android.view.View;
@@ -18,7 +19,6 @@ import org.telegram.ui.Business.QuickRepliesController;
 import org.telegram.ui.ChannelMonetizationLayout;
 import org.telegram.ui.Components.ListView.AdapterWithDiffUtils;
 import org.telegram.ui.StatisticActivity;
-
 public class UItem extends AdapterWithDiffUtils.Item {
     private static LongSparseArray<UItemFactory<?>> factories = null;
     private static HashMap<Class<? extends UItemFactory<?>>, UItemFactory<?>> factoryInstances = null;
@@ -41,6 +41,7 @@ public class UItem extends AdapterWithDiffUtils.Item {
     public boolean locked;
     public long longValue;
     public Object object;
+    public Object object2;
     public int pad;
     public boolean red;
     public CharSequence subtext;
@@ -138,9 +139,26 @@ public class UItem extends AdapterWithDiffUtils.Item {
         return uItem;
     }
 
+    public static UItem asButton(int i, Drawable drawable, CharSequence charSequence) {
+        UItem uItem = new UItem(3, false);
+        uItem.id = i;
+        uItem.object = drawable;
+        uItem.text = charSequence;
+        return uItem;
+    }
+
     public static UItem asButton(int i, CharSequence charSequence, CharSequence charSequence2) {
         UItem uItem = new UItem(3, false);
         uItem.id = i;
+        uItem.text = charSequence;
+        uItem.textValue = charSequence2;
+        return uItem;
+    }
+
+    public static UItem asButton(int i, int i2, CharSequence charSequence, CharSequence charSequence2) {
+        UItem uItem = new UItem(3, false);
+        uItem.id = i;
+        uItem.iconResId = i2;
         uItem.text = charSequence;
         uItem.textValue = charSequence2;
         return uItem;
@@ -467,14 +485,14 @@ public class UItem extends AdapterWithDiffUtils.Item {
         }
         if (i == 36 || i == 35) {
             return this.id == uItem.id;
-        }
-        if (i == 31) {
+        } else if (i == 31) {
             return TextUtils.equals(this.text, uItem.text);
+        } else {
+            if (i >= factoryViewTypeStartsWith && (findFactory = findFactory(i)) != null) {
+                return findFactory.equals(this, uItem);
+            }
+            return itemEquals(uItem);
         }
-        if (i >= factoryViewTypeStartsWith && (findFactory = findFactory(i)) != null) {
-            return findFactory.equals(this, uItem);
-        }
-        return itemEquals(uItem);
     }
 
     @Override
@@ -493,18 +511,17 @@ public class UItem extends AdapterWithDiffUtils.Item {
         }
         if (i == 31) {
             return TextUtils.equals(this.text, uItem.text) && TextUtils.equals(this.subtext, uItem.subtext);
-        }
-        if (i == 35 || i == 37) {
+        } else if (i == 35 || i == 37) {
             return this.id == uItem.id && TextUtils.equals(this.text, uItem.text) && this.checked == uItem.checked;
-        }
-        if (i >= factoryViewTypeStartsWith && (findFactory = findFactory(i)) != null) {
+        } else if (i >= factoryViewTypeStartsWith && (findFactory = findFactory(i)) != null) {
             return findFactory.contentsEquals(this, uItem);
+        } else {
+            return itemContentEquals(uItem);
         }
-        return itemContentEquals(uItem);
     }
 
     public boolean itemEquals(UItem uItem) {
-        return this.id == uItem.id && this.pad == uItem.pad && this.dialogId == uItem.dialogId && this.iconResId == uItem.iconResId && this.hideDivider == uItem.hideDivider && this.transparent == uItem.transparent && this.red == uItem.red && this.locked == uItem.locked && this.accent == uItem.accent && TextUtils.equals(this.text, uItem.text) && TextUtils.equals(this.subtext, uItem.subtext) && TextUtils.equals(this.textValue, uItem.textValue) && this.view == uItem.view && this.intValue == uItem.intValue && this.longValue == uItem.longValue && Objects.equals(this.object, uItem.object);
+        return this.id == uItem.id && this.pad == uItem.pad && this.dialogId == uItem.dialogId && this.iconResId == uItem.iconResId && this.hideDivider == uItem.hideDivider && this.transparent == uItem.transparent && this.red == uItem.red && this.locked == uItem.locked && this.accent == uItem.accent && TextUtils.equals(this.text, uItem.text) && TextUtils.equals(this.subtext, uItem.subtext) && TextUtils.equals(this.textValue, uItem.textValue) && this.view == uItem.view && this.intValue == uItem.intValue && this.longValue == uItem.longValue && Objects.equals(this.object, uItem.object) && Objects.equals(this.object2, uItem.object2);
     }
 
     public boolean itemContentEquals(UItem uItem) {
@@ -514,6 +531,10 @@ public class UItem extends AdapterWithDiffUtils.Item {
     public static abstract class UItemFactory<V extends View> {
         private ArrayList<V> cache;
         public final int viewType = UItem.access$008();
+
+        public boolean applyBackground() {
+            return true;
+        }
 
         public void bindView(View view, UItem uItem, boolean z) {
         }

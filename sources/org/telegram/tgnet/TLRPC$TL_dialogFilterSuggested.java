@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_dialogFilterSuggested extends TLObject {
     public String description;
     public TLRPC$DialogFilter filter;

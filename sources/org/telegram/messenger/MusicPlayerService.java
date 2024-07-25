@@ -30,7 +30,6 @@ import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.webrtc.MediaStreamTrack;
-
 public class MusicPlayerService extends Service implements NotificationCenter.NotificationCenterDelegate {
     private static final int ID_NOTIFICATION = 5;
     public static final String NOTIFY_CLOSE = "org.telegram.android.musicplayer.close";
@@ -239,8 +238,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
                     if (pathToAttach.exists()) {
                         float f = i;
                         return ImageLoader.loadBitmap(pathToAttach.getAbsolutePath(), null, f, f, false);
-                    }
-                    if (z) {
+                    } else if (z) {
                         if (z2) {
                             this.loadingFilePath = FileLoader.getAttachFileName(tLRPC$FileLocation);
                             this.imageReceiver.setImage(ImageLocation.getForUser(tLRPC$User, 0), "", null, null, null, 0);
@@ -257,8 +255,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
                     if (pathToAttach2.exists()) {
                         float f2 = i;
                         return ImageLoader.loadBitmap(pathToAttach2.getAbsolutePath(), null, f2, f2, false);
-                    }
-                    if (z) {
+                    } else if (z) {
                         if (z2) {
                             this.loadingFilePath = FileLoader.getAttachFileName(tLRPC$FileLocation2);
                             this.imageReceiver.setImage(ImageLocation.getForChat(tLRPC$Chat, 0), "", null, null, null, 0);
@@ -312,16 +309,16 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
     }
 
     private float getPlaybackSpeed(boolean z, MessageObject messageObject) {
-        if (!z) {
-            return 0.0f;
-        }
-        if (messageObject == null) {
+        if (z) {
+            if (messageObject != null) {
+                if (messageObject.isVoice() || messageObject.isRoundVideo()) {
+                    return MediaController.getInstance().getPlaybackSpeed(false);
+                }
+                return 1.0f;
+            }
             return 1.0f;
         }
-        if (messageObject.isVoice() || messageObject.isRoundVideo()) {
-            return MediaController.getInstance().getPlaybackSpeed(false);
-        }
-        return 1.0f;
+        return 0.0f;
     }
 
     public void setListeners(RemoteViews remoteViews) {
@@ -368,41 +365,35 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
             MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
             if (playingMessageObject != null) {
                 createNotification(playingMessageObject, false);
-                return;
             } else {
                 stopSelf();
+            }
+        } else if (i == NotificationCenter.messagePlayingDidSeek) {
+            MessageObject playingMessageObject2 = MediaController.getInstance().getPlayingMessageObject();
+            if (playingMessageObject2 == null) {
                 return;
             }
-        }
-        if (i == NotificationCenter.messagePlayingDidSeek) {
-            if (MediaController.getInstance().getPlayingMessageObject() == null) {
-                return;
-            }
-            long round = Math.round(r3.audioPlayerDuration * ((Float) objArr[1]).floatValue()) * 1000;
+            long round = Math.round(playingMessageObject2.audioPlayerDuration * ((Float) objArr[1]).floatValue()) * 1000;
             updatePlaybackState(round);
             RemoteControlClient remoteControlClient = this.remoteControlClient;
             if (remoteControlClient == null || Build.VERSION.SDK_INT < 18) {
                 return;
             }
             remoteControlClient.setPlaybackState(MediaController.getInstance().isMessagePaused() ? 2 : 3, round, MediaController.getInstance().isMessagePaused() ? 0.0f : 1.0f);
-            return;
-        }
-        if (i == NotificationCenter.httpFileDidLoad) {
+        } else if (i == NotificationCenter.httpFileDidLoad) {
             String str3 = (String) objArr[0];
-            MessageObject playingMessageObject2 = MediaController.getInstance().getPlayingMessageObject();
-            if (playingMessageObject2 == null || (str2 = this.loadingFilePath) == null || !str2.equals(str3)) {
-                return;
-            }
-            createNotification(playingMessageObject2, false);
-            return;
-        }
-        if (i == NotificationCenter.fileLoaded) {
-            String str4 = (String) objArr[0];
             MessageObject playingMessageObject3 = MediaController.getInstance().getPlayingMessageObject();
-            if (playingMessageObject3 == null || (str = this.loadingFilePath) == null || !str.equals(str4)) {
+            if (playingMessageObject3 == null || (str2 = this.loadingFilePath) == null || !str2.equals(str3)) {
                 return;
             }
             createNotification(playingMessageObject3, false);
+        } else if (i == NotificationCenter.fileLoaded) {
+            String str4 = (String) objArr[0];
+            MessageObject playingMessageObject4 = MediaController.getInstance().getPlayingMessageObject();
+            if (playingMessageObject4 == null || (str = this.loadingFilePath) == null || !str.equals(str4)) {
+                return;
+            }
+            createNotification(playingMessageObject4, false);
         }
     }
 }

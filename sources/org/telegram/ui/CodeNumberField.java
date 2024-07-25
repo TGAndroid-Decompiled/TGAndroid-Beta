@@ -1,6 +1,5 @@
 package org.telegram.ui;
 
-import android.R;
 import android.animation.ValueAnimator;
 import android.content.ClipData;
 import android.content.ClipDescription;
@@ -29,7 +28,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.SimpleFloatPropertyCompat;
-
 public class CodeNumberField extends EditTextBoldCursor {
     float enterAnimation;
     ValueAnimator enterAnimator;
@@ -229,7 +227,8 @@ public class CodeNumberField extends EditTextBoldCursor {
             this.exitCanvas = new Canvas(this.exitBitmap);
         }
         this.exitBitmap.eraseColor(0);
-        StaticLayout staticLayout = new StaticLayout(getTransformationMethod().getTransformation(getText(), this), getLayout().getPaint(), (int) Math.ceil(getLayout().getPaint().measureText(r4, 0, r4.length())), Layout.Alignment.ALIGN_NORMAL, getLineSpacingMultiplier(), getLineSpacingExtra(), getIncludeFontPadding());
+        CharSequence transformation = getTransformationMethod().getTransformation(getText(), this);
+        StaticLayout staticLayout = new StaticLayout(transformation, getLayout().getPaint(), (int) Math.ceil(getLayout().getPaint().measureText(transformation, 0, transformation.length())), Layout.Alignment.ALIGN_NORMAL, getLineSpacingMultiplier(), getLineSpacingExtra(), getIncludeFontPadding());
         this.exitCanvas.save();
         this.exitCanvas.translate((getMeasuredWidth() - staticLayout.getWidth()) / 2.0f, (getMeasuredHeight() - staticLayout.getHeight()) / 2.0f);
         staticLayout.draw(this.exitCanvas);
@@ -325,7 +324,7 @@ public class CodeNumberField extends EditTextBoldCursor {
 
                             @Override
                             public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-                                menu.add(0, R.id.paste, 0, R.string.paste);
+                                menu.add(0, 16908322, 0, 17039371);
                                 return true;
                             }
 

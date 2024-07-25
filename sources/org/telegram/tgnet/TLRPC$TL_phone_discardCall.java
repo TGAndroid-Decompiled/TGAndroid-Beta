@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_phone_discardCall extends TLObject {
     public long connection_id;
     public int duration;

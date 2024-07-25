@@ -33,7 +33,6 @@ import org.telegram.tgnet.TLRPC$TL_help_appUpdate;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.LaunchActivity;
-
 public class SharedConfig {
     private static final int[] LOW_SOC;
     public static final int PASSCODE_TYPE_PASSWORD = 1;
@@ -84,6 +83,7 @@ public class SharedConfig {
     public static boolean hasCameraCache = false;
     public static boolean hasEmailLogin = false;
     private static HashSet<String> hevcEncoderWhitelist = null;
+    public static boolean inappBrowser = false;
     public static boolean inappCamera = false;
     public static boolean isFloatingDebugActive = false;
     public static boolean isWaitingForPasscodeEnter = false;
@@ -147,6 +147,9 @@ public class SharedConfig {
     public static int scheduledHintShows;
     public static long scheduledOrNoSoundHintSeenAt;
     public static int scheduledOrNoSoundHintShows;
+    public static String searchEngineCustomURLAutocomplete;
+    public static String searchEngineCustomURLQuery;
+    public static int searchEngineType;
     public static boolean searchMessagesAsListUsed;
     public static boolean showNotificationsForAllAccounts;
     public static boolean shuffleMusic;
@@ -258,11 +261,11 @@ public class SharedConfig {
                         if (i3 >= codecInfoAt.getSupportedTypes().length) {
                             z = false;
                             break;
-                        }
-                        if (codecInfoAt.getSupportedTypes()[i3].contains("video/hevc")) {
+                        } else if (codecInfoAt.getSupportedTypes()[i3].contains("video/hevc")) {
                             break;
+                        } else {
+                            i3++;
                         }
-                        i3++;
                     }
                     if (z && (maxSupportedInstances = codecInfoAt.getCapabilitiesForType("video/hevc").getMaxSupportedInstances()) > i2) {
                         i2 = maxSupportedInstances;
@@ -312,12 +315,14 @@ public class SharedConfig {
         sync = new Object();
         localIdSync = new Object();
         mapPreviewType = 2;
+        searchEngineType = 0;
         chatBubbles = Build.VERSION.SDK_INT >= 30;
         raiseToSpeak = false;
         raiseToListen = true;
         nextMediaTap = true;
         recordViaSco = false;
         customTabs = true;
+        inappBrowser = true;
         directShare = true;
         inappCamera = true;
         roundCamera16to9 = true;
@@ -355,6 +360,7 @@ public class SharedConfig {
                             return name;
                         }
                     }
+                    continue;
                 }
             }
             goodHevcEncoder = "";
@@ -984,6 +990,13 @@ public class SharedConfig {
         edit.apply();
     }
 
+    public static void setSearchEngineType(int i) {
+        searchEngineType = i;
+        SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
+        edit.putInt("searchEngineType", searchEngineType);
+        edit.apply();
+    }
+
     public static void setNoSoundHintShowed(boolean z) {
         if (noSoundHintShowed == z) {
             return;
@@ -1019,10 +1032,17 @@ public class SharedConfig {
         return raiseToListen && (!z || raiseToSpeak);
     }
 
-    public static void toggleCustomTabs() {
-        customTabs = !customTabs;
+    public static void toggleCustomTabs(boolean z) {
+        customTabs = z;
         SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
         edit.putBoolean("custom_tabs", customTabs);
+        edit.apply();
+    }
+
+    public static void toggleInappBrowser() {
+        inappBrowser = !inappBrowser;
+        SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
+        edit.putBoolean("inapp_browser", inappBrowser);
         edit.apply();
     }
 
@@ -1316,11 +1336,11 @@ public class SharedConfig {
         int i2 = chatSwipeAction;
         if (i2 < 0) {
             return !MessagesController.getInstance(i).dialogFilters.isEmpty() ? 5 : 2;
-        }
-        if (i2 == 5 && MessagesController.getInstance(i).dialogFilters.isEmpty()) {
+        } else if (i2 == 5 && MessagesController.getInstance(i).dialogFilters.isEmpty()) {
             return 2;
+        } else {
+            return chatSwipeAction;
         }
-        return chatSwipeAction;
     }
 
     public static void updateChatListSwipeSetting(int i) {
@@ -1373,11 +1393,11 @@ public class SharedConfig {
                 int[] iArr = LOW_SOC;
                 if (i4 >= iArr.length) {
                     break;
-                }
-                if (iArr[i4] == hashCode) {
+                } else if (iArr[i4] == hashCode) {
                     return 0;
+                } else {
+                    i4++;
                 }
-                i4++;
             }
         }
         int i5 = 0;

@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
-
 public class HashtagSearchCell extends TextView {
     private boolean needDivider;
 

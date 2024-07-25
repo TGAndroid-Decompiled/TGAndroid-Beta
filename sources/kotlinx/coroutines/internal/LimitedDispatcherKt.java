@@ -1,7 +1,6 @@
 package kotlinx.coroutines.internal;
 
 import kotlin.jvm.internal.Intrinsics;
-
 public final class LimitedDispatcherKt {
     public static final void checkParallelism(int i) {
         if (!(i >= 1)) {

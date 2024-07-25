@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_pageBlockAuthorDate extends TLRPC$PageBlock {
     public TLRPC$RichText author;
     public int published_date;

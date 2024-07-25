@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$GroupCall extends TLObject {
     public long access_hash;
     public boolean can_change_join_muted;

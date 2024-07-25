@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$messages_DhConfig extends TLObject {
     public int g;
     public byte[] p;

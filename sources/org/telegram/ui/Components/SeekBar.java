@@ -20,7 +20,6 @@ import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.Utilities;
-
 public class SeekBar {
     private static Paint paint;
     private static int thumbWidth;
@@ -221,6 +220,7 @@ public class SeekBar {
     }
 
     public void draw(Canvas canvas) {
+        int i;
         float f = this.alpha;
         if (f <= 0.0f) {
             return;
@@ -229,26 +229,26 @@ public class SeekBar {
             canvas.saveLayerAlpha(0.0f, 0.0f, this.width, this.height, (int) (f * 255.0f), 31);
         }
         RectF rectF = this.rect;
-        int i = thumbWidth;
-        int i2 = this.height;
-        int i3 = this.lineHeight;
-        rectF.set(i / 2, (i2 / 2) - (i3 / 2), this.width - (i / 2), (i2 / 2) + (i3 / 2));
+        int i2 = thumbWidth;
+        int i3 = this.height;
+        int i4 = this.lineHeight;
+        rectF.set(i2 / 2, (i3 / 2) - (i4 / 2), this.width - (i2 / 2), (i3 / 2) + (i4 / 2));
         paint.setColor(this.selected ? this.backgroundSelectedColor : this.backgroundColor);
         drawProgressBar(canvas, this.rect, paint);
         if (this.bufferedProgress > 0.0f) {
             paint.setColor(this.selected ? this.backgroundSelectedColor : this.cacheColor);
             RectF rectF2 = this.rect;
-            int i4 = thumbWidth;
-            int i5 = this.height;
-            int i6 = this.lineHeight;
-            rectF2.set(i4 / 2, (i5 / 2) - (i6 / 2), (i4 / 2) + (this.bufferedProgress * (this.width - i4)), (i5 / 2) + (i6 / 2));
+            int i5 = thumbWidth;
+            int i6 = this.height;
+            int i7 = this.lineHeight;
+            rectF2.set(i5 / 2, (i6 / 2) - (i7 / 2), (i5 / 2) + (this.bufferedProgress * (this.width - i5)), (i6 / 2) + (i7 / 2));
             drawProgressBar(canvas, this.rect, paint);
         }
         RectF rectF3 = this.rect;
         float f2 = thumbWidth / 2;
-        int i7 = this.height;
-        int i8 = this.lineHeight;
-        rectF3.set(f2, (i7 / 2) - (i8 / 2), (r1 / 2) + (this.pressed ? this.draggingThumbX : this.thumbX), (i7 / 2) + (i8 / 2));
+        int i8 = this.height;
+        int i9 = this.lineHeight;
+        rectF3.set(f2, (i8 / 2) - (i9 / 2), (i / 2) + (this.pressed ? this.draggingThumbX : this.thumbX), (i8 / 2) + (i9 / 2));
         paint.setColor(this.progressColor);
         drawProgressBar(canvas, this.rect, paint);
         paint.setColor(this.circleColor);
@@ -427,12 +427,12 @@ public class SeekBar {
         while (true) {
             if (size < 0) {
                 break;
-            }
-            if (1.0f - ((Float) this.timestamps.get(size).first).floatValue() >= dp2) {
+            } else if (1.0f - ((Float) this.timestamps.get(size).first).floatValue() >= dp2) {
                 i = size + 1;
                 break;
+            } else {
+                size--;
             }
-            size--;
         }
         if (i < 0) {
             i = this.timestamps.size();

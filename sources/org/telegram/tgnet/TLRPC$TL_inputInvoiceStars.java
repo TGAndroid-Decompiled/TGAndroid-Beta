@@ -1,17 +1,15 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_inputInvoiceStars extends TLRPC$InputInvoice {
-    public static int constructor = 497236696;
-    public TLRPC$TL_starsTopupOption option;
+    public TLRPC$InputStorePaymentPurpose purpose;
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-        this.option = TLRPC$TL_starsTopupOption.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+        this.purpose = TLRPC$InputStorePaymentPurpose.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
-        this.option.serializeToStream(abstractSerializedData);
+        abstractSerializedData.writeInt32(1710230755);
+        this.purpose.serializeToStream(abstractSerializedData);
     }
 }

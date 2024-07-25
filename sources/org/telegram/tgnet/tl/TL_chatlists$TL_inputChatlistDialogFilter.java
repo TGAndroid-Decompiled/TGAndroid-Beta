@@ -2,7 +2,6 @@ package org.telegram.tgnet.tl;
 
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
-
 public class TL_chatlists$TL_inputChatlistDialogFilter extends TLObject {
     public int filter_id;
 

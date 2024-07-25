@@ -55,9 +55,7 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RadialProgress2;
 import org.telegram.ui.Stories.RoundRectOutlineProvider;
-
 public class AvatarPreviewer {
-
     @SuppressLint({"StaticFieldLeak"})
     private static AvatarPreviewer INSTANCE;
     private Layout layout;
@@ -417,10 +415,8 @@ public class AvatarPreviewer {
                     int clamp = MathUtils.clamp((paddingTop - Layout.this.menu.getMeasuredHeight()) - AndroidUtilities.dp(40.0f), min2, min);
                     Layout.this.avatarView.measure(View.MeasureSpec.makeMeasureSpec(clamp, 1073741824), View.MeasureSpec.makeMeasureSpec(clamp, 1073741824));
                     int measuredHeight = (((paddingTop - clamp) - Layout.this.menu.getMeasuredHeight()) - AndroidUtilities.dp(40.0f)) / 2;
-                    FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) Layout.this.avatarView.getLayoutParams();
-                    FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) Layout.this.menu.getLayoutParams();
-                    layoutParams.topMargin = AndroidUtilities.dp(8.0f) + measuredHeight;
-                    layoutParams2.topMargin = measuredHeight + AndroidUtilities.dp(8.0f) + clamp;
+                    ((FrameLayout.LayoutParams) Layout.this.avatarView.getLayoutParams()).topMargin = AndroidUtilities.dp(8.0f) + measuredHeight;
+                    ((FrameLayout.LayoutParams) Layout.this.menu.getLayoutParams()).topMargin = measuredHeight + AndroidUtilities.dp(8.0f) + clamp;
                     super.onLayout(z, i, i2, i3, i4);
                 }
             };
@@ -484,12 +480,12 @@ public class AvatarPreviewer {
                         keyDispatcherState2.startTracking(keyEvent, this);
                     }
                     return true;
-                }
-                if (keyEvent.getAction() == 1 && (keyDispatcherState = getKeyDispatcherState()) != null && keyDispatcherState.isTracking(keyEvent) && !keyEvent.isCanceled()) {
+                } else if (keyEvent.getAction() == 1 && (keyDispatcherState = getKeyDispatcherState()) != null && keyDispatcherState.isTracking(keyEvent) && !keyEvent.isCanceled()) {
                     setShowing(false);
                     return true;
+                } else {
+                    return super.dispatchKeyEvent(keyEvent);
                 }
-                return super.dispatchKeyEvent(keyEvent);
             }
             return super.dispatchKeyEvent(keyEvent);
         }

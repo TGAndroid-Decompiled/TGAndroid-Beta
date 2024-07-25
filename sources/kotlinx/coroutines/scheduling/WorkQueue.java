@@ -4,7 +4,6 @@ import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 import java.util.concurrent.atomic.AtomicReferenceArray;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import kotlinx.coroutines.DebugKt;
-
 public final class WorkQueue {
     private static final AtomicReferenceFieldUpdater lastScheduledTask$FU = AtomicReferenceFieldUpdater.newUpdater(WorkQueue.class, Object.class, "lastScheduledTask");
     private static final AtomicIntegerFieldUpdater producerIndex$FU = AtomicIntegerFieldUpdater.newUpdater(WorkQueue.class, "producerIndex");
@@ -85,13 +84,13 @@ public final class WorkQueue {
         Task pollBuffer = workQueue.pollBuffer();
         if (pollBuffer != null) {
             Task add$default = add$default(this, pollBuffer, false, 2, null);
-            if (!DebugKt.getASSERTIONS_ENABLED()) {
-                return -1L;
+            if (DebugKt.getASSERTIONS_ENABLED()) {
+                if (add$default == null) {
+                    return -1L;
+                }
+                throw new AssertionError();
             }
-            if (add$default == null) {
-                return -1L;
-            }
-            throw new AssertionError();
+            return -1L;
         }
         return tryStealLastScheduled(workQueue, false);
     }

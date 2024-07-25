@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_payments_sendPaymentForm extends TLObject {
     public TLRPC$InputPaymentCredentials credentials;
     public int flags;

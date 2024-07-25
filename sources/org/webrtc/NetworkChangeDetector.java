@@ -1,7 +1,6 @@
 package org.webrtc;
 
 import java.util.List;
-
 public interface NetworkChangeDetector {
 
     public enum ConnectionType {

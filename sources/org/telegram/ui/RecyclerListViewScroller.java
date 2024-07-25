@@ -6,7 +6,6 @@ import android.animation.ValueAnimator;
 import android.view.animation.Interpolator;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.RecyclerListView;
-
 public class RecyclerListViewScroller {
     int lastScrolled;
     final RecyclerListView recyclerListView;

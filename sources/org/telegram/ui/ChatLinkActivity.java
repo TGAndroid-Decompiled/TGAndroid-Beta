@@ -57,7 +57,6 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LoadingStickerDrawable;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.GroupCreateFinalActivity;
-
 public class ChatLinkActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private int chatEndRow;
     private int chatStartRow;
@@ -101,7 +100,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
             LoadingStickerDrawable loadingStickerDrawable = new LoadingStickerDrawable(this.stickerView, "M476.1,397.4c25.8-47.2,0.3-105.9-50.9-120c-2.5-6.9-7.8-12.7-15-16.4l0.4-229.4c0-12.3-10-22.4-22.4-22.4H128.5c-12.3,0-22.4,10-22.4,22.4l-0.4,229.8v0c0,6.7,2.9,12.6,7.6,16.7c-51.6,15.9-79.2,77.2-48.1,116.4c-8.7,11.7-13.4,27.5-14,47.2c-1.7,34.5,21.6,45.8,55.9,45.8c52.3,0,99.1,4.6,105.1-36.2c16.5,0.9,7.1-37.3-6.5-53.3c18.4-22.4,18.3-52.9,4.9-78.2c-0.7-5.3-3.8-9.8-8.1-12.6c-1.5-2-1.6-2-2.1-2.7c0.2-1,1.2-11.8-3.4-20.9h138.5c-4.8,8.8-4.7,17-2.9,22.1c-5.3,4.8-6.8,12.3-5.2,17c-11.4,24.9-10,53.8,4.3,77.5c-6.8,9.7-11.2,21.7-12.6,31.6c-0.2-0.2-0.4-0.3-0.6-0.5c0.8-3.3,0.4-6.4-1.3-7.8c9.3-12.1-4.5-29.2-17-21.7c-3.8-2.8-10.6-3.2-18.1-0.5c-2.4-10.6-21.1-10.6-28.6-1c-1.3,0.3-2.9,0.8-4.5,1.9c-5.2-0.9-10.9,0.1-14.1,4.4c-6.9,3-9.5,10.4-7.8,17c-0.9,1.8-1.1,4-0.8,6.3c-1.6,1.2-2.3,3.1-2,4.9c0.1,0.6,10.4,56.6,11.2,62c0.3,1.8,1.5,3.2,3.1,3.9c8.7,3.4,12,3.8,30.1,9.4c2.7,0.8,2.4,0.8,6.7-0.1c16.4-3.5,30.2-8.9,30.8-9.2c1.6-0.6,2.7-2,3.1-3.7c0.1-0.4,6.8-36.5,10-53.2c0.9,4.2,3.3,7.3,7.4,7.5c1.2,7.8,4.4,14.5,9.5,19.9c16.4,17.3,44.9,15.7,64.9,16.1c38.3,0.8,74.5,1.5,84.4-24.4C488.9,453.5,491.3,421.3,476.1,397.4z", AndroidUtilities.dp(104.0f), AndroidUtilities.dp(104.0f));
             this.drawable = loadingStickerDrawable;
             this.stickerView.setImageDrawable(loadingStickerDrawable);
-            addView(this.stickerView, LayoutHelper.createLinear(R.styleable.AppCompatTheme_textAppearanceListItemSecondary, R.styleable.AppCompatTheme_textAppearanceListItemSecondary, 49, 0, 2, 0, 0));
+            addView(this.stickerView, LayoutHelper.createLinear((int) R.styleable.AppCompatTheme_textAppearanceListItemSecondary, (int) R.styleable.AppCompatTheme_textAppearanceListItemSecondary, 49, 0, 2, 0, 0));
         }
 
         private void setSticker() {
@@ -112,10 +111,10 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
             TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet = stickerSetByName;
             if (tLRPC$TL_messages_stickerSet != null && tLRPC$TL_messages_stickerSet.documents.size() >= 3) {
                 this.stickerView.setImage(ImageLocation.getForDocument(tLRPC$TL_messages_stickerSet.documents.get(2)), "104_104", "tgs", this.drawable, tLRPC$TL_messages_stickerSet);
-            } else {
-                MediaDataController.getInstance(this.currentAccount).loadStickersByEmojiOrName(AndroidUtilities.STICKERS_PLACEHOLDER_PACK_NAME, false, tLRPC$TL_messages_stickerSet == null);
-                this.stickerView.setImageDrawable(this.drawable);
+                return;
             }
+            MediaDataController.getInstance(this.currentAccount).loadStickersByEmojiOrName(AndroidUtilities.STICKERS_PLACEHOLDER_PACK_NAME, false, tLRPC$TL_messages_stickerSet == null);
+            this.stickerView.setImageDrawable(this.drawable);
         }
 
         @Override
@@ -252,33 +251,31 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
             this.waitingForFullChatProgressAlert = null;
             showLinkAlert(this.waitingForFullChat, false);
             this.waitingForFullChat = null;
-            return;
+        } else if (i != NotificationCenter.updateInterfaces || (((Integer) objArr[0]).intValue() & MessagesController.UPDATE_MASK_CHAT) == 0 || this.currentChat == null) {
+        } else {
+            TLRPC$Chat chat2 = getMessagesController().getChat(Long.valueOf(this.currentChat.id));
+            if (chat2 != null) {
+                this.currentChat = chat2;
+            }
+            if (this.chats.size() > 0 && (chat = getMessagesController().getChat(Long.valueOf(this.chats.get(0).id))) != null) {
+                this.chats.set(0, chat);
+            }
+            if (!this.isChannel) {
+                tLRPC$Chat = this.currentChat;
+            } else if (this.chats.size() > 0) {
+                tLRPC$Chat = this.chats.get(0);
+            }
+            if (tLRPC$Chat == null || (joinToSendSettingsView = this.joinToSendSettings) == null) {
+                return;
+            }
+            if (!this.joinRequestProgress) {
+                joinToSendSettingsView.lambda$new$3(tLRPC$Chat.join_request);
+            }
+            if (this.joinToSendProgress) {
+                return;
+            }
+            this.joinToSendSettings.setJoinToSend(tLRPC$Chat.join_to_send);
         }
-        if (i != NotificationCenter.updateInterfaces || (((Integer) objArr[0]).intValue() & MessagesController.UPDATE_MASK_CHAT) == 0 || this.currentChat == null) {
-            return;
-        }
-        TLRPC$Chat chat2 = getMessagesController().getChat(Long.valueOf(this.currentChat.id));
-        if (chat2 != null) {
-            this.currentChat = chat2;
-        }
-        if (this.chats.size() > 0 && (chat = getMessagesController().getChat(Long.valueOf(this.chats.get(0).id))) != null) {
-            this.chats.set(0, chat);
-        }
-        if (!this.isChannel) {
-            tLRPC$Chat = this.currentChat;
-        } else if (this.chats.size() > 0) {
-            tLRPC$Chat = this.chats.get(0);
-        }
-        if (tLRPC$Chat == null || (joinToSendSettingsView = this.joinToSendSettings) == null) {
-            return;
-        }
-        if (!this.joinRequestProgress) {
-            joinToSendSettingsView.lambda$new$3(tLRPC$Chat.join_request);
-        }
-        if (this.joinToSendProgress) {
-            return;
-        }
-        this.joinToSendSettings.setJoinToSend(tLRPC$Chat.join_to_send);
     }
 
     @Override
@@ -291,7 +288,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    ChatLinkActivity.this.lambda$onBackPressed$306();
+                    ChatLinkActivity.this.finishFragment();
                 }
             }
         });
@@ -399,9 +396,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
             Bundle bundle = new Bundle();
             bundle.putLong("chat_id", tLRPC$Chat.id);
             presentFragment(new ChatActivity(bundle));
-            return;
-        }
-        if (i == this.createChatRow) {
+        } else if (i == this.createChatRow) {
             if (this.isChannel && this.info.linked_chat_id == 0) {
                 Bundle bundle2 = new Bundle();
                 bundle2.putLongArray("result", new long[]{getUserConfig().getClientUserId()});
@@ -427,34 +422,32 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
                     }
                 });
                 presentFragment(groupCreateFinalActivity);
-                return;
-            }
-            if (this.chats.isEmpty()) {
-                return;
-            }
-            TLRPC$Chat tLRPC$Chat3 = this.chats.get(0);
-            AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-            if (this.isChannel) {
-                string = LocaleController.getString("DiscussionUnlinkGroup", R.string.DiscussionUnlinkGroup);
-                formatString = LocaleController.formatString("DiscussionUnlinkChannelAlert", R.string.DiscussionUnlinkChannelAlert, tLRPC$Chat3.title);
+            } else if (this.chats.isEmpty()) {
             } else {
-                string = LocaleController.getString("DiscussionUnlink", R.string.DiscussionUnlinkChannel);
-                formatString = LocaleController.formatString("DiscussionUnlinkGroupAlert", R.string.DiscussionUnlinkGroupAlert, tLRPC$Chat3.title);
-            }
-            builder.setTitle(string);
-            builder.setMessage(AndroidUtilities.replaceTags(formatString));
-            builder.setPositiveButton(LocaleController.getString("DiscussionUnlink", R.string.DiscussionUnlink), new DialogInterface.OnClickListener() {
-                @Override
-                public final void onClick(DialogInterface dialogInterface, int i3) {
-                    ChatLinkActivity.this.lambda$createView$5(dialogInterface, i3);
+                TLRPC$Chat tLRPC$Chat3 = this.chats.get(0);
+                AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
+                if (this.isChannel) {
+                    string = LocaleController.getString("DiscussionUnlinkGroup", R.string.DiscussionUnlinkGroup);
+                    formatString = LocaleController.formatString("DiscussionUnlinkChannelAlert", R.string.DiscussionUnlinkChannelAlert, tLRPC$Chat3.title);
+                } else {
+                    string = LocaleController.getString("DiscussionUnlink", R.string.DiscussionUnlinkChannel);
+                    formatString = LocaleController.formatString("DiscussionUnlinkGroupAlert", R.string.DiscussionUnlinkGroupAlert, tLRPC$Chat3.title);
                 }
-            });
-            builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
-            AlertDialog create = builder.create();
-            showDialog(create);
-            TextView textView = (TextView) create.getButton(-1);
-            if (textView != null) {
-                textView.setTextColor(Theme.getColor(Theme.key_text_RedBold));
+                builder.setTitle(string);
+                builder.setMessage(AndroidUtilities.replaceTags(formatString));
+                builder.setPositiveButton(LocaleController.getString("DiscussionUnlink", R.string.DiscussionUnlink), new DialogInterface.OnClickListener() {
+                    @Override
+                    public final void onClick(DialogInterface dialogInterface, int i3) {
+                        ChatLinkActivity.this.lambda$createView$5(dialogInterface, i3);
+                    }
+                });
+                builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
+                AlertDialog create = builder.create();
+                showDialog(create);
+                TextView textView = (TextView) create.getButton(-1);
+                if (textView != null) {
+                    textView.setTextColor(Theme.getColor(Theme.key_text_RedBold));
+                }
             }
         }
     }
@@ -515,7 +508,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
         if (this.isChannel) {
             return;
         }
-        lambda$onBackPressed$306();
+        finishFragment();
     }
 
     public void lambda$createView$0() {
@@ -699,10 +692,10 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
         }, 1000L);
         if (baseFragment != null) {
             removeSelfFromStack();
-            baseFragment.lambda$onBackPressed$306();
-        } else {
-            lambda$onBackPressed$306();
+            baseFragment.finishFragment();
+            return;
         }
+        finishFragment();
     }
 
     public void lambda$linkChat$11() {
@@ -861,17 +854,17 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
                 this.searchResult.clear();
                 this.searchResultNames.clear();
                 notifyDataSetChanged();
-            } else {
-                DispatchQueue dispatchQueue = Utilities.searchQueue;
-                Runnable runnable = new Runnable() {
-                    @Override
-                    public final void run() {
-                        ChatLinkActivity.SearchAdapter.this.lambda$searchDialogs$0(str);
-                    }
-                };
-                this.searchRunnable = runnable;
-                dispatchQueue.postRunnable(runnable, 300L);
+                return;
             }
+            DispatchQueue dispatchQueue = Utilities.searchQueue;
+            Runnable runnable = new Runnable() {
+                @Override
+                public final void run() {
+                    ChatLinkActivity.SearchAdapter.this.lambda$searchDialogs$0(str);
+                }
+            };
+            this.searchRunnable = runnable;
+            dispatchQueue.postRunnable(runnable, 300L);
         }
 
         public void lambda$searchDialogs$0(final String str) {
@@ -1175,6 +1168,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
             String str;
             int itemViewType = viewHolder.getItemViewType();
+            boolean z = false;
             if (itemViewType == 0) {
                 ManageChatUserCell manageChatUserCell = (ManageChatUserCell) viewHolder.itemView;
                 manageChatUserCell.setTag(Integer.valueOf(i));
@@ -1185,37 +1179,33 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
                 } else {
                     str = "@" + publicUsername;
                 }
-                manageChatUserCell.setData(tLRPC$Chat, null, str, (i == ChatLinkActivity.this.chatEndRow - 1 && ChatLinkActivity.this.info.linked_chat_id == 0) ? false : true);
-                return;
-            }
-            if (itemViewType == 1) {
+                manageChatUserCell.setData(tLRPC$Chat, null, str, (i == ChatLinkActivity.this.chatEndRow - 1 && ChatLinkActivity.this.info.linked_chat_id == 0) ? true : true);
+            } else if (itemViewType == 1) {
                 TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
                 if (i == ChatLinkActivity.this.detailRow) {
                     if (ChatLinkActivity.this.isChannel) {
                         textInfoPrivacyCell.setText(LocaleController.getString("DiscussionChannelHelp2", R.string.DiscussionChannelHelp2));
-                        return;
                     } else {
                         textInfoPrivacyCell.setText(LocaleController.getString("DiscussionGroupHelp2", R.string.DiscussionGroupHelp2));
-                        return;
                     }
                 }
-                return;
-            }
-            if (itemViewType != 2) {
-                return;
-            }
-            ManageChatTextCell manageChatTextCell = (ManageChatTextCell) viewHolder.itemView;
-            if (!ChatLinkActivity.this.isChannel) {
-                int i2 = Theme.key_text_RedRegular;
-                manageChatTextCell.setColors(i2, i2);
-                manageChatTextCell.setText(LocaleController.getString("DiscussionUnlinkChannel", R.string.DiscussionUnlinkChannel), null, R.drawable.msg_remove, false);
-            } else if (ChatLinkActivity.this.info.linked_chat_id != 0) {
+            } else if (itemViewType != 2) {
+            } else {
+                ManageChatTextCell manageChatTextCell = (ManageChatTextCell) viewHolder.itemView;
+                if (ChatLinkActivity.this.isChannel) {
+                    if (ChatLinkActivity.this.info.linked_chat_id != 0) {
+                        int i2 = Theme.key_text_RedRegular;
+                        manageChatTextCell.setColors(i2, i2);
+                        manageChatTextCell.setText(LocaleController.getString("DiscussionUnlinkGroup", R.string.DiscussionUnlinkGroup), null, R.drawable.msg_remove, false);
+                        return;
+                    }
+                    manageChatTextCell.setColors(Theme.key_windowBackgroundWhiteBlueIcon, Theme.key_windowBackgroundWhiteBlueButton);
+                    manageChatTextCell.setText(LocaleController.getString("DiscussionCreateGroup", R.string.DiscussionCreateGroup), null, R.drawable.msg_groups, true);
+                    return;
+                }
                 int i3 = Theme.key_text_RedRegular;
                 manageChatTextCell.setColors(i3, i3);
-                manageChatTextCell.setText(LocaleController.getString("DiscussionUnlinkGroup", R.string.DiscussionUnlinkGroup), null, R.drawable.msg_remove, false);
-            } else {
-                manageChatTextCell.setColors(Theme.key_windowBackgroundWhiteBlueIcon, Theme.key_windowBackgroundWhiteBlueButton);
-                manageChatTextCell.setText(LocaleController.getString("DiscussionCreateGroup", R.string.DiscussionCreateGroup), null, R.drawable.msg_groups, true);
+                manageChatTextCell.setText(LocaleController.getString("DiscussionUnlinkChannel", R.string.DiscussionUnlinkChannel), null, R.drawable.msg_remove, false);
             }
         }
 

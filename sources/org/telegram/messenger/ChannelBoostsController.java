@@ -23,7 +23,6 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.Premium.boosts.BoostRepository;
 import org.telegram.ui.LaunchActivity;
-
 public class ChannelBoostsController {
     public static final int BOOSTS_FOR_LEVEL_1 = 1;
     public static final int BOOSTS_FOR_LEVEL_2 = 1;

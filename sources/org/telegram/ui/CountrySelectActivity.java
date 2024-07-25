@@ -53,7 +53,6 @@ import org.telegram.ui.Components.Premium.boosts.BoostRepository$$ExternalSynthe
 import org.telegram.ui.Components.Premium.boosts.BoostRepository$$ExternalSyntheticLambda31;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.CountrySelectActivity;
-
 public class CountrySelectActivity extends BaseFragment {
     private CountrySelectActivityDelegate delegate;
     private boolean disableAnonymousNumbers;
@@ -115,7 +114,7 @@ public class CountrySelectActivity extends BaseFragment {
             @Override
             public void onItemClick(int i2) {
                 if (i2 == -1) {
-                    CountrySelectActivity.this.lambda$onBackPressed$306();
+                    CountrySelectActivity.this.finishFragment();
                 }
             }
         });
@@ -205,14 +204,13 @@ public class CountrySelectActivity extends BaseFragment {
             int positionInSectionForPosition = this.listViewAdapter.getPositionInSectionForPosition(i);
             if (positionInSectionForPosition < 0 || sectionForPosition < 0) {
                 return;
-            } else {
-                item = this.listViewAdapter.getItem(sectionForPosition, positionInSectionForPosition);
             }
+            item = this.listViewAdapter.getItem(sectionForPosition, positionInSectionForPosition);
         }
         if (i < 0) {
             return;
         }
-        lambda$onBackPressed$306();
+        finishFragment();
         if (item == null || (countrySelectActivityDelegate = this.delegate) == null) {
             return;
         }
@@ -319,9 +317,8 @@ public class CountrySelectActivity extends BaseFragment {
                 comparator = BoostRepository$$ExternalSyntheticLambda31.INSTANCE;
             }
             Collections.sort(this.sortedCountries, comparator);
-            Iterator<ArrayList<Country>> it = this.countries.values().iterator();
-            while (it.hasNext()) {
-                Collections.sort(it.next(), new Comparator() {
+            for (ArrayList<Country> arrayList4 : this.countries.values()) {
+                Collections.sort(arrayList4, new Comparator() {
                     @Override
                     public final int compare(Object obj, Object obj2) {
                         int lambda$new$0;
@@ -435,16 +432,15 @@ public class CountrySelectActivity extends BaseFragment {
 
         public CountrySearchAdapter(Context context, HashMap<String, ArrayList<Country>> hashMap) {
             this.mContext = context;
-            Iterator<ArrayList<Country>> it = hashMap.values().iterator();
-            while (it.hasNext()) {
-                for (Country country : it.next()) {
+            for (ArrayList<Country> arrayList : hashMap.values()) {
+                for (Country country : arrayList) {
                     this.countryList.add(country);
-                    ArrayList arrayList = new ArrayList(Arrays.asList(country.name.split(" ")));
+                    ArrayList arrayList2 = new ArrayList(Arrays.asList(country.name.split(" ")));
                     String str = country.defaultName;
                     if (str != null) {
-                        arrayList.addAll(Arrays.asList(str.split(" ")));
+                        arrayList2.addAll(Arrays.asList(str.split(" ")));
                     }
-                    this.countrySearchMap.put(country, arrayList);
+                    this.countrySearchMap.put(country, arrayList2);
                 }
             }
         }

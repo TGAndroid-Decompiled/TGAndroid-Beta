@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_wallPaper extends TLRPC$WallPaper {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

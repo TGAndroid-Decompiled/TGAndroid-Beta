@@ -70,7 +70,6 @@ import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.SimpleThemeDescription;
 import org.telegram.ui.Components.voip.CellFlickerDrawable;
 import org.telegram.ui.IntroActivity;
-
 public class IntroActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private BottomPagesView bottomPages;
     private long currentDate;
@@ -118,27 +117,26 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         final RLottieImageView rLottieImageView = new RLottieImageView(context);
         final FrameLayout frameLayout = new FrameLayout(context);
         frameLayout.addView(rLottieImageView, LayoutHelper.createFrame(28, 28, 17));
-        final int i = 4;
         FrameLayout frameLayout2 = new FrameLayout(context) {
             @Override
-            protected void onLayout(boolean z, int i2, int i3, int i4, int i5) {
-                super.onLayout(z, i2, i3, i4, i5);
-                int i6 = (i5 - i3) / 4;
-                int i7 = i6 * 3;
-                int dp = (i7 - AndroidUtilities.dp(275.0f)) / 2;
+            protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+                super.onLayout(z, i, i2, i3, i4);
+                int i5 = (i4 - i2) / 4;
+                int i6 = i5 * 3;
+                int dp = (i6 - AndroidUtilities.dp(275.0f)) / 2;
                 IntroActivity.this.frameLayout2.layout(0, dp, IntroActivity.this.frameLayout2.getMeasuredWidth(), IntroActivity.this.frameLayout2.getMeasuredHeight() + dp);
                 int dp2 = dp + AndroidUtilities.dp(150.0f) + AndroidUtilities.dp(122.0f);
                 int measuredWidth = (getMeasuredWidth() - IntroActivity.this.bottomPages.getMeasuredWidth()) / 2;
                 IntroActivity.this.bottomPages.layout(measuredWidth, dp2, IntroActivity.this.bottomPages.getMeasuredWidth() + measuredWidth, IntroActivity.this.bottomPages.getMeasuredHeight() + dp2);
                 IntroActivity.this.viewPager.layout(0, 0, IntroActivity.this.viewPager.getMeasuredWidth(), IntroActivity.this.viewPager.getMeasuredHeight());
-                int measuredHeight = i7 + ((i6 - IntroActivity.this.startMessagingButton.getMeasuredHeight()) / 2);
+                int measuredHeight = i6 + ((i5 - IntroActivity.this.startMessagingButton.getMeasuredHeight()) / 2);
                 int measuredWidth2 = (getMeasuredWidth() - IntroActivity.this.startMessagingButton.getMeasuredWidth()) / 2;
                 IntroActivity.this.startMessagingButton.layout(measuredWidth2, measuredHeight, IntroActivity.this.startMessagingButton.getMeasuredWidth() + measuredWidth2, IntroActivity.this.startMessagingButton.getMeasuredHeight() + measuredHeight);
                 int dp3 = measuredHeight - AndroidUtilities.dp(30.0f);
                 int measuredWidth3 = (getMeasuredWidth() - IntroActivity.this.switchLanguageTextView.getMeasuredWidth()) / 2;
                 IntroActivity.this.switchLanguageTextView.layout(measuredWidth3, dp3 - IntroActivity.this.switchLanguageTextView.getMeasuredHeight(), IntroActivity.this.switchLanguageTextView.getMeasuredWidth() + measuredWidth3, dp3);
                 ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) frameLayout.getLayoutParams();
-                int dp4 = AndroidUtilities.dp(i) + (AndroidUtilities.isTablet() ? 0 : AndroidUtilities.statusBarHeight);
+                int dp4 = AndroidUtilities.dp(r4) + (AndroidUtilities.isTablet() ? 0 : AndroidUtilities.statusBarHeight);
                 if (marginLayoutParams.topMargin != dp4) {
                     marginLayoutParams.topMargin = dp4;
                     frameLayout.requestLayout();
@@ -147,8 +145,8 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         };
         this.frameContainerView = frameLayout2;
         scrollView.addView(frameLayout2, LayoutHelper.createScroll(-1, -2, 51));
-        int i2 = R.raw.sun;
-        RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, String.valueOf(i2), AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
+        int i = R.raw.sun;
+        RLottieDrawable rLottieDrawable = new RLottieDrawable(i, String.valueOf(i), AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
         this.darkThemeDrawable = rLottieDrawable;
         rLottieDrawable.setPlayInDirectionOfCustomEndFrame(true);
         this.darkThemeDrawable.beginApplyLayerColors();
@@ -167,7 +165,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         this.frameLayout2 = frameLayout3;
         this.frameContainerView.addView(frameLayout3, LayoutHelper.createFrame(-1, -2.0f, 51, 0.0f, 78.0f, 0.0f, 0.0f));
         TextureView textureView = new TextureView(context);
-        this.frameLayout2.addView(textureView, LayoutHelper.createFrame(200, ImageReceiver.DEFAULT_CROSSFADE_DURATION, 17));
+        this.frameLayout2.addView(textureView, LayoutHelper.createFrame(200, (int) ImageReceiver.DEFAULT_CROSSFADE_DURATION, 17));
         textureView.setSurfaceTextureListener(new AnonymousClass2());
         ViewPager viewPager = new ViewPager(context);
         this.viewPager = viewPager;
@@ -177,27 +175,27 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         this.frameContainerView.addView(this.viewPager, LayoutHelper.createFrame(-1, -1.0f));
         this.viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int i3, float f, int i4) {
-                IntroActivity.this.bottomPages.setPageOffset(i3, f);
+            public void onPageScrolled(int i2, float f, int i3) {
+                IntroActivity.this.bottomPages.setPageOffset(i2, f);
                 float measuredWidth = IntroActivity.this.viewPager.getMeasuredWidth();
                 if (measuredWidth == 0.0f) {
                     return;
                 }
-                Intro.setScrollOffset((((i3 * measuredWidth) + i4) - (IntroActivity.this.currentViewPagerPage * measuredWidth)) / measuredWidth);
+                Intro.setScrollOffset((((i2 * measuredWidth) + i3) - (IntroActivity.this.currentViewPagerPage * measuredWidth)) / measuredWidth);
             }
 
             @Override
-            public void onPageSelected(int i3) {
-                IntroActivity.this.currentViewPagerPage = i3;
+            public void onPageSelected(int i2) {
+                IntroActivity.this.currentViewPagerPage = i2;
             }
 
             @Override
-            public void onPageScrollStateChanged(int i3) {
-                if (i3 == 1) {
+            public void onPageScrollStateChanged(int i2) {
+                if (i2 == 1) {
                     IntroActivity.this.dragging = true;
                     IntroActivity introActivity = IntroActivity.this;
                     introActivity.startDragX = introActivity.viewPager.getCurrentItem() * IntroActivity.this.viewPager.getMeasuredWidth();
-                } else if (i3 == 0 || i3 == 2) {
+                } else if (i2 == 0 || i2 == 2) {
                     if (IntroActivity.this.dragging) {
                         IntroActivity.this.justEndDragging = true;
                         IntroActivity.this.dragging = false;
@@ -229,11 +227,11 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
             }
 
             @Override
-            protected void onMeasure(int i3, int i4) {
-                if (View.MeasureSpec.getSize(i3) > AndroidUtilities.dp(260.0f)) {
-                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(320.0f), 1073741824), i4);
+            protected void onMeasure(int i2, int i3) {
+                if (View.MeasureSpec.getSize(i2) > AndroidUtilities.dp(260.0f)) {
+                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(320.0f), 1073741824), i3);
                 } else {
-                    super.onMeasure(i3, i4);
+                    super.onMeasure(i2, i3);
                 }
             }
         };
@@ -326,9 +324,8 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         }
 
         public void lambda$onSurfaceTextureAvailable$0() {
-            float currentTimeMillis = ((float) (System.currentTimeMillis() - IntroActivity.this.currentDate)) / 1000.0f;
             Intro.setPage(IntroActivity.this.currentViewPagerPage);
-            Intro.setDate(currentTimeMillis);
+            Intro.setDate(((float) (System.currentTimeMillis() - IntroActivity.this.currentDate)) / 1000.0f);
             Intro.onDrawFrame(0);
             if (IntroActivity.this.eglThread == null || !IntroActivity.this.eglThread.isAlive() || IntroActivity.this.eglThread.eglDisplay == null || IntroActivity.this.eglThread.eglSurface == null) {
                 return;
@@ -348,11 +345,11 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
 
         @Override
         public boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-            if (IntroActivity.this.eglThread == null) {
+            if (IntroActivity.this.eglThread != null) {
+                IntroActivity.this.eglThread.shutdown();
+                IntroActivity.this.eglThread = null;
                 return true;
             }
-            IntroActivity.this.eglThread.shutdown();
-            IntroActivity.this.eglThread = null;
             return true;
         }
     }
@@ -527,12 +524,12 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
 
     @Override
     public AnimatorSet onCustomTransitionAnimation(boolean z, Runnable runnable) {
-        if (!this.isOnLogout) {
-            return null;
+        if (this.isOnLogout) {
+            AnimatorSet duration = new AnimatorSet().setDuration(50L);
+            duration.playTogether(ValueAnimator.ofFloat(new float[0]));
+            return duration;
         }
-        AnimatorSet duration = new AnimatorSet().setDuration(50L);
-        duration.playTogether(ValueAnimator.ofFloat(new float[0]));
-        return duration;
+        return null;
     }
 
     private class IntroAdapter extends PagerAdapter {
@@ -643,35 +640,33 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
             this.drawRunnable = new Runnable() {
                 @Override
                 public void run() {
+                    float[] supportedRefreshRates;
                     if (EGLThread.this.initied) {
                         long currentTimeMillis = System.currentTimeMillis();
                         if ((EGLThread.this.eglContext.equals(EGLThread.this.egl10.eglGetCurrentContext()) && EGLThread.this.eglSurface.equals(EGLThread.this.egl10.eglGetCurrentSurface(12377))) || EGLThread.this.egl10.eglMakeCurrent(EGLThread.this.eglDisplay, EGLThread.this.eglSurface, EGLThread.this.eglSurface, EGLThread.this.eglContext)) {
                             int min = (int) Math.min(currentTimeMillis - EGLThread.this.lastDrawFrame, 16L);
-                            float f = ((float) (currentTimeMillis - IntroActivity.this.currentDate)) / 1000.0f;
                             Intro.setPage(IntroActivity.this.currentViewPagerPage);
-                            Intro.setDate(f);
+                            Intro.setDate(((float) (currentTimeMillis - IntroActivity.this.currentDate)) / 1000.0f);
                             Intro.onDrawFrame(min);
                             EGLThread.this.egl10.eglSwapBuffers(EGLThread.this.eglDisplay, EGLThread.this.eglSurface);
                             EGLThread.this.lastDrawFrame = currentTimeMillis;
-                            float f2 = 0.0f;
+                            float f = 0.0f;
                             if (EGLThread.this.maxRefreshRate == 0.0f) {
                                 if (Build.VERSION.SDK_INT < 21) {
                                     EGLThread.this.maxRefreshRate = 60.0f;
                                 } else {
-                                    for (float f3 : ((WindowManager) ApplicationLoader.applicationContext.getSystemService("window")).getDefaultDisplay().getSupportedRefreshRates()) {
-                                        if (f3 > f2) {
-                                            f2 = f3;
+                                    for (float f2 : ((WindowManager) ApplicationLoader.applicationContext.getSystemService("window")).getDefaultDisplay().getSupportedRefreshRates()) {
+                                        if (f2 > f) {
+                                            f = f2;
                                         }
                                     }
-                                    EGLThread.this.maxRefreshRate = f2;
+                                    EGLThread.this.maxRefreshRate = f;
                                 }
                             }
                             long currentTimeMillis2 = System.currentTimeMillis() - currentTimeMillis;
                             EGLThread eGLThread = EGLThread.this;
                             eGLThread.postRunnable(eGLThread.drawRunnable, Math.max((1000.0f / EGLThread.this.maxRefreshRate) - currentTimeMillis2, 0L));
-                            return;
-                        }
-                        if (BuildVars.LOGS_ENABLED) {
+                        } else if (BuildVars.LOGS_ENABLED) {
                             FileLog.e("eglMakeCurrent failed " + GLUtils.getEGLErrorString(EGLThread.this.egl10.eglGetError()));
                         }
                     }
@@ -707,8 +702,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
                 }
                 finish();
                 return false;
-            }
-            if (iArr[0] > 0) {
+            } else if (iArr[0] > 0) {
                 EGLConfig eGLConfig = eGLConfigArr[0];
                 this.eglConfig = eGLConfig;
                 EGLContext eglCreateContext = this.egl10.eglCreateContext(this.eglDisplay, eGLConfig, EGL10.EGL_NO_CONTEXT, new int[]{12440, 2, 12344});
@@ -730,68 +724,69 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
                         }
                         finish();
                         return false;
-                    }
-                    if (!this.egl10.eglMakeCurrent(this.eglDisplay, eglCreateWindowSurface, eglCreateWindowSurface, this.eglContext)) {
+                    } else if (!this.egl10.eglMakeCurrent(this.eglDisplay, eglCreateWindowSurface, eglCreateWindowSurface, this.eglContext)) {
                         if (BuildVars.LOGS_ENABLED) {
                             FileLog.e("eglMakeCurrent failed " + GLUtils.getEGLErrorString(this.egl10.eglGetError()));
                         }
                         finish();
                         return false;
+                    } else {
+                        GLES20.glGenTextures(23, this.textures, 0);
+                        loadTexture(R.drawable.intro_fast_arrow_shadow, 0);
+                        loadTexture(R.drawable.intro_fast_arrow, 1);
+                        loadTexture(R.drawable.intro_fast_body, 2);
+                        loadTexture(R.drawable.intro_fast_spiral, 3);
+                        loadTexture(R.drawable.intro_ic_bubble_dot, 4);
+                        loadTexture(R.drawable.intro_ic_bubble, 5);
+                        loadTexture(R.drawable.intro_ic_cam_lens, 6);
+                        loadTexture(R.drawable.intro_ic_cam, 7);
+                        loadTexture(R.drawable.intro_ic_pencil, 8);
+                        loadTexture(R.drawable.intro_ic_pin, 9);
+                        loadTexture(R.drawable.intro_ic_smile_eye, 10);
+                        loadTexture(R.drawable.intro_ic_smile, 11);
+                        loadTexture(R.drawable.intro_ic_videocam, 12);
+                        loadTexture(R.drawable.intro_knot_down, 13);
+                        loadTexture(R.drawable.intro_knot_up, 14);
+                        loadTexture(R.drawable.intro_powerful_infinity_white, 15);
+                        loadTexture(R.drawable.intro_powerful_infinity, 16);
+                        loadTexture(R.drawable.intro_powerful_mask, 17, Theme.getColor(Theme.key_windowBackgroundWhite), false);
+                        loadTexture(R.drawable.intro_powerful_star, 18);
+                        loadTexture(R.drawable.intro_private_door, 19);
+                        loadTexture(R.drawable.intro_private_screw, 20);
+                        loadTexture(R.drawable.intro_tg_plane, 21);
+                        loadTexture(new GenericProvider() {
+                            @Override
+                            public final Object provide(Object obj) {
+                                Bitmap lambda$initGL$1;
+                                lambda$initGL$1 = IntroActivity.EGLThread.lambda$initGL$1((Void) obj);
+                                return lambda$initGL$1;
+                            }
+                        }, 22);
+                        loadTexture(this.telegramMaskProvider, 23);
+                        updateTelegramTextures();
+                        updatePowerfulTextures();
+                        int[] iArr2 = this.textures;
+                        Intro.setPrivateTextures(iArr2[19], iArr2[20]);
+                        int[] iArr3 = this.textures;
+                        Intro.setFreeTextures(iArr3[14], iArr3[13]);
+                        int[] iArr4 = this.textures;
+                        Intro.setFastTextures(iArr4[2], iArr4[3], iArr4[1], iArr4[0]);
+                        int[] iArr5 = this.textures;
+                        Intro.setIcTextures(iArr5[4], iArr5[5], iArr5[6], iArr5[7], iArr5[8], iArr5[9], iArr5[10], iArr5[11], iArr5[12]);
+                        Intro.onSurfaceCreated();
+                        IntroActivity.this.currentDate = System.currentTimeMillis() - 1000;
+                        return true;
                     }
-                    GLES20.glGenTextures(23, this.textures, 0);
-                    loadTexture(R.drawable.intro_fast_arrow_shadow, 0);
-                    loadTexture(R.drawable.intro_fast_arrow, 1);
-                    loadTexture(R.drawable.intro_fast_body, 2);
-                    loadTexture(R.drawable.intro_fast_spiral, 3);
-                    loadTexture(R.drawable.intro_ic_bubble_dot, 4);
-                    loadTexture(R.drawable.intro_ic_bubble, 5);
-                    loadTexture(R.drawable.intro_ic_cam_lens, 6);
-                    loadTexture(R.drawable.intro_ic_cam, 7);
-                    loadTexture(R.drawable.intro_ic_pencil, 8);
-                    loadTexture(R.drawable.intro_ic_pin, 9);
-                    loadTexture(R.drawable.intro_ic_smile_eye, 10);
-                    loadTexture(R.drawable.intro_ic_smile, 11);
-                    loadTexture(R.drawable.intro_ic_videocam, 12);
-                    loadTexture(R.drawable.intro_knot_down, 13);
-                    loadTexture(R.drawable.intro_knot_up, 14);
-                    loadTexture(R.drawable.intro_powerful_infinity_white, 15);
-                    loadTexture(R.drawable.intro_powerful_infinity, 16);
-                    loadTexture(R.drawable.intro_powerful_mask, 17, Theme.getColor(Theme.key_windowBackgroundWhite), false);
-                    loadTexture(R.drawable.intro_powerful_star, 18);
-                    loadTexture(R.drawable.intro_private_door, 19);
-                    loadTexture(R.drawable.intro_private_screw, 20);
-                    loadTexture(R.drawable.intro_tg_plane, 21);
-                    loadTexture(new GenericProvider() {
-                        @Override
-                        public final Object provide(Object obj) {
-                            Bitmap lambda$initGL$1;
-                            lambda$initGL$1 = IntroActivity.EGLThread.lambda$initGL$1((Void) obj);
-                            return lambda$initGL$1;
-                        }
-                    }, 22);
-                    loadTexture(this.telegramMaskProvider, 23);
-                    updateTelegramTextures();
-                    updatePowerfulTextures();
-                    int[] iArr2 = this.textures;
-                    Intro.setPrivateTextures(iArr2[19], iArr2[20]);
-                    int[] iArr3 = this.textures;
-                    Intro.setFreeTextures(iArr3[14], iArr3[13]);
-                    int[] iArr4 = this.textures;
-                    Intro.setFastTextures(iArr4[2], iArr4[3], iArr4[1], iArr4[0]);
-                    int[] iArr5 = this.textures;
-                    Intro.setIcTextures(iArr5[4], iArr5[5], iArr5[6], iArr5[7], iArr5[8], iArr5[9], iArr5[10], iArr5[11], iArr5[12]);
-                    Intro.onSurfaceCreated();
-                    IntroActivity.this.currentDate = System.currentTimeMillis() - 1000;
-                    return true;
+                }
+                finish();
+                return false;
+            } else {
+                if (BuildVars.LOGS_ENABLED) {
+                    FileLog.e("eglConfig not initialized");
                 }
                 finish();
                 return false;
             }
-            if (BuildVars.LOGS_ENABLED) {
-                FileLog.e("eglConfig not initialized");
-            }
-            finish();
-            return false;
         }
 
         public static Bitmap lambda$initGL$1(Void r4) {

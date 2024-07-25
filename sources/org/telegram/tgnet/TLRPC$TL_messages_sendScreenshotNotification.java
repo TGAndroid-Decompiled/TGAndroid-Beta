@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_sendScreenshotNotification extends TLObject {
     public TLRPC$InputPeer peer;
     public long random_id;

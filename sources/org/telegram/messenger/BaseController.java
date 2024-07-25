@@ -2,7 +2,6 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.Components.Paint.PersistColorPalette;
-
 public class BaseController {
     protected final int currentAccount;
     private AccountInstance parentAccountInstance;

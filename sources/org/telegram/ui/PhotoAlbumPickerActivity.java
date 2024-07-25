@@ -62,7 +62,6 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.PhotoAlbumPickerActivity;
 import org.telegram.ui.PhotoPickerActivity;
-
 public class PhotoAlbumPickerActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     public static int SELECT_TYPE_ALL = 0;
     public static int SELECT_TYPE_AVATAR = 1;
@@ -166,10 +165,8 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
             @Override
             public void onItemClick(int i3) {
                 if (i3 == -1) {
-                    PhotoAlbumPickerActivity.this.lambda$onBackPressed$306();
-                    return;
-                }
-                if (i3 != 1) {
+                    PhotoAlbumPickerActivity.this.finishFragment();
+                } else if (i3 != 1) {
                     if (i3 == 2) {
                         PhotoAlbumPickerActivity.this.openPhotoPicker(null, 0);
                     }
@@ -383,18 +380,21 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
             @Override
             protected void onDraw(Canvas canvas) {
                 String format = String.format("%d", Integer.valueOf(Math.max(1, PhotoAlbumPickerActivity.this.selectedPhotosOrder.size())));
-                int max = Math.max(AndroidUtilities.dp(16.0f) + ((int) Math.ceil(PhotoAlbumPickerActivity.this.textPaint.measureText(format))), AndroidUtilities.dp(24.0f));
+                int ceil = (int) Math.ceil(PhotoAlbumPickerActivity.this.textPaint.measureText(format));
+                int max = Math.max(AndroidUtilities.dp(16.0f) + ceil, AndroidUtilities.dp(24.0f));
                 int measuredWidth = getMeasuredWidth() / 2;
                 int measuredHeight = getMeasuredHeight() / 2;
                 PhotoAlbumPickerActivity.this.textPaint.setColor(Theme.getColor(Theme.key_dialogRoundCheckBoxCheck));
                 PhotoAlbumPickerActivity.this.paint.setColor(Theme.getColor(Theme.key_dialogBackground));
                 int i5 = max / 2;
-                PhotoAlbumPickerActivity.this.rect.set(measuredWidth - i5, 0.0f, i5 + measuredWidth, getMeasuredHeight());
+                int i6 = measuredWidth - i5;
+                int i7 = i5 + measuredWidth;
+                PhotoAlbumPickerActivity.this.rect.set(i6, 0.0f, i7, getMeasuredHeight());
                 canvas.drawRoundRect(PhotoAlbumPickerActivity.this.rect, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), PhotoAlbumPickerActivity.this.paint);
                 PhotoAlbumPickerActivity.this.paint.setColor(Theme.getColor(Theme.key_dialogRoundCheckBox));
-                PhotoAlbumPickerActivity.this.rect.set(r5 + AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), r2 - AndroidUtilities.dp(2.0f), getMeasuredHeight() - AndroidUtilities.dp(2.0f));
+                PhotoAlbumPickerActivity.this.rect.set(i6 + AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), i7 - AndroidUtilities.dp(2.0f), getMeasuredHeight() - AndroidUtilities.dp(2.0f));
                 canvas.drawRoundRect(PhotoAlbumPickerActivity.this.rect, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), PhotoAlbumPickerActivity.this.paint);
-                canvas.drawText(format, measuredWidth - (r1 / 2), AndroidUtilities.dp(16.2f), PhotoAlbumPickerActivity.this.textPaint);
+                canvas.drawText(format, measuredWidth - (ceil / 2), AndroidUtilities.dp(16.2f), PhotoAlbumPickerActivity.this.textPaint);
             }
         };
         this.selectedCountView = view2;
@@ -424,15 +424,15 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
                     PhotoAlbumPickerActivity.this.lambda$createView$2(z, i);
                 }
             });
-        } else {
-            sendSelectedPhotos(this.selectedPhotos, this.selectedPhotosOrder, true, 0);
-            lambda$onBackPressed$306();
+            return;
         }
+        sendSelectedPhotos(this.selectedPhotos, this.selectedPhotosOrder, true, 0);
+        finishFragment();
     }
 
     public void lambda$createView$2(boolean z, int i) {
         sendSelectedPhotos(this.selectedPhotos, this.selectedPhotosOrder, z, i);
-        lambda$onBackPressed$306();
+        finishFragment();
     }
 
     public boolean lambda$createView$7(View view) {
@@ -449,14 +449,14 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
 
                     @Override
                     public boolean onTouch(View view2, MotionEvent motionEvent) {
-                        if (motionEvent.getActionMasked() != 0 || PhotoAlbumPickerActivity.this.sendPopupWindow == null || !PhotoAlbumPickerActivity.this.sendPopupWindow.isShowing()) {
+                        if (motionEvent.getActionMasked() == 0 && PhotoAlbumPickerActivity.this.sendPopupWindow != null && PhotoAlbumPickerActivity.this.sendPopupWindow.isShowing()) {
+                            view2.getHitRect(this.popupRect);
+                            if (this.popupRect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                                return false;
+                            }
+                            PhotoAlbumPickerActivity.this.sendPopupWindow.dismiss();
                             return false;
                         }
-                        view2.getHitRect(this.popupRect);
-                        if (this.popupRect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                            return false;
-                        }
-                        PhotoAlbumPickerActivity.this.sendPopupWindow.dismiss();
                         return false;
                     }
                 });
@@ -533,15 +533,15 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
                     PhotoAlbumPickerActivity.this.lambda$createView$5(z, i2);
                 }
             });
-        } else {
-            sendSelectedPhotos(this.selectedPhotos, this.selectedPhotosOrder, true, 0);
-            lambda$onBackPressed$306();
+            return;
         }
+        sendSelectedPhotos(this.selectedPhotos, this.selectedPhotosOrder, true, 0);
+        finishFragment();
     }
 
     public void lambda$createView$5(boolean z, int i) {
         sendSelectedPhotos(this.selectedPhotos, this.selectedPhotosOrder, z, i);
-        lambda$onBackPressed$306();
+        finishFragment();
     }
 
     @Override
@@ -592,11 +592,8 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
                     listAdapter.notifyDataSetChanged();
                 }
                 this.loading = false;
-                return;
             }
-            return;
-        }
-        if (i == NotificationCenter.closeChats) {
+        } else if (i == NotificationCenter.closeChats) {
             removeSelfFromStack(true);
         }
     }
@@ -683,10 +680,10 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
                 @Override
                 public boolean onPreDraw() {
                     PhotoAlbumPickerActivity.this.fixLayoutInternal();
-                    if (PhotoAlbumPickerActivity.this.listView == null) {
+                    if (PhotoAlbumPickerActivity.this.listView != null) {
+                        PhotoAlbumPickerActivity.this.listView.getViewTreeObserver().removeOnPreDrawListener(this);
                         return true;
                     }
-                    PhotoAlbumPickerActivity.this.listView.getViewTreeObserver().removeOnPreDrawListener(this);
                     return true;
                 }
             });
@@ -737,10 +734,10 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
             this.selectedCountView.setPivotX(0.0f);
             this.selectedCountView.setPivotY(0.0f);
             showCommentTextView(false);
-        } else {
-            this.selectedCountView.invalidate();
-            showCommentTextView(true);
+            return;
         }
+        this.selectedCountView.invalidate();
+        showCommentTextView(true);
     }
 
     public void openPhotoPicker(MediaController.AlbumEntry albumEntry, int i) {

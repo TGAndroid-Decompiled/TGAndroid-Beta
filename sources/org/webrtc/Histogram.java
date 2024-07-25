@@ -1,5 +1,4 @@
 package org.webrtc;
-
 public class Histogram {
     private final long handle;
 

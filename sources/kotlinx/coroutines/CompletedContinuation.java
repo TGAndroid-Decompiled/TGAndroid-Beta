@@ -4,7 +4,6 @@ import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.jvm.internal.Intrinsics;
-
 final class CompletedContinuation {
     public final Throwable cancelCause;
     public final CancelHandler cancelHandler;
@@ -20,10 +19,11 @@ final class CompletedContinuation {
             cancelHandler = completedContinuation.cancelHandler;
         }
         CancelHandler cancelHandler2 = cancelHandler;
+        Function1<Throwable, Unit> function12 = function1;
         if ((i & 4) != 0) {
-            function1 = completedContinuation.onCancellation;
+            function12 = completedContinuation.onCancellation;
         }
-        Function1 function12 = function1;
+        Function1 function13 = function12;
         if ((i & 8) != 0) {
             obj2 = completedContinuation.idempotentResume;
         }
@@ -31,7 +31,7 @@ final class CompletedContinuation {
         if ((i & 16) != 0) {
             th = completedContinuation.cancelCause;
         }
-        return completedContinuation.copy(obj, cancelHandler2, function12, obj4, th);
+        return completedContinuation.copy(obj, cancelHandler2, function13, obj4, th);
     }
 
     public final CompletedContinuation copy(Object obj, CancelHandler cancelHandler, Function1<? super Throwable, Unit> function1, Object obj2, Throwable th) {
@@ -42,11 +42,11 @@ final class CompletedContinuation {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof CompletedContinuation)) {
-            return false;
+        if (obj instanceof CompletedContinuation) {
+            CompletedContinuation completedContinuation = (CompletedContinuation) obj;
+            return Intrinsics.areEqual(this.result, completedContinuation.result) && Intrinsics.areEqual(this.cancelHandler, completedContinuation.cancelHandler) && Intrinsics.areEqual(this.onCancellation, completedContinuation.onCancellation) && Intrinsics.areEqual(this.idempotentResume, completedContinuation.idempotentResume) && Intrinsics.areEqual(this.cancelCause, completedContinuation.cancelCause);
         }
-        CompletedContinuation completedContinuation = (CompletedContinuation) obj;
-        return Intrinsics.areEqual(this.result, completedContinuation.result) && Intrinsics.areEqual(this.cancelHandler, completedContinuation.cancelHandler) && Intrinsics.areEqual(this.onCancellation, completedContinuation.onCancellation) && Intrinsics.areEqual(this.idempotentResume, completedContinuation.idempotentResume) && Intrinsics.areEqual(this.cancelCause, completedContinuation.cancelCause);
+        return false;
     }
 
     public int hashCode() {

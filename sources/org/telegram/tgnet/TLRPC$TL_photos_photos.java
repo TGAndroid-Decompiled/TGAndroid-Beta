@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_photos_photos extends TLRPC$photos_Photos {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

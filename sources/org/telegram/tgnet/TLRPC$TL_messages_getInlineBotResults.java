@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_getInlineBotResults extends TLObject {
     public TLRPC$InputUser bot;
     public int flags;

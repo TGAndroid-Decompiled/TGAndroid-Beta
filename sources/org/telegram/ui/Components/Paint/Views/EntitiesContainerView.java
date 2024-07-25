@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import com.google.zxing.common.detector.MathUtils;
 import org.telegram.messenger.AndroidUtilities;
-
 public class EntitiesContainerView extends FrameLayout {
     private boolean cancelled;
     private EntitiesContainerViewDelegate delegate;
@@ -88,9 +87,9 @@ public class EntitiesContainerView extends FrameLayout {
         if (view instanceof TextPaintView) {
             ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
             view.measure(FrameLayout.getChildMeasureSpec(i, getPaddingLeft() + getPaddingRight() + marginLayoutParams.leftMargin + marginLayoutParams.rightMargin + i2, marginLayoutParams.width), View.MeasureSpec.makeMeasureSpec(0, 0));
-        } else {
-            super.measureChildWithMargins(view, i, i2, i3, i4);
+            return;
         }
+        super.measureChildWithMargins(view, i, i2, i3, i4);
     }
 
     @Override

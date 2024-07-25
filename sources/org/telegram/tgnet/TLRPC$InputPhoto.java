@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$InputPhoto extends TLObject {
     public long access_hash;
     public byte[] file_reference;

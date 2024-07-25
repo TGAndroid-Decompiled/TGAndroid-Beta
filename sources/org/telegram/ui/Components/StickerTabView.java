@@ -13,7 +13,6 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.ui.ActionBar.Theme;
-
 public class StickerTabView extends FrameLayout {
     private static int indexPointer;
     public float dragOffset;
@@ -151,9 +150,8 @@ public class StickerTabView extends FrameLayout {
     }
 
     public void animateIfPositionChanged(final ViewGroup viewGroup) {
-        float left = getLeft();
         float f = this.lastLeft;
-        if (left != f && this.hasSavedLeft) {
+        if (getLeft() != f && this.hasSavedLeft) {
             this.dragOffset = f - getLeft();
             ValueAnimator valueAnimator = this.dragOffsetAnimator;
             if (valueAnimator != null) {

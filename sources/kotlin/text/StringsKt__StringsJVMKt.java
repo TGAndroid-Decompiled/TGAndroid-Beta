@@ -1,7 +1,6 @@
 package kotlin.text;
 
 import kotlin.jvm.internal.Intrinsics;
-
 public class StringsKt__StringsJVMKt extends StringsKt__StringNumberConversionsKt {
     public static boolean startsWith$default(String str, String str2, boolean z, int i, Object obj) {
         if ((i & 2) != 0) {

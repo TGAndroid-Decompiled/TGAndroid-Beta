@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import org.telegram.messenger.LiteMode;
-
 public class TLRPC$TL_stickerSet extends TLRPC$StickerSet {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

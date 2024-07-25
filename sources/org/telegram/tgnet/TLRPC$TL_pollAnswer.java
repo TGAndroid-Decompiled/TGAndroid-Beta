@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_pollAnswer extends TLRPC$PollAnswer {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

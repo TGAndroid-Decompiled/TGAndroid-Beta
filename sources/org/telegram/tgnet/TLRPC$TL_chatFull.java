@@ -2,7 +2,7 @@ package org.telegram.tgnet;
 
 import org.telegram.messenger.FileLoaderPriorityQueue;
 import org.telegram.messenger.LiteMode;
-
+import org.telegram.tgnet.tl.TL_bots$BotInfo;
 public class TLRPC$TL_chatFull extends TLRPC$ChatFull {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -30,7 +30,7 @@ public class TLRPC$TL_chatFull extends TLRPC$ChatFull {
             }
             int readInt323 = abstractSerializedData.readInt32(z);
             for (int i = 0; i < readInt323; i++) {
-                TLRPC$BotInfo TLdeserialize = TLRPC$BotInfo.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+                TL_bots$BotInfo TLdeserialize = TL_bots$BotInfo.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
                 if (TLdeserialize == null) {
                     return;
                 }
@@ -65,11 +65,10 @@ public class TLRPC$TL_chatFull extends TLRPC$ChatFull {
                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
                 }
                 return;
-            } else {
-                int readInt325 = abstractSerializedData.readInt32(z);
-                for (int i2 = 0; i2 < readInt325; i2++) {
-                    this.recent_requesters.add(Long.valueOf(abstractSerializedData.readInt64(z)));
-                }
+            }
+            int readInt325 = abstractSerializedData.readInt32(z);
+            for (int i2 = 0; i2 < readInt325; i2++) {
+                this.recent_requesters.add(Long.valueOf(abstractSerializedData.readInt64(z)));
             }
         }
         if ((this.flags & 262144) != 0) {

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$help_AppConfig extends TLObject {
     public static TLRPC$help_AppConfig TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$help_AppConfig tLRPC$TL_help_appConfig;

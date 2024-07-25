@@ -6,7 +6,6 @@ import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CameraDevice;
 import android.hardware.camera2.CaptureRequest;
 import java.util.ArrayList;
-
 public class CameraInfo {
     protected Camera camera;
     public CameraCaptureSession cameraCaptureSession;

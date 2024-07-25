@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_restrictionReason extends TLObject {
     public String platform;
     public String reason;

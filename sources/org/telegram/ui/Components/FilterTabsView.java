@@ -46,7 +46,6 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimationProperties;
 import org.telegram.ui.Components.FilterTabsView;
 import org.telegram.ui.Components.RecyclerListView;
-
 public class FilterTabsView extends FrameLayout {
     private final Property<FilterTabsView, Float> COLORS;
     private int aActiveTextColorKey;
@@ -338,9 +337,8 @@ public class FilterTabsView extends FrameLayout {
                 i = 0;
             }
             int dp = this.currentTab.titleWidth + (i != 0 ? i + AndroidUtilities.dp((str != null ? 1.0f : FilterTabsView.this.editingStartAnimationProgress) * 6.0f) : 0);
-            float measuredWidth = (getMeasuredWidth() - dp) / 2;
             float f = this.lastTextX;
-            if (measuredWidth != f) {
+            if ((getMeasuredWidth() - dp) / 2 != f) {
                 this.animateTextX = true;
                 this.animateFromTextX = f;
                 z = true;
@@ -575,7 +573,7 @@ public class FilterTabsView extends FrameLayout {
         this.listView.setSelectorRadius(6);
         this.listView.setSelectorDrawableColor(Theme.getColor(this.selectorColorKey));
         RecyclerListView recyclerListView2 = this.listView;
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, 0, 0 == true ? 1 : 0) {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, 0, false) {
             @Override
             public boolean supportsPredictiveItemAnimations() {
                 return true;
@@ -781,13 +779,10 @@ public class FilterTabsView extends FrameLayout {
             if (!this.isEditing) {
                 if (i != this.currentPosition || (filterTabsViewDelegate = this.delegate) == null) {
                     scrollToTab(tabView.currentTab, i);
-                    return;
                 } else {
                     filterTabsViewDelegate.onSamePageSelected();
-                    return;
                 }
-            }
-            if (i != 0) {
+            } else if (i != 0) {
                 float dp = AndroidUtilities.dp(6.0f);
                 if (tabView.rect.left - dp >= f || tabView.rect.right + dp <= f) {
                     return;
@@ -866,7 +861,8 @@ public class FilterTabsView extends FrameLayout {
         if (this.tabs.isEmpty()) {
             return;
         }
-        scrollToTab(this.tabs.get(r0.size() - 1), this.tabs.size() - 1);
+        ArrayList<Tab> arrayList = this.tabs;
+        scrollToTab(arrayList.get(arrayList.size() - 1), this.tabs.size() - 1);
     }
 
     public void setAnimationIdicatorProgress(float f) {
@@ -1328,11 +1324,11 @@ public class FilterTabsView extends FrameLayout {
 
         @Override
         public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder viewHolder2) {
-            if (MessagesController.getInstance(UserConfig.selectedAccount).premiumFeaturesBlocked() && ((viewHolder.getAdapterPosition() == 0 || viewHolder2.getAdapterPosition() == 0) && !UserConfig.getInstance(UserConfig.selectedAccount).isPremium())) {
-                return false;
+            if (!MessagesController.getInstance(UserConfig.selectedAccount).premiumFeaturesBlocked() || (!(viewHolder.getAdapterPosition() == 0 || viewHolder2.getAdapterPosition() == 0) || UserConfig.getInstance(UserConfig.selectedAccount).isPremium())) {
+                FilterTabsView.this.adapter.swapElements(viewHolder.getAdapterPosition(), viewHolder2.getAdapterPosition());
+                return true;
             }
-            FilterTabsView.this.adapter.swapElements(viewHolder.getAdapterPosition(), viewHolder2.getAdapterPosition());
-            return true;
+            return false;
         }
 
         public void lambda$new$0() {

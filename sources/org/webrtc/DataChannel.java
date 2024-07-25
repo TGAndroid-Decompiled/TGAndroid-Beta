@@ -1,7 +1,6 @@
 package org.webrtc;
 
 import java.nio.ByteBuffer;
-
 public class DataChannel {
     private long nativeDataChannel;
     private long nativeObserver;

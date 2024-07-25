@@ -40,7 +40,6 @@ import org.telegram.ui.ActionBar.AlertDialogDecor;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.QuoteSpan;
 import org.telegram.ui.Components.TextStyleSpan;
-
 public class EditTextCaption extends EditTextBoldCursor {
     private static final int ACCESSIBILITY_ACTION_SHARE = 268435456;
     public boolean adaptiveCreateLinkDialog;
@@ -525,40 +524,33 @@ public class EditTextCaption extends EditTextBoldCursor {
         if (i == R.id.menu_regular) {
             makeSelectedRegular();
             return true;
-        }
-        if (i == R.id.menu_bold) {
+        } else if (i == R.id.menu_bold) {
             makeSelectedBold();
             return true;
-        }
-        if (i == R.id.menu_italic) {
+        } else if (i == R.id.menu_italic) {
             makeSelectedItalic();
             return true;
-        }
-        if (i == R.id.menu_mono) {
+        } else if (i == R.id.menu_mono) {
             makeSelectedMono();
             return true;
-        }
-        if (i == R.id.menu_link) {
+        } else if (i == R.id.menu_link) {
             makeSelectedUrl();
             return true;
-        }
-        if (i == R.id.menu_strike) {
+        } else if (i == R.id.menu_strike) {
             makeSelectedStrike();
             return true;
-        }
-        if (i == R.id.menu_underline) {
+        } else if (i == R.id.menu_underline) {
             makeSelectedUnderline();
             return true;
-        }
-        if (i == R.id.menu_spoiler) {
+        } else if (i == R.id.menu_spoiler) {
             makeSelectedSpoiler();
             return true;
-        }
-        if (i != R.id.menu_quote) {
+        } else if (i == R.id.menu_quote) {
+            makeSelectedQuote();
+            return true;
+        } else {
             return false;
         }
-        makeSelectedQuote();
-        return true;
     }
 
     @Override
@@ -596,15 +588,15 @@ public class EditTextCaption extends EditTextBoldCursor {
             return;
         }
         TextPaint paint = getPaint();
-        CharSequence subSequence = text.subSequence(0, indexOf + 1);
-        int ceil = (int) Math.ceil(paint.measureText(text, 0, r13));
-        int measuredWidth = (getMeasuredWidth() - getPaddingLeft()) - getPaddingRight();
+        int i3 = indexOf + 1;
+        CharSequence subSequence = text.subSequence(0, i3);
+        int ceil = (int) Math.ceil(paint.measureText(text, 0, i3));
         this.userNameLength = subSequence.length();
-        int i3 = measuredWidth - ceil;
-        CharSequence ellipsize = TextUtils.ellipsize(this.caption, paint, i3, TextUtils.TruncateAt.END);
+        int measuredWidth = ((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight()) - ceil;
+        CharSequence ellipsize = TextUtils.ellipsize(this.caption, paint, measuredWidth, TextUtils.TruncateAt.END);
         this.xOffset = ceil;
         try {
-            StaticLayout staticLayout = new StaticLayout(ellipsize, getPaint(), i3, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            StaticLayout staticLayout = new StaticLayout(ellipsize, getPaint(), measuredWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.captionLayout = staticLayout;
             if (staticLayout.getLineCount() > 0) {
                 this.xOffset = (int) (this.xOffset + (-this.captionLayout.getLineLeft(0)));
@@ -728,8 +720,7 @@ public class EditTextCaption extends EditTextBoldCursor {
                 if (i == 16908321) {
                     AndroidUtilities.addToClipboard(getText().subSequence(Math.max(0, getSelectionStart()), Math.min(getText().length(), getSelectionEnd())));
                     return true;
-                }
-                if (i == 16908320) {
+                } else if (i == 16908320) {
                     int max2 = Math.max(0, getSelectionStart());
                     int min2 = Math.min(getText().length(), getSelectionEnd());
                     AndroidUtilities.addToClipboard(getText().subSequence(max2, min2));

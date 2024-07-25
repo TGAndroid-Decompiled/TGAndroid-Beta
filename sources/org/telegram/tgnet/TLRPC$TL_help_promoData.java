@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_help_promoData extends TLRPC$help_PromoData {
     public int expires;
     public int flags;

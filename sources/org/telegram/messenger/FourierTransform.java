@@ -1,5 +1,4 @@
 package org.telegram.messenger;
-
 public abstract class FourierTransform {
     protected static final int LINAVG = 1;
     protected static final int LOGAVG = 2;
@@ -73,29 +72,27 @@ public abstract class FourierTransform {
                 }
                 this.averages[i3] = f2 / (i4 + 1);
             }
-            return;
-        }
-        if (i2 != 2) {
-            return;
-        }
-        int i6 = 0;
-        while (true) {
-            if (i6 >= this.octaves) {
-                return;
-            }
-            float pow = i6 == 0 ? 0.0f : (this.sampleRate / 2) / ((float) Math.pow(2.0d, r5 - i6));
-            float pow2 = (((this.sampleRate / 2) / ((float) Math.pow(2.0d, (this.octaves - i6) - 1))) - pow) / this.avgPerOctave;
-            int i7 = 0;
+        } else if (i2 == 2) {
+            int i6 = 0;
             while (true) {
-                int i8 = this.avgPerOctave;
-                if (i7 < i8) {
-                    float f3 = pow + pow2;
-                    this.averages[(i8 * i6) + i7] = calcAvg(pow, f3);
-                    i7++;
-                    pow = f3;
+                int i7 = this.octaves;
+                if (i6 >= i7) {
+                    return;
                 }
+                float pow = i6 == 0 ? 0.0f : (this.sampleRate / 2) / ((float) Math.pow(2.0d, i7 - i6));
+                float pow2 = (((this.sampleRate / 2) / ((float) Math.pow(2.0d, (this.octaves - i6) - 1))) - pow) / this.avgPerOctave;
+                int i8 = 0;
+                while (true) {
+                    int i9 = this.avgPerOctave;
+                    if (i8 < i9) {
+                        float f3 = pow + pow2;
+                        this.averages[(i9 * i6) + i8] = calcAvg(pow, f3);
+                        i8++;
+                        pow = f3;
+                    }
+                }
+                i6++;
             }
-            i6++;
         }
     }
 
@@ -284,21 +281,19 @@ public abstract class FourierTransform {
                         float[] fArr = this.real;
                         if (i3 < fArr.length) {
                             int i4 = i3 + i;
-                            float f3 = fArr[i4] * f;
                             float[] fArr2 = this.imag;
-                            float f4 = f3 - (fArr2[i4] * f2);
-                            float f5 = (fArr2[i4] * f) + (fArr[i4] * f2);
-                            fArr[i4] = fArr[i3] - f4;
-                            fArr2[i4] = fArr2[i3] - f5;
-                            fArr[i3] = fArr[i3] + f4;
-                            fArr2[i3] = fArr2[i3] + f5;
+                            float f3 = (fArr[i4] * f) - (fArr2[i4] * f2);
+                            float f4 = (fArr2[i4] * f) + (fArr[i4] * f2);
+                            fArr[i4] = fArr[i3] - f3;
+                            fArr2[i4] = fArr2[i3] - f4;
+                            fArr[i3] = fArr[i3] + f3;
+                            fArr2[i3] = fArr2[i3] + f4;
                             i3 += i * 2;
                         }
                     }
-                    float f6 = (f * cos) - (f2 * sin);
                     f2 = (f2 * cos) + (f * sin);
                     i2++;
-                    f = f6;
+                    f = (f * cos) - (f2 * sin);
                 }
             }
         }
@@ -346,7 +341,8 @@ public abstract class FourierTransform {
             bitReverseComplex();
             fft();
             for (int i2 = 0; i2 < fArr.length; i2++) {
-                fArr[i2] = this.real[i2] / r1.length;
+                float[] fArr3 = this.real;
+                fArr[i2] = fArr3[i2] / fArr3.length;
             }
         }
 

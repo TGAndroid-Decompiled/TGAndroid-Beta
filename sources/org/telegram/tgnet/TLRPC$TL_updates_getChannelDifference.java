@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updates_getChannelDifference extends TLObject {
     public TLRPC$InputChannel channel;
     public TLRPC$ChannelMessagesFilter filter;

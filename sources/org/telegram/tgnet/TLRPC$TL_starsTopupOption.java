@@ -1,9 +1,8 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_starsTopupOption extends TLObject {
     public long amount;
-    public boolean collapsed;
     public String currency;
+    public boolean extended;
     public int flags;
     public boolean loadingStorePrice;
     public long stars;
@@ -23,7 +22,9 @@ public class TLRPC$TL_starsTopupOption extends TLObject {
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-        this.flags = abstractSerializedData.readInt32(z);
+        int readInt32 = abstractSerializedData.readInt32(z);
+        this.flags = readInt32;
+        this.extended = (readInt32 & 2) != 0;
         this.stars = abstractSerializedData.readInt64(z);
         if ((this.flags & 1) != 0) {
             this.store_product = abstractSerializedData.readString(z);
@@ -35,7 +36,9 @@ public class TLRPC$TL_starsTopupOption extends TLObject {
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(198776256);
-        abstractSerializedData.writeInt32(this.flags);
+        int i = this.extended ? this.flags | 2 : this.flags & (-3);
+        this.flags = i;
+        abstractSerializedData.writeInt32(i);
         abstractSerializedData.writeInt64(this.stars);
         if ((this.flags & 1) != 0) {
             abstractSerializedData.writeString(this.store_product);

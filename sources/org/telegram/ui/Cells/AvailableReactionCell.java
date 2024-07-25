@@ -22,7 +22,6 @@ import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Switch;
-
 public class AvailableReactionCell extends FrameLayout {
     private boolean canLock;
     private CheckBox2 checkBox;
@@ -77,20 +76,21 @@ public class AvailableReactionCell extends FrameLayout {
 
     public void bind(TLRPC$TL_availableReaction tLRPC$TL_availableReaction, boolean z, int i) {
         TLRPC$TL_availableReaction tLRPC$TL_availableReaction2;
-        boolean z2 = (tLRPC$TL_availableReaction == null || (tLRPC$TL_availableReaction2 = this.react) == null || !tLRPC$TL_availableReaction.reaction.equals(tLRPC$TL_availableReaction2.reaction)) ? false : true;
+        boolean z2 = true;
+        boolean z3 = (tLRPC$TL_availableReaction == null || (tLRPC$TL_availableReaction2 = this.react) == null || !tLRPC$TL_availableReaction.reaction.equals(tLRPC$TL_availableReaction2.reaction)) ? false : true;
         this.react = tLRPC$TL_availableReaction;
         this.textView.setText(tLRPC$TL_availableReaction.title);
         this.imageView.setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.activate_animation), "30_30_pcache", "tgs", DocumentObject.getSvgThumb(tLRPC$TL_availableReaction.static_icon, Theme.key_windowBackgroundGray, 1.0f), tLRPC$TL_availableReaction);
-        boolean z3 = this.canLock && tLRPC$TL_availableReaction.premium && !UserConfig.getInstance(i).isPremium();
-        this.locked = z3;
-        if (z3) {
+        z2 = (this.canLock && tLRPC$TL_availableReaction.premium && !UserConfig.getInstance(i).isPremium()) ? false : false;
+        this.locked = z2;
+        if (z2) {
             Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.other_lockedfolders2);
             drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_stickers_menu), PorterDuff.Mode.MULTIPLY));
             this.textView.setRightDrawable(drawable);
         } else {
             this.textView.setRightDrawable((Drawable) null);
         }
-        setChecked(z, z2);
+        setChecked(z, z3);
     }
 
     public void setChecked(boolean z) {

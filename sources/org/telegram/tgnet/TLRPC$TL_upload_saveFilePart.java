@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_upload_saveFilePart extends TLObject {
     public NativeByteBuffer bytes;
     public long file_id;

@@ -6,7 +6,6 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import java.util.Random;
 import org.telegram.messenger.LiteMode;
-
 public class BlobDrawable {
     public static float AMPLITUDE_SPEED = 0.33f;
     public static float FORM_BIG_MAX = 0.6f;
@@ -75,11 +74,10 @@ public class BlobDrawable {
     }
 
     public void generateBlob(float[] fArr, float[] fArr2, int i) {
-        float f = (360.0f / this.N) * 0.05f;
-        float f2 = this.maxRadius;
-        float f3 = this.minRadius;
-        fArr[i] = f3 + (Math.abs((this.random.nextInt() % 100.0f) / 100.0f) * (f2 - f3));
-        fArr2[i] = ((360.0f / this.N) * i) + (((this.random.nextInt() % 100.0f) / 100.0f) * f);
+        float f = this.maxRadius;
+        float f2 = this.minRadius;
+        fArr[i] = f2 + (Math.abs((this.random.nextInt() % 100.0f) / 100.0f) * (f - f2));
+        fArr2[i] = ((360.0f / this.N) * i) + (((this.random.nextInt() % 100.0f) / 100.0f) * (360.0f / this.N) * 0.05f);
         float[] fArr3 = this.speed;
         double abs = Math.abs(this.random.nextInt() % 100.0f) / 100.0f;
         Double.isNaN(abs);
@@ -114,44 +112,41 @@ public class BlobDrawable {
         this.path.reset();
         int i = 0;
         while (true) {
-            float f3 = i;
-            float f4 = this.N;
-            if (f3 < f4) {
+            float f3 = this.N;
+            if (i < f3) {
                 float[] fArr = this.progress;
-                float f5 = fArr[i];
+                float f4 = fArr[i];
                 int i2 = i + 1;
-                int i3 = ((float) i2) < f4 ? i2 : 0;
-                float f6 = fArr[i3];
+                int i3 = ((float) i2) < f3 ? i2 : 0;
+                float f5 = fArr[i3];
                 float[] fArr2 = this.radius;
-                float f7 = 1.0f - f5;
-                float f8 = fArr2[i] * f7;
+                float f6 = 1.0f - f4;
                 float[] fArr3 = this.radiusNext;
-                float f9 = f8 + (fArr3[i] * f5);
-                float f10 = 1.0f - f6;
-                float f11 = (fArr2[i3] * f10) + (fArr3[i3] * f6);
+                float f7 = (fArr2[i] * f6) + (fArr3[i] * f4);
+                float f8 = 1.0f - f5;
+                float f9 = (fArr2[i3] * f8) + (fArr3[i3] * f5);
                 float[] fArr4 = this.angle;
-                float f12 = fArr4[i] * f7;
+                float f10 = fArr4[i] * f6;
                 float[] fArr5 = this.angleNext;
-                float f13 = f12 + (fArr5[i] * f5);
-                float f14 = (fArr4[i3] * f10) + (fArr5[i3] * f6);
-                float min = this.L * (Math.min(f9, f11) + ((Math.max(f9, f11) - Math.min(f9, f11)) / 2.0f)) * this.cubicBezierK;
+                float f11 = (fArr4[i3] * f8) + (fArr5[i3] * f5);
+                float min = this.L * (Math.min(f7, f9) + ((Math.max(f7, f9) - Math.min(f7, f9)) / 2.0f)) * this.cubicBezierK;
                 this.m.reset();
-                this.m.setRotate(f13, f, f2);
+                this.m.setRotate(f10 + (fArr5[i] * f4), f, f2);
                 float[] fArr6 = this.pointStart;
                 fArr6[0] = f;
-                float f15 = f2 - f9;
-                fArr6[1] = f15;
+                float f12 = f2 - f7;
+                fArr6[1] = f12;
                 fArr6[2] = f + min;
-                fArr6[3] = f15;
+                fArr6[3] = f12;
                 this.m.mapPoints(fArr6);
                 float[] fArr7 = this.pointEnd;
                 fArr7[0] = f;
-                float f16 = f2 - f11;
-                fArr7[1] = f16;
+                float f13 = f2 - f9;
+                fArr7[1] = f13;
                 fArr7[2] = f - min;
-                fArr7[3] = f16;
+                fArr7[3] = f13;
                 this.m.reset();
-                this.m.setRotate(f14, f, f2);
+                this.m.setRotate(f11, f, f2);
                 this.m.mapPoints(this.pointEnd);
                 if (i == 0) {
                     Path path = this.path;
@@ -160,10 +155,10 @@ public class BlobDrawable {
                 }
                 Path path2 = this.path;
                 float[] fArr9 = this.pointStart;
-                float f17 = fArr9[2];
-                float f18 = fArr9[3];
+                float f14 = fArr9[2];
+                float f15 = fArr9[3];
                 float[] fArr10 = this.pointEnd;
-                path2.cubicTo(f17, f18, fArr10[2], fArr10[3], fArr10[0], fArr10[1]);
+                path2.cubicTo(f14, f15, fArr10[2], fArr10[3], fArr10[0], fArr10[1]);
                 i = i2;
             } else {
                 canvas.save();

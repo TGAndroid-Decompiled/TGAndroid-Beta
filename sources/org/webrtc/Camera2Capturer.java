@@ -5,7 +5,6 @@ import android.content.Context;
 import android.hardware.camera2.CameraManager;
 import org.webrtc.CameraSession;
 import org.webrtc.CameraVideoCapturer;
-
 @TargetApi(21)
 public class Camera2Capturer extends CameraCapturer {
     private final CameraManager cameraManager;

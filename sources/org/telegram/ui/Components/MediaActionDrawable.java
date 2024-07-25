@@ -13,7 +13,6 @@ import android.text.TextPaint;
 import android.view.animation.DecelerateInterpolator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
-
 public class MediaActionDrawable extends Drawable {
     private float animatedDownloadProgress;
     private boolean animatingTransition;
@@ -143,10 +142,9 @@ public class MediaActionDrawable extends Drawable {
             this.nextIcon = i;
             this.savedTransitionProgress = this.transitionProgress;
             this.transitionProgress = 0.0f;
+        } else if (this.currentIcon == i) {
+            return false;
         } else {
-            if (this.currentIcon == i) {
-                return false;
-            }
             this.animatingTransition = false;
             this.nextIcon = i;
             this.currentIcon = i;

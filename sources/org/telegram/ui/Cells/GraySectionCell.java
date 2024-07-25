@@ -18,8 +18,7 @@ import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
-
-public class GraySectionCell extends FrameLayout {
+public class GraySectionCell extends FrameLayout implements Theme.Colorable {
     private int layerHeight;
     private final Theme.ResourcesProvider resourcesProvider;
     private AnimatedTextView rightTextView;
@@ -57,6 +56,15 @@ public class GraySectionCell extends FrameLayout {
         this.rightTextView.setGravity(LocaleController.isRTL ? 3 : 5);
         addView(this.rightTextView, LayoutHelper.createFrame(-2, -1.0f, (LocaleController.isRTL ? 3 : 5) | 48, 16.0f, 0.0f, 16.0f, 0.0f));
         ViewCompat.setAccessibilityHeading(this, true);
+    }
+
+    @Override
+    public void updateColors() {
+        setBackgroundColor(getThemedColor(Theme.key_graySection));
+        AnimatedEmojiSpan.TextViewEmojis textViewEmojis = this.textView;
+        int i = Theme.key_graySectionText;
+        textViewEmojis.setTextColor(getThemedColor(i));
+        this.rightTextView.setTextColor(getThemedColor(i));
     }
 
     @Override

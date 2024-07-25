@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$EncryptedFile extends TLObject {
     public long access_hash;
     public int dc_id;

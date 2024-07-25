@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_pageBlockCover extends TLRPC$PageBlock {
     public TLRPC$PageBlock cover;
 

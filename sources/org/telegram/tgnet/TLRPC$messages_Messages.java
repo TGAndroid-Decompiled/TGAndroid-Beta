@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public abstract class TLRPC$messages_Messages extends TLObject {
     public ArrayList<TLRPC$Document> animatedEmoji;
     public int count;

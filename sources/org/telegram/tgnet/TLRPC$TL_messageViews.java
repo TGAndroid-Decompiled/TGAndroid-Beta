@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messageViews extends TLObject {
     public int flags;
     public int forwards;

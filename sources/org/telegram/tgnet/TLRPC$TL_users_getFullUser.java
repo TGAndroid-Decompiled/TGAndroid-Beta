@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_users_getFullUser extends TLObject {
     public TLRPC$InputUser id;
 

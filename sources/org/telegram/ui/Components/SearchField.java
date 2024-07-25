@@ -16,7 +16,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
-
 public class SearchField extends FrameLayout {
     private ImageView clearSearchImageView;
     private CloseProgressDrawable2 progressDrawable;
@@ -102,13 +101,13 @@ public class SearchField extends FrameLayout {
 
             @Override
             public boolean onTouchEvent(MotionEvent motionEvent) {
-                if (!isEnabled()) {
-                    return false;
+                if (isEnabled()) {
+                    if (motionEvent.getAction() == 1) {
+                        SearchField.this.onFieldTouchUp(this);
+                    }
+                    return super.onTouchEvent(motionEvent);
                 }
-                if (motionEvent.getAction() == 1) {
-                    SearchField.this.onFieldTouchUp(this);
-                }
-                return super.onTouchEvent(motionEvent);
+                return false;
             }
         };
         this.searchEditText = editTextBoldCursor;
@@ -168,14 +167,14 @@ public class SearchField extends FrameLayout {
     }
 
     public boolean lambda$new$1(TextView textView, int i, KeyEvent keyEvent) {
-        if (keyEvent == null) {
+        if (keyEvent != null) {
+            if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
+                this.searchEditText.hideActionMode();
+                AndroidUtilities.hideKeyboard(this.searchEditText);
+                return false;
+            }
             return false;
         }
-        if ((keyEvent.getAction() != 1 || keyEvent.getKeyCode() != 84) && (keyEvent.getAction() != 0 || keyEvent.getKeyCode() != 66)) {
-            return false;
-        }
-        this.searchEditText.hideActionMode();
-        AndroidUtilities.hideKeyboard(this.searchEditText);
         return false;
     }
 

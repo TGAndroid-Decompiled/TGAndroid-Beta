@@ -1,5 +1,4 @@
 package org.telegram.ui.Components;
-
 public interface Loadable {
     boolean isLoading();
 

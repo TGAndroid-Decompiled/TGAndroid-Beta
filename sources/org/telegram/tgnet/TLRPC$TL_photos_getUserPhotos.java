@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_photos_getUserPhotos extends TLObject {
     public int limit;
     public long max_id;

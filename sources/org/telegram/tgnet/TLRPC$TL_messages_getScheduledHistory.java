@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_getScheduledHistory extends TLObject {
     public long hash;
     public TLRPC$InputPeer peer;

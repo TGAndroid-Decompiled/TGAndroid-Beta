@@ -7,7 +7,6 @@ import java.util.Map;
 import org.telegram.messenger.FileLoaderPriorityQueue;
 import org.telegram.messenger.LiteMode;
 import org.telegram.tgnet.tl.TL_stories$StoryItem;
-
 public class TLRPC$Message extends TLObject {
     public TLRPC$MessageAction action;
     public int date;
@@ -4189,8 +4188,8 @@ public class TLRPC$Message extends TLObject {
             if (this.params == null) {
                 this.params = new HashMap<>();
             }
-            this.layer = 183;
-            this.params.put("legacy_layer", "183");
+            this.layer = 185;
+            this.params.put("legacy_layer", "185");
         }
         if ((this.id < 0 || this.send_state == 3 || this.legacy) && (hashMap2 = this.params) != null && hashMap2.size() > 0) {
             for (Map.Entry<String, String> entry2 : this.params.entrySet()) {

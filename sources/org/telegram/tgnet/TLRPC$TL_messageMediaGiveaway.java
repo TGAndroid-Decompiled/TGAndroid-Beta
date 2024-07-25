@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_messageMediaGiveaway extends TLRPC$MessageMedia {
     public ArrayList<Long> channels = new ArrayList<>();
     public ArrayList<String> countries_iso2 = new ArrayList<>();
@@ -36,11 +35,10 @@ public class TLRPC$TL_messageMediaGiveaway extends TLRPC$MessageMedia {
                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
                 }
                 return;
-            } else {
-                int readInt325 = abstractSerializedData.readInt32(z);
-                for (int i2 = 0; i2 < readInt325; i2++) {
-                    this.countries_iso2.add(abstractSerializedData.readString(z));
-                }
+            }
+            int readInt325 = abstractSerializedData.readInt32(z);
+            for (int i2 = 0; i2 < readInt325; i2++) {
+                this.countries_iso2.add(abstractSerializedData.readString(z));
             }
         }
         if ((this.flags & 8) != 0) {

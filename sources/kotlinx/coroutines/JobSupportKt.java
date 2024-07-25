@@ -1,7 +1,6 @@
 package kotlinx.coroutines;
 
 import kotlinx.coroutines.internal.Symbol;
-
 public final class JobSupportKt {
     private static final Empty EMPTY_ACTIVE;
     private static final Symbol COMPLETING_ALREADY = new Symbol("COMPLETING_ALREADY");

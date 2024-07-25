@@ -13,7 +13,6 @@ import android.view.View;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SvgHelper;
-
 public class CellFlickerDrawable {
     public float animationSpeedScale;
     public boolean drawFrame;
@@ -118,7 +117,8 @@ public class CellFlickerDrawable {
             }
         }
         int i = this.parentWidth;
-        float f2 = ((i + (r0 * 2)) * this.progress) - this.size;
+        int i2 = this.size;
+        float f2 = ((i + (i2 * 2)) * this.progress) - i2;
         this.matrix.reset();
         this.matrix.setTranslate(f2, 0.0f);
         this.gradientShader.setLocalMatrix(this.matrix);
@@ -150,19 +150,23 @@ public class CellFlickerDrawable {
             return;
         }
         int i = this.parentWidth;
-        this.matrix.setTranslate((((i + (r2 * 2)) * f2) - this.size) - groupCallMiniTextureView.getX(), 0.0f);
+        int i2 = this.size;
+        this.matrix.setTranslate((((i + (i2 * 2)) * f2) - i2) - groupCallMiniTextureView.getX(), 0.0f);
         this.gradientShader.setLocalMatrix(this.matrix);
         this.gradientShader2.setLocalMatrix(this.matrix);
         RectF rectF = AndroidUtilities.rectTmp;
         VoIPTextureView voIPTextureView = groupCallMiniTextureView.textureView;
-        rectF.set(voIPTextureView.currentClipHorizontal, voIPTextureView.currentClipVertical, voIPTextureView.getMeasuredWidth() - groupCallMiniTextureView.textureView.currentClipHorizontal, r4.getMeasuredHeight() - groupCallMiniTextureView.textureView.currentClipVertical);
+        float f3 = voIPTextureView.currentClipHorizontal;
+        float f4 = voIPTextureView.currentClipVertical;
+        VoIPTextureView voIPTextureView2 = groupCallMiniTextureView.textureView;
+        rectF.set(f3, f4, voIPTextureView.getMeasuredWidth() - voIPTextureView2.currentClipHorizontal, voIPTextureView2.getMeasuredHeight() - groupCallMiniTextureView.textureView.currentClipVertical);
         canvas.drawRect(rectF, this.paint);
         if (this.drawFrame) {
             if (this.frameInside) {
                 rectF.inset(this.paintOutline.getStrokeWidth() / 2.0f, this.paintOutline.getStrokeWidth() / 2.0f);
             }
-            float f3 = groupCallMiniTextureView.textureView.roundRadius;
-            canvas.drawRoundRect(rectF, f3, f3, this.paintOutline);
+            float f5 = groupCallMiniTextureView.textureView.roundRadius;
+            canvas.drawRoundRect(rectF, f5, f5, this.paintOutline);
         }
     }
 
@@ -212,14 +216,15 @@ public class CellFlickerDrawable {
                 svgDrawable.setPaint(CellFlickerDrawable.this.paint);
                 CellFlickerDrawable cellFlickerDrawable = CellFlickerDrawable.this;
                 int i = cellFlickerDrawable.parentWidth;
-                float f = (((r2 * 2) + i) * cellFlickerDrawable.progress) - cellFlickerDrawable.size;
-                int i2 = (int) (i * 0.5f);
+                int i2 = cellFlickerDrawable.size;
+                float f = (((i2 * 2) + i) * cellFlickerDrawable.progress) - i2;
                 float scale = this.svgDrawable.getScale(getBounds().width(), getBounds().height());
                 CellFlickerDrawable.this.matrix.reset();
-                CellFlickerDrawable.this.matrix.setScale(1.0f / scale, 0.0f, r2.size / 2.0f, 0.0f);
+                CellFlickerDrawable cellFlickerDrawable2 = CellFlickerDrawable.this;
+                cellFlickerDrawable2.matrix.setScale(1.0f / scale, 0.0f, cellFlickerDrawable2.size / 2.0f, 0.0f);
                 CellFlickerDrawable.this.matrix.setTranslate((f - this.svgDrawable.getBounds().left) - (CellFlickerDrawable.this.size / scale), 0.0f);
                 CellFlickerDrawable.this.gradientShader.setLocalMatrix(CellFlickerDrawable.this.matrix);
-                int i3 = i2 / 2;
+                int i3 = ((int) (i * 0.5f)) / 2;
                 this.svgDrawable.setBounds(getBounds().centerX() - i3, getBounds().centerY() - i3, getBounds().centerX() + i3, getBounds().centerY() + i3);
                 this.svgDrawable.draw(canvas);
             }

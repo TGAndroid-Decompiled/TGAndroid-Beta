@@ -17,7 +17,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.ui.ActionBar.Theme;
-
 public class ForumBubbleDrawable extends Drawable {
     static final SparseArray<int[]> colorsMap;
     private static SvgHelper.SvgDrawable mainDrawable;

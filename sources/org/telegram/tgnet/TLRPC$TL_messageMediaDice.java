@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messageMediaDice extends TLRPC$MessageMedia {
     public String emoticon;
     public int value;

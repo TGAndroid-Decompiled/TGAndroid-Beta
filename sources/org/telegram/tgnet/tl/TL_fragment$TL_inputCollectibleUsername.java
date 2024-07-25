@@ -1,7 +1,6 @@
 package org.telegram.tgnet.tl;
 
 import org.telegram.tgnet.AbstractSerializedData;
-
 public class TL_fragment$TL_inputCollectibleUsername extends TL_fragment$InputCollectible {
     public String username;
 

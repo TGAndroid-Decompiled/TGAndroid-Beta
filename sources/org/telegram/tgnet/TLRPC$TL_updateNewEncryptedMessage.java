@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updateNewEncryptedMessage extends TLRPC$Update {
     public TLRPC$EncryptedMessage message;
     public int qts;

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_getDhConfig extends TLObject {
     public int random_length;
     public int version;

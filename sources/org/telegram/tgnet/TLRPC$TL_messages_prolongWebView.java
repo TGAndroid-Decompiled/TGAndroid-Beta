@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import org.telegram.messenger.LiteMode;
-
 public class TLRPC$TL_messages_prolongWebView extends TLObject {
     public TLRPC$InputUser bot;
     public int flags;

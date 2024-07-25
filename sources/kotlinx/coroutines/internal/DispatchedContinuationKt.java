@@ -14,7 +14,6 @@ import kotlinx.coroutines.EventLoop;
 import kotlinx.coroutines.Job;
 import kotlinx.coroutines.ThreadLocalEventLoop;
 import kotlinx.coroutines.UndispatchedCoroutine;
-
 public final class DispatchedContinuationKt {
     private static final Symbol UNDEFINED = new Symbol("UNDEFINED");
     public static final Symbol REUSABLE_CLAIMED = new Symbol("REUSABLE_CLAIMED");
@@ -38,7 +37,7 @@ public final class DispatchedContinuationKt {
             if (dispatchedContinuation.dispatcher.isDispatchNeeded(dispatchedContinuation.getContext())) {
                 dispatchedContinuation._state = state;
                 dispatchedContinuation.resumeMode = 1;
-                dispatchedContinuation.dispatcher.mo160dispatch(dispatchedContinuation.getContext(), dispatchedContinuation);
+                dispatchedContinuation.dispatcher.mo163dispatch(dispatchedContinuation.getContext(), dispatchedContinuation);
                 return;
             }
             DebugKt.getASSERTIONS_ENABLED();
@@ -53,7 +52,7 @@ public final class DispatchedContinuationKt {
                         CancellationException cancellationException = job.getCancellationException();
                         dispatchedContinuation.cancelCompletedResult$kotlinx_coroutines_core(state, cancellationException);
                         Result.Companion companion = Result.Companion;
-                        dispatchedContinuation.resumeWith(Result.m156constructorimpl(ResultKt.createFailure(cancellationException)));
+                        dispatchedContinuation.resumeWith(Result.m159constructorimpl(ResultKt.createFailure(cancellationException)));
                         z = true;
                     }
                     if (!z) {
@@ -62,17 +61,10 @@ public final class DispatchedContinuationKt {
                         CoroutineContext context = continuation2.getContext();
                         Object updateThreadContext = ThreadContextKt.updateThreadContext(context, obj2);
                         UndispatchedCoroutine<?> updateUndispatchedCompletion = updateThreadContext != ThreadContextKt.NO_THREAD_ELEMENTS ? CoroutineContextKt.updateUndispatchedCompletion(continuation2, context, updateThreadContext) : null;
-                        try {
-                            dispatchedContinuation.continuation.resumeWith(obj);
-                            Unit unit = Unit.INSTANCE;
-                            if (updateUndispatchedCompletion == null || updateUndispatchedCompletion.clearThreadContext()) {
-                                ThreadContextKt.restoreThreadContext(context, updateThreadContext);
-                            }
-                        } catch (Throwable th) {
-                            if (updateUndispatchedCompletion == null || updateUndispatchedCompletion.clearThreadContext()) {
-                                ThreadContextKt.restoreThreadContext(context, updateThreadContext);
-                            }
-                            throw th;
+                        dispatchedContinuation.continuation.resumeWith(obj);
+                        Unit unit = Unit.INSTANCE;
+                        if (updateUndispatchedCompletion == null || updateUndispatchedCompletion.clearThreadContext()) {
+                            ThreadContextKt.restoreThreadContext(context, updateThreadContext);
                         }
                     }
                     do {

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_account_reportPeer extends TLObject {
     public String message;
     public TLRPC$InputPeer peer;

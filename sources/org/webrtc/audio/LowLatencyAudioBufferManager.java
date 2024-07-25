@@ -3,7 +3,6 @@ package org.webrtc.audio;
 import android.media.AudioTrack;
 import android.os.Build;
 import org.webrtc.Logging;
-
 class LowLatencyAudioBufferManager {
     private static final String TAG = "LowLatencyAudioBufferManager";
     private int prevUnderrunCount = 0;
@@ -25,9 +24,7 @@ class LowLatencyAudioBufferManager {
                 this.keepLoweringBufferSize = false;
                 this.prevUnderrunCount = underrunCount;
                 this.ticksUntilNextDecrease = 10;
-                return;
-            }
-            if (this.keepLoweringBufferSize) {
+            } else if (this.keepLoweringBufferSize) {
                 int i = this.ticksUntilNextDecrease - 1;
                 this.ticksUntilNextDecrease = i;
                 if (i <= 0) {

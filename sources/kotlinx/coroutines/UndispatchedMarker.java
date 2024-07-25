@@ -2,7 +2,6 @@ package kotlinx.coroutines;
 
 import kotlin.coroutines.CoroutineContext;
 import kotlin.jvm.functions.Function2;
-
 final class UndispatchedMarker implements CoroutineContext.Element, CoroutineContext.Key<UndispatchedMarker> {
     public static final UndispatchedMarker INSTANCE = new UndispatchedMarker();
 

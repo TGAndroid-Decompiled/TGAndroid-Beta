@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_messages_peerSettings extends TLObject {
     public TLRPC$PeerSettings settings;
     public ArrayList<TLRPC$Chat> chats = new ArrayList<>();

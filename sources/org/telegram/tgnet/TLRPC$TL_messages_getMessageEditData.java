@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_getMessageEditData extends TLObject {
     public int id;
     public TLRPC$InputPeer peer;

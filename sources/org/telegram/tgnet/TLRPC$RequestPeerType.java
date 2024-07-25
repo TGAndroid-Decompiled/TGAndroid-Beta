@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$RequestPeerType extends TLObject {
     public TLRPC$TL_chatAdminRights bot_admin_rights;
     public Boolean bot_participant;

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_decryptedMessageMediaGeoPoint extends TLRPC$DecryptedMessageMedia {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

@@ -12,7 +12,6 @@ import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-
 public class StoryReactionWidgetBackground extends Drawable {
     Paint backgroundPaint;
     private boolean mirror;

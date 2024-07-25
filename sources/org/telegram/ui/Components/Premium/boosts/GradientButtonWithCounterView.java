@@ -9,7 +9,6 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.Premium.PremiumGradient;
 import org.telegram.ui.Components.voip.CellFlickerDrawable;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
-
 @SuppressLint({"ViewConstructor"})
 public class GradientButtonWithCounterView extends ButtonWithCounterView {
     private final CellFlickerDrawable flickerDrawable;

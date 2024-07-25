@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public abstract class TLRPC$Poll extends TLObject {
     public int close_date;
     public int close_period;

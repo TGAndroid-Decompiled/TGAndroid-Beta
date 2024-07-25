@@ -2,7 +2,6 @@ package kotlinx.coroutines;
 
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
-
 public final class InvokeOnCompletion extends JobNode {
     private final Function1<Throwable, Unit> handler;
 

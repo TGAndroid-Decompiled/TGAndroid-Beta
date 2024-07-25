@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_phone_confirmCall extends TLObject {
     public byte[] g_a;
     public long key_fingerprint;

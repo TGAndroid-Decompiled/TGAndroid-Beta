@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_account_tmpPassword extends TLObject {
     public byte[] tmp_password;
     public int valid_until;

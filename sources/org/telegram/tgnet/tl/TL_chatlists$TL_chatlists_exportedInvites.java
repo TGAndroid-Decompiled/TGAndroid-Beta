@@ -5,7 +5,6 @@ import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$User;
-
 public class TL_chatlists$TL_chatlists_exportedInvites extends TLObject {
     public ArrayList<TL_chatlists$TL_exportedChatlistInvite> invites = new ArrayList<>();
     public ArrayList<TLRPC$Chat> chats = new ArrayList<>();

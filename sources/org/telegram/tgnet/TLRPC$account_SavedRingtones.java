@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$account_SavedRingtones extends TLObject {
     public static TLRPC$account_SavedRingtones TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$account_SavedRingtones tLRPC$TL_account_savedRingtones = i != -1041683259 ? i != -67704655 ? null : new TLRPC$account_SavedRingtones() {

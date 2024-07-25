@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 import org.telegram.messenger.LiteMode;
-
 public class TLRPC$TL_invoice extends TLObject {
     public String currency;
     public boolean email_requested;
@@ -65,11 +64,10 @@ public class TLRPC$TL_invoice extends TLObject {
                                 throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
                             }
                             return;
-                        } else {
-                            int readInt325 = abstractSerializedData2.readInt32(z2);
-                            for (int i3 = 0; i3 < readInt325; i3++) {
-                                this.suggested_tip_amounts.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
-                            }
+                        }
+                        int readInt325 = abstractSerializedData2.readInt32(z2);
+                        for (int i3 = 0; i3 < readInt325; i3++) {
+                            this.suggested_tip_amounts.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
                         }
                     }
                     if ((this.flags & 1024) != 0) {
@@ -171,11 +169,10 @@ public class TLRPC$TL_invoice extends TLObject {
                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
                 }
                 return;
-            } else {
-                int readInt325 = abstractSerializedData.readInt32(z);
-                for (int i2 = 0; i2 < readInt325; i2++) {
-                    this.suggested_tip_amounts.add(Long.valueOf(abstractSerializedData.readInt64(z)));
-                }
+            }
+            int readInt325 = abstractSerializedData.readInt32(z);
+            for (int i2 = 0; i2 < readInt325; i2++) {
+                this.suggested_tip_amounts.add(Long.valueOf(abstractSerializedData.readInt64(z)));
             }
         }
         if ((this.flags & 1024) != 0) {

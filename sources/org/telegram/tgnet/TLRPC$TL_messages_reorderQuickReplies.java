@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_messages_reorderQuickReplies extends TLObject {
     public ArrayList<Integer> order = new ArrayList<>();
 

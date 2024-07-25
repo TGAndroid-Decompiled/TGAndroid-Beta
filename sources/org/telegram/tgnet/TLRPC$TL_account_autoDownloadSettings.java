@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_account_autoDownloadSettings extends TLObject {
     public TLRPC$TL_autoDownloadSettings high;
     public TLRPC$TL_autoDownloadSettings low;

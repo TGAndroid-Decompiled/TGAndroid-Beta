@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_groupCallParticipantVideo extends TLObject {
     public int audio_source;
     public String endpoint;

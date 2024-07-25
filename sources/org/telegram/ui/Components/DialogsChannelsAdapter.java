@@ -31,7 +31,6 @@ import org.telegram.tgnet.TLRPC$TL_messages_searchGlobal;
 import org.telegram.tgnet.TLRPC$TL_peerChannel;
 import org.telegram.tgnet.TLRPC$messages_Messages;
 import org.telegram.ui.ActionBar.Theme;
-
 public class DialogsChannelsAdapter extends UniversalAdapter {
     private final int currentAccount;
     public boolean expandedMyChannels;

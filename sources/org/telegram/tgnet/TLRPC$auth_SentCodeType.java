@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$auth_SentCodeType extends TLObject {
     public boolean apple_signin_allowed;
     public String beginning;

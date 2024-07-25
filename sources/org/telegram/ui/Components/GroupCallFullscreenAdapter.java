@@ -34,7 +34,6 @@ import org.telegram.ui.Components.voip.GroupCallMiniTextureView;
 import org.telegram.ui.Components.voip.GroupCallRenderersContainer;
 import org.telegram.ui.Components.voip.GroupCallStatusIcon;
 import org.telegram.ui.GroupCallActivity;
-
 public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapter {
     private final GroupCallActivity activity;
     private ArrayList<GroupCallMiniTextureView> attachedRenderers;
@@ -79,10 +78,9 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
         if (i < this.videoParticipants.size()) {
             videoParticipant = this.videoParticipants.get(i);
             tLRPC$TL_groupCallParticipant = this.videoParticipants.get(i).participant;
+        } else if (i - this.videoParticipants.size() >= this.participants.size()) {
+            return;
         } else {
-            if (i - this.videoParticipants.size() >= this.participants.size()) {
-                return;
-            }
             videoParticipant = null;
             tLRPC$TL_groupCallParticipant = this.participants.get(i - this.videoParticipants.size());
         }
@@ -91,17 +89,12 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
             groupCallUserCell.attachRenderer(false);
             if (videoParticipant != null) {
                 groupCallUserCell.attachRenderer(true);
-                return;
             }
-            return;
-        }
-        if (groupCallUserCell.attached) {
+        } else if (groupCallUserCell.attached) {
             if (groupCallUserCell.getRenderer() == null && videoParticipant != null && this.visible) {
                 groupCallUserCell.attachRenderer(true);
+            } else if (groupCallUserCell.getRenderer() == null || videoParticipant != null) {
             } else {
-                if (groupCallUserCell.getRenderer() == null || videoParticipant != null) {
-                    return;
-                }
                 groupCallUserCell.attachRenderer(false);
             }
         }
@@ -272,9 +265,10 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
                 }
                 return;
             }
+            float top = (this.avatarImageView.getTop() + (this.avatarImageView.getMeasuredHeight() / 2.0f)) - (getMeasuredHeight() / 2.0f);
             float f2 = 1.0f - f;
             float dp = ((AndroidUtilities.dp(46.0f) / AndroidUtilities.dp(40.0f)) * f2) + (1.0f * f);
-            this.avatarImageView.setTranslationY((-((this.avatarImageView.getTop() + (this.avatarImageView.getMeasuredHeight() / 2.0f)) - (getMeasuredHeight() / 2.0f))) * f2);
+            this.avatarImageView.setTranslationY((-top) * f2);
             this.avatarImageView.setScaleX(dp);
             this.avatarImageView.setScaleY(dp);
             this.backgroundPaint.setAlpha((int) (f * 255.0f));
@@ -303,10 +297,11 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
             float y = this.avatarImageView.getY() + (this.avatarImageView.getMeasuredHeight() / 2);
             this.avatarWavesDrawable.update();
             this.avatarWavesDrawable.draw(canvas, x, y, this);
+            float dp = AndroidUtilities.dp(46.0f) / AndroidUtilities.dp(40.0f);
             float f = this.progress;
-            float dp = ((AndroidUtilities.dp(46.0f) / AndroidUtilities.dp(40.0f)) * (1.0f - f)) + (f * 1.0f);
-            this.avatarImageView.setScaleX(this.avatarWavesDrawable.getAvatarScale() * dp);
-            this.avatarImageView.setScaleY(this.avatarWavesDrawable.getAvatarScale() * dp);
+            float f2 = (dp * (1.0f - f)) + (f * 1.0f);
+            this.avatarImageView.setScaleX(this.avatarWavesDrawable.getAvatarScale() * f2);
+            this.avatarImageView.setScaleY(this.avatarWavesDrawable.getAvatarScale() * f2);
             super.dispatchDraw(canvas);
         }
 
@@ -379,10 +374,8 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
             }
             if (z && this.renderer == null) {
                 this.renderer = GroupCallMiniTextureView.getOrCreate(GroupCallFullscreenAdapter.this.attachedRenderers, GroupCallFullscreenAdapter.this.renderersContainer, null, this, null, this.videoParticipant, GroupCallFullscreenAdapter.this.groupCall, GroupCallFullscreenAdapter.this.activity);
+            } else if (z) {
             } else {
-                if (z) {
-                    return;
-                }
                 GroupCallMiniTextureView groupCallMiniTextureView = this.renderer;
                 if (groupCallMiniTextureView != null) {
                     groupCallMiniTextureView.setSecondaryView(null);

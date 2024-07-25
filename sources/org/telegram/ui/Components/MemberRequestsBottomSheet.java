@@ -11,7 +11,6 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Delegates.MemberRequestsDelegate;
 import org.telegram.ui.LaunchActivity;
-
 public class MemberRequestsBottomSheet extends UsersAlertBase {
     private final FlickerLoadingView currentLoadingView;
     private final MemberRequestsDelegate delegate;

@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$help_timezonesList extends TLObject {
     public int hash;
     public ArrayList<TLRPC$TL_timezone> timezones = new ArrayList<>();
@@ -15,11 +14,11 @@ public class TLRPC$help_timezonesList extends TLObject {
                     if (z2) {
                         throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
                     }
-                } else {
-                    int readInt322 = abstractSerializedData2.readInt32(z2);
-                    for (int i2 = 0; i2 < readInt322; i2++) {
-                        this.timezones.add(TLRPC$TL_timezone.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2));
-                    }
+                    return;
+                }
+                int readInt322 = abstractSerializedData2.readInt32(z2);
+                for (int i2 = 0; i2 < readInt322; i2++) {
+                    this.timezones.add(TLRPC$TL_timezone.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2));
                 }
             }
 

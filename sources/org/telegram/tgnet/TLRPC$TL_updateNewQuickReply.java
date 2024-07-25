@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updateNewQuickReply extends TLRPC$Update {
     public TLRPC$TL_quickReply quick_reply;
 

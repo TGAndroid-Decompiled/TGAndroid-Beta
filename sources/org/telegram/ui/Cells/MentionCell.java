@@ -22,7 +22,6 @@ import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
-
 public class MentionCell extends LinearLayout {
     private boolean attached;
     private final AvatarDrawable avatarDrawable;
@@ -95,7 +94,8 @@ public class MentionCell extends LinearLayout {
         }
         this.nameTextView.setText(UserObject.getUserName(tLRPC$User));
         if (UserObject.getPublicUsername(tLRPC$User) != null) {
-            this.usernameTextView.setText("@" + UserObject.getPublicUsername(tLRPC$User));
+            TextView textView = this.usernameTextView;
+            textView.setText("@" + UserObject.getPublicUsername(tLRPC$User));
         } else {
             this.usernameTextView.setText("");
         }
@@ -137,7 +137,8 @@ public class MentionCell extends LinearLayout {
         this.nameTextView.setText(tLRPC$Chat.title);
         String publicUsername = ChatObject.getPublicUsername(tLRPC$Chat);
         if (publicUsername != null) {
-            this.usernameTextView.setText("@" + publicUsername);
+            TextView textView = this.usernameTextView;
+            textView.setText("@" + publicUsername);
         } else {
             this.usernameTextView.setText("");
         }
@@ -250,10 +251,10 @@ public class MentionCell extends LinearLayout {
         if (z) {
             this.nameTextView.setTextColor(-1);
             this.usernameTextView.setTextColor(-4473925);
-        } else {
-            this.nameTextView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
-            this.usernameTextView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteGrayText3));
+            return;
         }
+        this.nameTextView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
+        this.usernameTextView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteGrayText3));
     }
 
     private int getThemedColor(int i) {

@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_stickerKeyword extends TLObject {
     public long document_id;
     public ArrayList<String> keyword = new ArrayList<>();
@@ -26,11 +25,11 @@ public class TLRPC$TL_stickerKeyword extends TLObject {
             if (z) {
                 throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
             }
-        } else {
-            int readInt322 = abstractSerializedData.readInt32(z);
-            for (int i = 0; i < readInt322; i++) {
-                this.keyword.add(abstractSerializedData.readString(z));
-            }
+            return;
+        }
+        int readInt322 = abstractSerializedData.readInt32(z);
+        for (int i = 0; i < readInt322; i++) {
+            this.keyword.add(abstractSerializedData.readString(z));
         }
     }
 

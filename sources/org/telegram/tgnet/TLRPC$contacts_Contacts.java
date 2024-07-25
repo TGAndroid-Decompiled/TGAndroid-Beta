@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public abstract class TLRPC$contacts_Contacts extends TLObject {
     public int saved_count;
     public ArrayList<TLRPC$TL_contact> contacts = new ArrayList<>();

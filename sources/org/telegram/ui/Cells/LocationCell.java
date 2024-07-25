@@ -26,7 +26,6 @@ import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.FlickerLoadingView;
 import org.telegram.ui.Components.LayoutHelper;
-
 public class LocationCell extends FrameLayout {
     private static FlickerLoadingView globalGradientView;
     private AnimatedTextView addressTextView;
@@ -111,22 +110,22 @@ public class LocationCell extends FrameLayout {
 
     public static int getColorForIndex(int i) {
         int i2 = i % 7;
-        if (i2 == 0) {
-            return -1351584;
-        }
-        if (i2 == 1) {
+        if (i2 != 0) {
+            if (i2 != 1) {
+                if (i2 != 2) {
+                    if (i2 != 3) {
+                        if (i2 != 4) {
+                            return i2 != 5 ? -1285237 : -12338729;
+                        }
+                        return -7900675;
+                    }
+                    return -13187226;
+                }
+                return -12214795;
+            }
             return -868277;
         }
-        if (i2 == 2) {
-            return -12214795;
-        }
-        if (i2 == 3) {
-            return -13187226;
-        }
-        if (i2 != 4) {
-            return i2 != 5 ? -1285237 : -12338729;
-        }
-        return -7900675;
+        return -1351584;
     }
 
     private CharSequence getTitle(TLRPC$TL_messageMediaVenue tLRPC$TL_messageMediaVenue) {

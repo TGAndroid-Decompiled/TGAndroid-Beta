@@ -1,7 +1,6 @@
 package org.telegram.tgnet.tl;
 
 import org.telegram.tgnet.AbstractSerializedData;
-
 public class TL_stats$TL_broadcastRevenueTransactionRefund extends TL_stats$BroadcastRevenueTransaction {
     public long amount;
     public int from_date;

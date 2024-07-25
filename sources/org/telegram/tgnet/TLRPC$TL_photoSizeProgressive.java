@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_photoSizeProgressive extends TLRPC$PhotoSize {
     public ArrayList<Integer> sizes = new ArrayList<>();
 

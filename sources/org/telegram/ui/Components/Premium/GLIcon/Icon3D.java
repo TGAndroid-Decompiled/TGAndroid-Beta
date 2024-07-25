@@ -22,7 +22,6 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
-
 public class Icon3D {
     public final int N;
     private int alphaHandle;

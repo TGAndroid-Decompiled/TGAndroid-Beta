@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_inputBusinessBotRecipients extends TLObject {
     public boolean contacts;
     public boolean exclude_selected;
@@ -28,11 +27,10 @@ public class TLRPC$TL_inputBusinessBotRecipients extends TLObject {
                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
                 }
                 return;
-            } else {
-                int readInt323 = abstractSerializedData.readInt32(z);
-                for (int i = 0; i < readInt323; i++) {
-                    this.users.add(TLRPC$InputUser.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z));
-                }
+            }
+            int readInt323 = abstractSerializedData.readInt32(z);
+            for (int i = 0; i < readInt323; i++) {
+                this.users.add(TLRPC$InputUser.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z));
             }
         }
         if ((this.flags & 64) != 0) {
@@ -41,11 +39,11 @@ public class TLRPC$TL_inputBusinessBotRecipients extends TLObject {
                 if (z) {
                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
                 }
-            } else {
-                int readInt325 = abstractSerializedData.readInt32(z);
-                for (int i2 = 0; i2 < readInt325; i2++) {
-                    this.exclude_users.add(TLRPC$InputUser.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z));
-                }
+                return;
+            }
+            int readInt325 = abstractSerializedData.readInt32(z);
+            for (int i2 = 0; i2 < readInt325; i2++) {
+                this.exclude_users.add(TLRPC$InputUser.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z));
             }
         }
     }

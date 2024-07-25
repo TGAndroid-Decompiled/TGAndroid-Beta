@@ -2,8 +2,8 @@ package org.telegram.tgnet;
 
 import org.telegram.messenger.FileLoaderPriorityQueue;
 import org.telegram.messenger.LiteMode;
+import org.telegram.tgnet.tl.TL_bots$BotInfo;
 import org.telegram.tgnet.tl.TL_stories$PeerStories;
-
 public class TLRPC$TL_channelFull extends TLRPC$ChatFull {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -63,7 +63,7 @@ public class TLRPC$TL_channelFull extends TLRPC$ChatFull {
         }
         int readInt324 = abstractSerializedData.readInt32(z);
         for (int i = 0; i < readInt324; i++) {
-            TLRPC$BotInfo TLdeserialize = TLRPC$BotInfo.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            TL_bots$BotInfo TLdeserialize = TL_bots$BotInfo.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
             if (TLdeserialize == null) {
                 return;
             }
@@ -116,11 +116,10 @@ public class TLRPC$TL_channelFull extends TLRPC$ChatFull {
                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt325)));
                 }
                 return;
-            } else {
-                int readInt326 = abstractSerializedData.readInt32(z);
-                for (int i2 = 0; i2 < readInt326; i2++) {
-                    this.pending_suggestions.add(abstractSerializedData.readString(z));
-                }
+            }
+            int readInt326 = abstractSerializedData.readInt32(z);
+            for (int i2 = 0; i2 < readInt326; i2++) {
+                this.pending_suggestions.add(abstractSerializedData.readString(z));
             }
         }
         if ((this.flags & ConnectionsManager.FileTypeFile) != 0) {
@@ -139,11 +138,10 @@ public class TLRPC$TL_channelFull extends TLRPC$ChatFull {
                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt327)));
                 }
                 return;
-            } else {
-                int readInt328 = abstractSerializedData.readInt32(z);
-                for (int i3 = 0; i3 < readInt328; i3++) {
-                    this.recent_requesters.add(Long.valueOf(abstractSerializedData.readInt64(z)));
-                }
+            }
+            int readInt328 = abstractSerializedData.readInt32(z);
+            for (int i3 = 0; i3 < readInt328; i3++) {
+                this.recent_requesters.add(Long.valueOf(abstractSerializedData.readInt64(z)));
             }
         }
         if ((this.flags & 536870912) != 0) {

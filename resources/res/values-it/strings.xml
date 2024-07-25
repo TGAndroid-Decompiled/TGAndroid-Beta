@@ -964,8 +964,6 @@
     <string name="ChooseTheme">Scegli tema</string>
     <string name="ChooseYourLanguage">Scegli la tua lingua</string>
     <string name="ChooseYourLanguageOther">Altro</string>
-    <string name="ChromeCustomTabs">Browser in-app</string>
-    <string name="ChromeCustomTabsInfo">Apri i link esterni all\'interno dell\'app</string>
     <string name="ClearButton">Cancella</string>
     <string name="ClearCache">Svuota cache</string>
     <string name="ClearCacheFewChatsTitle">Svuota cache per %1$s</string>

@@ -6,7 +6,6 @@ import android.os.IBinder;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import org.telegram.messenger.NotificationCenter;
-
 public class ImportingService extends Service implements NotificationCenter.NotificationCenterDelegate {
     private NotificationCompat.Builder builder;
 
@@ -78,7 +77,7 @@ public class ImportingService extends Service implements NotificationCenter.Noti
             NotificationsController.checkOtherNotificationsChannel();
             NotificationCompat.Builder builder = new NotificationCompat.Builder(ApplicationLoader.applicationContext);
             this.builder = builder;
-            builder.setSmallIcon(android.R.drawable.stat_sys_upload);
+            builder.setSmallIcon(17301640);
             this.builder.setWhen(System.currentTimeMillis());
             this.builder.setChannelId(NotificationsController.OTHER_NOTIFICATIONS_CHANNEL);
             this.builder.setContentTitle(LocaleController.getString("AppName", R.string.AppName));

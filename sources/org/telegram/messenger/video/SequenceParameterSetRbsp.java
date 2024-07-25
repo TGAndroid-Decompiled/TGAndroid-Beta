@@ -4,7 +4,6 @@ import com.googlecode.mp4parser.h264.read.CAVLCReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Array;
-
 public class SequenceParameterSetRbsp {
     public int bit_depth_chroma_minus8;
     public int bit_depth_luma_minus8;
@@ -160,7 +159,7 @@ public class SequenceParameterSetRbsp {
         int[] iArr3 = new int[i2];
         boolean[] zArr4 = new boolean[i2];
         int[] iArr4 = new int[i2];
-        boolean[][] zArr5 = (boolean[][]) Array.newInstance((Class<?>) boolean.class, i2, 32);
+        boolean[][] zArr5 = (boolean[][]) Array.newInstance(boolean.class, i2, 32);
         boolean[] zArr6 = new boolean[i2];
         boolean[] zArr7 = new boolean[i2];
         boolean[] zArr8 = new boolean[i2];
@@ -180,7 +179,8 @@ public class SequenceParameterSetRbsp {
                 iArr4[i5] = cAVLCReader.readU(5, "sub_layer_profile_idc[" + i5 + "]");
                 int i6 = 0;
                 while (i6 < 32) {
-                    zArr5[i5][i6] = cAVLCReader.readBool("sub_layer_profile_compatibility_flag[" + i5 + "][" + i6 + "]");
+                    boolean[] zArr10 = zArr5[i5];
+                    zArr10[i6] = cAVLCReader.readBool("sub_layer_profile_compatibility_flag[" + i5 + "][" + i6 + "]");
                     i6++;
                     iArr3 = iArr3;
                 }

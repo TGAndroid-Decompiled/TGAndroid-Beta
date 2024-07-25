@@ -18,7 +18,6 @@ import android.widget.ImageView;
 import androidx.annotation.Keep;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.Paint.Swatch;
-
 public class ColorPicker extends FrameLayout {
     private static final int[] COLORS = {-1431751, -2409774, -13610525, -11942419, -8337308, -205211, -223667, -16777216, -1};
     private static final float[] LOCATIONS = {0.0f, 0.14f, 0.24f, 0.39f, 0.49f, 0.62f, 0.73f, 0.85f, 1.0f};
@@ -91,12 +90,12 @@ public class ColorPicker extends FrameLayout {
             if (i2 >= fArr.length) {
                 i2 = -1;
                 break;
-            }
-            if (fArr[i2] >= f) {
+            } else if (fArr[i2] >= f) {
                 i = i2 - 1;
                 break;
+            } else {
+                i2++;
             }
-            i2++;
         }
         float f2 = fArr[i];
         int[] iArr2 = COLORS;
@@ -109,7 +108,8 @@ public class ColorPicker extends FrameLayout {
         int red2 = Color.red(i2);
         int green = Color.green(i);
         int green2 = Color.green(i2);
-        return Color.argb(255, Math.min(255, (int) (red + ((red2 - red) * min))), Math.min(255, (int) (green + ((green2 - green) * min))), Math.min(255, (int) (Color.blue(i) + ((Color.blue(i2) - r6) * min))));
+        int blue = Color.blue(i);
+        return Color.argb(255, Math.min(255, (int) (red + ((red2 - red) * min))), Math.min(255, (int) (green + ((green2 - green) * min))), Math.min(255, (int) (blue + ((Color.blue(i2) - blue) * min))));
     }
 
     public void setLocation(float f) {
@@ -140,41 +140,41 @@ public class ColorPicker extends FrameLayout {
         }
         float x = motionEvent.getX() - this.rectF.left;
         float y = motionEvent.getY() - this.rectF.top;
-        if (!this.interacting && y < (-AndroidUtilities.dp(10.0f))) {
-            return false;
-        }
-        int actionMasked = motionEvent.getActionMasked();
-        if (actionMasked == 3 || actionMasked == 1 || actionMasked == 6) {
-            if (this.interacting && (colorPickerDelegate = this.delegate) != null) {
-                colorPickerDelegate.onFinishedColorPicking();
-                SharedPreferences.Editor edit = getContext().getSharedPreferences("paint", 0).edit();
-                edit.putFloat("last_color_location", this.location);
-                edit.putFloat("last_color_weight", this.weight);
-                edit.commit();
-            }
-            this.interacting = false;
-            this.wasChangingWeight = this.changingWeight;
-            this.changingWeight = false;
-            setDragging(false, true);
-        } else if (actionMasked == 0 || actionMasked == 2) {
-            if (!this.interacting) {
-                this.interacting = true;
-                ColorPickerDelegate colorPickerDelegate2 = this.delegate;
-                if (colorPickerDelegate2 != null) {
-                    colorPickerDelegate2.onBeganColorPicking();
+        if (this.interacting || y >= (-AndroidUtilities.dp(10.0f))) {
+            int actionMasked = motionEvent.getActionMasked();
+            if (actionMasked == 3 || actionMasked == 1 || actionMasked == 6) {
+                if (this.interacting && (colorPickerDelegate = this.delegate) != null) {
+                    colorPickerDelegate.onFinishedColorPicking();
+                    SharedPreferences.Editor edit = getContext().getSharedPreferences("paint", 0).edit();
+                    edit.putFloat("last_color_location", this.location);
+                    edit.putFloat("last_color_weight", this.weight);
+                    edit.commit();
                 }
+                this.interacting = false;
+                this.wasChangingWeight = this.changingWeight;
+                this.changingWeight = false;
+                setDragging(false, true);
+            } else if (actionMasked == 0 || actionMasked == 2) {
+                if (!this.interacting) {
+                    this.interacting = true;
+                    ColorPickerDelegate colorPickerDelegate2 = this.delegate;
+                    if (colorPickerDelegate2 != null) {
+                        colorPickerDelegate2.onBeganColorPicking();
+                    }
+                }
+                setLocation(Math.max(0.0f, Math.min(1.0f, x / this.rectF.width())));
+                setDragging(true, true);
+                if (y < (-AndroidUtilities.dp(10.0f))) {
+                    this.changingWeight = true;
+                    setWeight(Math.max(0.0f, Math.min(1.0f, ((-y) - AndroidUtilities.dp(10.0f)) / AndroidUtilities.dp(190.0f))));
+                }
+                ColorPickerDelegate colorPickerDelegate3 = this.delegate;
+                if (colorPickerDelegate3 != null) {
+                    colorPickerDelegate3.onColorValueChanged();
+                }
+                return true;
             }
-            setLocation(Math.max(0.0f, Math.min(1.0f, x / this.rectF.width())));
-            setDragging(true, true);
-            if (y < (-AndroidUtilities.dp(10.0f))) {
-                this.changingWeight = true;
-                setWeight(Math.max(0.0f, Math.min(1.0f, ((-y) - AndroidUtilities.dp(10.0f)) / AndroidUtilities.dp(190.0f))));
-            }
-            ColorPickerDelegate colorPickerDelegate3 = this.delegate;
-            if (colorPickerDelegate3 != null) {
-                colorPickerDelegate3.onColorValueChanged();
-            }
-            return true;
+            return false;
         }
         return false;
     }
@@ -185,7 +185,8 @@ public class ColorPicker extends FrameLayout {
         int i5 = i3 - i;
         int i6 = i4 - i2;
         this.gradientPaint.setShader(new LinearGradient(AndroidUtilities.dp(56.0f), 0.0f, i5 - AndroidUtilities.dp(56.0f), 0.0f, COLORS, LOCATIONS, Shader.TileMode.REPEAT));
-        this.rectF.set(AndroidUtilities.dp(56.0f), i6 - AndroidUtilities.dp(32.0f), i5 - AndroidUtilities.dp(56.0f), r9 + AndroidUtilities.dp(12.0f));
+        int dp = i6 - AndroidUtilities.dp(32.0f);
+        this.rectF.set(AndroidUtilities.dp(56.0f), dp, i5 - AndroidUtilities.dp(56.0f), dp + AndroidUtilities.dp(12.0f));
         ImageView imageView = this.settingsButton;
         imageView.layout(i5 - imageView.getMeasuredWidth(), i6 - AndroidUtilities.dp(52.0f), i5, i6);
         this.undoButton.layout(0, i6 - AndroidUtilities.dp(52.0f), this.settingsButton.getMeasuredWidth(), i6);

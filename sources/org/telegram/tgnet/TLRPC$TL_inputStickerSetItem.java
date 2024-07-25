@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_inputStickerSetItem extends TLObject {
     public TLRPC$InputDocument document;
     public String emoji;

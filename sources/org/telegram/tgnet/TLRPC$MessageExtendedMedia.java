@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$MessageExtendedMedia extends TLObject {
     public String attachPath;
     public float downloadProgress;

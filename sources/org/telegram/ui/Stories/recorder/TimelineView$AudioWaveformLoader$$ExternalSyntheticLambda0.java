@@ -1,7 +1,6 @@
 package org.telegram.ui.Stories.recorder;
 
 import org.telegram.ui.Stories.recorder.TimelineView;
-
 public final class TimelineView$AudioWaveformLoader$$ExternalSyntheticLambda0 implements Runnable {
     public final TimelineView.AudioWaveformLoader f$0;
 

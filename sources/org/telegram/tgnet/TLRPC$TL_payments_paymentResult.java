@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_payments_paymentResult extends TLRPC$payments_PaymentResult {
     public TLRPC$Updates updates;
 

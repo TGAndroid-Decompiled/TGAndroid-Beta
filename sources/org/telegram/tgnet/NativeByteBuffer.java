@@ -5,7 +5,6 @@ import java.nio.ByteOrder;
 import java.util.LinkedList;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
-
 public class NativeByteBuffer extends AbstractSerializedData {
     private static final ThreadLocal<LinkedList<NativeByteBuffer>> addressWrappers = new ThreadLocal<LinkedList<NativeByteBuffer>>() {
         @Override
@@ -34,24 +33,24 @@ public class NativeByteBuffer extends AbstractSerializedData {
     }
 
     public static NativeByteBuffer wrap(long j) {
-        if (j == 0) {
-            return null;
+        if (j != 0) {
+            NativeByteBuffer poll = addressWrappers.get().poll();
+            if (poll == null) {
+                poll = new NativeByteBuffer(0, true);
+            }
+            poll.address = j;
+            poll.reused = false;
+            ByteBuffer native_getJavaByteBuffer = native_getJavaByteBuffer(j);
+            poll.buffer = native_getJavaByteBuffer;
+            native_getJavaByteBuffer.limit(native_limit(j));
+            int native_position = native_position(j);
+            if (native_position <= poll.buffer.limit()) {
+                poll.buffer.position(native_position);
+            }
+            poll.buffer.order(ByteOrder.LITTLE_ENDIAN);
+            return poll;
         }
-        NativeByteBuffer poll = addressWrappers.get().poll();
-        if (poll == null) {
-            poll = new NativeByteBuffer(0, true);
-        }
-        poll.address = j;
-        poll.reused = false;
-        ByteBuffer native_getJavaByteBuffer = native_getJavaByteBuffer(j);
-        poll.buffer = native_getJavaByteBuffer;
-        native_getJavaByteBuffer.limit(native_limit(j));
-        int native_position = native_position(j);
-        if (native_position <= poll.buffer.limit()) {
-            poll.buffer.position(native_position);
-        }
-        poll.buffer.order(ByteOrder.LITTLE_ENDIAN);
-        return poll;
+        return null;
     }
 
     private NativeByteBuffer(int i, boolean z) {
@@ -374,10 +373,10 @@ public class NativeByteBuffer extends AbstractSerializedData {
     public void writeBytes(NativeByteBuffer nativeByteBuffer) {
         if (this.justCalc) {
             this.len += nativeByteBuffer.limit();
-        } else {
-            nativeByteBuffer.rewind();
-            this.buffer.put(nativeByteBuffer.buffer);
+            return;
         }
+        nativeByteBuffer.rewind();
+        this.buffer.put(nativeByteBuffer.buffer);
     }
 
     @Override
@@ -396,9 +395,9 @@ public class NativeByteBuffer extends AbstractSerializedData {
         if (!this.justCalc) {
             ByteBuffer byteBuffer = this.buffer;
             byteBuffer.position(byteBuffer.position() + i);
-        } else {
-            this.len += i;
+            return;
         }
+        this.len += i;
     }
 
     @Override
@@ -414,11 +413,11 @@ public class NativeByteBuffer extends AbstractSerializedData {
             if (z) {
                 throw new RuntimeException("read byte error", e);
             }
-            if (!BuildVars.LOGS_ENABLED) {
+            if (BuildVars.LOGS_ENABLED) {
+                FileLog.e("read byte error");
+                FileLog.e(e);
                 return (byte) 0;
             }
-            FileLog.e("read byte error");
-            FileLog.e(e);
             return (byte) 0;
         }
     }
@@ -431,11 +430,11 @@ public class NativeByteBuffer extends AbstractSerializedData {
             if (z) {
                 throw new RuntimeException("read int32 error", e);
             }
-            if (!BuildVars.LOGS_ENABLED) {
+            if (BuildVars.LOGS_ENABLED) {
+                FileLog.e("read int32 error");
+                FileLog.e(e);
                 return 0;
             }
-            FileLog.e("read int32 error");
-            FileLog.e(e);
             return 0;
         }
     }
@@ -448,11 +447,11 @@ public class NativeByteBuffer extends AbstractSerializedData {
             if (z) {
                 throw new RuntimeException("read float error", e);
             }
-            if (!BuildVars.LOGS_ENABLED) {
+            if (BuildVars.LOGS_ENABLED) {
+                FileLog.e("read float error");
+                FileLog.e(e);
                 return 0.0f;
             }
-            FileLog.e("read float error");
-            FileLog.e(e);
             return 0.0f;
         }
     }
@@ -483,11 +482,11 @@ public class NativeByteBuffer extends AbstractSerializedData {
             if (z) {
                 throw new RuntimeException("read int64 error", e);
             }
-            if (!BuildVars.LOGS_ENABLED) {
+            if (BuildVars.LOGS_ENABLED) {
+                FileLog.e("read int64 error");
+                FileLog.e(e);
                 return 0L;
             }
-            FileLog.e("read int64 error");
-            FileLog.e(e);
             return 0L;
         }
     }
@@ -617,11 +616,11 @@ public class NativeByteBuffer extends AbstractSerializedData {
             if (z) {
                 throw new RuntimeException("read byte array error", e);
             }
-            if (!BuildVars.LOGS_ENABLED) {
+            if (BuildVars.LOGS_ENABLED) {
+                FileLog.e("read byte array error");
+                FileLog.e(e);
                 return null;
             }
-            FileLog.e("read byte array error");
-            FileLog.e(e);
             return null;
         }
     }
@@ -634,11 +633,11 @@ public class NativeByteBuffer extends AbstractSerializedData {
             if (z) {
                 throw new RuntimeException("read double error", e);
             }
-            if (!BuildVars.LOGS_ENABLED) {
+            if (BuildVars.LOGS_ENABLED) {
+                FileLog.e("read double error");
+                FileLog.e(e);
                 return 0.0d;
             }
-            FileLog.e("read double error");
-            FileLog.e(e);
             return 0.0d;
         }
     }

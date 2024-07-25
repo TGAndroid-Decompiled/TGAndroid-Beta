@@ -1,13 +1,11 @@
 package org.telegram.ui.Components;
 
-import android.R;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.StateSet;
 import android.view.MotionEvent;
-
 public class ClickableAnimatedTextView extends AnimatedTextView {
     private Drawable backgroundDrawable;
     private final android.graphics.Rect bounds;
@@ -91,7 +89,7 @@ public class ClickableAnimatedTextView extends AnimatedTextView {
                 if (Build.VERSION.SDK_INT >= 21) {
                     drawable.setHotspot(motionEvent.getX(), motionEvent.getY());
                 }
-                this.backgroundDrawable.setState(new int[]{R.attr.state_pressed, R.attr.state_enabled});
+                this.backgroundDrawable.setState(new int[]{16842919, 16842910});
             }
             invalidate();
         } else if (motionEvent.getAction() == 1) {

@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_pageBlockTable extends TLRPC$PageBlock {
     public boolean bordered;
     public int flags;

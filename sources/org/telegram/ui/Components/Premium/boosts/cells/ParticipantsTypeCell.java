@@ -9,7 +9,6 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$TL_help_country;
 import org.telegram.ui.ActionBar.Theme;
-
 @SuppressLint({"ViewConstructor"})
 public class ParticipantsTypeCell extends BaseCell {
     public static int TYPE_ALL = 0;
@@ -43,20 +42,16 @@ public class ParticipantsTypeCell extends BaseCell {
         this.subtitleTextView.setTextColor(Theme.getColor(Theme.key_dialogTextBlue2, this.resourcesProvider));
         if (list.size() == 0) {
             setSubtitle(withArrow(LocaleController.getString("BoostingFromAllCountries", R.string.BoostingFromAllCountries)));
-            return;
-        }
-        if (list.size() <= 3) {
+        } else if (list.size() <= 3) {
             if (list.size() == 1) {
                 setSubtitle(withArrow(LocaleController.formatString("BoostingFromAllCountries1", R.string.BoostingFromAllCountries1, list.get(0).default_name)));
-                return;
             } else if (list.size() == 2) {
                 setSubtitle(withArrow(LocaleController.formatString("BoostingFromAllCountries2", R.string.BoostingFromAllCountries2, list.get(0).default_name, list.get(1).default_name)));
-                return;
             } else {
                 setSubtitle(withArrow(LocaleController.formatString("BoostingFromAllCountries3", R.string.BoostingFromAllCountries3, list.get(0).default_name, list.get(1).default_name, list.get(2).default_name)));
-                return;
             }
+        } else {
+            setSubtitle(withArrow(LocaleController.formatPluralString("BoostingFromCountriesCount", list.size(), new Object[0])));
         }
-        setSubtitle(withArrow(LocaleController.formatPluralString("BoostingFromCountriesCount", list.size(), new Object[0])));
     }
 }

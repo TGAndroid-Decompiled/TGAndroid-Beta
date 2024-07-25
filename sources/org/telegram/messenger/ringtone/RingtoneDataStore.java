@@ -25,7 +25,6 @@ import org.telegram.tgnet.TLRPC$TL_account_getSavedRingtones;
 import org.telegram.tgnet.TLRPC$TL_account_savedRingtones;
 import org.telegram.tgnet.TLRPC$TL_account_savedRingtonesNotModified;
 import org.telegram.tgnet.TLRPC$TL_error;
-
 public class RingtoneDataStore {
     private static volatile long lastReloadTimeMs;
     private static volatile long queryHash;
@@ -232,11 +231,10 @@ public class RingtoneDataStore {
                 if (i >= this.userRingtones.size()) {
                     z2 = false;
                     break;
+                } else if (this.userRingtones.get(i).uploading && str.equals(this.userRingtones.get(i).localUri)) {
+                    this.userRingtones.remove(i);
+                    break;
                 } else {
-                    if (this.userRingtones.get(i).uploading && str.equals(this.userRingtones.get(i).localUri)) {
-                        this.userRingtones.remove(i);
-                        break;
-                    }
                     i++;
                 }
             }
@@ -246,12 +244,11 @@ public class RingtoneDataStore {
                 if (i2 >= this.userRingtones.size()) {
                     z2 = false;
                     break;
+                } else if (this.userRingtones.get(i2).uploading && str.equals(this.userRingtones.get(i2).localUri)) {
+                    this.userRingtones.get(i2).uploading = false;
+                    this.userRingtones.get(i2).document = tLRPC$Document;
+                    break;
                 } else {
-                    if (this.userRingtones.get(i2).uploading && str.equals(this.userRingtones.get(i2).localUri)) {
-                        this.userRingtones.get(i2).uploading = false;
-                        this.userRingtones.get(i2).document = tLRPC$Document;
-                        break;
-                    }
                     i2++;
                 }
             }

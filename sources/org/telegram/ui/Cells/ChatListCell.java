@@ -16,7 +16,6 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RadioButton;
-
 public class ChatListCell extends LinearLayout {
     private ListView[] listView;
 
@@ -88,10 +87,8 @@ public class ChatListCell extends LinearLayout {
                 str = "ChatListDefault";
             }
             String string = LocaleController.getString(str, i);
-            int ceil = (int) Math.ceil(this.textPaint.measureText(string));
             this.textPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
-            int measuredWidth = getMeasuredWidth() - ceil;
-            canvas.drawText(string, measuredWidth / 2, AndroidUtilities.dp(96.0f), this.textPaint);
+            canvas.drawText(string, (getMeasuredWidth() - ((int) Math.ceil(this.textPaint.measureText(string)))) / 2, AndroidUtilities.dp(96.0f), this.textPaint);
             int i2 = 0;
             for (int i3 = 2; i2 < i3; i3 = 2) {
                 int dp = AndroidUtilities.dp(i2 == 0 ? 21.0f : 53.0f);

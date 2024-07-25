@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_auth_loggedOut extends TLObject {
     public int flags;
     public byte[] future_auth_token;

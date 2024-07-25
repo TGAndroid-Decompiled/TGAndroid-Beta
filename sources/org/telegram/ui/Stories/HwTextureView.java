@@ -2,7 +2,6 @@ package org.telegram.ui.Stories;
 
 import android.content.Context;
 import android.view.TextureView;
-
 class HwTextureView extends TextureView {
     public HwTextureView(Context context) {
         super(context);

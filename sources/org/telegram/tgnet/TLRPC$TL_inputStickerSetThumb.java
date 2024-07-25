@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_inputStickerSetThumb extends TLRPC$InputFileLocation {
     public TLRPC$InputStickerSet stickerset;
     public int thumb_version;

@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
-
 public class MatrixParticlesDrawable {
     MatrixTextParticle[][] matrixTextParticles;
     ArrayList<Particle>[] particles;
@@ -34,7 +33,10 @@ public class MatrixParticlesDrawable {
             Bitmap[] bitmapArr = this.bitmaps;
             int i3 = this.size;
             bitmapArr[i] = Bitmap.createBitmap(i3, i3, Bitmap.Config.ARGB_8888);
-            new Canvas(this.bitmaps[i]).drawText(Character.toString((char) i2), r5 >> 1, this.size, textPaint);
+            Canvas canvas = new Canvas(this.bitmaps[i]);
+            String ch = Character.toString((char) i2);
+            int i4 = this.size;
+            canvas.drawText(ch, i4 >> 1, i4, textPaint);
             i++;
         }
     }

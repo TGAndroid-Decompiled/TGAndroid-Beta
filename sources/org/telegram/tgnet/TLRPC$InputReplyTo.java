@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public abstract class TLRPC$InputReplyTo extends TLObject {
     public int flags;
     public TLRPC$InputPeer peer;

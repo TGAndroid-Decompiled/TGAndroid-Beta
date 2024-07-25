@@ -38,7 +38,6 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.XiaomiUtilities;
-import org.telegram.tgnet.TLRPC$ChatFull;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$InputStickerSet;
 import org.telegram.tgnet.TLRPC$StickerSet;
@@ -52,7 +51,6 @@ import org.telegram.ui.Components.EditTextEmoji;
 import org.telegram.ui.Components.EmojiView;
 import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
-
 public class EditTextEmoji extends FrameLayout implements NotificationCenter.NotificationCenterDelegate, SizeNotifierFrameLayout.SizeNotifierFrameLayoutDelegate {
     AdjustPanLayoutHelper adjustPanLayoutHelper;
     private boolean allowAnimatedEmoji;
@@ -252,10 +250,10 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
                         if (z2) {
                             this.lastIcon = EditTextEmoji.this.emojiIconDrawable.getIcon();
                             EditTextEmoji.this.emojiIconDrawable.setIcon(R.drawable.msg_edit, true);
-                        } else {
-                            EditTextEmoji.this.emojiIconDrawable.setIcon(this.lastIcon, true);
-                            this.lastIcon = null;
+                            return;
                         }
+                        EditTextEmoji.this.emojiIconDrawable.setIcon(this.lastIcon, true);
+                        this.lastIcon = null;
                     }
                 }
             }
@@ -381,9 +379,7 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
                 }
                 itemOptions.dismiss();
                 this.formatOptions = null;
-                return;
-            }
-            if (!isPopupShowing()) {
+            } else if (!isPopupShowing()) {
                 showPopup(1);
                 this.emojiView.onOpen(this.editText.length() > 0, false);
                 this.editText.requestFocus();
@@ -655,14 +651,12 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
         AndroidUtilities.showKeyboard(this.editText);
         if (this.isPaused) {
             this.showKeyboardOnResume = true;
-            return;
+        } else if (AndroidUtilities.usingHardwareInput || this.keyboardVisible || AndroidUtilities.isInMultiwindow || AndroidUtilities.isTablet()) {
+        } else {
+            this.waitingForKeyboardOpen = true;
+            AndroidUtilities.cancelRunOnUIThread(this.openKeyboardRunnable);
+            AndroidUtilities.runOnUIThread(this.openKeyboardRunnable, 100L);
         }
-        if (AndroidUtilities.usingHardwareInput || this.keyboardVisible || AndroidUtilities.isInMultiwindow || AndroidUtilities.isTablet()) {
-            return;
-        }
-        this.waitingForKeyboardOpen = true;
-        AndroidUtilities.cancelRunOnUIThread(this.openKeyboardRunnable);
-        AndroidUtilities.runOnUIThread(this.openKeyboardRunnable, 100L);
     }
 
     public void showPopup(int i) {
@@ -787,14 +781,10 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
         }
         BaseFragment baseFragment = this.parentFragment;
         boolean z = this.allowAnimatedEmoji;
-        boolean z2 = false;
-        boolean z3 = false;
         Context context = getContext();
         boolean allowSearch = allowSearch();
-        TLRPC$ChatFull tLRPC$ChatFull = null;
-        ViewGroup viewGroup = null;
         int i = this.currentStyle;
-        EmojiView emojiView2 = new EmojiView(baseFragment, z, z2, z3, context, allowSearch, tLRPC$ChatFull, viewGroup, (i == 2 || i == 3) ? false : true, this.resourcesProvider, false) {
+        EmojiView emojiView2 = new EmojiView(baseFragment, z, false, false, context, allowSearch, null, null, (i == 2 || i == 3) ? false : true, this.resourcesProvider, false) {
             private boolean changedExpanded;
             private boolean lastExpanded;
             private int lastHeight;
@@ -808,9 +798,9 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
             }
 
             @Override
-            protected void onLayout(boolean z4, int i2, int i3, int i4, int i5) {
+            protected void onLayout(boolean z2, int i2, int i3, int i4, int i5) {
                 int i6;
-                super.onLayout(z4, i2, i3, i4, i5);
+                super.onLayout(z2, i2, i3, i4, i5);
                 if (EditTextEmoji.this.allowSearch()) {
                     int i7 = i5 - i3;
                     if (!this.lastExpanded && EditTextEmoji.this.emojiExpanded) {
@@ -882,7 +872,7 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
         }
 
         @Override
-        public void lambda$onGifSelected$1(View view, Object obj, String str, Object obj2, boolean z, int i) {
+        public void onGifSelected(View view, Object obj, String str, Object obj2, boolean z, int i) {
             EmojiView.EmojiViewDelegate.CC.$default$onGifSelected(this, view, obj, str, obj2, z, i);
         }
 
@@ -1122,6 +1112,7 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
             }
         }
         this.lastEmojiExpanded = this.emojiExpanded;
+        boolean z4 = true;
         if (this.lastSizeChangeValue1 == i && this.lastSizeChangeValue2 == z) {
             if (allowSearch()) {
                 if (this.editText.isFocused() && i > 0) {
@@ -1134,13 +1125,13 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
         }
         this.lastSizeChangeValue1 = i;
         this.lastSizeChangeValue2 = z;
-        boolean z4 = this.keyboardVisible;
-        boolean z5 = this.editText.isFocused() && i > 0;
-        this.keyboardVisible = z5;
-        if (z5 && isPopupShowing()) {
+        boolean z5 = this.keyboardVisible;
+        z4 = (!this.editText.isFocused() || i <= 0) ? false : false;
+        this.keyboardVisible = z4;
+        if (z4 && isPopupShowing()) {
             showPopup(0);
         }
-        if (this.emojiPadding != 0 && !(z2 = this.keyboardVisible) && z2 != z4 && !isPopupShowing()) {
+        if (this.emojiPadding != 0 && !(z2 = this.keyboardVisible) && z2 != z5 && !isPopupShowing()) {
             this.emojiPadding = 0;
             this.sizeNotifierLayout.requestLayout();
         }

@@ -45,7 +45,6 @@ import org.telegram.ui.Components.PhotoEditorSeekBar;
 import org.telegram.ui.Components.PhotoFilterView;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Stories.recorder.StoryRecorder;
-
 @SuppressLint({"NewApi"})
 public class PhotoFilterView extends FrameLayout implements FilterShaders.FilterShadersDelegate, StoryRecorder.Touchable {
     private Bitmap bitmapMask;
@@ -334,11 +333,11 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
 
         @Override
         public boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-            if (PhotoFilterView.this.eglThread == null) {
+            if (PhotoFilterView.this.eglThread != null) {
+                PhotoFilterView.this.eglThread.shutdown();
+                PhotoFilterView.this.eglThread = null;
                 return true;
             }
-            PhotoFilterView.this.eglThread.shutdown();
-            PhotoFilterView.this.eglThread = null;
             return true;
         }
     }
@@ -606,9 +605,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
             this.curveLayout.setVisibility(4);
             this.curvesControl.setVisibility(4);
             this.recyclerListView.setVisibility(0);
-            return;
-        }
-        if (i == 1) {
+        } else if (i == 1) {
             this.recyclerListView.setVisibility(4);
             this.curveLayout.setVisibility(4);
             this.curvesControl.setVisibility(4);
@@ -617,9 +614,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
                 this.blurControl.setVisibility(0);
             }
             updateSelectedBlurType();
-            return;
-        }
-        if (i == 2) {
+        } else if (i == 2) {
             this.recyclerListView.setVisibility(4);
             this.blurLayout.setVisibility(4);
             this.blurControl.setVisibility(4);
@@ -681,8 +676,11 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
     private void fixLayout(int i, int i2) {
         float width;
         int height;
-        float ceil;
         float f;
+        float f2;
+        float f3;
+        float ceil;
+        float f4;
         if (this.ownLayout) {
             int dp = i - AndroidUtilities.dp(28.0f);
             int dp2 = AndroidUtilities.dp(214.0f);
@@ -702,18 +700,18 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
                 width = this.textureView.getWidth();
                 height = this.textureView.getHeight();
             }
-            float f2 = dp;
-            float f3 = i4;
-            if (f2 / width > f3 / height) {
-                f = (int) Math.ceil(width * r9);
-                ceil = f3;
+            float f5 = dp;
+            float f6 = i4;
+            if (f5 / width > f6 / height) {
+                f4 = (int) Math.ceil(width * f3);
+                ceil = f6;
             } else {
-                ceil = (int) Math.ceil(r5 * r7);
-                f = f2;
+                ceil = (int) Math.ceil(f * f2);
+                f4 = f5;
             }
-            int ceil2 = (int) Math.ceil(((f2 - f) / 2.0f) + AndroidUtilities.dp(14.0f));
-            int ceil3 = (int) Math.ceil(((f3 - ceil) / 2.0f) + AndroidUtilities.dp(14.0f) + ((i3 < 21 || this.inBubbleMode) ? 0 : AndroidUtilities.statusBarHeight));
-            int i6 = (int) f;
+            int ceil2 = (int) Math.ceil(((f5 - f4) / 2.0f) + AndroidUtilities.dp(14.0f));
+            int ceil3 = (int) Math.ceil(((f6 - ceil) / 2.0f) + AndroidUtilities.dp(14.0f) + ((i3 < 21 || this.inBubbleMode) ? 0 : AndroidUtilities.statusBarHeight));
+            int i6 = (int) f4;
             int i7 = (int) ceil;
             if (this.ownsTextureView) {
                 FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.textureView.getLayoutParams();
@@ -722,10 +720,10 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
                 layoutParams.width = i6;
                 layoutParams.height = i7;
             }
-            float f4 = i6;
-            float f5 = i7;
-            this.curvesControl.setActualArea(ceil2, ceil3 - ((i3 < 21 || this.inBubbleMode) ? 0 : AndroidUtilities.statusBarHeight), f4, f5);
-            this.blurControl.setActualAreaSize(f4, f5);
+            float f7 = i6;
+            float f8 = i7;
+            this.curvesControl.setActualArea(ceil2, ceil3 - ((i3 < 21 || this.inBubbleMode) ? 0 : AndroidUtilities.statusBarHeight), f7, f8);
+            this.blurControl.setActualAreaSize(f7, f8);
             ((FrameLayout.LayoutParams) this.blurControl.getLayoutParams()).height = AndroidUtilities.dp(38.0f) + i4;
             ((FrameLayout.LayoutParams) this.curvesControl.getLayoutParams()).height = i4 + AndroidUtilities.dp(28.0f);
             if (AndroidUtilities.isTablet()) {
@@ -734,10 +732,10 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
                 if (dp3 < dp) {
                     layoutParams2.width = dp3;
                     layoutParams2.leftMargin = (dp - dp3) / 2;
-                } else {
-                    layoutParams2.width = -1;
-                    layoutParams2.leftMargin = 0;
+                    return;
                 }
+                layoutParams2.width = -1;
+                layoutParams2.leftMargin = 0;
             }
         }
     }
@@ -1049,11 +1047,10 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
                 if (i == PhotoFilterView.this.tintShadowsTool) {
                     photoEditRadioCell.setIconAndTextAndValue(LocaleController.getString("TintShadows", R.string.TintShadows), 0, PhotoFilterView.this.tintShadowsColor);
                     return;
+                } else if (i == PhotoFilterView.this.tintHighlightsTool) {
+                    photoEditRadioCell.setIconAndTextAndValue(LocaleController.getString("TintHighlights", R.string.TintHighlights), 0, PhotoFilterView.this.tintHighlightsColor);
+                    return;
                 } else {
-                    if (i == PhotoFilterView.this.tintHighlightsTool) {
-                        photoEditRadioCell.setIconAndTextAndValue(LocaleController.getString("TintHighlights", R.string.TintHighlights), 0, PhotoFilterView.this.tintHighlightsColor);
-                        return;
-                    }
                     return;
                 }
             }
@@ -1061,41 +1058,23 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
             photoEditToolCell.setTag(Integer.valueOf(i));
             if (i == PhotoFilterView.this.enhanceTool) {
                 photoEditToolCell.setIconAndTextAndValue(LocaleController.getString("Enhance", R.string.Enhance), PhotoFilterView.this.enhanceValue, 0, 100);
-                return;
-            }
-            if (i == PhotoFilterView.this.highlightsTool) {
+            } else if (i == PhotoFilterView.this.highlightsTool) {
                 photoEditToolCell.setIconAndTextAndValue(LocaleController.getString("Highlights", R.string.Highlights), PhotoFilterView.this.highlightsValue, -100, 100);
-                return;
-            }
-            if (i == PhotoFilterView.this.contrastTool) {
+            } else if (i == PhotoFilterView.this.contrastTool) {
                 photoEditToolCell.setIconAndTextAndValue(LocaleController.getString("Contrast", R.string.Contrast), PhotoFilterView.this.contrastValue, -100, 100);
-                return;
-            }
-            if (i == PhotoFilterView.this.exposureTool) {
+            } else if (i == PhotoFilterView.this.exposureTool) {
                 photoEditToolCell.setIconAndTextAndValue(LocaleController.getString("Exposure", R.string.Exposure), PhotoFilterView.this.exposureValue, -100, 100);
-                return;
-            }
-            if (i == PhotoFilterView.this.warmthTool) {
+            } else if (i == PhotoFilterView.this.warmthTool) {
                 photoEditToolCell.setIconAndTextAndValue(LocaleController.getString("Warmth", R.string.Warmth), PhotoFilterView.this.warmthValue, -100, 100);
-                return;
-            }
-            if (i == PhotoFilterView.this.saturationTool) {
+            } else if (i == PhotoFilterView.this.saturationTool) {
                 photoEditToolCell.setIconAndTextAndValue(LocaleController.getString("Saturation", R.string.Saturation), PhotoFilterView.this.saturationValue, -100, 100);
-                return;
-            }
-            if (i == PhotoFilterView.this.vignetteTool) {
+            } else if (i == PhotoFilterView.this.vignetteTool) {
                 photoEditToolCell.setIconAndTextAndValue(LocaleController.getString("Vignette", R.string.Vignette), PhotoFilterView.this.vignetteValue, 0, 100);
-                return;
-            }
-            if (i == PhotoFilterView.this.shadowsTool) {
+            } else if (i == PhotoFilterView.this.shadowsTool) {
                 photoEditToolCell.setIconAndTextAndValue(LocaleController.getString("Shadows", R.string.Shadows), PhotoFilterView.this.shadowsValue, -100, 100);
-                return;
-            }
-            if (i == PhotoFilterView.this.grainTool) {
+            } else if (i == PhotoFilterView.this.grainTool) {
                 photoEditToolCell.setIconAndTextAndValue(LocaleController.getString("Grain", R.string.Grain), PhotoFilterView.this.grainValue, 0, 100);
-                return;
-            }
-            if (i == PhotoFilterView.this.sharpenTool) {
+            } else if (i == PhotoFilterView.this.sharpenTool) {
                 photoEditToolCell.setIconAndTextAndValue(LocaleController.getString("Sharpen", R.string.Sharpen), PhotoFilterView.this.sharpenValue, 0, 100);
             } else if (i == PhotoFilterView.this.fadeTool) {
                 photoEditToolCell.setIconAndTextAndValue(LocaleController.getString("Fade", R.string.Fade), PhotoFilterView.this.fadeValue, 0, 100);
@@ -1172,7 +1151,8 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
 
         private void updateBottomText() {
             PhotoFilterView photoFilterView = this.filterView;
-            StaticLayout staticLayout = new StaticLayout("" + Math.round((photoFilterView == null ? 0.0f : photoFilterView.getEnhanceValue()) * 100.0f), this.bottomTextPaint, getMeasuredWidth(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            float enhanceValue = photoFilterView == null ? 0.0f : photoFilterView.getEnhanceValue();
+            StaticLayout staticLayout = new StaticLayout("" + Math.round(enhanceValue * 100.0f), this.bottomTextPaint, getMeasuredWidth(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.bottomText = staticLayout;
             this.bottomTextWidth = staticLayout.getLineCount() > 0 ? this.bottomText.getLineWidth(0) : 0.0f;
             this.bottomTextLeft = this.bottomText.getLineCount() > 0 ? this.bottomText.getLineLeft(0) : 0.0f;
@@ -1197,8 +1177,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
                         this.lastVibrateValue = photoFilterView.getEnhanceValue();
                     }
                     return true;
-                }
-                if (action == 2) {
+                } else if (action == 2) {
                     float x = motionEvent.getX();
                     float y = motionEvent.getY();
                     if (!this.tracking && System.currentTimeMillis() - this.downTime <= ViewConfiguration.getLongPressTimeout() && Math.abs(this.lastTouchY - y) < Math.abs(this.lastTouchX - x) && Math.abs(this.lastTouchX - x) > AndroidUtilities.touchSlop) {
@@ -1287,9 +1266,9 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
         FilterGLThread filterGLThread = this.eglThread;
         if (filterGLThread != null) {
             filterGLThread.updateUiBlurGradient(i, i2);
-        } else {
-            this.gradientTop = i;
-            this.gradientBottom = i2;
+            return;
         }
+        this.gradientTop = i;
+        this.gradientBottom = i2;
     }
 }

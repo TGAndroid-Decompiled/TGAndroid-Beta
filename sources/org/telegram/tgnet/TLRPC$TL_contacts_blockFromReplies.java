@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_contacts_blockFromReplies extends TLObject {
     public boolean delete_history;
     public boolean delete_message;

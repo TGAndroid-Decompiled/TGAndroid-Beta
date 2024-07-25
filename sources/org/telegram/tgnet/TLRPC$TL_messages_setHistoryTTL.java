@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_setHistoryTTL extends TLObject {
     public TLRPC$InputPeer peer;
     public int period;

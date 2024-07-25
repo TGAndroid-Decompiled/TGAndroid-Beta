@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_phone_joinAsPeers extends TLObject {
     public ArrayList<TLRPC$Peer> peers = new ArrayList<>();
     public ArrayList<TLRPC$Chat> chats = new ArrayList<>();

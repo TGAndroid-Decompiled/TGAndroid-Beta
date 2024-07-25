@@ -1,7 +1,6 @@
 package okio;
 
 import org.telegram.messenger.LiteMode;
-
 public final class Segment {
     final byte[] data;
     int limit;

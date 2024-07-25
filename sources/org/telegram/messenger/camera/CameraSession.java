@@ -12,7 +12,6 @@ import java.util.List;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
-
 public class CameraSession {
     public static final int ORIENTATION_HYSTERESIS = 5;
     public CameraInfo cameraInfo;
@@ -81,10 +80,10 @@ public class CameraSession {
         this.orientationEventListener = orientationEventListener;
         if (orientationEventListener.canDetectOrientation()) {
             this.orientationEventListener.enable();
-        } else {
-            this.orientationEventListener.disable();
-            this.orientationEventListener = null;
+            return;
         }
+        this.orientationEventListener.disable();
+        this.orientationEventListener = null;
     }
 
     private void updateCameraInfo() {
@@ -116,12 +115,20 @@ public class CameraSession {
             return;
         }
         this.currentFlashMode = str;
+        if (this.isRound) {
+            configureRoundCamera(false);
+            return;
+        }
         configurePhotoCamera();
         ApplicationLoader.applicationContext.getSharedPreferences("camera", 0).edit().putString(this.cameraInfo.frontCamera != 0 ? "flashMode_front" : "flashMode", str).commit();
     }
 
     public void setCurrentFlashMode(String str) {
         this.currentFlashMode = str;
+        if (this.isRound) {
+            configureRoundCamera(false);
+            return;
+        }
         configurePhotoCamera();
         ApplicationLoader.applicationContext.getSharedPreferences("camera", 0).edit().putString(this.cameraInfo.frontCamera != 0 ? "flashMode_front" : "flashMode", str).commit();
     }
@@ -129,7 +136,11 @@ public class CameraSession {
     public void setTorchEnabled(boolean z) {
         try {
             this.currentFlashMode = z ? "torch" : "off";
-            configurePhotoCamera();
+            if (this.isRound) {
+                configureRoundCamera(false);
+            } else {
+                configurePhotoCamera();
+            }
         } catch (Exception e) {
             FileLog.e(e);
         }
@@ -231,7 +242,7 @@ public class CameraSession {
                         }
                     } catch (Exception unused) {
                     }
-                    parameters.setFlashMode("off");
+                    parameters.setFlashMode(this.currentFlashMode);
                     parameters.setZoom((int) (this.currentZoom * this.maxZoom));
                     try {
                         camera.setParameters(parameters);

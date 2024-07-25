@@ -2,7 +2,6 @@ package org.telegram.tgnet.tl;
 
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
-
 public class TL_fragment$TL_getCollectibleInfo extends TLObject {
     public TL_fragment$InputCollectible collectible;
 

@@ -37,7 +37,6 @@ import org.telegram.ui.NotificationsSettingsActivity;
 import org.telegram.ui.ProfileNotificationsActivity;
 import org.telegram.ui.TopicsFragment;
 import org.telegram.ui.TopicsNotifySettingsFragments;
-
 public class TopicsNotifySettingsFragments extends BaseFragment {
     Adapter adapter;
     long dialogId;
@@ -63,7 +62,7 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    TopicsNotifySettingsFragments.this.lambda$onBackPressed$306();
+                    TopicsNotifySettingsFragments.this.finishFragment();
                 }
             }
         });
@@ -224,16 +223,6 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
     public void updateRows() {
         ArrayList<? extends AdapterWithDiffUtils.Item> arrayList;
         int i = 0;
-        int i2 = 1;
-        TLRPC$TL_forumTopic tLRPC$TL_forumTopic = null;
-        Object[] objArr = 0;
-        Object[] objArr2 = 0;
-        Object[] objArr3 = 0;
-        Object[] objArr4 = 0;
-        Object[] objArr5 = 0;
-        Object[] objArr6 = 0;
-        Object[] objArr7 = 0;
-        Object[] objArr8 = 0;
         if ((this.isPaused || this.adapter == null) ? false : true) {
             arrayList = new ArrayList<>();
             arrayList.addAll(this.items);
@@ -241,25 +230,24 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
             arrayList = null;
         }
         this.items.clear();
-        this.items.add(new Item(i2, tLRPC$TL_forumTopic));
+        this.items.add(new Item(1, null));
         ArrayList<TLRPC$TL_forumTopic> topics = getMessagesController().getTopicsController().getTopics(-this.dialogId);
         if (topics != null) {
-            int i3 = 0;
+            int i2 = 0;
             while (i < topics.size()) {
                 if (this.exceptionsTopics.contains(Integer.valueOf(topics.get(i).id))) {
                     this.items.add(new Item(2, topics.get(i)));
-                    i3 = 1;
+                    i2 = 1;
                 }
                 i++;
             }
-            i = i3;
+            i = i2;
         }
-        int i4 = 3;
         if (i != 0) {
-            this.items.add(new Item(i4, objArr6 == true ? 1 : 0));
-            this.items.add(new Item(4, objArr4 == true ? 1 : 0));
+            this.items.add(new Item(3, null));
+            this.items.add(new Item(4, null));
         }
-        this.items.add(new Item(i4, objArr2 == true ? 1 : 0));
+        this.items.add(new Item(3, null));
         Adapter adapter = this.adapter;
         if (adapter != null) {
             adapter.setItems(arrayList, this.items);

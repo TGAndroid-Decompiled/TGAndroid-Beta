@@ -1,5 +1,4 @@
 package kotlinx.coroutines.internal;
-
 public final class LockFreeLinkedListKt {
     private static final Object CONDITION_FALSE = new Symbol("CONDITION_FALSE");
 

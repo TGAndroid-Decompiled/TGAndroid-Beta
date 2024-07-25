@@ -18,7 +18,6 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CombinedDrawable;
-
 public class AlbumButton extends View {
     private StaticLayout countLayout;
     private float countLayoutLeft;
@@ -61,17 +60,15 @@ public class AlbumButton extends View {
         combinedDrawable.setIconSize(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f));
         if (photoEntry != null && (str = photoEntry.thumbPath) != null) {
             imageReceiver.setImage(ImageLocation.getForPath(str), "30.0_30.0", (ImageLocation) null, (String) null, combinedDrawable, (Object) null, 0);
-            return;
-        }
-        if (photoEntry != null && photoEntry.path != null) {
+        } else if (photoEntry != null && photoEntry.path != null) {
             if (photoEntry.isVideo) {
                 imageReceiver.setImage(ImageLocation.getForPath("vthumb://" + photoEntry.imageId + ":" + photoEntry.path), "30.0_30.0", (ImageLocation) null, (String) null, combinedDrawable, (Object) null, 0);
                 return;
             }
             imageReceiver.setImage(ImageLocation.getForPath("thumb://" + photoEntry.imageId + ":" + photoEntry.path), "30.0_30.0", (ImageLocation) null, (String) null, combinedDrawable, (Object) null, 0);
-            return;
+        } else {
+            imageReceiver.setImageBitmap(combinedDrawable);
         }
-        imageReceiver.setImageBitmap(combinedDrawable);
     }
 
     @Override

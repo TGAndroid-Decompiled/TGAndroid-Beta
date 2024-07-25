@@ -39,7 +39,6 @@ import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.SessionsActivity;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
-
 public class UnconfirmedAuthHintCell extends BlurredFrameLayout {
     private final LinearLayout buttonsLayout;
     private int height;
@@ -115,12 +114,12 @@ public class UnconfirmedAuthHintCell extends BlurredFrameLayout {
             while (true) {
                 if (i2 >= arrayList.size()) {
                     break;
-                }
-                if (!TextUtils.equals(str2, arrayList.get(i2).location)) {
+                } else if (!TextUtils.equals(str2, arrayList.get(i2).location)) {
                     str2 = null;
                     break;
+                } else {
+                    i2++;
                 }
-                i2++;
             }
             if (str2 == null) {
                 this.messageTextView.setText(LocaleController.formatPluralString("UnconfirmedAuthMultiple", arrayList.size(), new Object[0]));
@@ -361,9 +360,9 @@ public class UnconfirmedAuthHintCell extends BlurredFrameLayout {
         if (buttonWithCounterView.isTimerActive()) {
             AndroidUtilities.shakeViewSpring(buttonWithCounterView, 3.0f);
             BotWebViewVibrationEffect.APP_ERROR.vibrate();
-        } else {
-            bottomSheet.dismiss();
+            return;
         }
+        bottomSheet.dismiss();
     }
 
     private static String from(UnconfirmedAuthController.UnconfirmedAuth unconfirmedAuth) {

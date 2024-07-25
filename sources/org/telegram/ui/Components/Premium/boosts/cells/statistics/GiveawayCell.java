@@ -9,7 +9,6 @@ import org.telegram.tgnet.tl.TL_stories$TL_prepaidGiveaway;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.UserCell;
 import org.telegram.ui.Components.Premium.boosts.BoostRepository;
-
 @SuppressLint({"ViewConstructor"})
 public class GiveawayCell extends UserCell {
     private CounterDrawable counterDrawable;

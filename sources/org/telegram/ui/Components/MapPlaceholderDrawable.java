@@ -6,7 +6,6 @@ import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
-
 public class MapPlaceholderDrawable extends Drawable {
     private Paint linePaint;
     private Paint paint;
@@ -46,10 +45,10 @@ public class MapPlaceholderDrawable extends Drawable {
         if (z) {
             this.paint.setColor(-14865331);
             this.linePaint.setColor(-15854042);
-        } else {
-            this.paint.setColor(-2172970);
-            this.linePaint.setColor(-3752002);
+            return;
         }
+        this.paint.setColor(-2172970);
+        this.linePaint.setColor(-3752002);
     }
 
     @Override

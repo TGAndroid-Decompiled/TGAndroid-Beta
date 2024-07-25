@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import org.telegram.messenger.LiteMode;
-
 public class TLRPC$TL_peerNotifySettings extends TLRPC$PeerNotifySettings {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

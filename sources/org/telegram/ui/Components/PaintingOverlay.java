@@ -24,7 +24,6 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.Paint.Views.EditTextOutline;
-
 public class PaintingOverlay extends FrameLayout {
     private Drawable backgroundDrawable;
     public boolean drawChildren;

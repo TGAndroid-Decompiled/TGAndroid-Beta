@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_exportedMessageLink extends TLObject {
     public String html;
     public String link;

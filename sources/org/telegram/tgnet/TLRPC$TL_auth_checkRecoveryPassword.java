@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_auth_checkRecoveryPassword extends TLObject {
     public String code;
 

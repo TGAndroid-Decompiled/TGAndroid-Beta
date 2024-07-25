@@ -3,7 +3,6 @@ package org.telegram.ui.Components;
 import java.util.ArrayList;
 import java.util.Objects;
 import org.telegram.ui.ActionBar.ThemeDescription;
-
 public class SimpleThemeDescription {
     public static ThemeDescription createThemeDescription(ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate, int i) {
         return new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, i);

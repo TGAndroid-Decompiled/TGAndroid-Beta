@@ -6,7 +6,6 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
-
 public class ChoosingStickerStatusDrawable extends StatusDrawable {
     int color;
     Paint fillPaint;

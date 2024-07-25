@@ -14,7 +14,6 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$TL_messages_stickerSet;
 import org.telegram.ui.Cells.ChatMessageCell;
-
 public class SlotsDrawable extends RLottieDrawable {
     private ReelValue center;
     private int[] frameCounts;
@@ -185,16 +184,16 @@ public class SlotsDrawable extends RLottieDrawable {
     }
 
     private ReelValue reelValue(int i) {
-        if (i == 0) {
-            return ReelValue.bar;
-        }
-        if (i == 1) {
+        if (i != 0) {
+            if (i != 1) {
+                if (i == 2) {
+                    return ReelValue.lemon;
+                }
+                return ReelValue.seven;
+            }
             return ReelValue.berries;
         }
-        if (i == 2) {
-            return ReelValue.lemon;
-        }
-        return ReelValue.seven;
+        return ReelValue.bar;
     }
 
     private void init(int i) {
@@ -382,41 +381,40 @@ public class SlotsDrawable extends RLottieDrawable {
         checkRunningTasks();
         if (this.loadingInBackground || this.secondLoadingInBackground) {
             this.destroyAfterLoading = true;
-            return;
-        }
-        if (this.loadFrameTask != null || this.cacheGenerateTask != null) {
+        } else if (this.loadFrameTask != null || this.cacheGenerateTask != null) {
             this.destroyWhenDone = true;
-            return;
-        }
-        int i2 = 0;
-        while (true) {
-            long[] jArr = this.nativePtrs;
-            if (i2 >= jArr.length) {
-                break;
-            }
-            if (jArr[i2] != 0) {
-                if (jArr[i2] == this.nativePtr) {
-                    this.nativePtr = 0L;
+        } else {
+            int i2 = 0;
+            while (true) {
+                long[] jArr = this.nativePtrs;
+                if (i2 >= jArr.length) {
+                    break;
                 }
-                RLottieDrawable.destroy(this.nativePtrs[i2]);
-                this.nativePtrs[i2] = 0;
-            }
-            i2++;
-        }
-        while (true) {
-            long[] jArr2 = this.secondNativePtrs;
-            if (i >= jArr2.length) {
-                recycleResources();
-                return;
-            }
-            if (jArr2[i] != 0) {
-                if (jArr2[i] == this.secondNativePtr) {
-                    this.secondNativePtr = 0L;
+                if (jArr[i2] != 0) {
+                    if (jArr[i2] == this.nativePtr) {
+                        this.nativePtr = 0L;
+                    }
+                    RLottieDrawable.destroy(this.nativePtrs[i2]);
+                    this.nativePtrs[i2] = 0;
                 }
-                RLottieDrawable.destroy(this.secondNativePtrs[i]);
-                this.secondNativePtrs[i] = 0;
+                i2++;
             }
-            i++;
+            while (true) {
+                long[] jArr2 = this.secondNativePtrs;
+                if (i < jArr2.length) {
+                    if (jArr2[i] != 0) {
+                        if (jArr2[i] == this.secondNativePtr) {
+                            this.secondNativePtr = 0L;
+                        }
+                        RLottieDrawable.destroy(this.secondNativePtrs[i]);
+                        this.secondNativePtrs[i] = 0;
+                    }
+                    i++;
+                } else {
+                    recycleResources();
+                    return;
+                }
+            }
         }
     }
 

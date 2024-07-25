@@ -14,7 +14,6 @@ import android.view.ViewConfiguration;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Stack;
 import java.util.concurrent.atomic.AtomicReference;
@@ -30,7 +29,6 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LetterDrawable;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.spoilers.SpoilerEffect;
-
 public class SharedLinkCell extends FrameLayout {
     private StaticLayout captionLayout;
     private TextPaint captionTextPaint;
@@ -280,20 +278,17 @@ public class SharedLinkCell extends FrameLayout {
             for (int i6 = 0; i6 < this.linkLayout.size(); i6++) {
                 StaticLayout staticLayout = this.linkLayout.get(i6);
                 f += staticLayout.getLineBottom(staticLayout.getLineCount() - 1);
-                Iterator<SpoilerEffect> it = this.linkSpoilers.get(i6).iterator();
-                while (it.hasNext()) {
-                    it.next().startRipple(i4, ((i2 - getYOffsetForType(0)) - i3) + f, sqrt);
+                for (SpoilerEffect spoilerEffect : this.linkSpoilers.get(i6)) {
+                    spoilerEffect.startRipple(i4, ((i2 - getYOffsetForType(0)) - i3) + f, sqrt);
                 }
             }
         } else if (i5 == 1) {
-            Iterator<SpoilerEffect> it2 = this.descriptionLayoutSpoilers.iterator();
-            while (it2.hasNext()) {
-                it2.next().startRipple(i4, i2 - getYOffsetForType(1), sqrt);
+            for (SpoilerEffect spoilerEffect2 : this.descriptionLayoutSpoilers) {
+                spoilerEffect2.startRipple(i4, i2 - getYOffsetForType(1), sqrt);
             }
         } else if (i5 == 2) {
-            Iterator<SpoilerEffect> it3 = this.descriptionLayout2Spoilers.iterator();
-            while (it3.hasNext()) {
-                it3.next().startRipple(i4, i2 - getYOffsetForType(2), sqrt);
+            for (SpoilerEffect spoilerEffect3 : this.descriptionLayout2Spoilers) {
+                spoilerEffect3.startRipple(i4, i2 - getYOffsetForType(2), sqrt);
             }
         }
         for (int i7 = 0; i7 <= 2; i7++) {
@@ -302,20 +297,17 @@ public class SharedLinkCell extends FrameLayout {
                     for (int i8 = 0; i8 < this.linkLayout.size(); i8++) {
                         StaticLayout staticLayout2 = this.linkLayout.get(i8);
                         staticLayout2.getLineBottom(staticLayout2.getLineCount() - 1);
-                        Iterator<SpoilerEffect> it4 = this.linkSpoilers.get(i8).iterator();
-                        while (it4.hasNext()) {
-                            it4.next().startRipple(r1.getBounds().centerX(), r1.getBounds().centerY(), sqrt);
+                        for (SpoilerEffect spoilerEffect4 : this.linkSpoilers.get(i8)) {
+                            spoilerEffect4.startRipple(spoilerEffect4.getBounds().centerX(), spoilerEffect4.getBounds().centerY(), sqrt);
                         }
                     }
                 } else if (i7 == 1) {
-                    Iterator<SpoilerEffect> it5 = this.descriptionLayoutSpoilers.iterator();
-                    while (it5.hasNext()) {
-                        it5.next().startRipple(r13.getBounds().centerX(), r13.getBounds().centerY(), sqrt);
+                    for (SpoilerEffect spoilerEffect5 : this.descriptionLayoutSpoilers) {
+                        spoilerEffect5.startRipple(spoilerEffect5.getBounds().centerX(), spoilerEffect5.getBounds().centerY(), sqrt);
                     }
                 } else if (i7 == 2) {
-                    Iterator<SpoilerEffect> it6 = this.descriptionLayout2Spoilers.iterator();
-                    while (it6.hasNext()) {
-                        it6.next().startRipple(r13.getBounds().centerX(), r13.getBounds().centerY(), sqrt);
+                    for (SpoilerEffect spoilerEffect6 : this.descriptionLayout2Spoilers) {
+                        spoilerEffect6.startRipple(spoilerEffect6.getBounds().centerX(), spoilerEffect6.getBounds().centerY(), sqrt);
                     }
                 }
             }
@@ -342,13 +334,13 @@ public class SharedLinkCell extends FrameLayout {
     }
 
     private int getYOffsetForType(int i) {
-        if (i == 1) {
-            return this.descriptionY;
+        if (i != 1) {
+            if (i != 2) {
+                return this.linkY;
+            }
+            return this.description2Y;
         }
-        if (i != 2) {
-            return this.linkY;
-        }
-        return this.description2Y;
+        return this.descriptionY;
     }
 
     public String getLink(int i) {
@@ -376,6 +368,7 @@ public class SharedLinkCell extends FrameLayout {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        StaticLayout staticLayout;
         if (this.viewType == 1) {
             this.description2TextPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText3, this.resourcesProvider));
         }
@@ -389,7 +382,7 @@ public class SharedLinkCell extends FrameLayout {
             canvas.save();
             float dp = AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline);
             if (LocaleController.isRTL) {
-                dp += this.dateLayout == null ? 0.0f : r1.getWidth() + AndroidUtilities.dp(4.0f);
+                dp += this.dateLayout == null ? 0.0f : staticLayout.getWidth() + AndroidUtilities.dp(4.0f);
             }
             canvas.translate(dp, this.titleY);
             this.titleLayout.draw(canvas);
@@ -420,22 +413,21 @@ public class SharedLinkCell extends FrameLayout {
             this.descriptionTextPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteLinkText, this.resourcesProvider));
             int i = 0;
             for (int i2 = 0; i2 < this.linkLayout.size(); i2++) {
-                StaticLayout staticLayout = this.linkLayout.get(i2);
+                StaticLayout staticLayout2 = this.linkLayout.get(i2);
                 List<SpoilerEffect> list = this.linkSpoilers.get(i2);
-                if (staticLayout.getLineCount() > 0) {
+                if (staticLayout2.getLineCount() > 0) {
                     canvas.save();
                     canvas.translate(AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.linkY + i);
                     this.path.rewind();
                     if (list != null) {
-                        Iterator<SpoilerEffect> it = list.iterator();
-                        while (it.hasNext()) {
-                            Rect bounds = it.next().getBounds();
+                        for (SpoilerEffect spoilerEffect : list) {
+                            Rect bounds = spoilerEffect.getBounds();
                             this.path.addRect(bounds.left, bounds.top, bounds.right, bounds.bottom, Path.Direction.CW);
                         }
                     }
                     canvas.save();
                     canvas.clipPath(this.path, Region.Op.DIFFERENCE);
-                    staticLayout.draw(canvas);
+                    staticLayout2.draw(canvas);
                     canvas.restore();
                     canvas.save();
                     canvas.clipPath(this.path);
@@ -444,16 +436,15 @@ public class SharedLinkCell extends FrameLayout {
                         list.get(0).getRipplePath(this.path);
                     }
                     canvas.clipPath(this.path);
-                    staticLayout.draw(canvas);
+                    staticLayout2.draw(canvas);
                     canvas.restore();
                     if (list != null) {
-                        Iterator<SpoilerEffect> it2 = list.iterator();
-                        while (it2.hasNext()) {
-                            it2.next().draw(canvas);
+                        for (SpoilerEffect spoilerEffect2 : list) {
+                            spoilerEffect2.draw(canvas);
                         }
                     }
                     canvas.restore();
-                    i += staticLayout.getLineBottom(staticLayout.getLineCount() - 1);
+                    i += staticLayout2.getLineBottom(staticLayout2.getLineCount() - 1);
                 }
             }
             if (this.linksCollector.draw(canvas)) {

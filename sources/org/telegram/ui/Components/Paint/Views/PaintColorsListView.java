@@ -15,7 +15,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.Paint.PersistColorPalette;
 import org.telegram.ui.Components.RecyclerListView;
-
 public class PaintColorsListView extends RecyclerListView {
     private static Paint checkerboardPaint = new Paint(1);
     private static Paint checkerboardPaintWhite = new Paint(1);
@@ -114,13 +113,12 @@ public class PaintColorsListView extends RecyclerListView {
             double cos = Math.cos(-1.5707963267948966d);
             Double.isNaN(width);
             Double.isNaN(centerX);
-            float f4 = (float) (centerX + (width * cos));
             double centerY = rectF.centerY();
             double height = rectF.height() / 2.0f;
             double sin = Math.sin(-1.5707963267948966d);
             Double.isNaN(height);
             Double.isNaN(centerY);
-            path.lineTo(f4, (float) (centerY + (height * sin)));
+            path.lineTo((float) (centerX + (width * cos)), (float) (centerY + (height * sin)));
             colorCirclePath.moveTo(rectF.centerX(), rectF.centerY());
             Path path2 = colorCirclePath;
             double centerX2 = rectF.centerX();
@@ -128,13 +126,12 @@ public class PaintColorsListView extends RecyclerListView {
             double cos2 = Math.cos(4.71238898038469d);
             Double.isNaN(width2);
             Double.isNaN(centerX2);
-            float f5 = (float) (centerX2 + (width2 * cos2));
             double centerY2 = rectF.centerY();
             double height2 = rectF.height() / 2.0f;
             double sin2 = Math.sin(4.71238898038469d);
             Double.isNaN(height2);
             Double.isNaN(centerY2);
-            path2.lineTo(f5, (float) (centerY2 + (height2 * sin2)));
+            path2.lineTo((float) (centerX2 + (width2 * cos2)), (float) (centerY2 + (height2 * sin2)));
             colorCirclePath.addArc(rectF, -45.0f, 180.0f);
             canvas.save();
             canvas.clipPath(colorCirclePath);
@@ -211,9 +208,10 @@ public class PaintColorsListView extends RecyclerListView {
             float height = ((getHeight() / 2.0f) + getPaddingTop()) - getPaddingBottom();
             PaintColorsListView.drawColorCircle(canvas, width, height, min, this.mColor);
             if (this.selectProgress != 0.0f) {
+                float min2 = (Math.min((getWidth() - getPaddingLeft()) - getPaddingRight(), (getHeight() - getPaddingTop()) - getPaddingBottom()) / 2.0f) - AndroidUtilities.dp(2.0f);
                 PaintColorsListView.this.outlinePaint.setColor(this.mColor);
                 PaintColorsListView.this.outlinePaint.setAlpha(255);
-                canvas.drawCircle(width, height, (Math.min((getWidth() - getPaddingLeft()) - getPaddingRight(), (getHeight() - getPaddingTop()) - getPaddingBottom()) / 2.0f) - AndroidUtilities.dp(2.0f), PaintColorsListView.this.outlinePaint);
+                canvas.drawCircle(width, height, min2, PaintColorsListView.this.outlinePaint);
             }
         }
 

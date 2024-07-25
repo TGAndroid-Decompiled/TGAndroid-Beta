@@ -1,6 +1,5 @@
 package org.telegram.ui.Components;
 
-import android.R;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
@@ -24,7 +23,6 @@ import androidx.annotation.Keep;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.BaseCell;
-
 public class Switch extends View {
     private boolean attachedToWindow;
     private boolean bitmapsCreated;
@@ -81,7 +79,7 @@ public class Switch extends View {
         int i = Theme.key_windowBackgroundWhite;
         this.thumbColorKey = i;
         this.thumbCheckedColorKey = i;
-        this.pressedState = new int[]{R.attr.state_enabled, R.attr.state_pressed};
+        this.pressedState = new int[]{16842910, 16842919};
         this.resourcesProvider = resourcesProvider;
         this.rectF = new RectF();
         this.paint = new Paint(1);
@@ -289,10 +287,10 @@ public class Switch extends View {
             this.drawIconType = i;
             if (this.attachedToWindow && z) {
                 animateIcon(i == 0);
-            } else {
-                cancelIconAnimator();
-                setIconProgress(i == 0 ? 1.0f : 0.0f);
+                return;
             }
+            cancelIconAnimator();
+            setIconProgress(i == 0 ? 1.0f : 0.0f);
         }
     }
 

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_payments_getStarsStatus extends TLObject {
     public TLRPC$InputPeer peer;
 

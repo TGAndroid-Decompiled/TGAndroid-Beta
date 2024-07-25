@@ -15,7 +15,6 @@ import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$TL_chatFull;
 import org.telegram.tgnet.TLRPC$TL_peerNotifySettingsEmpty_layer77;
 import org.telegram.tgnet.TLRPC$TL_photoEmpty;
-
 public class DatabaseMigrationHelper {
     public static int migrate(MessagesStorage messagesStorage, int i) throws Exception {
         SQLiteDatabase sQLiteDatabase;
@@ -1389,12 +1388,12 @@ public class DatabaseMigrationHelper {
             sQLiteDatabase.executeFast("PRAGMA user_version = 154").stepThis().dispose();
             i7 = 154;
         }
-        if (i7 != 154) {
-            return i7;
+        if (i7 == 154) {
+            sQLiteDatabase.executeFast("CREATE TABLE fact_checks(hash INTEGER PRIMARY KEY, data BLOB, expires INTEGER);").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 155").stepThis().dispose();
+            return MessagesStorage.LAST_DB_VERSION;
         }
-        sQLiteDatabase.executeFast("CREATE TABLE fact_checks(hash INTEGER PRIMARY KEY, data BLOB, expires INTEGER);").stepThis().dispose();
-        sQLiteDatabase.executeFast("PRAGMA user_version = 155").stepThis().dispose();
-        return MessagesStorage.LAST_DB_VERSION;
+        return i7;
     }
 
     public static boolean recoverDatabase(File file, File file2, File file3, int i) {
@@ -1404,7 +1403,8 @@ public class DatabaseMigrationHelper {
         SQLiteDatabase sQLiteDatabase2;
         SQLiteCursor sQLiteCursor;
         int i2;
-        File file4 = new File(ApplicationLoader.getFilesDirFixed(), "recover_database_" + i + "/");
+        File filesDirFixed = ApplicationLoader.getFilesDirFixed();
+        File file4 = new File(filesDirFixed, "recover_database_" + i + "/");
         file4.mkdirs();
         File file5 = new File(file4, "cache4.db");
         File file6 = new File(file4, "cache4.db-wal");
@@ -1519,24 +1519,24 @@ public class DatabaseMigrationHelper {
         sQLiteDatabase4.executeFast("DETACH DATABASE old;").stepThis().dispose();
         sQLiteDatabase4.close();
         z = true;
-        if (!z) {
-            return false;
+        if (z) {
+            try {
+                file.delete();
+                file2.delete();
+                file3.delete();
+                AndroidUtilities.copyFile(file5, file);
+                AndroidUtilities.copyFile(file6, file2);
+                AndroidUtilities.copyFile(file7, file3);
+                file5.delete();
+                file6.delete();
+                file7.delete();
+                FileLog.d("database recovered time " + (System.currentTimeMillis() - j));
+                return true;
+            } catch (IOException e3) {
+                e3.printStackTrace();
+                return false;
+            }
         }
-        try {
-            file.delete();
-            file2.delete();
-            file3.delete();
-            AndroidUtilities.copyFile(file5, file);
-            AndroidUtilities.copyFile(file6, file2);
-            AndroidUtilities.copyFile(file7, file3);
-            file5.delete();
-            file6.delete();
-            file7.delete();
-            FileLog.d("database recovered time " + (System.currentTimeMillis() - j));
-            return true;
-        } catch (IOException e3) {
-            e3.printStackTrace();
-            return false;
-        }
+        return false;
     }
 }

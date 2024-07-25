@@ -8,7 +8,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.ui.GroupCallActivity;
 import org.telegram.ui.GroupCallTabletGridAdapter;
-
 public class GroupCallGridCell extends FrameLayout {
     public boolean attached;
     public GroupCallTabletGridAdapter gridAdapter;

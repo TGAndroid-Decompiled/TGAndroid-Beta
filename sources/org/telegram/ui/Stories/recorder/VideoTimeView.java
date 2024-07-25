@@ -11,7 +11,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-
 public class VideoTimeView extends View {
     private final Paint backgroundPaint;
     private boolean shown;

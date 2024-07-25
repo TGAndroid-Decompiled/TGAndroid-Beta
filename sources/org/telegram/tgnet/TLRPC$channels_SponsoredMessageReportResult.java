@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$channels_SponsoredMessageReportResult extends TLObject {
     public static TLRPC$channels_SponsoredMessageReportResult TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$channels_SponsoredMessageReportResult tLRPC$TL_channels_sponsoredMessageReportResultChooseOption;

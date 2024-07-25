@@ -42,7 +42,6 @@ import org.telegram.ui.Components.Premium.HelloParticles;
 import org.telegram.ui.Components.Premium.StarParticlesView;
 import org.telegram.ui.Components.voip.CellFlickerDrawable;
 import org.telegram.ui.PremiumPreviewFragment;
-
 public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, NotificationCenter.NotificationCenterDelegate {
     private static final float[] speedScaleVideoTimestamps = {0.02f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.02f};
     boolean allowPlay;
@@ -236,12 +235,12 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
             while (true) {
                 if (i2 >= premiumPromo.video_sections.size()) {
                     break;
-                }
-                if (premiumPromo.video_sections.get(i2).equals(featureTypeToServerString)) {
+                } else if (premiumPromo.video_sections.get(i2).equals(featureTypeToServerString)) {
                     i = i2;
                     break;
+                } else {
+                    i2++;
                 }
-                i2++;
             }
             if (i >= 0) {
                 final TLRPC$Document tLRPC$Document = premiumPromo.videos.get(i);
@@ -378,9 +377,10 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
+        float f;
         if (this.starDrawable != null || this.speedLinesDrawable != null || this.helloParticlesDrawable != null || this.matrixParticlesDrawable != null) {
             if (this.progress < 0.5f) {
-                float pow = (float) Math.pow(1.0f - r0, 2.0d);
+                float pow = (float) Math.pow(1.0f - f, 2.0d);
                 canvas.save();
                 canvas.scale(pow, pow, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
                 MatrixParticlesDrawable matrixParticlesDrawable = this.matrixParticlesDrawable;
@@ -391,7 +391,7 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
                     if (drawable != null) {
                         drawable.onDraw(canvas);
                     } else if (this.speedLinesDrawable != null) {
-                        float f = 0.2f;
+                        float f2 = 0.2f;
                         VideoPlayerHolderBase videoPlayerHolderBase = this.videoPlayerBase;
                         if (videoPlayerHolderBase != null) {
                             float clamp = Utilities.clamp(((float) videoPlayerHolderBase.getCurrentPosition()) / ((float) this.videoPlayerBase.getDuration()), 1.0f, 0.0f);
@@ -399,16 +399,15 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
                             float length = 1.0f / (fArr.length - 1);
                             int i = (int) (clamp / length);
                             int i2 = i + 1;
-                            float f2 = (clamp - (i * length)) / length;
+                            float f3 = (clamp - (i * length)) / length;
                             if (i2 < fArr.length) {
-                                f = (fArr[i] * (1.0f - f2)) + (fArr[i2] * f2);
+                                f2 = (fArr[i] * (1.0f - f3)) + (fArr[i2] * f3);
                             } else {
-                                f = fArr[i];
+                                f2 = fArr[i];
                             }
                         }
-                        float clamp2 = ((1.0f - Utilities.clamp(this.progress / 0.1f, 1.0f, 0.0f)) * 0.9f) + 0.1f;
                         SpeedLineParticles$Drawable speedLineParticles$Drawable = this.speedLinesDrawable;
-                        speedLineParticles$Drawable.speedScale = clamp2 * 150.0f * f;
+                        speedLineParticles$Drawable.speedScale = (((1.0f - Utilities.clamp(this.progress / 0.1f, 1.0f, 0.0f)) * 0.9f) + 0.1f) * 150.0f * f2;
                         speedLineParticles$Drawable.onDraw(canvas);
                     } else {
                         HelloParticles.Drawable drawable2 = this.helloParticlesDrawable;
@@ -423,10 +422,10 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
         }
         float measuredHeight = (int) (getMeasuredHeight() * 0.9f);
         float measuredWidth = (getMeasuredWidth() - (0.671f * measuredHeight)) / 2.0f;
-        float f3 = 0.0671f * measuredHeight;
-        this.roundRadius = f3;
+        float f4 = 0.0671f * measuredHeight;
+        this.roundRadius = f4;
         if (this.fromTop) {
-            AndroidUtilities.rectTmp.set(measuredWidth, -f3, getMeasuredWidth() - measuredWidth, measuredHeight);
+            AndroidUtilities.rectTmp.set(measuredWidth, -f4, getMeasuredWidth() - measuredWidth, measuredHeight);
         } else {
             AndroidUtilities.rectTmp.set(measuredWidth, getMeasuredHeight() - measuredHeight, getMeasuredWidth() - measuredWidth, getMeasuredHeight() + this.roundRadius);
         }
@@ -435,8 +434,8 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
         rectF.inset(-AndroidUtilities.dp(3.0f), -AndroidUtilities.dp(3.0f));
         canvas.drawRoundRect(rectF, this.roundRadius + AndroidUtilities.dp(3.0f), this.roundRadius + AndroidUtilities.dp(3.0f), this.phoneFrame2);
         rectF.inset(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
-        float f4 = this.roundRadius;
-        canvas.drawRoundRect(rectF, f4, f4, this.phoneFrame1);
+        float f5 = this.roundRadius;
+        canvas.drawRoundRect(rectF, f5, f5, this.phoneFrame1);
         if (this.fromTop) {
             rectF.set(measuredWidth, 0.0f, getMeasuredWidth() - measuredWidth, measuredHeight);
         } else {
@@ -454,12 +453,12 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
         }
         if (this.fromTop) {
             ImageReceiver imageReceiver = this.imageReceiver;
-            float f5 = this.roundRadius;
-            imageReceiver.setRoundRadius(0, 0, (int) f5, (int) f5);
+            float f6 = this.roundRadius;
+            imageReceiver.setRoundRadius(0, 0, (int) f6, (int) f6);
         } else {
             ImageReceiver imageReceiver2 = this.imageReceiver;
-            float f6 = this.roundRadius;
-            imageReceiver2.setRoundRadius((int) f6, (int) f6, 0, 0);
+            float f7 = this.roundRadius;
+            imageReceiver2.setRoundRadius((int) f7, (int) f7, 0, 0);
         }
         if (!this.firstFrameRendered) {
             this.imageReceiver.setImageCoords(rectF.left, rectF.top, rectF.width(), rectF.height());
@@ -513,10 +512,10 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
             if (this.allowPlay) {
                 this.imageReceiver.startAnimation();
                 runVideoPlayer();
-            } else {
-                stopVideoPlayer();
-                this.imageReceiver.stopAnimation();
+                return;
             }
+            stopVideoPlayer();
+            this.imageReceiver.stopAnimation();
         }
     }
 
@@ -637,7 +636,8 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
                         bArr = new byte[0];
                     }
                     sb.append(Utilities.bytesToHex(bArr));
-                    uri = Uri.parse("tg://" + this.attachFileName + sb.toString());
+                    String sb2 = sb.toString();
+                    uri = Uri.parse("tg://" + this.attachFileName + sb2);
                 } catch (Exception unused) {
                     uri = null;
                 }

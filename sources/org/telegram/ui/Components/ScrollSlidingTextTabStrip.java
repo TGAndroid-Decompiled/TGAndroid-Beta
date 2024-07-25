@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.SystemClock;
+import android.text.Layout;
 import android.util.SparseArray;
 import android.util.SparseIntArray;
 import android.view.View;
@@ -19,7 +20,6 @@ import android.widget.TextView;
 import androidx.annotation.Keep;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
-
 public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
     private int activeTextColorKey;
     private int allTextWidth;
@@ -183,8 +183,10 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
         int alpha2 = Color.alpha(processColor2);
         textView2.setTextColor(Color.argb((int) (alpha + ((alpha2 - alpha) * f)), (int) (red + ((red2 - red) * f)), (int) (green + ((green2 - green) * f)), (int) (blue + ((blue2 - blue) * f))));
         textView.setTextColor(Color.argb((int) (alpha2 + ((alpha - alpha2) * f)), (int) (red2 + ((red - red2) * f)), (int) (green2 + ((green - green2) * f)), (int) (blue2 + ((blue - blue2) * f))));
-        this.indicatorX = (int) (this.animateIndicatorStartX + ((this.animateIndicatorToX - r1) * f));
-        this.indicatorWidth = (int) (this.animateIndicatorStartWidth + ((this.animateIndicatorToWidth - r1) * f));
+        int i = this.animateIndicatorStartX;
+        this.indicatorX = (int) (i + ((this.animateIndicatorToX - i) * f));
+        int i2 = this.animateIndicatorStartWidth;
+        this.indicatorWidth = (int) (i2 + ((this.animateIndicatorToWidth - i2) * f));
         invalidate();
     }
 
@@ -230,8 +232,8 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
 
     public SparseArray<View> removeTabs() {
         SparseArray<View> sparseArray = new SparseArray<>();
-        for (int i = 0; i < getChildCount(); i++) {
-            sparseArray.get(this.positionToId.get(i), getChildAt(i));
+        for (int i = 0; i < this.tabsContainer.getChildCount(); i++) {
+            sparseArray.put(this.positionToId.get(i), this.tabsContainer.getChildAt(i));
         }
         this.positionToId.clear();
         this.idToPosition.clear();
@@ -580,8 +582,9 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
     }
 
     private int getChildWidth(TextView textView) {
-        if (textView.getLayout() != null) {
-            return ((int) Math.ceil(r0.getLineWidth(0))) + AndroidUtilities.dp(2.0f);
+        Layout layout = textView.getLayout();
+        if (layout != null) {
+            return ((int) Math.ceil(layout.getLineWidth(0))) + AndroidUtilities.dp(2.0f);
         }
         return textView.getMeasuredWidth();
     }

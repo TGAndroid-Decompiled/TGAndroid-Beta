@@ -12,7 +12,6 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.Locale;
 import org.telegram.ui.Components.AnimationProperties;
-
 public class AnimatedNumberLayout {
     public static final Property<AnimatedNumberLayout, Float> PROGRESS = new AnimationProperties.FloatProperty<AnimatedNumberLayout>("progress") {
         @Override
@@ -80,7 +79,8 @@ public class AnimatedNumberLayout {
                     this.letters.add(this.oldLetters.get(i2));
                     this.oldLetters.set(i2, null);
                 } else {
-                    this.letters.add(new StaticLayout(substring, this.textPaint, (int) Math.ceil(r12.measureText(substring)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
+                    TextPaint textPaint = this.textPaint;
+                    this.letters.add(new StaticLayout(substring, textPaint, (int) Math.ceil(textPaint.measureText(substring)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
                 }
                 i2 = i3;
             }

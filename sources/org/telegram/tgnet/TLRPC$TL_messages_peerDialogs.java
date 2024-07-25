@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_messages_peerDialogs extends TLObject {
     public TLRPC$TL_updates_state state;
     public ArrayList<TLRPC$Dialog> dialogs = new ArrayList<>();

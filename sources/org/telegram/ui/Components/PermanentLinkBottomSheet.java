@@ -32,7 +32,6 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Components.LinkActionView;
 import org.telegram.ui.ManageLinksActivity;
-
 public class PermanentLinkBottomSheet extends BottomSheet {
     private final long chatId;
     private BaseFragment fragment;

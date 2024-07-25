@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channels_updateEmojiStatus extends TLObject {
     public static int constructor = -254548312;
     public TLRPC$InputChannel channel;

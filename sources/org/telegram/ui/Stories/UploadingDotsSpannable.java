@@ -7,7 +7,6 @@ import android.text.style.ReplacementSpan;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-
 public class UploadingDotsSpannable extends ReplacementSpan {
     public boolean fixTop;
     private boolean isMediumTypeface;
@@ -32,7 +31,11 @@ public class UploadingDotsSpannable extends ReplacementSpan {
         float f3 = -(this.fixTop ? textPaint.getFontMetrics().ascent : textPaint.getFontMetrics().top);
         float f4 = (textPaint.getFontMetrics().bottom - textPaint.getFontMetrics().top) * (this.isMediumTypeface ? 0.05f : 0.0365f);
         float f5 = f3 - f4;
-        if (!this.waitForNextAnimation) {
+        if (this.waitForNextAnimation) {
+            if (System.currentTimeMillis() - this.lastTime > 1000) {
+                this.waitForNextAnimation = false;
+            }
+        } else {
             float f6 = this.swapProgress + 0.053333335f;
             this.swapProgress = f6;
             if (f6 > 1.0f) {
@@ -47,8 +50,6 @@ public class UploadingDotsSpannable extends ReplacementSpan {
                     this.lastTime = System.currentTimeMillis();
                 }
             }
-        } else if (System.currentTimeMillis() - this.lastTime > 1000) {
-            this.waitForNextAnimation = false;
         }
         for (int i7 = 0; i7 < 3; i7++) {
             float f7 = measureText / 2.0f;

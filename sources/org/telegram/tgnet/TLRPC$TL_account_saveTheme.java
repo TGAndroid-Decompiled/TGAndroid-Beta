@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_account_saveTheme extends TLObject {
     public TLRPC$InputTheme theme;
     public boolean unsave;

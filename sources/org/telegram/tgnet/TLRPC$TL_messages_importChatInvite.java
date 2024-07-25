@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_importChatInvite extends TLObject {
     public String hash;
 

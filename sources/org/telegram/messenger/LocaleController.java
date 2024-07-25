@@ -48,7 +48,6 @@ import org.telegram.tgnet.TLRPC$UserStatus;
 import org.telegram.tgnet.TLRPC$Vector;
 import org.telegram.ui.RestrictedLanguagesSelectActivity;
 import org.xmlpull.v1.XmlPullParser;
-
 public class LocaleController {
     static final int QUANTITY_FEW = 8;
     static final int QUANTITY_MANY = 16;
@@ -560,67 +559,67 @@ public class LocaleController {
     }
 
     public FastDateFormat getFormatterScheduleSend(int i) {
-        if (i < 0) {
-            return null;
-        }
-        FastDateFormat[] fastDateFormatArr = this.formatterScheduleSend;
-        if (i >= fastDateFormatArr.length) {
-            return null;
-        }
-        if (fastDateFormatArr[i] == null) {
-            Locale locale = this.currentLocale;
-            if (locale == null) {
-                locale = Locale.getDefault();
+        if (i >= 0) {
+            FastDateFormat[] fastDateFormatArr = this.formatterScheduleSend;
+            if (i >= fastDateFormatArr.length) {
+                return null;
             }
-            switch (i) {
-                case 0:
-                    this.formatterScheduleSend[i] = createFormatter(locale, getStringInternal("SendTodayAt", R.string.SendTodayAt), "'Send today at' HH:mm");
-                    break;
-                case 1:
-                    this.formatterScheduleSend[i] = createFormatter(locale, getStringInternal("SendDayAt", R.string.SendDayAt), "'Send on' MMM d 'at' HH:mm");
-                    break;
-                case 2:
-                    this.formatterScheduleSend[i] = createFormatter(locale, getStringInternal("SendDayYearAt", R.string.SendDayYearAt), "'Send on' MMM d yyyy 'at' HH:mm");
-                    break;
-                case 3:
-                    this.formatterScheduleSend[i] = createFormatter(locale, getStringInternal("RemindTodayAt", R.string.RemindTodayAt), "'Remind today at' HH:mm");
-                    break;
-                case 4:
-                    this.formatterScheduleSend[i] = createFormatter(locale, getStringInternal("RemindDayAt", R.string.RemindDayAt), "'Remind on' MMM d 'at' HH:mm");
-                    break;
-                case 5:
-                    this.formatterScheduleSend[i] = createFormatter(locale, getStringInternal("RemindDayYearAt", R.string.RemindDayYearAt), "'Remind on' MMM d yyyy 'at' HH:mm");
-                    break;
-                case 6:
-                    this.formatterScheduleSend[i] = createFormatter(locale, getStringInternal("StartTodayAt", R.string.StartTodayAt), "'Start today at' HH:mm");
-                    break;
-                case 7:
-                    this.formatterScheduleSend[i] = createFormatter(locale, getStringInternal("StartDayAt", R.string.StartDayAt), "'Start on' MMM d 'at' HH:mm");
-                    break;
-                case 8:
-                    this.formatterScheduleSend[i] = createFormatter(locale, getStringInternal("StartDayYearAt", R.string.StartDayYearAt), "'Start on' MMM d yyyy 'at' HH:mm");
-                    break;
-                case 9:
-                    this.formatterScheduleSend[i] = createFormatter(locale, getStringInternal("StartShortTodayAt", R.string.StartShortTodayAt), "'Today,' HH:mm");
-                    break;
-                case 10:
-                    this.formatterScheduleSend[i] = createFormatter(locale, getStringInternal("StartShortDayAt", R.string.StartShortDayAt), "MMM d',' HH:mm");
-                    break;
-                case 11:
-                    this.formatterScheduleSend[i] = createFormatter(locale, getStringInternal("StartShortDayYearAt", R.string.StartShortDayYearAt), "MMM d yyyy, HH:mm");
-                    break;
-                case 12:
-                    this.formatterScheduleSend[i] = createFormatter(locale, getStringInternal("StartsTodayAt", R.string.StartsTodayAt), "'Starts today at' HH:mm");
-                    break;
-                case 13:
-                    this.formatterScheduleSend[i] = createFormatter(locale, getStringInternal("StartsDayAt", R.string.StartsDayAt), "'Starts on' MMM d 'at' HH:mm");
-                    break;
-                case 14:
-                    this.formatterScheduleSend[i] = createFormatter(locale, getStringInternal("StartsDayYearAt", R.string.StartsDayYearAt), "'Starts on' MMM d yyyy 'at' HH:mm");
-                    break;
+            if (fastDateFormatArr[i] == null) {
+                Locale locale = this.currentLocale;
+                if (locale == null) {
+                    locale = Locale.getDefault();
+                }
+                switch (i) {
+                    case 0:
+                        this.formatterScheduleSend[i] = createFormatter(locale, getStringInternal("SendTodayAt", R.string.SendTodayAt), "'Send today at' HH:mm");
+                        break;
+                    case 1:
+                        this.formatterScheduleSend[i] = createFormatter(locale, getStringInternal("SendDayAt", R.string.SendDayAt), "'Send on' MMM d 'at' HH:mm");
+                        break;
+                    case 2:
+                        this.formatterScheduleSend[i] = createFormatter(locale, getStringInternal("SendDayYearAt", R.string.SendDayYearAt), "'Send on' MMM d yyyy 'at' HH:mm");
+                        break;
+                    case 3:
+                        this.formatterScheduleSend[i] = createFormatter(locale, getStringInternal("RemindTodayAt", R.string.RemindTodayAt), "'Remind today at' HH:mm");
+                        break;
+                    case 4:
+                        this.formatterScheduleSend[i] = createFormatter(locale, getStringInternal("RemindDayAt", R.string.RemindDayAt), "'Remind on' MMM d 'at' HH:mm");
+                        break;
+                    case 5:
+                        this.formatterScheduleSend[i] = createFormatter(locale, getStringInternal("RemindDayYearAt", R.string.RemindDayYearAt), "'Remind on' MMM d yyyy 'at' HH:mm");
+                        break;
+                    case 6:
+                        this.formatterScheduleSend[i] = createFormatter(locale, getStringInternal("StartTodayAt", R.string.StartTodayAt), "'Start today at' HH:mm");
+                        break;
+                    case 7:
+                        this.formatterScheduleSend[i] = createFormatter(locale, getStringInternal("StartDayAt", R.string.StartDayAt), "'Start on' MMM d 'at' HH:mm");
+                        break;
+                    case 8:
+                        this.formatterScheduleSend[i] = createFormatter(locale, getStringInternal("StartDayYearAt", R.string.StartDayYearAt), "'Start on' MMM d yyyy 'at' HH:mm");
+                        break;
+                    case 9:
+                        this.formatterScheduleSend[i] = createFormatter(locale, getStringInternal("StartShortTodayAt", R.string.StartShortTodayAt), "'Today,' HH:mm");
+                        break;
+                    case 10:
+                        this.formatterScheduleSend[i] = createFormatter(locale, getStringInternal("StartShortDayAt", R.string.StartShortDayAt), "MMM d',' HH:mm");
+                        break;
+                    case 11:
+                        this.formatterScheduleSend[i] = createFormatter(locale, getStringInternal("StartShortDayYearAt", R.string.StartShortDayYearAt), "MMM d yyyy, HH:mm");
+                        break;
+                    case 12:
+                        this.formatterScheduleSend[i] = createFormatter(locale, getStringInternal("StartsTodayAt", R.string.StartsTodayAt), "'Starts today at' HH:mm");
+                        break;
+                    case 13:
+                        this.formatterScheduleSend[i] = createFormatter(locale, getStringInternal("StartsDayAt", R.string.StartsDayAt), "'Starts on' MMM d 'at' HH:mm");
+                        break;
+                    case 14:
+                        this.formatterScheduleSend[i] = createFormatter(locale, getStringInternal("StartsDayYearAt", R.string.StartsDayYearAt), "'Starts on' MMM d yyyy 'at' HH:mm");
+                        break;
+                }
             }
+            return this.formatterScheduleSend[i];
         }
-        return this.formatterScheduleSend[i];
+        return null;
     }
 
     public class TimeZoneChangedReceiver extends BroadcastReceiver {
@@ -703,32 +702,34 @@ public class LocaleController {
 
         public File getPathToFile() {
             if (isRemote()) {
-                return new File(ApplicationLoader.getFilesDirFixed(), "remote_" + this.shortName + ".xml");
-            }
-            if (isUnofficial()) {
-                return new File(ApplicationLoader.getFilesDirFixed(), "unofficial_" + this.shortName + ".xml");
-            }
-            if (TextUtils.isEmpty(this.pathToFile)) {
+                File filesDirFixed = ApplicationLoader.getFilesDirFixed();
+                return new File(filesDirFixed, "remote_" + this.shortName + ".xml");
+            } else if (isUnofficial()) {
+                File filesDirFixed2 = ApplicationLoader.getFilesDirFixed();
+                return new File(filesDirFixed2, "unofficial_" + this.shortName + ".xml");
+            } else if (TextUtils.isEmpty(this.pathToFile)) {
                 return null;
+            } else {
+                return new File(this.pathToFile);
             }
-            return new File(this.pathToFile);
         }
 
         public File getPathToBaseFile() {
-            if (!isUnofficial()) {
-                return null;
+            if (isUnofficial()) {
+                File filesDirFixed = ApplicationLoader.getFilesDirFixed();
+                return new File(filesDirFixed, "unofficial_base_" + this.shortName + ".xml");
             }
-            return new File(ApplicationLoader.getFilesDirFixed(), "unofficial_base_" + this.shortName + ".xml");
+            return null;
         }
 
         public String getKey() {
             if (this.pathToFile != null && !isRemote() && !isUnofficial()) {
                 return "local_" + this.shortName;
-            }
-            if (isUnofficial()) {
+            } else if (isUnofficial()) {
                 return "unofficial_" + this.shortName;
+            } else {
+                return this.shortName;
             }
-            return this.shortName;
         }
 
         public boolean hasBaseLang() {
@@ -1112,7 +1113,8 @@ public class LocaleController {
         final String currentLanguageName = getCurrentLanguageName();
         boolean z = false;
         if (MessagesController.getInstance(i).checkResetLangpack > 0) {
-            if (!MessagesController.getGlobalMainSettings().getBoolean("langpack_patched" + currentLanguageName, false) && !this.patching) {
+            SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
+            if (!globalMainSettings.getBoolean("langpack_patched" + currentLanguageName, false) && !this.patching) {
                 z = true;
             }
         }
@@ -1137,7 +1139,8 @@ public class LocaleController {
     }
 
     public void lambda$checkForcePatchLangpack$5(String str, Runnable runnable) {
-        MessagesController.getGlobalMainSettings().edit().putBoolean("langpack_patched" + str, true).apply();
+        SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
+        edit.putBoolean("langpack_patched" + str, true).apply();
         if (runnable != null) {
             runnable.run();
         }
@@ -1335,27 +1338,28 @@ public class LocaleController {
             String str2 = localeFileStrings.get("LanguageNameInEnglish");
             String str3 = localeFileStrings.get("LanguageCode");
             if (str != null && str.length() > 0 && str2 != null && str2.length() > 0 && str3 != null && str3.length() > 0 && !str.contains("&") && !str.contains("|") && !str2.contains("&") && !str2.contains("|") && !str3.contains("&") && !str3.contains("|") && !str3.contains("/") && !str3.contains("\\")) {
-                File file2 = new File(ApplicationLoader.getFilesDirFixed(), str3 + ".xml");
-                if (!AndroidUtilities.copyFile(file, file2)) {
-                    return false;
+                File filesDirFixed = ApplicationLoader.getFilesDirFixed();
+                File file2 = new File(filesDirFixed, str3 + ".xml");
+                if (AndroidUtilities.copyFile(file, file2)) {
+                    LocaleInfo languageFromDict = getLanguageFromDict("local_" + str3.toLowerCase());
+                    if (languageFromDict == null) {
+                        languageFromDict = new LocaleInfo();
+                        languageFromDict.name = str;
+                        languageFromDict.nameEnglish = str2;
+                        String lowerCase = str3.toLowerCase();
+                        languageFromDict.shortName = lowerCase;
+                        languageFromDict.pluralLangCode = lowerCase;
+                        languageFromDict.pathToFile = file2.getAbsolutePath();
+                        this.languages.add(languageFromDict);
+                        this.languagesDict.put(languageFromDict.getKey(), languageFromDict);
+                        this.otherLanguages.add(languageFromDict);
+                        saveOtherLanguages();
+                    }
+                    this.localeValues = localeFileStrings;
+                    applyLanguage(languageFromDict, true, false, true, false, i, null);
+                    return true;
                 }
-                LocaleInfo languageFromDict = getLanguageFromDict("local_" + str3.toLowerCase());
-                if (languageFromDict == null) {
-                    languageFromDict = new LocaleInfo();
-                    languageFromDict.name = str;
-                    languageFromDict.nameEnglish = str2;
-                    String lowerCase = str3.toLowerCase();
-                    languageFromDict.shortName = lowerCase;
-                    languageFromDict.pluralLangCode = lowerCase;
-                    languageFromDict.pathToFile = file2.getAbsolutePath();
-                    this.languages.add(languageFromDict);
-                    this.languagesDict.put(languageFromDict.getKey(), languageFromDict);
-                    this.otherLanguages.add(languageFromDict);
-                    saveOtherLanguages();
-                }
-                this.localeValues = localeFileStrings;
-                applyLanguage(languageFromDict, true, false, true, false, i, null);
-                return true;
+                return false;
             }
             return false;
         } catch (Exception e) {
@@ -1744,10 +1748,10 @@ public class LocaleController {
                 }
             }
         }
-        if (str3 != null) {
-            return str3;
+        if (str3 == null) {
+            return "LOC_ERR:" + str;
         }
-        return "LOC_ERR:" + str;
+        return str3;
     }
 
     public static String getServerString(String str) {
@@ -1789,6 +1793,13 @@ public class LocaleController {
             return getString(str, identifier);
         }
         return getServerString(str);
+    }
+
+    public static String nullable(String str) {
+        if (str == null || str.startsWith("LOC_ERR")) {
+            return null;
+        }
+        return str;
     }
 
     public static String getPluralString(String str, int i) {
@@ -1958,13 +1969,13 @@ public class LocaleController {
                         char[][] cArr = otherNumbers;
                         if (i3 >= cArr[i2].length) {
                             break;
-                        }
-                        if (charAt == cArr[i2][i3]) {
+                        } else if (charAt == cArr[i2][i3]) {
                             sb.setCharAt(i, defaultNumbers[i3]);
                             i2 = otherNumbers.length;
                             break;
+                        } else {
+                            i3++;
                         }
-                        i3++;
                     }
                     i2++;
                 }
@@ -2208,7 +2219,7 @@ public class LocaleController {
             case 27:
             case 28:
             case 29:
-            case R.styleable.AppCompatTheme_actionModeTheme:
+            case 30:
                 d = abs;
                 str2 = " %.0f";
                 break;
@@ -2788,10 +2799,10 @@ public class LocaleController {
         }
         String formatPluralString = formatPluralString("Hours", i / 3600, new Object[0]);
         int i2 = (i % 3600) / 60;
-        if (i2 <= 0) {
-            return formatPluralString;
+        if (i2 > 0) {
+            return formatPluralString + ", " + formatPluralString("Minutes", i2, new Object[0]);
         }
-        return formatPluralString + ", " + formatPluralString("Minutes", i2, new Object[0]);
+        return formatPluralString;
     }
 
     public void onDeviceConfigurationChange(Configuration configuration) {
@@ -2970,11 +2981,11 @@ public class LocaleController {
                     return formatPluralString("ShortHoursAgo", (int) (j3 / 3600000), new Object[0]);
                 }
                 return getString(R.string.ShortToday);
-            }
-            if (i3 + 1 == i && i2 == i4) {
+            } else if (i3 + 1 == i && i2 == i4) {
                 return getString(R.string.ShortYesterday);
+            } else {
+                return Math.abs(System.currentTimeMillis() - j2) < 31536000000L ? getInstance().getFormatterDayMonth().format(new Date(j2)) : formatString("formatDateAtTime", R.string.formatDateAtTime, getInstance().getFormatterYear().format(new Date(j2)), getInstance().getFormatterDay().format(new Date(j2)));
             }
-            return Math.abs(System.currentTimeMillis() - j2) < 31536000000L ? getInstance().getFormatterDayMonth().format(new Date(j2)) : formatString("formatDateAtTime", R.string.formatDateAtTime, getInstance().getFormatterYear().format(new Date(j2)), getInstance().getFormatterDay().format(new Date(j2)));
         } catch (Exception e) {
             FileLog.e(e);
             return "LOC_ERR";
@@ -3091,14 +3102,14 @@ public class LocaleController {
                     return getString("LocationUpdatedJustNow", R.string.LocationUpdatedJustNow);
                 }
                 return currentTime < 60 ? formatPluralString("UpdatedMinutes", currentTime, new Object[0]) : formatString("LocationUpdatedFormatted", R.string.LocationUpdatedFormatted, formatString("TodayAtFormatted", R.string.TodayAtFormatted, getInstance().getFormatterDay().format(new Date(j2))));
-            }
-            if (i3 + 1 == i && i2 == i4) {
+            } else if (i3 + 1 == i && i2 == i4) {
                 return formatString("LocationUpdatedFormatted", R.string.LocationUpdatedFormatted, formatString("YesterdayAtFormatted", R.string.YesterdayAtFormatted, getInstance().getFormatterDay().format(new Date(j2))));
+            } else {
+                if (Math.abs(System.currentTimeMillis() - j2) < 31536000000L) {
+                    return formatString("LocationUpdatedFormatted", R.string.LocationUpdatedFormatted, formatString("formatDateAtTime", R.string.formatDateAtTime, getInstance().getFormatterDayMonth().format(new Date(j2)), getInstance().getFormatterDay().format(new Date(j2))));
+                }
+                return formatString("LocationUpdatedFormatted", R.string.LocationUpdatedFormatted, formatString("formatDateAtTime", R.string.formatDateAtTime, getInstance().getFormatterYear().format(new Date(j2)), getInstance().getFormatterDay().format(new Date(j2))));
             }
-            if (Math.abs(System.currentTimeMillis() - j2) < 31536000000L) {
-                return formatString("LocationUpdatedFormatted", R.string.LocationUpdatedFormatted, formatString("formatDateAtTime", R.string.formatDateAtTime, getInstance().getFormatterDayMonth().format(new Date(j2)), getInstance().getFormatterDay().format(new Date(j2))));
-            }
-            return formatString("LocationUpdatedFormatted", R.string.LocationUpdatedFormatted, formatString("formatDateAtTime", R.string.formatDateAtTime, getInstance().getFormatterYear().format(new Date(j2)), getInstance().getFormatterDay().format(new Date(j2))));
         } catch (Exception e) {
             FileLog.e(e);
             return "LOC_ERR";
@@ -3114,13 +3125,13 @@ public class LocaleController {
             Object[] objArr = new Object[1];
             objArr[0] = Integer.valueOf(i2 + (i4 <= 30 ? 0 : 1));
             return String.format("%dh", objArr);
-        }
-        if (i4 == 0) {
+        } else if (i4 != 0) {
+            Object[] objArr2 = new Object[1];
+            objArr2[0] = Integer.valueOf(i4 + (i5 <= 30 ? 0 : 1));
+            return String.format("%d", objArr2);
+        } else {
             return String.format("%d", Integer.valueOf(i5));
         }
-        Object[] objArr2 = new Object[1];
-        objArr2[0] = Integer.valueOf(i4 + (i5 <= 30 ? 0 : 1));
-        return String.format("%d", objArr2);
     }
 
     public static String formatDateOnline(long j, boolean[] zArr) {
@@ -3142,12 +3153,12 @@ public class LocaleController {
                     return formatString("LastSeenDateFormatted", R.string.LastSeenDateFormatted, formatString("formatDateAtTime", R.string.formatDateAtTime, getInstance().getFormatterDayMonth().format(new Date(j2)), getInstance().getFormatterDay().format(new Date(j2))));
                 }
                 return formatString("LastSeenDateFormatted", R.string.LastSeenDateFormatted, formatString("formatDateAtTime", R.string.formatDateAtTime, getInstance().getFormatterYear().format(new Date(j2)), getInstance().getFormatterDay().format(new Date(j2))));
-            }
-            if (zArr == null) {
+            } else if (zArr != null) {
+                zArr[0] = true;
+                return (i3 > 6 || i6 <= 18 || !is24HourFormat) ? formatString("YesterdayAtFormatted", R.string.YesterdayAtFormatted, getInstance().getFormatterDay().format(new Date(j2))) : formatString("LastSeenFormatted", R.string.LastSeenFormatted, getInstance().getFormatterDay().format(new Date(j2)));
+            } else {
                 return formatString("LastSeenFormatted", R.string.LastSeenFormatted, formatString("YesterdayAtFormatted", R.string.YesterdayAtFormatted, getInstance().getFormatterDay().format(new Date(j2))));
             }
-            zArr[0] = true;
-            return (i3 > 6 || i6 <= 18 || !is24HourFormat) ? formatString("YesterdayAtFormatted", R.string.YesterdayAtFormatted, getInstance().getFormatterDay().format(new Date(j2))) : formatString("LastSeenFormatted", R.string.LastSeenFormatted, getInstance().getFormatterDay().format(new Date(j2)));
         } catch (Exception e) {
             FileLog.e(e);
             return "LOC_ERR";
@@ -3375,31 +3386,31 @@ public class LocaleController {
                 zArr[0] = true;
             }
             return getString("Online", R.string.Online);
-        }
-        if (tLRPC$User == null || (tLRPC$UserStatus = tLRPC$User.status) == null || tLRPC$UserStatus.expires == 0 || UserObject.isDeleted(tLRPC$User) || (tLRPC$User instanceof TLRPC$TL_userEmpty)) {
+        } else if (tLRPC$User == null || (tLRPC$UserStatus = tLRPC$User.status) == null || tLRPC$UserStatus.expires == 0 || UserObject.isDeleted(tLRPC$User) || (tLRPC$User instanceof TLRPC$TL_userEmpty)) {
             return getString("ALongTimeAgo", R.string.ALongTimeAgo);
-        }
-        int currentTime = ConnectionsManager.getInstance(i).getCurrentTime();
-        int i2 = tLRPC$User.status.expires;
-        if (i2 > currentTime) {
-            if (zArr != null) {
-                zArr[0] = true;
+        } else {
+            int currentTime = ConnectionsManager.getInstance(i).getCurrentTime();
+            int i2 = tLRPC$User.status.expires;
+            if (i2 > currentTime) {
+                if (zArr != null) {
+                    zArr[0] = true;
+                }
+                return getString("Online", R.string.Online);
+            } else if (i2 == -1) {
+                return getString("Invisible", R.string.Invisible);
+            } else {
+                if (i2 == -100 || i2 == -1000) {
+                    return getString("Lately", R.string.Lately);
+                }
+                if (i2 == -101 || i2 == -1001) {
+                    return getString("WithinAWeek", R.string.WithinAWeek);
+                }
+                if (i2 == -102 || i2 == -1002) {
+                    return getString("WithinAMonth", R.string.WithinAMonth);
+                }
+                return formatDateOnline(i2, zArr2);
             }
-            return getString("Online", R.string.Online);
         }
-        if (i2 == -1) {
-            return getString("Invisible", R.string.Invisible);
-        }
-        if (i2 == -100 || i2 == -1000) {
-            return getString("Lately", R.string.Lately);
-        }
-        if (i2 == -101 || i2 == -1001) {
-            return getString("WithinAWeek", R.string.WithinAWeek);
-        }
-        if (i2 == -102 || i2 == -1002) {
-            return getString("WithinAMonth", R.string.WithinAMonth);
-        }
-        return formatDateOnline(i2, zArr2);
     }
 
     private String escapeString(String str) {
@@ -3735,36 +3746,36 @@ public class LocaleController {
                 }, 8);
             }
         }
-        if (str != null && !str.equals(localeInfo.shortName)) {
-            return 0;
-        }
-        if (localeInfo.version != 0 && !z) {
-            FileLog.d("applyRemoteLanguage getDifference");
-            TLRPC$TL_langpack_getDifference tLRPC$TL_langpack_getDifference2 = new TLRPC$TL_langpack_getDifference();
-            tLRPC$TL_langpack_getDifference2.from_version = localeInfo.version;
-            tLRPC$TL_langpack_getDifference2.lang_code = localeInfo.getLangCode();
-            tLRPC$TL_langpack_getDifference2.lang_pack = "";
+        if (str == null || str.equals(localeInfo.shortName)) {
+            if (localeInfo.version != 0 && !z) {
+                FileLog.d("applyRemoteLanguage getDifference");
+                TLRPC$TL_langpack_getDifference tLRPC$TL_langpack_getDifference2 = new TLRPC$TL_langpack_getDifference();
+                tLRPC$TL_langpack_getDifference2.from_version = localeInfo.version;
+                tLRPC$TL_langpack_getDifference2.lang_code = localeInfo.getLangCode();
+                tLRPC$TL_langpack_getDifference2.lang_pack = "";
+                iArr2[0] = iArr2[0] + 1;
+                return ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_langpack_getDifference2, new RequestDelegate() {
+                    @Override
+                    public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                        LocaleController.this.lambda$applyRemoteLanguage$19(localeInfo, i, runnable2, tLObject, tLRPC$TL_error);
+                    }
+                }, 8);
+            }
+            for (int i2 = 0; i2 < 4; i2++) {
+                ConnectionsManager.setLangCode(localeInfo.getLangCode());
+            }
+            FileLog.d("applyRemoteLanguage getLangPack");
+            TLRPC$TL_langpack_getLangPack tLRPC$TL_langpack_getLangPack2 = new TLRPC$TL_langpack_getLangPack();
+            tLRPC$TL_langpack_getLangPack2.lang_code = localeInfo.getLangCode();
             iArr2[0] = iArr2[0] + 1;
-            return ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_langpack_getDifference2, new RequestDelegate() {
+            return ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_langpack_getLangPack2, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    LocaleController.this.lambda$applyRemoteLanguage$19(localeInfo, i, runnable2, tLObject, tLRPC$TL_error);
+                    LocaleController.this.lambda$applyRemoteLanguage$21(localeInfo, i, runnable2, tLObject, tLRPC$TL_error);
                 }
             }, 8);
         }
-        for (int i2 = 0; i2 < 4; i2++) {
-            ConnectionsManager.setLangCode(localeInfo.getLangCode());
-        }
-        FileLog.d("applyRemoteLanguage getLangPack");
-        TLRPC$TL_langpack_getLangPack tLRPC$TL_langpack_getLangPack2 = new TLRPC$TL_langpack_getLangPack();
-        tLRPC$TL_langpack_getLangPack2.lang_code = localeInfo.getLangCode();
-        iArr2[0] = iArr2[0] + 1;
-        return ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_langpack_getLangPack2, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                LocaleController.this.lambda$applyRemoteLanguage$21(localeInfo, i, runnable2, tLObject, tLRPC$TL_error);
-            }
-        }, 8);
+        return 0;
     }
 
     public static void lambda$applyRemoteLanguage$13(int[] iArr, int[] iArr2, Runnable runnable) {
@@ -4476,16 +4487,16 @@ public class LocaleController {
             if (i == 1) {
                 return 2;
             }
-            if (i3 >= 2 && i3 <= 4 && (i2 < 12 || i2 > 14)) {
-                return 8;
-            }
-            if (i3 >= 0 && i3 <= 1) {
+            if (i3 < 2 || i3 > 4 || (i2 >= 12 && i2 <= 14)) {
+                if (i3 < 0 || i3 > 1) {
+                    if (i3 < 5 || i3 > 9) {
+                        return (i2 < 12 || i2 > 14) ? 0 : 16;
+                    }
+                    return 16;
+                }
                 return 16;
             }
-            if (i3 < 5 || i3 > 9) {
-                return (i2 < 12 || i2 > 14) ? 0 : 16;
-            }
-            return 16;
+            return 8;
         }
     }
 
@@ -4496,11 +4507,11 @@ public class LocaleController {
             if (i == 1) {
                 return 2;
             }
-            if (i == 0) {
+            if (i != 0) {
+                if (i2 < 2 || i2 > 10) {
+                    return (i2 < 11 || i2 > 19) ? 0 : 16;
+                }
                 return 8;
-            }
-            if (i2 < 2 || i2 > 10) {
-                return (i2 < 11 || i2 > 19) ? 0 : 16;
             }
             return 8;
         }
@@ -4518,13 +4529,13 @@ public class LocaleController {
         public int quantityForNumber(int i) {
             int i2 = i % 100;
             int i3 = i % 10;
-            if (i3 == 1 && (i2 < 11 || i2 > 19)) {
-                return 2;
+            if (i3 != 1 || (i2 >= 11 && i2 <= 19)) {
+                if (i3 < 2 || i3 > 9) {
+                    return 0;
+                }
+                return (i2 < 11 || i2 > 19) ? 8 : 0;
             }
-            if (i3 < 2 || i3 > 9) {
-                return 0;
-            }
-            return (i2 < 11 || i2 > 19) ? 8 : 0;
+            return 2;
         }
     }
 
@@ -4543,19 +4554,19 @@ public class LocaleController {
         public int quantityForNumber(int i) {
             int i2 = i % 100;
             int i3 = i % 10;
-            if (i3 == 1 && i2 != 11) {
-                return 2;
-            }
-            if (i3 >= 2 && i3 <= 4 && (i2 < 12 || i2 > 14)) {
+            if (i3 != 1 || i2 == 11) {
+                if (i3 < 2 || i3 > 4 || (i2 >= 12 && i2 <= 14)) {
+                    if (i3 != 0) {
+                        if (i3 < 5 || i3 > 9) {
+                            return (i2 < 11 || i2 > 14) ? 0 : 16;
+                        }
+                        return 16;
+                    }
+                    return 16;
+                }
                 return 8;
             }
-            if (i3 == 0) {
-                return 16;
-            }
-            if (i3 < 5 || i3 > 9) {
-                return (i2 < 11 || i2 > 14) ? 0 : 16;
-            }
-            return 16;
+            return 2;
         }
     }
 
@@ -4564,13 +4575,13 @@ public class LocaleController {
         public int quantityForNumber(int i) {
             int i2 = i % 100;
             int i3 = i % 10;
-            if (i3 == 1 && i2 != 11) {
-                return 2;
+            if (i3 != 1 || i2 == 11) {
+                if (i3 < 2 || i3 > 4) {
+                    return 0;
+                }
+                return (i2 < 12 || i2 > 14) ? 8 : 0;
             }
-            if (i3 < 2 || i3 > 4) {
-                return 0;
-            }
-            return (i2 < 12 || i2 > 14) ? 8 : 0;
+            return 2;
         }
     }
 
@@ -4643,12 +4654,13 @@ public class LocaleController {
         if (i <= 0) {
             return false;
         }
-        if (MessagesController.getGlobalMainSettings().getBoolean("lngpack_patched_" + str, false) || (calculateTranslatedCount = calculateTranslatedCount(this.localeValues)) >= i) {
-            return false;
+        SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
+        if (!globalMainSettings.getBoolean("lngpack_patched_" + str, false) && (calculateTranslatedCount = calculateTranslatedCount(this.localeValues)) < i) {
+            FileLog.e("reinstalling " + str + " langpack because of patch (" + calculateTranslatedCount + " keys, must be at least " + i + ")");
+            patched(str);
+            return true;
         }
-        FileLog.e("reinstalling " + str + " langpack because of patch (" + calculateTranslatedCount + " keys, must be at least " + i + ")");
-        patched(str);
-        return true;
+        return false;
     }
 
     public static String formatDistance(float f, int i, Boolean bool) {
@@ -4672,7 +4684,8 @@ public class LocaleController {
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d("set as patched " + str + " langpack");
         }
-        MessagesController.getGlobalMainSettings().edit().putBoolean("lngpack_patched_" + str, true).apply();
+        SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
+        edit.putBoolean("lngpack_patched_" + str, true).apply();
     }
 
     public static String getTimeZoneName(String str, boolean z) {
@@ -4681,13 +4694,13 @@ public class LocaleController {
             return "";
         }
         String displayName = timeZone.getDisplayName(true, 0, getInstance().getCurrentLocale());
-        if (!z) {
-            return displayName;
+        if (z) {
+            String displayName2 = timeZone.getDisplayName(true, 1, getInstance().getCurrentLocale());
+            if (TextUtils.equals(displayName2, displayName)) {
+                return displayName;
+            }
+            return displayName2 + ", " + displayName;
         }
-        String displayName2 = timeZone.getDisplayName(true, 1, getInstance().getCurrentLocale());
-        if (TextUtils.equals(displayName2, displayName)) {
-            return displayName;
-        }
-        return displayName2 + ", " + displayName;
+        return displayName;
     }
 }

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_reportReaction extends TLObject {
     public int id;
     public TLRPC$InputPeer peer;

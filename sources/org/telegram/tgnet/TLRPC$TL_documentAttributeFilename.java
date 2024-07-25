@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_documentAttributeFilename extends TLRPC$DocumentAttribute {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

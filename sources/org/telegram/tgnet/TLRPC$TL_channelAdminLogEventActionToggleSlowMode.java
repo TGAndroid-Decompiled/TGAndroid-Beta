@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channelAdminLogEventActionToggleSlowMode extends TLRPC$ChannelAdminLogEventAction {
     public int new_value;
     public int prev_value;

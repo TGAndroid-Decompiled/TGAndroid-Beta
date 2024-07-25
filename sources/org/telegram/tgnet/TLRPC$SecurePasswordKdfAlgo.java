@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$SecurePasswordKdfAlgo extends TLObject {
     public static TLRPC$SecurePasswordKdfAlgo TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$SecurePasswordKdfAlgo tLRPC$TL_securePasswordKdfAlgoSHA512;

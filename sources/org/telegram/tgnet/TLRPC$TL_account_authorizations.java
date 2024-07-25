@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_account_authorizations extends TLObject {
     public int authorization_ttl_days;
     public ArrayList<TLRPC$TL_authorization> authorizations = new ArrayList<>();

@@ -23,7 +23,6 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.ActionBarMenuSlider;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.Theme;
-
 public class PopupSwipeBackLayout extends FrameLayout {
     private int currentForegroundIndex;
     private GestureDetectorCompat detector;
@@ -257,12 +256,12 @@ public class PopupSwipeBackLayout extends FrameLayout {
                 clearFlags();
                 animateToState(this.transitionProgress >= 0.5f ? 1.0f : 0.0f, 0.0f);
                 return false;
-            }
-            if (!this.isSwipeDisallowed) {
+            } else if (this.isSwipeDisallowed) {
+                clearFlags();
+                return false;
+            } else {
                 return false;
             }
-            clearFlags();
-            return false;
         }
         return this.isProcessingSwipe;
     }

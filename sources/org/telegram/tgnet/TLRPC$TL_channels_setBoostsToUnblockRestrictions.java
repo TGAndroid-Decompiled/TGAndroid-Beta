@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channels_setBoostsToUnblockRestrictions extends TLObject {
     public int boosts;
     public TLRPC$InputChannel channel;

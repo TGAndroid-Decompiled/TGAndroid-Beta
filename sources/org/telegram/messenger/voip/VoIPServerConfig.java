@@ -4,7 +4,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
-
 public class VoIPServerConfig {
     private static JSONObject config = new JSONObject();
 

@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public abstract class TLRPC$KeyboardButton extends TLObject {
     public TLRPC$InputUser bot;
     public int button_id;

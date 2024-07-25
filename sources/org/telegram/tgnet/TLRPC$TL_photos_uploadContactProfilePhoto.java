@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_photos_uploadContactProfilePhoto extends TLObject {
     public TLRPC$InputFile file;
     public int flags;

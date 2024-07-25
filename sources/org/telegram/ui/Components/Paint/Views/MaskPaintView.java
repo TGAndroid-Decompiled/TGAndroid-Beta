@@ -32,7 +32,6 @@ import org.telegram.ui.Components.Paint.RenderView;
 import org.telegram.ui.Components.Paint.UndoStore;
 import org.telegram.ui.Components.Paint.Views.PaintWeightChooserView;
 import org.telegram.ui.Components.Size;
-
 public class MaskPaintView extends FrameLayout {
     private float baseScale;
     private Bitmap bitmapToEdit;
@@ -192,26 +191,28 @@ public class MaskPaintView extends FrameLayout {
     }
 
     public boolean undo() {
-        if (!this.undoStore.canUndo()) {
-            return false;
+        if (this.undoStore.canUndo()) {
+            this.undoStore.undo();
+            return true;
         }
-        this.undoStore.undo();
-        return true;
+        return false;
     }
 
     private Size getPaintingSize() {
+        float f;
+        float f2;
         Size size = this.paintingSize;
         if (size != null) {
             return size;
         }
         Size size2 = new Size(this.bitmapToEdit.getWidth(), this.bitmapToEdit.getHeight());
-        float f = 1280;
-        size2.width = f;
-        float floor = (float) Math.floor((f * r1) / r0);
+        float f3 = 1280;
+        size2.width = f3;
+        float floor = (float) Math.floor((f3 * f2) / f);
         size2.height = floor;
-        if (floor > f) {
-            size2.height = f;
-            size2.width = (float) Math.floor((f * r0) / r1);
+        if (floor > f3) {
+            size2.height = f3;
+            size2.width = (float) Math.floor((f3 * f) / f2);
         }
         this.paintingSize = size2;
         return size2;
@@ -230,16 +231,18 @@ public class MaskPaintView extends FrameLayout {
         float f8;
         float f9;
         float f10;
+        MediaController.CropState cropState;
+        float f11;
         this.transformX = f2;
-        float f11 = f3 + this.panTranslationY;
-        this.transformY = f11;
+        float f12 = f3 + this.panTranslationY;
+        this.transformY = f12;
         int i = 0;
         while (i < 1) {
             if (i == 0) {
                 RenderView renderView = this.renderView;
-                MediaController.CropState cropState = this.currentCropState;
-                if (cropState != null) {
-                    float f12 = cropState.cropScale * 1.0f;
+                MediaController.CropState cropState2 = this.currentCropState;
+                if (cropState2 != null) {
+                    float f13 = cropState2.cropScale * 1.0f;
                     int measuredWidth = renderView.getMeasuredWidth();
                     int measuredHeight = renderView.getMeasuredHeight();
                     if (measuredWidth == 0 || measuredHeight == 0) {
@@ -250,24 +253,24 @@ public class MaskPaintView extends FrameLayout {
                         measuredHeight = measuredWidth;
                         measuredWidth = measuredHeight;
                     }
-                    float max = Math.max(f5 / ((int) (r9.cropPw * r7)), f6 / ((int) (r9.cropPh * r8)));
-                    f7 = f12 * max;
-                    MediaController.CropState cropState2 = this.currentCropState;
-                    float f13 = cropState2.cropPx * measuredWidth * f * max;
-                    float f14 = cropState2.cropScale;
-                    f9 = (f13 * f14) + f2;
-                    f10 = (cropState2.cropPy * measuredHeight * f * max * f14) + f11;
-                    f8 = f4 + cropState2.cropRotate + i2;
+                    float f14 = measuredWidth;
+                    float max = Math.max(f5 / ((int) (cropState.cropPw * f14)), f6 / ((int) (cropState.cropPh * f11)));
+                    f7 = f13 * max;
+                    MediaController.CropState cropState3 = this.currentCropState;
+                    float f15 = cropState3.cropScale;
+                    f9 = (cropState3.cropPx * f14 * f * max * f15) + f2;
+                    f10 = (cropState3.cropPy * measuredHeight * f * max * f15) + f12;
+                    f8 = f4 + cropState3.cropRotate + i2;
                 } else {
                     f7 = i == 0 ? this.baseScale * 1.0f : 1.0f;
                     f8 = f4;
                     f9 = f2;
-                    f10 = f11;
+                    f10 = f12;
                 }
-                float f15 = f7 * f;
-                float f16 = Float.isNaN(f15) ? 1.0f : f15;
-                renderView.setScaleX(f16);
-                renderView.setScaleY(f16);
+                float f16 = f7 * f;
+                float f17 = Float.isNaN(f16) ? 1.0f : f16;
+                renderView.setScaleX(f17);
+                renderView.setScaleY(f17);
                 renderView.setTranslationX(f9);
                 renderView.setTranslationY(f10);
                 renderView.setRotation(f8);
@@ -407,24 +410,24 @@ public class MaskPaintView extends FrameLayout {
 
     public Bitmap getBitmap() {
         Bitmap resultBitmap = this.renderView.getResultBitmap(false, false);
-        if (this.orientation == 0) {
-            return resultBitmap;
+        if (this.orientation != 0) {
+            int width = resultBitmap.getWidth();
+            int height = resultBitmap.getHeight();
+            if ((this.orientation / 90) % 2 != 0) {
+                width = resultBitmap.getHeight();
+                height = resultBitmap.getWidth();
+            }
+            Bitmap createBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(createBitmap);
+            canvas.translate(width / 2.0f, height / 2.0f);
+            canvas.rotate(-this.orientation);
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set((-resultBitmap.getWidth()) / 2.0f, (-resultBitmap.getHeight()) / 2.0f, resultBitmap.getWidth() / 2.0f, resultBitmap.getHeight() / 2.0f);
+            canvas.drawBitmap(resultBitmap, (Rect) null, rectF, new Paint(3));
+            resultBitmap.recycle();
+            return createBitmap;
         }
-        int width = resultBitmap.getWidth();
-        int height = resultBitmap.getHeight();
-        if ((this.orientation / 90) % 2 != 0) {
-            width = resultBitmap.getHeight();
-            height = resultBitmap.getWidth();
-        }
-        Bitmap createBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(createBitmap);
-        canvas.translate(width / 2.0f, height / 2.0f);
-        canvas.rotate(-this.orientation);
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set((-resultBitmap.getWidth()) / 2.0f, (-resultBitmap.getHeight()) / 2.0f, resultBitmap.getWidth() / 2.0f, resultBitmap.getHeight() / 2.0f);
-        canvas.drawBitmap(resultBitmap, (Rect) null, rectF, new Paint(3));
-        resultBitmap.recycle();
-        return createBitmap;
+        return resultBitmap;
     }
 
     public RenderView getRenderView() {

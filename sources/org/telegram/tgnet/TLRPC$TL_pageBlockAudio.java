@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_pageBlockAudio extends TLRPC$PageBlock {
     public long audio_id;
     public TLRPC$TL_pageCaption caption;

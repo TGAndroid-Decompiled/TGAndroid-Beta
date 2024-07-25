@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updateDeleteQuickReply extends TLRPC$Update {
     public int shortcut_id;
 

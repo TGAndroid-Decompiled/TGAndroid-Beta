@@ -27,7 +27,6 @@ import org.telegram.ui.Components.BlurredRecyclerView;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Stories.DialogStoriesCell;
 import org.telegram.ui.Stories.StoryViewer;
-
 public class StoriesListPlaceProvider implements StoryViewer.PlaceProvider {
     public int addBottomClip;
     int[] clipPoint;
@@ -249,8 +248,7 @@ public class StoriesListPlaceProvider implements StoryViewer.PlaceProvider {
                         }
                         updateClip(transitionViewHolder);
                         return true;
-                    }
-                    if (!z) {
+                    } else if (!z) {
                         BackupImageView backupImageView4 = reactedUserHolderView.avatarView;
                         transitionViewHolder.view = backupImageView4;
                         transitionViewHolder.params = reactedUserHolderView.params;
@@ -335,7 +333,7 @@ public class StoriesListPlaceProvider implements StoryViewer.PlaceProvider {
 
     private void updateClip(StoryViewer.TransitionViewHolder transitionViewHolder) {
         View view = transitionViewHolder.clipParent;
-        if (view == 0) {
+        if (view == null) {
             return;
         }
         if (view instanceof ClippedView) {
@@ -343,9 +341,7 @@ public class StoriesListPlaceProvider implements StoryViewer.PlaceProvider {
             int[] iArr = this.clipPoint;
             transitionViewHolder.clipTop = iArr[0];
             transitionViewHolder.clipBottom = iArr[1] - this.addBottomClip;
-            return;
-        }
-        if (view instanceof BlurredRecyclerView) {
+        } else if (view instanceof BlurredRecyclerView) {
             transitionViewHolder.clipTop = ((BlurredRecyclerView) view).blurTopPadding;
             transitionViewHolder.clipBottom = (view.getMeasuredHeight() - transitionViewHolder.clipParent.getPaddingBottom()) - this.addBottomClip;
         } else {

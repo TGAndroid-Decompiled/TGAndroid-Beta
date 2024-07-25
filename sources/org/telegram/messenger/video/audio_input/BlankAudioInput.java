@@ -1,7 +1,6 @@
 package org.telegram.messenger.video.audio_input;
 
 import org.telegram.messenger.video.AudioConversions;
-
 public class BlankAudioInput extends AudioInput {
     public final long durationUs;
     private int remainingShorts;
@@ -34,10 +33,10 @@ public class BlankAudioInput extends AudioInput {
             throw new RuntimeException("Audio input has no remaining value.");
         }
         this.remainingShorts--;
-        if (!isLoopingEnabled() || this.remainingShorts != 0) {
+        if (isLoopingEnabled() && this.remainingShorts == 0) {
+            this.remainingShorts = this.requiredShortsForDuration;
             return (short) 0;
         }
-        this.remainingShorts = this.requiredShortsForDuration;
         return (short) 0;
     }
 

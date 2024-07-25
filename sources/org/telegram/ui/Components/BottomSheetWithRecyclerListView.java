@@ -3,12 +3,14 @@ package org.telegram.ui.Components;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,9 +21,9 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
+import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.RecyclerListView;
-
 public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
     protected ActionBar actionBar;
     protected boolean actionBarIgnoreTouchEvents;
@@ -30,6 +32,7 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
     private BaseFragment baseFragment;
     protected boolean clipToActionBar;
     protected int contentHeight;
+    protected boolean handleOffset;
     private RectF handleRect;
     public final boolean hasFixedSize;
     protected int headerHeight;
@@ -422,6 +425,9 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
             }
         }
         int i2 = ((i - this.headerHeight) - this.headerPaddingTop) - this.headerPaddingBottom;
+        if (this.showHandle && this.handleOffset) {
+            i2 -= AndroidUtilities.dp(this.actionBarType == ActionBarType.SLIDING ? 8.0f : 16.0f);
+        }
         ActionBarType actionBarType = this.actionBarType;
         float f2 = 1.0f;
         if (actionBarType == ActionBarType.FADING) {
@@ -437,9 +443,11 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
             f2 = AndroidUtilities.lerp(1.0f, 0.5f, f3);
             this.actionBar.backButtonImageView.setAlpha(f3);
             this.actionBar.backButtonImageView.setScaleX(f3);
-            this.actionBar.backButtonImageView.setPivotY(r9.getMeasuredHeight() / 2.0f);
+            ImageView imageView = this.actionBar.backButtonImageView;
+            imageView.setPivotY(imageView.getMeasuredHeight() / 2.0f);
             this.actionBar.backButtonImageView.setScaleY(f3);
-            this.actionBar.getTitleTextView().setTranslationX(AndroidUtilities.lerp(AndroidUtilities.dp(21.0f) - r9.getLeft(), 0.0f, f3));
+            SimpleTextView titleTextView = this.actionBar.getTitleTextView();
+            titleTextView.setTranslationX(AndroidUtilities.lerp(AndroidUtilities.dp(21.0f) - titleTextView.getLeft(), 0.0f, f3));
             this.actionBar.setTranslationY(max);
             i2 -= AndroidUtilities.lerp(0, (((this.headerTotalHeight - this.headerHeight) - this.headerPaddingTop) - this.headerPaddingBottom) + AndroidUtilities.dp(13.0f), f3);
             this.actionBar.getBackground().setBounds(0, AndroidUtilities.lerp(this.actionBar.getHeight(), 0, f3), this.actionBar.getWidth(), this.actionBar.getHeight());
@@ -464,9 +472,11 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
         this.shadowDrawable.draw(canvas);
         if (this.showHandle && f2 > 0.0f) {
             int dp = AndroidUtilities.dp(36.0f);
-            this.handleRect.set((view.getMeasuredWidth() - dp) / 2.0f, AndroidUtilities.dp(20.0f) + i2, (view.getMeasuredWidth() + dp) / 2.0f, r2 + AndroidUtilities.dp(4.0f));
+            int dp2 = AndroidUtilities.dp(20.0f) + i2;
+            this.handleRect.set((view.getMeasuredWidth() - dp) / 2.0f, dp2, (view.getMeasuredWidth() + dp) / 2.0f, dp2 + AndroidUtilities.dp(4.0f));
             Theme.dialogs_onlineCirclePaint.setColor(getThemedColor(Theme.key_sheet_scrollUp));
-            Theme.dialogs_onlineCirclePaint.setAlpha((int) (r14.getAlpha() * f2));
+            Paint paint = Theme.dialogs_onlineCirclePaint;
+            paint.setAlpha((int) (paint.getAlpha() * f2));
             canvas.drawRoundRect(this.handleRect, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), Theme.dialogs_onlineCirclePaint);
         }
         onPreDraw(canvas, i2, f);

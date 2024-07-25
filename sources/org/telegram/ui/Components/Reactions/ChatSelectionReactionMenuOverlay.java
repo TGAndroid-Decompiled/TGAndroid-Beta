@@ -24,7 +24,6 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Reactions.ChatSelectionReactionMenuOverlay;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Components.ReactionsContainerLayout;
-
 public class ChatSelectionReactionMenuOverlay extends FrameLayout {
     private float currentOffsetY;
     private MessageObject currentPrimaryObject;
@@ -248,10 +247,10 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
             this.messageSet = true;
             this.reactionsContainerLayout.setMessage(this.currentPrimaryObject, this.parentFragment.getCurrentChatInfo(), true);
             this.reactionsContainerLayout.startEnterAnimation(false);
-        } else {
-            this.messageSet = false;
-            this.reactionsContainerLayout.setTransitionProgress(1.0f);
+            return;
         }
+        this.messageSet = false;
+        this.reactionsContainerLayout.setTransitionProgress(1.0f);
     }
 
     public void lambda$animateVisible$1(ValueAnimator valueAnimator) {

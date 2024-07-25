@@ -7,7 +7,6 @@ import android.text.style.ReplacementSpan;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-
 public class VoIPEllipsizeSpan extends ReplacementSpan {
     private final CubicBezierInterpolator interpolator = new CubicBezierInterpolator(0.33d, 0.0d, 0.67d, 1.0d);
     private final View[] parents;

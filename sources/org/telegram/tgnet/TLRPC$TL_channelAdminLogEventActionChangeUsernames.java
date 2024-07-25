@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_channelAdminLogEventActionChangeUsernames extends TLRPC$ChannelAdminLogEventAction {
     public ArrayList<String> prev_value = new ArrayList<>();
     public ArrayList<String> new_value = new ArrayList<>();
@@ -24,11 +23,11 @@ public class TLRPC$TL_channelAdminLogEventActionChangeUsernames extends TLRPC$Ch
             if (z) {
                 throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt323)));
             }
-        } else {
-            int readInt324 = abstractSerializedData.readInt32(z);
-            for (int i2 = 0; i2 < readInt324; i2++) {
-                this.new_value.add(abstractSerializedData.readString(z));
-            }
+            return;
+        }
+        int readInt324 = abstractSerializedData.readInt32(z);
+        for (int i2 = 0; i2 < readInt324; i2++) {
+            this.new_value.add(abstractSerializedData.readString(z));
         }
     }
 

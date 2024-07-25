@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_secureCredentialsEncrypted extends TLObject {
     public byte[] data;
     public byte[] hash;

@@ -7,7 +7,6 @@ import org.telegram.messenger.video.remix.AudioRemixer;
 import org.telegram.messenger.video.remix.DefaultAudioRemixer;
 import org.telegram.messenger.video.resample.AudioResampler;
 import org.telegram.messenger.video.resample.DefaultAudioResampler;
-
 public class AudioBufferConverter {
     private static final int BYTES_PER_SHORT = 2;
     private static final String TAG = "AudioBufferConverter";
@@ -51,11 +50,10 @@ public class AudioBufferConverter {
         }
         if (i != 1 && i != 2) {
             throw new UnsupportedOperationException("Input channel count (" + i + ") not supported.");
+        } else if (i2 == 1 || i2 == 2) {
+        } else {
+            throw new UnsupportedOperationException("Output channel count (" + i2 + ") not supported.");
         }
-        if (i2 == 1 || i2 == 2) {
-            return;
-        }
-        throw new UnsupportedOperationException("Output channel count (" + i2 + ") not supported.");
     }
 
     private ShortBuffer createBuffer(int i) {

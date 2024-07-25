@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_webPageAttributeTheme extends TLRPC$WebPageAttribute {
     public ArrayList<TLRPC$Document> documents = new ArrayList<>();
     public TLRPC$ThemeSettings settings;

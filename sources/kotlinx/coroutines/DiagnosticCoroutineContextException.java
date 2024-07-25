@@ -1,7 +1,6 @@
 package kotlinx.coroutines;
 
 import kotlin.coroutines.CoroutineContext;
-
 final class DiagnosticCoroutineContextException extends RuntimeException {
     private final CoroutineContext context;
 

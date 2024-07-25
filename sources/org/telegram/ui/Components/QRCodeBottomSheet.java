@@ -27,7 +27,6 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
-
 public class QRCodeBottomSheet extends BottomSheet {
     private TextView button2TextView;
     private final TextView buttonTextView;

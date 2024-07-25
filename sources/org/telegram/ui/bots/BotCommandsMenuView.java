@@ -22,15 +22,14 @@ import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC$BotInfo;
 import org.telegram.tgnet.TLRPC$TL_botCommand;
+import org.telegram.tgnet.tl.TL_bots$BotInfo;
 import org.telegram.ui.ActionBar.MenuDrawable;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.StaticLayoutEx;
-
 public class BotCommandsMenuView extends View {
     final MenuDrawable backDrawable;
     Drawable backgroundDrawable;
@@ -137,8 +136,9 @@ public class BotCommandsMenuView extends View {
             this.backDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
             this.textPaint.setTextSize(AndroidUtilities.dp(15.0f));
             this.lastSize = size;
+            CharSequence replaceEmoji = Emoji.replaceEmoji(this.menuText, this.textPaint.getFontMetricsInt(), false);
             int i3 = (int) (AndroidUtilities.displaySize.x * 0.6f);
-            StaticLayout createStaticLayout = StaticLayoutEx.createStaticLayout(Emoji.replaceEmoji(this.menuText, this.textPaint.getFontMetricsInt(), false), this.textPaint, i3, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false, TextUtils.TruncateAt.END, i3, 1);
+            StaticLayout createStaticLayout = StaticLayoutEx.createStaticLayout(replaceEmoji, this.textPaint, i3, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false, TextUtils.TruncateAt.END, i3, 1);
             this.menuTextLayout = createStaticLayout;
             this.menuTextWidth = createStaticLayout.getLineCount() > 0 ? this.menuTextLayout.getLineWidth(0) : 0.0f;
         }
@@ -211,15 +211,16 @@ public class BotCommandsMenuView extends View {
             return this.newResult.size();
         }
 
-        public void setBotInfo(LongSparseArray<TLRPC$BotInfo> longSparseArray) {
+        public void setBotInfo(LongSparseArray<TL_bots$BotInfo> longSparseArray) {
             this.newResult.clear();
             this.newResultHelp.clear();
             for (int i = 0; i < longSparseArray.size(); i++) {
-                TLRPC$BotInfo valueAt = longSparseArray.valueAt(i);
+                TL_bots$BotInfo valueAt = longSparseArray.valueAt(i);
                 for (int i2 = 0; i2 < valueAt.commands.size(); i2++) {
                     TLRPC$TL_botCommand tLRPC$TL_botCommand = valueAt.commands.get(i2);
                     if (tLRPC$TL_botCommand != null && tLRPC$TL_botCommand.command != null) {
-                        this.newResult.add("/" + tLRPC$TL_botCommand.command);
+                        ArrayList<String> arrayList = this.newResult;
+                        arrayList.add("/" + tLRPC$TL_botCommand.command);
                         this.newResultHelp.add(tLRPC$TL_botCommand.description);
                     }
                 }

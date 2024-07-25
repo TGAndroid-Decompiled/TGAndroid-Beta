@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messageActionTopicCreate extends TLRPC$MessageAction {
     public int icon_color;
     public long icon_emoji_id;

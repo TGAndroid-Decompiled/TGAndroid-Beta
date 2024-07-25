@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-
 public class TLRPC$messages_AvailableEffects extends TLObject {
     public int hash;
     public ArrayList<TLRPC$TL_availableEffect> effects = new ArrayList<>();

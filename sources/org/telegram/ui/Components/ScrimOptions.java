@@ -44,7 +44,6 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatMessageCell;
-
 public class ScrimOptions extends Dialog {
     private Bitmap blurBitmap;
     private Paint blurBitmapPaint;
@@ -349,33 +348,34 @@ public class ScrimOptions extends Dialog {
         Drawable drawable = this.scrimDrawable;
         if (drawable != null) {
             android.graphics.Rect bounds = drawable.getBounds();
-            if (this.optionsContainer != null) {
-                float f = bounds.left;
-                float f2 = this.scrimDrawableTx2;
-                float f3 = f + f2;
-                float f4 = bounds.right + f2;
-                float f5 = bounds.top;
-                float f6 = this.scrimDrawableTy2;
-                float f7 = f5 + f6;
-                float f8 = bounds.bottom + f6;
+            FrameLayout frameLayout = this.optionsContainer;
+            if (frameLayout != null) {
+                float f = this.scrimDrawableTx2;
+                float f2 = bounds.left + f;
+                float f3 = bounds.right + f;
+                float f4 = this.scrimDrawableTy2;
+                float f5 = bounds.top + f4;
+                float f6 = bounds.bottom + f4;
                 boolean z2 = true;
-                if (f4 - r1.getMeasuredWidth() < AndroidUtilities.dp(8.0f)) {
+                if (f3 - frameLayout.getMeasuredWidth() < AndroidUtilities.dp(8.0f)) {
                     this.optionsView.setPivotX(AndroidUtilities.dp(6.0f));
-                    this.optionsContainer.setX(Math.min(this.containerView.getWidth() - this.optionsContainer.getWidth(), f3 - AndroidUtilities.dp(10.0f)) - this.containerView.getX());
+                    this.optionsContainer.setX(Math.min(this.containerView.getWidth() - this.optionsContainer.getWidth(), f2 - AndroidUtilities.dp(10.0f)) - this.containerView.getX());
                     z = false;
                 } else {
-                    this.optionsView.setPivotX(r1.getMeasuredWidth() - AndroidUtilities.dp(6.0f));
-                    this.optionsContainer.setX(Math.max(AndroidUtilities.dp(8.0f), (AndroidUtilities.dp(4.0f) + f4) - this.optionsContainer.getMeasuredWidth()) - this.containerView.getX());
+                    View view = this.optionsView;
+                    view.setPivotX(view.getMeasuredWidth() - AndroidUtilities.dp(6.0f));
+                    this.optionsContainer.setX(Math.max(AndroidUtilities.dp(8.0f), (AndroidUtilities.dp(4.0f) + f3) - this.optionsContainer.getMeasuredWidth()) - this.containerView.getX());
                     z = true;
                 }
-                this.scrimDrawableTx1 = z ? ((this.optionsContainer.getX() + this.optionsContainer.getWidth()) - AndroidUtilities.dp(6.0f)) - f4 : (this.optionsContainer.getX() + AndroidUtilities.dp(10.0f)) - f3;
+                this.scrimDrawableTx1 = z ? ((this.optionsContainer.getX() + this.optionsContainer.getWidth()) - AndroidUtilities.dp(6.0f)) - f3 : (this.optionsContainer.getX() + AndroidUtilities.dp(10.0f)) - f2;
                 this.scrimDrawableTy1 = 0.0f;
-                if (this.optionsContainer.getMeasuredHeight() + f8 > this.windowView.getMeasuredHeight() - AndroidUtilities.dp(16.0f)) {
-                    this.optionsView.setPivotY(r0.getMeasuredHeight() - AndroidUtilities.dp(6.0f));
-                    this.optionsContainer.setY(((f7 - AndroidUtilities.dp(4.0f)) - this.optionsContainer.getMeasuredHeight()) - this.containerView.getY());
+                if (this.optionsContainer.getMeasuredHeight() + f6 > this.windowView.getMeasuredHeight() - AndroidUtilities.dp(16.0f)) {
+                    View view2 = this.optionsView;
+                    view2.setPivotY(view2.getMeasuredHeight() - AndroidUtilities.dp(6.0f));
+                    this.optionsContainer.setY(((f5 - AndroidUtilities.dp(4.0f)) - this.optionsContainer.getMeasuredHeight()) - this.containerView.getY());
                 } else {
                     this.optionsView.setPivotY(AndroidUtilities.dp(6.0f));
-                    this.optionsContainer.setY(Math.min((this.windowView.getHeight() - this.optionsContainer.getMeasuredHeight()) - AndroidUtilities.dp(16.0f), f8) - this.containerView.getY());
+                    this.optionsContainer.setY(Math.min((this.windowView.getHeight() - this.optionsContainer.getMeasuredHeight()) - AndroidUtilities.dp(16.0f), f6) - this.containerView.getY());
                     z2 = false;
                 }
                 this.options.setSwipebackGravity(z, z2);
@@ -438,11 +438,10 @@ public class ScrimOptions extends Dialog {
                         if (i5 >= characterStyleArr.length) {
                             z = false;
                             break;
+                        } else if (characterStyleArr[i5] == characterStyle) {
+                            z = true;
+                            break;
                         } else {
-                            if (characterStyleArr[i5] == characterStyle) {
-                                z = true;
-                                break;
-                            }
                             i5++;
                         }
                     }
@@ -459,7 +458,6 @@ public class ScrimOptions extends Dialog {
             }
             i2++;
             messageObject2 = messageObject;
-            staticLayout3 = staticLayout3;
         }
         MessageObject messageObject3 = messageObject2;
         if (staticLayout3 == null) {

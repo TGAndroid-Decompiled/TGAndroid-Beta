@@ -1,7 +1,6 @@
 package kotlinx.coroutines;
 
 import kotlinx.coroutines.internal.ArrayQueue;
-
 public abstract class EventLoop extends CoroutineDispatcher {
     private boolean shared;
     private ArrayQueue<DispatchedTask<?>> unconfinedQueue;

@@ -4,7 +4,6 @@ import j$.util.Iterator;
 import j$.util.function.Consumer;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
-
 public final class EmptyIterator implements ListIterator, Iterator {
     public static final EmptyIterator INSTANCE = new EmptyIterator();
 

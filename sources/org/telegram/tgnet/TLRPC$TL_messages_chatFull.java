@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_messages_chatFull extends TLObject {
     public TLRPC$ChatFull full_chat;
     public ArrayList<TLRPC$Chat> chats = new ArrayList<>();

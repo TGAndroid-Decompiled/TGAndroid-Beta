@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_auth_authorizationSignUpRequired extends TLRPC$auth_Authorization {
     public int flags;
     public TLRPC$TL_help_termsOfService terms_of_service;

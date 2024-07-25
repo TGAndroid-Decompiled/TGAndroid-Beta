@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$Dialog extends TLObject {
     public TLRPC$DraftMessage draft;
     public int flags;

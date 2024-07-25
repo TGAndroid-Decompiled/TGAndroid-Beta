@@ -15,7 +15,6 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
 public final class RuntimeClassNameTypeAdapterFactory<T> implements TypeAdapterFactory {
     private final Class<?> baseType;
     private final ExclusionStrategy exclusionStrategy;
@@ -70,7 +69,7 @@ public final class RuntimeClassNameTypeAdapterFactory<T> implements TypeAdapterF
         }
         return new TypeAdapter<R>() {
             @Override
-            public R read2(JsonReader jsonReader) throws IOException {
+            public R read(JsonReader jsonReader) throws IOException {
                 JsonElement parse = Streams.parse(jsonReader);
                 if (parse.isJsonObject()) {
                     JsonElement remove = parse.getAsJsonObject().remove(RuntimeClassNameTypeAdapterFactory.this.typeFieldName);
@@ -90,15 +89,15 @@ public final class RuntimeClassNameTypeAdapterFactory<T> implements TypeAdapterF
                         }
                     }
                     return typeAdapter.fromJsonTree(parse);
-                }
-                if (parse.isJsonNull()) {
+                } else if (parse.isJsonNull()) {
                     return null;
+                } else {
+                    TypeAdapter<T> delegateAdapter2 = gson.getDelegateAdapter(RuntimeClassNameTypeAdapterFactory.this, typeToken);
+                    if (delegateAdapter2 == null) {
+                        throw new JsonParseException("cannot deserialize " + RuntimeClassNameTypeAdapterFactory.this.baseType + "; did you forget to register a subtype?");
+                    }
+                    return delegateAdapter2.fromJsonTree(parse);
                 }
-                TypeAdapter<T> delegateAdapter2 = gson.getDelegateAdapter(RuntimeClassNameTypeAdapterFactory.this, typeToken);
-                if (delegateAdapter2 == null) {
-                    throw new JsonParseException("cannot deserialize " + RuntimeClassNameTypeAdapterFactory.this.baseType + "; did you forget to register a subtype?");
-                }
-                return delegateAdapter2.fromJsonTree(parse);
             }
 
             @Override

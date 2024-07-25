@@ -29,7 +29,6 @@ import org.telegram.ui.Components.Premium.boosts.cells.TextInfoCell;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.DialogsActivity;
 import org.telegram.ui.TopicsFragment;
-
 public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter {
     private BaseFragment baseFragment;
     private FrameLayout container;
@@ -49,23 +48,23 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
 
     @Override
     public int getItemViewType(int i) {
-        if (i == 0) {
-            return 0;
-        }
-        int i2 = 1;
-        if (i != 1) {
-            i2 = 2;
-            if (i != 2) {
-                i2 = 3;
-                if (i != 3) {
-                    i2 = 4;
-                    if (i != 4) {
-                        return 5;
+        if (i != 0) {
+            int i2 = 1;
+            if (i != 1) {
+                i2 = 2;
+                if (i != 2) {
+                    i2 = 3;
+                    if (i != 3) {
+                        i2 = 4;
+                        if (i != 4) {
+                            return 5;
+                        }
                     }
                 }
             }
+            return i2;
         }
-        return i2;
+        return 0;
     }
 
     @Override
@@ -133,11 +132,8 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
             }
             if (this.giftCode.to_id == -1) {
                 headerCell.setUnclaimedText();
-                return;
             }
-            return;
-        }
-        if (itemViewType == 1) {
+        } else if (itemViewType == 1) {
             LinkCell linkCell = (LinkCell) viewHolder.itemView;
             linkCell.setSlug(this.slug);
             if (this.giftCode.boost != null && this.slug == null) {
@@ -156,20 +152,15 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
                         GiftInfoAdapter.this.onHiddenLinkClicked();
                     }
                 });
-                return;
             }
-            return;
-        }
-        if (itemViewType == 2) {
+        } else if (itemViewType == 2) {
             ((TableCell) viewHolder.itemView).setData(this.giftCode, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
                     GiftInfoAdapter.this.onObjectClicked((TLObject) obj);
                 }
             });
-            return;
-        }
-        if (itemViewType != 3) {
+        } else if (itemViewType != 3) {
             if (itemViewType != 4) {
                 return;
             }
@@ -190,38 +181,34 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
                         GiftInfoAdapter.this.lambda$onBindViewHolder$3(view);
                     }
                 });
-                return;
             }
-            return;
-        }
-        TextInfoCell textInfoCell = (TextInfoCell) viewHolder.itemView;
-        textInfoCell.setTextGravity(17);
-        textInfoCell.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
-        textInfoCell.setTopPadding(14);
-        textInfoCell.setBottomPadding(15);
-        TLRPC$TL_payments_checkedGiftCode tLRPC$TL_payments_checkedGiftCode3 = this.giftCode;
-        if (tLRPC$TL_payments_checkedGiftCode3.boost != null) {
-            String str2 = this.slug;
-            if (str2 == null || str2.isEmpty()) {
-                textInfoCell.setText(LocaleController.getString("BoostingLinkNotActivated", R.string.BoostingLinkNotActivated));
-                return;
-            } else {
+        } else {
+            TextInfoCell textInfoCell = (TextInfoCell) viewHolder.itemView;
+            textInfoCell.setTextGravity(17);
+            textInfoCell.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
+            textInfoCell.setTopPadding(14);
+            textInfoCell.setBottomPadding(15);
+            TLRPC$TL_payments_checkedGiftCode tLRPC$TL_payments_checkedGiftCode3 = this.giftCode;
+            if (tLRPC$TL_payments_checkedGiftCode3.boost != null) {
+                String str2 = this.slug;
+                if (str2 == null || str2.isEmpty()) {
+                    textInfoCell.setText(LocaleController.getString("BoostingLinkNotActivated", R.string.BoostingLinkNotActivated));
+                    return;
+                }
                 textInfoCell.setFixedSize(14);
                 textInfoCell.setText(null);
-                return;
-            }
-        }
-        if (this.isUnused) {
-            if (tLRPC$TL_payments_checkedGiftCode3.to_id == -1) {
-                string = LocaleController.getString("BoostingSendLinkToAnyone", R.string.BoostingSendLinkToAnyone);
+            } else if (this.isUnused) {
+                if (tLRPC$TL_payments_checkedGiftCode3.to_id == -1) {
+                    string = LocaleController.getString("BoostingSendLinkToAnyone", R.string.BoostingSendLinkToAnyone);
+                } else {
+                    string = LocaleController.getString("BoostingSendLinkToFriends", R.string.BoostingSendLinkToFriends);
+                }
+                textInfoCell.setText(AndroidUtilities.replaceSingleTag(string, Theme.key_chat_messageLinkIn, 0, new GiftInfoAdapter$$ExternalSyntheticLambda3(this), this.resourcesProvider));
             } else {
-                string = LocaleController.getString("BoostingSendLinkToFriends", R.string.BoostingSendLinkToFriends);
+                Date date = new Date(this.giftCode.used_date * 1000);
+                textInfoCell.setText(LocaleController.formatString("BoostingUsedLinkDate", R.string.BoostingUsedLinkDate, LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterYear().format(date), LocaleController.getInstance().getFormatterDay().format(date))));
             }
-            textInfoCell.setText(AndroidUtilities.replaceSingleTag(string, Theme.key_chat_messageLinkIn, 0, new GiftInfoAdapter$$ExternalSyntheticLambda3(this), this.resourcesProvider));
-            return;
         }
-        Date date = new Date(this.giftCode.used_date * 1000);
-        textInfoCell.setText(LocaleController.formatString("BoostingUsedLinkDate", R.string.BoostingUsedLinkDate, LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterYear().format(date), LocaleController.getInstance().getFormatterDay().format(date))));
     }
 
     public void lambda$onBindViewHolder$2(final ActionBtnCell actionBtnCell, View view) {
@@ -285,7 +272,7 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
             j = ((MessagesStorage.TopicKey) arrayList.get(i)).dialogId;
             this.baseFragment.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(str, j, null, null, null, true, null, null, null, true, 0, null, false));
         }
-        dialogsActivity.lambda$onBackPressed$306();
+        dialogsActivity.finishFragment();
         BoostDialogs.showGiftLinkForwardedBulletin(j);
         return true;
     }

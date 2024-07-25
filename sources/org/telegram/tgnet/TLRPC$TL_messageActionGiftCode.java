@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messageActionGiftCode extends TLRPC$MessageAction {
     public TLRPC$Peer boost_peer;
     public String slug;

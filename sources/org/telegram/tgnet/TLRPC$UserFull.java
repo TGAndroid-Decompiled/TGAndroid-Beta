@@ -3,8 +3,8 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 import org.telegram.messenger.FileLoaderPriorityQueue;
 import org.telegram.messenger.LiteMode;
+import org.telegram.tgnet.tl.TL_bots$BotInfo;
 import org.telegram.tgnet.tl.TL_stories$PeerStories;
-
 public abstract class TLRPC$UserFull extends TLObject {
     public String about;
     public TLRPC$TL_birthday birthday;
@@ -12,7 +12,7 @@ public abstract class TLRPC$UserFull extends TLObject {
     public boolean blocked_my_stories_from;
     public TLRPC$TL_chatAdminRights bot_broadcast_admin_rights;
     public TLRPC$TL_chatAdminRights bot_group_admin_rights;
-    public TLRPC$BotInfo bot_info;
+    public TL_bots$BotInfo bot_info;
     public TLRPC$TL_businessAwayMessage business_away_message;
     public TLRPC$TL_businessGreetingMessage business_greeting_message;
     public TLRPC$TL_businessIntro business_intro;
@@ -77,7 +77,7 @@ public abstract class TLRPC$UserFull extends TLObject {
                         }
                         this.notify_settings = TLRPC$PeerNotifySettings.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         if ((this.flags & 8) != 0) {
-                            this.bot_info = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            this.bot_info = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
                         if ((this.flags & 64) != 0) {
                             this.pinned_msg_id = abstractSerializedData2.readInt32(z2);
@@ -176,7 +176,7 @@ public abstract class TLRPC$UserFull extends TLObject {
                         }
                         this.notify_settings = TLRPC$PeerNotifySettings.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         if ((this.flags & 8) != 0) {
-                            this.bot_info = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            this.bot_info = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
                         if ((this.flags & 64) != 0) {
                             this.pinned_msg_id = abstractSerializedData2.readInt32(z2);
@@ -245,7 +245,7 @@ public abstract class TLRPC$UserFull extends TLObject {
                         }
                         this.notify_settings = TLRPC$PeerNotifySettings.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         if ((this.flags & 8) != 0) {
-                            this.bot_info = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            this.bot_info = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
                         if ((this.flags & 64) != 0) {
                             this.pinned_msg_id = abstractSerializedData2.readInt32(z2);
@@ -400,7 +400,7 @@ public abstract class TLRPC$UserFull extends TLObject {
                         }
                         this.notify_settings = TLRPC$PeerNotifySettings.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         if ((this.flags & 8) != 0) {
-                            this.bot_info = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            this.bot_info = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
                         if ((this.flags & 64) != 0) {
                             this.pinned_msg_id = abstractSerializedData2.readInt32(z2);
@@ -559,7 +559,7 @@ public abstract class TLRPC$UserFull extends TLObject {
                         }
                         this.notify_settings = TLRPC$PeerNotifySettings.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         if ((this.flags & 8) != 0) {
-                            this.bot_info = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            this.bot_info = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
                         if ((this.flags & 64) != 0) {
                             this.pinned_msg_id = abstractSerializedData2.readInt32(z2);
@@ -690,7 +690,7 @@ public abstract class TLRPC$UserFull extends TLObject {
                         }
                         this.notify_settings = TLRPC$PeerNotifySettings.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         if ((this.flags & 8) != 0) {
-                            this.bot_info = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            this.bot_info = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
                         if ((this.flags & 64) != 0) {
                             this.pinned_msg_id = abstractSerializedData2.readInt32(z2);
@@ -779,7 +779,7 @@ public abstract class TLRPC$UserFull extends TLObject {
                         }
                         this.notify_settings = TLRPC$PeerNotifySettings.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         if ((this.flags & 8) != 0) {
-                            this.bot_info = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            this.bot_info = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
                         if ((this.flags & 64) != 0) {
                             this.pinned_msg_id = abstractSerializedData2.readInt32(z2);
@@ -866,7 +866,7 @@ public abstract class TLRPC$UserFull extends TLObject {
                         }
                         this.notify_settings = TLRPC$PeerNotifySettings.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         if ((this.flags & 8) != 0) {
-                            this.bot_info = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            this.bot_info = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
                         if ((this.flags & 64) != 0) {
                             this.pinned_msg_id = abstractSerializedData2.readInt32(z2);
@@ -1011,7 +1011,7 @@ public abstract class TLRPC$UserFull extends TLObject {
                         }
                         this.notify_settings = TLRPC$PeerNotifySettings.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         if ((this.flags & 8) != 0) {
-                            this.bot_info = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            this.bot_info = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
                         if ((this.flags & 64) != 0) {
                             this.pinned_msg_id = abstractSerializedData2.readInt32(z2);
@@ -1206,7 +1206,7 @@ public abstract class TLRPC$UserFull extends TLObject {
                         }
                         this.notify_settings = TLRPC$PeerNotifySettings.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         if ((this.flags & 8) != 0) {
-                            this.bot_info = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            this.bot_info = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
                         if ((this.flags & 64) != 0) {
                             this.pinned_msg_id = abstractSerializedData2.readInt32(z2);
@@ -1283,7 +1283,7 @@ public abstract class TLRPC$UserFull extends TLObject {
                         }
                         this.notify_settings = TLRPC$PeerNotifySettings.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         if ((this.flags & 8) != 0) {
-                            this.bot_info = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            this.bot_info = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
                         if ((this.flags & 64) != 0) {
                             this.pinned_msg_id = abstractSerializedData2.readInt32(z2);
@@ -1419,7 +1419,7 @@ public abstract class TLRPC$UserFull extends TLObject {
                         }
                         this.notify_settings = TLRPC$PeerNotifySettings.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         if ((this.flags & 8) != 0) {
-                            this.bot_info = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            this.bot_info = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
                         if ((this.flags & 64) != 0) {
                             this.pinned_msg_id = abstractSerializedData2.readInt32(z2);
@@ -1510,7 +1510,7 @@ public abstract class TLRPC$UserFull extends TLObject {
                         }
                         this.notify_settings = TLRPC$PeerNotifySettings.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         if ((this.flags & 8) != 0) {
-                            this.bot_info = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            this.bot_info = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
                         if ((this.flags & 64) != 0) {
                             this.pinned_msg_id = abstractSerializedData2.readInt32(z2);
@@ -1703,7 +1703,7 @@ public abstract class TLRPC$UserFull extends TLObject {
                         }
                         this.notify_settings = TLRPC$PeerNotifySettings.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         if ((this.flags & 8) != 0) {
-                            this.bot_info = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            this.bot_info = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
                         if ((this.flags & 64) != 0) {
                             this.pinned_msg_id = abstractSerializedData2.readInt32(z2);
@@ -1869,7 +1869,7 @@ public abstract class TLRPC$UserFull extends TLObject {
                         }
                         this.notify_settings = TLRPC$PeerNotifySettings.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         if ((this.flags & 8) != 0) {
-                            this.bot_info = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            this.bot_info = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
                         if ((this.flags & 64) != 0) {
                             this.pinned_msg_id = abstractSerializedData2.readInt32(z2);
@@ -2056,7 +2056,7 @@ public abstract class TLRPC$UserFull extends TLObject {
                         }
                         this.notify_settings = TLRPC$PeerNotifySettings.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         if ((this.flags & 8) != 0) {
-                            this.bot_info = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            this.bot_info = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
                         if ((this.flags & 64) != 0) {
                             this.pinned_msg_id = abstractSerializedData2.readInt32(z2);

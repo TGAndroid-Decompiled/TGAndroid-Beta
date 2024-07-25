@@ -2,7 +2,6 @@ package kotlinx.coroutines.internal;
 
 import kotlin.text.StringsKt;
 import org.telegram.tgnet.ConnectionsManager;
-
 public final class SystemPropsKt__SystemProps_commonKt {
     public static final boolean systemProp(String str, boolean z) {
         String systemProp = SystemPropsKt.systemProp(str);

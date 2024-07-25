@@ -3,7 +3,6 @@ package okio;
 import java.util.AbstractList;
 import java.util.List;
 import java.util.RandomAccess;
-
 public final class Options extends AbstractList<ByteString> implements RandomAccess {
     final ByteString[] byteStrings;
     final int[] trie;
@@ -66,11 +65,10 @@ public final class Options extends AbstractList<ByteString> implements RandomAcc
                     if (i16 >= i3) {
                         i5 = i3;
                         break;
+                    } else if (b2 != list.get(i16).getByte(i)) {
+                        i5 = i16;
+                        break;
                     } else {
-                        if (b2 != list.get(i16).getByte(i)) {
-                            i5 = i16;
-                            break;
-                        }
                         i16++;
                     }
                 }
@@ -113,12 +111,12 @@ public final class Options extends AbstractList<ByteString> implements RandomAcc
                 throw new AssertionError();
             }
             buffer.writeInt(list2.get(i10).intValue());
-        } else {
-            Buffer buffer5 = new Buffer();
-            buffer.writeInt((int) ((intCount(buffer5) + intCount2) * (-1)));
-            buildTrieRecursive(intCount2, buffer5, i4, list, i10, i3, list2);
-            buffer.write(buffer5, buffer5.size());
+            return;
         }
+        Buffer buffer5 = new Buffer();
+        buffer.writeInt((int) ((intCount(buffer5) + intCount2) * (-1)));
+        buildTrieRecursive(intCount2, buffer5, i4, list, i10, i3, list2);
+        buffer.write(buffer5, buffer5.size());
     }
 
     @Override

@@ -8,12 +8,10 @@ import org.webrtc.Logging;
 import org.webrtc.PeerConnection;
 import org.webrtc.audio.AudioDeviceModule;
 import org.webrtc.audio.JavaAudioDeviceModule;
-
 public class PeerConnectionFactory {
     private static final String TAG = "PeerConnectionFactory";
     public static final String TRIAL_ENABLED = "Enabled";
     private static final String VIDEO_CAPTURER_THREAD_NAME = "VideoCapturerThread";
-
     @Deprecated
     public static final String VIDEO_FRAME_EMIT_TRIAL = "VideoFrameEmit";
     private static volatile boolean internalTracerInitialized;
@@ -291,11 +289,11 @@ public class PeerConnectionFactory {
         if (loggable != null) {
             Logging.injectLoggable(loggable, initializationOptions.loggableSeverity);
             nativeInjectLoggable(new JNILogging(initializationOptions.loggable), initializationOptions.loggableSeverity.ordinal());
-        } else {
-            Logging.d(TAG, "PeerConnectionFactory was initialized without an injected Loggable. Any existing Loggable will be deleted.");
-            Logging.deleteInjectedLoggable();
-            nativeDeleteLoggable();
+            return;
         }
+        Logging.d(TAG, "PeerConnectionFactory was initialized without an injected Loggable. Any existing Loggable will be deleted.");
+        Logging.deleteInjectedLoggable();
+        nativeDeleteLoggable();
     }
 
     public static void checkInitializeHasBeenCalled() {

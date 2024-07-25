@@ -13,7 +13,6 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.Forum.ForumUtilities;
 import org.telegram.ui.Components.LayoutHelper;
-
 public class TopicSearchCell extends FrameLayout {
     BackupImageView backupImageView;
     public boolean drawDivider;
@@ -31,10 +30,10 @@ public class TopicSearchCell extends FrameLayout {
         if (LocaleController.isRTL) {
             addView(this.backupImageView, LayoutHelper.createFrame(30, 30.0f, 21, 12.0f, 0.0f, 12.0f, 0.0f));
             addView(this.textView, LayoutHelper.createFrame(-1, -2.0f, 21, 12.0f, 0.0f, 56.0f, 0.0f));
-        } else {
-            addView(this.backupImageView, LayoutHelper.createFrame(30, 30.0f, 16, 12.0f, 0.0f, 12.0f, 0.0f));
-            addView(this.textView, LayoutHelper.createFrame(-1, -2.0f, 16, 56.0f, 0.0f, 12.0f, 0.0f));
+            return;
         }
+        addView(this.backupImageView, LayoutHelper.createFrame(30, 30.0f, 16, 12.0f, 0.0f, 12.0f, 0.0f));
+        addView(this.textView, LayoutHelper.createFrame(-1, -2.0f, 16, 56.0f, 0.0f, 12.0f, 0.0f));
     }
 
     @Override

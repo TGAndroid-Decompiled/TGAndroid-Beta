@@ -19,7 +19,6 @@ import org.telegram.ui.Components.BlurringShader;
 import org.telegram.ui.Stories.DarkThemeResourceProvider;
 import org.telegram.ui.Stories.recorder.CaptionContainerView;
 import org.telegram.ui.Stories.recorder.HintView2;
-
 public class CaptionPhotoViewer extends CaptionContainerView {
     private final ImageView addPhotoButton;
     private boolean addPhotoVisible;
@@ -86,6 +85,7 @@ public class CaptionPhotoViewer extends CaptionContainerView {
     }
 
     public void lambda$new$1(FrameLayout frameLayout, View view) {
+        int[] iArr;
         String formatPluralString;
         ItemOptions itemOptions = this.timerPopup;
         if (itemOptions != null && itemOptions.isShown()) {
@@ -170,7 +170,7 @@ public class CaptionPhotoViewer extends CaptionContainerView {
     }
 
     @Override
-    public void lambda$new$1() {
+    public void onTextChange() {
         Runnable runnable = this.applyCaption;
         if (runnable != null) {
             runnable.run();
@@ -246,10 +246,9 @@ public class CaptionPhotoViewer extends CaptionContainerView {
             this.hint.setInnerPadding(13, 4, 10, 4);
             this.hint.setIconMargin(0);
             this.hint.setIconTranslate(0.0f, -AndroidUtilities.dp(1.0f));
+        } else if (i <= 0) {
+            return;
         } else {
-            if (i <= 0) {
-                return;
-            }
             replaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString(this.isVideo ? "TimerPeriodVideoSetSeconds" : "TimerPeriodPhotoSetSeconds", i, new Object[0]));
             this.hint.setMultilineText(true);
             HintView2 hintView2 = this.hint;
@@ -317,8 +316,9 @@ public class CaptionPhotoViewer extends CaptionContainerView {
 
     @Override
     protected void afterUpdateShownKeyboard(boolean z) {
+        int i = 0;
         this.timerButton.setVisibility((z || !this.timerVisible) ? 8 : 0);
-        this.addPhotoButton.setVisibility((z || !this.addPhotoVisible) ? 8 : 0);
+        this.addPhotoButton.setVisibility((z || !this.addPhotoVisible) ? 8 : 8);
         if (z) {
             this.timerButton.setVisibility(8);
             this.addPhotoButton.setVisibility(8);

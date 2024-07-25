@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_contacts_importContacts extends TLObject {
     public ArrayList<TLRPC$TL_inputPhoneContact> contacts = new ArrayList<>();
 

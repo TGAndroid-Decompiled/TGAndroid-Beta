@@ -16,7 +16,6 @@ import android.graphics.RenderNode;
 import android.graphics.fonts.Font;
 import android.graphics.text.MeasuredText;
 import android.os.Build;
-
 public class NoClipCanvas extends Canvas {
     public Canvas canvas;
     public boolean disableReject;

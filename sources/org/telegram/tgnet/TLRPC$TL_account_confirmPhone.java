@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_account_confirmPhone extends TLObject {
     public String phone_code;
     public String phone_code_hash;

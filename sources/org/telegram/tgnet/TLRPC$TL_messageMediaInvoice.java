@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messageMediaInvoice extends TLRPC$MessageMedia {
     public TLRPC$WebDocument webPhoto;
 

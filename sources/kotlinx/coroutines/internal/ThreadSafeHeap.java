@@ -5,7 +5,6 @@ import java.util.Arrays;
 import kotlin.jvm.internal.Intrinsics;
 import kotlinx.coroutines.DebugKt;
 import kotlinx.coroutines.internal.ThreadSafeHeapNode;
-
 public class ThreadSafeHeap<T extends ThreadSafeHeapNode & Comparable<? super T>> {
     private volatile int _size = 0;
     private T[] a;
@@ -170,15 +169,15 @@ public class ThreadSafeHeap<T extends ThreadSafeHeapNode & Comparable<? super T>
             T[] tArr2 = (T[]) new ThreadSafeHeapNode[4];
             this.a = tArr2;
             return tArr2;
-        }
-        if (getSize() < tArr.length) {
+        } else if (getSize() >= tArr.length) {
+            Object[] copyOf = Arrays.copyOf(tArr, getSize() * 2);
+            Intrinsics.checkNotNullExpressionValue(copyOf, "copyOf(this, newSize)");
+            T[] tArr3 = (T[]) ((ThreadSafeHeapNode[]) copyOf);
+            this.a = tArr3;
+            return tArr3;
+        } else {
             return tArr;
         }
-        Object[] copyOf = Arrays.copyOf(tArr, getSize() * 2);
-        Intrinsics.checkNotNullExpressionValue(copyOf, "copyOf(this, newSize)");
-        T[] tArr3 = (T[]) ((ThreadSafeHeapNode[]) copyOf);
-        this.a = tArr3;
-        return tArr3;
     }
 
     private final void swap(int i, int i2) {

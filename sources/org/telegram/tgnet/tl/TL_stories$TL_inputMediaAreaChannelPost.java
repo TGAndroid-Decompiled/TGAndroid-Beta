@@ -2,7 +2,6 @@ package org.telegram.tgnet.tl;
 
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLRPC$InputChannel;
-
 public class TL_stories$TL_inputMediaAreaChannelPost extends TL_stories$MediaArea {
     public TLRPC$InputChannel channel;
     public int msg_id;

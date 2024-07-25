@@ -3,7 +3,6 @@ package kotlin.collections;
 import j$.util.Iterator;
 import j$.util.function.Consumer;
 import java.util.Iterator;
-
 public abstract class IntIterator implements Iterator<Integer>, j$.util.Iterator {
     @Override
     public void forEachRemaining(Consumer consumer) {

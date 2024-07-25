@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channels_getAdminedPublicChannels extends TLObject {
     public boolean by_location;
     public boolean check_limit;

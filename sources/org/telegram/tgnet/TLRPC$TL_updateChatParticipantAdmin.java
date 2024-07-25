@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updateChatParticipantAdmin extends TLRPC$Update {
     public long chat_id;
     public boolean is_admin;

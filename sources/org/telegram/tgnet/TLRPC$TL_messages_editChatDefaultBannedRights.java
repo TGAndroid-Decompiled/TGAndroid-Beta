@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_editChatDefaultBannedRights extends TLObject {
     public TLRPC$TL_chatBannedRights banned_rights;
     public TLRPC$InputPeer peer;

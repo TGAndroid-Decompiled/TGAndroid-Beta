@@ -1,7 +1,6 @@
 package org.telegram.ui.Components;
 
 import android.view.View;
-
 public abstract class IntSeekBarAccessibilityDelegate extends SeekBarAccessibilityDelegate {
     protected int getDelta() {
         return 1;

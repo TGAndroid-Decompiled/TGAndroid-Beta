@@ -21,7 +21,6 @@ import org.telegram.messenger.R;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.voip.VoIpSwitchLayout;
-
 @SuppressLint({"ViewConstructor"})
 public class VoIpSwitchLayout extends FrameLayout {
     public int animationDelay;
@@ -124,10 +123,8 @@ public class VoIpSwitchLayout extends FrameLayout {
             this.currentTextView.setVisibility(0);
             this.currentTextView.setText(string);
             this.newTextView.setText(string);
+        } else if (this.newTextView.getText().equals(string) && this.currentTextView.getText().equals(string)) {
         } else {
-            if (this.newTextView.getText().equals(string) && this.currentTextView.getText().equals(string)) {
-                return;
-            }
             this.currentTextView.animate().alpha(0.0f).translationY(-AndroidUtilities.dp(4.0f)).setDuration(140L).setListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {
@@ -204,7 +201,8 @@ public class VoIpSwitchLayout extends FrameLayout {
         VoIpButtonView voIpButtonView = this.voIpButtonView;
         int i2 = R.raw.speaker_to_bt;
         voIpButtonView.unSelectedIcon = new RLottieDrawable(i2, "" + i2, i, i, true, null);
-        this.voIpButtonView.selectedIcon = new RLottieDrawable(i2, "" + i2, i, i, true, null);
+        VoIpButtonView voIpButtonView2 = this.voIpButtonView;
+        voIpButtonView2.selectedIcon = new RLottieDrawable(i2, "" + i2, i, i, true, null);
         this.voIpButtonView.selectedIcon.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
     }
 
@@ -212,7 +210,8 @@ public class VoIpSwitchLayout extends FrameLayout {
         VoIpButtonView voIpButtonView = this.voIpButtonView;
         int i2 = R.raw.bt_to_speaker;
         voIpButtonView.unSelectedIcon = new RLottieDrawable(i2, "" + i2, i, i, true, null);
-        this.voIpButtonView.selectedIcon = new RLottieDrawable(i2, "" + i2, i, i, true, null);
+        VoIpButtonView voIpButtonView2 = this.voIpButtonView;
+        voIpButtonView2.selectedIcon = new RLottieDrawable(i2, "" + i2, i, i, true, null);
         this.voIpButtonView.selectedIcon.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
     }
 
@@ -415,8 +414,9 @@ public class VoIpSwitchLayout extends FrameLayout {
             float height = getHeight() / 2.0f;
             this.backgroundProvider.setLightTranslation(getX() + ((View) getParent()).getX(), getY() + ((View) ((View) getParent()).getParent()).getY());
             if (this.singleIcon != null) {
-                if (this.singleIconBackgroundAlphaPercent > 20) {
-                    this.darkPaint.setAlpha((int) ((r2 * 35) / 100.0f));
+                int i = this.singleIconBackgroundAlphaPercent;
+                if (i > 20) {
+                    this.darkPaint.setAlpha((int) ((i * 35) / 100.0f));
                     this.whiteCirclePaint.setAlpha((int) ((this.singleIconBackgroundAlphaPercent * 255) / 100.0f));
                     canvas.drawCircle(width, height, this.maxRadius, this.whiteCirclePaint);
                     this.singleIcon.draw(canvas, this.maskPaint);
@@ -428,46 +428,45 @@ public class VoIpSwitchLayout extends FrameLayout {
                     canvas.drawCircle(width, height, this.maxRadius, this.backgroundProvider.getRevealPaint());
                 }
                 this.singleIcon.draw(canvas);
-                return;
-            }
-            if (this.selectedIcon == null || this.unSelectedIcon == null) {
-                return;
-            }
-            int i = this.unselectedRadius;
-            int i2 = this.maxRadius;
-            boolean z = i == i2 && this.selectedRadius == 0;
-            int i3 = this.selectedRadius;
-            boolean z2 = i3 == i2 && i == 0;
-            if (i3 == i2 && i > 0 && i != i2) {
-                canvas.drawCircle(width, height, i3, this.whiteCirclePaint);
-                canvas.drawCircle(width, height, this.unselectedRadius, this.maskPaint);
-                this.selectedIcon.setAlpha(255);
-                this.selectedIcon.draw(canvas, this.maskPaint);
-                this.selectedIcon.setAlpha(35);
-                this.selectedIcon.draw(canvas);
-                this.clipPath.reset();
-                this.clipPath.addCircle(width, height, this.unselectedRadius, Path.Direction.CW);
-                canvas.clipPath(this.clipPath);
-                canvas.drawCircle(width, height, this.unselectedRadius, this.maskPaint);
-            }
-            if (z || this.unselectedRadius > 0) {
-                canvas.drawCircle(width, height, this.unselectedRadius, this.backgroundProvider.getLightPaint());
-                if (this.backgroundProvider.isReveal()) {
-                    canvas.drawCircle(width, height, this.unselectedRadius, this.backgroundProvider.getRevealPaint());
+            } else if (this.selectedIcon == null || this.unSelectedIcon == null) {
+            } else {
+                int i2 = this.unselectedRadius;
+                int i3 = this.maxRadius;
+                boolean z = true;
+                boolean z2 = i2 == i3 && this.selectedRadius == 0;
+                int i4 = this.selectedRadius;
+                z = (i4 == i3 && i2 == 0) ? false : false;
+                if (i4 == i3 && i2 > 0 && i2 != i3) {
+                    canvas.drawCircle(width, height, i4, this.whiteCirclePaint);
+                    canvas.drawCircle(width, height, this.unselectedRadius, this.maskPaint);
+                    this.selectedIcon.setAlpha(255);
+                    this.selectedIcon.draw(canvas, this.maskPaint);
+                    this.selectedIcon.setAlpha(35);
+                    this.selectedIcon.draw(canvas);
+                    this.clipPath.reset();
+                    this.clipPath.addCircle(width, height, this.unselectedRadius, Path.Direction.CW);
+                    canvas.clipPath(this.clipPath);
+                    canvas.drawCircle(width, height, this.unselectedRadius, this.maskPaint);
                 }
-                this.unSelectedIcon.draw(canvas);
+                if (z2 || this.unselectedRadius > 0) {
+                    canvas.drawCircle(width, height, this.unselectedRadius, this.backgroundProvider.getLightPaint());
+                    if (this.backgroundProvider.isReveal()) {
+                        canvas.drawCircle(width, height, this.unselectedRadius, this.backgroundProvider.getRevealPaint());
+                    }
+                    this.unSelectedIcon.draw(canvas);
+                }
+                if (z || (this.selectedRadius > 0 && this.unselectedRadius == this.maxRadius)) {
+                    this.clipPath.reset();
+                    this.clipPath.addCircle(width, height, this.selectedRadius, Path.Direction.CW);
+                    canvas.clipPath(this.clipPath);
+                    canvas.drawCircle(width, height, this.selectedRadius, this.whiteCirclePaint);
+                    this.selectedIcon.setAlpha(255);
+                    this.selectedIcon.draw(canvas, this.maskPaint);
+                    this.selectedIcon.setAlpha(35);
+                    this.selectedIcon.draw(canvas);
+                }
+                canvas.restore();
             }
-            if (z2 || (this.selectedRadius > 0 && this.unselectedRadius == this.maxRadius)) {
-                this.clipPath.reset();
-                this.clipPath.addCircle(width, height, this.selectedRadius, Path.Direction.CW);
-                canvas.clipPath(this.clipPath);
-                canvas.drawCircle(width, height, this.selectedRadius, this.whiteCirclePaint);
-                this.selectedIcon.setAlpha(255);
-                this.selectedIcon.draw(canvas, this.maskPaint);
-                this.selectedIcon.setAlpha(35);
-                this.selectedIcon.draw(canvas);
-            }
-            canvas.restore();
         }
 
         private boolean isAnimating() {

@@ -2,7 +2,6 @@ package org.telegram.ui.Stories.recorder;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-
 public class FfmpegAudioWaveformLoader {
     private Utilities.Callback2<short[], Integer> onChunkReceived;
     private volatile boolean running = true;

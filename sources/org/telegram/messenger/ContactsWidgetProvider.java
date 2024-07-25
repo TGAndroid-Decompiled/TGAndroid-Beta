@@ -12,7 +12,6 @@ import android.widget.RemoteViews;
 import java.util.ArrayList;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.LaunchActivity;
-
 public class ContactsWidgetProvider extends AppWidgetProvider {
     private static int getCellsForSize(int i) {
         int i2 = 2;
@@ -63,7 +62,7 @@ public class ContactsWidgetProvider extends AppWidgetProvider {
         int i2;
         ApplicationLoader.postInitApplication();
         int cellsForSize = getCellsForSize(appWidgetManager.getAppWidgetOptions(i).getInt("appWidgetMaxHeight"));
-        Intent intent = new Intent(context, (Class<?>) ContactsWidgetService.class);
+        Intent intent = new Intent(context, ContactsWidgetService.class);
         intent.putExtra("appWidgetId", i);
         intent.setData(Uri.parse(intent.toUri(1)));
         SharedPreferences sharedPreferences = context.getSharedPreferences("shortcut_widget", 0);
@@ -95,7 +94,7 @@ public class ContactsWidgetProvider extends AppWidgetProvider {
         int i4 = R.id.list_view;
         remoteViews.setRemoteAdapter(i, i4, intent);
         remoteViews.setEmptyView(i4, R.id.empty_view);
-        Intent intent2 = new Intent(ApplicationLoader.applicationContext, (Class<?>) LaunchActivity.class);
+        Intent intent2 = new Intent(ApplicationLoader.applicationContext, LaunchActivity.class);
         intent2.setAction("com.tmessages.openchat" + Math.random() + ConnectionsManager.DEFAULT_DATACENTER_ID);
         intent2.addFlags(ConnectionsManager.FileTypeFile);
         intent2.addCategory("android.intent.category.LAUNCHER");

@@ -54,7 +54,6 @@ import org.telegram.ui.Components.EffectsTextView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.NumberPicker;
 import org.telegram.ui.LaunchActivity;
-
 public class BoostDialogs {
     public static void lambda$checkReduceQuantity$13(DialogInterface dialogInterface, int i) {
     }
@@ -107,7 +106,10 @@ public class BoostDialogs {
         if (str.contains("PREMIUM_SUB_ACTIVE_UNTIL_")) {
             String format = LocaleController.getInstance().getFormatterBoostExpired().format(new Date(Long.parseLong(tLRPC$TL_error.text.replace("PREMIUM_SUB_ACTIVE_UNTIL_", "")) * 1000));
             SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString("GiftPremiumActivateErrorText", R.string.GiftPremiumActivateErrorText), Theme.key_undo_cancelColor, 0, runnable);
-            BulletinFactory.of(frameLayout, resourcesProvider).createSimpleBulletin(R.raw.chats_infotip, LocaleController.getString("GiftPremiumActivateErrorTitle", R.string.GiftPremiumActivateErrorTitle), AndroidUtilities.replaceCharSequence("%1$s", replaceSingleTag, AndroidUtilities.replaceTags("**" + format + "**"))).show();
+            BulletinFactory of = BulletinFactory.of(frameLayout, resourcesProvider);
+            int i = R.raw.chats_infotip;
+            String string = LocaleController.getString("GiftPremiumActivateErrorTitle", R.string.GiftPremiumActivateErrorTitle);
+            of.createSimpleBulletin(i, string, AndroidUtilities.replaceCharSequence("%1$s", replaceSingleTag, AndroidUtilities.replaceTags("**" + format + "**"))).show();
             try {
                 frameLayout.performHapticFeedback(3, 2);
                 return;
@@ -372,11 +374,10 @@ public class BoostDialogs {
             calendar.set(13, 0);
             calendar.set(14, 0);
             calendar.set(11, 0);
-            int timeInMillis = (int) ((j - calendar.getTimeInMillis()) / 86400000);
             calendar.setTimeInMillis(j);
             numberPicker3.setValue(calendar.get(12) / 5);
             numberPicker2.setValue(calendar.get(11));
-            numberPicker.setValue(timeInMillis);
+            numberPicker.setValue((int) ((j - calendar.getTimeInMillis()) / 86400000));
             onValueChangeListener.onValueChange(numberPicker, numberPicker.getValue(), numberPicker.getValue());
             onValueChangeListener.onValueChange(numberPicker2, numberPicker2.getValue(), numberPicker2.getValue());
         }
@@ -504,68 +505,68 @@ public class BoostDialogs {
     }
 
     public static boolean checkReduceUsers(Context context, Theme.ResourcesProvider resourcesProvider, List<TLRPC$TL_premiumGiftCodeOption> list, TLRPC$TL_premiumGiftCodeOption tLRPC$TL_premiumGiftCodeOption) {
-        if (tLRPC$TL_premiumGiftCodeOption.store_product != null) {
-            return false;
-        }
-        ArrayList arrayList = new ArrayList();
-        for (TLRPC$TL_premiumGiftCodeOption tLRPC$TL_premiumGiftCodeOption2 : list) {
-            if (tLRPC$TL_premiumGiftCodeOption2.months == tLRPC$TL_premiumGiftCodeOption.months && tLRPC$TL_premiumGiftCodeOption2.store_product != null) {
-                arrayList.add(Integer.valueOf(tLRPC$TL_premiumGiftCodeOption2.users));
+        if (tLRPC$TL_premiumGiftCodeOption.store_product == null) {
+            ArrayList arrayList = new ArrayList();
+            for (TLRPC$TL_premiumGiftCodeOption tLRPC$TL_premiumGiftCodeOption2 : list) {
+                if (tLRPC$TL_premiumGiftCodeOption2.months == tLRPC$TL_premiumGiftCodeOption.months && tLRPC$TL_premiumGiftCodeOption2.store_product != null) {
+                    arrayList.add(Integer.valueOf(tLRPC$TL_premiumGiftCodeOption2.users));
+                }
             }
+            String join = TextUtils.join(", ", arrayList);
+            int i = tLRPC$TL_premiumGiftCodeOption.users;
+            AlertDialog.Builder builder = new AlertDialog.Builder(context, resourcesProvider);
+            builder.setTitle(LocaleController.getString("BoostingReduceQuantity", R.string.BoostingReduceQuantity));
+            builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingReduceUsersTextPlural", i, join)));
+            builder.setPositiveButton(LocaleController.getString("OK", R.string.OK), new DialogInterface.OnClickListener() {
+                @Override
+                public final void onClick(DialogInterface dialogInterface, int i2) {
+                    BoostDialogs.lambda$checkReduceUsers$11(dialogInterface, i2);
+                }
+            });
+            builder.show();
+            return true;
         }
-        String join = TextUtils.join(", ", arrayList);
-        int i = tLRPC$TL_premiumGiftCodeOption.users;
-        AlertDialog.Builder builder = new AlertDialog.Builder(context, resourcesProvider);
-        builder.setTitle(LocaleController.getString("BoostingReduceQuantity", R.string.BoostingReduceQuantity));
-        builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingReduceUsersTextPlural", i, join)));
-        builder.setPositiveButton(LocaleController.getString("OK", R.string.OK), new DialogInterface.OnClickListener() {
-            @Override
-            public final void onClick(DialogInterface dialogInterface, int i2) {
-                BoostDialogs.lambda$checkReduceUsers$11(dialogInterface, i2);
-            }
-        });
-        builder.show();
-        return true;
+        return false;
     }
 
     public static boolean checkReduceQuantity(List<Integer> list, Context context, Theme.ResourcesProvider resourcesProvider, List<TLRPC$TL_premiumGiftCodeOption> list2, TLRPC$TL_premiumGiftCodeOption tLRPC$TL_premiumGiftCodeOption, final Utilities.Callback<TLRPC$TL_premiumGiftCodeOption> callback) {
-        if (tLRPC$TL_premiumGiftCodeOption.store_product != null) {
-            return false;
+        if (tLRPC$TL_premiumGiftCodeOption.store_product == null) {
+            ArrayList<TLRPC$TL_premiumGiftCodeOption> arrayList = new ArrayList();
+            for (TLRPC$TL_premiumGiftCodeOption tLRPC$TL_premiumGiftCodeOption2 : list2) {
+                if (tLRPC$TL_premiumGiftCodeOption2.months == tLRPC$TL_premiumGiftCodeOption.months && tLRPC$TL_premiumGiftCodeOption2.store_product != null && list.contains(Integer.valueOf(tLRPC$TL_premiumGiftCodeOption2.users))) {
+                    arrayList.add(tLRPC$TL_premiumGiftCodeOption2);
+                }
+            }
+            final TLRPC$TL_premiumGiftCodeOption tLRPC$TL_premiumGiftCodeOption3 = (TLRPC$TL_premiumGiftCodeOption) arrayList.get(0);
+            for (TLRPC$TL_premiumGiftCodeOption tLRPC$TL_premiumGiftCodeOption4 : arrayList) {
+                int i = tLRPC$TL_premiumGiftCodeOption.users;
+                int i2 = tLRPC$TL_premiumGiftCodeOption4.users;
+                if (i > i2 && i2 > tLRPC$TL_premiumGiftCodeOption3.users) {
+                    tLRPC$TL_premiumGiftCodeOption3 = tLRPC$TL_premiumGiftCodeOption4;
+                }
+            }
+            String formatPluralString = LocaleController.formatPluralString("GiftMonths", tLRPC$TL_premiumGiftCodeOption3.months, new Object[0]);
+            int i3 = tLRPC$TL_premiumGiftCodeOption.users;
+            int i4 = tLRPC$TL_premiumGiftCodeOption3.users;
+            AlertDialog.Builder builder = new AlertDialog.Builder(context, resourcesProvider);
+            builder.setTitle(LocaleController.getString("BoostingReduceQuantity", R.string.BoostingReduceQuantity));
+            builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingReduceQuantityTextPlural", i3, formatPluralString, Integer.valueOf(i4))));
+            builder.setPositiveButton(LocaleController.getString("Reduce", R.string.Reduce), new DialogInterface.OnClickListener() {
+                @Override
+                public final void onClick(DialogInterface dialogInterface, int i5) {
+                    Utilities.Callback.this.run(tLRPC$TL_premiumGiftCodeOption3);
+                }
+            });
+            builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), new DialogInterface.OnClickListener() {
+                @Override
+                public final void onClick(DialogInterface dialogInterface, int i5) {
+                    BoostDialogs.lambda$checkReduceQuantity$13(dialogInterface, i5);
+                }
+            });
+            builder.show();
+            return true;
         }
-        ArrayList<TLRPC$TL_premiumGiftCodeOption> arrayList = new ArrayList();
-        for (TLRPC$TL_premiumGiftCodeOption tLRPC$TL_premiumGiftCodeOption2 : list2) {
-            if (tLRPC$TL_premiumGiftCodeOption2.months == tLRPC$TL_premiumGiftCodeOption.months && tLRPC$TL_premiumGiftCodeOption2.store_product != null && list.contains(Integer.valueOf(tLRPC$TL_premiumGiftCodeOption2.users))) {
-                arrayList.add(tLRPC$TL_premiumGiftCodeOption2);
-            }
-        }
-        final TLRPC$TL_premiumGiftCodeOption tLRPC$TL_premiumGiftCodeOption3 = (TLRPC$TL_premiumGiftCodeOption) arrayList.get(0);
-        for (TLRPC$TL_premiumGiftCodeOption tLRPC$TL_premiumGiftCodeOption4 : arrayList) {
-            int i = tLRPC$TL_premiumGiftCodeOption.users;
-            int i2 = tLRPC$TL_premiumGiftCodeOption4.users;
-            if (i > i2 && i2 > tLRPC$TL_premiumGiftCodeOption3.users) {
-                tLRPC$TL_premiumGiftCodeOption3 = tLRPC$TL_premiumGiftCodeOption4;
-            }
-        }
-        String formatPluralString = LocaleController.formatPluralString("GiftMonths", tLRPC$TL_premiumGiftCodeOption3.months, new Object[0]);
-        int i3 = tLRPC$TL_premiumGiftCodeOption.users;
-        int i4 = tLRPC$TL_premiumGiftCodeOption3.users;
-        AlertDialog.Builder builder = new AlertDialog.Builder(context, resourcesProvider);
-        builder.setTitle(LocaleController.getString("BoostingReduceQuantity", R.string.BoostingReduceQuantity));
-        builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingReduceQuantityTextPlural", i3, formatPluralString, Integer.valueOf(i4))));
-        builder.setPositiveButton(LocaleController.getString("Reduce", R.string.Reduce), new DialogInterface.OnClickListener() {
-            @Override
-            public final void onClick(DialogInterface dialogInterface, int i5) {
-                Utilities.Callback.this.run(tLRPC$TL_premiumGiftCodeOption3);
-            }
-        });
-        builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), new DialogInterface.OnClickListener() {
-            @Override
-            public final void onClick(DialogInterface dialogInterface, int i5) {
-                BoostDialogs.lambda$checkReduceQuantity$13(dialogInterface, i5);
-            }
-        });
-        builder.show();
-        return true;
+        return false;
     }
 
     public static void showAbout(boolean z, String str, long j, TLRPC$TL_payments_giveawayInfo tLRPC$TL_payments_giveawayInfo, TLRPC$TL_messageMediaGiveaway tLRPC$TL_messageMediaGiveaway, Context context, Theme.ResourcesProvider resourcesProvider) {
@@ -848,11 +849,11 @@ public class BoostDialogs {
             return "";
         }
         String forwardedName = messageObject.getForwardedName();
-        if (forwardedName != null) {
-            return forwardedName;
+        if (forwardedName == null) {
+            TLRPC$Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-MessageObject.getPeerId(messageObject.messageOwner.peer_id)));
+            return chat != null ? chat.title : "";
         }
-        TLRPC$Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-MessageObject.getPeerId(messageObject.messageOwner.peer_id)));
-        return chat != null ? chat.title : "";
+        return forwardedName;
     }
 
     public static void showBulletinAbout(final MessageObject messageObject) {

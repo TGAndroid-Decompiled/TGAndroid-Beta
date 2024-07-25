@@ -964,8 +964,6 @@
     <string name="ChooseTheme">اختر نمطًا</string>
     <string name="ChooseYourLanguage">اختر لغتك</string>
     <string name="ChooseYourLanguageOther">أخرى</string>
-    <string name="ChromeCustomTabs">المتصفح الداخلي</string>
-    <string name="ChromeCustomTabsInfo">فتح الروابط الخارجية داخل التطبيق</string>
     <string name="ClearButton">مسح</string>
     <string name="ClearCache">مسح الذاكرة المؤقتة</string>
     <string name="ClearCacheFewChatsTitle">مسح %1$s من الذاكرة المؤقتة</string>

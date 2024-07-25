@@ -14,7 +14,6 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BlurringShader;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
-
 @SuppressLint({"ViewConstructor"})
 public class StickerCutOutBtn extends ButtonWithCounterView {
     protected final BlurringShader.StoryBlurDrawer blurDrawer;
@@ -165,7 +164,7 @@ public class StickerCutOutBtn extends ButtonWithCounterView {
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
+    public void onMeasure(int i, int i2) {
         if (this.wrapContent) {
             i = View.MeasureSpec.makeMeasureSpec(getPaddingLeft() + ((int) this.text.getCurrentWidth()) + getPaddingRight(), 1073741824);
         }

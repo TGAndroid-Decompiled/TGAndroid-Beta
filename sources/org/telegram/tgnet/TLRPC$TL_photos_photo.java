@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_photos_photo extends TLObject {
     public TLRPC$Photo photo;
     public ArrayList<TLRPC$User> users = new ArrayList<>();

@@ -15,7 +15,6 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.ui.PhotoViewer;
 import org.webrtc.MediaStreamTrack;
-
 public class EarListener implements SensorEventListener {
     private Sensor accelerometerSensor;
     private boolean accelerometerVertical;
@@ -331,6 +330,7 @@ public class EarListener implements SensorEventListener {
     }
 
     protected boolean forbidRaiseToListen() {
+        AudioDeviceInfo[] devices;
         try {
             if (Build.VERSION.SDK_INT < 23) {
                 return this.audioManager.isWiredHeadsetOn() || this.audioManager.isBluetoothA2dpOn() || this.audioManager.isBluetoothScoOn();

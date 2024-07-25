@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_theme extends TLRPC$Theme {
     public long access_hash;
     public boolean creator;

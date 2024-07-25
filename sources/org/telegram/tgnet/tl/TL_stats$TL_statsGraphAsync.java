@@ -1,7 +1,6 @@
 package org.telegram.tgnet.tl;
 
 import org.telegram.tgnet.AbstractSerializedData;
-
 public class TL_stats$TL_statsGraphAsync extends TL_stats$StatsGraph {
     public String token;
 

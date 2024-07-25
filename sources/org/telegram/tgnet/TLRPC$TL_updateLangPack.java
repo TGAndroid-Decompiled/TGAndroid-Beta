@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updateLangPack extends TLRPC$Update {
     public TLRPC$TL_langPackDifference difference;
 

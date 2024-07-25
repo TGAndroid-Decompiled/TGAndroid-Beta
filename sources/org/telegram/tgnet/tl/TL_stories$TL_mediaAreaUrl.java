@@ -1,7 +1,6 @@
 package org.telegram.tgnet.tl;
 
 import org.telegram.tgnet.AbstractSerializedData;
-
 public class TL_stories$TL_mediaAreaUrl extends TL_stories$MediaArea {
     public String url;
 

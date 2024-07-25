@@ -51,7 +51,6 @@ import org.telegram.ui.Components.LinkPath;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.TypefaceSpan;
-
 public class HintView2 extends View {
     private float arrowHalfWidth;
     private float arrowHeight;
@@ -608,9 +607,8 @@ public class HintView2 extends View {
                 StaticLayout staticLayout = this.textLayout;
                 if (staticLayout == null) {
                     return;
-                } else {
-                    charSequence = staticLayout.getText();
                 }
+                charSequence = staticLayout.getText();
             }
             StaticLayout staticLayout2 = this.textLayout;
             if (staticLayout2 == null || staticLayout2.getWidth() != textMaxWidth) {
@@ -801,10 +799,8 @@ public class HintView2 extends View {
             }
             this.closeButtonDrawable.setAlpha((int) (f7 * 255.0f));
             Drawable drawable3 = this.closeButtonDrawable;
-            int intrinsicWidth = (int) ((this.bounds.right - (this.innerPadding.right * 0.66f)) - drawable3.getIntrinsicWidth());
-            int centerY = (int) (this.bounds.centerY() - (this.closeButtonDrawable.getIntrinsicHeight() / 2.0f));
             RectF rectF5 = this.bounds;
-            drawable3.setBounds(intrinsicWidth, centerY, (int) (rectF5.right - (this.innerPadding.right * 0.66f)), (int) (rectF5.centerY() + (this.closeButtonDrawable.getIntrinsicHeight() / 2.0f)));
+            drawable3.setBounds((int) ((this.bounds.right - (this.innerPadding.right * 0.66f)) - drawable3.getIntrinsicWidth()), (int) (this.bounds.centerY() - (this.closeButtonDrawable.getIntrinsicHeight() / 2.0f)), (int) (rectF5.right - (this.innerPadding.right * 0.66f)), (int) (rectF5.centerY() + (this.closeButtonDrawable.getIntrinsicHeight() / 2.0f)));
             this.closeButtonDrawable.draw(canvas);
         }
         canvas.restore();
@@ -856,7 +852,8 @@ public class HintView2 extends View {
             this.path.lineTo(f9 - f10, clamp - AndroidUtilities.dp(1.0f));
             this.path.lineTo(this.bounds.left, clamp - this.arrowHalfWidth);
             this.path.lineTo(this.bounds.left, (clamp - this.arrowHalfWidth) - AndroidUtilities.dp(2.0f));
-            this.boundsWithArrow.left = (int) (r10.left - this.arrowHeight);
+            Rect rect2 = this.boundsWithArrow;
+            rect2.left = (int) (rect2.left - this.arrowHeight);
         }
         Path path2 = this.path;
         RectF rectF3 = this.bounds;
@@ -870,7 +867,8 @@ public class HintView2 extends View {
             this.path.lineTo(AndroidUtilities.dp(1.0f) + clamp, this.bounds.top - this.arrowHeight);
             this.path.lineTo(this.arrowHalfWidth + clamp, this.bounds.top);
             this.path.lineTo(this.arrowHalfWidth + clamp + AndroidUtilities.dp(2.0f), this.bounds.top);
-            this.boundsWithArrow.top = (int) (r10.top - this.arrowHeight);
+            Rect rect3 = this.boundsWithArrow;
+            rect3.top = (int) (rect3.top - this.arrowHeight);
         }
         Path path3 = this.path;
         RectF rectF4 = this.bounds;
@@ -886,7 +884,8 @@ public class HintView2 extends View {
             this.path.lineTo(f11 + f12, AndroidUtilities.dp(1.0f) + clamp);
             this.path.lineTo(this.bounds.right, this.arrowHalfWidth + clamp);
             this.path.lineTo(this.bounds.right, this.arrowHalfWidth + clamp + AndroidUtilities.dp(2.0f));
-            this.boundsWithArrow.right = (int) (r10.right + this.arrowHeight);
+            Rect rect4 = this.boundsWithArrow;
+            rect4.right = (int) (rect4.right + this.arrowHeight);
         }
         Path path4 = this.path;
         RectF rectF5 = this.bounds;
@@ -900,7 +899,8 @@ public class HintView2 extends View {
             this.path.lineTo(clamp - AndroidUtilities.dp(1.0f), this.bounds.bottom + this.arrowHeight);
             this.path.lineTo(clamp - this.arrowHalfWidth, this.bounds.bottom);
             this.path.lineTo((clamp - this.arrowHalfWidth) - AndroidUtilities.dp(2.0f), this.bounds.bottom);
-            this.boundsWithArrow.bottom = (int) (r10.bottom + this.arrowHeight);
+            Rect rect5 = this.boundsWithArrow;
+            rect5.bottom = (int) (rect5.bottom + this.arrowHeight);
         }
         this.path.close();
         this.pathSet = true;
@@ -931,11 +931,10 @@ public class HintView2 extends View {
             Drawable drawable = this.selectorDrawable;
             if (drawable != null && Build.VERSION.SDK_INT >= 21) {
                 drawable.setHotspot(x, y);
-                this.selectorDrawable.setState(new int[]{android.R.attr.state_pressed, android.R.attr.state_enabled});
+                this.selectorDrawable.setState(new int[]{16842919, 16842910});
             }
             return true;
-        }
-        if (motionEvent.getAction() == 1) {
+        } else if (motionEvent.getAction() == 1) {
             if (hasOnClickListeners()) {
                 performClick();
             } else if (this.hideByTouch) {
@@ -947,16 +946,16 @@ public class HintView2 extends View {
                 drawable2.setState(new int[0]);
             }
             return true;
-        }
-        if (motionEvent.getAction() != 3) {
+        } else if (motionEvent.getAction() == 3) {
+            this.bounce.setPressed(false);
+            Drawable drawable3 = this.selectorDrawable;
+            if (drawable3 != null) {
+                drawable3.setState(new int[0]);
+            }
+            return true;
+        } else {
             return false;
         }
-        this.bounce.setPressed(false);
-        Drawable drawable3 = this.selectorDrawable;
-        if (drawable3 != null) {
-            drawable3.setState(new int[0]);
-        }
-        return true;
     }
 
     private boolean checkTouchLinks(MotionEvent motionEvent) {
@@ -1024,13 +1023,12 @@ public class HintView2 extends View {
         if (staticLayout == null) {
             return null;
         }
-        int i3 = (int) (i - this.textX);
-        int i4 = (int) (i2 - this.textY);
-        int lineForVertical = staticLayout.getLineForVertical(i4);
-        float f = i3;
+        int i3 = (int) (i2 - this.textY);
+        int lineForVertical = staticLayout.getLineForVertical(i3);
+        float f = (int) (i - this.textX);
         int offsetForHorizontal = this.textLayout.getOffsetForHorizontal(lineForVertical, f);
         float lineLeft = this.textLayout.getLineLeft(lineForVertical);
-        if (lineLeft <= f && lineLeft + this.textLayout.getLineWidth(lineForVertical) >= f && i4 >= 0 && i4 <= this.textLayout.getHeight()) {
+        if (lineLeft <= f && lineLeft + this.textLayout.getLineWidth(lineForVertical) >= f && i3 >= 0 && i3 <= this.textLayout.getHeight()) {
             ClickableSpan[] clickableSpanArr = (ClickableSpan[]) new SpannableString(this.textLayout.getText()).getSpans(offsetForHorizontal, offsetForHorizontal, ClickableSpan.class);
             if (clickableSpanArr.length != 0 && !AndroidUtilities.isAccessibilityScreenReaderEnabled()) {
                 return clickableSpanArr[0];

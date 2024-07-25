@@ -48,7 +48,6 @@ import org.telegram.ui.Components.Premium.boosts.cells.ParticipantsTypeCell;
 import org.telegram.ui.Components.Premium.boosts.cells.SwitcherCell;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SlideChooseView;
-
 public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView implements SelectorBottomSheet.SelectedObjectsListener {
     private ActionBtnCell actionBtn;
     private ActionListener actionListener;
@@ -236,9 +235,7 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
             }
             this.selectedParticipantsType = selectedType2;
             updateRows(false, false);
-            return;
-        }
-        if (view instanceof DurationCell) {
+        } else if (view instanceof DurationCell) {
             this.selectedMonths = ((TLRPC$TL_premiumGiftCodeOption) ((DurationCell) view).getGifCode()).months;
             updateRows(false, false);
             this.adapter.notifyAllVisibleTextDividers();
@@ -249,10 +246,8 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
                     BoostViaGiftsBottomSheet.this.lambda$new$1(z2, i2);
                 }
             }, this.resourcesProvider);
+        } else if (!(view instanceof AddChannelCell) || (actionListener = this.actionListener) == null) {
         } else {
-            if (!(view instanceof AddChannelCell) || (actionListener = this.actionListener) == null) {
-                return;
-            }
             actionListener.onAddChat(this.selectedChats);
         }
     }

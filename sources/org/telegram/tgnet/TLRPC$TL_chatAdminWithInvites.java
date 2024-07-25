@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_chatAdminWithInvites extends TLObject {
     public long admin_id;
     public int invites_count;

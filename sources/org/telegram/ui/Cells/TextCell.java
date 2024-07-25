@@ -29,7 +29,6 @@ import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.Switch;
 import org.telegram.ui.FilterCreateActivity;
 import org.telegram.ui.PeerColorActivity;
-
 public class TextCell extends FrameLayout {
     private boolean attached;
     private int changeProgressStartDelay;
@@ -340,10 +339,10 @@ public class TextCell extends FrameLayout {
     public void setLockLevel(boolean z, int i) {
         if (i <= 0) {
             this.textView.setRightDrawable((Drawable) null);
-        } else {
-            this.textView.setRightDrawable(new PeerColorActivity.LevelLock(getContext(), z, i, this.resourcesProvider));
-            this.textView.setDrawablePadding(AndroidUtilities.dp(6.0f));
+            return;
         }
+        this.textView.setRightDrawable(new PeerColorActivity.LevelLock(getContext(), z, i, this.resourcesProvider));
+        this.textView.setDrawablePadding(AndroidUtilities.dp(6.0f));
     }
 
     public void setTextAndIcon(CharSequence charSequence, int i, boolean z) {
@@ -368,10 +367,10 @@ public class TextCell extends FrameLayout {
         }
     }
 
-    public void setTextAndIcon(String str, Drawable drawable, boolean z) {
+    public void setTextAndIcon(CharSequence charSequence, Drawable drawable, boolean z) {
         this.offsetFromImage = 71;
         this.imageLeft = 18;
-        this.textView.setText(str);
+        this.textView.setText(charSequence);
         this.textView.setRightDrawable((Drawable) null);
         AnimatedTextView animatedTextView = this.valueTextView;
         this.valueText = null;
@@ -950,8 +949,8 @@ public class TextCell extends FrameLayout {
         if (!TextUtils.isEmpty(charSequence)) {
             this.subtitleView.setVisibility(0);
             this.subtitleView.setText(charSequence);
-        } else {
-            this.subtitleView.setVisibility(8);
+            return;
         }
+        this.subtitleView.setVisibility(8);
     }
 }

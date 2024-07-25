@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_messages_getScheduledMessages extends TLObject {
     public ArrayList<Integer> id = new ArrayList<>();
     public TLRPC$InputPeer peer;

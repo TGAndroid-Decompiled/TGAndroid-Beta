@@ -46,7 +46,6 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.MotionBackgroundDrawable;
 import org.telegram.ui.Components.voip.PrivateVideoPreviewDialogNew;
 import org.webrtc.RendererCommon;
-
 @TargetApi(21)
 public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implements VoIPService.StateListener {
     private ActionBar actionBar;
@@ -474,7 +473,8 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
 
     public void lambda$new$3(ValueAnimator valueAnimator) {
         this.openProgress2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.positiveButton.getLayoutParams().width = AndroidUtilities.dp(52.0f) + ((int) (((AndroidUtilities.displaySize.x - AndroidUtilities.dp(36.0f)) - AndroidUtilities.dp(52.0f)) * this.openProgress2));
+        int dp = (AndroidUtilities.displaySize.x - AndroidUtilities.dp(36.0f)) - AndroidUtilities.dp(52.0f);
+        this.positiveButton.getLayoutParams().width = AndroidUtilities.dp(52.0f) + ((int) (dp * this.openProgress2));
         this.positiveButton.requestLayout();
     }
 
@@ -486,7 +486,8 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
         }
         Bitmap bitmap = null;
         try {
-            bitmap = BitmapFactory.decodeFile(new File(ApplicationLoader.getFilesDirFixed(), "cthumb" + this.visibleCameraPage + ".jpg").getAbsolutePath());
+            File filesDirFixed = ApplicationLoader.getFilesDirFixed();
+            bitmap = BitmapFactory.decodeFile(new File(filesDirFixed, "cthumb" + this.visibleCameraPage + ".jpg").getAbsolutePath());
         } catch (Throwable unused) {
         }
         if (bitmap != null && bitmap.getPixel(0, 0) != 0) {
@@ -498,10 +499,10 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
             imageView.setVisibility(0);
             imageView.setAlpha(0.0f);
             imageView.animate().alpha(1.0f).setDuration(250L).start();
-        } else {
-            imageView.setAlpha(1.0f);
-            imageView.setVisibility(0);
+            return;
         }
+        imageView.setAlpha(1.0f);
+        imageView.setVisibility(0);
     }
 
     public void setCurrentPage(final int i, boolean z) {
@@ -630,13 +631,12 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
         if (this.closeProgress > 0.0f) {
             int[] floatingViewLocation = getFloatingViewLocation();
             float f = this.closeProgress;
-            int i3 = (int) (floatingViewLocation[0] * f);
-            int i4 = (int) (floatingViewLocation[1] * f);
-            int i5 = floatingViewLocation[2];
-            float f2 = (i5 + ((r7 - i5) * (1.0f - f))) / AndroidUtilities.displaySize.x;
+            int i3 = floatingViewLocation[2];
+            int i4 = AndroidUtilities.displaySize.x;
+            float f2 = (i3 + ((i4 - i3) * (1.0f - f))) / i4;
             this.clipPath.reset();
             this.clipPath.addRoundRect(0.0f, 0.0f, getWidth() * f2, getHeight() * f2, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), Path.Direction.CW);
-            canvas.translate(i3, i4);
+            canvas.translate((int) (floatingViewLocation[0] * f), (int) (floatingViewLocation[1] * f));
             canvas.clipPath(this.clipPath);
             canvas.scale(f2, f2);
         }
@@ -744,7 +744,8 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
 
     public void lambda$dismiss$7(ValueAnimator valueAnimator) {
         this.openProgress2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.positiveButton.getLayoutParams().width = AndroidUtilities.dp(52.0f) + ((int) (((AndroidUtilities.displaySize.x - AndroidUtilities.dp(36.0f)) - AndroidUtilities.dp(52.0f)) * this.openProgress2));
+        int dp = (AndroidUtilities.displaySize.x - AndroidUtilities.dp(36.0f)) - AndroidUtilities.dp(52.0f);
+        this.positiveButton.getLayoutParams().width = AndroidUtilities.dp(52.0f) + ((int) (dp * this.openProgress2));
         this.positiveButton.requestLayout();
     }
 
@@ -842,7 +843,8 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
                             createBitmap.recycle();
                         }
                         Utilities.blurBitmap(createScaledBitmap, 7, 1, createScaledBitmap.getWidth(), createScaledBitmap.getHeight(), createScaledBitmap.getRowBytes());
-                        FileOutputStream fileOutputStream = new FileOutputStream(new File(ApplicationLoader.getFilesDirFixed(), "cthumb" + this.visibleCameraPage + ".jpg"));
+                        File filesDirFixed = ApplicationLoader.getFilesDirFixed();
+                        FileOutputStream fileOutputStream = new FileOutputStream(new File(filesDirFixed, "cthumb" + this.visibleCameraPage + ".jpg"));
                         createScaledBitmap.compress(Bitmap.CompressFormat.JPEG, 87, fileOutputStream);
                         fileOutputStream.close();
                         View findViewWithTag = this.viewPager.findViewWithTag("image_stab");

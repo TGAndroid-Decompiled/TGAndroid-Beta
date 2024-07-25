@@ -4,16 +4,17 @@ import java.util.ArrayList;
 import org.telegram.messenger.FileLoaderPriorityQueue;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LiteMode;
-
 public abstract class TLRPC$User extends TLObject {
     public long access_hash;
     public boolean apply_min_photo;
     public boolean attach_menu_enabled;
     public boolean bot;
+    public int bot_active_users;
     public boolean bot_attach_menu;
     public boolean bot_business;
     public boolean bot_can_edit;
     public boolean bot_chat_history;
+    public boolean bot_has_main_app;
     public int bot_info_version;
     public boolean bot_inline_geo;
     public String bot_inline_placeholder;
@@ -54,10 +55,13 @@ public abstract class TLRPC$User extends TLObject {
     public ArrayList<TLRPC$TL_username> usernames = new ArrayList<>();
 
     public static TLRPC$User TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        TLRPC$User tLRPC$User;
+        TLRPC$User tLRPC$TL_user;
         switch (i) {
+            case -2093920310:
+                tLRPC$TL_user = new TLRPC$TL_user();
+                break;
             case -1885878744:
-                tLRPC$User = new TLRPC$User() {
+                tLRPC$TL_user = new TLRPC$User() {
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -258,7 +262,7 @@ public abstract class TLRPC$User extends TLObject {
                 };
                 break;
             case -1820043071:
-                tLRPC$User = new TLRPC$TL_user() {
+                tLRPC$TL_user = new TLRPC$TL_user() {
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -405,7 +409,7 @@ public abstract class TLRPC$User extends TLObject {
                 };
                 break;
             case -1414139616:
-                tLRPC$User = new TLRPC$User() {
+                tLRPC$TL_user = new TLRPC$User() {
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -620,7 +624,7 @@ public abstract class TLRPC$User extends TLObject {
                 };
                 break;
             case -1298475060:
-                tLRPC$User = new TLRPC$TL_userDeleted_old2() {
+                tLRPC$TL_user = new TLRPC$TL_userDeleted_old2() {
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.id = abstractSerializedData2.readInt32(z2);
@@ -638,10 +642,10 @@ public abstract class TLRPC$User extends TLObject {
                 };
                 break;
             case -894214632:
-                tLRPC$User = new TLRPC$TL_userContact_old2();
+                tLRPC$TL_user = new TLRPC$TL_userContact_old2();
                 break;
             case -787638374:
-                tLRPC$User = new TLRPC$TL_user() {
+                tLRPC$TL_user = new TLRPC$TL_user() {
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -751,16 +755,16 @@ public abstract class TLRPC$User extends TLObject {
                 };
                 break;
             case -742634630:
-                tLRPC$User = new TLRPC$TL_userEmpty();
+                tLRPC$TL_user = new TLRPC$TL_userEmpty();
                 break;
             case -704549510:
-                tLRPC$User = new TLRPC$TL_userDeleted_old2();
+                tLRPC$TL_user = new TLRPC$TL_userDeleted_old2();
                 break;
             case -640891665:
-                tLRPC$User = new TLRPC$TL_userRequest_old2();
+                tLRPC$TL_user = new TLRPC$TL_userRequest_old2();
                 break;
             case -346018011:
-                tLRPC$User = new TLRPC$TL_user() {
+                tLRPC$TL_user = new TLRPC$TL_user() {
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -992,7 +996,7 @@ public abstract class TLRPC$User extends TLObject {
                 };
                 break;
             case -218397927:
-                tLRPC$User = new TLRPC$TL_userContact_old2() {
+                tLRPC$TL_user = new TLRPC$TL_userContact_old2() {
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.id = abstractSerializedData2.readInt32(z2);
@@ -1018,13 +1022,13 @@ public abstract class TLRPC$User extends TLObject {
                 };
                 break;
             case 123533224:
-                tLRPC$User = new TLRPC$TL_userForeign_old2();
+                tLRPC$TL_user = new TLRPC$TL_userForeign_old2();
                 break;
             case 476112392:
-                tLRPC$User = new TLRPC$TL_userSelf_old3();
+                tLRPC$TL_user = new TLRPC$TL_userSelf_old3();
                 break;
             case 537022650:
-                tLRPC$User = new TLRPC$TL_userEmpty() {
+                tLRPC$TL_user = new TLRPC$TL_userEmpty() {
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.id = abstractSerializedData2.readInt32(z2);
@@ -1038,10 +1042,246 @@ public abstract class TLRPC$User extends TLObject {
                 };
                 break;
             case 559694904:
-                tLRPC$User = new TLRPC$TL_user();
+                tLRPC$TL_user = new TLRPC$TL_user() {
+                    @Override
+                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                        int readInt32 = abstractSerializedData2.readInt32(z2);
+                        this.flags = readInt32;
+                        this.self = (readInt32 & 1024) != 0;
+                        this.contact = (readInt32 & 2048) != 0;
+                        this.mutual_contact = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
+                        this.deleted = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0;
+                        this.bot = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0;
+                        this.bot_chat_history = (32768 & readInt32) != 0;
+                        this.bot_nochats = (65536 & readInt32) != 0;
+                        this.verified = (131072 & readInt32) != 0;
+                        this.restricted = (readInt32 & 262144) != 0;
+                        this.min = (1048576 & readInt32) != 0;
+                        this.bot_inline_geo = (2097152 & readInt32) != 0;
+                        this.support = (8388608 & readInt32) != 0;
+                        this.scam = (16777216 & readInt32) != 0;
+                        this.apply_min_photo = (33554432 & readInt32) != 0;
+                        this.fake = (67108864 & readInt32) != 0;
+                        this.bot_attach_menu = (134217728 & readInt32) != 0;
+                        this.premium = (268435456 & readInt32) != 0;
+                        this.attach_menu_enabled = (readInt32 & 536870912) != 0;
+                        int readInt322 = abstractSerializedData2.readInt32(z2);
+                        this.flags2 = readInt322;
+                        this.bot_can_edit = (readInt322 & 2) != 0;
+                        this.close_friend = (readInt322 & 4) != 0;
+                        this.stories_hidden = (readInt322 & 8) != 0;
+                        this.stories_unavailable = (readInt322 & 16) != 0;
+                        this.contact_require_premium = (readInt322 & 1024) != 0;
+                        this.bot_business = (readInt322 & 2048) != 0;
+                        this.id = abstractSerializedData2.readInt64(z2);
+                        if ((this.flags & 1) != 0) {
+                            this.access_hash = abstractSerializedData2.readInt64(z2);
+                        }
+                        if ((this.flags & 2) != 0) {
+                            this.first_name = abstractSerializedData2.readString(z2);
+                        }
+                        if ((this.flags & 4) != 0) {
+                            this.last_name = abstractSerializedData2.readString(z2);
+                        }
+                        if ((this.flags & 8) != 0) {
+                            this.username = abstractSerializedData2.readString(z2);
+                        }
+                        if ((this.flags & 16) != 0) {
+                            this.phone = abstractSerializedData2.readString(z2);
+                        }
+                        if ((this.flags & 32) != 0) {
+                            this.photo = TLRPC$UserProfilePhoto.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        }
+                        if ((this.flags & 64) != 0) {
+                            this.status = TLRPC$UserStatus.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        }
+                        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
+                            this.bot_info_version = abstractSerializedData2.readInt32(z2);
+                        }
+                        if ((this.flags & 262144) != 0) {
+                            int readInt323 = abstractSerializedData2.readInt32(z2);
+                            if (readInt323 != 481674261) {
+                                if (z2) {
+                                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt323)));
+                                }
+                                return;
+                            }
+                            int readInt324 = abstractSerializedData2.readInt32(z2);
+                            for (int i2 = 0; i2 < readInt324; i2++) {
+                                TLRPC$TL_restrictionReason TLdeserialize = TLRPC$TL_restrictionReason.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                if (TLdeserialize == null) {
+                                    return;
+                                }
+                                this.restriction_reason.add(TLdeserialize);
+                            }
+                        }
+                        if ((this.flags & 524288) != 0) {
+                            this.bot_inline_placeholder = abstractSerializedData2.readString(z2);
+                        }
+                        if ((this.flags & 4194304) != 0) {
+                            this.lang_code = abstractSerializedData2.readString(z2);
+                        }
+                        if ((this.flags & 1073741824) != 0) {
+                            this.emoji_status = TLRPC$EmojiStatus.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        }
+                        if ((this.flags2 & 1) != 0) {
+                            int readInt325 = abstractSerializedData2.readInt32(z2);
+                            if (readInt325 != 481674261) {
+                                if (z2) {
+                                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt325)));
+                                }
+                                return;
+                            }
+                            int readInt326 = abstractSerializedData2.readInt32(z2);
+                            for (int i3 = 0; i3 < readInt326; i3++) {
+                                TLRPC$TL_username TLdeserialize2 = TLRPC$TL_username.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                if (TLdeserialize2 == null) {
+                                    return;
+                                }
+                                this.usernames.add(TLdeserialize2);
+                            }
+                        }
+                        try {
+                            if ((this.flags2 & 32) != 0) {
+                                this.stories_max_id = abstractSerializedData2.readInt32(z2);
+                            }
+                        } catch (Throwable th) {
+                            FileLog.e(th);
+                        }
+                        if ((this.flags2 & LiteMode.FLAG_CHAT_BLUR) != 0) {
+                            this.color = TLRPC$TL_peerColor.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        }
+                        if ((this.flags2 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+                            this.profile_color = TLRPC$TL_peerColor.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        }
+                    }
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        if (this.username == null) {
+                            this.flags &= -9;
+                        }
+                        abstractSerializedData2.writeInt32(559694904);
+                        int i2 = this.self ? this.flags | 1024 : this.flags & (-1025);
+                        this.flags = i2;
+                        int i3 = this.contact ? i2 | 2048 : i2 & (-2049);
+                        this.flags = i3;
+                        int i4 = this.mutual_contact ? i3 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i3 & (-4097);
+                        this.flags = i4;
+                        int i5 = this.deleted ? i4 | LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM : i4 & (-8193);
+                        this.flags = i5;
+                        int i6 = this.bot ? i5 | LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM : i5 & (-16385);
+                        this.flags = i6;
+                        int i7 = this.bot_chat_history ? i6 | LiteMode.FLAG_CHAT_SCALE : i6 & (-32769);
+                        this.flags = i7;
+                        int i8 = this.bot_nochats ? i7 | 65536 : i7 & (-65537);
+                        this.flags = i8;
+                        int i9 = this.verified ? i8 | 131072 : i8 & (-131073);
+                        this.flags = i9;
+                        int i10 = this.restricted ? i9 | 262144 : i9 & (-262145);
+                        this.flags = i10;
+                        int i11 = this.min ? i10 | FileLoaderPriorityQueue.PRIORITY_VALUE_MAX : i10 & (-1048577);
+                        this.flags = i11;
+                        int i12 = this.bot_inline_geo ? i11 | 2097152 : i11 & (-2097153);
+                        this.flags = i12;
+                        int i13 = this.support ? i12 | 8388608 : i12 & (-8388609);
+                        this.flags = i13;
+                        int i14 = this.scam ? i13 | ConnectionsManager.FileTypePhoto : i13 & (-16777217);
+                        this.flags = i14;
+                        int i15 = this.apply_min_photo ? i14 | ConnectionsManager.FileTypeVideo : i14 & (-33554433);
+                        this.flags = i15;
+                        int i16 = this.fake ? i15 | ConnectionsManager.FileTypeFile : i15 & (-67108865);
+                        this.flags = i16;
+                        int i17 = this.bot_attach_menu ? i16 | 134217728 : i16 & (-134217729);
+                        this.flags = i17;
+                        int i18 = this.premium ? i17 | 268435456 : i17 & (-268435457);
+                        this.flags = i18;
+                        int i19 = this.attach_menu_enabled ? i18 | 536870912 : i18 & (-536870913);
+                        this.flags = i19;
+                        abstractSerializedData2.writeInt32(i19);
+                        int i20 = this.bot_can_edit ? this.flags2 | 2 : this.flags2 & (-3);
+                        this.flags2 = i20;
+                        int i21 = this.close_friend ? i20 | 4 : i20 & (-5);
+                        this.flags2 = i21;
+                        int i22 = this.stories_hidden ? i21 | 8 : i21 & (-9);
+                        this.flags2 = i22;
+                        int i23 = this.stories_unavailable ? i22 | 16 : i22 & (-17);
+                        this.flags2 = i23;
+                        int i24 = this.contact_require_premium ? i23 | 1024 : i23 & (-1025);
+                        this.flags2 = i24;
+                        int i25 = this.bot_business ? i24 | 2048 : i24 & (-2049);
+                        this.flags2 = i25;
+                        abstractSerializedData2.writeInt32(i25);
+                        abstractSerializedData2.writeInt64(this.id);
+                        if ((this.flags & 1) != 0) {
+                            abstractSerializedData2.writeInt64(this.access_hash);
+                        }
+                        if ((this.flags & 2) != 0) {
+                            abstractSerializedData2.writeString(this.first_name);
+                        }
+                        if ((this.flags & 4) != 0) {
+                            abstractSerializedData2.writeString(this.last_name);
+                        }
+                        if ((this.flags & 8) != 0) {
+                            abstractSerializedData2.writeString(this.username);
+                        }
+                        if ((this.flags & 16) != 0) {
+                            abstractSerializedData2.writeString(this.phone);
+                        }
+                        if ((this.flags & 32) != 0) {
+                            this.photo.serializeToStream(abstractSerializedData2);
+                        }
+                        if ((this.flags & 64) != 0) {
+                            this.status.serializeToStream(abstractSerializedData2);
+                        }
+                        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
+                            abstractSerializedData2.writeInt32(this.bot_info_version);
+                        }
+                        if ((this.flags & 262144) != 0) {
+                            abstractSerializedData2.writeInt32(481674261);
+                            int size = this.restriction_reason.size();
+                            abstractSerializedData2.writeInt32(size);
+                            for (int i26 = 0; i26 < size; i26++) {
+                                this.restriction_reason.get(i26).serializeToStream(abstractSerializedData2);
+                            }
+                        }
+                        if ((this.flags & 524288) != 0) {
+                            abstractSerializedData2.writeString(this.bot_inline_placeholder);
+                        }
+                        if ((this.flags & 4194304) != 0) {
+                            abstractSerializedData2.writeString(this.lang_code);
+                        }
+                        if ((this.flags & 1073741824) != 0) {
+                            this.emoji_status.serializeToStream(abstractSerializedData2);
+                        }
+                        if ((this.flags2 & 1) != 0) {
+                            abstractSerializedData2.writeInt32(481674261);
+                            int size2 = this.usernames.size();
+                            abstractSerializedData2.writeInt32(size2);
+                            for (int i27 = 0; i27 < size2; i27++) {
+                                this.usernames.get(i27).serializeToStream(abstractSerializedData2);
+                            }
+                        }
+                        if ((this.flags2 & 32) != 0) {
+                            abstractSerializedData2.writeInt32(this.stories_max_id);
+                        }
+                        if ((this.flags2 & LiteMode.FLAG_CHAT_BLUR) != 0) {
+                            if (this.color == null) {
+                                this.color = new TLRPC$TL_peerColor();
+                            }
+                            this.color.serializeToStream(abstractSerializedData2);
+                        }
+                        if ((this.flags2 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+                            if (this.profile_color == null) {
+                                this.profile_color = new TLRPC$TL_peerColor();
+                            }
+                            this.profile_color.serializeToStream(abstractSerializedData2);
+                        }
+                    }
+                };
                 break;
             case 585404530:
-                tLRPC$User = new TLRPC$TL_user() {
+                tLRPC$TL_user = new TLRPC$TL_user() {
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -1133,7 +1373,7 @@ public abstract class TLRPC$User extends TLObject {
                 };
                 break;
             case 585682608:
-                tLRPC$User = new TLRPC$TL_userRequest_old2() {
+                tLRPC$TL_user = new TLRPC$TL_userRequest_old2() {
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.id = abstractSerializedData2.readInt32(z2);
@@ -1159,7 +1399,7 @@ public abstract class TLRPC$User extends TLObject {
                 };
                 break;
             case 773059779:
-                tLRPC$User = new TLRPC$TL_user() {
+                tLRPC$TL_user = new TLRPC$TL_user() {
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -1281,7 +1521,7 @@ public abstract class TLRPC$User extends TLObject {
                 };
                 break;
             case 1073147056:
-                tLRPC$User = new TLRPC$User() {
+                tLRPC$TL_user = new TLRPC$User() {
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -1433,8 +1673,253 @@ public abstract class TLRPC$User extends TLObject {
                     }
                 };
                 break;
+            case 1340722400:
+                tLRPC$TL_user = new TLRPC$TL_user() {
+                    @Override
+                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                        int readInt32 = abstractSerializedData2.readInt32(z2);
+                        this.flags = readInt32;
+                        this.self = (readInt32 & 1024) != 0;
+                        this.contact = (readInt32 & 2048) != 0;
+                        this.mutual_contact = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
+                        this.deleted = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0;
+                        this.bot = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0;
+                        this.bot_chat_history = (32768 & readInt32) != 0;
+                        this.bot_nochats = (65536 & readInt32) != 0;
+                        this.verified = (131072 & readInt32) != 0;
+                        this.restricted = (readInt32 & 262144) != 0;
+                        this.min = (1048576 & readInt32) != 0;
+                        this.bot_inline_geo = (2097152 & readInt32) != 0;
+                        this.support = (8388608 & readInt32) != 0;
+                        this.scam = (16777216 & readInt32) != 0;
+                        this.apply_min_photo = (33554432 & readInt32) != 0;
+                        this.fake = (67108864 & readInt32) != 0;
+                        this.bot_attach_menu = (134217728 & readInt32) != 0;
+                        this.premium = (268435456 & readInt32) != 0;
+                        this.attach_menu_enabled = (readInt32 & 536870912) != 0;
+                        int readInt322 = abstractSerializedData2.readInt32(z2);
+                        this.flags2 = readInt322;
+                        this.bot_can_edit = (readInt322 & 2) != 0;
+                        this.close_friend = (readInt322 & 4) != 0;
+                        this.stories_hidden = (readInt322 & 8) != 0;
+                        this.stories_unavailable = (readInt322 & 16) != 0;
+                        this.contact_require_premium = (readInt322 & 1024) != 0;
+                        this.bot_business = (readInt322 & 2048) != 0;
+                        this.id = abstractSerializedData2.readInt64(z2);
+                        if ((this.flags & 1) != 0) {
+                            this.access_hash = abstractSerializedData2.readInt64(z2);
+                        }
+                        if ((this.flags & 2) != 0) {
+                            this.first_name = abstractSerializedData2.readString(z2);
+                        }
+                        if ((this.flags & 4) != 0) {
+                            this.last_name = abstractSerializedData2.readString(z2);
+                        }
+                        if ((this.flags & 8) != 0) {
+                            this.username = abstractSerializedData2.readString(z2);
+                        }
+                        if ((this.flags & 16) != 0) {
+                            this.phone = abstractSerializedData2.readString(z2);
+                        }
+                        if ((this.flags & 32) != 0) {
+                            this.photo = TLRPC$UserProfilePhoto.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        }
+                        if ((this.flags & 64) != 0) {
+                            this.status = TLRPC$UserStatus.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        }
+                        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
+                            this.bot_info_version = abstractSerializedData2.readInt32(z2);
+                        }
+                        if ((this.flags & 262144) != 0) {
+                            int readInt323 = abstractSerializedData2.readInt32(z2);
+                            if (readInt323 != 481674261) {
+                                if (z2) {
+                                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt323)));
+                                }
+                                return;
+                            }
+                            int readInt324 = abstractSerializedData2.readInt32(z2);
+                            for (int i2 = 0; i2 < readInt324; i2++) {
+                                TLRPC$TL_restrictionReason TLdeserialize = TLRPC$TL_restrictionReason.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                if (TLdeserialize == null) {
+                                    return;
+                                }
+                                this.restriction_reason.add(TLdeserialize);
+                            }
+                        }
+                        if ((this.flags & 524288) != 0) {
+                            this.bot_inline_placeholder = abstractSerializedData2.readString(z2);
+                        }
+                        if ((this.flags & 4194304) != 0) {
+                            this.lang_code = abstractSerializedData2.readString(z2);
+                        }
+                        if ((this.flags & 1073741824) != 0) {
+                            this.emoji_status = TLRPC$EmojiStatus.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        }
+                        if ((this.flags2 & 1) != 0) {
+                            int readInt325 = abstractSerializedData2.readInt32(z2);
+                            if (readInt325 != 481674261) {
+                                if (z2) {
+                                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt325)));
+                                }
+                                return;
+                            }
+                            int readInt326 = abstractSerializedData2.readInt32(z2);
+                            for (int i3 = 0; i3 < readInt326; i3++) {
+                                TLRPC$TL_username TLdeserialize2 = TLRPC$TL_username.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                if (TLdeserialize2 == null) {
+                                    return;
+                                }
+                                this.usernames.add(TLdeserialize2);
+                            }
+                        }
+                        try {
+                            if ((this.flags2 & 32) != 0) {
+                                this.stories_max_id = abstractSerializedData2.readInt32(z2);
+                            }
+                        } catch (Throwable th) {
+                            FileLog.e(th);
+                        }
+                        if ((this.flags2 & LiteMode.FLAG_CHAT_BLUR) != 0) {
+                            this.color = TLRPC$TL_peerColor.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        }
+                        if ((this.flags2 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+                            this.profile_color = TLRPC$TL_peerColor.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        }
+                        if ((this.flags2 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0) {
+                            this.bot_active_users = abstractSerializedData2.readInt32(z2);
+                        }
+                    }
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        if (this.username == null) {
+                            this.flags &= -9;
+                        }
+                        abstractSerializedData2.writeInt32(1340722400);
+                        int i2 = this.self ? this.flags | 1024 : this.flags & (-1025);
+                        this.flags = i2;
+                        int i3 = this.contact ? i2 | 2048 : i2 & (-2049);
+                        this.flags = i3;
+                        int i4 = this.mutual_contact ? i3 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i3 & (-4097);
+                        this.flags = i4;
+                        int i5 = this.deleted ? i4 | LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM : i4 & (-8193);
+                        this.flags = i5;
+                        int i6 = this.bot ? i5 | LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM : i5 & (-16385);
+                        this.flags = i6;
+                        int i7 = this.bot_chat_history ? i6 | LiteMode.FLAG_CHAT_SCALE : i6 & (-32769);
+                        this.flags = i7;
+                        int i8 = this.bot_nochats ? i7 | 65536 : i7 & (-65537);
+                        this.flags = i8;
+                        int i9 = this.verified ? i8 | 131072 : i8 & (-131073);
+                        this.flags = i9;
+                        int i10 = this.restricted ? i9 | 262144 : i9 & (-262145);
+                        this.flags = i10;
+                        int i11 = this.min ? i10 | FileLoaderPriorityQueue.PRIORITY_VALUE_MAX : i10 & (-1048577);
+                        this.flags = i11;
+                        int i12 = this.bot_inline_geo ? i11 | 2097152 : i11 & (-2097153);
+                        this.flags = i12;
+                        int i13 = this.support ? i12 | 8388608 : i12 & (-8388609);
+                        this.flags = i13;
+                        int i14 = this.scam ? i13 | ConnectionsManager.FileTypePhoto : i13 & (-16777217);
+                        this.flags = i14;
+                        int i15 = this.apply_min_photo ? i14 | ConnectionsManager.FileTypeVideo : i14 & (-33554433);
+                        this.flags = i15;
+                        int i16 = this.fake ? i15 | ConnectionsManager.FileTypeFile : i15 & (-67108865);
+                        this.flags = i16;
+                        int i17 = this.bot_attach_menu ? i16 | 134217728 : i16 & (-134217729);
+                        this.flags = i17;
+                        int i18 = this.premium ? i17 | 268435456 : i17 & (-268435457);
+                        this.flags = i18;
+                        int i19 = this.attach_menu_enabled ? i18 | 536870912 : i18 & (-536870913);
+                        this.flags = i19;
+                        abstractSerializedData2.writeInt32(i19);
+                        int i20 = this.bot_can_edit ? this.flags2 | 2 : this.flags2 & (-3);
+                        this.flags2 = i20;
+                        int i21 = this.close_friend ? i20 | 4 : i20 & (-5);
+                        this.flags2 = i21;
+                        int i22 = this.stories_hidden ? i21 | 8 : i21 & (-9);
+                        this.flags2 = i22;
+                        int i23 = this.stories_unavailable ? i22 | 16 : i22 & (-17);
+                        this.flags2 = i23;
+                        int i24 = this.contact_require_premium ? i23 | 1024 : i23 & (-1025);
+                        this.flags2 = i24;
+                        int i25 = this.bot_business ? i24 | 2048 : i24 & (-2049);
+                        this.flags2 = i25;
+                        abstractSerializedData2.writeInt32(i25);
+                        abstractSerializedData2.writeInt64(this.id);
+                        if ((this.flags & 1) != 0) {
+                            abstractSerializedData2.writeInt64(this.access_hash);
+                        }
+                        if ((this.flags & 2) != 0) {
+                            abstractSerializedData2.writeString(this.first_name);
+                        }
+                        if ((this.flags & 4) != 0) {
+                            abstractSerializedData2.writeString(this.last_name);
+                        }
+                        if ((this.flags & 8) != 0) {
+                            abstractSerializedData2.writeString(this.username);
+                        }
+                        if ((this.flags & 16) != 0) {
+                            abstractSerializedData2.writeString(this.phone);
+                        }
+                        if ((this.flags & 32) != 0) {
+                            this.photo.serializeToStream(abstractSerializedData2);
+                        }
+                        if ((this.flags & 64) != 0) {
+                            this.status.serializeToStream(abstractSerializedData2);
+                        }
+                        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
+                            abstractSerializedData2.writeInt32(this.bot_info_version);
+                        }
+                        if ((this.flags & 262144) != 0) {
+                            abstractSerializedData2.writeInt32(481674261);
+                            int size = this.restriction_reason.size();
+                            abstractSerializedData2.writeInt32(size);
+                            for (int i26 = 0; i26 < size; i26++) {
+                                this.restriction_reason.get(i26).serializeToStream(abstractSerializedData2);
+                            }
+                        }
+                        if ((this.flags & 524288) != 0) {
+                            abstractSerializedData2.writeString(this.bot_inline_placeholder);
+                        }
+                        if ((this.flags & 4194304) != 0) {
+                            abstractSerializedData2.writeString(this.lang_code);
+                        }
+                        if ((this.flags & 1073741824) != 0) {
+                            this.emoji_status.serializeToStream(abstractSerializedData2);
+                        }
+                        if ((this.flags2 & 1) != 0) {
+                            abstractSerializedData2.writeInt32(481674261);
+                            int size2 = this.usernames.size();
+                            abstractSerializedData2.writeInt32(size2);
+                            for (int i27 = 0; i27 < size2; i27++) {
+                                this.usernames.get(i27).serializeToStream(abstractSerializedData2);
+                            }
+                        }
+                        if ((this.flags2 & 32) != 0) {
+                            abstractSerializedData2.writeInt32(this.stories_max_id);
+                        }
+                        if ((this.flags2 & LiteMode.FLAG_CHAT_BLUR) != 0) {
+                            if (this.color == null) {
+                                this.color = new TLRPC$TL_peerColor();
+                            }
+                            this.color.serializeToStream(abstractSerializedData2);
+                        }
+                        if ((this.flags2 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+                            if (this.profile_color == null) {
+                                this.profile_color = new TLRPC$TL_peerColor();
+                            }
+                            this.profile_color.serializeToStream(abstractSerializedData2);
+                        }
+                        if ((this.flags2 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0) {
+                            abstractSerializedData2.writeInt32(this.bot_active_users);
+                        }
+                    }
+                };
+                break;
             case 1377093789:
-                tLRPC$User = new TLRPC$TL_userForeign_old2() {
+                tLRPC$TL_user = new TLRPC$TL_userForeign_old2() {
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.id = abstractSerializedData2.readInt32(z2);
@@ -1458,7 +1943,7 @@ public abstract class TLRPC$User extends TLObject {
                 };
                 break;
             case 1570352622:
-                tLRPC$User = new TLRPC$User() {
+                tLRPC$TL_user = new TLRPC$User() {
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -1620,7 +2105,7 @@ public abstract class TLRPC$User extends TLObject {
                 };
                 break;
             case 1879553105:
-                tLRPC$User = new TLRPC$TL_userSelf_old3() {
+                tLRPC$TL_user = new TLRPC$TL_userSelf_old3() {
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.id = abstractSerializedData2.readInt32(z2);
@@ -1648,7 +2133,7 @@ public abstract class TLRPC$User extends TLObject {
                 };
                 break;
             case 1912944108:
-                tLRPC$User = new TLRPC$TL_userSelf_old3() {
+                tLRPC$TL_user = new TLRPC$TL_userSelf_old3() {
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.id = abstractSerializedData2.readInt32(z2);
@@ -1674,15 +2159,15 @@ public abstract class TLRPC$User extends TLObject {
                 };
                 break;
             default:
-                tLRPC$User = null;
+                tLRPC$TL_user = null;
                 break;
         }
-        if (tLRPC$User == null && z) {
+        if (tLRPC$TL_user == null && z) {
             throw new RuntimeException(String.format("can't parse magic %x in User", Integer.valueOf(i)));
         }
-        if (tLRPC$User != null) {
-            tLRPC$User.readParams(abstractSerializedData, z);
+        if (tLRPC$TL_user != null) {
+            tLRPC$TL_user.readParams(abstractSerializedData, z);
         }
-        return tLRPC$User;
+        return tLRPC$TL_user;
     }
 }

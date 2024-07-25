@@ -1,5 +1,4 @@
 package org.telegram.messenger.support;
-
 public class SparseLongArray implements Cloneable {
     private int[] mKeys;
     private int mSize;

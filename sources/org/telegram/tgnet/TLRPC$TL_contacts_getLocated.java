@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_contacts_getLocated extends TLObject {
     public boolean background;
     public int flags;

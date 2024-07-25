@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channels_setStickers extends TLObject {
     public TLRPC$InputChannel channel;
     public TLRPC$InputStickerSet stickerset;

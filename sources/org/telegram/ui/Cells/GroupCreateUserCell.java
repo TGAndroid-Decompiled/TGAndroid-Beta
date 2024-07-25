@@ -43,7 +43,6 @@ import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.PremiumGradient;
-
 public class GroupCreateUserCell extends FrameLayout {
     private ValueAnimator animator;
     private AvatarDrawable avatarDrawable;
@@ -241,40 +240,38 @@ public class GroupCreateUserCell extends FrameLayout {
         CheckBox2 checkBox2 = this.checkBox;
         if (checkBox2 != null) {
             checkBox2.setChecked(z, z2);
-            return;
-        }
-        if (this.checkBoxType != 2 || this.isChecked == z) {
-            return;
-        }
-        this.isChecked = z;
-        ValueAnimator valueAnimator = this.animator;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        if (z2) {
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.animator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    GroupCreateUserCell.this.lambda$setChecked$1(valueAnimator2);
-                }
-            });
-            this.animator.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    GroupCreateUserCell.this.animator = null;
-                }
-            });
-            this.animator.setDuration(180L);
-            this.animator.setInterpolator(CubicBezierInterpolator.EASE_OUT);
-            this.animator.start();
+        } else if (this.checkBoxType != 2 || this.isChecked == z) {
         } else {
-            this.avatarImageView.setScaleX(this.isChecked ? 0.82f : 1.0f);
-            this.avatarImageView.setScaleY(this.isChecked ? 0.82f : 1.0f);
-            this.checkProgress = this.isChecked ? 1.0f : 0.0f;
+            this.isChecked = z;
+            ValueAnimator valueAnimator = this.animator;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+            }
+            if (z2) {
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                this.animator = ofFloat;
+                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                        GroupCreateUserCell.this.lambda$setChecked$1(valueAnimator2);
+                    }
+                });
+                this.animator.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animator) {
+                        GroupCreateUserCell.this.animator = null;
+                    }
+                });
+                this.animator.setDuration(180L);
+                this.animator.setInterpolator(CubicBezierInterpolator.EASE_OUT);
+                this.animator.start();
+            } else {
+                this.avatarImageView.setScaleX(this.isChecked ? 0.82f : 1.0f);
+                this.avatarImageView.setScaleY(this.isChecked ? 0.82f : 1.0f);
+                this.checkProgress = this.isChecked ? 1.0f : 0.0f;
+            }
+            invalidate();
         }
-        invalidate();
     }
 
     public void lambda$setChecked$1(ValueAnimator valueAnimator) {
@@ -651,9 +648,9 @@ public class GroupCreateUserCell extends FrameLayout {
             if (this.forceDarkTheme) {
                 Theme.dividerExtraPaint.setColor(Theme.getColor(Theme.key_voipgroup_actionBar, this.resourcesProvider));
                 canvas.drawRect(dp, getMeasuredHeight() - 1, measuredWidth, getMeasuredHeight(), Theme.dividerExtraPaint);
-            } else {
-                canvas.drawRect(dp, getMeasuredHeight() - 1, measuredWidth, getMeasuredHeight(), Theme.dividerPaint);
+                return;
             }
+            canvas.drawRect(dp, getMeasuredHeight() - 1, measuredWidth, getMeasuredHeight(), Theme.dividerPaint);
         }
     }
 
@@ -687,7 +684,8 @@ public class GroupCreateUserCell extends FrameLayout {
                 this.lockDrawable = mutate;
                 mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
             }
-            this.lockDrawable.setBounds((int) (x - (((r4.getIntrinsicWidth() / 2.0f) * 0.875f) * f)), (int) (y - (((this.lockDrawable.getIntrinsicHeight() / 2.0f) * 0.875f) * f)), (int) (x + ((this.lockDrawable.getIntrinsicWidth() / 2.0f) * 0.875f * f)), (int) (y + ((this.lockDrawable.getIntrinsicHeight() / 2.0f) * 0.875f * f)));
+            Drawable drawable = this.lockDrawable;
+            drawable.setBounds((int) (x - (((drawable.getIntrinsicWidth() / 2.0f) * 0.875f) * f)), (int) (y - (((this.lockDrawable.getIntrinsicHeight() / 2.0f) * 0.875f) * f)), (int) (x + ((this.lockDrawable.getIntrinsicWidth() / 2.0f) * 0.875f * f)), (int) (y + ((this.lockDrawable.getIntrinsicHeight() / 2.0f) * 0.875f * f)));
             this.lockDrawable.setAlpha((int) (f * 255.0f));
             this.lockDrawable.draw(canvas);
             canvas.restore();

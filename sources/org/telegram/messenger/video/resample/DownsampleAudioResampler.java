@@ -1,7 +1,6 @@
 package org.telegram.messenger.video.resample;
 
 import java.nio.ShortBuffer;
-
 public class DownsampleAudioResampler implements AudioResampler {
     private static float ratio(int i, int i2) {
         return i / i2;

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$EncryptedChat extends TLObject {
     public byte[] a_or_b;
     public long access_hash;

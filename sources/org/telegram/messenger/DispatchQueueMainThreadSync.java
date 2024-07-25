@@ -5,7 +5,6 @@ import android.os.Looper;
 import android.os.Message;
 import android.os.SystemClock;
 import java.util.ArrayList;
-
 public class DispatchQueueMainThreadSync extends Thread {
     private static int indexPointer;
     private volatile Handler handler;
@@ -92,11 +91,11 @@ public class DispatchQueueMainThreadSync extends Thread {
         if (!this.isRunning) {
             this.postponedTasks.add(new PostponedTask(runnable, j));
             return true;
-        }
-        if (j <= 0) {
+        } else if (j <= 0) {
             return this.handler.post(runnable);
+        } else {
+            return this.handler.postDelayed(runnable, j);
         }
-        return this.handler.postDelayed(runnable, j);
     }
 
     public void cleanupQueue() {

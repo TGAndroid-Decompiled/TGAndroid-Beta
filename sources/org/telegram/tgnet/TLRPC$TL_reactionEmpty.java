@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_reactionEmpty extends TLRPC$Reaction {
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {

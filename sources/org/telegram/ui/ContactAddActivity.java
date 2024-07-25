@@ -6,12 +6,12 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.transition.TransitionManager;
-import android.util.Property;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -69,7 +69,6 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RadialProgressView;
 import org.telegram.ui.LNavigation.NavigationExt;
-
 public class ContactAddActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate, ImageUpdater.ImageUpdaterDelegate {
     private boolean addContact;
     private TLRPC$FileLocation avatar;
@@ -142,7 +141,8 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         this.firstNameFromCard = getArguments().getString("first_name_card");
         this.lastNameFromCard = getArguments().getString("last_name_card");
         this.addContact = getArguments().getBoolean("addContact", false);
-        this.needAddException = MessagesController.getNotificationsSettings(this.currentAccount).getBoolean("dialog_bar_exception" + this.user_id, false);
+        SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(this.currentAccount);
+        this.needAddException = notificationsSettings.getBoolean("dialog_bar_exception" + this.user_id, false);
         TLRPC$User user = this.user_id != 0 ? getMessagesController().getUser(Long.valueOf(this.user_id)) : null;
         ImageUpdater imageUpdater = this.imageUpdater;
         if (imageUpdater != null) {
@@ -189,17 +189,18 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
                     user.contact = true;
                     ContactAddActivity.this.getMessagesController().putUser(user, false);
                     ContactAddActivity.this.getContactsController().addContact(user, ContactAddActivity.this.checkBoxCell != null && ContactAddActivity.this.checkBoxCell.isChecked());
-                    MessagesController.getNotificationsSettings(((BaseFragment) ContactAddActivity.this).currentAccount).edit().putInt("dialog_bar_vis3" + ContactAddActivity.this.user_id, 3).commit();
+                    SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(((BaseFragment) ContactAddActivity.this).currentAccount).edit();
+                    edit.putInt("dialog_bar_vis3" + ContactAddActivity.this.user_id, 3).commit();
                     ContactAddActivity.this.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_NAME));
                     ContactAddActivity.this.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.peerSettingsDidLoad, Long.valueOf(ContactAddActivity.this.user_id));
-                    ContactAddActivity.this.lambda$onBackPressed$306();
+                    ContactAddActivity.this.finishFragment();
                     if (ContactAddActivity.this.delegate != null) {
                         ContactAddActivity.this.delegate.didAddToContacts();
                         return;
                     }
                     return;
                 }
-                ContactAddActivity.this.lambda$onBackPressed$306();
+                ContactAddActivity.this.finishFragment();
             }
         });
         this.doneButton = this.actionBar.createMenu().addItem(1, LocaleController.getString("Done", R.string.Done).toUpperCase());
@@ -469,25 +470,26 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
     }
 
     public boolean lambda$createView$1(TextView textView, int i, KeyEvent keyEvent) {
-        if (i != 5) {
-            return false;
+        if (i == 5) {
+            this.lastNameField.requestFocus();
+            EditTextBoldCursor editTextBoldCursor = this.lastNameField;
+            editTextBoldCursor.setSelection(editTextBoldCursor.length());
+            return true;
         }
-        this.lastNameField.requestFocus();
-        EditTextBoldCursor editTextBoldCursor = this.lastNameField;
-        editTextBoldCursor.setSelection(editTextBoldCursor.length());
-        return true;
+        return false;
     }
 
     public boolean lambda$createView$2(TextView textView, int i, KeyEvent keyEvent) {
-        if (i != 6) {
-            return false;
+        if (i == 6) {
+            this.doneButton.performClick();
+            return true;
         }
-        this.doneButton.performClick();
-        return true;
+        return false;
     }
 
     public void lambda$createView$3(View view) {
-        this.checkBoxCell.setChecked(!r3.isChecked(), true);
+        CheckBoxCell checkBoxCell = this.checkBoxCell;
+        checkBoxCell.setChecked(!checkBoxCell.isChecked(), true);
     }
 
     public void lambda$createView$6(TLRPC$User tLRPC$User, final RLottieDrawable rLottieDrawable, final TextCell textCell, View view) {
@@ -514,9 +516,9 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         if (!this.imageUpdater.isUploadingImage()) {
             rLottieDrawable.setCustomEndFrame(85);
             textCell.imageView.playAnimation();
-        } else {
-            rLottieDrawable.setCurrentFrame(0, false);
+            return;
         }
+        rLottieDrawable.setCurrentFrame(0, false);
     }
 
     public void lambda$createView$9(TLRPC$User tLRPC$User, final RLottieDrawable rLottieDrawable, final TextCell textCell, View view) {
@@ -543,9 +545,9 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         if (!this.imageUpdater.isUploadingImage()) {
             rLottieDrawable.setCustomEndFrame(86);
             textCell.imageView.playAnimation();
-        } else {
-            rLottieDrawable.setCurrentFrame(0, false);
+            return;
         }
+        rLottieDrawable.setCurrentFrame(0, false);
     }
 
     public void lambda$createView$11(Context context, final TLRPC$User tLRPC$User, View view) {
@@ -607,9 +609,9 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             if (z) {
                 this.avatarProgressView.setVisibility(0);
                 this.avatarOverlay.setVisibility(0);
-                this.avatarAnimation.playTogether(ObjectAnimator.ofFloat(this.avatarProgressView, (Property<RadialProgressView, Float>) View.ALPHA, 1.0f), ObjectAnimator.ofFloat(this.avatarOverlay, (Property<View, Float>) View.ALPHA, 1.0f));
+                this.avatarAnimation.playTogether(ObjectAnimator.ofFloat(this.avatarProgressView, View.ALPHA, 1.0f), ObjectAnimator.ofFloat(this.avatarOverlay, View.ALPHA, 1.0f));
             } else {
-                animatorSet2.playTogether(ObjectAnimator.ofFloat(this.avatarProgressView, (Property<RadialProgressView, Float>) View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.avatarOverlay, (Property<View, Float>) View.ALPHA, 0.0f));
+                animatorSet2.playTogether(ObjectAnimator.ofFloat(this.avatarProgressView, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.avatarOverlay, View.ALPHA, 0.0f));
             }
             this.avatarAnimation.setDuration(180L);
             this.avatarAnimation.addListener(new AnimatorListenerAdapter() {
@@ -631,19 +633,17 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
                 }
             });
             this.avatarAnimation.start();
-            return;
-        }
-        if (z) {
+        } else if (z) {
             this.avatarProgressView.setAlpha(1.0f);
             this.avatarProgressView.setVisibility(0);
             this.avatarOverlay.setAlpha(1.0f);
             this.avatarOverlay.setVisibility(0);
-            return;
+        } else {
+            this.avatarProgressView.setAlpha(0.0f);
+            this.avatarProgressView.setVisibility(4);
+            this.avatarOverlay.setAlpha(0.0f);
+            this.avatarOverlay.setVisibility(4);
         }
-        this.avatarProgressView.setAlpha(0.0f);
-        this.avatarProgressView.setVisibility(4);
-        this.avatarOverlay.setAlpha(0.0f);
-        this.avatarOverlay.setVisibility(4);
     }
 
     public void setDelegate(ContactAddActivityDelegate contactAddActivityDelegate) {
@@ -659,7 +659,9 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             this.nameTextView.setText(LocaleController.getString("MobileHidden", R.string.MobileHidden));
             this.infoTextView.setText(AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceTags(LocaleController.getString("MobileHiddenExceptionInfo", R.string.MobileHiddenExceptionInfo)), Emoji.replaceEmoji((CharSequence) UserObject.getFirstName(user), this.infoTextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(12.0f), false)));
         } else {
-            this.nameTextView.setText(PhoneFormat.getInstance().format("+" + getPhone()));
+            TextView textView = this.nameTextView;
+            PhoneFormat phoneFormat = PhoneFormat.getInstance();
+            textView.setText(phoneFormat.format("+" + getPhone()));
             if (this.needAddException) {
                 this.infoTextView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("MobileVisibleInfo", R.string.MobileVisibleInfo, UserObject.getFirstName(user))));
             }
@@ -687,9 +689,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
                 return;
             }
             updateAvatarLayout();
-            return;
-        }
-        if (i == NotificationCenter.dialogPhotosUpdate && (dialogPhotos = (MessagesController.DialogPhotos) objArr[0]) == this.dialogPhotos) {
+        } else if (i == NotificationCenter.dialogPhotosUpdate && (dialogPhotos = (MessagesController.DialogPhotos) objArr[0]) == this.dialogPhotos) {
             ArrayList arrayList = new ArrayList(dialogPhotos.photos);
             int i3 = 0;
             while (i3 < arrayList.size()) {

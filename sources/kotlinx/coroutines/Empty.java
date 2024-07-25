@@ -1,5 +1,4 @@
 package kotlinx.coroutines;
-
 public final class Empty implements Incomplete {
     private final boolean isActive;
 

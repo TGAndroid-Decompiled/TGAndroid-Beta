@@ -2,7 +2,6 @@ package org.webrtc;
 
 import android.graphics.Matrix;
 import java.nio.ByteBuffer;
-
 public class VideoFrame implements RefCounted {
     private final Buffer buffer;
     private final int rotation;
@@ -79,7 +78,7 @@ public class VideoFrame implements RefCounted {
         public enum Type {
             OES(36197),
             RGB(3553);
-
+            
             private final int glTarget;
 
             Type(int i) {

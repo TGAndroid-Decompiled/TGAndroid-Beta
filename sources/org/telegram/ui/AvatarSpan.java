@@ -2,6 +2,7 @@ package org.telegram.ui;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.text.Spannable;
 import android.text.style.ReplacementSpan;
 import android.view.View;
@@ -12,7 +13,6 @@ import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AvatarDrawable;
-
 public class AvatarSpan extends ReplacementSpan {
     private final AvatarDrawable avatarDrawable;
     private final int currentAccount;
@@ -104,6 +104,10 @@ public class AvatarSpan extends ReplacementSpan {
     public void setUser(TLRPC$User tLRPC$User) {
         this.avatarDrawable.setInfo(this.currentAccount, tLRPC$User);
         this.imageReceiver.setForUserOrChat(tLRPC$User, this.avatarDrawable);
+    }
+
+    public void setImageDrawable(Drawable drawable) {
+        this.imageReceiver.setImageBitmap(drawable);
     }
 
     @Override

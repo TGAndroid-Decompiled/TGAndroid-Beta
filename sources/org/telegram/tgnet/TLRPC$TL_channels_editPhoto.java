@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channels_editPhoto extends TLObject {
     public TLRPC$InputChannel channel;
     public TLRPC$InputChatPhoto photo;

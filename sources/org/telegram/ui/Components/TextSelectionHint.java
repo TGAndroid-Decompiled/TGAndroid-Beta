@@ -22,7 +22,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
-
 public class TextSelectionHint extends View {
     Animator a;
     int animateToEnd;
@@ -163,9 +162,8 @@ public class TextSelectionHint extends View {
             canvas.drawPath(this.path, this.selectionPaint);
         }
         float interpolation = this.interpolator.getInterpolation(this.enterValue);
-        int primaryHorizontal = (int) (this.textLayout.getPrimaryHorizontal(this.animateToEnd) + (AndroidUtilities.dpf2(4.0f) * (1.0f - this.endOffsetValue)) + ((this.textLayout.getPrimaryHorizontal(this.end) - this.textLayout.getPrimaryHorizontal(this.animateToEnd)) * this.endOffsetValue));
         canvas.save();
-        canvas.translate(primaryHorizontal, lineBottom);
+        canvas.translate((int) (this.textLayout.getPrimaryHorizontal(this.animateToEnd) + (AndroidUtilities.dpf2(4.0f) * (1.0f - this.endOffsetValue)) + ((this.textLayout.getPrimaryHorizontal(this.end) - this.textLayout.getPrimaryHorizontal(this.animateToEnd)) * this.endOffsetValue)), lineBottom);
         float f2 = dp;
         float f3 = f2 / 2.0f;
         canvas.scale(interpolation, interpolation, f3, f3);
@@ -259,9 +257,8 @@ public class TextSelectionHint extends View {
             lineForOffset++;
             if (lineForOffset >= lineForOffset2) {
                 return;
-            } else {
-                canvas.drawRect(0.0f, staticLayout.getLineTop(lineForOffset), staticLayout.getLineWidth(lineForOffset), staticLayout.getLineBottom(lineForOffset), this.selectionPaint);
             }
+            canvas.drawRect(0.0f, staticLayout.getLineTop(lineForOffset), staticLayout.getLineWidth(lineForOffset), staticLayout.getLineBottom(lineForOffset), this.selectionPaint);
         }
     }
 
@@ -344,13 +341,16 @@ public class TextSelectionHint extends View {
     public void lambda$show$2(ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.startOffsetValue = floatValue;
-        this.currentStart = (int) (this.animateToStart + ((this.start - r0) * floatValue));
+        int i = this.animateToStart;
+        this.currentStart = (int) (i + ((this.start - i) * floatValue));
         invalidate();
     }
 
     public void lambda$show$3(ValueAnimator valueAnimator) {
-        this.endOffsetValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.currentEnd = this.animateToEnd + ((int) Math.ceil((this.end - r0) * r4));
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.endOffsetValue = floatValue;
+        int i = this.animateToEnd;
+        this.currentEnd = i + ((int) Math.ceil((this.end - i) * floatValue));
         invalidate();
     }
 

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updateMessageReactions extends TLRPC$Update {
     public int flags;
     public int msg_id;

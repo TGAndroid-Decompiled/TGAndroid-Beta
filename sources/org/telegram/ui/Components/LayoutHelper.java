@@ -7,7 +7,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-
 public class LayoutHelper {
     private static int getSize(float f) {
         if (f >= 0.0f) {

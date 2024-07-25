@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messageMediaGame extends TLRPC$MessageMedia {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

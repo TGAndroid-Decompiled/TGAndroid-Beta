@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$storage_FileType extends TLObject {
     public static TLRPC$storage_FileType TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$storage_FileType tLRPC$storage_FileType;

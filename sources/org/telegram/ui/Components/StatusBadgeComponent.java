@@ -10,7 +10,6 @@ import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.Premium.PremiumGradient;
-
 public class StatusBadgeComponent {
     private final AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable statusDrawable;
     private Drawable verifiedDrawable;

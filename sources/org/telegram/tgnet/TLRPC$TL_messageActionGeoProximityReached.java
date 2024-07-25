@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messageActionGeoProximityReached extends TLRPC$MessageAction {
     public int distance;
     public TLRPC$Peer from_id;

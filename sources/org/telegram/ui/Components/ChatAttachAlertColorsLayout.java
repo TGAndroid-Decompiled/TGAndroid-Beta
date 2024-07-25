@@ -21,7 +21,6 @@ import org.telegram.ui.Components.ChatAttachAlert;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.WallpapersListActivity;
-
 public class ChatAttachAlertColorsLayout extends ChatAttachAlert.AttachAlertLayout {
     Adapter adapter;
     public RecyclerListView gridView;

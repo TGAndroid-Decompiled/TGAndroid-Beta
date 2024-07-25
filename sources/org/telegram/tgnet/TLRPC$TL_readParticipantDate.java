@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_readParticipantDate extends TLObject {
     public int date;
     public long user_id;

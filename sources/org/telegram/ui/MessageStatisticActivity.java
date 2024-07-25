@@ -91,7 +91,6 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.MessageStatisticActivity;
 import org.telegram.ui.StatisticActivity;
 import org.telegram.ui.Stories.StoriesListPlaceProvider;
-
 public class MessageStatisticActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private ChatAvatarContainer avatarContainer;
     private TLRPC$ChatFull chat;
@@ -294,11 +293,11 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
     }
 
     public boolean checkIsDeletedStory(MessageObject messageObject) {
-        if (messageObject == null || !messageObject.isStory() || !(messageObject.storyItem instanceof TL_stories$TL_storyItemDeleted)) {
-            return false;
+        if (messageObject != null && messageObject.isStory() && (messageObject.storyItem instanceof TL_stories$TL_storyItemDeleted)) {
+            BulletinFactory.of(this).createSimpleBulletin(R.raw.story_bomb1, LocaleController.getString("StoryNotFound", R.string.StoryNotFound)).show();
+            return true;
         }
-        BulletinFactory.of(this).createSimpleBulletin(R.raw.story_bomb1, LocaleController.getString("StoryNotFound", R.string.StoryNotFound)).show();
-        return true;
+        return false;
     }
 
     @Override
@@ -343,7 +342,6 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         frameLayout2.addView(this.progressLayout, LayoutHelper.createFrame(240, -2.0f, 17, 0.0f, 0.0f, 0.0f, 30.0f));
         RecyclerListView recyclerListView = new RecyclerListView(context, getResourceProvider());
         this.listView = recyclerListView;
-        boolean z = false;
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, 1, false);
         this.layoutManager = linearLayoutManager;
         recyclerListView.setLayoutManager(linearLayoutManager);
@@ -393,7 +391,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         AndroidUtilities.runOnUIThread(this.showProgressbar, 300L);
         updateRows();
         this.listView.setEmptyView(this.emptyView);
-        this.avatarContainer = new ChatAvatarContainer(context, 0 == true ? 1 : 0, z) {
+        this.avatarContainer = new ChatAvatarContainer(context, null, false) {
             @Override
             public void dispatchDraw(Canvas canvas) {
                 super.dispatchDraw(canvas);
@@ -482,7 +480,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
             @Override
             public void onItemClick(int i4) {
                 if (i4 == -1) {
-                    MessageStatisticActivity.this.lambda$onBackPressed$306();
+                    MessageStatisticActivity.this.finishFragment();
                 } else if (i4 == 1) {
                     Bundle bundle = new Bundle();
                     bundle.putLong("chat_id", MessageStatisticActivity.this.chatId);
@@ -601,7 +599,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         if (getParentLayout().getFragmentStack().size() > 1) {
             BaseFragment baseFragment = getParentLayout().getFragmentStack().get(getParentLayout().getFragmentStack().size() - 2);
             if ((baseFragment instanceof ChatActivity) && ((ChatActivity) baseFragment).getCurrentChat().id == this.chatId) {
-                lambda$onBackPressed$306();
+                finishFragment();
                 return;
             }
         }
@@ -967,36 +965,34 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
                         StatisticActivity.ChartViewData chartViewData = this.data;
                         chartViewData.childChartData = new StackLinearChartData(chartViewData.chartData, selectedDate);
                         zoomChart(false);
-                        return;
-                    }
-                    if (this.data.zoomToken == null) {
-                        return;
-                    }
-                    zoomCanceled();
-                    final String str = this.data.zoomToken + "_" + selectedDate;
-                    ChartData chartData = (ChartData) MessageStatisticActivity.this.childDataCache.get(str);
-                    if (chartData != null) {
-                        this.data.childChartData = chartData;
-                        zoomChart(false);
-                        return;
-                    }
-                    TL_stats$TL_loadAsyncGraph tL_stats$TL_loadAsyncGraph = new TL_stats$TL_loadAsyncGraph();
-                    tL_stats$TL_loadAsyncGraph.token = this.data.zoomToken;
-                    if (selectedDate != 0) {
-                        tL_stats$TL_loadAsyncGraph.x = selectedDate;
-                        tL_stats$TL_loadAsyncGraph.flags |= 1;
-                    }
-                    MessageStatisticActivity messageStatisticActivity = MessageStatisticActivity.this;
-                    final StatisticActivity.ZoomCancelable zoomCancelable = new StatisticActivity.ZoomCancelable();
-                    messageStatisticActivity.lastCancelable = zoomCancelable;
-                    zoomCancelable.adapterPosition = MessageStatisticActivity.this.listView.getChildAdapterPosition(this);
-                    this.chartView.legendSignatureView.showProgress(true, false);
-                    ConnectionsManager.getInstance(((BaseFragment) MessageStatisticActivity.this).currentAccount).bindRequestToGuid(ConnectionsManager.getInstance(((BaseFragment) MessageStatisticActivity.this).currentAccount).sendRequest(tL_stats$TL_loadAsyncGraph, new RequestDelegate() {
-                        @Override
-                        public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                            MessageStatisticActivity.ListAdapter.AnonymousClass1.this.lambda$onZoomed$1(str, zoomCancelable, tLObject, tLRPC$TL_error);
+                    } else if (this.data.zoomToken == null) {
+                    } else {
+                        zoomCanceled();
+                        final String str = this.data.zoomToken + "_" + selectedDate;
+                        ChartData chartData = (ChartData) MessageStatisticActivity.this.childDataCache.get(str);
+                        if (chartData != null) {
+                            this.data.childChartData = chartData;
+                            zoomChart(false);
+                            return;
                         }
-                    }, null, null, 0, MessageStatisticActivity.this.chat.stats_dc, 1, true), ((BaseFragment) MessageStatisticActivity.this).classGuid);
+                        TL_stats$TL_loadAsyncGraph tL_stats$TL_loadAsyncGraph = new TL_stats$TL_loadAsyncGraph();
+                        tL_stats$TL_loadAsyncGraph.token = this.data.zoomToken;
+                        if (selectedDate != 0) {
+                            tL_stats$TL_loadAsyncGraph.x = selectedDate;
+                            tL_stats$TL_loadAsyncGraph.flags |= 1;
+                        }
+                        MessageStatisticActivity messageStatisticActivity = MessageStatisticActivity.this;
+                        final StatisticActivity.ZoomCancelable zoomCancelable = new StatisticActivity.ZoomCancelable();
+                        messageStatisticActivity.lastCancelable = zoomCancelable;
+                        zoomCancelable.adapterPosition = MessageStatisticActivity.this.listView.getChildAdapterPosition(this);
+                        this.chartView.legendSignatureView.showProgress(true, false);
+                        ConnectionsManager.getInstance(((BaseFragment) MessageStatisticActivity.this).currentAccount).bindRequestToGuid(ConnectionsManager.getInstance(((BaseFragment) MessageStatisticActivity.this).currentAccount).sendRequest(tL_stats$TL_loadAsyncGraph, new RequestDelegate() {
+                            @Override
+                            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                                MessageStatisticActivity.ListAdapter.AnonymousClass1.this.lambda$onZoomed$1(str, zoomCancelable, tLObject, tLRPC$TL_error);
+                            }
+                        }, null, null, 0, MessageStatisticActivity.this.chat.stats_dc, 1, true), ((BaseFragment) MessageStatisticActivity.this).classGuid);
+                    }
                 }
             }
 
@@ -1052,33 +1048,33 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View view;
+            HeaderCell headerCell;
             if (i == 0) {
                 ManageChatUserCell manageChatUserCell = new ManageChatUserCell(this.mContext, 6, 2, false, MessageStatisticActivity.this.getResourceProvider());
                 manageChatUserCell.setDividerColor(Theme.key_divider);
                 manageChatUserCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, MessageStatisticActivity.this.getResourceProvider()));
-                view = manageChatUserCell;
+                headerCell = manageChatUserCell;
             } else if (i == 1) {
-                view = new ShadowSectionCell(this.mContext, MessageStatisticActivity.this.getResourceProvider());
+                headerCell = new ShadowSectionCell(this.mContext, MessageStatisticActivity.this.getResourceProvider());
             } else if (i == 2) {
-                HeaderCell headerCell = new HeaderCell(this.mContext, Theme.key_windowBackgroundWhiteBlackText, 16, 11, false, MessageStatisticActivity.this.getResourceProvider());
-                headerCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, MessageStatisticActivity.this.getResourceProvider()));
-                headerCell.setHeight(43);
-                view = headerCell;
+                HeaderCell headerCell2 = new HeaderCell(this.mContext, Theme.key_windowBackgroundWhiteBlackText, 16, 11, false, MessageStatisticActivity.this.getResourceProvider());
+                headerCell2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, MessageStatisticActivity.this.getResourceProvider()));
+                headerCell2.setHeight(43);
+                headerCell = headerCell2;
             } else {
                 if (i != 4) {
                     if (i == 5) {
                         View overviewCell = new OverviewCell(this.mContext);
                         overviewCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
                         overviewCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, MessageStatisticActivity.this.getResourceProvider()));
-                        view = overviewCell;
+                        headerCell = overviewCell;
                     } else if (i == 6) {
                         View emptyCell = new EmptyCell(this.mContext, 16);
                         emptyCell.setLayoutParams(new RecyclerView.LayoutParams(-1, 16));
                         emptyCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, MessageStatisticActivity.this.getResourceProvider()));
-                        view = emptyCell;
+                        headerCell = emptyCell;
                     } else if (i != 7) {
-                        view = new LoadingCell(this.mContext, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(120.0f));
+                        headerCell = new LoadingCell(this.mContext, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(120.0f));
                     }
                 }
                 Context context = this.mContext;
@@ -1086,9 +1082,9 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
                 MessageStatisticActivity messageStatisticActivity = MessageStatisticActivity.this;
                 View anonymousClass1 = new AnonymousClass1(context, i2, messageStatisticActivity.sharedUi = new BaseChartView.SharedUiComponents(messageStatisticActivity.getResourceProvider()), MessageStatisticActivity.this.getResourceProvider());
                 anonymousClass1.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, MessageStatisticActivity.this.getResourceProvider()));
-                view = anonymousClass1;
+                headerCell = anonymousClass1;
             }
-            return new RecyclerListView.Holder(view);
+            return new RecyclerListView.Holder(headerCell);
         }
 
         @Override
@@ -1202,11 +1198,12 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
             }
             this.primary[0].setText(AndroidUtilities.formatWholeNumber(i, 0));
             this.title[0].setText(LocaleController.getString("StatisticViews", R.string.StatisticViews));
+            boolean z = true;
             this.primary[1].setText(AndroidUtilities.formatWholeNumber(MessageStatisticActivity.this.publicChats, 0));
             this.title[1].setText(LocaleController.formatString("PublicShares", R.string.PublicShares, new Object[0]));
             this.primary[2].setText(AndroidUtilities.formatWholeNumber(i3, 0));
             this.title[2].setText(LocaleController.formatString("Reactions", R.string.Reactions, new Object[0]));
-            if (MessageStatisticActivity.this.chat != null && (MessageStatisticActivity.this.chat.available_reactions instanceof TLRPC$TL_chatReactionsNone) && i3 == 0) {
+            if ((MessageStatisticActivity.this.chat != null && (MessageStatisticActivity.this.chat.available_reactions instanceof TLRPC$TL_chatReactionsNone) && i3 == 0) ? false : false) {
                 ((ViewGroup) this.title[2].getParent()).setVisibility(8);
             }
             this.primary[3].setText(AndroidUtilities.formatWholeNumber(Math.max(0, i2 - MessageStatisticActivity.this.publicChats), 0));

@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_updatePinnedDialogs extends TLRPC$Update {
     public int flags;
     public int folder_id;

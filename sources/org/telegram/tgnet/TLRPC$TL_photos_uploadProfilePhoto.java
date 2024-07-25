@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_photos_uploadProfilePhoto extends TLObject {
     public TLRPC$InputUser bot;
     public boolean fallback;

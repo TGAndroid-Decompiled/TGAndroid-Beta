@@ -17,7 +17,6 @@ import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.DrawerLayoutContainer;
 import org.telegram.ui.LaunchActivity;
-
 public class PasscodeViewDialog extends Dialog {
     public final PasscodeView passcodeView;
     private final FrameLayout windowView;

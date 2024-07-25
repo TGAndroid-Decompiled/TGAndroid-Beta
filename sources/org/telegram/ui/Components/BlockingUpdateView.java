@@ -12,7 +12,6 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.text.SpannableStringBuilder;
-import android.util.Property;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -39,7 +38,6 @@ import org.telegram.tgnet.TLRPC$TL_help_appUpdate;
 import org.telegram.tgnet.TLRPC$TL_help_getAppUpdate;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.voip.CellFlickerDrawable;
-
 public class BlockingUpdateView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private FrameLayout acceptButton;
     private TextView acceptTextView;
@@ -198,17 +196,11 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
                     }
                     FileLoader.getInstance(this.accountNum).loadFile(this.appUpdate.document, "update", 3, 1);
                     showProgress(true);
-                    return;
-                }
-                if (tLRPC$TL_help_appUpdate.url != null) {
+                } else if (tLRPC$TL_help_appUpdate.url != null) {
                     Browser.openUrl(getContext(), this.appUpdate.url);
-                    return;
                 }
-                return;
             }
-            return;
-        }
-        if (BuildVars.isHuaweiStoreApp()) {
+        } else if (BuildVars.isHuaweiStoreApp()) {
             Browser.openUrl(context, BuildVars.HUAWEI_STORE_URL);
         } else {
             Browser.openUrl(context, BuildVars.PLAYSTORE_APP_URL);
@@ -235,18 +227,14 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
             }
             showProgress(false);
             ApplicationLoader.applicationLoaderInstance.openApkInstall((Activity) getContext(), this.appUpdate.document);
-            return;
-        }
-        if (i == NotificationCenter.fileLoadFailed) {
+        } else if (i == NotificationCenter.fileLoadFailed) {
             String str3 = (String) objArr[0];
             String str4 = this.fileName;
             if (str4 == null || !str4.equals(str3)) {
                 return;
             }
             showProgress(false);
-            return;
-        }
-        if (i == NotificationCenter.fileLoadProgressChanged) {
+        } else if (i == NotificationCenter.fileLoadProgressChanged) {
             String str5 = (String) objArr[0];
             String str6 = this.fileName;
             if (str6 == null || !str6.equals(str5)) {
@@ -265,11 +253,11 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
         if (z) {
             this.radialProgressView.setVisibility(0);
             this.acceptButton.setEnabled(false);
-            this.progressAnimation.playTogether(ObjectAnimator.ofFloat(this.acceptTextView, (Property<TextView, Float>) View.SCALE_X, 0.1f), ObjectAnimator.ofFloat(this.acceptTextView, (Property<TextView, Float>) View.SCALE_Y, 0.1f), ObjectAnimator.ofFloat(this.acceptTextView, (Property<TextView, Float>) View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.radialProgressView, (Property<FrameLayout, Float>) View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(this.radialProgressView, (Property<FrameLayout, Float>) View.SCALE_Y, 1.0f), ObjectAnimator.ofFloat(this.radialProgressView, (Property<FrameLayout, Float>) View.ALPHA, 1.0f));
+            this.progressAnimation.playTogether(ObjectAnimator.ofFloat(this.acceptTextView, View.SCALE_X, 0.1f), ObjectAnimator.ofFloat(this.acceptTextView, View.SCALE_Y, 0.1f), ObjectAnimator.ofFloat(this.acceptTextView, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.radialProgressView, View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(this.radialProgressView, View.SCALE_Y, 1.0f), ObjectAnimator.ofFloat(this.radialProgressView, View.ALPHA, 1.0f));
         } else {
             this.acceptTextView.setVisibility(0);
             this.acceptButton.setEnabled(true);
-            this.progressAnimation.playTogether(ObjectAnimator.ofFloat(this.radialProgressView, (Property<FrameLayout, Float>) View.SCALE_X, 0.1f), ObjectAnimator.ofFloat(this.radialProgressView, (Property<FrameLayout, Float>) View.SCALE_Y, 0.1f), ObjectAnimator.ofFloat(this.radialProgressView, (Property<FrameLayout, Float>) View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.acceptTextView, (Property<TextView, Float>) View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(this.acceptTextView, (Property<TextView, Float>) View.SCALE_Y, 1.0f), ObjectAnimator.ofFloat(this.acceptTextView, (Property<TextView, Float>) View.ALPHA, 1.0f));
+            this.progressAnimation.playTogether(ObjectAnimator.ofFloat(this.radialProgressView, View.SCALE_X, 0.1f), ObjectAnimator.ofFloat(this.radialProgressView, View.SCALE_Y, 0.1f), ObjectAnimator.ofFloat(this.radialProgressView, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.acceptTextView, View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(this.acceptTextView, View.SCALE_Y, 1.0f), ObjectAnimator.ofFloat(this.acceptTextView, View.ALPHA, 1.0f));
         }
         this.progressAnimation.addListener(new AnimatorListenerAdapter() {
             @Override
@@ -311,7 +299,8 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
         MessageObject.addEntitiesToText(spannableStringBuilder, tLRPC$TL_help_appUpdate.entities, false, false, false, false);
         this.textView.setText(spannableStringBuilder);
         if (tLRPC$TL_help_appUpdate.document instanceof TLRPC$TL_document) {
-            this.acceptTextView.setText(LocaleController.getString("Update", R.string.Update) + String.format(Locale.US, " (%1$s)", AndroidUtilities.formatFileSize(tLRPC$TL_help_appUpdate.document.size)));
+            TextView textView = this.acceptTextView;
+            textView.setText(LocaleController.getString("Update", R.string.Update) + String.format(Locale.US, " (%1$s)", AndroidUtilities.formatFileSize(tLRPC$TL_help_appUpdate.document.size)));
         } else {
             this.acceptTextView.setText(LocaleController.getString("Update", R.string.Update));
         }

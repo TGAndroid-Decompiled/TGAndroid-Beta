@@ -1,5 +1,4 @@
 package kotlinx.coroutines;
-
 public final class BlockingEventLoop extends EventLoopImplBase {
     private final Thread thread;
 

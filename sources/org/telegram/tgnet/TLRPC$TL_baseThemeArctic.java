@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_baseThemeArctic extends TLRPC$BaseTheme {
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {

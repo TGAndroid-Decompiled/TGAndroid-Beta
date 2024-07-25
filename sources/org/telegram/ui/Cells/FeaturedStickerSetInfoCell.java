@@ -30,7 +30,6 @@ import org.telegram.ui.Components.ColorSpanUnderline;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.ProgressButton;
 import org.telegram.ui.Components.RecyclerListView;
-
 public class FeaturedStickerSetInfoCell extends FrameLayout {
     private ProgressButton addButton;
     private AnimatorSet animatorSet;
@@ -220,32 +219,32 @@ public class FeaturedStickerSetInfoCell extends FrameLayout {
                 Property property = View.ALPHA;
                 float[] fArr = new float[1];
                 fArr[0] = this.isInstalled ? 1.0f : 0.0f;
-                animatorArr[0] = ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property, fArr);
+                animatorArr[0] = ObjectAnimator.ofFloat(textView, property, fArr);
                 TextView textView2 = this.delButton;
                 Property property2 = View.SCALE_X;
                 float[] fArr2 = new float[1];
                 fArr2[0] = this.isInstalled ? 1.0f : 0.0f;
-                animatorArr[1] = ObjectAnimator.ofFloat(textView2, (Property<TextView, Float>) property2, fArr2);
+                animatorArr[1] = ObjectAnimator.ofFloat(textView2, property2, fArr2);
                 TextView textView3 = this.delButton;
                 Property property3 = View.SCALE_Y;
                 float[] fArr3 = new float[1];
                 fArr3[0] = this.isInstalled ? 1.0f : 0.0f;
-                animatorArr[2] = ObjectAnimator.ofFloat(textView3, (Property<TextView, Float>) property3, fArr3);
+                animatorArr[2] = ObjectAnimator.ofFloat(textView3, property3, fArr3);
                 ProgressButton progressButton = this.addButton;
                 Property property4 = View.ALPHA;
                 float[] fArr4 = new float[1];
                 fArr4[0] = this.isInstalled ? 0.0f : 1.0f;
-                animatorArr[3] = ObjectAnimator.ofFloat(progressButton, (Property<ProgressButton, Float>) property4, fArr4);
+                animatorArr[3] = ObjectAnimator.ofFloat(progressButton, property4, fArr4);
                 ProgressButton progressButton2 = this.addButton;
                 Property property5 = View.SCALE_X;
                 float[] fArr5 = new float[1];
                 fArr5[0] = this.isInstalled ? 0.0f : 1.0f;
-                animatorArr[4] = ObjectAnimator.ofFloat(progressButton2, (Property<ProgressButton, Float>) property5, fArr5);
+                animatorArr[4] = ObjectAnimator.ofFloat(progressButton2, property5, fArr5);
                 ProgressButton progressButton3 = this.addButton;
                 Property property6 = View.SCALE_Y;
                 float[] fArr6 = new float[1];
                 fArr6[0] = this.isInstalled ? 0.0f : 1.0f;
-                animatorArr[5] = ObjectAnimator.ofFloat(progressButton3, (Property<ProgressButton, Float>) property6, fArr6);
+                animatorArr[5] = ObjectAnimator.ofFloat(progressButton3, property6, fArr6);
                 animatorSet3.playTogether(animatorArr);
                 this.animatorSet.addListener(new AnimatorListenerAdapter() {
                     @Override

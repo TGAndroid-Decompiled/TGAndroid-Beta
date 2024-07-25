@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_searchGlobal extends TLObject {
     public boolean broadcasts_only;
     public TLRPC$MessagesFilter filter;

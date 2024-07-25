@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import org.telegram.messenger.LiteMode;
-
 public class TLRPC$TL_starsTransaction extends TLRPC$StarsTransaction {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -10,6 +9,7 @@ public class TLRPC$TL_starsTransaction extends TLRPC$StarsTransaction {
         this.refund = (readInt32 & 8) != 0;
         this.pending = (readInt32 & 16) != 0;
         this.failed = (readInt32 & 64) != 0;
+        this.gift = (readInt32 & 1024) != 0;
         this.id = abstractSerializedData.readString(z);
         this.stars = abstractSerializedData.readInt64(z);
         this.date = abstractSerializedData.readInt32(z);
@@ -61,7 +61,9 @@ public class TLRPC$TL_starsTransaction extends TLRPC$StarsTransaction {
         this.flags = i2;
         int i3 = this.failed ? i2 | 64 : i2 & (-65);
         this.flags = i3;
-        abstractSerializedData.writeInt32(i3);
+        int i4 = this.gift ? i3 | 1024 : i3 & (-1025);
+        this.flags = i4;
+        abstractSerializedData.writeInt32(i4);
         abstractSerializedData.writeInt64(this.stars);
         abstractSerializedData.writeInt32(this.date);
         this.peer.serializeToStream(abstractSerializedData);
@@ -88,8 +90,8 @@ public class TLRPC$TL_starsTransaction extends TLRPC$StarsTransaction {
             abstractSerializedData.writeInt32(481674261);
             int size = this.extended_media.size();
             abstractSerializedData.writeInt32(size);
-            for (int i4 = 0; i4 < size; i4++) {
-                this.extended_media.get(i4).serializeToStream(abstractSerializedData);
+            for (int i5 = 0; i5 < size; i5++) {
+                this.extended_media.get(i5).serializeToStream(abstractSerializedData);
             }
         }
     }

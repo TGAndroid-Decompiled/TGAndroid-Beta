@@ -11,7 +11,6 @@ import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
-
 public class LoadingDrawable extends Drawable {
     private boolean appearByGradient;
     private LinearGradient appearGradient;
@@ -129,9 +128,9 @@ public class LoadingDrawable extends Drawable {
         if (this.usePath != null) {
             this.paint.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(f)));
             this.strokePaint.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(f)));
-        } else {
-            setRadiiDp(f, f, f, f);
+            return;
         }
+        setRadiiDp(f, f, f, f);
     }
 
     public void setRadiiDp(float f, float f2, float f3, float f4) {

@@ -3,7 +3,6 @@ package org.telegram.tgnet;
 import android.graphics.Path;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.SvgHelper;
-
 public class TLRPC$TL_photoPathSize extends TLRPC$PhotoSize {
     public Path svgPath;
 

@@ -31,7 +31,6 @@ import org.telegram.ui.Components.BackgroundGradientDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.MotionBackgroundDrawable;
 import org.telegram.ui.Components.RadialProgress2;
-
 public class PatternCell extends BackupImageView implements DownloadController.FileDownloadProgressListener {
     private int TAG;
     private MotionBackgroundDrawable backgroundDrawable;
@@ -138,9 +137,8 @@ public class PatternCell extends BackupImageView implements DownloadController.F
                 name = FileLoader.getAttachFileName(tLRPC$TL_wallPaper.document);
                 if (TextUtils.isEmpty(name)) {
                     return;
-                } else {
-                    httpFilePath = FileLoader.getInstance(this.currentAccount).getPathToAttach(tLRPC$TL_wallPaper.document, true);
                 }
+                httpFilePath = FileLoader.getInstance(this.currentAccount).getPathToAttach(tLRPC$TL_wallPaper.document, true);
             } else {
                 MediaController.SearchImage searchImage = (MediaController.SearchImage) obj;
                 TLRPC$Photo tLRPC$Photo = searchImage.photo;

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messageActionSetMessagesTTL extends TLRPC$MessageAction {
     public long auto_setting_from;
     public int period;

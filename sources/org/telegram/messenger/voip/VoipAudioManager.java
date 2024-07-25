@@ -5,7 +5,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.Utilities;
 import org.webrtc.MediaStreamTrack;
-
 public class VoipAudioManager {
     private Boolean isSpeakerphoneOn;
 

@@ -5,7 +5,6 @@ import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$User;
-
 public class TL_stories$TL_storyReactionsList extends TLObject {
     public int count;
     public int flags;

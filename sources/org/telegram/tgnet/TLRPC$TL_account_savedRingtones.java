@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_account_savedRingtones extends TLRPC$account_SavedRingtones {
     public long hash;
     public ArrayList<TLRPC$Document> ringtones = new ArrayList<>();

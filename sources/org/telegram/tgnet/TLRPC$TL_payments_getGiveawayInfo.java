@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_payments_getGiveawayInfo extends TLObject {
     public static int constructor = -198994907;
     public int msg_id;

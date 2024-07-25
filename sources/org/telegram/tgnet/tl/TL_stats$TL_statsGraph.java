@@ -2,7 +2,6 @@ package org.telegram.tgnet.tl;
 
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLRPC$TL_dataJSON;
-
 public class TL_stats$TL_statsGraph extends TL_stats$StatsGraph {
     public int flags;
     public TLRPC$TL_dataJSON json;

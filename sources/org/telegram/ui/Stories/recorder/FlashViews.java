@@ -3,6 +3,7 @@ package org.telegram.ui.Stories.recorder;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -16,6 +17,7 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 import android.os.Build;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import androidx.core.graphics.ColorUtils;
@@ -23,11 +25,12 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-
+import org.telegram.ui.LaunchActivity;
 public class FlashViews {
     private ValueAnimator animator;
     public final View backgroundView;
     private int color;
+    private final Context context;
     public final View foregroundView;
     private RadialGradient gradient;
     private int lastColor;
@@ -60,6 +63,7 @@ public class FlashViews {
     public FlashViews(Context context, WindowManager windowManager, View view, WindowManager.LayoutParams layoutParams) {
         Paint paint = new Paint(1);
         this.paint = paint;
+        this.context = context;
         this.windowManager = windowManager;
         this.windowView = view;
         this.windowViewParams = layoutParams;
@@ -80,7 +84,7 @@ public class FlashViews {
             @Override
             protected void dispatchDraw(Canvas canvas) {
                 FlashViews.this.gradientMatrix.reset();
-                FlashViews.this.gradientMatrix.postTranslate(-getX(), -getY());
+                FlashViews.this.gradientMatrix.postTranslate(-getX(), (-getY()) + AndroidUtilities.statusBarHeight);
                 FlashViews.this.gradientMatrix.postScale(1.0f / getScaleX(), 1.0f / getScaleY(), getPivotX(), getPivotY());
                 FlashViews.this.drawGradient(canvas, false);
             }
@@ -89,8 +93,7 @@ public class FlashViews {
     }
 
     public void flash(final Utilities.Callback<Utilities.Callback<Runnable>> callback) {
-        this.windowViewParams.screenBrightness = intensityValue();
-        this.windowManager.updateViewLayout(this.windowView, this.windowViewParams);
+        setScreenBrightness(intensityValue());
         flashTo(1.0f, 320L, new Runnable() {
             @Override
             public final void run() {
@@ -118,9 +121,7 @@ public class FlashViews {
     }
 
     public void lambda$flash$1(final Runnable runnable) {
-        WindowManager.LayoutParams layoutParams = this.windowViewParams;
-        layoutParams.screenBrightness = -1.0f;
-        this.windowManager.updateViewLayout(this.windowView, layoutParams);
+        setScreenBrightness(-1.0f);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -133,6 +134,30 @@ public class FlashViews {
         flashTo(0.0f, 240L, runnable);
     }
 
+    private void setScreenBrightness(float f) {
+        Window window;
+        WindowManager.LayoutParams layoutParams = this.windowViewParams;
+        if (layoutParams != null) {
+            layoutParams.screenBrightness = f;
+            WindowManager windowManager = this.windowManager;
+            if (windowManager != null) {
+                windowManager.updateViewLayout(this.windowView, layoutParams);
+                return;
+            }
+            return;
+        }
+        Activity findActivity = AndroidUtilities.findActivity(this.context);
+        if (findActivity == null) {
+            findActivity = LaunchActivity.instance;
+        }
+        if (findActivity == null || findActivity.isFinishing() || (window = findActivity.getWindow()) == null) {
+            return;
+        }
+        WindowManager.LayoutParams attributes = window.getAttributes();
+        attributes.screenBrightness = f;
+        window.setAttributes(attributes);
+    }
+
     public void previewStart() {
         flashTo(0.85f, 240L, null);
     }
@@ -142,15 +167,12 @@ public class FlashViews {
     }
 
     public void flashIn(Runnable runnable) {
-        this.windowViewParams.screenBrightness = intensityValue();
-        this.windowManager.updateViewLayout(this.windowView, this.windowViewParams);
+        setScreenBrightness(intensityValue());
         flashTo(1.0f, 320L, runnable);
     }
 
     public void flashOut() {
-        WindowManager.LayoutParams layoutParams = this.windowViewParams;
-        layoutParams.screenBrightness = -1.0f;
-        this.windowManager.updateViewLayout(this.windowView, layoutParams);
+        setScreenBrightness(-1.0f);
         flashTo(0.0f, 240L, null);
     }
 
@@ -241,9 +263,13 @@ public class FlashViews {
             return;
         }
         if (Build.VERSION.SDK_INT >= 29) {
-            this.gradient = new RadialGradient(this.lastWidth * 0.5f, this.lastHeight * 0.4f, (Math.min(r2, r7) / 2.0f) * 1.35f * (2.0f - this.invert), new long[]{Color.valueOf(Color.red(this.color) / 255.0f, Color.green(this.color) / 255.0f, Color.blue(this.color) / 255.0f, 0.0f, ColorSpace.get(ColorSpace.Named.EXTENDED_SRGB)).pack(), Color.valueOf(Color.red(this.color) / 255.0f, Color.green(this.color) / 255.0f, Color.blue(this.color) / 255.0f, 1.0f, ColorSpace.get(ColorSpace.Named.EXTENDED_SRGB)).pack()}, new float[]{AndroidUtilities.lerp(0.9f, 0.22f, this.invert), 1.0f}, Shader.TileMode.CLAMP);
+            int i = this.lastWidth;
+            int i2 = this.lastHeight;
+            this.gradient = new RadialGradient(i * 0.5f, i2 * 0.4f, (Math.min(i, i2) / 2.0f) * 1.35f * (2.0f - this.invert), new long[]{Color.valueOf(Color.red(this.color) / 255.0f, Color.green(this.color) / 255.0f, Color.blue(this.color) / 255.0f, 0.0f, ColorSpace.get(ColorSpace.Named.EXTENDED_SRGB)).pack(), Color.valueOf(Color.red(this.color) / 255.0f, Color.green(this.color) / 255.0f, Color.blue(this.color) / 255.0f, 1.0f, ColorSpace.get(ColorSpace.Named.EXTENDED_SRGB)).pack()}, new float[]{AndroidUtilities.lerp(0.9f, 0.22f, this.invert), 1.0f}, Shader.TileMode.CLAMP);
         } else {
-            this.gradient = new RadialGradient(this.lastWidth * 0.5f, 0.4f * this.lastHeight, (Math.min(r2, r7) / 2.0f) * 1.35f * (2.0f - this.invert), new int[]{ColorUtils.setAlphaComponent(this.color, 0), this.color}, new float[]{AndroidUtilities.lerp(0.9f, 0.22f, this.invert), 1.0f}, Shader.TileMode.CLAMP);
+            int i3 = this.lastWidth;
+            int i4 = this.lastHeight;
+            this.gradient = new RadialGradient(i3 * 0.5f, 0.4f * i4, (Math.min(i3, i4) / 2.0f) * 1.35f * (2.0f - this.invert), new int[]{ColorUtils.setAlphaComponent(this.color, 0), this.color}, new float[]{AndroidUtilities.lerp(0.9f, 0.22f, this.invert), 1.0f}, Shader.TileMode.CLAMP);
         }
         this.paint.setShader(this.gradient);
         invalidate();

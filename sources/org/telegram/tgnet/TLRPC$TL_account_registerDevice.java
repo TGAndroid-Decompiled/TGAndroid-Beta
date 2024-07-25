@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_account_registerDevice extends TLObject {
     public boolean app_sandbox;
     public int flags;

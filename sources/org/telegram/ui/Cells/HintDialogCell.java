@@ -29,7 +29,6 @@ import org.telegram.ui.Components.CounterView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.PremiumGradient;
-
 public class HintDialogCell extends FrameLayout {
     private AvatarDrawable avatarDrawable;
     private int backgroundColorKey;

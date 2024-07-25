@@ -8,7 +8,6 @@ import java.lang.reflect.Modifier;
 import kotlin.coroutines.AbstractCoroutineContextElement;
 import kotlin.coroutines.CoroutineContext;
 import kotlinx.coroutines.CoroutineExceptionHandler;
-
 @Keep
 public final class AndroidExceptionPreHandler extends AbstractCoroutineContextElement implements CoroutineExceptionHandler {
     private volatile Object _preHandler;

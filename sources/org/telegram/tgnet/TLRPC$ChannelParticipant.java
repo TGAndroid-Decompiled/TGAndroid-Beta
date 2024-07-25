@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$ChannelParticipant extends TLObject {
     public TLRPC$TL_chatAdminRights admin_rights;
     public TLRPC$TL_channelAdminRights_layer92 admin_rights_layer92;

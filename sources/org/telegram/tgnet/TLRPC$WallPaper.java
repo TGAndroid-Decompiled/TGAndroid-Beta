@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-
 public abstract class TLRPC$WallPaper extends TLObject {
     public long access_hash;
     public boolean creator;

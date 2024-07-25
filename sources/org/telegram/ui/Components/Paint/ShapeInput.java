@@ -11,7 +11,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.Components.Paint.Brush;
 import org.telegram.ui.Components.Size;
-
 public class ShapeInput {
     private Point center;
     private Runnable invalidate;
@@ -128,8 +127,7 @@ public class ShapeInput {
             double d2 = this.shape.thickness / 2.0f;
             Double.isNaN(d2);
             return d - d2 < ((double) AndroidUtilities.dp(30.0f));
-        }
-        if (this.shape.getType() == 1 || this.shape.getType() == 3) {
+        } else if (this.shape.getType() == 1 || this.shape.getType() == 3) {
             Shape shape3 = this.shape;
             float f4 = shape3.centerX;
             float f5 = shape3.radiusX;
@@ -172,15 +170,15 @@ public class ShapeInput {
                 f3 = Math.min(f3, distToLine(f, f2, shape4.centerX, shape4.centerY, shape4.middleX, shape4.middleY));
             }
             return f3 < ((float) AndroidUtilities.dp(30.0f));
-        }
-        if (this.shape.getType() != 4) {
+        } else if (this.shape.getType() == 4) {
+            Size size = this.renderView.getPainting().getSize();
+            Shape shape5 = this.shape;
+            float distToLine = distToLine(f, f2, shape5.centerX, shape5.centerY, shape5.middleX, shape5.middleY);
+            Shape shape6 = this.shape;
+            return Math.min(distToLine, distToLine(f, f2, shape6.radiusX, shape6.radiusY, shape6.middleX, shape6.middleY)) - (this.shape.thickness / 2.0f) < Math.min(size.width, size.height) * 0.1f;
+        } else {
             return false;
         }
-        Size size = this.renderView.getPainting().getSize();
-        Shape shape5 = this.shape;
-        float distToLine = distToLine(f, f2, shape5.centerX, shape5.centerY, shape5.middleX, shape5.middleY);
-        Shape shape6 = this.shape;
-        return Math.min(distToLine, distToLine(f, f2, shape6.radiusX, shape6.radiusY, shape6.middleX, shape6.middleY)) - (this.shape.thickness / 2.0f) < Math.min(size.width, size.height) * 0.1f;
     }
 
     public void process(MotionEvent motionEvent, float f) {
@@ -361,10 +359,9 @@ public class ShapeInput {
                 @Override
                 protected void update(float f7, float f8) {
                     double atan2 = Math.atan2(ShapeInput.this.shape.centerY - ShapeInput.this.shape.middleY, ShapeInput.this.shape.centerX - ShapeInput.this.shape.middleX) + 1.5707963267948966d;
-                    float distance = (MathUtils.distance(ShapeInput.this.shape.centerX, ShapeInput.this.shape.centerY, ShapeInput.this.shape.middleX, ShapeInput.this.shape.middleY) * 5.5f) / 2.0f;
                     Shape shape3 = ShapeInput.this.shape;
                     ShapeInput shapeInput = ShapeInput.this;
-                    shape3.arrowTriangleLength = Math.min(distance, Math.max(100.0f, (-shapeInput.distToLine(f7, f8, shapeInput.shape.centerX, ShapeInput.this.shape.centerY, atan2)) * 5.5f));
+                    shape3.arrowTriangleLength = Math.min((MathUtils.distance(ShapeInput.this.shape.centerX, ShapeInput.this.shape.centerY, ShapeInput.this.shape.middleX, ShapeInput.this.shape.middleY) * 5.5f) / 2.0f, Math.max(100.0f, (-shapeInput.distToLine(f7, f8, shapeInput.shape.centerX, ShapeInput.this.shape.centerY, atan2)) * 5.5f));
                     set();
                 }
             };
@@ -455,13 +452,12 @@ public class ShapeInput {
                 }
             });
         }
-        boolean z = true;
         if (this.shape.getType() == 1 || this.shape.getType() == 3) {
             this.allPoints.add(new CornerPoint(this.shape, false, false));
             this.allPoints.add(new CornerPoint(this.shape, true, false));
             this.allPoints.add(new CornerPoint(this.shape, false, true));
             this.allPoints.add(new CornerPoint(this.shape, true, true));
-            this.allPoints.add(new Point(z) {
+            this.allPoints.add(new Point(true) {
                 @Override
                 void set() {
                     set(ShapeInput.this.shape.centerX, ShapeInput.this.shape.centerY - Math.abs(ShapeInput.this.shape.radiusY));
@@ -492,23 +488,25 @@ public class ShapeInput {
             Point point4 = new Point() {
                 private void limit() {
                     if (this.y > ShapeInput.this.shape.centerY - ShapeInput.this.shape.radiusY && this.y < ShapeInput.this.shape.centerY + ShapeInput.this.shape.radiusY) {
-                        if (this.x <= ShapeInput.this.shape.centerX && this.x > ShapeInput.this.shape.centerX - ShapeInput.this.shape.radiusX) {
+                        if (this.x > ShapeInput.this.shape.centerX || this.x <= ShapeInput.this.shape.centerX - ShapeInput.this.shape.radiusX) {
+                            if (this.x > ShapeInput.this.shape.centerY && this.x < ShapeInput.this.shape.centerX + ShapeInput.this.shape.radiusX) {
+                                this.x = ShapeInput.this.shape.centerX + ShapeInput.this.shape.radiusX;
+                            }
+                        } else {
                             this.x = ShapeInput.this.shape.centerX - ShapeInput.this.shape.radiusX;
-                        } else if (this.x > ShapeInput.this.shape.centerY && this.x < ShapeInput.this.shape.centerX + ShapeInput.this.shape.radiusX) {
-                            this.x = ShapeInput.this.shape.centerX + ShapeInput.this.shape.radiusX;
                         }
                     }
                     if (this.x <= ShapeInput.this.shape.centerX - ShapeInput.this.shape.radiusX || this.x >= ShapeInput.this.shape.centerX + ShapeInput.this.shape.radiusX) {
                         return;
                     }
-                    if (this.y <= ShapeInput.this.shape.centerY && this.y > ShapeInput.this.shape.centerY - ShapeInput.this.shape.radiusY) {
-                        this.y = ShapeInput.this.shape.centerY - ShapeInput.this.shape.radiusY;
-                    } else {
+                    if (this.y > ShapeInput.this.shape.centerY || this.y <= ShapeInput.this.shape.centerY - ShapeInput.this.shape.radiusY) {
                         if (this.y <= ShapeInput.this.shape.centerY || this.y >= ShapeInput.this.shape.centerY + ShapeInput.this.shape.radiusY) {
                             return;
                         }
                         this.y = ShapeInput.this.shape.centerY + ShapeInput.this.shape.radiusY;
+                        return;
                     }
+                    this.y = ShapeInput.this.shape.centerY - ShapeInput.this.shape.radiusY;
                 }
 
                 @Override
@@ -535,7 +533,7 @@ public class ShapeInput {
             point4.rotate = false;
             this.movingPoints.add(point4);
         }
-        this.center = new Point(z) {
+        this.center = new Point(true) {
             @Override
             void set() {
                 this.x = ShapeInput.this.shape.centerX;

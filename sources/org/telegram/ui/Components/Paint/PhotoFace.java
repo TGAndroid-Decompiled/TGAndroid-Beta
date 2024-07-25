@@ -5,7 +5,6 @@ import android.graphics.PointF;
 import com.google.android.gms.vision.face.Face;
 import com.google.android.gms.vision.face.Landmark;
 import org.telegram.ui.Components.Size;
-
 public class PhotoFace {
     private float angle;
     private org.telegram.ui.Components.Point chinPoint;
@@ -16,6 +15,7 @@ public class PhotoFace {
     private float width;
 
     public PhotoFace(Face face, Bitmap bitmap, Size size, boolean z) {
+        float degrees;
         org.telegram.ui.Components.Point point = null;
         org.telegram.ui.Components.Point point2 = null;
         org.telegram.ui.Components.Point point3 = null;
@@ -45,7 +45,7 @@ public class PhotoFace {
             float f = this.eyesDistance;
             this.width = 2.35f * f;
             float f2 = f * 0.8f;
-            double radians = (float) Math.toRadians(r12 - 90.0f);
+            double radians = (float) Math.toRadians(degrees - 90.0f);
             this.foreheadPoint = new org.telegram.ui.Components.Point(this.eyesCenterPoint.x + (((float) Math.cos(radians)) * f2), this.eyesCenterPoint.y + (f2 * ((float) Math.sin(radians))));
         }
         if (point3 == null || point4 == null) {
@@ -71,19 +71,19 @@ public class PhotoFace {
     }
 
     public org.telegram.ui.Components.Point getPointForAnchor(int i) {
-        if (i == 0) {
-            return this.foreheadPoint;
-        }
-        if (i == 1) {
+        if (i != 0) {
+            if (i != 1) {
+                if (i != 2) {
+                    if (i != 3) {
+                        return null;
+                    }
+                    return this.chinPoint;
+                }
+                return this.mouthPoint;
+            }
             return this.eyesCenterPoint;
         }
-        if (i == 2) {
-            return this.mouthPoint;
-        }
-        if (i != 3) {
-            return null;
-        }
-        return this.chinPoint;
+        return this.foreheadPoint;
     }
 
     public float getWidthForAnchor(int i) {

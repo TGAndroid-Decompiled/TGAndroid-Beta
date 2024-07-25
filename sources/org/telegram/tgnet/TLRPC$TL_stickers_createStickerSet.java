@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_stickers_createStickerSet extends TLObject {
     public boolean emojis;
     public int flags;

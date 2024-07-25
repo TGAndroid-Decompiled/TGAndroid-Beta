@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public abstract class TLRPC$messages_FavedStickers extends TLObject {
     public long hash;
     public ArrayList<TLRPC$TL_stickerPack> packs = new ArrayList<>();

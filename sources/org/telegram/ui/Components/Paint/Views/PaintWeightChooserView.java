@@ -15,7 +15,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.Paint.RenderView;
 import org.telegram.ui.Components.Paint.Swatch;
-
 public class PaintWeightChooserView extends View {
     private AnimatedFloat animatedMax;
     private AnimatedFloat animatedMin;

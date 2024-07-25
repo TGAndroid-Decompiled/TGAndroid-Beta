@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_channels_readMessageContents extends TLObject {
     public TLRPC$InputChannel channel;
     public ArrayList<Integer> id = new ArrayList<>();

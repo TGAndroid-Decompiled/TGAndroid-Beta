@@ -2,7 +2,6 @@ package org.telegram.ui.Components.Premium.boosts;
 
 import java.text.Collator;
 import java.util.Comparator;
-
 public final class BoostRepository$$ExternalSyntheticLambda29 implements Comparator {
     public final Collator f$0;
 

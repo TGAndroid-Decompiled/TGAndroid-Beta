@@ -66,7 +66,6 @@ import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.TranslateAlert2;
-
 public class TranslateAlert2 extends BottomSheet implements NotificationCenter.NotificationCenterDelegate {
     private static HashMap<String, Locale> localesByCode;
     private PaddedAdapter adapter;
@@ -255,8 +254,9 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
     public boolean hasEnoughHeight() {
         float f = 0.0f;
         for (int i = 0; i < this.listView.getChildCount(); i++) {
-            if (this.listView.getChildAdapterPosition(this.listView.getChildAt(i)) == 1) {
-                f += r3.getHeight();
+            View childAt = this.listView.getChildAt(i);
+            if (this.listView.getChildAdapterPosition(childAt) == 1) {
+                f += childAt.getHeight();
             }
         }
         return f >= ((float) ((this.listView.getHeight() - this.listView.getPaddingTop()) - this.listView.getPaddingBottom()));
@@ -455,6 +455,7 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
     }
 
     private CharSequence preprocessText(CharSequence charSequence) {
+        URLSpan[] uRLSpanArr;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence);
         if (this.onLinkPress != null || this.fragment != null) {
             for (final URLSpan uRLSpan : (URLSpan[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), URLSpan.class)) {
@@ -1092,7 +1093,8 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
                     localesByCode.put(availableLocales[i].getLanguage(), availableLocales[i]);
                     String country = availableLocales[i].getCountry();
                     if (country != null && country.length() > 0) {
-                        localesByCode.put(availableLocales[i].getLanguage() + "-" + country.toLowerCase(), availableLocales[i]);
+                        HashMap<String, Locale> hashMap = localesByCode;
+                        hashMap.put(availableLocales[i].getLanguage() + "-" + country.toLowerCase(), availableLocales[i]);
                     }
                 }
             } catch (Exception unused) {
@@ -1103,14 +1105,14 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
             Locale locale = localesByCode.get(lowerCase);
             if (locale != null) {
                 String displayLanguage = locale.getDisplayLanguage(z ? locale : Locale.getDefault());
-                if (!lowerCase.contains("-")) {
-                    return displayLanguage;
+                if (lowerCase.contains("-")) {
+                    String displayCountry = locale.getDisplayCountry(z ? locale : Locale.getDefault());
+                    if (TextUtils.isEmpty(displayCountry)) {
+                        return displayLanguage;
+                    }
+                    return displayLanguage + " (" + displayCountry + ")";
                 }
-                String displayCountry = locale.getDisplayCountry(z ? locale : Locale.getDefault());
-                if (TextUtils.isEmpty(displayCountry)) {
-                    return displayLanguage;
-                }
-                return displayLanguage + " (" + displayCountry + ")";
+                return displayLanguage;
             }
         } catch (Exception unused2) {
         }

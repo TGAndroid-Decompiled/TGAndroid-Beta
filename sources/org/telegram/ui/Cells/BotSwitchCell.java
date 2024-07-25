@@ -9,7 +9,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
-
 public class BotSwitchCell extends FrameLayout {
     private TextView textView;
 

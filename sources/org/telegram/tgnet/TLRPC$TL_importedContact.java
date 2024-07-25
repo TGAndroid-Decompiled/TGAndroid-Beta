@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_importedContact extends TLObject {
     public long client_id;
     public long user_id;

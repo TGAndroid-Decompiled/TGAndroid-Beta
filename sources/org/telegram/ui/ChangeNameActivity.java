@@ -26,7 +26,6 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.LayoutHelper;
-
 public class ChangeNameActivity extends BaseFragment {
     private View doneButton;
     private EditTextBoldCursor firstNameField;
@@ -59,10 +58,10 @@ public class ChangeNameActivity extends BaseFragment {
                         return;
                     }
                     ChangeNameActivity.this.saveName();
-                    ChangeNameActivity.this.lambda$onBackPressed$306();
+                    ChangeNameActivity.this.finishFragment();
                     return;
                 }
-                ChangeNameActivity.this.lambda$onBackPressed$306();
+                ChangeNameActivity.this.finishFragment();
             }
         });
         this.doneButton = this.actionBar.createMenu().addItemWithWidth(1, R.drawable.ic_ab_done, AndroidUtilities.dp(56.0f), LocaleController.getString("Done", R.string.Done));
@@ -164,21 +163,21 @@ public class ChangeNameActivity extends BaseFragment {
     }
 
     public boolean lambda$createView$1(TextView textView, int i, KeyEvent keyEvent) {
-        if (i != 5) {
-            return false;
+        if (i == 5) {
+            this.lastNameField.requestFocus();
+            EditTextBoldCursor editTextBoldCursor = this.lastNameField;
+            editTextBoldCursor.setSelection(editTextBoldCursor.length());
+            return true;
         }
-        this.lastNameField.requestFocus();
-        EditTextBoldCursor editTextBoldCursor = this.lastNameField;
-        editTextBoldCursor.setSelection(editTextBoldCursor.length());
-        return true;
+        return false;
     }
 
     public boolean lambda$createView$2(TextView textView, int i, KeyEvent keyEvent) {
-        if (i != 6) {
-            return false;
+        if (i == 6) {
+            this.doneButton.performClick();
+            return true;
         }
-        this.doneButton.performClick();
-        return true;
+        return false;
     }
 
     @Override
@@ -269,14 +268,12 @@ public class ChangeNameActivity extends BaseFragment {
         int i5 = ThemeDescription.FLAG_BACKGROUNDFILTER;
         int i6 = Theme.key_windowBackgroundWhiteInputField;
         arrayList.add(new ThemeDescription(editTextBoldCursor3, i5, null, null, null, null, i6));
-        EditTextBoldCursor editTextBoldCursor4 = this.firstNameField;
-        int i7 = ThemeDescription.FLAG_BACKGROUNDFILTER | ThemeDescription.FLAG_DRAWABLESELECTEDSTATE;
-        int i8 = Theme.key_windowBackgroundWhiteInputFieldActivated;
-        arrayList.add(new ThemeDescription(editTextBoldCursor4, i7, null, null, null, null, i8));
+        int i7 = Theme.key_windowBackgroundWhiteInputFieldActivated;
+        arrayList.add(new ThemeDescription(this.firstNameField, ThemeDescription.FLAG_BACKGROUNDFILTER | ThemeDescription.FLAG_DRAWABLESELECTEDSTATE, null, null, null, null, i7));
         arrayList.add(new ThemeDescription(this.lastNameField, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, i2));
         arrayList.add(new ThemeDescription(this.lastNameField, ThemeDescription.FLAG_HINTTEXTCOLOR, null, null, null, null, i4));
         arrayList.add(new ThemeDescription(this.lastNameField, ThemeDescription.FLAG_BACKGROUNDFILTER, null, null, null, null, i6));
-        arrayList.add(new ThemeDescription(this.lastNameField, ThemeDescription.FLAG_BACKGROUNDFILTER | ThemeDescription.FLAG_DRAWABLESELECTEDSTATE, null, null, null, null, i8));
+        arrayList.add(new ThemeDescription(this.lastNameField, ThemeDescription.FLAG_BACKGROUNDFILTER | ThemeDescription.FLAG_DRAWABLESELECTEDSTATE, null, null, null, null, i7));
         return arrayList;
     }
 }

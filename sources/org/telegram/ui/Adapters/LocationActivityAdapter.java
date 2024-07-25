@@ -31,7 +31,6 @@ import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SharedMediaLayout;
 import org.telegram.ui.LocationActivity;
-
 public class LocationActivityAdapter extends BaseLocationAdapter implements LocationController.LocationFetchCallback {
     private String addressName;
     public boolean animated;
@@ -91,12 +90,12 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
     }
 
     public boolean setSharedMediaLayoutVisible(boolean z) {
-        if (this.sharedMediaLayoutVisible == z) {
-            return false;
+        if (this.sharedMediaLayoutVisible != z) {
+            this.sharedMediaLayoutVisible = z;
+            notifyDataSetChanged();
+            return true;
         }
-        this.sharedMediaLayoutVisible = z;
-        notifyDataSetChanged();
-        return true;
+        return false;
     }
 
     public void setMyLocationDenied(boolean z, boolean z2) {
@@ -232,9 +231,7 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
                     this.sendLocationCell.setText(LocaleController.getString("SendSelectedLocation", R.string.SendSelectedLocation), str);
                 }
                 this.sendLocationCell.setHasLocation(true);
-                return;
-            }
-            if (this.gpsLocation != null) {
+            } else if (this.gpsLocation != null) {
                 sendLocationCell.setText(LocaleController.getString(R.string.SendLocation), LocaleController.formatString(R.string.AccurateTo, LocaleController.formatPluralString("Meters", (int) this.gpsLocation.getAccuracy(), new Object[0])));
                 this.sendLocationCell.setHasLocation(true);
             } else {
@@ -292,9 +289,7 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
             this.fetchingLocation = true;
             updateCell();
             LocationController.fetchLocationAddress(location, this.biz ? 1 : 0, this);
-            return;
-        }
-        if (i == 4) {
+        } else if (i == 4) {
             Location location2 = this.customLocation;
             if (location2 == null && (location2 = this.gpsLocation) == null) {
                 return;
@@ -306,17 +301,17 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
             this.fetchingLocation = true;
             updateCell();
             LocationController.fetchLocationAddress(location2, this);
-            return;
-        }
-        Location location4 = this.customLocation;
-        if (location4 != null) {
-            Location location5 = this.previousFetchedLocation;
-            if (location5 == null || location5.distanceTo(location4) > 20.0f) {
-                this.addressName = null;
+        } else {
+            Location location4 = this.customLocation;
+            if (location4 != null) {
+                Location location5 = this.previousFetchedLocation;
+                if (location5 == null || location5.distanceTo(location4) > 20.0f) {
+                    this.addressName = null;
+                }
+                this.fetchingLocation = true;
+                updateCell();
+                LocationController.fetchLocationAddress(location4, this.stories ? 2 : 0, this);
             }
-            this.fetchingLocation = true;
-            updateCell();
-            LocationController.fetchLocationAddress(location4, this.stories ? 2 : 0, this);
         }
     }
 
@@ -485,11 +480,10 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
                         tLRPC$TL_messageMediaVenue = this.locations.get(i2);
                         locationCell.setLocation(tLRPC$TL_messageMediaVenue, r2, true);
                         return;
-                    } else {
-                        int size = i2 - this.locations.size();
-                        if (size >= 0 && size < this.places.size()) {
-                            tLRPC$TL_messageMediaVenue = this.places.get(size);
-                        }
+                    }
+                    int size = i2 - this.locations.size();
+                    if (size >= 0 && size < this.places.size()) {
+                        tLRPC$TL_messageMediaVenue = this.places.get(size);
                     }
                 }
                 r2 = i2;
@@ -553,8 +547,7 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
                     }
                     locationCell2.setLocation(null, 2, r4);
                     return;
-                }
-                if (i == 1) {
+                } else if (i == 1) {
                     locationCell2.setLocation(this.city, null, 2, this.street != null, this.animated);
                     return;
                 } else {
@@ -599,8 +592,7 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
                     return this.currentLiveLocations.get(i - i3);
                 }
                 return null;
-            }
-            if (i2 == 1) {
+            } else if (i2 == 1) {
                 if (i > 4 && i < this.places.size() + 5) {
                     return this.places.get(i - 5);
                 }
@@ -622,10 +614,9 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
             } else if (i > 3 && i < this.places.size() + 4) {
                 return this.places.get(i - 4);
             }
+        } else if (i == 1) {
+            return messageObject;
         } else {
-            if (i == 1) {
-                return messageObject;
-            }
             if (i > 4 && i < this.places.size() + 4) {
                 return this.currentLiveLocations.get(i - 5);
             }

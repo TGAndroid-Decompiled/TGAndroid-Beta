@@ -32,7 +32,6 @@ import org.telegram.tgnet.TLRPC$TL_inputStickerSetShortName;
 import org.telegram.tgnet.TLRPC$TL_messages_stickerSet;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.ColoredImageSpan;
-
 public class Emoji {
     private static String[] DEFAULT_RECENT = null;
     private static final int MAX_RECENT_EMOJI_COUNT = 48;
@@ -53,7 +52,7 @@ public class Emoji {
     private static boolean inited = false;
 
     public static abstract class EmojiDrawable extends Drawable {
-        boolean fullSize = false;
+        public boolean fullSize = false;
         int placeholderColor = 268435456;
 
         public boolean isLoaded() {
@@ -181,9 +180,7 @@ public class Emoji {
             for (int i = 0; i < viewGroup.getChildCount(); i++) {
                 invalidateAll(viewGroup.getChildAt(i));
             }
-            return;
-        }
-        if (view instanceof TextView) {
+        } else if (view instanceof TextView) {
             view.invalidate();
         }
     }
@@ -236,13 +233,13 @@ public class Emoji {
             int i = drawImgSize;
             simpleEmojiDrawable.setBounds(0, 0, i, i);
             return simpleEmojiDrawable;
-        }
-        if (charSequence == null || (compoundEmojiDrawable = CompoundEmoji.getCompoundEmojiDrawable(charSequence.toString())) == null) {
+        } else if (charSequence == null || (compoundEmojiDrawable = CompoundEmoji.getCompoundEmojiDrawable(charSequence.toString())) == null) {
             return null;
+        } else {
+            int i2 = drawImgSize;
+            compoundEmojiDrawable.setBounds(0, 0, i2, i2);
+            return compoundEmojiDrawable;
         }
-        int i2 = drawImgSize;
-        compoundEmojiDrawable.setBounds(0, 0, i2, i2);
-        return compoundEmojiDrawable;
     }
 
     public static boolean endsWithRightArrow(CharSequence charSequence) {
@@ -529,6 +526,7 @@ public class Emoji {
         TLRPC$TL_messages_stickerSet stickerSet = MediaDataController.getInstance(i2).getStickerSet(tLRPC$TL_inputStickerSetShortName, 0, false, true, runnable == null ? null : new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
+                TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet = (TLRPC$TL_messages_stickerSet) obj;
                 runnable.run();
             }
         });
@@ -717,8 +715,10 @@ public class Emoji {
             num = 0;
         }
         if (num.intValue() == 0 && emojiUseHistory.size() >= 48) {
-            emojiUseHistory.remove(recentEmoji.get(r1.size() - 1));
-            recentEmoji.set(r1.size() - 1, str);
+            ArrayList<String> arrayList = recentEmoji;
+            emojiUseHistory.remove(arrayList.get(arrayList.size() - 1));
+            ArrayList<String> arrayList2 = recentEmoji;
+            arrayList2.set(arrayList2.size() - 1, str);
         }
         emojiUseHistory.put(str, Integer.valueOf(num.intValue() + 1));
     }
@@ -733,9 +733,8 @@ public class Emoji {
 
     public static void sortEmoji() {
         recentEmoji.clear();
-        Iterator<Map.Entry<String, Integer>> it = emojiUseHistory.entrySet().iterator();
-        while (it.hasNext()) {
-            recentEmoji.add(it.next().getKey());
+        for (Map.Entry<String, Integer> entry : emojiUseHistory.entrySet()) {
+            recentEmoji.add(entry.getKey());
         }
         Collections.sort(recentEmoji, new Comparator() {
             @Override
@@ -746,7 +745,8 @@ public class Emoji {
             }
         });
         while (recentEmoji.size() > 48) {
-            recentEmoji.remove(r0.size() - 1);
+            ArrayList<String> arrayList = recentEmoji;
+            arrayList.remove(arrayList.size() - 1);
         }
     }
 

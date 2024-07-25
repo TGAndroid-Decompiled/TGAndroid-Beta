@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_stickerSetFullCovered extends TLRPC$StickerSetCovered {
     public ArrayList<TLRPC$TL_stickerPack> packs = new ArrayList<>();
     public ArrayList<TLRPC$TL_stickerKeyword> keywords = new ArrayList<>();

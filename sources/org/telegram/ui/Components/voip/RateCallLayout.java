@@ -8,7 +8,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.util.Property;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -22,7 +21,6 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.voip.RateCallLayout;
-
 @SuppressLint({"ViewConstructor"})
 public class RateCallLayout extends FrameLayout {
     private OnRateSelected onRateSelected;
@@ -116,7 +114,7 @@ public class RateCallLayout extends FrameLayout {
         this.starsContainer.setVisibility(0);
         AnimatorSet animatorSet = new AnimatorSet();
         int i = 4;
-        animatorSet.playTogether(ObjectAnimator.ofFloat(this.rateCallContainer, (Property<RateCallContainer, Float>) View.ALPHA, 0.0f, 1.0f), ObjectAnimator.ofFloat(this.rateCallContainer, (Property<RateCallContainer, Float>) View.SCALE_X, 0.7f, 1.0f), ObjectAnimator.ofFloat(this.rateCallContainer, (Property<RateCallContainer, Float>) View.SCALE_Y, 0.7f, 1.0f), ObjectAnimator.ofFloat(this.rateCallContainer, (Property<RateCallContainer, Float>) View.TRANSLATION_Y, AndroidUtilities.dp(24.0f), 0.0f));
+        animatorSet.playTogether(ObjectAnimator.ofFloat(this.rateCallContainer, View.ALPHA, 0.0f, 1.0f), ObjectAnimator.ofFloat(this.rateCallContainer, View.SCALE_X, 0.7f, 1.0f), ObjectAnimator.ofFloat(this.rateCallContainer, View.SCALE_Y, 0.7f, 1.0f), ObjectAnimator.ofFloat(this.rateCallContainer, View.TRANSLATION_Y, AndroidUtilities.dp(24.0f), 0.0f));
         animatorSet.setInterpolator(CubicBezierInterpolator.DEFAULT);
         animatorSet.setDuration(250L);
         int i2 = 0;
@@ -124,10 +122,10 @@ public class RateCallLayout extends FrameLayout {
             AnimatorSet animatorSet2 = new AnimatorSet();
             this.startsViews[i2].setAlpha(0.0f);
             Animator[] animatorArr = new Animator[i];
-            animatorArr[0] = ObjectAnimator.ofFloat(this.startsViews[i2], (Property<StarContainer, Float>) View.ALPHA, 0.0f, 1.0f);
-            animatorArr[1] = ObjectAnimator.ofFloat(this.startsViews[i2], (Property<StarContainer, Float>) View.SCALE_X, 0.3f, 1.0f);
-            animatorArr[2] = ObjectAnimator.ofFloat(this.startsViews[i2], (Property<StarContainer, Float>) View.SCALE_Y, 0.3f, 1.0f);
-            animatorArr[3] = ObjectAnimator.ofFloat(this.startsViews[i2], (Property<StarContainer, Float>) View.TRANSLATION_Y, AndroidUtilities.dp(30.0f), 0.0f);
+            animatorArr[0] = ObjectAnimator.ofFloat(this.startsViews[i2], View.ALPHA, 0.0f, 1.0f);
+            animatorArr[1] = ObjectAnimator.ofFloat(this.startsViews[i2], View.SCALE_X, 0.3f, 1.0f);
+            animatorArr[2] = ObjectAnimator.ofFloat(this.startsViews[i2], View.SCALE_Y, 0.3f, 1.0f);
+            animatorArr[3] = ObjectAnimator.ofFloat(this.startsViews[i2], View.TRANSLATION_Y, AndroidUtilities.dp(30.0f), 0.0f);
             animatorSet2.playTogether(animatorArr);
             animatorSet2.setDuration(250L);
             animatorSet2.setStartDelay(i2 * 16);
@@ -250,8 +248,9 @@ public class RateCallLayout extends FrameLayout {
                     }
                 }
                 if (this.onSelectedStar != null) {
-                    getLocationOnScreen(new int[2]);
-                    this.onSelectedStar.onSelected(r0[0] + (getWidth() / 2.0f), r0[1] + (getHeight() / 2.0f), this.pos + 1);
+                    int[] iArr = new int[2];
+                    getLocationOnScreen(iArr);
+                    this.onSelectedStar.onSelected(iArr[0] + (getWidth() / 2.0f), iArr[1] + (getHeight() / 2.0f), this.pos + 1);
                 }
             } else if (action == 3 && (allStarsProvider = this.allStarsProvider) != null) {
                 StarContainer[] allStartsViews3 = allStarsProvider.getAllStartsViews();

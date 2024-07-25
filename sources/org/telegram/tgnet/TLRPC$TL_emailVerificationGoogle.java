@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_emailVerificationGoogle extends TLRPC$EmailVerification {
     public String token;
 

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_paymentSavedCredentialsCard extends TLObject {
     public String id;
     public String title;

@@ -26,7 +26,6 @@ import org.telegram.ui.Cells.DrawerUserCell;
 import org.telegram.ui.Cells.EmptyCell;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SideMenultItemAnimator;
-
 public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
     private boolean accountsShown;
     private boolean hasGps;
@@ -42,7 +41,8 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
         this.mContext = context;
         this.mDrawerLayoutContainer = drawerLayoutContainer;
         this.itemAnimator = sideMenultItemAnimator;
-        this.accountsShown = UserConfig.getActivatedAccountsCount() > 1 && MessagesController.getGlobalMainSettings().getBoolean("accountsShown", true);
+        boolean z = true;
+        this.accountsShown = (UserConfig.getActivatedAccountsCount() <= 1 || !MessagesController.getGlobalMainSettings().getBoolean("accountsShown", true)) ? false : false;
         Theme.createCommonDialogResources(context);
         resetItems();
         try {
@@ -140,9 +140,7 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
         int itemViewType = viewHolder.getItemViewType();
         if (itemViewType == 0) {
             ((DrawerProfileCell) viewHolder.itemView).setUser(MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId())), this.accountsShown);
-            return;
-        }
-        if (itemViewType != 3) {
+        } else if (itemViewType != 3) {
             if (itemViewType != 4) {
                 return;
             }

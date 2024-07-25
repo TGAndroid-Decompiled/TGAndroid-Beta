@@ -50,7 +50,6 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.spoilers.SpoilerEffect;
 import org.telegram.ui.Components.spoilers.SpoilerEffect2;
 import org.telegram.ui.PhotoViewer;
-
 public class PhotoAttachPhotoCell extends FrameLayout {
     private static Rect rect = new Rect();
     private AnimatorSet animator;
@@ -141,13 +140,12 @@ public class PhotoAttachPhotoCell extends FrameLayout {
                     return;
                 }
                 if (this.width != -1 && this.height != -1) {
-                    float width = (getWidth() - this.width) / 2;
                     int height = getHeight();
-                    imageReceiver.setImageCoords(width, (height - r4) / 2, this.width, this.height);
-                    ImageReceiver imageReceiver2 = this.blurImageReceiver;
-                    float width2 = (getWidth() - this.width) / 2;
+                    int i = this.height;
+                    imageReceiver.setImageCoords((getWidth() - this.width) / 2, (height - i) / 2, this.width, i);
                     int height2 = getHeight();
-                    imageReceiver2.setImageCoords(width2, (height2 - r5) / 2, this.width, this.height);
+                    int i2 = this.height;
+                    this.blurImageReceiver.setImageCoords((getWidth() - this.width) / 2, (height2 - i2) / 2, this.width, i2);
                 } else {
                     imageReceiver.setImageCoords(0.0f, 0.0f, getWidth(), getHeight());
                     this.blurImageReceiver.setImageCoords(0.0f, 0.0f, getWidth(), getHeight());
@@ -314,13 +312,14 @@ public class PhotoAttachPhotoCell extends FrameLayout {
         if (z && SpoilerEffect2.supports()) {
             if (this.spoilerEffect2 == null) {
                 this.spoilerEffect2 = SpoilerEffect2.getInstance(this.container);
+                return;
             }
-        } else {
-            SpoilerEffect2 spoilerEffect2 = this.spoilerEffect2;
-            if (spoilerEffect2 != null) {
-                spoilerEffect2.detach(this);
-                this.spoilerEffect2 = null;
-            }
+            return;
+        }
+        SpoilerEffect2 spoilerEffect2 = this.spoilerEffect2;
+        if (spoilerEffect2 != null) {
+            spoilerEffect2.detach(this);
+            this.spoilerEffect2 = null;
         }
     }
 
@@ -424,10 +423,12 @@ public class PhotoAttachPhotoCell extends FrameLayout {
             this.imageView.setImage(str, null, Theme.chat_attachEmptyDrawable);
         } else if (photoEntry2.path != null) {
             if (photoEntry2.isVideo) {
-                this.imageView.setImage("vthumb://" + this.photoEntry.imageId + ":" + this.photoEntry.path, null, Theme.chat_attachEmptyDrawable);
+                BackupImageView backupImageView = this.imageView;
+                backupImageView.setImage("vthumb://" + this.photoEntry.imageId + ":" + this.photoEntry.path, null, Theme.chat_attachEmptyDrawable);
             } else {
                 this.imageView.setOrientation(photoEntry2.orientation, photoEntry2.invert, true);
-                this.imageView.setImage("thumb://" + this.photoEntry.imageId + ":" + this.photoEntry.path, null, Theme.chat_attachEmptyDrawable);
+                BackupImageView backupImageView2 = this.imageView;
+                backupImageView2.setImage("thumb://" + this.photoEntry.imageId + ":" + this.photoEntry.path, null, Theme.chat_attachEmptyDrawable);
             }
         } else {
             this.imageView.setImageDrawable(Theme.chat_attachEmptyDrawable);
@@ -510,12 +511,12 @@ public class PhotoAttachPhotoCell extends FrameLayout {
                 Property property = View.SCALE_X;
                 float[] fArr = new float[1];
                 fArr[0] = z ? 0.787f : 1.0f;
-                animatorArr[0] = ObjectAnimator.ofFloat(frameLayout, (Property<FrameLayout, Float>) property, fArr);
+                animatorArr[0] = ObjectAnimator.ofFloat(frameLayout, property, fArr);
                 FrameLayout frameLayout2 = this.container;
                 Property property2 = View.SCALE_Y;
                 float[] fArr2 = new float[1];
                 fArr2[0] = z ? 0.787f : 1.0f;
-                animatorArr[1] = ObjectAnimator.ofFloat(frameLayout2, (Property<FrameLayout, Float>) property2, fArr2);
+                animatorArr[1] = ObjectAnimator.ofFloat(frameLayout2, property2, fArr2);
                 animatorSet2.playTogether(animatorArr);
                 this.animator.setDuration(200L);
                 this.animator.addListener(new AnimatorListenerAdapter() {
@@ -587,12 +588,12 @@ public class PhotoAttachPhotoCell extends FrameLayout {
             Property property = View.ALPHA;
             float[] fArr = new float[1];
             fArr[0] = z ? 1.0f : 0.0f;
-            animatorArr[0] = ObjectAnimator.ofFloat(frameLayout, (Property<FrameLayout, Float>) property, fArr);
+            animatorArr[0] = ObjectAnimator.ofFloat(frameLayout, property, fArr);
             CheckBox2 checkBox2 = this.checkBox;
             Property property2 = View.ALPHA;
             float[] fArr2 = new float[1];
             fArr2[0] = z ? 1.0f : 0.0f;
-            animatorArr[1] = ObjectAnimator.ofFloat(checkBox2, (Property<CheckBox2, Float>) property2, fArr2);
+            animatorArr[1] = ObjectAnimator.ofFloat(checkBox2, property2, fArr2);
             animatorSet3.playTogether(animatorArr);
             this.animatorSet.addListener(new AnimatorListenerAdapter() {
                 @Override

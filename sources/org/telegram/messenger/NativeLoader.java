@@ -1,7 +1,6 @@
 package org.telegram.messenger;
 
 import android.os.Build;
-
 public class NativeLoader {
     private static final String LIB_NAME = "tmessages.49";
     private static final String LIB_SO_NAME = "libtmessages.49.so";

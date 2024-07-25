@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_payments_starsStatus extends TLObject {
     public long balance;
     public int flags;

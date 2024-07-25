@@ -7,7 +7,6 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.RLottieImageView;
-
 public class QuickRepliesEmptyView extends LinearLayout {
     private TextView descriptionView;
     private TextView descriptionView2;

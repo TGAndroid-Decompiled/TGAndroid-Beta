@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_groupCallStreamChannel extends TLObject {
     public int channel;
     public long last_timestamp_ms;

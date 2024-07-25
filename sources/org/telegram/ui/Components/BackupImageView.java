@@ -20,7 +20,6 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.SecureDocument;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
-
 public class BackupImageView extends View {
     public AnimatedEmojiDrawable animatedEmojiDrawable;
     boolean attached;
@@ -188,15 +187,15 @@ public class BackupImageView extends View {
 
     public void setImage(ImageLocation imageLocation, String str, ImageLocation imageLocation2, String str2, Drawable drawable, Bitmap bitmap, String str3, int i, Object obj) {
         BackupImageView backupImageView;
-        Drawable drawable2;
+        BitmapDrawable bitmapDrawable;
         if (bitmap != null) {
             backupImageView = this;
-            drawable2 = new BitmapDrawable((Resources) null, bitmap);
+            bitmapDrawable = new BitmapDrawable((Resources) null, bitmap);
         } else {
             backupImageView = this;
-            drawable2 = drawable;
+            bitmapDrawable = drawable;
         }
-        backupImageView.imageReceiver.setImage(imageLocation, str, imageLocation2, str2, drawable2, i, str3, obj, 0);
+        backupImageView.imageReceiver.setImage(imageLocation, str, imageLocation2, str2, bitmapDrawable, i, str3, obj, 0);
         onNewImageSet();
     }
 
@@ -324,14 +323,13 @@ public class BackupImageView extends View {
                     this.blurImageReceiver.setImageCoords(0.0f, 0.0f, this.width, this.height);
                 }
             } else {
-                float width = (getWidth() - this.width) / 2;
                 int height = getHeight();
-                imageReceiver.setImageCoords(width, (height - r3) / 2, this.width, this.height);
+                int i3 = this.height;
+                imageReceiver.setImageCoords((getWidth() - this.width) / 2, (height - i3) / 2, this.width, i3);
                 if (this.blurAllowed) {
-                    ImageReceiver imageReceiver2 = this.blurImageReceiver;
-                    float width2 = (getWidth() - this.width) / 2;
                     int height2 = getHeight();
-                    imageReceiver2.setImageCoords(width2, (height2 - r4) / 2, this.width, this.height);
+                    int i4 = this.height;
+                    this.blurImageReceiver.setImageCoords((getWidth() - this.width) / 2, (height2 - i4) / 2, this.width, i4);
                 }
             }
         } else {
@@ -424,13 +422,12 @@ public class BackupImageView extends View {
             measuredHeight = i;
         }
         float currentWidth = this.blurText.getCurrentWidth() + AndroidUtilities.dp(18.0f);
-        float dp = AndroidUtilities.dp(28.0f);
         float f2 = (measuredWidth - currentWidth) / 2.0f;
         float f3 = measuredHeight / 2.0f;
         RectF rectF = AndroidUtilities.rectTmp;
-        float f4 = dp / 2.0f;
-        rectF.set(f2, f3 - f4, currentWidth + f2, f3 + f4);
-        this.blurTextClipPath.addRoundRect(rectF, f4, f4, Path.Direction.CW);
+        float dp = AndroidUtilities.dp(28.0f) / 2.0f;
+        rectF.set(f2, f3 - dp, currentWidth + f2, f3 + dp);
+        this.blurTextClipPath.addRoundRect(rectF, dp, dp, Path.Direction.CW);
         canvas.save();
         canvas.clipPath(this.blurTextClipPath);
         ImageReceiver imageReceiver = this.blurImageReceiver;

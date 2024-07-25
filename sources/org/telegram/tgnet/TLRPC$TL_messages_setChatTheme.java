@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_setChatTheme extends TLObject {
     public String emoticon;
     public TLRPC$InputPeer peer;

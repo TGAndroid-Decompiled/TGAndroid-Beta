@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 import org.telegram.messenger.FileLoader;
-
 public abstract class TLRPC$Document extends TLObject {
     public long access_hash;
     public int date;

@@ -5,50 +5,49 @@ import android.os.Bundle;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.EditWidgetActivity;
-
 public class ContactsWidgetConfigActivity extends ExternalActionActivity {
     private int creatingAppWidgetId = 0;
 
     @Override
     protected boolean handleIntent(Intent intent, boolean z, boolean z2, boolean z3, int i, int i2) {
-        if (!checkPasscode(intent, z, z2, z3, i, i2)) {
-            return false;
-        }
-        Bundle extras = intent.getExtras();
-        if (extras != null) {
-            this.creatingAppWidgetId = extras.getInt("appWidgetId", 0);
-        }
-        if (this.creatingAppWidgetId != 0) {
-            Bundle bundle = new Bundle();
-            bundle.putBoolean("onlySelect", true);
-            bundle.putInt("dialogsType", 10);
-            bundle.putBoolean("allowSwitchAccount", true);
-            EditWidgetActivity editWidgetActivity = new EditWidgetActivity(1, this.creatingAppWidgetId);
-            editWidgetActivity.setDelegate(new EditWidgetActivity.EditWidgetActivityDelegate() {
-                @Override
-                public final void didSelectDialogs(ArrayList arrayList) {
-                    ContactsWidgetConfigActivity.this.lambda$handleIntent$0(arrayList);
+        if (checkPasscode(intent, z, z2, z3, i, i2)) {
+            Bundle extras = intent.getExtras();
+            if (extras != null) {
+                this.creatingAppWidgetId = extras.getInt("appWidgetId", 0);
+            }
+            if (this.creatingAppWidgetId != 0) {
+                Bundle bundle = new Bundle();
+                bundle.putBoolean("onlySelect", true);
+                bundle.putInt("dialogsType", 10);
+                bundle.putBoolean("allowSwitchAccount", true);
+                EditWidgetActivity editWidgetActivity = new EditWidgetActivity(1, this.creatingAppWidgetId);
+                editWidgetActivity.setDelegate(new EditWidgetActivity.EditWidgetActivityDelegate() {
+                    @Override
+                    public final void didSelectDialogs(ArrayList arrayList) {
+                        ContactsWidgetConfigActivity.this.lambda$handleIntent$0(arrayList);
+                    }
+                });
+                if (AndroidUtilities.isTablet()) {
+                    if (this.layersActionBarLayout.getFragmentStack().isEmpty()) {
+                        this.layersActionBarLayout.addFragmentToStack(editWidgetActivity);
+                    }
+                } else if (this.actionBarLayout.getFragmentStack().isEmpty()) {
+                    this.actionBarLayout.addFragmentToStack(editWidgetActivity);
                 }
-            });
-            if (AndroidUtilities.isTablet()) {
-                if (this.layersActionBarLayout.getFragmentStack().isEmpty()) {
-                    this.layersActionBarLayout.addFragmentToStack(editWidgetActivity);
+                if (!AndroidUtilities.isTablet()) {
+                    this.backgroundTablet.setVisibility(8);
                 }
-            } else if (this.actionBarLayout.getFragmentStack().isEmpty()) {
-                this.actionBarLayout.addFragmentToStack(editWidgetActivity);
+                this.actionBarLayout.showLastFragment();
+                if (AndroidUtilities.isTablet()) {
+                    this.layersActionBarLayout.showLastFragment();
+                }
+                intent.setAction(null);
+            } else {
+                finish();
             }
-            if (!AndroidUtilities.isTablet()) {
-                this.backgroundTablet.setVisibility(8);
-            }
-            this.actionBarLayout.showLastFragment();
-            if (AndroidUtilities.isTablet()) {
-                this.layersActionBarLayout.showLastFragment();
-            }
-            intent.setAction(null);
-        } else {
-            finish();
+            return true;
         }
-        return true;
+        return false;
     }
 
     public void lambda$handleIntent$0(ArrayList arrayList) {

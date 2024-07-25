@@ -5,7 +5,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.LockSupport;
 import kotlin.ranges.RangesKt___RangesKt;
 import kotlinx.coroutines.EventLoopImplBase;
-
 public final class DefaultExecutor extends EventLoopImplBase implements Runnable {
     public static final DefaultExecutor INSTANCE;
     private static final long KEEP_ALIVE_NANOS;
@@ -76,9 +75,8 @@ public final class DefaultExecutor extends EventLoopImplBase implements Runnable
             if (!notifyStartup()) {
                 if (isEmpty) {
                     return;
-                } else {
-                    return;
                 }
+                return;
             }
             long j = Long.MAX_VALUE;
             while (true) {

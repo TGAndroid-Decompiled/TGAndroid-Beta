@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_stickers_addStickerToSet extends TLObject {
     public static int constructor = -2041315650;
     public TLRPC$TL_inputStickerSetItem sticker;

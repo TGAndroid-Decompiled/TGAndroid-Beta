@@ -24,7 +24,6 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.TLRPC$TL_groupCallParticipant;
 import org.telegram.ui.ActionBar.Theme;
-
 public class GroupCallPipButton extends FrameLayout implements NotificationCenter.NotificationCenterDelegate, VoIPService.StateListener {
     float amplitude;
     float animateAmplitudeDiff;
@@ -168,10 +167,9 @@ public class GroupCallPipButton extends FrameLayout implements NotificationCente
                     this.color2 = color4;
                     this.shader = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{color3, color4}, (float[]) null, Shader.TileMode.CLAMP);
                 }
+            } else if (i != 3) {
+                return;
             } else {
-                if (i != 3) {
-                    return;
-                }
                 int i6 = this.color1;
                 int i7 = Theme.key_voipgroup_mutedByAdminGradient;
                 if (i6 != Theme.getColor(i7) || this.color2 != Theme.getColor(Theme.key_voipgroup_mutedByAdminGradient2) || this.color3 != Theme.getColor(Theme.key_voipgroup_mutedByAdminGradient3)) {
@@ -234,9 +232,9 @@ public class GroupCallPipButton extends FrameLayout implements NotificationCente
             if (this.currentState == 2) {
                 paint.setShader(null);
                 paint.setColor(Theme.getColor(Theme.key_voipgroup_topPanelGray));
-            } else {
-                paint.setShader(this.shader);
+                return;
             }
+            paint.setShader(this.shader);
         }
     }
 
@@ -263,7 +261,8 @@ public class GroupCallPipButton extends FrameLayout implements NotificationCente
                 this.progressToState = 0.0f;
             } else {
                 this.progressToState = 1.0f;
-                this.wavesEnter = (weavingState3.currentState == 3 || this.currentState.currentState == 2) ? false : true ? 1.0f : 0.0f;
+                boolean z = true;
+                this.wavesEnter = (weavingState3.currentState == 3 || this.currentState.currentState == 2) ? false : false ? 1.0f : 0.0f;
             }
             VoIPService sharedInstance = VoIPService.getSharedInstance();
             if (sharedInstance != null && ChatObject.isChannelOrGiga(sharedInstance.getChat())) {

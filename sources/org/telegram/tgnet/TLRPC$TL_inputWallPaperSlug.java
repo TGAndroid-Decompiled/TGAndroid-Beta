@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_inputWallPaperSlug extends TLRPC$InputWallPaper {
     public String slug;
 

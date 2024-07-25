@@ -17,7 +17,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.ui.ActionBar.Theme;
-
 public class LoadingStickerDrawable extends Drawable {
     private Bitmap bitmap;
     int currentColor0;

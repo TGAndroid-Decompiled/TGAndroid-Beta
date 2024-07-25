@@ -12,7 +12,6 @@ import org.telegram.ui.Cells.GraySectionCell;
 import org.telegram.ui.Cells.LocationCell;
 import org.telegram.ui.Components.FlickerLoadingView;
 import org.telegram.ui.Components.RecyclerListView;
-
 public class LocationActivitySearchAdapter extends BaseLocationAdapter {
     private FlickerLoadingView globalGradientView;
     private Context mContext;
@@ -98,9 +97,7 @@ public class LocationActivitySearchAdapter extends BaseLocationAdapter {
                 z = false;
             }
             locationCell.setLocation(tLRPC$TL_messageMediaVenue, i2, z);
-            return;
-        }
-        if (viewHolder.getItemViewType() == 1) {
+        } else if (viewHolder.getItemViewType() == 1) {
             if (i == 0 && !this.locations.isEmpty()) {
                 ((GraySectionCell) viewHolder.itemView).setText(LocaleController.getString("LocationOnMap", R.string.LocationOnMap));
             } else {

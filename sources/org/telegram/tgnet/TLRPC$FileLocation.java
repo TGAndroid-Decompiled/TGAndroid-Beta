@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$FileLocation extends TLObject {
     public int dc_id;
     public byte[] file_reference;

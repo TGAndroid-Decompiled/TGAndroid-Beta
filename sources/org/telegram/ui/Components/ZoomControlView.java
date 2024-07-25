@@ -12,7 +12,6 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.AnimationProperties;
-
 public class ZoomControlView extends View {
     public final Property<ZoomControlView, Float> ZOOM_PROPERTY;
     private float animatingToZoom;

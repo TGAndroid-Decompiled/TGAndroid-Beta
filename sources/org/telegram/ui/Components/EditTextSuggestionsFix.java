@@ -9,7 +9,6 @@ import android.text.style.SuggestionSpan;
 import android.util.Pair;
 import java.util.HashMap;
 import java.util.Map;
-
 public class EditTextSuggestionsFix implements TextWatcher {
     private HashMap<Object, Pair<Integer, Integer>> beforeSpans;
     private int beforeSuggestionsCount;
@@ -46,25 +45,25 @@ public class EditTextSuggestionsFix implements TextWatcher {
 
     private static HashMap<Object, Pair<Integer, Integer>> saveSpans(CharSequence charSequence) {
         HashMap<Object, Pair<Integer, Integer>> hashMap = new HashMap<>();
-        if (!(charSequence instanceof Spannable)) {
+        if (charSequence instanceof Spannable) {
+            Spannable spannable = (Spannable) charSequence;
+            CharacterStyle[] characterStyleArr = (CharacterStyle[]) spannable.getSpans(0, spannable.length(), CharacterStyle.class);
+            ParagraphStyle[] paragraphStyleArr = (ParagraphStyle[]) spannable.getSpans(0, spannable.length(), ParagraphStyle.class);
+            if (characterStyleArr != null && characterStyleArr.length > 0) {
+                for (CharacterStyle characterStyle : characterStyleArr) {
+                    if (characterStyle != null && !(characterStyle instanceof SuggestionSpan)) {
+                        hashMap.put(characterStyle, new Pair<>(Integer.valueOf(spannable.getSpanStart(characterStyle)), Integer.valueOf(spannable.getSpanEnd(characterStyle))));
+                    }
+                }
+            }
+            if (paragraphStyleArr != null && paragraphStyleArr.length > 0) {
+                for (ParagraphStyle paragraphStyle : paragraphStyleArr) {
+                    if (paragraphStyle != null && !(paragraphStyle instanceof SuggestionSpan)) {
+                        hashMap.put(paragraphStyle, new Pair<>(Integer.valueOf(spannable.getSpanStart(paragraphStyle)), Integer.valueOf(spannable.getSpanEnd(paragraphStyle))));
+                    }
+                }
+            }
             return hashMap;
-        }
-        Spannable spannable = (Spannable) charSequence;
-        CharacterStyle[] characterStyleArr = (CharacterStyle[]) spannable.getSpans(0, spannable.length(), CharacterStyle.class);
-        ParagraphStyle[] paragraphStyleArr = (ParagraphStyle[]) spannable.getSpans(0, spannable.length(), ParagraphStyle.class);
-        if (characterStyleArr != null && characterStyleArr.length > 0) {
-            for (CharacterStyle characterStyle : characterStyleArr) {
-                if (characterStyle != null && !(characterStyle instanceof SuggestionSpan)) {
-                    hashMap.put(characterStyle, new Pair<>(Integer.valueOf(spannable.getSpanStart(characterStyle)), Integer.valueOf(spannable.getSpanEnd(characterStyle))));
-                }
-            }
-        }
-        if (paragraphStyleArr != null && paragraphStyleArr.length > 0) {
-            for (ParagraphStyle paragraphStyle : paragraphStyleArr) {
-                if (paragraphStyle != null && !(paragraphStyle instanceof SuggestionSpan)) {
-                    hashMap.put(paragraphStyle, new Pair<>(Integer.valueOf(spannable.getSpanStart(paragraphStyle)), Integer.valueOf(spannable.getSpanEnd(paragraphStyle))));
-                }
-            }
         }
         return hashMap;
     }

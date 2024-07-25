@@ -43,7 +43,6 @@ import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Components.ChatAttachAlert;
 import org.telegram.ui.Components.ChatAttachAlertContactsLayout;
 import org.telegram.ui.Components.RecyclerListView;
-
 public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLayout implements NotificationCenter.NotificationCenterDelegate {
     private PhonebookShareAlertDelegate delegate;
     private EmptyTextProgressView emptyView;
@@ -220,7 +219,8 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
 
         public void lambda$setStatus$3() {
             if (this.currentUser != null) {
-                this.formattedPhoneNumber = PhoneFormat.getInstance().format("+" + this.currentUser.phone);
+                PhoneFormat phoneFormat = PhoneFormat.getInstance();
+                this.formattedPhoneNumber = phoneFormat.format("+" + this.currentUser.phone);
                 this.formattedPhoneNumberUser = this.currentUser;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
@@ -445,9 +445,8 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
             int positionInSectionForPosition = this.listAdapter.getPositionInSectionForPosition(i);
             if (positionInSectionForPosition < 0 || sectionForPosition < 0) {
                 return;
-            } else {
-                item = this.listAdapter.getItem(sectionForPosition, positionInSectionForPosition);
             }
+            item = this.listAdapter.getItem(sectionForPosition, positionInSectionForPosition);
         }
         if (item != null) {
             if (!this.selectedContacts.isEmpty()) {
@@ -510,11 +509,11 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
         } else {
             item = this.listAdapter.getItem(i);
         }
-        if (item == null) {
-            return false;
+        if (item != null) {
+            addOrRemoveSelectedContact((UserCell) view, item);
+            return true;
         }
-        addOrRemoveSelectedContact((UserCell) view, item);
-        return true;
+        return false;
     }
 
     public void addOrRemoveSelectedContact(UserCell userCell, Object obj) {
@@ -667,7 +666,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
         Property property = View.ALPHA;
         float[] fArr = new float[1];
         fArr[0] = z ? 1.0f : 0.0f;
-        animatorArr[0] = ObjectAnimator.ofFloat(view, (Property<View, Float>) property, fArr);
+        animatorArr[0] = ObjectAnimator.ofFloat(view, property, fArr);
         animatorSet2.playTogether(animatorArr);
         this.shadowAnimation.setDuration(150L);
         this.shadowAnimation.addListener(new AnimatorListenerAdapter() {
@@ -694,20 +693,20 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
     }
 
     public int getCurrentTop() {
-        if (this.listView.getChildCount() == 0) {
+        if (this.listView.getChildCount() != 0) {
+            int i = 0;
+            View childAt = this.listView.getChildAt(0);
+            RecyclerListView.Holder holder = (RecyclerListView.Holder) this.listView.findContainingViewHolder(childAt);
+            if (holder != null) {
+                int paddingTop = this.listView.getPaddingTop();
+                if (holder.getAdapterPosition() == 0 && childAt.getTop() >= 0) {
+                    i = childAt.getTop();
+                }
+                return paddingTop - i;
+            }
             return -1000;
         }
-        int i = 0;
-        View childAt = this.listView.getChildAt(0);
-        RecyclerListView.Holder holder = (RecyclerListView.Holder) this.listView.findContainingViewHolder(childAt);
-        if (holder == null) {
-            return -1000;
-        }
-        int paddingTop = this.listView.getPaddingTop();
-        if (holder.getAdapterPosition() == 0 && childAt.getTop() >= 0) {
-            i = childAt.getTop();
-        }
-        return paddingTop - i;
+        return -1000;
     }
 
     public void setDelegate(PhonebookShareAlertDelegate phonebookShareAlertDelegate) {
@@ -742,7 +741,8 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
     public void updateEmptyViewPosition() {
         View childAt;
         if (this.emptyView.getVisibility() == 0 && (childAt = this.listView.getChildAt(0)) != null) {
-            this.emptyView.setTranslationY(((r1.getMeasuredHeight() - getMeasuredHeight()) + childAt.getTop()) / 2);
+            EmptyTextProgressView emptyTextProgressView = this.emptyView;
+            emptyTextProgressView.setTranslationY(((emptyTextProgressView.getMeasuredHeight() - getMeasuredHeight()) + childAt.getTop()) / 2);
         }
     }
 
@@ -874,7 +874,8 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
         }
 
         public static CharSequence lambda$onBindViewHolder$1(TLRPC$User tLRPC$User) {
-            return PhoneFormat.getInstance().format("+" + tLRPC$User.phone);
+            PhoneFormat phoneFormat = PhoneFormat.getInstance();
+            return phoneFormat.format("+" + tLRPC$User.phone);
         }
 
         @Override
@@ -918,19 +919,19 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
                 this.searchResult.clear();
                 this.searchResultNames.clear();
                 notifyDataSetChanged();
-            } else {
-                final int i = this.lastSearchId + 1;
-                this.lastSearchId = i;
-                DispatchQueue dispatchQueue = Utilities.searchQueue;
-                Runnable runnable = new Runnable() {
-                    @Override
-                    public final void run() {
-                        ChatAttachAlertContactsLayout.ShareSearchAdapter.this.lambda$search$0(str, i);
-                    }
-                };
-                this.searchRunnable = runnable;
-                dispatchQueue.postRunnable(runnable, 300L);
+                return;
             }
+            final int i = this.lastSearchId + 1;
+            this.lastSearchId = i;
+            DispatchQueue dispatchQueue = Utilities.searchQueue;
+            Runnable runnable = new Runnable() {
+                @Override
+                public final void run() {
+                    ChatAttachAlertContactsLayout.ShareSearchAdapter.this.lambda$search$0(str, i);
+                }
+            };
+            this.searchRunnable = runnable;
+            dispatchQueue.postRunnable(runnable, 300L);
         }
 
         public void lambda$search$0(final String str, final int i) {
@@ -1050,7 +1051,8 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
         }
 
         public static CharSequence lambda$onBindViewHolder$5(TLRPC$User tLRPC$User) {
-            return PhoneFormat.getInstance().format("+" + tLRPC$User.phone);
+            PhoneFormat phoneFormat = PhoneFormat.getInstance();
+            return phoneFormat.format("+" + tLRPC$User.phone);
         }
 
         @Override

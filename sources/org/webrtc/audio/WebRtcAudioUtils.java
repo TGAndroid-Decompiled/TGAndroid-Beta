@@ -7,7 +7,6 @@ import android.media.AudioManager;
 import android.os.Build;
 import java.util.Arrays;
 import org.webrtc.Logging;
-
 final class WebRtcAudioUtils {
     private static final String TAG = "WebRtcAudioUtilsExternal";
 
@@ -127,28 +126,28 @@ final class WebRtcAudioUtils {
 
     @TargetApi(24)
     public static String audioEncodingToString(int i) {
-        if (i == 0) {
-            return "INVALID";
+        if (i != 0) {
+            switch (i) {
+                case 2:
+                    return "PCM_16BIT";
+                case 3:
+                    return "PCM_8BIT";
+                case 4:
+                    return "PCM_FLOAT";
+                case 5:
+                case 6:
+                    return "AC3";
+                case 7:
+                    return "DTS";
+                case 8:
+                    return "DTS_HD";
+                case 9:
+                    return "MP3";
+                default:
+                    return "Invalid encoding: " + i;
+            }
         }
-        switch (i) {
-            case 2:
-                return "PCM_16BIT";
-            case 3:
-                return "PCM_8BIT";
-            case 4:
-                return "PCM_FLOAT";
-            case 5:
-            case 6:
-                return "AC3";
-            case 7:
-                return "DTS";
-            case 8:
-                return "DTS_HD";
-            case 9:
-                return "MP3";
-            default:
-                return "Invalid encoding: " + i;
-        }
+        return "INVALID";
     }
 
     private static void logAudioStateBasic(String str, Context context, AudioManager audioManager) {

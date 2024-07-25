@@ -9,7 +9,6 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.PlayPauseDrawable;
-
 public class PlayPauseButton extends View {
     private final Paint circlePaint;
     public final PlayPauseDrawable drawable;

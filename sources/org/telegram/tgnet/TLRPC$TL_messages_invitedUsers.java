@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_messages_invitedUsers extends TLObject {
     public ArrayList<TLRPC$TL_missingInvitee> missing_invitees = new ArrayList<>();
     public TLRPC$Updates updates;

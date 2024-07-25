@@ -28,7 +28,6 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.Premium.GLIcon.GLIconTextureView;
 import org.telegram.ui.Components.Premium.StarParticlesView;
-
 public class GLIconTextureView extends TextureView implements TextureView.SurfaceTextureListener {
     ArrayList<Integer> animationIndexes;
     int animationPointer;
@@ -90,10 +89,10 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
                 AnimatorSet animatorSet = GLIconTextureView.this.animatorSet;
                 if ((animatorSet == null || !animatorSet.isRunning()) && ((valueAnimator = GLIconTextureView.this.backAnimation) == null || !valueAnimator.isRunning())) {
                     GLIconTextureView.this.startIdleAnimation();
-                } else {
-                    GLIconTextureView gLIconTextureView = GLIconTextureView.this;
-                    gLIconTextureView.scheduleIdleAnimation(gLIconTextureView.idleDelay);
+                    return;
                 }
+                GLIconTextureView gLIconTextureView = GLIconTextureView.this;
+                gLIconTextureView.scheduleIdleAnimation(gLIconTextureView.idleDelay);
             }
         };
         this.xUpdater2 = new ValueAnimator.AnimatorUpdateListener() {
@@ -329,11 +328,10 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
                     gLIconTextureView = GLIconTextureView.this;
                     if (gLIconTextureView.mRenderer != null) {
                         break;
-                    } else {
-                        try {
-                            Thread.sleep(100L);
-                        } catch (InterruptedException unused) {
-                        }
+                    }
+                    try {
+                        Thread.sleep(100L);
+                    } catch (InterruptedException unused) {
                     }
                 }
                 if (gLIconTextureView.rendererChanged) {
@@ -350,7 +348,11 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
                     if (GLIconTextureView.this.shouldSleep()) {
                         Thread.sleep(100L);
                     } else {
-                        for (long currentTimeMillis3 = System.currentTimeMillis(); currentTimeMillis3 - currentTimeMillis < GLIconTextureView.this.targetFrameDurationMillis; currentTimeMillis3 = System.currentTimeMillis()) {
+                        long currentTimeMillis3 = System.currentTimeMillis();
+                        while (true) {
+                            if (currentTimeMillis3 - currentTimeMillis < GLIconTextureView.this.targetFrameDurationMillis) {
+                                currentTimeMillis3 = System.currentTimeMillis();
+                            }
                         }
                     }
                 } catch (InterruptedException unused2) {
@@ -448,13 +450,13 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
                 return;
             }
             throw new RuntimeException("eglCreateWindowSurface failed " + GLUtils.getEGLErrorString(eglGetError));
-        }
-        if (!this.mEgl.eglMakeCurrent(this.mEglDisplay, eGLSurface, eGLSurface, this.mEglContext)) {
+        } else if (!this.mEgl.eglMakeCurrent(this.mEglDisplay, eGLSurface, eGLSurface, this.mEglContext)) {
             throw new RuntimeException("eglMakeCurrent failed " + GLUtils.getEGLErrorString(this.mEgl.eglGetError()));
+        } else {
+            checkEglError();
+            this.mGl = (GL10) this.mEglContext.getGL();
+            checkEglError();
         }
-        checkEglError();
-        this.mGl = (GL10) this.mEglContext.getGL();
-        checkEglError();
     }
 
     @Override
@@ -569,9 +571,7 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
             }
             if (intValue == 0) {
                 pullAnimation();
-                return;
-            }
-            if (intValue == 1) {
+            } else if (intValue == 1) {
                 slowFlipAnimation();
             } else if (intValue == 2) {
                 sleepAnimation();
@@ -733,8 +733,8 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
         if (z) {
             AndroidUtilities.cancelRunOnUIThread(this.idleAnimation);
             startBackAnimation();
-        } else {
-            scheduleIdleAnimation(this.idleDelay);
+            return;
         }
+        scheduleIdleAnimation(this.idleDelay);
     }
 }

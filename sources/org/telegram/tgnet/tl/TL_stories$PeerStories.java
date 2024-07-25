@@ -5,7 +5,6 @@ import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Peer;
 import org.telegram.tgnet.TLRPC$TL_peerUser;
-
 public abstract class TL_stories$PeerStories extends TLObject {
     public boolean checkedExpired;
     public int flags;

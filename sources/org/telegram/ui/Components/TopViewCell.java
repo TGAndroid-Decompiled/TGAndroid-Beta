@@ -9,7 +9,6 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Stories.recorder.HintView2;
-
 public class TopViewCell extends LinearLayout {
     public final BackupImageView imageView;
     private int lastIconResId;

@@ -3,7 +3,6 @@ package org.telegram.messenger.voip;
 import android.text.TextUtils;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-
 class VLog {
     public static native void d(String str);
 

@@ -18,7 +18,6 @@ import org.telegram.ui.Components.Forum.ForumUtilities;
 import org.telegram.ui.DialogsActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.TopicsFragment;
-
 public class BackButtonMenu {
 
     public static class PulledDialog<T> {
@@ -52,7 +51,8 @@ public class BackButtonMenu {
             i = -1;
             for (int i2 = 0; i2 < pulledDialogs.size(); i2++) {
                 PulledDialog pulledDialog = pulledDialogs.get(i2);
-                if (pulledDialog.topic != null && r8.id != j2) {
+                TLRPC$TL_forumTopic tLRPC$TL_forumTopic = pulledDialog.topic;
+                if (tLRPC$TL_forumTopic != null && tLRPC$TL_forumTopic.id != j2) {
                     int i3 = pulledDialog.stackIndex;
                     if (i3 >= i) {
                         i = i3;

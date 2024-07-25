@@ -49,7 +49,6 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RadialProgressView;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.TooManyCommunitiesActivity;
-
 public class TooManyCommunitiesActivity extends BaseFragment {
     private Adapter adapter;
     private int buttonAnimation;
@@ -137,7 +136,7 @@ public class TooManyCommunitiesActivity extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    TooManyCommunitiesActivity.this.lambda$onBackPressed$306();
+                    TooManyCommunitiesActivity.this.finishFragment();
                 }
             }
         });
@@ -183,9 +182,7 @@ public class TooManyCommunitiesActivity extends BaseFragment {
                     TooManyCommunitiesActivity.this.searchAdapter.notifyDataSetChanged();
                     TooManyCommunitiesActivity.this.searchViewContainer.animate().setListener(null).alpha(1.0f).setDuration(150L).start();
                     this.expanded = true;
-                    return;
-                }
-                if (this.expanded && TextUtils.isEmpty(obj)) {
+                } else if (this.expanded && TextUtils.isEmpty(obj)) {
                     onSearchCollapse();
                 }
             }
@@ -288,7 +285,7 @@ public class TooManyCommunitiesActivity extends BaseFragment {
             getMessagesController().putChat(tLRPC$Chat, false);
             getMessagesController().deleteParticipantFromChat(tLRPC$Chat.id, user);
         }
-        lambda$onBackPressed$306();
+        finishFragment();
     }
 
     private void onSelectedCountChange() {
@@ -480,10 +477,10 @@ public class TooManyCommunitiesActivity extends BaseFragment {
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             String string;
-            View view;
+            HeaderCell headerCell;
             if (i == 1) {
                 TooManyCommunitiesActivity.this.hintCell = new TooManyCommunitiesHintCell(viewGroup.getContext());
-                View view2 = TooManyCommunitiesActivity.this.hintCell;
+                View view = TooManyCommunitiesActivity.this.hintCell;
                 int i2 = TooManyCommunitiesActivity.this.type;
                 if (i2 == 0) {
                     string = LocaleController.getString("TooManyCommunitiesHintJoin", R.string.TooManyCommunitiesHintJoin);
@@ -497,24 +494,24 @@ public class TooManyCommunitiesActivity extends BaseFragment {
                 ((ViewGroup.MarginLayoutParams) layoutParams).bottomMargin = AndroidUtilities.dp(16.0f);
                 ((ViewGroup.MarginLayoutParams) layoutParams).topMargin = AndroidUtilities.dp(23.0f);
                 TooManyCommunitiesActivity.this.hintCell.setLayoutParams(layoutParams);
-                view = view2;
+                headerCell = view;
             } else if (i == 2) {
                 View shadowSectionCell = new ShadowSectionCell(viewGroup.getContext());
                 CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawableByKey(viewGroup.getContext(), R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
                 combinedDrawable.setFullsize(true);
                 shadowSectionCell.setBackground(combinedDrawable);
-                view = shadowSectionCell;
+                headerCell = shadowSectionCell;
             } else if (i == 3) {
-                HeaderCell headerCell = new HeaderCell(viewGroup.getContext(), Theme.key_windowBackgroundWhiteBlueHeader, 21, 8, false);
-                headerCell.setHeight(54);
-                headerCell.setText(LocaleController.getString("InactiveChats", R.string.InactiveChats));
-                view = headerCell;
+                HeaderCell headerCell2 = new HeaderCell(viewGroup.getContext(), Theme.key_windowBackgroundWhiteBlueHeader, 21, 8, false);
+                headerCell2.setHeight(54);
+                headerCell2.setText(LocaleController.getString("InactiveChats", R.string.InactiveChats));
+                headerCell = headerCell2;
             } else if (i == 5) {
-                view = new EmptyCell(viewGroup.getContext(), AndroidUtilities.dp(12.0f));
+                headerCell = new EmptyCell(viewGroup.getContext(), AndroidUtilities.dp(12.0f));
             } else {
-                view = new GroupCreateUserCell(viewGroup.getContext(), 1, 0, false);
+                headerCell = new GroupCreateUserCell(viewGroup.getContext(), 1, 0, false);
             }
-            return new RecyclerListView.Holder(view);
+            return new RecyclerListView.Holder(headerCell);
         }
 
         @Override

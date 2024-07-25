@@ -5,13 +5,17 @@ import android.graphics.Rect;
 import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.tl.TL_stories$MediaAreaCoordinates;
 import org.telegram.tgnet.tl.TL_stories$StoryItem;
 import org.telegram.tgnet.tl.TL_stories$TL_mediaAreaSuggestedReaction;
+import org.telegram.tgnet.tl.TL_stories$TL_mediaAreaWeather;
+import org.telegram.ui.Components.Paint.Views.LocationMarker;
 import org.telegram.ui.Components.Reactions.ReactionImageHolder;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
-
+import org.telegram.ui.Stories.recorder.Weather;
 public class StoryWidgetsImageDecorator extends ImageReceiver.Decorator {
     ArrayList<DrawingObject> drawingObjects;
     float imageH;
@@ -34,6 +38,11 @@ public class StoryWidgetsImageDecorator extends ImageReceiver.Decorator {
                     this.drawingObjects = new ArrayList<>();
                 }
                 this.drawingObjects.add(new ReactionWidget((TL_stories$TL_mediaAreaSuggestedReaction) tL_stories$StoryItem.media_areas.get(i)));
+            } else if (tL_stories$StoryItem.media_areas.get(i) instanceof TL_stories$TL_mediaAreaWeather) {
+                if (this.drawingObjects == null) {
+                    this.drawingObjects = new ArrayList<>();
+                }
+                this.drawingObjects.add(new WeatherWidget((TL_stories$TL_mediaAreaWeather) tL_stories$StoryItem.media_areas.get(i)));
             }
         }
     }
@@ -82,20 +91,24 @@ public class StoryWidgetsImageDecorator extends ImageReceiver.Decorator {
     }
 
     public class ReactionWidget extends DrawingObject {
-        TL_stories$TL_mediaAreaSuggestedReaction mediaArea;
-        StoryReactionWidgetBackground storyReactionWidgetBackground = new StoryReactionWidgetBackground(null);
-        ReactionImageHolder imageHolder = new ReactionImageHolder(null);
+        private final ReactionImageHolder imageHolder;
+        private final TL_stories$TL_mediaAreaSuggestedReaction mediaArea;
+        private final StoryReactionWidgetBackground storyReactionWidgetBackground;
 
         public ReactionWidget(TL_stories$TL_mediaAreaSuggestedReaction tL_stories$TL_mediaAreaSuggestedReaction) {
+            StoryReactionWidgetBackground storyReactionWidgetBackground = new StoryReactionWidgetBackground(null);
+            this.storyReactionWidgetBackground = storyReactionWidgetBackground;
+            ReactionImageHolder reactionImageHolder = new ReactionImageHolder(null);
+            this.imageHolder = reactionImageHolder;
             this.mediaArea = tL_stories$TL_mediaAreaSuggestedReaction;
             if (tL_stories$TL_mediaAreaSuggestedReaction.flipped) {
-                this.storyReactionWidgetBackground.setMirror(true, false);
+                storyReactionWidgetBackground.setMirror(true, false);
             }
             if (tL_stories$TL_mediaAreaSuggestedReaction.dark) {
-                this.storyReactionWidgetBackground.nextStyle();
+                storyReactionWidgetBackground.nextStyle();
             }
-            this.imageHolder.setStatic();
-            this.imageHolder.setVisibleReaction(ReactionsLayoutInBubble.VisibleReaction.fromTL(tL_stories$TL_mediaAreaSuggestedReaction.reaction));
+            reactionImageHolder.setStatic();
+            reactionImageHolder.setVisibleReaction(ReactionsLayoutInBubble.VisibleReaction.fromTL(tL_stories$TL_mediaAreaSuggestedReaction.reaction));
         }
 
         @Override
@@ -120,13 +133,12 @@ public class StoryWidgetsImageDecorator extends ImageReceiver.Decorator {
                 double d7 = f2;
                 double d8 = tL_stories$MediaAreaCoordinates.w;
                 Double.isNaN(d7);
-                float f6 = (float) ((d7 * d8) / 100.0d);
                 double d9 = f4;
                 double d10 = tL_stories$MediaAreaCoordinates.h;
                 Double.isNaN(d9);
-                float f7 = f6 / 2.0f;
-                float f8 = ((float) ((d9 * d10) / 100.0d)) / 2.0f;
-                this.storyReactionWidgetBackground.setBounds((int) (f3 - f7), (int) (f5 - f8), (int) (f7 + f3), (int) (f8 + f5));
+                float f6 = ((float) ((d7 * d8) / 100.0d)) / 2.0f;
+                float f7 = ((float) ((d9 * d10) / 100.0d)) / 2.0f;
+                this.storyReactionWidgetBackground.setBounds((int) (f3 - f6), (int) (f5 - f7), (int) (f6 + f3), (int) (f7 + f5));
                 this.storyReactionWidgetBackground.setAlpha((int) (255.0f * f));
                 canvas.save();
                 double d11 = this.mediaArea.coordinates.rotation;
@@ -154,6 +166,86 @@ public class StoryWidgetsImageDecorator extends ImageReceiver.Decorator {
         @Override
         public void setParent(View view) {
             this.imageHolder.setParent(view);
+        }
+    }
+
+    public class WeatherWidget extends DrawingObject {
+        private final LocationMarker marker;
+        private final TL_stories$TL_mediaAreaWeather mediaArea;
+        private View parentView;
+
+        public WeatherWidget(TL_stories$TL_mediaAreaWeather tL_stories$TL_mediaAreaWeather) {
+            this.mediaArea = tL_stories$TL_mediaAreaWeather;
+            Weather.State state = new Weather.State();
+            state.emoji = tL_stories$TL_mediaAreaWeather.emoji;
+            state.temperature = (float) tL_stories$TL_mediaAreaWeather.temperature_c;
+            LocationMarker locationMarker = new LocationMarker(ApplicationLoader.applicationContext, 1, AndroidUtilities.density, 0, StoryWidgetsImageDecorator.this) {
+                @Override
+                public void invalidate() {
+                    if (WeatherWidget.this.parentView != null) {
+                        WeatherWidget.this.parentView.invalidate();
+                    }
+                }
+            };
+            this.marker = locationMarker;
+            locationMarker.setMaxWidth(AndroidUtilities.displaySize.x);
+            locationMarker.setIsVideo(false);
+            locationMarker.setCodeEmoji(UserConfig.selectedAccount, state.getEmoji());
+            locationMarker.setText(state.getTemperature());
+            locationMarker.setType(0, tL_stories$TL_mediaAreaWeather.color);
+            locationMarker.setupLayout();
+        }
+
+        @Override
+        public void draw(Canvas canvas, ImageReceiver imageReceiver, float f) {
+            int widthInternal;
+            int heightInternal;
+            StoryWidgetsImageDecorator storyWidgetsImageDecorator = StoryWidgetsImageDecorator.this;
+            double d = storyWidgetsImageDecorator.imageX;
+            float f2 = storyWidgetsImageDecorator.imageW;
+            double d2 = f2;
+            TL_stories$MediaAreaCoordinates tL_stories$MediaAreaCoordinates = this.mediaArea.coordinates;
+            double d3 = tL_stories$MediaAreaCoordinates.x;
+            Double.isNaN(d2);
+            Double.isNaN(d);
+            double d4 = storyWidgetsImageDecorator.imageY;
+            float f3 = storyWidgetsImageDecorator.imageH;
+            double d5 = f3;
+            double d6 = tL_stories$MediaAreaCoordinates.y;
+            Double.isNaN(d5);
+            Double.isNaN(d4);
+            double d7 = f2;
+            double d8 = tL_stories$MediaAreaCoordinates.w;
+            Double.isNaN(d7);
+            float f4 = (float) ((d7 * d8) / 100.0d);
+            double d9 = f3;
+            double d10 = tL_stories$MediaAreaCoordinates.h;
+            Double.isNaN(d9);
+            canvas.save();
+            canvas.translate((float) (d + ((d2 * d3) / 100.0d)), (float) (d4 + ((d5 * d6) / 100.0d)));
+            float min = Math.min(f4 / ((this.marker.getWidthInternal() - this.marker.getPaddingLeft()) - this.marker.getPaddingRight()), ((float) ((d9 * d10) / 100.0d)) / ((this.marker.getHeightInternal() - this.marker.getPaddingTop()) - this.marker.getPaddingBottom()));
+            canvas.scale(min, min);
+            double d11 = this.mediaArea.coordinates.rotation;
+            if (d11 != 0.0d) {
+                canvas.rotate((float) d11);
+            }
+            canvas.translate(((-widthInternal) / 2.0f) - this.marker.getPaddingLeft(), ((-heightInternal) / 2.0f) - this.marker.getPaddingTop());
+            this.marker.drawInternal(canvas);
+            canvas.restore();
+        }
+
+        @Override
+        public void onAttachedToWindow(boolean z) {
+            if (z) {
+                this.marker.attachInternal();
+            } else {
+                this.marker.detachInternal();
+            }
+        }
+
+        @Override
+        public void setParent(View view) {
+            this.parentView = view;
         }
     }
 }

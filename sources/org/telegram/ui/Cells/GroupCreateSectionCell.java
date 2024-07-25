@@ -13,7 +13,6 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
-
 public class GroupCreateSectionCell extends FrameLayout {
     private Drawable drawable;
     private TextView textView;

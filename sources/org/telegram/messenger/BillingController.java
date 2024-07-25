@@ -31,10 +31,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
-import org.telegram.messenger.Utilities;
 import org.telegram.messenger.utils.BillingUtilities;
 import org.telegram.messenger.voip.VoIPController;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$InputStorePaymentPurpose;
@@ -43,16 +41,12 @@ import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_inputStorePaymentGiftPremium;
 import org.telegram.tgnet.TLRPC$TL_inputStorePaymentPremiumGiftCode;
 import org.telegram.tgnet.TLRPC$TL_inputStorePaymentPremiumGiveaway;
-import org.telegram.tgnet.TLRPC$TL_inputStorePaymentStars;
+import org.telegram.tgnet.TLRPC$TL_inputStorePaymentStarsGift;
+import org.telegram.tgnet.TLRPC$TL_inputStorePaymentStarsTopup;
 import org.telegram.tgnet.TLRPC$TL_payments_assignPlayMarketTransaction;
-import org.telegram.tgnet.TLRPC$TL_payments_getStarsTopupOptions;
-import org.telegram.tgnet.TLRPC$TL_starsTopupOption;
 import org.telegram.tgnet.TLRPC$Updates;
-import org.telegram.tgnet.TLRPC$Vector;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.PremiumPreviewFragment;
-import org.telegram.ui.Stars.StarsController;
-
 public class BillingController implements PurchasesUpdatedListener, BillingClientStateListener {
     public static ProductDetails PREMIUM_PRODUCT_DETAILS = null;
     public static boolean billingClientEmpty;
@@ -72,37 +66,40 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
     private int triesLeft = 0;
 
     public static String getResponseCodeString(int i) {
-        switch (i) {
-            case VoIPController.ERROR_LOCALIZED:
-                return "SERVICE_TIMEOUT";
-            case VoIPController.ERROR_PRIVACY:
-                return "FEATURE_NOT_SUPPORTED";
-            case -1:
-                return "SERVICE_DISCONNECTED";
-            case 0:
-                return "OK";
-            case 1:
-                return "USER_CANCELED";
-            case 2:
-                return "SERVICE_UNAVAILABLE";
-            case 3:
-                return "BILLING_UNAVAILABLE";
-            case 4:
-                return "ITEM_UNAVAILABLE";
-            case 5:
-                return "DEVELOPER_ERROR";
-            case 6:
-                return "ERROR";
-            case 7:
-                return "ITEM_ALREADY_OWNED";
-            case 8:
-                return "ITEM_NOT_OWNED";
-            default:
-                return null;
+        if (i != 12) {
+            switch (i) {
+                case VoIPController.ERROR_LOCALIZED:
+                    return "SERVICE_TIMEOUT";
+                case VoIPController.ERROR_PRIVACY:
+                    return "FEATURE_NOT_SUPPORTED";
+                case -1:
+                    return "SERVICE_DISCONNECTED";
+                case 0:
+                    return "OK";
+                case 1:
+                    return "USER_CANCELED";
+                case 2:
+                    return "SERVICE_UNAVAILABLE";
+                case 3:
+                    return "BILLING_UNAVAILABLE";
+                case 4:
+                    return "ITEM_UNAVAILABLE";
+                case 5:
+                    return "DEVELOPER_ERROR";
+                case 6:
+                    return "ERROR";
+                case 7:
+                    return "ITEM_ALREADY_OWNED";
+                case 8:
+                    return "ITEM_NOT_OWNED";
+                default:
+                    return null;
+            }
         }
+        return "NETWORK_ERROR";
     }
 
-    public static void lambda$consumeGiftPurchase$8(BillingResult billingResult, String str) {
+    public static void lambda$consumeGiftPurchase$5(BillingResult billingResult, String str) {
     }
 
     public static BillingController getInstance() {
@@ -175,7 +172,7 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
         return ((Integer) Map.EL.getOrDefault(this.currencyExpMap, str, 0)).intValue();
     }
 
-    public void lambda$onBillingServiceDisconnected$9() {
+    public void lambda$onBillingServiceDisconnected$6() {
         if (isReady()) {
             return;
         }
@@ -237,7 +234,7 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
         if (!isReady() || activity == null) {
             return;
         }
-        if (((tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentGiftPremium) || (tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentStars)) && !z) {
+        if (((tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentGiftPremium) || (tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentStarsTopup) || (tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentStarsGift)) && !z) {
             queryPurchases("inapp", new PurchasesResponseListener() {
                 @Override
                 public final void onQueryPurchasesResponse(BillingResult billingResult, List list2) {
@@ -325,194 +322,77 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
             if (runnable != null) {
                 runnable.run();
                 this.onCanceled = null;
-                return;
             }
-            return;
-        }
-        if (list == null || list.isEmpty()) {
-            return;
-        }
-        this.lastPremiumTransaction = null;
-        for (final Purchase purchase : list) {
-            if (purchase.getProducts().contains(PREMIUM_PRODUCT_ID)) {
-                this.lastPremiumTransaction = purchase.getOrderId();
-                this.lastPremiumToken = purchase.getPurchaseToken();
-            }
-            if (!this.requestingTokens.contains(purchase.getPurchaseToken()) && purchase.getPurchaseState() == 1 && (extractDeveloperPayload = BillingUtilities.extractDeveloperPayload(purchase)) != null && extractDeveloperPayload.first != null) {
-                if (!purchase.isAcknowledged()) {
-                    this.requestingTokens.add(purchase.getPurchaseToken());
-                    retrievePurpose(purchase, extractDeveloperPayload, new Utilities.Callback() {
-                        @Override
-                        public final void run(Object obj) {
-                            BillingController.this.lambda$onPurchasesUpdated$5(purchase, billingResult, (Pair) obj);
-                        }
-                    });
-                } else {
-                    consumeGiftPurchase(purchase, extractDeveloperPayload.second);
+        } else if (list != null && !list.isEmpty()) {
+            this.lastPremiumTransaction = null;
+            for (final Purchase purchase : list) {
+                if (purchase.getProducts().contains(PREMIUM_PRODUCT_ID)) {
+                    this.lastPremiumTransaction = purchase.getOrderId();
+                    this.lastPremiumToken = purchase.getPurchaseToken();
+                }
+                if (!this.requestingTokens.contains(purchase.getPurchaseToken()) && purchase.getPurchaseState() == 1 && (extractDeveloperPayload = BillingUtilities.extractDeveloperPayload(purchase)) != null && extractDeveloperPayload.first != null) {
+                    if (!purchase.isAcknowledged()) {
+                        this.requestingTokens.add(purchase.getPurchaseToken());
+                        final TLRPC$TL_payments_assignPlayMarketTransaction tLRPC$TL_payments_assignPlayMarketTransaction = new TLRPC$TL_payments_assignPlayMarketTransaction();
+                        TLRPC$TL_dataJSON tLRPC$TL_dataJSON = new TLRPC$TL_dataJSON();
+                        tLRPC$TL_payments_assignPlayMarketTransaction.receipt = tLRPC$TL_dataJSON;
+                        tLRPC$TL_dataJSON.data = purchase.getOriginalJson();
+                        tLRPC$TL_payments_assignPlayMarketTransaction.purpose = extractDeveloperPayload.second;
+                        final AlertDialog alertDialog = new AlertDialog(ApplicationLoader.applicationContext, 3);
+                        AndroidUtilities.runOnUIThread(new Runnable() {
+                            @Override
+                            public final void run() {
+                                AlertDialog.this.showDelayed(500L);
+                            }
+                        });
+                        final AccountInstance accountInstance = extractDeveloperPayload.first;
+                        accountInstance.getConnectionsManager().sendRequest(tLRPC$TL_payments_assignPlayMarketTransaction, new RequestDelegate() {
+                            @Override
+                            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                                BillingController.this.lambda$onPurchasesUpdated$4(alertDialog, purchase, accountInstance, billingResult, tLRPC$TL_payments_assignPlayMarketTransaction, tLObject, tLRPC$TL_error);
+                            }
+                        }, 65602);
+                    } else {
+                        consumeGiftPurchase(purchase, extractDeveloperPayload.second);
+                    }
                 }
             }
         }
-    }
-
-    public void lambda$onPurchasesUpdated$5(final Purchase purchase, final BillingResult billingResult, Pair pair) {
-        final TLRPC$TL_payments_assignPlayMarketTransaction tLRPC$TL_payments_assignPlayMarketTransaction = new TLRPC$TL_payments_assignPlayMarketTransaction();
-        TLRPC$TL_dataJSON tLRPC$TL_dataJSON = new TLRPC$TL_dataJSON();
-        tLRPC$TL_payments_assignPlayMarketTransaction.receipt = tLRPC$TL_dataJSON;
-        tLRPC$TL_dataJSON.data = purchase.getOriginalJson();
-        tLRPC$TL_payments_assignPlayMarketTransaction.purpose = (TLRPC$InputStorePaymentPurpose) pair.second;
-        final AlertDialog alertDialog = new AlertDialog(ApplicationLoader.applicationContext, 3);
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                AlertDialog.this.showDelayed(500L);
-            }
-        });
-        final AccountInstance accountInstance = (AccountInstance) pair.first;
-        accountInstance.getConnectionsManager().sendRequest(tLRPC$TL_payments_assignPlayMarketTransaction, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                BillingController.this.lambda$onPurchasesUpdated$4(alertDialog, purchase, accountInstance, billingResult, tLRPC$TL_payments_assignPlayMarketTransaction, tLObject, tLRPC$TL_error);
-            }
-        }, 65602);
     }
 
     public void lambda$onPurchasesUpdated$4(AlertDialog alertDialog, Purchase purchase, AccountInstance accountInstance, BillingResult billingResult, TLRPC$TL_payments_assignPlayMarketTransaction tLRPC$TL_payments_assignPlayMarketTransaction, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         Objects.requireNonNull(alertDialog);
-        AndroidUtilities.runOnUIThread(new BillingController$$ExternalSyntheticLambda9(alertDialog));
+        AndroidUtilities.runOnUIThread(new BillingController$$ExternalSyntheticLambda8(alertDialog));
         this.requestingTokens.remove(purchase.getPurchaseToken());
-        if (tLObject instanceof TLRPC$Updates) {
-            accountInstance.getMessagesController().processUpdates((TLRPC$Updates) tLObject, false);
-            Iterator<String> it = purchase.getProducts().iterator();
-            while (it.hasNext()) {
-                Consumer<BillingResult> remove = this.resultListeners.remove(it.next());
-                if (remove != null) {
-                    remove.accept(billingResult);
+        if (!(tLObject instanceof TLRPC$Updates)) {
+            if (tLRPC$TL_error != null) {
+                Runnable runnable = this.onCanceled;
+                if (runnable != null) {
+                    runnable.run();
+                    this.onCanceled = null;
                 }
+                NotificationCenter.getGlobalInstance().postNotificationNameOnUIThread(NotificationCenter.billingConfirmPurchaseError, tLRPC$TL_payments_assignPlayMarketTransaction, tLRPC$TL_error);
+                return;
             }
-            consumeGiftPurchase(purchase, tLRPC$TL_payments_assignPlayMarketTransaction.purpose);
             return;
         }
-        if (tLRPC$TL_error != null) {
-            Runnable runnable = this.onCanceled;
-            if (runnable != null) {
-                runnable.run();
-                this.onCanceled = null;
+        accountInstance.getMessagesController().processUpdates((TLRPC$Updates) tLObject, false);
+        for (String str : purchase.getProducts()) {
+            Consumer<BillingResult> remove = this.resultListeners.remove(str);
+            if (remove != null) {
+                remove.accept(billingResult);
             }
-            NotificationCenter.getGlobalInstance().postNotificationNameOnUIThread(NotificationCenter.billingConfirmPurchaseError, tLRPC$TL_payments_assignPlayMarketTransaction, tLRPC$TL_error);
         }
-    }
-
-    private boolean retrievePurpose(Purchase purchase, final Pair<AccountInstance, TLRPC$InputStorePaymentPurpose> pair, final Utilities.Callback<Pair<AccountInstance, TLRPC$InputStorePaymentPurpose>> callback) {
-        if (pair == null || pair.first == null) {
-            FileLog.d("retrievePurpose: payload or account is null");
-            return false;
-        }
-        if (pair.second != null) {
-            FileLog.d("retrievePurpose: already has purpose");
-            callback.run(pair);
-            return true;
-        }
-        if (purchase == null || purchase.getProducts().isEmpty()) {
-            FileLog.d("retrievePurpose: no products found for purpose!");
-            callback.run(pair);
-            return false;
-        }
-        int currentAccount = pair.first.getCurrentAccount();
-        final String str = purchase.getProducts().get(0);
-        if (str == null) {
-            FileLog.d("retrievePurpose: first product is null!");
-            callback.run(pair);
-            return false;
-        }
-        ArrayList<TLRPC$TL_starsTopupOption> optionsCached = StarsController.getInstance(currentAccount).getOptionsCached();
-        if (optionsCached == null) {
-            ConnectionsManager.getInstance(currentAccount).sendRequest(new TLRPC$TL_payments_getStarsTopupOptions(), new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    BillingController.lambda$retrievePurpose$7(str, callback, pair, tLObject, tLRPC$TL_error);
-                }
-            });
-            return true;
-        }
-        TLRPC$TL_starsTopupOption tLRPC$TL_starsTopupOption = null;
-        int i = 0;
-        while (true) {
-            if (i >= optionsCached.size()) {
-                break;
-            }
-            if (str.equals(optionsCached.get(i).store_product)) {
-                tLRPC$TL_starsTopupOption = optionsCached.get(i);
-                break;
-            }
-            i++;
-        }
-        if (tLRPC$TL_starsTopupOption != null) {
-            TLRPC$TL_inputStorePaymentStars tLRPC$TL_inputStorePaymentStars = new TLRPC$TL_inputStorePaymentStars();
-            tLRPC$TL_inputStorePaymentStars.amount = tLRPC$TL_starsTopupOption.amount;
-            tLRPC$TL_inputStorePaymentStars.currency = tLRPC$TL_starsTopupOption.currency;
-            tLRPC$TL_inputStorePaymentStars.stars = tLRPC$TL_starsTopupOption.stars;
-            FileLog.d("retrievePurpose: found stars option of " + str + " from stars options!");
-            callback.run(new Pair<>(pair.first, tLRPC$TL_inputStorePaymentStars));
-            return true;
-        }
-        FileLog.d("retrievePurpose: failed to find option of " + str + " from stars options");
-        callback.run(pair);
-        return false;
-    }
-
-    public static void lambda$retrievePurpose$7(final String str, final Utilities.Callback callback, final Pair pair, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                BillingController.lambda$retrievePurpose$6(TLObject.this, tLRPC$TL_error, str, callback, pair);
-            }
-        });
-    }
-
-    public static void lambda$retrievePurpose$6(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error, String str, Utilities.Callback callback, Pair pair) {
-        ArrayList arrayList = new ArrayList();
-        if (tLObject instanceof TLRPC$Vector) {
-            Iterator<Object> it = ((TLRPC$Vector) tLObject).objects.iterator();
-            while (it.hasNext()) {
-                Object next = it.next();
-                if (next instanceof TLRPC$TL_starsTopupOption) {
-                    arrayList.add((TLRPC$TL_starsTopupOption) next);
-                }
-            }
-        } else if (tLRPC$TL_error != null) {
-            FileLog.d("retrievePopup: getStarsTopupOptions gives error! " + tLRPC$TL_error.code + ": " + tLRPC$TL_error.text);
-        }
-        TLRPC$TL_starsTopupOption tLRPC$TL_starsTopupOption = null;
-        int i = 0;
-        while (true) {
-            if (i >= arrayList.size()) {
-                break;
-            }
-            if (str.equals(((TLRPC$TL_starsTopupOption) arrayList.get(i)).store_product)) {
-                tLRPC$TL_starsTopupOption = (TLRPC$TL_starsTopupOption) arrayList.get(i);
-                break;
-            }
-            i++;
-        }
-        if (tLRPC$TL_starsTopupOption != null) {
-            TLRPC$TL_inputStorePaymentStars tLRPC$TL_inputStorePaymentStars = new TLRPC$TL_inputStorePaymentStars();
-            tLRPC$TL_inputStorePaymentStars.amount = tLRPC$TL_starsTopupOption.amount;
-            tLRPC$TL_inputStorePaymentStars.currency = tLRPC$TL_starsTopupOption.currency;
-            tLRPC$TL_inputStorePaymentStars.stars = tLRPC$TL_starsTopupOption.stars;
-            FileLog.d("retrievePurpose: found stars option of " + str + " from stars loaded options!");
-            callback.run(new Pair((AccountInstance) pair.first, tLRPC$TL_inputStorePaymentStars));
-            return;
-        }
-        FileLog.d("retrievePurpose: failed to find option of " + str + " from stars loaded options");
-        callback.run(pair);
+        consumeGiftPurchase(purchase, tLRPC$TL_payments_assignPlayMarketTransaction.purpose);
+        BillingUtilities.cleanupPurchase(purchase);
     }
 
     private void consumeGiftPurchase(Purchase purchase, TLRPC$InputStorePaymentPurpose tLRPC$InputStorePaymentPurpose) {
-        if ((tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentGiftPremium) || (tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentPremiumGiftCode) || (tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentStars) || (tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentPremiumGiveaway)) {
+        if ((tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentGiftPremium) || (tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentPremiumGiftCode) || (tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentStarsTopup) || (tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentStarsGift) || (tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentPremiumGiveaway)) {
             this.billingClient.consumeAsync(ConsumeParams.newBuilder().setPurchaseToken(purchase.getPurchaseToken()).build(), new ConsumeResponseListener() {
                 @Override
                 public final void onConsumeResponse(BillingResult billingResult, String str) {
-                    BillingController.lambda$consumeGiftPurchase$8(billingResult, str);
+                    BillingController.lambda$consumeGiftPurchase$5(billingResult, str);
                 }
             });
         }
@@ -526,7 +406,7 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BillingController.this.lambda$onBillingServiceDisconnected$9();
+                BillingController.this.lambda$onBillingServiceDisconnected$6();
             }
         }, i);
     }
@@ -565,12 +445,9 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
                 AndroidUtilities.runOnUIThread(this.setupListeners.get(i));
             }
             this.setupListeners.clear();
-            return;
+        } else if (!this.isDisconnected) {
+            switchToInvoice();
         }
-        if (this.isDisconnected) {
-            return;
-        }
-        switchToInvoice();
     }
 
     public void onQueriedPremiumProductDetails(BillingResult billingResult, List<ProductDetails> list) {
@@ -584,11 +461,10 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
             if (PREMIUM_PRODUCT_DETAILS == null) {
                 switchToInvoice();
                 return;
-            } else {
-                switchBackFromInvoice();
-                NotificationCenter.getGlobalInstance().postNotificationNameOnUIThread(NotificationCenter.billingProductDetailsUpdated, new Object[0]);
-                return;
             }
+            switchBackFromInvoice();
+            NotificationCenter.getGlobalInstance().postNotificationNameOnUIThread(NotificationCenter.billingProductDetailsUpdated, new Object[0]);
+            return;
         }
         switchToInvoice();
         int i = this.triesLeft - 1;
@@ -597,13 +473,13 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    BillingController.this.lambda$onQueriedPremiumProductDetails$10();
+                    BillingController.this.lambda$onQueriedPremiumProductDetails$7();
                 }
             }, i == 2 ? 1000L : 10000L);
         }
     }
 
-    public void lambda$onQueriedPremiumProductDetails$10() {
+    public void lambda$onQueriedPremiumProductDetails$7() {
         try {
             queryProductDetails(Collections.singletonList(PREMIUM_PRODUCT), new BillingController$$ExternalSyntheticLambda2(this));
         } catch (Exception e) {

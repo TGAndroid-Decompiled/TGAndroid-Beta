@@ -4,7 +4,6 @@ import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Bool;
 import org.telegram.tgnet.TLRPC$InputPeer;
-
 public class TL_stories$TL_stories_canSendStory extends TLObject {
     public TLRPC$InputPeer peer;
 

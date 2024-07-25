@@ -1,8 +1,8 @@
 package org.telegram.tgnet;
 
 import org.telegram.messenger.LiteMode;
-
 public class TLRPC$TL_contacts_getTopPeers extends TLObject {
+    public boolean bots_app;
     public boolean bots_inline;
     public boolean bots_pm;
     public boolean channels;
@@ -40,7 +40,9 @@ public class TLRPC$TL_contacts_getTopPeers extends TLObject {
         this.flags = i7;
         int i8 = this.channels ? i7 | LiteMode.FLAG_CHAT_SCALE : i7 & (-32769);
         this.flags = i8;
-        abstractSerializedData.writeInt32(i8);
+        int i9 = this.bots_app ? i8 | 65536 : i8 & (-65537);
+        this.flags = i9;
+        abstractSerializedData.writeInt32(i9);
         abstractSerializedData.writeInt32(this.offset);
         abstractSerializedData.writeInt32(this.limit);
         abstractSerializedData.writeInt64(this.hash);

@@ -1,6 +1,5 @@
 package org.telegram.ui.ActionBar;
 
-import android.R;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
@@ -24,9 +23,8 @@ import androidx.core.view.WindowInsetsCompat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.Theme;
-
 public class AlertDialogDecor extends AlertDialog {
-    private static final int[] ATTRS = {R.attr.windowEnterAnimation, R.attr.windowExitAnimation};
+    private static final int[] ATTRS = {16842932, 16842933};
     private View contentView;
     private View dimView;
     private boolean isDismissed;
@@ -75,7 +73,7 @@ public class AlertDialogDecor extends AlertDialog {
 
     private void extractAnimations() {
         TypedValue typedValue = new TypedValue();
-        getContext().getTheme().resolveAttribute(R.attr.windowAnimationStyle, typedValue, true);
+        getContext().getTheme().resolveAttribute(16842926, typedValue, true);
         TypedArray obtainStyledAttributes = getContext().obtainStyledAttributes(typedValue.resourceId, ATTRS);
         this.resEnterAnimation = obtainStyledAttributes.getResourceId(0, -1);
         this.resExitAnimation = obtainStyledAttributes.getResourceId(1, -1);

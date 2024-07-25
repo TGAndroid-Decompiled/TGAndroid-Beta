@@ -1,7 +1,6 @@
 package org.telegram.ui.Components;
 
 import androidx.dynamicanimation.animation.FloatPropertyCompat;
-
 public class SimpleFloatPropertyCompat<T> extends FloatPropertyCompat<T> {
     private Getter<T> getter;
     private float multiplier;
@@ -25,10 +24,6 @@ public class SimpleFloatPropertyCompat<T> extends FloatPropertyCompat<T> {
     public SimpleFloatPropertyCompat<T> setMultiplier(float f) {
         this.multiplier = f;
         return this;
-    }
-
-    public float getMultiplier() {
-        return this.multiplier;
     }
 
     @Override

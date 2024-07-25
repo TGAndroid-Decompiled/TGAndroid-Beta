@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_initHistoryImport extends TLObject {
     public TLRPC$InputFile file;
     public int media_count;

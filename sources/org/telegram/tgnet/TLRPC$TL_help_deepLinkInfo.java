@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_help_deepLinkInfo extends TLRPC$help_DeepLinkInfo {
     public ArrayList<TLRPC$MessageEntity> entities = new ArrayList<>();
     public int flags;

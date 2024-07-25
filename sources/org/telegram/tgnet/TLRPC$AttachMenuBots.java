@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$AttachMenuBots extends TLObject {
     public static TLRPC$AttachMenuBots TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$AttachMenuBots tLRPC$TL_attachMenuBots = i != -237467044 ? i != 1011024320 ? null : new TLRPC$TL_attachMenuBots() : new TLRPC$AttachMenuBots() {

@@ -6,7 +6,6 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RadialProgressView;
-
 public class LoadingCell extends FrameLayout {
     private int height;
     private RadialProgressView progressBar;

@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public abstract class TLRPC$PhoneCall extends TLObject {
     public long access_hash;
     public long admin_id;

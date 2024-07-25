@@ -11,7 +11,6 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
-import android.util.Property;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -26,7 +25,6 @@ import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Components.HintView;
-
 @Deprecated
 public class HintView extends FrameLayout {
     private AnimatorSet animatorSet;
@@ -173,142 +171,142 @@ public class HintView extends FrameLayout {
         int dp;
         int forwardNameCenterX;
         int i3 = this.currentType;
-        if ((i3 == 5 && i2 == this.shownY && this.messageCell == chatMessageCell) || (i3 != 5 && ((i3 == 0 && getTag() != null) || this.messageCell == chatMessageCell))) {
-            return false;
-        }
-        Runnable runnable = this.hideRunnable;
-        if (runnable != null) {
-            AndroidUtilities.cancelRunOnUIThread(runnable);
-            this.hideRunnable = null;
-        }
-        int[] iArr = new int[2];
-        chatMessageCell.getLocationInWindow(iArr);
-        int i4 = iArr[1];
-        ((View) getParent()).getLocationInWindow(iArr);
-        int i5 = i4 - iArr[1];
-        View view = (View) chatMessageCell.getParent();
-        int i6 = this.currentType;
-        if (i6 == 0) {
-            ImageReceiver photoImage = chatMessageCell.getPhotoImage();
-            dp = (int) (i5 + photoImage.getImageY());
-            int imageHeight = (int) photoImage.getImageHeight();
-            int i7 = dp + imageHeight;
-            int measuredHeight = view.getMeasuredHeight();
-            if (dp <= getMeasuredHeight() + AndroidUtilities.dp(10.0f) || i7 > measuredHeight + (imageHeight / 4)) {
-                return false;
+        if (!(i3 == 5 && i2 == this.shownY && this.messageCell == chatMessageCell) && (i3 == 5 || ((i3 != 0 || getTag() == null) && this.messageCell != chatMessageCell))) {
+            Runnable runnable = this.hideRunnable;
+            if (runnable != null) {
+                AndroidUtilities.cancelRunOnUIThread(runnable);
+                this.hideRunnable = null;
             }
-            forwardNameCenterX = chatMessageCell.getNoSoundIconCenterX();
-            measure(View.MeasureSpec.makeMeasureSpec(1000, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(1000, Integer.MIN_VALUE));
-        } else if (i6 == 5) {
-            Integer num = (Integer) obj;
-            dp = i5 + i2;
-            this.shownY = i2;
-            if (num.intValue() == -1) {
-                this.textView.setText(LocaleController.getString("PollSelectOption", R.string.PollSelectOption));
-            } else if (chatMessageCell.getMessageObject().isQuiz()) {
-                if (num.intValue() == 0) {
-                    this.textView.setText(LocaleController.getString("NoVotesQuiz", R.string.NoVotesQuiz));
+            int[] iArr = new int[2];
+            chatMessageCell.getLocationInWindow(iArr);
+            int i4 = iArr[1];
+            ((View) getParent()).getLocationInWindow(iArr);
+            int i5 = i4 - iArr[1];
+            View view = (View) chatMessageCell.getParent();
+            int i6 = this.currentType;
+            if (i6 == 0) {
+                ImageReceiver photoImage = chatMessageCell.getPhotoImage();
+                dp = (int) (i5 + photoImage.getImageY());
+                int imageHeight = (int) photoImage.getImageHeight();
+                int i7 = dp + imageHeight;
+                int measuredHeight = view.getMeasuredHeight();
+                if (dp <= getMeasuredHeight() + AndroidUtilities.dp(10.0f) || i7 > measuredHeight + (imageHeight / 4)) {
+                    return false;
+                }
+                forwardNameCenterX = chatMessageCell.getNoSoundIconCenterX();
+                measure(View.MeasureSpec.makeMeasureSpec(1000, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(1000, Integer.MIN_VALUE));
+            } else if (i6 == 5) {
+                Integer num = (Integer) obj;
+                dp = i5 + i2;
+                this.shownY = i2;
+                if (num.intValue() == -1) {
+                    this.textView.setText(LocaleController.getString("PollSelectOption", R.string.PollSelectOption));
+                } else if (chatMessageCell.getMessageObject().isQuiz()) {
+                    if (num.intValue() == 0) {
+                        this.textView.setText(LocaleController.getString("NoVotesQuiz", R.string.NoVotesQuiz));
+                    } else {
+                        this.textView.setText(LocaleController.formatPluralString("Answer", num.intValue(), new Object[0]));
+                    }
+                } else if (num.intValue() == 0) {
+                    this.textView.setText(LocaleController.getString("NoVotes", R.string.NoVotes));
                 } else {
-                    this.textView.setText(LocaleController.formatPluralString("Answer", num.intValue(), new Object[0]));
+                    this.textView.setText(LocaleController.formatPluralString("Vote", num.intValue(), new Object[0]));
                 }
-            } else if (num.intValue() == 0) {
-                this.textView.setText(LocaleController.getString("NoVotes", R.string.NoVotes));
+                measure(View.MeasureSpec.makeMeasureSpec(1000, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(1000, Integer.MIN_VALUE));
+                forwardNameCenterX = i;
             } else {
-                this.textView.setText(LocaleController.formatPluralString("Vote", num.intValue(), new Object[0]));
-            }
-            measure(View.MeasureSpec.makeMeasureSpec(1000, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(1000, Integer.MIN_VALUE));
-            forwardNameCenterX = i;
-        } else {
-            MessageObject messageObject = chatMessageCell.getMessageObject();
-            String str = this.overrideText;
-            if (str == null) {
-                this.textView.setText(LocaleController.getString("HidAccount", R.string.HidAccount));
-            } else {
-                this.textView.setText(str);
-            }
-            measure(View.MeasureSpec.makeMeasureSpec(1000, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(1000, Integer.MIN_VALUE));
-            TLRPC$User currentUser = chatMessageCell.getCurrentUser();
-            if (currentUser != null && currentUser.id == 0) {
-                dp = i5 + ((chatMessageCell.getMeasuredHeight() - Math.max(0, chatMessageCell.getBottom() - view.getMeasuredHeight())) - AndroidUtilities.dp(50.0f));
-            } else {
-                dp = i5 + AndroidUtilities.dp(22.0f);
-                if (!messageObject.isOutOwner() && chatMessageCell.isDrawNameLayout()) {
-                    dp += AndroidUtilities.dp(20.0f);
+                MessageObject messageObject = chatMessageCell.getMessageObject();
+                String str = this.overrideText;
+                if (str == null) {
+                    this.textView.setText(LocaleController.getString("HidAccount", R.string.HidAccount));
+                } else {
+                    this.textView.setText(str);
                 }
-                if (!messageObject.shouldDrawWithoutBackground() && chatMessageCell.isDrawTopic()) {
-                    dp = (int) (dp + AndroidUtilities.dp(5.0f) + chatMessageCell.getDrawTopicHeight());
+                measure(View.MeasureSpec.makeMeasureSpec(1000, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(1000, Integer.MIN_VALUE));
+                TLRPC$User currentUser = chatMessageCell.getCurrentUser();
+                if (currentUser != null && currentUser.id == 0) {
+                    dp = i5 + ((chatMessageCell.getMeasuredHeight() - Math.max(0, chatMessageCell.getBottom() - view.getMeasuredHeight())) - AndroidUtilities.dp(50.0f));
+                } else {
+                    dp = i5 + AndroidUtilities.dp(22.0f);
+                    if (!messageObject.isOutOwner() && chatMessageCell.isDrawNameLayout()) {
+                        dp += AndroidUtilities.dp(20.0f);
+                    }
+                    if (!messageObject.shouldDrawWithoutBackground() && chatMessageCell.isDrawTopic()) {
+                        dp = (int) (dp + AndroidUtilities.dp(5.0f) + chatMessageCell.getDrawTopicHeight());
+                    }
                 }
+                if (!this.isTopArrow && dp <= getMeasuredHeight() + AndroidUtilities.dp(10.0f)) {
+                    return false;
+                }
+                forwardNameCenterX = chatMessageCell.getForwardNameCenterX();
             }
-            if (!this.isTopArrow && dp <= getMeasuredHeight() + AndroidUtilities.dp(10.0f)) {
-                return false;
+            int measuredWidth = view.getMeasuredWidth();
+            if (this.isTopArrow) {
+                float f = this.extraTranslationY;
+                float dp2 = AndroidUtilities.dp(44.0f);
+                this.translationY = dp2;
+                setTranslationY(f + dp2);
+            } else {
+                float f2 = this.extraTranslationY;
+                float measuredHeight2 = dp - getMeasuredHeight();
+                this.translationY = measuredHeight2;
+                setTranslationY(f2 + measuredHeight2);
             }
-            forwardNameCenterX = chatMessageCell.getForwardNameCenterX();
-        }
-        int measuredWidth = view.getMeasuredWidth();
-        if (this.isTopArrow) {
-            float f = this.extraTranslationY;
-            float dp2 = AndroidUtilities.dp(44.0f);
-            this.translationY = dp2;
-            setTranslationY(f + dp2);
-        } else {
-            float f2 = this.extraTranslationY;
-            float measuredHeight2 = dp - getMeasuredHeight();
-            this.translationY = measuredHeight2;
-            setTranslationY(f2 + measuredHeight2);
-        }
-        int left = chatMessageCell.getLeft() + forwardNameCenterX;
-        int dp3 = AndroidUtilities.dp(19.0f);
-        if (this.currentType == 5) {
-            int max = Math.max(0, (forwardNameCenterX - (getMeasuredWidth() / 2)) - AndroidUtilities.dp(19.1f));
-            setTranslationX(max);
-            dp3 += max;
-        } else if (left > view.getMeasuredWidth() / 2) {
-            int measuredWidth2 = (measuredWidth - getMeasuredWidth()) - AndroidUtilities.dp(38.0f);
-            setTranslationX(measuredWidth2);
-            dp3 += measuredWidth2;
-        } else {
-            setTranslationX(0.0f);
-        }
-        float left2 = ((chatMessageCell.getLeft() + forwardNameCenterX) - dp3) - (this.arrowImageView.getMeasuredWidth() / 2);
-        this.arrowImageView.setTranslationX(left2);
-        if (left > view.getMeasuredWidth() / 2) {
-            if (left2 < AndroidUtilities.dp(10.0f)) {
-                float dp4 = left2 - AndroidUtilities.dp(10.0f);
-                setTranslationX(getTranslationX() + dp4);
-                this.arrowImageView.setTranslationX(left2 - dp4);
+            int left = chatMessageCell.getLeft() + forwardNameCenterX;
+            int dp3 = AndroidUtilities.dp(19.0f);
+            if (this.currentType == 5) {
+                int max = Math.max(0, (forwardNameCenterX - (getMeasuredWidth() / 2)) - AndroidUtilities.dp(19.1f));
+                setTranslationX(max);
+                dp3 += max;
+            } else if (left > view.getMeasuredWidth() / 2) {
+                int measuredWidth2 = (measuredWidth - getMeasuredWidth()) - AndroidUtilities.dp(38.0f);
+                setTranslationX(measuredWidth2);
+                dp3 += measuredWidth2;
+            } else {
+                setTranslationX(0.0f);
             }
-        } else if (left2 > getMeasuredWidth() - AndroidUtilities.dp(24.0f)) {
-            float measuredWidth3 = (left2 - getMeasuredWidth()) + AndroidUtilities.dp(24.0f);
-            setTranslationX(measuredWidth3);
-            this.arrowImageView.setTranslationX(left2 - measuredWidth3);
-        } else if (left2 < AndroidUtilities.dp(10.0f)) {
-            float dp5 = left2 - AndroidUtilities.dp(10.0f);
-            setTranslationX(getTranslationX() + dp5);
-            this.arrowImageView.setTranslationX(left2 - dp5);
+            float left2 = ((chatMessageCell.getLeft() + forwardNameCenterX) - dp3) - (this.arrowImageView.getMeasuredWidth() / 2);
+            this.arrowImageView.setTranslationX(left2);
+            if (left > view.getMeasuredWidth() / 2) {
+                if (left2 < AndroidUtilities.dp(10.0f)) {
+                    float dp4 = left2 - AndroidUtilities.dp(10.0f);
+                    setTranslationX(getTranslationX() + dp4);
+                    this.arrowImageView.setTranslationX(left2 - dp4);
+                }
+            } else if (left2 > getMeasuredWidth() - AndroidUtilities.dp(24.0f)) {
+                float measuredWidth3 = (left2 - getMeasuredWidth()) + AndroidUtilities.dp(24.0f);
+                setTranslationX(measuredWidth3);
+                this.arrowImageView.setTranslationX(left2 - measuredWidth3);
+            } else if (left2 < AndroidUtilities.dp(10.0f)) {
+                float dp5 = left2 - AndroidUtilities.dp(10.0f);
+                setTranslationX(getTranslationX() + dp5);
+                this.arrowImageView.setTranslationX(left2 - dp5);
+            }
+            this.messageCell = chatMessageCell;
+            AnimatorSet animatorSet = this.animatorSet;
+            if (animatorSet != null) {
+                animatorSet.cancel();
+                this.animatorSet = null;
+            }
+            setTag(1);
+            setVisibility(0);
+            VisibilityListener visibilityListener = this.visibleListener;
+            if (visibilityListener != null) {
+                visibilityListener.onVisible(true);
+            }
+            if (z) {
+                AnimatorSet animatorSet2 = new AnimatorSet();
+                this.animatorSet = animatorSet2;
+                animatorSet2.playTogether(ObjectAnimator.ofFloat(this, View.ALPHA, 0.0f, 1.0f));
+                this.animatorSet.addListener(new AnonymousClass1());
+                this.animatorSet.setDuration(300L);
+                this.animatorSet.start();
+            } else {
+                setAlpha(1.0f);
+            }
+            return true;
         }
-        this.messageCell = chatMessageCell;
-        AnimatorSet animatorSet = this.animatorSet;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-            this.animatorSet = null;
-        }
-        setTag(1);
-        setVisibility(0);
-        VisibilityListener visibilityListener = this.visibleListener;
-        if (visibilityListener != null) {
-            visibilityListener.onVisible(true);
-        }
-        if (z) {
-            AnimatorSet animatorSet2 = new AnimatorSet();
-            this.animatorSet = animatorSet2;
-            animatorSet2.playTogether(ObjectAnimator.ofFloat(this, (Property<HintView, Float>) View.ALPHA, 0.0f, 1.0f));
-            this.animatorSet.addListener(new AnonymousClass1());
-            this.animatorSet.setDuration(300L);
-            this.animatorSet.start();
-        } else {
-            setAlpha(1.0f);
-        }
-        return true;
+        return false;
     }
 
     public class AnonymousClass1 extends AnimatorListenerAdapter {
@@ -365,11 +363,11 @@ public class HintView extends FrameLayout {
             if (this.useScale) {
                 setPivotX(this.arrowImageView.getX() + (this.arrowImageView.getMeasuredWidth() / 2.0f));
                 setPivotY(this.arrowImageView.getY() + (this.arrowImageView.getMeasuredHeight() / 2.0f));
-                this.animatorSet.playTogether(ObjectAnimator.ofFloat(this, (Property<HintView, Float>) View.ALPHA, 0.0f, 1.0f), ObjectAnimator.ofFloat(this, (Property<HintView, Float>) View.SCALE_Y, 0.5f, 1.0f), ObjectAnimator.ofFloat(this, (Property<HintView, Float>) View.SCALE_X, 0.5f, 1.0f));
+                this.animatorSet.playTogether(ObjectAnimator.ofFloat(this, View.ALPHA, 0.0f, 1.0f), ObjectAnimator.ofFloat(this, View.SCALE_Y, 0.5f, 1.0f), ObjectAnimator.ofFloat(this, View.SCALE_X, 0.5f, 1.0f));
                 this.animatorSet.setDuration(350L);
                 this.animatorSet.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
             } else {
-                animatorSet2.playTogether(ObjectAnimator.ofFloat(this, (Property<HintView, Float>) View.ALPHA, 0.0f, 1.0f));
+                animatorSet2.playTogether(ObjectAnimator.ofFloat(this, View.ALPHA, 0.0f, 1.0f));
                 this.animatorSet.setDuration(300L);
             }
             this.animatorSet.addListener(new AnonymousClass2());
@@ -438,11 +436,11 @@ public class HintView extends FrameLayout {
             AnimatorSet animatorSet2 = new AnimatorSet();
             this.animatorSet = animatorSet2;
             if (this.useScale) {
-                animatorSet2.playTogether(ObjectAnimator.ofFloat(this, (Property<HintView, Float>) View.ALPHA, 1.0f, 0.0f), ObjectAnimator.ofFloat(this, (Property<HintView, Float>) View.SCALE_Y, 1.0f, 0.5f), ObjectAnimator.ofFloat(this, (Property<HintView, Float>) View.SCALE_X, 1.0f, 0.5f));
+                animatorSet2.playTogether(ObjectAnimator.ofFloat(this, View.ALPHA, 1.0f, 0.0f), ObjectAnimator.ofFloat(this, View.SCALE_Y, 1.0f, 0.5f), ObjectAnimator.ofFloat(this, View.SCALE_X, 1.0f, 0.5f));
                 this.animatorSet.setDuration(150L);
                 this.animatorSet.setInterpolator(CubicBezierInterpolator.DEFAULT);
             } else {
-                animatorSet2.playTogether(ObjectAnimator.ofFloat(this, (Property<HintView, Float>) View.ALPHA, 0.0f));
+                animatorSet2.playTogether(ObjectAnimator.ofFloat(this, View.ALPHA, 0.0f));
                 this.animatorSet.setDuration(300L);
             }
             this.animatorSet.addListener(new AnimatorListenerAdapter() {

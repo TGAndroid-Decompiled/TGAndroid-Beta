@@ -11,7 +11,6 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
-
 public class TableView extends android.widget.TableLayout {
     private final Paint backgroundPaint;
     private final Paint borderPaint;

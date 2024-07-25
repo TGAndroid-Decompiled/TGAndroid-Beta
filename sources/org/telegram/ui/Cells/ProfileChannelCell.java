@@ -45,7 +45,6 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LoadingDrawable;
 import org.telegram.ui.Stories.StoriesController;
 import org.telegram.ui.Stories.StoriesListPlaceProvider;
-
 public class ProfileChannelCell extends FrameLayout {
     public final DialogCell dialogCell;
     private final TextView headerView;
@@ -353,17 +352,17 @@ public class ProfileChannelCell extends FrameLayout {
             if (messageObject != null) {
                 this.messageObject = messageObject;
                 done(false);
-            } else {
-                TLRPC$TL_channels_getMessages tLRPC$TL_channels_getMessages = new TLRPC$TL_channels_getMessages();
-                tLRPC$TL_channels_getMessages.channel = MessagesController.getInstance(this.currentAccount).getInputChannel(j);
-                tLRPC$TL_channels_getMessages.id.add(Integer.valueOf(i2));
-                ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_channels_getMessages, new RequestDelegate() {
-                    @Override
-                    public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                        ProfileChannelCell.ChannelMessageFetcher.this.lambda$fetch$1(messagesStorage, j, i, i2, tLObject, tLRPC$TL_error);
-                    }
-                });
+                return;
             }
+            TLRPC$TL_channels_getMessages tLRPC$TL_channels_getMessages = new TLRPC$TL_channels_getMessages();
+            tLRPC$TL_channels_getMessages.channel = MessagesController.getInstance(this.currentAccount).getInputChannel(j);
+            tLRPC$TL_channels_getMessages.id.add(Integer.valueOf(i2));
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_channels_getMessages, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                    ProfileChannelCell.ChannelMessageFetcher.this.lambda$fetch$1(messagesStorage, j, i, i2, tLObject, tLRPC$TL_error);
+                }
+            });
         }
 
         public void lambda$fetch$1(final MessagesStorage messagesStorage, final long j, final int i, final int i2, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -391,11 +390,10 @@ public class ProfileChannelCell extends FrameLayout {
                     if (!it.hasNext()) {
                         tLRPC$Message = null;
                         break;
-                    } else {
-                        tLRPC$Message = it.next();
-                        if (tLRPC$Message.id == i2) {
-                            break;
-                        }
+                    }
+                    tLRPC$Message = it.next();
+                    if (tLRPC$Message.id == i2) {
+                        break;
                     }
                 }
                 if (tLRPC$Message != null) {
@@ -405,14 +403,11 @@ public class ProfileChannelCell extends FrameLayout {
                         this.messageObject = new MessageObject(this.currentAccount, tLRPC$Message, true, true);
                     }
                     done(false);
-                    return;
                 }
-                return;
+            } else if (i != this.searchId) {
+            } else {
+                done(true);
             }
-            if (i != this.searchId) {
-                return;
-            }
-            done(true);
         }
 
         public void subscribe(Runnable runnable) {

@@ -3,8 +3,8 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 import org.telegram.messenger.FileLoaderPriorityQueue;
 import org.telegram.messenger.LiteMode;
+import org.telegram.tgnet.tl.TL_bots$BotInfo;
 import org.telegram.tgnet.tl.TL_stories$PeerStories;
-
 public abstract class TLRPC$ChatFull extends TLObject {
     public String about;
     public int admins_count;
@@ -69,7 +69,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
     public int unread_important_count;
     public boolean view_forum_as_messages;
     public TLRPC$WallPaper wallpaper;
-    public ArrayList<TLRPC$BotInfo> bot_info = new ArrayList<>();
+    public ArrayList<TL_bots$BotInfo> bot_info = new ArrayList<>();
     public ArrayList<String> pending_suggestions = new ArrayList<>();
     public ArrayList<Long> recent_requesters = new ArrayList<>();
     public ArrayList<String> available_reactions_legacy = new ArrayList<>();
@@ -105,7 +105,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                             }
                             int readInt323 = abstractSerializedData2.readInt32(z2);
                             for (int i2 = 0; i2 < readInt323; i2++) {
-                                TLRPC$BotInfo TLdeserialize = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                TL_bots$BotInfo TLdeserialize = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                                 if (TLdeserialize == null) {
                                     return;
                                 }
@@ -213,7 +213,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         }
                         int readInt323 = abstractSerializedData2.readInt32(z2);
                         for (int i2 = 0; i2 < readInt323; i2++) {
-                            TLRPC$BotInfo TLdeserialize2 = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            TL_bots$BotInfo TLdeserialize2 = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                             if (TLdeserialize2 == null) {
                                 return;
                             }
@@ -313,7 +313,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         }
                         int readInt323 = abstractSerializedData2.readInt32(z2);
                         for (int i2 = 0; i2 < readInt323; i2++) {
-                            TLRPC$BotInfo TLdeserialize2 = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            TL_bots$BotInfo TLdeserialize2 = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                             if (TLdeserialize2 == null) {
                                 return;
                             }
@@ -419,7 +419,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         }
                         int readInt323 = abstractSerializedData2.readInt32(z2);
                         for (int i2 = 0; i2 < readInt323; i2++) {
-                            TLRPC$BotInfo TLdeserialize2 = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            TL_bots$BotInfo TLdeserialize2 = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                             if (TLdeserialize2 == null) {
                                 return;
                             }
@@ -553,7 +553,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         }
                         int readInt323 = abstractSerializedData2.readInt32(z2);
                         for (int i2 = 0; i2 < readInt323; i2++) {
-                            TLRPC$BotInfo TLdeserialize2 = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            TL_bots$BotInfo TLdeserialize2 = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                             if (TLdeserialize2 == null) {
                                 return;
                             }
@@ -645,7 +645,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         }
                         int readInt323 = abstractSerializedData2.readInt32(z2);
                         for (int i2 = 0; i2 < readInt323; i2++) {
-                            TLRPC$BotInfo TLdeserialize2 = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            TL_bots$BotInfo TLdeserialize2 = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                             if (TLdeserialize2 == null) {
                                 return;
                             }
@@ -733,7 +733,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                             }
                             int readInt323 = abstractSerializedData2.readInt32(z2);
                             for (int i2 = 0; i2 < readInt323; i2++) {
-                                TLRPC$BotInfo TLdeserialize = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                TL_bots$BotInfo TLdeserialize = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                                 if (TLdeserialize == null) {
                                     return;
                                 }
@@ -768,11 +768,10 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
                                 }
                                 return;
-                            } else {
-                                int readInt325 = abstractSerializedData2.readInt32(z2);
-                                for (int i3 = 0; i3 < readInt325; i3++) {
-                                    this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
-                                }
+                            }
+                            int readInt325 = abstractSerializedData2.readInt32(z2);
+                            for (int i3 = 0; i3 < readInt325; i3++) {
+                                this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
                             }
                         }
                         if ((this.flags & 262144) != 0) {
@@ -883,7 +882,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         }
                         int readInt323 = abstractSerializedData2.readInt32(z2);
                         for (int i2 = 0; i2 < readInt323; i2++) {
-                            TLRPC$BotInfo TLdeserialize2 = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            TL_bots$BotInfo TLdeserialize2 = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                             if (TLdeserialize2 == null) {
                                 return;
                             }
@@ -996,7 +995,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                             }
                             int readInt323 = abstractSerializedData2.readInt32(z2);
                             for (int i2 = 0; i2 < readInt323; i2++) {
-                                TLRPC$BotInfo TLdeserialize = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                TL_bots$BotInfo TLdeserialize = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                                 if (TLdeserialize == null) {
                                     return;
                                 }
@@ -1031,11 +1030,10 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
                                 }
                                 return;
-                            } else {
-                                int readInt325 = abstractSerializedData2.readInt32(z2);
-                                for (int i3 = 0; i3 < readInt325; i3++) {
-                                    this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
-                                }
+                            }
+                            int readInt325 = abstractSerializedData2.readInt32(z2);
+                            for (int i3 = 0; i3 < readInt325; i3++) {
+                                this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
                             }
                         }
                         if ((this.flags & 262144) != 0) {
@@ -1044,11 +1042,11 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                 if (z2) {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt326)));
                                 }
-                            } else {
-                                int readInt327 = abstractSerializedData2.readInt32(z2);
-                                for (int i4 = 0; i4 < readInt327; i4++) {
-                                    this.available_reactions_legacy.add(abstractSerializedData2.readString(z2));
-                                }
+                                return;
+                            }
+                            int readInt327 = abstractSerializedData2.readInt32(z2);
+                            for (int i4 = 0; i4 < readInt327; i4++) {
+                                this.available_reactions_legacy.add(abstractSerializedData2.readString(z2));
                             }
                         }
                     }
@@ -1167,7 +1165,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         }
                         int readInt323 = abstractSerializedData2.readInt32(z2);
                         for (int i2 = 0; i2 < readInt323; i2++) {
-                            TLRPC$BotInfo TLdeserialize = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            TL_bots$BotInfo TLdeserialize = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                             if (TLdeserialize == null) {
                                 return;
                             }
@@ -1220,11 +1218,10 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
                                 }
                                 return;
-                            } else {
-                                int readInt325 = abstractSerializedData2.readInt32(z2);
-                                for (int i3 = 0; i3 < readInt325; i3++) {
-                                    this.pending_suggestions.add(abstractSerializedData2.readString(z2));
-                                }
+                            }
+                            int readInt325 = abstractSerializedData2.readInt32(z2);
+                            for (int i3 = 0; i3 < readInt325; i3++) {
+                                this.pending_suggestions.add(abstractSerializedData2.readString(z2));
                             }
                         }
                         if ((this.flags & ConnectionsManager.FileTypeFile) != 0) {
@@ -1243,11 +1240,10 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt326)));
                                 }
                                 return;
-                            } else {
-                                int readInt327 = abstractSerializedData2.readInt32(z2);
-                                for (int i4 = 0; i4 < readInt327; i4++) {
-                                    this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
-                                }
+                            }
+                            int readInt327 = abstractSerializedData2.readInt32(z2);
+                            for (int i4 = 0; i4 < readInt327; i4++) {
+                                this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
                             }
                         }
                         if ((this.flags & 536870912) != 0) {
@@ -1259,11 +1255,11 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                 if (z2) {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt328)));
                                 }
-                            } else {
-                                int readInt329 = abstractSerializedData2.readInt32(z2);
-                                for (int i5 = 0; i5 < readInt329; i5++) {
-                                    this.available_reactions_legacy.add(abstractSerializedData2.readString(z2));
-                                }
+                                return;
+                            }
+                            int readInt329 = abstractSerializedData2.readInt32(z2);
+                            for (int i5 = 0; i5 < readInt329; i5++) {
+                                this.available_reactions_legacy.add(abstractSerializedData2.readString(z2));
                             }
                         }
                     }
@@ -1446,7 +1442,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         }
                         int readInt323 = abstractSerializedData2.readInt32(z2);
                         for (int i2 = 0; i2 < readInt323; i2++) {
-                            TLRPC$BotInfo TLdeserialize = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            TL_bots$BotInfo TLdeserialize = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                             if (TLdeserialize == null) {
                                 return;
                             }
@@ -1499,11 +1495,10 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
                                 }
                                 return;
-                            } else {
-                                int readInt325 = abstractSerializedData2.readInt32(z2);
-                                for (int i3 = 0; i3 < readInt325; i3++) {
-                                    this.pending_suggestions.add(abstractSerializedData2.readString(z2));
-                                }
+                            }
+                            int readInt325 = abstractSerializedData2.readInt32(z2);
+                            for (int i3 = 0; i3 < readInt325; i3++) {
+                                this.pending_suggestions.add(abstractSerializedData2.readString(z2));
                             }
                         }
                         if ((this.flags & ConnectionsManager.FileTypeFile) != 0) {
@@ -1673,7 +1668,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         }
                         int readInt324 = abstractSerializedData2.readInt32(z2);
                         for (int i2 = 0; i2 < readInt324; i2++) {
-                            TLRPC$BotInfo TLdeserialize = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            TL_bots$BotInfo TLdeserialize = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                             if (TLdeserialize == null) {
                                 return;
                             }
@@ -1726,11 +1721,10 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt325)));
                                 }
                                 return;
-                            } else {
-                                int readInt326 = abstractSerializedData2.readInt32(z2);
-                                for (int i3 = 0; i3 < readInt326; i3++) {
-                                    this.pending_suggestions.add(abstractSerializedData2.readString(z2));
-                                }
+                            }
+                            int readInt326 = abstractSerializedData2.readInt32(z2);
+                            for (int i3 = 0; i3 < readInt326; i3++) {
+                                this.pending_suggestions.add(abstractSerializedData2.readString(z2));
                             }
                         }
                         if ((this.flags & ConnectionsManager.FileTypeFile) != 0) {
@@ -1749,11 +1743,10 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt327)));
                                 }
                                 return;
-                            } else {
-                                int readInt328 = abstractSerializedData2.readInt32(z2);
-                                for (int i4 = 0; i4 < readInt328; i4++) {
-                                    this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
-                                }
+                            }
+                            int readInt328 = abstractSerializedData2.readInt32(z2);
+                            for (int i4 = 0; i4 < readInt328; i4++) {
+                                this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
                             }
                         }
                         if ((this.flags & 536870912) != 0) {
@@ -1765,11 +1758,11 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                 if (z2) {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt329)));
                                 }
-                            } else {
-                                int readInt3210 = abstractSerializedData2.readInt32(z2);
-                                for (int i5 = 0; i5 < readInt3210; i5++) {
-                                    this.available_reactions_legacy.add(abstractSerializedData2.readString(z2));
-                                }
+                                return;
+                            }
+                            int readInt3210 = abstractSerializedData2.readInt32(z2);
+                            for (int i5 = 0; i5 < readInt3210; i5++) {
+                                this.available_reactions_legacy.add(abstractSerializedData2.readString(z2));
                             }
                         }
                     }
@@ -1932,7 +1925,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                             }
                             int readInt322 = abstractSerializedData2.readInt32(z2);
                             for (int i2 = 0; i2 < readInt322; i2++) {
-                                TLRPC$BotInfo TLdeserialize2 = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                TL_bots$BotInfo TLdeserialize2 = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                                 if (TLdeserialize2 == null) {
                                     return;
                                 }
@@ -2018,7 +2011,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         }
                         int readInt323 = abstractSerializedData2.readInt32(z2);
                         for (int i2 = 0; i2 < readInt323; i2++) {
-                            TLRPC$BotInfo TLdeserialize2 = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            TL_bots$BotInfo TLdeserialize2 = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                             if (TLdeserialize2 == null) {
                                 return;
                             }
@@ -2185,7 +2178,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                             }
                             int readInt323 = abstractSerializedData2.readInt32(z2);
                             for (int i2 = 0; i2 < readInt323; i2++) {
-                                TLRPC$BotInfo TLdeserialize = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                TL_bots$BotInfo TLdeserialize = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                                 if (TLdeserialize == null) {
                                     return;
                                 }
@@ -2296,7 +2289,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         }
                         int readInt323 = abstractSerializedData2.readInt32(z2);
                         for (int i2 = 0; i2 < readInt323; i2++) {
-                            TLRPC$BotInfo TLdeserialize2 = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            TL_bots$BotInfo TLdeserialize2 = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                             if (TLdeserialize2 == null) {
                                 return;
                             }
@@ -2478,7 +2471,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         }
                         int readInt324 = abstractSerializedData2.readInt32(z2);
                         for (int i2 = 0; i2 < readInt324; i2++) {
-                            TLRPC$BotInfo TLdeserialize = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            TL_bots$BotInfo TLdeserialize = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                             if (TLdeserialize == null) {
                                 return;
                             }
@@ -2531,11 +2524,10 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt325)));
                                 }
                                 return;
-                            } else {
-                                int readInt326 = abstractSerializedData2.readInt32(z2);
-                                for (int i3 = 0; i3 < readInt326; i3++) {
-                                    this.pending_suggestions.add(abstractSerializedData2.readString(z2));
-                                }
+                            }
+                            int readInt326 = abstractSerializedData2.readInt32(z2);
+                            for (int i3 = 0; i3 < readInt326; i3++) {
+                                this.pending_suggestions.add(abstractSerializedData2.readString(z2));
                             }
                         }
                         if ((this.flags & ConnectionsManager.FileTypeFile) != 0) {
@@ -2554,11 +2546,10 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt327)));
                                 }
                                 return;
-                            } else {
-                                int readInt328 = abstractSerializedData2.readInt32(z2);
-                                for (int i4 = 0; i4 < readInt328; i4++) {
-                                    this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
-                                }
+                            }
+                            int readInt328 = abstractSerializedData2.readInt32(z2);
+                            for (int i4 = 0; i4 < readInt328; i4++) {
+                                this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
                             }
                         }
                         if ((this.flags & 536870912) != 0) {
@@ -2731,7 +2722,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                             }
                             int readInt323 = abstractSerializedData2.readInt32(z2);
                             for (int i2 = 0; i2 < readInt323; i2++) {
-                                TLRPC$BotInfo TLdeserialize = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                TL_bots$BotInfo TLdeserialize = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                                 if (TLdeserialize == null) {
                                     return;
                                 }
@@ -2888,7 +2879,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         }
                         int readInt323 = abstractSerializedData2.readInt32(z2);
                         for (int i2 = 0; i2 < readInt323; i2++) {
-                            TLRPC$BotInfo TLdeserialize2 = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            TL_bots$BotInfo TLdeserialize2 = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                             if (TLdeserialize2 == null) {
                                 return;
                             }
@@ -3009,7 +3000,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                             }
                             int readInt323 = abstractSerializedData2.readInt32(z2);
                             for (int i2 = 0; i2 < readInt323; i2++) {
-                                TLRPC$BotInfo TLdeserialize2 = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                TL_bots$BotInfo TLdeserialize2 = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                                 if (TLdeserialize2 == null) {
                                     return;
                                 }
@@ -3119,7 +3110,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         }
                         int readInt324 = abstractSerializedData2.readInt32(z2);
                         for (int i2 = 0; i2 < readInt324; i2++) {
-                            TLRPC$BotInfo TLdeserialize = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            TL_bots$BotInfo TLdeserialize = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                             if (TLdeserialize == null) {
                                 return;
                             }
@@ -3172,11 +3163,10 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt325)));
                                 }
                                 return;
-                            } else {
-                                int readInt326 = abstractSerializedData2.readInt32(z2);
-                                for (int i3 = 0; i3 < readInt326; i3++) {
-                                    this.pending_suggestions.add(abstractSerializedData2.readString(z2));
-                                }
+                            }
+                            int readInt326 = abstractSerializedData2.readInt32(z2);
+                            for (int i3 = 0; i3 < readInt326; i3++) {
+                                this.pending_suggestions.add(abstractSerializedData2.readString(z2));
                             }
                         }
                         if ((this.flags & ConnectionsManager.FileTypeFile) != 0) {
@@ -3195,11 +3185,10 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt327)));
                                 }
                                 return;
-                            } else {
-                                int readInt328 = abstractSerializedData2.readInt32(z2);
-                                for (int i4 = 0; i4 < readInt328; i4++) {
-                                    this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
-                                }
+                            }
+                            int readInt328 = abstractSerializedData2.readInt32(z2);
+                            for (int i4 = 0; i4 < readInt328; i4++) {
+                                this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
                             }
                         }
                         if ((this.flags & 536870912) != 0) {
@@ -3407,7 +3396,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         }
                         int readInt323 = abstractSerializedData2.readInt32(z2);
                         for (int i2 = 0; i2 < readInt323; i2++) {
-                            TLRPC$BotInfo TLdeserialize2 = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            TL_bots$BotInfo TLdeserialize2 = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                             if (TLdeserialize2 == null) {
                                 return;
                             }
@@ -3554,7 +3543,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         }
                         int readInt323 = abstractSerializedData2.readInt32(z2);
                         for (int i2 = 0; i2 < readInt323; i2++) {
-                            TLRPC$BotInfo TLdeserialize2 = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            TL_bots$BotInfo TLdeserialize2 = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                             if (TLdeserialize2 == null) {
                                 return;
                             }
@@ -3654,7 +3643,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                             }
                             int readInt323 = abstractSerializedData2.readInt32(z2);
                             for (int i2 = 0; i2 < readInt323; i2++) {
-                                TLRPC$BotInfo TLdeserialize2 = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                TL_bots$BotInfo TLdeserialize2 = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                                 if (TLdeserialize2 == null) {
                                     return;
                                 }
@@ -3748,7 +3737,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         }
                         int readInt323 = abstractSerializedData2.readInt32(z2);
                         for (int i2 = 0; i2 < readInt323; i2++) {
-                            TLRPC$BotInfo TLdeserialize2 = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            TL_bots$BotInfo TLdeserialize2 = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                             if (TLdeserialize2 == null) {
                                 return;
                             }
@@ -3860,7 +3849,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                             }
                             int readInt323 = abstractSerializedData2.readInt32(z2);
                             for (int i2 = 0; i2 < readInt323; i2++) {
-                                TLRPC$BotInfo TLdeserialize2 = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                TL_bots$BotInfo TLdeserialize2 = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                                 if (TLdeserialize2 == null) {
                                     return;
                                 }
@@ -3948,7 +3937,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         }
                         int readInt323 = abstractSerializedData2.readInt32(z2);
                         for (int i2 = 0; i2 < readInt323; i2++) {
-                            TLRPC$BotInfo TLdeserialize = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            TL_bots$BotInfo TLdeserialize = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                             if (TLdeserialize == null) {
                                 return;
                             }
@@ -4000,11 +3989,11 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                 if (z2) {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
                                 }
-                            } else {
-                                int readInt325 = abstractSerializedData2.readInt32(z2);
-                                for (int i3 = 0; i3 < readInt325; i3++) {
-                                    this.pending_suggestions.add(abstractSerializedData2.readString(z2));
-                                }
+                                return;
+                            }
+                            int readInt325 = abstractSerializedData2.readInt32(z2);
+                            for (int i3 = 0; i3 < readInt325; i3++) {
+                                this.pending_suggestions.add(abstractSerializedData2.readString(z2));
                             }
                         }
                     }
@@ -4162,7 +4151,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         }
                         int readInt323 = abstractSerializedData2.readInt32(z2);
                         for (int i2 = 0; i2 < readInt323; i2++) {
-                            TLRPC$BotInfo TLdeserialize2 = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            TL_bots$BotInfo TLdeserialize2 = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                             if (TLdeserialize2 == null) {
                                 return;
                             }
@@ -4303,7 +4292,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         }
                         int readInt322 = abstractSerializedData2.readInt32(z2);
                         for (int i2 = 0; i2 < readInt322; i2++) {
-                            TLRPC$BotInfo TLdeserialize2 = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            TL_bots$BotInfo TLdeserialize2 = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                             if (TLdeserialize2 == null) {
                                 return;
                             }
@@ -4376,7 +4365,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         }
                         int readInt323 = abstractSerializedData2.readInt32(z2);
                         for (int i2 = 0; i2 < readInt323; i2++) {
-                            TLRPC$BotInfo TLdeserialize = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            TL_bots$BotInfo TLdeserialize = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                             if (TLdeserialize == null) {
                                 return;
                             }
@@ -4429,11 +4418,10 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
                                 }
                                 return;
-                            } else {
-                                int readInt325 = abstractSerializedData2.readInt32(z2);
-                                for (int i3 = 0; i3 < readInt325; i3++) {
-                                    this.pending_suggestions.add(abstractSerializedData2.readString(z2));
-                                }
+                            }
+                            int readInt325 = abstractSerializedData2.readInt32(z2);
+                            for (int i3 = 0; i3 < readInt325; i3++) {
+                                this.pending_suggestions.add(abstractSerializedData2.readString(z2));
                             }
                         }
                         if ((this.flags & ConnectionsManager.FileTypeFile) != 0) {
@@ -4611,7 +4599,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         }
                         int readInt324 = abstractSerializedData2.readInt32(z2);
                         for (int i2 = 0; i2 < readInt324; i2++) {
-                            TLRPC$BotInfo TLdeserialize = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            TL_bots$BotInfo TLdeserialize = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                             if (TLdeserialize == null) {
                                 return;
                             }
@@ -4664,11 +4652,10 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt325)));
                                 }
                                 return;
-                            } else {
-                                int readInt326 = abstractSerializedData2.readInt32(z2);
-                                for (int i3 = 0; i3 < readInt326; i3++) {
-                                    this.pending_suggestions.add(abstractSerializedData2.readString(z2));
-                                }
+                            }
+                            int readInt326 = abstractSerializedData2.readInt32(z2);
+                            for (int i3 = 0; i3 < readInt326; i3++) {
+                                this.pending_suggestions.add(abstractSerializedData2.readString(z2));
                             }
                         }
                         if ((this.flags & ConnectionsManager.FileTypeFile) != 0) {
@@ -4687,11 +4674,10 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt327)));
                                 }
                                 return;
-                            } else {
-                                int readInt328 = abstractSerializedData2.readInt32(z2);
-                                for (int i4 = 0; i4 < readInt328; i4++) {
-                                    this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
-                                }
+                            }
+                            int readInt328 = abstractSerializedData2.readInt32(z2);
+                            for (int i4 = 0; i4 < readInt328; i4++) {
+                                this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
                             }
                         }
                         if ((this.flags & 536870912) != 0) {
@@ -4904,7 +4890,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                             }
                             int readInt323 = abstractSerializedData2.readInt32(z2);
                             for (int i2 = 0; i2 < readInt323; i2++) {
-                                TLRPC$BotInfo TLdeserialize = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                TL_bots$BotInfo TLdeserialize = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                                 if (TLdeserialize == null) {
                                     return;
                                 }
@@ -4938,11 +4924,11 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                 if (z2) {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
                                 }
-                            } else {
-                                int readInt325 = abstractSerializedData2.readInt32(z2);
-                                for (int i3 = 0; i3 < readInt325; i3++) {
-                                    this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
-                                }
+                                return;
+                            }
+                            int readInt325 = abstractSerializedData2.readInt32(z2);
+                            for (int i3 = 0; i3 < readInt325; i3++) {
+                                this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
                             }
                         }
                     }
@@ -5033,7 +5019,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                             }
                             int readInt323 = abstractSerializedData2.readInt32(z2);
                             for (int i2 = 0; i2 < readInt323; i2++) {
-                                TLRPC$BotInfo TLdeserialize = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                TL_bots$BotInfo TLdeserialize = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                                 if (TLdeserialize == null) {
                                     return;
                                 }
@@ -5135,7 +5121,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                             }
                             int readInt323 = abstractSerializedData2.readInt32(z2);
                             for (int i2 = 0; i2 < readInt323; i2++) {
-                                TLRPC$BotInfo TLdeserialize = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                TL_bots$BotInfo TLdeserialize = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                                 if (TLdeserialize == null) {
                                     return;
                                 }
@@ -5257,7 +5243,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         }
                         int readInt323 = abstractSerializedData2.readInt32(z2);
                         for (int i2 = 0; i2 < readInt323; i2++) {
-                            TLRPC$BotInfo TLdeserialize = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            TL_bots$BotInfo TLdeserialize = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                             if (TLdeserialize == null) {
                                 return;
                             }
@@ -5310,11 +5296,10 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
                                 }
                                 return;
-                            } else {
-                                int readInt325 = abstractSerializedData2.readInt32(z2);
-                                for (int i3 = 0; i3 < readInt325; i3++) {
-                                    this.pending_suggestions.add(abstractSerializedData2.readString(z2));
-                                }
+                            }
+                            int readInt325 = abstractSerializedData2.readInt32(z2);
+                            for (int i3 = 0; i3 < readInt325; i3++) {
+                                this.pending_suggestions.add(abstractSerializedData2.readString(z2));
                             }
                         }
                         if ((this.flags & ConnectionsManager.FileTypeFile) != 0) {
@@ -5475,7 +5460,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         }
                         int readInt323 = abstractSerializedData2.readInt32(z2);
                         for (int i2 = 0; i2 < readInt323; i2++) {
-                            TLRPC$BotInfo TLdeserialize = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            TL_bots$BotInfo TLdeserialize = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                             if (TLdeserialize == null) {
                                 return;
                             }
@@ -5528,11 +5513,10 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
                                 }
                                 return;
-                            } else {
-                                int readInt325 = abstractSerializedData2.readInt32(z2);
-                                for (int i3 = 0; i3 < readInt325; i3++) {
-                                    this.pending_suggestions.add(abstractSerializedData2.readString(z2));
-                                }
+                            }
+                            int readInt325 = abstractSerializedData2.readInt32(z2);
+                            for (int i3 = 0; i3 < readInt325; i3++) {
+                                this.pending_suggestions.add(abstractSerializedData2.readString(z2));
                             }
                         }
                         if ((this.flags & ConnectionsManager.FileTypeFile) != 0) {
@@ -5551,11 +5535,10 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt326)));
                                 }
                                 return;
-                            } else {
-                                int readInt327 = abstractSerializedData2.readInt32(z2);
-                                for (int i4 = 0; i4 < readInt327; i4++) {
-                                    this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
-                                }
+                            }
+                            int readInt327 = abstractSerializedData2.readInt32(z2);
+                            for (int i4 = 0; i4 < readInt327; i4++) {
+                                this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
                             }
                         }
                         if ((this.flags & 536870912) != 0) {
@@ -5733,7 +5716,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         }
                         int readInt323 = abstractSerializedData2.readInt32(z2);
                         for (int i2 = 0; i2 < readInt323; i2++) {
-                            TLRPC$BotInfo TLdeserialize = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            TL_bots$BotInfo TLdeserialize = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                             if (TLdeserialize == null) {
                                 return;
                             }
@@ -5786,11 +5769,10 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
                                 }
                                 return;
-                            } else {
-                                int readInt325 = abstractSerializedData2.readInt32(z2);
-                                for (int i3 = 0; i3 < readInt325; i3++) {
-                                    this.pending_suggestions.add(abstractSerializedData2.readString(z2));
-                                }
+                            }
+                            int readInt325 = abstractSerializedData2.readInt32(z2);
+                            for (int i3 = 0; i3 < readInt325; i3++) {
+                                this.pending_suggestions.add(abstractSerializedData2.readString(z2));
                             }
                         }
                         if ((this.flags & ConnectionsManager.FileTypeFile) != 0) {
@@ -5808,11 +5790,11 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                 if (z2) {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt326)));
                                 }
-                            } else {
-                                int readInt327 = abstractSerializedData2.readInt32(z2);
-                                for (int i4 = 0; i4 < readInt327; i4++) {
-                                    this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
-                                }
+                                return;
+                            }
+                            int readInt327 = abstractSerializedData2.readInt32(z2);
+                            for (int i4 = 0; i4 < readInt327; i4++) {
+                                this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
                             }
                         }
                     }
@@ -5992,7 +5974,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         }
                         int readInt324 = abstractSerializedData2.readInt32(z2);
                         for (int i2 = 0; i2 < readInt324; i2++) {
-                            TLRPC$BotInfo TLdeserialize = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            TL_bots$BotInfo TLdeserialize = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                             if (TLdeserialize == null) {
                                 return;
                             }
@@ -6045,11 +6027,10 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt325)));
                                 }
                                 return;
-                            } else {
-                                int readInt326 = abstractSerializedData2.readInt32(z2);
-                                for (int i3 = 0; i3 < readInt326; i3++) {
-                                    this.pending_suggestions.add(abstractSerializedData2.readString(z2));
-                                }
+                            }
+                            int readInt326 = abstractSerializedData2.readInt32(z2);
+                            for (int i3 = 0; i3 < readInt326; i3++) {
+                                this.pending_suggestions.add(abstractSerializedData2.readString(z2));
                             }
                         }
                         if ((this.flags & ConnectionsManager.FileTypeFile) != 0) {
@@ -6068,11 +6049,10 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt327)));
                                 }
                                 return;
-                            } else {
-                                int readInt328 = abstractSerializedData2.readInt32(z2);
-                                for (int i4 = 0; i4 < readInt328; i4++) {
-                                    this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
-                                }
+                            }
+                            int readInt328 = abstractSerializedData2.readInt32(z2);
+                            for (int i4 = 0; i4 < readInt328; i4++) {
+                                this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
                             }
                         }
                         if ((this.flags & 536870912) != 0) {
@@ -6307,7 +6287,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         }
                         int readInt324 = abstractSerializedData2.readInt32(z2);
                         for (int i2 = 0; i2 < readInt324; i2++) {
-                            TLRPC$BotInfo TLdeserialize = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            TL_bots$BotInfo TLdeserialize = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                             if (TLdeserialize == null) {
                                 return;
                             }
@@ -6360,11 +6340,10 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt325)));
                                 }
                                 return;
-                            } else {
-                                int readInt326 = abstractSerializedData2.readInt32(z2);
-                                for (int i3 = 0; i3 < readInt326; i3++) {
-                                    this.pending_suggestions.add(abstractSerializedData2.readString(z2));
-                                }
+                            }
+                            int readInt326 = abstractSerializedData2.readInt32(z2);
+                            for (int i3 = 0; i3 < readInt326; i3++) {
+                                this.pending_suggestions.add(abstractSerializedData2.readString(z2));
                             }
                         }
                         if ((this.flags & ConnectionsManager.FileTypeFile) != 0) {
@@ -6383,11 +6362,10 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt327)));
                                 }
                                 return;
-                            } else {
-                                int readInt328 = abstractSerializedData2.readInt32(z2);
-                                for (int i4 = 0; i4 < readInt328; i4++) {
-                                    this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
-                                }
+                            }
+                            int readInt328 = abstractSerializedData2.readInt32(z2);
+                            for (int i4 = 0; i4 < readInt328; i4++) {
+                                this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
                             }
                         }
                         if ((this.flags & 536870912) != 0) {
@@ -6584,7 +6562,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         }
                         int readInt323 = abstractSerializedData2.readInt32(z2);
                         for (int i2 = 0; i2 < readInt323; i2++) {
-                            TLRPC$BotInfo TLdeserialize2 = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            TL_bots$BotInfo TLdeserialize2 = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                             if (TLdeserialize2 == null) {
                                 return;
                             }
@@ -6711,7 +6689,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
                         }
                         int readInt323 = abstractSerializedData2.readInt32(z2);
                         for (int i2 = 0; i2 < readInt323; i2++) {
-                            TLRPC$BotInfo TLdeserialize = TLRPC$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            TL_bots$BotInfo TLdeserialize = TL_bots$BotInfo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                             if (TLdeserialize == null) {
                                 return;
                             }

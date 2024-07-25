@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$User;
-
 public class TL_stats$TL_megagroupStats extends TLObject {
     public TL_stats$StatsGraph actions_graph;
     public TL_stats$StatsGraph growth_graph;

@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_users_getIsPremiumRequiredToContact extends TLObject {
     public ArrayList<TLRPC$InputUser> id = new ArrayList<>();
 

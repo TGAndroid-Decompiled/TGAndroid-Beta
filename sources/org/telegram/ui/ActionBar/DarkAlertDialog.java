@@ -2,7 +2,6 @@ package org.telegram.ui.ActionBar;
 
 import android.content.Context;
 import org.telegram.ui.ActionBar.AlertDialog;
-
 public class DarkAlertDialog extends AlertDialog {
     public DarkAlertDialog(Context context, int i) {
         super(context, i);

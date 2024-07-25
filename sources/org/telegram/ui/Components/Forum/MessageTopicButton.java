@@ -1,6 +1,5 @@
 package org.telegram.ui.Components.Forum;
 
-import android.R;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -23,6 +22,7 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
@@ -33,7 +33,6 @@ import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Components.AnimatedColor;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AvatarDrawable;
-
 public class MessageTopicButton {
     private AvatarDrawable avatarDrawable;
     private int avatarSize;
@@ -71,7 +70,7 @@ public class MessageTopicButton {
     private static final float[] darkSatValues = {0.64f, 0.89f, 0.84f, 0.87f, 0.74f, 0.66f, 0.81f, 0.81f, 0.71f, 0.51f, 0.61f, 0.55f, 0.62f, 0.64f};
     private static final float[] darkValValues = {0.92f, 0.9f, 0.82f, 0.82f, 0.84f, 0.84f, 0.82f, 0.88f, 0.96f, 0.1f, 0.93f, 0.88f, 0.96f, 0.92f};
     private static final int[] idleState = new int[0];
-    private static final int[] pressedState = {R.attr.state_enabled, R.attr.state_pressed};
+    private static final int[] pressedState = {16842910, 16842919};
 
     protected void onClick() {
         throw null;
@@ -108,12 +107,12 @@ public class MessageTopicButton {
             this.avatarDrawable.setAvatarType(12);
             this.avatarDrawable.setScaleSize(dp2);
             this.imageReceiver.setImage(null, null, this.avatarDrawable, null, tLObject, 0);
-            formatName = LocaleController.getString(org.telegram.messenger.R.string.RepliesTitle);
+            formatName = LocaleController.getString(R.string.RepliesTitle);
         } else if (z && UserObject.isUserSelf((TLRPC$User) tLObject)) {
             this.avatarDrawable.setAvatarType(22);
             this.avatarDrawable.setScaleSize(dp2);
             this.imageReceiver.setImage(null, null, this.avatarDrawable, null, tLObject, 0);
-            formatName = LocaleController.getString(org.telegram.messenger.R.string.MyNotes);
+            formatName = LocaleController.getString(R.string.MyNotes);
         } else {
             this.avatarDrawable.setInfo(messageObject.currentAccount, tLObject);
             this.imageReceiver.setForUserOrChat(tLObject, this.avatarDrawable);
@@ -243,15 +242,15 @@ public class MessageTopicButton {
         while (true) {
             if (i2 >= fArr2.length) {
                 break;
-            }
-            if (f <= fArr2[i2]) {
+            } else if (f <= fArr2[i2]) {
                 int i3 = i2 - 1;
                 float f2 = (f - fArr2[i3]) / (fArr2[i2] - fArr2[i3]);
                 this.topicHSV[1] = AndroidUtilities.lerp(fArr3[i3], fArr3[i2], f2);
                 this.topicHSV[2] = AndroidUtilities.lerp(fArr4[i3], fArr4[i2], f2);
                 break;
+            } else {
+                i2++;
             }
-            i2++;
         }
         this.topicNameColor = Color.HSVToColor(Color.alpha(getThemedColor(Theme.key_chat_inReactionButtonText)), this.topicHSV);
         this.topicBackgroundColor = Color.HSVToColor(38, this.topicHSV);
@@ -279,8 +278,7 @@ public class MessageTopicButton {
                 this.topicPressed = false;
             }
             return this.topicPressed;
-        }
-        if (motionEvent.getAction() == 2) {
+        } else if (motionEvent.getAction() == 2) {
             boolean z = this.topicPressed;
             if (z != contains) {
                 if (z && (drawable = this.topicSelectorDrawable) != null) {
@@ -289,19 +287,20 @@ public class MessageTopicButton {
                 this.topicPressed = contains;
             }
             return this.topicPressed;
-        }
-        if ((motionEvent.getAction() == 1 || motionEvent.getAction() == 3) && this.topicPressed) {
-            this.topicPressed = false;
-            Drawable drawable3 = this.topicSelectorDrawable;
-            if (drawable3 != null) {
-                drawable3.setState(idleState);
+        } else {
+            if ((motionEvent.getAction() == 1 || motionEvent.getAction() == 3) && this.topicPressed) {
+                this.topicPressed = false;
+                Drawable drawable3 = this.topicSelectorDrawable;
+                if (drawable3 != null) {
+                    drawable3.setState(idleState);
+                }
+                if (motionEvent.getAction() == 1) {
+                    onClick();
+                    return true;
+                }
             }
-            if (motionEvent.getAction() == 1) {
-                onClick();
-                return true;
-            }
+            return false;
         }
-        return false;
     }
 
     public int width() {
@@ -393,7 +392,8 @@ public class MessageTopicButton {
                 textPaint2.setColor(i4);
                 i3 = i4;
             }
-            Theme.chat_topicTextPaint.setAlpha((int) (r10.getAlpha() * f3 * (this.topicClosed ? 0.7f : 1.0f)));
+            TextPaint textPaint3 = Theme.chat_topicTextPaint;
+            textPaint3.setAlpha((int) (textPaint3.getAlpha() * f3 * (this.topicClosed ? 0.7f : 1.0f)));
             this.topicNameLayout.draw(canvas);
             canvas.restore();
         }

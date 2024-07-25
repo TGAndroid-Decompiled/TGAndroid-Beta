@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_editChatTitle extends TLObject {
     public long chat_id;
     public String title;

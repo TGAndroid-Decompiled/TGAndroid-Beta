@@ -51,7 +51,6 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
-
 public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements NotificationCenter.NotificationCenterDelegate {
     private UniversalAdapter adapter;
     private ButtonWithCounterView button;
@@ -94,7 +93,6 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
         });
         this.urlEditText.editText.setHandlesColor(-12476440);
         this.urlEditText.editText.setCursorColor(-11230757);
-        final String str = "https://";
         this.urlEditText.editText.setText("https://");
         this.urlEditText.editText.setSelection(8);
         final TextView textView = new TextView(getContext());
@@ -111,7 +109,7 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                StoryLinkSheet.this.lambda$new$0(str, textView);
+                StoryLinkSheet.this.lambda$new$0(r2, textView);
             }
         };
         textView.setOnClickListener(new View.OnClickListener() {
@@ -238,9 +236,7 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
             });
             storyLinkPreviewDialog.setStoryPreviewView(previewView);
             storyLinkPreviewDialog.show();
-            return;
-        }
-        if (item.id == 2 && (view instanceof TextCheckCell)) {
+        } else if (item.id == 2 && (view instanceof TextCheckCell)) {
             boolean z = !this.nameOpen;
             this.nameOpen = z;
             ((TextCheckCell) view).setChecked(z);
@@ -256,10 +252,10 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
     public void lambda$new$3(LinkPreview.WebPagePreview webPagePreview) {
         if (webPagePreview == null) {
             closePreview(null);
-        } else {
-            this.photoLarge = webPagePreview.largePhoto;
-            this.captionAbove = webPagePreview.captionAbove;
+            return;
         }
+        this.photoLarge = webPagePreview.largePhoto;
+        this.captionAbove = webPagePreview.captionAbove;
     }
 
     public void processDone() {

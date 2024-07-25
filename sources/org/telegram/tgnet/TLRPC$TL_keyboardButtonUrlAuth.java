@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_keyboardButtonUrlAuth extends TLRPC$KeyboardButton {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

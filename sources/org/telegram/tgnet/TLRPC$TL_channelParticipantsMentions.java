@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channelParticipantsMentions extends TLRPC$ChannelParticipantsFilter {
     public int flags;
     public int top_msg_id;

@@ -2,7 +2,6 @@ package org.telegram.messenger.video;
 
 import com.googlecode.mp4parser.h264.model.AspectRatio;
 import com.googlecode.mp4parser.h264.model.HRDParameters;
-
 public class VUIParameters {
     public AspectRatio aspect_ratio;
     public boolean aspect_ratio_info_present_flag;

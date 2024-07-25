@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channelAdminLogEventActionChangeAvailableReactions extends TLRPC$ChannelAdminLogEventAction {
     public TLRPC$ChatReactions new_value;
     public TLRPC$ChatReactions prev_value;

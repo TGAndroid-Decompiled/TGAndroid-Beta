@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_inputPhotoFileLocation extends TLRPC$InputFileLocation {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

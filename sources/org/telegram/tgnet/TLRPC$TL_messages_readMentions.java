@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_readMentions extends TLObject {
     public int flags;
     public TLRPC$InputPeer peer;

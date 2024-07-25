@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_auth_checkPassword extends TLObject {
     public TLRPC$InputCheckPasswordSRP password;
 

@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 public class FillLastGridLayoutManager extends GridLayoutManager {
     private int additionalHeight;
     private boolean bind;
@@ -81,9 +80,8 @@ public class FillLastGridLayoutManager extends GridLayoutManager {
                 i2 += viewHolder.itemView.getMeasuredHeight();
                 if (i2 >= (this.listHeight - this.additionalHeight) - this.listView.getPaddingBottom()) {
                     break;
-                } else {
-                    z = false;
                 }
+                z = false;
             }
         }
         this.lastItemHeight = Math.max(0, ((this.listHeight - i2) - this.additionalHeight) - this.listView.getPaddingBottom());

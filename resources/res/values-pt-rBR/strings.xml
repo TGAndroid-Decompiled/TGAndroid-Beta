@@ -964,8 +964,6 @@
     <string name="ChooseTheme">Escolha um tema</string>
     <string name="ChooseYourLanguage">Escolha o seu idioma</string>
     <string name="ChooseYourLanguageOther">Outro</string>
-    <string name="ChromeCustomTabs">Navegador Interno</string>
-    <string name="ChromeCustomTabsInfo">Abre links externos dentro do aplicativo.</string>
     <string name="ClearButton">Limpar</string>
     <string name="ClearCache">Limpar Cache</string>
     <string name="ClearCacheFewChatsTitle">Limpar cache para %1$s</string>

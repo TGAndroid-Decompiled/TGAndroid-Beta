@@ -44,7 +44,6 @@ import org.telegram.ui.Components.Premium.PremiumButtonView;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
-
 public class MessagePrivateSeenView extends FrameLayout {
     private final int currentAccount;
     private final long dialogId;
@@ -159,10 +158,10 @@ public class MessagePrivateSeenView extends FrameLayout {
                     MessagePrivateSeenView.this.lambda$request$0(view);
                 }
             });
-        } else {
-            setBackground(null);
-            setOnClickListener(null);
+            return;
         }
+        setBackground(null);
+        setOnClickListener(null);
     }
 
     public void lambda$request$0(View view) {
@@ -378,7 +377,8 @@ public class MessagePrivateSeenView extends FrameLayout {
             this.minWidth = max;
             float max2 = Math.max(max, AndroidUtilities.dp(48.0f) + this.valueTextView.getPaint().measureText(LocaleController.getString(R.string.PmReadUnknown)));
             this.minWidth = max2;
-            float max3 = Math.max(max2, AndroidUtilities.dp(64.0f) + this.valueTextView.getPaint().measureText(LocaleController.getString(R.string.PmRead) + this.premiumTextView.getPaint().measureText(LocaleController.getString(R.string.PmReadShowWhen))));
+            TextPaint paint = this.valueTextView.getPaint();
+            float max3 = Math.max(max2, AndroidUtilities.dp(64.0f) + paint.measureText(LocaleController.getString(R.string.PmRead) + this.premiumTextView.getPaint().measureText(LocaleController.getString(R.string.PmReadShowWhen))));
             this.minWidth = max3;
             float max4 = Math.max(max3, ((float) AndroidUtilities.dp(48.0f)) + this.valueTextView.getPaint().measureText(LocaleController.formatString(R.string.PmReadTodayAt, LocaleController.getInstance().getFormatterDay().format(new Date(currentTimeMillis)))));
             this.minWidth = max4;
@@ -387,10 +387,9 @@ public class MessagePrivateSeenView extends FrameLayout {
             }
             if (this.messageDiff > 172800) {
                 float f = this.minWidth;
-                float dp = AndroidUtilities.dp(48.0f);
-                TextPaint paint = this.valueTextView.getPaint();
+                TextPaint paint2 = this.valueTextView.getPaint();
                 int i3 = R.string.PmReadDateTimeAt;
-                float max5 = Math.max(f, dp + paint.measureText(LocaleController.formatString(i3, LocaleController.getInstance().getFormatterDayMonth().format(new Date(currentTimeMillis)), LocaleController.getInstance().getFormatterDay().format(new Date(currentTimeMillis)))));
+                float max5 = Math.max(f, AndroidUtilities.dp(48.0f) + paint2.measureText(LocaleController.formatString(i3, LocaleController.getInstance().getFormatterDayMonth().format(new Date(currentTimeMillis)), LocaleController.getInstance().getFormatterDay().format(new Date(currentTimeMillis)))));
                 this.minWidth = max5;
                 this.minWidth = Math.max(max5, AndroidUtilities.dp(48.0f) + this.valueTextView.getPaint().measureText(LocaleController.formatString(i3, LocaleController.getInstance().getFormatterYear().format(new Date(currentTimeMillis)), LocaleController.getInstance().getFormatterDay().format(new Date(currentTimeMillis)))));
             }
@@ -400,10 +399,9 @@ public class MessagePrivateSeenView extends FrameLayout {
             size = view.getWidth();
             mode = 1073741824;
         }
-        float f2 = size;
-        float f3 = this.minWidth;
-        if (f2 < f3 || mode == Integer.MIN_VALUE) {
-            size = (int) f3;
+        float f2 = this.minWidth;
+        if (size < f2 || mode == Integer.MIN_VALUE) {
+            size = (int) f2;
         } else {
             i4 = mode;
         }

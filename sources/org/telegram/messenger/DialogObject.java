@@ -18,7 +18,6 @@ import org.telegram.tgnet.TLRPC$TL_username;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
-
 public class DialogObject {
     public static int getEncryptedChatId(long j) {
         return (int) (j & 4294967295L);
@@ -65,13 +64,10 @@ public class DialogObject {
             long j2 = tLRPC$Peer.chat_id;
             if (j2 != 0) {
                 tLRPC$Dialog.id = -j2;
-                return;
             } else {
                 tLRPC$Dialog.id = -tLRPC$Peer.channel_id;
-                return;
             }
-        }
-        if (tLRPC$Dialog instanceof TLRPC$TL_dialogFolder) {
+        } else if (tLRPC$Dialog instanceof TLRPC$TL_dialogFolder) {
             tLRPC$Dialog.id = makeFolderDialogId(((TLRPC$TL_dialogFolder) tLRPC$Dialog).folder.id);
         }
     }
@@ -126,34 +122,33 @@ public class DialogObject {
                 if (avatarDrawable != null) {
                     avatarDrawable.setAvatarType(12);
                 }
-                if (imageReceiver == null) {
+                if (imageReceiver != null) {
+                    imageReceiver.setForUserOrChat(null, avatarDrawable);
                     return string;
                 }
-                imageReceiver.setForUserOrChat(null, avatarDrawable);
                 return string;
-            }
-            if (UserObject.isUserSelf(tLRPC$User)) {
+            } else if (UserObject.isUserSelf(tLRPC$User)) {
                 String string2 = LocaleController.getString("SavedMessages", R.string.SavedMessages);
                 if (avatarDrawable != null) {
                     avatarDrawable.setAvatarType(1);
                 }
-                if (imageReceiver == null) {
+                if (imageReceiver != null) {
+                    imageReceiver.setForUserOrChat(null, avatarDrawable);
                     return string2;
                 }
-                imageReceiver.setForUserOrChat(null, avatarDrawable);
                 return string2;
+            } else {
+                str = UserObject.getUserName(tLRPC$User);
+                if (avatarDrawable != null) {
+                    avatarDrawable.setInfo(tLRPC$User);
+                }
+                if (imageReceiver != null) {
+                    imageReceiver.setForUserOrChat(tLObject, avatarDrawable);
+                }
             }
-            str = UserObject.getUserName(tLRPC$User);
-            if (avatarDrawable != null) {
-                avatarDrawable.setInfo(tLRPC$User);
-            }
-            if (imageReceiver != null) {
-                imageReceiver.setForUserOrChat(tLObject, avatarDrawable);
-            }
+        } else if (!(tLObject instanceof TLRPC$Chat)) {
+            return "";
         } else {
-            if (!(tLObject instanceof TLRPC$Chat)) {
-                return "";
-            }
             TLRPC$Chat tLRPC$Chat = (TLRPC$Chat) tLObject;
             str = tLRPC$Chat.title;
             if (avatarDrawable != null) {
@@ -187,23 +182,23 @@ public class DialogObject {
         if (tLRPC$EmojiStatus instanceof TLRPC$TL_emojiStatus) {
             return ((TLRPC$TL_emojiStatus) tLRPC$EmojiStatus).document_id;
         }
-        if (!(tLRPC$EmojiStatus instanceof TLRPC$TL_emojiStatusUntil)) {
+        if (tLRPC$EmojiStatus instanceof TLRPC$TL_emojiStatusUntil) {
+            TLRPC$TL_emojiStatusUntil tLRPC$TL_emojiStatusUntil = (TLRPC$TL_emojiStatusUntil) tLRPC$EmojiStatus;
+            if (tLRPC$TL_emojiStatusUntil.until > ((int) (System.currentTimeMillis() / 1000))) {
+                return tLRPC$TL_emojiStatusUntil.document_id;
+            }
             return 0L;
-        }
-        TLRPC$TL_emojiStatusUntil tLRPC$TL_emojiStatusUntil = (TLRPC$TL_emojiStatusUntil) tLRPC$EmojiStatus;
-        if (tLRPC$TL_emojiStatusUntil.until > ((int) (System.currentTimeMillis() / 1000))) {
-            return tLRPC$TL_emojiStatusUntil.document_id;
         }
         return 0L;
     }
 
     public static int getEmojiStatusUntil(TLRPC$EmojiStatus tLRPC$EmojiStatus) {
-        if (!(tLRPC$EmojiStatus instanceof TLRPC$TL_emojiStatusUntil)) {
+        if (tLRPC$EmojiStatus instanceof TLRPC$TL_emojiStatusUntil) {
+            TLRPC$TL_emojiStatusUntil tLRPC$TL_emojiStatusUntil = (TLRPC$TL_emojiStatusUntil) tLRPC$EmojiStatus;
+            if (tLRPC$TL_emojiStatusUntil.until > ((int) (System.currentTimeMillis() / 1000))) {
+                return tLRPC$TL_emojiStatusUntil.until;
+            }
             return 0;
-        }
-        TLRPC$TL_emojiStatusUntil tLRPC$TL_emojiStatusUntil = (TLRPC$TL_emojiStatusUntil) tLRPC$EmojiStatus;
-        if (tLRPC$TL_emojiStatusUntil.until > ((int) (System.currentTimeMillis() / 1000))) {
-            return tLRPC$TL_emojiStatusUntil.until;
         }
         return 0;
     }

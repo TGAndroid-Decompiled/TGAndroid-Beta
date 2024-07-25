@@ -38,7 +38,6 @@ import kotlin.jvm.functions.Function8;
 import kotlin.jvm.functions.Function9;
 import kotlin.reflect.KClass;
 import kotlin.text.StringsKt__StringsKt;
-
 public final class ClassReference implements KClass<Object>, ClassBasedDeclarationContainer {
     private static final Map<Class<Object>, Integer> FUNCTION_CLASSES;
     private static final HashMap<String, String> classFqNames;
@@ -150,21 +149,22 @@ public final class ClassReference implements KClass<Object>, ClassBasedDeclarati
             substringAfterLast$default2 = StringsKt__StringsKt.substringAfterLast$default(kotlinName, '.', null, 2, null);
             sb.append(substringAfterLast$default2);
             sb.append("CompanionObject");
-            Pair pair = TuplesKt.to(sb.toString(), kotlinName + ".Companion");
+            String sb2 = sb.toString();
+            Pair pair = TuplesKt.to(sb2, kotlinName + ".Companion");
             hashMap3.put(pair.getFirst(), pair.getSecond());
         }
         for (Map.Entry<Class<Object>, Integer> entry : FUNCTION_CLASSES.entrySet()) {
-            Class<Object> key = entry.getKey();
             int intValue = entry.getValue().intValue();
-            hashMap3.put(key.getName(), "kotlin.Function" + intValue);
+            String name = entry.getKey().getName();
+            hashMap3.put(name, "kotlin.Function" + intValue);
         }
         classFqNames = hashMap3;
         mapCapacity = MapsKt__MapsJVMKt.mapCapacity(hashMap3.size());
         LinkedHashMap linkedHashMap = new LinkedHashMap(mapCapacity);
         for (Map.Entry entry2 : hashMap3.entrySet()) {
-            Object key2 = entry2.getKey();
+            Object key = entry2.getKey();
             substringAfterLast$default = StringsKt__StringsKt.substringAfterLast$default((String) entry2.getValue(), '.', null, 2, null);
-            linkedHashMap.put(key2, substringAfterLast$default);
+            linkedHashMap.put(key, substringAfterLast$default);
         }
     }
 }

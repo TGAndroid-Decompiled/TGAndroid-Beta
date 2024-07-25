@@ -1,7 +1,5 @@
 package org.telegram.ui.bots;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Path;
@@ -15,7 +13,6 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RadialProgressView;
 import org.telegram.ui.Components.SimpleFloatPropertyCompat;
-
 public class ChatActivityBotWebViewButton extends FrameLayout {
     public static final SimpleFloatPropertyCompat<ChatActivityBotWebViewButton> PROGRESS_PROPERTY = new SimpleFloatPropertyCompat("progress", new SimpleFloatPropertyCompat.Getter() {
         @Override
@@ -37,7 +34,6 @@ public class ChatActivityBotWebViewButton extends FrameLayout {
     private Path path;
     private float progress;
     private RadialProgressView progressView;
-    private boolean progressWasVisible;
     private View rippleView;
     private TextView textView;
 
@@ -69,36 +65,6 @@ public class ChatActivityBotWebViewButton extends FrameLayout {
 
     public void setBotMenuButton(BotCommandsMenuView botCommandsMenuView) {
         this.menuButton = botCommandsMenuView;
-        invalidate();
-    }
-
-    public void setupButtonParams(boolean z, String str, int i, int i2, final boolean z2) {
-        setClickable(z);
-        this.rippleView.setVisibility(z ? 0 : 8);
-        this.textView.setText(str);
-        this.textView.setTextColor(i2);
-        this.buttonColor = i;
-        this.backgroundColor = ColorUtils.blendARGB(Theme.getColor(Theme.key_chat_messagePanelVoiceBackground), this.buttonColor, this.progress);
-        this.rippleView.setBackground(Theme.createSelectorDrawable(BotWebViewContainer.getMainButtonRippleColor(this.buttonColor), 2));
-        invalidate();
-        this.progressView.setProgressColor(i2);
-        if (this.progressWasVisible != z2) {
-            this.progressWasVisible = z2;
-            this.progressView.animate().cancel();
-            if (z2) {
-                this.progressView.setAlpha(0.0f);
-                this.progressView.setVisibility(0);
-            }
-            this.progressView.animate().alpha(z2 ? 1.0f : 0.0f).scaleX(z2 ? 1.0f : 0.1f).scaleY(z2 ? 1.0f : 0.1f).setDuration(250L).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    if (z2) {
-                        return;
-                    }
-                    ChatActivityBotWebViewButton.this.progressView.setVisibility(8);
-                }
-            }).start();
-        }
         invalidate();
     }
 

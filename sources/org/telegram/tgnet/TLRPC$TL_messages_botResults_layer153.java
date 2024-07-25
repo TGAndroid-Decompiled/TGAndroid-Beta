@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_botResults_layer153 extends TLRPC$messages_BotResults {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

@@ -7,7 +7,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.telegram.messenger.audioinfo.AudioInfo;
 import org.telegram.messenger.audioinfo.mp3.MP3Frame;
-
 public class MP3Info extends AudioInfo {
     static final Logger LOGGER = Logger.getLogger(MP3Info.class.getName());
 
@@ -200,10 +199,11 @@ public class MP3Info extends AudioInfo {
     }
 
     long calculateDuration(MP3Input mP3Input, long j, StopReadCondition stopReadCondition) throws IOException, MP3Exception {
+        int numberOfFrames;
         MP3Frame readFirstFrame = readFirstFrame(mP3Input, stopReadCondition);
         if (readFirstFrame != null) {
             if (readFirstFrame.getNumberOfFrames() > 0) {
-                return readFirstFrame.getHeader().getTotalDuration(r4 * readFirstFrame.getSize());
+                return readFirstFrame.getHeader().getTotalDuration(numberOfFrames * readFirstFrame.getSize());
             }
             long position = mP3Input.getPosition() - readFirstFrame.getSize();
             long size = readFirstFrame.getSize();

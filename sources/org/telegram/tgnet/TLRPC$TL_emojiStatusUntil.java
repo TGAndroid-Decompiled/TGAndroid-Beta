@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_emojiStatusUntil extends TLRPC$EmojiStatus {
     public long document_id;
     public int until;

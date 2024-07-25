@@ -14,7 +14,6 @@ import org.telegram.tgnet.TLRPC$TL_account_resetAuthorization;
 import org.telegram.tgnet.TLRPC$TL_boolTrue;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_updateNewAuthorization;
-
 public class UnconfirmedAuthController {
     private final int currentAccount;
     private boolean fetchedCache;
@@ -139,15 +138,15 @@ public class UnconfirmedAuthController {
         }
         if (this.fetchingCache) {
             this.saveAfterFetch = true;
-        } else {
-            this.savingCache = true;
-            MessagesStorage.getInstance(this.currentAccount).getStorageQueue().postRunnable(new Runnable() {
-                @Override
-                public final void run() {
-                    UnconfirmedAuthController.this.lambda$saveCache$4();
-                }
-            });
+            return;
         }
+        this.savingCache = true;
+        MessagesStorage.getInstance(this.currentAccount).getStorageQueue().postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                UnconfirmedAuthController.this.lambda$saveCache$4();
+            }
+        });
     }
 
     public void lambda$saveCache$4() {

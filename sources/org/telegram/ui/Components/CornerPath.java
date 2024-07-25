@@ -5,7 +5,6 @@ import android.graphics.RectF;
 import android.os.Build;
 import java.util.ArrayList;
 import java.util.List;
-
 public class CornerPath extends Path {
     private static ArrayList<RectF> recycled;
     private boolean isPathCreated;
@@ -37,20 +36,26 @@ public class CornerPath extends Path {
             return;
         }
         if (this.rects.size() > 0) {
-            if (this.rects.get(r9.size() - 1).contains(rectF)) {
+            ArrayList<RectF> arrayList = this.rects;
+            if (arrayList.get(arrayList.size() - 1).contains(rectF)) {
                 return;
             }
         }
         if (this.rects.size() > 0) {
-            if (Math.abs(rectF.top - this.rects.get(r1.size() - 1).top) <= this.rectsUnionDiffDelta) {
-                if (Math.abs(rectF.bottom - this.rects.get(r1.size() - 1).bottom) <= this.rectsUnionDiffDelta) {
-                    this.rects.get(r9.size() - 1).union(rectF);
+            float f = rectF.top;
+            ArrayList<RectF> arrayList2 = this.rects;
+            if (Math.abs(f - arrayList2.get(arrayList2.size() - 1).top) <= this.rectsUnionDiffDelta) {
+                float f2 = rectF.bottom;
+                ArrayList<RectF> arrayList3 = this.rects;
+                if (Math.abs(f2 - arrayList3.get(arrayList3.size() - 1).bottom) <= this.rectsUnionDiffDelta) {
+                    ArrayList<RectF> arrayList4 = this.rects;
+                    arrayList4.get(arrayList4.size() - 1).union(rectF);
                     this.isPathCreated = false;
                 }
             }
         }
-        ArrayList<RectF> arrayList = recycled;
-        if (arrayList != null && arrayList.size() > 0) {
+        ArrayList<RectF> arrayList5 = recycled;
+        if (arrayList5 != null && arrayList5.size() > 0) {
             rectF2 = recycled.remove(0);
         } else {
             rectF2 = new RectF();
@@ -68,20 +73,24 @@ public class CornerPath extends Path {
             return;
         }
         if (this.rects.size() > 0) {
-            if (this.rects.get(r7.size() - 1).contains(f, f2, f3, f4)) {
+            ArrayList<RectF> arrayList = this.rects;
+            if (arrayList.get(arrayList.size() - 1).contains(f, f2, f3, f4)) {
                 return;
             }
         }
         if (this.rects.size() > 0) {
-            if (Math.abs(f2 - this.rects.get(r7.size() - 1).top) <= this.rectsUnionDiffDelta) {
-                if (Math.abs(f4 - this.rects.get(r7.size() - 1).bottom) <= this.rectsUnionDiffDelta) {
-                    this.rects.get(r7.size() - 1).union(f, f2, f3, f4);
+            ArrayList<RectF> arrayList2 = this.rects;
+            if (Math.abs(f2 - arrayList2.get(arrayList2.size() - 1).top) <= this.rectsUnionDiffDelta) {
+                ArrayList<RectF> arrayList3 = this.rects;
+                if (Math.abs(f4 - arrayList3.get(arrayList3.size() - 1).bottom) <= this.rectsUnionDiffDelta) {
+                    ArrayList<RectF> arrayList4 = this.rects;
+                    arrayList4.get(arrayList4.size() - 1).union(f, f2, f3, f4);
                     this.isPathCreated = false;
                 }
             }
         }
-        ArrayList<RectF> arrayList = recycled;
-        if (arrayList != null && arrayList.size() > 0) {
+        ArrayList<RectF> arrayList5 = recycled;
+        if (arrayList5 != null && arrayList5.size() > 0) {
             rectF = recycled.remove(0);
         } else {
             rectF = new RectF();

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_getEmojiURL extends TLObject {
     public String lang_code;
 

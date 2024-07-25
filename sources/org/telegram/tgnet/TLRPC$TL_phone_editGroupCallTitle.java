@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_phone_editGroupCallTitle extends TLObject {
     public TLRPC$TL_inputGroupCall call;
     public String title;

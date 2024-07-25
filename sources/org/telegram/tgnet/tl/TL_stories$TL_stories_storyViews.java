@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$User;
-
 public class TL_stories$TL_stories_storyViews extends TLObject {
     public ArrayList<TL_stories$StoryViews> views = new ArrayList<>();
     public ArrayList<TLRPC$User> users = new ArrayList<>();

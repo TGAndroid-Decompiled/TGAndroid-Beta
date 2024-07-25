@@ -3,7 +3,6 @@ package org.telegram.tgnet.tl;
 import java.util.ArrayList;
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
-
 public class TL_stats$TL_broadcastRevenueTransactions extends TLObject {
     public int count;
     public ArrayList<TL_stats$BroadcastRevenueTransaction> transactions = new ArrayList<>();
@@ -28,11 +27,11 @@ public class TL_stats$TL_broadcastRevenueTransactions extends TLObject {
             if (z) {
                 throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
             }
-        } else {
-            int readInt322 = abstractSerializedData.readInt32(z);
-            for (int i = 0; i < readInt322; i++) {
-                this.transactions.add(TL_stats$BroadcastRevenueTransaction.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z));
-            }
+            return;
+        }
+        int readInt322 = abstractSerializedData.readInt32(z);
+        for (int i = 0; i < readInt322; i++) {
+            this.transactions.add(TL_stats$BroadcastRevenueTransaction.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z));
         }
     }
 

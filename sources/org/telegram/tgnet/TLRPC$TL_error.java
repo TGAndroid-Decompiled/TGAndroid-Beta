@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_error extends TLObject {
     public int code;
     public String text;

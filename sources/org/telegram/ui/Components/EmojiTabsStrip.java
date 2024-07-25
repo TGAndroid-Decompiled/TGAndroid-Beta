@@ -37,7 +37,6 @@ import org.telegram.ui.Components.EmojiTabsStrip;
 import org.telegram.ui.Components.EmojiView;
 import org.telegram.ui.Components.Premium.PremiumLockIconView;
 import org.telegram.ui.Components.Reactions.HwEmojis;
-
 public class EmojiTabsStrip extends ScrollableHorizontalScrollView {
     private final int accentColor;
     public boolean animateAppear;
@@ -212,6 +211,9 @@ public class EmojiTabsStrip extends ScrollableHorizontalScrollView {
 
             @Override
             protected void dispatchDraw(Canvas canvas) {
+                Paint paint;
+                Paint paint2;
+                Paint paint3;
                 for (Map.Entry entry : EmojiTabsStrip.this.removingViews.entrySet()) {
                     View view = (View) entry.getKey();
                     if (view != null) {
@@ -228,9 +230,8 @@ public class EmojiTabsStrip extends ScrollableHorizontalScrollView {
                 }
                 float f = EmojiTabsStrip.this.showSelectedAlpha.set(EmojiTabsStrip.this.showSelected ? 1.0f : 0.0f);
                 int floor = (int) Math.floor(EmojiTabsStrip.this.selectT);
-                int ceil = (int) Math.ceil(EmojiTabsStrip.this.selectT);
                 getChildBounds(floor, this.from);
-                getChildBounds(ceil, this.to);
+                getChildBounds((int) Math.ceil(EmojiTabsStrip.this.selectT), this.to);
                 AndroidUtilities.lerp(this.from, this.to, EmojiTabsStrip.this.selectT - floor, this.rect);
                 float clamp = EmojiTabsStrip.this.emojiTabs != null ? MathUtils.clamp(1.0f - Math.abs(EmojiTabsStrip.this.selectT - 1.0f), 0.0f, 1.0f) : 0.0f;
                 float f2 = EmojiTabsStrip.this.selectAnimationT * 4.0f * (1.0f - EmojiTabsStrip.this.selectAnimationT);
@@ -241,9 +242,9 @@ public class EmojiTabsStrip extends ScrollableHorizontalScrollView {
                 float dp = AndroidUtilities.dp(AndroidUtilities.lerp(8.0f, 16.0f, clamp));
                 this.paint.setColor(EmojiTabsStrip.this.selectorColor());
                 if (EmojiTabsStrip.this.forceTabsShow) {
-                    this.paint.setAlpha((int) (r6.getAlpha() * f * (1.0f - (clamp * 0.5f))));
+                    this.paint.setAlpha((int) (paint3.getAlpha() * f * (1.0f - (clamp * 0.5f))));
                 } else {
-                    this.paint.setAlpha((int) (r3.getAlpha() * f));
+                    this.paint.setAlpha((int) (paint.getAlpha() * f));
                 }
                 this.path.rewind();
                 this.path.addRoundRect(this.rect, dp, dp, Path.Direction.CW);
@@ -253,7 +254,7 @@ public class EmojiTabsStrip extends ScrollableHorizontalScrollView {
                     getChildBounds(1, this.rect);
                     this.path.addRoundRect(this.rect, AndroidUtilities.dpf2(16.0f), AndroidUtilities.dpf2(16.0f), Path.Direction.CW);
                     this.paint.setColor(EmojiTabsStrip.this.selectorColor());
-                    this.paint.setAlpha((int) (r0.getAlpha() * 0.5f));
+                    this.paint.setAlpha((int) (paint2.getAlpha() * 0.5f));
                     canvas.drawPath(this.path, this.paint);
                 }
                 if (EmojiTabsStrip.this.emojiTabs != null) {
@@ -616,6 +617,7 @@ public class EmojiTabsStrip extends ScrollableHorizontalScrollView {
 
     public void select(int i, boolean z) {
         int i2;
+        int i3;
         boolean z2 = z && !this.first;
         EmojiTabButton emojiTabButton = this.toggleEmojiStickersTab;
         if (emojiTabButton != null) {
@@ -624,37 +626,37 @@ public class EmojiTabsStrip extends ScrollableHorizontalScrollView {
         if (!this.recentIsShown || emojiTabButton != null) {
             i = Math.max(1, i);
         }
-        int i3 = this.selected;
-        int i4 = 0;
+        int i4 = this.selected;
         int i5 = 0;
-        while (i4 < this.contentView.getChildCount()) {
-            View childAt = this.contentView.getChildAt(i4);
+        int i6 = 0;
+        while (i5 < this.contentView.getChildCount()) {
+            View childAt = this.contentView.getChildAt(i5);
             if (childAt instanceof EmojiTabsView) {
                 EmojiTabsView emojiTabsView = (EmojiTabsView) childAt;
-                int i6 = i5;
-                int i7 = 0;
-                while (i7 < emojiTabsView.contentView.getChildCount()) {
-                    View childAt2 = emojiTabsView.contentView.getChildAt(i7);
+                int i7 = i6;
+                int i8 = 0;
+                while (i8 < emojiTabsView.contentView.getChildCount()) {
+                    View childAt2 = emojiTabsView.contentView.getChildAt(i8);
                     if (childAt2 instanceof EmojiTabButton) {
-                        ((EmojiTabButton) childAt2).updateSelect(i == i6, z2);
+                        ((EmojiTabButton) childAt2).updateSelect(i == i7, z2);
                     }
+                    i8++;
                     i7++;
-                    i6++;
                 }
-                i2 = i6 - 1;
+                i3 = i7 - 1;
             } else {
                 if (childAt instanceof EmojiTabButton) {
-                    ((EmojiTabButton) childAt).updateSelect(i == i5, z2);
+                    ((EmojiTabButton) childAt).updateSelect(i == i6, z2);
                 }
-                i2 = i5;
+                i3 = i6;
             }
-            if (i >= i5 && i <= i2) {
-                this.selected = i4;
+            if (i >= i6 && i <= i3) {
+                this.selected = i5;
             }
-            i4++;
-            i5 = i2 + 1;
+            i5++;
+            i6 = i3 + 1;
         }
-        if (i3 != this.selected) {
+        if (i4 != this.selected) {
             ValueAnimator valueAnimator = this.selectAnimator;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
@@ -692,7 +694,7 @@ public class EmojiTabsStrip extends ScrollableHorizontalScrollView {
         if (this.wasIndex != i) {
             EmojiTabsView emojiTabsView3 = this.emojiTabs;
             if (emojiTabsView3 != null && this.selected == 1 && i >= 1 && i <= emojiTabsView3.contentView.getChildCount() + 1) {
-                this.emojiTabs.scrollToVisible(AndroidUtilities.dp(((i - 1) * 36) - 6), AndroidUtilities.dp(r0 + 30));
+                this.emojiTabs.scrollToVisible(AndroidUtilities.dp(((i - 1) * 36) - 6), AndroidUtilities.dp(i2 + 30));
             }
             this.wasIndex = i;
         }

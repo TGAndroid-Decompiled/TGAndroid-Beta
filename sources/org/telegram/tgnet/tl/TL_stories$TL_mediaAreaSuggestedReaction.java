@@ -2,7 +2,6 @@ package org.telegram.tgnet.tl;
 
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLRPC$Reaction;
-
 public class TL_stories$TL_mediaAreaSuggestedReaction extends TL_stories$MediaArea {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updateNotifySettings extends TLRPC$Update {
     public TLRPC$PeerNotifySettings notify_settings;
     public TLRPC$NotifyPeer peer;

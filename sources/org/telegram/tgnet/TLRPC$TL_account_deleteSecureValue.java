@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_account_deleteSecureValue extends TLObject {
     public ArrayList<TLRPC$SecureValueType> types = new ArrayList<>();
 

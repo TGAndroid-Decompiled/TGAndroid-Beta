@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 import org.telegram.messenger.LiteMode;
-
 public abstract class TLRPC$BotInlineMessage extends TLObject {
     public String address;
     public ArrayList<TLRPC$MessageEntity> entities = new ArrayList<>();
@@ -51,11 +50,10 @@ public abstract class TLRPC$BotInlineMessage extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
                                 }
                                 return;
-                            } else {
-                                int readInt323 = abstractSerializedData2.readInt32(z2);
-                                for (int i2 = 0; i2 < readInt323; i2++) {
-                                    this.entities.add(TLRPC$MessageEntity.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2));
-                                }
+                            }
+                            int readInt323 = abstractSerializedData2.readInt32(z2);
+                            for (int i2 = 0; i2 < readInt323; i2++) {
+                                this.entities.add(TLRPC$MessageEntity.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2));
                             }
                         }
                         this.url = abstractSerializedData2.readString(z2);

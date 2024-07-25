@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_webPageEmpty extends TLRPC$WebPage {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

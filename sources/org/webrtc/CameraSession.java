@@ -2,7 +2,6 @@ package org.webrtc;
 
 import android.graphics.Matrix;
 import org.webrtc.VideoFrame;
-
 public interface CameraSession {
 
     public interface CreateSessionCallback {

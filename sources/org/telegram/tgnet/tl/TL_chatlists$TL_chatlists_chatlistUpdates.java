@@ -6,7 +6,6 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$Peer;
 import org.telegram.tgnet.TLRPC$User;
-
 public class TL_chatlists$TL_chatlists_chatlistUpdates extends TLObject {
     public ArrayList<TLRPC$Peer> missing_peers = new ArrayList<>();
     public ArrayList<TLRPC$Chat> chats = new ArrayList<>();

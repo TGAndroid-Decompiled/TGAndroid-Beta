@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_securePlainEmail extends TLRPC$SecurePlainData {
     public String email;
 

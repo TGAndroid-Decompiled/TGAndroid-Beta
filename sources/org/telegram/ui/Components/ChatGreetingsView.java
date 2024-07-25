@@ -13,7 +13,6 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.TextUtils;
-import android.util.Property;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -47,7 +46,6 @@ import org.telegram.ui.Components.Premium.StarParticlesView;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.Stories.recorder.HintView2;
-
 public class ChatGreetingsView extends LinearLayout {
     private int backgroundHeight;
     private final int currentAccount;
@@ -260,7 +258,7 @@ public class ChatGreetingsView extends LinearLayout {
         }
         addView(this.titleView, LayoutHelper.createLinear(-2, -2, 1, 20, 6, 20, 6));
         addView(this.descriptionView, LayoutHelper.createLinear(-2, -2, 1, 20, 6, 20, 6));
-        addView(this.stickerContainer, LayoutHelper.createLinear(R.styleable.AppCompatTheme_toolbarNavigationButtonStyle, R.styleable.AppCompatTheme_toolbarNavigationButtonStyle, 1, 16, 10, 16, 16));
+        addView(this.stickerContainer, LayoutHelper.createLinear((int) R.styleable.AppCompatTheme_toolbarNavigationButtonStyle, (int) R.styleable.AppCompatTheme_toolbarNavigationButtonStyle, 1, 16, 10, 16, 16));
     }
 
     public void setSticker(final TLRPC$Document tLRPC$Document) {
@@ -416,7 +414,7 @@ public class ChatGreetingsView extends LinearLayout {
                 this.cancelled = true;
             }
         });
-        this.togglingStickersAnimator.playTogether(ObjectAnimator.ofFloat(this.nextStickerToSendView, (Property<BackupImageView, Float>) View.ALPHA, 0.0f, 1.0f), ObjectAnimator.ofFloat(this.nextStickerToSendView, (Property<BackupImageView, Float>) View.SCALE_X, 0.7f, 1.0f), ObjectAnimator.ofFloat(this.nextStickerToSendView, (Property<BackupImageView, Float>) View.SCALE_Y, 0.7f, 1.0f), ObjectAnimator.ofFloat(this.nextStickerToSendView, (Property<BackupImageView, Float>) View.TRANSLATION_Y, -AndroidUtilities.dp(24.0f), 0.0f), ObjectAnimator.ofFloat(this.stickerToSendView, (Property<BackupImageView, Float>) View.ALPHA, 1.0f, 0.0f), ObjectAnimator.ofFloat(this.stickerToSendView, (Property<BackupImageView, Float>) View.SCALE_X, 1.0f, 0.7f), ObjectAnimator.ofFloat(this.stickerToSendView, (Property<BackupImageView, Float>) View.SCALE_Y, 1.0f, 0.7f), ObjectAnimator.ofFloat(this.stickerToSendView, (Property<BackupImageView, Float>) View.TRANSLATION_Y, 0.0f, AndroidUtilities.dp(24.0f)));
+        this.togglingStickersAnimator.playTogether(ObjectAnimator.ofFloat(this.nextStickerToSendView, View.ALPHA, 0.0f, 1.0f), ObjectAnimator.ofFloat(this.nextStickerToSendView, View.SCALE_X, 0.7f, 1.0f), ObjectAnimator.ofFloat(this.nextStickerToSendView, View.SCALE_Y, 0.7f, 1.0f), ObjectAnimator.ofFloat(this.nextStickerToSendView, View.TRANSLATION_Y, -AndroidUtilities.dp(24.0f), 0.0f), ObjectAnimator.ofFloat(this.stickerToSendView, View.ALPHA, 1.0f, 0.0f), ObjectAnimator.ofFloat(this.stickerToSendView, View.SCALE_X, 1.0f, 0.7f), ObjectAnimator.ofFloat(this.stickerToSendView, View.SCALE_Y, 1.0f, 0.7f), ObjectAnimator.ofFloat(this.stickerToSendView, View.TRANSLATION_Y, 0.0f, AndroidUtilities.dp(24.0f)));
         this.togglingStickersAnimator.start();
     }
 

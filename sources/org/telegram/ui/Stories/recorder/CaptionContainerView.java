@@ -25,9 +25,9 @@ import android.text.Editable;
 import android.text.SpannableStringBuilder;
 import android.text.TextPaint;
 import android.text.TextWatcher;
-import android.util.Property;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewParent;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
@@ -64,7 +64,6 @@ import org.telegram.ui.Components.Text;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Stories.DarkThemeResourceProvider;
 import org.telegram.ui.Stories.recorder.CaptionContainerView;
-
 public class CaptionContainerView extends FrameLayout {
     public ImageView applyButton;
     private Drawable applyButtonCheck;
@@ -453,6 +452,7 @@ public class CaptionContainerView extends FrameLayout {
         @Override
         public void afterTextChanged(Editable editable) {
             String str;
+            CaptionContainerView captionContainerView;
             CaptionContainerView.this.codePointCount = Character.codePointCount(editable, 0, editable.length());
             int captionLimit = CaptionContainerView.this.getCaptionLimit();
             if (CaptionContainerView.this.codePointCount + 25 > captionLimit) {
@@ -462,10 +462,10 @@ public class CaptionContainerView extends FrameLayout {
             }
             CaptionContainerView.this.limitTextView.cancelAnimation();
             CaptionContainerView.this.limitTextView.setText(str);
-            CaptionContainerView captionContainerView = CaptionContainerView.this;
-            captionContainerView.limitTextView.setTextColor(captionContainerView.codePointCount >= captionLimit ? -1280137 : -1);
+            CaptionContainerView captionContainerView2 = CaptionContainerView.this;
+            captionContainerView2.limitTextView.setTextColor(captionContainerView2.codePointCount >= captionLimit ? -1280137 : -1);
             if (CaptionContainerView.this.codePointCount > captionLimit && !UserConfig.getInstance(CaptionContainerView.this.currentAccount).isPremium() && CaptionContainerView.this.codePointCount < CaptionContainerView.this.getCaptionPremiumLimit() && CaptionContainerView.this.codePointCount > this.lastLength && (CaptionContainerView.this.captionLimitToast() || MessagesController.getInstance(CaptionContainerView.this.currentAccount).premiumFeaturesBlocked())) {
-                AndroidUtilities.shakeViewSpring(CaptionContainerView.this.limitTextView, r0.shiftDp = -r0.shiftDp);
+                AndroidUtilities.shakeViewSpring(CaptionContainerView.this.limitTextView, captionContainerView.shiftDp = -captionContainerView.shiftDp);
                 BotWebViewVibrationEffect.APP_ERROR.vibrate();
             }
             this.lastLength = CaptionContainerView.this.codePointCount;
@@ -590,11 +590,10 @@ public class CaptionContainerView extends FrameLayout {
                         CaptionContainerView.this.backgroundPaint.setAlpha(80);
                         canvas.drawRoundRect(CaptionContainerView.this.rectF, f, f, CaptionContainerView.this.backgroundPaint);
                         return;
-                    } else {
-                        CaptionContainerView.this.backgroundPaint.setAlpha(128);
-                        canvas.drawRoundRect(CaptionContainerView.this.rectF, f, f, CaptionContainerView.this.backgroundPaint);
-                        return;
                     }
+                    CaptionContainerView.this.backgroundPaint.setAlpha(128);
+                    canvas.drawRoundRect(CaptionContainerView.this.rectF, f, f, CaptionContainerView.this.backgroundPaint);
+                    return;
                 }
                 CaptionContainerView captionContainerView = CaptionContainerView.this;
                 captionContainerView.drawBlur(captionContainerView.mentionBackgroundBlur, canvas, CaptionContainerView.this.rectF, f, false, -CaptionContainerView.this.mentionContainer.getX(), -CaptionContainerView.this.mentionContainer.getY(), false);
@@ -704,7 +703,7 @@ public class CaptionContainerView extends FrameLayout {
             this.parentKeyboardAnimator.cancel();
             this.parentKeyboardAnimator = null;
         }
-        this.parentKeyboardAnimator = ObjectAnimator.ofFloat(view, (Property<View, Float>) FrameLayout.TRANSLATION_Y, view.getTranslationY(), -max);
+        this.parentKeyboardAnimator = ObjectAnimator.ofFloat(view, FrameLayout.TRANSLATION_Y, view.getTranslationY(), -max);
         if (max > AndroidUtilities.dp(20.0f)) {
             this.parentKeyboardAnimator.setInterpolator(AdjustPanLayoutHelper.keyboardInterpolator);
             this.parentKeyboardAnimator.setDuration(250L);
@@ -888,16 +887,15 @@ public class CaptionContainerView extends FrameLayout {
                 this.editText.collapseEmojiView();
             }
             return true;
-        }
-        if (this.editText.isPopupShowing()) {
+        } else if (this.editText.isPopupShowing()) {
             this.editText.hidePopup(true);
             return true;
-        }
-        if (!this.editText.isKeyboardVisible() || this.keyboardNotifier.ignoring) {
+        } else if (!this.editText.isKeyboardVisible() || this.keyboardNotifier.ignoring) {
             return false;
+        } else {
+            closeKeyboard();
+            return true;
         }
-        closeKeyboard();
-        return true;
     }
 
     public void setReply(CharSequence charSequence, CharSequence charSequence2) {
@@ -1029,10 +1027,11 @@ public class CaptionContainerView extends FrameLayout {
                 runnable.run();
                 return;
             }
-            canvas.translate(-this.editText.getEditText().hintLayoutX, 0.0f);
+            EditTextCaption editText = this.editText.getEditText();
+            canvas.translate(-editText.hintLayoutX, 0.0f);
             canvas.saveLayerAlpha(0.0f, 0.0f, this.hintTextBitmap.getWidth(), this.hintTextBitmap.getHeight(), 255, 31);
             this.rectF.set(0.0f, 1.0f, this.hintTextBitmap.getWidth(), this.hintTextBitmap.getHeight() - 1);
-            drawBlur(this.captionBlur, canvas, this.rectF, 0.0f, true, (-this.editText.getX()) - r8.getPaddingLeft(), ((-this.editText.getY()) - r8.getPaddingTop()) - r8.getExtendedPaddingTop(), true);
+            drawBlur(this.captionBlur, canvas, this.rectF, 0.0f, true, (-this.editText.getX()) - editText.getPaddingLeft(), ((-this.editText.getY()) - editText.getPaddingTop()) - editText.getExtendedPaddingTop(), true);
             canvas.save();
             this.hintTextBitmapPaint.setAlpha(165);
             canvas.drawBitmap(this.hintTextBitmap, 0.0f, 0.0f, this.hintTextBitmapPaint);
@@ -1046,10 +1045,10 @@ public class CaptionContainerView extends FrameLayout {
             runnable.run();
             return;
         }
-        EditTextCaption editText = this.editText.getEditText();
-        canvas.saveLayerAlpha(0.0f, 0.0f, editText.getWidth(), editText.getHeight(), 255, 31);
+        EditTextCaption editText2 = this.editText.getEditText();
+        canvas.saveLayerAlpha(0.0f, 0.0f, editText2.getWidth(), editText2.getHeight(), 255, 31);
         runnable.run();
-        canvas.drawRect(0.0f, 0.0f, editText.getWidth(), editText.getHeight(), paint);
+        canvas.drawRect(0.0f, 0.0f, editText2.getWidth(), editText2.getHeight(), paint);
         canvas.restore();
     }
 
@@ -1063,7 +1062,7 @@ public class CaptionContainerView extends FrameLayout {
             for (int i = 0; i < 8 && view != null; i++) {
                 f3 += view.getX();
                 f4 += view.getY();
-                Object parent = view.getParent();
+                ViewParent parent = view.getParent();
                 view = parent instanceof View ? (View) parent : null;
             }
             this.blurBitmapMatrix.postTranslate(-f3, -f4);
@@ -1077,8 +1076,9 @@ public class CaptionContainerView extends FrameLayout {
 
     @Override
     protected boolean drawChild(Canvas canvas, View view, long j) {
-        if (view == this.editText) {
-            float max = Math.max(0, (r0.getHeight() - AndroidUtilities.dp(82.0f)) - this.editText.getScrollY()) * (1.0f - this.keyboardT);
+        EditTextEmoji editTextEmoji = this.editText;
+        if (view == editTextEmoji) {
+            float max = Math.max(0, (editTextEmoji.getHeight() - AndroidUtilities.dp(82.0f)) - this.editText.getScrollY()) * (1.0f - this.keyboardT);
             canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
             canvas.save();
             canvas.clipRect(this.bounds);
@@ -1105,15 +1105,15 @@ public class CaptionContainerView extends FrameLayout {
             canvas.restore();
             canvas.restore();
             return drawChild;
-        }
-        if (clipChild(view)) {
+        } else if (clipChild(view)) {
             canvas.save();
             canvas.clipRect(this.bounds);
             boolean drawChild2 = super.drawChild(canvas, view, j);
             canvas.restore();
             return drawChild2;
+        } else {
+            return super.drawChild(canvas, view, j);
         }
-        return super.drawChild(canvas, view, j);
     }
 
     @Override
@@ -1260,19 +1260,17 @@ public class CaptionContainerView extends FrameLayout {
         }
 
         public PeriodDrawable(int i) {
-            boolean z = true;
             Paint paint = new Paint(1);
             this.strokePaint = paint;
             this.fillPaint = new Paint(1);
-            boolean z2 = false;
-            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(z, z2, z2) {
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(true, false, false) {
                 @Override
                 public void invalidateSelf() {
                     PeriodDrawable.this.invalidateSelf();
                 }
             };
             this.textDrawable = animatedTextDrawable;
-            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = new AnimatedTextView.AnimatedTextDrawable(z, z2, z2) {
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = new AnimatedTextView.AnimatedTextDrawable(true, false, false) {
                 @Override
                 public void invalidateSelf() {
                     PeriodDrawable.this.invalidateSelf();
@@ -1392,8 +1390,10 @@ public class CaptionContainerView extends FrameLayout {
         }
 
         public void setValue(int i, boolean z, boolean z2) {
-            this.textDrawable.setText("" + i, z2);
-            this.activeTextDrawable.setText("" + i, z2);
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.textDrawable;
+            animatedTextDrawable.setText("" + i, z2);
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = this.activeTextDrawable;
+            animatedTextDrawable2.setText("" + i, z2);
             this.filled = z;
             if (!z2) {
                 this.fillT.set(z, true);

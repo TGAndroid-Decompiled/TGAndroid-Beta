@@ -40,7 +40,6 @@ import org.telegram.ui.Components.MotionBackgroundDrawable;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RLottieImageView;
 import org.webrtc.RendererCommon;
-
 @TargetApi(21)
 public abstract class PrivateVideoPreviewDialog extends FrameLayout implements VoIPService.StateListener {
     private boolean cameraReady;
@@ -130,9 +129,7 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
                         PrivateVideoPreviewDialog.this.currentTexturePage = 2;
                     }
                     PrivateVideoPreviewDialog.this.onFinishMoveCameraPage();
-                    return;
-                }
-                if (i <= PrivateVideoPreviewDialog.this.needScreencast) {
+                } else if (i <= PrivateVideoPreviewDialog.this.needScreencast) {
                     this.willSetPage = 1;
                 } else {
                     this.willSetPage = 2;
@@ -433,7 +430,8 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
                             createBitmap.recycle();
                         }
                         Utilities.blurBitmap(createScaledBitmap, 7, 1, createScaledBitmap.getWidth(), createScaledBitmap.getHeight(), createScaledBitmap.getRowBytes());
-                        createScaledBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(new File(ApplicationLoader.getFilesDirFixed(), "cthumb" + this.visibleCameraPage + ".jpg")));
+                        File filesDirFixed = ApplicationLoader.getFilesDirFixed();
+                        createScaledBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(new File(filesDirFixed, "cthumb" + this.visibleCameraPage + ".jpg")));
                         View findViewWithTag = this.viewPager.findViewWithTag(Integer.valueOf(this.visibleCameraPage - (this.needScreencast ? 0 : 1)));
                         if (findViewWithTag instanceof ImageView) {
                             ((ImageView) findViewWithTag).setImageBitmap(createScaledBitmap);

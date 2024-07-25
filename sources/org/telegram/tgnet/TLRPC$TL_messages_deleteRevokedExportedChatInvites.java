@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_deleteRevokedExportedChatInvites extends TLObject {
     public TLRPC$InputUser admin_id;
     public TLRPC$InputPeer peer;

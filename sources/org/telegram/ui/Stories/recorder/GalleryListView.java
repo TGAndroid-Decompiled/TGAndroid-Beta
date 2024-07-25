@@ -29,7 +29,6 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.LruCache;
 import android.util.Pair;
-import android.util.Property;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -86,7 +85,6 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.StickerEmptyView;
 import org.telegram.ui.Stories.recorder.GalleryListView;
-
 public class GalleryListView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private static final MediaController.AlbumEntry draftsAlbum = new MediaController.AlbumEntry(-1, null, null);
     private final ActionBar actionBar;
@@ -296,10 +294,10 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
                 if (TextUtils.isEmpty(this.query)) {
                     GalleryListView.this.searchEmptyView.setStickerType(11);
                     GalleryListView.this.searchEmptyView.title.setText(LocaleController.getString(R.string.SearchImagesType));
-                } else {
-                    GalleryListView.this.searchEmptyView.setStickerType(1);
-                    GalleryListView.this.searchEmptyView.title.setText(LocaleController.formatString(R.string.NoResultFoundFor, this.query));
+                    return;
                 }
+                GalleryListView.this.searchEmptyView.setStickerType(1);
+                GalleryListView.this.searchEmptyView.title.setText(LocaleController.formatString(R.string.NoResultFoundFor, this.query));
             }
         };
         this.searchAdapterImages = searchAdapter;
@@ -448,19 +446,19 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
             }
             ArrayList arrayList = new ArrayList();
             GalleryListView.this.dropDownContainer.setVisibility(0);
-            arrayList.add(ObjectAnimator.ofFloat(GalleryListView.this.dropDownContainer, (Property<ActionBarMenuItem, Float>) View.SCALE_X, 1.0f));
-            arrayList.add(ObjectAnimator.ofFloat(GalleryListView.this.dropDownContainer, (Property<ActionBarMenuItem, Float>) View.SCALE_Y, 1.0f));
-            arrayList.add(ObjectAnimator.ofFloat(GalleryListView.this.dropDownContainer, (Property<ActionBarMenuItem, Float>) View.ALPHA, 1.0f));
+            arrayList.add(ObjectAnimator.ofFloat(GalleryListView.this.dropDownContainer, View.SCALE_X, 1.0f));
+            arrayList.add(ObjectAnimator.ofFloat(GalleryListView.this.dropDownContainer, View.SCALE_Y, 1.0f));
+            arrayList.add(ObjectAnimator.ofFloat(GalleryListView.this.dropDownContainer, View.ALPHA, 1.0f));
             final EditTextBoldCursor searchField = GalleryListView.this.searchItem.getSearchField();
             if (searchField != null) {
-                arrayList.add(ObjectAnimator.ofFloat(searchField, (Property<EditTextBoldCursor, Float>) View.SCALE_X, 0.8f));
-                arrayList.add(ObjectAnimator.ofFloat(searchField, (Property<EditTextBoldCursor, Float>) View.SCALE_Y, 0.8f));
-                arrayList.add(ObjectAnimator.ofFloat(searchField, (Property<EditTextBoldCursor, Float>) View.ALPHA, 0.0f));
+                arrayList.add(ObjectAnimator.ofFloat(searchField, View.SCALE_X, 0.8f));
+                arrayList.add(ObjectAnimator.ofFloat(searchField, View.SCALE_Y, 0.8f));
+                arrayList.add(ObjectAnimator.ofFloat(searchField, View.ALPHA, 0.0f));
             }
             GalleryListView.this.listView.setVisibility(0);
-            arrayList.add(ObjectAnimator.ofFloat(GalleryListView.this.listView, (Property<RecyclerListView, Float>) View.ALPHA, 1.0f));
+            arrayList.add(ObjectAnimator.ofFloat(GalleryListView.this.listView, View.ALPHA, 1.0f));
             GalleryListView.this.listView.setFastScrollVisible(true);
-            arrayList.add(ObjectAnimator.ofFloat(GalleryListView.this.searchContainer, (Property<FrameLayout, Float>) View.ALPHA, 0.0f));
+            arrayList.add(ObjectAnimator.ofFloat(GalleryListView.this.searchContainer, View.ALPHA, 0.0f));
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
@@ -498,21 +496,21 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
                 animatorSet.cancel();
             }
             ArrayList arrayList = new ArrayList();
-            arrayList.add(ObjectAnimator.ofFloat(GalleryListView.this.dropDownContainer, (Property<ActionBarMenuItem, Float>) View.SCALE_X, 0.8f));
-            arrayList.add(ObjectAnimator.ofFloat(GalleryListView.this.dropDownContainer, (Property<ActionBarMenuItem, Float>) View.SCALE_Y, 0.8f));
-            arrayList.add(ObjectAnimator.ofFloat(GalleryListView.this.dropDownContainer, (Property<ActionBarMenuItem, Float>) View.ALPHA, 0.0f));
+            arrayList.add(ObjectAnimator.ofFloat(GalleryListView.this.dropDownContainer, View.SCALE_X, 0.8f));
+            arrayList.add(ObjectAnimator.ofFloat(GalleryListView.this.dropDownContainer, View.SCALE_Y, 0.8f));
+            arrayList.add(ObjectAnimator.ofFloat(GalleryListView.this.dropDownContainer, View.ALPHA, 0.0f));
             EditTextBoldCursor searchField = GalleryListView.this.searchItem.getSearchField();
             if (searchField != null) {
                 searchField.setVisibility(0);
                 searchField.setHandlesColor(-1);
-                arrayList.add(ObjectAnimator.ofFloat(searchField, (Property<EditTextBoldCursor, Float>) View.SCALE_X, 1.0f));
-                arrayList.add(ObjectAnimator.ofFloat(searchField, (Property<EditTextBoldCursor, Float>) View.SCALE_Y, 1.0f));
-                arrayList.add(ObjectAnimator.ofFloat(searchField, (Property<EditTextBoldCursor, Float>) View.ALPHA, 1.0f));
+                arrayList.add(ObjectAnimator.ofFloat(searchField, View.SCALE_X, 1.0f));
+                arrayList.add(ObjectAnimator.ofFloat(searchField, View.SCALE_Y, 1.0f));
+                arrayList.add(ObjectAnimator.ofFloat(searchField, View.ALPHA, 1.0f));
             }
             GalleryListView.this.searchContainer.setVisibility(0);
-            arrayList.add(ObjectAnimator.ofFloat(GalleryListView.this.listView, (Property<RecyclerListView, Float>) View.ALPHA, 0.0f));
+            arrayList.add(ObjectAnimator.ofFloat(GalleryListView.this.listView, View.ALPHA, 0.0f));
             GalleryListView.this.listView.setFastScrollVisible(false);
-            arrayList.add(ObjectAnimator.ofFloat(GalleryListView.this.searchContainer, (Property<FrameLayout, Float>) View.ALPHA, 1.0f));
+            arrayList.add(ObjectAnimator.ofFloat(GalleryListView.this.searchContainer, View.ALPHA, 1.0f));
             GalleryListView.this.searchEmptyView.setVisibility(0);
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -719,13 +717,13 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
         int indexOf;
         int indexOf2;
         int i = albumEntry.bucketId;
-        if (i == 0 && albumEntry2.bucketId != 0) {
-            return -1;
+        if (i != 0 || albumEntry2.bucketId == 0) {
+            if ((i == 0 || albumEntry2.bucketId != 0) && (indexOf = arrayList.indexOf(albumEntry)) <= (indexOf2 = arrayList.indexOf(albumEntry2))) {
+                return indexOf < indexOf2 ? -1 : 0;
+            }
+            return 1;
         }
-        if ((i == 0 || albumEntry2.bucketId != 0) && (indexOf = arrayList.indexOf(albumEntry)) <= (indexOf2 = arrayList.indexOf(albumEntry2))) {
-            return indexOf < indexOf2 ? -1 : 0;
-        }
-        return 1;
+        return -1;
     }
 
     public void lambda$updateAlbumsDropDown$6(MediaController.AlbumEntry albumEntry, View view) {
@@ -1324,9 +1322,7 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
             int itemViewType = viewHolder.getItemViewType();
             if (itemViewType == 0) {
                 ((EmptyView) viewHolder.itemView).setHeight(i == 0 ? GalleryListView.this.getPadding() : -1);
-                return;
-            }
-            if (itemViewType == 2) {
+            } else if (itemViewType == 2) {
                 Cell cell = (Cell) viewHolder.itemView;
                 cell.setRounding(i == 2, i == 4);
                 int i2 = i - 2;
@@ -1404,7 +1400,8 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
             int totalItemsCount = getTotalItemsCount();
             int width = (int) (((int) (((recyclerListView.getWidth() - recyclerListView.getPaddingLeft()) - recyclerListView.getPaddingRight()) / GalleryListView.this.layoutManager.getSpanCount())) * 1.39f);
             int ceil = (int) Math.ceil(totalItemsCount / GalleryListView.this.layoutManager.getSpanCount());
-            float lerp = (AndroidUtilities.lerp(0, Math.max(0, r2 - ((AndroidUtilities.displaySize.y - recyclerListView.getPaddingTop()) - recyclerListView.getPaddingBottom())), f) / (ceil * width)) * ceil;
+            int i = ceil * width;
+            float lerp = (AndroidUtilities.lerp(0, Math.max(0, i - ((AndroidUtilities.displaySize.y - recyclerListView.getPaddingTop()) - recyclerListView.getPaddingBottom())), f) / i) * ceil;
             int round = Math.round(lerp);
             iArr[0] = Math.max(0, GalleryListView.this.layoutManager.getSpanCount() * round) + 2;
             iArr[1] = recyclerListView.getPaddingTop() + ((int) ((lerp - round) * width));
@@ -1412,8 +1409,7 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
 
         @Override
         public float getScrollProgress(RecyclerListView recyclerListView) {
-            int totalItemsCount = getTotalItemsCount();
-            return (Math.max(0, recyclerListView.computeVerticalScrollOffset() - GalleryListView.this.getPadding()) - recyclerListView.getPaddingTop()) / ((((int) Math.ceil(totalItemsCount / GalleryListView.this.layoutManager.getSpanCount())) * ((int) (((int) (((recyclerListView.getWidth() - recyclerListView.getPaddingLeft()) - recyclerListView.getPaddingRight()) / GalleryListView.this.layoutManager.getSpanCount())) * 1.39f))) - (AndroidUtilities.displaySize.y - recyclerListView.getPaddingTop()));
+            return (Math.max(0, recyclerListView.computeVerticalScrollOffset() - GalleryListView.this.getPadding()) - recyclerListView.getPaddingTop()) / ((((int) Math.ceil(getTotalItemsCount() / GalleryListView.this.layoutManager.getSpanCount())) * ((int) (((int) (((recyclerListView.getWidth() - recyclerListView.getPaddingLeft()) - recyclerListView.getPaddingRight()) / GalleryListView.this.layoutManager.getSpanCount())) * 1.39f))) - (AndroidUtilities.displaySize.y - recyclerListView.getPaddingTop()));
         }
     }
 
@@ -1489,11 +1485,8 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
             Adapter adapter = this.adapter;
             if (adapter != null) {
                 adapter.notifyDataSetChanged();
-                return;
             }
-            return;
-        }
-        if (i == NotificationCenter.storiesDraftsUpdated) {
+        } else if (i == NotificationCenter.storiesDraftsUpdated) {
             updateDrafts();
         }
     }
@@ -1579,23 +1572,18 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
             TLObject tLObject = this.results.get(i);
             if (tLObject instanceof TLRPC$Document) {
                 backupImageView.setImage(ImageLocation.getForDocument((TLRPC$Document) tLObject), "200_200", this.loadingDrawable, (Object) null);
-                return;
-            }
-            if (tLObject instanceof TLRPC$Photo) {
+            } else if (tLObject instanceof TLRPC$Photo) {
                 TLRPC$Photo tLRPC$Photo = (TLRPC$Photo) tLObject;
                 backupImageView.setImage(ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo.sizes, 320), tLRPC$Photo), "200_200", this.loadingDrawable, (Object) null);
-            } else {
-                if (tLObject instanceof TLRPC$BotInlineResult) {
-                    TLRPC$BotInlineResult tLRPC$BotInlineResult = (TLRPC$BotInlineResult) tLObject;
-                    TLRPC$WebDocument tLRPC$WebDocument = tLRPC$BotInlineResult.thumb;
-                    if (tLRPC$WebDocument != null) {
-                        backupImageView.setImage(ImageLocation.getForPath(tLRPC$WebDocument.url), "200_200", this.loadingDrawable, tLRPC$BotInlineResult);
-                        return;
-                    } else {
-                        backupImageView.clearImage();
-                        return;
-                    }
+            } else if (tLObject instanceof TLRPC$BotInlineResult) {
+                TLRPC$BotInlineResult tLRPC$BotInlineResult = (TLRPC$BotInlineResult) tLObject;
+                TLRPC$WebDocument tLRPC$WebDocument = tLRPC$BotInlineResult.thumb;
+                if (tLRPC$WebDocument != null) {
+                    backupImageView.setImage(ImageLocation.getForPath(tLRPC$WebDocument.url), "200_200", this.loadingDrawable, tLRPC$BotInlineResult);
+                } else {
+                    backupImageView.clearImage();
                 }
+            } else {
                 backupImageView.clearImage();
             }
         }
@@ -1620,10 +1608,10 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
                 this.results.clear();
                 onLoadingUpdate(false);
                 notifyDataSetChanged();
-            } else {
-                onLoadingUpdate(true);
-                AndroidUtilities.runOnUIThread(this.searchRunnable, 1500L);
+                return;
             }
+            onLoadingUpdate(true);
+            AndroidUtilities.runOnUIThread(this.searchRunnable, 1500L);
         }
 
         public void loadInternal() {
@@ -1650,10 +1638,8 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
                         GalleryListView.SearchAdapter.this.lambda$loadInternal$1(messagesController, tLObject, tLRPC$TL_error);
                     }
                 });
+            } else if (tLRPC$User == null) {
             } else {
-                if (tLRPC$User == null) {
-                    return;
-                }
                 TLRPC$TL_messages_getInlineBotResults tLRPC$TL_messages_getInlineBotResults = new TLRPC$TL_messages_getInlineBotResults();
                 tLRPC$TL_messages_getInlineBotResults.bot = messagesController.getInputUser(this.bot);
                 String str2 = this.query;

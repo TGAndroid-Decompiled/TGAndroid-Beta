@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import org.telegram.tgnet.tl.TL_stories$TL_geoPointAddress;
-
 public class TLRPC$TL_messageMediaVenue extends TLRPC$MessageMedia {
     public String emoji;
     public TL_stories$TL_geoPointAddress geoAddress;

@@ -2,7 +2,6 @@ package kotlin.ranges;
 
 import java.util.NoSuchElementException;
 import kotlin.collections.IntIterator;
-
 public final class IntProgressionIterator extends IntIterator {
     private final int finalElement;
     private boolean hasNext;

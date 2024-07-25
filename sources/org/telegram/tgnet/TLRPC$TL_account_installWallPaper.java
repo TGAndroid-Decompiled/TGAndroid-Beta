@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_account_installWallPaper extends TLObject {
     public TLRPC$TL_wallPaperSettings settings;
     public TLRPC$InputWallPaper wallpaper;

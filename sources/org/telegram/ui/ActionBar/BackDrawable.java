@@ -7,7 +7,6 @@ import android.graphics.drawable.Drawable;
 import android.view.animation.DecelerateInterpolator;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
-
 public class BackDrawable extends Drawable {
     private boolean alwaysClose;
     private int arrowRotation;
@@ -86,14 +85,13 @@ public class BackDrawable extends Drawable {
             if (this.lastFrameTime != 0) {
                 int currentTimeMillis = (int) (this.currentAnimationTime + (System.currentTimeMillis() - this.lastFrameTime));
                 this.currentAnimationTime = currentTimeMillis;
-                float f2 = currentTimeMillis;
-                float f3 = this.animationTime;
-                if (f2 >= f3) {
+                float f2 = this.animationTime;
+                if (currentTimeMillis >= f2) {
                     this.currentRotation = this.finalRotation;
                 } else if (this.currentRotation < this.finalRotation) {
-                    this.currentRotation = this.interpolator.getInterpolation(currentTimeMillis / f3) * this.finalRotation;
+                    this.currentRotation = this.interpolator.getInterpolation(currentTimeMillis / f2) * this.finalRotation;
                 } else {
-                    this.currentRotation = 1.0f - this.interpolator.getInterpolation(currentTimeMillis / f3);
+                    this.currentRotation = 1.0f - this.interpolator.getInterpolation(currentTimeMillis / f2);
                 }
             }
             this.lastFrameTime = System.currentTimeMillis();
@@ -106,18 +104,18 @@ public class BackDrawable extends Drawable {
         if (i != 0) {
             canvas.rotate(i);
         }
-        float f4 = this.currentRotation;
+        float f3 = this.currentRotation;
         if (this.alwaysClose) {
-            canvas.rotate((f4 * (this.reverseAngle ? -180 : 180)) + 135.0f);
+            canvas.rotate((f3 * (this.reverseAngle ? -180 : 180)) + 135.0f);
             f = 1.0f;
         } else {
-            canvas.rotate((this.reverseAngle ? -225 : 135) * f4);
-            f = f4;
+            canvas.rotate((this.reverseAngle ? -225 : 135) * f3);
+            f = f3;
         }
-        float f5 = 1.0f - f;
-        canvas.drawLine(AndroidUtilities.dp(AndroidUtilities.lerp(-6.75f, -8.0f, f)), 0.0f, AndroidUtilities.dp(8.0f) - ((this.paint.getStrokeWidth() / 2.0f) * f5), 0.0f, this.paint);
+        float f4 = 1.0f - f;
+        canvas.drawLine(AndroidUtilities.dp(AndroidUtilities.lerp(-6.75f, -8.0f, f)), 0.0f, AndroidUtilities.dp(8.0f) - ((this.paint.getStrokeWidth() / 2.0f) * f4), 0.0f, this.paint);
         float dp = AndroidUtilities.dp(-0.25f);
-        float dp2 = AndroidUtilities.dp(AndroidUtilities.lerp(7.0f, 8.0f, f)) - ((this.paint.getStrokeWidth() / 4.0f) * f5);
+        float dp2 = AndroidUtilities.dp(AndroidUtilities.lerp(7.0f, 8.0f, f)) - ((this.paint.getStrokeWidth() / 4.0f) * f4);
         float dp3 = AndroidUtilities.dp(AndroidUtilities.lerp(-7.25f, 0.0f, f));
         canvas.drawLine(dp3, -dp, 0.0f, -dp2, this.paint);
         canvas.drawLine(dp3, dp, 0.0f, dp2, this.paint);

@@ -38,7 +38,6 @@ import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.LaunchActivity;
-
 @TargetApi(21)
 public class MusicBrowserService extends MediaBrowserService implements NotificationCenter.NotificationCenterDelegate {
     public static final String ACTION_CMD = "com.example.android.mediabrowserservice.ACTION_CMD";
@@ -90,7 +89,7 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
         this.mediaSession.setCallback(new MediaSessionCallback());
         this.mediaSession.setFlags(3);
         Context applicationContext = getApplicationContext();
-        this.mediaSession.setSessionActivity(PendingIntent.getActivity(applicationContext, 99, new Intent(applicationContext, (Class<?>) LaunchActivity.class), 167772160));
+        this.mediaSession.setSessionActivity(PendingIntent.getActivity(applicationContext, 99, new Intent(applicationContext, LaunchActivity.class), 167772160));
         Bundle bundle = new Bundle();
         bundle.putBoolean(SLOT_RESERVATION_QUEUE, true);
         bundle.putBoolean(SLOT_RESERVATION_SKIP_TO_PREV, true);
@@ -123,22 +122,20 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
             Toast.makeText(getApplicationContext(), LocaleController.getString(R.string.EnterYourTelegramPasscode), 1).show();
             stopSelf();
             result.detach();
-        } else {
-            if (!this.chatsLoaded) {
-                result.detach();
-                if (this.loadingChats) {
-                    return;
-                }
-                this.loadingChats = true;
-                final MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
-                messagesStorage.getStorageQueue().postRunnable(new Runnable() {
-                    @Override
-                    public final void run() {
-                        MusicBrowserService.this.lambda$onLoadChildren$1(messagesStorage, str, result);
-                    }
-                });
+        } else if (!this.chatsLoaded) {
+            result.detach();
+            if (this.loadingChats) {
                 return;
             }
+            this.loadingChats = true;
+            final MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
+            messagesStorage.getStorageQueue().postRunnable(new Runnable() {
+                @Override
+                public final void run() {
+                    MusicBrowserService.this.lambda$onLoadChildren$1(messagesStorage, str, result);
+                }
+            });
+        } else {
             loadChildrenImpl(str, result);
         }
     }
@@ -182,7 +179,8 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
                             }
                             MessageObject messageObject = new MessageObject(this.currentAccount, TLdeserialize, false, true);
                             arrayList3.add(0, messageObject);
-                            MediaDescription.Builder mediaId = new MediaDescription.Builder().setMediaId(longValue2 + "_" + arrayList3.size());
+                            MediaDescription.Builder builder = new MediaDescription.Builder();
+                            MediaDescription.Builder mediaId = builder.setMediaId(longValue2 + "_" + arrayList3.size());
                             mediaId.setTitle(messageObject.getMusicTitle());
                             mediaId.setSubtitle(messageObject.getMusicAuthor());
                             arrayList4.add(0, new MediaSession.QueueItem(mediaId.build(), (long) arrayList4.size()));
@@ -274,22 +272,22 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inSampleSize = 2;
             Bitmap decodeFile = BitmapFactory.decodeFile(file.toString(), options);
-            if (decodeFile == null) {
-                return null;
+            if (decodeFile != null) {
+                Bitmap createBitmap = Bitmap.createBitmap(decodeFile.getWidth(), decodeFile.getHeight(), Bitmap.Config.ARGB_8888);
+                createBitmap.eraseColor(0);
+                Canvas canvas = new Canvas(createBitmap);
+                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+                BitmapShader bitmapShader = new BitmapShader(decodeFile, tileMode, tileMode);
+                if (this.roundPaint == null) {
+                    this.roundPaint = new Paint(1);
+                    this.bitmapRect = new RectF();
+                }
+                this.roundPaint.setShader(bitmapShader);
+                this.bitmapRect.set(0.0f, 0.0f, decodeFile.getWidth(), decodeFile.getHeight());
+                canvas.drawRoundRect(this.bitmapRect, decodeFile.getWidth(), decodeFile.getHeight(), this.roundPaint);
+                return createBitmap;
             }
-            Bitmap createBitmap = Bitmap.createBitmap(decodeFile.getWidth(), decodeFile.getHeight(), Bitmap.Config.ARGB_8888);
-            createBitmap.eraseColor(0);
-            Canvas canvas = new Canvas(createBitmap);
-            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-            BitmapShader bitmapShader = new BitmapShader(decodeFile, tileMode, tileMode);
-            if (this.roundPaint == null) {
-                this.roundPaint = new Paint(1);
-                this.bitmapRect = new RectF();
-            }
-            this.roundPaint.setShader(bitmapShader);
-            this.bitmapRect.set(0.0f, 0.0f, decodeFile.getWidth(), decodeFile.getHeight());
-            canvas.drawRoundRect(this.bitmapRect, decodeFile.getWidth(), decodeFile.getHeight(), this.roundPaint);
-            return createBitmap;
+            return null;
         } catch (Throwable th) {
             FileLog.e(th);
             return null;
@@ -469,7 +467,7 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
         this.delayedStopHandler.removeCallbacksAndMessages(null);
         if (!this.serviceStarted) {
             try {
-                startService(new Intent(getApplicationContext(), (Class<?>) MusicBrowserService.class));
+                startService(new Intent(getApplicationContext(), MusicBrowserService.class));
             } catch (Throwable th) {
                 FileLog.e(th);
             }

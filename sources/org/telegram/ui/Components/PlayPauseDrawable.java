@@ -6,7 +6,6 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import org.telegram.messenger.AndroidUtilities;
-
 public class PlayPauseDrawable extends Drawable {
     private int alpha = 255;
     float duration = 300.0f;

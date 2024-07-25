@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_getDialogs extends TLObject {
     public boolean exclude_pinned;
     public int flags;

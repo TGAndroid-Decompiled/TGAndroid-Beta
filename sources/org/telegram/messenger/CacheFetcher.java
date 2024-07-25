@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import org.telegram.messenger.Utilities;
-
 public abstract class CacheFetcher<Args, R> {
     private HashMap<Pair<Integer, Args>, R> cachedResults;
     private HashMap<Pair<Integer, Args>, Long> lastRequestedRemotely;
@@ -94,13 +93,13 @@ public abstract class CacheFetcher<Args, R> {
         if (bool.booleanValue()) {
             cacheResult(pair, obj);
             callCallbacks(pair, obj, true);
-        } else {
-            if (obj3 != 0) {
-                setLocal(i, obj2, obj3, l.longValue());
-                cacheResult(pair, obj3);
-            }
-            callCallbacks(pair, obj3, true);
+            return;
         }
+        if (obj3 != 0) {
+            setLocal(i, obj2, obj3, l.longValue());
+            cacheResult(pair, obj3);
+        }
+        callCallbacks(pair, obj3, true);
     }
 
     private R getCachedResult(Pair<Integer, Args> pair) {

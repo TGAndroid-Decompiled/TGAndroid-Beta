@@ -18,7 +18,6 @@ import com.microsoft.appcenter.utils.async.AppCenterConsumer;
 import java.io.File;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.ui.Components.AlertsCreator;
-
 public class ApplicationLoaderImpl extends ApplicationLoader {
     private static long lastUpdateCheckTime;
 
@@ -95,7 +94,9 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
             sb.append("dual-camera[");
             sb.append((Build.MANUFACTURER + " " + Build.DEVICE).toUpperCase());
             sb.append("]");
-            Analytics.trackEvent(sb.toString(), new EventProperties().set("success", z).set("vendor", z2).set("product", Build.PRODUCT + "").set("model", Build.MODEL));
+            String sb2 = sb.toString();
+            EventProperties eventProperties = new EventProperties().set("success", z).set("vendor", z2);
+            Analytics.trackEvent(sb2, eventProperties.set("product", Build.PRODUCT + "").set("model", Build.MODEL));
         } catch (Throwable unused) {
         }
     }

@@ -14,7 +14,6 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.RecyclerListView;
-
 public class UniversalRecyclerView extends RecyclerListView {
     public final UniversalAdapter adapter;
     private boolean doNotDetachViews;
@@ -210,11 +209,11 @@ public class UniversalRecyclerView extends RecyclerListView {
 
         @Override
         public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder viewHolder2) {
-            if (!UniversalRecyclerView.this.adapter.isReorderItem(viewHolder.getAdapterPosition()) || UniversalRecyclerView.this.adapter.getReorderSectionId(viewHolder.getAdapterPosition()) != UniversalRecyclerView.this.adapter.getReorderSectionId(viewHolder2.getAdapterPosition())) {
-                return false;
+            if (UniversalRecyclerView.this.adapter.isReorderItem(viewHolder.getAdapterPosition()) && UniversalRecyclerView.this.adapter.getReorderSectionId(viewHolder.getAdapterPosition()) == UniversalRecyclerView.this.adapter.getReorderSectionId(viewHolder2.getAdapterPosition())) {
+                UniversalRecyclerView.this.adapter.swapElements(viewHolder.getAdapterPosition(), viewHolder2.getAdapterPosition());
+                return true;
             }
-            UniversalRecyclerView.this.adapter.swapElements(viewHolder.getAdapterPosition(), viewHolder2.getAdapterPosition());
-            return true;
+            return false;
         }
 
         @Override

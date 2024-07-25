@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_businessIntro extends TLObject {
     public static int constructor = 1510606445;
     public String description;

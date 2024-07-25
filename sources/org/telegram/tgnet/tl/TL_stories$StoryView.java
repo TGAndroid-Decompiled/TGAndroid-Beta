@@ -5,7 +5,6 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$Peer;
 import org.telegram.tgnet.TLRPC$Reaction;
-
 public class TL_stories$StoryView extends TLObject {
     public boolean blocked;
     public boolean blocked_my_stories_from;

@@ -14,7 +14,6 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
-
 public class StoryFailView extends FrameLayout {
     private final TextView button;
     private final Paint redPaint;
@@ -60,11 +59,11 @@ public class StoryFailView extends FrameLayout {
         if (tLRPC$TL_error == null || TextUtils.isEmpty(tLRPC$TL_error.text)) {
             this.titleTextView.setTranslationY(0.0f);
             this.subtitleTextView.setVisibility(8);
-        } else {
-            this.titleTextView.setTranslationY(-AndroidUtilities.dpf2(5.33f));
-            this.subtitleTextView.setText(tLRPC$TL_error.text);
-            this.subtitleTextView.setVisibility(0);
+            return;
         }
+        this.titleTextView.setTranslationY(-AndroidUtilities.dpf2(5.33f));
+        this.subtitleTextView.setText(tLRPC$TL_error.text);
+        this.subtitleTextView.setVisibility(0);
     }
 
     @Override

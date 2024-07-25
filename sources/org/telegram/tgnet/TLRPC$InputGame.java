@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$InputGame extends TLObject {
     public long access_hash;
     public TLRPC$InputUser bot_id;

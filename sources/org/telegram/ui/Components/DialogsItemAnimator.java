@@ -6,7 +6,6 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.TimeInterpolator;
 import android.os.Build;
-import android.util.Property;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
 import android.view.animation.DecelerateInterpolator;
@@ -19,7 +18,6 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.Adapters.DialogsAdapter;
 import org.telegram.ui.Cells.DialogCell;
 import org.telegram.ui.Cells.DialogsEmptyCell;
-
 public class DialogsItemAnimator extends SimpleItemAnimator {
     private static TimeInterpolator sDefaultInterpolator = new DecelerateInterpolator();
     private int bottomClip;
@@ -175,10 +173,10 @@ public class DialogsItemAnimator extends SimpleItemAnimator {
                 dialogCell = (DialogCell) childAt;
             }
         }
-        if (viewHolder.itemView != dialogCell) {
+        if (viewHolder.itemView == dialogCell) {
+            this.removingDialog = dialogCell;
             return true;
         }
-        this.removingDialog = dialogCell;
         return true;
     }
 
@@ -234,7 +232,7 @@ public class DialogsItemAnimator extends SimpleItemAnimator {
                 duration.start();
                 return;
             }
-            ObjectAnimator duration2 = ObjectAnimator.ofFloat(dialogCell, (Property<DialogCell, Float>) View.ALPHA, 1.0f).setDuration(180L);
+            ObjectAnimator duration2 = ObjectAnimator.ofFloat(dialogCell, View.ALPHA, 1.0f).setDuration(180L);
             duration2.setInterpolator(sDefaultInterpolator);
             duration2.addListener(new AnimatorListenerAdapter() {
                 @Override
@@ -443,16 +441,16 @@ public class DialogsItemAnimator extends SimpleItemAnimator {
 
     @Override
     public boolean animateChange(RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder viewHolder2, RecyclerView.ItemAnimator.ItemHolderInfo itemHolderInfo, int i, int i2, int i3, int i4) {
-        if (!(viewHolder.itemView instanceof DialogCell)) {
-            return false;
+        if (viewHolder.itemView instanceof DialogCell) {
+            resetAnimation(viewHolder);
+            resetAnimation(viewHolder2);
+            viewHolder.itemView.setAlpha(1.0f);
+            viewHolder2.itemView.setAlpha(0.0f);
+            viewHolder2.itemView.setTranslationX(0.0f);
+            this.mPendingChanges.add(new ChangeInfo(viewHolder, viewHolder2, i, i2, i3, i4));
+            return true;
         }
-        resetAnimation(viewHolder);
-        resetAnimation(viewHolder2);
-        viewHolder.itemView.setAlpha(1.0f);
-        viewHolder2.itemView.setAlpha(0.0f);
-        viewHolder2.itemView.setTranslationX(0.0f);
-        this.mPendingChanges.add(new ChangeInfo(viewHolder, viewHolder2, i, i2, i3, i4));
-        return true;
+        return false;
     }
 
     void animateChangeImpl(final ChangeInfo changeInfo) {
@@ -463,7 +461,7 @@ public class DialogsItemAnimator extends SimpleItemAnimator {
         }
         final AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.setDuration(180L);
-        animatorSet.playTogether(ObjectAnimator.ofFloat(viewHolder.itemView, (Property<View, Float>) View.ALPHA, 0.0f), ObjectAnimator.ofFloat(viewHolder2.itemView, (Property<View, Float>) View.ALPHA, 1.0f));
+        animatorSet.playTogether(ObjectAnimator.ofFloat(viewHolder.itemView, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(viewHolder2.itemView, View.ALPHA, 1.0f));
         this.mChangeAnimations.add(changeInfo.oldHolder);
         this.mChangeAnimations.add(changeInfo.newHolder);
         animatorSet.addListener(new AnimatorListenerAdapter() {
@@ -512,10 +510,9 @@ public class DialogsItemAnimator extends SimpleItemAnimator {
         boolean z = false;
         if (changeInfo.newHolder == viewHolder) {
             changeInfo.newHolder = null;
+        } else if (changeInfo.oldHolder != viewHolder) {
+            return false;
         } else {
-            if (changeInfo.oldHolder != viewHolder) {
-                return false;
-            }
             changeInfo.oldHolder = null;
             z = true;
         }
@@ -535,8 +532,7 @@ public class DialogsItemAnimator extends SimpleItemAnimator {
             size--;
             if (size < 0) {
                 break;
-            }
-            if (this.mPendingMoves.get(size).holder == viewHolder) {
+            } else if (this.mPendingMoves.get(size).holder == viewHolder) {
                 view.setTranslationY(0.0f);
                 view.setTranslationX(0.0f);
                 dispatchMoveFinished(viewHolder);
@@ -573,8 +569,7 @@ public class DialogsItemAnimator extends SimpleItemAnimator {
             while (true) {
                 if (size4 < 0) {
                     break;
-                }
-                if (arrayList2.get(size4).holder == viewHolder) {
+                } else if (arrayList2.get(size4).holder == viewHolder) {
                     view.setTranslationY(0.0f);
                     view.setTranslationX(0.0f);
                     dispatchMoveFinished(viewHolder);

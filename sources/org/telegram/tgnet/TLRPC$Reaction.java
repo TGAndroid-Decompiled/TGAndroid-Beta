@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$Reaction extends TLObject {
     public long tag_long_id;
 

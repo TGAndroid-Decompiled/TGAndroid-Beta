@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channelAdminLogEventActionChangeLocation extends TLRPC$ChannelAdminLogEventAction {
     public TLRPC$ChannelLocation new_value;
     public TLRPC$ChannelLocation prev_value;

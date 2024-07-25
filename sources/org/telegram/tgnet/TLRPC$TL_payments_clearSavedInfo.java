@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_payments_clearSavedInfo extends TLObject {
     public boolean credentials;
     public int flags;

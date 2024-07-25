@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_stickers_removeStickerFromSet extends TLObject {
     public static int constructor = -143257775;
     public TLRPC$InputDocument sticker;

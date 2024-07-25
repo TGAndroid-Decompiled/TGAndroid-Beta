@@ -1,7 +1,6 @@
 package org.telegram.messenger.video.remix;
 
 import java.nio.ShortBuffer;
-
 public interface AudioRemixer {
     public static final AudioRemixer DOWNMIX = new DownMixAudioRemixer();
     public static final AudioRemixer UPMIX = new UpMixAudioRemixer();

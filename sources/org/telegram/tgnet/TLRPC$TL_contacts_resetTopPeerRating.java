@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_contacts_resetTopPeerRating extends TLObject {
     public TLRPC$TopPeerCategory category;
     public TLRPC$InputPeer peer;

@@ -2,7 +2,6 @@ package org.telegram.tgnet.tl;
 
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
-
 public class TL_stories$TL_stories_searchPosts extends TLObject {
     public TL_stories$MediaArea area;
     public int flags;

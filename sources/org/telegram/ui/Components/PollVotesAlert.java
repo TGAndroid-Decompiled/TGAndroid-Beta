@@ -78,7 +78,6 @@ import org.telegram.ui.Components.AnimationProperties;
 import org.telegram.ui.Components.PollVotesAlert;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.ProfileActivity;
-
 public class PollVotesAlert extends BottomSheet {
     public static final Property<UserCell, Float> USER_CELL_PROPERTY = new AnimationProperties.FloatProperty<UserCell>("placeholderAlpha") {
         @Override
@@ -247,11 +246,11 @@ public class PollVotesAlert extends BottomSheet {
                 int left = this.textView.getLeft() - this.middleTextView.getMeasuredWidth();
                 TextView textView = this.middleTextView;
                 textView.layout(left, textView.getTop(), this.middleTextView.getMeasuredWidth() + left, this.middleTextView.getBottom());
-            } else {
-                int right = this.textView.getRight();
-                TextView textView2 = this.middleTextView;
-                textView2.layout(right, textView2.getTop(), this.middleTextView.getMeasuredWidth() + right, this.middleTextView.getBottom());
+                return;
             }
+            int right = this.textView.getRight();
+            TextView textView2 = this.middleTextView;
+            textView2.layout(right, textView2.getTop(), this.middleTextView.getMeasuredWidth() + right, this.middleTextView.getBottom());
         }
 
         public void setText(CharSequence charSequence, ArrayList<TLRPC$MessageEntity> arrayList, int i, int i2, int i3, boolean z) {
@@ -278,13 +277,10 @@ public class PollVotesAlert extends BottomSheet {
             if (i3 == 0) {
                 if (PollVotesAlert.this.poll.quiz) {
                     this.righTextView.setText(LocaleController.formatPluralString("Answer", i2, new Object[0]), z);
-                    return;
                 } else {
                     this.righTextView.setText(LocaleController.formatPluralString("Vote", i2, new Object[0]), z);
-                    return;
                 }
-            }
-            if (i3 == 1) {
+            } else if (i3 == 1) {
                 this.righTextView.setText(LocaleController.getString("PollExpand", R.string.PollExpand), z);
             } else {
                 this.righTextView.setText(LocaleController.getString("PollCollapse", R.string.PollCollapse), z);
@@ -360,13 +356,11 @@ public class PollVotesAlert extends BottomSheet {
             }
             ArrayList<Animator> arrayList = this.animators;
             if (arrayList != null) {
-                arrayList.add(ObjectAnimator.ofFloat(this.avatarImageView, (Property<BackupImageView, Float>) View.ALPHA, 0.0f, 1.0f));
-                this.animators.add(ObjectAnimator.ofFloat(this.nameTextView, (Property<SimpleTextView, Float>) View.ALPHA, 0.0f, 1.0f));
+                arrayList.add(ObjectAnimator.ofFloat(this.avatarImageView, View.ALPHA, 0.0f, 1.0f));
+                this.animators.add(ObjectAnimator.ofFloat(this.nameTextView, View.ALPHA, 0.0f, 1.0f));
                 this.animators.add(ObjectAnimator.ofFloat(this, PollVotesAlert.USER_CELL_PROPERTY, 1.0f, 0.0f));
+            } else if (this.drawPlaceholder) {
             } else {
-                if (this.drawPlaceholder) {
-                    return;
-                }
                 this.placeholderAlpha = 0.0f;
             }
         }
@@ -411,7 +405,9 @@ public class PollVotesAlert extends BottomSheet {
             int dp4;
             if (this.drawPlaceholder || this.placeholderAlpha != 0.0f) {
                 PollVotesAlert.this.placeholderPaint.setAlpha((int) (this.placeholderAlpha * 255.0f));
-                canvas.drawCircle(this.avatarImageView.getLeft() + (this.avatarImageView.getMeasuredWidth() / 2), this.avatarImageView.getTop() + (this.avatarImageView.getMeasuredHeight() / 2), this.avatarImageView.getMeasuredWidth() / 2, PollVotesAlert.this.placeholderPaint);
+                int left = this.avatarImageView.getLeft() + (this.avatarImageView.getMeasuredWidth() / 2);
+                int top = this.avatarImageView.getTop() + (this.avatarImageView.getMeasuredHeight() / 2);
+                canvas.drawCircle(left, top, this.avatarImageView.getMeasuredWidth() / 2, PollVotesAlert.this.placeholderPaint);
                 if (this.placeholderNum % 2 == 0) {
                     dp = AndroidUtilities.dp(65.0f);
                     dp2 = AndroidUtilities.dp(48.0f);
@@ -422,7 +418,7 @@ public class PollVotesAlert extends BottomSheet {
                 if (LocaleController.isRTL) {
                     dp = (getMeasuredWidth() - dp) - dp2;
                 }
-                PollVotesAlert.this.rect.set(dp, r2 - AndroidUtilities.dp(4.0f), dp + dp2, AndroidUtilities.dp(4.0f) + r2);
+                PollVotesAlert.this.rect.set(dp, top - AndroidUtilities.dp(4.0f), dp + dp2, AndroidUtilities.dp(4.0f) + top);
                 canvas.drawRoundRect(PollVotesAlert.this.rect, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), PollVotesAlert.this.placeholderPaint);
                 if (this.placeholderNum % 2 == 0) {
                     dp3 = AndroidUtilities.dp(119.0f);
@@ -434,7 +430,7 @@ public class PollVotesAlert extends BottomSheet {
                 if (LocaleController.isRTL) {
                     dp3 = (getMeasuredWidth() - dp3) - dp4;
                 }
-                PollVotesAlert.this.rect.set(dp3, r2 - AndroidUtilities.dp(4.0f), dp3 + dp4, r2 + AndroidUtilities.dp(4.0f));
+                PollVotesAlert.this.rect.set(dp3, top - AndroidUtilities.dp(4.0f), dp3 + dp4, top + AndroidUtilities.dp(4.0f));
                 canvas.drawRoundRect(PollVotesAlert.this.rect, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), PollVotesAlert.this.placeholderPaint);
             }
             if (this.needDivider) {
@@ -849,9 +845,7 @@ public class PollVotesAlert extends BottomSheet {
                             VotesList votesList2 = this.voters.get(i3);
                             if (Arrays.equals(votesList.option, votesList2.option)) {
                                 votesList2.next_offset = votesList.next_offset;
-                                if (votesList2.count != votesList.count || votesList2.votes.size() != votesList.votes.size()) {
-                                    z = true;
-                                }
+                                z = (votesList2.count == votesList.count && votesList2.votes.size() == votesList.votes.size()) ? true : true;
                                 votesList2.count = votesList.count;
                                 votesList2.users = votesList.users;
                                 votesList2.votes = votesList.votes;
@@ -942,9 +936,7 @@ public class PollVotesAlert extends BottomSheet {
                         PollVotesAlert.this.lambda$new$3(votesList, chatActivity, tLObject, tLRPC$TL_error);
                     }
                 });
-                return;
-            }
-            if (view instanceof UserCell) {
+            } else if (view instanceof UserCell) {
                 UserCell userCell = (UserCell) view;
                 if (userCell.currentUser == null && userCell.currentChat == null) {
                     return;
@@ -1104,12 +1096,12 @@ public class PollVotesAlert extends BottomSheet {
             Property property = View.ALPHA;
             float[] fArr = new float[1];
             fArr[0] = z2 ? 1.0f : 0.0f;
-            animatorArr[0] = ObjectAnimator.ofFloat(actionBar, (Property<ActionBar, Float>) property, fArr);
+            animatorArr[0] = ObjectAnimator.ofFloat(actionBar, property, fArr);
             View view = this.actionBarShadow;
             Property property2 = View.ALPHA;
             float[] fArr2 = new float[1];
             fArr2[0] = z2 ? 1.0f : 0.0f;
-            animatorArr[1] = ObjectAnimator.ofFloat(view, (Property<View, Float>) property2, fArr2);
+            animatorArr[1] = ObjectAnimator.ofFloat(view, property2, fArr2);
             animatorSet3.playTogether(animatorArr);
             this.actionBarAnimation.addListener(new AnimatorListenerAdapter() {
                 @Override
@@ -1262,24 +1254,24 @@ public class PollVotesAlert extends BottomSheet {
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View view;
+            TextCell textCell;
             if (i == 0) {
-                view = new UserCell(this.mContext);
+                textCell = new UserCell(this.mContext);
             } else if (i == 1) {
                 if (PollVotesAlert.this.titleTextView.getParent() != null) {
                     ((ViewGroup) PollVotesAlert.this.titleTextView.getParent()).removeView(PollVotesAlert.this.titleTextView);
                 }
-                view = PollVotesAlert.this.titleTextView;
+                textCell = PollVotesAlert.this.titleTextView;
             } else if (i == 2) {
-                view = createSectionCell();
+                textCell = createSectionCell();
             } else {
-                TextCell textCell = new TextCell(this.mContext, 23, true);
-                textCell.setOffsetFromImage(65);
-                textCell.setBackgroundColor(PollVotesAlert.this.getThemedColor(Theme.key_dialogBackground));
-                textCell.setColors(Theme.key_switchTrackChecked, Theme.key_windowBackgroundWhiteBlueText4);
-                view = textCell;
+                TextCell textCell2 = new TextCell(this.mContext, 23, true);
+                textCell2.setOffsetFromImage(65);
+                textCell2.setBackgroundColor(PollVotesAlert.this.getThemedColor(Theme.key_dialogBackground));
+                textCell2.setColors(Theme.key_switchTrackChecked, Theme.key_windowBackgroundWhiteBlueText4);
+                textCell = textCell2;
             }
-            return new RecyclerListView.Holder(view);
+            return new RecyclerListView.Holder(textCell);
         }
 
         @Override
@@ -1289,9 +1281,8 @@ public class PollVotesAlert extends BottomSheet {
                 if (itemViewType != 3) {
                     return;
                 }
-                TextCell textCell = (TextCell) viewHolder.itemView;
                 VotesList votesList = (VotesList) PollVotesAlert.this.voters.get(i - 1);
-                textCell.setTextAndIcon((CharSequence) LocaleController.formatPluralString("ShowVotes", votesList.count - votesList.getCount(), new Object[0]), R.drawable.arrow_more, false);
+                ((TextCell) viewHolder.itemView).setTextAndIcon((CharSequence) LocaleController.formatPluralString("ShowVotes", votesList.count - votesList.getCount(), new Object[0]), R.drawable.arrow_more, false);
                 return;
             }
             SectionCell sectionCell = (SectionCell) viewHolder.itemView;

@@ -13,7 +13,6 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieImageView;
-
 public class DatabaseMigrationHint extends FrameLayout {
     LinearLayout container;
     TextView description1;
@@ -31,7 +30,7 @@ public class DatabaseMigrationHint extends FrameLayout {
         rLottieImageView.setAnimation(R.raw.db_migration_placeholder, ImageReceiver.DEFAULT_CROSSFADE_DURATION, ImageReceiver.DEFAULT_CROSSFADE_DURATION);
         this.stickerView.getAnimatedDrawable().setAutoRepeat(1);
         this.stickerView.playAnimation();
-        this.container.addView(this.stickerView, LayoutHelper.createLinear(ImageReceiver.DEFAULT_CROSSFADE_DURATION, ImageReceiver.DEFAULT_CROSSFADE_DURATION, 1));
+        this.container.addView(this.stickerView, LayoutHelper.createLinear((int) ImageReceiver.DEFAULT_CROSSFADE_DURATION, (int) ImageReceiver.DEFAULT_CROSSFADE_DURATION, 1));
         TextView textView = new TextView(context);
         this.title = textView;
         textView.setTextSize(1, 24.0f);

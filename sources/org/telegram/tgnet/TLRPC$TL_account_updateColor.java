@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_account_updateColor extends TLObject {
     public long background_emoji_id;
     public int color;

@@ -3,7 +3,6 @@ package kotlin.sequences;
 import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicReference;
 import kotlin.jvm.internal.Intrinsics;
-
 public final class ConstrainedOnceSequence<T> implements Sequence<T> {
     private final AtomicReference<Sequence<T>> sequenceRef;
 

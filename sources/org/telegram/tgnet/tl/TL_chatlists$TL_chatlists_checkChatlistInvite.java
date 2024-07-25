@@ -2,7 +2,6 @@ package org.telegram.tgnet.tl;
 
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
-
 public class TL_chatlists$TL_chatlists_checkChatlistInvite extends TLObject {
     public String slug;
 

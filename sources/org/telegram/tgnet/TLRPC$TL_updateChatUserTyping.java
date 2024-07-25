@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updateChatUserTyping extends TLRPC$Update {
     public TLRPC$SendMessageAction action;
     public long chat_id;

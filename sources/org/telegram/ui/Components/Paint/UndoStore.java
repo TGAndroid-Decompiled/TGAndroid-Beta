@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import org.telegram.messenger.AndroidUtilities;
-
 public class UndoStore {
     private UndoStoreDelegate delegate;
     private Map<UUID, Runnable> uuidToOperationMap = new HashMap();
@@ -46,10 +45,9 @@ public class UndoStore {
         }
         int size = this.operations.size() - 1;
         UUID uuid = this.operations.get(size);
-        Runnable runnable = this.uuidToOperationMap.get(uuid);
         this.uuidToOperationMap.remove(uuid);
         this.operations.remove(size);
-        runnable.run();
+        this.uuidToOperationMap.get(uuid).run();
         notifyOfHistoryChanges();
     }
 

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_getBotApp extends TLObject {
     public TLRPC$InputBotApp app;
     public long hash;

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updateDialogPinned extends TLRPC$Update {
     public int flags;
     public int folder_id;

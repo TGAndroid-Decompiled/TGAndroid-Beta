@@ -39,7 +39,6 @@ import org.telegram.ui.Components.Premium.boosts.cells.SwitcherCell;
 import org.telegram.ui.Components.Premium.boosts.cells.TextInfoCell;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SlideChooseView;
-
 public class BoostAdapter extends AdapterWithDiffUtils {
     private EnterPrizeCell.AfterTextChangedListener afterTextChangedListener;
     private ChatCell.ChatDeleteListener chatDeleteListener;
@@ -79,13 +78,13 @@ public class BoostAdapter extends AdapterWithDiffUtils {
         Integer num;
         int i;
         TLRPC$ChatFull chatFull = MessagesController.getInstance(UserConfig.selectedAccount).getChatFull(tLRPC$Chat.id);
-        if (chatFull != null && (i = chatFull.participants_count) > 0) {
-            return i;
+        if (chatFull == null || (i = chatFull.participants_count) <= 0) {
+            if (!this.chatsParticipantsCount.isEmpty() && (num = this.chatsParticipantsCount.get(Long.valueOf(tLRPC$Chat.id))) != null) {
+                return num.intValue();
+            }
+            return tLRPC$Chat.participants_count;
         }
-        if (!this.chatsParticipantsCount.isEmpty() && (num = this.chatsParticipantsCount.get(Long.valueOf(tLRPC$Chat.id))) != null) {
-            return num.intValue();
-        }
-        return tLRPC$Chat.participants_count;
+        return i;
     }
 
     public void updateBoostCounter(int i) {
@@ -191,66 +190,66 @@ public class BoostAdapter extends AdapterWithDiffUtils {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View view;
+        SwitcherCell switcherCell;
         Context context = viewGroup.getContext();
         switch (i) {
             case 2:
-                view = new BoostTypeCell(context, this.resourcesProvider);
+                switcherCell = new BoostTypeCell(context, this.resourcesProvider);
                 break;
             case 3:
-                view = new View(context);
+                switcherCell = new View(context);
                 break;
             case 4:
-                view = new ShadowSectionCell(context, 12, Theme.getColor(Theme.key_windowBackgroundGray, this.resourcesProvider));
+                switcherCell = new ShadowSectionCell(context, 12, Theme.getColor(Theme.key_windowBackgroundGray, this.resourcesProvider));
                 break;
             case 5:
-                view = new SliderCell(context, this.resourcesProvider);
+                switcherCell = new SliderCell(context, this.resourcesProvider);
                 break;
             case 6:
                 View headerCell = new org.telegram.ui.Cells.HeaderCell(context, Theme.key_windowBackgroundWhiteBlueHeader, 21, 15, 3, false, this.resourcesProvider);
                 headerCell.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider));
-                view = headerCell;
+                switcherCell = headerCell;
                 break;
             case 7:
-                view = new TextInfoCell(context, this.resourcesProvider);
+                switcherCell = new TextInfoCell(context, this.resourcesProvider);
                 break;
             case 8:
-                view = new AddChannelCell(context, this.resourcesProvider);
+                switcherCell = new AddChannelCell(context, this.resourcesProvider);
                 break;
             case 9:
-                view = new ChatCell(context, this.resourcesProvider);
+                switcherCell = new ChatCell(context, this.resourcesProvider);
                 break;
             case 10:
-                view = new DateEndCell(context, this.resourcesProvider);
+                switcherCell = new DateEndCell(context, this.resourcesProvider);
                 break;
             case 11:
-                view = new ParticipantsTypeCell(context, this.resourcesProvider);
+                switcherCell = new ParticipantsTypeCell(context, this.resourcesProvider);
                 break;
             case 12:
-                view = new DurationCell(context, this.resourcesProvider);
+                switcherCell = new DurationCell(context, this.resourcesProvider);
                 break;
             case 13:
                 View subtitleWithCounterCell = new SubtitleWithCounterCell(context, this.resourcesProvider);
                 subtitleWithCounterCell.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider));
-                view = subtitleWithCounterCell;
+                switcherCell = subtitleWithCounterCell;
                 break;
             case 14:
-                view = new BoostTypeSingleCell(context, this.resourcesProvider);
+                switcherCell = new BoostTypeSingleCell(context, this.resourcesProvider);
                 break;
             case 15:
-                SwitcherCell switcherCell = new SwitcherCell(context, this.resourcesProvider);
-                switcherCell.setHeight(50);
-                view = switcherCell;
+                SwitcherCell switcherCell2 = new SwitcherCell(context, this.resourcesProvider);
+                switcherCell2.setHeight(50);
+                switcherCell = switcherCell2;
                 break;
             case 16:
-                view = new EnterPrizeCell(context, this.resourcesProvider);
+                switcherCell = new EnterPrizeCell(context, this.resourcesProvider);
                 break;
             default:
-                view = new HeaderCell(context, this.resourcesProvider);
+                switcherCell = new HeaderCell(context, this.resourcesProvider);
                 break;
         }
-        view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-        return new RecyclerListView.Holder(view);
+        switcherCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+        return new RecyclerListView.Holder(switcherCell);
     }
 
     @Override
@@ -261,73 +260,65 @@ public class BoostAdapter extends AdapterWithDiffUtils {
             HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
             this.headerCell = headerCell;
             headerCell.setBoostViaGifsText(this.currentChat);
-            return;
-        }
-        if (itemViewType == 2) {
+        } else if (itemViewType == 2) {
             ((BoostTypeCell) viewHolder.itemView).setType(item.subType, item.intValue, (TLRPC$User) item.user, item.selectable);
-            return;
-        }
-        if (itemViewType == 5) {
+        } else if (itemViewType == 5) {
             SliderCell sliderCell = (SliderCell) viewHolder.itemView;
             sliderCell.setValues(item.values, item.intValue);
             sliderCell.setCallBack(this.sliderCallback);
-            return;
-        }
-        if (itemViewType == 6) {
+        } else if (itemViewType == 6) {
             ((org.telegram.ui.Cells.HeaderCell) viewHolder.itemView).setText(item.text);
-            return;
-        }
-        if (itemViewType == 7) {
+        } else if (itemViewType == 7) {
             TextInfoCell textInfoCell = (TextInfoCell) viewHolder.itemView;
             textInfoCell.setText(item.text);
             textInfoCell.setBackground(item.boolValue);
-            return;
-        }
-        switch (itemViewType) {
-            case 9:
-                ChatCell chatCell = (ChatCell) viewHolder.itemView;
-                TLRPC$InputPeer tLRPC$InputPeer = item.peer;
-                if (tLRPC$InputPeer != null) {
-                    if (tLRPC$InputPeer instanceof TLRPC$TL_inputPeerChat) {
-                        TLRPC$Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(tLRPC$InputPeer.chat_id));
-                        chatCell.setChat(chat, item.intValue, item.boolValue, getParticipantsCount(chat));
-                    } else if (tLRPC$InputPeer instanceof TLRPC$TL_inputPeerChannel) {
-                        TLRPC$Chat chat2 = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(tLRPC$InputPeer.channel_id));
-                        chatCell.setChat(chat2, item.intValue, item.boolValue, getParticipantsCount(chat2));
+        } else {
+            switch (itemViewType) {
+                case 9:
+                    ChatCell chatCell = (ChatCell) viewHolder.itemView;
+                    TLRPC$InputPeer tLRPC$InputPeer = item.peer;
+                    if (tLRPC$InputPeer != null) {
+                        if (tLRPC$InputPeer instanceof TLRPC$TL_inputPeerChat) {
+                            TLRPC$Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(tLRPC$InputPeer.chat_id));
+                            chatCell.setChat(chat, item.intValue, item.boolValue, getParticipantsCount(chat));
+                        } else if (tLRPC$InputPeer instanceof TLRPC$TL_inputPeerChannel) {
+                            TLRPC$Chat chat2 = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(tLRPC$InputPeer.channel_id));
+                            chatCell.setChat(chat2, item.intValue, item.boolValue, getParticipantsCount(chat2));
+                        }
+                    } else {
+                        TLRPC$Chat tLRPC$Chat = item.chat;
+                        chatCell.setChat(tLRPC$Chat, item.intValue, item.boolValue, getParticipantsCount(tLRPC$Chat));
                     }
-                } else {
-                    TLRPC$Chat tLRPC$Chat = item.chat;
-                    chatCell.setChat(tLRPC$Chat, item.intValue, item.boolValue, getParticipantsCount(tLRPC$Chat));
-                }
-                chatCell.setChatDeleteListener(this.chatDeleteListener);
-                return;
-            case 10:
-                ((DateEndCell) viewHolder.itemView).setDate(item.longValue);
-                return;
-            case 11:
-                ((ParticipantsTypeCell) viewHolder.itemView).setType(item.subType, item.selectable, item.boolValue, (List) item.user, this.currentChat);
-                return;
-            case 12:
-                ((DurationCell) viewHolder.itemView).setDuration(item.object, item.intValue, item.intValue2, item.longValue, item.text, item.boolValue, item.selectable);
-                return;
-            case 13:
-                SubtitleWithCounterCell subtitleWithCounterCell = (SubtitleWithCounterCell) viewHolder.itemView;
-                subtitleWithCounterCell.setText(item.text);
-                subtitleWithCounterCell.updateCounter(false, item.intValue);
-                return;
-            case 14:
-                ((BoostTypeSingleCell) viewHolder.itemView).setGiveaway((TL_stories$TL_prepaidGiveaway) item.user);
-                return;
-            case 15:
-                ((SwitcherCell) viewHolder.itemView).setData(item.text, item.selectable, item.boolValue, item.subType);
-                return;
-            case 16:
-                EnterPrizeCell enterPrizeCell = (EnterPrizeCell) viewHolder.itemView;
-                enterPrizeCell.setCount(item.intValue);
-                enterPrizeCell.setAfterTextChangedListener(this.afterTextChangedListener);
-                return;
-            default:
-                return;
+                    chatCell.setChatDeleteListener(this.chatDeleteListener);
+                    return;
+                case 10:
+                    ((DateEndCell) viewHolder.itemView).setDate(item.longValue);
+                    return;
+                case 11:
+                    ((ParticipantsTypeCell) viewHolder.itemView).setType(item.subType, item.selectable, item.boolValue, (List) item.user, this.currentChat);
+                    return;
+                case 12:
+                    ((DurationCell) viewHolder.itemView).setDuration(item.object, item.intValue, item.intValue2, item.longValue, item.text, item.boolValue, item.selectable);
+                    return;
+                case 13:
+                    SubtitleWithCounterCell subtitleWithCounterCell = (SubtitleWithCounterCell) viewHolder.itemView;
+                    subtitleWithCounterCell.setText(item.text);
+                    subtitleWithCounterCell.updateCounter(false, item.intValue);
+                    return;
+                case 14:
+                    ((BoostTypeSingleCell) viewHolder.itemView).setGiveaway((TL_stories$TL_prepaidGiveaway) item.user);
+                    return;
+                case 15:
+                    ((SwitcherCell) viewHolder.itemView).setData(item.text, item.selectable, item.boolValue, item.subType);
+                    return;
+                case 16:
+                    EnterPrizeCell enterPrizeCell = (EnterPrizeCell) viewHolder.itemView;
+                    enterPrizeCell.setCount(item.intValue);
+                    enterPrizeCell.setAfterTextChangedListener(this.afterTextChangedListener);
+                    return;
+                default:
+                    return;
+            }
         }
     }
 

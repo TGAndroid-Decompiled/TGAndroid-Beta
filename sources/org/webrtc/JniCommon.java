@@ -1,7 +1,6 @@
 package org.webrtc;
 
 import java.nio.ByteBuffer;
-
 public class JniCommon {
     public static native void nativeAddRef(long j);
 

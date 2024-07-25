@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_textAnchor extends TLRPC$RichText {
     public String name;
     public TLRPC$RichText text;

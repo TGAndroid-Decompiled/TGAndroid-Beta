@@ -25,6 +25,7 @@ import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$InputDocument;
+import org.telegram.tgnet.TLRPC$InputMedia;
 import org.telegram.tgnet.TLRPC$InputPeer;
 import org.telegram.tgnet.TLRPC$InputPrivacyRule;
 import org.telegram.tgnet.TLRPC$MessageEntity;
@@ -34,7 +35,6 @@ import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_inputPeerSelf;
 import org.telegram.tgnet.tl.TL_stories$StoryItem;
 import org.telegram.ui.ActionBar.Theme;
-
 public class DraftsController {
     public final int currentAccount;
     public final ArrayList<StoryEntry> drafts = new ArrayList<>();
@@ -477,6 +477,9 @@ public class DraftsController {
         public String audioTitle;
         public float audioVolume;
         public long averageDuration;
+        public TLRPC$InputMedia botEdit;
+        public long botId;
+        public String botLang;
         public String caption;
         public ArrayList<TLRPC$MessageEntity> captionEntities;
         public long date;
@@ -594,6 +597,9 @@ public class DraftsController {
             this.roundVolume = storyEntry.roundVolume;
             this.videoVolume = storyEntry.videoVolume;
             this.peer = storyEntry.peer;
+            this.botId = storyEntry.botId;
+            this.botLang = storyEntry.botLang;
+            this.botEdit = storyEntry.editingBotPreview;
         }
 
         public StoryEntry toEntry() {
@@ -685,6 +691,9 @@ public class DraftsController {
             storyEntry.roundVolume = this.roundVolume;
             storyEntry.videoVolume = this.videoVolume;
             storyEntry.peer = this.peer;
+            storyEntry.botId = this.botId;
+            storyEntry.botLang = this.botLang;
+            storyEntry.editingBotPreview = this.botEdit;
             return storyEntry;
         }
 
@@ -813,7 +822,7 @@ public class DraftsController {
             if (TextUtils.isEmpty(this.roundPath)) {
                 abstractSerializedData.writeInt32(1450380236);
             } else {
-                abstractSerializedData.writeInt32(-745541182);
+                abstractSerializedData.writeInt32(389652397);
                 abstractSerializedData.writeString(this.roundPath);
                 abstractSerializedData.writeInt64(this.roundDuration);
                 abstractSerializedData.writeInt64(this.roundOffset);
@@ -822,6 +831,15 @@ public class DraftsController {
                 abstractSerializedData.writeFloat(this.roundVolume);
             }
             abstractSerializedData.writeFloat(this.videoVolume);
+            abstractSerializedData.writeInt64(this.botId);
+            String str2 = this.botLang;
+            abstractSerializedData.writeString(str2 != null ? str2 : "");
+            TLRPC$InputMedia tLRPC$InputMedia = this.botEdit;
+            if (tLRPC$InputMedia == null) {
+                abstractSerializedData.writeInt32(1450380236);
+            } else {
+                tLRPC$InputMedia.serializeToStream(abstractSerializedData);
+            }
         }
 
         public int getObjectSize() {
@@ -1006,7 +1024,7 @@ public class DraftsController {
             if (abstractSerializedData.remaining() > 0) {
                 this.peer = TLRPC$InputPeer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
             }
-            if (abstractSerializedData.remaining() > 0 && abstractSerializedData.readInt32(z) == -745541182) {
+            if (abstractSerializedData.remaining() > 0 && abstractSerializedData.readInt32(z) == 389652397) {
                 this.roundPath = abstractSerializedData.readString(z);
                 this.roundDuration = abstractSerializedData.readInt64(z);
                 this.roundOffset = abstractSerializedData.readInt64(z);
@@ -1016,6 +1034,14 @@ public class DraftsController {
             }
             if (abstractSerializedData.remaining() > 0) {
                 this.videoVolume = abstractSerializedData.readFloat(z);
+            }
+            if (abstractSerializedData.remaining() > 0) {
+                this.botId = abstractSerializedData.readInt64(z);
+                this.botLang = abstractSerializedData.readString(z);
+                int readInt327 = abstractSerializedData.readInt32(z);
+                if (readInt327 != 1450380236) {
+                    this.botEdit = TLRPC$InputMedia.TLdeserialize(abstractSerializedData, readInt327, z);
+                }
             }
         }
     }

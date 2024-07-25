@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_messages_archivedStickers extends TLObject {
     public int count;
     public ArrayList<TLRPC$StickerSetCovered> sets = new ArrayList<>();

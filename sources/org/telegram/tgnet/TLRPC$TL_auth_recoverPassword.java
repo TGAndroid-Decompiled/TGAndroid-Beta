@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_auth_recoverPassword extends TLObject {
     public String code;
     public int flags;

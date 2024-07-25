@@ -3,7 +3,6 @@ package org.telegram.tgnet.tl;
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Updates;
-
 public class TL_stories$TL_stories_activateStealthMode extends TLObject {
     public int flags;
     public boolean future;

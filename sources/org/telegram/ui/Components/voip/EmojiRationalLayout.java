@@ -6,7 +6,6 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
-
 @SuppressLint({"ViewConstructor"})
 public class EmojiRationalLayout extends LinearLayout {
     private final VoIPBackgroundProvider backgroundProvider;

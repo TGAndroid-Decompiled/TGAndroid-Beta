@@ -682,7 +682,7 @@
     <string name="CallAlert">%1$s에게 전화를 겁니까?</string>
     <string name="CallAlertTitle">음성 통화</string>
     <string name="CallBack">답신 전화</string>
-    <string name="CallEmojiKeyTooltip" formatted="false">화면 속 이모지가 %1$s 님 것과 같다면, 이 통화는 100% 안전합니다.</string>
+    <string name="CallEmojiKeyTooltip">화면 속 이모지가 %1$s 님 것과 같다면, 이 통화는 100% 안전합니다.</string>
     <string name="CallMessageIncoming">수신 전화</string>
     <string name="CallMessageIncomingDeclined">거부한 전화</string>
     <string name="CallMessageIncomingMissed">부재중 전화</string>
@@ -964,8 +964,6 @@
     <string name="ChooseTheme">테마 선택</string>
     <string name="ChooseYourLanguage">언어를 선택하세요</string>
     <string name="ChooseYourLanguageOther">나머지</string>
-    <string name="ChromeCustomTabs">앱 안 브라우저</string>
-    <string name="ChromeCustomTabsInfo">앱 안에서 외부 링크 열기</string>
     <string name="ClearButton">비우기</string>
     <string name="ClearCache">캐시 비우기</string>
     <string name="ClearCacheFewChatsTitle">%1$s에서 캐시 비우기</string>

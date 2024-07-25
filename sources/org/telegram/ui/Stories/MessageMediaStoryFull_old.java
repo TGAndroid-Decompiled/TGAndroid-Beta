@@ -3,7 +3,6 @@ package org.telegram.ui.Stories;
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLRPC$TL_messageMediaStory;
 import org.telegram.tgnet.tl.TL_stories$StoryItem;
-
 public class MessageMediaStoryFull_old extends TLRPC$TL_messageMediaStory {
     public static int constructor = -946147809;
 

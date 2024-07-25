@@ -23,7 +23,6 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Stories.recorder.HintView2;
 import org.telegram.ui.TopicsFragment;
-
 public class PullForegroundDrawable {
     private ValueAnimator accentRevalAnimatorIn;
     private ValueAnimator accentRevalAnimatorOut;
@@ -446,16 +445,14 @@ public class PullForegroundDrawable {
             return;
         }
         canvas.save();
-        int intrinsicWidth2 = Theme.dialogs_archiveAvatarDrawable.getIntrinsicWidth();
-        int height3 = (this.cell.getHeight() - i6) - i5;
-        float f37 = intrinsicWidth2;
-        float dp5 = AndroidUtilities.dp(24.0f) / f37;
-        float f38 = this.outProgress;
-        float f39 = dp5 + ((1.0f - dp5) * f38) + f2;
-        float f40 = f5;
-        canvas.translate((i7 - f40) * (1.0f - f38), (height3 - f4) * (1.0f - f38));
-        float f41 = f4;
-        canvas.scale(f39, f39, f40, f41);
+        float intrinsicWidth2 = Theme.dialogs_archiveAvatarDrawable.getIntrinsicWidth();
+        float dp5 = AndroidUtilities.dp(24.0f) / intrinsicWidth2;
+        float f37 = this.outProgress;
+        float f38 = dp5 + ((1.0f - dp5) * f37) + f2;
+        float f39 = f5;
+        canvas.translate((i7 - f39) * (1.0f - f37), (((this.cell.getHeight() - i6) - i5) - f4) * (1.0f - f37));
+        float f40 = f4;
+        canvas.scale(f38, f38, f39, f40);
         Theme.dialogs_archiveAvatarDrawable.setProgress(0.0f);
         if (!Theme.dialogs_archiveAvatarDrawableRecolored) {
             Theme.dialogs_archiveAvatarDrawable.beginApplyLayerColors();
@@ -464,8 +461,8 @@ public class PullForegroundDrawable {
             Theme.dialogs_archiveAvatarDrawable.commitApplyLayerColors();
             Theme.dialogs_archiveAvatarDrawableRecolored = true;
         }
-        float f42 = f37 / 2.0f;
-        Theme.dialogs_archiveAvatarDrawable.setBounds((int) (f40 - f42), (int) (f41 - f42), (int) (f40 + f42), (int) (f41 + f42));
+        float f41 = intrinsicWidth2 / 2.0f;
+        Theme.dialogs_archiveAvatarDrawable.setBounds((int) (f39 - f41), (int) (f40 - f41), (int) (f39 + f41), (int) (f40 + f41));
         Theme.dialogs_archiveAvatarDrawable.draw(canvas);
         canvas.restore();
     }

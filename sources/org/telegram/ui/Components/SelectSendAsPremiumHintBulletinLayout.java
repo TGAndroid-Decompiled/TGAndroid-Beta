@@ -10,7 +10,6 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.Bulletin;
-
 @SuppressLint({"ViewConstructor"})
 public class SelectSendAsPremiumHintBulletinLayout extends Bulletin.MultiLineLayout {
     public SelectSendAsPremiumHintBulletinLayout(Context context, Theme.ResourcesProvider resourcesProvider, Runnable runnable) {

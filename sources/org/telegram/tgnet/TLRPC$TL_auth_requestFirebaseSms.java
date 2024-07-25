@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_auth_requestFirebaseSms extends TLObject {
     public int flags;
     public String ios_push_secret;

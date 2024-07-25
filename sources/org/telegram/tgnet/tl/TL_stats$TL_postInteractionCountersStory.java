@@ -1,7 +1,6 @@
 package org.telegram.tgnet.tl;
 
 import org.telegram.tgnet.AbstractSerializedData;
-
 public class TL_stats$TL_postInteractionCountersStory extends TL_stats$PostInteractionCounters {
     public int forwards;
     public int reactions;

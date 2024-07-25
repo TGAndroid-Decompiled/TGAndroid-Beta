@@ -19,7 +19,6 @@ import androidx.core.graphics.ColorUtils;
 import androidx.viewpager.widget.ViewPager;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
-
 public class PagerSlidingTabStrip extends HorizontalScrollView {
     private int currentPosition;
     private float currentPositionOffset;
@@ -268,11 +267,9 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
             float right = childAt.getRight() - childAt.getPaddingRight();
             if (this.currentPositionOffset > 0.0f && (i = this.currentPosition) < this.tabCount - 1) {
                 View childAt2 = this.tabsContainer.getChildAt(i + 1);
-                float left2 = childAt2.getLeft() + childAt2.getPaddingLeft();
-                float right2 = childAt2.getRight() - childAt2.getPaddingRight();
                 float f3 = this.currentPositionOffset;
-                f = (left2 * f3) + ((1.0f - f3) * left);
-                f2 = (right2 * f3) + ((1.0f - f3) * right);
+                f = ((childAt2.getLeft() + childAt2.getPaddingLeft()) * f3) + ((1.0f - f3) * left);
+                f2 = ((childAt2.getRight() - childAt2.getPaddingRight()) * f3) + ((1.0f - f3) * right);
                 this.lineLeftAnimated.set(f, true);
                 this.lineRightAnimated.set(f2, true);
                 if (childAt instanceof TextTab) {
@@ -304,7 +301,8 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
             PagerSlidingTabStrip.this.currentPosition = i;
             PagerSlidingTabStrip.this.currentPositionOffset = f;
             if (PagerSlidingTabStrip.this.tabsContainer.getChildAt(i) != null) {
-                PagerSlidingTabStrip.this.scrollToChild(i, (int) (r0.tabsContainer.getChildAt(i).getWidth() * f));
+                PagerSlidingTabStrip pagerSlidingTabStrip = PagerSlidingTabStrip.this;
+                pagerSlidingTabStrip.scrollToChild(i, (int) (pagerSlidingTabStrip.tabsContainer.getChildAt(i).getWidth() * f));
                 PagerSlidingTabStrip.this.invalidate();
                 ViewPager.OnPageChangeListener onPageChangeListener = PagerSlidingTabStrip.this.delegatePageListener;
                 if (onPageChangeListener != null) {

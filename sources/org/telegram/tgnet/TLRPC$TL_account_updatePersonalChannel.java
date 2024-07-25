@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_account_updatePersonalChannel extends TLObject {
     public TLRPC$InputChannel channel;
 

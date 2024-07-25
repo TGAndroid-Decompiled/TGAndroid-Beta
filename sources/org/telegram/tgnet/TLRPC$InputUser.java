@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$InputUser extends TLObject {
     public long access_hash;
     public long user_id;

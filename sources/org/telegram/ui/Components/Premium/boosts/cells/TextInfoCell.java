@@ -7,7 +7,6 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.Components.CombinedDrawable;
-
 @SuppressLint({"ViewConstructor"})
 public class TextInfoCell extends TextInfoPrivacyCell {
     private final Theme.ResourcesProvider resourcesProvider;

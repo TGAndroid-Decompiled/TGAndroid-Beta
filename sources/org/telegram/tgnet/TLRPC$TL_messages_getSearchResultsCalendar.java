@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_getSearchResultsCalendar extends TLObject {
     public TLRPC$MessagesFilter filter;
     public int flags;

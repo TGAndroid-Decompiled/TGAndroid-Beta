@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public abstract class TLRPC$RichText extends TLObject {
     public String email;
     public TLRPC$RichText parentRichText;

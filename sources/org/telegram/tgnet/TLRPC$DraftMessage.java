@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public abstract class TLRPC$DraftMessage extends TLObject {
     public int date;
     public long effect;

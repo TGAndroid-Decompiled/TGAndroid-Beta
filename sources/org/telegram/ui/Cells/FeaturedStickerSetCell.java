@@ -9,7 +9,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC$StickerSetCovered;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.ProgressButton;
-
 public class FeaturedStickerSetCell extends FrameLayout {
     private ProgressButton addButton;
     private ImageView checkImage;

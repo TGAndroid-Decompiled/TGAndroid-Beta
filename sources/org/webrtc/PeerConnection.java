@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -12,7 +11,6 @@ import org.telegram.messenger.LiteMode;
 import org.webrtc.DataChannel;
 import org.webrtc.MediaStreamTrack;
 import org.webrtc.RtpTransceiver;
-
 public class PeerConnection {
     private final List<MediaStream> localStreams;
     private final long nativePeerConnection;
@@ -272,7 +270,6 @@ public class PeerConnection {
         public final List<String> tlsAlpnProtocols;
         public final TlsCertPolicy tlsCertPolicy;
         public final List<String> tlsEllipticCurves;
-
         @Deprecated
         public final String uri;
         public final List<String> urls;
@@ -302,9 +299,8 @@ public class PeerConnection {
             if (str == null || list == null || list.isEmpty()) {
                 throw new IllegalArgumentException("uri == null || urls == null || urls.isEmpty()");
             }
-            Iterator<String> it = list.iterator();
-            while (it.hasNext()) {
-                if (it.next() == null) {
+            for (String str5 : list) {
+                if (str5 == null) {
                     throw new IllegalArgumentException("urls element is null: " + list);
                 }
             }
@@ -338,11 +334,11 @@ public class PeerConnection {
             if (obj == this) {
                 return true;
             }
-            if (!(obj instanceof IceServer)) {
-                return false;
+            if (obj instanceof IceServer) {
+                IceServer iceServer = (IceServer) obj;
+                return this.uri.equals(iceServer.uri) && this.urls.equals(iceServer.urls) && this.username.equals(iceServer.username) && this.password.equals(iceServer.password) && this.tlsCertPolicy.equals(iceServer.tlsCertPolicy) && this.hostname.equals(iceServer.hostname) && this.tlsAlpnProtocols.equals(iceServer.tlsAlpnProtocols) && this.tlsEllipticCurves.equals(iceServer.tlsEllipticCurves);
             }
-            IceServer iceServer = (IceServer) obj;
-            return this.uri.equals(iceServer.uri) && this.urls.equals(iceServer.urls) && this.username.equals(iceServer.username) && this.password.equals(iceServer.password) && this.tlsCertPolicy.equals(iceServer.tlsCertPolicy) && this.hostname.equals(iceServer.hostname) && this.tlsAlpnProtocols.equals(iceServer.tlsAlpnProtocols) && this.tlsEllipticCurves.equals(iceServer.tlsEllipticCurves);
+            return false;
         }
 
         public int hashCode() {
@@ -458,13 +454,14 @@ public class PeerConnection {
         ADAPTER_TYPE_ANY(32),
         CELLULAR_2G(64),
         CELLULAR_3G(128),
-        CELLULAR_4G(Integer.valueOf(LiteMode.FLAG_CHAT_BLUR)),
-        CELLULAR_5G(Integer.valueOf(LiteMode.FLAG_CALLS_ANIMATIONS));
-
+        CELLULAR_4G(Integer.valueOf((int) LiteMode.FLAG_CHAT_BLUR)),
+        CELLULAR_5G(Integer.valueOf((int) LiteMode.FLAG_CALLS_ANIMATIONS));
+        
         private static final Map<Integer, AdapterType> BY_BITMASK = new HashMap();
         public final Integer bitMask;
 
         static {
+            AdapterType[] values;
             for (AdapterType adapterType : values()) {
                 BY_BITMASK.put(adapterType.bitMask, adapterType);
             }
@@ -496,7 +493,6 @@ public class PeerConnection {
         public KeyType keyType = KeyType.ECDSA;
         public ContinualGatheringPolicy continualGatheringPolicy = ContinualGatheringPolicy.GATHER_ONCE;
         public int iceCandidatePoolSize = 0;
-
         @Deprecated
         public boolean pruneTurnPorts = false;
         public PortPrunePolicy turnPortPrunePolicy = PortPrunePolicy.NO_PRUNE;
@@ -800,11 +796,11 @@ public class PeerConnection {
     }
 
     public boolean addStream(MediaStream mediaStream) {
-        if (!nativeAddLocalStream(mediaStream.getNativeMediaStream())) {
-            return false;
+        if (nativeAddLocalStream(mediaStream.getNativeMediaStream())) {
+            this.localStreams.add(mediaStream);
+            return true;
         }
-        this.localStreams.add(mediaStream);
-        return true;
+        return false;
     }
 
     public void removeStream(MediaStream mediaStream) {
@@ -821,9 +817,8 @@ public class PeerConnection {
     }
 
     public List<RtpSender> getSenders() {
-        Iterator<RtpSender> it = this.senders.iterator();
-        while (it.hasNext()) {
-            it.next().dispose();
+        for (RtpSender rtpSender : this.senders) {
+            rtpSender.dispose();
         }
         List<RtpSender> nativeGetSenders = nativeGetSenders();
         this.senders = nativeGetSenders;
@@ -831,9 +826,8 @@ public class PeerConnection {
     }
 
     public List<RtpReceiver> getReceivers() {
-        Iterator<RtpReceiver> it = this.receivers.iterator();
-        while (it.hasNext()) {
-            it.next().dispose();
+        for (RtpReceiver rtpReceiver : this.receivers) {
+            rtpReceiver.dispose();
         }
         List<RtpReceiver> nativeGetReceivers = nativeGetReceivers();
         this.receivers = nativeGetReceivers;
@@ -841,9 +835,8 @@ public class PeerConnection {
     }
 
     public List<RtpTransceiver> getTransceivers() {
-        Iterator<RtpTransceiver> it = this.transceivers.iterator();
-        while (it.hasNext()) {
-            it.next().dispose();
+        for (RtpTransceiver rtpTransceiver : this.transceivers) {
+            rtpTransceiver.dispose();
         }
         List<RtpTransceiver> nativeGetTransceivers = nativeGetTransceivers();
         this.transceivers = nativeGetTransceivers;
@@ -953,18 +946,15 @@ public class PeerConnection {
             mediaStream.dispose();
         }
         this.localStreams.clear();
-        Iterator<RtpSender> it = this.senders.iterator();
-        while (it.hasNext()) {
-            it.next().dispose();
+        for (RtpSender rtpSender : this.senders) {
+            rtpSender.dispose();
         }
         this.senders.clear();
-        Iterator<RtpReceiver> it2 = this.receivers.iterator();
-        while (it2.hasNext()) {
-            it2.next().dispose();
+        for (RtpReceiver rtpReceiver : this.receivers) {
+            rtpReceiver.dispose();
         }
-        Iterator<RtpTransceiver> it3 = this.transceivers.iterator();
-        while (it3.hasNext()) {
-            it3.next().dispose();
+        for (RtpTransceiver rtpTransceiver : this.transceivers) {
+            rtpTransceiver.dispose();
         }
         this.transceivers.clear();
         this.receivers.clear();

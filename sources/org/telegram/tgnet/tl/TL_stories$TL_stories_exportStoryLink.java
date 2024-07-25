@@ -3,7 +3,6 @@ package org.telegram.tgnet.tl;
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$InputPeer;
-
 public class TL_stories$TL_stories_exportStoryLink extends TLObject {
     public int id;
     public TLRPC$InputPeer peer;

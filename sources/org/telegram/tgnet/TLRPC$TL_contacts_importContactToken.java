@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_contacts_importContactToken extends TLObject {
     public String token;
 

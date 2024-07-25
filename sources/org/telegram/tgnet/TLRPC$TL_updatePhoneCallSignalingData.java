@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updatePhoneCallSignalingData extends TLRPC$Update {
     public byte[] data;
     public long phone_call_id;

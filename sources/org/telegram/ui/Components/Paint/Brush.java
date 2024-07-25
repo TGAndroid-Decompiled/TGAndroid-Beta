@@ -7,7 +7,6 @@ import java.util.List;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-
 public abstract class Brush {
     public static List<Brush> BRUSHES_LIST = Arrays.asList(new Radial(), new Arrow(), new Elliptical(), new Neon(), new Blurer(), new Eraser());
 
@@ -44,16 +43,16 @@ public abstract class Brush {
     }
 
     public String getShaderName(int i) {
-        if (i == 0) {
-            return "blitWithMask";
-        }
-        if (i == 1) {
+        if (i != 0) {
+            if (i != 1) {
+                if (i != 2) {
+                    return null;
+                }
+                return "brush";
+            }
             return "compositeWithMask";
         }
-        if (i != 2) {
-            return null;
-        }
-        return "brush";
+        return "blitWithMask";
     }
 
     public float getSmoothThicknessRate() {
@@ -170,16 +169,16 @@ public abstract class Brush {
 
         @Override
         public String getShaderName(int i) {
-            if (i == 0) {
-                return "blitWithMaskLight";
-            }
-            if (i == 1) {
+            if (i != 0) {
+                if (i != 1) {
+                    if (i != 2) {
+                        return null;
+                    }
+                    return "brushLight";
+                }
                 return "compositeWithMaskLight";
             }
-            if (i != 2) {
-                return null;
-            }
-            return "brushLight";
+            return "blitWithMaskLight";
         }
 
         @Override
@@ -238,16 +237,16 @@ public abstract class Brush {
 
         @Override
         public String getShaderName(int i) {
-            if (i == 0) {
-                return "blitWithMaskEraser";
-            }
-            if (i == 1) {
+            if (i != 0) {
+                if (i != 1) {
+                    if (i != 2) {
+                        return null;
+                    }
+                    return "brush";
+                }
                 return "compositeWithMaskEraser";
             }
-            if (i != 2) {
-                return null;
-            }
-            return "brush";
+            return "blitWithMaskEraser";
         }
 
         @Override
@@ -279,16 +278,16 @@ public abstract class Brush {
 
         @Override
         public String getShaderName(int i) {
-            if (i == 0) {
-                return "blitWithMaskBlurer";
-            }
-            if (i == 1) {
+            if (i != 0) {
+                if (i != 1) {
+                    if (i != 2) {
+                        return null;
+                    }
+                    return "brush";
+                }
                 return "compositeWithMaskBlurer";
             }
-            if (i != 2) {
-                return null;
-            }
-            return "brush";
+            return "blitWithMaskBlurer";
         }
 
         @Override

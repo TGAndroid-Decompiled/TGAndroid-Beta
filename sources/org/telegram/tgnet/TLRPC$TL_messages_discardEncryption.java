@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_discardEncryption extends TLObject {
     public int chat_id;
     public boolean delete_history;

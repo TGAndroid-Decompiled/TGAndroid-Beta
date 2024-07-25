@@ -1,7 +1,6 @@
 package org.telegram.messenger.audioinfo.mp3;
 
 import org.telegram.messenger.OneUIUtilities;
-
 public class MP3Frame {
     private final byte[] bytes;
     private final Header header;
@@ -151,18 +150,18 @@ public class MP3Frame {
     }
 
     public boolean isChecksumError() {
-        if (this.header.getProtection() != 0 || this.header.getLayer() != 1) {
-            return false;
+        if (this.header.getProtection() == 0 && this.header.getLayer() == 1) {
+            CRC16 crc16 = new CRC16();
+            crc16.update(this.bytes[2]);
+            crc16.update(this.bytes[3]);
+            int sideInfoSize = this.header.getSideInfoSize();
+            for (int i = 0; i < sideInfoSize; i++) {
+                crc16.update(this.bytes[i + 6]);
+            }
+            byte[] bArr = this.bytes;
+            return ((bArr[5] & 255) | ((bArr[4] & 255) << 8)) != crc16.getValue();
         }
-        CRC16 crc16 = new CRC16();
-        crc16.update(this.bytes[2]);
-        crc16.update(this.bytes[3]);
-        int sideInfoSize = this.header.getSideInfoSize();
-        for (int i = 0; i < sideInfoSize; i++) {
-            crc16.update(this.bytes[i + 6]);
-        }
-        byte[] bArr = this.bytes;
-        return ((bArr[5] & 255) | ((bArr[4] & 255) << 8)) != crc16.getValue();
+        return false;
     }
 
     public int getSize() {
@@ -204,10 +203,9 @@ public class MP3Frame {
             }
             i = ((bArr[xingOffset + 8] & 255) << 24) | ((bArr[xingOffset + 9] & 255) << 16) | ((bArr[xingOffset + 10] & 255) << 8);
             b = bArr[xingOffset + 11];
+        } else if (!isVBRIFrame()) {
+            return -1;
         } else {
-            if (!isVBRIFrame()) {
-                return -1;
-            }
             int vBRIOffset = this.header.getVBRIOffset();
             byte[] bArr2 = this.bytes;
             i = ((bArr2[vBRIOffset + 14] & 255) << 24) | ((bArr2[vBRIOffset + 15] & 255) << 16) | ((bArr2[vBRIOffset + 16] & 255) << 8);

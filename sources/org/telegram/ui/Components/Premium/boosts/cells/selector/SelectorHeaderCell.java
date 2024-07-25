@@ -13,7 +13,6 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.BackDrawable;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
-
 @SuppressLint({"ViewConstructor"})
 public class SelectorHeaderCell extends FrameLayout {
     public BackDrawable backDrawable;

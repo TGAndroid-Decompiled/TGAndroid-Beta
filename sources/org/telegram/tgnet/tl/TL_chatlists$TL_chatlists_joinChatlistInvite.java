@@ -5,7 +5,6 @@ import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$InputPeer;
 import org.telegram.tgnet.TLRPC$Updates;
-
 public class TL_chatlists$TL_chatlists_joinChatlistInvite extends TLObject {
     public ArrayList<TLRPC$InputPeer> peers = new ArrayList<>();
     public String slug;

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_inputWebFileGeoPointLocation extends TLRPC$InputWebFileLocation {
     public long access_hash;
     public TLRPC$InputGeoPoint geo_point;

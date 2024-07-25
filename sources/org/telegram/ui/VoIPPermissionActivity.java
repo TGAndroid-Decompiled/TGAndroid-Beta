@@ -10,7 +10,6 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.TLRPC$PhoneCall;
 import org.telegram.ui.Components.voip.VoIPHelper;
-
 @TargetApi(23)
 public class VoIPPermissionActivity extends Activity {
     @Override
@@ -56,10 +55,8 @@ public class VoIPPermissionActivity extends Activity {
                     VoIPService.getSharedInstance().acceptIncomingCall();
                 }
                 finish();
-                startActivity(new Intent(this, (Class<?>) LaunchActivity.class).setAction("voip"));
-                return;
-            }
-            if (!shouldShowRequestPermissionRationale("android.permission.RECORD_AUDIO")) {
+                startActivity(new Intent(this, LaunchActivity.class).setAction("voip"));
+            } else if (!shouldShowRequestPermissionRationale("android.permission.RECORD_AUDIO")) {
                 if (VoIPService.getSharedInstance() != null) {
                     VoIPService.getSharedInstance().declineIncomingCall();
                 }
@@ -69,9 +66,9 @@ public class VoIPPermissionActivity extends Activity {
                         VoIPPermissionActivity.this.finish();
                     }
                 }, i);
-                return;
+            } else {
+                finish();
             }
-            finish();
         }
     }
 }

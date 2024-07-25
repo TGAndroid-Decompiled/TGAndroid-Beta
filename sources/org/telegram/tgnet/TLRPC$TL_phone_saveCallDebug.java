@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_phone_saveCallDebug extends TLObject {
     public TLRPC$TL_dataJSON debug;
     public TLRPC$TL_inputPhoneCall peer;

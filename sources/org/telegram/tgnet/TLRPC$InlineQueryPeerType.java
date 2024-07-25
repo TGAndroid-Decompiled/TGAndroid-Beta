@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$InlineQueryPeerType extends TLObject {
     public static TLRPC$InlineQueryPeerType TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$InlineQueryPeerType tLRPC$InlineQueryPeerType;

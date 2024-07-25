@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_inputChannelFromMessage extends TLRPC$InputChannel {
     public int msg_id;
     public TLRPC$InputPeer peer;

@@ -6,7 +6,6 @@ import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
 import android.view.View;
 import android.view.ViewGroup;
-
 public class MessageBackgroundDrawable extends Drawable {
     private boolean animationInProgress;
     private float currentAnimationProgress;

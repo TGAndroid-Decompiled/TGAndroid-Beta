@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messageExtendedMedia extends TLRPC$MessageExtendedMedia {
     public TLRPC$MessageMedia media;
 

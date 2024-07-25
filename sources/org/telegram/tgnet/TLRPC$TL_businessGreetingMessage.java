@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_businessGreetingMessage extends TLObject {
     public int no_activity_days;
     public TLRPC$TL_businessRecipients recipients;

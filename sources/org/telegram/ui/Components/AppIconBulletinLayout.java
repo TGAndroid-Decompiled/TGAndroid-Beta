@@ -12,7 +12,6 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.AppIconsSelectorCell;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.LauncherIconController;
-
 @SuppressLint({"ViewConstructor"})
 public class AppIconBulletinLayout extends Bulletin.ButtonLayout {
     public final AppIconsSelectorCell.AdaptiveIconImageView imageView;

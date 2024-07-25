@@ -38,7 +38,6 @@ import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
@@ -53,7 +52,6 @@ import org.telegram.ui.ActionBar.FloatingToolbar;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.QuoteSpan;
-
 public class EditTextBoldCursor extends EditTextEffects {
     private static Class editorClass;
     private static Method getVerticalOffsetMethod;
@@ -301,18 +299,17 @@ public class EditTextBoldCursor extends EditTextEffects {
         }
         this.isTextWatchersSuppressed = z;
         if (z) {
-            Iterator<TextWatcher> it = this.registeredTextWatchers.iterator();
-            while (it.hasNext()) {
-                super.removeTextChangedListener(it.next());
+            for (TextWatcher textWatcher : this.registeredTextWatchers) {
+                super.removeTextChangedListener(textWatcher);
             }
             return;
         }
-        for (TextWatcher textWatcher : this.registeredTextWatchers) {
-            super.addTextChangedListener(textWatcher);
+        for (TextWatcher textWatcher2 : this.registeredTextWatchers) {
+            super.addTextChangedListener(textWatcher2);
             if (z2) {
-                textWatcher.beforeTextChanged("", 0, length(), length());
-                textWatcher.onTextChanged(getText(), 0, length(), length());
-                textWatcher.afterTextChanged(getText());
+                textWatcher2.beforeTextChanged("", 0, length(), length());
+                textWatcher2.onTextChanged(getText(), 0, length(), length());
+                textWatcher2.afterTextChanged(getText());
             }
         }
     }
@@ -440,35 +437,33 @@ public class EditTextBoldCursor extends EditTextEffects {
     public void fixHandleView(boolean z) {
         if (z) {
             this.fixed = false;
-            return;
-        }
-        if (this.fixed) {
-            return;
-        }
-        try {
-            if (editorClass == null) {
-                editorClass = Class.forName("android.widget.Editor");
-                Field declaredField = TextView.class.getDeclaredField("mEditor");
-                mEditor = declaredField;
-                declaredField.setAccessible(true);
-                this.editor = mEditor.get(this);
-            }
-            if (this.listenerFixer == null) {
-                Method declaredMethod = editorClass.getDeclaredMethod("getPositionListener", new Class[0]);
-                declaredMethod.setAccessible(true);
-                this.listenerFixer = (ViewTreeObserver.OnPreDrawListener) declaredMethod.invoke(this.editor, new Object[0]);
-            }
-            final ViewTreeObserver.OnPreDrawListener onPreDrawListener = this.listenerFixer;
-            Objects.requireNonNull(onPreDrawListener);
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    onPreDrawListener.onPreDraw();
+        } else if (this.fixed) {
+        } else {
+            try {
+                if (editorClass == null) {
+                    editorClass = Class.forName("android.widget.Editor");
+                    Field declaredField = TextView.class.getDeclaredField("mEditor");
+                    mEditor = declaredField;
+                    declaredField.setAccessible(true);
+                    this.editor = mEditor.get(this);
                 }
-            }, 500L);
-        } catch (Throwable unused) {
+                if (this.listenerFixer == null) {
+                    Method declaredMethod = editorClass.getDeclaredMethod("getPositionListener", new Class[0]);
+                    declaredMethod.setAccessible(true);
+                    this.listenerFixer = (ViewTreeObserver.OnPreDrawListener) declaredMethod.invoke(this.editor, new Object[0]);
+                }
+                final ViewTreeObserver.OnPreDrawListener onPreDrawListener = this.listenerFixer;
+                Objects.requireNonNull(onPreDrawListener);
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        onPreDrawListener.onPreDraw();
+                    }
+                }, 500L);
+            } catch (Throwable unused) {
+            }
+            this.fixed = true;
         }
-        this.fixed = true;
     }
 
     public void setTransformHintToHeader(boolean z) {
@@ -827,28 +822,28 @@ public class EditTextBoldCursor extends EditTextEffects {
             }
             AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.hintAnimatedDrawable;
             if (animatedTextDrawable != null && !TextUtils.isEmpty(animatedTextDrawable.getText()) && (this.hintVisible || this.hintAlpha != 0.0f)) {
-                if (this.hintAnimatedDrawable2 == null) {
-                    this.hintAnimatedDrawable.setRightPadding(0.0f);
-                } else if (this.hintAnimatedDrawable.getCurrentWidth() + this.hintAnimatedDrawable2.getCurrentWidth() < getMeasuredWidth()) {
-                    canvas.save();
-                    canvas.translate((this.hintAnimatedDrawable2.getCurrentWidth() - getMeasuredWidth()) + this.hintAnimatedDrawable.getCurrentWidth(), 0.0f);
-                    this.hintAnimatedDrawable2.setAlpha((int) (Color.alpha(this.hintColor) * this.hintAlpha));
-                    this.hintAnimatedDrawable2.draw(canvas);
-                    canvas.restore();
-                    this.hintAnimatedDrawable.setRightPadding(0.0f);
+                if (this.hintAnimatedDrawable2 != null) {
+                    if (this.hintAnimatedDrawable.getCurrentWidth() + this.hintAnimatedDrawable2.getCurrentWidth() < getMeasuredWidth()) {
+                        canvas.save();
+                        canvas.translate((this.hintAnimatedDrawable2.getCurrentWidth() - getMeasuredWidth()) + this.hintAnimatedDrawable.getCurrentWidth(), 0.0f);
+                        this.hintAnimatedDrawable2.setAlpha((int) (Color.alpha(this.hintColor) * this.hintAlpha));
+                        this.hintAnimatedDrawable2.draw(canvas);
+                        canvas.restore();
+                        this.hintAnimatedDrawable.setRightPadding(0.0f);
+                    } else {
+                        canvas.save();
+                        canvas.translate(this.rightHintOffset, 0.0f);
+                        this.hintAnimatedDrawable2.setAlpha((int) (Color.alpha(this.hintColor) * this.hintAlpha));
+                        this.hintAnimatedDrawable2.draw(canvas);
+                        canvas.restore();
+                        this.hintAnimatedDrawable.setRightPadding((this.hintAnimatedDrawable2.getCurrentWidth() + AndroidUtilities.dp(2.0f)) - this.rightHintOffset);
+                    }
                 } else {
-                    canvas.save();
-                    canvas.translate(this.rightHintOffset, 0.0f);
-                    this.hintAnimatedDrawable2.setAlpha((int) (Color.alpha(this.hintColor) * this.hintAlpha));
-                    this.hintAnimatedDrawable2.draw(canvas);
-                    canvas.restore();
-                    this.hintAnimatedDrawable.setRightPadding((this.hintAnimatedDrawable2.getCurrentWidth() + AndroidUtilities.dp(2.0f)) - this.rightHintOffset);
+                    this.hintAnimatedDrawable.setRightPadding(0.0f);
                 }
                 this.hintAnimatedDrawable.setAlpha((int) (Color.alpha(this.hintColor) * this.hintAlpha));
                 this.hintAnimatedDrawable.draw(canvas);
-                return;
-            }
-            if (this.hintLayout != null) {
+            } else if (this.hintLayout != null) {
                 if (this.hintVisible || this.hintAlpha != 0.0f) {
                     int color = getPaint().getColor();
                     canvas.save();
@@ -1051,10 +1046,10 @@ public class EditTextBoldCursor extends EditTextEffects {
 
     public boolean lambda$startActionMode$1() {
         FloatingActionMode floatingActionMode = this.floatingActionMode;
-        if (floatingActionMode == null) {
+        if (floatingActionMode != null) {
+            floatingActionMode.updateViewLocationInWindow();
             return true;
         }
-        floatingActionMode.updateViewLocationInWindow();
         return true;
     }
 

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_pageBlockMap extends TLRPC$PageBlock {
     public TLRPC$TL_pageCaption caption;
     public TLRPC$GeoPoint geo;

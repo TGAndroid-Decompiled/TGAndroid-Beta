@@ -22,7 +22,6 @@ import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CheckBox;
 import org.telegram.ui.Components.CheckBoxSquare;
 import org.telegram.ui.Components.LayoutHelper;
-
 public class UserCell2 extends FrameLayout {
     private AvatarDrawable avatarDrawable;
     private BackupImageView avatarImageView;
@@ -114,9 +113,7 @@ public class UserCell2 extends FrameLayout {
             this.checkBoxBig = checkBoxSquare;
             boolean z5 = LocaleController.isRTL;
             addView(checkBoxSquare, LayoutHelper.createFrame(18, 18.0f, (z5 ? 3 : 5) | 16, z5 ? 19.0f : 0.0f, 0.0f, z5 ? 0.0f : 19.0f, 0.0f));
-            return;
-        }
-        if (i2 == 1) {
+        } else if (i2 == 1) {
             CheckBox checkBox = new CheckBox(context, R.drawable.round_check2);
             this.checkBox = checkBox;
             checkBox.setVisibility(4);

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_affectedMessages extends TLObject {
     public int pts;
     public int pts_count;

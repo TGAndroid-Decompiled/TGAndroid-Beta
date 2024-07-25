@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_reportEncryptedSpam extends TLObject {
     public TLRPC$TL_inputEncryptedChat peer;
 

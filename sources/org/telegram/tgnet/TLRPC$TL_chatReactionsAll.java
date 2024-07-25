@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_chatReactionsAll extends TLRPC$ChatReactions {
     public boolean allow_custom;
     public int flags;

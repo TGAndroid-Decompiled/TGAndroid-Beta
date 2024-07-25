@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updateWebPage extends TLRPC$Update {
     public int pts;
     public int pts_count;

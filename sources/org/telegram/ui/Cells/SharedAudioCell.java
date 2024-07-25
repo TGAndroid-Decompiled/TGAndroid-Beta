@@ -39,7 +39,6 @@ import org.telegram.ui.Components.FlickerLoadingView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RadialProgress2;
 import org.telegram.ui.FilteredSearchView;
-
 public class SharedAudioCell extends FrameLayout implements DownloadController.FileDownloadProgressListener, NotificationCenter.NotificationCenterDelegate {
     private int TAG;
     private boolean buttonPressed;
@@ -205,16 +204,18 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
                 TextPaint textPaint3 = this.viewType == 1 ? this.description2TextPaint : Theme.chat_contextResult_descriptionTextPaint;
                 this.descriptionLayout = new StaticLayout(TextUtils.ellipsize(formatDuration, textPaint3, size, TextUtils.TruncateAt.END), textPaint3, size + AndroidUtilities.dp(4.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             } else {
-                CharSequence replace2 = this.currentMessageObject.getMusicAuthor().replace('\n', ' ');
-                CharSequence highlightText3 = AndroidUtilities.highlightText(replace2, this.currentMessageObject.highlightedWords, this.resourcesProvider);
+                String replace2 = this.currentMessageObject.getMusicAuthor().replace('\n', ' ');
+                ?? highlightText3 = AndroidUtilities.highlightText(replace2, this.currentMessageObject.highlightedWords, this.resourcesProvider);
+                String str = replace2;
                 if (highlightText3 != null) {
-                    replace2 = highlightText3;
+                    str = highlightText3;
                 }
+                SpannableStringBuilder spannableStringBuilder = str;
                 if (this.viewType == 1) {
-                    replace2 = new SpannableStringBuilder(replace2).append(' ').append((CharSequence) this.dotSpan).append(' ').append(FilteredSearchView.createFromInfoString(this.currentMessageObject, 1));
+                    spannableStringBuilder = new SpannableStringBuilder(str).append(' ').append((CharSequence) this.dotSpan).append(' ').append(FilteredSearchView.createFromInfoString(this.currentMessageObject, 1));
                 }
                 TextPaint textPaint4 = this.viewType == 1 ? this.description2TextPaint : Theme.chat_contextResult_descriptionTextPaint;
-                this.descriptionLayout = new StaticLayout(TextUtils.ellipsize(replace2, textPaint4, size, TextUtils.TruncateAt.END), textPaint4, size + AndroidUtilities.dp(4.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                this.descriptionLayout = new StaticLayout(TextUtils.ellipsize(spannableStringBuilder, textPaint4, size, TextUtils.TruncateAt.END), textPaint4, size + AndroidUtilities.dp(4.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             }
             this.descriptionLayoutLeft = this.descriptionLayout.getLineCount() > 0 ? this.descriptionLayout.getLineLeft(0) : 0.0f;
             this.descriptionLayoutWidth = this.descriptionLayout.getLineCount() > 0 ? this.descriptionLayout.getLineWidth(0) : 0.0f;
@@ -234,9 +235,9 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
         if (this.captionLayout != null) {
             this.captionY = AndroidUtilities.dp(29.0f);
             this.descriptionY = AndroidUtilities.dp(29.0f) + AndroidUtilities.dp(18.0f);
-        } else {
-            this.descriptionY = AndroidUtilities.dp(29.0f);
+            return;
         }
+        this.descriptionY = AndroidUtilities.dp(29.0f);
     }
 
     public void setMessageObject(MessageObject messageObject, boolean z) {
@@ -318,14 +319,14 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
             return super.onTouchEvent(motionEvent);
         }
         boolean checkAudioMotionEvent = checkAudioMotionEvent(motionEvent);
-        if (motionEvent.getAction() != 3) {
-            return checkAudioMotionEvent;
+        if (motionEvent.getAction() == 3) {
+            this.miniButtonPressed = false;
+            this.buttonPressed = false;
+            this.radialProgress.setPressed(false, false);
+            this.radialProgress.setPressed(this.miniButtonPressed, true);
+            return false;
         }
-        this.miniButtonPressed = false;
-        this.buttonPressed = false;
-        this.radialProgress.setPressed(false, false);
-        this.radialProgress.setPressed(this.miniButtonPressed, true);
-        return false;
+        return checkAudioMotionEvent;
     }
 
     private void didPressedMiniButton(boolean z) {
@@ -336,9 +337,7 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
             FileLoader.getInstance(this.currentAccount).loadFile(this.currentMessageObject.getDocument(), this.currentMessageObject, 1, 0);
             this.radialProgress.setMiniIcon(getMiniIconForCurrentState(), false, true);
             invalidate();
-            return;
-        }
-        if (i == 1) {
+        } else if (i == 1) {
             if (MediaController.getInstance().isPlayingMessage(this.currentMessageObject)) {
                 MediaController.getInstance().cleanupPlayer(true, true);
             }
@@ -365,29 +364,21 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
                 this.buttonState = 1;
                 this.radialProgress.setIcon(getIconForCurrentState(), false, true);
                 invalidate();
-                return;
             }
-            return;
-        }
-        if (i == 1) {
+        } else if (i == 1) {
             if (MediaController.getInstance().lambda$startAudioAgain$7(this.currentMessageObject)) {
                 this.buttonState = 0;
                 this.radialProgress.setIcon(getIconForCurrentState(), false, true);
                 invalidate();
-                return;
             }
-            return;
-        }
-        if (i == 2) {
+        } else if (i == 2) {
             this.radialProgress.setProgress(0.0f, false);
             this.currentMessageObject.putInDownloadsStore = true;
             FileLoader.getInstance(this.currentAccount).loadFile(this.currentMessageObject.getDocument(), this.currentMessageObject, 1, 0);
             this.buttonState = 4;
             this.radialProgress.setIcon(getIconForCurrentState(), false, true);
             invalidate();
-            return;
-        }
-        if (i == 4) {
+        } else if (i == 4) {
             FileLoader.getInstance(this.currentAccount).cancelLoadFile(this.currentMessageObject.getDocument());
             this.buttonState = 2;
             this.radialProgress.setIcon(getIconForCurrentState(), false, true);

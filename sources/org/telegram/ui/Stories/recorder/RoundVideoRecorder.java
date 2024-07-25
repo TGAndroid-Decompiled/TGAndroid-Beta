@@ -20,7 +20,6 @@ import org.telegram.messenger.camera.CameraView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.Paint.Views.RoundView;
-
 public class RoundVideoRecorder extends FrameLayout {
     private float alpha;
     public final CameraView cameraView;

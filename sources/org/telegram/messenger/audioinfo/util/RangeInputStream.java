@@ -2,7 +2,6 @@ package org.telegram.messenger.audioinfo.util;
 
 import java.io.IOException;
 import java.io.InputStream;
-
 public class RangeInputStream extends PositionInputStream {
     private final long endPosition;
 
@@ -35,9 +34,8 @@ public class RangeInputStream extends PositionInputStream {
 
     @Override
     public long skip(long j) throws IOException {
-        long position = getPosition() + j;
         long j2 = this.endPosition;
-        if (position > j2) {
+        if (getPosition() + j > j2) {
             j = (int) (j2 - getPosition());
         }
         return super.skip(j);

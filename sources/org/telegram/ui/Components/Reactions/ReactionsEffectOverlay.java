@@ -35,12 +35,9 @@ import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Components.ReactionsContainerLayout;
 import org.telegram.ui.SelectAnimatedEmojiDialog;
-
 public class ReactionsEffectOverlay {
-
     @SuppressLint({"StaticFieldLeak"})
     public static ReactionsEffectOverlay currentOverlay;
-
     @SuppressLint({"StaticFieldLeak"})
     public static ReactionsEffectOverlay currentShortOverlay;
     private static long lastHapticTime;
@@ -194,7 +191,7 @@ public class ReactionsEffectOverlay {
                             while (i12 < 10) {
                                 float abs = ((Math.abs(random2.nextInt() % 100) * f8) / f7) + 0.2f;
                                 float abs2 = ((Math.abs(random2.nextInt() % 100) * 0.4f) / f7) + 0.2f;
-                                float f12 = 2.1474836E9f;
+                                float f12 = 2.14748365E9f;
                                 Random random3 = random2;
                                 int i13 = 0;
                                 while (i13 < this.avatars.size()) {
@@ -601,15 +598,15 @@ public class ReactionsEffectOverlay {
 
     public static boolean isPlaying(int i, long j, ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
         ReactionsEffectOverlay reactionsEffectOverlay = currentOverlay;
-        if (reactionsEffectOverlay == null) {
+        if (reactionsEffectOverlay != null) {
+            int i2 = reactionsEffectOverlay.animationType;
+            if (i2 == 2 || i2 == 0) {
+                long j2 = reactionsEffectOverlay.groupId;
+                return ((j2 != 0 && j == j2) || i == reactionsEffectOverlay.messageId) && reactionsEffectOverlay.reaction.equals(visibleReaction);
+            }
             return false;
         }
-        int i2 = reactionsEffectOverlay.animationType;
-        if (i2 != 2 && i2 != 0) {
-            return false;
-        }
-        long j2 = reactionsEffectOverlay.groupId;
-        return ((j2 != 0 && j == j2) || i == reactionsEffectOverlay.messageId) && reactionsEffectOverlay.reaction.equals(visibleReaction);
+        return false;
     }
 
     private class AnimationView extends BackupImageView {

@@ -27,7 +27,6 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Loadable;
 import org.telegram.ui.Components.LoadingDrawable;
 import org.telegram.ui.Components.ScaleStateListAnimator;
-
 public class ButtonWithCounterView extends FrameLayout implements Loadable {
     private float countAlpha;
     private final AnimatedFloat countAlphaAnimated;
@@ -48,6 +47,7 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
     private ValueAnimator loadingAnimator;
     private CircularProgressDrawable loadingDrawable;
     private float loadingT;
+    private int minWidth;
     private final Paint paint;
     private Theme.ResourcesProvider resourcesProvider;
     private final View rippleView;
@@ -61,6 +61,7 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
     private int timerSeconds;
     private boolean withCounterIcon;
     public boolean wrapContentDynamic;
+    private boolean wrapWidth;
 
     protected float calculateCounterWidth(float f, float f2) {
         return f * f2;
@@ -390,7 +391,8 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
         }
         this.lastCount = i;
         this.countAlpha = (i != 0 || this.showZero) ? 1.0f : 0.0f;
-        this.countText.setText("" + i, z);
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.countText;
+        animatedTextDrawable.setText("" + i, z);
         invalidate();
     }
 
@@ -556,5 +558,19 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
 
     public void wrapContentDynamic() {
         this.wrapContentDynamic = true;
+    }
+
+    public void setMinWidth(int i) {
+        this.wrapWidth = true;
+        this.minWidth = i;
+    }
+
+    @Override
+    public void onMeasure(int i, int i2) {
+        if (this.wrapWidth) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) Math.min(Math.max(getPaddingLeft() + this.text.getCurrentWidth() + getPaddingRight(), this.minWidth), View.MeasureSpec.getSize(i)), 1073741824), i2);
+        } else {
+            super.onMeasure(i, i2);
+        }
     }
 }

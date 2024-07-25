@@ -17,7 +17,6 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
-
 public class TimerDrawable extends Drawable {
     Context context;
     ColorFilter currentColorFilter;
@@ -143,6 +142,7 @@ public class TimerDrawable extends Drawable {
 
     @Override
     public void draw(Canvas canvas) {
+        double d;
         int intrinsicWidth = getIntrinsicWidth();
         int intrinsicHeight = getIntrinsicHeight();
         if (this.isDialog) {
@@ -182,15 +182,15 @@ public class TimerDrawable extends Drawable {
             double width = getBounds().width() / 2;
             double ceil = Math.ceil(this.timeWidth / 2.0f);
             Double.isNaN(width);
-            double d = i;
-            Double.isNaN(d);
-            canvas.translate((float) ((width - ceil) + d), (getBounds().height() - this.timeHeight) / 2.0f);
+            double d2 = i;
+            Double.isNaN(d2);
+            canvas.translate((float) ((width - ceil) + d2), (getBounds().height() - this.timeHeight) / 2.0f);
             this.timeLayout.draw(canvas);
             return;
         }
         double ceil2 = Math.ceil(this.timeWidth / 2.0f);
         Double.isNaN(intrinsicWidth / 2);
-        canvas.translate(((int) (r5 - ceil2)) + i, (intrinsicHeight - this.timeHeight) / 2.0f);
+        canvas.translate(((int) (d - ceil2)) + i, (intrinsicHeight - this.timeHeight) / 2.0f);
         this.timeLayout.draw(canvas);
     }
 

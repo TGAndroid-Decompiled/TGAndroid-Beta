@@ -2,7 +2,6 @@ package kotlinx.coroutines.internal;
 
 import kotlin.jvm.functions.Function1;
 import org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement;
-
 @IgnoreJRERequirement
 final class ClassValueCtorCache extends CtorCache {
     public static final ClassValueCtorCache INSTANCE = new ClassValueCtorCache();

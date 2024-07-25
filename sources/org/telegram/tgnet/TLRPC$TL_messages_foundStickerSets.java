@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_messages_foundStickerSets extends TLRPC$messages_FoundStickerSets {
     public long hash;
     public ArrayList<TLRPC$StickerSetCovered> sets = new ArrayList<>();

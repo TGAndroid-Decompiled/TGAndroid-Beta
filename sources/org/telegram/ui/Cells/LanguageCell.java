@@ -11,7 +11,6 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RadioButton;
-
 public class LanguageCell extends FrameLayout {
     private LocaleController.LocaleInfo currentLocale;
     private int marginEndDp;

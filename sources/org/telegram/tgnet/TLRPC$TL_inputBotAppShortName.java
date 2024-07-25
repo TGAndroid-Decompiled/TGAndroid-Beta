@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_inputBotAppShortName extends TLRPC$InputBotApp {
     public TLRPC$InputUser bot_id;
     public String short_name;

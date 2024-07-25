@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_inputStickeredMediaDocument extends TLRPC$InputStickeredMedia {
     public TLRPC$InputDocument id;
 

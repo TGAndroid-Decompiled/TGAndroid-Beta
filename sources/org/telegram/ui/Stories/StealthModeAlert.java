@@ -34,7 +34,6 @@ import org.telegram.ui.Components.Premium.PremiumButtonView;
 import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
 import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.LaunchActivity;
-
 public class StealthModeAlert extends BottomSheet {
     private final PremiumButtonView button;
     private Listener listener;
@@ -189,60 +188,52 @@ public class StealthModeAlert extends BottomSheet {
             BaseFragment lastFragment = LaunchActivity.getLastFragment();
             if (lastFragment != null) {
                 lastFragment.showDialog(new PremiumFeatureBottomSheet(lastFragment, 14, false));
-                return;
             }
-            return;
-        }
-        if (this.stealthModeIsActive) {
+        } else if (this.stealthModeIsActive) {
             dismiss();
             Listener listener = this.listener;
             if (listener != null) {
                 listener.onButtonClicked(false);
-                return;
             }
-            return;
-        }
-        StoriesController storiesController = MessagesController.getInstance(this.currentAccount).getStoriesController();
-        TL_stories$TL_storiesStealthMode stealthMode = storiesController.getStealthMode();
-        if (stealthMode == null || ConnectionsManager.getInstance(this.currentAccount).getCurrentTime() > stealthMode.cooldown_until_date) {
-            TL_stories$TL_stories_activateStealthMode tL_stories$TL_stories_activateStealthMode = new TL_stories$TL_stories_activateStealthMode();
-            tL_stories$TL_stories_activateStealthMode.future = true;
-            tL_stories$TL_stories_activateStealthMode.past = true;
-            TL_stories$TL_storiesStealthMode tL_stories$TL_storiesStealthMode = new TL_stories$TL_storiesStealthMode();
-            tL_stories$TL_storiesStealthMode.flags |= 3;
-            tL_stories$TL_storiesStealthMode.cooldown_until_date = ConnectionsManager.getInstance(this.currentAccount).getCurrentTime() + MessagesController.getInstance(this.currentAccount).stealthModeCooldown;
-            tL_stories$TL_storiesStealthMode.active_until_date = ConnectionsManager.getInstance(this.currentAccount).getCurrentTime() + MessagesController.getInstance(this.currentAccount).stealthModeFuture;
-            storiesController.setStealthMode(tL_stories$TL_storiesStealthMode);
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories$TL_stories_activateStealthMode, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    StealthModeAlert.lambda$new$2(tLObject, tLRPC$TL_error);
+        } else {
+            StoriesController storiesController = MessagesController.getInstance(this.currentAccount).getStoriesController();
+            TL_stories$TL_storiesStealthMode stealthMode = storiesController.getStealthMode();
+            if (stealthMode == null || ConnectionsManager.getInstance(this.currentAccount).getCurrentTime() > stealthMode.cooldown_until_date) {
+                TL_stories$TL_stories_activateStealthMode tL_stories$TL_stories_activateStealthMode = new TL_stories$TL_stories_activateStealthMode();
+                tL_stories$TL_stories_activateStealthMode.future = true;
+                tL_stories$TL_stories_activateStealthMode.past = true;
+                TL_stories$TL_storiesStealthMode tL_stories$TL_storiesStealthMode = new TL_stories$TL_storiesStealthMode();
+                tL_stories$TL_storiesStealthMode.flags |= 3;
+                tL_stories$TL_storiesStealthMode.cooldown_until_date = ConnectionsManager.getInstance(this.currentAccount).getCurrentTime() + MessagesController.getInstance(this.currentAccount).stealthModeCooldown;
+                tL_stories$TL_storiesStealthMode.active_until_date = ConnectionsManager.getInstance(this.currentAccount).getCurrentTime() + MessagesController.getInstance(this.currentAccount).stealthModeFuture;
+                storiesController.setStealthMode(tL_stories$TL_storiesStealthMode);
+                ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories$TL_stories_activateStealthMode, new RequestDelegate() {
+                    @Override
+                    public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                        StealthModeAlert.lambda$new$2(tLObject, tLRPC$TL_error);
+                    }
+                });
+                this.containerView.performHapticFeedback(3);
+                dismiss();
+                if (i == 0) {
+                    showStealthModeEnabledBulletin();
                 }
-            });
-            this.containerView.performHapticFeedback(3);
-            dismiss();
-            if (i == 0) {
-                showStealthModeEnabledBulletin();
+                Listener listener2 = this.listener;
+                if (listener2 != null) {
+                    listener2.onButtonClicked(true);
+                }
+            } else if (this.stealthModeIsActive) {
+                dismiss();
+                Listener listener3 = this.listener;
+                if (listener3 != null) {
+                    listener3.onButtonClicked(false);
+                }
+            } else {
+                BulletinFactory of = BulletinFactory.of(this.container, resourcesProvider);
+                if (of != null) {
+                    of.createErrorBulletin(AndroidUtilities.replaceTags(LocaleController.getString("StealthModeCooldownHint", R.string.StealthModeCooldownHint))).show(true);
+                }
             }
-            Listener listener2 = this.listener;
-            if (listener2 != null) {
-                listener2.onButtonClicked(true);
-                return;
-            }
-            return;
-        }
-        if (this.stealthModeIsActive) {
-            dismiss();
-            Listener listener3 = this.listener;
-            if (listener3 != null) {
-                listener3.onButtonClicked(false);
-                return;
-            }
-            return;
-        }
-        BulletinFactory of = BulletinFactory.of(this.container, resourcesProvider);
-        if (of != null) {
-            of.createErrorBulletin(AndroidUtilities.replaceTags(LocaleController.getString("StealthModeCooldownHint", R.string.StealthModeCooldownHint))).show(true);
         }
     }
 
@@ -293,12 +284,11 @@ public class StealthModeAlert extends BottomSheet {
                 long currentTime2 = i - ConnectionsManager.getInstance(this.currentAccount).getCurrentTime();
                 int i2 = (int) (currentTime2 % 60);
                 long j = currentTime2 / 60;
-                int i3 = (int) (j % 60);
-                int i4 = (int) (j / 60);
+                int i3 = (int) (j / 60);
                 StringBuilder sb = new StringBuilder();
                 Locale locale = Locale.ENGLISH;
-                sb.append(String.format(locale, "%02d", Integer.valueOf(i4)));
-                sb.append(String.format(locale, ":%02d", Integer.valueOf(i3)));
+                sb.append(String.format(locale, "%02d", Integer.valueOf(i3)));
+                sb.append(String.format(locale, ":%02d", Integer.valueOf((int) (j % 60))));
                 sb.append(String.format(locale, ":%02d", Integer.valueOf(i2)));
                 this.button.setOverlayText(LocaleController.formatString("AvailableIn", R.string.AvailableIn, sb.toString()), true, z);
                 this.button.overlayTextView.setTextColor(ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_featuredStickers_buttonText), 125));
@@ -307,10 +297,10 @@ public class StealthModeAlert extends BottomSheet {
                 return;
             }
         }
-        int i5 = this.type;
-        if (i5 == 0) {
+        int i4 = this.type;
+        if (i4 == 0) {
             this.button.setOverlayText(LocaleController.getString("EnableStealthMode", R.string.EnableStealthMode), true, z);
-        } else if (i5 == 1) {
+        } else if (i4 == 1) {
             this.button.setOverlayText(LocaleController.getString(R.string.EnableStealthModeAndOpenStory), true, z);
         }
         this.button.overlayTextView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));

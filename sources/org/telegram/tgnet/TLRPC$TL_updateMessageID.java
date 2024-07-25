@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updateMessageID extends TLRPC$Update {
     public int id;
     public long random_id;

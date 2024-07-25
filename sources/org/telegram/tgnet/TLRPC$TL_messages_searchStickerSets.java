@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_searchStickerSets extends TLObject {
     public boolean exclude_featured;
     public int flags;

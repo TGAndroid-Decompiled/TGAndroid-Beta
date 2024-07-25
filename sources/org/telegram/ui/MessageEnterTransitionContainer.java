@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.messenger.NotificationCenter;
-
 @SuppressLint({"ViewConstructor"})
 public class MessageEnterTransitionContainer extends View {
     private final int currentAccount;
@@ -61,10 +60,8 @@ public class MessageEnterTransitionContainer extends View {
         if (this.transitions.isEmpty() && getVisibility() != 8) {
             NotificationCenter.getInstance(this.currentAccount).removeDelayed(this.hideRunnable);
             NotificationCenter.getInstance(this.currentAccount).doOnIdle(this.hideRunnable);
+        } else if (this.transitions.isEmpty() || getVisibility() == 0) {
         } else {
-            if (this.transitions.isEmpty() || getVisibility() == 0) {
-                return;
-            }
             NotificationCenter.getInstance(this.currentAccount).removeDelayed(this.hideRunnable);
             setVisibility(0);
         }

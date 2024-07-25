@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_jsonObjectValue extends TLObject {
     public String key;
     public TLRPC$JSONValue value;

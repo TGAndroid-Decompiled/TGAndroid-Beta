@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_bankCardOpenUrl extends TLObject {
     public String name;
     public String url;

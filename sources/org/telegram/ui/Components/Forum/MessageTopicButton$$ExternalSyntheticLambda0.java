@@ -2,7 +2,6 @@ package org.telegram.ui.Components.Forum;
 
 import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
-
 public final class MessageTopicButton$$ExternalSyntheticLambda0 implements AnimatedEmojiSpan.InvalidateHolder {
     public final ChatMessageCell f$0;
 

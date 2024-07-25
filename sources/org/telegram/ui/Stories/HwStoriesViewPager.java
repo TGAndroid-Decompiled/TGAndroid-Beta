@@ -3,7 +3,6 @@ package org.telegram.ui.Stories;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import org.telegram.ui.ActionBar.Theme;
-
 @SuppressLint({"ViewConstructor"})
 public class HwStoriesViewPager extends StoriesViewPager {
     public HwStoriesViewPager(Context context, StoryViewer storyViewer, Theme.ResourcesProvider resourcesProvider) {

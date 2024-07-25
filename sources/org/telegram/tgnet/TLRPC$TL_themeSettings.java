@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_themeSettings extends TLRPC$ThemeSettings {
     public static TLRPC$TL_themeSettings TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (-94849324 != i) {
@@ -30,11 +29,10 @@ public class TLRPC$TL_themeSettings extends TLRPC$ThemeSettings {
                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
                 }
                 return;
-            } else {
-                int readInt323 = abstractSerializedData.readInt32(z);
-                for (int i = 0; i < readInt323; i++) {
-                    this.message_colors.add(Integer.valueOf(abstractSerializedData.readInt32(z)));
-                }
+            }
+            int readInt323 = abstractSerializedData.readInt32(z);
+            for (int i = 0; i < readInt323; i++) {
+                this.message_colors.add(Integer.valueOf(abstractSerializedData.readInt32(z)));
             }
         }
         if ((this.flags & 2) != 0) {

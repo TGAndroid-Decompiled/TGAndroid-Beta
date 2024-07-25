@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channels_toggleViewForumAsMessages extends TLObject {
     public static int constructor = -1757889771;
     public TLRPC$InputChannel channel_id;

@@ -4,7 +4,6 @@ import android.content.SharedPreferences;
 import android.util.LongSparseArray;
 import org.telegram.messenger.FilePathDatabase;
 import org.telegram.messenger.NotificationBadge;
-
 public class SaveToGallerySettingsHelper {
     public static String CHANNELS_PREF_NAME = "channels_save_gallery_exceptions";
     public static final long DEFAULT_VIDEO_LIMIT = 104857600;
@@ -57,10 +56,9 @@ public class SaveToGallerySettingsHelper {
             sharedSettings = user;
         } else if (i == 4) {
             sharedSettings = channels;
+        } else if (i != 2) {
+            return false;
         } else {
-            if (i != 2) {
-                return false;
-            }
             sharedSettings = groups;
         }
         return sharedSettings.needSave(fileMeta, messageObject, i2);
@@ -136,10 +134,10 @@ public class SaveToGallerySettingsHelper {
             if (enabled()) {
                 this.saveVideo = false;
                 this.savePhoto = false;
-            } else {
-                this.savePhoto = true;
-                this.saveVideo = true;
+                return;
             }
+            this.savePhoto = true;
+            this.saveVideo = true;
         }
     }
 
@@ -147,7 +145,10 @@ public class SaveToGallerySettingsHelper {
         private int type;
 
         public void save(String str, SharedPreferences sharedPreferences) {
-            sharedPreferences.edit().putBoolean(str + "_save_gallery_photo", this.savePhoto).putBoolean(str + "_save_gallery_video", this.saveVideo).putLong(str + "_save_gallery_limitVideo", this.limitVideo).apply();
+            SharedPreferences.Editor edit = sharedPreferences.edit();
+            SharedPreferences.Editor putBoolean = edit.putBoolean(str + "_save_gallery_photo", this.savePhoto);
+            SharedPreferences.Editor putBoolean2 = putBoolean.putBoolean(str + "_save_gallery_video", this.saveVideo);
+            putBoolean2.putLong(str + "_save_gallery_limitVideo", this.limitVideo).apply();
         }
 
         public static SharedSettings read(String str, SharedPreferences sharedPreferences) {
@@ -160,25 +161,25 @@ public class SaveToGallerySettingsHelper {
 
         public boolean needSave(FilePathDatabase.FileMeta fileMeta, MessageObject messageObject, int i) {
             DialogException dialogException = UserConfig.getInstance(i).getSaveGalleryExceptions(this.type).get(fileMeta.dialogId);
-            if (messageObject != null && (messageObject.isOutOwner() || messageObject.isSecretMedia())) {
-                return false;
-            }
-            boolean z = (messageObject != null && messageObject.isVideo()) || fileMeta.messageType == 3;
-            long size = messageObject != null ? messageObject.getSize() : fileMeta.messageSize;
-            boolean z2 = this.saveVideo;
-            boolean z3 = this.savePhoto;
-            long j = this.limitVideo;
-            if (dialogException != null) {
-                z2 = dialogException.saveVideo;
-                z3 = dialogException.savePhoto;
-                j = dialogException.limitVideo;
-            }
-            if (z) {
-                if (z2 && (j == -1 || size < j)) {
+            if (messageObject == null || !(messageObject.isOutOwner() || messageObject.isSecretMedia())) {
+                boolean z = (messageObject != null && messageObject.isVideo()) || fileMeta.messageType == 3;
+                long size = messageObject != null ? messageObject.getSize() : fileMeta.messageSize;
+                boolean z2 = this.saveVideo;
+                boolean z3 = this.savePhoto;
+                long j = this.limitVideo;
+                if (dialogException != null) {
+                    z2 = dialogException.saveVideo;
+                    z3 = dialogException.savePhoto;
+                    j = dialogException.limitVideo;
+                }
+                if (z) {
+                    if (z2 && (j == -1 || size < j)) {
+                        return true;
+                    }
+                } else if (z3) {
                     return true;
                 }
-            } else if (z3) {
-                return true;
+                return false;
             }
             return false;
         }

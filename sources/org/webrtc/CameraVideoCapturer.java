@@ -1,7 +1,6 @@
 package org.webrtc;
 
 import android.media.MediaRecorder;
-
 public interface CameraVideoCapturer extends VideoCapturer {
 
     public interface CameraEventsHandler {
@@ -73,7 +72,8 @@ public interface CameraVideoCapturer extends VideoCapturer {
             Runnable runnable = new Runnable() {
                 @Override
                 public void run() {
-                    Logging.d(CameraStatistics.TAG, "Camera fps: " + Math.round((CameraStatistics.this.frameCount * 1000.0f) / 2000.0f) + ".");
+                    int round = Math.round((CameraStatistics.this.frameCount * 1000.0f) / 2000.0f);
+                    Logging.d(CameraStatistics.TAG, "Camera fps: " + round + ".");
                     if (CameraStatistics.this.frameCount != 0) {
                         CameraStatistics.this.freezePeriodCount = 0;
                     } else {

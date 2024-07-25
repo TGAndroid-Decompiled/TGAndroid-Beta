@@ -18,7 +18,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Stories.recorder.FlashViews;
-
 public class ToggleButton extends View implements FlashViews.Invertable {
     private Bitmap activeBitmap;
     private final Paint activeBitmapPaint;

@@ -2,7 +2,6 @@ package kotlinx.coroutines.internal;
 
 import java.util.concurrent.atomic.AtomicReferenceArray;
 import kotlin.ranges.RangesKt___RangesKt;
-
 public final class ResizableAtomicArray<T> {
     private volatile AtomicReferenceArray<T> array;
 

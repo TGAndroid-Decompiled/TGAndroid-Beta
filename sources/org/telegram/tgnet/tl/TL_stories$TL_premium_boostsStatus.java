@@ -3,7 +3,6 @@ package org.telegram.tgnet.tl;
 import java.util.ArrayList;
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
-
 public class TL_stories$TL_premium_boostsStatus extends TLObject {
     public static int constructor = 1230586490;
     public String boost_url;
@@ -71,11 +70,11 @@ public class TL_stories$TL_premium_boostsStatus extends TLObject {
                 if (z) {
                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
                 }
-            } else {
-                int readInt325 = abstractSerializedData.readInt32(z);
-                for (int i2 = 0; i2 < readInt325; i2++) {
-                    this.my_boost_slots.add(Integer.valueOf(abstractSerializedData.readInt32(z)));
-                }
+                return;
+            }
+            int readInt325 = abstractSerializedData.readInt32(z);
+            for (int i2 = 0; i2 < readInt325; i2++) {
+                this.my_boost_slots.add(Integer.valueOf(abstractSerializedData.readInt32(z)));
             }
         }
     }

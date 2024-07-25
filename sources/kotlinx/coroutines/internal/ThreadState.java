@@ -3,7 +3,6 @@ package kotlinx.coroutines.internal;
 import kotlin.coroutines.CoroutineContext;
 import kotlin.jvm.internal.Intrinsics;
 import kotlinx.coroutines.ThreadContextElement;
-
 public final class ThreadState {
     public final CoroutineContext context;
     private final ThreadContextElement<Object>[] elements;
@@ -37,9 +36,8 @@ public final class ThreadState {
             threadContextElement.restoreThreadContext(coroutineContext, this.values[length]);
             if (i < 0) {
                 return;
-            } else {
-                length = i;
             }
+            length = i;
         }
     }
 }

@@ -13,12 +13,10 @@ import android.util.AndroidException;
 import android.util.Range;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import org.webrtc.CameraEnumerationAndroid;
 import org.webrtc.CameraVideoCapturer;
-
 @TargetApi(21)
 public class Camera2Enumerator implements CameraEnumerator {
     private static final double NANO_SECONDS_PER_SECOND = 1.0E9d;
@@ -96,9 +94,8 @@ public class Camera2Enumerator implements CameraEnumerator {
     }
 
     public static List<Size> getSupportedSizes(CameraCharacteristics cameraCharacteristics) {
-        StreamConfigurationMap streamConfigurationMap = (StreamConfigurationMap) cameraCharacteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
         int intValue = ((Integer) cameraCharacteristics.get(CameraCharacteristics.INFO_SUPPORTED_HARDWARE_LEVEL)).intValue();
-        List<Size> convertSizes = convertSizes(streamConfigurationMap.getOutputSizes(SurfaceTexture.class));
+        List<Size> convertSizes = convertSizes(((StreamConfigurationMap) cameraCharacteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP)).getOutputSizes(SurfaceTexture.class));
         if (Build.VERSION.SDK_INT >= 22 || intValue != 2) {
             return convertSizes;
         }
@@ -132,10 +129,9 @@ public class Camera2Enumerator implements CameraEnumerator {
                 Range[] rangeArr = (Range[]) cameraCharacteristics.get(CameraCharacteristics.CONTROL_AE_AVAILABLE_TARGET_FPS_RANGES);
                 List<CameraEnumerationAndroid.CaptureFormat.FramerateRange> convertFramerates = convertFramerates(rangeArr, getFpsUnitFactor(rangeArr));
                 List<Size> supportedSizes = getSupportedSizes(cameraCharacteristics);
-                Iterator<CameraEnumerationAndroid.CaptureFormat.FramerateRange> it = convertFramerates.iterator();
                 int i = 0;
-                while (it.hasNext()) {
-                    i = Math.max(i, it.next().max);
+                for (CameraEnumerationAndroid.CaptureFormat.FramerateRange framerateRange : convertFramerates) {
+                    i = Math.max(i, framerateRange.max);
                 }
                 ArrayList arrayList = new ArrayList();
                 for (Size size : supportedSizes) {
@@ -155,7 +151,8 @@ public class Camera2Enumerator implements CameraEnumerator {
                     Logging.d(TAG, "Format: " + size.width + "x" + size.height + "@" + round);
                 }
                 cachedSupportedFormats.put(str, arrayList);
-                Logging.d(TAG, "Get supported formats for camera index " + str + " done. Time spent: " + (SystemClock.elapsedRealtime() - elapsedRealtime) + " ms.");
+                long elapsedRealtime2 = SystemClock.elapsedRealtime();
+                Logging.d(TAG, "Get supported formats for camera index " + str + " done. Time spent: " + (elapsedRealtime2 - elapsedRealtime) + " ms.");
                 return arrayList;
             } catch (Exception e) {
                 Logging.e(TAG, "getCameraCharacteristics(): " + e);

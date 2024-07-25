@@ -54,7 +54,6 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.MessageSeenCheckDrawable;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.StatusBadgeComponent;
-
 public class MessageSeenView extends FrameLayout {
     AvatarsImageView avatarsImageView;
     int currentAccount;
@@ -168,8 +167,7 @@ public class MessageSeenView extends FrameLayout {
                 }
                 updateView();
                 return;
-            }
-            if (ChatObject.isChannel(tLRPC$Chat)) {
+            } else if (ChatObject.isChannel(tLRPC$Chat)) {
                 TLRPC$TL_channels_getParticipants tLRPC$TL_channels_getParticipants = new TLRPC$TL_channels_getParticipants();
                 tLRPC$TL_channels_getParticipants.limit = MessagesController.getInstance(i).chatReadMarkSizeThreshold;
                 tLRPC$TL_channels_getParticipants.offset = 0;
@@ -182,16 +180,17 @@ public class MessageSeenView extends FrameLayout {
                     }
                 });
                 return;
+            } else {
+                TLRPC$TL_messages_getFullChat tLRPC$TL_messages_getFullChat = new TLRPC$TL_messages_getFullChat();
+                tLRPC$TL_messages_getFullChat.chat_id = tLRPC$Chat.id;
+                ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_messages_getFullChat, new RequestDelegate() {
+                    @Override
+                    public final void run(TLObject tLObject2, TLRPC$TL_error tLRPC$TL_error2) {
+                        MessageSeenView.this.lambda$new$3(i, hashMap, arrayList3, tLObject2, tLRPC$TL_error2);
+                    }
+                });
+                return;
             }
-            TLRPC$TL_messages_getFullChat tLRPC$TL_messages_getFullChat = new TLRPC$TL_messages_getFullChat();
-            tLRPC$TL_messages_getFullChat.chat_id = tLRPC$Chat.id;
-            ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_messages_getFullChat, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject2, TLRPC$TL_error tLRPC$TL_error2) {
-                    MessageSeenView.this.lambda$new$3(i, hashMap, arrayList3, tLObject2, tLRPC$TL_error2);
-                }
-            });
-            return;
         }
         updateView();
     }
@@ -405,11 +404,11 @@ public class MessageSeenView extends FrameLayout {
                 addView(this.avatarImageView, LayoutHelper.createFrame(34, 34.0f, 21, 0.0f, 0.0f, 10.0f, 0.0f));
                 addView(this.nameView, LayoutHelper.createFrame(-2, -2.0f, 53, 8.0f, 6.33f, 55.0f, 0.0f));
                 addView(this.readView, LayoutHelper.createFrame(-2, -2.0f, 53, 13.0f, 20.0f, 55.0f, 0.0f));
-            } else {
-                addView(this.avatarImageView, LayoutHelper.createFrame(34, 34.0f, 19, 10.0f, 0.0f, 0.0f, 0.0f));
-                addView(this.nameView, LayoutHelper.createFrame(-2, -2.0f, 51, 55.0f, 6.33f, 8.0f, 0.0f));
-                addView(this.readView, LayoutHelper.createFrame(-2, -2.0f, 51, 55.0f, 20.0f, 13.0f, 0.0f));
+                return;
             }
+            addView(this.avatarImageView, LayoutHelper.createFrame(34, 34.0f, 19, 10.0f, 0.0f, 0.0f, 0.0f));
+            addView(this.nameView, LayoutHelper.createFrame(-2, -2.0f, 51, 55.0f, 6.33f, 8.0f, 0.0f));
+            addView(this.readView, LayoutHelper.createFrame(-2, -2.0f, 51, 55.0f, 20.0f, 13.0f, 0.0f));
         }
 
         @Override
@@ -428,11 +427,11 @@ public class MessageSeenView extends FrameLayout {
             if (i <= 0) {
                 this.readView.setVisibility(8);
                 this.nameView.setTranslationY(AndroidUtilities.dp(9.0f));
-            } else {
-                this.readView.setText(TextUtils.concat(seenDrawable.getSpanned(getContext(), null), LocaleController.formatSeenDate(i)));
-                this.readView.setVisibility(0);
-                this.nameView.setTranslationY(0.0f);
+                return;
             }
+            this.readView.setText(TextUtils.concat(seenDrawable.getSpanned(getContext(), null), LocaleController.formatSeenDate(i)));
+            this.readView.setVisibility(0);
+            this.nameView.setTranslationY(0.0f);
         }
 
         @Override

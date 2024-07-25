@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_chatInviteEmpty_layer122 extends TLRPC$TL_chatInviteExported {
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {

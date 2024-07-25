@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +38,6 @@ import org.telegram.ui.Components.BlurringShader;
 import org.telegram.ui.Components.MessagePreviewView;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.Stories.recorder.HintView2;
-
 public class ItemOptions {
     private ActionBarPopupWindow actionBarPopupWindow;
     private ViewGroup container;
@@ -49,7 +49,9 @@ public class ItemOptions {
     private boolean forceTop;
     private int foregroundIndex;
     private BaseFragment fragment;
+    private Integer gapBackgroundColor;
     private int gravity;
+    private Integer iconColor;
     private boolean ignoreX;
     private ActionBarPopupWindow.ActionBarPopupWindowLayout lastLayout;
     private ViewGroup layout;
@@ -63,8 +65,10 @@ public class ItemOptions {
     private Theme.ResourcesProvider resourcesProvider;
     private View scrimView;
     private Drawable scrimViewBackground;
+    private Integer selectorColor;
     private int shiftDp;
     public boolean swipeback;
+    private Integer textColor;
     private float translateX;
     private float translateY;
     private android.graphics.Rect viewAdditionalOffsets;
@@ -232,8 +236,12 @@ public class ItemOptions {
         } else {
             actionBarMenuSubItem.setText(charSequence);
         }
-        actionBarMenuSubItem.setColors(Theme.getColor(i3, this.resourcesProvider), Theme.getColor(i2, this.resourcesProvider));
-        actionBarMenuSubItem.setSelectorColor(Theme.multAlpha(Theme.getColor(i3, this.resourcesProvider), 0.12f));
+        Integer num = this.textColor;
+        int intValue = num != null ? num.intValue() : Theme.getColor(i3, this.resourcesProvider);
+        Integer num2 = this.iconColor;
+        actionBarMenuSubItem.setColors(intValue, num2 != null ? num2.intValue() : Theme.getColor(i2, this.resourcesProvider));
+        Integer num3 = this.selectorColor;
+        actionBarMenuSubItem.setSelectorColor(num3 != null ? num3.intValue() : Theme.multAlpha(Theme.getColor(i3, this.resourcesProvider), 0.12f));
         actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
@@ -259,7 +267,8 @@ public class ItemOptions {
 
     public ItemOptions makeMultiline(boolean z) {
         if (this.context != null && this.lastLayout.getItemsCount() > 0) {
-            View itemAt = this.lastLayout.getItemAt(r0.getItemsCount() - 1);
+            ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = this.lastLayout;
+            View itemAt = actionBarPopupWindowLayout.getItemAt(actionBarPopupWindowLayout.getItemsCount() - 1);
             if (itemAt instanceof ActionBarMenuSubItem) {
                 ((ActionBarMenuSubItem) itemAt).setMultiline(z);
             }
@@ -269,7 +278,8 @@ public class ItemOptions {
 
     public ItemOptions cutTextInFancyHalf() {
         if (this.context != null && this.lastLayout.getItemsCount() > 0) {
-            View itemAt = this.lastLayout.getItemAt(r0.getItemsCount() - 1);
+            ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = this.lastLayout;
+            View itemAt = actionBarPopupWindowLayout.getItemAt(actionBarPopupWindowLayout.getItemsCount() - 1);
             if (itemAt instanceof ActionBarMenuSubItem) {
                 TextView textView = ((ActionBarMenuSubItem) itemAt).getTextView();
                 textView.setMaxWidth(HintView2.cutInFancyHalf(textView.getText(), textView.getPaint()) + textView.getPaddingLeft() + textView.getPaddingRight());
@@ -280,7 +290,8 @@ public class ItemOptions {
 
     public ItemOptions putPremiumLock(final Runnable runnable) {
         if (runnable != null && this.context != null && this.lastLayout.getItemsCount() > 0) {
-            View itemAt = this.lastLayout.getItemAt(r0.getItemsCount() - 1);
+            ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = this.lastLayout;
+            View itemAt = actionBarPopupWindowLayout.getItemAt(actionBarPopupWindowLayout.getItemsCount() - 1);
             if (!(itemAt instanceof ActionBarMenuSubItem)) {
                 return this;
             }
@@ -309,7 +320,8 @@ public class ItemOptions {
 
     public ItemOptions putCheck() {
         if (this.context != null && this.lastLayout.getItemsCount() > 0) {
-            View itemAt = this.lastLayout.getItemAt(r0.getItemsCount() - 1);
+            ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = this.lastLayout;
+            View itemAt = actionBarPopupWindowLayout.getItemAt(actionBarPopupWindowLayout.getItemsCount() - 1);
             if (!(itemAt instanceof ActionBarMenuSubItem)) {
                 return this;
             }
@@ -325,6 +337,10 @@ public class ItemOptions {
     public ItemOptions addGap() {
         ActionBarPopupWindow.GapView gapView = new ActionBarPopupWindow.GapView(this.context, this.resourcesProvider);
         gapView.setTag(R.id.fit_width_tag, 1);
+        Integer num = this.gapBackgroundColor;
+        if (num != null) {
+            gapView.setColor(num.intValue());
+        }
         addView(gapView, LayoutHelper.createLinear(-1, 8));
         return this;
     }
@@ -389,6 +405,8 @@ public class ItemOptions {
         TextView textView = new TextView(this.context);
         textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, this.resourcesProvider));
         textView.setTextSize(1, 16.0f);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        textView.setSingleLine(true);
         if (tLObject instanceof TLRPC$User) {
             textView.setText(UserObject.getUserName((TLRPC$User) tLObject));
         } else if (tLObject instanceof TLRPC$Chat) {
@@ -482,7 +500,8 @@ public class ItemOptions {
             if (linearLayout.getChildCount() <= 0) {
                 return null;
             }
-            View childAt = this.linearLayout.getChildAt(r0.getChildCount() - 1);
+            LinearLayout linearLayout2 = this.linearLayout;
+            View childAt = linearLayout2.getChildAt(linearLayout2.getChildCount() - 1);
             if (childAt instanceof ActionBarMenuSubItem) {
                 return (ActionBarMenuSubItem) childAt;
             }
@@ -492,7 +511,8 @@ public class ItemOptions {
         if (actionBarPopupWindowLayout == null || actionBarPopupWindowLayout.getItemsCount() <= 0) {
             return null;
         }
-        View itemAt = this.lastLayout.getItemAt(r0.getItemsCount() - 1);
+        ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout2 = this.lastLayout;
+        View itemAt = actionBarPopupWindowLayout2.getItemAt(actionBarPopupWindowLayout2.getItemsCount() - 1);
         if (itemAt instanceof ActionBarMenuSubItem) {
             return (ActionBarMenuSubItem) itemAt;
         }
@@ -567,118 +587,119 @@ public class ItemOptions {
     public ItemOptions show() {
         int width;
         int height;
-        if (this.actionBarPopupWindow != null || this.linearLayout != null || getItemsCount() <= 0) {
-            return this;
-        }
-        setupSelectors();
-        if (this.minWidthDp > 0) {
-            int i = 0;
-            while (i < this.layout.getChildCount() - 1) {
-                View childAt = i == this.layout.getChildCount() - 1 ? this.lastLayout : this.layout.getChildAt(i);
-                if (childAt instanceof ActionBarPopupWindow.ActionBarPopupWindowLayout) {
-                    ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = (ActionBarPopupWindow.ActionBarPopupWindowLayout) childAt;
-                    for (int i2 = 0; i2 < actionBarPopupWindowLayout.getItemsCount(); i2++) {
-                        actionBarPopupWindowLayout.getItemAt(i2).setMinimumWidth(AndroidUtilities.dp(this.minWidthDp));
+        if (this.actionBarPopupWindow == null && this.linearLayout == null && getItemsCount() > 0) {
+            setupSelectors();
+            if (this.minWidthDp > 0) {
+                int i = 0;
+                while (i < this.layout.getChildCount() - 1) {
+                    View childAt = i == this.layout.getChildCount() - 1 ? this.lastLayout : this.layout.getChildAt(i);
+                    if (childAt instanceof ActionBarPopupWindow.ActionBarPopupWindowLayout) {
+                        ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = (ActionBarPopupWindow.ActionBarPopupWindowLayout) childAt;
+                        for (int i2 = 0; i2 < actionBarPopupWindowLayout.getItemsCount(); i2++) {
+                            actionBarPopupWindowLayout.getItemAt(i2).setMinimumWidth(AndroidUtilities.dp(this.minWidthDp));
+                        }
                     }
+                    i++;
                 }
-                i++;
             }
-        }
-        final ViewGroup viewGroup = this.container;
-        if (viewGroup == null) {
-            viewGroup = this.fragment.getParentLayout().getOverlayContainerView();
-        }
-        if (this.context != null && viewGroup != null) {
-            float f = AndroidUtilities.displaySize.y / 2.0f;
-            View view = this.scrimView;
-            if (view != null) {
-                getPointOnScreen(view, viewGroup, this.point);
-                f = this.point[1];
+            final ViewGroup viewGroup = this.container;
+            if (viewGroup == null) {
+                viewGroup = this.fragment.getParentLayout().getOverlayContainerView();
             }
-            float f2 = f;
-            if (this.ignoreX) {
-                this.point[0] = 0.0f;
-            }
-            if (this.dimAlpha > 0) {
-                final DimView dimView = new DimView(this.context);
-                this.dimView = dimView;
-                this.preDrawListener = new ViewTreeObserver.OnPreDrawListener() {
+            if (this.context != null && viewGroup != null) {
+                float f = AndroidUtilities.displaySize.y / 2.0f;
+                View view = this.scrimView;
+                if (view != null) {
+                    getPointOnScreen(view, viewGroup, this.point);
+                    f = this.point[1];
+                }
+                float f2 = f;
+                if (this.ignoreX) {
+                    this.point[0] = 0.0f;
+                }
+                if (this.dimAlpha > 0) {
+                    final DimView dimView = new DimView(this.context);
+                    this.dimView = dimView;
+                    this.preDrawListener = new ViewTreeObserver.OnPreDrawListener() {
+                        @Override
+                        public final boolean onPreDraw() {
+                            boolean lambda$show$5;
+                            lambda$show$5 = ItemOptions.lambda$show$5(dimView);
+                            return lambda$show$5;
+                        }
+                    };
+                    viewGroup.getViewTreeObserver().addOnPreDrawListener(this.preDrawListener);
+                    viewGroup.addView(this.dimView, LayoutHelper.createFrame(-1, -1.0f));
+                    this.dimView.setAlpha(0.0f);
+                    this.dimView.animate().alpha(1.0f).setDuration(150L);
+                }
+                this.layout.measure(View.MeasureSpec.makeMeasureSpec(viewGroup.getMeasuredWidth(), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(viewGroup.getMeasuredHeight(), Integer.MIN_VALUE));
+                final ViewGroup viewGroup2 = viewGroup;
+                ActionBarPopupWindow actionBarPopupWindow = new ActionBarPopupWindow(this.layout, -2, -2) {
                     @Override
-                    public final boolean onPreDraw() {
-                        boolean lambda$show$5;
-                        lambda$show$5 = ItemOptions.lambda$show$5(dimView);
-                        return lambda$show$5;
+                    public void dismiss() {
+                        super.dismiss();
+                        ItemOptions.this.dismissDim(viewGroup2);
+                        if (ItemOptions.this.dismissListener != null) {
+                            ItemOptions.this.dismissListener.run();
+                            ItemOptions.this.dismissListener = null;
+                        }
                     }
                 };
-                viewGroup.getViewTreeObserver().addOnPreDrawListener(this.preDrawListener);
-                viewGroup.addView(this.dimView, LayoutHelper.createFrame(-1, -1.0f));
-                this.dimView.setAlpha(0.0f);
-                this.dimView.animate().alpha(1.0f).setDuration(150L);
-            }
-            this.layout.measure(View.MeasureSpec.makeMeasureSpec(viewGroup.getMeasuredWidth(), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(viewGroup.getMeasuredHeight(), Integer.MIN_VALUE));
-            final ViewGroup viewGroup2 = viewGroup;
-            ActionBarPopupWindow actionBarPopupWindow = new ActionBarPopupWindow(this.layout, -2, -2) {
-                @Override
-                public void dismiss() {
-                    super.dismiss();
-                    ItemOptions.this.dismissDim(viewGroup2);
-                    if (ItemOptions.this.dismissListener != null) {
-                        ItemOptions.this.dismissListener.run();
-                        ItemOptions.this.dismissListener = null;
+                this.actionBarPopupWindow = actionBarPopupWindow;
+                actionBarPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+                    @Override
+                    public void onDismiss() {
+                        ItemOptions.this.actionBarPopupWindow = null;
+                        ItemOptions.this.dismissDim(viewGroup);
+                        if (ItemOptions.this.dismissListener != null) {
+                            ItemOptions.this.dismissListener.run();
+                            ItemOptions.this.dismissListener = null;
+                        }
                     }
+                });
+                this.actionBarPopupWindow.setOutsideTouchable(true);
+                this.actionBarPopupWindow.setFocusable(true);
+                this.actionBarPopupWindow.setBackgroundDrawable(new ColorDrawable(0));
+                this.actionBarPopupWindow.setAnimationStyle(R.style.PopupContextAnimation);
+                this.actionBarPopupWindow.setInputMethodMode(2);
+                this.actionBarPopupWindow.setSoftInputMode(0);
+                if (AndroidUtilities.isTablet()) {
+                    f2 += viewGroup.getPaddingTop();
+                    viewGroup.getPaddingLeft();
                 }
-            };
-            this.actionBarPopupWindow = actionBarPopupWindow;
-            actionBarPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
-                @Override
-                public void onDismiss() {
-                    ItemOptions.this.actionBarPopupWindow = null;
-                    ItemOptions.this.dismissDim(viewGroup);
-                    if (ItemOptions.this.dismissListener != null) {
-                        ItemOptions.this.dismissListener.run();
-                        ItemOptions.this.dismissListener = null;
+                View view2 = this.scrimView;
+                if (view2 != null) {
+                    if (this.gravity == 5) {
+                        width = (int) (((this.point[0] + view2.getMeasuredWidth()) - this.layout.getMeasuredWidth()) + viewGroup.getX());
+                    } else {
+                        width = (int) (viewGroup.getX() + this.point[0]);
                     }
-                }
-            });
-            this.actionBarPopupWindow.setOutsideTouchable(true);
-            this.actionBarPopupWindow.setFocusable(true);
-            this.actionBarPopupWindow.setBackgroundDrawable(new ColorDrawable(0));
-            this.actionBarPopupWindow.setAnimationStyle(R.style.PopupContextAnimation);
-            this.actionBarPopupWindow.setInputMethodMode(2);
-            this.actionBarPopupWindow.setSoftInputMode(0);
-            if (AndroidUtilities.isTablet()) {
-                f2 += viewGroup.getPaddingTop();
-                viewGroup.getPaddingLeft();
-            }
-            if (this.scrimView != null) {
-                if (this.gravity == 5) {
-                    width = (int) (((this.point[0] + r1.getMeasuredWidth()) - this.layout.getMeasuredWidth()) + viewGroup.getX());
                 } else {
-                    width = (int) (viewGroup.getX() + this.point[0]);
+                    width = (viewGroup.getWidth() - this.layout.getMeasuredWidth()) / 2;
                 }
-            } else {
-                width = (viewGroup.getWidth() - this.layout.getMeasuredWidth()) / 2;
-            }
-            if (this.scrimView != null) {
-                if (this.forceTop || this.layout.getMeasuredHeight() + f2 + AndroidUtilities.dp(16.0f) > AndroidUtilities.displaySize.y) {
-                    f2 = (f2 - this.scrimView.getMeasuredHeight()) - this.layout.getMeasuredHeight();
+                if (this.scrimView != null) {
+                    if (this.forceTop || this.layout.getMeasuredHeight() + f2 + AndroidUtilities.dp(16.0f) > AndroidUtilities.displaySize.y) {
+                        f2 = (f2 - this.scrimView.getMeasuredHeight()) - this.layout.getMeasuredHeight();
+                    }
+                    height = (int) (f2 + this.scrimView.getMeasuredHeight() + viewGroup.getY());
+                } else {
+                    height = (viewGroup.getHeight() - this.layout.getMeasuredHeight()) / 2;
                 }
-                height = (int) (f2 + this.scrimView.getMeasuredHeight() + viewGroup.getY());
-            } else {
-                height = (viewGroup.getHeight() - this.layout.getMeasuredHeight()) / 2;
+                BaseFragment baseFragment = this.fragment;
+                if (baseFragment != null && baseFragment.getFragmentView() != null) {
+                    this.fragment.getFragmentView().getRootView().dispatchTouchEvent(AndroidUtilities.emptyMotionEvent());
+                } else if (this.container != null) {
+                    viewGroup.dispatchTouchEvent(AndroidUtilities.emptyMotionEvent());
+                }
+                ActionBarPopupWindow actionBarPopupWindow2 = this.actionBarPopupWindow;
+                float f3 = width + this.translateX;
+                this.offsetX = f3;
+                float f4 = height + this.translateY;
+                this.offsetY = f4;
+                actionBarPopupWindow2.showAtLocation(viewGroup, 0, (int) f3, (int) f4);
             }
-            BaseFragment baseFragment = this.fragment;
-            if (baseFragment != null && baseFragment.getFragmentView() != null) {
-                this.fragment.getFragmentView().getRootView().dispatchTouchEvent(AndroidUtilities.emptyMotionEvent());
-            } else if (this.container != null) {
-                viewGroup.dispatchTouchEvent(AndroidUtilities.emptyMotionEvent());
-            }
-            ActionBarPopupWindow actionBarPopupWindow2 = this.actionBarPopupWindow;
-            float f3 = width + this.translateX;
-            this.offsetX = f3;
-            float f4 = height + this.translateY;
-            this.offsetY = f4;
-            actionBarPopupWindow2.showAtLocation(viewGroup, 0, (int) f3, (int) f4);
+            return this;
         }
         return this;
     }
@@ -694,6 +715,70 @@ public class ItemOptions {
             View childAt = i2 == this.layout.getChildCount() + (-1) ? this.lastLayout : this.layout.getChildAt(i2);
             if (childAt instanceof ActionBarPopupWindow.ActionBarPopupWindowLayout) {
                 childAt.setBackgroundColor(i);
+            }
+            i2++;
+        }
+        return this;
+    }
+
+    public ItemOptions setGapBackgroundColor(int i) {
+        this.gapBackgroundColor = Integer.valueOf(i);
+        int i2 = 0;
+        while (i2 < this.layout.getChildCount()) {
+            View childAt = i2 == this.layout.getChildCount() + (-1) ? this.lastLayout : this.layout.getChildAt(i2);
+            if (childAt instanceof ActionBarPopupWindow.ActionBarPopupWindowLayout) {
+                ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = (ActionBarPopupWindow.ActionBarPopupWindowLayout) childAt;
+                for (int i3 = 0; i3 < actionBarPopupWindowLayout.getItemsCount(); i3++) {
+                    View itemAt = actionBarPopupWindowLayout.getItemAt(i3);
+                    if (itemAt instanceof ActionBarPopupWindow.GapView) {
+                        ((ActionBarPopupWindow.GapView) itemAt).setColor(i);
+                    }
+                }
+            } else if (childAt instanceof ActionBarPopupWindow.GapView) {
+                ((ActionBarPopupWindow.GapView) childAt).setColor(i);
+            }
+            i2++;
+        }
+        return this;
+    }
+
+    public ItemOptions setColors(int i, int i2) {
+        this.textColor = Integer.valueOf(i);
+        this.iconColor = Integer.valueOf(i2);
+        int i3 = 0;
+        while (i3 < this.layout.getChildCount()) {
+            View childAt = i3 == this.layout.getChildCount() + (-1) ? this.lastLayout : this.layout.getChildAt(i3);
+            if (childAt instanceof ActionBarPopupWindow.ActionBarPopupWindowLayout) {
+                ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = (ActionBarPopupWindow.ActionBarPopupWindowLayout) childAt;
+                for (int i4 = 0; i4 < actionBarPopupWindowLayout.getItemsCount(); i4++) {
+                    View itemAt = actionBarPopupWindowLayout.getItemAt(i4);
+                    if (itemAt instanceof ActionBarMenuSubItem) {
+                        ((ActionBarMenuSubItem) itemAt).setColors(i, i2);
+                    }
+                }
+            } else if (childAt instanceof ActionBarMenuSubItem) {
+                ((ActionBarMenuSubItem) childAt).setColors(i, i2);
+            }
+            i3++;
+        }
+        return this;
+    }
+
+    public ItemOptions setSelectorColor(int i) {
+        this.selectorColor = Integer.valueOf(i);
+        int i2 = 0;
+        while (i2 < this.layout.getChildCount()) {
+            View childAt = i2 == this.layout.getChildCount() + (-1) ? this.lastLayout : this.layout.getChildAt(i2);
+            if (childAt instanceof ActionBarPopupWindow.ActionBarPopupWindowLayout) {
+                ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = (ActionBarPopupWindow.ActionBarPopupWindowLayout) childAt;
+                for (int i3 = 0; i3 < actionBarPopupWindowLayout.getItemsCount(); i3++) {
+                    View itemAt = actionBarPopupWindowLayout.getItemAt(i3);
+                    if (itemAt instanceof ActionBarMenuSubItem) {
+                        ((ActionBarMenuSubItem) itemAt).setSelectorColor(i);
+                    }
+                }
+            } else if (childAt instanceof ActionBarMenuSubItem) {
+                ((ActionBarMenuSubItem) childAt).setSelectorColor(i);
             }
             i2++;
         }
@@ -814,7 +899,11 @@ public class ItemOptions {
                 }
                 canvas.translate(ItemOptions.this.point[0], ItemOptions.this.point[1]);
                 if (ItemOptions.this.scrimViewBackground != null) {
-                    ItemOptions.this.scrimViewBackground.setBounds(-ItemOptions.this.viewAdditionalOffsets.left, -ItemOptions.this.viewAdditionalOffsets.top, ItemOptions.this.scrimView.getWidth() + ItemOptions.this.viewAdditionalOffsets.right, ItemOptions.this.scrimView.getHeight() + ItemOptions.this.viewAdditionalOffsets.bottom);
+                    if (ItemOptions.this.scrimViewBackground.getIntrinsicWidth() > 0 && ItemOptions.this.scrimViewBackground.getIntrinsicHeight() > 0) {
+                        ItemOptions.this.scrimViewBackground.setBounds((-ItemOptions.this.viewAdditionalOffsets.left) + (((ItemOptions.this.scrimView.getWidth() + ItemOptions.this.viewAdditionalOffsets.right) - ItemOptions.this.scrimViewBackground.getIntrinsicWidth()) / 2), (-ItemOptions.this.viewAdditionalOffsets.top) + (((ItemOptions.this.scrimView.getHeight() + ItemOptions.this.viewAdditionalOffsets.bottom) - ItemOptions.this.scrimViewBackground.getIntrinsicHeight()) / 2), (-ItemOptions.this.viewAdditionalOffsets.left) + (((ItemOptions.this.scrimView.getWidth() + ItemOptions.this.viewAdditionalOffsets.right) + ItemOptions.this.scrimViewBackground.getIntrinsicWidth()) / 2), (-ItemOptions.this.viewAdditionalOffsets.top) + (((ItemOptions.this.scrimView.getHeight() + ItemOptions.this.viewAdditionalOffsets.bottom) + ItemOptions.this.scrimViewBackground.getIntrinsicHeight()) / 2));
+                    } else {
+                        ItemOptions.this.scrimViewBackground.setBounds(-ItemOptions.this.viewAdditionalOffsets.left, -ItemOptions.this.viewAdditionalOffsets.top, ItemOptions.this.scrimView.getWidth() + ItemOptions.this.viewAdditionalOffsets.right, ItemOptions.this.scrimView.getHeight() + ItemOptions.this.viewAdditionalOffsets.bottom);
+                    }
                     ItemOptions.this.scrimViewBackground.draw(canvas);
                 }
                 ItemOptions.this.scrimView.draw(canvas);
@@ -827,7 +916,11 @@ public class ItemOptions {
             }
             canvas.translate(ItemOptions.this.point[0], ItemOptions.this.point[1]);
             if (ItemOptions.this.scrimViewBackground != null) {
-                ItemOptions.this.scrimViewBackground.setBounds(-ItemOptions.this.viewAdditionalOffsets.left, -ItemOptions.this.viewAdditionalOffsets.top, ItemOptions.this.scrimView.getWidth() + ItemOptions.this.viewAdditionalOffsets.right, ItemOptions.this.scrimView.getHeight() + ItemOptions.this.viewAdditionalOffsets.bottom);
+                if (ItemOptions.this.scrimViewBackground.getIntrinsicWidth() > 0 && ItemOptions.this.scrimViewBackground.getIntrinsicHeight() > 0) {
+                    ItemOptions.this.scrimViewBackground.setBounds((-ItemOptions.this.viewAdditionalOffsets.left) + (((ItemOptions.this.scrimView.getWidth() + ItemOptions.this.viewAdditionalOffsets.right) - ItemOptions.this.scrimViewBackground.getIntrinsicWidth()) / 2), (-ItemOptions.this.viewAdditionalOffsets.top) + (((ItemOptions.this.scrimView.getHeight() + ItemOptions.this.viewAdditionalOffsets.bottom) - ItemOptions.this.scrimViewBackground.getIntrinsicHeight()) / 2), (-ItemOptions.this.viewAdditionalOffsets.left) + (((ItemOptions.this.scrimView.getWidth() + ItemOptions.this.viewAdditionalOffsets.right) + ItemOptions.this.scrimViewBackground.getIntrinsicWidth()) / 2), (-ItemOptions.this.viewAdditionalOffsets.top) + (((ItemOptions.this.scrimView.getHeight() + ItemOptions.this.viewAdditionalOffsets.bottom) + ItemOptions.this.scrimViewBackground.getIntrinsicHeight()) / 2));
+                } else {
+                    ItemOptions.this.scrimViewBackground.setBounds(-ItemOptions.this.viewAdditionalOffsets.left, -ItemOptions.this.viewAdditionalOffsets.top, ItemOptions.this.scrimView.getWidth() + ItemOptions.this.viewAdditionalOffsets.right, ItemOptions.this.scrimView.getHeight() + ItemOptions.this.viewAdditionalOffsets.bottom);
+                }
                 ItemOptions.this.scrimViewBackground.draw(canvas);
             }
             canvas.drawBitmap(this.cachedBitmap, -ItemOptions.this.viewAdditionalOffsets.left, -ItemOptions.this.viewAdditionalOffsets.top, this.cachedBitmapPaint);

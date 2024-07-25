@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_messages_discussionMessage extends TLObject {
     public int flags;
     public int max_id;

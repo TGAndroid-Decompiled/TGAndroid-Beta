@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_messages_getQuickReplyMessages extends TLObject {
     public int flags;
     public long hash;

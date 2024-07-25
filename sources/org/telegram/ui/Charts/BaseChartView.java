@@ -36,7 +36,6 @@ import org.telegram.ui.Charts.view_data.LegendSignatureView;
 import org.telegram.ui.Charts.view_data.LineViewData;
 import org.telegram.ui.Charts.view_data.TransitionParams;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-
 public abstract class BaseChartView<T extends ChartData, L extends LineViewData> extends View implements ChartPickerDelegate.Listener {
     protected static final boolean ANIMATE_PICKER_SIZES;
     public static FastOutSlowInInterpolator INTERPOLATOR;
@@ -365,9 +364,8 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
         if (getMeasuredWidth() != this.lastW || getMeasuredHeight() != this.lastH) {
             this.lastW = getMeasuredWidth();
             this.lastH = getMeasuredHeight();
-            float measuredWidth = getMeasuredWidth();
             float f = HORIZONTAL_PADDING;
-            this.bottomChartBitmap = Bitmap.createBitmap((int) (measuredWidth - (f * 2.0f)), this.pikerHeight, Bitmap.Config.ARGB_4444);
+            this.bottomChartBitmap = Bitmap.createBitmap((int) (getMeasuredWidth() - (f * 2.0f)), this.pikerHeight, Bitmap.Config.ARGB_4444);
             this.bottomChartCanvas = new Canvas(this.bottomChartBitmap);
             this.sharedUiComponents.getPickerMaskBitmap(this.pikerHeight, (int) (getMeasuredWidth() - (2.0f * f)));
             measureSizes();
@@ -389,13 +387,12 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
         if (getMeasuredHeight() <= 0 || getMeasuredWidth() <= 0) {
             return;
         }
-        float measuredWidth = getMeasuredWidth();
         float f = HORIZONTAL_PADDING;
-        this.pickerWidth = measuredWidth - (2.0f * f);
+        this.pickerWidth = getMeasuredWidth() - (2.0f * f);
         this.chartStart = f;
-        float measuredWidth2 = getMeasuredWidth() - (this.landscape ? LANDSCAPE_END_PADDING : f);
-        this.chartEnd = measuredWidth2;
-        float f2 = measuredWidth2 - this.chartStart;
+        float measuredWidth = getMeasuredWidth() - (this.landscape ? LANDSCAPE_END_PADDING : f);
+        this.chartEnd = measuredWidth;
+        float f2 = measuredWidth - this.chartStart;
         this.chartWidth = f2;
         ChartPickerDelegate chartPickerDelegate = this.pickerDelegate;
         this.chartFullWidth = f2 / (chartPickerDelegate.pickerEnd - chartPickerDelegate.pickerStart);
@@ -526,9 +523,8 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
             while (true) {
                 if (i6 % i4 == 0 && i6 >= this.chartData.x.length - 1) {
                     break;
-                } else {
-                    i6++;
                 }
+                i6++;
             }
             int i7 = this.bottomSignatureOffset;
             int i8 = i6 + i7;
@@ -562,6 +558,7 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
     }
 
     public void drawBottomLine(Canvas canvas) {
+        int measuredHeight;
         if (this.chartData == null) {
             return;
         }
@@ -578,12 +575,12 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
         this.signaturePaint.setAlpha((int) (this.signaturePaintAlpha * 255.0f * f));
         this.signaturePaint2.setAlpha((int) (this.signaturePaintAlpha * 255.0f * f));
         int textSize = (int) (SIGNATURE_TEXT_HEIGHT - this.signaturePaint.getTextSize());
-        float measuredHeight = (getMeasuredHeight() - this.chartBottom) - 1;
-        canvas.drawLine(this.chartStart, measuredHeight, this.chartEnd, measuredHeight, this.linePaint);
+        float measuredHeight2 = (getMeasuredHeight() - this.chartBottom) - 1;
+        canvas.drawLine(this.chartStart, measuredHeight2, this.chartEnd, measuredHeight2, this.linePaint);
         if (this.useMinHeight) {
             return;
         }
-        canvas.drawText("0", HORIZONTAL_PADDING, r1 - textSize, this.signaturePaint);
+        canvas.drawText("0", HORIZONTAL_PADDING, measuredHeight - textSize, this.signaturePaint);
     }
 
     public void drawSelection(Canvas canvas) {
@@ -796,14 +793,14 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
             this.capturedX = x;
             this.lastY = y;
             this.capturedY = y;
-            if (!this.chartArea.contains(x, y)) {
-                return false;
+            if (this.chartArea.contains(x, y)) {
+                if (this.selectedIndex < 0 || !this.animateLegentTo) {
+                    this.chartCaptured = true;
+                    selectXOnChart(x, y);
+                }
+                return true;
             }
-            if (this.selectedIndex < 0 || !this.animateLegentTo) {
-                this.chartCaptured = true;
-                selectXOnChart(x, y);
-            }
-            return true;
+            return false;
         }
         if (actionMasked != 1) {
             if (actionMasked == 2) {
@@ -832,16 +829,15 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
                     }
                 }
                 return true;
-            }
-            if (actionMasked != 3) {
-                if (actionMasked == 5) {
-                    return this.pickerDelegate.capture(x, y, motionEvent.getActionIndex());
+            } else if (actionMasked != 3) {
+                if (actionMasked != 5) {
+                    if (actionMasked != 6) {
+                        return false;
+                    }
+                    this.pickerDelegate.uncapture(motionEvent, motionEvent.getActionIndex());
+                    return true;
                 }
-                if (actionMasked != 6) {
-                    return false;
-                }
-                this.pickerDelegate.uncapture(motionEvent, motionEvent.getActionIndex());
-                return true;
+                return this.pickerDelegate.capture(x, y, motionEvent.getActionIndex());
             }
         }
         if (this.pickerDelegate.uncapture(motionEvent, motionEvent.getActionIndex())) {
@@ -1012,12 +1008,11 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
                     this.pickerDelegate.minDistance = getMinDistance();
                     ChartPickerDelegate chartPickerDelegate2 = this.pickerDelegate;
                     float f = chartPickerDelegate2.pickerEnd;
-                    float f2 = f - chartPickerDelegate2.pickerStart;
-                    float f3 = chartPickerDelegate2.minDistance;
-                    if (f2 < f3) {
-                        float f4 = f - f3;
-                        chartPickerDelegate2.pickerStart = f4;
-                        if (f4 < 0.0f) {
+                    float f2 = chartPickerDelegate2.minDistance;
+                    if (f - chartPickerDelegate2.pickerStart < f2) {
+                        float f3 = f - f2;
+                        chartPickerDelegate2.pickerStart = f3;
+                        if (f3 < 0.0f) {
                             chartPickerDelegate2.pickerStart = 0.0f;
                             chartPickerDelegate2.pickerEnd = 1.0f;
                         }
@@ -1031,7 +1026,7 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
             updateIndexes();
             setMaxMinValue(findMaxValue(this.startXIndex, this.endXIndex), this.useMinHeight ? findMinValue(this.startXIndex, this.endXIndex) : 0L, false);
             this.pickerMaxHeight = 0.0f;
-            this.pickerMinHeight = 2.1474836E9f;
+            this.pickerMinHeight = 2.14748365E9f;
             initPickerMaxHeight();
             int i2 = t.yTooltipFormatter;
             if (i2 == 1 || i2 == 2) {

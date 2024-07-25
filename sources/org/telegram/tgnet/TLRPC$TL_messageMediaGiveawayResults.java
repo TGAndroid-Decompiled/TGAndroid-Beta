@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_messageMediaGiveawayResults extends TLRPC$MessageMedia {
     public int additional_peers_count;
     public long channel_id;

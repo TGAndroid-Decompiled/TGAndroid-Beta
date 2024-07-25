@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_payments_getStarsTransactions extends TLObject {
     public int flags;
     public boolean inbound;

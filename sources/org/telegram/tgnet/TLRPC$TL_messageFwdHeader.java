@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import org.telegram.messenger.LiteMode;
-
 public class TLRPC$TL_messageFwdHeader extends TLRPC$MessageFwdHeader {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

@@ -15,7 +15,6 @@ import org.telegram.tgnet.TLRPC$TL_videoSizeEmojiMarkup;
 import org.telegram.tgnet.TLRPC$TL_videoSizeStickerMarkup;
 import org.telegram.tgnet.TLRPC$VideoSize;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
-
 public class VectorAvatarThumbDrawable extends Drawable implements AnimatedEmojiSpan.InvalidateHolder, AttachableDrawable, NotificationCenter.NotificationCenterDelegate {
     AnimatedEmojiDrawable animatedEmojiDrawable;
     final int currentAccount;
@@ -59,9 +58,7 @@ public class VectorAvatarThumbDrawable extends Drawable implements AnimatedEmoji
             AnimatedEmojiDrawable animatedEmojiDrawable = new AnimatedEmojiDrawable(i2, UserConfig.selectedAccount, tLRPC$TL_videoSizeEmojiMarkup.emoji_id);
             this.animatedEmojiDrawable = animatedEmojiDrawable;
             animatedEmojiDrawable.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-            return;
-        }
-        if (tLRPC$VideoSize instanceof TLRPC$TL_videoSizeStickerMarkup) {
+        } else if (tLRPC$VideoSize instanceof TLRPC$TL_videoSizeStickerMarkup) {
             this.sizeStickerMarkup = (TLRPC$TL_videoSizeStickerMarkup) tLRPC$VideoSize;
             ImageReceiver imageReceiver = new ImageReceiver() {
                 @Override
@@ -84,9 +81,10 @@ public class VectorAvatarThumbDrawable extends Drawable implements AnimatedEmoji
 
     @Override
     public void draw(Canvas canvas) {
+        ImageReceiver imageReceiver;
         this.gradientTools.setBounds(getBounds().left, getBounds().top, getBounds().right, getBounds().bottom);
         if (this.currentParent != null) {
-            this.roundRadius = r0.getRoundRadius()[0];
+            this.roundRadius = imageReceiver.getRoundRadius()[0];
         }
         float f = this.roundRadius;
         if (f == 0.0f) {
@@ -106,10 +104,10 @@ public class VectorAvatarThumbDrawable extends Drawable implements AnimatedEmoji
             this.animatedEmojiDrawable.setBounds(centerX - width, centerY - width, centerX + width, centerY + width);
             this.animatedEmojiDrawable.draw(canvas);
         }
-        ImageReceiver imageReceiver = this.imageReceiver;
-        if (imageReceiver != null) {
+        ImageReceiver imageReceiver2 = this.imageReceiver;
+        if (imageReceiver2 != null) {
             float f2 = width * 2;
-            imageReceiver.setRoundRadius((int) (0.13f * f2));
+            imageReceiver2.setRoundRadius((int) (0.13f * f2));
             this.imageReceiver.setImageCoords(centerX - width, centerY - width, f2, f2);
             this.imageReceiver.draw(canvas);
         }

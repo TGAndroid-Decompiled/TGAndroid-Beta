@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_getCommonChats extends TLObject {
     public int limit;
     public long max_id;

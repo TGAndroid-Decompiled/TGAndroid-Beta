@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import org.telegram.messenger.LiteMode;
-
 public class TLRPC$TL_channelAdminLogEventsFilter extends TLObject {
     public boolean ban;
     public boolean delete;

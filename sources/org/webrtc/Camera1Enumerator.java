@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import org.webrtc.CameraEnumerationAndroid;
 import org.webrtc.CameraVideoCapturer;
-
 public class Camera1Enumerator implements CameraEnumerator {
     private static final String TAG = "Camera1Enumerator";
     private static List<List<CameraEnumerationAndroid.CaptureFormat>> cachedSupportedFormats;
@@ -110,7 +109,8 @@ public class Camera1Enumerator implements CameraEnumerator {
                 } catch (Exception e) {
                     Logging.e(TAG, "getSupportedFormats() failed on camera index " + i, e);
                 }
-                Logging.d(TAG, "Get supported formats for camera index " + i + " done. Time spent: " + (SystemClock.elapsedRealtime() - elapsedRealtime) + " ms.");
+                long elapsedRealtime2 = SystemClock.elapsedRealtime();
+                Logging.d(TAG, "Get supported formats for camera index " + i + " done. Time spent: " + (elapsedRealtime2 - elapsedRealtime) + " ms.");
                 return arrayList;
             } catch (RuntimeException e2) {
                 Logging.e(TAG, "Open camera failed on camera index " + i, e2);
@@ -159,6 +159,7 @@ public class Camera1Enumerator implements CameraEnumerator {
         if (cameraInfo == null) {
             return null;
         }
-        return "Camera " + i + ", Facing " + (cameraInfo.facing == 1 ? "front" : "back") + ", Orientation " + cameraInfo.orientation;
+        String str = cameraInfo.facing == 1 ? "front" : "back";
+        return "Camera " + i + ", Facing " + str + ", Orientation " + cameraInfo.orientation;
     }
 }

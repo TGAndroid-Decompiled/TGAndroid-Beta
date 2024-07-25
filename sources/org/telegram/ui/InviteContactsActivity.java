@@ -58,7 +58,6 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.StickerEmptyView;
 import org.telegram.ui.InviteContactsActivity;
-
 public class InviteContactsActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate, View.OnClickListener {
     private InviteAdapter adapter;
     private int containerHeight;
@@ -339,7 +338,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    InviteContactsActivity.this.lambda$onBackPressed$306();
+                    InviteContactsActivity.this.finishFragment();
                 }
             }
         });
@@ -613,13 +612,10 @@ public class InviteContactsActivity extends BaseFragment implements Notification
                 String inviteText = ContactsController.getInstance(this.currentAccount).getInviteText(0);
                 intent.putExtra("android.intent.extra.TEXT", inviteText);
                 getParentActivity().startActivityForResult(Intent.createChooser(intent, inviteText), 500);
-                return;
             } catch (Exception e) {
                 FileLog.e(e);
-                return;
             }
-        }
-        if ((view instanceof InviteUserCell) && (contact = (inviteUserCell = (InviteUserCell) view).getContact()) != null) {
+        } else if ((view instanceof InviteUserCell) && (contact = (inviteUserCell = (InviteUserCell) view).getContact()) != null) {
             boolean containsKey = this.selectedContacts.containsKey(contact.key);
             if (containsKey) {
                 this.spansContainer.removeSpan(this.selectedContacts.get(contact.key));
@@ -660,7 +656,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         } catch (Exception e) {
             FileLog.e(e);
         }
-        lambda$onBackPressed$306();
+        finishFragment();
     }
 
     @Override
@@ -677,10 +673,8 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         StickerEmptyView stickerEmptyView;
         if (i == NotificationCenter.contactsImported) {
             fetchContacts();
+        } else if (i != NotificationCenter.contactsDidLoad || (stickerEmptyView = this.emptyView) == null) {
         } else {
-            if (i != NotificationCenter.contactsDidLoad || (stickerEmptyView = this.emptyView) == null) {
-                return;
-            }
             stickerEmptyView.showProgress(false);
         }
     }
@@ -715,11 +709,11 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         if (this.selectedContacts.isEmpty()) {
             this.infoTextView.setVisibility(0);
             this.counterView.setVisibility(4);
-        } else {
-            this.infoTextView.setVisibility(4);
-            this.counterView.setVisibility(0);
-            this.counterTextView.setText(String.format("%d", Integer.valueOf(this.selectedContacts.size())));
+            return;
         }
+        this.infoTextView.setVisibility(4);
+        this.counterView.setVisibility(0);
+        this.counterTextView.setText(String.format("%d", Integer.valueOf(this.selectedContacts.size())));
     }
 
     public void closeSearch() {
@@ -859,11 +853,11 @@ public class InviteContactsActivity extends BaseFragment implements Notification
                 this.searchResult.clear();
                 this.searchResultNames.clear();
                 notifyDataSetChanged();
-            } else {
-                Timer timer2 = new Timer();
-                this.searchTimer = timer2;
-                timer2.schedule(new AnonymousClass1(str), 200L, 300L);
+                return;
             }
+            Timer timer2 = new Timer();
+            this.searchTimer = timer2;
+            timer2.schedule(new AnonymousClass1(str), 200L, 300L);
         }
 
         public class AnonymousClass1 extends TimerTask {

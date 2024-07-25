@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updateStarsRevenueStatus extends TLRPC$Update {
     public TLRPC$Peer peer;
     public TLRPC$TL_starsRevenueStatus status;

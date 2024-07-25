@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updateWebViewResultSent extends TLRPC$Update {
     public long query_id;
 

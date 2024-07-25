@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_payments_sendStarsForm extends TLObject {
     public int flags;
     public long form_id;

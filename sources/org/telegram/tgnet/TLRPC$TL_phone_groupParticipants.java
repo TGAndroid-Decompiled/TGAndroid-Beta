@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_phone_groupParticipants extends TLObject {
     public int count;
     public String next_offset;

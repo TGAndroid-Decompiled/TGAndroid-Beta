@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_uninstallStickerSet extends TLObject {
     public TLRPC$InputStickerSet stickerset;
 

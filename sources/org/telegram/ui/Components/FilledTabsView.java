@@ -10,7 +10,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-
 public class FilledTabsView extends View {
     private final Paint backgroundPaint;
     private RectF[] bounds;
@@ -94,26 +93,24 @@ public class FilledTabsView extends View {
                 i2 = i3 + 1;
             } else {
                 AndroidUtilities.dp(2.0f);
-                float dp5 = (height - AndroidUtilities.dp(26.0f)) / 2.0f;
-                float dp6 = (height + AndroidUtilities.dp(26.0f)) / 2.0f;
                 int clamp = Utilities.clamp((int) Math.floor(this.selectedTabIndex), this.tabs.length - 1, 0);
                 int clamp2 = Utilities.clamp((int) Math.ceil(this.selectedTabIndex), this.tabs.length - 1, 0);
-                float dp7 = this.bounds[clamp].left + AndroidUtilities.dp(2.0f);
-                float dp8 = this.bounds[clamp2].left + AndroidUtilities.dp(2.0f);
+                float dp5 = this.bounds[clamp].left + AndroidUtilities.dp(2.0f);
+                float dp6 = this.bounds[clamp2].left + AndroidUtilities.dp(2.0f);
                 float f2 = this.selectedTabIndex;
                 double d = f2;
                 double floor = Math.floor(f2);
                 Double.isNaN(d);
-                float lerp = AndroidUtilities.lerp(dp7, dp8, (float) (d - floor));
-                float dp9 = this.bounds[clamp].right - AndroidUtilities.dp(2.0f);
-                float dp10 = this.bounds[clamp2].right - AndroidUtilities.dp(2.0f);
+                float lerp = AndroidUtilities.lerp(dp5, dp6, (float) (d - floor));
+                float dp7 = this.bounds[clamp].right - AndroidUtilities.dp(2.0f);
+                float dp8 = this.bounds[clamp2].right - AndroidUtilities.dp(2.0f);
                 float f3 = this.selectedTabIndex;
                 double d2 = f3;
                 double floor2 = Math.floor(f3);
                 Double.isNaN(d2);
-                float lerp2 = AndroidUtilities.lerp(dp9, dp10, (float) (d2 - floor2));
+                float lerp2 = AndroidUtilities.lerp(dp7, dp8, (float) (d2 - floor2));
                 RectF rectF2 = AndroidUtilities.rectTmp;
-                rectF2.set(lerp, dp5, lerp2, dp6);
+                rectF2.set(lerp, (height - AndroidUtilities.dp(26.0f)) / 2.0f, lerp2, (height + AndroidUtilities.dp(26.0f)) / 2.0f);
                 canvas.drawRoundRect(rectF2, AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), this.selectedPaint);
                 canvas.restore();
                 return;
@@ -132,11 +129,11 @@ public class FilledTabsView extends View {
             if (i >= rectFArr.length) {
                 i = -1;
                 break;
-            }
-            if (rectFArr[i].contains(motionEvent.getX(), motionEvent.getY())) {
+            } else if (rectFArr[i].contains(motionEvent.getX(), motionEvent.getY())) {
                 break;
+            } else {
+                i++;
             }
-            i++;
         }
         if (i >= 0 && i != this.lastPressedIndex) {
             this.lastPressedIndex = i;

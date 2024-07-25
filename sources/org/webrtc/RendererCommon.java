@@ -2,7 +2,6 @@ package org.webrtc;
 
 import android.graphics.Point;
 import android.opengl.Matrix;
-
 public class RendererCommon {
     private static float BALANCED_VISIBLE_FRACTION = 0.5625f;
 
@@ -124,16 +123,16 @@ public class RendererCommon {
 
     public static float convertScalingTypeToVisibleFraction(ScalingType scalingType) {
         int i = AnonymousClass1.$SwitchMap$org$webrtc$RendererCommon$ScalingType[scalingType.ordinal()];
-        if (i == 1) {
-            return 1.0f;
-        }
-        if (i == 2) {
+        if (i != 1) {
+            if (i != 2) {
+                if (i == 3) {
+                    return BALANCED_VISIBLE_FRACTION;
+                }
+                throw new IllegalArgumentException();
+            }
             return 0.0f;
         }
-        if (i == 3) {
-            return BALANCED_VISIBLE_FRACTION;
-        }
-        throw new IllegalArgumentException();
+        return 1.0f;
     }
 
     public static Point getDisplaySize(float f, float f2, int i, int i2) {

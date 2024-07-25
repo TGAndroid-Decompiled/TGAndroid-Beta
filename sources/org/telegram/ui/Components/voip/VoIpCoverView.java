@@ -13,7 +13,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-
 @SuppressLint({"ViewConstructor"})
 public class VoIpCoverView extends View {
     private final boolean allowAnimations;

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_decryptedMessageMediaExternalDocument extends TLRPC$DecryptedMessageMedia {
     public TLRPC$PhotoSize thumb;
 

@@ -53,7 +53,6 @@ import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.QRCodeBottomSheet;
 import org.telegram.ui.Components.RLottieDrawable;
-
 public class ProxySettingsActivity extends BaseFragment {
     private boolean addingNewProxy;
     private TextInfoPrivacyCell[] bottomCells;
@@ -144,46 +143,44 @@ public class ProxySettingsActivity extends BaseFragment {
             public void onItemClick(int i) {
                 boolean z;
                 if (i == -1) {
-                    ProxySettingsActivity.this.lambda$onBackPressed$306();
-                    return;
-                }
-                if (i != 1 || ProxySettingsActivity.this.getParentActivity() == null) {
-                    return;
-                }
-                ProxySettingsActivity.this.currentProxyInfo.address = ProxySettingsActivity.this.inputFields[0].getText().toString();
-                ProxySettingsActivity.this.currentProxyInfo.port = Utilities.parseInt((CharSequence) ProxySettingsActivity.this.inputFields[1].getText().toString()).intValue();
-                if (ProxySettingsActivity.this.currentType == 0) {
-                    ProxySettingsActivity.this.currentProxyInfo.secret = "";
-                    ProxySettingsActivity.this.currentProxyInfo.username = ProxySettingsActivity.this.inputFields[2].getText().toString();
-                    ProxySettingsActivity.this.currentProxyInfo.password = ProxySettingsActivity.this.inputFields[3].getText().toString();
+                    ProxySettingsActivity.this.finishFragment();
+                } else if (i != 1 || ProxySettingsActivity.this.getParentActivity() == null) {
                 } else {
-                    ProxySettingsActivity.this.currentProxyInfo.secret = ProxySettingsActivity.this.inputFields[4].getText().toString();
-                    ProxySettingsActivity.this.currentProxyInfo.username = "";
-                    ProxySettingsActivity.this.currentProxyInfo.password = "";
+                    ProxySettingsActivity.this.currentProxyInfo.address = ProxySettingsActivity.this.inputFields[0].getText().toString();
+                    ProxySettingsActivity.this.currentProxyInfo.port = Utilities.parseInt((CharSequence) ProxySettingsActivity.this.inputFields[1].getText().toString()).intValue();
+                    if (ProxySettingsActivity.this.currentType == 0) {
+                        ProxySettingsActivity.this.currentProxyInfo.secret = "";
+                        ProxySettingsActivity.this.currentProxyInfo.username = ProxySettingsActivity.this.inputFields[2].getText().toString();
+                        ProxySettingsActivity.this.currentProxyInfo.password = ProxySettingsActivity.this.inputFields[3].getText().toString();
+                    } else {
+                        ProxySettingsActivity.this.currentProxyInfo.secret = ProxySettingsActivity.this.inputFields[4].getText().toString();
+                        ProxySettingsActivity.this.currentProxyInfo.username = "";
+                        ProxySettingsActivity.this.currentProxyInfo.password = "";
+                    }
+                    SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
+                    SharedPreferences.Editor edit = globalMainSettings.edit();
+                    if (ProxySettingsActivity.this.addingNewProxy) {
+                        SharedConfig.addProxy(ProxySettingsActivity.this.currentProxyInfo);
+                        SharedConfig.currentProxy = ProxySettingsActivity.this.currentProxyInfo;
+                        edit.putBoolean("proxy_enabled", true);
+                        z = true;
+                    } else {
+                        boolean z2 = globalMainSettings.getBoolean("proxy_enabled", false);
+                        SharedConfig.saveProxyList();
+                        z = z2;
+                    }
+                    if (ProxySettingsActivity.this.addingNewProxy || SharedConfig.currentProxy == ProxySettingsActivity.this.currentProxyInfo) {
+                        edit.putString("proxy_ip", ProxySettingsActivity.this.currentProxyInfo.address);
+                        edit.putString("proxy_pass", ProxySettingsActivity.this.currentProxyInfo.password);
+                        edit.putString("proxy_user", ProxySettingsActivity.this.currentProxyInfo.username);
+                        edit.putInt("proxy_port", ProxySettingsActivity.this.currentProxyInfo.port);
+                        edit.putString("proxy_secret", ProxySettingsActivity.this.currentProxyInfo.secret);
+                        ConnectionsManager.setProxySettings(z, ProxySettingsActivity.this.currentProxyInfo.address, ProxySettingsActivity.this.currentProxyInfo.port, ProxySettingsActivity.this.currentProxyInfo.username, ProxySettingsActivity.this.currentProxyInfo.password, ProxySettingsActivity.this.currentProxyInfo.secret);
+                    }
+                    edit.commit();
+                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.proxySettingsChanged, new Object[0]);
+                    ProxySettingsActivity.this.finishFragment();
                 }
-                SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
-                SharedPreferences.Editor edit = globalMainSettings.edit();
-                if (ProxySettingsActivity.this.addingNewProxy) {
-                    SharedConfig.addProxy(ProxySettingsActivity.this.currentProxyInfo);
-                    SharedConfig.currentProxy = ProxySettingsActivity.this.currentProxyInfo;
-                    edit.putBoolean("proxy_enabled", true);
-                    z = true;
-                } else {
-                    boolean z2 = globalMainSettings.getBoolean("proxy_enabled", false);
-                    SharedConfig.saveProxyList();
-                    z = z2;
-                }
-                if (ProxySettingsActivity.this.addingNewProxy || SharedConfig.currentProxy == ProxySettingsActivity.this.currentProxyInfo) {
-                    edit.putString("proxy_ip", ProxySettingsActivity.this.currentProxyInfo.address);
-                    edit.putString("proxy_pass", ProxySettingsActivity.this.currentProxyInfo.password);
-                    edit.putString("proxy_user", ProxySettingsActivity.this.currentProxyInfo.username);
-                    edit.putInt("proxy_port", ProxySettingsActivity.this.currentProxyInfo.port);
-                    edit.putString("proxy_secret", ProxySettingsActivity.this.currentProxyInfo.secret);
-                    ConnectionsManager.setProxySettings(z, ProxySettingsActivity.this.currentProxyInfo.address, ProxySettingsActivity.this.currentProxyInfo.port, ProxySettingsActivity.this.currentProxyInfo.username, ProxySettingsActivity.this.currentProxyInfo.password, ProxySettingsActivity.this.currentProxyInfo.secret);
-                }
-                edit.commit();
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.proxySettingsChanged, new Object[0]);
-                ProxySettingsActivity.this.lambda$onBackPressed$306();
             }
         });
         ActionBarMenuItem addItemWithWidth = this.actionBar.createMenu().addItemWithWidth(1, R.drawable.ic_ab_done, AndroidUtilities.dp(56.0f));
@@ -329,7 +326,8 @@ public class ProxySettingsActivity extends BaseFragment {
                 this.inputFields[i2].setText(this.currentProxyInfo.address);
             } else if (i2 == 1) {
                 this.inputFields[i2].setHintText(LocaleController.getString("UseProxyPort", R.string.UseProxyPort));
-                this.inputFields[i2].setText("" + this.currentProxyInfo.port);
+                EditTextBoldCursor editTextBoldCursor2 = this.inputFields[i2];
+                editTextBoldCursor2.setText("" + this.currentProxyInfo.port);
             } else if (i2 == 2) {
                 this.inputFields[i2].setHintText(LocaleController.getString("UseProxyUsername", R.string.UseProxyUsername));
                 this.inputFields[i2].setText(this.currentProxyInfo.username);
@@ -360,7 +358,8 @@ public class ProxySettingsActivity extends BaseFragment {
             if (i5 == 0) {
                 this.bottomCells[i5].setText(LocaleController.getString("UseProxyInfo", R.string.UseProxyInfo));
             } else {
-                this.bottomCells[i5].setText(LocaleController.getString("UseProxyTelegramInfo", R.string.UseProxyTelegramInfo) + "\n\n" + LocaleController.getString("UseProxyTelegramInfo2", R.string.UseProxyTelegramInfo2));
+                TextInfoPrivacyCell textInfoPrivacyCell = this.bottomCells[i5];
+                textInfoPrivacyCell.setText(LocaleController.getString("UseProxyTelegramInfo", R.string.UseProxyTelegramInfo) + "\n\n" + LocaleController.getString("UseProxyTelegramInfo2", R.string.UseProxyTelegramInfo2));
                 this.bottomCells[i5].setVisibility(8);
             }
             this.linearLayout2.addView(this.bottomCells[i5], LayoutHelper.createLinear(-1, -2));
@@ -421,11 +420,11 @@ public class ProxySettingsActivity extends BaseFragment {
 
     public boolean lambda$createView$1(TextView textView, int i, KeyEvent keyEvent) {
         if (i != 5) {
-            if (i != 6) {
-                return false;
+            if (i == 6) {
+                finishFragment();
+                return true;
             }
-            lambda$onBackPressed$306();
-            return true;
+            return false;
         }
         int intValue = ((Integer) textView.getTag()).intValue() + 1;
         EditTextBoldCursor[] editTextBoldCursorArr = this.inputFields;

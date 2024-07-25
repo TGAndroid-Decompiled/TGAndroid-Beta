@@ -5,7 +5,6 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
-
 public class SizeNotifierFrameLayoutPhoto extends SizeNotifierFrameLayout {
     private Activity activity;
     private int keyboardHeight;

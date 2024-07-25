@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 import org.telegram.messenger.LiteMode;
-
 public abstract class TLRPC$DialogFilter extends TLObject {
     public boolean bots;
     public boolean broadcasts;

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$Peer extends TLObject {
     public long channel_id;
     public long chat_id;

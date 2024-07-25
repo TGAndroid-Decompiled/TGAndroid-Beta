@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_inputPhoneContact extends TLObject {
     public long client_id;
     public String first_name;

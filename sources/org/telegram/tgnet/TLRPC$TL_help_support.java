@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_help_support extends TLObject {
     public String phone_number;
     public TLRPC$User user;

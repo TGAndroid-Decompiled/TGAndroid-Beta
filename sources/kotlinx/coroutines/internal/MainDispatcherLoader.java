@@ -6,7 +6,6 @@ import kotlin.sequences.Sequence;
 import kotlin.sequences.SequencesKt__SequencesKt;
 import kotlin.sequences.SequencesKt___SequencesKt;
 import kotlinx.coroutines.MainCoroutineDispatcher;
-
 public final class MainDispatcherLoader {
     private static final boolean FAST_SERVICE_LOADER_ENABLED;
     public static final MainDispatcherLoader INSTANCE;

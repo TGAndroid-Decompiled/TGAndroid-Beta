@@ -10,7 +10,6 @@ import android.view.View;
 import androidx.annotation.Keep;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-
 public class NumberTextView extends View {
     private boolean addNumber;
     private ObjectAnimator animator;

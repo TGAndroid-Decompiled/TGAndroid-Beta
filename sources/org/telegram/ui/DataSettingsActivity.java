@@ -43,7 +43,6 @@ import org.telegram.ui.Cells.TextSettingsCell;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
-
 public class DataSettingsActivity extends BaseFragment {
     private int callsSection2Row;
     private int callsSectionRow;
@@ -310,7 +309,7 @@ public class DataSettingsActivity extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    DataSettingsActivity.this.lambda$onBackPressed$306();
+                    DataSettingsActivity.this.finishFragment();
                 }
             }
         });
@@ -318,7 +317,6 @@ public class DataSettingsActivity extends BaseFragment {
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
         frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
-        FrameLayout frameLayout2 = (FrameLayout) this.fragmentView;
         RecyclerListView recyclerListView = new RecyclerListView(context) {
             @Override
             public Integer getSelectorColor(int i) {
@@ -331,7 +329,7 @@ public class DataSettingsActivity extends BaseFragment {
         this.listView = recyclerListView;
         recyclerListView.setVerticalScrollBarEnabled(false);
         this.listView.setLayoutManager(new LinearLayoutManager(context, 1, false));
-        frameLayout2.addView(this.listView, LayoutHelper.createFrame(-1, -1, 51));
+        ((FrameLayout) this.fragmentView).addView(this.listView, LayoutHelper.createFrame(-1, -1, 51));
         this.listView.setAdapter(this.listAdapter);
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListenerExtended() {
             @Override
