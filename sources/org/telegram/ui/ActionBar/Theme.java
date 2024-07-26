@@ -932,8 +932,9 @@ public class Theme {
     public static final int key_inappPlayerPerformer;
     public static final int key_inappPlayerPlayPause;
     public static final int key_inappPlayerTitle;
-    public static final int key_iv_ab_background;
     public static final int key_iv_ab_progress;
+    public static final int key_iv_background;
+    public static final int key_iv_backgroundGray;
     public static final int key_listSelector;
     public static final int key_location_actionActiveIcon;
     public static final int key_location_actionBackground;

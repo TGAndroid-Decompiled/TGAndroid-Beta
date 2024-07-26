@@ -68,6 +68,7 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLocation;
@@ -1858,11 +1859,11 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public static boolean shouldProxyTON(String str) {
-        return shouldProxyTON(Uri.parse(str));
+    public static boolean isTonsite(String str) {
+        return isTonsite(Uri.parse(str));
     }
 
-    public static boolean shouldProxyTON(Uri uri) {
+    public static boolean isTonsite(Uri uri) {
         return "tonsite".equals(uri.getScheme()) || (uri.getAuthority() != null && uri.getAuthority().endsWith(".ton"));
     }
 
@@ -1910,6 +1911,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         private BrowserHistory.Entry currentHistoryEntry;
         private String currentUrl;
         public boolean errorShown;
+        public String errorShownAt;
         private boolean isPageLoaded;
         public int lastActionBarColor;
         public boolean lastActionBarColorGot;
@@ -2100,7 +2102,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                     sb.append("shouldInterceptRequest ");
                     sb.append(webResourceRequest == null ? null : webResourceRequest.getUrl());
                     myWebView.d(sb.toString());
-                    if (webResourceRequest != null && BotWebViewContainer.shouldProxyTON(webResourceRequest.getUrl())) {
+                    if (webResourceRequest != null && BotWebViewContainer.isTonsite(webResourceRequest.getUrl())) {
                         MyWebView.this.d("proxying ton");
                         return BotWebViewContainer.proxyTON(webResourceRequest);
                     }
@@ -2142,7 +2144,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             public WebResourceResponse shouldInterceptRequest(WebView webView, String str) {
                 MyWebView myWebView = MyWebView.this;
                 myWebView.d("shouldInterceptRequest " + str);
-                if (BotWebViewContainer.shouldProxyTON(str)) {
+                if (BotWebViewContainer.isTonsite(str)) {
                     MyWebView.this.d("proxying ton");
                     return BotWebViewContainer.proxyTON("GET", str, null);
                 }
@@ -2250,6 +2252,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
 
             @Override
             public void onPageStarted(WebView webView, String str, Bitmap bitmap) {
+                String str2;
                 MyWebView.this.currentHistoryEntry = null;
                 MyWebView.this.currentUrl = str;
                 MyWebView myWebView = MyWebView.this;
@@ -2258,8 +2261,11 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 myWebView.lastBackgroundColorGot = false;
                 myWebView.lastFaviconGot = false;
                 myWebView.d("onPageStarted " + str);
-                if (MyWebView.this.botWebViewContainer != null && MyWebView.this.errorShown) {
-                    AndroidUtilities.runOnUIThread(this.resetErrorRunnable, 40L);
+                if (MyWebView.this.botWebViewContainer != null) {
+                    MyWebView myWebView2 = MyWebView.this;
+                    if (myWebView2.errorShown && ((str2 = myWebView2.errorShownAt) == null || !TextUtils.equals(str2, str))) {
+                        AndroidUtilities.runOnUIThread(this.resetErrorRunnable, 40L);
+                    }
                 }
                 if (MyWebView.this.botWebViewContainer != null) {
                     MyWebView.this.botWebViewContainer.onURLChanged(str, !MyWebView.this.canGoBack(), !MyWebView.this.canGoForward());
@@ -2268,7 +2274,9 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 if (this.val$bot) {
                     return;
                 }
-                MyWebView.this.evaluateJS(RLottieDrawable.readRes(null, R.raw.webview_ext));
+                MyWebView myWebView3 = MyWebView.this;
+                String readRes = RLottieDrawable.readRes(null, R.raw.webview_ext);
+                myWebView3.evaluateJS(readRes.replace("$DEBUG$", "" + BuildVars.DEBUG_PRIVATE_VERSION));
             }
 
             @Override
@@ -2288,7 +2296,9 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                     MyWebView.this.d("onPageFinished: no container");
                 }
                 if (!this.val$bot) {
-                    MyWebView.this.evaluateJS(RLottieDrawable.readRes(null, R.raw.webview_ext));
+                    MyWebView myWebView = MyWebView.this;
+                    String readRes = RLottieDrawable.readRes(null, R.raw.webview_ext);
+                    myWebView.evaluateJS(readRes.replace("$DEBUG$", "" + BuildVars.DEBUG_PRIVATE_VERSION));
                 }
                 MyWebView.this.saveHistory();
             }
@@ -2306,7 +2316,8 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                         myWebView2.lastBackgroundColorGot = false;
                         myWebView2.lastFaviconGot = false;
                         myWebView2.lastTitleGot = false;
-                        BotWebViewContainer botWebViewContainer = myWebView2.botWebViewContainer;
+                        myWebView2.errorShownAt = (webResourceRequest == null || webResourceRequest.getUrl() == null) ? MyWebView.this.getUrl() : webResourceRequest.getUrl().toString();
+                        BotWebViewContainer botWebViewContainer = MyWebView.this.botWebViewContainer;
                         MyWebView.this.lastTitle = null;
                         botWebViewContainer.onTitleChanged(null);
                         BotWebViewContainer botWebViewContainer2 = MyWebView.this.botWebViewContainer;
@@ -2332,7 +2343,8 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                     myWebView2.lastBackgroundColorGot = false;
                     myWebView2.lastFaviconGot = false;
                     myWebView2.lastTitleGot = false;
-                    BotWebViewContainer botWebViewContainer = myWebView2.botWebViewContainer;
+                    myWebView2.errorShownAt = myWebView2.getUrl();
+                    BotWebViewContainer botWebViewContainer = MyWebView.this.botWebViewContainer;
                     MyWebView.this.lastTitle = null;
                     botWebViewContainer.onTitleChanged(null);
                     BotWebViewContainer botWebViewContainer2 = MyWebView.this.botWebViewContainer;
@@ -2353,8 +2365,27 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                     sb.append("onReceivedHttpError: statusCode=");
                     sb.append(webResourceResponse == null ? null : Integer.valueOf(webResourceResponse.getStatusCode()));
                     sb.append(" request=");
-                    sb.append(webResourceRequest != null ? webResourceRequest.getUrl() : null);
+                    sb.append(webResourceRequest == null ? null : webResourceRequest.getUrl());
                     myWebView.d(sb.toString());
+                    if (MyWebView.this.botWebViewContainer != null && ((webResourceRequest == null || webResourceRequest.isForMainFrame()) && webResourceResponse != null)) {
+                        AndroidUtilities.cancelRunOnUIThread(this.resetErrorRunnable);
+                        MyWebView myWebView2 = MyWebView.this;
+                        myWebView2.lastSiteName = null;
+                        myWebView2.lastActionBarColorGot = false;
+                        myWebView2.lastBackgroundColorGot = false;
+                        myWebView2.lastFaviconGot = false;
+                        myWebView2.lastTitleGot = false;
+                        myWebView2.errorShownAt = (webResourceRequest == null || webResourceRequest.getUrl() == null) ? MyWebView.this.getUrl() : webResourceRequest.getUrl().toString();
+                        BotWebViewContainer botWebViewContainer = MyWebView.this.botWebViewContainer;
+                        MyWebView.this.lastTitle = null;
+                        botWebViewContainer.onTitleChanged(null);
+                        BotWebViewContainer botWebViewContainer2 = MyWebView.this.botWebViewContainer;
+                        MyWebView.this.lastFavicon = null;
+                        botWebViewContainer2.onFaviconChanged(null);
+                        BotWebViewContainer botWebViewContainer3 = MyWebView.this.botWebViewContainer;
+                        MyWebView.this.errorShown = true;
+                        botWebViewContainer3.onErrorShown(true, webResourceResponse.getStatusCode(), webResourceResponse.getReasonPhrase());
+                    }
                 }
                 super.onReceivedHttpError(webView, webResourceRequest, webResourceResponse);
             }
@@ -2842,19 +2873,23 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             }
 
             public void lambda$onDownloadStart$0(String str, String str2, String str3, String str4) {
-                DownloadManager.Request request = new DownloadManager.Request(Uri.parse(str));
-                request.setMimeType(str2);
-                request.addRequestHeader("User-Agent", str3);
-                request.setDescription(LocaleController.getString(R.string.WebDownloading));
-                request.setTitle(str4);
-                request.setNotificationVisibility(1);
-                request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, str4);
-                DownloadManager downloadManager = (DownloadManager) MyWebView.this.getContext().getSystemService("download");
-                if (downloadManager != null) {
-                    downloadManager.enqueue(request);
-                }
-                if (MyWebView.this.botWebViewContainer != null) {
-                    BulletinFactory.of(MyWebView.this.botWebViewContainer, MyWebView.this.botWebViewContainer.resourcesProvider).createSimpleBulletin(R.raw.ic_download, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.WebDownloadingFile, str4))).show(true);
+                try {
+                    DownloadManager.Request request = new DownloadManager.Request(Uri.parse(str));
+                    request.setMimeType(str2);
+                    request.addRequestHeader("User-Agent", str3);
+                    request.setDescription(LocaleController.getString(R.string.WebDownloading));
+                    request.setTitle(str4);
+                    request.setNotificationVisibility(1);
+                    request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, str4);
+                    DownloadManager downloadManager = (DownloadManager) MyWebView.this.getContext().getSystemService("download");
+                    if (downloadManager != null) {
+                        downloadManager.enqueue(request);
+                    }
+                    if (MyWebView.this.botWebViewContainer != null) {
+                        BulletinFactory.of(MyWebView.this.botWebViewContainer, MyWebView.this.botWebViewContainer.resourcesProvider).createSimpleBulletin(R.raw.ic_download, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.WebDownloadingFile, str4))).show(true);
+                    }
+                } catch (Exception e) {
+                    FileLog.e(e);
                 }
             }
         }
@@ -3251,7 +3286,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
     }
 
     public static String tonsite2magic(String str) {
-        if (str != null && shouldProxyTON(Uri.parse(str))) {
+        if (str != null && isTonsite(Uri.parse(str))) {
             String hostAuthority = AndroidUtilities.getHostAuthority(str);
             String rotateTONHost = rotateTONHost(hostAuthority);
             if (rotatedTONHosts == null) {

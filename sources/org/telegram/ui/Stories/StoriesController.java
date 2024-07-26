@@ -2078,6 +2078,7 @@ public class StoriesController {
         boolean isVideo;
         public MessageObject messageObject;
         String path;
+        private TL_bots$botPreviewMedia previewMedia;
         public float progress;
         public boolean putMessages;
         public MessageObject sharedMessageObject;
@@ -2237,10 +2238,29 @@ public class StoriesController {
             if (this.edit && (hashMap = (HashMap) StoriesController.this.editingStories.get(this.dialogId)) != null) {
                 hashMap.remove(Integer.valueOf(this.entry.editStoryId));
             }
+            if (this.previewMedia != null) {
+                StoriesList storiesList = StoriesController.this.getStoriesList(this.dialogId, 4, false);
+                StoryEntry storyEntry = this.entry;
+                if (storyEntry != null && storyEntry.isEdit) {
+                    if (storiesList instanceof BotPreviewsList) {
+                        ((BotPreviewsList) storiesList).edit(storyEntry.editingBotPreview, this.previewMedia);
+                    }
+                    int i = StoriesController.this.currentAccount;
+                    long j = this.dialogId;
+                    StoryEntry storyEntry2 = this.entry;
+                    BotPreviewsEditContainer.edit(i, j, storyEntry2.botLang, storyEntry2.editingBotPreview, this.previewMedia);
+                } else {
+                    if (storiesList instanceof BotPreviewsList) {
+                        ((BotPreviewsList) storiesList).push(this.previewMedia);
+                    }
+                    BotPreviewsEditContainer.push(StoriesController.this.currentAccount, this.dialogId, this.entry.botLang, this.previewMedia);
+                }
+                this.previewMedia = null;
+            }
             NotificationCenter.getInstance(StoriesController.this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
-            StoryEntry storyEntry = this.entry;
-            if (storyEntry != null && !storyEntry.isEditSaved && !this.entryDestroyed) {
-                storyEntry.destroy(false);
+            StoryEntry storyEntry3 = this.entry;
+            if (storyEntry3 != null && !storyEntry3.isEditSaved && !this.entryDestroyed) {
+                storyEntry3.destroy(false);
                 this.entryDestroyed = true;
             }
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.uploadStoryEnd, this.path);
@@ -2403,22 +2423,7 @@ public class StoriesController {
                     MessagesController.getInstance(StoriesController.this.currentAccount).processUpdateArray(tLRPC$Updates.updates, tLRPC$Updates.users, tLRPC$Updates.chats, false, tLRPC$Updates.date);
                 }
             } else if (tLObject instanceof TL_bots$botPreviewMedia) {
-                StoriesList storiesList = StoriesController.this.getStoriesList(this.dialogId, 4, false);
-                StoryEntry storyEntry2 = this.entry;
-                if (storyEntry2.isEdit) {
-                    if (storiesList instanceof BotPreviewsList) {
-                        ((BotPreviewsList) storiesList).edit(storyEntry2.editingBotPreview, (TL_bots$botPreviewMedia) tLObject);
-                    }
-                    int i5 = StoriesController.this.currentAccount;
-                    long j2 = this.dialogId;
-                    StoryEntry storyEntry3 = this.entry;
-                    BotPreviewsEditContainer.edit(i5, j2, storyEntry3.botLang, storyEntry3.editingBotPreview, (TL_bots$botPreviewMedia) tLObject);
-                } else {
-                    if (storiesList instanceof BotPreviewsList) {
-                        ((BotPreviewsList) storiesList).push((TL_bots$botPreviewMedia) tLObject);
-                    }
-                    BotPreviewsEditContainer.push(StoriesController.this.currentAccount, this.dialogId, this.entry.botLang, (TL_bots$botPreviewMedia) tLObject);
-                }
+                this.previewMedia = (TL_bots$botPreviewMedia) tLObject;
             } else if (tLRPC$TL_error != null && !this.edit) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override

@@ -282,8 +282,8 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
                     accessibilityNodeInfo.setSelected(ScrollSlidingTextTabStrip.this.selectedTabId == i);
                 }
             };
-            textView.setWillNotDraw(false);
             textView.setGravity(17);
+            textView.setTextAlignment(4);
             textView.setBackground(Theme.createSelectorDrawable(Theme.multAlpha(processColor(Theme.getColor(this.activeTextColorKey, this.resourcesProvider)), 0.15f), 3));
             textView.setTextSize(1, 15.0f);
             textView.setSingleLine(true);
@@ -426,9 +426,12 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
         int size = View.MeasureSpec.getSize(i) - AndroidUtilities.dp(22.0f);
         int childCount = this.tabsContainer.getChildCount();
         for (int i3 = 0; i3 < childCount; i3++) {
-            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) this.tabsContainer.getChildAt(i3).getLayoutParams();
-            int i4 = this.allTextWidth;
-            if (i4 > size) {
+            View childAt = this.tabsContainer.getChildAt(i3);
+            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) childAt.getLayoutParams();
+            float f = layoutParams.weight;
+            int i4 = layoutParams.width;
+            int i5 = this.allTextWidth;
+            if (i5 > size) {
                 layoutParams.weight = 0.0f;
                 layoutParams.width = -2;
             } else if (this.useSameWidth) {
@@ -438,8 +441,11 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
                 layoutParams.weight = 0.0f;
                 layoutParams.width = -2;
             } else {
-                layoutParams.weight = AndroidUtilities.lerp(1.0f / childCount, (1.0f / i4) * this.positionToWidth.get(i3), 0.5f);
+                layoutParams.weight = AndroidUtilities.lerp(1.0f / childCount, (1.0f / i5) * this.positionToWidth.get(i3), 0.5f);
                 layoutParams.width = -2;
+            }
+            if (Math.abs(f - layoutParams.weight) > 0.001f || i4 != layoutParams.width) {
+                childAt.setLayoutParams(layoutParams);
             }
         }
         if (childCount == 1 || this.allTextWidth > size) {

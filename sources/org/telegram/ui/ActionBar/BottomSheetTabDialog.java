@@ -17,6 +17,7 @@ import org.telegram.ui.ActionBar.BottomSheetTabsOverlay;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.LaunchActivity;
 public class BottomSheetTabDialog extends Dialog {
+    private boolean attached;
     public final BottomSheetTabsOverlay.Sheet sheet;
     public final BottomSheetTabsOverlay.SheetView sheetView;
     public final WindowView windowView;
@@ -36,11 +37,11 @@ public class BottomSheetTabDialog extends Dialog {
     }
 
     public BottomSheetTabDialog(BottomSheetTabsOverlay.Sheet sheet) {
-        super(sheet.mo954getWindowView().getContext(), R.style.TransparentDialog);
+        super(sheet.mo949getWindowView().getContext(), R.style.TransparentDialog);
         this.sheet = sheet;
-        BottomSheetTabsOverlay.SheetView mo954getWindowView = sheet.mo954getWindowView();
-        this.sheetView = mo954getWindowView;
-        WindowView windowView = new WindowView(mo954getWindowView);
+        BottomSheetTabsOverlay.SheetView mo949getWindowView = sheet.mo949getWindowView();
+        this.sheetView = mo949getWindowView;
+        WindowView windowView = new WindowView(mo949getWindowView);
         this.windowView = windowView;
         setContentView(windowView, new ViewGroup.LayoutParams(-1, -1));
     }
@@ -130,12 +131,19 @@ public class BottomSheetTabDialog extends Dialog {
     }
 
     public void attach() {
+        if (this.attached) {
+            return;
+        }
+        this.attached = true;
         super.show();
     }
 
     public void detach() {
-        super.dismiss();
         this.sheet.setDialog(null);
+        if (this.attached) {
+            this.attached = false;
+            super.dismiss();
+        }
     }
 
     @Override

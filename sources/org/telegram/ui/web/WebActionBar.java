@@ -71,6 +71,7 @@ public class WebActionBar extends FrameLayout {
     private int fromBackgroundColor;
     public boolean hasForward;
     public int height;
+    public boolean isTonsite;
     public final LinearLayout leftmenu;
     public final LineProgressView lineProgressView;
     public boolean longClicked;
@@ -145,7 +146,7 @@ public class WebActionBar extends FrameLayout {
         this.longPressRunnable = new Runnable() {
             @Override
             public final void run() {
-                WebActionBar.this.lambda$new$11();
+                WebActionBar.this.lambda$new$10();
             }
         };
         this.longClicked = false;
@@ -327,7 +328,7 @@ public class WebActionBar extends FrameLayout {
         setWillNotDraw(false);
         this.titles[0] = new Title();
         this.titles[1] = new Title();
-        int i2 = Theme.key_iv_ab_background;
+        int i2 = Theme.key_iv_background;
         setColors(Theme.getColor(i2, resourcesProvider), false);
         setMenuColors(Theme.getColor(i2, resourcesProvider));
     }
@@ -349,11 +350,11 @@ public class WebActionBar extends FrameLayout {
             makeOptions.setMinWidth(200);
             makeOptions.setSelectorColor(Theme.blendOver(this.menuBackgroundColor, Theme.multAlpha(this.menuTextColor, 0.1f)));
             if (AndroidUtilities.computePerceivedBrightness(this.menuBackgroundColor) > 0.721f) {
-                makeOptions.setBackgroundColor(this.menuBackgroundColor);
-                makeOptions.setGapBackgroundColor(Theme.blendOver(this.menuBackgroundColor, Theme.multAlpha(this.menuTextColor, 0.04f)));
+                makeOptions.setBackgroundColor(-1);
+                makeOptions.setGapBackgroundColor(-986896);
             } else {
-                makeOptions.setBackgroundColor(Theme.blendOver(this.menuBackgroundColor, Theme.multAlpha(this.menuTextColor, 0.1f)));
-                makeOptions.setGapBackgroundColor(this.menuBackgroundColor);
+                makeOptions.setBackgroundColor(-14737633);
+                makeOptions.setGapBackgroundColor(-16777216);
             }
             int i = this.menuType;
             if (i == 0) {
@@ -362,8 +363,10 @@ public class WebActionBar extends FrameLayout {
                 makeOptions.add(R.drawable.msg_share, LocaleController.getString(R.string.ShareFile), (Runnable) callbackReturn.run(2));
                 makeOptions.add(R.drawable.msg_settings_old, LocaleController.getString(R.string.Settings), (Runnable) callbackReturn.run(4));
             } else if (i == 1) {
-                makeOptions.add(R.drawable.msg_openin, LocaleController.getString(R.string.OpenInExternalApp), (Runnable) callbackReturn.run(3));
-                makeOptions.addGap();
+                if (!this.isTonsite) {
+                    makeOptions.add(R.drawable.msg_openin, LocaleController.getString(R.string.OpenInExternalApp), (Runnable) callbackReturn.run(3));
+                    makeOptions.addGap();
+                }
                 if (this.hasForward) {
                     makeOptions.add(R.drawable.msg_arrow_forward, LocaleController.getString(R.string.WebForward), (Runnable) callbackReturn.run(9));
                 }
@@ -516,6 +519,10 @@ public class WebActionBar extends FrameLayout {
         int i2 = z ? -1 : -16777216;
         this.menuTextColor = i2;
         this.menuIconColor = Theme.multAlpha(i2, 0.6f);
+    }
+
+    public void setIsTonsite(boolean z) {
+        this.isTonsite = z;
     }
 
     public void setColors(int i, boolean z) {
@@ -682,50 +689,49 @@ public class WebActionBar extends FrameLayout {
         return 0;
     }
 
-    public void drawBackground(Canvas canvas, int i, float f, boolean z) {
+    public void drawBackground(Canvas canvas, float f, float f2, float f3, boolean z) {
         float max = Math.max(AndroidUtilities.dp(0.66f), 1);
-        float f2 = i;
-        float f3 = f2 - max;
+        float f4 = f - max;
         float width = getWidth() * this.titleProgress;
-        this.rect.set(0.0f, 0.0f, getWidth(), f2);
+        this.rect.set(0.0f, 0.0f, getWidth(), f);
         int alpha = this.backgroundPaint[1].getAlpha();
-        this.backgroundPaint[1].setAlpha((int) (alpha * f));
+        this.backgroundPaint[1].setAlpha((int) (alpha * f2));
         canvas.drawRect(this.rect, this.backgroundPaint[1]);
         this.backgroundPaint[1].setAlpha(alpha);
         if (this.titleProgress > 0.0f) {
-            this.rect.set(0.0f, 0.0f, this.progress[1] * getWidth(), f2);
+            this.rect.set(0.0f, 0.0f, this.progress[1] * getWidth(), f);
             int alpha2 = this.progressBackgroundPaint[1].getAlpha();
-            this.progressBackgroundPaint[1].setAlpha((int) (alpha2 * f * (1.0f - this.searchingProgress) * (1.0f - this.addressingProgress)));
+            this.progressBackgroundPaint[1].setAlpha((int) (alpha2 * f2 * (1.0f - this.searchingProgress) * (1.0f - this.addressingProgress)));
             canvas.drawRect(this.rect, this.progressBackgroundPaint[1]);
             this.progressBackgroundPaint[1].setAlpha(alpha2);
             if (z) {
-                this.rect.set(0.0f, f3, width, f3 + max);
+                this.rect.set(0.0f, f4, width, f4 + max);
                 int alpha3 = this.shadowPaint[1].getAlpha();
-                this.shadowPaint[1].setAlpha((int) (alpha3 * f * (1.0f - this.addressingProgress)));
+                this.shadowPaint[1].setAlpha((int) (alpha3 * f2 * f3 * (1.0f - this.addressingProgress)));
                 canvas.drawRect(this.rect, this.shadowPaint[1]);
                 this.shadowPaint[1].setAlpha(alpha3);
             }
         }
-        float f4 = this.titleProgress;
-        if (f4 < 1.0f) {
-            this.scrimPaint.setColor(Theme.multAlpha(1610612736, (1.0f - f4) * f));
-            this.rect.set(0.0f, 0.0f, width, f2);
+        float f5 = this.titleProgress;
+        if (f5 < 1.0f) {
+            this.scrimPaint.setColor(Theme.multAlpha(1610612736, (1.0f - f5) * f2));
+            this.rect.set(0.0f, 0.0f, width, f);
             canvas.drawRect(this.rect, this.scrimPaint);
-            this.rect.set(width, 0.0f, getWidth(), f2);
+            this.rect.set(width, 0.0f, getWidth(), f);
             int alpha4 = this.backgroundPaint[0].getAlpha();
-            this.backgroundPaint[0].setAlpha((int) (alpha4 * f));
+            this.backgroundPaint[0].setAlpha((int) (alpha4 * f2));
             canvas.drawRect(this.rect, this.backgroundPaint[0]);
             this.backgroundPaint[0].setAlpha(alpha4);
         }
-        this.rect.set(width, 0.0f, (this.progress[0] * getWidth()) + width, f2);
+        this.rect.set(width, 0.0f, (this.progress[0] * getWidth()) + width, f);
         int alpha5 = this.progressBackgroundPaint[0].getAlpha();
-        this.progressBackgroundPaint[0].setAlpha((int) ((1.0f - Utilities.clamp01(this.titleProgress * 4.0f)) * alpha5 * f * (1.0f - this.searchingProgress) * (1.0f - this.addressingProgress)));
+        this.progressBackgroundPaint[0].setAlpha((int) ((1.0f - Utilities.clamp01(this.titleProgress * 4.0f)) * alpha5 * f2 * (1.0f - this.searchingProgress) * (1.0f - this.addressingProgress)));
         canvas.drawRect(this.rect, this.progressBackgroundPaint[0]);
         this.progressBackgroundPaint[0].setAlpha(alpha5);
         if (z) {
-            this.rect.set(width, f3, getWidth() + width, max + f3);
+            this.rect.set(width, f4, getWidth() + width, max + f4);
             int alpha6 = this.shadowPaint[0].getAlpha();
-            this.shadowPaint[0].setAlpha((int) (alpha6 * f * (1.0f - this.addressingProgress)));
+            this.shadowPaint[0].setAlpha((int) (alpha6 * f2 * f3 * (1.0f - this.addressingProgress)));
             canvas.drawRect(this.rect, this.shadowPaint[0]);
             this.shadowPaint[0].setAlpha(alpha6);
         }
@@ -733,7 +739,7 @@ public class WebActionBar extends FrameLayout {
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
-        drawBackground(canvas, topPadding() + this.height, 1.0f, this.drawShadow);
+        drawBackground(canvas, topPadding() + this.height, 1.0f, 1.0f, this.drawShadow);
         float right = this.leftmenu.getRight();
         float left = this.rightmenu.getLeft();
         float f = topPadding();
@@ -884,6 +890,16 @@ public class WebActionBar extends FrameLayout {
         showAddress(true, true);
     }
 
+    public void showAddressKeyboard() {
+        if (this.addressing) {
+            this.addressEditText.requestFocus();
+            AndroidUtilities.showKeyboard(this.addressEditText);
+            return;
+        }
+        this.addressEditText.clearFocus();
+        AndroidUtilities.hideKeyboard(this.addressEditText);
+    }
+
     public void showAddress(final boolean z, boolean z2) {
         if (this.addressing == z) {
             return;
@@ -948,10 +964,16 @@ public class WebActionBar extends FrameLayout {
             this.forwardButton.setTranslationX(AndroidUtilities.dp(112.0f) * this.addressingProgress);
             this.backButtonDrawable.setRotation((this.backButtonShown || z) ? 0.0f : 0.0f, true);
         }
+        AndroidUtilities.cancelRunOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                WebActionBar.this.showAddressKeyboard();
+            }
+        });
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                WebActionBar.this.lambda$showAddress$10();
+                WebActionBar.this.showAddressKeyboard();
             }
         }, this.addressing ? 100L : 0L);
     }
@@ -966,16 +988,6 @@ public class WebActionBar extends FrameLayout {
         invalidate();
     }
 
-    public void lambda$showAddress$10() {
-        if (this.addressing) {
-            this.addressEditText.requestFocus();
-            AndroidUtilities.showKeyboard(this.addressEditText);
-            return;
-        }
-        this.addressEditText.clearFocus();
-        AndroidUtilities.hideKeyboard(this.addressEditText);
-    }
-
     public void onAddressingProgress(float f) {
         this.backButtonDrawable.setColor(ColorUtils.blendARGB(this.textColor, this.addressTextColor, this.addressingProgress));
         this.backButtonDrawable.setRotatedColor(ColorUtils.blendARGB(this.textColor, this.addressTextColor, this.addressingProgress));
@@ -986,7 +998,7 @@ public class WebActionBar extends FrameLayout {
         return this.addressing;
     }
 
-    public void lambda$new$11() {
+    public void lambda$new$10() {
         this.longClicked = true;
         if (getParent() != null) {
             getParent().requestDisallowInterceptTouchEvent(true);

@@ -41,11 +41,16 @@ public class HistoryFragment extends UniversalFragment {
     private boolean searchLoading;
     private NumberTextView selectedCount;
     private final Utilities.Callback<BrowserHistory.Entry> whenClicked;
-    private final ArrayList<BrowserHistory.Entry> history = BrowserHistory.getHistory();
+    private ArrayList<BrowserHistory.Entry> history = BrowserHistory.getHistory(new Utilities.Callback() {
+        @Override
+        public final void run(Object obj) {
+            HistoryFragment.this.lambda$new$0((ArrayList) obj);
+        }
+    });
     private final ArrayList<BrowserHistory.Entry> searchResults = new ArrayList<>();
     public HashSet<Integer> selected = new HashSet<>();
 
-    public static boolean lambda$createView$0(View view, MotionEvent motionEvent) {
+    public static boolean lambda$createView$1(View view, MotionEvent motionEvent) {
         return true;
     }
 
@@ -55,6 +60,13 @@ public class HistoryFragment extends UniversalFragment {
     @Override
     public boolean onLongClick(UItem uItem, View view, int i, float f, float f2) {
         return false;
+    }
+
+    public void lambda$new$0(ArrayList arrayList) {
+        this.history = arrayList;
+        if (this.listView.isAttachedToWindow()) {
+            this.listView.adapter.update(true);
+        }
     }
 
     public HistoryFragment(Runnable runnable, Utilities.Callback<BrowserHistory.Entry> callback) {
@@ -87,9 +99,9 @@ public class HistoryFragment extends UniversalFragment {
         this.selectedCount.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                boolean lambda$createView$0;
-                lambda$createView$0 = HistoryFragment.lambda$createView$0(view, motionEvent);
-                return lambda$createView$0;
+                boolean lambda$createView$1;
+                lambda$createView$1 = HistoryFragment.lambda$createView$1(view, motionEvent);
+                return lambda$createView$1;
             }
         });
         createActionMode.addView(this.selectedCount, LayoutHelper.createLinear(0, -1, 1.0f, 65, 0, 0, 0));
@@ -269,15 +281,18 @@ public class HistoryFragment extends UniversalFragment {
         calendar.setTimeZone(TimeZone.getDefault());
         int i = 0;
         if (TextUtils.isEmpty(this.query)) {
-            for (int size = this.history.size() - 1; size >= 0; size--) {
-                BrowserHistory.Entry entry = this.history.get(size);
-                calendar.setTimeInMillis(entry.time);
-                int i2 = (calendar.get(1) * 10000) + (calendar.get(2) * 100) + calendar.get(5);
-                if (i != i2) {
-                    arrayList.add(UItem.asGraySection(LocaleController.formatDateChat(entry.time / 1000)));
-                    i = i2;
+            ArrayList<BrowserHistory.Entry> arrayList2 = this.history;
+            if (arrayList2 != null) {
+                for (int size = arrayList2.size() - 1; size >= 0; size--) {
+                    BrowserHistory.Entry entry = this.history.get(size);
+                    calendar.setTimeInMillis(entry.time);
+                    int i2 = (calendar.get(1) * 10000) + (calendar.get(2) * 100) + calendar.get(5);
+                    if (i != i2) {
+                        arrayList.add(UItem.asGraySection(LocaleController.formatDateChat(entry.time / 1000)));
+                        i = i2;
+                    }
+                    arrayList.add(AddressBarList.BookmarkView.Factory.as(entry, this.query));
                 }
-                arrayList.add(AddressBarList.BookmarkView.Factory.as(entry, this.query));
             }
         } else {
             for (int size2 = this.searchResults.size() - 1; size2 >= 0; size2--) {

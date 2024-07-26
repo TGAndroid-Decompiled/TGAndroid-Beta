@@ -51,6 +51,7 @@ import org.telegram.tgnet.TLRPC$Photo;
 import org.telegram.tgnet.TLRPC$TL_messageMediaWebPage;
 import org.telegram.tgnet.TLRPC$WebPage;
 import org.telegram.ui.ActionBar.AlertDialog;
+import org.telegram.ui.ActionBar.BottomSheetTabs;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CheckBox2;
@@ -182,7 +183,7 @@ public class AddressBarList extends FrameLayout {
                 super.onMeasure(i3, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(6.0f), 1073741824));
             }
         };
-        int i3 = Theme.key_iv_ab_background;
+        int i3 = Theme.key_iv_background;
         setColors(Theme.getColor(i3), AndroidUtilities.computePerceivedBrightness(Theme.getColor(i3)) >= 0.721f ? -16777216 : -1);
         setOpenProgress(0.0f);
     }
@@ -252,15 +253,16 @@ public class AddressBarList extends FrameLayout {
         arrayList.add(UItem.asGraySection(LocaleController.getString(R.string.WebSectionBookmarks)));
         for (int i3 = 0; i3 < this.bookmarksList.links.size(); i3++) {
             MessageObject messageObject = this.bookmarksList.links.get(i3);
-            if (TextUtils.isEmpty(getLink(messageObject))) {
-                return;
+            if (!TextUtils.isEmpty(getLink(messageObject))) {
+                arrayList.add(BookmarkView.Factory.as(messageObject, true));
             }
-            arrayList.add(BookmarkView.Factory.as(messageObject, true));
         }
         if (this.bookmarksList.endReached) {
             return;
         }
-        arrayList.add(UItem.asFlicker(32));
+        arrayList.add(UItem.asFlicker(arrayList.size(), 32));
+        arrayList.add(UItem.asFlicker(arrayList.size(), 32));
+        arrayList.add(UItem.asFlicker(arrayList.size(), 32));
     }
 
     public void lambda$fillItems$2(String str, View view) {
@@ -328,12 +330,6 @@ public class AddressBarList extends FrameLayout {
     public void setOpenProgress(float f) {
         if (Math.abs(this.openProgress - f) > 1.0E-4f) {
             this.openProgress = f;
-            for (int i = 0; i < this.listView.getChildCount(); i++) {
-                View childAt = this.listView.getChildAt(i);
-                float cascade = AndroidUtilities.cascade(this.openProgress, i, this.listView.getChildCount(), 3.0f);
-                childAt.setAlpha(cascade);
-                childAt.setTranslationY((-AndroidUtilities.dp(Math.min(48, (i * 6) + 8))) * (1.0f - cascade));
-            }
             invalidate();
         }
     }
@@ -649,6 +645,7 @@ public class AddressBarList extends FrameLayout {
             this.textColor = i2;
             this.textView.setTextColor(i2);
             this.subtextView.setTextColor(Theme.multAlpha(i2, 0.55f));
+            this.timeView.setTextColor(Theme.multAlpha(i2, 0.55f));
             this.insertView.setColorFilter(new PorterDuffColorFilter(Theme.multAlpha(i2, 0.6f), PorterDuff.Mode.SRC_IN));
         }
 
@@ -679,6 +676,7 @@ public class AddressBarList extends FrameLayout {
                     this.textView.setText("");
                 }
             }
+            this.iconView.clearImage();
             if (webMetadata != null && (bitmap = webMetadata.favicon) != null) {
                 this.iconView.setImageBitmap(bitmap);
             } else if (tLRPC$WebPage != null && (tLRPC$Photo = tLRPC$WebPage.photo) != null) {
@@ -724,7 +722,8 @@ public class AddressBarList extends FrameLayout {
                 } catch (Exception e) {
                     FileLog.e((Throwable) e, false);
                 }
-                str3 = URLDecoder.decode(link2.replaceAll("\\+", "%2b"), "UTF-8");
+                link2 = URLDecoder.decode(link2.replaceAll("\\+", "%2b"), "UTF-8");
+                str3 = BottomSheetTabs.urlWithoutFragment(link2);
             } catch (Exception e2) {
                 FileLog.e(e2);
                 str3 = link2;
@@ -1093,21 +1092,20 @@ public class AddressBarList extends FrameLayout {
                 i = Math.min(i, this.links.get(i2).getId());
             }
             MediaDataController mediaDataController = MediaDataController.getInstance(this.currentAccount);
+            int i3 = this.links.isEmpty() ? 30 : 50;
             if (i == Integer.MAX_VALUE) {
                 i = 0;
             }
-            mediaDataController.loadMedia(clientUserId, 20, i, 0, 3, 0L, 2, this.guid, 0, null, this.query);
+            mediaDataController.loadMedia(clientUserId, i3, i, 0, 3, 0L, 1, this.guid, 0, null, this.query);
         }
 
         @Override
         public void didReceivedNotification(int i, int i2, Object... objArr) {
-            boolean z = false;
             if (i == NotificationCenter.mediaDidLoad) {
                 if (((Integer) objArr[3]).intValue() == this.guid) {
                     this.loading = false;
-                    ArrayList arrayList = (ArrayList) objArr[2];
-                    this.endReached = (((Boolean) objArr[5]).booleanValue() || arrayList.isEmpty()) ? true : true;
-                    this.links.addAll(arrayList);
+                    this.endReached = ((Boolean) objArr[5]).booleanValue();
+                    this.links.addAll((ArrayList) objArr[2]);
                     this.whenUpdated.run();
                 }
             } else if (i == NotificationCenter.bookmarkAdded) {

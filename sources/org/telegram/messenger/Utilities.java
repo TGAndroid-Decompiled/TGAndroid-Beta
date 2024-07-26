@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Rect;
+import android.net.Uri;
 import com.carrotsearch.randomizedtesting.Xoroshiro128PlusRandom;
 import java.io.File;
 import java.io.FileInputStream;
@@ -629,5 +630,13 @@ public class Utilities {
 
     public static boolean isNullOrEmpty(Collection<?> collection) {
         return collection == null || collection.isEmpty();
+    }
+
+    public static Uri uriParseSafe(String str) {
+        try {
+            return Uri.parse(str);
+        } catch (Exception unused) {
+            return null;
+        }
     }
 }

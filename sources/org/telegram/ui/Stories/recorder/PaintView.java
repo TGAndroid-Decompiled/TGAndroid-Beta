@@ -1257,7 +1257,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         Swatch swatch = this.colorSwatch;
         final int i2 = swatch.color;
         swatch.color = i;
-        setCurrentSwatch(swatch, true);
+        setCurrentSwatch(swatch, true, null, true);
         ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
         duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -1282,11 +1282,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         Point startPositionRelativeToEntity = startPositionRelativeToEntity(null);
         float measuredWidth = this.entitiesView.getMeasuredWidth() <= 0 ? this.w : this.entitiesView.getMeasuredWidth();
         int dp = ((int) measuredWidth) - AndroidUtilities.dp(58.0f);
-        Context context = getContext();
-        int i = this.currentAccount;
-        float f = measuredWidth / 240.0f;
-        Swatch swatch = this.colorSwatch;
-        LocationView locationView = new LocationView(context, startPositionRelativeToEntity, i, tLRPC$MessageMedia, tL_stories$MediaArea, f, dp, 3, swatch == null ? -1 : swatch.color);
+        LocationView locationView = new LocationView(getContext(), startPositionRelativeToEntity, this.currentAccount, tLRPC$MessageMedia, tL_stories$MediaArea, measuredWidth / 240.0f, dp);
         if (startPositionRelativeToEntity.x == this.entitiesView.getMeasuredWidth() / 2.0f) {
             locationView.setStickyX(2);
         }
@@ -1317,13 +1313,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         Point startPositionRelativeToEntity = startPositionRelativeToEntity(null);
         float measuredWidth = this.entitiesView.getMeasuredWidth() <= 0 ? this.w : this.entitiesView.getMeasuredWidth();
         int dp = ((int) measuredWidth) - AndroidUtilities.dp(58.0f);
-        Context context = getContext();
-        int i = this.currentAccount;
-        float f = measuredWidth / 240.0f;
-        int i2 = Weather.isDefaultCelsius() ? 0 : 2;
-        Swatch swatch = this.colorSwatch;
-        WeatherView weatherView = new WeatherView(context, startPositionRelativeToEntity, i, state, f, dp, i2, swatch == null ? -1 : swatch.color);
-        weatherView.setType(3);
+        WeatherView weatherView = new WeatherView(getContext(), startPositionRelativeToEntity, this.currentAccount, state, measuredWidth / 240.0f, dp);
         if (startPositionRelativeToEntity.x == this.entitiesView.getMeasuredWidth() / 2.0f) {
             weatherView.setStickyX(2);
         }
@@ -2026,7 +2016,25 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
 
             @Override
             public boolean canShowWidget(Integer num) {
-                return !PaintView.this.isBot || num.intValue() == 2;
+                boolean z = false;
+                if (PaintView.this.isBot) {
+                    return num.intValue() == 2;
+                } else if (num.intValue() == 5) {
+                    int i2 = 0;
+                    while (true) {
+                        if (i2 >= PaintView.this.entitiesView.getChildCount()) {
+                            break;
+                        } else if (PaintView.this.entitiesView.getChildAt(i2) instanceof WeatherView) {
+                            z = true;
+                            break;
+                        } else {
+                            i2++;
+                        }
+                    }
+                    return !z;
+                } else {
+                    return true;
+                }
             }
 
             @Override
@@ -2126,13 +2134,14 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
             });
             return Boolean.TRUE;
         } else if (num.intValue() == 5) {
+            zArr[0] = false;
             Weather.fetch(true, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
                     PaintView.this.lambda$openStickersView$25(emojiBottomSheet, (Weather.State) obj);
                 }
             });
-            return Boolean.TRUE;
+            return Boolean.FALSE;
         } else if (num.intValue() == 2) {
             emojiBottomSheet.dismiss();
             onGalleryClick();
@@ -2185,8 +2194,8 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
     }
 
     public void lambda$openStickersView$25(EmojiBottomSheet emojiBottomSheet, Weather.State state) {
-        emojiBottomSheet.dismiss();
         if (state != null) {
+            emojiBottomSheet.dismiss();
             appearAnimation(createWeatherView(state, false));
         }
     }
@@ -2670,13 +2679,21 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
                     }
                 } else if (b == 3) {
                     LocationView createLocationSticker = createLocationSticker(mediaEntity.media, mediaEntity.mediaArea, false);
-                    createLocationSticker.setType(mediaEntity.subType, mediaEntity.color);
+                    int i3 = mediaEntity.color;
+                    if (i3 != 0) {
+                        createLocationSticker.setColor(i3);
+                    }
+                    createLocationSticker.setType(mediaEntity.subType);
                     roundView = createLocationSticker;
                 } else if (b == 8) {
                     Weather.State state = mediaEntity.weather;
                     if (state != null) {
                         WeatherView createWeatherView = createWeatherView(state, false);
-                        createWeatherView.setType(mediaEntity.subType, mediaEntity.color);
+                        int i4 = mediaEntity.color;
+                        if (i4 != 0) {
+                            createWeatherView.setColor(i4);
+                        }
+                        createWeatherView.setType(mediaEntity.subType);
                         roundView = createWeatherView;
                     }
                 } else if (b == 7) {
@@ -3016,7 +3033,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         int i = swatch.color;
         swatch.color = PersistColorPalette.getInstance(this.currentAccount).getCurrentColor();
         this.colorSwatch.brushWeight = this.weightDefaultValueOverride.get();
-        setCurrentSwatch(this.colorSwatch, true, Integer.valueOf(i));
+        setCurrentSwatch(this.colorSwatch, true, Integer.valueOf(i), false);
         this.renderInputView.invalidate();
     }
 
@@ -3158,10 +3175,10 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
     }
 
     public void setCurrentSwatch(Swatch swatch, boolean z) {
-        setCurrentSwatch(swatch, z, null);
+        setCurrentSwatch(swatch, z, null, false);
     }
 
-    private void setCurrentSwatch(Swatch swatch, boolean z, final Integer num) {
+    private void setCurrentSwatch(Swatch swatch, boolean z, final Integer num, boolean z2) {
         Swatch swatch2 = this.colorSwatch;
         if (swatch2 != swatch) {
             swatch2.color = swatch.color;
@@ -3193,10 +3210,12 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         EntityView entityView = this.currentEntityView;
         if (entityView instanceof TextPaintView) {
             ((TextPaintView) entityView).setSwatch(new Swatch(swatch.color, swatch.colorLocation, swatch.brushWeight));
-        } else if (entityView instanceof LocationView) {
+        } else if (z2 && (entityView instanceof LocationView)) {
             ((LocationView) entityView).setColor(swatch.color);
-        } else if (entityView instanceof WeatherView) {
+            ((LocationView) this.currentEntityView).setType(3);
+        } else if (z2 && (entityView instanceof WeatherView)) {
             ((WeatherView) entityView).setColor(swatch.color);
+            ((WeatherView) this.currentEntityView).setType(3);
         } else if (entityView instanceof LinkView) {
             ((LinkView) entityView).setColor(swatch.color);
         }

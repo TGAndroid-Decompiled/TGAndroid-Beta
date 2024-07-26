@@ -251,7 +251,7 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
             @Override
             public String getItemTitle(int i) {
                 if (i != 0) {
-                    return TranslateAlert2.languageName(((StoriesController.BotPreviewsList) BotPreviewsEditContainer.this.langLists.get(i - 1)).lang_code);
+                    return TranslateAlert2.languageNameCapital(((StoriesController.BotPreviewsList) BotPreviewsEditContainer.this.langLists.get(i - 1)).lang_code);
                 }
                 return LocaleController.getString(R.string.ProfileBotLanguageGeneral);
             }
@@ -259,6 +259,7 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
         addView(viewPagerFixed, LayoutHelper.createFrame(-1, -1, 119));
         ViewPagerFixed.TabsView createTabsView = viewPagerFixed.createTabsView(true, 9);
         this.tabsView = createTabsView;
+        createTabsView.tabMarginDp = 12;
         createTabsView.setPreTabClick(new Utilities.Callback2Return() {
             @Override
             public final Object run(Object obj, Object obj2) {
@@ -549,10 +550,10 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
             this.langLists.add(botPreviewsList);
         }
         this.viewPager.fillTabs(true);
-        SpannableString spannableString = new SpannableString("+ " + LocaleController.getString(R.string.ProfileBotLanguageAdd));
+        SpannableString spannableString = new SpannableString("+  " + LocaleController.getString(R.string.ProfileBotLanguageAdd));
         ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.msg_filled_plus);
         coloredImageSpan.setScale(0.9f, 0.9f);
-        coloredImageSpan.spaceScaleX = 0.85f;
+        coloredImageSpan.spaceScaleX = 0.6f;
         spannableString.setSpan(coloredImageSpan, 0, 1, 33);
         this.tabsView.addTab(-1, spannableString);
         this.tabsView.finishAddingTabs();
@@ -732,7 +733,7 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
             updateFooter();
         }
 
-        private void updateFooter() {
+        public void updateFooter() {
             String formatString;
             int i;
             String string;
@@ -778,19 +779,21 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
                 this.emptyView.button.setText(LocaleController.getString(R.string.ProfileBotPreviewEmptyButton), false);
                 this.emptyViewOr.setVisibility(8);
                 this.emptyViewButton2.setVisibility(8);
-                return;
+            } else {
+                this.emptyView.title.setVisibility(8);
+                this.emptyView.subtitle.setText(LocaleController.formatString(R.string.ProfileBotPreviewFooterLanguage, TranslateAlert2.languageName(this.list.lang_code)));
+                this.emptyView.button.setText(LocaleController.getString(R.string.ProfileBotPreviewEmptyButton), false);
+                this.emptyViewOr.setVisibility(0);
+                this.emptyViewButton2.setVisibility(0);
+                this.emptyViewButton2.setText(LocaleController.getString(R.string.ProfileBotPreviewFooterDeleteTranslation), false);
+                this.emptyViewButton2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view) {
+                        BotPreviewsEditContainer.BotPreviewsEditLangContainer.this.lambda$updateFooter$2(view);
+                    }
+                });
             }
-            this.emptyView.title.setVisibility(8);
-            this.emptyView.subtitle.setText(LocaleController.formatString(R.string.ProfileBotPreviewFooterLanguage, TranslateAlert2.languageName(this.list.lang_code)));
-            this.emptyViewOr.setVisibility(0);
-            this.emptyViewButton2.setVisibility(0);
-            this.emptyViewButton2.setText(LocaleController.getString(R.string.ProfileBotPreviewFooterDeleteTranslation), false);
-            this.emptyViewButton2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    BotPreviewsEditContainer.BotPreviewsEditLangContainer.this.lambda$updateFooter$2(view);
-                }
-            });
+            this.emptyView.button.setVisibility(this.adapter.getItemCount() >= MessagesController.getInstance(BotPreviewsEditContainer.this.currentAccount).botPreviewMediasMax ? 8 : 0);
         }
 
         public void lambda$updateFooter$0() {
@@ -1355,6 +1358,7 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
                 }
                 if (this != BotPreviewsEditLangContainer.this.supportingAdapter) {
                     checkColumns();
+                    BotPreviewsEditLangContainer.this.updateFooter();
                 }
             }
 
@@ -1944,7 +1948,8 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
                 }
             }, this.resourcesProvider);
             this.adapter = universalAdapter;
-            return universalAdapter;
+            universalAdapter.setApplyBackground(false);
+            return this.adapter;
         }
 
         public void fillItems(ArrayList<UItem> arrayList, UniversalAdapter universalAdapter) {

@@ -24,6 +24,7 @@ import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.LaunchActivity;
 public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
     protected ActionBar actionBar;
     protected boolean actionBarIgnoreTouchEvents;
@@ -482,6 +483,19 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
         onPreDraw(canvas, i2, f);
     }
 
+    @Override
+    public boolean isAttachedLightStatusBar() {
+        ActionBar actionBar = this.actionBar;
+        if (actionBar != null && actionBar.getTag() != null) {
+            return isLightStatusBar();
+        }
+        BaseFragment baseFragment = this.baseFragment;
+        if (baseFragment != null) {
+            return baseFragment.isLightStatusBar();
+        }
+        return isLightStatusBar();
+    }
+
     private boolean isLightStatusBar() {
         return ColorUtils.calculateLuminance(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider)) > 0.699999988079071d;
     }
@@ -495,6 +509,10 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
     }
 
     public void updateStatusBar() {
+        if (this.attachedFragment != null) {
+            LaunchActivity.instance.checkSystemBarColors(true, true, true, false);
+            return;
+        }
         ActionBar actionBar = this.actionBar;
         if (actionBar != null && actionBar.getTag() != null) {
             AndroidUtilities.setLightStatusBar(getWindow(), isLightStatusBar());

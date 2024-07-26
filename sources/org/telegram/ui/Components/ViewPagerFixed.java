@@ -867,7 +867,7 @@ public class ViewPagerFixed extends FrameLayout {
                 CharSequence charSequence = this.title;
                 int ceil = (int) Math.ceil(textPaint.measureText(charSequence == null ? "" : charSequence.toString()));
                 this.titleWidth = ceil;
-                return Math.max(AndroidUtilities.dp(40.0f), ceil);
+                return Math.max(0, ceil);
             }
         }
 
@@ -1211,7 +1211,11 @@ public class ViewPagerFixed extends FrameLayout {
                     TabsView.this.invalidate();
                 }
             });
-            addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
+            if (i == 9) {
+                addView(this.listView, LayoutHelper.createFrame(-2, -1, 1));
+            } else {
+                addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
+            }
         }
 
         public void lambda$new$0(View view, int i, float f, float f2) {
@@ -1389,7 +1393,7 @@ public class ViewPagerFixed extends FrameLayout {
             if (!this.tabs.isEmpty()) {
                 int size = (View.MeasureSpec.getSize(i) - AndroidUtilities.dp(7.0f)) - AndroidUtilities.dp(7.0f);
                 int i3 = this.additionalTabWidth;
-                if (this.tabs.size() == 1) {
+                if (this.tabs.size() == 1 || this.selectorType == 9) {
                     this.additionalTabWidth = 0;
                 } else {
                     int i4 = this.allTabsWidth;

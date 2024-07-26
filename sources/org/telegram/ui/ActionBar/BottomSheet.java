@@ -257,6 +257,11 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         return false;
     }
 
+    @Override
+    public boolean showDialog(Dialog dialog) {
+        return false;
+    }
+
     static int access$1012(BottomSheet bottomSheet, int i) {
         int i2 = bottomSheet.bottomInset + i;
         bottomSheet.bottomInset = i2;
@@ -1885,16 +1890,6 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
     public boolean attachedToParent() {
         ContainerView containerView = this.container;
         return containerView != null && containerView.isAttachedToWindow();
-    }
-
-    @Override
-    public boolean showDialog(Dialog dialog) {
-        BaseFragment baseFragment = this.attachedFragment;
-        if (baseFragment != null) {
-            baseFragment.showDialog(dialog);
-            return true;
-        }
-        return false;
     }
 
     @Override

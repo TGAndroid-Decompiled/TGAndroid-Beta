@@ -309,7 +309,7 @@ public class Weather {
             if (ApplicationLoader.applicationContext.checkSelfPermission("android.permission.ACCESS_COARSE_LOCATION") == 0) {
                 callback.run(Boolean.TRUE);
                 return;
-            } else if (activity.shouldShowRequestPermissionRationale("android.permission.CAMERA")) {
+            } else if (activity.shouldShowRequestPermissionRationale("android.permission.ACCESS_COARSE_LOCATION") || activity.shouldShowRequestPermissionRationale("android.permission.ACCESS_FINE_LOCATION")) {
                 new AlertDialog.Builder(activity, null).setTopAnimation(R.raw.permission_request_location, 72, false, Theme.getColor(Theme.key_dialogTopBackground)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PermissionNoLocationStory))).setPositiveButton(LocaleController.getString("PermissionOpenSettings", R.string.PermissionOpenSettings), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i) {

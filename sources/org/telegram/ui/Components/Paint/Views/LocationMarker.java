@@ -275,22 +275,22 @@ public class LocationMarker extends View {
 
     public void setType(int i, int i2) {
         if (i == 0) {
+            this.outlinePaint.setColor(-16777216);
+            this.textPaint.setColor(-1);
+            this.icon.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+        } else if (i == 1) {
+            this.outlinePaint.setColor(1275068416);
+            this.textPaint.setColor(-1);
+            this.icon.setColorFilter(null);
+        } else if (i == 2) {
+            this.outlinePaint.setColor(-1);
+            this.textPaint.setColor(-16777216);
+            this.icon.setColorFilter(null);
+        } else {
             this.outlinePaint.setColor(i2);
             int i3 = AndroidUtilities.computePerceivedBrightness(i2) < 0.721f ? -1 : -16777216;
             this.textPaint.setColor(i3);
             this.icon.setColorFilter(new PorterDuffColorFilter(i3, PorterDuff.Mode.SRC_IN));
-        } else if (i == 1) {
-            this.outlinePaint.setColor(-16777216);
-            this.textPaint.setColor(-1);
-            this.icon.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        } else if (i == 2) {
-            this.outlinePaint.setColor(1275068416);
-            this.textPaint.setColor(-1);
-            this.icon.setColorFilter(null);
-        } else {
-            this.outlinePaint.setColor(-1);
-            this.textPaint.setColor(-16777216);
-            this.icon.setColorFilter(null);
         }
         invalidate();
     }

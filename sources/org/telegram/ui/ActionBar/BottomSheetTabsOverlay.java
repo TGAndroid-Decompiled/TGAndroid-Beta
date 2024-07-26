@@ -99,7 +99,7 @@ public class BottomSheetTabsOverlay extends FrameLayout {
 
         int getNavigationBarColor(int i);
 
-        SheetView mo954getWindowView();
+        SheetView mo949getWindowView();
 
         void release();
 
@@ -479,7 +479,7 @@ public class BottomSheetTabsOverlay extends FrameLayout {
         }
         this.dismissingSheet = sheet;
         sheet.setLastVisible(false);
-        sheet.mo954getWindowView().setDrawingFromOverlay(true);
+        sheet.mo949getWindowView().setDrawingFromOverlay(true);
         invalidate();
         ValueAnimator valueAnimator2 = this.animator;
         if (valueAnimator2 != null) {
@@ -521,7 +521,7 @@ public class BottomSheetTabsOverlay extends FrameLayout {
         public void onAnimationEnd(Animator animator) {
             int i;
             int i2;
-            this.val$sheet.mo954getWindowView().setDrawingFromOverlay(false);
+            this.val$sheet.mo949getWindowView().setDrawingFromOverlay(false);
             final BottomSheetTabs.WebTabData webTabData = this.val$tab;
             View view = webTabData.webView;
             if (view == null) {
@@ -719,10 +719,10 @@ public class BottomSheetTabsOverlay extends FrameLayout {
             int i = iArr[0];
             int[] iArr2 = this.pos2;
             rectF.offset(i - iArr2[0], iArr[1] - iArr2[1]);
-            SheetView mo954getWindowView = this.dismissingSheet.mo954getWindowView();
+            SheetView mo949getWindowView = this.dismissingSheet.mo949getWindowView();
             RectF rectF2 = this.rect;
             float f = this.dismissProgress;
-            float drawInto = mo954getWindowView.drawInto(canvas, rectF2, f, this.clipRect, f, false);
+            float drawInto = mo949getWindowView.drawInto(canvas, rectF2, f, this.clipRect, f, false);
             if (this.dismissingTab != null) {
                 this.clipPath.rewind();
                 this.clipPath.addRoundRect(this.clipRect, drawInto, drawInto, Path.Direction.CW);

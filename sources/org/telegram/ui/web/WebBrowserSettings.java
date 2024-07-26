@@ -85,15 +85,37 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
     }
 
     private void loadSizes() {
+        ArrayList<BrowserHistory.Entry> history = BrowserHistory.getHistory(new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                WebBrowserSettings.this.lambda$loadSizes$0((ArrayList) obj);
+            }
+        });
+        if (history != null) {
+            this.historySize = history.size();
+            UniversalRecyclerView universalRecyclerView = this.listView;
+            if (universalRecyclerView != null && universalRecyclerView.adapter != null && universalRecyclerView.isAttachedToWindow()) {
+                this.listView.adapter.update(true);
+            }
+        }
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                WebBrowserSettings.this.lambda$loadSizes$1();
+                WebBrowserSettings.this.lambda$loadSizes$2();
             }
         });
     }
 
-    public void lambda$loadSizes$1() {
+    public void lambda$loadSizes$0(ArrayList arrayList) {
+        this.historySize = arrayList.size();
+        UniversalRecyclerView universalRecyclerView = this.listView;
+        if (universalRecyclerView == null || universalRecyclerView.adapter == null || !universalRecyclerView.isAttachedToWindow()) {
+            return;
+        }
+        this.listView.adapter.update(true);
+    }
+
+    public void lambda$loadSizes$2() {
         File databasePath = ApplicationLoader.applicationContext.getDatabasePath("webview.db");
         long length = (databasePath == null || !databasePath.exists()) ? 0L : databasePath.length() + 0;
         File databasePath2 = ApplicationLoader.applicationContext.getDatabasePath("webviewCache.db");
@@ -114,15 +136,18 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                WebBrowserSettings.this.lambda$loadSizes$0(j, directorySize);
+                WebBrowserSettings.this.lambda$loadSizes$1(j, directorySize);
             }
         });
     }
 
-    public void lambda$loadSizes$0(long j, long j2) {
+    public void lambda$loadSizes$1(long j, long j2) {
         this.cacheSize = j;
         this.cookiesSize = j2;
-        this.historySize = BrowserHistory.getHistory().size();
+        UniversalRecyclerView universalRecyclerView = this.listView;
+        if (universalRecyclerView == null || universalRecyclerView.adapter == null || !universalRecyclerView.isAttachedToWindow()) {
+            return;
+        }
         this.listView.adapter.update(true);
     }
 
@@ -188,7 +213,7 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
                 title.setMessage(LocaleController.formatString(i3, objArr)).setPositiveButton(LocaleController.getString(R.string.Clear), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i4) {
-                        WebBrowserSettings.this.lambda$onClick$2(dialogInterface, i4);
+                        WebBrowserSettings.this.lambda$onClick$3(dialogInterface, i4);
                     }
                 }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).makeRed(-1).show();
             } else if (i2 == 3) {
@@ -202,7 +227,7 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
                 title2.setMessage(LocaleController.formatString(i4, objArr2)).setPositiveButton(LocaleController.getString(R.string.Clear), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i5) {
-                        WebBrowserSettings.this.lambda$onClick$3(dialogInterface, i5);
+                        WebBrowserSettings.this.lambda$onClick$4(dialogInterface, i5);
                     }
                 }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).makeRed(-1).show();
             } else if (i2 == 7) {
@@ -214,7 +239,7 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
                 new AlertDialog.Builder(getContext(), getResourceProvider()).setTitle(LocaleController.getString(R.string.BrowserSettingsHistoryClear)).setMessage(LocaleController.formatString(R.string.BrowserSettingsHistoryClearText, LocaleController.formatDateChat(j / 1000))).setPositiveButton(LocaleController.getString(R.string.Clear), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i5) {
-                        WebBrowserSettings.this.lambda$onClick$4(dialogInterface, i5);
+                        WebBrowserSettings.this.lambda$onClick$5(dialogInterface, i5);
                     }
                 }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).makeRed(-1).show();
             } else if (i2 == 9) {
@@ -222,7 +247,7 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
                 historyFragmentArr[0] = new HistoryFragment(null, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        WebBrowserSettings.this.lambda$onClick$5(historyFragmentArr, (BrowserHistory.Entry) obj);
+                        WebBrowserSettings.this.lambda$onClick$6(historyFragmentArr, (BrowserHistory.Entry) obj);
                     }
                 });
                 presentFragment(historyFragmentArr[0]);
@@ -236,7 +261,7 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
                 ItemOptions.makeOptions((ViewGroup) this.fragmentView, websiteView).add(R.drawable.menu_delete_old, LocaleController.getString(R.string.Remove), new Runnable() {
                     @Override
                     public final void run() {
-                        WebBrowserSettings.this.lambda$onClick$6(arrayList);
+                        WebBrowserSettings.this.lambda$onClick$7(arrayList);
                     }
                 }).show();
             } else {
@@ -263,7 +288,7 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
                         radioColorCell.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public final void onClick(View view2) {
-                                WebBrowserSettings.lambda$onClick$7(i6, view, atomicReference, view2);
+                                WebBrowserSettings.lambda$onClick$8(i6, view, atomicReference, view2);
                             }
                         });
                         i6++;
@@ -291,7 +316,7 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
                     final Runnable runnable = new Runnable() {
                         @Override
                         public final void run() {
-                            WebBrowserSettings.this.lambda$onClick$10(editTextBoldCursor, r3);
+                            WebBrowserSettings.this.lambda$onClick$11(editTextBoldCursor, r3);
                         }
                     };
                     editTextBoldCursor.setOnEditorActionListener(new TextView.OnEditorActionListener(this) {
@@ -341,7 +366,7 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
                     alertDialogArr[0].setOnShowListener(new DialogInterface.OnShowListener() {
                         @Override
                         public final void onShow(DialogInterface dialogInterface) {
-                            WebBrowserSettings.lambda$onClick$14(EditTextBoldCursor.this, dialogInterface);
+                            WebBrowserSettings.lambda$onClick$15(EditTextBoldCursor.this, dialogInterface);
                         }
                     });
                     alertDialogArr[0].setDismissDialogByButtons(false);
@@ -351,7 +376,7 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
         }
     }
 
-    public void lambda$onClick$2(DialogInterface dialogInterface, int i) {
+    public void lambda$onClick$3(DialogInterface dialogInterface, int i) {
         ApplicationLoader.applicationContext.deleteDatabase("webview.db");
         ApplicationLoader.applicationContext.deleteDatabase("webviewCache.db");
         WebStorage.getInstance().deleteAllData();
@@ -382,7 +407,7 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
         loadSizes();
     }
 
-    public void lambda$onClick$3(DialogInterface dialogInterface, int i) {
+    public void lambda$onClick$4(DialogInterface dialogInterface, int i) {
         CookieManager cookieManager = CookieManager.getInstance();
         if (Build.VERSION.SDK_INT >= 21) {
             cookieManager.removeAllCookies(null);
@@ -399,29 +424,29 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
         loadSizes();
     }
 
-    public void lambda$onClick$4(DialogInterface dialogInterface, int i) {
+    public void lambda$onClick$5(DialogInterface dialogInterface, int i) {
         BrowserHistory.clearHistory();
         this.historySize = 0L;
         this.listView.adapter.update(true);
     }
 
-    public void lambda$onClick$5(HistoryFragment[] historyFragmentArr, BrowserHistory.Entry entry) {
+    public void lambda$onClick$6(HistoryFragment[] historyFragmentArr, BrowserHistory.Entry entry) {
         historyFragmentArr[0].finishFragment();
         Browser.openUrl(getContext(), entry.url);
     }
 
-    public void lambda$onClick$6(ArrayList arrayList) {
+    public void lambda$onClick$7(ArrayList arrayList) {
         RestrictedDomainsList.getInstance().setRestricted(false, (String[]) arrayList.toArray(new String[0]));
         this.listView.adapter.update(true);
     }
 
-    public static void lambda$onClick$7(int i, View view, AtomicReference atomicReference, View view2) {
+    public static void lambda$onClick$8(int i, View view, AtomicReference atomicReference, View view2) {
         SharedConfig.setSearchEngineType(i);
         ((TextCell) view).setValue(SearchEngine.getCurrent().name, true);
         ((Dialog) atomicReference.get()).dismiss();
     }
 
-    public void lambda$onClick$10(EditTextBoldCursor editTextBoldCursor, final AlertDialog[] alertDialogArr) {
+    public void lambda$onClick$11(EditTextBoldCursor editTextBoldCursor, final AlertDialog[] alertDialogArr) {
         String obj = editTextBoldCursor.getText().toString();
         Uri parse = Uri.parse(obj);
         if (parse == null || parse.getHost() == null) {
@@ -448,7 +473,7 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                WebBrowserSettings.this.lambda$onClick$8(alertDialogArr, alertDialog);
+                WebBrowserSettings.this.lambda$onClick$9(alertDialogArr, alertDialog);
             }
         };
         AndroidUtilities.runOnUIThread(runnable, 2000L);
@@ -456,18 +481,18 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
         WebMetadataCache.retrieveFaviconAndSitename("https://" + obj + "/", new Utilities.Callback2() {
             @Override
             public final void run(Object obj2, Object obj3) {
-                WebBrowserSettings.this.lambda$onClick$9(runnable, alertDialog, lowerCase, (String) obj2, (Bitmap) obj3);
+                WebBrowserSettings.this.lambda$onClick$10(runnable, alertDialog, lowerCase, (String) obj2, (Bitmap) obj3);
             }
         });
     }
 
-    public void lambda$onClick$8(AlertDialog[] alertDialogArr, AlertDialog alertDialog) {
+    public void lambda$onClick$9(AlertDialog[] alertDialogArr, AlertDialog alertDialog) {
         alertDialogArr[0].dismiss();
         alertDialog.dismissUnless(800L);
         this.listView.adapter.update(true);
     }
 
-    public void lambda$onClick$9(Runnable runnable, AlertDialog alertDialog, String str, String str2, Bitmap bitmap) {
+    public void lambda$onClick$10(Runnable runnable, AlertDialog alertDialog, String str, String str2, Bitmap bitmap) {
         AndroidUtilities.cancelRunOnUIThread(runnable);
         alertDialog.dismissUnless(800L);
         if (WebMetadataCache.getInstance().get(str) != null) {
@@ -475,7 +500,7 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
         }
     }
 
-    public static void lambda$onClick$14(EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface) {
+    public static void lambda$onClick$15(EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface) {
         editTextBoldCursor.requestFocus();
         AndroidUtilities.showKeyboard(editTextBoldCursor);
     }

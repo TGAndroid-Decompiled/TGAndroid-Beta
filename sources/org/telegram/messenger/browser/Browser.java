@@ -327,6 +327,10 @@ public class Browser {
         return true;
     }
 
+    public static boolean openInExternalBrowser(Context context, String str, boolean z) {
+        return openInExternalBrowser(context, str, z, null);
+    }
+
     public static boolean openInExternalBrowser(Context context, String str, boolean z, String str2) {
         Intent intent;
         if (str == null) {

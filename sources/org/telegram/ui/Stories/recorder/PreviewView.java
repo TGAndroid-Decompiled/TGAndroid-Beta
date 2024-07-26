@@ -108,6 +108,7 @@ public class PreviewView extends FrameLayout {
     private RoundView roundView;
     private long seekedLastTime;
     private Runnable slowerSeek;
+    private boolean slowerSeekScheduled;
     private final Paint snapPaint;
     private boolean snappedRotation;
     private long tapTime;
@@ -434,9 +435,12 @@ public class PreviewView extends FrameLayout {
         updateAudioPlayer(true);
         updateRoundPlayer(true);
         if (z) {
+            if (!this.slowerSeekScheduled || Math.abs(this.finalSeekPosition - j) > 1000) {
+                this.slowerSeekScheduled = true;
+                AndroidUtilities.cancelRunOnUIThread(this.slowerSeek);
+                AndroidUtilities.runOnUIThread(this.slowerSeek, 100L);
+            }
             this.finalSeekPosition = j;
-            AndroidUtilities.cancelRunOnUIThread(this.slowerSeek);
-            AndroidUtilities.runOnUIThread(this.slowerSeek, 600L);
         }
     }
 

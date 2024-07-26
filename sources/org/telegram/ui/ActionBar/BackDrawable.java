@@ -27,6 +27,10 @@ public class BackDrawable extends Drawable {
         return -2;
     }
 
+    public float getRotation() {
+        return this.finalRotation;
+    }
+
     public BackDrawable(boolean z) {
         this.paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
         this.paint.setStrokeCap(Paint.Cap.ROUND);

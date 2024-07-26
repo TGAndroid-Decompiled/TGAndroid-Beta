@@ -49,10 +49,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.common.primitives.Longs;
 import j$.util.function.Consumer;
 import j$.wrappers.C$r8$wrapper$java$util$function$Consumer$WRP;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -2300,82 +2297,35 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
+    private java.lang.String readImport(android.net.Uri r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.readImport(android.net.Uri):java.lang.String");
+    }
+
     private void runImportRequest(final Uri uri, ArrayList<Uri> arrayList) {
-        InputStream openInputStream;
         final int i = UserConfig.selectedAccount;
         final AlertDialog alertDialog = new AlertDialog(this, 3);
         final int[] iArr = {0};
-        InputStream inputStream = null;
-        try {
-            try {
-                openInputStream = getContentResolver().openInputStream(uri);
-            } catch (Throwable th) {
-                th = th;
-            }
-        } catch (Exception e) {
-            e = e;
+        String readImport = readImport(uri);
+        if (readImport == null) {
+            return;
         }
+        TLRPC$TL_messages_checkHistoryImport tLRPC$TL_messages_checkHistoryImport = new TLRPC$TL_messages_checkHistoryImport();
+        tLRPC$TL_messages_checkHistoryImport.import_head = readImport;
+        iArr[0] = ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_messages_checkHistoryImport, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                LaunchActivity.this.lambda$runImportRequest$35(uri, i, alertDialog, tLObject, tLRPC$TL_error);
+            }
+        });
+        alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public final void onCancel(DialogInterface dialogInterface) {
+                LaunchActivity.lambda$runImportRequest$36(i, iArr, r3, dialogInterface);
+            }
+        });
         try {
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(openInputStream));
-            StringBuilder sb = new StringBuilder();
-            int i2 = 0;
-            while (true) {
-                String readLine = bufferedReader.readLine();
-                if (readLine == null || i2 >= 100) {
-                    break;
-                }
-                sb.append(readLine);
-                sb.append('\n');
-                i2++;
-            }
-            String sb2 = sb.toString();
-            if (openInputStream != null) {
-                try {
-                    openInputStream.close();
-                } catch (Exception e2) {
-                    FileLog.e(e2);
-                }
-            }
-            TLRPC$TL_messages_checkHistoryImport tLRPC$TL_messages_checkHistoryImport = new TLRPC$TL_messages_checkHistoryImport();
-            tLRPC$TL_messages_checkHistoryImport.import_head = sb2;
-            iArr[0] = ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_messages_checkHistoryImport, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    LaunchActivity.this.lambda$runImportRequest$35(uri, i, alertDialog, tLObject, tLRPC$TL_error);
-                }
-            });
-            alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                @Override
-                public final void onCancel(DialogInterface dialogInterface) {
-                    LaunchActivity.lambda$runImportRequest$36(i, iArr, r3, dialogInterface);
-                }
-            });
-            try {
-                alertDialog.showDelayed(300L);
-            } catch (Exception unused) {
-            }
-        } catch (Exception e3) {
-            e = e3;
-            inputStream = openInputStream;
-            FileLog.e(e);
-            if (inputStream != null) {
-                try {
-                    inputStream.close();
-                } catch (Exception e4) {
-                    FileLog.e(e4);
-                }
-            }
-        } catch (Throwable th2) {
-            th = th2;
-            inputStream = openInputStream;
-            if (inputStream != null) {
-                try {
-                    inputStream.close();
-                } catch (Exception e5) {
-                    FileLog.e(e5);
-                }
-            }
-            throw th;
+            alertDialog.showDelayed(300L);
+        } catch (Exception unused) {
         }
     }
 
@@ -5615,7 +5565,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    public void onSaveInstanceState(Bundle bundle) {
+    protected void onSaveInstanceState(Bundle bundle) {
         try {
             super.onSaveInstanceState(bundle);
             BaseFragment baseFragment = null;

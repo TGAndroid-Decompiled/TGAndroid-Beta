@@ -4611,72 +4611,8 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         }
     }
 
-    public void lambda$prepareImportHistory$72(ArrayList arrayList, final long j, Uri uri, final MessagesStorage.LongCallback longCallback) {
-        ArrayList arrayList2 = arrayList != null ? arrayList : new ArrayList();
-        final ImportingHistory importingHistory = new ImportingHistory();
-        importingHistory.mediaPaths = arrayList2;
-        importingHistory.dialogId = j;
-        importingHistory.peer = getMessagesController().getInputPeer(j);
-        final HashMap hashMap = new HashMap();
-        int i = 0;
-        int size = arrayList2.size();
-        while (i < size + 1) {
-            Uri uri2 = i == 0 ? uri : (Uri) arrayList2.get(i - 1);
-            if (uri2 != null && !AndroidUtilities.isInternalUri(uri2)) {
-                String copyFileToCache = MediaController.copyFileToCache(uri2, "txt");
-                if (copyFileToCache == null) {
-                    continue;
-                } else {
-                    File file = new File(copyFileToCache);
-                    if (file.exists()) {
-                        long length = file.length();
-                        if (length != 0) {
-                            importingHistory.totalSize += length;
-                            if (i != 0) {
-                                importingHistory.uploadMedia.add(copyFileToCache);
-                            } else if (length > 33554432) {
-                                file.delete();
-                                AndroidUtilities.runOnUIThread(new Runnable() {
-                                    @Override
-                                    public final void run() {
-                                        SendMessagesHelper.lambda$prepareImportHistory$70(MessagesStorage.LongCallback.this);
-                                    }
-                                });
-                                return;
-                            } else {
-                                importingHistory.historyPath = copyFileToCache;
-                            }
-                            importingHistory.uploadSet.add(copyFileToCache);
-                            hashMap.put(copyFileToCache, importingHistory);
-                        }
-                    }
-                    if (i == 0) {
-                        AndroidUtilities.runOnUIThread(new Runnable() {
-                            @Override
-                            public final void run() {
-                                MessagesStorage.LongCallback.this.run(0L);
-                            }
-                        });
-                        return;
-                    }
-                }
-            } else if (i == 0) {
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        MessagesStorage.LongCallback.this.run(0L);
-                    }
-                });
-                return;
-            }
-            i++;
-        }
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                SendMessagesHelper.this.lambda$prepareImportHistory$71(hashMap, j, importingHistory, longCallback);
-            }
-        });
+    public void lambda$prepareImportHistory$72(java.util.ArrayList r19, final long r20, android.net.Uri r22, final org.telegram.messenger.MessagesStorage.LongCallback r23) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SendMessagesHelper.lambda$prepareImportHistory$72(java.util.ArrayList, long, android.net.Uri, org.telegram.messenger.MessagesStorage$LongCallback):void");
     }
 
     public static void lambda$prepareImportHistory$70(MessagesStorage.LongCallback longCallback) {

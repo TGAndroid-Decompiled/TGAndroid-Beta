@@ -6,13 +6,22 @@
  *  down or right gesture. Use `event.preventDefault()` at `touchstart` to prevent those gestures.
  *  It is recommended to do `event.preventDefault()` when dragging or swiping is expected to be
  *  handled by a website.
- *  Since some websites don't do that, ths script also captures `style` and `class` changes to
- *  hierarchy of touch element, and does equivalent of `preventDefault` if those changes happens while
- *  `touchstart` and `touchmove` events.
+ *
+ *  You can also globally disable swipes for X and/or Y with <meta> tags:
+ *   - <meta name="tg:swipes:x" content="none">
+ *   - <meta name="tg:swipes:y" content="allow">
+ *  Please, use these <meta> tags as the last resort, as it disables convenient back and close
+ *  gestures, degrading user experience.
+ *
+ *  Since some websites don't do that, the script also captures `style` and `class` changes to
+ *  hierarchy of a touch element, and does equivalent of `preventDefault` if those changes happen
+ *  while `touchstart` or `touchmove` events.
  *
  *  # Action Bar and Navigation Bar colors
  *  Top action bar and bottom navigation bar colors are defined with:
+ *    - <meta name="tg:theme-accent" content="#FFFFFF" /> — action bar, usually an accent color
  *    - <meta name="theme-color" content="#FFFFFF" /> — action bar, usually an accent color
+ *    - <meta name="tg:theme-background" content="#FFFFFF" /> — navigation bar
  *    - <meta name="theme-background-color" content="#FFFFFF" /> — navigation bar
  *    - <body> `background-color` css style — fallback
  *  `media` attribute on <meta> is also supported, feel free to use `prefers-color-scheme`
@@ -23,6 +32,7 @@
 if (!window.__tg__webview_set) {
     window.__tg__webview_set = true;
     (function () {
+        const DEBUG = $DEBUG$;
 
         // Touch gestures hacks
         const isImageViewer = () => {
@@ -30,6 +40,8 @@ if (!window.__tg__webview_set) {
             const img = document.querySelector('body > img');
             return img && img.tagName && img.tagName.toLowerCase() === 'img' && img.src === window.location.href;
         }
+        const swipesDisabled = axis =>
+            (document.querySelector(`meta[name="tg:swipes:${axis}"]`)||{}).content === 'none';
         let prevented = false;
         let awaitingResponse = false;
         let touchElement = null;
@@ -41,11 +53,12 @@ if (!window.__tg__webview_set) {
             whiletouchstart = true;
             if (isImageViewer()) {
                 if (window.TelegramWebview) {
-                    console.log({ v: window.visualViewport });
-                    window.TelegramWebview.post('allowScroll', JSON.stringify([
-                        window.visualViewport && window.visualViewport.offsetLeft == 0,
-                        window.visualViewport && window.visualViewport.offsetTop == 0
-                    ]));
+                    const allowScrollX = window.visualViewport && window.visualViewport.offsetLeft == 0 && !swipesDisabled('x');
+                    const allowScrollY = window.visualViewport && window.visualViewport.offsetTop  == 0 && !swipesDisabled('y');
+                    if (DEBUG) {
+                        console.log('tgbrowser allowScroll sent after "touchstart": x=' + allowScrollX + ' y=' + allowScrollY + ' inside image viewer');
+                    }
+                    window.TelegramWebview.post('allowScroll', JSON.stringify([ allowScrollX, allowScrollY ]));
                 }
                 awaitingResponse = false;
             }
@@ -60,10 +73,16 @@ if (!window.__tg__webview_set) {
                 setTimeout(() => {
                     if (awaitingResponse) {
                         if (window.TelegramWebview) {
-                            window.TelegramWebview.post('allowScroll', JSON.stringify([
-                                !prevented && !mutatedWhileTouch,
-                                !prevented && !mutatedWhileTouch
-                            ]));
+                            console.log('touchmove', { allowScroll: [
+                               !prevented && !mutatedWhileTouch && !swipesDisabled('x'),
+                               !prevented && !mutatedWhileTouch && !swipesDisabled('y')
+                            ], prevented, mutatedWhileTouch })
+                            const allowScrollX = !prevented && !mutatedWhileTouch && !swipesDisabled('x');
+                            const allowScrollY = !prevented && !mutatedWhileTouch && !swipesDisabled('y');
+                            if (DEBUG) {
+                                console.log('tgbrowser allowScroll sent after "touchmove": x=' + allowScrollX + ' y=' + allowScrollY, { prevented, mutatedWhileTouch });
+                            }
+                            window.TelegramWebview.post('allowScroll', JSON.stringify([ allowScrollX, allowScrollY ]));
                         }
                         prevented = false;
                         awaitingResponse = false;
@@ -77,10 +96,13 @@ if (!window.__tg__webview_set) {
         }, false);
         document.addEventListener('scroll', e => {
             if (!e.target) return;
-            const allowScrollX = e.target.scrollLeft == 0 && !prevented && !mutatedWhileTouch;
-            const allowScrollY = e.target.scrollTop == 0  && !prevented && !mutatedWhileTouch;
+            const allowScrollX = e.target.scrollLeft == 0 && !prevented && !mutatedWhileTouch && !swipesDisabled('x');
+            const allowScrollY = e.target.scrollTop == 0  && !prevented && !mutatedWhileTouch && !swipesDisabled('y');
             if (awaitingResponse) {
                 if (window.TelegramWebview) {
+                    if (DEBUG) {
+                        console.log('tgbrowser allowScroll sent after "scroll": x=' + allowScrollX + ' y=' + allowScrollY, { prevented, mutatedWhileTouch, scrollLeft: e.target.scrollLeft, scrollTop: e.target.scrollTop });
+                    }
                     window.TelegramWebview.post('allowScroll', JSON.stringify([allowScrollX, allowScrollY]));
                 }
                 awaitingResponse = false;
@@ -113,10 +135,13 @@ if (!window.__tg__webview_set) {
             const isTouchElement = touchElement && !![...(mutationList||[])]
                 .filter(r => r && (r.attributeName === 'style' || r.attributeName === 'class'))
                 .map(r => r.target)
-                .filter(e => !!e)
+                .filter(e => !!e && e != document.body && e != document.documentElement)
                 .find(e => isParentOf(touchElement, e));
             const isImageViewer = touchElement && touchElement.tagName && touchElement.tagName.toLowerCase() === 'img' && touchElement.src === window.location.href;
             if (isTouchElement) { // && (whiletouchstart || whiletouchmove)) {
+                if (DEBUG) {
+                    console.log('tgbrowser mutation detected', mutationList);
+                }
                 mutatedWhileTouch = true;
             }
         }).observe(document, { attributes: true, childList: true, subtree: true });
@@ -129,12 +154,8 @@ if (!window.__tg__webview_set) {
                 return null;
             }
         }
-        const __tg__themeColor = () =>
-            [...document.querySelectorAll('meta[name="theme-color"]')]
-                .filter(meta => !meta.media || window.matchMedia && window.matchMedia(meta.media).matches)
-                .map(meta => meta.content)[0];
-        const __tg__themeBackgroundColor = () =>
-            [...document.querySelectorAll('meta[name="theme-background-color"]')]
+        const __tg__metaColor = name =>
+            [...document.querySelectorAll(`meta[name="${name}"]`)]
                 .filter(meta => !meta.media || window.matchMedia && window.matchMedia(meta.media).matches)
                 .map(meta => meta.content)[0];
         const __tg__cssColorToRGBA = color => {
@@ -154,8 +175,16 @@ if (!window.__tg__webview_set) {
         };
         let __tg__lastActionBarColor, __tg__lastNavigationBarColor;
         window.__tg__postColorsChange = () => {
-            const actionBarColor =     JSON.stringify(__tg__cssColorToRGBA(__tg__themeColor() || __tg__backgroundColor()));
-            const navigationBarColor = JSON.stringify(__tg__cssColorToRGBA(__tg__themeBackgroundColor() || __tg__backgroundColor()));
+            const actionBarColor = JSON.stringify(__tg__cssColorToRGBA(
+                __tg__metaColor("tg:theme-accent") ||
+                __tg__metaColor("theme-color") ||
+                __tg__backgroundColor()
+            ));
+            const navigationBarColor = JSON.stringify(__tg__cssColorToRGBA(
+                __tg__metaColor("tg:theme-background") ||
+                __tg__metaColor("theme-background-color") ||
+                __tg__backgroundColor()
+            ));
             if (window.TelegramWebview) {
                 if (actionBarColor != __tg__lastActionBarColor)
                     window.TelegramWebview.post("actionBarColor", __tg__lastActionBarColor = actionBarColor);
@@ -171,6 +200,8 @@ if (!window.__tg__webview_set) {
             [
                 document,
                 document.body,
+                ...document.querySelectorAll('meta[name="tg:theme-accent"]'),
+                ...document.querySelectorAll('meta[name="tg:theme-background"]'),
                 ...document.querySelectorAll('meta[name="theme-color"]'),
                 ...document.querySelectorAll('meta[name="theme-background-color"]')
             ].filter(e => !!e).map(e => __tg__colorsObserver.observe(e, { attributes: true }));
@@ -190,7 +221,7 @@ if (!window.__tg__webview_set) {
                 .then(r => r.blob())
                 .then(blob => {
                     blob.arrayBuffer().then(buffer => {
-                        if (window.TelegramWebview) {
+                           if (window.TelegramWebview) {
                             window.TelegramWebview.resolveBlob(url, Array.from(new Uint8Array(buffer)), blob.type);
                         }
                     })

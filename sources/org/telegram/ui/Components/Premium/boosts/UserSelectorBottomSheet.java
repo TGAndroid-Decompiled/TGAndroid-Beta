@@ -869,12 +869,9 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
         if (tLRPC$User == null || baseFragment == null) {
             return;
         }
-        BaseFragment.BottomSheetParams bottomSheetParams = new BaseFragment.BottomSheetParams();
-        bottomSheetParams.transitionFromLeft = true;
-        bottomSheetParams.allowNestedScroll = false;
         Bundle bundle = new Bundle();
         bundle.putLong("user_id", tLRPC$User.id);
-        baseFragment.showAsSheet(new ChatActivity(bundle), bottomSheetParams);
+        baseFragment.presentFragment(new ChatActivity(bundle));
     }
 
     public void lambda$openOptions$13(TLRPC$User tLRPC$User) {
@@ -882,12 +879,9 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
         if (tLRPC$User == null || baseFragment == null) {
             return;
         }
-        BaseFragment.BottomSheetParams bottomSheetParams = new BaseFragment.BottomSheetParams();
-        bottomSheetParams.transitionFromLeft = true;
-        bottomSheetParams.allowNestedScroll = false;
         Bundle bundle = new Bundle();
         bundle.putLong("user_id", tLRPC$User.id);
-        baseFragment.showAsSheet(new ProfileActivity(bundle), bottomSheetParams);
+        baseFragment.presentFragment(new ProfileActivity(bundle));
     }
 
     @Override

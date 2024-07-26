@@ -4673,6 +4673,36 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
     }
 
+    public static File createFileInCache(String str, String str2) {
+        File file;
+        try {
+            File sharingDirectory = AndroidUtilities.getSharingDirectory();
+            sharingDirectory.mkdirs();
+            if (AndroidUtilities.isInternalUri(Uri.fromFile(sharingDirectory))) {
+                return null;
+            }
+            int i = 0;
+            do {
+                File sharingDirectory2 = AndroidUtilities.getSharingDirectory();
+                if (i == 0) {
+                    file = new File(sharingDirectory2, str);
+                } else {
+                    int lastIndexOf = str.lastIndexOf(".");
+                    if (lastIndexOf > 0) {
+                        file = new File(sharingDirectory2, str.substring(0, lastIndexOf) + " (" + i + ")" + str.substring(lastIndexOf));
+                    } else {
+                        file = new File(sharingDirectory2, str + " (" + i + ")");
+                    }
+                }
+                i++;
+            } while (file.exists());
+            return file;
+        } catch (Exception e) {
+            FileLog.e(e);
+            return null;
+        }
+    }
+
     public static String copyFileToCache(Uri uri, String str) {
         return copyFileToCache(uri, str, -1L);
     }

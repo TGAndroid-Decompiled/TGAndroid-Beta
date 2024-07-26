@@ -220,7 +220,7 @@ public class BottomSheetTabs extends FrameLayout {
         return null;
     }
 
-    public String urlWithoutFragment(String str) {
+    public static String urlWithoutFragment(String str) {
         if (str == null) {
             return null;
         }

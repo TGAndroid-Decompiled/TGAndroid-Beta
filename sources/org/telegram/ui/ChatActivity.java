@@ -28060,13 +28060,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     public void lambda$didLongPressLink$349(String str) {
-        if (getParentActivity() == null) {
-            return;
-        }
-        Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(str));
-        intent.putExtra("create_new_tab", true);
-        intent.putExtra("com.android.browser.application_id", getContext().getPackageName());
-        getParentActivity().startActivity(intent);
+        Browser.openInExternalBrowser(getParentActivity(), str, false);
     }
 
     public void lambda$didLongPressLink$350(MessageObject messageObject) {

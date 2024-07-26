@@ -313,8 +313,7 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
             this.viewsText.setText("", false);
         }
         this.viewsAlpha.set(this.drawViews ? 1.0f : 0.0f, true);
-        Object obj = messageObject.parentStoriesList;
-        Object obj2 = obj != null ? obj : messageObject;
+        MessageObject messageObject5 = messageObject.parentStoriesList != null ? messageObject.storyItem : messageObject;
         if (TextUtils.isEmpty(restrictionReason)) {
             TL_stories$StoryItem tL_stories$StoryItem2 = messageObject.storyItem;
             if (tL_stories$StoryItem2 != null && (tL_stories$StoryItem2.media instanceof TLRPC$TL_messageMediaUnsupported)) {
@@ -327,7 +326,7 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
                 StoriesController.UploadingStory uploadingStory = messageObject.uploadingStory;
                 if (uploadingStory != null && (str = uploadingStory.firstFramePath) != null) {
                     i2 = 2;
-                    this.imageReceiver.setImage(ImageLocation.getForPath(str), filterString, null, null, obj2, 0);
+                    this.imageReceiver.setImage(ImageLocation.getForPath(str), filterString, null, null, messageObject5, 0);
                 } else {
                     i2 = 2;
                     if (messageObject.isVideo()) {
@@ -339,9 +338,9 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
                         if (imageLocation != null) {
                             BitmapDrawable bitmapDrawable = messageObject.strippedThumb;
                             if (bitmapDrawable != null) {
-                                this.imageReceiver.setImage(imageLocation, filterString, bitmapDrawable, null, obj2, 0);
+                                this.imageReceiver.setImage(imageLocation, filterString, bitmapDrawable, null, messageObject5, 0);
                             } else {
-                                this.imageReceiver.setImage(imageLocation, filterString, messageObject.mediaSmallThumb, filterString + "_b", null, 0L, null, obj2, 0);
+                                this.imageReceiver.setImage(imageLocation, filterString, messageObject.mediaSmallThumb, filterString + "_b", null, 0L, null, messageObject5, 0);
                             }
                         } else {
                             TLRPC$Document document = messageObject.getDocument();
@@ -352,9 +351,9 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
                             }
                             if (closestPhotoSizeWithSize != null) {
                                 if (messageObject.strippedThumb != null) {
-                                    this.imageReceiver.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize2, document), filterString, messageObject.strippedThumb, null, obj2, 0);
+                                    this.imageReceiver.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize2, document), filterString, messageObject.strippedThumb, null, messageObject5, 0);
                                 } else {
-                                    this.imageReceiver.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize2, document), filterString, ImageLocation.getForDocument(closestPhotoSizeWithSize, document), filterString + "_b", null, 0L, null, obj2, 0);
+                                    this.imageReceiver.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize2, document), filterString, ImageLocation.getForDocument(closestPhotoSizeWithSize, document), filterString + "_b", null, 0L, null, messageObject5, 0);
                                 }
                             }
                             z = true;
@@ -366,9 +365,9 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
                                 if (imageLocation2 != null) {
                                     BitmapDrawable bitmapDrawable2 = messageObject.strippedThumb;
                                     if (bitmapDrawable2 != null) {
-                                        this.imageReceiver.setImage(imageLocation2, filterString, bitmapDrawable2, null, obj2, 0);
+                                        this.imageReceiver.setImage(imageLocation2, filterString, bitmapDrawable2, null, messageObject5, 0);
                                     } else {
-                                        this.imageReceiver.setImage(imageLocation2, filterString, messageObject.mediaSmallThumb, filterString + "_b", null, 0L, null, obj2, 0);
+                                        this.imageReceiver.setImage(imageLocation2, filterString, messageObject.mediaSmallThumb, filterString + "_b", null, 0L, null, messageObject5, 0);
                                     }
                                 } else {
                                     TLRPC$PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, 50);
@@ -377,17 +376,17 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
                                         closestPhotoSizeWithSize3 = null;
                                     }
                                     if (messageObject.strippedThumb != null) {
-                                        this.imageReceiver.setImage(ImageLocation.getForObject(closestPhotoSizeWithSize4, messageObject.photoThumbsObject), filterString, null, null, messageObject.strippedThumb, closestPhotoSizeWithSize4 != null ? closestPhotoSizeWithSize4.size : 0L, null, obj2, messageObject.shouldEncryptPhotoOrVideo() ? 2 : 1);
+                                        this.imageReceiver.setImage(ImageLocation.getForObject(closestPhotoSizeWithSize4, messageObject.photoThumbsObject), filterString, null, null, messageObject.strippedThumb, closestPhotoSizeWithSize4 != null ? closestPhotoSizeWithSize4.size : 0L, null, messageObject5, messageObject.shouldEncryptPhotoOrVideo() ? 2 : 1);
                                     } else {
-                                        this.imageReceiver.setImage(ImageLocation.getForObject(closestPhotoSizeWithSize4, messageObject.photoThumbsObject), filterString, ImageLocation.getForObject(closestPhotoSizeWithSize3, messageObject.photoThumbsObject), filterString + "_b", closestPhotoSizeWithSize4 != null ? closestPhotoSizeWithSize4.size : 0L, null, obj2, messageObject.shouldEncryptPhotoOrVideo() ? 2 : 1);
+                                        this.imageReceiver.setImage(ImageLocation.getForObject(closestPhotoSizeWithSize4, messageObject.photoThumbsObject), filterString, ImageLocation.getForObject(closestPhotoSizeWithSize3, messageObject.photoThumbsObject), filterString + "_b", closestPhotoSizeWithSize4 != null ? closestPhotoSizeWithSize4.size : 0L, null, messageObject5, messageObject.shouldEncryptPhotoOrVideo() ? 2 : 1);
                                     }
                                 }
                             } else {
                                 BitmapDrawable bitmapDrawable3 = messageObject.strippedThumb;
                                 if (bitmapDrawable3 != null) {
-                                    this.imageReceiver.setImage(null, null, null, null, bitmapDrawable3, 0L, null, obj2, 0);
+                                    this.imageReceiver.setImage(null, null, null, null, bitmapDrawable3, 0L, null, messageObject5, 0);
                                 } else {
-                                    this.imageReceiver.setImage(null, null, ImageLocation.getForObject(FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, 50), messageObject.photoThumbsObject), "b", null, 0L, null, obj2, 0);
+                                    this.imageReceiver.setImage(null, null, ImageLocation.getForObject(FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, 50), messageObject.photoThumbsObject), "b", null, 0L, null, messageObject5, 0);
                                 }
                             }
                         }

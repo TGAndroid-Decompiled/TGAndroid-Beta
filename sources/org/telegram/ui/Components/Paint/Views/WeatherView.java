@@ -17,6 +17,7 @@ import org.telegram.ui.Stories.recorder.Weather;
 public class WeatherView extends EntityView {
     private int currentColor;
     private int currentType;
+    private boolean hasColor;
     public final LocationMarker marker;
     public Weather.State weather;
 
@@ -45,14 +46,12 @@ public class WeatherView extends EntityView {
         return this.marker.pady;
     }
 
-    public WeatherView(Context context, Point point, int i, Weather.State state, float f, int i2, int i3, int i4) {
+    public WeatherView(Context context, Point point, int i, Weather.State state, float f, int i2) {
         super(context, point);
         LocationMarker locationMarker = new LocationMarker(context, 1, f, 0);
         this.marker = locationMarker;
         locationMarker.setMaxWidth(i2);
-        this.currentType = i3;
-        this.currentColor = i4;
-        locationMarker.setType(i3, i4);
+        locationMarker.setType(0, this.currentColor);
         setWeather(i, state);
         addView(locationMarker, LayoutHelper.createFrame(-2, -2, 51));
         setClipChildren(false);
@@ -85,36 +84,32 @@ public class WeatherView extends EntityView {
         updatePosition();
     }
 
+    public void setColor(int i) {
+        this.hasColor = true;
+        this.currentColor = i;
+    }
+
+    public boolean hasColor() {
+        return this.hasColor;
+    }
+
     public void setType(int i) {
-        this.marker.setText(this.weather.getTemperature());
         LocationMarker locationMarker = this.marker;
         this.currentType = i;
         locationMarker.setType(i, this.currentColor);
     }
 
-    public void setType(int i, int i2) {
-        this.marker.setText(this.weather.getTemperature());
-        LocationMarker locationMarker = this.marker;
-        this.currentType = i;
-        this.currentColor = i2;
-        locationMarker.setType(i, i2);
+    public int getTypesCount() {
+        return this.marker.getTypesCount() - (!this.hasColor ? 1 : 0);
+    }
+
+    public int getColor() {
+        return this.currentColor;
     }
 
     @Override
     public void setIsVideo(boolean z) {
         this.marker.setIsVideo(true);
-    }
-
-    public int getTypesCount() {
-        return this.marker.getTypesCount();
-    }
-
-    public void setColor(int i) {
-        setType(this.currentType, i);
-    }
-
-    public int getColor() {
-        return this.currentColor;
     }
 
     public int getType() {

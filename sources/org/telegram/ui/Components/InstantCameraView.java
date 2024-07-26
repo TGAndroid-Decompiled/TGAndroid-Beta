@@ -832,7 +832,9 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         this.cameraReady = false;
         this.selectedCamera = null;
         if (!z) {
-            this.isFrontface = true;
+            if (!this.useCamera2) {
+                this.isFrontface = true;
+            }
             updateFlash();
             this.recordedTime = 0L;
             this.progress = 0.0f;

@@ -63,6 +63,7 @@ public class WebMetadataCache {
         public int backgroundColor;
         public String domain;
         public Bitmap favicon;
+        public byte[] faviconBytes;
         public String sitename;
         public long time = System.currentTimeMillis();
         public String title;
@@ -112,9 +113,16 @@ public class WebMetadataCache {
                 return;
             }
             abstractSerializedData.writeInt32(953850003);
+            byte[] bArr = this.faviconBytes;
+            if (bArr != null) {
+                abstractSerializedData.writeByteArray(bArr);
+                return;
+            }
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            this.favicon.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
-            abstractSerializedData.writeByteArray(byteArrayOutputStream.toByteArray());
+            this.favicon.compress(Bitmap.CompressFormat.JPEG, 80, byteArrayOutputStream);
+            byte[] byteArray = byteArrayOutputStream.toByteArray();
+            this.faviconBytes = byteArray;
+            abstractSerializedData.writeByteArray(byteArray);
             try {
                 byteArrayOutputStream.close();
             } catch (Exception e) {
@@ -132,9 +140,10 @@ public class WebMetadataCache {
             this.backgroundColor = abstractSerializedData.readInt32(z);
             if (abstractSerializedData.readInt32(z) == 1450380236) {
                 this.favicon = null;
-            } else {
-                this.favicon = BitmapFactory.decodeStream(new ByteArrayInputStream(abstractSerializedData.readByteArray(z)));
+                return;
             }
+            this.faviconBytes = abstractSerializedData.readByteArray(z);
+            this.favicon = BitmapFactory.decodeStream(new ByteArrayInputStream(this.faviconBytes));
         }
     }
 
@@ -492,8 +501,9 @@ public class WebMetadataCache {
 
     public static void lambda$retrieveFaviconAndSitename$6(WebView webView) {
         String readRes = RLottieDrawable.readRes(null, R.raw.webview_ext);
+        String replace = readRes.replace("$DEBUG$", "" + BuildVars.DEBUG_PRIVATE_VERSION);
         if (Build.VERSION.SDK_INT >= 19) {
-            webView.evaluateJavascript(readRes, new ValueCallback() {
+            webView.evaluateJavascript(replace, new ValueCallback() {
                 @Override
                 public final void onReceiveValue(Object obj) {
                     WebMetadataCache.lambda$retrieveFaviconAndSitename$5((String) obj);
@@ -502,9 +512,9 @@ public class WebMetadataCache {
             return;
         }
         try {
-            webView.loadUrl("javascript:" + URLEncoder.encode(readRes, "UTF-8"));
+            webView.loadUrl("javascript:" + URLEncoder.encode(replace, "UTF-8"));
         } catch (UnsupportedEncodingException unused) {
-            webView.loadUrl("javascript:" + URLEncoder.encode(readRes));
+            webView.loadUrl("javascript:" + URLEncoder.encode(replace));
         }
     }
 

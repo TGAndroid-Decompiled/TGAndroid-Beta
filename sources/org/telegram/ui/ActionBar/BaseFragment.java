@@ -398,14 +398,6 @@ public abstract class BaseFragment {
         if (arrayList == null || arrayList.isEmpty()) {
             return;
         }
-        for (int size = this.sheetsStack.size() - 1; size >= 0; size--) {
-            AttachedSheet attachedSheet = this.sheetsStack.get(size);
-            if (!(attachedSheet instanceof StoryViewer)) {
-                attachedSheet.setLastVisible(false);
-                attachedSheet.dismiss(true);
-                this.sheetsStack.remove(size);
-            }
-        }
         updateSheetsVisibility();
     }
 
@@ -542,10 +534,18 @@ public abstract class BaseFragment {
         if (actionBar != null) {
             actionBar.setEnabled(false);
         }
-        if (!hasForceLightStatusBar() || AndroidUtilities.isTablet() || getParentLayout().getLastFragment() != this || getParentActivity() == null || this.finishing) {
-            return;
+        if (hasForceLightStatusBar() && !AndroidUtilities.isTablet() && getParentLayout().getLastFragment() == this && getParentActivity() != null && !this.finishing) {
+            AndroidUtilities.setLightStatusBar(getParentActivity().getWindow(), Theme.getColor(Theme.key_actionBarDefault) == -1);
         }
-        AndroidUtilities.setLightStatusBar(getParentActivity().getWindow(), Theme.getColor(Theme.key_actionBarDefault) == -1);
+        ArrayList<AttachedSheet> arrayList = this.sheetsStack;
+        if (arrayList != null) {
+            for (int size = arrayList.size() - 1; size >= 0; size--) {
+                AttachedSheet attachedSheet = this.sheetsStack.get(size);
+                attachedSheet.setLastVisible(false);
+                attachedSheet.dismiss(true);
+                this.sheetsStack.remove(size);
+            }
+        }
     }
 
     public void resumeDelayedFragmentAnimation() {

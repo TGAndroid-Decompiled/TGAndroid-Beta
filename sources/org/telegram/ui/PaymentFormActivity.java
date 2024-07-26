@@ -83,7 +83,6 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SRPHelper;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.ConnectionsManager;
@@ -92,7 +91,6 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$InputInvoice;
 import org.telegram.tgnet.TLRPC$InputPaymentCredentials;
 import org.telegram.tgnet.TLRPC$InputStorePaymentPurpose;
-import org.telegram.tgnet.TLRPC$InputUser;
 import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$PasswordKdfAlgo;
 import org.telegram.tgnet.TLRPC$PaymentForm;
@@ -2766,6 +2764,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
 
     public void lambda$sendData$59(final TLRPC$Message[] tLRPC$MessageArr) {
         int i;
+        String string;
         String formatString;
         PaymentFormCallback paymentFormCallback;
         PaymentFormCallback paymentFormCallback2;
@@ -2782,34 +2781,26 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         if (z && (paymentFormCallback = this.paymentFormCallback) != null) {
             paymentFormCallback.onInvoiceStatusChanged(this.invoiceStatus);
         }
-        String str = null;
-        TLRPC$InputStorePaymentPurpose tLRPC$InputStorePaymentPurpose = z ? ((TLRPC$TL_inputInvoiceStars) this.invoiceInput).purpose : null;
-        long j = 0;
-        String str2 = "";
-        if (tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentStarsGift) {
-            TLRPC$TL_inputStorePaymentStarsGift tLRPC$TL_inputStorePaymentStarsGift = (TLRPC$TL_inputStorePaymentStarsGift) tLRPC$InputStorePaymentPurpose;
-            j = tLRPC$TL_inputStorePaymentStarsGift.stars;
-            TLRPC$InputUser tLRPC$InputUser = tLRPC$TL_inputStorePaymentStarsGift.user_id;
-            str2 = UserObject.getForcedFirstName(tLRPC$InputUser != null ? MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(tLRPC$InputUser.user_id)) : null);
-        } else if (tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentStarsTopup) {
-            j = ((TLRPC$TL_inputStorePaymentStarsTopup) tLRPC$InputStorePaymentPurpose).stars;
-        }
+        long stars = getStars();
         if (z) {
             i = z2 ? R.raw.stars_send : R.raw.stars_topup;
         } else {
             i = R.raw.payment_success;
         }
         if (z) {
-            str = LocaleController.getString(z2 ? R.string.StarsGiftSentPopup : R.string.StarsAcquired);
+            string = LocaleController.getString(z2 ? R.string.StarsGiftSentPopup : R.string.StarsAcquired);
+        } else {
+            string = null;
         }
         if (z) {
-            formatString = LocaleController.formatPluralString(z2 ? "StarsGiftSentPopupInfo" : "StarsAcquiredInfo", (int) j, str2);
+            formatString = LocaleController.formatPluralString(z2 ? "StarsGiftSentPopupInfo" : "StarsAcquiredInfo", (int) stars, "");
         } else {
             formatString = LocaleController.formatString(R.string.PaymentInfoHint, this.totalPrice[0], this.currentItemName);
         }
         SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(formatString);
         BulletinFactory of = BulletinFactory.of(Bulletin.BulletinWindow.make(getContext()), this.resourcesProvider);
-        final Bulletin createSimpleBulletin = str != null ? of.createSimpleBulletin(i, str, replaceTags) : of.createSimpleBulletin(i, replaceTags);
+        final Bulletin createSimpleBulletin = string != null ? of.createSimpleBulletin(i, string, replaceTags) : of.createSimpleBulletin(i, replaceTags);
+        createSimpleBulletin.setDuration(5000);
         if (tLRPC$MessageArr[0] != null) {
             createSimpleBulletin.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -2926,15 +2917,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             paymentFormCallback.onInvoiceStatusChanged(invoiceStatus);
         }
         onCheckoutSuccess(iNavigationLayout, activity);
-        TLRPC$InputInvoice tLRPC$InputInvoice = this.invoiceInput;
-        TLRPC$InputStorePaymentPurpose tLRPC$InputStorePaymentPurpose = ((TLRPC$TL_inputInvoiceStars) tLRPC$InputInvoice).purpose;
-        long j = 0;
-        if (tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentStarsGift) {
-            j = ((TLRPC$TL_inputStorePaymentStarsGift) tLRPC$InputStorePaymentPurpose).stars;
-        } else if (tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentStarsTopup) {
-            j = ((TLRPC$TL_inputStorePaymentStarsTopup) tLRPC$InputStorePaymentPurpose).stars;
-        }
-        SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(tLRPC$InputInvoice instanceof TLRPC$TL_inputInvoiceStars ? LocaleController.formatPluralString("PaymentInfoHintStars", (int) j, this.totalPrice[0]) : LocaleController.formatString(R.string.PaymentInfoHint, this.totalPrice[0], this.currentItemName));
+        SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(this.invoiceInput instanceof TLRPC$TL_inputInvoiceStars ? LocaleController.formatPluralString("PaymentInfoHintStars", (int) getStars(), this.totalPrice[0]) : LocaleController.formatString(R.string.PaymentInfoHint, this.totalPrice[0], this.currentItemName));
         BaseFragment baseFragment = this.parentFragment;
         if (baseFragment instanceof ChatActivity) {
             UndoView undoView = ((ChatActivity) baseFragment).getUndoView();
@@ -3002,6 +2985,21 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         if (paymentFormCallback != null) {
             paymentFormCallback.onInvoiceStatusChanged(invoiceStatus);
         }
+    }
+
+    private long getStars() {
+        TLRPC$InputInvoice tLRPC$InputInvoice = this.invoiceInput;
+        if (tLRPC$InputInvoice instanceof TLRPC$TL_inputInvoiceStars) {
+            TLRPC$InputStorePaymentPurpose tLRPC$InputStorePaymentPurpose = ((TLRPC$TL_inputInvoiceStars) tLRPC$InputInvoice).purpose;
+            if (tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentStarsGift) {
+                return ((TLRPC$TL_inputStorePaymentStarsGift) tLRPC$InputStorePaymentPurpose).stars;
+            }
+            if (tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentStarsTopup) {
+                return ((TLRPC$TL_inputStorePaymentStarsTopup) tLRPC$InputStorePaymentPurpose).stars;
+            }
+            return 0L;
+        }
+        return 0L;
     }
 
     private void shakeField(int i) {

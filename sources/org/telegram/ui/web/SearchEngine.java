@@ -1,5 +1,6 @@
 package org.telegram.ui.web;
 
+import android.text.TextUtils;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import org.json.JSONArray;
@@ -42,14 +43,25 @@ public class SearchEngine {
                 arrayList.add(jSONArray.getString(i));
             }
         } catch (Exception e) {
-            FileLog.e(e);
+            FileLog.e((Throwable) e, false);
             try {
                 JSONArray jSONArray2 = new JSONObject(str).getJSONObject("gossip").getJSONArray("results");
                 for (int i2 = 0; i2 < jSONArray2.length(); i2++) {
                     arrayList.add(jSONArray2.getJSONObject(i2).getString("key"));
                 }
             } catch (Exception e2) {
-                FileLog.e(e2);
+                FileLog.e((Throwable) e2, false);
+                try {
+                    JSONArray jSONArray3 = new JSONArray(str);
+                    for (int i3 = 0; i3 < jSONArray3.length(); i3++) {
+                        String string = jSONArray3.getJSONObject(i3).getString("phrase");
+                        if (!TextUtils.isEmpty(string)) {
+                            arrayList.add(string);
+                        }
+                    }
+                } catch (Exception e3) {
+                    FileLog.e((Throwable) e3, false);
+                }
             }
         }
         return arrayList;

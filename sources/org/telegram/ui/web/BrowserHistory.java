@@ -8,13 +8,17 @@ import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.ui.web.WebMetadataCache;
 public class BrowserHistory {
+    private static ArrayList<Utilities.Callback<ArrayList<Entry>>> callbacks;
     private static ArrayList<Entry> history;
     private static LongSparseArray<Entry> historyById;
+    public static boolean historyLoaded;
+    public static boolean historyLoading;
 
     public static class Entry extends TLObject {
         public long id;
@@ -49,29 +53,82 @@ public class BrowserHistory {
         return new File(FileLoader.getDirectory(4), "webhistory.dat");
     }
 
-    public static ArrayList<Entry> getHistory() {
-        File historyFile;
-        ArrayList<Entry> arrayList = history;
-        if (arrayList != null) {
-            return arrayList;
+    public static void preloadHistory() {
+        if (historyLoading || historyLoaded) {
+            return;
         }
+        historyLoading = true;
+        history = new ArrayList<>();
+        historyById = new LongSparseArray<>();
+        Utilities.globalQueue.postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                BrowserHistory.lambda$preloadHistory$1();
+            }
+        });
+    }
+
+    public static void lambda$preloadHistory$1() {
+        final ArrayList arrayList = new ArrayList();
+        final LongSparseArray longSparseArray = new LongSparseArray();
         try {
-            history = new ArrayList<>();
-            historyById = new LongSparseArray<>();
-            historyFile = getHistoryFile();
+            File historyFile = getHistoryFile();
+            if (historyFile.exists()) {
+                SerializedData serializedData = new SerializedData(historyFile);
+                long readInt64 = serializedData.readInt64(true);
+                for (long j = 0; j < readInt64; j++) {
+                    Entry entry = new Entry();
+                    entry.readParams(serializedData, true);
+                    arrayList.add(entry);
+                    longSparseArray.put(entry.id, entry);
+                }
+            }
         } catch (Exception e) {
             FileLog.e(e);
         }
-        if (!historyFile.exists()) {
-            return history;
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                BrowserHistory.lambda$preloadHistory$0(arrayList, longSparseArray);
+            }
+        });
+    }
+
+    public static void lambda$preloadHistory$0(ArrayList arrayList, LongSparseArray longSparseArray) {
+        history.addAll(0, arrayList);
+        for (int i = 0; i < longSparseArray.size(); i++) {
+            historyById.put(longSparseArray.keyAt(i), (Entry) longSparseArray.valueAt(i));
         }
-        SerializedData serializedData = new SerializedData(historyFile);
-        long readInt64 = serializedData.readInt64(true);
-        for (long j = 0; j < readInt64; j++) {
-            Entry entry = new Entry();
-            entry.readParams(serializedData, true);
-            history.add(entry);
-            historyById.put(entry.id, entry);
+        historyLoaded = true;
+        historyLoading = false;
+        ArrayList<Utilities.Callback<ArrayList<Entry>>> arrayList2 = callbacks;
+        if (arrayList2 != null) {
+            Iterator<Utilities.Callback<ArrayList<Entry>>> it = arrayList2.iterator();
+            while (it.hasNext()) {
+                it.next().run(arrayList);
+            }
+            callbacks = null;
+        }
+    }
+
+    public static ArrayList<Entry> getHistory() {
+        return getHistory(null);
+    }
+
+    public static ArrayList<Entry> getHistory(Utilities.Callback<ArrayList<Entry>> callback) {
+        boolean z;
+        if (callback == null || historyLoaded) {
+            z = false;
+        } else {
+            if (callbacks == null) {
+                callbacks = new ArrayList<>();
+            }
+            callbacks.add(callback);
+            z = true;
+        }
+        preloadHistory();
+        if (z) {
+            return null;
         }
         return history;
     }
@@ -80,7 +137,7 @@ public class BrowserHistory {
         if (entry == null || entry.meta == null) {
             return;
         }
-        getHistory();
+        preloadHistory();
         Entry entry2 = historyById.get(entry.id);
         if (entry2 != null) {
             entry2.meta = entry.meta;
@@ -107,6 +164,15 @@ public class BrowserHistory {
     }
 
     public static void saveHistory() {
+        Utilities.globalQueue.postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                BrowserHistory.lambda$saveHistory$2();
+            }
+        });
+    }
+
+    public static void lambda$saveHistory$2() {
         try {
             File historyFile = getHistoryFile();
             if (!historyFile.exists()) {
