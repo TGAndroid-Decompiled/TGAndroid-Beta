@@ -253,38 +253,82 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
         }
     }
 
+    public boolean shouldApplyBackground(int i) {
+        if (this.applyBackground) {
+            if (i >= UItem.factoryViewTypeStartsWith) {
+                return true;
+            }
+            switch (i) {
+                case VoIPController.ERROR_LOCALIZED:
+                case 0:
+                case 1:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 9:
+                case 10:
+                case 11:
+                case 12:
+                case 13:
+                case 14:
+                case 15:
+                case 16:
+                case 17:
+                case 18:
+                case 19:
+                case 20:
+                case 21:
+                case 22:
+                case 23:
+                case 24:
+                case 25:
+                case 27:
+                case 28:
+                case 29:
+                case 30:
+                case 32:
+                case R.styleable.AppCompatTheme_actionOverflowMenuStyle:
+                case R.styleable.AppCompatTheme_activityChooserViewStyle:
+                case R.styleable.AppCompatTheme_alertDialogButtonGroupStyle:
+                case R.styleable.AppCompatTheme_alertDialogCenterButtons:
+                case R.styleable.AppCompatTheme_alertDialogStyle:
+                case R.styleable.AppCompatTheme_autoCompleteTextViewStyle:
+                case R.styleable.AppCompatTheme_borderlessButtonStyle:
+                case R.styleable.AppCompatTheme_buttonBarButtonStyle:
+                case R.styleable.AppCompatTheme_buttonBarNegativeButtonStyle:
+                    return true;
+                case VoIPController.ERROR_PRIVACY:
+                case -1:
+                case 2:
+                case 7:
+                case 8:
+                case 26:
+                case R.styleable.AppCompatTheme_actionModeWebSearchDrawable:
+                case R.styleable.AppCompatTheme_alertDialogTheme:
+                default:
+                    return false;
+            }
+        }
+        return false;
+    }
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View headerCell;
-        UserCell userCell;
         CheckBoxCell checkBoxCell;
         boolean z = this.dialog;
         int i2 = z ? Theme.key_dialogBackground : Theme.key_windowBackgroundWhite;
         if (i >= UItem.factoryViewTypeStartsWith) {
             UItem.UItemFactory<?> findFactory = UItem.findFactory(i);
             if (findFactory != null) {
-                ?? createView = findFactory.createView(this.context, this.currentAccount, this.classGuid, this.resourcesProvider);
-                checkBoxCell = createView;
-                if (this.applyBackground) {
-                    checkBoxCell = createView;
-                    if (findFactory.applyBackground()) {
-                        createView.setBackgroundColor(getThemedColor(i2));
-                        checkBoxCell = createView;
-                    }
-                }
+                checkBoxCell = findFactory.createView(this.context, this.currentAccount, this.classGuid, this.resourcesProvider);
             } else {
                 checkBoxCell = new View(this.context);
             }
         } else {
             switch (i) {
                 case VoIPController.ERROR_LOCALIZED:
-                    View fullscreenCustomFrameLayout = new FullscreenCustomFrameLayout(this, this.context);
-                    checkBoxCell = fullscreenCustomFrameLayout;
-                    if (this.applyBackground) {
-                        fullscreenCustomFrameLayout.setLayoutParams(new RecyclerView.LayoutParams(-1, -1));
-                        checkBoxCell = fullscreenCustomFrameLayout;
-                        break;
-                    }
+                    checkBoxCell = new FullscreenCustomFrameLayout(this, this.context);
                     break;
                 case VoIPController.ERROR_PRIVACY:
                     checkBoxCell = new FrameLayout(this, this.context) {
@@ -310,64 +354,37 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                     break;
                 case 0:
                     if (z) {
-                        headerCell = new HeaderCell(this.context, Theme.key_windowBackgroundWhiteBlueHeader, 21, 15, 0, false, this.resourcesProvider);
+                        checkBoxCell = new HeaderCell(this.context, Theme.key_windowBackgroundWhiteBlueHeader, 21, 15, 0, false, this.resourcesProvider);
+                        break;
                     } else {
-                        headerCell = new HeaderCell(this.context, this.resourcesProvider);
-                    }
-                    View view = headerCell;
-                    checkBoxCell = view;
-                    if (this.applyBackground) {
-                        view.setBackgroundColor(getThemedColor(i2));
-                        checkBoxCell = view;
+                        checkBoxCell = new HeaderCell(this.context, this.resourcesProvider);
                         break;
                     }
-                    break;
                 case 1:
-                    View headerCell2 = new HeaderCell(this.context, Theme.key_windowBackgroundWhiteBlackText, 17, 15, false, this.resourcesProvider);
-                    checkBoxCell = headerCell2;
-                    if (this.applyBackground) {
-                        headerCell2.setBackgroundColor(getThemedColor(i2));
-                        checkBoxCell = headerCell2;
-                        break;
-                    }
+                    checkBoxCell = new HeaderCell(this.context, Theme.key_windowBackgroundWhiteBlackText, 17, 15, false, this.resourcesProvider);
                     break;
                 case 2:
                     checkBoxCell = new TopViewCell(this.context, this.resourcesProvider);
                     break;
                 case 3:
-                    View textCell = new TextCell(this.context, this.resourcesProvider);
-                    checkBoxCell = textCell;
-                    if (this.applyBackground) {
-                        textCell.setBackgroundColor(getThemedColor(i2));
-                        checkBoxCell = textCell;
-                        break;
-                    }
+                    checkBoxCell = new TextCell(this.context, this.resourcesProvider);
                     break;
                 case 4:
                 case 9:
                     TextCheckCell textCheckCell = new TextCheckCell(this.context, this.resourcesProvider);
+                    checkBoxCell = textCheckCell;
                     if (i == 9) {
                         textCheckCell.setDrawCheckRipple(true);
                         textCheckCell.setColors(Theme.key_windowBackgroundCheckText, Theme.key_switchTrackBlue, Theme.key_switchTrackBlueChecked, Theme.key_switchTrackBlueThumb, Theme.key_switchTrackBlueThumbChecked);
                         textCheckCell.setTypeface(AndroidUtilities.bold());
                         textCheckCell.setHeight(56);
+                        checkBoxCell = textCheckCell;
+                        break;
                     }
-                    userCell = textCheckCell;
-                    if (this.applyBackground) {
-                        textCheckCell.setBackgroundColor(getThemedColor(i2));
-                        userCell = textCheckCell;
-                    }
-                    checkBoxCell = userCell;
                     break;
                 case 5:
                 case 6:
-                    View notificationsCheckCell = new NotificationsCheckCell(this.context, 21, 60, i == 6, this.resourcesProvider);
-                    userCell = notificationsCheckCell;
-                    if (this.applyBackground) {
-                        notificationsCheckCell.setBackgroundColor(getThemedColor(i2));
-                        userCell = notificationsCheckCell;
-                    }
-                    checkBoxCell = userCell;
+                    checkBoxCell = new NotificationsCheckCell(this.context, 21, 60, i == 6, this.resourcesProvider);
                     break;
                 case 7:
                 case 8:
@@ -375,69 +392,28 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                     checkBoxCell = new TextInfoPrivacyCell(this.context, this.resourcesProvider);
                     break;
                 case 10:
-                    View dialogRadioCell = new DialogRadioCell(this.context);
-                    checkBoxCell = dialogRadioCell;
-                    if (this.applyBackground) {
-                        dialogRadioCell.setBackgroundColor(getThemedColor(i2));
-                        checkBoxCell = dialogRadioCell;
-                        break;
-                    }
+                    checkBoxCell = new DialogRadioCell(this.context);
                     break;
                 case 11:
                 case 12:
-                    UserCell userCell2 = new UserCell(this.context, 6, i == 12 ? 3 : 0, false);
-                    userCell2.setSelfAsSavedMessages(true);
-                    userCell = userCell2;
-                    if (this.applyBackground) {
-                        userCell2.setBackgroundColor(getThemedColor(i2));
-                        userCell = userCell2;
-                    }
+                    UserCell userCell = new UserCell(this.context, 6, i == 12 ? 3 : 0, false);
+                    userCell.setSelfAsSavedMessages(true);
                     checkBoxCell = userCell;
                     break;
                 case 13:
-                    UserCell userCell3 = new UserCell(this.context, 6, 0, false, true);
-                    checkBoxCell = userCell3;
-                    if (this.applyBackground) {
-                        userCell3.setBackgroundColor(getThemedColor(i2));
-                        checkBoxCell = userCell3;
-                        break;
-                    }
+                    checkBoxCell = new UserCell(this.context, 6, 0, false, true);
                     break;
                 case 14:
-                    View slideChooseView = new SlideChooseView(this.context, this.resourcesProvider);
-                    checkBoxCell = slideChooseView;
-                    if (this.applyBackground) {
-                        slideChooseView.setBackgroundColor(getThemedColor(i2));
-                        checkBoxCell = slideChooseView;
-                        break;
-                    }
+                    checkBoxCell = new SlideChooseView(this.context, this.resourcesProvider);
                     break;
                 case 15:
-                    View slideIntChooseView = new SlideIntChooseView(this.context, this.resourcesProvider);
-                    checkBoxCell = slideIntChooseView;
-                    if (this.applyBackground) {
-                        slideIntChooseView.setBackgroundColor(getThemedColor(i2));
-                        checkBoxCell = slideIntChooseView;
-                        break;
-                    }
+                    checkBoxCell = new SlideIntChooseView(this.context, this.resourcesProvider);
                     break;
                 case 16:
-                    View quickReplyView = new QuickRepliesActivity.QuickReplyView(this.context, this.onReordered != null, this.resourcesProvider);
-                    checkBoxCell = quickReplyView;
-                    if (this.applyBackground) {
-                        quickReplyView.setBackgroundColor(getThemedColor(i2));
-                        checkBoxCell = quickReplyView;
-                        break;
-                    }
+                    checkBoxCell = new QuickRepliesActivity.QuickReplyView(this.context, this.onReordered != null, this.resourcesProvider);
                     break;
                 case 17:
-                    View largeQuickReplyView = new QuickRepliesActivity.LargeQuickReplyView(this.context, this.resourcesProvider);
-                    checkBoxCell = largeQuickReplyView;
-                    if (this.applyBackground) {
-                        largeQuickReplyView.setBackgroundColor(getThemedColor(i2));
-                        checkBoxCell = largeQuickReplyView;
-                        break;
-                    }
+                    checkBoxCell = new QuickRepliesActivity.LargeQuickReplyView(this.context, this.resourcesProvider);
                     break;
                 case 18:
                 case 19:
@@ -448,104 +424,46 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                     if (this.chartSharedUI == null) {
                         this.chartSharedUI = new BaseChartView.SharedUiComponents();
                     }
-                    View universalChartCell = new StatisticActivity.UniversalChartCell(this.context, this.currentAccount, i - 18, this.chartSharedUI, this.classGuid);
-                    userCell = universalChartCell;
-                    if (this.applyBackground) {
-                        universalChartCell.setBackgroundColor(getThemedColor(i2));
-                        userCell = universalChartCell;
-                    }
-                    checkBoxCell = userCell;
+                    checkBoxCell = new StatisticActivity.UniversalChartCell(this.context, this.currentAccount, i - 18, this.chartSharedUI, this.classGuid);
                     break;
                 case 24:
-                    View proceedOverviewCell = new ChannelMonetizationLayout.ProceedOverviewCell(this.context, this.resourcesProvider);
-                    checkBoxCell = proceedOverviewCell;
-                    if (this.applyBackground) {
-                        proceedOverviewCell.setBackgroundColor(getThemedColor(i2));
-                        checkBoxCell = proceedOverviewCell;
-                        break;
-                    }
+                    checkBoxCell = new ChannelMonetizationLayout.ProceedOverviewCell(this.context, this.resourcesProvider);
                     break;
                 case 25:
-                    View transactionCell = new ChannelMonetizationLayout.TransactionCell(this.context, this.resourcesProvider);
-                    checkBoxCell = transactionCell;
-                    if (this.applyBackground) {
-                        transactionCell.setBackgroundColor(getThemedColor(i2));
-                        checkBoxCell = transactionCell;
-                        break;
-                    }
+                    checkBoxCell = new ChannelMonetizationLayout.TransactionCell(this.context, this.resourcesProvider);
                     break;
                 case 26:
-                    HeaderCell headerCell3 = new HeaderCell(this.context, Theme.key_windowBackgroundWhiteBlackText, 23, 20, 0, false, this.resourcesProvider);
-                    headerCell3.setTextSize(20.0f);
-                    checkBoxCell = headerCell3;
+                    HeaderCell headerCell = new HeaderCell(this.context, Theme.key_windowBackgroundWhiteBlackText, 23, 20, 0, false, this.resourcesProvider);
+                    headerCell.setTextSize(20.0f);
+                    checkBoxCell = headerCell;
                     break;
                 case 27:
-                    StoryPrivacyBottomSheet.UserCell userCell4 = new StoryPrivacyBottomSheet.UserCell(this.context, this.resourcesProvider);
-                    userCell4.setIsSendAs(false, false);
-                    checkBoxCell = userCell4;
-                    if (this.applyBackground) {
-                        userCell4.setBackgroundColor(getThemedColor(i2));
-                        checkBoxCell = userCell4;
-                        break;
-                    }
+                    StoryPrivacyBottomSheet.UserCell userCell2 = new StoryPrivacyBottomSheet.UserCell(this.context, this.resourcesProvider);
+                    userCell2.setIsSendAs(false, false);
+                    checkBoxCell = userCell2;
                     break;
                 case 28:
-                    View view2 = new View(this.context);
-                    checkBoxCell = view2;
-                    if (this.applyBackground) {
-                        view2.setBackgroundColor(getThemedColor(i2));
-                        checkBoxCell = view2;
-                        break;
-                    }
+                    checkBoxCell = new View(this.context);
                     break;
                 case 29:
-                    View businessLinkView = new BusinessLinksActivity.BusinessLinkView(this.context, this.resourcesProvider);
-                    checkBoxCell = businessLinkView;
-                    if (this.applyBackground) {
-                        businessLinkView.setBackgroundColor(getThemedColor(i2));
-                        checkBoxCell = businessLinkView;
-                        break;
-                    }
+                    checkBoxCell = new BusinessLinksActivity.BusinessLinkView(this.context, this.resourcesProvider);
                     break;
                 case 30:
-                    View textRightIconCell = new TextRightIconCell(this.context, this.resourcesProvider);
-                    checkBoxCell = textRightIconCell;
-                    if (this.applyBackground) {
-                        textRightIconCell.setBackgroundColor(getThemedColor(i2));
-                        checkBoxCell = textRightIconCell;
-                        break;
-                    }
+                    checkBoxCell = new TextRightIconCell(this.context, this.resourcesProvider);
                     break;
                 case R.styleable.AppCompatTheme_actionModeWebSearchDrawable:
                     checkBoxCell = new GraySectionCell(this.context, this.resourcesProvider);
                     break;
                 case 32:
-                    View profileSearchCell = new ProfileSearchCell(this.context);
-                    checkBoxCell = profileSearchCell;
-                    if (this.applyBackground) {
-                        profileSearchCell.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
-                        checkBoxCell = profileSearchCell;
-                        break;
-                    }
+                    checkBoxCell = new ProfileSearchCell(this.context);
                     break;
                 case R.styleable.AppCompatTheme_actionOverflowMenuStyle:
-                    View dialogCell = new DialogCell(null, this.context, false, true);
-                    checkBoxCell = dialogCell;
-                    if (this.applyBackground) {
-                        dialogCell.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
-                        checkBoxCell = dialogCell;
-                        break;
-                    }
+                    checkBoxCell = new DialogCell(null, this.context, false, true);
                     break;
                 case R.styleable.AppCompatTheme_activityChooserViewStyle:
                     FlickerLoadingView flickerLoadingView = new FlickerLoadingView(this.context, this.resourcesProvider);
                     flickerLoadingView.setIsSingleCell(true);
                     checkBoxCell = flickerLoadingView;
-                    if (this.applyBackground) {
-                        flickerLoadingView.setBackgroundColor(getThemedColor(i2));
-                        checkBoxCell = flickerLoadingView;
-                        break;
-                    }
                     break;
                 case R.styleable.AppCompatTheme_alertDialogButtonGroupStyle:
                 case R.styleable.AppCompatTheme_alertDialogCenterButtons:
@@ -554,35 +472,21 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                     CheckBoxCell checkBoxCell2 = new CheckBoxCell(this.context, i == 35 ? 4 : i == 36 ? 6 : i == 37 ? 7 : i == 41 ? 8 : 0, 21, true, this.resourcesProvider);
                     checkBoxCell2.getCheckBoxRound().setColor(Theme.key_switch2TrackChecked, Theme.key_radioBackground, Theme.key_checkboxCheck);
                     checkBoxCell = checkBoxCell2;
-                    if (this.applyBackground) {
-                        checkBoxCell2.setBackgroundColor(getThemedColor(i2));
-                        checkBoxCell = checkBoxCell2;
-                        break;
-                    }
                     break;
                 case R.styleable.AppCompatTheme_alertDialogTheme:
                     checkBoxCell = new CollapseTextCell(this.context, this.resourcesProvider);
                     break;
                 case R.styleable.AppCompatTheme_autoCompleteTextViewStyle:
                 case R.styleable.AppCompatTheme_borderlessButtonStyle:
-                    View textCheckCell2 = new TextCheckCell2(this.context);
-                    checkBoxCell = textCheckCell2;
-                    if (this.applyBackground) {
-                        textCheckCell2.setBackgroundColor(getThemedColor(i2));
-                        checkBoxCell = textCheckCell2;
-                        break;
-                    }
+                    checkBoxCell = new TextCheckCell2(this.context);
                     break;
                 case R.styleable.AppCompatTheme_buttonBarNegativeButtonStyle:
-                    View headerCell4 = new HeaderCell(this.context, Theme.key_windowBackgroundWhiteBlueHeader, 21, 15, 0, false, true, this.resourcesProvider);
-                    checkBoxCell = headerCell4;
-                    if (this.applyBackground) {
-                        headerCell4.setBackgroundColor(getThemedColor(i2));
-                        checkBoxCell = headerCell4;
-                        break;
-                    }
+                    checkBoxCell = new HeaderCell(this.context, Theme.key_windowBackgroundWhiteBlueHeader, 21, 15, 0, false, true, this.resourcesProvider);
                     break;
             }
+        }
+        if (shouldApplyBackground(i)) {
+            checkBoxCell.setBackgroundColor(getThemedColor(i2));
         }
         return new RecyclerListView.Holder(checkBoxCell);
     }
@@ -625,6 +529,7 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
         }
         int itemViewType = viewHolder.getItemViewType();
         boolean hasDivider = hasDivider(i);
+        updateColors(viewHolder);
         if (itemViewType >= UItem.factoryViewTypeStartsWith) {
             UItem.UItemFactory<?> findFactory = UItem.findFactory(itemViewType);
             if (findFactory != null) {
@@ -1087,9 +992,16 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
     @Override
     public void onViewAttachedToWindow(RecyclerView.ViewHolder viewHolder) {
         updateReorder(viewHolder, this.allowReorder);
+        updateColors(viewHolder);
+    }
+
+    private void updateColors(RecyclerView.ViewHolder viewHolder) {
         View view = viewHolder.itemView;
         if (view instanceof Theme.Colorable) {
             ((Theme.Colorable) view).updateColors();
+            if (shouldApplyBackground(viewHolder.getItemViewType())) {
+                viewHolder.itemView.setBackgroundColor(getThemedColor(this.dialog ? Theme.key_dialogBackground : Theme.key_windowBackgroundWhite));
+            }
         }
     }
 
@@ -1136,17 +1048,23 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
 
         @Override
         protected void onMeasure(int i, int i2) {
-            int size = View.MeasureSpec.getSize(i2);
-            int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824);
-            measureChildren(makeMeasureSpec, i2);
-            int i3 = 0;
-            for (int i4 = 0; i4 < getChildCount(); i4++) {
-                i3 = Math.max(i3, getChildAt(i4).getMeasuredHeight());
+            if ((getParent() instanceof View) && ((View) getParent()).getMeasuredHeight() > 0) {
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(((View) getParent()).getMeasuredHeight() - this.minusHeight, 1073741824));
+            } else if (View.MeasureSpec.getMode(i2) != 0) {
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2) - this.minusHeight, 1073741824));
+            } else {
+                int size = View.MeasureSpec.getSize(i2);
+                int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824);
+                measureChildren(makeMeasureSpec, i2);
+                int i3 = 0;
+                for (int i4 = 0; i4 < getChildCount(); i4++) {
+                    i3 = Math.max(i3, getChildAt(i4).getMeasuredHeight());
+                }
+                if (size > 0) {
+                    i3 = Math.min(i3, size - this.minusHeight);
+                }
+                super.onMeasure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(i3, 1073741824));
             }
-            if (size > 0) {
-                i3 = Math.min(i3, size - this.minusHeight);
-            }
-            super.onMeasure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(i3, 1073741824));
         }
 
         public void setMinusHeight(int i) {

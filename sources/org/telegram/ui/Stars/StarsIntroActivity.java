@@ -146,6 +146,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
     private View emptyLayout;
     private boolean expanded = false;
     private FireworksOverlay fireworksOverlay;
+    private boolean hadTransactions;
     private GLIconTextureView iconTextureView;
     private StarsTransactionsLayout transactionsLayout;
 
@@ -182,7 +183,26 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                 this.savedScrollOffset = 0;
             }
             applyScrolledPosition();
+        } else if (i == NotificationCenter.starTransactionsLoaded) {
+            StarsController starsController = StarsController.getInstance(this.currentAccount);
+            if (this.hadTransactions != starsController.hasTransactions()) {
+                this.hadTransactions = starsController.hasTransactions();
+                saveScrollPosition();
+                UniversalAdapter universalAdapter2 = this.adapter;
+                if (universalAdapter2 != null) {
+                    universalAdapter2.update(true);
+                }
+                if (this.savedScrollPosition == 0 && this.savedScrollOffset < 0) {
+                    this.savedScrollOffset = 0;
+                }
+                applyScrolledPosition();
+            }
         }
+    }
+
+    @Override
+    public int getNavigationBarColor() {
+        return Theme.getColor(Theme.key_dialogBackgroundGray);
     }
 
     @Override
@@ -193,11 +213,11 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         View view = new View(this, context) {
             @Override
             protected void onMeasure(int i, int i2) {
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(300.0f), 1073741824));
+                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), 1073741824));
             }
         };
         this.emptyLayout = view;
-        view.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
+        view.setBackgroundColor(Theme.getColor(Theme.key_dialogBackgroundGray));
         super.createView(context);
         StarsBalanceView starsBalanceView = new StarsBalanceView(context, this.currentAccount);
         this.balanceView = starsBalanceView;
@@ -537,8 +557,17 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                 StarsIntroActivity.this.lambda$fillItems$1();
             }
         })));
-        boolean z2 = getMessagesController().starsGiftsEnabled;
-        arrayList.add(UItem.asFullscreenCustom(this.transactionsLayout, ActionBar.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight));
+        if (getMessagesController().starsGiftsEnabled) {
+            arrayList.add(UItem.asButton(-2, R.drawable.menu_stars_gift, LocaleController.getString(R.string.TelegramStarsGift)).accent());
+            arrayList.add(UItem.asShadow(null));
+        }
+        boolean hasTransactions = starsController.hasTransactions();
+        this.hadTransactions = hasTransactions;
+        if (hasTransactions) {
+            arrayList.add(UItem.asFullscreenCustom(this.transactionsLayout, ActionBar.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight));
+        } else {
+            arrayList.add(UItem.asCustom(this.emptyLayout));
+        }
     }
 
     public void lambda$fillItems$1() {
@@ -2293,16 +2322,17 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                 if (activity == null) {
                     return;
                 }
-                StarsController.getInstance(this.currentAccount).buyGift(activity, (TLRPC$TL_starsGiftOption) uItem.object, this.user.id, new Utilities.Callback2() {
+                final long j = this.user.id;
+                StarsController.getInstance(this.currentAccount).buyGift(activity, (TLRPC$TL_starsGiftOption) uItem.object, j, new Utilities.Callback2() {
                     @Override
                     public final void run(Object obj, Object obj2) {
-                        StarsIntroActivity.GiftStarsSheet.this.lambda$onItemClick$3(uItem, (Boolean) obj, (String) obj2);
+                        StarsIntroActivity.GiftStarsSheet.this.lambda$onItemClick$4(uItem, j, (Boolean) obj, (String) obj2);
                     }
                 });
             }
         }
 
-        public void lambda$onItemClick$3(UItem uItem, Boolean bool, String str) {
+        public void lambda$onItemClick$4(UItem uItem, final long j, Boolean bool, String str) {
             Runnable runnable;
             if (getContext() == null) {
                 return;
@@ -2323,11 +2353,23 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                 }
                 return;
             }
-            BulletinFactory.of(safeLastFragment).createSimpleBulletin(R.raw.stars_send, LocaleController.getString(R.string.StarsGiftSentPopup), AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsGiftSentPopupInfo", (int) uItem.longValue, UserObject.getForcedFirstName(this.user)))).setDuration(5000).show(true);
+            BulletinFactory.of(safeLastFragment).createSimpleBulletin(R.raw.stars_send, LocaleController.getString(R.string.StarsGiftSentPopup), AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsGiftSentPopupInfo", (int) uItem.longValue, UserObject.getForcedFirstName(this.user))), LocaleController.getString(R.string.ViewInChat), new Runnable() {
+                @Override
+                public final void run() {
+                    StarsIntroActivity.GiftStarsSheet.lambda$onItemClick$3(j);
+                }
+            }).setDuration(5000).show(true);
             if (fireworksOverlay != null) {
                 fireworksOverlay.start(true);
             }
             StarsController.getInstance(this.currentAccount).invalidateTransactions(true);
+        }
+
+        public static void lambda$onItemClick$3(long j) {
+            BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+            if (safeLastFragment != null) {
+                safeLastFragment.presentFragment(ChatActivity.of(j));
+            }
         }
 
         @Override
@@ -2528,7 +2570,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         tLRPC$StarsTransaction.peer = tLRPC$TL_starsTransactionPeer;
         tLRPC$TL_starsTransactionPeer.peer = MessagesController.getInstance(i).getPeer(tLRPC$TL_payments_paymentReceiptStars.bot_id);
         tLRPC$StarsTransaction.date = tLRPC$TL_payments_paymentReceiptStars.date;
-        tLRPC$StarsTransaction.stars = tLRPC$TL_payments_paymentReceiptStars.total_amount;
+        tLRPC$StarsTransaction.stars = -tLRPC$TL_payments_paymentReceiptStars.total_amount;
         tLRPC$StarsTransaction.id = tLRPC$TL_payments_paymentReceiptStars.transaction_id;
         return showTransactionSheet(context, z, 0L, i, tLRPC$StarsTransaction, resourcesProvider);
     }

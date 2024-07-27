@@ -73,6 +73,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
@@ -83,6 +84,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SRPHelper;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.ConnectionsManager;
@@ -91,6 +93,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$InputInvoice;
 import org.telegram.tgnet.TLRPC$InputPaymentCredentials;
 import org.telegram.tgnet.TLRPC$InputStorePaymentPurpose;
+import org.telegram.tgnet.TLRPC$InputUser;
 import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$PasswordKdfAlgo;
 import org.telegram.tgnet.TLRPC$PaymentForm;
@@ -2707,12 +2710,12 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_payments_sendPaymentForm, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                PaymentFormActivity.this.lambda$sendData$67(tLRPC$TL_payments_sendPaymentForm, tLObject, tLRPC$TL_error);
+                PaymentFormActivity.this.lambda$sendData$68(tLRPC$TL_payments_sendPaymentForm, tLObject, tLRPC$TL_error);
             }
         }, 2);
     }
 
-    public void lambda$sendData$67(final TLRPC$TL_payments_sendPaymentForm tLRPC$TL_payments_sendPaymentForm, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$sendData$68(final TLRPC$TL_payments_sendPaymentForm tLRPC$TL_payments_sendPaymentForm, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         if (tLObject != null) {
             if (tLObject instanceof TLRPC$TL_payments_paymentResult) {
                 TLRPC$Updates tLRPC$Updates = ((TLRPC$TL_payments_paymentResult) tLObject).updates;
@@ -2738,7 +2741,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        PaymentFormActivity.this.lambda$sendData$59(tLRPC$MessageArr);
+                        PaymentFormActivity.this.lambda$sendData$60(tLRPC$MessageArr);
                     }
                 });
                 return;
@@ -2746,7 +2749,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        PaymentFormActivity.this.lambda$sendData$65(tLObject);
+                        PaymentFormActivity.this.lambda$sendData$66(tLObject);
                     }
                 });
                 return;
@@ -2757,17 +2760,28 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PaymentFormActivity.this.lambda$sendData$66(tLRPC$TL_error, tLRPC$TL_payments_sendPaymentForm);
+                PaymentFormActivity.this.lambda$sendData$67(tLRPC$TL_error, tLRPC$TL_payments_sendPaymentForm);
             }
         });
     }
 
-    public void lambda$sendData$59(final TLRPC$Message[] tLRPC$MessageArr) {
+    public void lambda$sendData$60(final TLRPC$Message[] tLRPC$MessageArr) {
         int i;
         String string;
         String formatString;
+        final Bulletin createSimpleBulletin;
         PaymentFormCallback paymentFormCallback;
         PaymentFormCallback paymentFormCallback2;
+        Context context = getContext();
+        if (context == null) {
+            context = ApplicationLoader.applicationContext;
+        }
+        if (context == null) {
+            context = LaunchActivity.instance;
+        }
+        if (context == null) {
+            return;
+        }
         this.paymentStatusSent = true;
         InvoiceStatus invoiceStatus = InvoiceStatus.PAID;
         this.invoiceStatus = invoiceStatus;
@@ -2781,38 +2795,63 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         if (z && (paymentFormCallback = this.paymentFormCallback) != null) {
             paymentFormCallback.onInvoiceStatusChanged(this.invoiceStatus);
         }
+        final long starsGiftUserId = getStarsGiftUserId();
+        String forcedFirstName = starsGiftUserId != 0 ? UserObject.getForcedFirstName(getMessagesController().getUser(Long.valueOf(starsGiftUserId))) : "";
         long stars = getStars();
         if (z) {
             i = z2 ? R.raw.stars_send : R.raw.stars_topup;
         } else {
             i = R.raw.payment_success;
         }
+        int i2 = i;
         if (z) {
             string = LocaleController.getString(z2 ? R.string.StarsGiftSentPopup : R.string.StarsAcquired);
         } else {
             string = null;
         }
         if (z) {
-            formatString = LocaleController.formatPluralString(z2 ? "StarsGiftSentPopupInfo" : "StarsAcquiredInfo", (int) stars, "");
+            formatString = LocaleController.formatPluralString(z2 ? "StarsGiftSentPopupInfo" : "StarsAcquiredInfo", (int) stars, forcedFirstName);
         } else {
             formatString = LocaleController.formatString(R.string.PaymentInfoHint, this.totalPrice[0], this.currentItemName);
         }
         SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(formatString);
-        BulletinFactory of = BulletinFactory.of(Bulletin.BulletinWindow.make(getContext()), this.resourcesProvider);
-        final Bulletin createSimpleBulletin = string != null ? of.createSimpleBulletin(i, string, replaceTags) : of.createSimpleBulletin(i, replaceTags);
+        BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+        if (safeLastFragment == null) {
+            return;
+        }
+        BulletinFactory of = BulletinFactory.of(safeLastFragment);
+        if (starsGiftUserId != 0 && string != null) {
+            createSimpleBulletin = of.createSimpleBulletin(i2, string, replaceTags, LocaleController.getString(R.string.ViewInChat), new Runnable() {
+                @Override
+                public final void run() {
+                    PaymentFormActivity.lambda$sendData$56(starsGiftUserId);
+                }
+            });
+        } else if (string != null) {
+            createSimpleBulletin = of.createSimpleBulletin(i2, string, replaceTags);
+        } else {
+            createSimpleBulletin = of.createSimpleBulletin(i2, replaceTags);
+        }
         createSimpleBulletin.setDuration(5000);
         if (tLRPC$MessageArr[0] != null) {
             createSimpleBulletin.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    PaymentFormActivity.this.lambda$sendData$58(createSimpleBulletin, z2, tLRPC$MessageArr, view);
+                    PaymentFormActivity.this.lambda$sendData$59(createSimpleBulletin, z2, tLRPC$MessageArr, view);
                 }
             });
         }
         createSimpleBulletin.show();
     }
 
-    public void lambda$sendData$58(Bulletin bulletin, boolean z, TLRPC$Message[] tLRPC$MessageArr, View view) {
+    public static void lambda$sendData$56(long j) {
+        BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+        if (safeLastFragment != null) {
+            safeLastFragment.presentFragment(ChatActivity.of(j));
+        }
+    }
+
+    public void lambda$sendData$59(Bulletin bulletin, boolean z, TLRPC$Message[] tLRPC$MessageArr, View view) {
         bulletin.hide();
         if (z) {
             BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
@@ -2828,21 +2867,21 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_payments_getPaymentReceipt, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                PaymentFormActivity.this.lambda$sendData$57(tLObject, tLRPC$TL_error);
+                PaymentFormActivity.this.lambda$sendData$58(tLObject, tLRPC$TL_error);
             }
         }, 2);
     }
 
-    public void lambda$sendData$57(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$sendData$58(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PaymentFormActivity.this.lambda$sendData$56(tLObject);
+                PaymentFormActivity.this.lambda$sendData$57(tLObject);
             }
         });
     }
 
-    public void lambda$sendData$56(TLObject tLObject) {
+    public void lambda$sendData$57(TLObject tLObject) {
         BaseFragment lastFragment;
         if (tLObject instanceof TLRPC$TL_payments_paymentReceiptStars) {
             StarsIntroActivity.showTransactionSheet(getContext(), false, this.currentAccount, (TLRPC$TL_payments_paymentReceiptStars) tLObject, getResourceProvider());
@@ -2855,7 +2894,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         }
     }
 
-    public void lambda$sendData$65(TLObject tLObject) {
+    public void lambda$sendData$66(TLObject tLObject) {
         setDonePressed(false);
         this.webviewLoading = true;
         showEditDoneProgress(true, true);
@@ -2873,9 +2912,9 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         getMessagesController().newMessageCallback = new MessagesController.NewMessageCallback() {
             @Override
             public final boolean onMessageReceived(TLRPC$Message tLRPC$Message) {
-                boolean lambda$sendData$64;
-                lambda$sendData$64 = PaymentFormActivity.this.lambda$sendData$64(parentLayout, parentActivity, tLRPC$Message);
-                return lambda$sendData$64;
+                boolean lambda$sendData$65;
+                lambda$sendData$65 = PaymentFormActivity.this.lambda$sendData$65(parentLayout, parentActivity, tLRPC$Message);
+                return lambda$sendData$65;
             }
         };
         WebView webView = this.webView;
@@ -2895,12 +2934,12 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         }
     }
 
-    public boolean lambda$sendData$64(final INavigationLayout iNavigationLayout, final Activity activity, final TLRPC$Message tLRPC$Message) {
+    public boolean lambda$sendData$65(final INavigationLayout iNavigationLayout, final Activity activity, final TLRPC$Message tLRPC$Message) {
         if (MessageObject.getPeerId(tLRPC$Message.peer_id) == this.botUser.id && (tLRPC$Message.action instanceof TLRPC$TL_messageActionPaymentSent)) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    PaymentFormActivity.this.lambda$sendData$63(iNavigationLayout, activity, tLRPC$Message);
+                    PaymentFormActivity.this.lambda$sendData$64(iNavigationLayout, activity, tLRPC$Message);
                 }
             });
             return true;
@@ -2908,7 +2947,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         return false;
     }
 
-    public void lambda$sendData$63(INavigationLayout iNavigationLayout, Activity activity, final TLRPC$Message tLRPC$Message) {
+    public void lambda$sendData$64(INavigationLayout iNavigationLayout, Activity activity, final TLRPC$Message tLRPC$Message) {
         this.paymentStatusSent = true;
         InvoiceStatus invoiceStatus = InvoiceStatus.PAID;
         this.invoiceStatus = invoiceStatus;
@@ -2932,14 +2971,14 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             createSimpleBulletin.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    PaymentFormActivity.this.lambda$sendData$62(createSimpleBulletin, tLRPC$Message, view);
+                    PaymentFormActivity.this.lambda$sendData$63(createSimpleBulletin, tLRPC$Message, view);
                 }
             });
         }
         createSimpleBulletin.show();
     }
 
-    public void lambda$sendData$62(Bulletin bulletin, TLRPC$Message tLRPC$Message, View view) {
+    public void lambda$sendData$63(Bulletin bulletin, TLRPC$Message tLRPC$Message, View view) {
         bulletin.hide();
         TLRPC$TL_payments_getPaymentReceipt tLRPC$TL_payments_getPaymentReceipt = new TLRPC$TL_payments_getPaymentReceipt();
         tLRPC$TL_payments_getPaymentReceipt.msg_id = tLRPC$Message.id;
@@ -2947,21 +2986,21 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_payments_getPaymentReceipt, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                PaymentFormActivity.this.lambda$sendData$61(tLObject, tLRPC$TL_error);
+                PaymentFormActivity.this.lambda$sendData$62(tLObject, tLRPC$TL_error);
             }
         }, 2);
     }
 
-    public void lambda$sendData$61(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$sendData$62(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PaymentFormActivity.this.lambda$sendData$60(tLObject);
+                PaymentFormActivity.this.lambda$sendData$61(tLObject);
             }
         });
     }
 
-    public void lambda$sendData$60(TLObject tLObject) {
+    public void lambda$sendData$61(TLObject tLObject) {
         BaseFragment lastFragment;
         if (tLObject instanceof TLRPC$TL_payments_paymentReceiptStars) {
             StarsIntroActivity.showTransactionSheet(getContext(), false, this.currentAccount, (TLRPC$TL_payments_paymentReceiptStars) tLObject, getResourceProvider());
@@ -2974,7 +3013,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         }
     }
 
-    public void lambda$sendData$66(TLRPC$TL_error tLRPC$TL_error, TLRPC$TL_payments_sendPaymentForm tLRPC$TL_payments_sendPaymentForm) {
+    public void lambda$sendData$67(TLRPC$TL_error tLRPC$TL_error, TLRPC$TL_payments_sendPaymentForm tLRPC$TL_payments_sendPaymentForm) {
         AlertsCreator.processError(this.currentAccount, tLRPC$TL_error, this, tLRPC$TL_payments_sendPaymentForm, new Object[0]);
         setDonePressed(false);
         showEditDoneProgress(false, false);
@@ -2998,6 +3037,19 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                 return ((TLRPC$TL_inputStorePaymentStarsTopup) tLRPC$InputStorePaymentPurpose).stars;
             }
             return 0L;
+        }
+        return 0L;
+    }
+
+    private long getStarsGiftUserId() {
+        TLRPC$InputUser tLRPC$InputUser;
+        TLRPC$InputInvoice tLRPC$InputInvoice = this.invoiceInput;
+        if (tLRPC$InputInvoice instanceof TLRPC$TL_inputInvoiceStars) {
+            TLRPC$InputStorePaymentPurpose tLRPC$InputStorePaymentPurpose = ((TLRPC$TL_inputInvoiceStars) tLRPC$InputInvoice).purpose;
+            if (!(tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentStarsGift) || (tLRPC$InputUser = ((TLRPC$TL_inputStorePaymentStarsGift) tLRPC$InputStorePaymentPurpose).user_id) == null) {
+                return 0L;
+            }
+            return tLRPC$InputUser.user_id;
         }
         return 0L;
     }
@@ -3053,22 +3105,22 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_account_getPassword, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    PaymentFormActivity.this.lambda$checkPassword$72(obj, tLRPC$TL_account_getPassword, tLObject, tLRPC$TL_error);
+                    PaymentFormActivity.this.lambda$checkPassword$73(obj, tLRPC$TL_account_getPassword, tLObject, tLRPC$TL_error);
                 }
             }, 2);
         }
     }
 
-    public void lambda$checkPassword$72(final String str, final TLRPC$TL_account_getPassword tLRPC$TL_account_getPassword, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$checkPassword$73(final String str, final TLRPC$TL_account_getPassword tLRPC$TL_account_getPassword, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PaymentFormActivity.this.lambda$checkPassword$71(tLRPC$TL_error, tLObject, str, tLRPC$TL_account_getPassword);
+                PaymentFormActivity.this.lambda$checkPassword$72(tLRPC$TL_error, tLObject, str, tLRPC$TL_account_getPassword);
             }
         });
     }
 
-    public void lambda$checkPassword$71(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, String str, TLRPC$TL_account_getPassword tLRPC$TL_account_getPassword) {
+    public void lambda$checkPassword$72(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, String str, TLRPC$TL_account_getPassword tLRPC$TL_account_getPassword) {
         if (tLRPC$TL_error == null) {
             final TLRPC$account_Password tLRPC$account_Password = (TLRPC$account_Password) tLObject;
             if (!TwoStepVerificationActivity.canHandleCurrentPassword(tLRPC$account_Password, false)) {
@@ -3083,7 +3135,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                 Utilities.globalQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        PaymentFormActivity.this.lambda$checkPassword$70(tLRPC$account_Password, stringBytes);
+                        PaymentFormActivity.this.lambda$checkPassword$71(tLRPC$account_Password, stringBytes);
                     }
                 });
                 return;
@@ -3094,7 +3146,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         setDonePressed(false);
     }
 
-    public void lambda$checkPassword$70(TLRPC$account_Password tLRPC$account_Password, byte[] bArr) {
+    public void lambda$checkPassword$71(TLRPC$account_Password tLRPC$account_Password, byte[] bArr) {
         TLRPC$PasswordKdfAlgo tLRPC$PasswordKdfAlgo = tLRPC$account_Password.current_algo;
         byte[] x = tLRPC$PasswordKdfAlgo instanceof TLRPC$TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow ? SRPHelper.getX(bArr, (TLRPC$TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow) tLRPC$PasswordKdfAlgo) : null;
         final TLRPC$TL_account_getTmpPassword tLRPC$TL_account_getTmpPassword = new TLRPC$TL_account_getTmpPassword();
@@ -3102,7 +3154,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         RequestDelegate requestDelegate = new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                PaymentFormActivity.this.lambda$checkPassword$69(tLRPC$TL_account_getTmpPassword, tLObject, tLRPC$TL_error);
+                PaymentFormActivity.this.lambda$checkPassword$70(tLRPC$TL_account_getTmpPassword, tLObject, tLRPC$TL_error);
             }
         };
         TLRPC$PasswordKdfAlgo tLRPC$PasswordKdfAlgo2 = tLRPC$account_Password.current_algo;
@@ -3123,16 +3175,16 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         requestDelegate.run(null, tLRPC$TL_error2);
     }
 
-    public void lambda$checkPassword$69(final TLRPC$TL_account_getTmpPassword tLRPC$TL_account_getTmpPassword, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$checkPassword$70(final TLRPC$TL_account_getTmpPassword tLRPC$TL_account_getTmpPassword, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PaymentFormActivity.this.lambda$checkPassword$68(tLObject, tLRPC$TL_error, tLRPC$TL_account_getTmpPassword);
+                PaymentFormActivity.this.lambda$checkPassword$69(tLObject, tLRPC$TL_error, tLRPC$TL_account_getTmpPassword);
             }
         });
     }
 
-    public void lambda$checkPassword$68(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error, TLRPC$TL_account_getTmpPassword tLRPC$TL_account_getTmpPassword) {
+    public void lambda$checkPassword$69(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error, TLRPC$TL_account_getTmpPassword tLRPC$TL_account_getTmpPassword) {
         showEditDoneProgress(true, false);
         setDonePressed(false);
         if (tLObject != null) {

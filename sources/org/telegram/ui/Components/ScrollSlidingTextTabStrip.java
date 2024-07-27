@@ -358,7 +358,11 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
             textView.setTag(Integer.valueOf(this.currentPosition == i ? this.activeTextColorKey : this.unactiveTextColorKey));
             textView.setTextColor(processColor(Theme.getColor(this.currentPosition == i ? this.activeTextColorKey : this.unactiveTextColorKey, this.resourcesProvider)));
             if (i == 0) {
+                int i2 = textView.getLayoutParams().width;
                 textView.getLayoutParams().width = childCount == 1 ? -2 : 0;
+                if (i2 != textView.getLayoutParams().width) {
+                    textView.requestLayout();
+                }
             }
             i++;
         }
@@ -446,12 +450,17 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
             }
             if (Math.abs(f - layoutParams.weight) > 0.001f || i4 != layoutParams.width) {
                 childAt.setLayoutParams(layoutParams);
+                childAt.requestLayout();
             }
         }
+        float weightSum = this.tabsContainer.getWeightSum();
         if (childCount == 1 || this.allTextWidth > size) {
             this.tabsContainer.setWeightSum(0.0f);
         } else {
             this.tabsContainer.setWeightSum(1.0f);
+        }
+        if (Math.abs(weightSum - this.tabsContainer.getWeightSum()) > 0.1f) {
+            this.tabsContainer.requestLayout();
         }
         super.onMeasure(i, i2);
     }

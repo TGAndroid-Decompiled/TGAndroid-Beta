@@ -91,6 +91,8 @@ public class StoryEntry {
     public Bitmap blurredVideoThumb;
     public long botId;
     public CharSequence caption;
+    public Bitmap coverBitmap;
+    public boolean coverSet;
     public long draftDate;
     public long draftId;
     public File draftThumbFile;
@@ -106,6 +108,7 @@ public class StoryEntry {
     public ArrayList<TL_stories$MediaArea> editedMediaAreas;
     public boolean editedPrivacy;
     public TLRPC$InputMedia editingBotPreview;
+    public TLRPC$Document editingCoverDocument;
     public TLRPC$TL_error error;
     public File file;
     public boolean fileDeletable;
@@ -154,6 +157,7 @@ public class StoryEntry {
     public Bitmap thumbBitmap;
     public String thumbPath;
     public Bitmap thumbPathBitmap;
+    public Utilities.Callback<Utilities.Callback<TLRPC$Document>> updateDocumentRef;
     public File uploadThumbFile;
     public int width;
     public final int currentAccount = UserConfig.selectedAccount;
@@ -305,7 +309,7 @@ public class StoryEntry {
         if (i3 <= i && i4 <= i2) {
             return decodeBitmap.decode(options);
         }
-        if (z2 && SharedConfig.getDevicePerformanceClass() >= 1) {
+        if (i3 < 2000 && i4 < 2000 && z2 && SharedConfig.getDevicePerformanceClass() >= 1) {
             Bitmap decode = decodeBitmap.decode(options);
             float max = Math.max(i / decode.getWidth(), i2 / decode.getHeight());
             int width = (int) (decode.getWidth() * max);

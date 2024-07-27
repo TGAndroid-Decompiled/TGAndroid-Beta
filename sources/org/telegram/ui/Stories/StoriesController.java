@@ -33,6 +33,7 @@ import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.FileRefController;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
@@ -77,6 +78,7 @@ import org.telegram.tgnet.TLRPC$TL_contacts_getBlocked;
 import org.telegram.tgnet.TLRPC$TL_contacts_setBlocked;
 import org.telegram.tgnet.TLRPC$TL_contacts_unblock;
 import org.telegram.tgnet.TLRPC$TL_error;
+import org.telegram.tgnet.TLRPC$TL_inputFileStoryDocument;
 import org.telegram.tgnet.TLRPC$TL_inputMediaDocument;
 import org.telegram.tgnet.TLRPC$TL_inputMediaPhoto;
 import org.telegram.tgnet.TLRPC$TL_inputPeerEmpty;
@@ -2124,11 +2126,15 @@ public class StoriesController {
 
         public void start() {
             StoryEntry storyEntry = this.entry;
-            if ((storyEntry.isEdit || (storyEntry.isRepost && storyEntry.repostMedia != null)) && !storyEntry.editedMedia && storyEntry.round == null) {
+            if (storyEntry.isEditingCover) {
+                TLRPC$TL_inputFileStoryDocument tLRPC$TL_inputFileStoryDocument = new TLRPC$TL_inputFileStoryDocument();
+                tLRPC$TL_inputFileStoryDocument.doc = MessagesController.toInputDocument(this.entry.editingCoverDocument);
+                sendUploadedRequest(tLRPC$TL_inputFileStoryDocument);
+            } else if ((storyEntry.isEdit || (storyEntry.isRepost && storyEntry.repostMedia != null)) && !storyEntry.editedMedia && storyEntry.round == null) {
                 sendUploadedRequest(null);
                 return;
             }
-            StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy = storyEntry.privacy;
+            StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy = this.entry.privacy;
             this.isCloseFriends = storyPrivacy != null && storyPrivacy.isCloseFriends();
             NotificationCenter.getInstance(StoriesController.this.currentAccount).addObserver(this, NotificationCenter.fileUploaded);
             NotificationCenter.getInstance(StoriesController.this.currentAccount).addObserver(this, NotificationCenter.fileUploadFailed);
@@ -2168,7 +2174,7 @@ public class StoriesController {
             this.info = videoEditedInfo;
             this.messageObject.videoEditedInfo = videoEditedInfo;
             this.duration = videoEditedInfo.estimatedDuration / 1000;
-            if (videoEditedInfo.needConvert() && !this.entry.isEditingCover) {
+            if (videoEditedInfo.needConvert()) {
                 MediaController.getInstance().scheduleVideoConvert(this.messageObject, false, false);
             } else if (new File(this.messageObject.videoEditedInfo.originalPath).renameTo(new File(this.path))) {
                 FileLoader.getInstance(StoriesController.this.currentAccount).uploadFile(this.path, false, false, ConnectionsManager.FileTypeVideo);
@@ -2330,14 +2336,25 @@ public class StoriesController {
             }
         }
 
-        private void sendUploadedRequest(org.telegram.tgnet.TLRPC$InputFile r11) {
+        private void sendUploadedRequest(org.telegram.tgnet.TLRPC$InputFile r14) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoriesController.UploadingStory.sendUploadedRequest(org.telegram.tgnet.TLRPC$InputFile):void");
         }
 
-        public void lambda$sendUploadedRequest$7(TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+        public void lambda$sendUploadedRequest$8(TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+            Utilities.Callback<Utilities.Callback<TLRPC$Document>> callback;
             if (tLObject instanceof TLRPC$Updates) {
                 this.failed = false;
                 TLRPC$Updates tLRPC$Updates = (TLRPC$Updates) tLObject;
+                if (this.entry.isEditingCover) {
+                    MessagesController.getInstance(StoriesController.this.currentAccount).processUpdates(tLRPC$Updates, false);
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            StoriesController.UploadingStory.this.cleanup();
+                        }
+                    });
+                    return;
+                }
                 final TL_stories$StoryItem tL_stories$StoryItem = null;
                 int i = 0;
                 for (int i2 = 0; i2 < tLRPC$Updates.updates.size(); i2++) {
@@ -2424,13 +2441,28 @@ public class StoriesController {
                 }
             } else if (tLObject instanceof TL_bots$botPreviewMedia) {
                 this.previewMedia = (TL_bots$botPreviewMedia) tLObject;
-            } else if (tLRPC$TL_error != null && !this.edit) {
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        StoriesController.UploadingStory.this.lambda$sendUploadedRequest$6(tLRPC$TL_error);
+            } else {
+                if (tLRPC$TL_error != null && FileRefController.isFileRefError(tLRPC$TL_error.text)) {
+                    StoryEntry storyEntry2 = this.entry;
+                    if (storyEntry2.editingCoverDocument != null && (callback = storyEntry2.updateDocumentRef) != null) {
+                        callback.run(new Utilities.Callback() {
+                            @Override
+                            public final void run(Object obj) {
+                                StoriesController.UploadingStory.this.lambda$sendUploadedRequest$6((TLRPC$Document) obj);
+                            }
+                        });
+                        this.entry.updateDocumentRef = null;
+                        return;
                     }
-                });
+                }
+                if (tLRPC$TL_error != null && !this.edit) {
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            StoriesController.UploadingStory.this.lambda$sendUploadedRequest$7(tLRPC$TL_error);
+                        }
+                    });
+                }
             }
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -2465,7 +2497,14 @@ public class StoriesController {
             StoriesController.this.invalidateStoryLimit();
         }
 
-        public void lambda$sendUploadedRequest$6(TLRPC$TL_error tLRPC$TL_error) {
+        public void lambda$sendUploadedRequest$6(TLRPC$Document tLRPC$Document) {
+            this.entry.editingCoverDocument = tLRPC$Document;
+            TLRPC$TL_inputFileStoryDocument tLRPC$TL_inputFileStoryDocument = new TLRPC$TL_inputFileStoryDocument();
+            tLRPC$TL_inputFileStoryDocument.doc = MessagesController.toInputDocument(this.entry.editingCoverDocument);
+            sendUploadedRequest(tLRPC$TL_inputFileStoryDocument);
+        }
+
+        public void lambda$sendUploadedRequest$7(TLRPC$TL_error tLRPC$TL_error) {
             this.entry.isError = true;
             if (StoriesController.this.checkStoryError(tLRPC$TL_error)) {
                 this.entry.error = null;

@@ -436,9 +436,9 @@ public class TextCell extends FrameLayout {
         this.offsetFromImage = getOffsetFromImage(false);
         this.textView.setText(charSequence);
         this.textView.setRightDrawable((Drawable) null);
-        AnimatedTextView animatedTextView = this.valueTextView;
         this.valueText = charSequence2;
-        animatedTextView.setText(TextUtils.ellipsize(charSequence2, animatedTextView.getPaint(), AndroidUtilities.displaySize.x / 2.5f, TextUtils.TruncateAt.END), z);
+        AnimatedTextView animatedTextView = this.valueTextView;
+        animatedTextView.setText(charSequence2 == null ? null : TextUtils.ellipsize(charSequence2, animatedTextView.getPaint(), AndroidUtilities.displaySize.x / 2.5f, TextUtils.TruncateAt.END), z);
         this.valueTextView.setVisibility(0);
         this.valueSpoilersTextView.setVisibility(8);
         this.imageView.setVisibility(8);
@@ -624,10 +624,10 @@ public class TextCell extends FrameLayout {
         }
     }
 
-    public void setTextAndValueDrawable(String str, Drawable drawable, boolean z) {
+    public void setTextAndValueDrawable(CharSequence charSequence, Drawable drawable, boolean z) {
         this.imageLeft = 21;
         this.offsetFromImage = getOffsetFromImage(false);
-        this.textView.setText(str);
+        this.textView.setText(charSequence);
         this.textView.setRightDrawable((Drawable) null);
         AnimatedTextView animatedTextView = this.valueTextView;
         this.valueText = null;

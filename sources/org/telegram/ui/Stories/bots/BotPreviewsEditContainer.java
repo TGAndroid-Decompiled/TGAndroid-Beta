@@ -3,11 +3,11 @@ package org.telegram.ui.Stories.bots;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.os.Build;
 import android.text.Layout;
 import android.text.SpannableString;
 import android.text.TextUtils;
@@ -25,10 +25,13 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Objects;
 import kotlinx.coroutines.CoroutineId$$ExternalSyntheticBackport0;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
@@ -49,6 +52,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.SharedPhotoVideoCell;
 import org.telegram.ui.Cells.SharedPhotoVideoCell2;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
+import org.telegram.ui.Components.ChatAttachAlert;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.ExtendedGridLayoutManager;
@@ -63,7 +67,6 @@ import org.telegram.ui.Components.TranslateAlert2;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.ViewPagerFixed;
-import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.Stories.StoriesController;
 import org.telegram.ui.Stories.StoriesListPlaceProvider;
@@ -217,6 +220,27 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
                 this.lastLang = currentLang;
                 BotPreviewsEditContainer.this.onSelectedTabChanged();
             }
+
+            @Override
+            protected void onTabPageSelected(int i) {
+                String currentLang = BotPreviewsEditContainer.this.getCurrentLang();
+                if (TextUtils.equals(this.lastLang, currentLang)) {
+                    return;
+                }
+                this.lastLang = currentLang;
+                BotPreviewsEditContainer.this.onSelectedTabChanged();
+            }
+
+            @Override
+            public void onTabScrollEnd(int i) {
+                super.onTabScrollEnd(i);
+                String currentLang = BotPreviewsEditContainer.this.getCurrentLang();
+                if (TextUtils.equals(this.lastLang, currentLang)) {
+                    return;
+                }
+                this.lastLang = currentLang;
+                BotPreviewsEditContainer.this.onSelectedTabChanged();
+            }
         };
         this.viewPager = viewPagerFixed;
         viewPagerFixed.setAllowDisallowInterceptTouch(true);
@@ -243,9 +267,9 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
             public void bindView(View view, int i, int i2) {
                 BotPreviewsEditLangContainer botPreviewsEditLangContainer = (BotPreviewsEditLangContainer) view;
                 StoriesController.BotPreviewsList botPreviewsList2 = i == 0 ? BotPreviewsEditContainer.this.mainList : (StoriesController.BotPreviewsList) BotPreviewsEditContainer.this.langLists.get(i - 1);
+                botPreviewsList2.load(true, 0, null);
                 botPreviewsEditLangContainer.setList(botPreviewsList2);
                 botPreviewsEditLangContainer.setVisibleHeight(BotPreviewsEditContainer.this.visibleHeight);
-                botPreviewsList2.load(true, 0, null);
             }
 
             @Override
@@ -318,9 +342,10 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
     }
 
     public String getCurrentLang() {
-        View currentView = this.viewPager.getCurrentView();
-        if (currentView instanceof BotPreviewsEditLangContainer) {
-            BotPreviewsEditLangContainer botPreviewsEditLangContainer = (BotPreviewsEditLangContainer) currentView;
+        View[] viewPages = this.viewPager.getViewPages();
+        View view = (Math.abs(((float) this.viewPager.getCurrentPosition()) - this.viewPager.getPositionAnimated()) >= 0.5f || viewPages[1] == null) ? viewPages[0] : viewPages[1];
+        if (view instanceof BotPreviewsEditLangContainer) {
+            BotPreviewsEditLangContainer botPreviewsEditLangContainer = (BotPreviewsEditLangContainer) view;
             if (botPreviewsEditLangContainer.list != null) {
                 return botPreviewsEditLangContainer.list.lang_code;
             }
@@ -550,10 +575,10 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
             this.langLists.add(botPreviewsList);
         }
         this.viewPager.fillTabs(true);
-        SpannableString spannableString = new SpannableString("+  " + LocaleController.getString(R.string.ProfileBotLanguageAdd));
+        SpannableString spannableString = new SpannableString("+ " + LocaleController.getString(R.string.ProfileBotLanguageAdd));
         ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.msg_filled_plus);
         coloredImageSpan.setScale(0.9f, 0.9f);
-        coloredImageSpan.spaceScaleX = 0.6f;
+        coloredImageSpan.spaceScaleX = 0.85f;
         spannableString.setSpan(coloredImageSpan, 0, 1, 33);
         this.tabsView.addTab(-1, spannableString);
         this.tabsView.finishAddingTabs();
@@ -679,6 +704,88 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
         }
     }
 
+    public void createStory(final String str) {
+        BaseFragment baseFragment = this.fragment;
+        if (baseFragment == null || baseFragment.getParentActivity() == null) {
+            return;
+        }
+        final ChatAttachAlert chatAttachAlert = new ChatAttachAlert(this.fragment.getParentActivity(), this.fragment, false, false, false, this.resourcesProvider);
+        chatAttachAlert.setMaxSelectedPhotos(1, false);
+        chatAttachAlert.setStoryMediaPicker();
+        chatAttachAlert.getPhotoLayout().loadGalleryPhotos();
+        int i = Build.VERSION.SDK_INT;
+        if (i == 21 || i == 22) {
+            AndroidUtilities.hideKeyboard(this.fragment.getFragmentView().findFocus());
+        }
+        chatAttachAlert.setDelegate(new ChatAttachAlert.ChatAttachViewDelegate() {
+            @Override
+            public void didSelectBot(TLRPC$User tLRPC$User) {
+                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$didSelectBot(this, tLRPC$User);
+            }
+
+            @Override
+            public void doOnIdle(Runnable runnable) {
+                runnable.run();
+            }
+
+            @Override
+            public boolean needEnterComment() {
+                return ChatAttachAlert.ChatAttachViewDelegate.CC.$default$needEnterComment(this);
+            }
+
+            @Override
+            public void onCameraOpened() {
+                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$onCameraOpened(this);
+            }
+
+            @Override
+            public void onWallpaperSelected(Object obj) {
+                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$onWallpaperSelected(this, obj);
+            }
+
+            @Override
+            public void openAvatarsSearch() {
+                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$openAvatarsSearch(this);
+            }
+
+            @Override
+            public boolean selectItemOnClicking() {
+                return true;
+            }
+
+            @Override
+            public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i2, long j, boolean z2) {
+                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z, i2, j, z2);
+            }
+
+            @Override
+            public void didPressedButton(int i2, boolean z, boolean z2, int i3, long j, boolean z3, boolean z4) {
+                if (chatAttachAlert.getPhotoLayout().getSelectedPhotos().isEmpty()) {
+                    return;
+                }
+                HashMap<Object, Object> selectedPhotos = chatAttachAlert.getPhotoLayout().getSelectedPhotos();
+                chatAttachAlert.getPhotoLayout().getSelectedPhotosOrder();
+                if (selectedPhotos.size() != 1) {
+                    return;
+                }
+                Object next = selectedPhotos.values().iterator().next();
+                if (next instanceof MediaController.PhotoEntry) {
+                    StoryRecorder.getInstance(BotPreviewsEditContainer.this.fragment.getParentActivity(), BotPreviewsEditContainer.this.currentAccount).openBotEntry(BotPreviewsEditContainer.this.bot_id, str, StoryEntry.fromPhotoEntry((MediaController.PhotoEntry) next), null);
+                    final ChatAttachAlert chatAttachAlert2 = chatAttachAlert;
+                    Objects.requireNonNull(chatAttachAlert2);
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            ChatAttachAlert.this.hide();
+                        }
+                    }, 400L);
+                }
+            }
+        });
+        chatAttachAlert.init();
+        chatAttachAlert.show();
+    }
+
     public class BotPreviewsEditLangContainer extends FrameLayout {
         private final StoriesAdapter adapter;
         private boolean allowStoriesSingleColumn;
@@ -797,14 +904,9 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
         }
 
         public void lambda$updateFooter$0() {
-            Activity findActivity = AndroidUtilities.findActivity(getContext());
-            if (findActivity == null) {
-                findActivity = LaunchActivity.instance;
-            }
-            StoryRecorder storyRecorder = StoryRecorder.getInstance(findActivity, BotPreviewsEditContainer.this.currentAccount);
-            long j = BotPreviewsEditContainer.this.bot_id;
+            BotPreviewsEditContainer botPreviewsEditContainer = BotPreviewsEditContainer.this;
             StoriesController.BotPreviewsList botPreviewsList = this.list;
-            storyRecorder.openBot(j, botPreviewsList == null ? "" : botPreviewsList.lang_code, null);
+            botPreviewsEditContainer.createStory(botPreviewsList == null ? "" : botPreviewsList.lang_code);
         }
 
         public void lambda$updateFooter$1(boolean z) {
@@ -825,7 +927,7 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
             this.progressView.setTranslationY(-f);
         }
 
-        public BotPreviewsEditLangContainer(final Context context) {
+        public BotPreviewsEditLangContainer(Context context) {
             super(context);
             this.columnsCount = Utilities.clamp(SharedConfig.storiesColumnsCount, 6, 2);
             this.animateToColumnsCount = Utilities.clamp(SharedConfig.storiesColumnsCount, 6, 2);
@@ -1108,7 +1210,7 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
             stickerEmptyView.button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    BotPreviewsEditContainer.BotPreviewsEditLangContainer.this.lambda$new$6(context, view);
+                    BotPreviewsEditContainer.BotPreviewsEditLangContainer.this.lambda$new$6(view);
                 }
             });
             TextView textView = new TextView(context, BotPreviewsEditContainer.this) {
@@ -1143,7 +1245,7 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
             this.emptyViewButton2 = buttonWithCounterView;
             buttonWithCounterView.setMinWidth(AndroidUtilities.dp(200.0f));
             stickerEmptyView.linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-2, 44, 17));
-            stickerEmptyView.addView(flickerLoadingView, LayoutHelper.createFrame(-1, -1.0f));
+            stickerEmptyView.addView(flickerLoadingView, 0, LayoutHelper.createFrame(-1, -1.0f));
             sharedMediaListView.setEmptyView(stickerEmptyView);
             sharedMediaListView.setAnimateEmptyView(true, 0);
             new RecyclerAnimationScrollHelper(sharedMediaListView, extendedGridLayoutManager);
@@ -1234,15 +1336,10 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
             return false;
         }
 
-        public void lambda$new$6(Context context, View view) {
-            Activity findActivity = AndroidUtilities.findActivity(context);
-            if (findActivity == null) {
-                findActivity = LaunchActivity.instance;
-            }
-            StoryRecorder storyRecorder = StoryRecorder.getInstance(findActivity, BotPreviewsEditContainer.this.currentAccount);
-            long j = BotPreviewsEditContainer.this.bot_id;
+        public void lambda$new$6(View view) {
+            BotPreviewsEditContainer botPreviewsEditContainer = BotPreviewsEditContainer.this;
             StoriesController.BotPreviewsList botPreviewsList = this.list;
-            storyRecorder.openBot(j, botPreviewsList == null ? "" : botPreviewsList.lang_code, null);
+            botPreviewsEditContainer.createStory(botPreviewsList == null ? "" : botPreviewsList.lang_code);
         }
 
         @Override
@@ -1345,7 +1442,7 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
                         for (int i = 0; i < uploadingStories.size(); i++) {
                             StoriesController.UploadingStory uploadingStory = uploadingStories.get(i);
                             StoryEntry storyEntry = uploadingStory.entry;
-                            if (storyEntry != null && TextUtils.equals(storyEntry.botLang, botPreviewsList.lang_code)) {
+                            if (storyEntry != null && !storyEntry.isEdit && TextUtils.equals(storyEntry.botLang, botPreviewsList.lang_code)) {
                                 this.uploadingStories.add(uploadingStory);
                             }
                         }

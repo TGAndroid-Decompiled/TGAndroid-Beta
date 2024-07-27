@@ -411,6 +411,7 @@ public class PreviewView extends FrameLayout {
 
     public void lambda$new$0() {
         seekTo(this.finalSeekPosition);
+        this.slowerSeekScheduled = false;
     }
 
     public void seekTo(long j) {
@@ -435,13 +436,63 @@ public class PreviewView extends FrameLayout {
         updateAudioPlayer(true);
         updateRoundPlayer(true);
         if (z) {
-            if (!this.slowerSeekScheduled || Math.abs(this.finalSeekPosition - j) > 1000) {
+            if (!this.slowerSeekScheduled || Math.abs(this.finalSeekPosition - j) > 450) {
                 this.slowerSeekScheduled = true;
                 AndroidUtilities.cancelRunOnUIThread(this.slowerSeek);
-                AndroidUtilities.runOnUIThread(this.slowerSeek, 100L);
+                AndroidUtilities.runOnUIThread(this.slowerSeek, 60L);
             }
             this.finalSeekPosition = j;
         }
+    }
+
+    public long getCurrentPosition() {
+        VideoPlayer videoPlayer = this.videoPlayer;
+        if (videoPlayer != null) {
+            return videoPlayer.getCurrentPosition();
+        }
+        VideoPlayer videoPlayer2 = this.roundPlayer;
+        if (videoPlayer2 != null) {
+            return videoPlayer2.getCurrentPosition();
+        }
+        VideoPlayer videoPlayer3 = this.audioPlayer;
+        if (videoPlayer3 != null) {
+            return videoPlayer3.getCurrentPosition();
+        }
+        return 0L;
+    }
+
+    public Bitmap getCoverBitmap(View... viewArr) {
+        Bitmap bitmap;
+        VideoEditTextureView videoEditTextureView;
+        Bitmap createBitmap = Bitmap.createBitmap((int) (AndroidUtilities.dp(26.0f) * AndroidUtilities.density), (int) (AndroidUtilities.dp(30.33f) * AndroidUtilities.density), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(createBitmap);
+        Path path = new Path();
+        RectF rectF = new RectF();
+        rectF.set(0.0f, 0.0f, createBitmap.getWidth(), createBitmap.getHeight());
+        path.addRoundRect(rectF, (int) (AndroidUtilities.dp(4.0f) * AndroidUtilities.density), (int) (AndroidUtilities.dp(4.0f) * AndroidUtilities.density), Path.Direction.CW);
+        canvas.clipPath(path);
+        canvas.drawColor(-65536);
+        for (int i = 0; i < viewArr.length; i++) {
+            if (viewArr[i] != null && viewArr[i].getWidth() >= 0 && viewArr[i].getHeight() > 0) {
+                canvas.save();
+                canvas.translate(createBitmap.getWidth() / 2.0f, createBitmap.getHeight() / 2.0f);
+                float max = Math.max(createBitmap.getWidth() / viewArr[i].getWidth(), createBitmap.getHeight() / viewArr[i].getHeight());
+                canvas.scale(max, max);
+                canvas.translate((-viewArr[i].getWidth()) / 2.0f, (-viewArr[i].getHeight()) / 2.0f);
+                viewArr[i].draw(canvas);
+                if (viewArr[i] == this && (videoEditTextureView = this.textureView) != null) {
+                    Bitmap bitmap2 = videoEditTextureView.getBitmap();
+                    if (bitmap2 != null) {
+                        canvas.drawBitmap(bitmap2, 0.0f, 0.0f, (Paint) null);
+                    }
+                } else if ((viewArr[i] instanceof TextureView) && (bitmap = ((TextureView) viewArr[i]).getBitmap()) != null) {
+                    canvas.drawBitmap(bitmap, 0.0f, 0.0f, (Paint) null);
+                }
+                canvas.restore();
+            }
+        }
+        Utilities.stackBlurBitmap(createBitmap, 1);
+        return createBitmap;
     }
 
     public void seek(long j) {

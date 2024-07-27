@@ -323,89 +323,102 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
             final MessagesController messagesController;
             final TLRPC$User user;
             final AnonymousClass4 anonymousClass4;
-            if (view instanceof ReactedUserHolderView) {
-                final ReactedUserHolderView reactedUserHolderView = (ReactedUserHolderView) view;
-                StoryViewer storyViewer = this.val$storyViewer;
-                if (storyViewer == null || storyViewer.containerView == null) {
-                    return false;
+            boolean z;
+            if (!(view instanceof ReactedUserHolderView)) {
+                return false;
+            }
+            final ReactedUserHolderView reactedUserHolderView = (ReactedUserHolderView) view;
+            StoryViewer storyViewer = this.val$storyViewer;
+            if (storyViewer == null || storyViewer.containerView == null) {
+                return false;
+            }
+            final TL_stories$StoryView tL_stories$StoryView = SelfStoryViewsPage.this.listAdapter.items.get(i).view;
+            if (tL_stories$StoryView == null || (user = (messagesController = MessagesController.getInstance(SelfStoryViewsPage.this.currentAccount)).getUser(Long.valueOf(tL_stories$StoryView.user_id))) == null) {
+                return false;
+            }
+            boolean z2 = messagesController.blockePeers.indexOfKey(user.id) >= 0;
+            boolean z3 = user.contact || ContactsController.getInstance(SelfStoryViewsPage.this.currentAccount).contactsDict.get(Long.valueOf(user.id)) != null;
+            boolean isStoryShownToUser = SelfStoryViewsPage.this.isStoryShownToUser(tL_stories$StoryView);
+            boolean isBlocked = messagesController.getStoriesController().isBlocked(tL_stories$StoryView);
+            boolean isUserSelf = UserObject.isUserSelf(user);
+            String str = TextUtils.isEmpty(user.first_name) ? TextUtils.isEmpty(user.last_name) ? "" : user.last_name : user.first_name;
+            int indexOf = str.indexOf(" ");
+            if (indexOf > 2) {
+                str = str.substring(0, indexOf);
+            }
+            final String str2 = str;
+            boolean z4 = z3;
+            ItemOptions cutTextInFancyHalf = ItemOptions.makeOptions(this.val$storyViewer.containerView, SelfStoryViewsPage.this.resourcesProvider, view).setGravity(3).ignoreX().setScrimViewBackground(new ColorDrawable(Theme.getColor(Theme.key_dialogBackground, SelfStoryViewsPage.this.resourcesProvider))).setDimAlpha(133).addIf((!isStoryShownToUser || isBlocked || z2 || isUserSelf) ? false : true, R.drawable.msg_stories_myhide, LocaleController.formatString(R.string.StoryHideFrom, str2), new Runnable() {
+                @Override
+                public final void run() {
+                    SelfStoryViewsPage.AnonymousClass4.this.lambda$onItemClick$0(messagesController, user, str2, reactedUserHolderView, tL_stories$StoryView);
                 }
-                final TL_stories$StoryView tL_stories$StoryView = SelfStoryViewsPage.this.listAdapter.items.get(i).view;
-                if (tL_stories$StoryView == null || (user = (messagesController = MessagesController.getInstance(SelfStoryViewsPage.this.currentAccount)).getUser(Long.valueOf(tL_stories$StoryView.user_id))) == null) {
-                    return false;
+            }).makeMultiline(false).cutTextInFancyHalf().addIf((!isBlocked || z2 || isUserSelf) ? false : true, R.drawable.msg_menu_stories, LocaleController.formatString(R.string.StoryShowBackTo, str2), new Runnable() {
+                @Override
+                public final void run() {
+                    SelfStoryViewsPage.AnonymousClass4.this.lambda$onItemClick$1(messagesController, user, str2, reactedUserHolderView, tL_stories$StoryView);
                 }
-                boolean z = messagesController.blockePeers.indexOfKey(user.id) >= 0;
-                boolean z2 = user.contact || ContactsController.getInstance(SelfStoryViewsPage.this.currentAccount).contactsDict.get(Long.valueOf(user.id)) != null;
-                boolean isStoryShownToUser = SelfStoryViewsPage.this.isStoryShownToUser(tL_stories$StoryView);
-                boolean isBlocked = messagesController.getStoriesController().isBlocked(tL_stories$StoryView);
-                String str = TextUtils.isEmpty(user.first_name) ? TextUtils.isEmpty(user.last_name) ? "" : user.last_name : user.first_name;
-                int indexOf = str.indexOf(" ");
-                if (indexOf > 2) {
-                    str = str.substring(0, indexOf);
+            }).makeMultiline(false).cutTextInFancyHalf();
+            boolean z5 = (z4 || z2 || isUserSelf) ? false : true;
+            int i2 = R.drawable.msg_user_remove;
+            final ItemOptions addIf = cutTextInFancyHalf.addIf(z5, i2, (CharSequence) LocaleController.getString(R.string.BlockUser), true, new Runnable() {
+                @Override
+                public final void run() {
+                    SelfStoryViewsPage.AnonymousClass4.this.lambda$onItemClick$2(messagesController, user, reactedUserHolderView, tL_stories$StoryView);
                 }
-                final String str2 = str;
-                ItemOptions cutTextInFancyHalf = ItemOptions.makeOptions(this.val$storyViewer.containerView, SelfStoryViewsPage.this.resourcesProvider, view).setGravity(3).ignoreX().setScrimViewBackground(new ColorDrawable(Theme.getColor(Theme.key_dialogBackground, SelfStoryViewsPage.this.resourcesProvider))).setDimAlpha(133).addIf((!isStoryShownToUser || isBlocked || z) ? false : true, R.drawable.msg_stories_myhide, LocaleController.formatString(R.string.StoryHideFrom, str2), new Runnable() {
-                    @Override
-                    public final void run() {
-                        SelfStoryViewsPage.AnonymousClass4.this.lambda$onItemClick$0(messagesController, user, str2, reactedUserHolderView, tL_stories$StoryView);
-                    }
-                }).makeMultiline(false).cutTextInFancyHalf().addIf(isBlocked && !z, R.drawable.msg_menu_stories, LocaleController.formatString(R.string.StoryShowBackTo, str2), new Runnable() {
-                    @Override
-                    public final void run() {
-                        SelfStoryViewsPage.AnonymousClass4.this.lambda$onItemClick$1(messagesController, user, str2, reactedUserHolderView, tL_stories$StoryView);
-                    }
-                }).makeMultiline(false).cutTextInFancyHalf();
-                boolean z3 = (z2 || z) ? false : true;
-                int i2 = R.drawable.msg_user_remove;
-                final ItemOptions addIf = cutTextInFancyHalf.addIf(z3, i2, (CharSequence) LocaleController.getString(R.string.BlockUser), true, new Runnable() {
-                    @Override
-                    public final void run() {
-                        SelfStoryViewsPage.AnonymousClass4.this.lambda$onItemClick$2(messagesController, user, reactedUserHolderView, tL_stories$StoryView);
-                    }
-                }).addIf(!z2 && z, R.drawable.msg_block, LocaleController.getString(R.string.Unblock), new Runnable() {
-                    @Override
-                    public final void run() {
-                        SelfStoryViewsPage.AnonymousClass4.this.lambda$onItemClick$3(messagesController, user, reactedUserHolderView, tL_stories$StoryView);
-                    }
-                }).addIf(z2, i2, (CharSequence) LocaleController.getString(R.string.StoryDeleteContact), true, new Runnable() {
-                    @Override
-                    public final void run() {
-                        SelfStoryViewsPage.AnonymousClass4.this.lambda$onItemClick$4(user, str2, reactedUserHolderView, tL_stories$StoryView);
-                    }
-                });
-                TLRPC$Reaction tLRPC$Reaction = tL_stories$StoryView.reaction;
-                if (tLRPC$Reaction instanceof TLRPC$TL_reactionCustomEmoji) {
-                    anonymousClass4 = this;
-                    TLRPC$InputStickerSet findStickerSet = AnimatedEmojiDrawable.getDocumentFetcher(SelfStoryViewsPage.this.currentAccount).findStickerSet(((TLRPC$TL_reactionCustomEmoji) tLRPC$Reaction).document_id);
-                    if (findStickerSet != null) {
-                        addIf.addGap();
-                        final ArrayList arrayList = new ArrayList();
-                        arrayList.add(findStickerSet);
-                        SelfStoryViewsPage selfStoryViewsPage = SelfStoryViewsPage.this;
-                        MessageContainsEmojiButton messageContainsEmojiButton = new MessageContainsEmojiButton(selfStoryViewsPage.currentAccount, selfStoryViewsPage.getContext(), SelfStoryViewsPage.this.resourcesProvider, arrayList, 3);
-                        messageContainsEmojiButton.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public final void onClick(View view2) {
-                                SelfStoryViewsPage.AnonymousClass4.this.lambda$onItemClick$5(arrayList, addIf, view2);
-                            }
-                        });
-                        addIf.addView(messageContainsEmojiButton);
-                    }
-                } else {
-                    anonymousClass4 = this;
+            }).addIf((z4 || !z2 || isUserSelf) ? false : true, R.drawable.msg_block, LocaleController.getString(R.string.Unblock), new Runnable() {
+                @Override
+                public final void run() {
+                    SelfStoryViewsPage.AnonymousClass4.this.lambda$onItemClick$3(messagesController, user, reactedUserHolderView, tL_stories$StoryView);
                 }
-                addIf.show();
+            }).addIf(z4 && !isUserSelf, i2, (CharSequence) LocaleController.getString(R.string.StoryDeleteContact), true, new Runnable() {
+                @Override
+                public final void run() {
+                    SelfStoryViewsPage.AnonymousClass4.this.lambda$onItemClick$4(user, str2, reactedUserHolderView, tL_stories$StoryView);
+                }
+            });
+            TLRPC$Reaction tLRPC$Reaction = tL_stories$StoryView.reaction;
+            try {
                 try {
-                    try {
-                        SelfStoryViewsPage.this.performHapticFeedback(0, 1);
-                        return true;
-                    } catch (Exception unused) {
-                        return true;
+                    if (tLRPC$Reaction instanceof TLRPC$TL_reactionCustomEmoji) {
+                        anonymousClass4 = this;
+                        TLRPC$InputStickerSet findStickerSet = AnimatedEmojiDrawable.getDocumentFetcher(SelfStoryViewsPage.this.currentAccount).findStickerSet(((TLRPC$TL_reactionCustomEmoji) tLRPC$Reaction).document_id);
+                        if (findStickerSet != null) {
+                            addIf.addGap();
+                            final ArrayList arrayList = new ArrayList();
+                            arrayList.add(findStickerSet);
+                            SelfStoryViewsPage selfStoryViewsPage = SelfStoryViewsPage.this;
+                            MessageContainsEmojiButton messageContainsEmojiButton = new MessageContainsEmojiButton(selfStoryViewsPage.currentAccount, selfStoryViewsPage.getContext(), SelfStoryViewsPage.this.resourcesProvider, arrayList, 3);
+                            messageContainsEmojiButton.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public final void onClick(View view2) {
+                                    SelfStoryViewsPage.AnonymousClass4.this.lambda$onItemClick$5(arrayList, addIf, view2);
+                                }
+                            });
+                            addIf.addView(messageContainsEmojiButton);
+                            z = true;
+                            if (addIf.getItemsCount() <= 0 || z) {
+                                addIf.show();
+                                SelfStoryViewsPage.this.performHapticFeedback(0, 1);
+                                return true;
+                            }
+                            return false;
+                        }
+                    } else {
+                        anonymousClass4 = this;
                     }
-                } catch (Exception unused2) {
+                    SelfStoryViewsPage.this.performHapticFeedback(0, 1);
+                    return true;
+                } catch (Exception unused) {
                     return true;
                 }
+            } catch (Exception unused2) {
+                return true;
             }
-            return false;
+            z = false;
+            if (addIf.getItemsCount() <= 0) {
+            }
+            addIf.show();
         }
 
         public void lambda$onItemClick$0(MessagesController messagesController, TLRPC$User tLRPC$User, String str, ReactedUserHolderView reactedUserHolderView, TL_stories$StoryView tL_stories$StoryView) {

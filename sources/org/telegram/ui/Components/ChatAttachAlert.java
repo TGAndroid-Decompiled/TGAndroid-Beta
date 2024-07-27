@@ -273,6 +273,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
     public boolean storyLocationPickerFileIsVideo;
     public double[] storyLocationPickerLatLong;
     public File storyLocationPickerPhotoFile;
+    public boolean storyMediaPicker;
     private TextPaint textPaint;
     private float toScrollY;
     private ValueAnimator topBackgroundAnimator;
@@ -2740,7 +2741,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                 if (f2 < 0.0f) {
                     ChatAttachAlert.this.currentAttachLayout.setTranslationY(f2);
                     ChatAttachAlert chatAttachAlert2 = ChatAttachAlert.this;
-                    if (chatAttachAlert2.avatarPicker != 0) {
+                    if (chatAttachAlert2.avatarPicker != 0 || chatAttachAlert2.storyMediaPicker) {
                         chatAttachAlert2.headerView.setTranslationY((chatAttachAlert2.baseSelectedTextViewTranslationY + f2) - ChatAttachAlert.this.currentPanTranslationY);
                     }
                     ChatAttachAlert.this.buttonsRecyclerView.setTranslationY(0.0f);
@@ -4810,7 +4811,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
         ActionBarMenuItem actionBarMenuItem = this.searchItem;
         boolean z3 = actionBarMenuItem != null && this.avatarSearch;
-        boolean z4 = !this.isPhotoPicker && !(this.avatarPicker == 0 && this.menuShowed) && this.currentAttachLayout == this.photoLayout && (this.photosEnabled || this.videosEnabled);
+        boolean z4 = (this.isPhotoPicker || this.storyMediaPicker || (this.avatarPicker == 0 && this.menuShowed) || this.currentAttachLayout != this.photoLayout || (!this.photosEnabled && !this.videosEnabled)) ? false : true;
         if (this.currentAttachLayout == this.restrictedLayout) {
             z3 = false;
             z4 = false;
@@ -5017,9 +5018,9 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                 this.shadow.setVisibility(8);
             }
             if (this.avatarPicker == 2) {
-                this.selectedTextView.setText(LocaleController.getString("ChoosePhotoOrVideo", R.string.ChoosePhotoOrVideo));
+                this.selectedTextView.setText(LocaleController.getString(R.string.ChoosePhotoOrVideo));
             } else {
-                this.selectedTextView.setText(LocaleController.getString("ChoosePhoto", R.string.ChoosePhoto));
+                this.selectedTextView.setText(LocaleController.getString(R.string.ChoosePhoto));
             }
         } else {
             this.typeButtonsAvailable = true;
@@ -5030,8 +5031,14 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
     }
 
+    public void setStoryMediaPicker() {
+        this.storyMediaPicker = true;
+        this.typeButtonsAvailable = false;
+        this.selectedTextView.setText(LocaleController.getString(R.string.ChoosePhotoOrVideo));
+    }
+
     public void enableStickerMode(Utilities.Callback2<String, TLRPC$InputDocument> callback2) {
-        this.selectedTextView.setText(LocaleController.getString("ChoosePhoto", R.string.ChoosePhoto));
+        this.selectedTextView.setText(LocaleController.getString(R.string.ChoosePhoto));
         this.typeButtonsAvailable = false;
         this.buttonsRecyclerView.setVisibility(8);
         this.shadow.setVisibility(8);
@@ -5067,7 +5074,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         this.isSoundPicker = true;
         this.buttonsRecyclerView.setVisibility(8);
         this.shadow.setVisibility(8);
-        this.selectedTextView.setText(LocaleController.getString("ChoosePhotoOrVideo", R.string.ChoosePhotoOrVideo));
+        this.selectedTextView.setText(LocaleController.getString(R.string.ChoosePhotoOrVideo));
     }
 
     public void setStoryLocationPicker() {

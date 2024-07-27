@@ -2,9 +2,11 @@ package org.telegram.ui.Stories.recorder;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
@@ -13,6 +15,7 @@ import j$.util.DesugarTimeZone;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.TimeZone;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
@@ -100,7 +103,7 @@ public class Weather {
         if (callback == null) {
             return;
         }
-        getUserLocation(new Utilities.Callback() {
+        getUserLocation(z, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
                 Weather.lambda$fetch$2(Utilities.Callback.this, z, (Location) obj);
@@ -341,32 +344,73 @@ public class Weather {
     }
 
     @SuppressLint({"MissingPermission"})
-    public static void getUserLocation(final Utilities.Callback<Location> callback) {
+    public static void getUserLocation(final boolean z, final Utilities.Callback<Location> callback) {
         if (callback == null) {
             return;
         }
         ensureLocationPermission(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                Weather.lambda$getUserLocation$10(Utilities.Callback.this, (Boolean) obj);
+                Weather.lambda$getUserLocation$11(Utilities.Callback.this, z, (Boolean) obj);
             }
         });
     }
 
-    public static void lambda$getUserLocation$10(Utilities.Callback callback, Boolean bool) {
-        Location location = null;
+    public static void lambda$getUserLocation$11(final Utilities.Callback callback, boolean z, Boolean bool) {
         if (!bool.booleanValue()) {
             callback.run(null);
             return;
         }
         LocationManager locationManager = (LocationManager) ApplicationLoader.applicationContext.getSystemService("location");
         List<String> providers = locationManager.getProviders(true);
+        Location location = null;
         for (int size = providers.size() - 1; size >= 0; size--) {
             location = locationManager.getLastKnownLocation(providers.get(size));
             if (location != null) {
                 break;
             }
         }
+        if (location == null && z) {
+            if (!locationManager.isProviderEnabled("gps")) {
+                final Context context = LaunchActivity.instance;
+                if (context == null) {
+                    context = ApplicationLoader.applicationContext;
+                }
+                if (context != null) {
+                    try {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                        builder.setTopAnimation(R.raw.permission_request_location, 72, false, Theme.getColor(Theme.key_dialogTopBackground));
+                        builder.setMessage(LocaleController.getString(R.string.GpsDisabledAlertText));
+                        builder.setPositiveButton(LocaleController.getString(R.string.Enable), new DialogInterface.OnClickListener() {
+                            @Override
+                            public final void onClick(DialogInterface dialogInterface, int i) {
+                                Weather.lambda$getUserLocation$10(context, dialogInterface, i);
+                            }
+                        });
+                        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
+                        builder.show();
+                    } catch (Exception e) {
+                        FileLog.e(e);
+                    }
+                }
+            } else {
+                Objects.requireNonNull(callback);
+                locationManager.requestLocationUpdates("gps", 1L, 0.0f, new LocationListener() {
+                    @Override
+                    public final void onLocationChanged(Location location2) {
+                        Utilities.Callback.this.run(location2);
+                    }
+                });
+                return;
+            }
+        }
         callback.run(location);
+    }
+
+    public static void lambda$getUserLocation$10(Context context, DialogInterface dialogInterface, int i) {
+        try {
+            context.startActivity(new Intent("android.settings.LOCATION_SOURCE_SETTINGS"));
+        } catch (Exception unused) {
+        }
     }
 }

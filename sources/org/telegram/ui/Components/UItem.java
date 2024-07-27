@@ -532,10 +532,6 @@ public class UItem extends AdapterWithDiffUtils.Item {
         private ArrayList<V> cache;
         public final int viewType = UItem.access$008();
 
-        public boolean applyBackground() {
-            return true;
-        }
-
         public void bindView(View view, UItem uItem, boolean z) {
         }
 

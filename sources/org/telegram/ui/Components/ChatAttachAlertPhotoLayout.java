@@ -1244,21 +1244,24 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
     }
 
     public boolean lambda$new$4(View view, int i) {
+        ChatAttachAlert chatAttachAlert = this.parentAlert;
+        if (chatAttachAlert.storyMediaPicker) {
+            return false;
+        }
         if (i == 0 && this.selectedAlbumEntry == this.galleryAlbumEntry) {
-            ChatAttachAlert.ChatAttachViewDelegate chatAttachViewDelegate = this.parentAlert.delegate;
+            ChatAttachAlert.ChatAttachViewDelegate chatAttachViewDelegate = chatAttachAlert.delegate;
             if (chatAttachViewDelegate != null) {
                 chatAttachViewDelegate.didPressedButton(0, false, true, 0, 0L, false, false);
             }
             return true;
-        } else if (view instanceof PhotoAttachPhotoCell) {
+        }
+        if (view instanceof PhotoAttachPhotoCell) {
             RecyclerViewItemRangeSelector recyclerViewItemRangeSelector = this.itemRangeSelector;
             boolean z = !((PhotoAttachPhotoCell) view).isChecked();
             this.shouldSelect = z;
             recyclerViewItemRangeSelector.setIsActive(view, true, i, z);
-            return false;
-        } else {
-            return false;
         }
+        return false;
     }
 
     public void lambda$new$5(View view) {
@@ -2354,40 +2357,43 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
     }
 
     protected void updatePhotosCounter(boolean z) {
-        if (this.counterTextView == null || this.parentAlert.avatarPicker != 0) {
-            return;
-        }
-        boolean z2 = false;
-        boolean z3 = false;
-        for (Map.Entry<Object, Object> entry : selectedPhotos.entrySet()) {
-            if (((MediaController.PhotoEntry) entry.getValue()).isVideo) {
-                z2 = true;
-            } else {
-                z3 = true;
+        if (this.counterTextView != null) {
+            ChatAttachAlert chatAttachAlert = this.parentAlert;
+            if (chatAttachAlert.avatarPicker != 0 || chatAttachAlert.storyMediaPicker) {
+                return;
             }
+            boolean z2 = false;
+            boolean z3 = false;
+            for (Map.Entry<Object, Object> entry : selectedPhotos.entrySet()) {
+                if (((MediaController.PhotoEntry) entry.getValue()).isVideo) {
+                    z2 = true;
+                } else {
+                    z3 = true;
+                }
+                if (z2 && z3) {
+                    break;
+                }
+            }
+            int max = Math.max(1, selectedPhotos.size());
             if (z2 && z3) {
-                break;
+                this.counterTextView.setText(LocaleController.formatPluralString("Media", selectedPhotos.size(), new Object[0]).toUpperCase());
+                if (max != this.currentSelectedCount || z) {
+                    this.parentAlert.selectedTextView.setText(LocaleController.formatPluralString("MediaSelected", max, new Object[0]));
+                }
+            } else if (z2) {
+                this.counterTextView.setText(LocaleController.formatPluralString("Videos", selectedPhotos.size(), new Object[0]).toUpperCase());
+                if (max != this.currentSelectedCount || z) {
+                    this.parentAlert.selectedTextView.setText(LocaleController.formatPluralString("VideosSelected", max, new Object[0]));
+                }
+            } else {
+                this.counterTextView.setText(LocaleController.formatPluralString("Photos", selectedPhotos.size(), new Object[0]).toUpperCase());
+                if (max != this.currentSelectedCount || z) {
+                    this.parentAlert.selectedTextView.setText(LocaleController.formatPluralString("PhotosSelected", max, new Object[0]));
+                }
             }
+            this.parentAlert.setCanOpenPreview(max > 1);
+            this.currentSelectedCount = max;
         }
-        int max = Math.max(1, selectedPhotos.size());
-        if (z2 && z3) {
-            this.counterTextView.setText(LocaleController.formatPluralString("Media", selectedPhotos.size(), new Object[0]).toUpperCase());
-            if (max != this.currentSelectedCount || z) {
-                this.parentAlert.selectedTextView.setText(LocaleController.formatPluralString("MediaSelected", max, new Object[0]));
-            }
-        } else if (z2) {
-            this.counterTextView.setText(LocaleController.formatPluralString("Videos", selectedPhotos.size(), new Object[0]).toUpperCase());
-            if (max != this.currentSelectedCount || z) {
-                this.parentAlert.selectedTextView.setText(LocaleController.formatPluralString("VideosSelected", max, new Object[0]));
-            }
-        } else {
-            this.counterTextView.setText(LocaleController.formatPluralString("Photos", selectedPhotos.size(), new Object[0]).toUpperCase());
-            if (max != this.currentSelectedCount || z) {
-                this.parentAlert.selectedTextView.setText(LocaleController.formatPluralString("PhotosSelected", max, new Object[0]));
-            }
-        }
-        this.parentAlert.setCanOpenPreview(max > 1);
-        this.currentSelectedCount = max;
     }
 
     public PhotoAttachPhotoCell getCellForIndex(int i) {
@@ -2634,7 +2640,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
 
     private boolean shouldLoadAllMedia() {
         ChatAttachAlert chatAttachAlert = this.parentAlert;
-        return !chatAttachAlert.isPhotoPicker && ((chatAttachAlert.baseFragment instanceof ChatActivity) || chatAttachAlert.avatarPicker == 2);
+        return !chatAttachAlert.isPhotoPicker && ((chatAttachAlert.baseFragment instanceof ChatActivity) || chatAttachAlert.storyMediaPicker || chatAttachAlert.avatarPicker == 2);
     }
 
     public void showCamera() {
@@ -4477,7 +4483,8 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             } else {
                 photoAttachPhotoCell.setIsVertical(ChatAttachAlertPhotoLayout.this.cameraPhotoLayoutManager.getOrientation() == 1);
             }
-            if (ChatAttachAlertPhotoLayout.this.parentAlert.avatarPicker != 0) {
+            ChatAttachAlert chatAttachAlert = ChatAttachAlertPhotoLayout.this.parentAlert;
+            if (chatAttachAlert.avatarPicker != 0 || chatAttachAlert.storyMediaPicker) {
                 photoAttachPhotoCell.getCheckBox().setVisibility(8);
             } else {
                 photoAttachPhotoCell.getCheckBox().setVisibility(0);
@@ -4487,8 +4494,8 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                 return;
             }
             photoAttachPhotoCell.setPhotoEntry(photoEntryAtPosition, ChatAttachAlertPhotoLayout.selectedPhotos.size() > 1, this.needCamera && ChatAttachAlertPhotoLayout.this.selectedAlbumEntry == ChatAttachAlertPhotoLayout.this.galleryAlbumEntry, i == getItemCount() - 1);
-            ChatAttachAlert chatAttachAlert = ChatAttachAlertPhotoLayout.this.parentAlert;
-            if ((chatAttachAlert.baseFragment instanceof ChatActivity) && chatAttachAlert.allowOrder) {
+            ChatAttachAlert chatAttachAlert2 = ChatAttachAlertPhotoLayout.this.parentAlert;
+            if ((chatAttachAlert2.baseFragment instanceof ChatActivity) && chatAttachAlert2.allowOrder) {
                 photoAttachPhotoCell.setChecked(ChatAttachAlertPhotoLayout.selectedPhotosOrder.indexOf(Integer.valueOf(photoEntryAtPosition.imageId)), ChatAttachAlertPhotoLayout.selectedPhotos.containsKey(Integer.valueOf(photoEntryAtPosition.imageId)), false);
             } else {
                 photoAttachPhotoCell.setChecked(-1, ChatAttachAlertPhotoLayout.selectedPhotos.containsKey(Integer.valueOf(photoEntryAtPosition.imageId)), false);

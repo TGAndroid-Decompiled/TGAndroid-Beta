@@ -354,7 +354,7 @@ public class WebActionBar extends FrameLayout {
                 makeOptions.setGapBackgroundColor(-986896);
             } else {
                 makeOptions.setBackgroundColor(-14737633);
-                makeOptions.setGapBackgroundColor(-16777216);
+                makeOptions.setGapBackgroundColor(-15592942);
             }
             int i = this.menuType;
             if (i == 0) {

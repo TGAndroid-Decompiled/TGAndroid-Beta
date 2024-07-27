@@ -71,6 +71,8 @@ public class TimelineView extends View {
     private float audioVolume;
     private final BlurringShader.StoryBlurDrawer audioWaveformBlur;
     private final BlurringShader.StoryBlurDrawer backgroundBlur;
+    private long coverEnd;
+    private long coverStart;
     private TimelineDelegate delegate;
     private boolean dragged;
     private boolean draggingProgress;
@@ -289,6 +291,8 @@ public class TimelineView extends View {
         Paint paint8 = new Paint(1);
         this.ellipsizePaint = paint8;
         this.scroller = new Scroller(getContext());
+        this.coverStart = -1L;
+        this.coverEnd = -1L;
         this.loopProgress = new AnimatedFloat(0.0f, this, 0L, 340L, cubicBezierInterpolator);
         this.loopProgressFrom = -1L;
         this.pressHandle = -1;
@@ -422,6 +426,12 @@ public class TimelineView extends View {
         this.delegate = timelineDelegate;
     }
 
+    public void setCoverVideo(long j, long j2) {
+        this.coverStart = j;
+        this.coverEnd = j2;
+        setupVideoThumbs(true);
+    }
+
     public void setVideo(boolean z, String str, long j, float f) {
         if (TextUtils.equals(this.videoPath, str)) {
             return;
@@ -437,7 +447,7 @@ public class TimelineView extends View {
             this.videoPath = str;
             this.videoDuration = j;
             this.videoVolume = f;
-            setupVideoThumbs();
+            setupVideoThumbs(false);
         } else {
             this.videoPath = null;
             this.videoDuration = 1L;
@@ -511,23 +521,29 @@ public class TimelineView extends View {
         invalidate();
     }
 
-    private void setupVideoThumbs() {
-        if (getMeasuredWidth() <= 0 || this.thumbs != null) {
-            return;
+    private void setupVideoThumbs(boolean z) {
+        if (getMeasuredWidth() > 0) {
+            VideoThumbsLoader videoThumbsLoader = this.thumbs;
+            if (videoThumbsLoader == null || z) {
+                if (videoThumbsLoader != null) {
+                    videoThumbsLoader.destroy();
+                    this.thumbs = null;
+                }
+                boolean z2 = this.isMainVideoRound;
+                String str = this.videoPath;
+                int i = this.w;
+                int i2 = this.px;
+                int i3 = (i - i2) - i2;
+                int dp = AndroidUtilities.dp(38.0f);
+                long j = this.videoDuration;
+                VideoThumbsLoader videoThumbsLoader2 = new VideoThumbsLoader(z2, str, i3, dp, j > 2 ? Long.valueOf(j) : null, 120000L, this.coverStart, this.coverEnd);
+                this.thumbs = videoThumbsLoader2;
+                if (videoThumbsLoader2.getDuration() > 0) {
+                    this.videoDuration = this.thumbs.getDuration();
+                }
+                setupRoundThumbs();
+            }
         }
-        boolean z = this.isMainVideoRound;
-        String str = this.videoPath;
-        int i = this.w;
-        int i2 = this.px;
-        int i3 = (i - i2) - i2;
-        int dp = AndroidUtilities.dp(38.0f);
-        long j = this.videoDuration;
-        VideoThumbsLoader videoThumbsLoader = new VideoThumbsLoader(this, z, str, i3, dp, j > 2 ? Long.valueOf(j) : null);
-        this.thumbs = videoThumbsLoader;
-        if (videoThumbsLoader.getDuration() > 0) {
-            this.videoDuration = this.thumbs.getDuration();
-        }
-        setupRoundThumbs();
     }
 
     private void setupRoundThumbs() {
@@ -541,7 +557,7 @@ public class TimelineView extends View {
             int i3 = (i - i2) - i2;
             int dp = AndroidUtilities.dp(38.0f);
             long j = this.roundDuration;
-            VideoThumbsLoader videoThumbsLoader = new VideoThumbsLoader(false, str, i3, dp, j > 2 ? Long.valueOf(j) : null, this.hasVideo ? this.videoDuration : 120000L);
+            VideoThumbsLoader videoThumbsLoader = new VideoThumbsLoader(false, str, i3, dp, j > 2 ? Long.valueOf(j) : null, this.hasVideo ? this.videoDuration : 120000L, -1L, -1L);
             this.roundThumbs = videoThumbsLoader;
             if (videoThumbsLoader.getDuration() > 0) {
                 this.roundDuration = this.roundThumbs.getDuration();
@@ -1327,7 +1343,7 @@ public class TimelineView extends View {
         this.ph = dp5;
         this.sw = (this.w - (dp5 * 2)) - (this.px * 2);
         if (this.videoPath != null && this.thumbs == null) {
-            setupVideoThumbs();
+            setupVideoThumbs(false);
         }
         if (this.audioPath == null || this.waveform != null) {
             return;
@@ -1336,7 +1352,6 @@ public class TimelineView extends View {
     }
 
     public class VideoThumbsLoader {
-        private final Paint bitmapPaint;
         private Path clipPath;
         private final int count;
         private boolean destroyed;
@@ -1344,18 +1359,15 @@ public class TimelineView extends View {
         private final int frameHeight;
         private final long frameIterator;
         private final int frameWidth;
-        private final ArrayList<BitmapFrame> frames;
         private final boolean isRound;
-        private boolean loading;
         private MediaMetadataRetriever metadataRetriever;
         private long nextFrame;
+        private final ArrayList<BitmapFrame> frames = new ArrayList<>();
+        private boolean loading = false;
+        private final Paint bitmapPaint = new Paint(3);
 
-        public VideoThumbsLoader(TimelineView timelineView, boolean z, String str, int i, int i2, Long l) {
-            this(z, str, i, i2, l, 120000L);
-        }
-
-        public VideoThumbsLoader(boolean r6, java.lang.String r7, int r8, int r9, java.lang.Long r10, long r11) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.TimelineView.VideoThumbsLoader.<init>(org.telegram.ui.Stories.recorder.TimelineView, boolean, java.lang.String, int, int, java.lang.Long, long):void");
+        public VideoThumbsLoader(boolean r16, java.lang.String r17, int r18, int r19, java.lang.Long r20, long r21, long r23, long r25) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.TimelineView.VideoThumbsLoader.<init>(org.telegram.ui.Stories.recorder.TimelineView, boolean, java.lang.String, int, int, java.lang.Long, long, long, long):void");
         }
 
         public int getFrameWidth() {

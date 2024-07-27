@@ -119,7 +119,11 @@ public class WebMetadataCache {
                 return;
             }
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            this.favicon.compress(Bitmap.CompressFormat.JPEG, 80, byteArrayOutputStream);
+            if (Build.VERSION.SDK_INT >= 30) {
+                this.favicon.compress(Bitmap.CompressFormat.WEBP_LOSSY, 80, byteArrayOutputStream);
+            } else {
+                this.favicon.compress(Bitmap.CompressFormat.WEBP, 80, byteArrayOutputStream);
+            }
             byte[] byteArray = byteArrayOutputStream.toByteArray();
             this.faviconBytes = byteArray;
             abstractSerializedData.writeByteArray(byteArray);
@@ -475,7 +479,7 @@ public class WebMetadataCache {
             public final void run() {
                 WebMetadataCache.lambda$retrieveFaviconAndSitename$8(Utilities.Callback.this);
             }
-        }, 8000L);
+        }, 10000L);
     }
 
     public static void lambda$retrieveFaviconAndSitename$4(boolean[] zArr, String[] strArr, Bitmap[] bitmapArr, String str, WebView webView, FrameLayout frameLayout, Utilities.Callback2 callback2, Boolean bool) {
@@ -501,7 +505,7 @@ public class WebMetadataCache {
 
     public static void lambda$retrieveFaviconAndSitename$6(WebView webView) {
         String readRes = RLottieDrawable.readRes(null, R.raw.webview_ext);
-        String replace = readRes.replace("$DEBUG$", "" + BuildVars.DEBUG_PRIVATE_VERSION);
+        String replace = readRes.replace("$DEBUG$", "" + BuildVars.DEBUG_VERSION);
         if (Build.VERSION.SDK_INT >= 19) {
             webView.evaluateJavascript(replace, new ValueCallback() {
                 @Override

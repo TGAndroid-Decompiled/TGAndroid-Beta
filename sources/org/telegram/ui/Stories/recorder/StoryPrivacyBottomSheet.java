@@ -7,6 +7,7 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
@@ -17,6 +18,7 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.Editable;
@@ -132,6 +134,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
     private boolean applyWhenDismiss;
     private final Paint backgroundPaint;
     private boolean canChangePeer;
+    private Drawable coverDrawable;
     private final ArrayList<Long> excludedContacts;
     private final ArrayList<Long> excludedEveryone;
     private final HashMap<Long, ArrayList<Long>> excludedEveryoneByGroup;
@@ -155,6 +158,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
     private int storyPeriod;
     private ViewPagerFixed viewPager;
     private ArrayList<String> warnUsers;
+    private Runnable whenCoverClicked;
 
     public interface DoneCallback {
         void done(StoryPrivacy storyPrivacy, boolean z, boolean z2, TLRPC$InputPeer tLRPC$InputPeer, Runnable runnable);
@@ -420,16 +424,50 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             }
             ItemInner itemInner = this.items.get(i);
             int i2 = itemInner.viewType;
-            if (i2 == 3) {
-                if (itemInner.sendAs && StoryPrivacyBottomSheet.this.canChangePeer) {
-                    new ChoosePeerSheet(context, ((BottomSheet) StoryPrivacyBottomSheet.this).currentAccount, StoryPrivacyBottomSheet.this.selectedPeer, new Utilities.Callback() {
-                        @Override
-                        public final void run(Object obj) {
-                            StoryPrivacyBottomSheet.Page.this.lambda$new$2((TLRPC$InputPeer) obj);
+            if (i2 != 3) {
+                if (i2 != 7) {
+                    if (i2 != 9 || StoryPrivacyBottomSheet.this.whenCoverClicked == null) {
+                        return;
+                    }
+                    StoryPrivacyBottomSheet.this.whenCoverClicked.run();
+                } else if (view instanceof TextCell) {
+                    TextCell textCell = (TextCell) view;
+                    textCell.setChecked(!textCell.isChecked());
+                    itemInner.checked = textCell.isChecked();
+                    if (itemInner.resId == 0) {
+                        StoryPrivacyBottomSheet.this.allowScreenshots = textCell.isChecked();
+                        boolean z = StoryPrivacyBottomSheet.this.selectedType == 4;
+                        if (StoryPrivacyBottomSheet.this.allowScreenshots) {
+                            StoryPrivacyBottomSheet storyPrivacyBottomSheet = StoryPrivacyBottomSheet.this;
+                            BulletinFactory.of(storyPrivacyBottomSheet.container, ((BottomSheet) storyPrivacyBottomSheet).resourcesProvider).createSimpleBulletin(R.raw.ic_save_to_gallery, LocaleController.getString(z ? R.string.StoryEnabledScreenshotsShare : R.string.StoryEnabledScreenshots), 4).setDuration(5000).show(true);
+                            return;
                         }
-                    }, ((BottomSheet) StoryPrivacyBottomSheet.this).resourcesProvider).show();
-                    return;
+                        StoryPrivacyBottomSheet storyPrivacyBottomSheet2 = StoryPrivacyBottomSheet.this;
+                        BulletinFactory.of(storyPrivacyBottomSheet2.container, ((BottomSheet) storyPrivacyBottomSheet2).resourcesProvider).createSimpleBulletin(R.raw.passcode_lock_close, LocaleController.getString(z ? R.string.StoryDisabledScreenshotsShare : R.string.StoryDisabledScreenshots), 4).setDuration(5000).show(true);
+                        return;
+                    }
+                    StoryPrivacyBottomSheet.this.keepOnMyPage = textCell.isChecked();
+                    StoryPrivacyBottomSheet storyPrivacyBottomSheet3 = StoryPrivacyBottomSheet.this;
+                    boolean z2 = storyPrivacyBottomSheet3.selectedPeer instanceof TLRPC$TL_inputPeerChannel;
+                    if (storyPrivacyBottomSheet3.keepOnMyPage) {
+                        StoryPrivacyBottomSheet storyPrivacyBottomSheet4 = StoryPrivacyBottomSheet.this;
+                        BulletinFactory.of(storyPrivacyBottomSheet4.container, ((BottomSheet) storyPrivacyBottomSheet4).resourcesProvider).createSimpleBulletin(R.raw.msg_story_keep, LocaleController.getString(z2 ? R.string.StoryChannelEnableKeep : R.string.StoryEnableKeep), 4).setDuration(5000).show(true);
+                    } else {
+                        StoryPrivacyBottomSheet storyPrivacyBottomSheet5 = StoryPrivacyBottomSheet.this;
+                        BulletinFactory.of(storyPrivacyBottomSheet5.container, ((BottomSheet) storyPrivacyBottomSheet5).resourcesProvider).createSimpleBulletin(R.raw.fire_on, LocaleController.getString(z2 ? R.string.StoryChannelDisableKeep : R.string.StoryDisableKeep), 4).setDuration(5000).show(true);
+                    }
+                    if (StoryPrivacyBottomSheet.this.whenCoverClicked != null) {
+                        updateItems(true);
+                    }
                 }
+            } else if (itemInner.sendAs && StoryPrivacyBottomSheet.this.canChangePeer) {
+                new ChoosePeerSheet(context, ((BottomSheet) StoryPrivacyBottomSheet.this).currentAccount, StoryPrivacyBottomSheet.this.selectedPeer, new Utilities.Callback() {
+                    @Override
+                    public final void run(Object obj) {
+                        StoryPrivacyBottomSheet.Page.this.lambda$new$2((TLRPC$InputPeer) obj);
+                    }
+                }, ((BottomSheet) StoryPrivacyBottomSheet.this).resourcesProvider).show();
+            } else {
                 int i3 = itemInner.type;
                 if (i3 == 1) {
                     if (StoryPrivacyBottomSheet.this.selectedType == 1 || StoryPrivacyBottomSheet.this.getCloseFriends().isEmpty()) {
@@ -557,32 +595,6 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                     updateButton(true);
                     this.searchField.scrollToBottom();
                 }
-            } else if (i2 == 7 && (view instanceof TextCell)) {
-                TextCell textCell = (TextCell) view;
-                textCell.setChecked(!textCell.isChecked());
-                itemInner.checked = textCell.isChecked();
-                if (itemInner.resId == 0) {
-                    StoryPrivacyBottomSheet.this.allowScreenshots = textCell.isChecked();
-                    boolean z = StoryPrivacyBottomSheet.this.selectedType == 4;
-                    if (StoryPrivacyBottomSheet.this.allowScreenshots) {
-                        StoryPrivacyBottomSheet storyPrivacyBottomSheet = StoryPrivacyBottomSheet.this;
-                        BulletinFactory.of(storyPrivacyBottomSheet.container, ((BottomSheet) storyPrivacyBottomSheet).resourcesProvider).createSimpleBulletin(R.raw.ic_save_to_gallery, LocaleController.getString(z ? R.string.StoryEnabledScreenshotsShare : R.string.StoryEnabledScreenshots), 4).setDuration(5000).show(true);
-                        return;
-                    }
-                    StoryPrivacyBottomSheet storyPrivacyBottomSheet2 = StoryPrivacyBottomSheet.this;
-                    BulletinFactory.of(storyPrivacyBottomSheet2.container, ((BottomSheet) storyPrivacyBottomSheet2).resourcesProvider).createSimpleBulletin(R.raw.passcode_lock_close, LocaleController.getString(z ? R.string.StoryDisabledScreenshotsShare : R.string.StoryDisabledScreenshots), 4).setDuration(5000).show(true);
-                    return;
-                }
-                StoryPrivacyBottomSheet.this.keepOnMyPage = textCell.isChecked();
-                StoryPrivacyBottomSheet storyPrivacyBottomSheet3 = StoryPrivacyBottomSheet.this;
-                boolean z2 = storyPrivacyBottomSheet3.selectedPeer instanceof TLRPC$TL_inputPeerChannel;
-                if (storyPrivacyBottomSheet3.keepOnMyPage) {
-                    StoryPrivacyBottomSheet storyPrivacyBottomSheet4 = StoryPrivacyBottomSheet.this;
-                    BulletinFactory.of(storyPrivacyBottomSheet4.container, ((BottomSheet) storyPrivacyBottomSheet4).resourcesProvider).createSimpleBulletin(R.raw.msg_story_keep, LocaleController.getString(z2 ? R.string.StoryChannelEnableKeep : R.string.StoryEnableKeep), 4).setDuration(5000).show(true);
-                    return;
-                }
-                StoryPrivacyBottomSheet storyPrivacyBottomSheet5 = StoryPrivacyBottomSheet.this;
-                BulletinFactory.of(storyPrivacyBottomSheet5.container, ((BottomSheet) storyPrivacyBottomSheet5).resourcesProvider).createSimpleBulletin(R.raw.fire_on, LocaleController.getString(z2 ? R.string.StoryChannelDisableKeep : R.string.StoryDisableKeep), 4).setDuration(5000).show(true);
             }
         }
 
@@ -1060,7 +1072,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         public float top() {
             float paddingTop;
             float y;
-            float f = this.layoutManager.getReverseLayout() ? AndroidUtilities.displaySize.y : 0.0f;
+            float f = (this.layoutManager.getReverseLayout() || this.pageType == 0) ? AndroidUtilities.displaySize.y : 0.0f;
             for (int i = 0; i < this.listView.getChildCount(); i++) {
                 View childAt = this.listView.getChildAt(i);
                 if (this.layoutManager.getReverseLayout()) {
@@ -1068,6 +1080,10 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                     float alpha = childAt.getAlpha();
                     if (paddingTop2 < f) {
                         f = AndroidUtilities.lerp(f, paddingTop2, alpha);
+                    }
+                } else if (this.pageType == 0) {
+                    if (!(childAt instanceof PadView)) {
+                        f = Math.min(this.contentView.getPaddingTop() + childAt.getY(), f);
                     }
                 } else {
                     if ((childAt.getTag() instanceof Integer) && ((Integer) childAt.getTag()).intValue() == 33) {
@@ -1107,10 +1123,8 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                 applyBlocklist(false);
             }
             LinearLayoutManager linearLayoutManager = this.layoutManager;
-            Adapter adapter = this.adapter;
-            boolean z = i == 0;
-            adapter.reversedLayout = z;
-            linearLayoutManager.setReverseLayout(z);
+            this.adapter.reversedLayout = false;
+            linearLayoutManager.setReverseLayout(false);
             updateSpans(false);
             this.searchField.setText("");
             this.searchField.setVisibility(i == 0 ? 8 : 0);
@@ -1612,6 +1626,12 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             NotificationCenter.getInstance(((BottomSheet) StoryPrivacyBottomSheet.this).currentAccount).removeObserver(this, NotificationCenter.chatInfoDidLoad);
         }
 
+        public class PadView extends View {
+            public PadView(Page page, Context context) {
+                super(context);
+            }
+        }
+
         public class Adapter extends AdapterWithDiffUtils {
             private Context context;
             private RecyclerListView listView;
@@ -1636,7 +1656,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
                 View view;
                 if (i == -1) {
-                    view = new View(this.context);
+                    view = new PadView(Page.this, this.context);
                 } else if (i == 0) {
                     view = new View(this.context);
                     view.setTag(35);
@@ -1772,10 +1792,17 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                         textInfoPrivacyCell.setText(itemInner2.text);
                     } else if (itemViewType == 7) {
                         ((TextCell) viewHolder.itemView).setTextAndCheck(itemInner2.text, itemInner2.resId == 0 ? StoryPrivacyBottomSheet.this.allowScreenshots : StoryPrivacyBottomSheet.this.keepOnMyPage, z2);
-                    } else if (itemViewType == 9) {
-                        ((TextCell) viewHolder.itemView).setTextAndValue(itemInner2.text, itemInner2.text2, z2);
-                    } else if (itemViewType == 8) {
-                        ((org.telegram.ui.Cells.HeaderCell) viewHolder.itemView).setText(itemInner2.text);
+                    } else if (itemViewType != 9) {
+                        if (itemViewType == 8) {
+                            ((org.telegram.ui.Cells.HeaderCell) viewHolder.itemView).setText(itemInner2.text);
+                        }
+                    } else {
+                        Drawable drawable = itemInner2.drawable;
+                        if (drawable != null) {
+                            ((TextCell) viewHolder.itemView).setTextAndValueDrawable(itemInner2.text, drawable, z2);
+                        } else {
+                            ((TextCell) viewHolder.itemView).setTextAndValue(itemInner2.text, itemInner2.text2, z2);
+                        }
                     }
                 }
             }
@@ -2422,6 +2449,13 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             itemInner.resId = i;
             itemInner.text = charSequence;
             itemInner.checked = z;
+            return itemInner;
+        }
+
+        public static ItemInner asButton(CharSequence charSequence, Drawable drawable) {
+            ItemInner itemInner = new ItemInner(9, false);
+            itemInner.text = charSequence;
+            itemInner.drawable = drawable;
             return itemInner;
         }
 
@@ -4050,6 +4084,23 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
 
     public StoryPrivacyBottomSheet setCanChangePeer(boolean z) {
         this.canChangePeer = z;
+        return this;
+    }
+
+    public StoryPrivacyBottomSheet setCover(Bitmap bitmap, Runnable runnable) {
+        View[] viewPages;
+        this.coverDrawable = bitmap == null ? null : new BitmapDrawable(bitmap);
+        this.whenCoverClicked = runnable;
+        ViewPagerFixed viewPagerFixed = this.viewPager;
+        if (viewPagerFixed != null) {
+            for (View view : viewPagerFixed.getViewPages()) {
+                if (view instanceof Page) {
+                    Page page = (Page) view;
+                    page.updateItems(false);
+                    page.updateButton(false);
+                }
+            }
+        }
         return this;
     }
 

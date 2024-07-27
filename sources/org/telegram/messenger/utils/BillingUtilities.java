@@ -103,12 +103,14 @@ public class BillingUtilities {
 
     public static void clearPurpose(String str) {
         try {
+            FileLog.d("BillingUtilities.clearPurpose: got {" + str + "}");
             SerializedData serializedData = new SerializedData(Utilities.hexToBytes(str));
             TL_savedPurpose TLdeserialize = TL_savedPurpose.TLdeserialize(serializedData, serializedData.readInt32(true), true);
             SerializedData serializedData2 = new SerializedData(8);
             serializedData2.writeInt64(TLdeserialize.id);
             String bytesToHex = Utilities.bytesToHex(serializedData2.toByteArray());
             serializedData2.cleanup();
+            FileLog.d("BillingUtilities.clearPurpose: id_hex = " + bytesToHex);
             ApplicationLoader.applicationContext.getSharedPreferences("purchases", 0).edit().remove(bytesToHex).apply();
         } catch (Exception e) {
             FileLog.e(e);

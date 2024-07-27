@@ -219,17 +219,17 @@ public class BookmarksFragment extends UniversalFragment {
         this.listView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int i4, int i5) {
-                if (BookmarksFragment.this.listView.canScrollVertically(1)) {
-                    return;
+                if (!BookmarksFragment.this.listView.canScrollVertically(1)) {
+                    if (TextUtils.isEmpty(BookmarksFragment.this.query)) {
+                        BookmarksFragment.this.list.load();
+                    } else {
+                        AddressBarList.BookmarksList bookmarksList = BookmarksFragment.this.searchList;
+                        if (bookmarksList != null) {
+                            bookmarksList.load();
+                        }
+                    }
                 }
-                if (TextUtils.isEmpty(BookmarksFragment.this.query)) {
-                    BookmarksFragment.this.list.load();
-                    return;
-                }
-                AddressBarList.BookmarksList bookmarksList = BookmarksFragment.this.searchList;
-                if (bookmarksList != null) {
-                    bookmarksList.load();
-                }
+                AndroidUtilities.hideKeyboard(BookmarksFragment.this.fragmentView);
             }
         });
         StickerEmptyView stickerEmptyView = new StickerEmptyView(context, null, 1);

@@ -27743,16 +27743,20 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     @Override
     public boolean isLightStatusBar() {
         int color;
-        if (this.reportType < 0) {
-            return AndroidUtilities.computePerceivedBrightness(this.actionBar.getBackgroundColor()) > 0.721f;
+        if (this.reportType >= 0) {
+            Theme.ResourcesProvider resourceProvider = getResourceProvider();
+            if (resourceProvider != null) {
+                color = resourceProvider.getColorOrDefault(Theme.key_actionBarActionModeDefault);
+            } else {
+                color = Theme.getColor(Theme.key_actionBarActionModeDefault, null, true);
+            }
+            return ColorUtils.calculateLuminance(color) > 0.699999988079071d;
         }
-        Theme.ResourcesProvider resourceProvider = getResourceProvider();
-        if (resourceProvider != null) {
-            color = resourceProvider.getColorOrDefault(Theme.key_actionBarActionModeDefault);
-        } else {
-            color = Theme.getColor(Theme.key_actionBarActionModeDefault, null, true);
+        ActionBar actionBar = this.actionBar;
+        if (actionBar == null) {
+            return !Theme.isCurrentThemeDark();
         }
-        return ColorUtils.calculateLuminance(color) > 0.699999988079071d;
+        return AndroidUtilities.computePerceivedBrightness(actionBar.getBackgroundColor()) > 0.721f;
     }
 
     public MessageObject.GroupedMessages getGroup(long j) {

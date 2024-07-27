@@ -37,11 +37,11 @@ public class BottomSheetTabDialog extends Dialog {
     }
 
     public BottomSheetTabDialog(BottomSheetTabsOverlay.Sheet sheet) {
-        super(sheet.mo949getWindowView().getContext(), R.style.TransparentDialog);
+        super(sheet.mo953getWindowView().getContext(), R.style.TransparentDialog);
         this.sheet = sheet;
-        BottomSheetTabsOverlay.SheetView mo949getWindowView = sheet.mo949getWindowView();
-        this.sheetView = mo949getWindowView;
-        WindowView windowView = new WindowView(mo949getWindowView);
+        BottomSheetTabsOverlay.SheetView mo953getWindowView = sheet.mo953getWindowView();
+        this.sheetView = mo953getWindowView;
+        WindowView windowView = new WindowView(mo953getWindowView);
         this.windowView = windowView;
         setContentView(windowView, new ViewGroup.LayoutParams(-1, -1));
     }

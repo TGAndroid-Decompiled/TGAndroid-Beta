@@ -579,12 +579,12 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
 
         @Override
         public void onCloseToTabs() {
-            onCloseRequested(null);
+            BotWebViewContainer.Delegate.CC.$default$onCloseToTabs(this);
         }
 
         @Override
         public void onInstantClose() {
-            onCloseRequested(null);
+            BotWebViewContainer.Delegate.CC.$default$onInstantClose(this);
         }
 
         @Override
@@ -1058,6 +1058,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         this.needsContext = z;
     }
 
+    @Override
     public boolean isFullSize() {
         Boolean bool = this.fullsize;
         return bool == null ? this.defaultFullsize : bool.booleanValue();
@@ -1755,7 +1756,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
     }
 
     @Override
-    public WindowView mo949getWindowView() {
+    public WindowView mo953getWindowView() {
         return this.windowView;
     }
 

@@ -56,10 +56,15 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
     private long cacheSize;
     private long cookiesSize;
     private long historySize;
+    private Utilities.Callback<BrowserHistory.Entry> whenHistoryClicked;
 
     @Override
     public boolean onLongClick(UItem uItem, View view, int i, float f, float f2) {
         return false;
+    }
+
+    public WebBrowserSettings(Utilities.Callback<BrowserHistory.Entry> callback) {
+        this.whenHistoryClicked = callback;
     }
 
     @Override
@@ -187,7 +192,10 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
     @Override
     public void onClick(UItem uItem, final View view, int i, float f, float f2) {
         int i2 = uItem.id;
-        if (i2 == 1) {
+        if (i2 == 12) {
+            SharedConfig.toggleBrowserAdaptable();
+            ((TextCheckCell) view).setChecked(SharedConfig.adaptableBrowser);
+        } else if (i2 == 1) {
             SharedConfig.toggleInappBrowser();
             TextCheckCell textCheckCell = (TextCheckCell) view;
             textCheckCell.setChecked(SharedConfig.inappBrowser);
@@ -432,6 +440,11 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
 
     public void lambda$onClick$6(HistoryFragment[] historyFragmentArr, BrowserHistory.Entry entry) {
         historyFragmentArr[0].finishFragment();
+        if (this.whenHistoryClicked != null) {
+            finishFragment();
+            this.whenHistoryClicked.run(entry);
+            return;
+        }
         Browser.openUrl(getContext(), entry.url);
     }
 
@@ -476,7 +489,7 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
                 WebBrowserSettings.this.lambda$onClick$9(alertDialogArr, alertDialog);
             }
         };
-        AndroidUtilities.runOnUIThread(runnable, 2000L);
+        AndroidUtilities.runOnUIThread(runnable, 5000L);
         alertDialog.showDelayed(300L);
         WebMetadataCache.retrieveFaviconAndSitename("https://" + obj + "/", new Utilities.Callback2() {
             @Override

@@ -68,6 +68,7 @@ import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
@@ -107,6 +108,7 @@ import org.telegram.ui.BubbleActivity;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
+import org.telegram.ui.Components.AnimatedFileDrawable;
 import org.telegram.ui.Components.BlurringShader;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.ButtonBounce;
@@ -208,6 +210,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
     private boolean isAnimatePopupClosing;
     private boolean isBot;
     private boolean isColorListShown;
+    public boolean isCoverPreview;
     private boolean isTypefaceMenuShown;
     private boolean isVideo;
     private AnimatorSet keyboardAnimator;
@@ -392,6 +395,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         this.colorSwatch = new Swatch(-1, 1.0f, 0.016773745f);
         this.toolsPaint = new Paint(1);
         this.points = new float[2];
+        this.isCoverPreview = false;
         this.pos = new int[2];
         this.openKeyboardRunnable = new Runnable() {
             @Override
@@ -683,6 +687,14 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
                 }
                 PaintView.this.setupEntities();
             }
+
+            @Override
+            public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+                if (PaintView.this.isCoverPreview) {
+                    return false;
+                }
+                return super.dispatchTouchEvent(motionEvent);
+            }
         };
         this.initialEntry = storyEntry;
         this.initialEntities = arrayList;
@@ -690,11 +702,19 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
             setupEntities();
         }
         this.entitiesView.setVisibility(4);
-        this.selectionContainerView = new FrameLayout(this, context) {
+        this.selectionContainerView = new FrameLayout(context) {
             @Override
             @SuppressLint({"ClickableViewAccessibility"})
             public boolean onTouchEvent(MotionEvent motionEvent) {
                 return false;
+            }
+
+            @Override
+            public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+                if (PaintView.this.isCoverPreview) {
+                    return false;
+                }
+                return super.dispatchTouchEvent(motionEvent);
             }
         };
         FrameLayout frameLayout = new FrameLayout(context);
@@ -2900,8 +2920,70 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         return this.cancelButton;
     }
 
+    public void setCoverPreview(boolean z) {
+        if (this.isCoverPreview != z) {
+            this.isCoverPreview = z;
+            if (z) {
+                lambda$createRound$61(null);
+            }
+            setCoverPause(z);
+        }
+    }
+
+    private void setCoverPause(boolean z) {
+        for (int i = 0; i < this.entitiesView.getChildCount(); i++) {
+            View childAt = this.entitiesView.getChildAt(i);
+            if (childAt instanceof StickerView) {
+                ImageReceiver imageReceiver = ((StickerView) childAt).centerImage;
+                RLottieDrawable lottieAnimation = imageReceiver.getLottieAnimation();
+                AnimatedFileDrawable animation = imageReceiver.getAnimation();
+                imageReceiver.setAllowStartLottieAnimation(!z);
+                imageReceiver.setAllowStartAnimation(!z);
+                if (lottieAnimation != null) {
+                    if (z) {
+                        lottieAnimation.stop();
+                    } else {
+                        lottieAnimation.start();
+                    }
+                } else if (animation != null) {
+                    animation.setAllowDecodeSingleFrame(z);
+                    if (z) {
+                        animation.stop();
+                    } else {
+                        animation.start();
+                    }
+                }
+            }
+        }
+    }
+
+    public void setCoverTime(long j) {
+        for (int i = 0; i < this.entitiesView.getChildCount(); i++) {
+            View childAt = this.entitiesView.getChildAt(i);
+            if (childAt instanceof StickerView) {
+                ImageReceiver imageReceiver = ((StickerView) childAt).centerImage;
+                RLottieDrawable lottieAnimation = imageReceiver.getLottieAnimation();
+                imageReceiver.getAnimation();
+                if (lottieAnimation != null) {
+                    lottieAnimation.setCurrentFrame(Math.round(((((float) j) % ((float) lottieAnimation.getDuration())) / ((float) lottieAnimation.getDuration())) * lottieAnimation.getFramesCount()), true, false);
+                }
+            }
+        }
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (this.isCoverPreview) {
+            return false;
+        }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
     @Override
     public boolean onTouch(MotionEvent motionEvent) {
+        if (this.isCoverPreview) {
+            return false;
+        }
         if (this.currentEntityView != null) {
             lambda$createRound$61(null);
         }
@@ -4420,7 +4502,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         }
     }
 
-    private boolean wouldBeVideo() {
+    public boolean wouldBeVideo() {
         AnimatedEmojiSpan[] animatedEmojiSpanArr;
         if (this.isVideo || this.hasAudio) {
             return true;

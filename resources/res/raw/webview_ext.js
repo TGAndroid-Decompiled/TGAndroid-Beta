@@ -186,10 +186,18 @@ if (!window.__tg__webview_set) {
                 __tg__backgroundColor()
             ));
             if (window.TelegramWebview) {
-                if (actionBarColor != __tg__lastActionBarColor)
+                if (actionBarColor != __tg__lastActionBarColor) {
+                    if (DEBUG) {
+                        console.log('tgbrowser actionbar color', actionBarColor);
+                    }
                     window.TelegramWebview.post("actionBarColor", __tg__lastActionBarColor = actionBarColor);
-                if (navigationBarColor != __tg__lastNavigationBarColor)
+                }
+                if (navigationBarColor != __tg__lastNavigationBarColor) {
+                    if (DEBUG) {
+                        console.log('tgbrowser navbar color', navigationBarColor);
+                    }
                     window.TelegramWebview.post("navigationBarColor", __tg__lastNavigationBarColor = navigationBarColor);
+                }
             }
         };
         const __tg__colorsObserver = new MutationObserver(() => {

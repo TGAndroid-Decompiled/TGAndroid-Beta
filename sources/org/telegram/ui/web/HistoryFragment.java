@@ -122,6 +122,12 @@ public class HistoryFragment extends UniversalFragment {
         this.emptyView.setAnimateLayoutChange(true);
         ((FrameLayout) this.fragmentView).addView(this.emptyView, LayoutHelper.createFrame(-1, -1.0f));
         this.listView.setEmptyView(this.emptyView);
+        this.listView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int i4, int i5) {
+                AndroidUtilities.hideKeyboard(HistoryFragment.this.fragmentView);
+            }
+        });
         return this.fragmentView;
     }
 

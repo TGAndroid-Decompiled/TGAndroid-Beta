@@ -271,7 +271,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
     }
 
     @Override
-    public WindowView mo949getWindowView() {
+    public WindowView mo953getWindowView() {
         return this.windowView;
     }
 
@@ -1018,6 +1018,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         this.needsContext = z;
     }
 
+    @Override
     public boolean isFullSize() {
         Boolean bool = this.fullsize;
         return bool == null ? this.defaultFullsize : bool.booleanValue();

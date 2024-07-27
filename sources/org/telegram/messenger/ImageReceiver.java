@@ -1967,8 +1967,8 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
             return;
         }
         this.emojiPaused = z;
-        RLottieDrawable lottieAnimation = getLottieAnimation();
         this.allowStartLottieAnimation = !z;
+        RLottieDrawable lottieAnimation = getLottieAnimation();
         if (lottieAnimation != null) {
             if (z) {
                 lottieAnimation.stop();

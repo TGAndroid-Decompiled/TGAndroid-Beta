@@ -877,6 +877,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
                 if ((this.isSoundPicker && !isRingtone(listItem.file)) || listItem.file.length() == 0) {
                     return false;
                 }
+                boolean z3 = this.parentAlert.storyMediaPicker;
                 this.selectedFiles.put(absolutePath, listItem);
                 this.selectedFilesOrder.add(absolutePath);
                 z = true;

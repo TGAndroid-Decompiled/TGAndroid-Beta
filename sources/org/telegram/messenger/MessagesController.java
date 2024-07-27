@@ -2295,7 +2295,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.tonProxyAddress = this.mainPreferences.getString("tonProxyAddress", "magic.org");
         this.weatherSearchUsername = this.mainPreferences.getString("weatherSearchUsername", "izweatherbot");
         this.storyWeatherPreload = this.mainPreferences.getBoolean("storyWeatherPreload", true);
-        this.starsGiftsEnabled = this.mainPreferences.getBoolean("starsGiftsEnabled", true);
+        this.starsGiftsEnabled = this.mainPreferences.getBoolean("starsGiftsEnabled", BuildVars.DEBUG_PRIVATE_VERSION);
         scheduleTranscriptionUpdate();
         BuildVars.GOOGLE_AUTH_CLIENT_ID = this.mainPreferences.getString("googleAuthClientId", BuildVars.GOOGLE_AUTH_CLIENT_ID);
         if (this.mainPreferences.contains("dcDomainName2")) {
@@ -2336,6 +2336,7 @@ public class MessagesController extends BaseController implements NotificationCe
             this.exportUri.add("content://(\\d+@)?com\\.whatsapp\\.w4b\\.provider\\.media/export_chat/");
             this.exportUri.add("content://jp\\.naver\\.line\\.android\\.line\\.common\\.FileProvider/export-chat/");
             this.exportUri.add(".*WhatsApp.*\\.txt$");
+            this.exportUri.add(".*WhatsApp.*\\.zip$");
         }
         Set<String> stringSet3 = this.mainPreferences.getStringSet("exportGroupUri", null);
         this.exportGroupUri = stringSet3;
@@ -18197,6 +18198,14 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         boolean z = tLRPC$MessageMedia2 instanceof TLRPC$TL_messageMediaPhoto;
         return z && z && tLRPC$MessageMedia.photo.id == tLRPC$MessageMedia2.photo.id;
+    }
+
+    public static TLRPC$InputDocument toInputDocument(TLRPC$Document tLRPC$Document) {
+        TLRPC$TL_inputDocument tLRPC$TL_inputDocument = new TLRPC$TL_inputDocument();
+        tLRPC$TL_inputDocument.id = tLRPC$Document.id;
+        tLRPC$TL_inputDocument.access_hash = tLRPC$Document.access_hash;
+        tLRPC$TL_inputDocument.file_reference = tLRPC$Document.file_reference;
+        return tLRPC$TL_inputDocument;
     }
 
     public static TLRPC$InputMedia toInputMedia(TLRPC$MessageMedia tLRPC$MessageMedia) {

@@ -2227,7 +2227,8 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                     }
                 });
             }
-            if (LoginActivity.this.activityMode == 0) {
+            final boolean z = BuildVars.DEBUG_VERSION;
+            if (z && LoginActivity.this.activityMode == 0) {
                 CheckBoxCell checkBoxCell2 = new CheckBoxCell(context, 2);
                 this.testBackendCheckBox = checkBoxCell2;
                 checkBoxCell2.setText(LocaleController.getString(R.string.DebugTestBackend), "", LoginActivity.this.testBackend = LoginActivity.this.getConnectionsManager().isTestBackend(), false);
@@ -2242,7 +2243,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 this.testBackendCheckBox.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view2) {
-                        LoginActivity.PhoneView.this.lambda$new$8(r2, view2);
+                        LoginActivity.PhoneView.this.lambda$new$8(z, view2);
                     }
                 });
             }
@@ -2308,8 +2309,8 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             }
             LoginActivity.this.getAccountInstance().getConnectionsManager().sendRequest(new TLObject() {
                 @Override
-                public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i6, boolean z) {
-                    return TLRPC$TL_nearestDc.TLdeserialize(abstractSerializedData, i6, z);
+                public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i6, boolean z2) {
+                    return TLRPC$TL_nearestDc.TLdeserialize(abstractSerializedData, i6, z2);
                 }
 
                 @Override
