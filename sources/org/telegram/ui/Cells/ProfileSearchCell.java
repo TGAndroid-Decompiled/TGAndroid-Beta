@@ -434,7 +434,7 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
                     TLRPC$User tLRPC$User5 = this.user;
                     boolean z = tLRPC$User5.bot;
                     if (z && (i = tLRPC$User5.bot_active_users) != 0) {
-                        str = LocaleController.formatPluralStringComma("BotDAU", i, ' ');
+                        str = LocaleController.formatPluralStringComma("BotUsers", i, ' ');
                     } else if (z) {
                         str = LocaleController.getString("Bot", R.string.Bot);
                     } else if (UserObject.isService(tLRPC$User5.id)) {

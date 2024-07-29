@@ -2397,7 +2397,6 @@ public class AndroidUtilities {
     }
 
     public static void checkDisplaySize(Context context, Configuration configuration) {
-        Display defaultDisplay;
         try {
             float f = density;
             float f2 = context.getResources().getDisplayMetrics().density;
@@ -2410,11 +2409,11 @@ public class AndroidUtilities {
                 configuration = context.getResources().getConfiguration();
             }
             usingHardwareInput = configuration.keyboard != 1 && configuration.hardKeyboardHidden == 1;
-            WindowManager windowManager = (WindowManager) context.getSystemService("window");
-            if (windowManager != null && (defaultDisplay = windowManager.getDefaultDisplay()) != null) {
-                defaultDisplay.getMetrics(displayMetrics);
-                defaultDisplay.getSize(displaySize);
-                float refreshRate = defaultDisplay.getRefreshRate();
+            Display display = context.getDisplay();
+            if (display != null) {
+                display.getMetrics(displayMetrics);
+                display.getSize(displaySize);
+                float refreshRate = display.getRefreshRate();
                 screenRefreshRate = refreshRate;
                 screenRefreshTime = 1000.0f / refreshRate;
             }
@@ -3704,7 +3703,7 @@ public class AndroidUtilities {
                 }
                 i++;
             }
-            return charSequence;
+            return spannableStringBuilder;
         } else {
             return charSequence.toString().replace('\n', ' ');
         }

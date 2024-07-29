@@ -935,6 +935,7 @@ public class Theme {
     public static final int key_iv_ab_progress;
     public static final int key_iv_background;
     public static final int key_iv_backgroundGray;
+    public static final int key_iv_navigationBackground;
     public static final int key_listSelector;
     public static final int key_location_actionActiveIcon;
     public static final int key_location_actionBackground;

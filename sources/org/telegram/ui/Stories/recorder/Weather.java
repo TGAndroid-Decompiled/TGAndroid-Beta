@@ -394,14 +394,20 @@ public class Weather {
                     }
                 }
             } else {
-                Objects.requireNonNull(callback);
-                locationManager.requestLocationUpdates("gps", 1L, 0.0f, new LocationListener() {
-                    @Override
-                    public final void onLocationChanged(Location location2) {
-                        Utilities.Callback.this.run(location2);
-                    }
-                });
-                return;
+                try {
+                    Objects.requireNonNull(callback);
+                    locationManager.requestLocationUpdates("gps", 1L, 0.0f, new LocationListener() {
+                        @Override
+                        public final void onLocationChanged(Location location2) {
+                            Utilities.Callback.this.run(location2);
+                        }
+                    });
+                    return;
+                } catch (Exception e2) {
+                    FileLog.e(e2);
+                    callback.run(null);
+                    return;
+                }
             }
         }
         callback.run(location);

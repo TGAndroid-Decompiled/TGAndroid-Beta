@@ -4104,6 +4104,22 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         return this;
     }
 
+    public StoryPrivacyBottomSheet setCover(Bitmap bitmap) {
+        View[] viewPages;
+        this.coverDrawable = bitmap == null ? null : new BitmapDrawable(bitmap);
+        ViewPagerFixed viewPagerFixed = this.viewPager;
+        if (viewPagerFixed != null) {
+            for (View view : viewPagerFixed.getViewPages()) {
+                if (view instanceof Page) {
+                    Page page = (Page) view;
+                    page.updateItems(false);
+                    page.updateButton(false);
+                }
+            }
+        }
+        return this;
+    }
+
     public static class ChoosePeerSheet extends BottomSheet {
         private final int currentAccount;
         private final TextView headerView;

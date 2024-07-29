@@ -164,19 +164,19 @@ public class PreviewView extends FrameLayout {
         this.updateProgressRunnable = new Runnable() {
             @Override
             public final void run() {
-                PreviewView.this.lambda$new$6();
+                PreviewView.this.lambda$new$8();
             }
         };
         this.updateAudioProgressRunnable = new Runnable() {
             @Override
             public final void run() {
-                PreviewView.this.lambda$new$7();
+                PreviewView.this.lambda$new$9();
             }
         };
         this.updateRoundProgressRunnable = new Runnable() {
             @Override
             public final void run() {
-                PreviewView.this.lambda$new$8();
+                PreviewView.this.lambda$new$10();
             }
         };
         this.wallpaperDrawableCrossfade = new AnimatedFloat(this, 0L, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
@@ -237,7 +237,7 @@ public class PreviewView extends FrameLayout {
             if (storyEntry.gradientTopColor != 0 || storyEntry.gradientBottomColor != 0) {
                 setupGradient();
             } else {
-                storyEntry.setupGradient(new PreviewView$$ExternalSyntheticLambda2(this));
+                storyEntry.setupGradient(new PreviewView$$ExternalSyntheticLambda3(this));
             }
         } else {
             setupVideoPlayer(null, runnable, 0L);
@@ -265,7 +265,7 @@ public class PreviewView extends FrameLayout {
             if (storyEntry.gradientTopColor != 0 || storyEntry.gradientBottomColor != 0) {
                 setupGradient();
             } else {
-                storyEntry.setupGradient(new PreviewView$$ExternalSyntheticLambda2(this));
+                storyEntry.setupGradient(new PreviewView$$ExternalSyntheticLambda3(this));
             }
         } else {
             setupImage(storyEntry);
@@ -461,38 +461,65 @@ public class PreviewView extends FrameLayout {
         return 0L;
     }
 
-    public Bitmap getCoverBitmap(View... viewArr) {
-        Bitmap bitmap;
+    public void getCoverBitmap(final Utilities.Callback<Bitmap> callback, View... viewArr) {
         VideoEditTextureView videoEditTextureView;
-        Bitmap createBitmap = Bitmap.createBitmap((int) (AndroidUtilities.dp(26.0f) * AndroidUtilities.density), (int) (AndroidUtilities.dp(30.33f) * AndroidUtilities.density), Bitmap.Config.ARGB_8888);
+        final int dp = (int) (AndroidUtilities.dp(26.0f) * AndroidUtilities.density);
+        final int dp2 = (int) (AndroidUtilities.dp(30.33f) * AndroidUtilities.density);
+        final int dp3 = (int) (AndroidUtilities.dp(4.0f) * AndroidUtilities.density);
+        final Bitmap[] bitmapArr = new Bitmap[viewArr.length];
+        for (int i = 0; i < viewArr.length; i++) {
+            if (viewArr[i] != null && viewArr[i].getWidth() >= 0 && viewArr[i].getHeight() > 0) {
+                if (viewArr[i] == this && (videoEditTextureView = this.textureView) != null) {
+                    bitmapArr[i] = videoEditTextureView.getBitmap();
+                } else if (viewArr[i] instanceof TextureView) {
+                    bitmapArr[i] = ((TextureView) viewArr[i]).getBitmap();
+                } else if ((viewArr[i] instanceof ViewGroup) && ((ViewGroup) viewArr[i]).getChildCount() > 0) {
+                    bitmapArr[i] = Bitmap.createBitmap(dp, dp2, Bitmap.Config.ARGB_8888);
+                    Canvas canvas = new Canvas(bitmapArr[i]);
+                    canvas.save();
+                    float max = Math.max(dp / viewArr[i].getWidth(), dp2 / viewArr[i].getHeight());
+                    canvas.scale(max, max);
+                    viewArr[i].draw(canvas);
+                    canvas.restore();
+                }
+            }
+        }
+        Utilities.globalQueue.postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                PreviewView.lambda$getCoverBitmap$2(dp, dp2, dp3, bitmapArr, callback);
+            }
+        });
+    }
+
+    public static void lambda$getCoverBitmap$2(int i, int i2, int i3, Bitmap[] bitmapArr, final Utilities.Callback callback) {
+        final Bitmap createBitmap = Bitmap.createBitmap(i, i2, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(createBitmap);
         Path path = new Path();
         RectF rectF = new RectF();
         rectF.set(0.0f, 0.0f, createBitmap.getWidth(), createBitmap.getHeight());
-        path.addRoundRect(rectF, (int) (AndroidUtilities.dp(4.0f) * AndroidUtilities.density), (int) (AndroidUtilities.dp(4.0f) * AndroidUtilities.density), Path.Direction.CW);
+        float f = i3;
+        path.addRoundRect(rectF, f, f, Path.Direction.CW);
         canvas.clipPath(path);
-        canvas.drawColor(-65536);
-        for (int i = 0; i < viewArr.length; i++) {
-            if (viewArr[i] != null && viewArr[i].getWidth() >= 0 && viewArr[i].getHeight() > 0) {
+        for (int i4 = 0; i4 < bitmapArr.length; i4++) {
+            if (bitmapArr[i4] != null) {
                 canvas.save();
                 canvas.translate(createBitmap.getWidth() / 2.0f, createBitmap.getHeight() / 2.0f);
-                float max = Math.max(createBitmap.getWidth() / viewArr[i].getWidth(), createBitmap.getHeight() / viewArr[i].getHeight());
+                float max = Math.max(createBitmap.getWidth() / bitmapArr[i4].getWidth(), createBitmap.getHeight() / bitmapArr[i4].getHeight());
                 canvas.scale(max, max);
-                canvas.translate((-viewArr[i].getWidth()) / 2.0f, (-viewArr[i].getHeight()) / 2.0f);
-                viewArr[i].draw(canvas);
-                if (viewArr[i] == this && (videoEditTextureView = this.textureView) != null) {
-                    Bitmap bitmap2 = videoEditTextureView.getBitmap();
-                    if (bitmap2 != null) {
-                        canvas.drawBitmap(bitmap2, 0.0f, 0.0f, (Paint) null);
-                    }
-                } else if ((viewArr[i] instanceof TextureView) && (bitmap = ((TextureView) viewArr[i]).getBitmap()) != null) {
-                    canvas.drawBitmap(bitmap, 0.0f, 0.0f, (Paint) null);
-                }
+                canvas.translate((-bitmapArr[i4].getWidth()) / 2.0f, (-bitmapArr[i4].getHeight()) / 2.0f);
+                canvas.drawBitmap(bitmapArr[i4], 0.0f, 0.0f, (Paint) null);
                 canvas.restore();
+                AndroidUtilities.recycleBitmap(bitmapArr[i4]);
             }
         }
         Utilities.stackBlurBitmap(createBitmap, 1);
-        return createBitmap;
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                Utilities.Callback.this.run(createBitmap);
+            }
+        });
     }
 
     public void seek(long j) {
@@ -711,11 +738,11 @@ public class PreviewView extends FrameLayout {
                 Bitmap scaledBitmap = StoryEntry.getScaledBitmap(new StoryEntry.DecodeBitmap() {
                     @Override
                     public final Bitmap decode(BitmapFactory.Options options) {
-                        Bitmap lambda$setupImage$1;
-                        lambda$setupImage$1 = PreviewView.this.lambda$setupImage$1(storyEntry, j2, path, options);
-                        return lambda$setupImage$1;
+                        Bitmap lambda$setupImage$3;
+                        lambda$setupImage$3 = PreviewView.this.lambda$setupImage$3(storyEntry, j2, path, options);
+                        return lambda$setupImage$3;
                     }
-                }, measuredWidth, i, false);
+                }, measuredWidth, i, false, true);
                 this.bitmap = scaledBitmap;
                 BlurringShader.BlurManager blurManager2 = this.blurManager;
                 if (blurManager2 == null || scaledBitmap == null) {
@@ -746,7 +773,7 @@ public class PreviewView extends FrameLayout {
         invalidate();
     }
 
-    public Bitmap lambda$setupImage$1(StoryEntry storyEntry, long j, String str, BitmapFactory.Options options) {
+    public Bitmap lambda$setupImage$3(StoryEntry storyEntry, long j, String str, BitmapFactory.Options options) {
         if (storyEntry.isVideo) {
             String str2 = storyEntry.thumbPath;
             if (str2 != null) {
@@ -771,7 +798,7 @@ public class PreviewView extends FrameLayout {
                 DominantColors.getColors(true, bitmap, true, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        PreviewView.this.lambda$setupGradient$2(measuredHeight, (int[]) obj);
+                        PreviewView.this.lambda$setupGradient$4(measuredHeight, (int[]) obj);
                     }
                 });
             } else {
@@ -780,7 +807,7 @@ public class PreviewView extends FrameLayout {
                     DominantColors.getColors(true, bitmap2, true, new Utilities.Callback() {
                         @Override
                         public final void run(Object obj) {
-                            PreviewView.this.lambda$setupGradient$3(measuredHeight, (int[]) obj);
+                            PreviewView.this.lambda$setupGradient$5(measuredHeight, (int[]) obj);
                         }
                     });
                 } else {
@@ -807,7 +834,7 @@ public class PreviewView extends FrameLayout {
         invalidate();
     }
 
-    public void lambda$setupGradient$2(int i, int[] iArr) {
+    public void lambda$setupGradient$4(int i, int[] iArr) {
         StoryEntry storyEntry = this.entry;
         int i2 = iArr[0];
         this.gradientTop = i2;
@@ -827,7 +854,7 @@ public class PreviewView extends FrameLayout {
         }
     }
 
-    public void lambda$setupGradient$3(int i, int[] iArr) {
+    public void lambda$setupGradient$5(int i, int[] iArr) {
         StoryEntry storyEntry = this.entry;
         int i2 = iArr[0];
         this.gradientTop = i2;
@@ -866,7 +893,7 @@ public class PreviewView extends FrameLayout {
                     this.textureView.animate().alpha(0.0f).withEndAction(new Runnable() {
                         @Override
                         public final void run() {
-                            PreviewView.this.lambda$setupVideoPlayer$4();
+                            PreviewView.this.lambda$setupVideoPlayer$6();
                         }
                     }).start();
                 }
@@ -913,7 +940,7 @@ public class PreviewView extends FrameLayout {
         storyEntry.detectHDR(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                PreviewView.this.lambda$setupVideoPlayer$5((StoryEntry.HDRInfo) obj);
+                PreviewView.this.lambda$setupVideoPlayer$7((StoryEntry.HDRInfo) obj);
             }
         });
         this.videoPlayer.preparePlayer(Uri.fromFile(storyEntry.getOriginalFile()), "other");
@@ -937,7 +964,7 @@ public class PreviewView extends FrameLayout {
         timelineView2.setProgress(j);
     }
 
-    public void lambda$setupVideoPlayer$4() {
+    public void lambda$setupVideoPlayer$6() {
         VideoEditTextureView videoEditTextureView = this.textureView;
         if (videoEditTextureView != null) {
             videoEditTextureView.release();
@@ -1070,7 +1097,7 @@ public class PreviewView extends FrameLayout {
         }
     }
 
-    public void lambda$setupVideoPlayer$5(StoryEntry.HDRInfo hDRInfo) {
+    public void lambda$setupVideoPlayer$7(StoryEntry.HDRInfo hDRInfo) {
         VideoEditTextureView videoEditTextureView = this.textureView;
         if (videoEditTextureView != null) {
             videoEditTextureView.setHDRInfo(hDRInfo);
@@ -1281,7 +1308,7 @@ public class PreviewView extends FrameLayout {
         }
     }
 
-    public void lambda$new$6() {
+    public void lambda$new$8() {
         VideoPlayer videoPlayer = this.videoPlayer;
         if (videoPlayer == null || this.timelineView == null) {
             return;
@@ -1315,7 +1342,7 @@ public class PreviewView extends FrameLayout {
         this.lastPos = currentPosition;
     }
 
-    public void lambda$new$7() {
+    public void lambda$new$9() {
         VideoPlayer videoPlayer = this.audioPlayer;
         if (videoPlayer == null || this.videoPlayer != null || this.roundPlayer != null || this.timelineView == null) {
             return;
@@ -1342,7 +1369,7 @@ public class PreviewView extends FrameLayout {
         }
     }
 
-    public void lambda$new$8() {
+    public void lambda$new$10() {
         VideoPlayer videoPlayer = this.roundPlayer;
         if (videoPlayer == null || this.videoPlayer != null || this.timelineView == null) {
             return;
@@ -1924,7 +1951,7 @@ public class PreviewView extends FrameLayout {
         emojiThemes.loadWallpaper(z ? 1 : 0, new ResultCallback() {
             @Override
             public final void onComplete(Object obj) {
-                PreviewView.lambda$getBackgroundDrawableFromTheme$9(EmojiThemes.this, z, z, motionBackgroundDrawable, patternColor, (Pair) obj);
+                PreviewView.lambda$getBackgroundDrawableFromTheme$11(EmojiThemes.this, z, z, motionBackgroundDrawable, patternColor, (Pair) obj);
             }
 
             @Override
@@ -1935,7 +1962,7 @@ public class PreviewView extends FrameLayout {
         return motionBackgroundDrawable;
     }
 
-    public static void lambda$getBackgroundDrawableFromTheme$9(EmojiThemes emojiThemes, boolean z, boolean z2, MotionBackgroundDrawable motionBackgroundDrawable, int i, Pair pair) {
+    public static void lambda$getBackgroundDrawableFromTheme$11(EmojiThemes emojiThemes, boolean z, boolean z2, MotionBackgroundDrawable motionBackgroundDrawable, int i, Pair pair) {
         if (pair == null) {
             return;
         }

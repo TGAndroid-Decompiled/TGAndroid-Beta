@@ -108,6 +108,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
@@ -196,6 +197,7 @@ import org.telegram.tgnet.TLRPC$TL_account_updatePersonalChannel;
 import org.telegram.tgnet.TLRPC$TL_birthday;
 import org.telegram.tgnet.TLRPC$TL_boolFalse;
 import org.telegram.tgnet.TLRPC$TL_boolTrue;
+import org.telegram.tgnet.TLRPC$TL_botCommand;
 import org.telegram.tgnet.TLRPC$TL_businessLocation;
 import org.telegram.tgnet.TLRPC$TL_businessWorkHours;
 import org.telegram.tgnet.TLRPC$TL_channelFull;
@@ -3672,6 +3674,15 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 });
                 builder4.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
                 ProfileActivity.this.showDialog(builder4.create());
+            } else if (i == 44) {
+                ProfileActivity profileActivity8 = ProfileActivity.this;
+                profileActivity8.presentFragment(ChatActivity.of(profileActivity8.userId));
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        ProfileActivity.AnonymousClass6.this.lambda$onItemClick$10();
+                    }
+                }, 150L);
             } else if (i == 21) {
                 if (ProfileActivity.this.getParentActivity() == null) {
                     return;
@@ -3691,7 +3702,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                         MediaController.saveFile(pathToAttach.toString(), ProfileActivity.this.getParentActivity(), 0, null, null, new Utilities.Callback() {
                             @Override
                             public final void run(Object obj) {
-                                ProfileActivity.AnonymousClass6.this.lambda$onItemClick$10(z, (Uri) obj);
+                                ProfileActivity.AnonymousClass6.this.lambda$onItemClick$11(z, (Uri) obj);
                             }
                         });
                         return;
@@ -3731,7 +3742,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 ProfileActivity.this.getConnectionsManager().sendRequest(tLRPC$TL_photos_updateProfilePhoto, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                        ProfileActivity.AnonymousClass6.this.lambda$onItemClick$12(userConfig, photo, tLObject, tLRPC$TL_error);
+                        ProfileActivity.AnonymousClass6.this.lambda$onItemClick$13(userConfig, photo, tLObject, tLRPC$TL_error);
                     }
                 });
                 ProfileActivity.this.undoView.showWithAction(ProfileActivity.this.userId, 22, photo.video_sizes.isEmpty() ? null : 1);
@@ -3788,7 +3799,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 builder5.setPositiveButton(LocaleController.getString("Delete", R.string.Delete), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i4) {
-                        ProfileActivity.AnonymousClass6.this.lambda$onItemClick$13(dialogInterface, i4);
+                        ProfileActivity.AnonymousClass6.this.lambda$onItemClick$14(dialogInterface, i4);
                     }
                 });
                 builder5.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
@@ -3932,23 +3943,27 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             ProfileActivity.this.getSecretChatHelper().startSecretChat(ProfileActivity.this.getParentActivity(), ProfileActivity.this.getMessagesController().getUser(Long.valueOf(ProfileActivity.this.userId)));
         }
 
-        public void lambda$onItemClick$10(boolean z, Uri uri) {
+        public void lambda$onItemClick$10() {
+            ProfileActivity.this.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of("/privacy", ProfileActivity.this.userId, null, null, null, false, null, null, null, true, 0, null, false));
+        }
+
+        public void lambda$onItemClick$11(boolean z, Uri uri) {
             if (ProfileActivity.this.getParentActivity() == null) {
                 return;
             }
             BulletinFactory.createSaveToGalleryBulletin(ProfileActivity.this, z, (Theme.ResourcesProvider) null).show();
         }
 
-        public void lambda$onItemClick$12(final UserConfig userConfig, final TLRPC$Photo tLRPC$Photo, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        public void lambda$onItemClick$13(final UserConfig userConfig, final TLRPC$Photo tLRPC$Photo, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ProfileActivity.AnonymousClass6.this.lambda$onItemClick$11(tLObject, userConfig, tLRPC$Photo);
+                    ProfileActivity.AnonymousClass6.this.lambda$onItemClick$12(tLObject, userConfig, tLRPC$Photo);
                 }
             });
         }
 
-        public void lambda$onItemClick$11(TLObject tLObject, UserConfig userConfig, TLRPC$Photo tLRPC$Photo) {
+        public void lambda$onItemClick$12(TLObject tLObject, UserConfig userConfig, TLRPC$Photo tLRPC$Photo) {
             ProfileActivity.this.avatarsViewPager.finishSettingMainPhoto();
             if (tLObject instanceof TLRPC$TL_photos_photo) {
                 TLRPC$TL_photos_photo tLRPC$TL_photos_photo = (TLRPC$TL_photos_photo) tLObject;
@@ -3965,7 +3980,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
         }
 
-        public void lambda$onItemClick$13(DialogInterface dialogInterface, int i) {
+        public void lambda$onItemClick$14(DialogInterface dialogInterface, int i) {
             TLRPC$Photo tLRPC$Photo;
             int realPosition = ProfileActivity.this.avatarsViewPager.getRealPosition();
             TLRPC$Photo photo = ProfileActivity.this.avatarsViewPager.getPhoto(realPosition);
@@ -5217,7 +5232,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             if (i4 >= 2 || BuildVars.DEBUG_PRIVATE_VERSION) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this.getParentActivity(), ProfileActivity.this.resourcesProvider);
                 builder.setTitle(LocaleController.getString("DebugMenu", R.string.DebugMenu));
-                CharSequence[] charSequenceArr = new CharSequence[33];
+                CharSequence[] charSequenceArr = new CharSequence[34];
                 charSequenceArr[0] = LocaleController.getString("DebugMenuImportContacts", R.string.DebugMenuImportContacts);
                 charSequenceArr[1] = LocaleController.getString("DebugMenuReloadContacts", R.string.DebugMenuReloadContacts);
                 charSequenceArr[2] = LocaleController.getString("DebugMenuResetContacts", R.string.DebugMenuResetContacts);
@@ -5288,6 +5303,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 charSequenceArr[30] = BuildVars.DEBUG_PRIVATE_VERSION ? "Clear all login tokens" : null;
                 charSequenceArr[31] = (!SharedConfig.canBlurChat() || i5 < 31) ? null : SharedConfig.useNewBlur ? "back to cpu blur" : "use new gpu blur";
                 charSequenceArr[32] = BuildVars.DEBUG_PRIVATE_VERSION ? SharedConfig.botTabs3DEffect ? "disable tabs 3d effect" : "enable tabs 3d effect" : null;
+                charSequenceArr[33] = SharedConfig.adaptableColorInBrowser ? "Disabled adaptive browser colors" : "Enable adaptive browser colors";
                 final Context context = this.val$context;
                 builder.setItems(charSequenceArr, new DialogInterface.OnClickListener() {
                     @Override
@@ -5641,6 +5657,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                         SharedConfig.toggleUseNewBlur();
                     } else if (i == 32) {
                         SharedConfig.setBotTabs3DEffect(!SharedConfig.botTabs3DEffect);
+                    } else if (i == 33) {
+                        SharedConfig.toggleBrowserAdaptableColors();
                     }
                 } catch (Exception unused) {
                 }
@@ -8854,15 +8872,21 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     });
                     this.profileChannelMessageFetcher.fetch(this.userInfo);
                 }
-                if (isSettings()) {
-                    return;
+                if (!isSettings()) {
+                    ProfileBirthdayEffect.BirthdayEffectFetcher birthdayEffectFetcher = this.birthdayFetcher;
+                    ProfileBirthdayEffect.BirthdayEffectFetcher of = ProfileBirthdayEffect.BirthdayEffectFetcher.of(this.currentAccount, this.userInfo, birthdayEffectFetcher);
+                    this.birthdayFetcher = of;
+                    this.createdBirthdayFetcher = of != birthdayEffectFetcher;
+                    if (of != null) {
+                        of.subscribe(new ProfileActivity$$ExternalSyntheticLambda49(this));
+                    }
                 }
-                ProfileBirthdayEffect.BirthdayEffectFetcher birthdayEffectFetcher = this.birthdayFetcher;
-                ProfileBirthdayEffect.BirthdayEffectFetcher of = ProfileBirthdayEffect.BirthdayEffectFetcher.of(this.currentAccount, this.userInfo, birthdayEffectFetcher);
-                this.birthdayFetcher = of;
-                this.createdBirthdayFetcher = of != birthdayEffectFetcher;
-                if (of != null) {
-                    of.subscribe(new ProfileActivity$$ExternalSyntheticLambda49(this));
+                if (this.otherItem != null) {
+                    if (hasPrivacyCommand()) {
+                        this.otherItem.showSubItem(44);
+                    } else {
+                        this.otherItem.hideSubItem(44);
+                    }
                 }
             }
         } else if (i == NotificationCenter.privacyRulesUpdated) {
@@ -9489,6 +9513,11 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         ActionBarMenuItem actionBarMenuItem = this.otherItem;
         if (actionBarMenuItem != null) {
             actionBarMenuItem.setSubItemShown(20, true ^ getMessagesController().isUserPremiumBlocked(this.userId));
+            if (hasPrivacyCommand()) {
+                this.otherItem.showSubItem(44);
+            } else {
+                this.otherItem.hideSubItem(44);
+            }
         }
     }
 
@@ -9848,7 +9877,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         return i;
     }
 
-    private void createActionBarMenu(boolean r18) {
+    private void createActionBarMenu(boolean r17) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ProfileActivity.createActionBarMenu(boolean):void");
     }
 
@@ -14780,5 +14809,19 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             public void setColorFilter(ColorFilter colorFilter) {
             }
         });
+    }
+
+    public boolean hasPrivacyCommand() {
+        TLRPC$UserFull tLRPC$UserFull;
+        TL_bots$BotInfo tL_bots$BotInfo;
+        if (this.isBot && (tLRPC$UserFull = this.userInfo) != null && (tL_bots$BotInfo = tLRPC$UserFull.bot_info) != null) {
+            Iterator<TLRPC$TL_botCommand> it = tL_bots$BotInfo.commands.iterator();
+            while (it.hasNext()) {
+                if ("privacy".equals(it.next().command)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

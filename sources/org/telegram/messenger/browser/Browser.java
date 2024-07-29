@@ -375,29 +375,29 @@ public class Browser {
             return false;
         }
         try {
-            if (isTonsite(str)) {
+            if (!isTonsite(str) && !isInternalUrl(str, null)) {
+                Uri parse = Uri.parse(str);
+                String replace = replace(parse, parse.getScheme() == null ? "https" : parse.getScheme(), parse.getHost() != null ? parse.getHost().toLowerCase() : parse.getHost(), TextUtils.isEmpty(parse.getPath()) ? "/" : parse.getPath());
+                Uri parse2 = Uri.parse(replace);
+                boolean z2 = parse2.getScheme() != null && parse2.getScheme().equalsIgnoreCase("intent");
+                if (!z2 || z) {
+                    if (z2) {
+                        intent = Intent.parseUri(parse2.toString(), 1);
+                    } else {
+                        intent = new Intent("android.intent.action.VIEW", parse2);
+                    }
+                    if (Build.VERSION.SDK_INT >= 30) {
+                        intent.addCategory("android.intent.category.BROWSABLE");
+                        intent.addCategory("android.intent.category.DEFAULT");
+                        intent.addFlags(268435456);
+                        intent.addFlags(1024);
+                    } else if (!hasAppToOpen(context, replace)) {
+                        return false;
+                    }
+                    context.startActivity(intent);
+                    return true;
+                }
                 return false;
-            }
-            Uri parse = Uri.parse(str);
-            String replace = replace(parse, parse.getScheme() == null ? "https" : parse.getScheme(), parse.getHost() != null ? parse.getHost().toLowerCase() : parse.getHost(), TextUtils.isEmpty(parse.getPath()) ? "/" : parse.getPath());
-            Uri parse2 = Uri.parse(replace);
-            boolean z2 = parse2.getScheme() != null && parse2.getScheme().equalsIgnoreCase("intent");
-            if (!z2 || z) {
-                if (z2) {
-                    intent = Intent.parseUri(parse2.toString(), 1);
-                } else {
-                    intent = new Intent("android.intent.action.VIEW", parse2);
-                }
-                if (Build.VERSION.SDK_INT >= 30) {
-                    intent.addCategory("android.intent.category.BROWSABLE");
-                    intent.addCategory("android.intent.category.DEFAULT");
-                    intent.addFlags(268435456);
-                    intent.addFlags(1024);
-                } else if (!hasAppToOpen(context, replace)) {
-                    return false;
-                }
-                context.startActivity(intent);
-                return true;
             }
             return false;
         } catch (Exception e) {

@@ -229,7 +229,10 @@ public class BookmarksFragment extends UniversalFragment {
                         }
                     }
                 }
-                AndroidUtilities.hideKeyboard(BookmarksFragment.this.fragmentView);
+                BookmarksFragment bookmarksFragment = BookmarksFragment.this;
+                if (bookmarksFragment.listView.scrollingByUser) {
+                    AndroidUtilities.hideKeyboard(bookmarksFragment.fragmentView);
+                }
             }
         });
         StickerEmptyView stickerEmptyView = new StickerEmptyView(context, null, 1);

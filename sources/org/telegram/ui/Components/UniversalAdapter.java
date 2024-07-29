@@ -845,7 +845,7 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                 Object obj8 = item.object;
                 if (item.accent && (obj8 instanceof TLRPC$User) && (i3 = ((TLRPC$User) obj8).bot_active_users) != 0) {
                     if (i3 != 0) {
-                        charSequence = LocaleController.formatPluralStringComma("BotDAU", i3, ' ');
+                        charSequence = LocaleController.formatPluralStringComma("BotUsers", i3, ' ');
                     }
                     charSequence = "";
                 } else {

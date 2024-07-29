@@ -193,8 +193,8 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
     public void onClick(UItem uItem, final View view, int i, float f, float f2) {
         int i2 = uItem.id;
         if (i2 == 12) {
-            SharedConfig.toggleBrowserAdaptable();
-            ((TextCheckCell) view).setChecked(SharedConfig.adaptableBrowser);
+            SharedConfig.toggleBrowserAdaptableColors();
+            ((TextCheckCell) view).setChecked(SharedConfig.adaptableColorInBrowser);
         } else if (i2 == 1) {
             SharedConfig.toggleInappBrowser();
             TextCheckCell textCheckCell = (TextCheckCell) view;

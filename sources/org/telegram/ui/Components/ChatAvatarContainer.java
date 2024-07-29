@@ -1051,7 +1051,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
                             } else {
                                 boolean z3 = currentUser.bot;
                                 if (z3 && (i = currentUser.bot_active_users) != 0) {
-                                    string = LocaleController.formatPluralStringComma("BotDAU", i, ',');
+                                    string = LocaleController.formatPluralStringComma("BotUsers", i, ',');
                                 } else if (z3) {
                                     string = LocaleController.getString("Bot", R.string.Bot);
                                 } else {

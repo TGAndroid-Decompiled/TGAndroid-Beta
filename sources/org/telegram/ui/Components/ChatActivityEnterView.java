@@ -2163,7 +2163,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
 
             @Override
             public void run() {
-                if ((ChatActivityEnterView.this.hasBotWebView() && ChatActivityEnterView.this.botCommandsMenuIsShowing()) || ChatActivityEnterView.this.destroyed) {
+                if ((ChatActivityEnterView.this.hasBotWebView() && ChatActivityEnterView.this.botCommandsMenuIsShowing()) || BaseFragment.hasSheets(ChatActivityEnterView.this.parentFragment) || ChatActivityEnterView.this.destroyed) {
                     return;
                 }
                 ChatActivityEnterView chatActivityEnterView = ChatActivityEnterView.this;
@@ -8662,6 +8662,9 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         if (this.messageEditText == null || accessibilityManager.isTouchExplorationEnabled()) {
             return;
         }
+        if (z && BaseFragment.hasSheets(this.parentFragment)) {
+            z = false;
+        }
         if (z) {
             if (this.searchingType != 0 || this.messageEditText.isFocused()) {
                 return;
@@ -10684,7 +10687,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
 
     public void openKeyboardInternal() {
         ChatActivity chatActivity;
-        if (hasBotWebView() && botCommandsMenuIsShowing()) {
+        if ((hasBotWebView() && botCommandsMenuIsShowing()) || BaseFragment.hasSheets(this.parentFragment)) {
             return;
         }
         showPopup((AndroidUtilities.usingHardwareInput || AndroidUtilities.isInMultiwindow || ((chatActivity = this.parentFragment) != null && chatActivity.isInBubbleMode()) || this.isPaused) ? 0 : 2, 0);
@@ -10731,7 +10734,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
     }
 
     public void openKeyboard() {
-        if (hasBotWebView() && botCommandsMenuIsShowing()) {
+        if ((hasBotWebView() && botCommandsMenuIsShowing()) || BaseFragment.hasSheets(this.parentFragment)) {
             return;
         }
         ChatActivityEnterViewDelegate chatActivityEnterViewDelegate = this.delegate;
@@ -10894,7 +10897,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         checkBotMenu();
         if (this.keyboardVisible && isPopupShowing() && this.stickersExpansionAnim == null) {
             showPopup(0, this.currentPopupContentType);
-        } else if (!this.keyboardVisible && !isPopupShowing() && (messageObject = this.botButtonsMessageObject) != null && this.replyingMessageObject != messageObject && ((!hasBotWebView() || !botCommandsMenuIsShowing()) && (((editTextCaption = this.messageEditText) == null || TextUtils.isEmpty(editTextCaption.getText())) && (tLRPC$TL_replyKeyboardMarkup = this.botReplyMarkup) != null && !tLRPC$TL_replyKeyboardMarkup.rows.isEmpty()))) {
+        } else if (!this.keyboardVisible && !isPopupShowing() && (messageObject = this.botButtonsMessageObject) != null && this.replyingMessageObject != messageObject && !hasBotWebView() && !botCommandsMenuIsShowing() && !BaseFragment.hasSheets(this.parentFragment) && (((editTextCaption = this.messageEditText) == null || TextUtils.isEmpty(editTextCaption.getText())) && (tLRPC$TL_replyKeyboardMarkup = this.botReplyMarkup) != null && !tLRPC$TL_replyKeyboardMarkup.rows.isEmpty())) {
             if (this.sizeNotifierLayout.adjustPanLayoutHelper.animationInProgress()) {
                 this.sizeNotifierLayout.adjustPanLayoutHelper.stopTransition();
             } else {
@@ -11534,7 +11537,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         if (isInVideoMode() && (frameLayout = this.recordedAudioPanel) != null && frameLayout.getVisibility() == 0) {
             return false;
         }
-        return (hasBotWebView() && this.botCommandsMenuButton.isOpened()) ? false : true;
+        return ((hasBotWebView() && this.botCommandsMenuButton.isOpened()) || BaseFragment.hasSheets(this.parentFragment)) ? false : true;
     }
 
     public int getHeightWithTopView() {

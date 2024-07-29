@@ -327,9 +327,19 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
     }
 
     public void lambda$addTranslation$1(String str) {
-        int indexOf = this.localLangs.indexOf(str);
-        if (indexOf >= 0) {
-            this.tabsView.scrollToTab(str.hashCode(), indexOf + 1);
+        int i = 0;
+        while (true) {
+            if (i >= this.langLists.size()) {
+                i = -1;
+                break;
+            } else if (TextUtils.equals(this.langLists.get(i).lang_code, str)) {
+                break;
+            } else {
+                i++;
+            }
+        }
+        if (i >= 0) {
+            this.tabsView.scrollToTab(str.hashCode(), i + 1);
         }
     }
 
@@ -770,7 +780,11 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
                 }
                 Object next = selectedPhotos.values().iterator().next();
                 if (next instanceof MediaController.PhotoEntry) {
-                    StoryRecorder.getInstance(BotPreviewsEditContainer.this.fragment.getParentActivity(), BotPreviewsEditContainer.this.currentAccount).openBotEntry(BotPreviewsEditContainer.this.bot_id, str, StoryEntry.fromPhotoEntry((MediaController.PhotoEntry) next), null);
+                    StoryEntry fromPhotoEntry = StoryEntry.fromPhotoEntry((MediaController.PhotoEntry) next);
+                    fromPhotoEntry.botId = BotPreviewsEditContainer.this.bot_id;
+                    fromPhotoEntry.botLang = str;
+                    fromPhotoEntry.setupMatrix();
+                    StoryRecorder.getInstance(BotPreviewsEditContainer.this.fragment.getParentActivity(), BotPreviewsEditContainer.this.currentAccount).openBotEntry(BotPreviewsEditContainer.this.bot_id, str, fromPhotoEntry, null);
                     final ChatAttachAlert chatAttachAlert2 = chatAttachAlert;
                     Objects.requireNonNull(chatAttachAlert2);
                     AndroidUtilities.runOnUIThread(new Runnable() {

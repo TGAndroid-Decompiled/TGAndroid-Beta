@@ -736,6 +736,7 @@ public class ThemeColors {
         iArr[Theme.key_iv_background] = -1;
         iArr[Theme.key_iv_backgroundGray] = -986896;
         iArr[Theme.key_iv_ab_progress] = -11491093;
+        iArr[Theme.key_iv_navigationBackground] = -986896;
         return iArr;
     }
 
@@ -1484,6 +1485,7 @@ public class ThemeColors {
         sparseArray.put(Theme.key_code_function, "code_function");
         sparseArray.put(Theme.key_iv_background, "iv_background");
         sparseArray.put(Theme.key_iv_backgroundGray, "iv_backgroundGray");
+        sparseArray.put(Theme.key_iv_navigationBackground, "iv_navigationBackground");
         sparseArray.put(Theme.key_iv_ab_progress, "iv_ab_progress");
         return sparseArray;
     }

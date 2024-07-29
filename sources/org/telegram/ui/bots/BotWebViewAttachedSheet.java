@@ -64,6 +64,7 @@ import org.telegram.tgnet.TLRPC$PaymentForm;
 import org.telegram.tgnet.TLRPC$PaymentReceipt;
 import org.telegram.tgnet.TLRPC$TL_appWebViewResultUrl;
 import org.telegram.tgnet.TLRPC$TL_attachMenuBot;
+import org.telegram.tgnet.TLRPC$TL_botCommand;
 import org.telegram.tgnet.TLRPC$TL_dataJSON;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_inputBotAppID;
@@ -79,6 +80,8 @@ import org.telegram.tgnet.TLRPC$TL_simpleWebViewResultUrl;
 import org.telegram.tgnet.TLRPC$TL_updates;
 import org.telegram.tgnet.TLRPC$TL_webViewResultUrl;
 import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC$UserFull;
+import org.telegram.tgnet.tl.TL_bots$BotInfo;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
@@ -1106,7 +1109,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
             }
         }
         createMenu.addItem(R.id.menu_collapse_bot, R.drawable.arrow_more);
-        ActionBarMenuItem addItem = createMenu.addItem(0, R.drawable.ic_ab_other);
+        final ActionBarMenuItem addItem = createMenu.addItem(0, R.drawable.ic_ab_other);
         this.optionsItem = addItem;
         addItem.addSubItem(R.id.menu_open_bot, R.drawable.msg_bot, LocaleController.getString(R.string.BotWebViewOpenBot));
         ActionBarMenuSubItem addSubItem = addItem.addSubItem(R.id.menu_settings, R.drawable.msg_settings, LocaleController.getString(R.string.BotWebViewSettings));
@@ -1118,10 +1121,19 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         }
         addItem.addSubItem(R.id.menu_share_bot, R.drawable.msg_share, LocaleController.getString(R.string.BotShare));
         addItem.addSubItem(R.id.menu_tos_bot, R.drawable.menu_intro, LocaleController.getString(R.string.BotWebViewToS));
+        int i2 = R.id.menu_privacy;
+        addItem.addSubItem(i2, R.drawable.menu_privacy_policy, LocaleController.getString(R.string.BotPrivacyPolicy));
+        addItem.hideSubItem(i2);
         if (tLRPC$TL_attachMenuBot != null && (tLRPC$TL_attachMenuBot.show_in_side_menu || tLRPC$TL_attachMenuBot.show_in_attach_menu)) {
             addItem.addSubItem(R.id.menu_delete_bot, R.drawable.msg_delete, LocaleController.getString(R.string.BotWebViewDeleteBot));
         }
-        this.actionBar.setActionBarMenuOnItemClick(new AnonymousClass10());
+        hasPrivacyCommand(this.currentAccount, this.botId, new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                BotWebViewAttachedSheet.lambda$requestWebView$14(ActionBarMenuItem.this, (Boolean) obj);
+            }
+        });
+        this.actionBar.setActionBarMenuOnItemClick(new AnonymousClass10(baseFragment));
         JSONObject makeThemeParams = makeThemeParams(this.resourcesProvider);
         this.webViewContainer.setBotUser(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.botId)));
         this.webViewContainer.loadFlickerAndSettingsItem(this.currentAccount, this.botId, this.settingsItem);
@@ -1130,8 +1142,8 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
             loadFromResponse(true);
             return;
         }
-        int i2 = webViewRequestProps.type;
-        if (i2 == 0) {
+        int i3 = webViewRequestProps.type;
+        if (i3 == 0) {
             TLRPC$TL_messages_requestWebView tLRPC$TL_messages_requestWebView = new TLRPC$TL_messages_requestWebView();
             tLRPC$TL_messages_requestWebView.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.peerId);
             tLRPC$TL_messages_requestWebView.bot = MessagesController.getInstance(this.currentAccount).getInputUser(this.botId);
@@ -1155,11 +1167,11 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_requestWebView, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    BotWebViewAttachedSheet.this.lambda$requestWebView$19(tLObject, tLRPC$TL_error);
+                    BotWebViewAttachedSheet.this.lambda$requestWebView$20(tLObject, tLRPC$TL_error);
                 }
             });
             NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.webViewResultSent);
-        } else if (i2 == 1) {
+        } else if (i3 == 1) {
             TLRPC$TL_messages_requestSimpleWebView tLRPC$TL_messages_requestSimpleWebView = new TLRPC$TL_messages_requestSimpleWebView();
             tLRPC$TL_messages_requestSimpleWebView.from_switch_webview = (webViewRequestProps.flags & 1) != 0;
             tLRPC$TL_messages_requestSimpleWebView.bot = MessagesController.getInstance(this.currentAccount).getInputUser(this.botId);
@@ -1183,10 +1195,10 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_requestSimpleWebView, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    BotWebViewAttachedSheet.this.lambda$requestWebView$17(tLObject, tLRPC$TL_error);
+                    BotWebViewAttachedSheet.this.lambda$requestWebView$18(tLObject, tLRPC$TL_error);
                 }
             });
-        } else if (i2 == 2) {
+        } else if (i3 == 2) {
             TLRPC$TL_messages_requestWebView tLRPC$TL_messages_requestWebView2 = new TLRPC$TL_messages_requestWebView();
             tLRPC$TL_messages_requestWebView2.bot = MessagesController.getInstance(this.currentAccount).getInputUser(this.botId);
             tLRPC$TL_messages_requestWebView2.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.botId);
@@ -1203,12 +1215,12 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_requestWebView2, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    BotWebViewAttachedSheet.this.lambda$requestWebView$15(tLObject, tLRPC$TL_error);
+                    BotWebViewAttachedSheet.this.lambda$requestWebView$16(tLObject, tLRPC$TL_error);
                 }
             });
             NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.webViewResultSent);
-        } else if (i2 != 3) {
-            if (i2 != 4) {
+        } else if (i3 != 3) {
+            if (i3 != 4) {
                 return;
             }
             TLRPC$TL_messages_requestMainWebView tLRPC$TL_messages_requestMainWebView = new TLRPC$TL_messages_requestMainWebView();
@@ -1235,7 +1247,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_requestMainWebView, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    BotWebViewAttachedSheet.this.lambda$requestWebView$23(tLObject, tLRPC$TL_error);
+                    BotWebViewAttachedSheet.this.lambda$requestWebView$24(tLObject, tLRPC$TL_error);
                 }
             }, 66);
         } else {
@@ -1268,14 +1280,25 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_requestAppWebView, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    BotWebViewAttachedSheet.this.lambda$requestWebView$21(tLObject, tLRPC$TL_error);
+                    BotWebViewAttachedSheet.this.lambda$requestWebView$22(tLObject, tLRPC$TL_error);
                 }
             }, 66);
         }
     }
 
+    public static void lambda$requestWebView$14(ActionBarMenuItem actionBarMenuItem, Boolean bool) {
+        if (bool.booleanValue()) {
+            actionBarMenuItem.showSubItem(R.id.menu_privacy);
+        } else {
+            actionBarMenuItem.hideSubItem(R.id.menu_privacy);
+        }
+    }
+
     public class AnonymousClass10 extends ActionBar.ActionBarMenuOnItemClick {
-        AnonymousClass10() {
+        final BaseFragment val$fragment;
+
+        AnonymousClass10(BaseFragment baseFragment) {
+            this.val$fragment = baseFragment;
         }
 
         @Override
@@ -1295,6 +1318,22 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
                 BotWebViewAttachedSheet.this.dismiss();
             } else if (i == R.id.menu_tos_bot) {
                 Browser.openUrl(BotWebViewAttachedSheet.this.getContext(), LocaleController.getString(R.string.BotWebViewToSLink));
+            } else if (i == R.id.menu_privacy) {
+                BotWebViewAttachedSheet.this.dismiss(true);
+                BaseFragment baseFragment = this.val$fragment;
+                if (!(baseFragment instanceof ChatActivity) || ((ChatActivity) baseFragment).getDialogId() != BotWebViewAttachedSheet.this.botId) {
+                    BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+                    if (safeLastFragment == null) {
+                        return;
+                    }
+                    safeLastFragment.presentFragment(ChatActivity.of(BotWebViewAttachedSheet.this.botId));
+                }
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        BotWebViewAttachedSheet.AnonymousClass10.this.lambda$onItemClick$0();
+                    }
+                }, 150L);
             } else if (i == R.id.menu_reload_page) {
                 if (BotWebViewAttachedSheet.this.webViewContainer.getWebView() != null) {
                     BotWebViewAttachedSheet.this.webViewContainer.getWebView().animate().cancel();
@@ -1312,7 +1351,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
                 BotWebViewAttachedSheet.deleteBot(BotWebViewAttachedSheet.this.currentAccount, BotWebViewAttachedSheet.this.botId, new Runnable() {
                     @Override
                     public final void run() {
-                        BotWebViewAttachedSheet.AnonymousClass10.this.lambda$onItemClick$0();
+                        BotWebViewAttachedSheet.AnonymousClass10.this.lambda$onItemClick$1();
                     }
                 });
             } else if (i == R.id.menu_add_to_home_screen_bot) {
@@ -1330,20 +1369,24 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         }
 
         public void lambda$onItemClick$0() {
+            SendMessagesHelper.getInstance(BotWebViewAttachedSheet.this.currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of("/privacy", BotWebViewAttachedSheet.this.botId, null, null, null, false, null, null, null, true, 0, null, false));
+        }
+
+        public void lambda$onItemClick$1() {
             BotWebViewAttachedSheet.this.dismiss();
         }
     }
 
-    public void lambda$requestWebView$15(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$requestWebView$16(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotWebViewAttachedSheet.this.lambda$requestWebView$14(tLRPC$TL_error, tLObject);
+                BotWebViewAttachedSheet.this.lambda$requestWebView$15(tLRPC$TL_error, tLObject);
             }
         });
     }
 
-    public void lambda$requestWebView$14(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
+    public void lambda$requestWebView$15(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
         WebViewRequestProps webViewRequestProps;
         if (tLRPC$TL_error == null && (webViewRequestProps = this.requestProps) != null) {
             webViewRequestProps.applyResponse(tLObject);
@@ -1351,16 +1394,16 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         }
     }
 
-    public void lambda$requestWebView$17(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$requestWebView$18(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotWebViewAttachedSheet.this.lambda$requestWebView$16(tLRPC$TL_error, tLObject);
+                BotWebViewAttachedSheet.this.lambda$requestWebView$17(tLRPC$TL_error, tLObject);
             }
         });
     }
 
-    public void lambda$requestWebView$16(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
+    public void lambda$requestWebView$17(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
         WebViewRequestProps webViewRequestProps;
         if (tLRPC$TL_error == null && (webViewRequestProps = this.requestProps) != null) {
             webViewRequestProps.applyResponse(tLObject);
@@ -1368,16 +1411,16 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         }
     }
 
-    public void lambda$requestWebView$19(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$requestWebView$20(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotWebViewAttachedSheet.this.lambda$requestWebView$18(tLRPC$TL_error, tLObject);
+                BotWebViewAttachedSheet.this.lambda$requestWebView$19(tLRPC$TL_error, tLObject);
             }
         });
     }
 
-    public void lambda$requestWebView$18(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
+    public void lambda$requestWebView$19(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
         WebViewRequestProps webViewRequestProps;
         if (tLRPC$TL_error == null && (webViewRequestProps = this.requestProps) != null) {
             webViewRequestProps.applyResponse(tLObject);
@@ -1385,16 +1428,16 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         }
     }
 
-    public void lambda$requestWebView$21(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$requestWebView$22(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotWebViewAttachedSheet.this.lambda$requestWebView$20(tLRPC$TL_error, tLObject);
+                BotWebViewAttachedSheet.this.lambda$requestWebView$21(tLRPC$TL_error, tLObject);
             }
         });
     }
 
-    public void lambda$requestWebView$20(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
+    public void lambda$requestWebView$21(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
         WebViewRequestProps webViewRequestProps;
         if (tLRPC$TL_error == null && (webViewRequestProps = this.requestProps) != null) {
             webViewRequestProps.applyResponse(tLObject);
@@ -1402,16 +1445,16 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         }
     }
 
-    public void lambda$requestWebView$23(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$requestWebView$24(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotWebViewAttachedSheet.this.lambda$requestWebView$22(tLRPC$TL_error, tLObject);
+                BotWebViewAttachedSheet.this.lambda$requestWebView$23(tLRPC$TL_error, tLObject);
             }
         });
     }
 
-    public void lambda$requestWebView$22(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
+    public void lambda$requestWebView$23(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
         WebViewRequestProps webViewRequestProps;
         if (tLRPC$TL_error == null && (webViewRequestProps = this.requestProps) != null) {
             webViewRequestProps.applyResponse(tLObject);
@@ -1483,19 +1526,19 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         new AlertDialog.Builder(LaunchActivity.getLastFragment().getContext()).setTitle(LocaleController.getString(R.string.BotRemoveFromMenuTitle)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("BotRemoveFromMenu", R.string.BotRemoveFromMenu, tLRPC$TL_attachMenuBot.short_name))).setPositiveButton(LocaleController.getString("OK", R.string.OK), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i2) {
-                BotWebViewAttachedSheet.lambda$deleteBot$26(i, j, tLRPC$TL_attachMenuBot, runnable, dialogInterface, i2);
+                BotWebViewAttachedSheet.lambda$deleteBot$27(i, j, tLRPC$TL_attachMenuBot, runnable, dialogInterface, i2);
             }
         }).setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null).show();
     }
 
-    public static void lambda$deleteBot$26(final int i, long j, TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot, Runnable runnable, DialogInterface dialogInterface, int i2) {
+    public static void lambda$deleteBot$27(final int i, long j, TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot, Runnable runnable, DialogInterface dialogInterface, int i2) {
         TLRPC$TL_messages_toggleBotInAttachMenu tLRPC$TL_messages_toggleBotInAttachMenu = new TLRPC$TL_messages_toggleBotInAttachMenu();
         tLRPC$TL_messages_toggleBotInAttachMenu.bot = MessagesController.getInstance(i).getInputUser(j);
         tLRPC$TL_messages_toggleBotInAttachMenu.enabled = false;
         ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_messages_toggleBotInAttachMenu, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                BotWebViewAttachedSheet.lambda$deleteBot$25(i, tLObject, tLRPC$TL_error);
+                BotWebViewAttachedSheet.lambda$deleteBot$26(i, tLObject, tLRPC$TL_error);
             }
         }, 66);
         tLRPC$TL_attachMenuBot.show_in_side_menu = false;
@@ -1506,16 +1549,16 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         }
     }
 
-    public static void lambda$deleteBot$25(final int i, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$deleteBot$26(final int i, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotWebViewAttachedSheet.lambda$deleteBot$24(i);
+                BotWebViewAttachedSheet.lambda$deleteBot$25(i);
             }
         });
     }
 
-    public static void lambda$deleteBot$24(int i) {
+    public static void lambda$deleteBot$25(int i) {
         MediaDataController.getInstance(i).loadAttachMenuBots(false, true);
     }
 
@@ -1598,7 +1641,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                BotWebViewAttachedSheet.this.lambda$updateShownAnimated$27(valueAnimator2);
+                BotWebViewAttachedSheet.this.lambda$updateShownAnimated$28(valueAnimator2);
             }
         });
         this.shownAnimator.addListener(new AnimatorListenerAdapter() {
@@ -1613,7 +1656,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         this.shownAnimator.start();
     }
 
-    public void lambda$updateShownAnimated$27(ValueAnimator valueAnimator) {
+    public void lambda$updateShownAnimated$28(ValueAnimator valueAnimator) {
         this.shown = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         checkNavBarColor();
     }
@@ -1661,7 +1704,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
             AlertDialog create = new AlertDialog.Builder(getContext()).setTitle(user != null ? ContactsController.formatName(user.first_name, user.last_name) : null).setMessage(LocaleController.getString(R.string.BotWebViewChangesMayNotBeSaved)).setPositiveButton(LocaleController.getString(R.string.BotWebViewCloseAnyway), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
-                    BotWebViewAttachedSheet.this.lambda$onCheckDismissByUser$28(dialogInterface, i);
+                    BotWebViewAttachedSheet.this.lambda$onCheckDismissByUser$29(dialogInterface, i);
                 }
             }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create();
             create.show();
@@ -1672,7 +1715,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         return true;
     }
 
-    public void lambda$onCheckDismissByUser$28(DialogInterface dialogInterface, int i) {
+    public void lambda$onCheckDismissByUser$29(DialogInterface dialogInterface, int i) {
         dismiss();
     }
 
@@ -1708,14 +1751,14 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
             webViewSwipeContainer.stickTo(webViewSwipeContainer.getHeight() + this.windowView.measureKeyboardHeight() + (isFullSize() ? AndroidUtilities.dp(200.0f) : 0), new Runnable() {
                 @Override
                 public final void run() {
-                    BotWebViewAttachedSheet.this.lambda$dismiss$29(runnable);
+                    BotWebViewAttachedSheet.this.lambda$dismiss$30(runnable);
                 }
             });
         }
         checkNavBarColor();
     }
 
-    public void lambda$dismiss$29(Runnable runnable) {
+    public void lambda$dismiss$30(Runnable runnable) {
         release();
         if (runnable != null) {
             runnable.run();
@@ -1965,7 +2008,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
             duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    BotWebViewAttachedSheet.this.lambda$setBackgroundColor$30(color, i, valueAnimator);
+                    BotWebViewAttachedSheet.this.lambda$setBackgroundColor$31(color, i, valueAnimator);
                 }
             });
             duration.start();
@@ -1976,7 +2019,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         this.windowView.invalidate();
     }
 
-    public void lambda$setBackgroundColor$30(int i, int i2, ValueAnimator valueAnimator) {
+    public void lambda$setBackgroundColor$31(int i, int i2, ValueAnimator valueAnimator) {
         this.backgroundPaint.setColor(ColorUtils.blendARGB(i, i2, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
         updateActionBarColors();
         this.windowView.invalidate();
@@ -1999,7 +2042,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
             duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    BotWebViewAttachedSheet.this.lambda$setActionBarColor$31(i2, i, i3, navigationBarColor, botWebViewMenuContainer$ActionBarColorsAnimating, valueAnimator);
+                    BotWebViewAttachedSheet.this.lambda$setActionBarColor$32(i2, i, i3, navigationBarColor, botWebViewMenuContainer$ActionBarColorsAnimating, valueAnimator);
                 }
             });
             duration.addListener(new AnimatorListenerAdapter() {
@@ -2038,7 +2081,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         }
     }
 
-    public void lambda$setActionBarColor$31(int i, int i2, int i3, int i4, BotWebViewMenuContainer$ActionBarColorsAnimating botWebViewMenuContainer$ActionBarColorsAnimating, ValueAnimator valueAnimator) {
+    public void lambda$setActionBarColor$32(int i, int i2, int i3, int i4, BotWebViewMenuContainer$ActionBarColorsAnimating botWebViewMenuContainer$ActionBarColorsAnimating, ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.actionBarColor = ColorUtils.blendARGB(i, i2, floatValue);
         this.navBarColor = ColorUtils.blendARGB(i3, i4, floatValue);
@@ -2093,5 +2136,45 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
                 }
             }).start();
         }
+    }
+
+    public static void hasPrivacyCommand(int i, long j, final Utilities.Callback<Boolean> callback) {
+        if (callback == null) {
+            return;
+        }
+        TLRPC$UserFull userFull = MessagesController.getInstance(i).getUserFull(j);
+        if (userFull != null) {
+            callback.run(Boolean.valueOf(hasPrivacyCommand(userFull)));
+            return;
+        }
+        TLRPC$User user = MessagesController.getInstance(i).getUser(Long.valueOf(j));
+        if (user == null) {
+            callback.run(Boolean.FALSE);
+        } else {
+            MessagesController.getInstance(i).loadFullUser(user, 0, true, new Utilities.Callback() {
+                @Override
+                public final void run(Object obj) {
+                    BotWebViewAttachedSheet.lambda$hasPrivacyCommand$33(Utilities.Callback.this, (TLRPC$UserFull) obj);
+                }
+            });
+        }
+    }
+
+    public static void lambda$hasPrivacyCommand$33(Utilities.Callback callback, TLRPC$UserFull tLRPC$UserFull) {
+        callback.run(Boolean.valueOf(hasPrivacyCommand(tLRPC$UserFull)));
+    }
+
+    public static boolean hasPrivacyCommand(TLRPC$UserFull tLRPC$UserFull) {
+        TL_bots$BotInfo tL_bots$BotInfo;
+        if (tLRPC$UserFull == null || (tL_bots$BotInfo = tLRPC$UserFull.bot_info) == null) {
+            return false;
+        }
+        Iterator<TLRPC$TL_botCommand> it = tL_bots$BotInfo.commands.iterator();
+        while (it.hasNext()) {
+            if ("privacy".equals(it.next().command)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

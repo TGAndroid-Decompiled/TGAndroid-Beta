@@ -45,7 +45,7 @@ public class SharedConfig {
     public static final int SAVE_TO_GALLERY_FLAG_CHANNELS = 4;
     public static final int SAVE_TO_GALLERY_FLAG_GROUP = 2;
     public static final int SAVE_TO_GALLERY_FLAG_PEER = 1;
-    public static boolean adaptableBrowser = false;
+    public static boolean adaptableColorInBrowser = false;
     public static boolean allowBigEmoji = false;
     static Boolean allowPreparingHevcPlayers = null;
     public static boolean allowScreenCapture = false;
@@ -324,7 +324,7 @@ public class SharedConfig {
         recordViaSco = false;
         customTabs = true;
         inappBrowser = true;
-        adaptableBrowser = true;
+        adaptableColorInBrowser = true;
         directShare = true;
         inappCamera = true;
         roundCamera16to9 = true;
@@ -1048,10 +1048,10 @@ public class SharedConfig {
         edit.apply();
     }
 
-    public static void toggleBrowserAdaptable() {
-        adaptableBrowser = !adaptableBrowser;
+    public static void toggleBrowserAdaptableColors() {
+        adaptableColorInBrowser = !adaptableColorInBrowser;
         SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
-        edit.putBoolean("adaptableBrowser", adaptableBrowser);
+        edit.putBoolean("adaptableBrowser", adaptableColorInBrowser);
         edit.apply();
     }
 

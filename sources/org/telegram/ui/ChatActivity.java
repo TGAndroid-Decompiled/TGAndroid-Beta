@@ -17537,11 +17537,12 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     public void lambda$applyDraftMaybe$212() {
-        ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
-        if (chatActivityEnterView != null) {
-            chatActivityEnterView.setFieldFocused(true);
-            this.chatActivityEnterView.openKeyboard();
+        ChatActivityEnterView chatActivityEnterView;
+        if (BaseFragment.hasSheets(this) || (chatActivityEnterView = this.chatActivityEnterView) == null) {
+            return;
         }
+        chatActivityEnterView.setFieldFocused(true);
+        this.chatActivityEnterView.openKeyboard();
     }
 
     private void checkNewMessagesOnQuoteEdit(boolean z) {
@@ -27992,10 +27993,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         ScrimOptions scrimOptions = new ScrimOptions(getContext(), this.themeDelegate);
         makeOptions.setOnDismiss(new ChatActivity$$ExternalSyntheticLambda322(scrimOptions));
         boolean z = (!SharedConfig.inappBrowser || str.startsWith("video?") || Browser.isInternalUri(Uri.parse(str), null)) ? false : true;
+        final boolean z2 = z;
         makeOptions.add(R.drawable.msg_openin, LocaleController.getString(z ? R.string.OpenInTelegramBrowser : R.string.Open), new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$didLongPressLink$348(str, characterStyle, messageObject, chatMessageCell);
+                ChatActivity.this.lambda$didLongPressLink$348(str, characterStyle, messageObject, chatMessageCell, z2);
             }
         });
         if (z) {
@@ -28015,7 +28017,9 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 }
             });
         }
-        makeOptions.add(R.drawable.msg_copy, LocaleController.getString(R.string.CopyLink), new Runnable() {
+        int i2 = R.drawable.msg_copy;
+        String string = LocaleController.getString(R.string.CopyLink);
+        makeOptions.add(i2, string, new Runnable() {
             @Override
             public final void run() {
                 ChatActivity.this.lambda$didLongPressLink$351(str, messageObject);
@@ -28027,23 +28031,22 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             try {
                 try {
                     Uri parse = Uri.parse(url);
-                    url = Browser.replaceHostname(parse, IDN.toUnicode(parse.getHost(), 1), null);
+                    string = IDN.toUnicode(parse.getHost(), 1);
+                    url = Browser.replaceHostname(parse, string, null);
+                    string = null;
                 } catch (Exception e) {
+                    string = null;
                     FileLog.e((Throwable) e, false);
                 }
                 str2 = URLDecoder.decode(url.replaceAll("\\+", "%2b"), "UTF-8");
+                i = string;
             } catch (Exception e2) {
                 FileLog.e(e2);
                 str2 = url;
+                i = string;
             }
             if (str2.length() > 204) {
-                StringBuilder sb = new StringBuilder();
-                i = 0;
-                sb.append(str2.substring(0, 204));
-                sb.append("…");
-                str2 = sb.toString();
-            } else {
-                i = 0;
+                str2 = str2.substring(i, 204) + "…";
             }
             SpannableString spannableString = new SpannableString(str2);
             spannableString.setSpan(characterStyle, i, spannableString.length(), 33);
@@ -28054,13 +28057,15 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         showDialog(scrimOptions);
     }
 
-    public void lambda$didLongPressLink$348(String str, CharacterStyle characterStyle, MessageObject messageObject, ChatMessageCell chatMessageCell) {
+    public void lambda$didLongPressLink$348(String str, CharacterStyle characterStyle, MessageObject messageObject, ChatMessageCell chatMessageCell, boolean z) {
         if (str.startsWith("video?")) {
             didPressMessageUrl(characterStyle, false, messageObject, chatMessageCell);
-            return;
+        } else if (z) {
+            Browser.openInTelegramBrowser(getParentActivity(), str, null);
+        } else {
+            logSponsoredClicked(messageObject);
+            openClickableLink(characterStyle, str, false, chatMessageCell, messageObject, false);
         }
-        logSponsoredClicked(messageObject);
-        openClickableLink(characterStyle, str, false, chatMessageCell, messageObject, false);
     }
 
     public void lambda$didLongPressLink$349(String str) {

@@ -5038,7 +5038,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
     }
 
     public void enableStickerMode(Utilities.Callback2<String, TLRPC$InputDocument> callback2) {
-        this.selectedTextView.setText(LocaleController.getString(R.string.ChoosePhoto));
+        this.selectedTextView.setText(LocaleController.getString(R.string.ChoosePhotoForSticker));
         this.typeButtonsAvailable = false;
         this.buttonsRecyclerView.setVisibility(8);
         this.shadow.setVisibility(8);

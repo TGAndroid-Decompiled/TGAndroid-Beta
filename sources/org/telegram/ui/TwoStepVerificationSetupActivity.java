@@ -40,6 +40,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
@@ -344,7 +345,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
         this.floatingButtonContainer.addView(this.floatingProgressView, LayoutHelper.createFrame(-1, -1.0f));
         Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(56.0f), Theme.getColor(Theme.key_chats_actionBackground), Theme.getColor(Theme.key_chats_actionPressedBackground));
         if (i2 < 21) {
-            Drawable mutate = context.getResources().getDrawable(R.drawable.floating_shadow).mutate();
+            Drawable mutate = ContextCompat.getDrawable(context, R.drawable.floating_shadow).mutate();
             mutate.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
             CombinedDrawable combinedDrawable = new CombinedDrawable(mutate, createSimpleSelectorCircleDrawable, 0, 0);
             combinedDrawable.setIconSize(AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f));

@@ -347,6 +347,9 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
                 str = str.substring(0, indexOf);
             }
             final String str2 = str;
+            if (isUserSelf) {
+                return false;
+            }
             boolean z4 = z3;
             ItemOptions cutTextInFancyHalf = ItemOptions.makeOptions(this.val$storyViewer.containerView, SelfStoryViewsPage.this.resourcesProvider, view).setGravity(3).ignoreX().setScrimViewBackground(new ColorDrawable(Theme.getColor(Theme.key_dialogBackground, SelfStoryViewsPage.this.resourcesProvider))).setDimAlpha(133).addIf((!isStoryShownToUser || isBlocked || z2 || isUserSelf) ? false : true, R.drawable.msg_stories_myhide, LocaleController.formatString(R.string.StoryHideFrom, str2), new Runnable() {
                 @Override

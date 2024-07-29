@@ -293,7 +293,7 @@ public class StoryEntry {
         buildBitmap.recycle();
     }
 
-    public static Bitmap getScaledBitmap(DecodeBitmap decodeBitmap, int i, int i2, boolean z) {
+    public static Bitmap getScaledBitmap(DecodeBitmap decodeBitmap, int i, int i2, boolean z, boolean z2) {
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
         decodeBitmap.decode(options);
@@ -305,11 +305,11 @@ public class StoryEntry {
         int i4 = options.outHeight;
         double d = (i3 * i4 * 4) + (i * i2 * 4);
         Double.isNaN(d);
-        boolean z2 = d * 1.1d <= ((double) maxMemory);
+        boolean z3 = d * 1.1d <= ((double) maxMemory);
         if (i3 <= i && i4 <= i2) {
             return decodeBitmap.decode(options);
         }
-        if (i3 < 2000 && i4 < 2000 && z2 && SharedConfig.getDevicePerformanceClass() >= 1) {
+        if (z2 && z3 && SharedConfig.getDevicePerformanceClass() >= 1) {
             Bitmap decode = decodeBitmap.decode(options);
             float max = Math.max(i / decode.getWidth(), i2 / decode.getHeight());
             int width = (int) (decode.getWidth() * max);

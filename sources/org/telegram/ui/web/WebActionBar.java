@@ -9,7 +9,6 @@ import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
@@ -645,14 +644,12 @@ public class WebActionBar extends FrameLayout {
             animatedTextDrawable.setTypeface(AndroidUtilities.bold());
             animatedTextDrawable.setEllipsizeByGradient(false);
             animatedTextDrawable.setCallback(WebActionBar.this);
-            Point point = AndroidUtilities.displaySize;
-            animatedTextDrawable.setOverrideFullWidth(Math.max(point.x, point.y));
+            animatedTextDrawable.setOverrideFullWidth(9999999);
             animatedTextDrawable2.ignoreRTL = true;
             animatedTextDrawable2.setTextSize(AndroidUtilities.dp(14.0f));
             animatedTextDrawable2.setEllipsizeByGradient(false);
             animatedTextDrawable2.setCallback(WebActionBar.this);
-            Point point2 = AndroidUtilities.displaySize;
-            animatedTextDrawable2.setOverrideFullWidth(Math.max(point2.x, point2.y));
+            animatedTextDrawable2.setOverrideFullWidth(9999999);
         }
 
         public void draw(Canvas canvas, float f, float f2, float f3) {

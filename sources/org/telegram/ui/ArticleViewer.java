@@ -1160,8 +1160,6 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
         public boolean handleTouchEvent(MotionEvent motionEvent) {
             Sheet sheet;
-            boolean z;
-            Sheet sheet2;
             if (ArticleViewer.this.pageSwitchAnimation != null || ArticleViewer.this.closeAnimationInProgress || ArticleViewer.this.fullscreenVideoContainer.getVisibility() == 0 || ArticleViewer.this.textSelectionHelper.isInSelectionMode()) {
                 return false;
             }
@@ -1182,41 +1180,29 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 int abs = Math.abs(((int) motionEvent.getY()) - this.startedTrackingY);
                 this.tracker.addMovement(motionEvent);
                 PageLayout[] pageLayoutArr = ArticleViewer.this.pages;
-                if (pageLayoutArr[0] != null && pageLayoutArr[0].isWeb()) {
-                    PageLayout[] pageLayoutArr2 = ArticleViewer.this.pages;
-                    if (!pageLayoutArr2[0].swipeContainer.allowedScrollX || pageLayoutArr2[0].swipeContainer.isScrolling) {
-                        z = false;
-                        this.lastWebviewAllowedScroll = z;
-                        sheet2 = ArticleViewer.this.sheet;
-                        if ((sheet2 != null || !sheet2.nestedVerticalScroll) && this.maybeStartTracking && !this.startedTracking && max >= AndroidUtilities.getPixelsInCM(0.4f, true) && Math.abs(max) / 3 > abs && this.lastWebviewAllowedScroll) {
-                            prepareForMoving(motionEvent);
-                        } else if (this.startedTracking) {
-                            ArticleViewer.this.pressedLinkOwnerLayout = null;
-                            ArticleViewer.this.pressedLinkOwnerView = null;
-                            if (this.movingPage) {
-                                PageLayout[] pageLayoutArr3 = ArticleViewer.this.pages;
-                                if (pageLayoutArr3[0] != null) {
-                                    pageLayoutArr3[0].setTranslationX(max);
-                                }
-                            }
-                            ArticleViewer articleViewer = ArticleViewer.this;
-                            Sheet sheet3 = articleViewer.sheet;
-                            if (sheet3 == null) {
-                                float f = max;
-                                articleViewer.containerView.setTranslationX(f);
-                                setInnerTranslationX(f);
-                            } else {
-                                sheet3.setBackProgress(max / getWidth());
-                            }
+                this.lastWebviewAllowedScroll = pageLayoutArr[0] == null || !pageLayoutArr[0].isWeb() || (ArticleViewer.this.pages[0].swipeContainer.allowingScroll(true) && !ArticleViewer.this.pages[0].swipeContainer.isScrolling);
+                Sheet sheet2 = ArticleViewer.this.sheet;
+                if ((sheet2 == null || !sheet2.nestedVerticalScroll) && this.maybeStartTracking && !this.startedTracking && max >= AndroidUtilities.getPixelsInCM(0.4f, true) && Math.abs(max) / 3 > abs && this.lastWebviewAllowedScroll) {
+                    prepareForMoving(motionEvent);
+                } else if (this.startedTracking) {
+                    ArticleViewer.this.pressedLinkOwnerLayout = null;
+                    ArticleViewer.this.pressedLinkOwnerView = null;
+                    if (this.movingPage) {
+                        PageLayout[] pageLayoutArr2 = ArticleViewer.this.pages;
+                        if (pageLayoutArr2[0] != null) {
+                            pageLayoutArr2[0].setTranslationX(max);
                         }
                     }
+                    ArticleViewer articleViewer = ArticleViewer.this;
+                    Sheet sheet3 = articleViewer.sheet;
+                    if (sheet3 == null) {
+                        float f = max;
+                        articleViewer.containerView.setTranslationX(f);
+                        setInnerTranslationX(f);
+                    } else {
+                        sheet3.setBackProgress(max / getWidth());
+                    }
                 }
-                z = true;
-                this.lastWebviewAllowedScroll = z;
-                sheet2 = ArticleViewer.this.sheet;
-                if (sheet2 != null) {
-                }
-                prepareForMoving(motionEvent);
             } else if (motionEvent != null && motionEvent.getPointerId(0) == this.startedTrackingPointerId && (motionEvent.getAction() == 3 || motionEvent.getAction() == 1 || motionEvent.getAction() == 6)) {
                 if (this.tracker == null) {
                     this.tracker = VelocityTracker.obtain();
@@ -1231,9 +1217,9 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 if (this.startedTracking) {
                     FrameLayout frameLayout = this.movingPage ? ArticleViewer.this.pages[0] : ArticleViewer.this.containerView;
                     float x = (this.movingPage || (sheet = ArticleViewer.this.sheet) == null) ? frameLayout.getX() : sheet.getBackProgress() * ArticleViewer.this.sheet.windowView.getWidth();
-                    final boolean z2 = (x < ((float) frameLayout.getMeasuredWidth()) * 0.3f && (xVelocity < 2500.0f || xVelocity < yVelocity)) || !this.lastWebviewAllowedScroll;
+                    final boolean z = (x < ((float) frameLayout.getMeasuredWidth()) * 0.3f && (xVelocity < 2500.0f || xVelocity < yVelocity)) || !this.lastWebviewAllowedScroll;
                     AnimatorSet animatorSet = new AnimatorSet();
-                    if (!z2) {
+                    if (!z) {
                         x = frameLayout.getMeasuredWidth() - x;
                         if (this.movingPage) {
                             animatorSet.playTogether(ObjectAnimator.ofFloat(ArticleViewer.this.pages[0], View.TRANSLATION_X, frameLayout.getMeasuredWidth()));
@@ -1265,12 +1251,12 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                             if (WindowView.this.movingPage) {
                                 Object obj = null;
                                 ArticleViewer.this.pages[0].setBackgroundDrawable(null);
-                                if (!z2) {
+                                if (!z) {
                                     ArticleViewer articleViewer4 = ArticleViewer.this;
-                                    PageLayout[] pageLayoutArr4 = articleViewer4.pages;
-                                    PageLayout pageLayout = pageLayoutArr4[1];
-                                    pageLayoutArr4[1] = pageLayoutArr4[0];
-                                    pageLayoutArr4[0] = pageLayout;
+                                    PageLayout[] pageLayoutArr3 = articleViewer4.pages;
+                                    PageLayout pageLayout = pageLayoutArr3[1];
+                                    pageLayoutArr3[1] = pageLayoutArr3[0];
+                                    pageLayoutArr3[0] = pageLayout;
                                     articleViewer4.actionBar.swap();
                                     ArticleViewer.this.page0Background.set(ArticleViewer.this.pages[0].getBackgroundColor(), true);
                                     ArticleViewer.this.page1Background.set(ArticleViewer.this.pages[1].getBackgroundColor(), true);
@@ -1294,7 +1280,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                                 if (obj instanceof CachedWeb) {
                                     ((CachedWeb) obj).destroy();
                                 }
-                            } else if (!z2) {
+                            } else if (!z) {
                                 ArticleViewer articleViewer7 = ArticleViewer.this;
                                 Sheet sheet8 = articleViewer7.sheet;
                                 if (sheet8 == null) {
@@ -1995,10 +1981,10 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 this.windowView.openingPage = true;
                 WebActionBar webActionBar = this.actionBar;
                 PageLayout[] pageLayoutArr2 = this.pages;
-                webActionBar.setMenuColors((pageLayoutArr2[0] == null || !SharedConfig.adaptableBrowser) ? getThemedColor(Theme.key_iv_background) : pageLayoutArr2[0].getBackgroundColor());
+                webActionBar.setMenuColors((pageLayoutArr2[0] == null || !SharedConfig.adaptableColorInBrowser) ? getThemedColor(Theme.key_iv_background) : pageLayoutArr2[0].getBackgroundColor());
                 WebActionBar webActionBar2 = this.actionBar;
                 PageLayout[] pageLayoutArr3 = this.pages;
-                webActionBar2.setColors((pageLayoutArr3[0] == null || !SharedConfig.adaptableBrowser) ? getThemedColor(Theme.key_iv_background) : pageLayoutArr3[0].getActionBarColor(), true);
+                webActionBar2.setColors((pageLayoutArr3[0] == null || !SharedConfig.adaptableColorInBrowser) ? getThemedColor(Theme.key_iv_background) : pageLayoutArr3[0].getActionBarColor(), true);
                 WebActionBar webActionBar3 = this.actionBar;
                 PageLayout[] pageLayoutArr4 = this.pages;
                 webActionBar3.setIsTonsite(pageLayoutArr4[0] != null && pageLayoutArr4[0].isTonsite());
@@ -2231,10 +2217,10 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         animatorSet2.start();
         WebActionBar webActionBar = this.actionBar;
         PageLayout[] pageLayoutArr = this.pages;
-        webActionBar.setMenuColors((pageLayoutArr[0] == null || !SharedConfig.adaptableBrowser) ? getThemedColor(Theme.key_iv_background) : pageLayoutArr[0].getBackgroundColor());
+        webActionBar.setMenuColors((pageLayoutArr[0] == null || !SharedConfig.adaptableColorInBrowser) ? getThemedColor(Theme.key_iv_background) : pageLayoutArr[0].getBackgroundColor());
         WebActionBar webActionBar2 = this.actionBar;
         PageLayout[] pageLayoutArr2 = this.pages;
-        webActionBar2.setColors((pageLayoutArr2[0] == null || !SharedConfig.adaptableBrowser) ? getThemedColor(Theme.key_iv_background) : pageLayoutArr2[0].getActionBarColor(), true);
+        webActionBar2.setColors((pageLayoutArr2[0] == null || !SharedConfig.adaptableColorInBrowser) ? getThemedColor(Theme.key_iv_background) : pageLayoutArr2[0].getActionBarColor(), true);
         WebActionBar webActionBar3 = this.actionBar;
         PageLayout[] pageLayoutArr3 = this.pages;
         if (pageLayoutArr3[0] != null && pageLayoutArr3[0].isTonsite()) {
@@ -2377,10 +2363,10 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         animatorSet2.start();
         WebActionBar webActionBar = this.actionBar;
         PageLayout[] pageLayoutArr = this.pages;
-        webActionBar.setMenuColors((pageLayoutArr[0] == null || !SharedConfig.adaptableBrowser) ? getThemedColor(Theme.key_iv_background) : pageLayoutArr[0].getBackgroundColor());
+        webActionBar.setMenuColors((pageLayoutArr[0] == null || !SharedConfig.adaptableColorInBrowser) ? getThemedColor(Theme.key_iv_background) : pageLayoutArr[0].getBackgroundColor());
         WebActionBar webActionBar2 = this.actionBar;
         PageLayout[] pageLayoutArr2 = this.pages;
-        webActionBar2.setColors((pageLayoutArr2[0] == null || !SharedConfig.adaptableBrowser) ? getThemedColor(Theme.key_iv_background) : pageLayoutArr2[0].getActionBarColor(), true);
+        webActionBar2.setColors((pageLayoutArr2[0] == null || !SharedConfig.adaptableColorInBrowser) ? getThemedColor(Theme.key_iv_background) : pageLayoutArr2[0].getActionBarColor(), true);
         WebActionBar webActionBar3 = this.actionBar;
         PageLayout[] pageLayoutArr3 = this.pages;
         if (pageLayoutArr3[0] != null && pageLayoutArr3[0].isTonsite()) {
@@ -3713,10 +3699,12 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         for (int i = 0; i < sparseArray.size(); i++) {
             int keyAt = sparseArray.keyAt(i);
             TextPaint valueAt = sparseArray.valueAt(i);
-            if ((keyAt & 8) != 0 || (keyAt & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
-                valueAt.setColor(getLinkTextColor());
-            } else {
-                valueAt.setColor(getTextColor());
+            if (valueAt != null) {
+                if ((keyAt & 8) != 0 || (keyAt & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+                    valueAt.setColor(getLinkTextColor());
+                } else {
+                    valueAt.setColor(getTextColor());
+                }
             }
         }
     }
@@ -4404,8 +4392,8 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         final float rotation = this.actionBar.backButtonDrawable.getRotation();
         Sheet sheet = this.sheet;
         final ItemOptions makeOptions = ItemOptions.makeOptions(sheet != null ? sheet.windowView : this.windowView, view);
-        int color = SharedConfig.adaptableBrowser ? Theme.getColor(Theme.key_iv_background) : this.pages[0].getBackgroundColor();
-        int color2 = SharedConfig.adaptableBrowser ? Theme.getColor(Theme.key_windowBackgroundWhiteBlackText) : AndroidUtilities.computePerceivedBrightness(this.pages[0].getBackgroundColor()) >= 0.721f ? -16777216 : -1;
+        int color = SharedConfig.adaptableColorInBrowser ? Theme.getColor(Theme.key_iv_background) : this.pages[0].getBackgroundColor();
+        int color2 = SharedConfig.adaptableColorInBrowser ? Theme.getColor(Theme.key_windowBackgroundWhiteBlackText) : AndroidUtilities.computePerceivedBrightness(this.pages[0].getBackgroundColor()) >= 0.721f ? -16777216 : -1;
         int multAlpha = Theme.multAlpha(color2, 0.65f);
         final BotWebViewContainer.MyWebView webView = this.pages[0].getWebView();
         int i = 3;
@@ -4611,8 +4599,8 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             } else {
                 str2 = this.pages[0].adapter.currentPage.url;
             }
-            String str3 = str2;
-            showDialog(new ShareAlert(this.parentActivity, null, str3, false, str3, false, AndroidUtilities.computePerceivedBrightness(this.actionBar.getBackgroundColor()) < 0.721f ? new DarkThemeResourceProvider() : null));
+            String magic2tonsite = BotWebViewContainer.magic2tonsite(str2);
+            showDialog(new ShareAlert(this.parentActivity, null, magic2tonsite, false, magic2tonsite, false, AndroidUtilities.computePerceivedBrightness(this.actionBar.getBackgroundColor()) < 0.721f ? new DarkThemeResourceProvider() : null));
         } else if (num.intValue() == 6) {
             if (this.pages[0].isWeb()) {
                 if (this.pages[0].getWebView() == null) {
@@ -5713,10 +5701,10 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         WebActionBar webActionBar = this.actionBar;
         if (webActionBar != null) {
             PageLayout[] pageLayoutArr = this.pages;
-            webActionBar.setMenuColors((pageLayoutArr[0] == null || !SharedConfig.adaptableBrowser) ? getThemedColor(Theme.key_iv_background) : pageLayoutArr[0].getBackgroundColor());
+            webActionBar.setMenuColors((pageLayoutArr[0] == null || !SharedConfig.adaptableColorInBrowser) ? getThemedColor(Theme.key_iv_background) : pageLayoutArr[0].getBackgroundColor());
             WebActionBar webActionBar2 = this.actionBar;
             PageLayout[] pageLayoutArr2 = this.pages;
-            webActionBar2.setColors((pageLayoutArr2[0] == null || !SharedConfig.adaptableBrowser) ? getThemedColor(Theme.key_iv_background) : pageLayoutArr2[0].getActionBarColor(), true);
+            webActionBar2.setColors((pageLayoutArr2[0] == null || !SharedConfig.adaptableColorInBrowser) ? getThemedColor(Theme.key_iv_background) : pageLayoutArr2[0].getActionBarColor(), true);
         }
     }
 
@@ -12391,7 +12379,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 this.webActionBarColor = Theme.blendOver(ArticleViewer.this.getThemedColor(Theme.key_iv_background), i);
                 ArticleViewer articleViewer = ArticleViewer.this;
                 if (this == articleViewer.pages[0]) {
-                    if (SharedConfig.adaptableBrowser) {
+                    if (SharedConfig.adaptableColorInBrowser) {
                         articleViewer.actionBar.setColors(this.webActionBarColor, true);
                     }
                     Sheet sheet = ArticleViewer.this.sheet;
@@ -12403,7 +12391,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 this.webBackgroundColor = Theme.blendOver(-1, i);
                 ArticleViewer articleViewer2 = ArticleViewer.this;
                 if (this == articleViewer2.pages[0]) {
-                    if (SharedConfig.adaptableBrowser) {
+                    if (SharedConfig.adaptableColorInBrowser) {
                         articleViewer2.actionBar.setMenuColors(this.webBackgroundColor);
                     }
                     Sheet sheet2 = ArticleViewer.this.sheet;
@@ -12465,7 +12453,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         public int getBackgroundColor() {
-            if (isWeb() && SharedConfig.adaptableBrowser) {
+            if (isWeb() && SharedConfig.adaptableColorInBrowser) {
                 if (this.errorShown) {
                     return ArticleViewer.this.getThemedColor(Theme.key_iv_background);
                 }
@@ -12475,7 +12463,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         public int getActionBarColor() {
-            if (isWeb() && SharedConfig.adaptableBrowser) {
+            if (isWeb() && SharedConfig.adaptableColorInBrowser) {
                 return this.webActionBarColor;
             }
             return ArticleViewer.this.getThemedColor(Theme.key_iv_background);
@@ -12839,7 +12827,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
-        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        public void onLayout(boolean z, int i, int i2, int i3, int i4) {
             super.onLayout(z, i, i2, i3, i4);
             int childCount = getChildCount();
             for (int i5 = 0; i5 < childCount; i5++) {
@@ -12877,7 +12865,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
-        protected void dispatchDraw(Canvas canvas) {
+        public void dispatchDraw(Canvas canvas) {
             ArticleViewer.this.checkVideoPlayer();
             super.dispatchDraw(canvas);
         }
@@ -12983,10 +12971,10 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             ArticleViewer articleViewer = ArticleViewer.this;
             webTabData.articleViewer = articleViewer;
             PageLayout[] pageLayoutArr = articleViewer.pages;
-            webTabData.actionBarColor = (pageLayoutArr[0] == null || !SharedConfig.adaptableBrowser) ? articleViewer.getThemedColor(Theme.key_iv_background) : pageLayoutArr[0].getActionBarColor();
+            webTabData.actionBarColor = (pageLayoutArr[0] == null || !SharedConfig.adaptableColorInBrowser) ? articleViewer.getThemedColor(Theme.key_iv_background) : pageLayoutArr[0].getActionBarColor();
             ArticleViewer articleViewer2 = ArticleViewer.this;
             PageLayout[] pageLayoutArr2 = articleViewer2.pages;
-            webTabData.backgroundColor = (pageLayoutArr2[0] == null || !SharedConfig.adaptableBrowser) ? articleViewer2.getThemedColor(Theme.key_iv_background) : pageLayoutArr2[0].getBackgroundColor();
+            webTabData.backgroundColor = (pageLayoutArr2[0] == null || !SharedConfig.adaptableColorInBrowser) ? articleViewer2.getThemedColor(Theme.key_iv_background) : pageLayoutArr2[0].getBackgroundColor();
             webTabData.overrideActionBarColor = true;
             webTabData.articleProgress = !this.attachedToActionBar ? 0.0f : ArticleViewer.this.pages[0].getProgress();
             PageLayout[] pageLayoutArr3 = ArticleViewer.this.pages;
@@ -13346,14 +13334,14 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         public int getBackgroundColor() {
-            if (!SharedConfig.adaptableBrowser) {
-                return Theme.getColor(Theme.key_windowBackgroundGray);
+            if (!SharedConfig.adaptableColorInBrowser) {
+                return Theme.getColor(Theme.key_iv_navigationBackground);
             }
             return ColorUtils.blendARGB(ArticleViewer.this.pages[0].getBackgroundColor(), ArticleViewer.this.pages[1].getBackgroundColor(), 1.0f - (ArticleViewer.this.pages[0].getVisibility() != 0 ? 0.0f : 1.0f - (ArticleViewer.this.pages[0].getTranslationX() / ArticleViewer.this.pages[0].getWidth())));
         }
 
         public int getActionBarColor() {
-            if (!SharedConfig.adaptableBrowser) {
+            if (!SharedConfig.adaptableColorInBrowser) {
                 return Theme.getColor(Theme.key_iv_background);
             }
             return ColorUtils.blendARGB(ArticleViewer.this.pages[0].getActionBarColor(), ArticleViewer.this.pages[1].getActionBarColor(), 1.0f - (ArticleViewer.this.pages[0].getVisibility() != 0 ? 0.0f : 1.0f - (ArticleViewer.this.pages[0].getTranslationX() / ArticleViewer.this.pages[0].getWidth())));

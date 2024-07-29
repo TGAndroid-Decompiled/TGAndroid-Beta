@@ -349,7 +349,6 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         MyWebView myWebView3 = myWebView == null ? new MyWebView(getContext(), this.bot) : myWebView;
         this.webView = myWebView3;
         if (!this.bot) {
-            myWebView3.setBackgroundColor(-1);
             CookieManager cookieManager = CookieManager.getInstance();
             cookieManager.setAcceptCookie(true);
             int i = Build.VERSION.SDK_INT;
@@ -385,7 +384,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
         try {
             String replace = settings.getUserAgentString().replace("; wv)", ")");
-            settings.setUserAgentString(replace.replaceAll("\\(Linux; Android.+;[^)]+\\)", "(Linux; Android " + Build.VERSION.RELEASE + ")"));
+            settings.setUserAgentString(replace.replaceAll("\\(Linux; Android.+;[^)]+\\)", "(Linux; Android " + Build.VERSION.RELEASE + "; K)"));
         } catch (Exception e) {
             FileLog.e(e);
         }
@@ -1879,13 +1878,18 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
     }
 
     public static String rotateTONHost(String str) {
+        try {
+            str = IDN.toASCII(str);
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
         String[] split = str.split("\\.");
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < split.length; i++) {
             if (i > 0) {
                 sb.append("-d");
             }
-            sb.append(split[i]);
+            sb.append(split[i].replaceAll("\\-", "-h"));
         }
         sb.append(".");
         sb.append(MessagesController.getInstance(UserConfig.selectedAccount).tonProxyAddress);
@@ -1916,6 +1920,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         private String currentUrl;
         public boolean errorShown;
         public String errorShownAt;
+        public boolean injectedJS;
         private boolean isPageLoaded;
         public int lastActionBarColor;
         public boolean lastActionBarColorGot;
@@ -2105,6 +2110,12 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 }
                 MyWebView myWebView = MyWebView.this;
                 myWebView.d("onPageCommitVisible " + str);
+                if (!this.val$bot) {
+                    MyWebView myWebView2 = MyWebView.this;
+                    myWebView2.injectedJS = true;
+                    String readRes = RLottieDrawable.readRes(null, R.raw.webview_ext);
+                    myWebView2.evaluateJS(readRes.replace("$DEBUG$", "" + BuildVars.DEBUG_VERSION));
+                }
                 super.onPageCommitVisible(webView, str);
             }
 
@@ -2257,23 +2268,20 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                     MyWebView.this.botWebViewContainer.onURLChanged(str, !MyWebView.this.canGoBack(), !MyWebView.this.canGoForward());
                 }
                 super.onPageStarted(webView, str, bitmap);
-                if (this.val$bot) {
-                    return;
-                }
-                MyWebView myWebView3 = MyWebView.this;
-                String readRes = RLottieDrawable.readRes(null, R.raw.webview_ext);
-                myWebView3.evaluateJS(readRes.replace("$DEBUG$", "" + BuildVars.DEBUG_VERSION));
+                MyWebView.this.injectedJS = false;
             }
 
             @Override
             public void onPageFinished(WebView webView, String str) {
-                boolean z = true;
+                boolean z;
                 MyWebView.this.isPageLoaded = true;
                 if (MyWebView.this.whenPageLoaded != null) {
                     Runnable runnable = MyWebView.this.whenPageLoaded;
                     MyWebView.this.whenPageLoaded = null;
                     runnable.run();
                     z = false;
+                } else {
+                    z = true;
                 }
                 MyWebView.this.d("onPageFinished");
                 if (MyWebView.this.botWebViewContainer != null) {
@@ -2283,6 +2291,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 }
                 if (!this.val$bot) {
                     MyWebView myWebView = MyWebView.this;
+                    myWebView.injectedJS = true;
                     String readRes = RLottieDrawable.readRes(null, R.raw.webview_ext);
                     myWebView.evaluateJS(readRes.replace("$DEBUG$", "" + BuildVars.DEBUG_VERSION));
                 }
@@ -2345,6 +2354,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
 
             @Override
             public void onReceivedHttpError(WebView webView, WebResourceRequest webResourceRequest, WebResourceResponse webResourceResponse) {
+                super.onReceivedHttpError(webView, webResourceRequest, webResourceResponse);
                 if (Build.VERSION.SDK_INT >= 21) {
                     MyWebView myWebView = MyWebView.this;
                     StringBuilder sb = new StringBuilder();
@@ -2353,27 +2363,28 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                     sb.append(" request=");
                     sb.append(webResourceRequest == null ? null : webResourceRequest.getUrl());
                     myWebView.d(sb.toString());
-                    if (MyWebView.this.botWebViewContainer != null && ((webResourceRequest == null || webResourceRequest.isForMainFrame()) && webResourceResponse != null)) {
-                        AndroidUtilities.cancelRunOnUIThread(this.resetErrorRunnable);
-                        MyWebView myWebView2 = MyWebView.this;
-                        myWebView2.lastSiteName = null;
-                        myWebView2.lastActionBarColorGot = false;
-                        myWebView2.lastBackgroundColorGot = false;
-                        myWebView2.lastFaviconGot = false;
-                        myWebView2.lastTitleGot = false;
-                        myWebView2.errorShownAt = (webResourceRequest == null || webResourceRequest.getUrl() == null) ? MyWebView.this.getUrl() : webResourceRequest.getUrl().toString();
-                        BotWebViewContainer botWebViewContainer = MyWebView.this.botWebViewContainer;
-                        MyWebView.this.lastTitle = null;
-                        botWebViewContainer.onTitleChanged(null);
-                        BotWebViewContainer botWebViewContainer2 = MyWebView.this.botWebViewContainer;
-                        MyWebView.this.lastFavicon = null;
-                        botWebViewContainer2.onFaviconChanged(null);
-                        BotWebViewContainer botWebViewContainer3 = MyWebView.this.botWebViewContainer;
-                        MyWebView.this.errorShown = true;
-                        botWebViewContainer3.onErrorShown(true, webResourceResponse.getStatusCode(), webResourceResponse.getReasonPhrase());
+                    if (MyWebView.this.botWebViewContainer != null) {
+                        if ((webResourceRequest == null || webResourceRequest.isForMainFrame()) && webResourceResponse != null && TextUtils.isEmpty(webResourceResponse.getMimeType())) {
+                            AndroidUtilities.cancelRunOnUIThread(this.resetErrorRunnable);
+                            MyWebView myWebView2 = MyWebView.this;
+                            myWebView2.lastSiteName = null;
+                            myWebView2.lastActionBarColorGot = false;
+                            myWebView2.lastBackgroundColorGot = false;
+                            myWebView2.lastFaviconGot = false;
+                            myWebView2.lastTitleGot = false;
+                            myWebView2.errorShownAt = (webResourceRequest == null || webResourceRequest.getUrl() == null) ? MyWebView.this.getUrl() : webResourceRequest.getUrl().toString();
+                            BotWebViewContainer botWebViewContainer = MyWebView.this.botWebViewContainer;
+                            MyWebView.this.lastTitle = null;
+                            botWebViewContainer.onTitleChanged(null);
+                            BotWebViewContainer botWebViewContainer2 = MyWebView.this.botWebViewContainer;
+                            MyWebView.this.lastFavicon = null;
+                            botWebViewContainer2.onFaviconChanged(null);
+                            BotWebViewContainer botWebViewContainer3 = MyWebView.this.botWebViewContainer;
+                            MyWebView.this.errorShown = true;
+                            botWebViewContainer3.onErrorShown(true, webResourceResponse.getStatusCode(), webResourceResponse.getReasonPhrase());
+                        }
                     }
                 }
-                super.onReceivedHttpError(webView, webResourceRequest, webResourceResponse);
             }
 
             @Override
@@ -3127,7 +3138,9 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                     botWebViewContainer3.onTitleChanged(str);
                     z = true;
                 }
-                setBackgroundColor(i);
+                if (SharedConfig.adaptableColorInBrowser) {
+                    setBackgroundColor(i);
+                }
             }
             if (!z) {
                 setTitle(null);

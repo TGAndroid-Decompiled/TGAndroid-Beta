@@ -2295,7 +2295,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.tonProxyAddress = this.mainPreferences.getString("tonProxyAddress", "magic.org");
         this.weatherSearchUsername = this.mainPreferences.getString("weatherSearchUsername", "izweatherbot");
         this.storyWeatherPreload = this.mainPreferences.getBoolean("storyWeatherPreload", true);
-        this.starsGiftsEnabled = this.mainPreferences.getBoolean("starsGiftsEnabled", BuildVars.DEBUG_PRIVATE_VERSION);
+        this.starsGiftsEnabled = this.mainPreferences.getBoolean("starsGiftsEnabled", true);
         scheduleTranscriptionUpdate();
         BuildVars.GOOGLE_AUTH_CLIENT_ID = this.mainPreferences.getString("googleAuthClientId", BuildVars.GOOGLE_AUTH_CLIENT_ID);
         if (this.mainPreferences.contains("dcDomainName2")) {

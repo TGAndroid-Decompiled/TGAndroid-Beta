@@ -125,7 +125,10 @@ public class HistoryFragment extends UniversalFragment {
         this.listView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int i4, int i5) {
-                AndroidUtilities.hideKeyboard(HistoryFragment.this.fragmentView);
+                HistoryFragment historyFragment = HistoryFragment.this;
+                if (historyFragment.listView.scrollingByUser) {
+                    AndroidUtilities.hideKeyboard(historyFragment.fragmentView);
+                }
             }
         });
         return this.fragmentView;
