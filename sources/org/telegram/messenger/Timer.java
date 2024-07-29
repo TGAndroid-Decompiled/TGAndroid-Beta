@@ -55,15 +55,17 @@ public class Timer {
         sb.append(currentTimeMillis);
         sb.append("ms\n");
         for (int i = 0; i < this.tasks.size(); i++) {
-            sb.append("#");
-            sb.append(i);
-            int i2 = this.tasks.get(i).pad;
-            for (int i3 = 0; i3 < i2; i3++) {
+            if (this.tasks.get(i) != null) {
+                sb.append("#");
+                sb.append(i);
+                int i2 = this.tasks.get(i).pad;
+                for (int i3 = 0; i3 < i2; i3++) {
+                    sb.append(" ");
+                }
                 sb.append(" ");
+                sb.append(this.tasks.get(i));
+                sb.append("\n");
             }
-            sb.append(" ");
-            sb.append(this.tasks.get(i));
-            sb.append("\n");
         }
         FileLog.d(sb.toString());
     }
