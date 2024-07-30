@@ -2807,7 +2807,8 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         storyEntry.coverSet = true;
         storyEntry.cover = this.coverValue;
         processDone();
-        if (this.outputEntry.isEditingCover) {
+        StoryEntry storyEntry2 = this.outputEntry;
+        if (storyEntry2 == null || storyEntry2.isEditingCover) {
             return;
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
