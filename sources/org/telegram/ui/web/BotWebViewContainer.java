@@ -1867,7 +1867,14 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
     }
 
     public static boolean isTonsite(Uri uri) {
-        return "tonsite".equals(uri.getScheme()) || (uri.getAuthority() != null && uri.getAuthority().endsWith(".ton"));
+        if ("tonsite".equals(uri.getScheme())) {
+            return true;
+        }
+        String authority = uri.getAuthority();
+        if (authority == null && uri.getScheme() == null) {
+            authority = Uri.parse("http://" + uri.toString()).getAuthority();
+        }
+        return authority != null && authority.endsWith(".ton");
     }
 
     public static WebResourceResponse proxyTON(WebResourceRequest webResourceRequest) {

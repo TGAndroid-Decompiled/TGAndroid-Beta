@@ -275,15 +275,27 @@ public abstract class BaseFragment {
         return (arrayList == null || arrayList.isEmpty()) ? false : true;
     }
 
+    public boolean hasShownSheet() {
+        if (hasSheet()) {
+            for (int size = this.sheetsStack.size() - 1; size >= 0; size--) {
+                if (this.sheetsStack.get(size).isShown()) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        return false;
+    }
+
     public static boolean hasSheets(BaseFragment baseFragment) {
         EmptyBaseFragment sheetFragment;
         if (baseFragment == null) {
             return false;
         }
-        if (baseFragment.hasSheet()) {
+        if (baseFragment.hasShownSheet()) {
             return true;
         }
-        return (baseFragment.getParentLayout() instanceof ActionBarLayout) && (sheetFragment = ((ActionBarLayout) baseFragment.getParentLayout()).getSheetFragment(false)) != null && sheetFragment.hasSheet();
+        return (baseFragment.getParentLayout() instanceof ActionBarLayout) && (sheetFragment = ((ActionBarLayout) baseFragment.getParentLayout()).getSheetFragment(false)) != null && sheetFragment.hasShownSheet();
     }
 
     public void clearSheets() {

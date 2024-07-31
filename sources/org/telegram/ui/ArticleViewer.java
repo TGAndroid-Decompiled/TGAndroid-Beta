@@ -13051,7 +13051,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             if (z) {
                 LaunchActivity.instance.getBottomSheetTabsOverlay().dismissSheet(this);
             } else {
-                animateDismiss(true, true, z ? null : new Runnable() {
+                animateDismiss(true, true, new Runnable() {
                     @Override
                     public final void run() {
                         ArticleViewer.Sheet.this.lambda$dismiss$1();
@@ -13086,9 +13086,13 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             BottomSheetTabDialog bottomSheetTabDialog = this.dialog;
             if (bottomSheetTabDialog != null) {
                 bottomSheetTabDialog.detach();
-            } else {
-                this.fragment.removeSheet(this);
-                AndroidUtilities.removeFromParent(this.windowView);
+            }
+            BaseFragment baseFragment = this.fragment;
+            if (baseFragment != null) {
+                baseFragment.removeSheet(this);
+                if (this.dialog == null) {
+                    AndroidUtilities.removeFromParent(this.windowView);
+                }
             }
             Runnable runnable = this.onDismissListener;
             if (runnable != null) {
