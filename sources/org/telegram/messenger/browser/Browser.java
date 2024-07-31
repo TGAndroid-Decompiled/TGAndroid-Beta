@@ -362,7 +362,7 @@ public class Browser {
 
     public static boolean isTonsite(String str) {
         String hostAuthority = AndroidUtilities.getHostAuthority(str, true);
-        if (hostAuthority == null || !hostAuthority.endsWith(".ton")) {
+        if (hostAuthority == null || !(hostAuthority.endsWith(".ton") || hostAuthority.endsWith(".adnl"))) {
             Uri parse = Uri.parse(str);
             return parse.getScheme() != null && parse.getScheme().equalsIgnoreCase("tonsite");
         }

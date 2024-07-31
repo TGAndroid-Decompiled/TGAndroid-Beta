@@ -147,7 +147,7 @@ public class WebActionBar extends FrameLayout {
         this.longPressRunnable = new Runnable() {
             @Override
             public final void run() {
-                WebActionBar.this.lambda$new$10();
+                WebActionBar.this.lambda$new$9();
             }
         };
         this.longClicked = false;
@@ -826,6 +826,14 @@ public class WebActionBar extends FrameLayout {
                     webActionBar2.searchingProgress = f;
                     editTextBoldCursor.setAlpha(f);
                     WebActionBar.this.invalidate();
+                    WebActionBar webActionBar3 = WebActionBar.this;
+                    if (webActionBar3.searching) {
+                        webActionBar3.searchEditText.requestFocus();
+                        AndroidUtilities.showKeyboard(WebActionBar.this.searchEditText);
+                        return;
+                    }
+                    webActionBar3.searchEditText.clearFocus();
+                    AndroidUtilities.hideKeyboard(WebActionBar.this.searchEditText);
                 }
             });
             this.searchAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
@@ -837,13 +845,14 @@ public class WebActionBar extends FrameLayout {
             this.searchEditText.setAlpha(z ? 1.0f : 0.0f);
             this.searchEditText.setVisibility(z ? 0 : 8);
             this.backButtonDrawable.setRotation((this.backButtonShown || z) ? 0.0f : 0.0f, true);
-        }
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                WebActionBar.this.lambda$showSearch$8();
+            if (this.searching) {
+                this.searchEditText.requestFocus();
+                AndroidUtilities.showKeyboard(this.searchEditText);
+            } else {
+                this.searchEditText.clearFocus();
+                AndroidUtilities.hideKeyboard(this.searchEditText);
             }
-        }, this.searching ? 100L : 0L);
+        }
         AndroidUtilities.updateViewShow(this.forwardButton, !z, true, z2);
         AndroidUtilities.updateViewShow(this.menuButton, !z, true, z2);
         ImageView imageView = this.clearButton;
@@ -858,16 +867,6 @@ public class WebActionBar extends FrameLayout {
         this.searchingProgress = floatValue;
         this.searchEditText.setAlpha(floatValue);
         invalidate();
-    }
-
-    public void lambda$showSearch$8() {
-        if (this.searching) {
-            this.searchEditText.requestFocus();
-            AndroidUtilities.showKeyboard(this.searchEditText);
-            return;
-        }
-        this.searchEditText.clearFocus();
-        AndroidUtilities.hideKeyboard(this.searchEditText);
     }
 
     public void setBackButton(boolean z) {
@@ -933,7 +932,7 @@ public class WebActionBar extends FrameLayout {
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    WebActionBar.this.lambda$showAddress$9(valueAnimator2);
+                    WebActionBar.this.lambda$showAddress$8(valueAnimator2);
                 }
             });
             this.addressAnimator.addListener(new AnimatorListenerAdapter() {
@@ -983,7 +982,7 @@ public class WebActionBar extends FrameLayout {
         }, this.addressing ? 100L : 0L);
     }
 
-    public void lambda$showAddress$9(ValueAnimator valueAnimator) {
+    public void lambda$showAddress$8(ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.addressingProgress = floatValue;
         onAddressingProgress(floatValue);
@@ -1003,7 +1002,7 @@ public class WebActionBar extends FrameLayout {
         return this.addressing;
     }
 
-    public void lambda$new$10() {
+    public void lambda$new$9() {
         this.longClicked = true;
         if (getParent() != null) {
             getParent().requestDisallowInterceptTouchEvent(true);

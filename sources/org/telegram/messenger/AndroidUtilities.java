@@ -3704,7 +3704,20 @@ public class AndroidUtilities {
                 }
                 i++;
             }
-            return charSequence;
+            return spannableStringBuilder;
+        } else if (charSequence instanceof SpannableString) {
+            if (TextUtils.indexOf(charSequence, '\n') < 0) {
+                return charSequence;
+            }
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(charSequence);
+            int length3 = charSequence.length();
+            while (i < length3) {
+                if (charSequence.charAt(i) == '\n') {
+                    spannableStringBuilder2.replace(i, i + 1, (CharSequence) " ");
+                }
+                i++;
+            }
+            return spannableStringBuilder2;
         } else {
             return charSequence.toString().replace('\n', ' ');
         }

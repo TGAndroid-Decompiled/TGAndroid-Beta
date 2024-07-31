@@ -213,6 +213,8 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         private final HashMap<Long, ArrayList<Long>> selectedUsersByGroup;
         private final View underKeyboardView;
         private long waitingForChatId;
+        public boolean wasAtBottom;
+        public boolean wasAtTop;
         private boolean wasKeyboardVisible;
 
         public Page(final Context context) {
@@ -316,6 +318,12 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                 public void onScrollStateChanged(RecyclerView recyclerView, int i2) {
                     if (i2 == 1 && ((BottomSheet) StoryPrivacyBottomSheet.this).keyboardVisible && Page.this.searchField != null) {
                         StoryPrivacyBottomSheet.this.closeKeyboard();
+                    }
+                    if (i2 == 0) {
+                        Page page = Page.this;
+                        page.wasAtTop = page.atTop();
+                        Page page2 = Page.this;
+                        page2.wasAtBottom = page2.atBottom();
                     }
                     Page.this.scrolling = i2 != 0;
                 }
@@ -609,7 +617,6 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             if (storyPrivacyBottomSheet.onSelectedPeer != null) {
                 StoryPrivacyBottomSheet.this.onSelectedPeer.run(StoryPrivacyBottomSheet.this.selectedPeer);
             }
-            updateReverseLayout();
             updateItems(true);
         }
 
@@ -1128,7 +1135,9 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             } else if (i == 6) {
                 applyBlocklist(false);
             }
-            updateReverseLayout();
+            LinearLayoutManager linearLayoutManager = this.layoutManager;
+            this.adapter.reversedLayout = false;
+            linearLayoutManager.setReverseLayout(false);
             updateSpans(false);
             this.searchField.setText("");
             this.searchField.setVisibility(i == 0 ? 8 : 0);
@@ -1140,10 +1149,6 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             scrollToTop();
             this.listView.requestLayout();
             this.lastSelectedType = -1;
-        }
-
-        public void updateReverseLayout() {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet.Page.updateReverseLayout():void");
         }
 
         public void applyBlocklist(boolean z) {
@@ -1173,7 +1178,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             updateItems(z, true);
         }
 
-        public void updateItems(boolean r17, boolean r18) {
+        public void updateItems(boolean r19, boolean r20) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet.Page.updateItems(boolean, boolean):void");
         }
 
@@ -1548,6 +1553,10 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         }
 
         public boolean atTop() {
+            return !this.listView.canScrollVertically(-1);
+        }
+
+        public boolean atBottom() {
             return !this.listView.canScrollVertically(1);
         }
 
@@ -2255,7 +2264,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
     protected boolean canDismissWithSwipe() {
         View currentView = this.viewPager.getCurrentView();
         if (currentView instanceof Page) {
-            return ((Page) currentView).atTop();
+            return ((Page) currentView).wasAtTop;
         }
         return true;
     }

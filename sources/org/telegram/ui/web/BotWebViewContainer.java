@@ -1874,7 +1874,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         if (authority == null && uri.getScheme() == null) {
             authority = Uri.parse("http://" + uri.toString()).getAuthority();
         }
-        return authority != null && authority.endsWith(".ton");
+        return authority != null && (authority.endsWith(".ton") || authority.endsWith(".adnl"));
     }
 
     public static WebResourceResponse proxyTON(WebResourceRequest webResourceRequest) {
@@ -2132,7 +2132,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                     MyWebView.this.currentHistoryEntry = new BrowserHistory.Entry();
                     MyWebView.this.currentHistoryEntry.id = Utilities.fastRandom.nextLong();
                     MyWebView.this.currentHistoryEntry.time = System.currentTimeMillis();
-                    MyWebView.this.currentHistoryEntry.url = MyWebView.this.getUrl();
+                    MyWebView.this.currentHistoryEntry.url = BotWebViewContainer.magic2tonsite(MyWebView.this.getUrl());
                     MyWebView.this.currentHistoryEntry.meta = WebMetadataCache.WebMetadata.from(MyWebView.this);
                     BrowserHistory.pushHistory(MyWebView.this.currentHistoryEntry);
                 }
@@ -3305,11 +3305,11 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
     }
 
     public static String magic2tonsite(String str) {
+        String hostAuthority;
         String str2;
-        if (rotatedTONHosts == null || str == null) {
+        if (rotatedTONHosts == null || str == null || (hostAuthority = AndroidUtilities.getHostAuthority(str)) == null) {
             return str;
         }
-        String hostAuthority = AndroidUtilities.getHostAuthority(str);
         StringBuilder sb = new StringBuilder();
         sb.append(".");
         sb.append(MessagesController.getInstance(UserConfig.selectedAccount).tonProxyAddress);

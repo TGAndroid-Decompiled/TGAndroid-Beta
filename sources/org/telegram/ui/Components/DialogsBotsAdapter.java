@@ -351,6 +351,10 @@ public class DialogsBotsAdapter extends UniversalAdapter {
                 }
             }
         }
+        RecyclerListView recyclerListView = this.listView;
+        if (recyclerListView != null) {
+            recyclerListView.scrollToPosition(0);
+        }
         update(true);
     }
 
