@@ -346,7 +346,7 @@ public class MessagePreviewView extends FrameLayout {
             }
 
             @Override
-            protected void onAllAnimationsDone() {
+            public void onAllAnimationsDone() {
                 super.onAllAnimationsDone();
                 Runnable runnable = this.finishRunnable;
                 if (runnable != null) {

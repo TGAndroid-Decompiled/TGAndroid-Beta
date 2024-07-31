@@ -164,6 +164,11 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         void done(StoryPrivacy storyPrivacy, boolean z, boolean z2, TLRPC$InputPeer tLRPC$InputPeer, Runnable runnable);
     }
 
+    @Override
+    protected boolean canSwipeToBack(MotionEvent motionEvent) {
+        return false;
+    }
+
     public HashSet<Long> mergeUsers(ArrayList<Long> arrayList, HashMap<Long, ArrayList<Long>> hashMap) {
         HashSet<Long> hashSet = new HashSet<>();
         if (arrayList != null) {
@@ -604,6 +609,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             if (storyPrivacyBottomSheet.onSelectedPeer != null) {
                 StoryPrivacyBottomSheet.this.onSelectedPeer.run(StoryPrivacyBottomSheet.this.selectedPeer);
             }
+            updateReverseLayout();
             updateItems(true);
         }
 
@@ -1122,9 +1128,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             } else if (i == 6) {
                 applyBlocklist(false);
             }
-            LinearLayoutManager linearLayoutManager = this.layoutManager;
-            this.adapter.reversedLayout = false;
-            linearLayoutManager.setReverseLayout(false);
+            updateReverseLayout();
             updateSpans(false);
             this.searchField.setText("");
             this.searchField.setVisibility(i == 0 ? 8 : 0);
@@ -1136,6 +1140,10 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             scrollToTop();
             this.listView.requestLayout();
             this.lastSelectedType = -1;
+        }
+
+        public void updateReverseLayout() {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet.Page.updateReverseLayout():void");
         }
 
         public void applyBlocklist(boolean z) {
@@ -1540,7 +1548,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         }
 
         public boolean atTop() {
-            return !this.listView.canScrollVertically(-1);
+            return !this.listView.canScrollVertically(1);
         }
 
         @Override
@@ -4229,7 +4237,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             for (int i = 0; i < this.listView.getChildCount(); i++) {
                 View childAt = this.listView.getChildAt(i);
                 if (childAt != null && (childAdapterPosition = this.listView.getChildAdapterPosition(childAt)) != -1 && childAdapterPosition > 0) {
-                    measuredHeight = Math.min(childAt.getY(), measuredHeight);
+                    measuredHeight = Math.min(AndroidUtilities.lerp(measuredHeight, childAt.getY(), childAt.getAlpha()), measuredHeight);
                 }
             }
             return measuredHeight;

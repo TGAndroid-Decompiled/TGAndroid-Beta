@@ -12,6 +12,8 @@ import java.nio.charset.StandardCharsets;
 import java.security.KeyStore;
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
@@ -35,7 +37,7 @@ public class BotBiometry {
     public boolean access_granted;
     public boolean access_requested;
     public final long botId;
-    private Utilities.Callback<BiometricPrompt.AuthenticationResult> callback;
+    private Utilities.Callback2<Boolean, BiometricPrompt.AuthenticationResult> callback;
     public final Context context;
     public final int currentAccount;
     public boolean disabled;
@@ -84,17 +86,18 @@ public class BotBiometry {
     }
 
     public void requestToken(String str, final Utilities.Callback2<Boolean, String> callback2) {
-        prompt(str, true, null, new Utilities.Callback() {
+        prompt(str, true, null, new Utilities.Callback2() {
             @Override
-            public final void run(Object obj) {
-                BotBiometry.this.lambda$requestToken$0(callback2, (BiometricPrompt.AuthenticationResult) obj);
+            public final void run(Object obj, Object obj2) {
+                BotBiometry.this.lambda$requestToken$0(callback2, (Boolean) obj, (BiometricPrompt.AuthenticationResult) obj2);
             }
         });
     }
 
-    public void lambda$requestToken$0(Utilities.Callback2 callback2, BiometricPrompt.AuthenticationResult authenticationResult) {
+    public void lambda$requestToken$0(Utilities.Callback2 callback2, Boolean bool, BiometricPrompt.AuthenticationResult authenticationResult) {
         BiometricPrompt.CryptoObject cryptoObject;
-        String str = null;
+        String str;
+        String str2 = null;
         if (authenticationResult != null) {
             try {
                 int i = Build.VERSION.SDK_INT;
@@ -108,7 +111,7 @@ public class BotBiometry {
                     }
                     if (cryptoObject != null) {
                         if (!TextUtils.isEmpty(this.encrypted_token)) {
-                            str = new String(cryptoObject.getCipher().doFinal(Utilities.hexToBytes(this.encrypted_token)), StandardCharsets.UTF_8);
+                            str2 = new String(cryptoObject.getCipher().doFinal(Utilities.hexToBytes(this.encrypted_token)), StandardCharsets.UTF_8);
                         } else {
                             str = this.encrypted_token;
                         }
@@ -116,27 +119,26 @@ public class BotBiometry {
                         throw new RuntimeException("No cryptoObject found");
                     }
                 }
+                str2 = str;
             } catch (Exception e) {
                 FileLog.e(e);
-                authenticationResult = null;
+                bool = Boolean.FALSE;
             }
         }
-        callback2.run(Boolean.valueOf(authenticationResult != null), str);
+        callback2.run(bool, str2);
     }
 
     public void updateToken(String str, final String str2, final Utilities.Callback<Boolean> callback) {
-        prompt(str, false, str2, new Utilities.Callback() {
+        prompt(str, false, str2, new Utilities.Callback2() {
             @Override
-            public final void run(Object obj) {
-                BotBiometry.this.lambda$updateToken$1(str2, callback, (BiometricPrompt.AuthenticationResult) obj);
+            public final void run(Object obj, Object obj2) {
+                BotBiometry.this.lambda$updateToken$1(str2, callback, (Boolean) obj, (BiometricPrompt.AuthenticationResult) obj2);
             }
         });
     }
 
-    public void lambda$updateToken$1(String str, Utilities.Callback callback, BiometricPrompt.AuthenticationResult authenticationResult) {
+    public void lambda$updateToken$1(String str, Utilities.Callback callback, Boolean bool, BiometricPrompt.AuthenticationResult authenticationResult) {
         BiometricPrompt.CryptoObject cryptoObject;
-        boolean z = false;
-        boolean z2 = authenticationResult != null;
         if (authenticationResult != null) {
             try {
                 authenticationResult.getCryptoObject();
@@ -165,10 +167,10 @@ public class BotBiometry {
                 save();
             } catch (Exception e) {
                 FileLog.e(e);
+                bool = Boolean.FALSE;
             }
         }
-        z = z2;
-        callback.run(Boolean.valueOf(z));
+        callback.run(bool);
     }
 
     private void initPrompt() {
@@ -180,9 +182,9 @@ public class BotBiometry {
             public void onAuthenticationError(int i, CharSequence charSequence) {
                 FileLog.d("BotBiometry onAuthenticationError " + i + " \"" + ((Object) charSequence) + "\"");
                 if (BotBiometry.this.callback != null) {
-                    Utilities.Callback callback = BotBiometry.this.callback;
+                    Utilities.Callback2 callback2 = BotBiometry.this.callback;
                     BotBiometry.this.callback = null;
-                    callback.run(null);
+                    callback2.run(Boolean.FALSE, null);
                 }
             }
 
@@ -190,9 +192,9 @@ public class BotBiometry {
             public void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult authenticationResult) {
                 FileLog.d("BotBiometry onAuthenticationSucceeded");
                 if (BotBiometry.this.callback != null) {
-                    Utilities.Callback callback = BotBiometry.this.callback;
+                    Utilities.Callback2 callback2 = BotBiometry.this.callback;
                     BotBiometry.this.callback = null;
-                    callback.run(authenticationResult);
+                    callback2.run(Boolean.TRUE, authenticationResult);
                 }
             }
 
@@ -222,9 +224,9 @@ public class BotBiometry {
         }
     }
 
-    private void prompt(String str, boolean z, String str2, Utilities.Callback<BiometricPrompt.AuthenticationResult> callback) {
+    private void prompt(String str, boolean z, String str2, Utilities.Callback2<Boolean, BiometricPrompt.AuthenticationResult> callback2) {
         int i;
-        this.callback = callback;
+        this.callback = callback2;
         try {
             initPrompt();
             BiometricPrompt.CryptoObject makeCryptoObject = makeCryptoObject(z);
@@ -245,7 +247,7 @@ public class BotBiometry {
                     }
                     save();
                     this.callback = null;
-                    callback.run(null);
+                    callback2.run(Boolean.TRUE, null);
                     return;
                 } catch (Exception e) {
                     FileLog.e(e);
@@ -259,7 +261,7 @@ public class BotBiometry {
             }
         } catch (Exception e2) {
             FileLog.e(e2);
-            callback.run(null);
+            callback2.run(Boolean.FALSE, null);
         }
     }
 
@@ -372,19 +374,23 @@ public class BotBiometry {
         }
         SharedPreferences sharedPreferences = context.getSharedPreferences("2botbiometry_" + i, 0);
         final ArrayList arrayList = new ArrayList();
-        final ArrayList arrayList2 = new ArrayList();
-        Map<String, ?> all = sharedPreferences.getAll();
-        for (Map.Entry<String, ?> entry : all.entrySet()) {
-            if (entry.getKey().startsWith("device_id") && (entry.getValue() instanceof String)) {
+        for (Map.Entry<String, ?> entry : sharedPreferences.getAll().entrySet()) {
+            String key = entry.getKey();
+            if (key.endsWith("_requested")) {
                 try {
-                    long parseLong = Long.parseLong(entry.getKey().substring(9));
-                    Boolean bool = (Boolean) all.get(parseLong + "_disabled");
-                    boolean z = bool != null && bool.booleanValue();
-                    arrayList.add(Long.valueOf(parseLong));
-                    arrayList2.add(Boolean.valueOf(z));
+                    arrayList.add(Long.valueOf(Long.parseLong(key.substring(0, key.length() - 10))));
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
+            }
+        }
+        final HashMap hashMap = new HashMap();
+        Iterator it = arrayList.iterator();
+        while (it.hasNext()) {
+            long longValue = ((Long) it.next()).longValue();
+            BotBiometry botBiometry = new BotBiometry(context, i, longValue);
+            if (botBiometry.access_granted && botBiometry.access_requested) {
+                hashMap.put(Long.valueOf(longValue), Boolean.valueOf(!botBiometry.disabled));
             }
         }
         if (arrayList.isEmpty()) {
@@ -393,30 +399,30 @@ public class BotBiometry {
             MessagesStorage.getInstance(i).getStorageQueue().postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    BotBiometry.lambda$getBots$3(i, arrayList, arrayList2, callback);
+                    BotBiometry.lambda$getBots$3(i, arrayList, hashMap, callback);
                 }
             });
         }
     }
 
-    public static void lambda$getBots$3(int i, ArrayList arrayList, final ArrayList arrayList2, final Utilities.Callback callback) {
+    public static void lambda$getBots$3(int i, ArrayList arrayList, final HashMap hashMap, final Utilities.Callback callback) {
         final ArrayList<TLRPC$User> users = MessagesStorage.getInstance(i).getUsers(arrayList);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotBiometry.lambda$getBots$2(users, arrayList2, callback);
+                BotBiometry.lambda$getBots$2(users, hashMap, callback);
             }
         });
     }
 
-    public static void lambda$getBots$2(ArrayList arrayList, ArrayList arrayList2, Utilities.Callback callback) {
-        ArrayList arrayList3 = new ArrayList();
-        int i = 0;
-        while (i < arrayList.size()) {
-            arrayList3.add(new Bot((TLRPC$User) arrayList.get(i), i < arrayList2.size() && ((Boolean) arrayList2.get(i)).booleanValue()));
-            i++;
+    public static void lambda$getBots$2(ArrayList arrayList, HashMap hashMap, Utilities.Callback callback) {
+        ArrayList arrayList2 = new ArrayList();
+        for (int i = 0; i < arrayList.size(); i++) {
+            TLRPC$User tLRPC$User = (TLRPC$User) arrayList.get(i);
+            Boolean bool = (Boolean) hashMap.get(Long.valueOf(tLRPC$User.id));
+            arrayList2.add(new Bot(tLRPC$User, bool == null || !bool.booleanValue()));
         }
-        callback.run(arrayList3);
+        callback.run(arrayList2);
     }
 
     public static void toggleBotDisabled(Context context, int i, long j, boolean z) {

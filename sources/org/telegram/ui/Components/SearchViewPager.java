@@ -1111,7 +1111,7 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
     }
 
     public void showDownloads() {
-        setPosition(3);
+        setPosition(4);
     }
 
     public int getPositionForType(int i) {

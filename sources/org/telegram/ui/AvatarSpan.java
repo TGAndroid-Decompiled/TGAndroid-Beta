@@ -43,7 +43,9 @@ public class AvatarSpan extends ReplacementSpan {
         };
         this.shadowPaintAlpha = 255;
         this.currentAccount = i;
-        this.imageReceiver = new ImageReceiver(view);
+        ImageReceiver imageReceiver = new ImageReceiver(view);
+        this.imageReceiver = imageReceiver;
+        imageReceiver.setInvalidateAll(true);
         this.avatarDrawable = new AvatarDrawable();
         setSize(f);
         Paint paint = new Paint(1);
