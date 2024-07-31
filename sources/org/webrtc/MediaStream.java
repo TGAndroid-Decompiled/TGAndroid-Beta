@@ -135,6 +135,6 @@ public class MediaStream {
                 return;
             }
         }
-        Logging.e(TAG, "Couldn't not find track");
+        Logging.e("MediaStream", "Couldn't not find track");
     }
 }

@@ -239,7 +239,6 @@ import org.telegram.ui.WallpapersListActivity;
 import org.telegram.ui.bots.BotWebViewAttachedSheet;
 import org.telegram.ui.bots.BotWebViewSheet;
 import org.telegram.ui.bots.WebViewRequestProps;
-import org.webrtc.MediaStreamTrack;
 import org.webrtc.voiceengine.WebRtcAudioTrack;
 public class LaunchActivity extends BasePermissionsActivity implements INavigationLayout.INavigationLayoutDelegate, NotificationCenter.NotificationCenterDelegate, DialogsActivity.DialogsActivityDelegate {
     public static LaunchActivity instance;
@@ -2158,7 +2157,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     public static int getTimestampFromLink(Uri uri) {
         String queryParameter;
         int i;
-        if (uri.getPathSegments().contains(MediaStreamTrack.VIDEO_TRACK_KIND)) {
+        if (uri.getPathSegments().contains("video")) {
             queryParameter = uri.getQuery();
         } else {
             queryParameter = uri.getQueryParameter("t") != null ? uri.getQueryParameter("t") : null;
@@ -4610,7 +4609,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     public void onPause() {
         super.onPause();
         isResumed = false;
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, Integer.valueOf((int) LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM));
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 4096);
         ApplicationLoader.mainInterfacePaused = true;
         final int i = this.currentAccount;
         Utilities.stageQueue.postRunnable(new Runnable() {
@@ -4770,7 +4769,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             Theme.checkAutoNightThemeConditions();
         }
         checkWasMutedByAdmin(true);
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, Integer.valueOf((int) LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM));
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 4096);
         MediaController mediaController = MediaController.getInstance();
         ViewGroup view = this.actionBarLayout.getView();
         this.feedbackView = view;
@@ -5737,7 +5736,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             if (VoIPService.getSharedInstance() != null) {
                 if (Build.VERSION.SDK_INT >= 32) {
                     boolean isSpeakerMuted = WebRtcAudioTrack.isSpeakerMuted();
-                    AudioManager audioManager = (AudioManager) getSystemService(MediaStreamTrack.AUDIO_TRACK_KIND);
+                    AudioManager audioManager = (AudioManager) getSystemService("audio");
                     z = (audioManager.getStreamVolume(0) == audioManager.getStreamMinVolume(0) && keyEvent.getKeyCode() == 25) ? false : false;
                     WebRtcAudioTrack.setSpeakerMute(z);
                     if (isSpeakerMuted != WebRtcAudioTrack.isSpeakerMuted()) {

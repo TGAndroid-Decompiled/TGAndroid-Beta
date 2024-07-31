@@ -50,7 +50,6 @@ import org.telegram.ui.Cells.StickerCell;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.ContentPreviewViewer;
 import org.telegram.ui.PhotoViewer;
-import org.webrtc.MediaStreamTrack;
 public class MentionsContainerView extends BlurredFrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private MentionsAdapter adapter;
     private boolean allowBlur;
@@ -764,7 +763,7 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
         }
         if (item instanceof TLRPC$BotInlineResult) {
             TLRPC$BotInlineResult tLRPC$BotInlineResult = (TLRPC$BotInlineResult) item;
-            if ((tLRPC$BotInlineResult.type.equals("photo") && (tLRPC$BotInlineResult.photo != null || tLRPC$BotInlineResult.content != null)) || ((tLRPC$BotInlineResult.type.equals("gif") && (tLRPC$BotInlineResult.document != null || tLRPC$BotInlineResult.content != null)) || (tLRPC$BotInlineResult.type.equals(MediaStreamTrack.VIDEO_TRACK_KIND) && tLRPC$BotInlineResult.document != null))) {
+            if ((tLRPC$BotInlineResult.type.equals("photo") && (tLRPC$BotInlineResult.photo != null || tLRPC$BotInlineResult.content != null)) || ((tLRPC$BotInlineResult.type.equals("gif") && (tLRPC$BotInlineResult.document != null || tLRPC$BotInlineResult.content != null)) || (tLRPC$BotInlineResult.type.equals("video") && tLRPC$BotInlineResult.document != null))) {
                 ArrayList<Object> arrayList = new ArrayList<>(getAdapter().getSearchResultBotContext());
                 this.botContextResults = arrayList;
                 PhotoViewer.getInstance().setParentActivity(this.baseFragment, this.resourcesProvider);

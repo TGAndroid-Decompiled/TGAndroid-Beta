@@ -35,7 +35,6 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.VideoEditedInfo;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$BotInlineResult;
 import org.telegram.tgnet.TLRPC$InputFile;
@@ -849,7 +848,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         this.videoPath = null;
         this.vectorMarkup = messageObject == null ? null : messageObject.emojiMarkup;
         this.bigPhoto = ImageLoader.scaleAndSaveImage(bitmap, 800.0f, 800.0f, 80, false, 320, 320);
-        TLRPC$PhotoSize scaleAndSaveImage = ImageLoader.scaleAndSaveImage(bitmap, 150.0f, 150.0f, 80, false, (int) ImageReceiver.DEFAULT_CROSSFADE_DURATION, (int) ImageReceiver.DEFAULT_CROSSFADE_DURATION);
+        TLRPC$PhotoSize scaleAndSaveImage = ImageLoader.scaleAndSaveImage(bitmap, 150.0f, 150.0f, 80, false, 150, 150);
         this.smallPhoto = scaleAndSaveImage;
         if (scaleAndSaveImage != null) {
             try {
@@ -908,7 +907,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
                 NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.fileUploadProgressChanged);
                 NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.fileUploadFailed);
                 if (this.uploadingImage != null) {
-                    FileLoader.getInstance(this.currentAccount).uploadFile(this.uploadingImage, false, true, ConnectionsManager.FileTypePhoto);
+                    FileLoader.getInstance(this.currentAccount).uploadFile(this.uploadingImage, false, true, 16777216);
                 }
             }
             ImageUpdaterDelegate imageUpdaterDelegate5 = this.delegate;
@@ -1041,7 +1040,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
                             pathToAttach2.delete();
                         }
                         this.bigPhoto = ImageLoader.scaleAndSaveImage(createVideoThumbnailAtTime, 800.0f, 800.0f, 80, false, 320, 320);
-                        TLRPC$PhotoSize scaleAndSaveImage = ImageLoader.scaleAndSaveImage(createVideoThumbnailAtTime, 150.0f, 150.0f, 80, false, (int) ImageReceiver.DEFAULT_CROSSFADE_DURATION, (int) ImageReceiver.DEFAULT_CROSSFADE_DURATION);
+                        TLRPC$PhotoSize scaleAndSaveImage = ImageLoader.scaleAndSaveImage(createVideoThumbnailAtTime, 150.0f, 150.0f, 80, false, 150, 150);
                         this.smallPhoto = scaleAndSaveImage;
                         if (scaleAndSaveImage != null) {
                             try {
@@ -1059,7 +1058,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
                 }
             } else if (i == NotificationCenter.filePreparingStarted && ((MessageObject) objArr[0]) == this.convertingVideo && (baseFragment = this.parentFragment) != null) {
                 this.uploadingVideo = (String) objArr[1];
-                baseFragment.getFileLoader().uploadFile(this.uploadingVideo, false, false, (int) this.convertingVideo.videoEditedInfo.estimatedSize, ConnectionsManager.FileTypeVideo, false);
+                baseFragment.getFileLoader().uploadFile(this.uploadingVideo, false, false, (int) this.convertingVideo.videoEditedInfo.estimatedSize, 33554432, false);
             }
         }
     }

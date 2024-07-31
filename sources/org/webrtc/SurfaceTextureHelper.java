@@ -50,7 +50,7 @@ public class SurfaceTextureHelper {
                 try {
                     return new SurfaceTextureHelper(EglBase.Context.this, handler, z, yuvConverter, frameRefMonitor);
                 } catch (RuntimeException e) {
-                    Logging.e(SurfaceTextureHelper.TAG, str + " create failure", e);
+                    Logging.e("SurfaceTextureHelper", str + " create failure", e);
                     return null;
                 }
             }
@@ -96,7 +96,7 @@ public class SurfaceTextureHelper {
         this.setListenerRunnable = new Runnable() {
             @Override
             public void run() {
-                Logging.d(SurfaceTextureHelper.TAG, "Setting listener to " + SurfaceTextureHelper.this.pendingListener);
+                Logging.d("SurfaceTextureHelper", "Setting listener to " + SurfaceTextureHelper.this.pendingListener);
                 SurfaceTextureHelper surfaceTextureHelper = SurfaceTextureHelper.this;
                 surfaceTextureHelper.listener = surfaceTextureHelper.pendingListener;
                 SurfaceTextureHelper.this.pendingListener = null;
@@ -137,7 +137,7 @@ public class SurfaceTextureHelper {
 
     public void lambda$new$0(SurfaceTexture surfaceTexture) {
         if (this.hasPendingTexture) {
-            Logging.d(TAG, "A frame is already pending, dropping frame.");
+            Logging.d("SurfaceTextureHelper", "A frame is already pending, dropping frame.");
         }
         this.hasPendingTexture = true;
         tryDeliverTextureFrame();
@@ -161,7 +161,7 @@ public class SurfaceTextureHelper {
     }
 
     public void stopListening() {
-        Logging.d(TAG, "stopListening()");
+        Logging.d("SurfaceTextureHelper", "stopListening()");
         this.handler.removeCallbacks(this.setListenerRunnable);
         ThreadUtils.invokeAtFrontUninterruptibly(this.handler, new Runnable() {
             @Override
@@ -256,7 +256,7 @@ public class SurfaceTextureHelper {
     }
 
     public void dispose() {
-        Logging.d(TAG, "dispose()");
+        Logging.d("SurfaceTextureHelper", "dispose()");
         ThreadUtils.invokeAtFrontUninterruptibly(this.handler, new Runnable() {
             @Override
             public final void run() {
@@ -295,7 +295,7 @@ public class SurfaceTextureHelper {
             return;
         }
         if (this.textureWidth == 0 || this.textureHeight == 0) {
-            Logging.w(TAG, "Texture size has not been set.");
+            Logging.w("SurfaceTextureHelper", "Texture size has not been set.");
             return;
         }
         this.isTextureInUse = true;

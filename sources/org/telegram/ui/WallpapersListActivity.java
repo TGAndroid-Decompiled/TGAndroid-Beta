@@ -347,7 +347,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
         this.colorFramePaint = paint;
         paint.setStrokeWidth(AndroidUtilities.dp(1.0f));
         this.colorFramePaint.setStyle(Paint.Style.STROKE);
-        this.colorFramePaint.setColor(AndroidUtilities.DARK_STATUS_BAR_OVERLAY);
+        this.colorFramePaint.setColor(855638016);
         this.updater = new WallpaperUpdater(getParentActivity(), this, new AnonymousClass1());
         this.hasOwnBackground = true;
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);

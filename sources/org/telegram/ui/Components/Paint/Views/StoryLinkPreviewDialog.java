@@ -33,7 +33,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.core.view.WindowInsetsCompat;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
@@ -311,7 +310,7 @@ public class StoryLinkPreviewDialog extends Dialog {
             attributes.layoutInDisplayCutoutMode = 1;
         }
         window.setAttributes(attributes);
-        this.windowView.setSystemUiVisibility(LiteMode.FLAG_CHAT_BLUR);
+        this.windowView.setSystemUiVisibility(256);
         AndroidUtilities.setLightNavigationBar(this.windowView, !Theme.isCurrentThemeDark());
     }
 

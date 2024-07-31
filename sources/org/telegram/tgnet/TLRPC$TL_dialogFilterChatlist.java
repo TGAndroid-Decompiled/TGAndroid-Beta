@@ -4,10 +4,10 @@ public class TLRPC$TL_dialogFilterChatlist extends TLRPC$DialogFilter {
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
-        this.has_my_invites = (readInt32 & ConnectionsManager.FileTypeFile) != 0;
+        this.has_my_invites = (readInt32 & 67108864) != 0;
         this.id = abstractSerializedData.readInt32(z);
         this.title = abstractSerializedData.readString(z);
-        if ((this.flags & ConnectionsManager.FileTypeVideo) != 0) {
+        if ((this.flags & 33554432) != 0) {
             this.emoticon = abstractSerializedData.readString(z);
         }
         if ((this.flags & 134217728) != 0) {
@@ -48,12 +48,12 @@ public class TLRPC$TL_dialogFilterChatlist extends TLRPC$DialogFilter {
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(-1612542300);
-        int i = this.has_my_invites ? this.flags | ConnectionsManager.FileTypeFile : this.flags & (-67108865);
+        int i = this.has_my_invites ? this.flags | 67108864 : this.flags & (-67108865);
         this.flags = i;
         abstractSerializedData.writeInt32(i);
         abstractSerializedData.writeInt32(this.id);
         abstractSerializedData.writeString(this.title);
-        if ((this.flags & ConnectionsManager.FileTypeVideo) != 0) {
+        if ((this.flags & 33554432) != 0) {
             abstractSerializedData.writeString(this.emoticon);
         }
         if ((this.flags & 134217728) != 0) {

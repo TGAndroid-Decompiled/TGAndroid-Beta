@@ -474,7 +474,7 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
                         @Override
                         public void onSeekBarDrag(boolean z, float f) {
                             boolean isAttachedToWindow = seekBarView.isAttachedToWindow();
-                            long j3 = f > 0.7f ? ((float) SaveToGallerySettingsHelper.DEFAULT_VIDEO_LIMIT) + (((float) 4089446400L) * ((f - 0.7f) / 0.3f)) : (((float) 104333312) * (f / 0.7f)) + 524288.0f;
+                            long j3 = f > 0.7f ? ((float) 104857600) + (((float) 4089446400L) * ((f - 0.7f) / 0.3f)) : (((float) 104333312) * (f / 0.7f)) + 524288.0f;
                             if (f >= 1.0f) {
                                 selectableAnimatedTextView.setSelectedInternal(false, isAttachedToWindow);
                                 selectableAnimatedTextView2.setSelectedInternal(false, isAttachedToWindow);
@@ -498,7 +498,7 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
                             }
                         }
                     });
-                    seekBarView.setProgress(((float) j) > ((float) SaveToGallerySettingsHelper.DEFAULT_VIDEO_LIMIT) * 0.7f ? (0.3f * (((float) (j - SaveToGallerySettingsHelper.DEFAULT_VIDEO_LIMIT)) / ((float) 4089446400L))) + 0.7f : (((float) (j - 524288)) / ((float) 104333312)) * 0.7f);
+                    seekBarView.setProgress(((float) j) > ((float) 104857600) * 0.7f ? (0.3f * (((float) (j - 104857600)) / ((float) 4089446400L))) + 0.7f : (((float) (j - 524288)) / ((float) 104333312)) * 0.7f);
                     seekBarView.delegate.onSeekBarDrag(false, seekBarView.getProgress());
                     userCell2 = linearLayout;
                     userCell2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));

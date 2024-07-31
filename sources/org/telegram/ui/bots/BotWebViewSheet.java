@@ -47,7 +47,6 @@ import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.GenericProvider;
 import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessagesController;
@@ -938,7 +937,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             this.wasLightStatusBar = Boolean.valueOf(z);
             if (Build.VERSION.SDK_INT >= 23) {
                 int systemUiVisibility = this.windowView.getSystemUiVisibility();
-                this.windowView.setSystemUiVisibility(z ? systemUiVisibility | LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM : systemUiVisibility & (-8193));
+                this.windowView.setSystemUiVisibility(z ? systemUiVisibility | 8192 : systemUiVisibility & (-8193));
             }
         }
     }

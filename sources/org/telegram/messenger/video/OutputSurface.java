@@ -53,7 +53,7 @@ public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
         if (!this.mEGL.eglChooseConfig(this.mEGLDisplay, new int[]{12324, 8, 12323, 8, 12322, 8, 12321, 8, 12339, 1, 12352, 4, 12344}, eGLConfigArr, 1, new int[1])) {
             throw new RuntimeException("unable to find RGB888+pbuffer EGL config");
         }
-        this.mEGLContext = this.mEGL.eglCreateContext(this.mEGLDisplay, eGLConfigArr[0], EGL10.EGL_NO_CONTEXT, new int[]{EGL_CONTEXT_CLIENT_VERSION, 2, 12344});
+        this.mEGLContext = this.mEGL.eglCreateContext(this.mEGLDisplay, eGLConfigArr[0], EGL10.EGL_NO_CONTEXT, new int[]{12440, 2, 12344});
         checkEglError("eglCreateContext");
         if (this.mEGLContext == null) {
             throw new RuntimeException("null context");

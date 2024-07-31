@@ -7,11 +7,11 @@ public class SRPHelper {
     public static byte[] getBigIntegerBytes(BigInteger bigInteger) {
         byte[] byteArray = bigInteger.toByteArray();
         if (byteArray.length > 256) {
-            byte[] bArr = new byte[LiteMode.FLAG_CHAT_BLUR];
-            System.arraycopy(byteArray, 1, bArr, 0, LiteMode.FLAG_CHAT_BLUR);
+            byte[] bArr = new byte[256];
+            System.arraycopy(byteArray, 1, bArr, 0, 256);
             return bArr;
         } else if (byteArray.length < 256) {
-            byte[] bArr2 = new byte[LiteMode.FLAG_CHAT_BLUR];
+            byte[] bArr2 = new byte[256];
             System.arraycopy(byteArray, 0, bArr2, 256 - byteArray.length, byteArray.length);
             for (int i = 0; i < 256 - byteArray.length; i++) {
                 bArr2[i] = 0;
@@ -51,7 +51,7 @@ public class SRPHelper {
             BigInteger bigInteger = new BigInteger(1, tLRPC$TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.p);
             BigInteger bigInteger2 = new BigInteger(1, Utilities.computeSHA256(tLRPC$TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.p, bigIntegerBytes));
             BigInteger bigInteger3 = new BigInteger(1, bArr);
-            byte[] bArr3 = new byte[LiteMode.FLAG_CHAT_BLUR];
+            byte[] bArr3 = new byte[256];
             Utilities.random.nextBytes(bArr3);
             BigInteger bigInteger4 = new BigInteger(1, bArr3);
             byte[] bigIntegerBytes2 = getBigIntegerBytes(valueOf.modPow(bigInteger4, bigInteger));

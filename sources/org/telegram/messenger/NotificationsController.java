@@ -100,7 +100,6 @@ import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.spoilers.SpoilerEffect;
 import org.telegram.ui.PopupNotificationActivity;
 import org.telegram.ui.Stories.recorder.StoryEntry;
-import org.webrtc.MediaStreamTrack;
 public class NotificationsController extends BaseController {
     public static final String EXTRA_VOICE_REPLY = "extra_voice_reply";
     private static volatile NotificationsController[] Instance = null;
@@ -199,7 +198,7 @@ public class NotificationsController extends BaseController {
             systemNotificationManager = (NotificationManager) ApplicationLoader.applicationContext.getSystemService("notification");
             checkOtherNotificationsChannel();
         }
-        audioManager = (AudioManager) ApplicationLoader.applicationContext.getSystemService(MediaStreamTrack.AUDIO_TRACK_KIND);
+        audioManager = (AudioManager) ApplicationLoader.applicationContext.getSystemService("audio");
         Instance = new NotificationsController[4];
         lockObjects = new Object[4];
         for (int i = 0; i < 4; i++) {
@@ -270,7 +269,7 @@ public class NotificationsController extends BaseController {
         notificationManager = NotificationManagerCompat.from(ApplicationLoader.applicationContext);
         systemNotificationManager = (NotificationManager) ApplicationLoader.applicationContext.getSystemService("notification");
         try {
-            audioManager = (AudioManager) ApplicationLoader.applicationContext.getSystemService(MediaStreamTrack.AUDIO_TRACK_KIND);
+            audioManager = (AudioManager) ApplicationLoader.applicationContext.getSystemService("audio");
         } catch (Exception e) {
             FileLog.e(e);
         }
@@ -385,14 +384,14 @@ public class NotificationsController extends BaseController {
             String sharedPrefKey = getSharedPrefKey(j, j2);
             long j3 = 1;
             if (i != Integer.MAX_VALUE) {
-                edit.putInt(NotificationsSettingsFacade.PROPERTY_NOTIFY + sharedPrefKey, 3);
-                edit.putInt(NotificationsSettingsFacade.PROPERTY_NOTIFY_UNTIL + sharedPrefKey, getConnectionsManager().getCurrentTime() + i);
+                edit.putInt("notify2_" + sharedPrefKey, 3);
+                edit.putInt("notifyuntil_" + sharedPrefKey, getConnectionsManager().getCurrentTime() + i);
                 j3 = 1 | (((long) i) << 32);
             } else if (!isGlobalNotificationsEnabled && !z) {
-                edit.remove(NotificationsSettingsFacade.PROPERTY_NOTIFY + sharedPrefKey);
+                edit.remove("notify2_" + sharedPrefKey);
                 j3 = 0L;
             } else {
-                edit.putInt(NotificationsSettingsFacade.PROPERTY_NOTIFY + sharedPrefKey, 2);
+                edit.putInt("notify2_" + sharedPrefKey, 2);
             }
             edit.apply();
             if (j2 == 0) {
@@ -531,7 +530,7 @@ public class NotificationsController extends BaseController {
     }
 
     public void removeNotificationsForDialog(long j) {
-        processReadMessages(null, j, 0, ConnectionsManager.DEFAULT_DATACENTER_ID, false);
+        processReadMessages(null, j, 0, Integer.MAX_VALUE, false);
         LongSparseIntArray longSparseIntArray = new LongSparseIntArray();
         longSparseIntArray.put(j, 0);
         processDialogsUpdateRead(longSparseIntArray);
@@ -1503,7 +1502,7 @@ public class NotificationsController extends BaseController {
         try {
             Intent intent = new Intent(ApplicationLoader.applicationContext, NotificationRepeat.class);
             intent.putExtra("currentAccount", this.currentAccount);
-            PendingIntent service = PendingIntent.getService(ApplicationLoader.applicationContext, 0, intent, ConnectionsManager.FileTypeVideo);
+            PendingIntent service = PendingIntent.getService(ApplicationLoader.applicationContext, 0, intent, 33554432);
             int i = getAccountInstance().getNotificationsSettings().getInt("repeat_messages", 60);
             if (i > 0 && this.personalCount > 0) {
                 this.alarmManager.set(2, SystemClock.elapsedRealtime() + (i * 60 * 1000), service);
@@ -1523,8 +1522,8 @@ public class NotificationsController extends BaseController {
     }
 
     private int getNotifyOverride(SharedPreferences sharedPreferences, long j, long j2) {
-        int property = this.dialogsNotificationsFacade.getProperty(NotificationsSettingsFacade.PROPERTY_NOTIFY, j, j2, -1);
-        if (property != 3 || this.dialogsNotificationsFacade.getProperty(NotificationsSettingsFacade.PROPERTY_NOTIFY_UNTIL, j, j2, 0) < getConnectionsManager().getCurrentTime()) {
+        int property = this.dialogsNotificationsFacade.getProperty("notify2_", j, j2, -1);
+        if (property != 3 || this.dialogsNotificationsFacade.getProperty("notifyuntil_", j, j2, 0) < getConnectionsManager().getCurrentTime()) {
             return property;
         }
         return 2;
@@ -2538,8 +2537,8 @@ public class NotificationsController extends BaseController {
     public void clearDialogNotificationsSettings(long j, long j2) {
         SharedPreferences.Editor edit = getAccountInstance().getNotificationsSettings().edit();
         String sharedPrefKey = getSharedPrefKey(j, j2);
-        SharedPreferences.Editor remove = edit.remove(NotificationsSettingsFacade.PROPERTY_NOTIFY + sharedPrefKey);
-        remove.remove(NotificationsSettingsFacade.PROPERTY_CUSTOM + sharedPrefKey);
+        SharedPreferences.Editor remove = edit.remove("notify2_" + sharedPrefKey);
+        remove.remove("custom_" + sharedPrefKey);
         getMessagesStorage().setDialogFlags(j, 0L);
         TLRPC$Dialog tLRPC$Dialog = getMessagesController().dialogs_dict.get(j);
         if (tLRPC$Dialog != null) {
@@ -2554,9 +2553,9 @@ public class NotificationsController extends BaseController {
         TLRPC$Dialog tLRPC$Dialog = MessagesController.getInstance(UserConfig.selectedAccount).dialogs_dict.get(j);
         if (i == 4) {
             if (isGlobalNotificationsEnabled(j, false, false)) {
-                edit.remove(NotificationsSettingsFacade.PROPERTY_NOTIFY + getSharedPrefKey(j, j2));
+                edit.remove("notify2_" + getSharedPrefKey(j, j2));
             } else {
-                edit.putInt(NotificationsSettingsFacade.PROPERTY_NOTIFY + getSharedPrefKey(j, j2), 0);
+                edit.putInt("notify2_" + getSharedPrefKey(j, j2), 0);
             }
             getMessagesStorage().setDialogFlags(j, 0L);
             if (tLRPC$Dialog != null) {
@@ -2571,14 +2570,14 @@ public class NotificationsController extends BaseController {
             } else if (i == 2) {
                 currentTime += 172800;
             } else if (i == 3) {
-                currentTime = ConnectionsManager.DEFAULT_DATACENTER_ID;
+                currentTime = Integer.MAX_VALUE;
             }
             long j3 = 1;
             if (i == 3) {
-                edit.putInt(NotificationsSettingsFacade.PROPERTY_NOTIFY + getSharedPrefKey(j, j2), 2);
+                edit.putInt("notify2_" + getSharedPrefKey(j, j2), 2);
             } else {
-                edit.putInt(NotificationsSettingsFacade.PROPERTY_NOTIFY + getSharedPrefKey(j, j2), 3);
-                edit.putInt(NotificationsSettingsFacade.PROPERTY_NOTIFY_UNTIL + getSharedPrefKey(j, j2), currentTime);
+                edit.putInt("notify2_" + getSharedPrefKey(j, j2), 3);
+                edit.putInt("notifyuntil_" + getSharedPrefKey(j, j2), currentTime);
                 j3 = 1 | (((long) currentTime) << 32);
             }
             getInstance(UserConfig.selectedAccount).removeNotificationsForDialog(j);
@@ -2610,23 +2609,23 @@ public class NotificationsController extends BaseController {
         String sharedPrefKey = getSharedPrefKey(j, j2);
         TLRPC$TL_inputPeerNotifySettings tLRPC$TL_inputPeerNotifySettings = tLRPC$TL_account_updateNotifySettings.settings;
         tLRPC$TL_inputPeerNotifySettings.flags |= 1;
-        tLRPC$TL_inputPeerNotifySettings.show_previews = notificationsSettings.getBoolean(NotificationsSettingsFacade.PROPERTY_CONTENT_PREVIEW + sharedPrefKey, true);
+        tLRPC$TL_inputPeerNotifySettings.show_previews = notificationsSettings.getBoolean("content_preview_" + sharedPrefKey, true);
         TLRPC$TL_inputPeerNotifySettings tLRPC$TL_inputPeerNotifySettings2 = tLRPC$TL_account_updateNotifySettings.settings;
         tLRPC$TL_inputPeerNotifySettings2.flags = tLRPC$TL_inputPeerNotifySettings2.flags | 2;
-        tLRPC$TL_inputPeerNotifySettings2.silent = notificationsSettings.getBoolean(NotificationsSettingsFacade.PROPERTY_SILENT + sharedPrefKey, false);
-        if (notificationsSettings.contains(NotificationsSettingsFacade.PROPERTY_STORIES_NOTIFY + sharedPrefKey)) {
+        tLRPC$TL_inputPeerNotifySettings2.silent = notificationsSettings.getBoolean("silent_" + sharedPrefKey, false);
+        if (notificationsSettings.contains("stories_" + sharedPrefKey)) {
             TLRPC$TL_inputPeerNotifySettings tLRPC$TL_inputPeerNotifySettings3 = tLRPC$TL_account_updateNotifySettings.settings;
             tLRPC$TL_inputPeerNotifySettings3.flags |= 64;
-            tLRPC$TL_inputPeerNotifySettings3.stories_muted = !notificationsSettings.getBoolean(NotificationsSettingsFacade.PROPERTY_STORIES_NOTIFY + sharedPrefKey, true);
+            tLRPC$TL_inputPeerNotifySettings3.stories_muted = !notificationsSettings.getBoolean("stories_" + sharedPrefKey, true);
         }
-        int i = notificationsSettings.getInt(NotificationsSettingsFacade.PROPERTY_NOTIFY + getSharedPrefKey(j, j2), -1);
+        int i = notificationsSettings.getInt("notify2_" + getSharedPrefKey(j, j2), -1);
         if (i != -1) {
             TLRPC$TL_inputPeerNotifySettings tLRPC$TL_inputPeerNotifySettings4 = tLRPC$TL_account_updateNotifySettings.settings;
             tLRPC$TL_inputPeerNotifySettings4.flags |= 4;
             if (i == 3) {
-                tLRPC$TL_inputPeerNotifySettings4.mute_until = notificationsSettings.getInt(NotificationsSettingsFacade.PROPERTY_NOTIFY_UNTIL + getSharedPrefKey(j, j2), 0);
+                tLRPC$TL_inputPeerNotifySettings4.mute_until = notificationsSettings.getInt("notifyuntil_" + getSharedPrefKey(j, j2), 0);
             } else {
-                tLRPC$TL_inputPeerNotifySettings4.mute_until = i == 2 ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0;
+                tLRPC$TL_inputPeerNotifySettings4.mute_until = i == 2 ? Integer.MAX_VALUE : 0;
             }
         }
         long j3 = notificationsSettings.getLong("sound_document_id_" + getSharedPrefKey(j, j2), 0L);
@@ -2725,7 +2724,7 @@ public class NotificationsController extends BaseController {
             tLRPC$TL_inputPeerNotifySettings5.flags |= 8;
             tLRPC$TL_inputPeerNotifySettings5.sound = getInputSound(notificationsSettings, "GlobalSound", "GlobalSoundDocId", "GlobalSoundPath");
             TLRPC$TL_inputPeerNotifySettings tLRPC$TL_inputPeerNotifySettings6 = tLRPC$TL_account_updateNotifySettings.settings;
-            tLRPC$TL_inputPeerNotifySettings6.flags |= LiteMode.FLAG_CHAT_BLUR;
+            tLRPC$TL_inputPeerNotifySettings6.flags |= 256;
             tLRPC$TL_inputPeerNotifySettings6.stories_sound = getInputSound(notificationsSettings, "StoriesSound", "StoriesSoundDocId", "StoriesSoundPath");
         } else {
             tLRPC$TL_account_updateNotifySettings.peer = new TLRPC$TL_inputNotifyBroadcasts();
@@ -2793,16 +2792,16 @@ public class NotificationsController extends BaseController {
 
     public void muteDialog(long j, long j2, boolean z) {
         if (z) {
-            getInstance(this.currentAccount).muteUntil(j, j2, ConnectionsManager.DEFAULT_DATACENTER_ID);
+            getInstance(this.currentAccount).muteUntil(j, j2, Integer.MAX_VALUE);
             return;
         }
         boolean isGlobalNotificationsEnabled = getInstance(this.currentAccount).isGlobalNotificationsEnabled(j, false, false);
         boolean z2 = j2 != 0;
         SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(this.currentAccount).edit();
         if (isGlobalNotificationsEnabled && !z2) {
-            edit.remove(NotificationsSettingsFacade.PROPERTY_NOTIFY + getSharedPrefKey(j, j2));
+            edit.remove("notify2_" + getSharedPrefKey(j, j2));
         } else {
-            edit.putInt(NotificationsSettingsFacade.PROPERTY_NOTIFY + getSharedPrefKey(j, j2), 0);
+            edit.putInt("notify2_" + getSharedPrefKey(j, j2), 0);
         }
         if (j2 == 0) {
             getMessagesStorage().setDialogFlags(j, 0L);
@@ -2832,8 +2831,8 @@ public class NotificationsController extends BaseController {
         final HashSet hashSet = new HashSet();
         for (Map.Entry<String, ?> entry : MessagesController.getNotificationsSettings(this.currentAccount).getAll().entrySet()) {
             String key = entry.getKey();
-            if (key.startsWith(NotificationsSettingsFacade.PROPERTY_NOTIFY + j)) {
-                int intValue = Utilities.parseInt((CharSequence) key.replace(NotificationsSettingsFacade.PROPERTY_NOTIFY + j, "")).intValue();
+            if (key.startsWith("notify2_" + j)) {
+                int intValue = Utilities.parseInt((CharSequence) key.replace("notify2_" + j, "")).intValue();
                 if (intValue != 0 && getMessagesController().isDialogMuted(j, intValue) != getMessagesController().isDialogMuted(j, 0L)) {
                     hashSet.add(Integer.valueOf(intValue));
                 }

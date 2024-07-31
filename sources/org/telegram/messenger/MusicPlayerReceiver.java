@@ -42,25 +42,25 @@ public class MusicPlayerReceiver extends BroadcastReceiver {
         char c = 65535;
         switch (action.hashCode()) {
             case -1461225938:
-                if (action.equals(MusicPlayerService.NOTIFY_CLOSE)) {
+                if (action.equals("org.telegram.android.musicplayer.close")) {
                     c = 0;
                     break;
                 }
                 break;
             case -1449542100:
-                if (action.equals(MusicPlayerService.NOTIFY_PAUSE)) {
+                if (action.equals("org.telegram.android.musicplayer.pause")) {
                     c = 1;
                     break;
                 }
                 break;
             case -1293741059:
-                if (action.equals(MusicPlayerService.NOTIFY_NEXT)) {
+                if (action.equals("org.telegram.android.musicplayer.next")) {
                     c = 2;
                     break;
                 }
                 break;
             case -1293675458:
-                if (action.equals(MusicPlayerService.NOTIFY_PLAY)) {
+                if (action.equals("org.telegram.android.musicplayer.play")) {
                     c = 3;
                     break;
                 }
@@ -72,7 +72,7 @@ public class MusicPlayerReceiver extends BroadcastReceiver {
                 }
                 break;
             case 40087297:
-                if (action.equals(MusicPlayerService.NOTIFY_PREVIOUS)) {
+                if (action.equals("org.telegram.android.musicplayer.previous")) {
                     c = 5;
                     break;
                 }

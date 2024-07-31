@@ -105,7 +105,7 @@ public class GlGenericDrawer implements RendererCommon.GlDrawer {
     }
 
     public GlGenericDrawer(String str, ShaderCallbacks shaderCallbacks) {
-        this(DEFAULT_VERTEX_SHADER_STRING, str, shaderCallbacks);
+        this("varying vec2 tc;\nattribute vec4 in_pos;\nattribute vec4 in_tc;\nuniform mat4 tex_mat;\nvoid main() {\n  gl_Position = in_pos;\n  tc = (tex_mat * in_tc).xy;\n}\n", str, shaderCallbacks);
     }
 
     public GlGenericDrawer(String str, String str2, ShaderCallbacks shaderCallbacks) {
@@ -319,9 +319,9 @@ public class GlGenericDrawer implements RendererCommon.GlDrawer {
                     this.texelLocation[i][0] = createShader.getUniformLocation("texelWidthOffset");
                     this.texelLocation[i][1] = createShader.getUniformLocation("texelHeightOffset");
                 }
-                this.texMatrixLocation[i][i8] = createShader.getUniformLocation(TEXTURE_MATRIX_NAME);
-                this.inPosLocation[i][i8] = createShader.getAttribLocation(INPUT_VERTEX_COORDINATE_NAME);
-                this.inTcLocation[i][i8] = createShader.getAttribLocation(INPUT_TEXTURE_COORDINATE_NAME);
+                this.texMatrixLocation[i][i8] = createShader.getUniformLocation("tex_mat");
+                this.inPosLocation[i][i8] = createShader.getAttribLocation("in_pos");
+                this.inTcLocation[i][i8] = createShader.getAttribLocation("in_tc");
             } catch (Exception e) {
                 FileLog.e(e);
                 return;

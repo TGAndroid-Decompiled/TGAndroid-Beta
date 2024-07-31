@@ -22,7 +22,6 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
@@ -272,7 +271,7 @@ public class VoIPTextureView extends FrameLayout {
     }
 
     public void saveCameraLastBitmap() {
-        Bitmap bitmap = this.renderer.getBitmap(ImageReceiver.DEFAULT_CROSSFADE_DURATION, ImageReceiver.DEFAULT_CROSSFADE_DURATION);
+        Bitmap bitmap = this.renderer.getBitmap(150, 150);
         if (bitmap == null || bitmap.getPixel(0, 0) == 0) {
             return;
         }

@@ -1087,7 +1087,7 @@ public class AddressBarList extends FrameLayout {
             }
             this.loading = true;
             long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
-            int i = ConnectionsManager.DEFAULT_DATACENTER_ID;
+            int i = Integer.MAX_VALUE;
             for (int i2 = 0; i2 < this.links.size(); i2++) {
                 i = Math.min(i, this.links.get(i2).getId());
             }

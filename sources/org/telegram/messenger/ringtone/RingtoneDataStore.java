@@ -12,7 +12,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.NotificationBadge;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
@@ -109,7 +108,7 @@ public class RingtoneDataStore {
     private void loadFromPrefs(boolean z) {
         boolean z2;
         SharedPreferences sharedPreferences = getSharedPreferences();
-        int i = sharedPreferences.getInt(NotificationBadge.NewHtcHomeBadger.COUNT, 0);
+        int i = sharedPreferences.getInt("count", 0);
         this.userRingtones.clear();
         for (int i2 = 0; i2 < i; i2++) {
             String string = sharedPreferences.getString("tone_document" + i2, "");
@@ -161,7 +160,7 @@ public class RingtoneDataStore {
         SharedPreferences sharedPreferences = getSharedPreferences();
         sharedPreferences.edit().clear().apply();
         SharedPreferences.Editor edit = sharedPreferences.edit();
-        edit.putInt(NotificationBadge.NewHtcHomeBadger.COUNT, arrayList.size());
+        edit.putInt("count", arrayList.size());
         for (int i = 0; i < arrayList.size(); i++) {
             TLRPC$Document tLRPC$Document2 = arrayList.get(i);
             String str = (String) hashMap.get(Long.valueOf(tLRPC$Document2.id));
@@ -201,7 +200,7 @@ public class RingtoneDataStore {
                 }
             }
         }
-        edit.putInt(NotificationBadge.NewHtcHomeBadger.COUNT, i);
+        edit.putInt("count", i);
         edit.apply();
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.onUserRingtonesUpdated, new Object[0]);
     }

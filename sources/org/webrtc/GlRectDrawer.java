@@ -18,6 +18,6 @@ public class GlRectDrawer extends GlGenericDrawer {
     }
 
     public GlRectDrawer() {
-        super(FRAGMENT_SHADER, new ShaderCallbacks());
+        super("void main() {\n  gl_FragColor = sample(tc);\n}\n", new ShaderCallbacks());
     }
 }

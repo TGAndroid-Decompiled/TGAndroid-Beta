@@ -1109,13 +1109,13 @@ public class MessageObject {
                         break;
                     }
                     break;
-                case R.styleable.AppCompatTheme_spinnerDropDownItemStyle:
+                case 99:
                     if (replaceAll.equals("c")) {
                         c = '\n';
                         break;
                     }
                     break;
-                case R.styleable.AppCompatTheme_tooltipForegroundColor:
+                case 114:
                     if (replaceAll.equals("r")) {
                         c = 11;
                         break;
@@ -1401,11 +1401,11 @@ public class MessageObject {
                 case '\b':
                 case '\n':
                 case 25:
-                case R.styleable.AppCompatTheme_actionModeWebSearchDrawable:
+                case 31:
                 case ' ':
-                case R.styleable.AppCompatTheme_alertDialogTheme:
-                case R.styleable.AppCompatTheme_buttonBarPositiveButtonStyle:
-                case R.styleable.AppCompatTheme_colorBackgroundFloating:
+                case '&':
+                case ',':
+                case '3':
                     return capitalizeFirst(str);
                 case 7:
                 case 15:
@@ -1424,39 +1424,39 @@ public class MessageObject {
                 case 28:
                 case 29:
                 case 30:
-                case R.styleable.AppCompatTheme_activityChooserViewStyle:
-                case R.styleable.AppCompatTheme_alertDialogButtonGroupStyle:
-                case R.styleable.AppCompatTheme_alertDialogCenterButtons:
-                case R.styleable.AppCompatTheme_alertDialogStyle:
-                case R.styleable.AppCompatTheme_autoCompleteTextViewStyle:
-                case R.styleable.AppCompatTheme_borderlessButtonStyle:
-                case R.styleable.AppCompatTheme_buttonBarButtonStyle:
-                case R.styleable.AppCompatTheme_buttonBarStyle:
-                case R.styleable.AppCompatTheme_buttonStyleSmall:
-                case R.styleable.AppCompatTheme_checkboxStyle:
-                case R.styleable.AppCompatTheme_checkedTextViewStyle:
-                case R.styleable.AppCompatTheme_colorAccent:
+                case '\"':
+                case '#':
+                case '$':
+                case '%':
+                case '\'':
+                case '(':
+                case ')':
+                case '-':
+                case '/':
+                case '0':
+                case '1':
+                case '2':
                     return str.toUpperCase();
                 case '\r':
-                case R.styleable.AppCompatTheme_colorButtonNormal:
+                case '4':
                     return "JavaScript";
                 case 14:
-                case R.styleable.AppCompatTheme_colorControlHighlight:
+                case '6':
                     return "Markdown";
                 case 16:
-                case R.styleable.AppCompatTheme_buttonBarNeutralButtonStyle:
+                case '+':
                     return "Ruby";
                 case 20:
                     return "C++";
                 case 27:
-                case R.styleable.AppCompatTheme_buttonStyle:
+                case '.':
                     return "TL-B";
-                case R.styleable.AppCompatTheme_actionOverflowMenuStyle:
+                case '!':
                     return "FunC";
-                case R.styleable.AppCompatTheme_buttonBarNegativeButtonStyle:
-                case R.styleable.AppCompatTheme_colorControlNormal:
+                case '*':
+                case '7':
                     return "Objective-C";
-                case R.styleable.AppCompatTheme_colorControlActivated:
+                case '5':
                     return "AutoHotKey";
                 default:
                     return str;
@@ -1764,7 +1764,7 @@ public class MessageObject {
         int i4 = gregorianCalendar.get(1);
         int i5 = gregorianCalendar.get(2);
         this.dateKey = String.format("%d_%02d_%02d", Integer.valueOf(i4), Integer.valueOf(i5), Integer.valueOf(i3));
-        this.dateKeyInt = (i5 * 10000) + i4 + (i3 * MediaController.VIDEO_BITRATE_480);
+        this.dateKeyInt = (i5 * 10000) + i4 + (i3 * 1000000);
         this.monthKey = String.format("%d_%02d", Integer.valueOf(i4), Integer.valueOf(i5));
         createMessageSendInfo();
         generateCaption();
@@ -2523,7 +2523,7 @@ public class MessageObject {
             }
         }
         tLRPC$Message.reactions = tLRPC$TL_messageReactions;
-        tLRPC$Message.flags |= FileLoaderPriorityQueue.PRIORITY_VALUE_MAX;
+        tLRPC$Message.flags |= 1048576;
     }
 
     public boolean hasReactions() {
@@ -3080,8 +3080,8 @@ public class MessageObject {
                         getMedia(this.messageOwner).document.dc_id = Integer.MIN_VALUE;
                         getMedia(this.messageOwner).document.id = -2147483648L;
                         TLRPC$TL_documentAttributeImageSize tLRPC$TL_documentAttributeImageSize = new TLRPC$TL_documentAttributeImageSize();
-                        tLRPC$TL_documentAttributeImageSize.w = LiteMode.FLAG_CALLS_ANIMATIONS;
-                        tLRPC$TL_documentAttributeImageSize.h = LiteMode.FLAG_CALLS_ANIMATIONS;
+                        tLRPC$TL_documentAttributeImageSize.w = 512;
+                        tLRPC$TL_documentAttributeImageSize.h = 512;
                         getMedia(this.messageOwner).document.attributes.add(tLRPC$TL_documentAttributeImageSize);
                     }
                 } else if (getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaPhoto) {
@@ -4084,7 +4084,7 @@ public class MessageObject {
         if (this.isSaved) {
             long j = UserConfig.getInstance(this.currentAccount).clientUserId;
             long savedDialogId = getSavedDialogId(j, this.messageOwner);
-            if (savedDialogId == j || savedDialogId == UserObject.ANONYMOUS || (tLRPC$Message = this.messageOwner) == null || (tLRPC$MessageFwdHeader = tLRPC$Message.fwd_from) == null) {
+            if (savedDialogId == j || savedDialogId == 2666000 || (tLRPC$Message = this.messageOwner) == null || (tLRPC$MessageFwdHeader = tLRPC$Message.fwd_from) == null) {
                 return false;
             }
             return (tLRPC$MessageFwdHeader.from_id == null && tLRPC$MessageFwdHeader.saved_from_id == null) ? false : true;
@@ -4213,7 +4213,7 @@ public class MessageObject {
             return;
         }
         if (messageObject.isYouTubeVideo()) {
-            addUrlsByPattern(isOutOwner(), this.messageText, false, 3, ConnectionsManager.DEFAULT_DATACENTER_ID, false);
+            addUrlsByPattern(isOutOwner(), this.messageText, false, 3, Integer.MAX_VALUE, false);
         } else if (messageObject.isVideo()) {
             addUrlsByPattern(isOutOwner(), this.messageText, false, 3, (int) messageObject.getDuration(), false);
         } else if (messageObject.isMusic() || messageObject.isVoice()) {
@@ -4873,10 +4873,13 @@ public class MessageObject {
             return j3 != 0 ? -j3 : tLRPC$Peer2.user_id;
         } else if (tLRPC$Message.from_id.user_id == j) {
             TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader = tLRPC$Message.fwd_from;
-            if (tLRPC$MessageFwdHeader == null || (tLRPC$Peer = tLRPC$MessageFwdHeader.saved_from_peer) == null) {
-                return ((tLRPC$MessageFwdHeader == null || tLRPC$MessageFwdHeader.from_id == null) && tLRPC$MessageFwdHeader != null) ? UserObject.ANONYMOUS : j;
+            if (tLRPC$MessageFwdHeader != null && (tLRPC$Peer = tLRPC$MessageFwdHeader.saved_from_peer) != null) {
+                return DialogObject.getPeerDialogId(tLRPC$Peer);
             }
-            return DialogObject.getPeerDialogId(tLRPC$Peer);
+            if ((tLRPC$MessageFwdHeader == null || tLRPC$MessageFwdHeader.from_id == null) && tLRPC$MessageFwdHeader != null) {
+                return 2666000L;
+            }
+            return j;
         } else {
             return 0L;
         }
@@ -4901,7 +4904,7 @@ public class MessageObject {
                 return tLRPC$TL_peerUser;
             } else if (tLRPC$MessageFwdHeader != null) {
                 TLRPC$TL_peerUser tLRPC$TL_peerUser2 = new TLRPC$TL_peerUser();
-                tLRPC$TL_peerUser2.user_id = UserObject.ANONYMOUS;
+                tLRPC$TL_peerUser2.user_id = 2666000L;
                 return tLRPC$TL_peerUser2;
             } else {
                 TLRPC$TL_peerUser tLRPC$TL_peerUser3 = new TLRPC$TL_peerUser();
@@ -6944,7 +6947,7 @@ public class MessageObject {
 
     public static CharSequence groupSpan() {
         if (groupSpan == null) {
-            groupSpan = new SpannableStringBuilder(ImageLoader.AUTOPLAY_FILTER);
+            groupSpan = new SpannableStringBuilder("g");
             ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.msg_folders_groups);
             coloredImageSpan.setScale(0.7f, 0.7f);
             ((SpannableStringBuilder) groupSpan).setSpan(coloredImageSpan, 0, 1, 33);

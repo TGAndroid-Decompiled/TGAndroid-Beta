@@ -1,6 +1,4 @@
 package org.telegram.tgnet;
-
-import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_inputPeerNotifySettings extends TLObject {
     public int flags;
     public int mute_until;
@@ -33,7 +31,7 @@ public class TLRPC$TL_inputPeerNotifySettings extends TLObject {
         if ((this.flags & 128) != 0) {
             this.stories_hide_sender = abstractSerializedData.readBool(z);
         }
-        if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
+        if ((this.flags & 256) != 0) {
             this.stories_sound = TLRPC$NotificationSound.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
     }
@@ -60,7 +58,7 @@ public class TLRPC$TL_inputPeerNotifySettings extends TLObject {
         if ((this.flags & 128) != 0) {
             abstractSerializedData.writeBool(this.stories_hide_sender);
         }
-        if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
+        if ((this.flags & 256) != 0) {
             this.stories_sound.serializeToStream(abstractSerializedData);
         }
     }

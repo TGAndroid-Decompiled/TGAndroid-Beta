@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-import org.telegram.messenger.BillingController;
 public class TLRPC$TL_help_premiumPromo extends TLObject {
     public String currency;
     public long monthly_amount;
@@ -201,7 +200,7 @@ public class TLRPC$TL_help_premiumPromo extends TLObject {
                         this.months = 1;
                         this.currency = TLRPC$TL_help_premiumPromo.this.currency;
                         this.amount = TLRPC$TL_help_premiumPromo.this.monthly_amount;
-                        this.store_product = BillingController.PREMIUM_PRODUCT_ID;
+                        this.store_product = "telegram_premium";
                     }
                 });
             }

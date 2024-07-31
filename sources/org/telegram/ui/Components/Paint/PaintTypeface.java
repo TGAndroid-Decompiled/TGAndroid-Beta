@@ -104,11 +104,11 @@ public class PaintTypeface {
     }
 
     public static Typeface lambda$static$0() {
-        return AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM);
+        return AndroidUtilities.getTypeface("fonts/rmedium.ttf");
     }
 
     public static Typeface lambda$static$1() {
-        return AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM_ITALIC);
+        return AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf");
     }
 
     public static Typeface lambda$static$2() {
@@ -120,15 +120,15 @@ public class PaintTypeface {
     }
 
     public static Typeface lambda$static$4() {
-        return AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MONO);
+        return AndroidUtilities.getTypeface("fonts/rmono.ttf");
     }
 
     public static Typeface lambda$static$5() {
-        return AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_MERRIWEATHER_BOLD);
+        return AndroidUtilities.getTypeface("fonts/mw_bold.ttf");
     }
 
     public static Typeface lambda$static$6() {
-        return AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_COURIER_NEW_BOLD);
+        return AndroidUtilities.getTypeface("fonts/courier_new_bold.ttf");
     }
 
     public static class LazyTypeface {

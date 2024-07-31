@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import java.util.ArrayList;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.R;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.TLRPC$PhoneCall;
 import org.telegram.ui.Components.voip.VoIPHelper;
@@ -29,7 +28,7 @@ public class VoIPPermissionActivity extends Activity {
             return;
         }
         try {
-            requestPermissions((String[]) arrayList.toArray(new String[0]), z ? R.styleable.AppCompatTheme_textAppearanceLargePopupMenu : 101);
+            requestPermissions((String[]) arrayList.toArray(new String[0]), z ? 102 : 101);
         } catch (Exception e) {
             FileLog.e(e);
         }

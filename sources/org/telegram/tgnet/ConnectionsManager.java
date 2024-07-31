@@ -57,7 +57,6 @@ import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.FileUploadOperation;
 import org.telegram.messenger.KeepAliveJob;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
@@ -383,11 +382,11 @@ public class ConnectionsManager extends BaseController {
     }
 
     public int sendRequest(TLObject tLObject, RequestDelegate requestDelegate, int i) {
-        return sendRequest(tLObject, requestDelegate, null, null, null, i, DEFAULT_DATACENTER_ID, 1, true);
+        return sendRequest(tLObject, requestDelegate, null, null, null, i, Integer.MAX_VALUE, 1, true);
     }
 
     public int sendRequest(TLObject tLObject, RequestDelegate requestDelegate, int i, int i2) {
-        return sendRequest(tLObject, requestDelegate, null, null, null, i, DEFAULT_DATACENTER_ID, i2, true);
+        return sendRequest(tLObject, requestDelegate, null, null, null, i, Integer.MAX_VALUE, i2, true);
     }
 
     public int sendRequest(TLObject tLObject, RequestDelegateTimestamp requestDelegateTimestamp, int i, int i2, int i3) {
@@ -395,7 +394,7 @@ public class ConnectionsManager extends BaseController {
     }
 
     public int sendRequest(TLObject tLObject, RequestDelegate requestDelegate, QuickAckDelegate quickAckDelegate, int i) {
-        return sendRequest(tLObject, requestDelegate, null, quickAckDelegate, null, i, DEFAULT_DATACENTER_ID, 1, true);
+        return sendRequest(tLObject, requestDelegate, null, quickAckDelegate, null, i, Integer.MAX_VALUE, 1, true);
     }
 
     public int sendRequest(TLObject tLObject, RequestDelegate requestDelegate, QuickAckDelegate quickAckDelegate, WriteToSocketDelegate writeToSocketDelegate, int i, int i2, int i3, boolean z) {
@@ -1264,7 +1263,7 @@ public class ConnectionsManager extends BaseController {
                 inputStream = null;
             }
             try {
-                byte[] bArr = new byte[LiteMode.FLAG_CHAT_SCALE];
+                byte[] bArr = new byte[32768];
                 while (!isCancelled() && (read = inputStream2.read(bArr)) > 0) {
                     byteArrayOutputStream2.write(bArr, 0, read);
                 }
@@ -1415,7 +1414,7 @@ public class ConnectionsManager extends BaseController {
                     this.responseDate = (int) (openConnection.getDate() / 1000);
                     ByteArrayOutputStream byteArrayOutputStream2 = new ByteArrayOutputStream();
                     try {
-                        byte[] bArr = new byte[LiteMode.FLAG_CHAT_SCALE];
+                        byte[] bArr = new byte[32768];
                         while (!isCancelled() && (read = inputStream2.read(bArr)) > 0) {
                             byteArrayOutputStream2.write(bArr, 0, read);
                         }

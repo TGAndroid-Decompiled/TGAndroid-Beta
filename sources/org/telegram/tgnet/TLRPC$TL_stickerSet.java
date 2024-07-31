@@ -1,6 +1,4 @@
 package org.telegram.tgnet;
-
-import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_stickerSet extends TLRPC$StickerSet {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -10,7 +8,7 @@ public class TLRPC$TL_stickerSet extends TLRPC$StickerSet {
         this.official = (readInt32 & 4) != 0;
         this.masks = (readInt32 & 8) != 0;
         this.emojis = (readInt32 & 128) != 0;
-        this.text_color = (readInt32 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0;
+        this.text_color = (readInt32 & 512) != 0;
         this.channel_emoji_status = (readInt32 & 1024) != 0;
         this.creator = (readInt32 & 2048) != 0;
         if ((readInt32 & 1) != 0) {
@@ -43,7 +41,7 @@ public class TLRPC$TL_stickerSet extends TLRPC$StickerSet {
         if ((this.flags & 16) != 0) {
             this.thumb_version = abstractSerializedData.readInt32(z);
         }
-        if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
+        if ((this.flags & 256) != 0) {
             this.thumb_document_id = abstractSerializedData.readInt64(z);
         }
         this.count = abstractSerializedData.readInt32(z);
@@ -61,7 +59,7 @@ public class TLRPC$TL_stickerSet extends TLRPC$StickerSet {
         this.flags = i3;
         int i4 = this.emojis ? i3 | 128 : i3 & (-129);
         this.flags = i4;
-        int i5 = this.text_color ? i4 | LiteMode.FLAG_CALLS_ANIMATIONS : i4 & (-513);
+        int i5 = this.text_color ? i4 | 512 : i4 & (-513);
         this.flags = i5;
         int i6 = this.channel_emoji_status ? i5 | 1024 : i5 & (-1025);
         this.flags = i6;
@@ -89,7 +87,7 @@ public class TLRPC$TL_stickerSet extends TLRPC$StickerSet {
         if ((this.flags & 16) != 0) {
             abstractSerializedData.writeInt32(this.thumb_version);
         }
-        if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
+        if ((this.flags & 256) != 0) {
             abstractSerializedData.writeInt64(this.thumb_document_id);
         }
         abstractSerializedData.writeInt32(this.count);

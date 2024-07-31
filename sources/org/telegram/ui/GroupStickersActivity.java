@@ -28,7 +28,6 @@ import java.util.Locale;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessagesController;
@@ -301,7 +300,7 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
             boolean z2;
             int findFirstVisibleItemPosition = GroupStickersActivity.this.layoutManager.findFirstVisibleItemPosition();
             RecyclerListView.Holder holder = (RecyclerListView.Holder) GroupStickersActivity.this.listView.findViewHolderForAdapterPosition(findFirstVisibleItemPosition);
-            int top = holder != null ? holder.itemView.getTop() : ConnectionsManager.DEFAULT_DATACENTER_ID;
+            int top = holder != null ? holder.itemView.getTop() : Integer.MAX_VALUE;
             int i = GroupStickersActivity.this.selectedStickerSetIndex;
             if (this.val$isSelected) {
                 GroupStickersActivity.this.selectedStickerSet = null;
@@ -496,7 +495,7 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
             } else {
                 TLRPC$ChatFull tLRPC$ChatFull2 = this.info;
                 if (tLRPC$ChatFull2.stickerset == null) {
-                    tLRPC$ChatFull2.flags |= LiteMode.FLAG_CHAT_BLUR;
+                    tLRPC$ChatFull2.flags |= 256;
                 } else {
                     tLRPC$ChatFull2.flags &= -257;
                 }
@@ -1074,7 +1073,7 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
             this.editText = editTextCaption;
             editTextCaption.setLines(1);
             editTextCaption.setSingleLine(true);
-            editTextCaption.setInputType(LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM);
+            editTextCaption.setInputType(16384);
             editTextCaption.setTextSize(1, 16.0f);
             editTextCaption.setTextColor(Theme.getColor(Theme.key_chat_messagePanelText));
             editTextCaption.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkOut));

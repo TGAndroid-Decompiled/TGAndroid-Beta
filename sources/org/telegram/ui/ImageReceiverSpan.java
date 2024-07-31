@@ -36,7 +36,7 @@ public class ImageReceiverSpan extends ReplacementSpan {
         setSize(f);
         Paint paint = new Paint(1);
         this.shadowPaint = paint;
-        paint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.66f), AndroidUtilities.DARK_STATUS_BAR_OVERLAY);
+        paint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.66f), 855638016);
         setParent(view);
     }
 
@@ -85,7 +85,7 @@ public class ImageReceiverSpan extends ReplacementSpan {
             int alpha = paint.getAlpha();
             this.shadowPaintAlpha = alpha;
             paint2.setAlpha(alpha);
-            this.shadowPaint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.66f), Theme.multAlpha(AndroidUtilities.DARK_STATUS_BAR_OVERLAY, this.shadowPaintAlpha / 255.0f));
+            this.shadowPaint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.66f), Theme.multAlpha(855638016, this.shadowPaintAlpha / 255.0f));
         }
         float f2 = this.translateX + f;
         float dp = (this.translateY + ((i3 + i5) / 2.0f)) - (AndroidUtilities.dp(this.sz) / 2.0f);

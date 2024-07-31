@@ -39,7 +39,6 @@ import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
@@ -952,9 +951,9 @@ public class ContentPreviewViewer {
         int i = UserConfig.selectedAccount;
         this.currentAccount = i;
         this.centerImage.setCurrentAccount(i);
-        this.centerImage.setLayerNum(ConnectionsManager.DEFAULT_DATACENTER_ID);
+        this.centerImage.setLayerNum(Integer.MAX_VALUE);
         this.effectImage.setCurrentAccount(this.currentAccount);
-        this.effectImage.setLayerNum(ConnectionsManager.DEFAULT_DATACENTER_ID);
+        this.effectImage.setLayerNum(Integer.MAX_VALUE);
         if (this.parentActivity == activity) {
             return;
         }
@@ -1179,7 +1178,7 @@ public class ContentPreviewViewer {
                     if (this.paintingOverlay == null) {
                         PaintingOverlay paintingOverlay = new PaintingOverlay(this.containerView.getContext());
                         this.paintingOverlay = paintingOverlay;
-                        this.containerView.addView(paintingOverlay, new FrameLayout.LayoutParams((int) LiteMode.FLAG_CALLS_ANIMATIONS, (int) LiteMode.FLAG_CALLS_ANIMATIONS));
+                        this.containerView.addView(paintingOverlay, new FrameLayout.LayoutParams(512, 512));
                     }
                     z2 = false;
                     this.paintingOverlay.setEntities(importingSticker.videoEditedInfo.mediaEntities, true, true, false);

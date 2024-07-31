@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-import org.telegram.messenger.BirthdayController;
 public class TLRPC$TL_contacts_contactBirthdays extends TLObject {
     public ArrayList<TLRPC$TL_contactBirthday> contacts = new ArrayList<>();
     public ArrayList<TLRPC$User> users = new ArrayList<>();
@@ -46,7 +45,7 @@ public class TLRPC$TL_contacts_contactBirthdays extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(BirthdayController.TL_birthdays.constructor);
+        abstractSerializedData.writeInt32(290452237);
         abstractSerializedData.writeInt32(481674261);
         int size = this.contacts.size();
         abstractSerializedData.writeInt32(size);

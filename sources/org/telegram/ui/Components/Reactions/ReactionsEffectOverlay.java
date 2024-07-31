@@ -330,7 +330,7 @@ public class ReactionsEffectOverlay {
                 i5 = i2;
                 i6 = 2;
                 if (i5 != 2) {
-                    if ((i5 == 1 && LiteMode.isEnabled(LiteMode.FLAG_ANIMATED_EMOJI_CHAT)) || i5 == 0) {
+                    if ((i5 == 1 && LiteMode.isEnabled(4112)) || i5 == 0) {
                         TLRPC$Document tLRPC$Document = i5 == 1 ? tLRPC$TL_availableReaction.around_animation : tLRPC$TL_availableReaction.effect_animation;
                         if (i5 == 1) {
                             str = getFilterForAroundAnimation();

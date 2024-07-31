@@ -22,7 +22,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.FixedHeightEmptyCell;
@@ -45,7 +44,7 @@ public class FeaturesPageView extends BaseListPageView {
     }
 
     public static int lambda$new$0(SparseIntArray sparseIntArray, Item item, Item item2) {
-        return sparseIntArray.get(item.order, ConnectionsManager.DEFAULT_DATACENTER_ID) - sparseIntArray.get(item2.order, ConnectionsManager.DEFAULT_DATACENTER_ID);
+        return sparseIntArray.get(item.order, Integer.MAX_VALUE) - sparseIntArray.get(item2.order, Integer.MAX_VALUE);
     }
 
     @Override

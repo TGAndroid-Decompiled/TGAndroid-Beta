@@ -22,7 +22,6 @@ import org.telegram.messenger.BillingController;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileRefController;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
@@ -1476,11 +1475,11 @@ public class StarsController {
         TLRPC$TL_messageMediaPaidMedia tLRPC$TL_messageMediaPaidMedia = (TLRPC$TL_messageMediaPaidMedia) messageObject.messageOwner.media;
         TLRPC$TL_messages_editMessage tLRPC$TL_messages_editMessage = new TLRPC$TL_messages_editMessage();
         tLRPC$TL_messages_editMessage.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(dialogId);
-        int i = tLRPC$TL_messages_editMessage.flags | LiteMode.FLAG_CHAT_SCALE;
+        int i = tLRPC$TL_messages_editMessage.flags | 32768;
         tLRPC$TL_messages_editMessage.flags = i;
         tLRPC$TL_messages_editMessage.schedule_date = messageObject.messageOwner.date;
         tLRPC$TL_messages_editMessage.id = id;
-        tLRPC$TL_messages_editMessage.flags = i | LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM;
+        tLRPC$TL_messages_editMessage.flags = i | 16384;
         TLRPC$TL_inputMediaPaidMedia tLRPC$TL_inputMediaPaidMedia = new TLRPC$TL_inputMediaPaidMedia();
         tLRPC$TL_inputMediaPaidMedia.stars_amount = j;
         for (int i2 = 0; i2 < tLRPC$TL_messageMediaPaidMedia.extended_media.size(); i2++) {

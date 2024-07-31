@@ -44,7 +44,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
     private int videoWidth;
 
     public void setBackgroundRenderer(TextureView textureView) {
-        if (LiteMode.isEnabled(LiteMode.FLAG_CALLS_ANIMATIONS)) {
+        if (LiteMode.isEnabled(512)) {
             this.backgroundRenderer = textureView;
             if (textureView == null) {
                 ThreadUtils.checkIsOnMainThread();
@@ -187,7 +187,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
         }
 
         private void logD(String str) {
-            Logging.d(TAG, this.name + ": " + str);
+            Logging.d("TextureEglRenderer", this.name + ": " + str);
         }
 
         @Override
@@ -596,7 +596,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
     }
 
     private void logD(String str) {
-        Logging.d(TAG, this.resourceName + ": " + str);
+        Logging.d("TextureViewRenderer", this.resourceName + ": " + str);
     }
 
     public void createBackgroundSurface(SurfaceTexture surfaceTexture) {

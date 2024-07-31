@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-import org.telegram.messenger.LiteMode;
 public abstract class TLRPC$Updates extends TLObject {
     public long chat_id;
     public int date;
@@ -43,7 +42,7 @@ public abstract class TLRPC$Updates extends TLObject {
                         this.pts = abstractSerializedData2.readInt32(z2);
                         this.pts_count = abstractSerializedData2.readInt32(z2);
                         this.date = abstractSerializedData2.readInt32(z2);
-                        if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+                        if ((this.flags & 512) != 0) {
                             this.media = TLRPC$MessageMedia.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
                         if ((this.flags & 128) != 0) {
@@ -63,7 +62,7 @@ public abstract class TLRPC$Updates extends TLObject {
                                 this.entities.add(TLdeserialize);
                             }
                         }
-                        if ((this.flags & ConnectionsManager.FileTypeVideo) != 0) {
+                        if ((this.flags & 33554432) != 0) {
                             this.ttl_period = abstractSerializedData2.readInt32(z2);
                         }
                     }
@@ -82,7 +81,7 @@ public abstract class TLRPC$Updates extends TLObject {
                         this.out = (readInt32 & 2) != 0;
                         this.mentioned = (readInt32 & 16) != 0;
                         this.media_unread = (readInt32 & 32) != 0;
-                        this.silent = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0;
+                        this.silent = (readInt32 & 8192) != 0;
                         this.id = abstractSerializedData2.readInt32(z2);
                         this.user_id = abstractSerializedData2.readInt64(z2);
                         this.message = abstractSerializedData2.readString(z2);
@@ -115,7 +114,7 @@ public abstract class TLRPC$Updates extends TLObject {
                                 this.entities.add(TLdeserialize);
                             }
                         }
-                        if ((this.flags & ConnectionsManager.FileTypeVideo) != 0) {
+                        if ((this.flags & 33554432) != 0) {
                             this.ttl_period = abstractSerializedData2.readInt32(z2);
                         }
                     }
@@ -130,7 +129,7 @@ public abstract class TLRPC$Updates extends TLObject {
                         this.out = (readInt32 & 2) != 0;
                         this.mentioned = (readInt32 & 16) != 0;
                         this.media_unread = (readInt32 & 32) != 0;
-                        this.silent = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0;
+                        this.silent = (readInt32 & 8192) != 0;
                         this.id = abstractSerializedData2.readInt32(z2);
                         this.from_id = abstractSerializedData2.readInt64(z2);
                         this.chat_id = abstractSerializedData2.readInt64(z2);
@@ -164,7 +163,7 @@ public abstract class TLRPC$Updates extends TLObject {
                                 this.entities.add(TLdeserialize);
                             }
                         }
-                        if ((this.flags & ConnectionsManager.FileTypeVideo) != 0) {
+                        if ((this.flags & 33554432) != 0) {
                             this.ttl_period = abstractSerializedData2.readInt32(z2);
                         }
                     }

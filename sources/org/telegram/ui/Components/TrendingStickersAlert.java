@@ -257,7 +257,7 @@ public class TrendingStickersAlert extends BottomSheet {
             if (this.statusBarOpen != z) {
                 this.statusBarOpen = z;
                 boolean z2 = AndroidUtilities.computePerceivedBrightness(TrendingStickersAlert.this.getThemedColor(Theme.key_dialogBackground)) > 0.721f;
-                boolean z3 = AndroidUtilities.computePerceivedBrightness(Theme.blendOver(TrendingStickersAlert.this.getThemedColor(Theme.key_actionBarDefault), AndroidUtilities.DARK_STATUS_BAR_OVERLAY)) > 0.721f;
+                boolean z3 = AndroidUtilities.computePerceivedBrightness(Theme.blendOver(TrendingStickersAlert.this.getThemedColor(Theme.key_actionBarDefault), 855638016)) > 0.721f;
                 if (!z) {
                     z2 = z3;
                 }

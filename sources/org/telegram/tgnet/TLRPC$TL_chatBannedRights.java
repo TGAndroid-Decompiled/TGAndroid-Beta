@@ -1,7 +1,4 @@
 package org.telegram.tgnet;
-
-import org.telegram.messenger.FileLoaderPriorityQueue;
-import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_chatBannedRights extends TLObject {
     public boolean change_info;
     public boolean embed_links;
@@ -51,7 +48,7 @@ public class TLRPC$TL_chatBannedRights extends TLObject {
         this.send_games = (readInt32 & 32) != 0;
         this.send_inline = (readInt32 & 64) != 0;
         this.embed_links = (readInt32 & 128) != 0;
-        this.send_polls = (readInt32 & LiteMode.FLAG_CHAT_BLUR) != 0;
+        this.send_polls = (readInt32 & 256) != 0;
         this.change_info = (readInt32 & 1024) != 0;
         this.invite_users = (32768 & readInt32) != 0;
         this.pin_messages = (131072 & readInt32) != 0;
@@ -62,7 +59,7 @@ public class TLRPC$TL_chatBannedRights extends TLObject {
         this.send_audios = (4194304 & readInt32) != 0;
         this.send_voices = (8388608 & readInt32) != 0;
         this.send_docs = (16777216 & readInt32) != 0;
-        this.send_plain = (readInt32 & ConnectionsManager.FileTypeVideo) != 0;
+        this.send_plain = (readInt32 & 33554432) != 0;
         if (z2) {
             this.send_photos = true;
             this.send_videos = true;
@@ -105,11 +102,11 @@ public class TLRPC$TL_chatBannedRights extends TLObject {
         this.flags = i7;
         int i8 = this.embed_links ? i7 | 128 : i7 & (-129);
         this.flags = i8;
-        int i9 = this.send_polls ? i8 | LiteMode.FLAG_CHAT_BLUR : i8 & (-257);
+        int i9 = this.send_polls ? i8 | 256 : i8 & (-257);
         this.flags = i9;
         int i10 = this.change_info ? i9 | 1024 : i9 & (-1025);
         this.flags = i10;
-        int i11 = this.invite_users ? i10 | LiteMode.FLAG_CHAT_SCALE : i10 & (-32769);
+        int i11 = this.invite_users ? i10 | 32768 : i10 & (-32769);
         this.flags = i11;
         int i12 = this.pin_messages ? i11 | 131072 : i11 & (-131073);
         this.flags = i12;
@@ -117,7 +114,7 @@ public class TLRPC$TL_chatBannedRights extends TLObject {
         this.flags = i13;
         int i14 = z ? 524288 | i13 : (-524289) & i13;
         this.flags = i14;
-        int i15 = this.send_videos ? i14 | FileLoaderPriorityQueue.PRIORITY_VALUE_MAX : i14 & (-1048577);
+        int i15 = this.send_videos ? i14 | 1048576 : i14 & (-1048577);
         this.flags = i15;
         int i16 = this.send_roundvideos ? i15 | 2097152 : i15 & (-2097153);
         this.flags = i16;
@@ -125,9 +122,9 @@ public class TLRPC$TL_chatBannedRights extends TLObject {
         this.flags = i17;
         int i18 = this.send_voices ? i17 | 8388608 : i17 & (-8388609);
         this.flags = i18;
-        int i19 = this.send_docs ? i18 | ConnectionsManager.FileTypePhoto : i18 & (-16777217);
+        int i19 = this.send_docs ? i18 | 16777216 : i18 & (-16777217);
         this.flags = i19;
-        int i20 = z2 ? i19 | ConnectionsManager.FileTypeVideo : i19 & (-33554433);
+        int i20 = z2 ? i19 | 33554432 : i19 & (-33554433);
         this.flags = i20;
         abstractSerializedData.writeInt32(i20);
         abstractSerializedData.writeInt32(this.until_date);

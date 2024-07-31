@@ -443,17 +443,17 @@ public class PushListenerController {
                 return LocaleController.formatString(R.string.PushReactVideo, objArr);
             case 30:
                 return LocaleController.formatString(R.string.PushReactDoc, objArr);
-            case R.styleable.AppCompatTheme_actionModeWebSearchDrawable:
+            case 31:
                 return LocaleController.formatString(R.string.PushReactGeo, objArr);
             case ' ':
                 return LocaleController.formatString(R.string.PushReactGif, objArr);
-            case R.styleable.AppCompatTheme_actionOverflowMenuStyle:
+            case '!':
                 return LocaleController.formatString(R.string.PushChatReactGame, objArr);
-            case R.styleable.AppCompatTheme_activityChooserViewStyle:
+            case '\"':
                 return LocaleController.formatString(R.string.PushChatReactPoll, objArr);
-            case R.styleable.AppCompatTheme_alertDialogButtonGroupStyle:
+            case '#':
                 return LocaleController.formatString(R.string.PushChatReactQuiz, objArr);
-            case R.styleable.AppCompatTheme_alertDialogCenterButtons:
+            case '$':
                 return LocaleController.formatString(R.string.PushChatReactText, objArr);
             default:
                 return null;

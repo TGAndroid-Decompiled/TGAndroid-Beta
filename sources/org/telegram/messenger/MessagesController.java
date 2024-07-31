@@ -918,7 +918,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public Set<String> webAppAllowedProtocols;
     public int webFileDatacenterId;
     public String youtubePipType;
-    public static int UPDATE_MASK_ALL = (((((((((2 | 4) | 1) | 8) | 16) | 32) | 64) | 128) | LiteMode.FLAG_CHAT_BLUR) | 1024) | FileLoaderPriorityQueue.PRIORITY_VALUE_MAX;
+    public static int UPDATE_MASK_ALL = (((((((((2 | 4) | 1) | 8) | 16) | 32) | 64) | 128) | 256) | 1024) | 1048576;
     public static int DIALOG_FILTER_FLAG_ALL_CHATS = (((1 | 2) | 4) | 8) | 16;
     private static volatile MessagesController[] Instance = new MessagesController[4];
     private static final Object[] lockObjects = new Object[4];
@@ -1302,7 +1302,7 @@ public class MessagesController extends BaseController implements NotificationCe
 
     public int getChatMaxUniqReactions(long j) {
         TLRPC$ChatFull chatFull = getInstance(this.currentAccount).getChatFull(-j);
-        if (chatFull != null && (!(chatFull instanceof TLRPC$TL_chatFull) ? (chatFull.flags2 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0 : (chatFull.flags & FileLoaderPriorityQueue.PRIORITY_VALUE_MAX) != 0)) {
+        if (chatFull != null && (!(chatFull instanceof TLRPC$TL_chatFull) ? (chatFull.flags2 & 8192) != 0 : (chatFull.flags & 1048576) != 0)) {
             return chatFull.reactions_limit;
         }
         return this.reactionsUniqMax;
@@ -1916,7 +1916,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.dialogsForBlock = new ArrayList<>();
         this.dialogsGroupsOnly = new ArrayList<>();
         this.selectedDialogFilter = new DialogFilter[2];
-        this.dialogsLoadedTillDate = ConnectionsManager.DEFAULT_DATACENTER_ID;
+        this.dialogsLoadedTillDate = Integer.MAX_VALUE;
         this.dialogs_read_inbox_max = new ConcurrentHashMap<>(100, 1.0f, 2);
         this.dialogs_read_outbox_max = new ConcurrentHashMap<>(100, 1.0f, 2);
         this.dialogs_dict = new LongSparseArray<>();
@@ -2123,14 +2123,14 @@ public class MessagesController extends BaseController implements NotificationCe
         this.updateCheckDelay = this.mainPreferences.getInt("updateCheckDelay", 86400);
         this.maxFolderPinnedDialogsCountDefault = this.mainPreferences.getInt("maxFolderPinnedDialogsCountDefault", 100);
         this.maxFolderPinnedDialogsCountPremium = this.mainPreferences.getInt("maxFolderPinnedDialogsCountPremium", 100);
-        this.maxMessageLength = this.mainPreferences.getInt("maxMessageLength", LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM);
+        this.maxMessageLength = this.mainPreferences.getInt("maxMessageLength", 4096);
         this.maxCaptionLength = this.mainPreferences.getInt("maxCaptionLength", 1024);
         this.mapProvider = this.mainPreferences.getInt("mapProvider", 0);
         this.availableMapProviders = this.mainPreferences.getInt("availableMapProviders", 3);
         this.mapKey = this.mainPreferences.getString("pk", null);
         this.installReferer = this.mainPreferences.getString("installReferer", null);
-        this.revokeTimeLimit = this.mainPreferences.getInt("revokeTimeLimit", ConnectionsManager.DEFAULT_DATACENTER_ID);
-        this.revokeTimePmLimit = this.mainPreferences.getInt("revokeTimePmLimit", ConnectionsManager.DEFAULT_DATACENTER_ID);
+        this.revokeTimeLimit = this.mainPreferences.getInt("revokeTimeLimit", Integer.MAX_VALUE);
+        this.revokeTimePmLimit = this.mainPreferences.getInt("revokeTimePmLimit", Integer.MAX_VALUE);
         this.canRevokePmInbox = this.mainPreferences.getBoolean("canRevokePmInbox", this.canRevokePmInbox);
         this.preloadFeaturedStickers = this.mainPreferences.getBoolean("preloadFeaturedStickers", false);
         this.youtubePipType = this.mainPreferences.getString("youtubePipType", "disabled");
@@ -2188,7 +2188,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.publicLinksLimitDefault = this.mainPreferences.getInt("publicLinksLimitDefault", 10);
         this.publicLinksLimitPremium = this.mainPreferences.getInt("publicLinksLimitPremium", 20);
         this.captionLengthLimitDefault = this.mainPreferences.getInt("captionLengthLimitDefault", 1024);
-        this.captionLengthLimitPremium = this.mainPreferences.getInt("captionLengthLimitPremium", LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM);
+        this.captionLengthLimitPremium = this.mainPreferences.getInt("captionLengthLimitPremium", 4096);
         this.storyCaptionLengthLimitDefault = this.mainPreferences.getInt("storyCaptionLengthLimit", 200);
         this.storyCaptionLengthLimitPremium = this.mainPreferences.getInt("storyCaptionLengthLimitPremium", 2048);
         this.aboutLengthLimitDefault = this.mainPreferences.getInt("aboutLengthLimitDefault", 70);
@@ -4754,7 +4754,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.dialogsServerOnly.clear();
         this.dialogsForward.clear();
         this.allDialogs.clear();
-        this.dialogsLoadedTillDate = ConnectionsManager.DEFAULT_DATACENTER_ID;
+        this.dialogsLoadedTillDate = Integer.MAX_VALUE;
         this.dialogsCanAddUsers.clear();
         this.dialogsMyChannels.clear();
         this.dialogsMyGroups.clear();
@@ -5175,14 +5175,14 @@ public class MessagesController extends BaseController implements NotificationCe
                     if (tLRPC$TL_chatBannedRights2 == null) {
                         tLRPC$Chat2.flags &= -32769;
                     } else {
-                        tLRPC$Chat2.flags |= LiteMode.FLAG_CHAT_SCALE;
+                        tLRPC$Chat2.flags |= 32768;
                     }
                     TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights = tLRPC$Chat.admin_rights;
                     tLRPC$Chat2.admin_rights = tLRPC$TL_chatAdminRights;
                     if (tLRPC$TL_chatAdminRights == null) {
                         tLRPC$Chat2.flags &= -16385;
                     } else {
-                        tLRPC$Chat2.flags |= LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM;
+                        tLRPC$Chat2.flags |= 16384;
                     }
                     if (tLRPC$Chat.stories_hidden_min) {
                         tLRPC$Chat.stories_hidden = tLRPC$Chat2.stories_hidden;
@@ -5213,12 +5213,12 @@ public class MessagesController extends BaseController implements NotificationCe
                 TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights2 = tLRPC$Chat2.admin_rights;
                 if (tLRPC$TL_chatAdminRights2 != null) {
                     tLRPC$Chat.admin_rights = tLRPC$TL_chatAdminRights2;
-                    tLRPC$Chat.flags |= LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM;
+                    tLRPC$Chat.flags |= 16384;
                 }
                 TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights6 = tLRPC$Chat2.banned_rights;
                 if (tLRPC$TL_chatBannedRights6 != null) {
                     tLRPC$Chat.banned_rights = tLRPC$TL_chatBannedRights6;
-                    tLRPC$Chat.flags |= LiteMode.FLAG_CHAT_SCALE;
+                    tLRPC$Chat.flags |= 32768;
                 }
                 String str = tLRPC$Chat2.username;
                 if (str != null) {
@@ -5256,12 +5256,12 @@ public class MessagesController extends BaseController implements NotificationCe
             TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights3 = tLRPC$Chat.admin_rights;
             if (tLRPC$TL_chatAdminRights3 != null) {
                 tLRPC$Chat2.admin_rights = tLRPC$TL_chatAdminRights3;
-                tLRPC$Chat2.flags |= LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM;
+                tLRPC$Chat2.flags |= 16384;
             }
             TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights8 = tLRPC$Chat.banned_rights;
             if (tLRPC$TL_chatBannedRights8 != null) {
                 tLRPC$Chat2.banned_rights = tLRPC$TL_chatBannedRights8;
-                tLRPC$Chat2.flags |= LiteMode.FLAG_CHAT_SCALE;
+                tLRPC$Chat2.flags |= 32768;
             }
             String str2 = tLRPC$Chat.username;
             if (str2 != null) {
@@ -5881,7 +5881,7 @@ public class MessagesController extends BaseController implements NotificationCe
                     getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogsNeedReload, new Object[0]);
                 }
             }
-            if ((tLRPC$UserFull.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
+            if ((tLRPC$UserFull.flags & 16384) != 0) {
                 int i4 = tLRPC$Dialog.ttl_period;
                 int i5 = tLRPC$UserFull.ttl_period;
                 if (i4 != i5) {
@@ -6152,7 +6152,7 @@ public class MessagesController extends BaseController implements NotificationCe
             }
         }
         if (j == getUserConfig().getClientUserId()) {
-            tLRPC$PeerSettings.business_bot_id = UserObject.REPLY_BOT;
+            tLRPC$PeerSettings.business_bot_id = 1271266957L;
             tLRPC$PeerSettings.business_bot_manage_url = "https://telegram.org/";
         }
         edit.apply();
@@ -7349,7 +7349,7 @@ public class MessagesController extends BaseController implements NotificationCe
             TLRPC$UserProfilePhoto tLRPC$UserProfilePhoto = user.photo;
             TLRPC$Photo tLRPC$Photo = tLRPC$TL_photos_photo.photo;
             tLRPC$UserProfilePhoto.photo_id = tLRPC$Photo.id;
-            tLRPC$UserProfilePhoto.photo_small = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo.sizes, ImageReceiver.DEFAULT_CROSSFADE_DURATION).location;
+            tLRPC$UserProfilePhoto.photo_small = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo.sizes, 150).location;
             user.photo.photo_big = FileLoader.getClosestPhotoSizeWithSize(tLRPC$TL_photos_photo.photo.sizes, 800).location;
             user.photo.dc_id = tLRPC$TL_photos_photo.photo.dc_id;
         } else {
@@ -7373,7 +7373,7 @@ public class MessagesController extends BaseController implements NotificationCe
             return;
         }
         this.uploadingAvatar = FileLoader.getDirectory(4) + "/" + tLRPC$FileLocation.volume_id + "_" + tLRPC$FileLocation.local_id + ".jpg";
-        getFileLoader().uploadFile(this.uploadingAvatar, false, true, ConnectionsManager.FileTypePhoto);
+        getFileLoader().uploadFile(this.uploadingAvatar, false, true, 16777216);
     }
 
     public void saveTheme(Theme.ThemeInfo themeInfo, Theme.ThemeAccent themeAccent, boolean z, boolean z2) {
@@ -7489,8 +7489,8 @@ public class MessagesController extends BaseController implements NotificationCe
             themeAccent.uploadingFile = str2;
             themeAccent.uploadingThumb = str;
         }
-        getFileLoader().uploadFile(str2, false, true, ConnectionsManager.FileTypeFile);
-        getFileLoader().uploadFile(str, false, true, ConnectionsManager.FileTypePhoto);
+        getFileLoader().uploadFile(str2, false, true, 67108864);
+        getFileLoader().uploadFile(str, false, true, 16777216);
     }
 
     public void saveWallpaperToServer(java.io.File r8, org.telegram.ui.ActionBar.Theme.OverrideWallpaperInfo r9, boolean r10, final long r11) {
@@ -7719,7 +7719,7 @@ public class MessagesController extends BaseController implements NotificationCe
                     nativeByteBuffer4 = null;
                 }
                 try {
-                    nativeByteBuffer4.writeInt32(R.styleable.AppCompatTheme_textAppearanceListItem);
+                    nativeByteBuffer4.writeInt32(103);
                     nativeByteBuffer4.writeInt64(j);
                     nativeByteBuffer4.writeInt32(i2);
                     tLRPC$TL_messages_deleteQuickReplyMessages2.serializeToStream(nativeByteBuffer4);
@@ -8158,16 +8158,16 @@ public class MessagesController extends BaseController implements NotificationCe
             tLRPC$UserFull = getUserFull(j);
             if (tLRPC$UserFull != null) {
                 tLRPC$UserFull.ttl_period = i;
-                tLRPC$UserFull.flags |= LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM;
+                tLRPC$UserFull.flags |= 16384;
             }
         } else {
             TLRPC$ChatFull chatFull = getChatFull(-j);
             if (chatFull != null) {
                 chatFull.ttl_period = i;
                 if (chatFull instanceof TLRPC$TL_channelFull) {
-                    chatFull.flags |= ConnectionsManager.FileTypePhoto;
+                    chatFull.flags |= 16777216;
                 } else {
-                    chatFull.flags |= LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM;
+                    chatFull.flags |= 16384;
                 }
             }
             tLRPC$ChatFull = chatFull;
@@ -8293,7 +8293,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 iArr[0] = Math.max(iArr[0], savedDialog.top_message_id);
                 getSavedMessagesController().deleteDialog(j);
             }
-            tLRPC$TL_messages_deleteSavedHistory.max_id = iArr[0] <= 0 ? ConnectionsManager.DEFAULT_DATACENTER_ID : iArr[0];
+            tLRPC$TL_messages_deleteSavedHistory.max_id = iArr[0] <= 0 ? Integer.MAX_VALUE : iArr[0];
         }
         getConnectionsManager().sendRequest(tLRPC$TL_messages_deleteSavedHistory, new RequestDelegate() {
             @Override
@@ -10093,7 +10093,7 @@ public class MessagesController extends BaseController implements NotificationCe
             i15 = 0;
         } else {
             if (z3 && i2 == 2) {
-                i14 = ConnectionsManager.DEFAULT_DATACENTER_ID;
+                i14 = Integer.MAX_VALUE;
                 for (int i18 = 0; i18 < tLRPC$messages_Messages.messages.size(); i18++) {
                     TLRPC$Message tLRPC$Message = tLRPC$messages_Messages.messages.get(i18);
                     if ((!tLRPC$Message.out || tLRPC$Message.from_scheduled) && (i16 = tLRPC$Message.id) > i3 && i16 < i14) {
@@ -10103,7 +10103,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 i13 = i3;
             } else {
                 i13 = i3;
-                i14 = ConnectionsManager.DEFAULT_DATACENTER_ID;
+                i14 = Integer.MAX_VALUE;
             }
             i15 = i14 == Integer.MAX_VALUE ? i13 : i14;
         }
@@ -10433,8 +10433,8 @@ public class MessagesController extends BaseController implements NotificationCe
                 boolean z = notificationsSettings.getBoolean("EnableGroup", true);
                 SharedPreferences.Editor edit = notificationsSettings.edit();
                 if (!z) {
-                    edit.putInt("EnableGroup2", ConnectionsManager.DEFAULT_DATACENTER_ID);
-                    edit.putInt("EnableChannel2", ConnectionsManager.DEFAULT_DATACENTER_ID);
+                    edit.putInt("EnableGroup2", Integer.MAX_VALUE);
+                    edit.putInt("EnableChannel2", Integer.MAX_VALUE);
                 }
                 edit.remove("EnableGroup").commit();
                 editor = edit;
@@ -10445,7 +10445,7 @@ public class MessagesController extends BaseController implements NotificationCe
                     editor = notificationsSettings.edit();
                 }
                 if (!z2) {
-                    editor.putInt("EnableAll2", ConnectionsManager.DEFAULT_DATACENTER_ID);
+                    editor.putInt("EnableAll2", Integer.MAX_VALUE);
                 }
                 editor.remove("EnableAll").commit();
             }
@@ -11358,7 +11358,7 @@ public class MessagesController extends BaseController implements NotificationCe
         int currentTime = getConnectionsManager().getCurrentTime();
         int size2 = arrayList.size();
         boolean z = false;
-        int i3 = ConnectionsManager.DEFAULT_DATACENTER_ID;
+        int i3 = Integer.MAX_VALUE;
         for (int i4 = 0; i4 < size2; i4++) {
             MessageObject messageObject = arrayList.get(i4);
             if (messageObject.type == 17) {
@@ -11477,7 +11477,7 @@ public class MessagesController extends BaseController implements NotificationCe
             e = e;
         }
         try {
-            nativeByteBuffer.writeInt32(R.styleable.AppCompatTheme_textAppearanceLargePopupMenu);
+            nativeByteBuffer.writeInt32(102);
             nativeByteBuffer.writeInt64(j);
             nativeByteBuffer.writeInt32(i);
         } catch (Exception e2) {
@@ -13253,7 +13253,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 }
             }
             if (tLRPC$Photo != null) {
-                TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo.sizes, ImageReceiver.DEFAULT_CROSSFADE_DURATION);
+                TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo.sizes, 150);
                 TLRPC$VideoSize tLRPC$VideoSize = tLRPC$Photo.video_sizes.isEmpty() ? null : tLRPC$Photo.video_sizes.get(0);
                 if (closestPhotoSizeWithSize != null && tLRPC$FileLocation != null) {
                     getFileLoader().getPathToAttach(tLRPC$FileLocation, true).renameTo(getFileLoader().getPathToAttach(closestPhotoSizeWithSize, true));
@@ -13399,7 +13399,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.registeringForPush = true;
         this.lastPushRegisterSendTime = SystemClock.elapsedRealtime();
         if (SharedConfig.pushAuthKey == null) {
-            SharedConfig.pushAuthKey = new byte[LiteMode.FLAG_CHAT_BLUR];
+            SharedConfig.pushAuthKey = new byte[256];
             Utilities.random.nextBytes(SharedConfig.pushAuthKey);
             SharedConfig.saveConfig();
         }
@@ -14782,7 +14782,7 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         if ((!ChatObject.isNotInChat(chat) || z) && !chat.creator) {
             TLRPC$TL_messageService tLRPC$TL_messageService = new TLRPC$TL_messageService();
-            tLRPC$TL_messageService.flags = LiteMode.FLAG_CHAT_BLUR;
+            tLRPC$TL_messageService.flags = 256;
             int newMessageId = getUserConfig().getNewMessageId();
             tLRPC$TL_messageService.id = newMessageId;
             tLRPC$TL_messageService.local_id = newMessageId;
@@ -14912,7 +14912,7 @@ public class MessagesController extends BaseController implements NotificationCe
                     arrayList = null;
                 } else {
                     TLRPC$TL_messageService tLRPC$TL_messageService = new TLRPC$TL_messageService();
-                    tLRPC$TL_messageService.flags = LiteMode.FLAG_CHAT_BLUR;
+                    tLRPC$TL_messageService.flags = 256;
                     int newMessageId = getUserConfig().getNewMessageId();
                     tLRPC$TL_messageService.id = newMessageId;
                     tLRPC$TL_messageService.local_id = newMessageId;
@@ -15581,7 +15581,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public boolean isDialogMuted(long j, long j2, TLRPC$Chat tLRPC$Chat) {
         Boolean bool;
         SharedPreferences sharedPreferences = this.notificationsPreferences;
-        int i = sharedPreferences.getInt(NotificationsSettingsFacade.PROPERTY_NOTIFY + NotificationsController.getSharedPrefKey(j, j2), -1);
+        int i = sharedPreferences.getInt("notify2_" + NotificationsController.getSharedPrefKey(j, j2), -1);
         boolean z = false;
         if (i == -1) {
             if (tLRPC$Chat != null) {
@@ -15602,7 +15602,7 @@ public class MessagesController extends BaseController implements NotificationCe
         } else {
             if (i == 3) {
                 SharedPreferences sharedPreferences2 = this.notificationsPreferences;
-                if (sharedPreferences2.getInt(NotificationsSettingsFacade.PROPERTY_NOTIFY_UNTIL + NotificationsController.getSharedPrefKey(j, j2), 0) >= getConnectionsManager().getCurrentTime()) {
+                if (sharedPreferences2.getInt("notifyuntil_" + NotificationsController.getSharedPrefKey(j, j2), 0) >= getConnectionsManager().getCurrentTime()) {
                     return true;
                 }
             }
@@ -15698,7 +15698,7 @@ public class MessagesController extends BaseController implements NotificationCe
                         tLRPC$TL_message.flags |= 128;
                     }
                     tLRPC$TL_message.peer_id = getPeer(j);
-                    tLRPC$TL_message.flags |= LiteMode.FLAG_CHAT_BLUR;
+                    tLRPC$TL_message.flags |= 256;
                     tLRPC$TL_message.date = getConnectionsManager().getCurrentTime();
                     int i5 = i4 - 1;
                     tLRPC$TL_message.id = i4;
@@ -16604,9 +16604,9 @@ public class MessagesController extends BaseController implements NotificationCe
         TLRPC$ChatFull chatFull = getChatFull(j);
         if (chatFull != null) {
             if (chatFull instanceof TLRPC$TL_channelFull) {
-                chatFull.flags2 |= LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM;
+                chatFull.flags2 |= 8192;
             } else {
-                chatFull.flags |= FileLoaderPriorityQueue.PRIORITY_VALUE_MAX;
+                chatFull.flags |= 1048576;
             }
             chatFull.reactions_limit = i2;
             getMessagesStorage().updateChatInfo(chatFull, false);
@@ -16925,7 +16925,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public String getMutedString(long j, long j2) {
         if (getMessagesController().isDialogMuted(j, j2)) {
             SharedPreferences sharedPreferences = this.notificationsPreferences;
-            int i = sharedPreferences.getInt(NotificationsSettingsFacade.PROPERTY_NOTIFY_UNTIL + NotificationsController.getSharedPrefKey(j, j2), 0);
+            int i = sharedPreferences.getInt("notifyuntil_" + NotificationsController.getSharedPrefKey(j, j2), 0);
             return i >= getConnectionsManager().getCurrentTime() ? LocaleController.formatString("NotificationsMutedForHint", R.string.NotificationsMutedForHint, LocaleController.formatTTLString(i)) : LocaleController.getString(R.string.NotificationsMuted);
         }
         return LocaleController.getString(R.string.NotificationsUnmuted);

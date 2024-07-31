@@ -123,7 +123,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
             }
         });
         this.fragmentView = this.contentView;
-        this.FLAGS_CHAT = AndroidUtilities.isTablet() ? 98720 : LiteMode.FLAGS_CHAT;
+        this.FLAGS_CHAT = AndroidUtilities.isTablet() ? 98720 : 98784;
         updateItems();
         return this.fragmentView;
     }
@@ -251,11 +251,11 @@ public class LiteModeSettingsActivity extends BaseFragment {
             this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsAutoplayKeyboard"), 1));
             this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsAutoplayChat"), 2));
         }
-        this.items.add(Item.asSwitch(R.drawable.msg2_smile_status, LocaleController.getString("LiteOptionsEmoji", R.string.LiteOptionsEmoji), LiteMode.FLAGS_ANIMATED_EMOJI));
+        this.items.add(Item.asSwitch(R.drawable.msg2_smile_status, LocaleController.getString("LiteOptionsEmoji", R.string.LiteOptionsEmoji), 28700));
         if (this.expanded[1]) {
-            this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsAutoplayKeyboard"), LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD));
-            this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsAutoplayReactions"), LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS));
-            this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsAutoplayChat"), LiteMode.FLAG_ANIMATED_EMOJI_CHAT));
+            this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsAutoplayKeyboard"), 16388));
+            this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsAutoplayReactions"), 8200));
+            this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsAutoplayChat"), 4112));
         }
         this.items.add(Item.asSwitch(R.drawable.msg2_ask_question, LocaleController.getString("LiteOptionsChat"), this.FLAGS_CHAT));
         if (this.expanded[2]) {
@@ -265,14 +265,14 @@ public class LiteModeSettingsActivity extends BaseFragment {
             }
             this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsSpoiler"), 128));
             if (SharedConfig.getDevicePerformanceClass() >= 1 || BuildVars.DEBUG_PRIVATE_VERSION) {
-                this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsBlur"), LiteMode.FLAG_CHAT_BLUR));
+                this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsBlur"), 256));
             }
-            this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsScale"), LiteMode.FLAG_CHAT_SCALE));
+            this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsScale"), 32768));
             if (ThanosEffect.supports()) {
                 this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsThanos"), 65536));
             }
         }
-        this.items.add(Item.asSwitch(R.drawable.msg2_call_earpiece, LocaleController.getString("LiteOptionsCalls"), LiteMode.FLAG_CALLS_ANIMATIONS));
+        this.items.add(Item.asSwitch(R.drawable.msg2_call_earpiece, LocaleController.getString("LiteOptionsCalls"), 512));
         this.items.add(Item.asSwitch(R.drawable.msg2_videocall, LocaleController.getString("LiteOptionsAutoplayVideo"), 1024));
         this.items.add(Item.asSwitch(R.drawable.msg2_gif, LocaleController.getString("LiteOptionsAutoplayGifs"), 2048));
         this.items.add(Item.asInfo(""));

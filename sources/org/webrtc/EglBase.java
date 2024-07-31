@@ -159,7 +159,7 @@ public interface EglBase {
                 arrayList.add(1);
             }
             if (this.isRecordable) {
-                arrayList.add(Integer.valueOf((int) EglBase.EGL_RECORDABLE_ANDROID));
+                arrayList.add(12610);
                 arrayList.add(1);
             }
             arrayList.add(12344);

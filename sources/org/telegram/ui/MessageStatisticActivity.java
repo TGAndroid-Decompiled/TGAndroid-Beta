@@ -456,7 +456,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
             } else if (!TextUtils.isEmpty(this.messageObject.messageOwner.message)) {
                 CharSequence charSequence2 = this.messageObject.messageText;
                 if (charSequence2.length() > 150) {
-                    charSequence2 = charSequence2.subSequence(0, ImageReceiver.DEFAULT_CROSSFADE_DURATION);
+                    charSequence2 = charSequence2.subSequence(0, 150);
                 }
                 charSequence = Emoji.replaceEmoji(charSequence2, this.avatarContainer.getSubtitlePaint().getFontMetricsInt(), AndroidUtilities.dp(17.0f), false);
             } else {

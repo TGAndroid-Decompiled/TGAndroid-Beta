@@ -28,7 +28,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
@@ -566,7 +565,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         tLRPC$TL_channelLocation.geo_point = tLRPC$MessageMedia.geo;
         TLRPC$ChatFull tLRPC$ChatFull = this.info;
         tLRPC$ChatFull.location = tLRPC$TL_channelLocation;
-        tLRPC$ChatFull.flags |= LiteMode.FLAG_CHAT_SCALE;
+        tLRPC$ChatFull.flags |= 32768;
         updateFields(false, true);
         getMessagesController().loadFullChat(this.chatId, 0, true);
     }

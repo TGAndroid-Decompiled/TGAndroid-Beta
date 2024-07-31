@@ -22,7 +22,6 @@ import java.util.ArrayList;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
@@ -335,7 +334,7 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                 int lastIndexOf = this.currentPassword.login_email_pattern.lastIndexOf(42);
                 if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
                     TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun();
-                    textStyleRun.flags |= LiteMode.FLAG_CHAT_BLUR;
+                    textStyleRun.flags |= 256;
                     textStyleRun.start = indexOf;
                     int i4 = lastIndexOf + 1;
                     textStyleRun.end = i4;
@@ -1364,7 +1363,7 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                             str3 = valueOf;
                             if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
                                 TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun();
-                                textStyleRun.flags |= LiteMode.FLAG_CHAT_BLUR;
+                                textStyleRun.flags |= 256;
                                 textStyleRun.start = indexOf;
                                 int i5 = lastIndexOf + 1;
                                 textStyleRun.end = i5;

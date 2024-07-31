@@ -2,7 +2,6 @@ package org.telegram.messenger.utils;
 
 import java.io.OutputStream;
 import java.util.Arrays;
-import org.telegram.tgnet.ConnectionsManager;
 public class ImmutableByteArrayOutputStream extends OutputStream {
     public byte[] buf;
     protected int count;
@@ -34,10 +33,7 @@ public class ImmutableByteArrayOutputStream extends OutputStream {
 
     private static int hugeCapacity(int i) {
         if (i >= 0) {
-            if (i > 2147483639) {
-                return ConnectionsManager.DEFAULT_DATACENTER_ID;
-            }
-            return 2147483639;
+            return i > 2147483639 ? Integer.MAX_VALUE : 2147483639;
         }
         throw new OutOfMemoryError();
     }

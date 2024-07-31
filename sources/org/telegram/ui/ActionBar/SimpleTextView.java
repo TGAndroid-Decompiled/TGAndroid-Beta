@@ -28,7 +28,6 @@ import java.util.List;
 import java.util.Stack;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
-import org.telegram.messenger.R;
 import org.telegram.ui.Cells.DialogCell;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
@@ -506,7 +505,7 @@ public class SimpleTextView extends View {
             size = Math.min(size, paddingLeft + i5);
         }
         setMeasuredDimension(size, size2);
-        if ((this.gravity & R.styleable.AppCompatTheme_toolbarNavigationButtonStyle) == 16) {
+        if ((this.gravity & 112) == 16) {
             this.offsetY = getPaddingTop() + ((((getMeasuredHeight() - getPaddingTop()) - getPaddingBottom()) - this.textHeight) / 2);
         } else {
             this.offsetY = getPaddingTop();
@@ -725,7 +724,7 @@ public class SimpleTextView extends View {
     private boolean recreateLayoutMaybe() {
         if (this.wasLayout && getMeasuredHeight() != 0 && !this.buildFullLayout) {
             boolean createLayout = createLayout(((getMaxTextWidth() - getPaddingLeft()) - getPaddingRight()) - this.minusWidth);
-            if ((this.gravity & R.styleable.AppCompatTheme_toolbarNavigationButtonStyle) == 16) {
+            if ((this.gravity & 112) == 16) {
                 this.offsetY = (getMeasuredHeight() - this.textHeight) / 2;
             } else {
                 this.offsetY = getPaddingTop();
@@ -856,7 +855,7 @@ public class SimpleTextView extends View {
             if ((i12 & 7) == 1) {
                 i11 += this.offsetX;
             }
-            if ((i12 & R.styleable.AppCompatTheme_toolbarNavigationButtonStyle) == 16) {
+            if ((i12 & 112) == 16) {
                 paddingTop10 = (getMeasuredHeight() - this.leftDrawable.getIntrinsicHeight()) / 2;
                 i10 = this.leftDrawableTopPadding;
             } else {
@@ -880,7 +879,7 @@ public class SimpleTextView extends View {
             if ((i16 & 7) == 1) {
                 i15 += this.offsetX;
             }
-            if ((i16 & R.styleable.AppCompatTheme_toolbarNavigationButtonStyle) == 16) {
+            if ((i16 & 112) == 16) {
                 intrinsicHeight = ((getMeasuredHeight() - this.replacedDrawable.getIntrinsicHeight()) / 2) + this.leftDrawableTopPadding;
             } else {
                 intrinsicHeight = this.leftDrawableTopPadding + ((this.textHeight - drawable10.getIntrinsicHeight()) / 2);
@@ -905,7 +904,7 @@ public class SimpleTextView extends View {
             }
             int intrinsicWidth = (int) (drawable.getIntrinsicWidth() * this.rightDrawableScale);
             int intrinsicHeight2 = (int) (this.rightDrawable.getIntrinsicHeight() * this.rightDrawableScale);
-            if ((this.gravity & R.styleable.AppCompatTheme_toolbarNavigationButtonStyle) == 16) {
+            if ((this.gravity & 112) == 16) {
                 paddingTop9 = (getMeasuredHeight() - intrinsicHeight2) / 2;
                 i9 = this.rightDrawableTopPadding;
             } else {
@@ -930,7 +929,7 @@ public class SimpleTextView extends View {
             }
             int intrinsicWidth2 = (int) (this.rightDrawable2.getIntrinsicWidth() * this.rightDrawableScale);
             int intrinsicHeight3 = (int) (this.rightDrawable2.getIntrinsicHeight() * this.rightDrawableScale);
-            if ((this.gravity & R.styleable.AppCompatTheme_toolbarNavigationButtonStyle) == 16) {
+            if ((this.gravity & 112) == 16) {
                 paddingTop8 = (getMeasuredHeight() - intrinsicHeight3) / 2;
                 i8 = this.rightDrawableTopPadding;
             } else {
@@ -947,7 +946,7 @@ public class SimpleTextView extends View {
         if (f2 != 0.0f) {
             if (this.leftDrawable != null) {
                 int i25 = ((int) (-f2)) + dp;
-                if ((this.gravity & R.styleable.AppCompatTheme_toolbarNavigationButtonStyle) == 16) {
+                if ((this.gravity & 112) == 16) {
                     paddingTop7 = (getMeasuredHeight() - this.leftDrawable.getIntrinsicHeight()) / 2;
                     i7 = this.leftDrawableTopPadding;
                 } else {
@@ -963,7 +962,7 @@ public class SimpleTextView extends View {
                 int intrinsicWidth3 = (int) (drawable5.getIntrinsicWidth() * this.rightDrawableScale);
                 int intrinsicHeight4 = (int) (this.rightDrawable.getIntrinsicHeight() * this.rightDrawableScale);
                 int i27 = this.textWidth + i18 + this.drawablePadding + ((int) (-this.scrollingOffset)) + dp;
-                if ((this.gravity & R.styleable.AppCompatTheme_toolbarNavigationButtonStyle) == 16) {
+                if ((this.gravity & 112) == 16) {
                     paddingTop6 = (getMeasuredHeight() - intrinsicHeight4) / 2;
                     i6 = this.rightDrawableTopPadding;
                 } else {
@@ -981,7 +980,7 @@ public class SimpleTextView extends View {
                 if (this.rightDrawable != null) {
                     i29 += ((int) (drawable7.getIntrinsicWidth() * this.rightDrawableScale)) + this.drawablePadding;
                 }
-                if ((this.gravity & R.styleable.AppCompatTheme_toolbarNavigationButtonStyle) == 16) {
+                if ((this.gravity & 112) == 16) {
                     paddingTop5 = (getMeasuredHeight() - intrinsicHeight5) / 2;
                     i5 = this.rightDrawableTopPadding;
                 } else {
@@ -1058,7 +1057,7 @@ public class SimpleTextView extends View {
                 }
                 int intrinsicWidth5 = (int) (drawable3.getIntrinsicWidth() * this.rightDrawableScale);
                 int intrinsicHeight6 = (int) (this.rightDrawable.getIntrinsicHeight() * this.rightDrawableScale);
-                if ((this.gravity & R.styleable.AppCompatTheme_toolbarNavigationButtonStyle) == 16) {
+                if ((this.gravity & 112) == 16) {
                     paddingTop4 = ((getMeasuredHeight() - intrinsicHeight6) / 2) + this.rightDrawableTopPadding;
                 } else {
                     paddingTop4 = this.rightDrawableTopPadding + getPaddingTop() + ((this.textHeight - intrinsicHeight6) / 2);
@@ -1080,7 +1079,7 @@ public class SimpleTextView extends View {
                 }
                 int intrinsicWidth6 = (int) (this.rightDrawable2.getIntrinsicWidth() * this.rightDrawableScale);
                 int intrinsicHeight7 = (int) (this.rightDrawable2.getIntrinsicHeight() * this.rightDrawableScale);
-                if ((this.gravity & R.styleable.AppCompatTheme_toolbarNavigationButtonStyle) == 16) {
+                if ((this.gravity & 112) == 16) {
                     paddingTop3 = (getMeasuredHeight() - intrinsicHeight7) / 2;
                     i4 = this.rightDrawableTopPadding;
                 } else {
@@ -1131,7 +1130,7 @@ public class SimpleTextView extends View {
             int min = Math.min(i39 + (f6 == 0.0f ? -dp : (int) (-f6)) + dp, (getMaxTextWidth() - this.paddingRight) + this.drawablePadding);
             int intrinsicWidth7 = (int) (this.rightDrawable.getIntrinsicWidth() * this.rightDrawableScale);
             int intrinsicHeight8 = (int) (this.rightDrawable.getIntrinsicHeight() * this.rightDrawableScale);
-            if ((this.gravity & R.styleable.AppCompatTheme_toolbarNavigationButtonStyle) == 16) {
+            if ((this.gravity & 112) == 16) {
                 paddingTop2 = (getMeasuredHeight() - intrinsicHeight8) / 2;
                 i3 = this.rightDrawableTopPadding;
             } else {
@@ -1155,7 +1154,7 @@ public class SimpleTextView extends View {
         }
         int intrinsicWidth8 = (int) (this.rightDrawable2.getIntrinsicWidth() * this.rightDrawableScale);
         int intrinsicHeight9 = (int) (this.rightDrawable2.getIntrinsicHeight() * this.rightDrawableScale);
-        if ((this.gravity & R.styleable.AppCompatTheme_toolbarNavigationButtonStyle) == 16) {
+        if ((this.gravity & 112) == 16) {
             paddingTop = (getMeasuredHeight() - intrinsicHeight9) / 2;
             i2 = this.rightDrawableTopPadding;
         } else {

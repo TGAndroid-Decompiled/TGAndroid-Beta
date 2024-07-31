@@ -99,15 +99,15 @@ public final class ExtendedDefaultDataSource implements DataSource {
             }
         } else if ("tg".equals(scheme)) {
             this.dataSource = getStreamDataSource();
-        } else if (SCHEME_ASSET.equals(scheme)) {
+        } else if ("asset".equals(scheme)) {
             this.dataSource = getAssetDataSource();
-        } else if (SCHEME_CONTENT.equals(scheme)) {
+        } else if ("content".equals(scheme)) {
             this.dataSource = getContentDataSource();
-        } else if (SCHEME_RTMP.equals(scheme)) {
+        } else if ("rtmp".equals(scheme)) {
             this.dataSource = getRtmpDataSource();
         } else if ("data".equals(scheme)) {
             this.dataSource = getDataSchemeDataSource();
-        } else if (SCHEME_RAW.equals(scheme)) {
+        } else if ("rawresource".equals(scheme)) {
             this.dataSource = getRawResourceDataSource();
         } else {
             this.dataSource = this.baseDataSource;
@@ -199,7 +199,7 @@ public final class ExtendedDefaultDataSource implements DataSource {
                 this.rtmpDataSource = dataSource;
                 addListenersToDataSource(dataSource);
             } catch (ClassNotFoundException unused) {
-                Log.w(TAG, "Attempting to play RTMP stream without depending on the RTMP extension");
+                Log.w("ExtendedDefaultDataSource", "Attempting to play RTMP stream without depending on the RTMP extension");
             } catch (Exception e) {
                 throw new RuntimeException("Error instantiating RTMP extension", e);
             }

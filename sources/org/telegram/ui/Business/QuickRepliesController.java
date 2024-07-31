@@ -12,7 +12,6 @@ import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
@@ -186,7 +185,7 @@ public class QuickRepliesController {
             long calcHash3 = MediaDataController.calcHash(calcHash2, messageObject == null ? 0L : messageObject.getId());
             tLRPC$TL_messages_getQuickReplies.hash = calcHash3;
             MessageObject messageObject2 = quickReply.topMessage;
-            if (messageObject2 != null && (tLRPC$Message = messageObject2.messageOwner) != null && (tLRPC$Message.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
+            if (messageObject2 != null && (tLRPC$Message = messageObject2.messageOwner) != null && (tLRPC$Message.flags & 32768) != 0) {
                 tLRPC$TL_messages_getQuickReplies.hash = MediaDataController.calcHash(calcHash3, tLRPC$Message.edit_date);
             } else {
                 tLRPC$TL_messages_getQuickReplies.hash = MediaDataController.calcHash(calcHash3, 0L);
@@ -732,7 +731,7 @@ public class QuickRepliesController {
                     messageObject2.generateThumbs(false);
                     saveToCache();
                     NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
-                } else if ((tLRPC$Message.flags & LiteMode.FLAG_CHAT_SCALE) == 0) {
+                } else if ((tLRPC$Message.flags & 32768) == 0) {
                     findReply.messagesCount++;
                     saveToCache();
                     NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);

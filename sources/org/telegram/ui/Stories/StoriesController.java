@@ -35,7 +35,6 @@ import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.FileRefController;
 import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MediaDataController;
@@ -757,7 +756,7 @@ public class StoriesController {
                 TLRPC$MessageMedia tLRPC$MessageMedia2 = tL_stories$StoryItem.media;
                 TLRPC$Photo tLRPC$Photo = tLRPC$MessageMedia2 == null ? null : tLRPC$MessageMedia2.photo;
                 if (tLRPC$Photo != null && (arrayList = tLRPC$Photo.sizes) != null) {
-                    FileLoader.getInstance(this.currentAccount).loadFile(ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(arrayList, ConnectionsManager.DEFAULT_DATACENTER_ID), tLRPC$Photo), tL_stories$StoryItem, "jpg", 0, 1);
+                    FileLoader.getInstance(this.currentAccount).loadFile(ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(arrayList, Integer.MAX_VALUE), tLRPC$Photo), tL_stories$StoryItem, "jpg", 0, 1);
                 }
             }
             if (tL_stories$StoryItem.media_areas != null) {
@@ -1991,13 +1990,13 @@ public class StoriesController {
             TLRPC$TL_reactionCustomEmoji tLRPC$TL_reactionCustomEmoji = new TLRPC$TL_reactionCustomEmoji();
             tLRPC$TL_reactionCustomEmoji.document_id = visibleReaction.documentId;
             tL_stories$TL_stories_sendReaction.reaction = tLRPC$TL_reactionCustomEmoji;
-            tL_stories$StoryItem.flags |= LiteMode.FLAG_CHAT_SCALE;
+            tL_stories$StoryItem.flags |= 32768;
             tL_stories$StoryItem.sent_reaction = tLRPC$TL_reactionCustomEmoji;
         } else if (visibleReaction.emojicon != null) {
             TLRPC$TL_reactionEmoji tLRPC$TL_reactionEmoji = new TLRPC$TL_reactionEmoji();
             tLRPC$TL_reactionEmoji.emoticon = visibleReaction.emojicon;
             tL_stories$TL_stories_sendReaction.reaction = tLRPC$TL_reactionEmoji;
-            tL_stories$StoryItem.flags |= LiteMode.FLAG_CHAT_SCALE;
+            tL_stories$StoryItem.flags |= 32768;
             tL_stories$StoryItem.sent_reaction = tLRPC$TL_reactionEmoji;
         }
         updateStoryItem(j, tL_stories$StoryItem);
@@ -2014,7 +2013,7 @@ public class StoriesController {
         if (findStory != null) {
             findStory.sent_reaction = tLRPC$Reaction;
             if (tLRPC$Reaction != null) {
-                findStory.flags |= LiteMode.FLAG_CHAT_SCALE;
+                findStory.flags |= 32768;
             } else {
                 findStory.flags &= -32769;
             }
@@ -2177,7 +2176,7 @@ public class StoriesController {
             if (videoEditedInfo.needConvert()) {
                 MediaController.getInstance().scheduleVideoConvert(this.messageObject, false, false);
             } else if (new File(this.messageObject.videoEditedInfo.originalPath).renameTo(new File(this.path))) {
-                FileLoader.getInstance(StoriesController.this.currentAccount).uploadFile(this.path, false, false, ConnectionsManager.FileTypeVideo);
+                FileLoader.getInstance(StoriesController.this.currentAccount).uploadFile(this.path, false, false, 33554432);
             }
         }
 
@@ -2219,7 +2218,7 @@ public class StoriesController {
                 } else {
                     j = 0;
                 }
-                fileLoader.uploadFile(str, false, z, j, this.entry.isVideo ? ConnectionsManager.FileTypeVideo : ConnectionsManager.FileTypePhoto, true);
+                fileLoader.uploadFile(str, false, z, j, this.entry.isVideo ? 33554432 : 16777216, true);
                 return;
             }
             putMessages();
@@ -2427,7 +2426,7 @@ public class StoriesController {
                         } else {
                             TLRPC$Photo tLRPC$Photo = tLRPC$MessageMedia.photo;
                             if (tLRPC$Photo != null) {
-                                FileLoader.getInstance(StoriesController.this.currentAccount).setLocalPathTo(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo.sizes, ConnectionsManager.DEFAULT_DATACENTER_ID), tL_stories$StoryItem.attachPath);
+                                FileLoader.getInstance(StoriesController.this.currentAccount).setLocalPathTo(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo.sizes, Integer.MAX_VALUE), tL_stories$StoryItem.attachPath);
                             }
                         }
                     }
@@ -3316,7 +3315,7 @@ public class StoriesController {
                     }
                 }
             }
-            int i = ConnectionsManager.DEFAULT_DATACENTER_ID;
+            int i = Integer.MAX_VALUE;
             for (Integer num : this.loadedObjects) {
                 int intValue = num.intValue();
                 MessageObject messageObject2 = this.messageObjectsMap.get(Integer.valueOf(intValue));

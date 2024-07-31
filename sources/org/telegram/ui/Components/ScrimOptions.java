@@ -37,7 +37,6 @@ import android.widget.FrameLayout;
 import androidx.core.view.WindowInsetsCompat;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
@@ -308,7 +307,7 @@ public class ScrimOptions extends Dialog {
             attributes.layoutInDisplayCutoutMode = 1;
         }
         window.setAttributes(attributes);
-        this.windowView.setSystemUiVisibility(LiteMode.FLAG_CHAT_BLUR);
+        this.windowView.setSystemUiVisibility(256);
         AndroidUtilities.setLightNavigationBar(this.windowView, !Theme.isCurrentThemeDark());
     }
 

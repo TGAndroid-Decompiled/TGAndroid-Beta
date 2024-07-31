@@ -102,8 +102,6 @@ import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MediaDataController;
@@ -113,7 +111,6 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.NotificationsController;
-import org.telegram.messenger.NotificationsSettingsFacade;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.SharedConfig;
@@ -1752,8 +1749,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         public RecordCircle(Context context) {
             super(context);
             ChatActivityEnterView.this = r4;
-            this.tinyWaveDrawable = new BlobDrawable(11, LiteMode.FLAGS_CHAT);
-            this.bigWaveDrawable = new BlobDrawable(12, LiteMode.FLAGS_CHAT);
+            this.tinyWaveDrawable = new BlobDrawable(11, 98784);
+            this.bigWaveDrawable = new BlobDrawable(12, 98784);
             this.circleRadius = AndroidUtilities.dpf2(41.0f);
             this.circleRadiusAmplitude = AndroidUtilities.dp(30.0f);
             this.rectF = new RectF();
@@ -2290,7 +2287,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                             } else {
                                 strArr[0] = "android.permission.CAMERA";
                             }
-                            ChatActivityEnterView.this.parentActivity.requestPermissions(strArr, ImageReceiver.DEFAULT_CROSSFADE_DURATION);
+                            ChatActivityEnterView.this.parentActivity.requestPermissions(strArr, 150);
                             return;
                         }
                     }
@@ -2605,7 +2602,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     ChatActivityEnterView.this.notifySilentDrawable.setCrossOut(ChatActivityEnterView.this.silent, true);
                     ChatActivityEnterView.this.notifyButton.setImageDrawable(ChatActivityEnterView.this.notifySilentDrawable);
                     SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(ChatActivityEnterView.this.currentAccount).edit();
-                    edit.putBoolean(NotificationsSettingsFacade.PROPERTY_SILENT + ChatActivityEnterView.this.dialog_id, ChatActivityEnterView.this.silent).commit();
+                    edit.putBoolean("silent_" + ChatActivityEnterView.this.dialog_id, ChatActivityEnterView.this.silent).commit();
                     NotificationsController notificationsController = NotificationsController.getInstance(ChatActivityEnterView.this.currentAccount);
                     long j = ChatActivityEnterView.this.dialog_id;
                     ChatActivity chatActivity2 = chatActivity;
@@ -2973,7 +2970,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                         } else {
                             ChatActivityEnterViewDelegate chatActivityEnterViewDelegate = ChatActivityEnterView.this.delegate;
                             ChatActivityEnterView chatActivityEnterView2 = ChatActivityEnterView.this;
-                            chatActivityEnterViewDelegate.needStartRecordVideo(1, true, 0, chatActivityEnterView2.voiceOnce ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0, chatActivityEnterView2.effectId);
+                            chatActivityEnterViewDelegate.needStartRecordVideo(1, true, 0, chatActivityEnterView2.voiceOnce ? Integer.MAX_VALUE : 0, chatActivityEnterView2.effectId);
                             ChatActivityEnterView.this.sendButton.setEffect(ChatActivityEnterView.this.effectId = 0L);
                         }
                         ChatActivityEnterView.this.recordingAudioVideo = false;
@@ -3015,7 +3012,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                                 CameraController.getInstance().cancelOnInitRunnable(ChatActivityEnterView.this.onFinishInitCameraRunnable);
                                 ChatActivityEnterViewDelegate chatActivityEnterViewDelegate2 = ChatActivityEnterView.this.delegate;
                                 ChatActivityEnterView chatActivityEnterView4 = ChatActivityEnterView.this;
-                                chatActivityEnterViewDelegate2.needStartRecordVideo(2, true, 0, chatActivityEnterView4.voiceOnce ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0, chatActivityEnterView4.effectId);
+                                chatActivityEnterViewDelegate2.needStartRecordVideo(2, true, 0, chatActivityEnterView4.voiceOnce ? Integer.MAX_VALUE : 0, chatActivityEnterView4.effectId);
                                 ChatActivityEnterView.this.sendButton.setEffect(ChatActivityEnterView.this.effectId = 0L);
                             }
                             ChatActivityEnterView.this.millisecondsRecorded = 0L;
@@ -3057,7 +3054,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                                 CameraController.getInstance().cancelOnInitRunnable(ChatActivityEnterView.this.onFinishInitCameraRunnable);
                                 ChatActivityEnterViewDelegate chatActivityEnterViewDelegate3 = ChatActivityEnterView.this.delegate;
                                 ChatActivityEnterView chatActivityEnterView5 = ChatActivityEnterView.this;
-                                chatActivityEnterViewDelegate3.needStartRecordVideo(1, true, 0, chatActivityEnterView5.voiceOnce ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0, chatActivityEnterView5.effectId);
+                                chatActivityEnterViewDelegate3.needStartRecordVideo(1, true, 0, chatActivityEnterView5.voiceOnce ? Integer.MAX_VALUE : 0, chatActivityEnterView5.effectId);
                                 ChatActivityEnterView.this.sendButton.setEffect(ChatActivityEnterView.this.effectId = 0L);
                             }
                             ChatActivityEnterView.this.recordingAudioVideo = false;
@@ -3085,7 +3082,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                         CameraController.getInstance().cancelOnInitRunnable(ChatActivityEnterView.this.onFinishInitCameraRunnable);
                         ChatActivityEnterViewDelegate chatActivityEnterViewDelegate4 = ChatActivityEnterView.this.delegate;
                         ChatActivityEnterView chatActivityEnterView7 = ChatActivityEnterView.this;
-                        chatActivityEnterViewDelegate4.needStartRecordVideo(2, true, 0, chatActivityEnterView7.voiceOnce ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0, chatActivityEnterView7.effectId);
+                        chatActivityEnterViewDelegate4.needStartRecordVideo(2, true, 0, chatActivityEnterView7.voiceOnce ? Integer.MAX_VALUE : 0, chatActivityEnterView7.effectId);
                         ChatActivityEnterView.this.sendButton.setEffect(ChatActivityEnterView.this.effectId = 0L);
                     }
                     ChatActivityEnterView.this.millisecondsRecorded = 0L;
@@ -3135,7 +3132,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                         CameraController.getInstance().cancelOnInitRunnable(ChatActivityEnterView.this.onFinishInitCameraRunnable);
                         ChatActivityEnterViewDelegate chatActivityEnterViewDelegate5 = ChatActivityEnterView.this.delegate;
                         ChatActivityEnterView chatActivityEnterView9 = ChatActivityEnterView.this;
-                        chatActivityEnterViewDelegate5.needStartRecordVideo(2, true, 0, chatActivityEnterView9.voiceOnce ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0, chatActivityEnterView9.effectId);
+                        chatActivityEnterViewDelegate5.needStartRecordVideo(2, true, 0, chatActivityEnterView9.voiceOnce ? Integer.MAX_VALUE : 0, chatActivityEnterView9.effectId);
                         ChatActivityEnterView.this.sendButton.setEffect(ChatActivityEnterView.this.effectId = 0L);
                     }
                     ChatActivityEnterView.this.recordingAudioVideo = false;
@@ -3655,7 +3652,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
     private void resetRecordedState() {
         if (this.videoToSendMessageObject != null) {
             CameraController.getInstance().cancelOnInitRunnable(this.onFinishInitCameraRunnable);
-            this.delegate.needStartRecordVideo(2, true, 0, this.voiceOnce ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0, this.effectId);
+            this.delegate.needStartRecordVideo(2, true, 0, this.voiceOnce ? Integer.MAX_VALUE : 0, this.effectId);
             SendButton sendButton = this.sendButton;
             this.effectId = 0L;
             sendButton.setEffect(0L);
@@ -3894,10 +3891,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         int i = Build.VERSION.SDK_INT;
         if (i >= 21) {
             dialog.getWindow().clearFlags(1024);
-            dialog.getWindow().clearFlags(ConnectionsManager.FileTypeFile);
+            dialog.getWindow().clearFlags(67108864);
             dialog.getWindow().clearFlags(134217728);
             dialog.getWindow().addFlags(Integer.MIN_VALUE);
-            dialog.getWindow().addFlags(LiteMode.FLAG_CALLS_ANIMATIONS);
+            dialog.getWindow().addFlags(512);
             dialog.getWindow().addFlags(131072);
             dialog.getWindow().getAttributes().windowAnimations = 0;
             dialog.getWindow().getDecorView().setSystemUiVisibility(1792);
@@ -5037,7 +5034,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         this.messageEditText.setIncludeFontPadding(false);
         this.messageEditText.setImeOptions(i);
         EditTextCaption editTextCaption = this.messageEditText;
-        int inputType = editTextCaption.getInputType() | LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM | 131072;
+        int inputType = editTextCaption.getInputType() | 16384 | 131072;
         this.commonInputType = inputType;
         editTextCaption.setInputType(inputType);
         updateFieldHint(false);
@@ -5294,7 +5291,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
     public void cancelRecordingAudioVideo() {
         if (this.hasRecordVideo && isInVideoMode()) {
             CameraController.getInstance().cancelOnInitRunnable(this.onFinishInitCameraRunnable);
-            this.delegate.needStartRecordVideo(5, true, 0, this.voiceOnce ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0, this.effectId);
+            this.delegate.needStartRecordVideo(5, true, 0, this.voiceOnce ? Integer.MAX_VALUE : 0, this.effectId);
             SendButton sendButton = this.sendButton;
             this.effectId = 0L;
             sendButton.setEffect(0L);
@@ -5348,7 +5345,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         if (tLRPC$ChatFull != null && tLRPC$ChatFull.slowmode_seconds != 0 && tLRPC$ChatFull.slowmode_next_send_date <= currentTime && ((isUploadingMessageIdDialog = SendMessagesHelper.getInstance(this.currentAccount).isUploadingMessageIdDialog(this.dialog_id)) || SendMessagesHelper.getInstance(this.currentAccount).isSendingMessageIdDialog(this.dialog_id))) {
             if (!ChatObject.hasAdminRights(this.accountInstance.getMessagesController().getChat(Long.valueOf(this.info.id))) && !ChatObject.isIgnoredChatRestrictionsForBoosters(this.info)) {
                 i = this.info.slowmode_seconds;
-                this.slowModeTimer = isUploadingMessageIdDialog ? ConnectionsManager.DEFAULT_DATACENTER_ID : 2147483646;
+                this.slowModeTimer = isUploadingMessageIdDialog ? Integer.MAX_VALUE : 2147483646;
             }
             i = 0;
         } else {
@@ -6516,7 +6513,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             TLRPC$Chat currentChat2 = chatActivity.getCurrentChat();
             if (this.parentFragment.getCurrentUser() != null || ((ChatObject.isChannel(currentChat2) && currentChat2.megagroup) || !ChatObject.isChannel(currentChat2))) {
                 SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(this.currentAccount).edit();
-                edit.putBoolean(NotificationsSettingsFacade.PROPERTY_SILENT + this.dialog_id, !z).commit();
+                edit.putBoolean("silent_" + this.dialog_id, !z).commit();
             }
         }
         if (this.stickersExpanded) {
@@ -6535,7 +6532,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             return;
         }
         if (this.videoToSendMessageObject != null) {
-            this.delegate.needStartRecordVideo(4, z, i, this.voiceOnce ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0, this.effectId);
+            this.delegate.needStartRecordVideo(4, z, i, this.voiceOnce ? Integer.MAX_VALUE : 0, this.effectId);
             SendButton sendButton = this.sendButton;
             this.effectId = 0L;
             sendButton.setEffect(0L);
@@ -6558,7 +6555,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             long j = this.dialog_id;
             ChatActivity chatActivity2 = this.parentFragment;
             mediaDataController.pushDraftVoiceMessage(j, (chatActivity2 == null || !chatActivity2.isTopic) ? 0L : chatActivity2.getTopicId(), null);
-            SendMessagesHelper.SendMessageParams of = SendMessagesHelper.SendMessageParams.of(this.audioToSend, null, this.audioToSendPath, this.dialog_id, this.replyingMessageObject, getThreadMessage(), null, null, null, null, z, i, this.voiceOnce ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0, null, null, false);
+            SendMessagesHelper.SendMessageParams of = SendMessagesHelper.SendMessageParams.of(this.audioToSend, null, this.audioToSendPath, this.dialog_id, this.replyingMessageObject, getThreadMessage(), null, null, null, null, z, i, this.voiceOnce ? Integer.MAX_VALUE : 0, null, null, false);
             ChatActivity chatActivity3 = this.parentFragment;
             of.quick_reply_shortcut = chatActivity3 != null ? chatActivity3.quickReplyShortcut : null;
             of.quick_reply_shortcut_id = chatActivity3 != null ? chatActivity3.getQuickReplyId() : 0;
@@ -6827,13 +6824,13 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                         int i2 = messageObject4.type;
                         if (i2 == 0 || i2 == 19) {
                             messageObject4.messageOwner.media = new TLRPC$TL_messageMediaEmpty();
-                            this.editingMessageObject.messageOwner.flags |= LiteMode.FLAG_CALLS_ANIMATIONS;
+                            this.editingMessageObject.messageOwner.flags |= 512;
                         }
                     } else if (messagePreviewParams.webpage != null) {
                         MessageObject messageObject5 = this.editingMessageObject;
                         messageObject5.editingMessageSearchWebPage = false;
                         TLRPC$Message tLRPC$Message2 = messageObject5.messageOwner;
-                        tLRPC$Message2.flags |= LiteMode.FLAG_CALLS_ANIMATIONS;
+                        tLRPC$Message2.flags |= 512;
                         tLRPC$Message2.media = new TLRPC$TL_messageMediaWebPage();
                         this.editingMessageObject.messageOwner.media.webpage = this.parentFragment.messagePreviewParams.webpage;
                     } else {
@@ -6842,7 +6839,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                         int i3 = messageObject6.type;
                         if (i3 == 0 || i3 == 19) {
                             TLRPC$Message tLRPC$Message3 = messageObject6.messageOwner;
-                            tLRPC$Message3.flags |= LiteMode.FLAG_CALLS_ANIMATIONS;
+                            tLRPC$Message3.flags |= 512;
                             tLRPC$Message3.media = new TLRPC$TL_messageMediaEmpty();
                         }
                     }
@@ -6863,7 +6860,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     int i4 = messageObject7.type;
                     if (i4 == 0 || i4 == 19) {
                         TLRPC$Message tLRPC$Message5 = messageObject7.messageOwner;
-                        tLRPC$Message5.flags |= LiteMode.FLAG_CALLS_ANIMATIONS;
+                        tLRPC$Message5.flags |= 512;
                         tLRPC$Message5.media = new TLRPC$TL_messageMediaEmpty();
                     }
                 }
@@ -8402,7 +8399,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                                 spannableStringBuilder.setSpan(uRLSpanReplacement, i9, tLRPC$MessageEntity.length + i9, 33);
                             } else if (tLRPC$MessageEntity instanceof TLRPC$TL_messageEntitySpoiler) {
                                 TextStyleSpan.TextStyleRun textStyleRun6 = new TextStyleSpan.TextStyleRun();
-                                textStyleRun6.flags |= LiteMode.FLAG_CHAT_BLUR;
+                                textStyleRun6.flags |= 256;
                                 TextStyleSpan textStyleSpan6 = new TextStyleSpan(textStyleRun6);
                                 int i10 = tLRPC$MessageEntity.offset;
                                 MediaDataController.addStyleToText(textStyleSpan6, i10, tLRPC$MessageEntity.length + i10, spannableStringBuilder, true);
@@ -8823,7 +8820,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         if (DialogObject.isChatDialog(this.dialog_id)) {
             TLRPC$Chat chat = this.accountInstance.getMessagesController().getChat(Long.valueOf(-this.dialog_id));
             SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(this.currentAccount);
-            this.silent = notificationsSettings.getBoolean(NotificationsSettingsFacade.PROPERTY_SILENT + this.dialog_id, false);
+            this.silent = notificationsSettings.getBoolean("silent_" + this.dialog_id, false);
             z2 = ChatObject.isChannel(chat) && (chat.creator || ((tLRPC$TL_chatAdminRights = chat.admin_rights) != null && tLRPC$TL_chatAdminRights.post_messages)) && !chat.megagroup;
             this.canWriteToChannel = z2;
             if (this.notifyButton != null) {
@@ -11675,7 +11672,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 CameraController.getInstance().cancelOnInitRunnable(ChatActivityEnterView.this.onFinishInitCameraRunnable);
                 ChatActivityEnterViewDelegate chatActivityEnterViewDelegate = ChatActivityEnterView.this.delegate;
                 ChatActivityEnterView chatActivityEnterView = ChatActivityEnterView.this;
-                chatActivityEnterViewDelegate.needStartRecordVideo(5, true, 0, chatActivityEnterView.voiceOnce ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0, chatActivityEnterView.effectId);
+                chatActivityEnterViewDelegate.needStartRecordVideo(5, true, 0, chatActivityEnterView.voiceOnce ? Integer.MAX_VALUE : 0, chatActivityEnterView.effectId);
                 ChatActivityEnterView.this.sendButton.setEffect(ChatActivityEnterView.this.effectId = 0L);
             }
             ChatActivityEnterView.this.audioToSend = null;
@@ -11940,7 +11937,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 ChatActivityEnterView.this.startedDraggingX = -1.0f;
                 ChatActivityEnterViewDelegate chatActivityEnterViewDelegate = ChatActivityEnterView.this.delegate;
                 ChatActivityEnterView chatActivityEnterView = ChatActivityEnterView.this;
-                chatActivityEnterViewDelegate.needStartRecordVideo(3, true, 0, chatActivityEnterView.voiceOnce ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0, chatActivityEnterView.effectId);
+                chatActivityEnterViewDelegate.needStartRecordVideo(3, true, 0, chatActivityEnterView.voiceOnce ? Integer.MAX_VALUE : 0, chatActivityEnterView.effectId);
                 ChatActivityEnterView.this.sendButton.setEffect(ChatActivityEnterView.this.effectId = 0L);
                 this.stoppedInternal = true;
             }

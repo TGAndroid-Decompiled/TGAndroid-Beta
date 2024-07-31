@@ -14,7 +14,6 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.ui.PhotoViewer;
-import org.webrtc.MediaStreamTrack;
 public class EarListener implements SensorEventListener {
     private Sensor accelerometerSensor;
     private boolean accelerometerVertical;
@@ -65,7 +64,7 @@ public class EarListener implements SensorEventListener {
         PowerManager powerManager = (PowerManager) ApplicationLoader.applicationContext.getSystemService("power");
         this.powerManager = powerManager;
         this.proximityWakeLock = powerManager.newWakeLock(32, "telegram:proximity_lock2");
-        this.audioManager = (AudioManager) ApplicationLoader.applicationContext.getSystemService(MediaStreamTrack.AUDIO_TRACK_KIND);
+        this.audioManager = (AudioManager) ApplicationLoader.applicationContext.getSystemService("audio");
     }
 
     public void attach() {

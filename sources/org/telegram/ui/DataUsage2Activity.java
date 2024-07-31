@@ -803,7 +803,7 @@ public class DataUsage2Activity extends BaseFragment {
             Paint paint = new Paint(1);
             this.paint = paint;
             this.top = true;
-            paint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(-0.66f), AndroidUtilities.LIGHT_STATUS_BAR_OVERLAY);
+            paint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(-0.66f), 251658240);
             this.paint.setColor(Theme.getColor(Theme.key_windowBackgroundWhite));
         }
 

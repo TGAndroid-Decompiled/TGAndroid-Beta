@@ -39,7 +39,6 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagePreviewParams;
@@ -346,7 +345,7 @@ public class MessagePreviewView extends FrameLayout {
             }
 
             @Override
-            public void onAllAnimationsDone() {
+            protected void onAllAnimationsDone() {
                 super.onAllAnimationsDone();
                 Runnable runnable = this.finishRunnable;
                 if (runnable != null) {
@@ -792,7 +791,7 @@ public class MessagePreviewView extends FrameLayout {
                 if (this.currentTab == 2) {
                     TLRPC$WebPage tLRPC$WebPage = messagePreviewParams.webpage;
                     if (tLRPC$WebPage != null && ((tLRPC$MessageMedia = (tLRPC$Message = messageObject.messageOwner).media) == null || tLRPC$MessageMedia.webpage != tLRPC$WebPage)) {
-                        tLRPC$Message.flags |= LiteMode.FLAG_CALLS_ANIMATIONS;
+                        tLRPC$Message.flags |= 512;
                         tLRPC$Message.media = new TLRPC$TL_messageMediaWebPage();
                         TLRPC$MessageMedia tLRPC$MessageMedia2 = messageObject.messageOwner.media;
                         MessagePreviewParams messagePreviewParams2 = MessagePreviewView.this.messagePreviewParams;

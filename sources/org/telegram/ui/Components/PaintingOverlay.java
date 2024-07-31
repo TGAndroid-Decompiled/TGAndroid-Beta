@@ -19,7 +19,6 @@ import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.ui.ActionBar.Theme;
@@ -276,7 +275,7 @@ public class PaintingOverlay extends FrameLayout {
                 editTextOutline.setImeOptions(268435456);
                 editTextOutline.setFocusableInTouchMode(true);
                 editTextOutline.setEnabled(false);
-                editTextOutline.setInputType(editTextOutline.getInputType() | LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM);
+                editTextOutline.setInputType(editTextOutline.getInputType() | 16384);
                 if (i5 >= 23) {
                     editTextOutline.setBreakStrategy(0);
                 }

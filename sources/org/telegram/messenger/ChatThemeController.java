@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import org.telegram.messenger.NotificationBadge;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.ResultCallback;
@@ -149,7 +148,7 @@ public class ChatThemeController extends BaseController {
 
     private List<EmojiThemes> getAllChatThemesFromPrefs() {
         SharedPreferences sharedPreferences = getSharedPreferences();
-        int i = sharedPreferences.getInt(NotificationBadge.NewHtcHomeBadger.COUNT, 0);
+        int i = sharedPreferences.getInt("count", 0);
         ArrayList arrayList = new ArrayList(i);
         for (int i2 = 0; i2 < i; i2++) {
             SerializedData serializedData = new SerializedData(Utilities.hexToBytes(sharedPreferences.getString("theme_" + i2, "")));
@@ -437,7 +436,7 @@ public class ChatThemeController extends BaseController {
             if ((tLRPC$TL_updatePeerWallpaper.flags & 1) != 0) {
                 userFull.wallpaper_overridden = tLRPC$TL_updatePeerWallpaper.wallpaper_overridden;
                 userFull.wallpaper = tLRPC$TL_updatePeerWallpaper.wallpaper;
-                userFull.flags |= ConnectionsManager.FileTypePhoto;
+                userFull.flags |= 16777216;
             } else {
                 userFull.wallpaper_overridden = false;
                 userFull.wallpaper = null;
@@ -636,7 +635,7 @@ public class ChatThemeController extends BaseController {
             tLRPC$TL_wallPaper2.flags = i5 | 4;
             if (tLRPC$UserFull != null) {
                 tLRPC$UserFull.wallpaper = tLRPC$TL_wallPaper2;
-                tLRPC$UserFull.flags |= ConnectionsManager.FileTypePhoto;
+                tLRPC$UserFull.flags |= 16777216;
                 getMessagesStorage().updateUserInfo(tLRPC$UserFull, false);
                 chatThemeController = this;
                 NotificationCenter.getInstance(chatThemeController.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(j), tLRPC$UserFull);
@@ -717,7 +716,7 @@ public class ChatThemeController extends BaseController {
                             if (tLRPC$UserFull != null) {
                                 TLRPC$WallPaper tLRPC$WallPaper2 = tLRPC$TL_messageActionSetChatWallPaper.wallpaper;
                                 tLRPC$UserFull.wallpaper = tLRPC$WallPaper2;
-                                tLRPC$UserFull.flags |= ConnectionsManager.FileTypePhoto;
+                                tLRPC$UserFull.flags |= 16777216;
                                 saveChatWallpaper(j, tLRPC$WallPaper2);
                                 getMessagesStorage().updateUserInfo(tLRPC$UserFull, false);
                                 NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(j), tLRPC$UserFull);

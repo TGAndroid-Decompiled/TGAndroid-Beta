@@ -43,12 +43,10 @@ import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.GenericProvider;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatActionCell;
 import org.telegram.ui.Cells.ChatMessageCell;
@@ -370,7 +368,7 @@ public class RecyclerListView extends RecyclerView {
         }
 
         private int internalGetCountForSection(int i) {
-            int i2 = this.sectionCountCache.get(i, ConnectionsManager.DEFAULT_DATACENTER_ID);
+            int i2 = this.sectionCountCache.get(i, Integer.MAX_VALUE);
             if (i2 != Integer.MAX_VALUE) {
                 return i2;
             }
@@ -390,7 +388,7 @@ public class RecyclerListView extends RecyclerView {
         }
 
         public final int getSectionForPosition(int i) {
-            int i2 = this.sectionCache.get(i, ConnectionsManager.DEFAULT_DATACENTER_ID);
+            int i2 = this.sectionCache.get(i, Integer.MAX_VALUE);
             if (i2 != Integer.MAX_VALUE) {
                 return i2;
             }
@@ -410,7 +408,7 @@ public class RecyclerListView extends RecyclerView {
         }
 
         public int getPositionInSectionForPosition(int i) {
-            int i2 = this.sectionPositionCache.get(i, ConnectionsManager.DEFAULT_DATACENTER_ID);
+            int i2 = this.sectionPositionCache.get(i, Integer.MAX_VALUE);
             if (i2 != Integer.MAX_VALUE) {
                 return i2;
             }
@@ -581,7 +579,7 @@ public class RecyclerListView extends RecyclerView {
         }
 
         public void updateColors() {
-            this.inactiveColor = this.type == 0 ? Theme.getColor(Theme.key_fastScrollInactive, RecyclerListView.this.resourcesProvider) : ColorUtils.setAlphaComponent(-16777216, R.styleable.AppCompatTheme_textAppearanceLargePopupMenu);
+            this.inactiveColor = this.type == 0 ? Theme.getColor(Theme.key_fastScrollInactive, RecyclerListView.this.resourcesProvider) : ColorUtils.setAlphaComponent(-16777216, 102);
             this.activeColor = Theme.getColor(Theme.key_fastScrollActive, RecyclerListView.this.resourcesProvider);
             this.paint.setColor(this.inactiveColor);
             if (this.type == 0) {
@@ -1273,7 +1271,7 @@ public class RecyclerListView extends RecyclerView {
         if (i2 < i) {
             return;
         }
-        int i4 = ConnectionsManager.DEFAULT_DATACENTER_ID;
+        int i4 = Integer.MAX_VALUE;
         int i5 = Integer.MIN_VALUE;
         for (int i6 = 0; i6 < getChildCount(); i6++) {
             View childAt = getChildAt(i6);
@@ -1296,7 +1294,7 @@ public class RecyclerListView extends RecyclerView {
     }
 
     public void drawSectionBackgroundExclusive(Canvas canvas, int i, int i2, int i3) {
-        int i4 = ConnectionsManager.DEFAULT_DATACENTER_ID;
+        int i4 = Integer.MAX_VALUE;
         int i5 = Integer.MIN_VALUE;
         for (int i6 = 0; i6 < getChildCount(); i6++) {
             View childAt = getChildAt(i6);
@@ -1324,7 +1322,7 @@ public class RecyclerListView extends RecyclerView {
     }
 
     public void drawItemBackground(Canvas canvas, int i, int i2, int i3) {
-        int i4 = ConnectionsManager.DEFAULT_DATACENTER_ID;
+        int i4 = Integer.MAX_VALUE;
         int i5 = Integer.MIN_VALUE;
         for (int i6 = 0; i6 < getChildCount(); i6++) {
             View childAt = getChildAt(i6);
@@ -1343,16 +1341,15 @@ public class RecyclerListView extends RecyclerView {
     }
 
     public void checkStopHeavyOperations(int i) {
-        Integer valueOf = Integer.valueOf((int) LiteMode.FLAG_CALLS_ANIMATIONS);
         if (i == 0) {
             if (this.stoppedAllHeavyOperations) {
                 this.stoppedAllHeavyOperations = false;
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, valueOf);
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
             }
         } else if (this.stoppedAllHeavyOperations || !this.allowStopHeaveOperations) {
         } else {
             this.stoppedAllHeavyOperations = true;
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, valueOf);
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
         }
     }
 
@@ -1469,7 +1466,7 @@ public class RecyclerListView extends RecyclerView {
                     if (this.sectionsAdapter != null) {
                         int paddingTop = getPaddingTop();
                         int i3 = this.sectionsType;
-                        int i4 = ConnectionsManager.DEFAULT_DATACENTER_ID;
+                        int i4 = Integer.MAX_VALUE;
                         if (i3 != 1 && i3 != 3) {
                             if (i3 == 2) {
                                 this.pinnedHeaderShadowTargetAlpha = 0.0f;
@@ -1478,7 +1475,7 @@ public class RecyclerListView extends RecyclerView {
                                 }
                                 int childCount = getChildCount();
                                 View view2 = null;
-                                int i5 = ConnectionsManager.DEFAULT_DATACENTER_ID;
+                                int i5 = Integer.MAX_VALUE;
                                 View view3 = null;
                                 int i6 = 0;
                                 for (int i7 = 0; i7 < childCount; i7++) {
@@ -1533,7 +1530,7 @@ public class RecyclerListView extends RecyclerView {
                             return;
                         }
                         int childCount2 = getChildCount();
-                        int i9 = ConnectionsManager.DEFAULT_DATACENTER_ID;
+                        int i9 = Integer.MAX_VALUE;
                         View view5 = null;
                         int i10 = 0;
                         for (int i11 = 0; i11 < childCount2; i11++) {
@@ -2441,7 +2438,7 @@ public class RecyclerListView extends RecyclerView {
         }
         if (this.stoppedAllHeavyOperations) {
             this.stoppedAllHeavyOperations = false;
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, Integer.valueOf((int) LiteMode.FLAG_CALLS_ANIMATIONS));
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
         }
     }
 

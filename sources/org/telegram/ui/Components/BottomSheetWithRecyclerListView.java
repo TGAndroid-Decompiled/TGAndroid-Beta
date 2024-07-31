@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
@@ -551,7 +550,7 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
         }
         View view = null;
         int i = -1;
-        int i2 = ConnectionsManager.DEFAULT_DATACENTER_ID;
+        int i2 = Integer.MAX_VALUE;
         for (int i3 = 0; i3 < this.recyclerListView.getChildCount(); i3++) {
             View childAt = this.recyclerListView.getChildAt(i3);
             int childAdapterPosition = this.recyclerListView.getChildAdapterPosition(childAt);

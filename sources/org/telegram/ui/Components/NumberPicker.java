@@ -17,9 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.ActionBar.Theme;
 public class NumberPicker extends LinearLayout {
     private static final CubicBezierInterpolator interpolator = new CubicBezierInterpolator(0.0f, 0.5f, 0.5f, 1.0f);
@@ -895,7 +893,7 @@ public class NumberPicker extends LinearLayout {
                 String[] strArr = this.mDisplayedValues;
                 String formatNumber = strArr == null ? formatNumber(this.mValue) : strArr[this.mValue - this.mMinValue];
                 AccessibilityEvent obtain = AccessibilityEvent.obtain();
-                obtain.setEventType(LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM);
+                obtain.setEventType(16384);
                 obtain.getText().add(formatNumber);
                 accessibilityManager.sendAccessibilityEvent(obtain);
             }
@@ -905,9 +903,9 @@ public class NumberPicker extends LinearLayout {
     private void fling(int i) {
         this.mPreviousScrollerY = 0;
         if (i > 0) {
-            this.mFlingScroller.fling(0, 0, 0, i, 0, 0, 0, ConnectionsManager.DEFAULT_DATACENTER_ID);
+            this.mFlingScroller.fling(0, 0, 0, i, 0, 0, 0, Integer.MAX_VALUE);
         } else {
-            this.mFlingScroller.fling(0, ConnectionsManager.DEFAULT_DATACENTER_ID, 0, i, 0, 0, 0, ConnectionsManager.DEFAULT_DATACENTER_ID);
+            this.mFlingScroller.fling(0, Integer.MAX_VALUE, 0, i, 0, 0, 0, Integer.MAX_VALUE);
         }
         invalidate();
     }

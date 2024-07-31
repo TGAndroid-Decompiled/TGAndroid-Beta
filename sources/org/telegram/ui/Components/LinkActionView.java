@@ -314,7 +314,7 @@ public class LinkActionView extends LinearLayout {
             final View view2 = new View(context) {
                 @Override
                 protected void onDraw(Canvas canvas) {
-                    canvas.drawColor(AndroidUtilities.DARK_STATUS_BAR_OVERLAY);
+                    canvas.drawColor(855638016);
                     LinkActionView linkActionView = LinkActionView.this;
                     linkActionView.getPointOnScreen(linkActionView.frameLayout, container, LinkActionView.this.point);
                     canvas.save();

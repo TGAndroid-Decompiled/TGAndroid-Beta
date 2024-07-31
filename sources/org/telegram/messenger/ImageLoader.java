@@ -143,7 +143,7 @@ public class ImageLoader {
         }
         String[] split = str.split("_");
         for (int i = 0; i < split.length; i++) {
-            if (AUTOPLAY_FILTER.equals(split[i]) || "pframe".equals(split[i])) {
+            if ("g".equals(split[i]) || "pframe".equals(split[i])) {
                 return true;
             }
         }
@@ -301,7 +301,7 @@ public class ImageLoader {
                     try {
                         ByteArrayOutputStream byteArrayOutputStream2 = new ByteArrayOutputStream();
                         try {
-                            byte[] bArr = new byte[LiteMode.FLAG_CHAT_SCALE];
+                            byte[] bArr = new byte[32768];
                             while (!isCancelled() && (read = inputStream2.read(bArr)) > 0) {
                                 byteArrayOutputStream2.write(bArr, 0, read);
                             }

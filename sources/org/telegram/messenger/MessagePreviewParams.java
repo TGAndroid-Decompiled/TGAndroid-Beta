@@ -305,7 +305,7 @@ public class MessagePreviewParams {
             tLRPC$TL_message.message = charSequenceArr[0].toString();
             tLRPC$TL_message.invert_media = this.webpageTop;
             if (tLRPC$WebPage != null) {
-                tLRPC$TL_message.flags |= LiteMode.FLAG_CALLS_ANIMATIONS;
+                tLRPC$TL_message.flags |= 512;
                 TLRPC$TL_messageMediaWebPage tLRPC$TL_messageMediaWebPage = new TLRPC$TL_messageMediaWebPage();
                 tLRPC$TL_message.media = tLRPC$TL_messageMediaWebPage;
                 tLRPC$TL_messageMediaWebPage.webpage = tLRPC$WebPage;

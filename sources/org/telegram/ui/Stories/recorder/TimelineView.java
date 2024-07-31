@@ -37,7 +37,6 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.BlurringShader;
@@ -228,7 +227,7 @@ public class TimelineView extends View {
     }
 
     public static int heightDp() {
-        return R.styleable.AppCompatTheme_toolbarNavigationButtonStyle;
+        return 112;
     }
 
     private long getBaseDuration() {
@@ -302,7 +301,7 @@ public class TimelineView extends View {
         this.selectedVideoRadii = new float[8];
         this.waveformRadii = new float[8];
         this.resourcesProvider = resourcesProvider;
-        paint7.setColor(ConnectionsManager.DEFAULT_DATACENTER_ID);
+        paint7.setColor(Integer.MAX_VALUE);
         textPaint.setTextSize(AndroidUtilities.dp(12.0f));
         textPaint.setTypeface(AndroidUtilities.bold());
         textPaint.setColor(-1);

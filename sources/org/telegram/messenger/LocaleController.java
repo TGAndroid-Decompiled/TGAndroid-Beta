@@ -690,7 +690,7 @@ public class LocaleController {
                     if (split.length >= 10) {
                         localeInfo.serverIndex = Utilities.parseInt((CharSequence) split[9]).intValue();
                     } else {
-                        localeInfo.serverIndex = ConnectionsManager.DEFAULT_DATACENTER_ID;
+                        localeInfo.serverIndex = Integer.MAX_VALUE;
                     }
                     if (!TextUtils.isEmpty(localeInfo.baseLangCode)) {
                         localeInfo.baseLangCode = localeInfo.baseLangCode.replace("-", "_");
@@ -3639,7 +3639,7 @@ public class LocaleController {
         TLRPC$Vector tLRPC$Vector = (TLRPC$Vector) tLObject;
         int size = this.remoteLanguages.size();
         for (int i2 = 0; i2 < size; i2++) {
-            this.remoteLanguages.get(i2).serverIndex = ConnectionsManager.DEFAULT_DATACENTER_ID;
+            this.remoteLanguages.get(i2).serverIndex = Integer.MAX_VALUE;
         }
         int size2 = tLRPC$Vector.objects.size();
         for (int i3 = 0; i3 < size2; i3++) {
@@ -3857,12 +3857,11 @@ public class LocaleController {
             hashMap.put("а", "a");
             this.ruTranslitChars.put("б", "b");
             this.ruTranslitChars.put("в", "v");
-            this.ruTranslitChars.put("г", ImageLoader.AUTOPLAY_FILTER);
+            this.ruTranslitChars.put("г", "g");
             this.ruTranslitChars.put("д", "d");
             this.ruTranslitChars.put("е", "e");
-            HashMap<String, String> hashMap2 = this.ruTranslitChars;
-            str3 = ImageLoader.AUTOPLAY_FILTER;
-            hashMap2.put("ё", "yo");
+            str3 = "g";
+            this.ruTranslitChars.put("ё", "yo");
             this.ruTranslitChars.put("ж", "zh");
             this.ruTranslitChars.put("з", "z");
             this.ruTranslitChars.put("и", "i");
@@ -3899,7 +3898,7 @@ public class LocaleController {
             this.ruTranslitChars.put("я", "ya");
         } else {
             str2 = "m";
-            str3 = ImageLoader.AUTOPLAY_FILTER;
+            str3 = "g";
             str4 = "r";
             str5 = "z";
             str6 = "h";
@@ -3909,9 +3908,9 @@ public class LocaleController {
             str10 = "s";
         }
         if (this.translitChars == null) {
-            HashMap<String, String> hashMap3 = new HashMap<>(488);
-            this.translitChars = hashMap3;
-            hashMap3.put("ȼ", "c");
+            HashMap<String, String> hashMap2 = new HashMap<>(488);
+            this.translitChars = hashMap2;
+            hashMap2.put("ȼ", "c");
             this.translitChars.put("ᶇ", "n");
             this.translitChars.put("ɖ", "d");
             this.translitChars.put("ỿ", "y");

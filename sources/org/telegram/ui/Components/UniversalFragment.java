@@ -5,7 +5,6 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BackDrawable;
 import org.telegram.ui.ActionBar.BaseFragment;
@@ -82,7 +81,7 @@ public abstract class UniversalFragment extends BaseFragment {
             return;
         }
         View view = null;
-        int i = ConnectionsManager.DEFAULT_DATACENTER_ID;
+        int i = Integer.MAX_VALUE;
         int i2 = -1;
         for (int i3 = 0; i3 < this.listView.getChildCount(); i3++) {
             UniversalRecyclerView universalRecyclerView2 = this.listView;

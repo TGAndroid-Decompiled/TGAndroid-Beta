@@ -56,7 +56,6 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.support.fingerprint.FingerprintManagerCompat;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.PasscodeView;
 import org.telegram.ui.LaunchActivity;
@@ -1862,7 +1861,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
             this.textView2 = textView2;
             textView2.setTypeface(AndroidUtilities.bold());
             textView2.setTextSize(1, 10.0f);
-            textView2.setTextColor(ConnectionsManager.DEFAULT_DATACENTER_ID);
+            textView2.setTextColor(Integer.MAX_VALUE);
             textView2.setGravity(17);
             addView(textView2, LayoutHelper.createFrame(-1, -2.0f, 17, 0.0f, 14.0f, 0.0f, 0.0f));
         }

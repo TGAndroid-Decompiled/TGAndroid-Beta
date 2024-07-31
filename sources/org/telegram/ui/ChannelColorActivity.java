@@ -50,7 +50,6 @@ import org.telegram.messenger.ChatThemeController;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
@@ -810,7 +809,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             tLRPC$TL_channels_updateColor2.for_profile = true;
             if (chat.profile_color == null) {
                 chat.profile_color = new TLRPC$TL_peerColor();
-                chat.flags2 |= LiteMode.FLAG_CHAT_BLUR;
+                chat.flags2 |= 256;
             }
             int i4 = this.selectedProfileColor;
             if (i4 >= 0) {
@@ -909,7 +908,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             } else {
                 tLRPC$TL_channels_updateEmojiStatus.emoji_status = tLRPC$EmojiStatus;
                 chat.emoji_status = tLRPC$EmojiStatus;
-                chat.flags |= LiteMode.FLAG_CALLS_ANIMATIONS;
+                chat.flags |= 512;
             }
             getMessagesController().updateEmojiStatusUntilUpdate(this.dialogId, this.selectedStatusEmoji);
             iArr[0] = iArr[0] + 1;

@@ -27,7 +27,6 @@ import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
@@ -846,7 +845,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
         tLRPC$TL_messageService.from_id = tLRPC$TL_peerUser;
         tLRPC$TL_peerUser.user_id = getUserConfig().getClientUserId();
-        tLRPC$TL_messageService.flags |= LiteMode.FLAG_CHAT_BLUR;
+        tLRPC$TL_messageService.flags |= 256;
         TLRPC$TL_peerUser tLRPC$TL_peerUser2 = new TLRPC$TL_peerUser();
         tLRPC$TL_messageService.peer_id = tLRPC$TL_peerUser2;
         tLRPC$TL_peerUser2.user_id = this.user_id;

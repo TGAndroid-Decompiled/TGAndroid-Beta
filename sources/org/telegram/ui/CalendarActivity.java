@@ -42,7 +42,6 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Document;
@@ -607,7 +606,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
         if (this.loading || this.endReached) {
             return;
         }
-        int i = ConnectionsManager.DEFAULT_DATACENTER_ID;
+        int i = Integer.MAX_VALUE;
         for (int i2 = 0; i2 < this.listView.getChildCount(); i2++) {
             View childAt = this.listView.getChildAt(i2);
             if (childAt instanceof MonthView) {
@@ -628,7 +627,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
         this.loading = this.storiesList.isLoading();
         Calendar calendar = Calendar.getInstance();
         this.messagesByYearMounth.clear();
-        this.minDate = ConnectionsManager.DEFAULT_DATACENTER_ID;
+        this.minDate = Integer.MAX_VALUE;
         for (int i = 0; i < this.storiesList.messageObjects.size(); i++) {
             MessageObject messageObject = this.storiesList.messageObjects.get(i);
             this.minDate = Math.min(this.minDate, messageObject.messageOwner.date);

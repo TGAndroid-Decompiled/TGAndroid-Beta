@@ -31,10 +31,10 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
         try {
             if (BuildVars.DEBUG_VERSION) {
                 Distribute.setEnabledForDebuggableBuild(true);
-                if (TextUtils.isEmpty(BuildConfig.APP_CENTER_HASH)) {
+                if (TextUtils.isEmpty("f9726602-67c9-48d2-b5d0-4761f1c1a8f3")) {
                     throw new RuntimeException("App Center hash is empty. add to local.properties field APP_CENTER_HASH_PRIVATE and APP_CENTER_HASH_PUBLIC");
                 }
-                AppCenter.start(activity.getApplication(), BuildConfig.APP_CENTER_HASH, Distribute.class, Crashes.class, Analytics.class);
+                AppCenter.start(activity.getApplication(), "f9726602-67c9-48d2-b5d0-4761f1c1a8f3", Distribute.class, Crashes.class, Analytics.class);
                 Crashes.getMinidumpDirectory().thenAccept(new AppCenterConsumer() {
                     @Override
                     public final void accept(Object obj) {

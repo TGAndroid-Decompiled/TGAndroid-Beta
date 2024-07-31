@@ -1274,7 +1274,7 @@ public class NotificationCenter {
     public int setAnimationInProgress(int i, int[] iArr, boolean z) {
         onAnimationFinish(i);
         if (this.heavyOperationsCounter.isEmpty() && z) {
-            getGlobalInstance().lambda$postNotificationNameOnUIThread$1(stopAllHeavyOperations, Integer.valueOf((int) LiteMode.FLAG_CALLS_ANIMATIONS));
+            getGlobalInstance().lambda$postNotificationNameOnUIThread$1(stopAllHeavyOperations, 512);
         }
         this.animationInProgressCount++;
         int i2 = this.animationInProgressPointer + 1;
@@ -1288,7 +1288,7 @@ public class NotificationCenter {
         if (this.checkForExpiredNotifications == null) {
             NotificationCenter$$ExternalSyntheticLambda2 notificationCenter$$ExternalSyntheticLambda2 = new NotificationCenter$$ExternalSyntheticLambda2(this);
             this.checkForExpiredNotifications = notificationCenter$$ExternalSyntheticLambda2;
-            AndroidUtilities.runOnUIThread(notificationCenter$$ExternalSyntheticLambda2, EXPIRE_NOTIFICATIONS_TIME);
+            AndroidUtilities.runOnUIThread(notificationCenter$$ExternalSyntheticLambda2, 5017L);
         }
         return this.animationInProgressPointer;
     }
@@ -1323,7 +1323,7 @@ public class NotificationCenter {
                 public final void run() {
                     NotificationCenter.this.lambda$checkForExpiredNotifications$0();
                 }
-            }, Math.max(17L, EXPIRE_NOTIFICATIONS_TIME - (elapsedRealtime - j)));
+            }, Math.max(17L, 5017 - (elapsedRealtime - j)));
         }
     }
 
@@ -1346,7 +1346,7 @@ public class NotificationCenter {
             if (!this.heavyOperationsCounter.isEmpty()) {
                 this.heavyOperationsCounter.remove(Integer.valueOf(i));
                 if (this.heavyOperationsCounter.isEmpty()) {
-                    getGlobalInstance().lambda$postNotificationNameOnUIThread$1(startAllHeavyOperations, Integer.valueOf((int) LiteMode.FLAG_CALLS_ANIMATIONS));
+                    getGlobalInstance().lambda$postNotificationNameOnUIThread$1(startAllHeavyOperations, 512);
                 }
             }
             if (this.animationInProgressCount == 0) {
@@ -1413,7 +1413,7 @@ public class NotificationCenter {
             int i2 = 0;
             for (int i3 = 0; i3 < this.allowedNotifications.size(); i3++) {
                 AllowedNotifications valueAt = this.allowedNotifications.valueAt(i3);
-                if (elapsedRealtime - valueAt.time > EXPIRE_NOTIFICATIONS_TIME) {
+                if (elapsedRealtime - valueAt.time > 5017) {
                     if (arrayList == null) {
                         arrayList = new ArrayList();
                     }

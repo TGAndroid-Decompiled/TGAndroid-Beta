@@ -69,7 +69,6 @@ import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.messenger.camera.CameraController;
 import org.telegram.messenger.camera.CameraSessionWrapper;
 import org.telegram.messenger.camera.CameraView;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$FileLocation;
@@ -1757,7 +1756,10 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
 
     public int maxCount() {
         BaseFragment baseFragment = this.parentAlert.baseFragment;
-        return ((baseFragment instanceof ChatActivity) && ((ChatActivity) baseFragment).getChatMode() == 5) ? this.parentAlert.baseFragment.getMessagesController().quickReplyMessagesLimit - ((ChatActivity) this.parentAlert.baseFragment).messages.size() : ConnectionsManager.DEFAULT_DATACENTER_ID;
+        if ((baseFragment instanceof ChatActivity) && ((ChatActivity) baseFragment).getChatMode() == 5) {
+            return this.parentAlert.baseFragment.getMessagesController().quickReplyMessagesLimit - ((ChatActivity) this.parentAlert.baseFragment).messages.size();
+        }
+        return Integer.MAX_VALUE;
     }
 
     public int addToSelectedPhotos(MediaController.PhotoEntry photoEntry, int i) {
@@ -2619,7 +2621,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         if (Build.VERSION.SDK_INT >= 19) {
             this.gridView.setImportantForAccessibility(4);
         }
-        if (LiteMode.isEnabled(LiteMode.FLAGS_CHAT) || (cameraView = this.cameraView) == null || !cameraView.isInited()) {
+        if (LiteMode.isEnabled(98784) || (cameraView = this.cameraView) == null || !cameraView.isInited()) {
             return;
         }
         this.cameraView.showTexture(true, z);
@@ -2648,7 +2650,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             return;
         }
         if (this.cameraView == null) {
-            boolean z = !LiteMode.isEnabled(LiteMode.FLAGS_CHAT);
+            boolean z = !LiteMode.isEnabled(98784);
             Context context = getContext();
             Boolean bool = this.isCameraFrontfaceBeforeEnteringEditMode;
             CameraView cameraView = new CameraView(context, bool != null ? bool.booleanValue() : this.parentAlert.openWithFrontFaceCamera, z) {
@@ -3117,7 +3119,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         if (Build.VERSION.SDK_INT >= 19) {
             this.gridView.setImportantForAccessibility(0);
         }
-        if (LiteMode.isEnabled(LiteMode.FLAGS_CHAT) || (cameraView = this.cameraView) == null) {
+        if (LiteMode.isEnabled(98784) || (cameraView = this.cameraView) == null) {
             return;
         }
         cameraView.showTexture(false, z);
@@ -3538,7 +3540,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                 Intent intent2 = new Intent();
                 intent2.setType("video/*");
                 intent2.setAction("android.intent.action.GET_CONTENT");
-                intent2.putExtra("android.intent.extra.sizeLimit", FileLoader.DEFAULT_MAX_FILE_SIZE);
+                intent2.putExtra("android.intent.extra.sizeLimit", 2097152000L);
                 Intent intent3 = new Intent("android.intent.action.PICK");
                 intent3.setType("image/*");
                 Intent createChooser = Intent.createChooser(intent3, null);
@@ -3740,7 +3742,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             RecyclerListView recyclerListView = this.gridView;
             recyclerListView.setTopGlowOffset(recyclerListView.getPaddingTop());
             this.progressView.setTranslationY(0.0f);
-            return ConnectionsManager.DEFAULT_DATACENTER_ID;
+            return Integer.MAX_VALUE;
         }
         View childAt = this.gridView.getChildAt(0);
         RecyclerListView.Holder holder = (RecyclerListView.Holder) this.gridView.findContainingViewHolder(childAt);

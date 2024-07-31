@@ -56,7 +56,6 @@ import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.FileRefController;
 import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MediaDataController;
@@ -478,7 +477,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             File makeCacheFile = StoryEntry.makeCacheFile(((BottomSheet) StickersAlert.this).currentAccount, "webp");
             int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
             int i = devicePerformanceClass != 0 ? devicePerformanceClass != 2 ? 2560 : 3840 : 1280;
-            float f = (float) LiteMode.FLAG_CALLS_ANIMATIONS;
+            float f = 512;
             Size size = new Size(f, f);
             float f2 = i;
             size.width = f2;
@@ -488,7 +487,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                 size.height = f2;
                 size.width = (float) Math.floor((f2 * f) / f);
             }
-            Bitmap createBitmap = Bitmap.createBitmap(LiteMode.FLAG_CALLS_ANIMATIONS, LiteMode.FLAG_CALLS_ANIMATIONS, Bitmap.Config.ARGB_8888);
+            Bitmap createBitmap = Bitmap.createBitmap(512, 512, Bitmap.Config.ARGB_8888);
             try {
                 createBitmap.compress(Bitmap.CompressFormat.WEBP, 100, new FileOutputStream(makeCacheFile));
             } catch (Throwable th) {
@@ -502,10 +501,10 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             mediaEntity.type = (byte) 0;
             mediaEntity.parentObject = StickersAlert.this.stickerSet;
             mediaEntity.text = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tLRPC$Document, true).getAbsolutePath();
-            mediaEntity.x = 0.5f - ((Math.min((int) LiteMode.FLAG_CALLS_ANIMATIONS, (int) LiteMode.FLAG_CALLS_ANIMATIONS) / f) / 2.0f);
-            mediaEntity.y = 0.5f - ((Math.min((int) LiteMode.FLAG_CALLS_ANIMATIONS, (int) LiteMode.FLAG_CALLS_ANIMATIONS) / f) / 2.0f);
-            mediaEntity.width = Math.min((int) LiteMode.FLAG_CALLS_ANIMATIONS, (int) LiteMode.FLAG_CALLS_ANIMATIONS) / f;
-            mediaEntity.height = Math.min((int) LiteMode.FLAG_CALLS_ANIMATIONS, (int) LiteMode.FLAG_CALLS_ANIMATIONS) / f;
+            mediaEntity.x = 0.5f - ((Math.min(512, 512) / f) / 2.0f);
+            mediaEntity.y = 0.5f - ((Math.min(512, 512) / f) / 2.0f);
+            mediaEntity.width = Math.min(512, 512) / f;
+            mediaEntity.height = Math.min(512, 512) / f;
             Double.isNaN(size.width);
             int floor2 = (int) Math.floor(d * 0.5d);
             mediaEntity.viewWidth = floor2;
@@ -700,7 +699,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                 }
                 SendMessagesHelper.ImportingSticker importingSticker = new SendMessagesHelper.ImportingSticker();
                 importingSticker.animated = equals;
-                String copyFileToCache = MediaController.copyFileToCache(uri, stickerExt, (equals ? 64 : LiteMode.FLAG_CALLS_ANIMATIONS) * 1024);
+                String copyFileToCache = MediaController.copyFileToCache(uri, stickerExt, (equals ? 64 : 512) * 1024);
                 importingSticker.path = copyFileToCache;
                 if (copyFileToCache != null) {
                     if (!equals) {
@@ -748,7 +747,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             for (int i = 0; i < size; i++) {
                 SendMessagesHelper.ImportingSticker importingSticker = this.importingStickersPaths.get(i);
                 this.uploadImportStickers.put(importingSticker.path, importingSticker);
-                FileLoader.getInstance(this.currentAccount).uploadFile(importingSticker.path, false, true, ConnectionsManager.FileTypeFile);
+                FileLoader.getInstance(this.currentAccount).uploadFile(importingSticker.path, false, true, 67108864);
             }
         }
         updateFields();
@@ -985,7 +984,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                 Boolean bool = this.statusBarOpen;
                 if (bool == null || bool.booleanValue() != z) {
                     boolean z2 = AndroidUtilities.computePerceivedBrightness(StickersAlert.this.getThemedColor(Theme.key_dialogBackground)) > 0.721f;
-                    boolean z3 = AndroidUtilities.computePerceivedBrightness(Theme.blendOver(StickersAlert.this.getThemedColor(Theme.key_actionBarDefault), AndroidUtilities.DARK_STATUS_BAR_OVERLAY)) > 0.721f;
+                    boolean z3 = AndroidUtilities.computePerceivedBrightness(Theme.blendOver(StickersAlert.this.getThemedColor(Theme.key_actionBarDefault), 855638016)) > 0.721f;
                     Boolean valueOf = Boolean.valueOf(z);
                     this.statusBarOpen = valueOf;
                     if (!valueOf.booleanValue()) {

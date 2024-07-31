@@ -1495,7 +1495,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         } else if (i == NotificationCenter.filePreparingStarted) {
             StickerUploader stickerUploader6 = this.stickerUploader;
             if (stickerUploader6 != null && objArr[0] == stickerUploader6.messageObject) {
-                FileLoader.getInstance(UserConfig.selectedAccount).uploadFile(this.stickerUploader.finalPath, false, true, ConnectionsManager.FileTypeFile);
+                FileLoader.getInstance(UserConfig.selectedAccount).uploadFile(this.stickerUploader.finalPath, false, true, 67108864);
             }
         } else if (i == NotificationCenter.fileNewChunkAvailable) {
             StickerUploader stickerUploader7 = this.stickerUploader;
@@ -1563,7 +1563,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
             this.stickerUploader.messageObject.videoEditedInfo = videoEditedInfo;
             MediaController.getInstance().scheduleVideoConvert(this.stickerUploader.messageObject, false, false);
         } else {
-            FileLoader.getInstance(this.currentAccount).uploadFile(str2, false, true, ConnectionsManager.FileTypeFile);
+            FileLoader.getInstance(this.currentAccount).uploadFile(str2, false, true, 67108864);
         }
         if (callback == null) {
             showLoadingDialog();

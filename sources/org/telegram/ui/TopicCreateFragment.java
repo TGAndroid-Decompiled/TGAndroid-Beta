@@ -21,7 +21,6 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
@@ -163,7 +162,7 @@ public class TopicCreateFragment extends BaseFragment {
         this.editTextBoldCursor.setBackgroundDrawable(null);
         this.editTextBoldCursor.setSingleLine(true);
         EditTextBoldCursor editTextBoldCursor2 = this.editTextBoldCursor;
-        editTextBoldCursor2.setInputType(editTextBoldCursor2.getInputType() | LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM);
+        editTextBoldCursor2.setInputType(editTextBoldCursor2.getInputType() | 16384);
         frameLayout.addView(this.editTextBoldCursor, LayoutHelper.createFrame(-1, -1.0f, 0, 51.0f, 4.0f, 21.0f, 4.0f));
         this.editTextBoldCursor.addTextChangedListener(new TextWatcher() {
             @Override

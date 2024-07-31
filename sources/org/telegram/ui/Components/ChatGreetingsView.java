@@ -24,7 +24,6 @@ import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
@@ -95,12 +94,12 @@ public class ChatGreetingsView extends LinearLayout {
         BackupImageView backupImageView = new BackupImageView(context);
         this.stickerToSendView = backupImageView;
         backupImageView.getImageReceiver().setAspectFit(true);
-        this.stickerContainer.addView(this.stickerToSendView, LayoutHelper.createFrame(R.styleable.AppCompatTheme_toolbarNavigationButtonStyle, 112.0f));
+        this.stickerContainer.addView(this.stickerToSendView, LayoutHelper.createFrame(112, 112.0f));
         ScaleStateListAnimator.apply(this.stickerToSendView);
         BackupImageView backupImageView2 = new BackupImageView(context);
         this.nextStickerToSendView = backupImageView2;
         backupImageView2.getImageReceiver().setAspectFit(true);
-        this.stickerContainer.addView(this.nextStickerToSendView, LayoutHelper.createFrame(R.styleable.AppCompatTheme_toolbarNavigationButtonStyle, 112.0f));
+        this.stickerContainer.addView(this.nextStickerToSendView, LayoutHelper.createFrame(112, 112.0f));
         this.nextStickerToSendView.setVisibility(8);
         this.nextStickerToSendView.setAlpha(0.0f);
         ScaleStateListAnimator.apply(this.nextStickerToSendView);
@@ -217,7 +216,7 @@ public class ChatGreetingsView extends LinearLayout {
                 this.premiumButtonView.setTypeface(AndroidUtilities.bold());
                 this.premiumButtonView.setTextSize(1, 14.0f);
                 this.premiumButtonView.setPadding(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(6.66f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(7.0f));
-                this.premiumButtonView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(15.0f), 503316480, AndroidUtilities.DARK_STATUS_BAR_OVERLAY));
+                this.premiumButtonView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(15.0f), 503316480, 855638016));
                 ScaleStateListAnimator.apply(this.premiumButtonView);
             }
             this.premiumButtonView.setText(LocaleController.getString(R.string.MessagePremiumUnlock));
@@ -258,7 +257,7 @@ public class ChatGreetingsView extends LinearLayout {
         }
         addView(this.titleView, LayoutHelper.createLinear(-2, -2, 1, 20, 6, 20, 6));
         addView(this.descriptionView, LayoutHelper.createLinear(-2, -2, 1, 20, 6, 20, 6));
-        addView(this.stickerContainer, LayoutHelper.createLinear((int) R.styleable.AppCompatTheme_toolbarNavigationButtonStyle, (int) R.styleable.AppCompatTheme_toolbarNavigationButtonStyle, 1, 16, 10, 16, 16));
+        addView(this.stickerContainer, LayoutHelper.createLinear(112, 112, 1, 16, 10, 16, 16));
     }
 
     public void setSticker(final TLRPC$Document tLRPC$Document) {
@@ -448,8 +447,8 @@ public class ChatGreetingsView extends LinearLayout {
             i3++;
         }
         if (MessageObject.isAnimatedStickerDocument(tLRPC$Document, true) && i == 0 && i2 == 0) {
-            i = LiteMode.FLAG_CALLS_ANIMATIONS;
-            i2 = LiteMode.FLAG_CALLS_ANIMATIONS;
+            i = 512;
+            i2 = 512;
         }
         if (i == 0) {
             i2 = (int) f2;

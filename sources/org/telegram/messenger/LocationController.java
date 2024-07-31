@@ -20,7 +20,6 @@ import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.messenger.ILocationServiceProvider;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
@@ -485,7 +484,7 @@ public class LocationController extends BaseController implements NotificationCe
                 final TLRPC$TL_messages_editMessage tLRPC$TL_messages_editMessage = new TLRPC$TL_messages_editMessage();
                 tLRPC$TL_messages_editMessage.peer = getMessagesController().getInputPeer(sharingLocationInfo.did);
                 tLRPC$TL_messages_editMessage.id = sharingLocationInfo.mid;
-                tLRPC$TL_messages_editMessage.flags |= LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM;
+                tLRPC$TL_messages_editMessage.flags |= 16384;
                 TLRPC$TL_inputMediaGeoLive tLRPC$TL_inputMediaGeoLive = new TLRPC$TL_inputMediaGeoLive();
                 tLRPC$TL_messages_editMessage.media = tLRPC$TL_inputMediaGeoLive;
                 tLRPC$TL_inputMediaGeoLive.stopped = false;
@@ -721,7 +720,7 @@ public class LocationController extends BaseController implements NotificationCe
         sharingLocationInfo.account = this.currentAccount;
         sharingLocationInfo.messageObject = new MessageObject(this.currentAccount, tLRPC$Message, false, false);
         if (sharingLocationInfo.period == Integer.MAX_VALUE) {
-            sharingLocationInfo.stopTime = ConnectionsManager.DEFAULT_DATACENTER_ID;
+            sharingLocationInfo.stopTime = Integer.MAX_VALUE;
         } else {
             sharingLocationInfo.stopTime = getConnectionsManager().getCurrentTime() + sharingLocationInfo.period;
         }
@@ -954,7 +953,7 @@ public class LocationController extends BaseController implements NotificationCe
             TLRPC$TL_messages_editMessage tLRPC$TL_messages_editMessage = new TLRPC$TL_messages_editMessage();
             tLRPC$TL_messages_editMessage.peer = getMessagesController().getInputPeer(sharingLocationInfo.did);
             tLRPC$TL_messages_editMessage.id = sharingLocationInfo.mid;
-            tLRPC$TL_messages_editMessage.flags |= LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM;
+            tLRPC$TL_messages_editMessage.flags |= 16384;
             TLRPC$TL_inputMediaGeoLive tLRPC$TL_inputMediaGeoLive = new TLRPC$TL_inputMediaGeoLive();
             tLRPC$TL_messages_editMessage.media = tLRPC$TL_inputMediaGeoLive;
             tLRPC$TL_inputMediaGeoLive.stopped = true;
@@ -1022,7 +1021,7 @@ public class LocationController extends BaseController implements NotificationCe
             TLRPC$TL_messages_editMessage tLRPC$TL_messages_editMessage = new TLRPC$TL_messages_editMessage();
             tLRPC$TL_messages_editMessage.peer = getMessagesController().getInputPeer(sharingLocationInfo.did);
             tLRPC$TL_messages_editMessage.id = sharingLocationInfo.mid;
-            tLRPC$TL_messages_editMessage.flags |= LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM;
+            tLRPC$TL_messages_editMessage.flags |= 16384;
             TLRPC$TL_inputMediaGeoLive tLRPC$TL_inputMediaGeoLive = new TLRPC$TL_inputMediaGeoLive();
             tLRPC$TL_messages_editMessage.media = tLRPC$TL_inputMediaGeoLive;
             tLRPC$TL_inputMediaGeoLive.stopped = true;

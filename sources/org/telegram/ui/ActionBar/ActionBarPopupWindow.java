@@ -32,7 +32,6 @@ import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
@@ -556,7 +555,7 @@ public class ActionBarPopupWindow extends PopupWindow {
 
     public ActionBarPopupWindow() {
         this.animationEnabled = allowAnimation;
-        this.dismissAnimationDuration = ImageReceiver.DEFAULT_CROSSFADE_DURATION;
+        this.dismissAnimationDuration = 150;
         int i = UserConfig.selectedAccount;
         this.outEmptyTime = -1L;
         this.notificationsLocker = new AnimationNotificationsLocker();
@@ -566,7 +565,7 @@ public class ActionBarPopupWindow extends PopupWindow {
     public ActionBarPopupWindow(Context context) {
         super(context);
         this.animationEnabled = allowAnimation;
-        this.dismissAnimationDuration = ImageReceiver.DEFAULT_CROSSFADE_DURATION;
+        this.dismissAnimationDuration = 150;
         int i = UserConfig.selectedAccount;
         this.outEmptyTime = -1L;
         this.notificationsLocker = new AnimationNotificationsLocker();
@@ -576,7 +575,7 @@ public class ActionBarPopupWindow extends PopupWindow {
     public ActionBarPopupWindow(View view, int i, int i2) {
         super(view, i, i2);
         this.animationEnabled = allowAnimation;
-        this.dismissAnimationDuration = ImageReceiver.DEFAULT_CROSSFADE_DURATION;
+        this.dismissAnimationDuration = 150;
         int i3 = UserConfig.selectedAccount;
         this.outEmptyTime = -1L;
         this.notificationsLocker = new AnimationNotificationsLocker();
@@ -739,7 +738,7 @@ public class ActionBarPopupWindow extends PopupWindow {
         actionBarPopupWindowLayout.updateAnimation = false;
         actionBarPopupWindowLayout.clipChildren = true;
         animatorSet.playTogether(ObjectAnimator.ofFloat(actionBarPopupWindowLayout, "backScaleY", 0.0f, f), ObjectAnimator.ofInt(actionBarPopupWindowLayout, "backAlpha", 0, 255), ofFloat);
-        animatorSet.setDuration((i * 16) + ImageReceiver.DEFAULT_CROSSFADE_DURATION);
+        animatorSet.setDuration((i * 16) + 150);
         animatorSet.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator) {
@@ -816,7 +815,7 @@ public class ActionBarPopupWindow extends PopupWindow {
             AnimatorSet animatorSet = new AnimatorSet();
             this.windowAnimatorSet = animatorSet;
             animatorSet.playTogether(ObjectAnimator.ofFloat(actionBarPopupWindowLayout, "backScaleY", 0.0f, f), ObjectAnimator.ofInt(actionBarPopupWindowLayout, "backAlpha", 0, 255));
-            this.windowAnimatorSet.setDuration((i2 * 16) + ImageReceiver.DEFAULT_CROSSFADE_DURATION);
+            this.windowAnimatorSet.setDuration((i2 * 16) + 150);
             this.windowAnimatorSet.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {

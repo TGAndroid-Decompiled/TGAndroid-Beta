@@ -8,7 +8,6 @@ import android.os.Build;
 import java.util.concurrent.ScheduledExecutorService;
 import org.webrtc.JniCommon;
 import org.webrtc.Logging;
-import org.webrtc.MediaStreamTrack;
 public class JavaAudioDeviceModule implements AudioDeviceModule {
     private static final String TAG = "JavaAudioDeviceModule";
     private final WebRtcAudioRecord audioInput;
@@ -96,7 +95,7 @@ public class JavaAudioDeviceModule implements AudioDeviceModule {
             this.useHardwareAcousticEchoCanceler = JavaAudioDeviceModule.isBuiltInAcousticEchoCancelerSupported();
             this.useHardwareNoiseSuppressor = JavaAudioDeviceModule.isBuiltInNoiseSuppressorSupported();
             this.context = context;
-            AudioManager audioManager = (AudioManager) context.getSystemService(MediaStreamTrack.AUDIO_TRACK_KIND);
+            AudioManager audioManager = (AudioManager) context.getSystemService("audio");
             this.audioManager = audioManager;
             this.inputSampleRate = WebRtcAudioManager.getSampleRate(audioManager);
             this.outputSampleRate = WebRtcAudioManager.getSampleRate(audioManager);
@@ -109,20 +108,20 @@ public class JavaAudioDeviceModule implements AudioDeviceModule {
         }
 
         public Builder setSampleRate(int i) {
-            Logging.d(JavaAudioDeviceModule.TAG, "Input/Output sample rate overridden to: " + i);
+            Logging.d("JavaAudioDeviceModule", "Input/Output sample rate overridden to: " + i);
             this.inputSampleRate = i;
             this.outputSampleRate = i;
             return this;
         }
 
         public Builder setInputSampleRate(int i) {
-            Logging.d(JavaAudioDeviceModule.TAG, "Input sample rate overridden to: " + i);
+            Logging.d("JavaAudioDeviceModule", "Input sample rate overridden to: " + i);
             this.inputSampleRate = i;
             return this;
         }
 
         public Builder setOutputSampleRate(int i) {
-            Logging.d(JavaAudioDeviceModule.TAG, "Output sample rate overridden to: " + i);
+            Logging.d("JavaAudioDeviceModule", "Output sample rate overridden to: " + i);
             this.outputSampleRate = i;
             return this;
         }
@@ -164,7 +163,7 @@ public class JavaAudioDeviceModule implements AudioDeviceModule {
 
         public Builder setUseHardwareNoiseSuppressor(boolean z) {
             if (z && !JavaAudioDeviceModule.isBuiltInNoiseSuppressorSupported()) {
-                Logging.e(JavaAudioDeviceModule.TAG, "HW NS not supported");
+                Logging.e("JavaAudioDeviceModule", "HW NS not supported");
                 z = false;
             }
             this.useHardwareNoiseSuppressor = z;
@@ -173,7 +172,7 @@ public class JavaAudioDeviceModule implements AudioDeviceModule {
 
         public Builder setUseHardwareAcousticEchoCanceler(boolean z) {
             if (z && !JavaAudioDeviceModule.isBuiltInAcousticEchoCancelerSupported()) {
-                Logging.e(JavaAudioDeviceModule.TAG, "HW AEC not supported");
+                Logging.e("JavaAudioDeviceModule", "HW AEC not supported");
                 z = false;
             }
             this.useHardwareAcousticEchoCanceler = z;
@@ -201,25 +200,25 @@ public class JavaAudioDeviceModule implements AudioDeviceModule {
         }
 
         public JavaAudioDeviceModule createAudioDeviceModule() {
-            Logging.d(JavaAudioDeviceModule.TAG, "createAudioDeviceModule");
+            Logging.d("JavaAudioDeviceModule", "createAudioDeviceModule");
             if (this.useHardwareNoiseSuppressor) {
-                Logging.d(JavaAudioDeviceModule.TAG, "HW NS will be used.");
+                Logging.d("JavaAudioDeviceModule", "HW NS will be used.");
             } else {
                 if (JavaAudioDeviceModule.isBuiltInNoiseSuppressorSupported()) {
-                    Logging.d(JavaAudioDeviceModule.TAG, "Overriding default behavior; now using WebRTC NS!");
+                    Logging.d("JavaAudioDeviceModule", "Overriding default behavior; now using WebRTC NS!");
                 }
-                Logging.d(JavaAudioDeviceModule.TAG, "HW NS will not be used.");
+                Logging.d("JavaAudioDeviceModule", "HW NS will not be used.");
             }
             if (this.useHardwareAcousticEchoCanceler) {
-                Logging.d(JavaAudioDeviceModule.TAG, "HW AEC will be used.");
+                Logging.d("JavaAudioDeviceModule", "HW AEC will be used.");
             } else {
                 if (JavaAudioDeviceModule.isBuiltInAcousticEchoCancelerSupported()) {
-                    Logging.d(JavaAudioDeviceModule.TAG, "Overriding default behavior; now using WebRTC AEC!");
+                    Logging.d("JavaAudioDeviceModule", "Overriding default behavior; now using WebRTC AEC!");
                 }
-                Logging.d(JavaAudioDeviceModule.TAG, "HW AEC will not be used.");
+                Logging.d("JavaAudioDeviceModule", "HW AEC will not be used.");
             }
             if (this.useLowLatency && Build.VERSION.SDK_INT >= 26) {
-                Logging.d(JavaAudioDeviceModule.TAG, "Low latency mode will be used.");
+                Logging.d("JavaAudioDeviceModule", "Low latency mode will be used.");
             }
             ScheduledExecutorService scheduledExecutorService = this.scheduler;
             if (scheduledExecutorService == null) {
@@ -304,18 +303,18 @@ public class JavaAudioDeviceModule implements AudioDeviceModule {
 
     @Override
     public void setSpeakerMute(boolean z) {
-        Logging.d(TAG, "setSpeakerMute: " + z);
+        Logging.d("JavaAudioDeviceModule", "setSpeakerMute: " + z);
         this.audioOutput.setSpeakerMute(z);
     }
 
     @Override
     public void setMicrophoneMute(boolean z) {
-        Logging.d(TAG, "setMicrophoneMute: " + z);
+        Logging.d("JavaAudioDeviceModule", "setMicrophoneMute: " + z);
         this.audioInput.setMicrophoneMute(z);
     }
 
     public void setPreferredInputDevice(AudioDeviceInfo audioDeviceInfo) {
-        Logging.d(TAG, "setPreferredInputDevice: " + audioDeviceInfo);
+        Logging.d("JavaAudioDeviceModule", "setPreferredInputDevice: " + audioDeviceInfo);
         this.audioInput.setPreferredDevice(audioDeviceInfo);
     }
 }

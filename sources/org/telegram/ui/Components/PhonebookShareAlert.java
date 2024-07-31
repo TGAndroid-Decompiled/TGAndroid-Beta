@@ -35,7 +35,6 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.browser.Browser;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC$TL_restrictionReason;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.ActionBar;
@@ -337,7 +336,7 @@ public class PhonebookShareAlert extends BottomSheet {
             this.buttonTextView.setEnabled(z);
             TextView textView = this.buttonTextView;
             if (!z) {
-                themedColor &= ConnectionsManager.DEFAULT_DATACENTER_ID;
+                themedColor &= Integer.MAX_VALUE;
             }
             textView.setTextColor(themedColor);
         }

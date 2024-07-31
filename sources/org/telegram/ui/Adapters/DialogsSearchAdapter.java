@@ -1661,7 +1661,7 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
         }
         this.lastShowMoreUpdate = elapsedRealtime;
         int size = arrayList.isEmpty() ? 0 : arrayList.size();
-        boolean z = getItemCount() > (Math.min(size, this.globalSearchCollapsed ? 4 : ConnectionsManager.DEFAULT_DATACENTER_ID) + i) + 1;
+        boolean z = getItemCount() > (Math.min(size, this.globalSearchCollapsed ? 4 : Integer.MAX_VALUE) + i) + 1;
         DefaultItemAnimator defaultItemAnimator = this.itemAnimator;
         if (defaultItemAnimator != null) {
             defaultItemAnimator.setAddDuration(z ? 45L : 200L);

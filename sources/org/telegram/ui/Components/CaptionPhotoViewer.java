@@ -13,7 +13,6 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BlurringShader;
 import org.telegram.ui.Stories.DarkThemeResourceProvider;
@@ -50,7 +49,7 @@ public class CaptionPhotoViewer extends CaptionContainerView {
     public CaptionPhotoViewer(Context context, final FrameLayout frameLayout, SizeNotifierFrameLayout sizeNotifierFrameLayout, FrameLayout frameLayout2, Theme.ResourcesProvider resourcesProvider, BlurringShader.BlurManager blurManager, Runnable runnable) {
         super(context, frameLayout, sizeNotifierFrameLayout, frameLayout2, resourcesProvider, blurManager);
         this.timer = 0;
-        this.values = new int[]{ConnectionsManager.DEFAULT_DATACENTER_ID, 3, 10, 30, 0};
+        this.values = new int[]{Integer.MAX_VALUE, 3, 10, 30, 0};
         this.applyCaption = runnable;
         ImageView imageView = new ImageView(context);
         this.addPhotoButton = imageView;

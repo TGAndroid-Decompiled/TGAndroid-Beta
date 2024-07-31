@@ -627,7 +627,7 @@ public class UsersAlertBase extends BottomSheet {
             Boolean bool = this.statusBarOpen;
             if (bool == null || bool.booleanValue() != z) {
                 boolean z2 = AndroidUtilities.computePerceivedBrightness(UsersAlertBase.this.getThemedColor(Theme.key_dialogBackground)) > 0.721f;
-                boolean z3 = AndroidUtilities.computePerceivedBrightness(Theme.blendOver(UsersAlertBase.this.getThemedColor(Theme.key_actionBarDefault), AndroidUtilities.DARK_STATUS_BAR_OVERLAY)) > 0.721f;
+                boolean z3 = AndroidUtilities.computePerceivedBrightness(Theme.blendOver(UsersAlertBase.this.getThemedColor(Theme.key_actionBarDefault), 855638016)) > 0.721f;
                 Boolean valueOf = Boolean.valueOf(z);
                 this.statusBarOpen = valueOf;
                 if (!valueOf.booleanValue()) {

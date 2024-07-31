@@ -922,7 +922,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                 SharedMediaData[] sharedMediaDataArr = this.sharedMediaData;
                 if (i < sharedMediaDataArr.length) {
                     sharedMediaDataArr[i] = new SharedMediaData();
-                    this.sharedMediaData[i].setMaxId(0, DialogObject.isEncryptedDialog(this.dialogId) ? Integer.MIN_VALUE : ConnectionsManager.DEFAULT_DATACENTER_ID);
+                    this.sharedMediaData[i].setMaxId(0, DialogObject.isEncryptedDialog(this.dialogId) ? Integer.MIN_VALUE : Integer.MAX_VALUE);
                     i++;
                 } else {
                     loadMediaCounts();
@@ -1293,7 +1293,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                 break;
             }
             sharedMediaDataArr[i7] = new SharedMediaData();
-            this.sharedMediaData[i7].max_id[0] = DialogObject.isEncryptedDialog(this.dialog_id) ? Integer.MIN_VALUE : ConnectionsManager.DEFAULT_DATACENTER_ID;
+            this.sharedMediaData[i7].max_id[0] = DialogObject.isEncryptedDialog(this.dialog_id) ? Integer.MIN_VALUE : Integer.MAX_VALUE;
             fillMediaData(i7);
             if (this.mergeDialogId != 0 && (tLRPC$ChatFull2 = this.info) != null) {
                 SharedMediaData[] sharedMediaDataArr2 = this.sharedMediaData;
@@ -2871,7 +2871,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
     }
 
     public void lambda$new$4(View view) {
-        onActionBarItemClick(view, R.styleable.AppCompatTheme_textAppearanceLargePopupMenu);
+        onActionBarItemClick(view, 102);
     }
 
     public void lambda$new$5(View view) {
@@ -2879,11 +2879,11 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
     }
 
     public void lambda$new$6(View view) {
-        onActionBarItemClick(view, R.styleable.AppCompatTheme_textAppearanceListItem);
+        onActionBarItemClick(view, 103);
     }
 
     public void lambda$new$7(View view) {
-        onActionBarItemClick(view, R.styleable.AppCompatTheme_textAppearanceListItemSecondary);
+        onActionBarItemClick(view, 104);
     }
 
     public void lambda$new$8(View view) {
@@ -3332,7 +3332,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
             sharedMediaDataArr[0].setTotalCount(lastMediaCount[7]);
         }
         this.sharedMediaData[0].fastScrollDataLoaded = false;
-        jumpToDate(0, DialogObject.isEncryptedDialog(this.dialog_id) ? Integer.MIN_VALUE : ConnectionsManager.DEFAULT_DATACENTER_ID, 0, true);
+        jumpToDate(0, DialogObject.isEncryptedDialog(this.dialog_id) ? Integer.MIN_VALUE : Integer.MAX_VALUE, 0, true);
         loadFastScrollData(false);
         this.delegate.updateSelectedMediaTabText();
         boolean isEncryptedDialog = DialogObject.isEncryptedDialog(this.dialog_id);
@@ -5004,7 +5004,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
             } else {
                 measuredWidth2 = (int) (((measuredWidth / getMeasuredWidth()) + 1.0f) * 100.0f);
             }
-            this.tabsAnimation.setDuration(Math.max((int) ImageReceiver.DEFAULT_CROSSFADE_DURATION, Math.min(measuredWidth2, 600)));
+            this.tabsAnimation.setDuration(Math.max(150, Math.min(measuredWidth2, 600)));
             this.tabsAnimation.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {

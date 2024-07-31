@@ -48,7 +48,7 @@ public class AlbumButton extends View {
         textPaint.setColor(Theme.getColor(i2, resourcesProvider));
         textPaint.setTextSize(AndroidUtilities.dp(16.0f));
         textPaint2.setColor(Theme.getColor(i2, resourcesProvider));
-        textPaint2.setAlpha(R.styleable.AppCompatTheme_textAppearanceLargePopupMenu);
+        textPaint2.setAlpha(102);
         textPaint2.setTextSize(AndroidUtilities.dp(13.0f));
         this.title = "" + ((Object) charSequence);
         this.subtitle = "" + i;

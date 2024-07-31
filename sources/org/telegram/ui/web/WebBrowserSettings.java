@@ -29,7 +29,6 @@ import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
@@ -344,7 +343,7 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
                     editTextBoldCursor.setHintText(LocaleController.getString(R.string.BrowserSettingsAddHint));
                     editTextBoldCursor.setSingleLine(true);
                     editTextBoldCursor.setFocusable(true);
-                    editTextBoldCursor.setInputType(LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM);
+                    editTextBoldCursor.setInputType(16384);
                     editTextBoldCursor.setLineColors(Theme.getColor(Theme.key_windowBackgroundWhiteInputField, getResourceProvider()), Theme.getColor(Theme.key_windowBackgroundWhiteInputFieldActivated, getResourceProvider()), Theme.getColor(Theme.key_text_RedRegular, getResourceProvider()));
                     editTextBoldCursor.setImeOptions(6);
                     editTextBoldCursor.setBackgroundDrawable(null);

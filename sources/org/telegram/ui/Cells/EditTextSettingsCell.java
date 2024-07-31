@@ -6,7 +6,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.EditTextBoldCursor;
@@ -30,7 +29,7 @@ public class EditTextSettingsCell extends FrameLayout {
         this.textView.setBackgroundDrawable(null);
         this.textView.setPadding(0, 0, 0, 0);
         EditTextBoldCursor editTextBoldCursor2 = this.textView;
-        editTextBoldCursor2.setInputType(editTextBoldCursor2.getInputType() | LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM);
+        editTextBoldCursor2.setInputType(editTextBoldCursor2.getInputType() | 16384);
         addView(this.textView, LayoutHelper.createFrame(-1, -1.0f, (LocaleController.isRTL ? 5 : 3) | 48, 21.0f, 0.0f, 21.0f, 0.0f));
     }
 

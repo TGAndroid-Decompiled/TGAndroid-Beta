@@ -28,7 +28,6 @@ import android.widget.Button;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
@@ -456,7 +455,7 @@ public class AcceptDeclineView extends View {
                 return this.hostView.performAccessibilityAction(i2, bundle);
             }
             if (i2 == 64) {
-                sendAccessibilityEventForVirtualView(i, LiteMode.FLAG_CHAT_SCALE);
+                sendAccessibilityEventForVirtualView(i, 32768);
                 return false;
             } else if (i2 == 16) {
                 onVirtualViewClick(i);
@@ -475,7 +474,7 @@ public class AcceptDeclineView extends View {
                     if (this.rect.contains(x, y)) {
                         if (i != this.currentFocusedVirtualViewId) {
                             this.currentFocusedVirtualViewId = i;
-                            sendAccessibilityEventForVirtualView(i, LiteMode.FLAG_CHAT_SCALE);
+                            sendAccessibilityEventForVirtualView(i, 32768);
                         }
                         return true;
                     }

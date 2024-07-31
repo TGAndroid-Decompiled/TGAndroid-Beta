@@ -39,7 +39,7 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
         if (context instanceof EglBase14.Context) {
             this.sharedContext = (EglBase14.Context) context;
         } else {
-            Logging.w(TAG, "No shared EglBase.Context.  Encoders will not use texture mode.");
+            Logging.w("HardwareVideoEncoderFactory", "No shared EglBase.Context.  Encoders will not use texture mode.");
             this.sharedContext = null;
         }
         this.enableIntelVp8Encoder = z;
@@ -267,7 +267,7 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
             int i = Build.VERSION.SDK_INT;
             if (i != 21 && i != 22) {
                 if (i == 23) {
-                    return QCOM_VP8_KEY_FRAME_INTERVAL_ANDROID_M_MS;
+                    return 20000;
                 }
                 if (i <= 23) {
                     return 0;

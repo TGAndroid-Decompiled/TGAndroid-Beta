@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-import org.telegram.messenger.LiteMode;
 public abstract class TLRPC$BotInlineMessage extends TLObject {
     public String address;
     public ArrayList<TLRPC$MessageEntity> entities = new ArrayList<>();
@@ -41,7 +40,7 @@ public abstract class TLRPC$BotInlineMessage extends TLObject {
                         this.force_large_media = (readInt32 & 16) != 0;
                         this.force_small_media = (readInt32 & 32) != 0;
                         this.manual = (readInt32 & 128) != 0;
-                        this.safe = (readInt32 & LiteMode.FLAG_CHAT_BLUR) != 0;
+                        this.safe = (readInt32 & 256) != 0;
                         this.message = abstractSerializedData2.readString(z2);
                         if ((this.flags & 2) != 0) {
                             int readInt322 = abstractSerializedData2.readInt32(z2);
@@ -73,7 +72,7 @@ public abstract class TLRPC$BotInlineMessage extends TLObject {
                         this.flags = i4;
                         int i5 = this.manual ? i4 | 128 : i4 & (-129);
                         this.flags = i5;
-                        int i6 = this.safe ? i5 | LiteMode.FLAG_CHAT_BLUR : i5 & (-257);
+                        int i6 = this.safe ? i5 | 256 : i5 & (-257);
                         this.flags = i6;
                         abstractSerializedData2.writeInt32(i6);
                         abstractSerializedData2.writeString(this.message);

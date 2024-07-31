@@ -54,7 +54,7 @@ public class FingerprintController {
             try {
                 Locale locale = Locale.getDefault();
                 setLocale(Locale.ENGLISH);
-                keyPairGenerator2.initialize(new KeyGenParameterSpec.Builder(KEY_ALIAS, 3).setDigests("SHA-256", "SHA-512").setEncryptionPaddings("OAEPPadding").setUserAuthenticationRequired(true).build());
+                keyPairGenerator2.initialize(new KeyGenParameterSpec.Builder("tmessages_passcode", 3).setDigests("SHA-256", "SHA-512").setEncryptionPaddings("OAEPPadding").setUserAuthenticationRequired(true).build());
                 keyPairGenerator2.generateKeyPair();
                 setLocale(locale);
                 AndroidUtilities.runOnUIThread(new Runnable() {
@@ -80,7 +80,7 @@ public class FingerprintController {
 
     public static void deleteInvalidKey() {
         try {
-            getKeyStore().deleteEntry(KEY_ALIAS);
+            getKeyStore().deleteEntry("tmessages_passcode");
         } catch (KeyStoreException e) {
             FileLog.e(e);
         }
@@ -105,7 +105,7 @@ public class FingerprintController {
 
     public static boolean isKeyReady() {
         try {
-            return getKeyStore().containsAlias(KEY_ALIAS);
+            return getKeyStore().containsAlias("tmessages_passcode");
         } catch (KeyStoreException e) {
             FileLog.e(e);
             return false;
@@ -118,7 +118,7 @@ public class FingerprintController {
             return bool.booleanValue();
         }
         try {
-            Cipher.getInstance("RSA/ECB/OAEPWithSHA-256AndMGF1Padding").init(2, keyStore.getKey(KEY_ALIAS, null));
+            Cipher.getInstance("RSA/ECB/OAEPWithSHA-256AndMGF1Padding").init(2, keyStore.getKey("tmessages_passcode", null));
             hasChangedFingerprints = Boolean.FALSE;
             return false;
         } catch (KeyPermanentlyInvalidatedException unused) {

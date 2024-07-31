@@ -10,7 +10,6 @@ import java.nio.ByteBuffer;
 import java.nio.ShortBuffer;
 import java.util.ArrayList;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.MediaController;
 import org.telegram.messenger.video.MediaCodecVideoConvertor;
 import org.telegram.messenger.video.audio_input.AudioInput;
 public class AudioRecoder {
@@ -46,9 +45,9 @@ public class AudioRecoder {
                 this.sampleRate = arrayList.get(i).getSampleRate();
             }
         }
-        MediaCodec createEncoderByType = MediaCodec.createEncoderByType(MediaController.AUDIO_MIME_TYPE);
+        MediaCodec createEncoderByType = MediaCodec.createEncoderByType("audio/mp4a-latm");
         this.encoder = createEncoderByType;
-        MediaFormat createAudioFormat = MediaFormat.createAudioFormat(MediaController.AUDIO_MIME_TYPE, this.sampleRate, this.channelCount);
+        MediaFormat createAudioFormat = MediaFormat.createAudioFormat("audio/mp4a-latm", this.sampleRate, this.channelCount);
         this.format = createAudioFormat;
         createAudioFormat.setInteger("bitrate", 128000);
         createEncoderByType.configure(createAudioFormat, (Surface) null, (MediaCrypto) null, 1);

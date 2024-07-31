@@ -28,7 +28,6 @@ import org.telegram.messenger.GenericProvider;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
 public class MotionBackgroundDrawable extends Drawable {
     private static boolean errorWhileGenerateLegacyBitmap;
     private static float legacyBitmapScale;
@@ -234,10 +233,7 @@ public class MotionBackgroundDrawable extends Drawable {
 
     public static int getPatternColor(int i, int i2, int i3, int i4) {
         if (isDark(i, i2, i3, i4)) {
-            if (useSoftLight) {
-                return -1;
-            }
-            return ConnectionsManager.DEFAULT_DATACENTER_ID;
+            return !useSoftLight ? Integer.MAX_VALUE : -1;
         } else if (useSoftLight) {
             return -16777216;
         } else {

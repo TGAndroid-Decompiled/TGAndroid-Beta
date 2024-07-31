@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.SimpleItemAnimator;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.Adapters.DialogsAdapter;
 import org.telegram.ui.Cells.DialogCell;
 import org.telegram.ui.Cells.DialogsEmptyCell;
@@ -181,8 +180,8 @@ public class DialogsItemAnimator extends SimpleItemAnimator {
     }
 
     public void prepareForRemove() {
-        this.topClip = ConnectionsManager.DEFAULT_DATACENTER_ID;
-        this.bottomClip = ConnectionsManager.DEFAULT_DATACENTER_ID;
+        this.topClip = Integer.MAX_VALUE;
+        this.bottomClip = Integer.MAX_VALUE;
         this.removingDialog = null;
     }
 

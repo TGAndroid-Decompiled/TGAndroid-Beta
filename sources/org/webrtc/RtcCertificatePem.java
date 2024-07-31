@@ -25,11 +25,11 @@ public class RtcCertificatePem {
     }
 
     public static RtcCertificatePem generateCertificate() {
-        return nativeGenerateCertificate(PeerConnection.KeyType.ECDSA, DEFAULT_EXPIRY);
+        return nativeGenerateCertificate(PeerConnection.KeyType.ECDSA, 2592000L);
     }
 
     public static RtcCertificatePem generateCertificate(PeerConnection.KeyType keyType) {
-        return nativeGenerateCertificate(keyType, DEFAULT_EXPIRY);
+        return nativeGenerateCertificate(keyType, 2592000L);
     }
 
     public static RtcCertificatePem generateCertificate(long j) {

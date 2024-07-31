@@ -284,19 +284,19 @@ public class FileLoadOperation {
             this.maxDownloadRequests = 4;
             this.maxDownloadRequestsBig = 4;
         }
-        this.maxCdnParts = (int) (FileLoader.DEFAULT_MAX_FILE_SIZE / this.downloadChunkSizeBig);
+        this.maxCdnParts = (int) (2097152000 / this.downloadChunkSizeBig);
     }
 
     public FileLoadOperation(ImageLocation imageLocation, Object obj, String str, long j) {
         boolean z = false;
         this.FULL_LOGS = false;
-        this.downloadChunkSize = LiteMode.FLAG_CHAT_SCALE;
+        this.downloadChunkSize = 32768;
         this.downloadChunkSizeBig = 131072;
         this.cdnChunkCheckSize = 131072;
         this.maxDownloadRequests = 4;
         this.maxDownloadRequestsBig = 4;
         this.bigFileSizeFrom = 10485760;
-        this.maxCdnParts = (int) (FileLoader.DEFAULT_MAX_FILE_SIZE / 131072);
+        this.maxCdnParts = (int) (2097152000 / 131072);
         this.downloadChunkSizeAnimation = 131072;
         this.maxDownloadRequestsAnimation = 4;
         this.preloadTempBuffer = new byte[24];
@@ -418,20 +418,20 @@ public class FileLoadOperation {
         int i2 = imageLocation.dc_id;
         this.datacenterId = i2;
         this.initialDatacenterId = i2;
-        this.currentType = ConnectionsManager.FileTypePhoto;
+        this.currentType = 16777216;
         this.totalBytesCount = j;
         this.ext = str == null ? "jpg" : str;
     }
 
     public FileLoadOperation(SecureDocument secureDocument) {
         this.FULL_LOGS = false;
-        this.downloadChunkSize = LiteMode.FLAG_CHAT_SCALE;
+        this.downloadChunkSize = 32768;
         this.downloadChunkSizeBig = 131072;
         this.cdnChunkCheckSize = 131072;
         this.maxDownloadRequests = 4;
         this.maxDownloadRequestsBig = 4;
         this.bigFileSizeFrom = 10485760;
-        this.maxCdnParts = (int) (FileLoader.DEFAULT_MAX_FILE_SIZE / 131072);
+        this.maxCdnParts = (int) (2097152000 / 131072);
         this.downloadChunkSizeAnimation = 131072;
         this.maxDownloadRequestsAnimation = 4;
         this.preloadTempBuffer = new byte[24];
@@ -458,19 +458,19 @@ public class FileLoadOperation {
         this.datacenterId = tLRPC$TL_secureFile.dc_id;
         this.totalBytesCount = tLRPC$TL_secureFile.size;
         this.allowDisordererFileSave = true;
-        this.currentType = ConnectionsManager.FileTypeFile;
+        this.currentType = 67108864;
         this.ext = ".jpg";
     }
 
     public FileLoadOperation(int i, WebFile webFile) {
         this.FULL_LOGS = false;
-        this.downloadChunkSize = LiteMode.FLAG_CHAT_SCALE;
+        this.downloadChunkSize = 32768;
         this.downloadChunkSizeBig = 131072;
         this.cdnChunkCheckSize = 131072;
         this.maxDownloadRequests = 4;
         this.maxDownloadRequestsBig = 4;
         this.bigFileSizeFrom = 10485760;
-        this.maxCdnParts = (int) (FileLoader.DEFAULT_MAX_FILE_SIZE / 131072);
+        this.maxCdnParts = (int) (2097152000 / 131072);
         this.downloadChunkSizeAnimation = 131072;
         this.maxDownloadRequestsAnimation = 4;
         this.preloadTempBuffer = new byte[24];
@@ -485,13 +485,13 @@ public class FileLoadOperation {
         this.initialDatacenterId = i2;
         String mimeTypePart = FileLoader.getMimeTypePart(webFile.mime_type);
         if (webFile.mime_type.startsWith("image/")) {
-            this.currentType = ConnectionsManager.FileTypePhoto;
+            this.currentType = 16777216;
         } else if (webFile.mime_type.equals("audio/ogg")) {
-            this.currentType = ConnectionsManager.FileTypeAudio;
+            this.currentType = 50331648;
         } else if (webFile.mime_type.startsWith("video/")) {
-            this.currentType = ConnectionsManager.FileTypeVideo;
+            this.currentType = 33554432;
         } else {
-            this.currentType = ConnectionsManager.FileTypeFile;
+            this.currentType = 67108864;
         }
         this.allowDisordererFileSave = true;
         this.ext = ImageLoader.getHttpUrlExtension(webFile.url, mimeTypePart);
@@ -1135,7 +1135,7 @@ public class FileLoadOperation {
                 }
             }
             while (i < 2) {
-                int i3 = i == 0 ? 2 : ConnectionsManager.ConnectionTypeDownload2;
+                int i3 = i == 0 ? 2 : 65538;
                 if (iArr2[i] > 1048576) {
                     ConnectionsManager.getInstance(this.currentAccount).discardConnection(this.isCdn ? this.cdnDatacenterId : this.datacenterId, i3);
                 }
@@ -1533,7 +1533,7 @@ public class FileLoadOperation {
         }
         int i2 = 0;
         while (i2 < 2) {
-            int i3 = i2 == 0 ? 2 : ConnectionsManager.ConnectionTypeDownload2;
+            int i3 = i2 == 0 ? 2 : 65538;
             if (iArr[i2] > 1048576) {
                 ConnectionsManager.getInstance(this.currentAccount).discardConnection(this.isCdn ? this.cdnDatacenterId : this.datacenterId, i3);
             }

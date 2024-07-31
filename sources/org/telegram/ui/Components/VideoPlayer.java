@@ -62,7 +62,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FourierTransform;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.secretmedia.ExtendedDefaultDataSourceFactory;
 import org.telegram.ui.Components.VideoPlayer;
@@ -1396,7 +1395,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
 
         public VisualizerBufferSink() {
             VideoPlayer.this = r3;
-            ByteBuffer allocateDirect = ByteBuffer.allocateDirect(LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM);
+            ByteBuffer allocateDirect = ByteBuffer.allocateDirect(8192);
             this.byteBuffer = allocateDirect;
             allocateDirect.position(0);
         }

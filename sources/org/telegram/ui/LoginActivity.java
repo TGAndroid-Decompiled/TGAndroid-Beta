@@ -107,8 +107,6 @@ import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.GenericProvider;
 import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
@@ -296,7 +294,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
     }
 
     static {
-        SHOW_DELAY = SharedConfig.getDevicePerformanceClass() <= 1 ? ImageReceiver.DEFAULT_CROSSFADE_DURATION : 100;
+        SHOW_DELAY = SharedConfig.getDevicePerformanceClass() <= 1 ? 150 : 100;
     }
 
     public LoginActivity() {
@@ -884,7 +882,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             builder.setTitle(LocaleController.getString(R.string.RestorePasswordNoEmailTitle));
             builder.setMessage(LocaleController.getString(R.string.InvalidPhoneNumber));
         } else {
-            int i = ConnectionsManager.DEFAULT_DATACENTER_ID;
+            int i = Integer.MAX_VALUE;
             for (String str2 : phoneInputData.patterns) {
                 int length = str2.replace(" ", "").length();
                 if (length < i) {
@@ -1025,7 +1023,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 LoginActivity.this.showDoneAnimation[!z3 ? 1 : 0] = null;
             }
         });
-        int i3 = ImageReceiver.DEFAULT_CROSSFADE_DURATION;
+        int i3 = 150;
         if (!z3) {
             timeInterpolator = null;
         } else if (z) {
@@ -1457,7 +1455,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         if (z) {
             MessagesController.getInstance(this.currentAccount).putDialogsEndReachedAfterRegistration();
         }
-        MediaDataController.getInstance(this.currentAccount).loadStickersByEmojiOrName(AndroidUtilities.STICKERS_PLACEHOLDER_PACK_NAME, false, true);
+        MediaDataController.getInstance(this.currentAccount).loadStickersByEmojiOrName("tg_placeholders_android", false, true);
         needFinishActivity(z, tLRPC$TL_auth_authorization.setup_password_required, tLRPC$TL_auth_authorization.otherwise_relogin_days);
     }
 
@@ -4531,7 +4529,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 int lastIndexOf = str.lastIndexOf(42);
                 if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
                     TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun();
-                    textStyleRun.flags |= LiteMode.FLAG_CHAT_BLUR;
+                    textStyleRun.flags |= 256;
                     textStyleRun.start = indexOf;
                     int i = lastIndexOf + 1;
                     textStyleRun.end = i;
@@ -5474,7 +5472,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             int lastIndexOf = string.lastIndexOf(42);
             if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
                 TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun();
-                textStyleRun.flags |= LiteMode.FLAG_CHAT_BLUR;
+                textStyleRun.flags |= 256;
                 textStyleRun.start = indexOf;
                 int i = lastIndexOf + 1;
                 textStyleRun.end = i;
@@ -5735,7 +5733,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 int lastIndexOf = string.lastIndexOf(42);
                 if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
                     TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun();
-                    textStyleRun.flags |= LiteMode.FLAG_CHAT_BLUR;
+                    textStyleRun.flags |= 256;
                     textStyleRun.start = indexOf;
                     int i2 = lastIndexOf + 1;
                     textStyleRun.end = i2;
@@ -6292,7 +6290,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             int lastIndexOf = string.lastIndexOf(42);
             if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
                 TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun();
-                textStyleRun.flags |= LiteMode.FLAG_CHAT_BLUR;
+                textStyleRun.flags |= 256;
                 textStyleRun.start = indexOf;
                 int i = lastIndexOf + 1;
                 textStyleRun.end = i;
@@ -7212,7 +7210,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             this.firstNameField.setImeOptions(268435461);
             this.firstNameField.setTextSize(1, 17.0f);
             this.firstNameField.setMaxLines(1);
-            this.firstNameField.setInputType(LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM);
+            this.firstNameField.setInputType(8192);
             this.firstNameField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
                 public final void onFocusChange(View view2, boolean z) {
@@ -7241,7 +7239,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             this.lastNameField.setImeOptions(268435462);
             this.lastNameField.setTextSize(1, 17.0f);
             this.lastNameField.setMaxLines(1);
-            this.lastNameField.setInputType(LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM);
+            this.lastNameField.setInputType(8192);
             this.lastNameField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
                 public final void onFocusChange(View view2, boolean z) {
@@ -8210,7 +8208,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                     canvas.scale(0.1f, 0.1f);
                     canvas.drawColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                     PhoneNumberConfirmView.this.fragmentView.draw(canvas);
-                    Utilities.stackBlurBitmap(createBitmap, Math.max(8, Math.max(measuredWidth, measuredHeight) / ImageReceiver.DEFAULT_CROSSFADE_DURATION));
+                    Utilities.stackBlurBitmap(createBitmap, Math.max(8, Math.max(measuredWidth, measuredHeight) / 150));
                     PhoneNumberConfirmView.this.blurredView.setBackground(new BitmapDrawable(PhoneNumberConfirmView.this.getContext().getResources(), createBitmap));
                     PhoneNumberConfirmView.this.blurredView.setAlpha(0.0f);
                     PhoneNumberConfirmView.this.blurredView.setVisibility(0);

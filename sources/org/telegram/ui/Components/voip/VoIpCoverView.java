@@ -42,7 +42,7 @@ public class VoIpCoverView extends View {
         Paint paint = new Paint(1);
         this.saveLayerPaint = paint;
         this.bgRect = new Rect();
-        boolean isEnabled = LiteMode.isEnabled(LiteMode.FLAG_CALLS_ANIMATIONS);
+        boolean isEnabled = LiteMode.isEnabled(512);
         this.allowAnimations = isEnabled;
         this.backgroundProvider = voIPBackgroundProvider;
         if (isEnabled) {

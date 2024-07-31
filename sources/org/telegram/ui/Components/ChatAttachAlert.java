@@ -73,7 +73,6 @@ import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MediaDataController;
@@ -81,7 +80,6 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.NotificationsSettingsFacade;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.UserConfig;
@@ -1291,25 +1289,25 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                     char c = 65535;
                     switch (str.hashCode()) {
                         case -1852424286:
-                            if (str.equals(MediaDataController.ATTACH_MENU_BOT_COLOR_DARK_ICON)) {
+                            if (str.equals("dark_icon")) {
                                 c = 0;
                                 break;
                             }
                             break;
                         case -1852094378:
-                            if (str.equals(MediaDataController.ATTACH_MENU_BOT_COLOR_DARK_TEXT)) {
+                            if (str.equals("dark_text")) {
                                 c = 1;
                                 break;
                             }
                             break;
                         case -208896510:
-                            if (str.equals(MediaDataController.ATTACH_MENU_BOT_COLOR_LIGHT_ICON)) {
+                            if (str.equals("light_icon")) {
                                 c = 2;
                                 break;
                             }
                             break;
                         case -208566602:
-                            if (str.equals(MediaDataController.ATTACH_MENU_BOT_COLOR_LIGHT_TEXT)) {
+                            if (str.equals("light_text")) {
                                 c = 3;
                                 break;
                             }
@@ -3727,7 +3725,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             TLRPC$Chat currentChat = chatActivity.getCurrentChat();
             if (chatActivity.getCurrentUser() != null || ((ChatObject.isChannel(currentChat) && currentChat.megagroup) || !ChatObject.isChannel(currentChat))) {
                 SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(this.currentAccount).edit();
-                edit.putBoolean(NotificationsSettingsFacade.PROPERTY_SILENT + chatActivity.getDialogId(), !z).commit();
+                edit.putBoolean("silent_" + chatActivity.getDialogId(), !z).commit();
             }
         }
         if (checkCaption(this.commentTextView.getText())) {
@@ -4544,7 +4542,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             }
         });
         animationNotificationsLocker.lock();
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, Integer.valueOf((int) LiteMode.FLAG_CALLS_ANIMATIONS));
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
         this.currentSheetAnimation.start();
         ValueAnimator ofFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
         setNavBarAlpha(0.0f);
@@ -4585,7 +4583,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             attributes.flags &= -1025;
             getWindow().setAttributes(attributes);
         }
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, Integer.valueOf((int) LiteMode.FLAG_CALLS_ANIMATIONS));
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
     }
 
     public void lambda$onCustomOpenAnimation$39(Runnable runnable, DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {

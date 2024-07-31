@@ -278,7 +278,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         boolean z = AndroidUtilities.computePerceivedBrightness(themedColor) < 0.721f;
         boolean z2 = supportsNativeBlur() && this.progressViewStyle == 0;
         this.blurredNativeBackground = z2;
-        this.blurredBackground = (z2 || (!supportsNativeBlur() && SharedConfig.getDevicePerformanceClass() >= 2 && LiteMode.isEnabled(LiteMode.FLAG_CHAT_BLUR))) && z;
+        this.blurredBackground = (z2 || (!supportsNativeBlur() && SharedConfig.getDevicePerformanceClass() >= 2 && LiteMode.isEnabled(256))) && z;
         this.backgroundPaddings = new Rect();
         if (i != 3 || this.blurredBackground) {
             Drawable mutate = context.getResources().getDrawable(R.drawable.popup_fixed_alert3).mutate();

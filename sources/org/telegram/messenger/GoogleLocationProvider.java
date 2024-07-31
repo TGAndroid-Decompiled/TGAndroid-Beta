@@ -132,7 +132,7 @@ public class GoogleLocationProvider implements ILocationServiceProvider {
 
         @Override
         public void setPriority(int i) {
-            this.request.setPriority(i != 1 ? i != 2 ? i != 3 ? 100 : R.styleable.AppCompatTheme_textAppearanceListItemSmall : R.styleable.AppCompatTheme_textAppearanceListItemSecondary : R.styleable.AppCompatTheme_textAppearanceLargePopupMenu);
+            this.request.setPriority(i != 1 ? i != 2 ? i != 3 ? 100 : 105 : 104 : 102);
         }
 
         @Override

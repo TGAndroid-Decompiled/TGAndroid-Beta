@@ -1,8 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-import org.telegram.messenger.FileLoaderPriorityQueue;
-import org.telegram.messenger.LiteMode;
 import org.telegram.tgnet.tl.TL_bots$BotInfo;
 import org.telegram.tgnet.tl.TL_stories$PeerStories;
 public abstract class TLRPC$UserFull extends TLObject {
@@ -65,8 +63,8 @@ public abstract class TLRPC$UserFull extends TLObject {
                         this.phone_calls_available = (readInt32 & 16) != 0;
                         this.phone_calls_private = (readInt32 & 32) != 0;
                         this.can_pin_message = (readInt32 & 128) != 0;
-                        this.has_scheduled = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
-                        this.video_calls_available = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0;
+                        this.has_scheduled = (readInt32 & 4096) != 0;
+                        this.video_calls_available = (readInt32 & 8192) != 0;
                         this.id = abstractSerializedData2.readInt64(z2);
                         if ((this.flags & 2) != 0) {
                             this.about = abstractSerializedData2.readString(z2);
@@ -86,10 +84,10 @@ public abstract class TLRPC$UserFull extends TLObject {
                         if ((this.flags & 2048) != 0) {
                             this.folder_id = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
+                        if ((this.flags & 16384) != 0) {
                             this.ttl_period = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
+                        if ((this.flags & 32768) != 0) {
                             this.theme_emoticon = abstractSerializedData2.readString(z2);
                         }
                         if ((this.flags & 65536) != 0) {
@@ -114,9 +112,9 @@ public abstract class TLRPC$UserFull extends TLObject {
                         this.flags = i4;
                         int i5 = this.can_pin_message ? i4 | 128 : i4 & (-129);
                         this.flags = i5;
-                        int i6 = this.has_scheduled ? i5 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i5 & (-4097);
+                        int i6 = this.has_scheduled ? i5 | 4096 : i5 & (-4097);
                         this.flags = i6;
-                        int i7 = this.video_calls_available ? i6 | LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM : i6 & (-8193);
+                        int i7 = this.video_calls_available ? i6 | 8192 : i6 & (-8193);
                         this.flags = i7;
                         abstractSerializedData2.writeInt32(i7);
                         abstractSerializedData2.writeInt64(this.id);
@@ -138,10 +136,10 @@ public abstract class TLRPC$UserFull extends TLObject {
                         if ((this.flags & 2048) != 0) {
                             abstractSerializedData2.writeInt32(this.folder_id);
                         }
-                        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
+                        if ((this.flags & 16384) != 0) {
                             abstractSerializedData2.writeInt32(this.ttl_period);
                         }
-                        if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
+                        if ((this.flags & 32768) != 0) {
                             abstractSerializedData2.writeString(this.theme_emoticon);
                         }
                         if ((this.flags & 65536) != 0) {
@@ -225,8 +223,8 @@ public abstract class TLRPC$UserFull extends TLObject {
                         this.phone_calls_available = (readInt32 & 16) != 0;
                         this.phone_calls_private = (readInt32 & 32) != 0;
                         this.can_pin_message = (readInt32 & 128) != 0;
-                        this.has_scheduled = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
-                        this.video_calls_available = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0;
+                        this.has_scheduled = (readInt32 & 4096) != 0;
+                        this.video_calls_available = (readInt32 & 8192) != 0;
                         this.voice_messages_forbidden = (1048576 & readInt32) != 0;
                         this.translations_disabled = (readInt32 & 8388608) != 0;
                         this.id = abstractSerializedData2.readInt64(z2);
@@ -254,10 +252,10 @@ public abstract class TLRPC$UserFull extends TLObject {
                         if ((this.flags & 2048) != 0) {
                             this.folder_id = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
+                        if ((this.flags & 16384) != 0) {
                             this.ttl_period = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
+                        if ((this.flags & 32768) != 0) {
                             this.theme_emoticon = abstractSerializedData2.readString(z2);
                         }
                         if ((this.flags & 65536) != 0) {
@@ -286,7 +284,7 @@ public abstract class TLRPC$UserFull extends TLObject {
                                 this.premium_gifts.add(TLdeserialize);
                             }
                         }
-                        if ((this.flags & ConnectionsManager.FileTypePhoto) != 0) {
+                        if ((this.flags & 16777216) != 0) {
                             this.wallpaper = TLRPC$WallPaper.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
                     }
@@ -302,11 +300,11 @@ public abstract class TLRPC$UserFull extends TLObject {
                         this.flags = i4;
                         int i5 = this.can_pin_message ? i4 | 128 : i4 & (-129);
                         this.flags = i5;
-                        int i6 = this.has_scheduled ? i5 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i5 & (-4097);
+                        int i6 = this.has_scheduled ? i5 | 4096 : i5 & (-4097);
                         this.flags = i6;
-                        int i7 = this.video_calls_available ? i6 | LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM : i6 & (-8193);
+                        int i7 = this.video_calls_available ? i6 | 8192 : i6 & (-8193);
                         this.flags = i7;
-                        int i8 = this.voice_messages_forbidden ? i7 | FileLoaderPriorityQueue.PRIORITY_VALUE_MAX : i7 & (-1048577);
+                        int i8 = this.voice_messages_forbidden ? i7 | 1048576 : i7 & (-1048577);
                         this.flags = i8;
                         int i9 = this.translations_disabled ? i8 | 8388608 : i8 & (-8388609);
                         this.flags = i9;
@@ -336,10 +334,10 @@ public abstract class TLRPC$UserFull extends TLObject {
                         if ((this.flags & 2048) != 0) {
                             abstractSerializedData2.writeInt32(this.folder_id);
                         }
-                        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
+                        if ((this.flags & 16384) != 0) {
                             abstractSerializedData2.writeInt32(this.ttl_period);
                         }
-                        if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
+                        if ((this.flags & 32768) != 0) {
                             abstractSerializedData2.writeString(this.theme_emoticon);
                         }
                         if ((this.flags & 65536) != 0) {
@@ -359,7 +357,7 @@ public abstract class TLRPC$UserFull extends TLObject {
                                 this.premium_gifts.get(i10).serializeToStream(abstractSerializedData2);
                             }
                         }
-                        if ((this.flags & ConnectionsManager.FileTypePhoto) != 0) {
+                        if ((this.flags & 16777216) != 0) {
                             this.wallpaper.serializeToStream(abstractSerializedData2);
                         }
                     }
@@ -375,8 +373,8 @@ public abstract class TLRPC$UserFull extends TLObject {
                         this.phone_calls_available = (readInt32 & 16) != 0;
                         this.phone_calls_private = (readInt32 & 32) != 0;
                         this.can_pin_message = (readInt32 & 128) != 0;
-                        this.has_scheduled = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
-                        this.video_calls_available = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0;
+                        this.has_scheduled = (readInt32 & 4096) != 0;
+                        this.video_calls_available = (readInt32 & 8192) != 0;
                         this.voice_messages_forbidden = (1048576 & readInt32) != 0;
                         this.translations_disabled = (8388608 & readInt32) != 0;
                         this.stories_pinned_available = (67108864 & readInt32) != 0;
@@ -409,10 +407,10 @@ public abstract class TLRPC$UserFull extends TLObject {
                         if ((this.flags & 2048) != 0) {
                             this.folder_id = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
+                        if ((this.flags & 16384) != 0) {
                             this.ttl_period = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
+                        if ((this.flags & 32768) != 0) {
                             this.theme_emoticon = abstractSerializedData2.readString(z2);
                         }
                         if ((this.flags & 65536) != 0) {
@@ -441,10 +439,10 @@ public abstract class TLRPC$UserFull extends TLObject {
                                 this.premium_gifts.add(TLdeserialize);
                             }
                         }
-                        if ((this.flags & ConnectionsManager.FileTypePhoto) != 0) {
+                        if ((this.flags & 16777216) != 0) {
                             this.wallpaper = TLRPC$WallPaper.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
-                        if ((this.flags & ConnectionsManager.FileTypeVideo) != 0) {
+                        if ((this.flags & 33554432) != 0) {
                             this.stories = TL_stories$PeerStories.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
                     }
@@ -460,15 +458,15 @@ public abstract class TLRPC$UserFull extends TLObject {
                         this.flags = i4;
                         int i5 = this.can_pin_message ? i4 | 128 : i4 & (-129);
                         this.flags = i5;
-                        int i6 = this.has_scheduled ? i5 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i5 & (-4097);
+                        int i6 = this.has_scheduled ? i5 | 4096 : i5 & (-4097);
                         this.flags = i6;
-                        int i7 = this.video_calls_available ? i6 | LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM : i6 & (-8193);
+                        int i7 = this.video_calls_available ? i6 | 8192 : i6 & (-8193);
                         this.flags = i7;
-                        int i8 = this.voice_messages_forbidden ? i7 | FileLoaderPriorityQueue.PRIORITY_VALUE_MAX : i7 & (-1048577);
+                        int i8 = this.voice_messages_forbidden ? i7 | 1048576 : i7 & (-1048577);
                         this.flags = i8;
                         int i9 = this.translations_disabled ? i8 | 8388608 : i8 & (-8388609);
                         this.flags = i9;
-                        int i10 = this.stories_pinned_available ? i9 | ConnectionsManager.FileTypeFile : i9 & (-67108865);
+                        int i10 = this.stories_pinned_available ? i9 | 67108864 : i9 & (-67108865);
                         this.flags = i10;
                         int i11 = this.blocked_my_stories_from ? i10 | 134217728 : i10 & (-134217729);
                         this.flags = i11;
@@ -504,10 +502,10 @@ public abstract class TLRPC$UserFull extends TLObject {
                         if ((this.flags & 2048) != 0) {
                             abstractSerializedData2.writeInt32(this.folder_id);
                         }
-                        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
+                        if ((this.flags & 16384) != 0) {
                             abstractSerializedData2.writeInt32(this.ttl_period);
                         }
-                        if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
+                        if ((this.flags & 32768) != 0) {
                             abstractSerializedData2.writeString(this.theme_emoticon);
                         }
                         if ((this.flags & 65536) != 0) {
@@ -527,10 +525,10 @@ public abstract class TLRPC$UserFull extends TLObject {
                                 this.premium_gifts.get(i15).serializeToStream(abstractSerializedData2);
                             }
                         }
-                        if ((this.flags & ConnectionsManager.FileTypePhoto) != 0) {
+                        if ((this.flags & 16777216) != 0) {
                             this.wallpaper.serializeToStream(abstractSerializedData2);
                         }
-                        if ((this.flags & ConnectionsManager.FileTypeVideo) != 0) {
+                        if ((this.flags & 33554432) != 0) {
                             this.stories.serializeToStream(abstractSerializedData2);
                         }
                     }
@@ -546,9 +544,9 @@ public abstract class TLRPC$UserFull extends TLObject {
                         this.phone_calls_available = (readInt32 & 16) != 0;
                         this.phone_calls_private = (readInt32 & 32) != 0;
                         this.can_pin_message = (readInt32 & 128) != 0;
-                        this.has_scheduled = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
-                        this.video_calls_available = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0;
-                        this.voice_messages_forbidden = (readInt32 & FileLoaderPriorityQueue.PRIORITY_VALUE_MAX) != 0;
+                        this.has_scheduled = (readInt32 & 4096) != 0;
+                        this.video_calls_available = (readInt32 & 8192) != 0;
+                        this.voice_messages_forbidden = (readInt32 & 1048576) != 0;
                         this.id = abstractSerializedData2.readInt64(z2);
                         if ((this.flags & 2) != 0) {
                             this.about = abstractSerializedData2.readString(z2);
@@ -568,10 +566,10 @@ public abstract class TLRPC$UserFull extends TLObject {
                         if ((this.flags & 2048) != 0) {
                             this.folder_id = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
+                        if ((this.flags & 16384) != 0) {
                             this.ttl_period = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
+                        if ((this.flags & 32768) != 0) {
                             this.theme_emoticon = abstractSerializedData2.readString(z2);
                         }
                         if ((this.flags & 65536) != 0) {
@@ -613,11 +611,11 @@ public abstract class TLRPC$UserFull extends TLObject {
                         this.flags = i4;
                         int i5 = this.can_pin_message ? i4 | 128 : i4 & (-129);
                         this.flags = i5;
-                        int i6 = this.has_scheduled ? i5 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i5 & (-4097);
+                        int i6 = this.has_scheduled ? i5 | 4096 : i5 & (-4097);
                         this.flags = i6;
-                        int i7 = this.video_calls_available ? i6 | LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM : i6 & (-8193);
+                        int i7 = this.video_calls_available ? i6 | 8192 : i6 & (-8193);
                         this.flags = i7;
-                        int i8 = this.voice_messages_forbidden ? i7 | FileLoaderPriorityQueue.PRIORITY_VALUE_MAX : i7 & (-1048577);
+                        int i8 = this.voice_messages_forbidden ? i7 | 1048576 : i7 & (-1048577);
                         this.flags = i8;
                         abstractSerializedData2.writeInt32(i8);
                         abstractSerializedData2.writeInt64(this.id);
@@ -639,10 +637,10 @@ public abstract class TLRPC$UserFull extends TLObject {
                         if ((this.flags & 2048) != 0) {
                             abstractSerializedData2.writeInt32(this.folder_id);
                         }
-                        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
+                        if ((this.flags & 16384) != 0) {
                             abstractSerializedData2.writeInt32(this.ttl_period);
                         }
-                        if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
+                        if ((this.flags & 32768) != 0) {
                             abstractSerializedData2.writeString(this.theme_emoticon);
                         }
                         if ((this.flags & 65536) != 0) {
@@ -678,8 +676,8 @@ public abstract class TLRPC$UserFull extends TLObject {
                         this.phone_calls_available = (readInt32 & 16) != 0;
                         this.phone_calls_private = (readInt32 & 32) != 0;
                         this.can_pin_message = (readInt32 & 128) != 0;
-                        this.has_scheduled = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
-                        this.video_calls_available = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0;
+                        this.has_scheduled = (readInt32 & 4096) != 0;
+                        this.video_calls_available = (readInt32 & 8192) != 0;
                         this.id = abstractSerializedData2.readInt64(z2);
                         if ((this.flags & 2) != 0) {
                             this.about = abstractSerializedData2.readString(z2);
@@ -699,10 +697,10 @@ public abstract class TLRPC$UserFull extends TLObject {
                         if ((this.flags & 2048) != 0) {
                             this.folder_id = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
+                        if ((this.flags & 16384) != 0) {
                             this.ttl_period = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
+                        if ((this.flags & 32768) != 0) {
                             this.theme_emoticon = abstractSerializedData2.readString(z2);
                         }
                         if ((this.flags & 65536) != 0) {
@@ -721,9 +719,9 @@ public abstract class TLRPC$UserFull extends TLObject {
                         this.flags = i4;
                         int i5 = this.can_pin_message ? i4 | 128 : i4 & (-129);
                         this.flags = i5;
-                        int i6 = this.has_scheduled ? i5 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i5 & (-4097);
+                        int i6 = this.has_scheduled ? i5 | 4096 : i5 & (-4097);
                         this.flags = i6;
-                        int i7 = this.video_calls_available ? i6 | LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM : i6 & (-8193);
+                        int i7 = this.video_calls_available ? i6 | 8192 : i6 & (-8193);
                         this.flags = i7;
                         abstractSerializedData2.writeInt32(i7);
                         abstractSerializedData2.writeInt64(this.id);
@@ -745,10 +743,10 @@ public abstract class TLRPC$UserFull extends TLObject {
                         if ((this.flags & 2048) != 0) {
                             abstractSerializedData2.writeInt32(this.folder_id);
                         }
-                        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
+                        if ((this.flags & 16384) != 0) {
                             abstractSerializedData2.writeInt32(this.ttl_period);
                         }
-                        if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
+                        if ((this.flags & 32768) != 0) {
                             abstractSerializedData2.writeString(this.theme_emoticon);
                         }
                         if ((this.flags & 65536) != 0) {
@@ -767,8 +765,8 @@ public abstract class TLRPC$UserFull extends TLObject {
                         this.phone_calls_available = (readInt32 & 16) != 0;
                         this.phone_calls_private = (readInt32 & 32) != 0;
                         this.can_pin_message = (readInt32 & 128) != 0;
-                        this.has_scheduled = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
-                        this.video_calls_available = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0;
+                        this.has_scheduled = (readInt32 & 4096) != 0;
+                        this.video_calls_available = (readInt32 & 8192) != 0;
                         this.user = TLRPC$User.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         if ((this.flags & 2) != 0) {
                             this.about = abstractSerializedData2.readString(z2);
@@ -788,10 +786,10 @@ public abstract class TLRPC$UserFull extends TLObject {
                         if ((this.flags & 2048) != 0) {
                             this.folder_id = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
+                        if ((this.flags & 16384) != 0) {
                             this.ttl_period = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
+                        if ((this.flags & 32768) != 0) {
                             this.theme_emoticon = abstractSerializedData2.readString(z2);
                         }
                     }
@@ -807,9 +805,9 @@ public abstract class TLRPC$UserFull extends TLObject {
                         this.flags = i4;
                         int i5 = this.can_pin_message ? i4 | 128 : i4 & (-129);
                         this.flags = i5;
-                        int i6 = this.has_scheduled ? i5 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i5 & (-4097);
+                        int i6 = this.has_scheduled ? i5 | 4096 : i5 & (-4097);
                         this.flags = i6;
-                        int i7 = this.video_calls_available ? i6 | LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM : i6 & (-8193);
+                        int i7 = this.video_calls_available ? i6 | 8192 : i6 & (-8193);
                         this.flags = i7;
                         abstractSerializedData2.writeInt32(i7);
                         this.user.serializeToStream(abstractSerializedData2);
@@ -831,10 +829,10 @@ public abstract class TLRPC$UserFull extends TLObject {
                         if ((this.flags & 2048) != 0) {
                             abstractSerializedData2.writeInt32(this.folder_id);
                         }
-                        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
+                        if ((this.flags & 16384) != 0) {
                             abstractSerializedData2.writeInt32(this.ttl_period);
                         }
-                        if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
+                        if ((this.flags & 32768) != 0) {
                             abstractSerializedData2.writeString(this.theme_emoticon);
                         }
                     }
@@ -850,9 +848,9 @@ public abstract class TLRPC$UserFull extends TLObject {
                         this.phone_calls_available = (readInt32 & 16) != 0;
                         this.phone_calls_private = (readInt32 & 32) != 0;
                         this.can_pin_message = (readInt32 & 128) != 0;
-                        this.has_scheduled = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
-                        this.video_calls_available = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0;
-                        this.voice_messages_forbidden = (readInt32 & FileLoaderPriorityQueue.PRIORITY_VALUE_MAX) != 0;
+                        this.has_scheduled = (readInt32 & 4096) != 0;
+                        this.video_calls_available = (readInt32 & 8192) != 0;
+                        this.voice_messages_forbidden = (readInt32 & 1048576) != 0;
                         this.id = abstractSerializedData2.readInt64(z2);
                         if ((this.flags & 2) != 0) {
                             this.about = abstractSerializedData2.readString(z2);
@@ -875,10 +873,10 @@ public abstract class TLRPC$UserFull extends TLObject {
                         if ((this.flags & 2048) != 0) {
                             this.folder_id = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
+                        if ((this.flags & 16384) != 0) {
                             this.ttl_period = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
+                        if ((this.flags & 32768) != 0) {
                             this.theme_emoticon = abstractSerializedData2.readString(z2);
                         }
                         if ((this.flags & 65536) != 0) {
@@ -920,11 +918,11 @@ public abstract class TLRPC$UserFull extends TLObject {
                         this.flags = i4;
                         int i5 = this.can_pin_message ? i4 | 128 : i4 & (-129);
                         this.flags = i5;
-                        int i6 = this.has_scheduled ? i5 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i5 & (-4097);
+                        int i6 = this.has_scheduled ? i5 | 4096 : i5 & (-4097);
                         this.flags = i6;
-                        int i7 = this.video_calls_available ? i6 | LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM : i6 & (-8193);
+                        int i7 = this.video_calls_available ? i6 | 8192 : i6 & (-8193);
                         this.flags = i7;
-                        int i8 = this.voice_messages_forbidden ? i7 | FileLoaderPriorityQueue.PRIORITY_VALUE_MAX : i7 & (-1048577);
+                        int i8 = this.voice_messages_forbidden ? i7 | 1048576 : i7 & (-1048577);
                         this.flags = i8;
                         abstractSerializedData2.writeInt32(i8);
                         abstractSerializedData2.writeInt64(this.id);
@@ -949,10 +947,10 @@ public abstract class TLRPC$UserFull extends TLObject {
                         if ((this.flags & 2048) != 0) {
                             abstractSerializedData2.writeInt32(this.folder_id);
                         }
-                        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
+                        if ((this.flags & 16384) != 0) {
                             abstractSerializedData2.writeInt32(this.ttl_period);
                         }
-                        if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
+                        if ((this.flags & 32768) != 0) {
                             abstractSerializedData2.writeString(this.theme_emoticon);
                         }
                         if ((this.flags & 65536) != 0) {
@@ -985,8 +983,8 @@ public abstract class TLRPC$UserFull extends TLObject {
                         this.phone_calls_available = (readInt32 & 16) != 0;
                         this.phone_calls_private = (readInt32 & 32) != 0;
                         this.can_pin_message = (readInt32 & 128) != 0;
-                        this.has_scheduled = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
-                        this.video_calls_available = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0;
+                        this.has_scheduled = (readInt32 & 4096) != 0;
+                        this.video_calls_available = (readInt32 & 8192) != 0;
                         this.voice_messages_forbidden = (1048576 & readInt32) != 0;
                         this.translations_disabled = (8388608 & readInt32) != 0;
                         this.stories_pinned_available = (67108864 & readInt32) != 0;
@@ -1020,10 +1018,10 @@ public abstract class TLRPC$UserFull extends TLObject {
                         if ((this.flags & 2048) != 0) {
                             this.folder_id = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
+                        if ((this.flags & 16384) != 0) {
                             this.ttl_period = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
+                        if ((this.flags & 32768) != 0) {
                             this.theme_emoticon = abstractSerializedData2.readString(z2);
                         }
                         if ((this.flags & 65536) != 0) {
@@ -1052,10 +1050,10 @@ public abstract class TLRPC$UserFull extends TLObject {
                                 this.premium_gifts.add(TLdeserialize);
                             }
                         }
-                        if ((this.flags & ConnectionsManager.FileTypePhoto) != 0) {
+                        if ((this.flags & 16777216) != 0) {
                             this.wallpaper = TLRPC$WallPaper.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
-                        if ((this.flags & ConnectionsManager.FileTypeVideo) != 0) {
+                        if ((this.flags & 33554432) != 0) {
                             this.stories = TL_stories$PeerStories.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
                         if ((this.flags2 & 1) != 0) {
@@ -1089,15 +1087,15 @@ public abstract class TLRPC$UserFull extends TLObject {
                         this.flags = i4;
                         int i5 = this.can_pin_message ? i4 | 128 : i4 & (-129);
                         this.flags = i5;
-                        int i6 = this.has_scheduled ? i5 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i5 & (-4097);
+                        int i6 = this.has_scheduled ? i5 | 4096 : i5 & (-4097);
                         this.flags = i6;
-                        int i7 = this.video_calls_available ? i6 | LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM : i6 & (-8193);
+                        int i7 = this.video_calls_available ? i6 | 8192 : i6 & (-8193);
                         this.flags = i7;
-                        int i8 = this.voice_messages_forbidden ? i7 | FileLoaderPriorityQueue.PRIORITY_VALUE_MAX : i7 & (-1048577);
+                        int i8 = this.voice_messages_forbidden ? i7 | 1048576 : i7 & (-1048577);
                         this.flags = i8;
                         int i9 = this.translations_disabled ? i8 | 8388608 : i8 & (-8388609);
                         this.flags = i9;
-                        int i10 = this.stories_pinned_available ? i9 | ConnectionsManager.FileTypeFile : i9 & (-67108865);
+                        int i10 = this.stories_pinned_available ? i9 | 67108864 : i9 & (-67108865);
                         this.flags = i10;
                         int i11 = this.blocked_my_stories_from ? i10 | 134217728 : i10 & (-134217729);
                         this.flags = i11;
@@ -1134,10 +1132,10 @@ public abstract class TLRPC$UserFull extends TLObject {
                         if ((this.flags & 2048) != 0) {
                             abstractSerializedData2.writeInt32(this.folder_id);
                         }
-                        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
+                        if ((this.flags & 16384) != 0) {
                             abstractSerializedData2.writeInt32(this.ttl_period);
                         }
-                        if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
+                        if ((this.flags & 32768) != 0) {
                             abstractSerializedData2.writeString(this.theme_emoticon);
                         }
                         if ((this.flags & 65536) != 0) {
@@ -1157,10 +1155,10 @@ public abstract class TLRPC$UserFull extends TLObject {
                                 this.premium_gifts.get(i15).serializeToStream(abstractSerializedData2);
                             }
                         }
-                        if ((this.flags & ConnectionsManager.FileTypePhoto) != 0) {
+                        if ((this.flags & 16777216) != 0) {
                             this.wallpaper.serializeToStream(abstractSerializedData2);
                         }
-                        if ((this.flags & ConnectionsManager.FileTypeVideo) != 0) {
+                        if ((this.flags & 33554432) != 0) {
                             this.stories.serializeToStream(abstractSerializedData2);
                         }
                         if ((this.flags2 & 1) != 0) {
@@ -1194,8 +1192,8 @@ public abstract class TLRPC$UserFull extends TLObject {
                         this.phone_calls_available = (readInt32 & 16) != 0;
                         this.phone_calls_private = (readInt32 & 32) != 0;
                         this.can_pin_message = (readInt32 & 128) != 0;
-                        this.has_scheduled = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
-                        this.video_calls_available = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0;
+                        this.has_scheduled = (readInt32 & 4096) != 0;
+                        this.video_calls_available = (readInt32 & 8192) != 0;
                         this.user = TLRPC$User.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         if ((this.flags & 2) != 0) {
                             this.about = abstractSerializedData2.readString(z2);
@@ -1228,7 +1226,7 @@ public abstract class TLRPC$UserFull extends TLObject {
                         this.flags = i4;
                         int i5 = this.can_pin_message ? i4 | 128 : i4 & (-129);
                         this.flags = i5;
-                        int i6 = this.has_scheduled ? i5 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i5 & (-4097);
+                        int i6 = this.has_scheduled ? i5 | 4096 : i5 & (-4097);
                         this.flags = i6;
                         abstractSerializedData2.writeInt32(i6);
                         this.user.serializeToStream(abstractSerializedData2);
@@ -1263,8 +1261,8 @@ public abstract class TLRPC$UserFull extends TLObject {
                         this.phone_calls_available = (readInt32 & 16) != 0;
                         this.phone_calls_private = (readInt32 & 32) != 0;
                         this.can_pin_message = (readInt32 & 128) != 0;
-                        this.has_scheduled = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
-                        this.video_calls_available = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0;
+                        this.has_scheduled = (readInt32 & 4096) != 0;
+                        this.video_calls_available = (readInt32 & 8192) != 0;
                         this.voice_messages_forbidden = (1048576 & readInt32) != 0;
                         this.translations_disabled = (readInt32 & 8388608) != 0;
                         this.id = abstractSerializedData2.readInt64(z2);
@@ -1292,10 +1290,10 @@ public abstract class TLRPC$UserFull extends TLObject {
                         if ((this.flags & 2048) != 0) {
                             this.folder_id = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
+                        if ((this.flags & 16384) != 0) {
                             this.ttl_period = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
+                        if ((this.flags & 32768) != 0) {
                             this.theme_emoticon = abstractSerializedData2.readString(z2);
                         }
                         if ((this.flags & 65536) != 0) {
@@ -1337,11 +1335,11 @@ public abstract class TLRPC$UserFull extends TLObject {
                         this.flags = i4;
                         int i5 = this.can_pin_message ? i4 | 128 : i4 & (-129);
                         this.flags = i5;
-                        int i6 = this.has_scheduled ? i5 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i5 & (-4097);
+                        int i6 = this.has_scheduled ? i5 | 4096 : i5 & (-4097);
                         this.flags = i6;
-                        int i7 = this.video_calls_available ? i6 | LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM : i6 & (-8193);
+                        int i7 = this.video_calls_available ? i6 | 8192 : i6 & (-8193);
                         this.flags = i7;
-                        int i8 = this.voice_messages_forbidden ? i7 | FileLoaderPriorityQueue.PRIORITY_VALUE_MAX : i7 & (-1048577);
+                        int i8 = this.voice_messages_forbidden ? i7 | 1048576 : i7 & (-1048577);
                         this.flags = i8;
                         int i9 = this.translations_disabled ? i8 | 8388608 : i8 & (-8388609);
                         this.flags = i9;
@@ -1371,10 +1369,10 @@ public abstract class TLRPC$UserFull extends TLObject {
                         if ((this.flags & 2048) != 0) {
                             abstractSerializedData2.writeInt32(this.folder_id);
                         }
-                        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
+                        if ((this.flags & 16384) != 0) {
                             abstractSerializedData2.writeInt32(this.ttl_period);
                         }
-                        if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
+                        if ((this.flags & 32768) != 0) {
                             abstractSerializedData2.writeString(this.theme_emoticon);
                         }
                         if ((this.flags & 65536) != 0) {
@@ -1407,8 +1405,8 @@ public abstract class TLRPC$UserFull extends TLObject {
                         this.phone_calls_available = (readInt32 & 16) != 0;
                         this.phone_calls_private = (readInt32 & 32) != 0;
                         this.can_pin_message = (readInt32 & 128) != 0;
-                        this.has_scheduled = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
-                        this.video_calls_available = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0;
+                        this.has_scheduled = (readInt32 & 4096) != 0;
+                        this.video_calls_available = (readInt32 & 8192) != 0;
                         this.user = TLRPC$User.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         if ((this.flags & 2) != 0) {
                             this.about = abstractSerializedData2.readString(z2);
@@ -1428,7 +1426,7 @@ public abstract class TLRPC$UserFull extends TLObject {
                         if ((this.flags & 2048) != 0) {
                             this.folder_id = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
+                        if ((this.flags & 16384) != 0) {
                             this.ttl_period = abstractSerializedData2.readInt32(z2);
                         }
                     }
@@ -1444,9 +1442,9 @@ public abstract class TLRPC$UserFull extends TLObject {
                         this.flags = i4;
                         int i5 = this.can_pin_message ? i4 | 128 : i4 & (-129);
                         this.flags = i5;
-                        int i6 = this.has_scheduled ? i5 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i5 & (-4097);
+                        int i6 = this.has_scheduled ? i5 | 4096 : i5 & (-4097);
                         this.flags = i6;
-                        int i7 = this.video_calls_available ? i6 | LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM : i6 & (-8193);
+                        int i7 = this.video_calls_available ? i6 | 8192 : i6 & (-8193);
                         this.flags = i7;
                         abstractSerializedData2.writeInt32(i7);
                         this.user.serializeToStream(abstractSerializedData2);
@@ -1468,7 +1466,7 @@ public abstract class TLRPC$UserFull extends TLObject {
                         if ((this.flags & 2048) != 0) {
                             abstractSerializedData2.writeInt32(this.folder_id);
                         }
-                        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
+                        if ((this.flags & 16384) != 0) {
                             abstractSerializedData2.writeInt32(this.ttl_period);
                         }
                     }
@@ -1484,8 +1482,8 @@ public abstract class TLRPC$UserFull extends TLObject {
                         this.phone_calls_available = (readInt32 & 16) != 0;
                         this.phone_calls_private = (readInt32 & 32) != 0;
                         this.can_pin_message = (readInt32 & 128) != 0;
-                        this.has_scheduled = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
-                        this.video_calls_available = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0;
+                        this.has_scheduled = (readInt32 & 4096) != 0;
+                        this.video_calls_available = (readInt32 & 8192) != 0;
                         this.voice_messages_forbidden = (1048576 & readInt32) != 0;
                         this.translations_disabled = (8388608 & readInt32) != 0;
                         this.stories_pinned_available = (67108864 & readInt32) != 0;
@@ -1519,10 +1517,10 @@ public abstract class TLRPC$UserFull extends TLObject {
                         if ((this.flags & 2048) != 0) {
                             this.folder_id = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
+                        if ((this.flags & 16384) != 0) {
                             this.ttl_period = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
+                        if ((this.flags & 32768) != 0) {
                             this.theme_emoticon = abstractSerializedData2.readString(z2);
                         }
                         if ((this.flags & 65536) != 0) {
@@ -1551,10 +1549,10 @@ public abstract class TLRPC$UserFull extends TLObject {
                                 this.premium_gifts.add(TLdeserialize);
                             }
                         }
-                        if ((this.flags & ConnectionsManager.FileTypePhoto) != 0) {
+                        if ((this.flags & 16777216) != 0) {
                             this.wallpaper = TLRPC$WallPaper.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
-                        if ((this.flags & ConnectionsManager.FileTypeVideo) != 0) {
+                        if ((this.flags & 33554432) != 0) {
                             this.stories = TL_stories$PeerStories.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
                         if ((this.flags2 & 1) != 0) {
@@ -1582,15 +1580,15 @@ public abstract class TLRPC$UserFull extends TLObject {
                         this.flags = i4;
                         int i5 = this.can_pin_message ? i4 | 128 : i4 & (-129);
                         this.flags = i5;
-                        int i6 = this.has_scheduled ? i5 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i5 & (-4097);
+                        int i6 = this.has_scheduled ? i5 | 4096 : i5 & (-4097);
                         this.flags = i6;
-                        int i7 = this.video_calls_available ? i6 | LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM : i6 & (-8193);
+                        int i7 = this.video_calls_available ? i6 | 8192 : i6 & (-8193);
                         this.flags = i7;
-                        int i8 = this.voice_messages_forbidden ? i7 | FileLoaderPriorityQueue.PRIORITY_VALUE_MAX : i7 & (-1048577);
+                        int i8 = this.voice_messages_forbidden ? i7 | 1048576 : i7 & (-1048577);
                         this.flags = i8;
                         int i9 = this.translations_disabled ? i8 | 8388608 : i8 & (-8388609);
                         this.flags = i9;
-                        int i10 = this.stories_pinned_available ? i9 | ConnectionsManager.FileTypeFile : i9 & (-67108865);
+                        int i10 = this.stories_pinned_available ? i9 | 67108864 : i9 & (-67108865);
                         this.flags = i10;
                         int i11 = this.blocked_my_stories_from ? i10 | 134217728 : i10 & (-134217729);
                         this.flags = i11;
@@ -1627,10 +1625,10 @@ public abstract class TLRPC$UserFull extends TLObject {
                         if ((this.flags & 2048) != 0) {
                             abstractSerializedData2.writeInt32(this.folder_id);
                         }
-                        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
+                        if ((this.flags & 16384) != 0) {
                             abstractSerializedData2.writeInt32(this.ttl_period);
                         }
-                        if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
+                        if ((this.flags & 32768) != 0) {
                             abstractSerializedData2.writeString(this.theme_emoticon);
                         }
                         if ((this.flags & 65536) != 0) {
@@ -1650,10 +1648,10 @@ public abstract class TLRPC$UserFull extends TLObject {
                                 this.premium_gifts.get(i15).serializeToStream(abstractSerializedData2);
                             }
                         }
-                        if ((this.flags & ConnectionsManager.FileTypePhoto) != 0) {
+                        if ((this.flags & 16777216) != 0) {
                             this.wallpaper.serializeToStream(abstractSerializedData2);
                         }
-                        if ((this.flags & ConnectionsManager.FileTypeVideo) != 0) {
+                        if ((this.flags & 33554432) != 0) {
                             this.stories.serializeToStream(abstractSerializedData2);
                         }
                         if ((this.flags2 & 1) != 0) {
@@ -1681,8 +1679,8 @@ public abstract class TLRPC$UserFull extends TLObject {
                         this.phone_calls_available = (readInt32 & 16) != 0;
                         this.phone_calls_private = (readInt32 & 32) != 0;
                         this.can_pin_message = (readInt32 & 128) != 0;
-                        this.has_scheduled = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
-                        this.video_calls_available = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0;
+                        this.has_scheduled = (readInt32 & 4096) != 0;
+                        this.video_calls_available = (readInt32 & 8192) != 0;
                         this.voice_messages_forbidden = (1048576 & readInt32) != 0;
                         this.translations_disabled = (8388608 & readInt32) != 0;
                         this.stories_pinned_available = (67108864 & readInt32) != 0;
@@ -1712,10 +1710,10 @@ public abstract class TLRPC$UserFull extends TLObject {
                         if ((this.flags & 2048) != 0) {
                             this.folder_id = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
+                        if ((this.flags & 16384) != 0) {
                             this.ttl_period = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
+                        if ((this.flags & 32768) != 0) {
                             this.theme_emoticon = abstractSerializedData2.readString(z2);
                         }
                         if ((this.flags & 65536) != 0) {
@@ -1744,10 +1742,10 @@ public abstract class TLRPC$UserFull extends TLObject {
                                 this.premium_gifts.add(TLdeserialize);
                             }
                         }
-                        if ((this.flags & ConnectionsManager.FileTypePhoto) != 0) {
+                        if ((this.flags & 16777216) != 0) {
                             this.wallpaper = TLRPC$WallPaper.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
-                        if ((this.flags & ConnectionsManager.FileTypeVideo) != 0) {
+                        if ((this.flags & 33554432) != 0) {
                             this.stories = TL_stories$PeerStories.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
                     }
@@ -1763,15 +1761,15 @@ public abstract class TLRPC$UserFull extends TLObject {
                         this.flags = i4;
                         int i5 = this.can_pin_message ? i4 | 128 : i4 & (-129);
                         this.flags = i5;
-                        int i6 = this.has_scheduled ? i5 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i5 & (-4097);
+                        int i6 = this.has_scheduled ? i5 | 4096 : i5 & (-4097);
                         this.flags = i6;
-                        int i7 = this.video_calls_available ? i6 | LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM : i6 & (-8193);
+                        int i7 = this.video_calls_available ? i6 | 8192 : i6 & (-8193);
                         this.flags = i7;
-                        int i8 = this.voice_messages_forbidden ? i7 | FileLoaderPriorityQueue.PRIORITY_VALUE_MAX : i7 & (-1048577);
+                        int i8 = this.voice_messages_forbidden ? i7 | 1048576 : i7 & (-1048577);
                         this.flags = i8;
                         int i9 = this.translations_disabled ? i8 | 8388608 : i8 & (-8388609);
                         this.flags = i9;
-                        int i10 = this.stories_pinned_available ? i9 | ConnectionsManager.FileTypeFile : i9 & (-67108865);
+                        int i10 = this.stories_pinned_available ? i9 | 67108864 : i9 & (-67108865);
                         this.flags = i10;
                         int i11 = this.blocked_my_stories_from ? i10 | 134217728 : i10 & (-134217729);
                         this.flags = i11;
@@ -1801,10 +1799,10 @@ public abstract class TLRPC$UserFull extends TLObject {
                         if ((this.flags & 2048) != 0) {
                             abstractSerializedData2.writeInt32(this.folder_id);
                         }
-                        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
+                        if ((this.flags & 16384) != 0) {
                             abstractSerializedData2.writeInt32(this.ttl_period);
                         }
-                        if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
+                        if ((this.flags & 32768) != 0) {
                             abstractSerializedData2.writeString(this.theme_emoticon);
                         }
                         if ((this.flags & 65536) != 0) {
@@ -1824,10 +1822,10 @@ public abstract class TLRPC$UserFull extends TLObject {
                                 this.premium_gifts.get(i12).serializeToStream(abstractSerializedData2);
                             }
                         }
-                        if ((this.flags & ConnectionsManager.FileTypePhoto) != 0) {
+                        if ((this.flags & 16777216) != 0) {
                             this.wallpaper.serializeToStream(abstractSerializedData2);
                         }
-                        if ((this.flags & ConnectionsManager.FileTypeVideo) != 0) {
+                        if ((this.flags & 33554432) != 0) {
                             this.stories.serializeToStream(abstractSerializedData2);
                         }
                     }
@@ -1843,8 +1841,8 @@ public abstract class TLRPC$UserFull extends TLObject {
                         this.phone_calls_available = (readInt32 & 16) != 0;
                         this.phone_calls_private = (readInt32 & 32) != 0;
                         this.can_pin_message = (readInt32 & 128) != 0;
-                        this.has_scheduled = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
-                        this.video_calls_available = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0;
+                        this.has_scheduled = (readInt32 & 4096) != 0;
+                        this.video_calls_available = (readInt32 & 8192) != 0;
                         this.voice_messages_forbidden = (1048576 & readInt32) != 0;
                         this.translations_disabled = (8388608 & readInt32) != 0;
                         this.stories_pinned_available = (67108864 & readInt32) != 0;
@@ -1878,10 +1876,10 @@ public abstract class TLRPC$UserFull extends TLObject {
                         if ((this.flags & 2048) != 0) {
                             this.folder_id = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
+                        if ((this.flags & 16384) != 0) {
                             this.ttl_period = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
+                        if ((this.flags & 32768) != 0) {
                             this.theme_emoticon = abstractSerializedData2.readString(z2);
                         }
                         if ((this.flags & 65536) != 0) {
@@ -1910,10 +1908,10 @@ public abstract class TLRPC$UserFull extends TLObject {
                                 this.premium_gifts.add(TLdeserialize);
                             }
                         }
-                        if ((this.flags & ConnectionsManager.FileTypePhoto) != 0) {
+                        if ((this.flags & 16777216) != 0) {
                             this.wallpaper = TLRPC$WallPaper.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
-                        if ((this.flags & ConnectionsManager.FileTypeVideo) != 0) {
+                        if ((this.flags & 33554432) != 0) {
                             this.stories = TL_stories$PeerStories.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
                         if ((this.flags2 & 1) != 0) {
@@ -1944,15 +1942,15 @@ public abstract class TLRPC$UserFull extends TLObject {
                         this.flags = i4;
                         int i5 = this.can_pin_message ? i4 | 128 : i4 & (-129);
                         this.flags = i5;
-                        int i6 = this.has_scheduled ? i5 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i5 & (-4097);
+                        int i6 = this.has_scheduled ? i5 | 4096 : i5 & (-4097);
                         this.flags = i6;
-                        int i7 = this.video_calls_available ? i6 | LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM : i6 & (-8193);
+                        int i7 = this.video_calls_available ? i6 | 8192 : i6 & (-8193);
                         this.flags = i7;
-                        int i8 = this.voice_messages_forbidden ? i7 | FileLoaderPriorityQueue.PRIORITY_VALUE_MAX : i7 & (-1048577);
+                        int i8 = this.voice_messages_forbidden ? i7 | 1048576 : i7 & (-1048577);
                         this.flags = i8;
                         int i9 = this.translations_disabled ? i8 | 8388608 : i8 & (-8388609);
                         this.flags = i9;
-                        int i10 = this.stories_pinned_available ? i9 | ConnectionsManager.FileTypeFile : i9 & (-67108865);
+                        int i10 = this.stories_pinned_available ? i9 | 67108864 : i9 & (-67108865);
                         this.flags = i10;
                         int i11 = this.blocked_my_stories_from ? i10 | 134217728 : i10 & (-134217729);
                         this.flags = i11;
@@ -1989,10 +1987,10 @@ public abstract class TLRPC$UserFull extends TLObject {
                         if ((this.flags & 2048) != 0) {
                             abstractSerializedData2.writeInt32(this.folder_id);
                         }
-                        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
+                        if ((this.flags & 16384) != 0) {
                             abstractSerializedData2.writeInt32(this.ttl_period);
                         }
-                        if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
+                        if ((this.flags & 32768) != 0) {
                             abstractSerializedData2.writeString(this.theme_emoticon);
                         }
                         if ((this.flags & 65536) != 0) {
@@ -2012,10 +2010,10 @@ public abstract class TLRPC$UserFull extends TLObject {
                                 this.premium_gifts.get(i15).serializeToStream(abstractSerializedData2);
                             }
                         }
-                        if ((this.flags & ConnectionsManager.FileTypePhoto) != 0) {
+                        if ((this.flags & 16777216) != 0) {
                             this.wallpaper.serializeToStream(abstractSerializedData2);
                         }
-                        if ((this.flags & ConnectionsManager.FileTypeVideo) != 0) {
+                        if ((this.flags & 33554432) != 0) {
                             this.stories.serializeToStream(abstractSerializedData2);
                         }
                         if ((this.flags2 & 1) != 0) {

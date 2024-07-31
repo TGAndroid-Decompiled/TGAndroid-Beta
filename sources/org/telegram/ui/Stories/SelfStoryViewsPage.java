@@ -925,7 +925,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
                     int dp = AndroidUtilities.dp(16.0f);
                     int dp2 = AndroidUtilities.dp(21.0f);
                     linksTextView2.setPadding(dp2, dp, dp2, dp);
-                    linksTextView2.setMaxLines(ConnectionsManager.DEFAULT_DATACENTER_ID);
+                    linksTextView2.setMaxLines(Integer.MAX_VALUE);
                     linksTextView2.setGravity(17);
                     linksTextView2.setDisablePaddingsOffsetY(true);
                     if (i == 11) {

@@ -878,7 +878,7 @@ public class FlickerLoadingView extends View implements Theme.Colorable {
                 return AndroidUtilities.dp(60.0f) + 1;
             case 30:
                 return AndroidUtilities.dp(32.0f);
-            case R.styleable.AppCompatTheme_actionModeWebSearchDrawable:
+            case 31:
                 return AndroidUtilities.dp(48.0f) + 1;
             case 32:
                 return AndroidUtilities.dp(56.0f) + 1;

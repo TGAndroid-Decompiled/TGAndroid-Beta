@@ -465,7 +465,7 @@ public class ContactsController extends BaseController {
         boolean z;
         AccountManager accountManager = AccountManager.get(ApplicationLoader.applicationContext);
         try {
-            Account[] accountsByType = accountManager.getAccountsByType(BuildConfig.LIBRARY_PACKAGE_NAME);
+            Account[] accountsByType = accountManager.getAccountsByType("org.telegram.messenger");
             for (int i = 0; i < accountsByType.length; i++) {
                 Account account = accountsByType[i];
                 int i2 = 0;
@@ -499,7 +499,7 @@ public class ContactsController extends BaseController {
             readContacts();
             if (this.systemAccount == null) {
                 try {
-                    Account account2 = new Account("" + getUserConfig().getClientUserId(), BuildConfig.LIBRARY_PACKAGE_NAME);
+                    Account account2 = new Account("" + getUserConfig().getClientUserId(), "org.telegram.messenger");
                     this.systemAccount = account2;
                     accountManager.addAccountExplicitly(account2, "", null);
                 } catch (Exception unused3) {
@@ -513,7 +513,7 @@ public class ContactsController extends BaseController {
         try {
             this.systemAccount = null;
             AccountManager accountManager = AccountManager.get(ApplicationLoader.applicationContext);
-            Account[] accountsByType = accountManager.getAccountsByType(BuildConfig.LIBRARY_PACKAGE_NAME);
+            Account[] accountsByType = accountManager.getAccountsByType("org.telegram.messenger");
             for (int i = 0; i < accountsByType.length; i++) {
                 Account account = accountsByType[i];
                 int i2 = 0;
@@ -635,7 +635,7 @@ public class ContactsController extends BaseController {
         TLRPC$User currentUser;
         AccountManager accountManager = AccountManager.get(ApplicationLoader.applicationContext);
         try {
-            Account[] accountsByType = accountManager.getAccountsByType(BuildConfig.LIBRARY_PACKAGE_NAME);
+            Account[] accountsByType = accountManager.getAccountsByType("org.telegram.messenger");
             this.systemAccount = null;
             for (Account account : accountsByType) {
                 int i = 0;
@@ -655,7 +655,7 @@ public class ContactsController extends BaseController {
         } catch (Throwable unused) {
         }
         try {
-            Account account2 = new Account("" + getUserConfig().getClientUserId(), BuildConfig.LIBRARY_PACKAGE_NAME);
+            Account account2 = new Account("" + getUserConfig().getClientUserId(), "org.telegram.messenger");
             this.systemAccount = account2;
             accountManager.addAccountExplicitly(account2, "", null);
         } catch (Exception unused2) {

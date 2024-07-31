@@ -1,6 +1,4 @@
 package org.telegram.tgnet;
-
-import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_messageReplyHeader extends TLRPC$MessageReplyHeader {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -8,7 +6,7 @@ public class TLRPC$TL_messageReplyHeader extends TLRPC$MessageReplyHeader {
         this.flags = readInt32;
         this.reply_to_scheduled = (readInt32 & 4) != 0;
         this.forum_topic = (readInt32 & 8) != 0;
-        this.quote = (readInt32 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0;
+        this.quote = (readInt32 & 512) != 0;
         if ((readInt32 & 16) != 0) {
             this.reply_to_msg_id = abstractSerializedData.readInt32(z);
         }
@@ -18,7 +16,7 @@ public class TLRPC$TL_messageReplyHeader extends TLRPC$MessageReplyHeader {
         if ((this.flags & 32) != 0) {
             this.reply_from = TLRPC$MessageFwdHeader.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
-        if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
+        if ((this.flags & 256) != 0) {
             this.reply_media = TLRPC$MessageMedia.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
         if ((this.flags & 2) != 0) {
@@ -56,7 +54,7 @@ public class TLRPC$TL_messageReplyHeader extends TLRPC$MessageReplyHeader {
         this.flags = i;
         int i2 = this.forum_topic ? i | 8 : i & (-9);
         this.flags = i2;
-        int i3 = this.quote ? i2 | LiteMode.FLAG_CALLS_ANIMATIONS : i2 & (-513);
+        int i3 = this.quote ? i2 | 512 : i2 & (-513);
         this.flags = i3;
         abstractSerializedData.writeInt32(i3);
         if ((this.flags & 16) != 0) {
@@ -68,7 +66,7 @@ public class TLRPC$TL_messageReplyHeader extends TLRPC$MessageReplyHeader {
         if ((this.flags & 32) != 0) {
             this.reply_from.serializeToStream(abstractSerializedData);
         }
-        if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
+        if ((this.flags & 256) != 0) {
             this.reply_media.serializeToStream(abstractSerializedData);
         }
         if ((this.flags & 2) != 0) {

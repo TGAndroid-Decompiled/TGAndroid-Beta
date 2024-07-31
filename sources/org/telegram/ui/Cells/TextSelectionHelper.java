@@ -42,9 +42,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.TranslateController;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.FloatingActionMode;
 import org.telegram.ui.ActionBar.Theme;
@@ -1219,7 +1217,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
 
         private void updateTranslateButton(Menu menu) {
             String str;
-            menu.getItem(3).setVisible(TextSelectionHelper.this.onTranslateListener != null && (((str = this.translateFromLanguage) != null && ((!str.equals(LocaleController.getInstance().getCurrentLocale().getLanguage()) || this.translateFromLanguage.equals(TranslateController.UNKNOWN_LANGUAGE)) && !RestrictedLanguagesSelectActivity.getRestrictedLanguages().contains(this.translateFromLanguage))) || !LanguageDetector.hasSupport()));
+            menu.getItem(3).setVisible(TextSelectionHelper.this.onTranslateListener != null && (((str = this.translateFromLanguage) != null && ((!str.equals(LocaleController.getInstance().getCurrentLocale().getLanguage()) || this.translateFromLanguage.equals("und")) && !RestrictedLanguagesSelectActivity.getRestrictedLanguages().contains(this.translateFromLanguage))) || !LanguageDetector.hasSupport()));
         }
 
         @Override
@@ -2227,7 +2225,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
                 return 0;
             }
             StaticLayout layout = this.arrayList.get(i).getLayout();
-            int i2 = ConnectionsManager.DEFAULT_DATACENTER_ID;
+            int i2 = Integer.MAX_VALUE;
             for (int i3 = 0; i3 < layout.getLineCount(); i3++) {
                 int lineBottom = layout.getLineBottom(i3) - layout.getLineTop(i3);
                 if (lineBottom < i2) {
@@ -2280,8 +2278,8 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
                 return -1;
             }
             int size = this.arrayList.size() - 1;
-            int i5 = ConnectionsManager.DEFAULT_DATACENTER_ID;
-            int i6 = ConnectionsManager.DEFAULT_DATACENTER_ID;
+            int i5 = Integer.MAX_VALUE;
+            int i6 = Integer.MAX_VALUE;
             int i7 = -1;
             while (true) {
                 if (size < 0) {

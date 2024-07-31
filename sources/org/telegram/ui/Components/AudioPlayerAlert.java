@@ -64,10 +64,8 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.audioinfo.AudioInfo;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$DocumentAttribute;
@@ -193,7 +191,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         this.buttons = new View[5];
         this.scrollToSong = true;
         this.searchOpenPosition = -1;
-        this.scrollOffsetY = ConnectionsManager.DEFAULT_DATACENTER_ID;
+        this.scrollOffsetY = Integer.MAX_VALUE;
         this.rewindingProgress = -1.0f;
         this.forwardSeek = new Runnable() {
             @Override
@@ -474,7 +472,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
                     this.actionBar.setTitle(ContactsController.formatName(user.first_name, user.last_name));
                 }
             } else if (dialogId == UserConfig.getInstance(this.currentAccount).getClientUserId()) {
-                if (playingMessageObject.getSavedDialogId() == UserObject.ANONYMOUS) {
+                if (playingMessageObject.getSavedDialogId() == 2666000) {
                     this.actionBar.setTitle(LocaleController.getString(R.string.AnonymousForward));
                 } else {
                     this.actionBar.setTitle(LocaleController.getString(R.string.SavedMessages));

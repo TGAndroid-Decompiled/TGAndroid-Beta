@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Objects;
-import org.telegram.messenger.NotificationBadge;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
@@ -59,7 +58,7 @@ public class HashtagSearchController {
     }
 
     private void loadHistoryFromPref() {
-        int i = this.historyPreferences.getInt(NotificationBadge.NewHtcHomeBadger.COUNT, 0);
+        int i = this.historyPreferences.getInt("count", 0);
         this.history.clear();
         this.history.ensureCapacity(i);
         for (int i2 = 0; i2 < i; i2++) {
@@ -74,7 +73,7 @@ public class HashtagSearchController {
     private void saveHistoryToPref() {
         SharedPreferences.Editor edit = this.historyPreferences.edit();
         edit.clear();
-        edit.putInt(NotificationBadge.NewHtcHomeBadger.COUNT, this.history.size());
+        edit.putInt("count", this.history.size());
         for (int i = 0; i < this.history.size(); i++) {
             edit.putString("e_" + i, this.history.get(i));
         }
@@ -300,7 +299,7 @@ public class HashtagSearchController {
         private SearchResult() {
             this.messages = new ArrayList<>();
             this.generatedIds = new HashMap<>();
-            this.lastGeneratedId = ConnectionsManager.DEFAULT_DATACENTER_ID;
+            this.lastGeneratedId = Integer.MAX_VALUE;
         }
 
         int getMask() {

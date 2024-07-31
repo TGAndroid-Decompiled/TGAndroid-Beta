@@ -37,11 +37,9 @@ import java.util.WeakHashMap;
 import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
-import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.BaseCell;
 import org.telegram.ui.Components.Easings;
@@ -97,10 +95,7 @@ public class SpoilerEffect extends Drawable {
     }
 
     private static int measureMaxParticlesCount() {
-        if (SharedConfig.getDevicePerformanceClass() != 2) {
-            return 100;
-        }
-        return ImageReceiver.DEFAULT_CROSSFADE_DURATION;
+        return SharedConfig.getDevicePerformanceClass() != 2 ? 100 : 150;
     }
 
     public SpoilerEffect() {
@@ -537,7 +532,7 @@ public class SpoilerEffect extends Drawable {
                 int spanStart = spanned.getSpanStart(objArr[i5]);
                 int spanEnd = spanned.getSpanEnd(objArr[i5]);
                 if (i == -1 && i2 == -1) {
-                    int i6 = ConnectionsManager.DEFAULT_DATACENTER_ID;
+                    int i6 = Integer.MAX_VALUE;
                     int i7 = Integer.MIN_VALUE;
                     int lineForOffset = layout.getLineForOffset(spanEnd);
                     for (int lineForOffset2 = layout.getLineForOffset(spanStart); lineForOffset2 <= lineForOffset; lineForOffset2++) {

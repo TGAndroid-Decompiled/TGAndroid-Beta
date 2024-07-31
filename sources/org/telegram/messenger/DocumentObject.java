@@ -73,9 +73,9 @@ public class DocumentObject {
 
     public static SvgHelper.SvgDrawable getSvgThumb(ArrayList<TLRPC$PhotoSize> arrayList, int i, float f, boolean z) {
         int size = arrayList.size();
-        int i2 = LiteMode.FLAG_CALLS_ANIMATIONS;
+        int i2 = 512;
         TLRPC$TL_photoPathSize tLRPC$TL_photoPathSize = null;
-        int i3 = LiteMode.FLAG_CALLS_ANIMATIONS;
+        int i3 = 512;
         for (int i4 = 0; i4 < size; i4++) {
             TLRPC$PhotoSize tLRPC$PhotoSize = arrayList.get(i4);
             if (tLRPC$PhotoSize instanceof TLRPC$TL_photoPathSize) {
@@ -105,8 +105,8 @@ public class DocumentObject {
             SvgHelper.Circle circle = new SvgHelper.Circle(256.0f, 256.0f, f * 512.0f);
             svgDrawable.commands.add(circle);
             svgDrawable.paints.put(circle, new Paint(1));
-            svgDrawable.width = LiteMode.FLAG_CALLS_ANIMATIONS;
-            svgDrawable.height = LiteMode.FLAG_CALLS_ANIMATIONS;
+            svgDrawable.width = 512;
+            svgDrawable.height = 512;
             svgDrawable.setupGradient(i, f2, false);
             return svgDrawable;
         } catch (Exception e) {
@@ -126,8 +126,8 @@ public class DocumentObject {
         SvgHelper.SvgDrawable svgDrawable = new SvgHelper.SvgDrawable();
         svgDrawable.commands.add(path);
         svgDrawable.paints.put(path, new Paint(1));
-        svgDrawable.width = LiteMode.FLAG_CALLS_ANIMATIONS;
-        svgDrawable.height = LiteMode.FLAG_CALLS_ANIMATIONS;
+        svgDrawable.width = 512;
+        svgDrawable.height = 512;
         svgDrawable.setupGradient(i, f, false);
         return svgDrawable;
     }
@@ -151,9 +151,9 @@ public class DocumentObject {
                 int size2 = tLRPC$Document.attributes.size();
                 int i5 = 0;
                 while (true) {
-                    i2 = LiteMode.FLAG_CALLS_ANIMATIONS;
+                    i2 = 512;
                     if (i5 >= size2) {
-                        i3 = LiteMode.FLAG_CALLS_ANIMATIONS;
+                        i3 = 512;
                         break;
                     }
                     tLRPC$DocumentAttribute = tLRPC$Document.attributes.get(i5);

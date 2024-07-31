@@ -318,7 +318,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
     };
     private final ArrayList<Integer> filteredMessagesUpdatedPosition = new ArrayList<>();
     private final LongSparseArray<Integer> stableIdByEventExpand = new LongSparseArray<>();
-    public int highlightMessageId = ConnectionsManager.DEFAULT_DATACENTER_ID;
+    public int highlightMessageId = Integer.MAX_VALUE;
     public int highlightMessageQuoteOffset = -1;
     private final ChatScrollCallback chatScrollHelperCallback = new ChatScrollCallback();
     private int savedScrollPosition = -1;
@@ -2137,8 +2137,8 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         }
         int childCount = recyclerListView.getChildCount();
         int measuredHeight = this.chatListView.getMeasuredHeight();
-        int i = ConnectionsManager.DEFAULT_DATACENTER_ID;
-        int i2 = ConnectionsManager.DEFAULT_DATACENTER_ID;
+        int i = Integer.MAX_VALUE;
+        int i2 = Integer.MAX_VALUE;
         boolean z2 = false;
         ChatMessageCell chatMessageCell = null;
         View view = null;
@@ -3708,7 +3708,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
     }
 
     public void lambda$startMessageUnselect$25() {
-        this.highlightMessageId = ConnectionsManager.DEFAULT_DATACENTER_ID;
+        this.highlightMessageId = Integer.MAX_VALUE;
         this.highlightMessageQuoteFirst = false;
         this.highlightMessageQuote = null;
         this.highlightMessageQuoteOffset = -1;
@@ -3726,7 +3726,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             AndroidUtilities.cancelRunOnUIThread(runnable);
             this.unselectRunnable = null;
         }
-        this.highlightMessageId = ConnectionsManager.DEFAULT_DATACENTER_ID;
+        this.highlightMessageId = Integer.MAX_VALUE;
         this.highlightMessageQuoteFirst = false;
         this.highlightMessageQuote = null;
     }
@@ -3936,7 +3936,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         }
         ChatMessageCell chatMessageCell = null;
         int i = -1;
-        int i2 = z ? ConnectionsManager.DEFAULT_DATACENTER_ID : Integer.MIN_VALUE;
+        int i2 = z ? Integer.MAX_VALUE : Integer.MIN_VALUE;
         for (int i3 = 0; i3 < this.chatListView.getChildCount(); i3++) {
             View childAt = this.chatListView.getChildAt(i3);
             int childAdapterPosition = this.chatListView.getChildAdapterPosition(childAt);

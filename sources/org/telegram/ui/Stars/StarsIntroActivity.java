@@ -48,7 +48,6 @@ import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
@@ -61,7 +60,6 @@ import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.WebFile;
 import org.telegram.messenger.browser.Browser;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$FileLocation;
@@ -433,7 +431,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         protected void configure() {
             StarParticlesView.Drawable drawable = new StarParticlesView.Drawable(this.val$particlesCount);
             this.drawable = drawable;
-            drawable.type = R.styleable.AppCompatTheme_textAppearanceListItemSmall;
+            drawable.type = 105;
             int i = 0;
             drawable.roundEffect = false;
             drawable.useRotate = false;
@@ -942,7 +940,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         @Override
         protected void onDetachedFromWindow() {
             super.onDetachedFromWindow();
-            this.lastId = ConnectionsManager.DEFAULT_DATACENTER_ID;
+            this.lastId = Integer.MAX_VALUE;
         }
 
         public static class Factory extends UItem.UItemFactory<ExpandView> {
@@ -1263,7 +1261,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                 }
             };
             this.imageViewContainer = frameLayout;
-            addView(frameLayout, LayoutHelper.createLinear(72, -1, 0.0f, R.styleable.AppCompatTheme_tooltipFrameBackground));
+            addView(frameLayout, LayoutHelper.createLinear(72, -1, 0.0f, 115));
             BackupImageView backupImageView = new BackupImageView(context);
             this.imageView2 = backupImageView;
             backupImageView.setRoundRadius(AndroidUtilities.dp(46.0f));
@@ -2684,7 +2682,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             tLRPC$TL_message.peer_id = tLRPC$TL_peerChannel2;
             tLRPC$TL_peerChannel2.channel_id = j2;
             tLRPC$TL_message.date = tLRPC$StarsTransaction.date;
-            tLRPC$TL_message.flags |= LiteMode.FLAG_CALLS_ANIMATIONS;
+            tLRPC$TL_message.flags |= 512;
             tLRPC$TL_message.media = tLRPC$StarsTransaction.extended_media.get(i2);
             tLRPC$TL_message.noforwards = true;
             arrayList.add(new MessageObject(i, tLRPC$TL_message, false, false));

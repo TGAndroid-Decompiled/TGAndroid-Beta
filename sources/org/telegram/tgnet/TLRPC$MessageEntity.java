@@ -54,7 +54,7 @@ public abstract class TLRPC$MessageEntity extends TLObject {
             case -1090087980:
                 tLRPC$TL_messageEntityItalic = new TLRPC$TL_messageEntityStrike();
                 break;
-            case TLRPC$TL_messageEntityCustomEmoji.constructor:
+            case -925956616:
                 tLRPC$TL_messageEntityItalic = new TLRPC$TL_messageEntityCustomEmoji();
                 break;
             case -595914432:

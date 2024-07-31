@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-import org.telegram.messenger.LiteMode;
 public abstract class TLRPC$DialogFilter extends TLObject {
     public boolean bots;
     public boolean broadcasts;
@@ -33,10 +32,10 @@ public abstract class TLRPC$DialogFilter extends TLObject {
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
                         this.flags = readInt32;
-                        this.has_my_invites = (readInt32 & ConnectionsManager.FileTypeFile) != 0;
+                        this.has_my_invites = (readInt32 & 67108864) != 0;
                         this.id = abstractSerializedData2.readInt32(z2);
                         this.title = abstractSerializedData2.readString(z2);
-                        if ((this.flags & ConnectionsManager.FileTypeVideo) != 0) {
+                        if ((this.flags & 33554432) != 0) {
                             this.emoticon = abstractSerializedData2.readString(z2);
                         }
                         int readInt322 = abstractSerializedData2.readInt32(z2);
@@ -74,12 +73,12 @@ public abstract class TLRPC$DialogFilter extends TLObject {
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(-699792216);
-                        int i2 = this.has_my_invites ? this.flags | ConnectionsManager.FileTypeFile : this.flags & (-67108865);
+                        int i2 = this.has_my_invites ? this.flags | 67108864 : this.flags & (-67108865);
                         this.flags = i2;
                         abstractSerializedData2.writeInt32(i2);
                         abstractSerializedData2.writeInt32(this.id);
                         abstractSerializedData2.writeString(this.title);
-                        if ((this.flags & ConnectionsManager.FileTypeVideo) != 0) {
+                        if ((this.flags & 33554432) != 0) {
                             abstractSerializedData2.writeString(this.emoticon);
                         }
                         abstractSerializedData2.writeInt32(481674261);
@@ -120,11 +119,11 @@ public abstract class TLRPC$DialogFilter extends TLObject {
                         this.broadcasts = (readInt32 & 8) != 0;
                         this.bots = (readInt32 & 16) != 0;
                         this.exclude_muted = (readInt32 & 2048) != 0;
-                        this.exclude_read = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
-                        this.exclude_archived = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0;
+                        this.exclude_read = (readInt32 & 4096) != 0;
+                        this.exclude_archived = (readInt32 & 8192) != 0;
                         this.id = abstractSerializedData2.readInt32(z2);
                         this.title = abstractSerializedData2.readString(z2);
-                        if ((this.flags & ConnectionsManager.FileTypeVideo) != 0) {
+                        if ((this.flags & 33554432) != 0) {
                             this.emoticon = abstractSerializedData2.readString(z2);
                         }
                         int readInt322 = abstractSerializedData2.readInt32(z2);
@@ -189,14 +188,14 @@ public abstract class TLRPC$DialogFilter extends TLObject {
                         this.flags = i6;
                         int i7 = this.exclude_muted ? i6 | 2048 : i6 & (-2049);
                         this.flags = i7;
-                        int i8 = this.exclude_read ? i7 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i7 & (-4097);
+                        int i8 = this.exclude_read ? i7 | 4096 : i7 & (-4097);
                         this.flags = i8;
-                        int i9 = this.exclude_archived ? i8 | LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM : i8 & (-8193);
+                        int i9 = this.exclude_archived ? i8 | 8192 : i8 & (-8193);
                         this.flags = i9;
                         abstractSerializedData2.writeInt32(i9);
                         abstractSerializedData2.writeInt32(this.id);
                         abstractSerializedData2.writeString(this.title);
-                        if ((this.flags & ConnectionsManager.FileTypeVideo) != 0) {
+                        if ((this.flags & 33554432) != 0) {
                             abstractSerializedData2.writeString(this.emoticon);
                         }
                         abstractSerializedData2.writeInt32(481674261);

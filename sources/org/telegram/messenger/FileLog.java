@@ -106,10 +106,10 @@ public class FileLog {
             getInstance().tlStreamWriter.write(str2);
             getInstance().tlStreamWriter.write("\n\n");
             getInstance().tlStreamWriter.flush();
-            Log.d(mtproto_tag, str3);
-            Log.d(mtproto_tag, str);
-            Log.d(mtproto_tag, str2);
-            Log.d(mtproto_tag, " ");
+            Log.d("MTProto", str3);
+            Log.d("MTProto", str);
+            Log.d("MTProto", str2);
+            Log.d("MTProto", " ");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -145,9 +145,9 @@ public class FileLog {
             getInstance().tlStreamWriter.write(str);
             getInstance().tlStreamWriter.write("\n\n");
             getInstance().tlStreamWriter.flush();
-            Log.d(mtproto_tag, "msgId=" + j2 + " account=" + i);
-            Log.d(mtproto_tag, str);
-            Log.d(mtproto_tag, " ");
+            Log.d("MTProto", "msgId=" + j2 + " account=" + i);
+            Log.d("MTProto", str);
+            Log.d("MTProto", " ");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -316,7 +316,7 @@ public class FileLog {
     public static void e(final String str, final Throwable th) {
         if (BuildVars.LOGS_ENABLED) {
             ensureInitied();
-            Log.e(tag, str, th);
+            Log.e("tmessages", str, th);
             if (getInstance().streamWriter != null) {
                 getInstance().logQueue.postRunnable(new Runnable() {
                     @Override
@@ -342,7 +342,7 @@ public class FileLog {
     public static void e(final String str) {
         if (BuildVars.LOGS_ENABLED) {
             ensureInitied();
-            Log.e(tag, str);
+            Log.e("tmessages", str);
             if (getInstance().streamWriter != null) {
                 getInstance().logQueue.postRunnable(new Runnable() {
                     @Override
@@ -469,7 +469,7 @@ public class FileLog {
     public static void d(final String str) {
         if (BuildVars.LOGS_ENABLED) {
             ensureInitied();
-            Log.d(tag, str);
+            Log.d("tmessages", str);
             if (getInstance().streamWriter != null) {
                 getInstance().logQueue.postRunnable(new Runnable() {
                     @Override
@@ -497,7 +497,7 @@ public class FileLog {
     public static void w(final String str) {
         if (BuildVars.LOGS_ENABLED) {
             ensureInitied();
-            Log.w(tag, str);
+            Log.w("tmessages", str);
             if (getInstance().streamWriter != null) {
                 getInstance().logQueue.postRunnable(new Runnable() {
                     @Override

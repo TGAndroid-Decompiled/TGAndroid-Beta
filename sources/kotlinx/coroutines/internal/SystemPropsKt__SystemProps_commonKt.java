@@ -1,7 +1,6 @@
 package kotlinx.coroutines.internal;
 
 import kotlin.text.StringsKt;
-import org.telegram.tgnet.ConnectionsManager;
 public final class SystemPropsKt__SystemProps_commonKt {
     public static final boolean systemProp(String str, boolean z) {
         String systemProp = SystemPropsKt.systemProp(str);
@@ -13,7 +12,7 @@ public final class SystemPropsKt__SystemProps_commonKt {
             i2 = 1;
         }
         if ((i4 & 8) != 0) {
-            i3 = ConnectionsManager.DEFAULT_DATACENTER_ID;
+            i3 = Integer.MAX_VALUE;
         }
         return SystemPropsKt.systemProp(str, i, i2, i3);
     }

@@ -43,7 +43,6 @@ import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.messenger.CodeHighlighting;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationBadge;
 import org.telegram.messenger.Timer;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.ringtone.RingtoneDataStore;
@@ -597,7 +596,7 @@ public class MediaDataController extends BaseController {
             serializedData.cleanup();
         }
         loadRepliesOfDraftReplies(arrayList);
-        loadStickersByEmojiOrName(AndroidUtilities.STICKERS_PLACEHOLDER_PACK_NAME, false, true);
+        loadStickersByEmojiOrName("tg_placeholders_android", false, true);
         loadEmojiThemes();
         loadRecentAndTopReactions(false);
         loadAvatarConstructor(false);
@@ -1214,7 +1213,7 @@ public class MediaDataController extends BaseController {
     }
 
     public void preloadDefaultReactions() {
-        if (this.reactionsList == null || this.reactionsCacheGenerated || !LiteMode.isEnabled(LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS) || this.currentAccount != UserConfig.selectedAccount) {
+        if (this.reactionsList == null || this.reactionsCacheGenerated || !LiteMode.isEnabled(8200) || this.currentAccount != UserConfig.selectedAccount) {
             return;
         }
         this.reactionsCacheGenerated = true;
@@ -1235,7 +1234,7 @@ public class MediaDataController extends BaseController {
     }
 
     public void preloadImage(ImageReceiver imageReceiver, ImageLocation imageLocation, String str) {
-        if (LiteMode.isEnabled(LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS)) {
+        if (LiteMode.isEnabled(8200)) {
             imageReceiver.setUniqKeyPrefix("preload");
             imageReceiver.setFileLoadingPriority(0);
             imageReceiver.setImage(imageLocation, str, null, null, 0, 11);
@@ -2448,7 +2447,7 @@ public class MediaDataController extends BaseController {
         Iterator<TLRPC$TL_attachMenuBotIcon> it = tLRPC$TL_attachMenuBot.icons.iterator();
         while (it.hasNext()) {
             TLRPC$TL_attachMenuBotIcon next = it.next();
-            if (next.name.equals(ATTACH_MENU_BOT_ANIMATED_ICON_KEY)) {
+            if (next.name.equals("android_animated")) {
                 return next;
             }
         }
@@ -2470,7 +2469,7 @@ public class MediaDataController extends BaseController {
         Iterator<TLRPC$TL_attachMenuBotIcon> it = tLRPC$TL_attachMenuBot.icons.iterator();
         while (it.hasNext()) {
             TLRPC$TL_attachMenuBotIcon next = it.next();
-            if (next.name.equals(ATTACH_MENU_BOT_STATIC_ICON_KEY)) {
+            if (next.name.equals("default_static")) {
                 return next;
             }
         }
@@ -2492,7 +2491,7 @@ public class MediaDataController extends BaseController {
         Iterator<TLRPC$TL_attachMenuBotIcon> it = tLRPC$TL_attachMenuBot.icons.iterator();
         while (it.hasNext()) {
             TLRPC$TL_attachMenuBotIcon next = it.next();
-            if (next.name.equals(ATTACH_MENU_BOT_PLACEHOLDER_STATIC_KEY)) {
+            if (next.name.equals("placeholder_static")) {
                 return next;
             }
         }
@@ -5852,7 +5851,7 @@ public class MediaDataController extends BaseController {
             } else if (i2 != 0) {
                 getMessagesStorage().closeHolesInMedia(j, i6, i2, i3, j2);
             } else {
-                getMessagesStorage().closeHolesInMedia(j, i6, ConnectionsManager.DEFAULT_DATACENTER_ID, i3, j2);
+                getMessagesStorage().closeHolesInMedia(j, i6, Integer.MAX_VALUE, i3, j2);
             }
         }
         getMessagesStorage().getDatabase().commitTransaction();
@@ -6525,7 +6524,7 @@ public class MediaDataController extends BaseController {
         }
         intent.putExtra("currentAccount", this.currentAccount);
         intent.setAction("com.tmessages.openchat" + j);
-        intent.addFlags(ConnectionsManager.FileTypeFile);
+        intent.addFlags(67108864);
         return intent;
     }
 
@@ -6536,7 +6535,7 @@ public class MediaDataController extends BaseController {
                 intent.putExtra("botId", j);
                 intent.putExtra("currentAccount", this.currentAccount);
                 intent.setAction(OpenAttachedMenuBotReceiver.ACTION + j);
-                intent.addFlags(ConnectionsManager.FileTypeFile);
+                intent.addFlags(67108864);
                 return intent;
             }
         }
@@ -7265,7 +7264,7 @@ public class MediaDataController extends BaseController {
                     textStyleRun.start = i4;
                     textStyleRun.end = i4 + tLRPC$MessageEntity.length;
                     if (tLRPC$MessageEntity instanceof TLRPC$TL_messageEntitySpoiler) {
-                        textStyleRun.flags = LiteMode.FLAG_CHAT_BLUR;
+                        textStyleRun.flags = 256;
                     } else if (tLRPC$MessageEntity instanceof TLRPC$TL_messageEntityStrike) {
                         textStyleRun.flags = 8;
                     } else if (tLRPC$MessageEntity instanceof TLRPC$TL_messageEntityUnderline) {
@@ -7367,7 +7366,7 @@ public class MediaDataController extends BaseController {
     }
 
     public void addStyle(int i, int i2, int i3, ArrayList<TLRPC$MessageEntity> arrayList) {
-        if ((i & LiteMode.FLAG_CHAT_BLUR) != 0) {
+        if ((i & 256) != 0) {
             arrayList.add(setEntityStartEnd(new TLRPC$TL_messageEntitySpoiler(), i2, i3));
         }
         if ((i & 1) != 0) {
@@ -9190,14 +9189,11 @@ public class MediaDataController extends BaseController {
 
     public static int lambda$getEmojiSuggestions$219(ArrayList arrayList, KeywordResult keywordResult, KeywordResult keywordResult2) {
         int indexOf = arrayList.indexOf(keywordResult.emoji);
-        int i = ConnectionsManager.DEFAULT_DATACENTER_ID;
         if (indexOf < 0) {
-            indexOf = ConnectionsManager.DEFAULT_DATACENTER_ID;
+            indexOf = Integer.MAX_VALUE;
         }
         int indexOf2 = arrayList.indexOf(keywordResult2.emoji);
-        if (indexOf2 >= 0) {
-            i = indexOf2;
-        }
+        int i = indexOf2 >= 0 ? indexOf2 : Integer.MAX_VALUE;
         if (indexOf < i) {
             return -1;
         }
@@ -9294,7 +9290,7 @@ public class MediaDataController extends BaseController {
     public void loadEmojiThemes() {
         Context context = ApplicationLoader.applicationContext;
         SharedPreferences sharedPreferences = context.getSharedPreferences("emojithemes_config_" + this.currentAccount, 0);
-        int i = sharedPreferences.getInt(NotificationBadge.NewHtcHomeBadger.COUNT, 0);
+        int i = sharedPreferences.getInt("count", 0);
         ArrayList arrayList = new ArrayList();
         arrayList.add(new ChatThemeBottomSheet.ChatThemeItem(EmojiThemes.createHomePreviewTheme(this.currentAccount)));
         for (int i2 = 0; i2 < i; i2++) {
@@ -9343,7 +9339,7 @@ public class MediaDataController extends BaseController {
     public void generateEmojiPreviewThemes(ArrayList<TLRPC$TL_theme> arrayList, int i) {
         Context context = ApplicationLoader.applicationContext;
         SharedPreferences.Editor edit = context.getSharedPreferences("emojithemes_config_" + i, 0).edit();
-        edit.putInt(NotificationBadge.NewHtcHomeBadger.COUNT, arrayList.size());
+        edit.putInt("count", arrayList.size());
         for (int i2 = 0; i2 < arrayList.size(); i2++) {
             TLRPC$TL_theme tLRPC$TL_theme = arrayList.get(i2);
             SerializedData serializedData = new SerializedData(tLRPC$TL_theme.getObjectSize());
@@ -9734,7 +9730,7 @@ public class MediaDataController extends BaseController {
 
     public static void saveReactionsToPref(SharedPreferences sharedPreferences, long j, ArrayList<? extends TLObject> arrayList) {
         SharedPreferences.Editor edit = sharedPreferences.edit();
-        edit.putInt(NotificationBadge.NewHtcHomeBadger.COUNT, arrayList.size());
+        edit.putInt("count", arrayList.size());
         edit.putLong("hash", j);
         for (int i = 0; i < arrayList.size(); i++) {
             TLObject tLObject = arrayList.get(i);
@@ -9746,7 +9742,7 @@ public class MediaDataController extends BaseController {
     }
 
     public static ArrayList<TLRPC$Reaction> loadReactionsFromPref(SharedPreferences sharedPreferences) {
-        int i = sharedPreferences.getInt(NotificationBadge.NewHtcHomeBadger.COUNT, 0);
+        int i = sharedPreferences.getInt("count", 0);
         ArrayList<TLRPC$Reaction> arrayList = new ArrayList<>(i);
         if (i > 0) {
             for (int i2 = 0; i2 < i; i2++) {

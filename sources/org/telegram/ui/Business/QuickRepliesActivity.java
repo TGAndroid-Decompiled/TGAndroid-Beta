@@ -35,7 +35,6 @@ import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
@@ -740,7 +739,7 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
                 imageView.setImageResource(R.drawable.list_reorder);
                 imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_stickers_menu), PorterDuff.Mode.MULTIPLY));
                 imageView.setAlpha(0.0f);
-                addView(imageView, LayoutHelper.createFrame(50, 50, (LocaleController.isRTL ? 3 : 5) | R.styleable.AppCompatTheme_toolbarNavigationButtonStyle));
+                addView(imageView, LayoutHelper.createFrame(50, 50, (LocaleController.isRTL ? 3 : 5) | 112));
             } else {
                 this.orderView = null;
             }
@@ -823,7 +822,7 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
                     ImageLocation forDocument = ImageLocation.getForDocument(media.document);
                     j = media.document.size;
                     imageLocation = forDocument;
-                    str2 = ImageLoader.AUTOPLAY_FILTER;
+                    str2 = "g";
                 } else {
                     ImageLocation forObject2 = ImageLocation.getForObject(closestPhotoSizeWithSize2, media.document);
                     j = closestPhotoSizeWithSize2.size;
@@ -956,7 +955,7 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
                     ImageLocation forDocument = ImageLocation.getForDocument(media.document);
                     j = media.document.size;
                     imageLocation = forDocument;
-                    str = ImageLoader.AUTOPLAY_FILTER;
+                    str = "g";
                 } else {
                     ImageLocation forObject2 = ImageLocation.getForObject(closestPhotoSizeWithSize2, media.document);
                     j = closestPhotoSizeWithSize2.size;

@@ -10,7 +10,6 @@ import android.view.KeyEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.AnimatedFloat;
-import org.webrtc.MediaStreamTrack;
 public class StoriesVolumeControl extends View {
     float currentProgress;
     Runnable hideRunnable;
@@ -49,7 +48,7 @@ public class StoriesVolumeControl extends View {
     }
 
     public void unmute() {
-        AudioManager audioManager = (AudioManager) getContext().getSystemService(MediaStreamTrack.AUDIO_TRACK_KIND);
+        AudioManager audioManager = (AudioManager) getContext().getSystemService("audio");
         int streamMaxVolume = audioManager.getStreamMaxVolume(3);
         int streamMinVolume = Build.VERSION.SDK_INT >= 28 ? audioManager.getStreamMinVolume(3) : 0;
         int streamVolume = audioManager.getStreamVolume(3);
@@ -68,7 +67,7 @@ public class StoriesVolumeControl extends View {
     }
 
     private void adjustVolume(boolean z) {
-        AudioManager audioManager = (AudioManager) getContext().getSystemService(MediaStreamTrack.AUDIO_TRACK_KIND);
+        AudioManager audioManager = (AudioManager) getContext().getSystemService("audio");
         int streamMaxVolume = audioManager.getStreamMaxVolume(3);
         int streamVolume = audioManager.getStreamVolume(3);
         float f = streamMaxVolume;

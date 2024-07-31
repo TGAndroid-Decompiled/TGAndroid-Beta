@@ -29,7 +29,7 @@ public abstract class TLRPC$Document extends TLObject {
             case -2027738169:
                 tLRPC$TL_document_layer82 = new TLRPC$TL_document_layer82();
                 break;
-            case TLRPC$TL_document.constructor:
+            case -1881881384:
                 tLRPC$TL_document_layer82 = new TLRPC$TL_document();
                 break;
             case -1683841855:

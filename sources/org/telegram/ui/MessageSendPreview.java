@@ -45,7 +45,6 @@ import org.telegram.messenger.ChatMessageSharedResources;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
@@ -54,7 +53,6 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.browser.Browser;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$KeyboardButton;
@@ -1323,8 +1321,8 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
 
         public MessageCell(Context context, int i, boolean z, ChatMessageSharedResources chatMessageSharedResources, Theme.ResourcesProvider resourcesProvider) {
             super(context, i, z, chatMessageSharedResources, resourcesProvider);
-            this.top = ConnectionsManager.DEFAULT_DATACENTER_ID;
-            this.bottom = ConnectionsManager.DEFAULT_DATACENTER_ID;
+            this.top = Integer.MAX_VALUE;
+            this.bottom = Integer.MAX_VALUE;
             this.pastId = -1;
         }
 
@@ -1378,7 +1376,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
             attributes.layoutInDisplayCutoutMode = 1;
         }
         window.setAttributes(attributes);
-        this.windowView.setSystemUiVisibility(LiteMode.FLAG_CHAT_BLUR);
+        this.windowView.setSystemUiVisibility(256);
         AndroidUtilities.setLightNavigationBar(this.windowView, !Theme.isCurrentThemeDark());
     }
 

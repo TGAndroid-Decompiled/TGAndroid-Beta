@@ -1,6 +1,4 @@
 package org.telegram.tgnet;
-
-import org.telegram.messenger.LiteMode;
 public class TLRPC$PeerSettings extends TLObject {
     public boolean add_contact;
     public boolean autoarchived;
@@ -37,15 +35,15 @@ public class TLRPC$PeerSettings extends TLObject {
                     this.need_contacts_exception = (readInt32 & 16) != 0;
                     this.report_geo = (readInt32 & 32) != 0;
                     this.autoarchived = (readInt32 & 128) != 0;
-                    this.invite_members = (readInt32 & LiteMode.FLAG_CHAT_BLUR) != 0;
+                    this.invite_members = (readInt32 & 256) != 0;
                     this.request_chat_broadcast = (readInt32 & 1024) != 0;
                     if ((readInt32 & 64) != 0) {
                         this.geo_distance = abstractSerializedData2.readInt32(z2);
                     }
-                    if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+                    if ((this.flags & 512) != 0) {
                         this.request_chat_title = abstractSerializedData2.readString(z2);
                     }
-                    if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+                    if ((this.flags & 512) != 0) {
                         this.request_chat_date = abstractSerializedData2.readInt32(z2);
                     }
                 }
@@ -67,7 +65,7 @@ public class TLRPC$PeerSettings extends TLObject {
                     this.flags = i7;
                     int i8 = this.autoarchived ? i7 | 128 : i7 & (-129);
                     this.flags = i8;
-                    int i9 = this.invite_members ? i8 | LiteMode.FLAG_CHAT_BLUR : i8 & (-257);
+                    int i9 = this.invite_members ? i8 | 256 : i8 & (-257);
                     this.flags = i9;
                     int i10 = this.request_chat_broadcast ? i9 | 1024 : i9 & (-1025);
                     this.flags = i10;
@@ -75,10 +73,10 @@ public class TLRPC$PeerSettings extends TLObject {
                     if ((this.flags & 64) != 0) {
                         abstractSerializedData2.writeInt32(this.geo_distance);
                     }
-                    if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+                    if ((this.flags & 512) != 0) {
                         abstractSerializedData2.writeString(this.request_chat_title);
                     }
-                    if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+                    if ((this.flags & 512) != 0) {
                         abstractSerializedData2.writeInt32(this.request_chat_date);
                     }
                 }

@@ -191,7 +191,7 @@ public class SavedMessagesController {
             SavedDialog savedDialog = this.allDialogs.get(i);
             String str3 = null;
             long j = savedDialog.dialogId;
-            if (j == UserObject.ANONYMOUS) {
+            if (j == 2666000) {
                 str2 = LocaleController.getString(R.string.AnonymousForward);
             } else if (j == UserConfig.getInstance(this.currentAccount).getClientUserId()) {
                 str2 = LocaleController.getString(R.string.MyNotes);
@@ -275,7 +275,7 @@ public class SavedMessagesController {
                 tLRPC$TL_messages_getSavedDialogs.offset_date = savedDialog.getDate();
                 tLRPC$TL_messages_getSavedDialogs.offset_peer = MessagesController.getInstance(this.currentAccount).getInputPeer(savedDialog.dialogId);
             } else {
-                tLRPC$TL_messages_getSavedDialogs.offset_id = ConnectionsManager.DEFAULT_DATACENTER_ID;
+                tLRPC$TL_messages_getSavedDialogs.offset_id = Integer.MAX_VALUE;
                 tLRPC$TL_messages_getSavedDialogs.offset_date = 0;
                 tLRPC$TL_messages_getSavedDialogs.offset_peer = new TLRPC$TL_inputPeerEmpty();
             }
@@ -1047,7 +1047,7 @@ public class SavedMessagesController {
             if (messageObject == null || (tLRPC$Message = messageObject.messageOwner) == null) {
                 return this.localDate;
             }
-            if ((tLRPC$Message.flags & LiteMode.FLAG_CHAT_SCALE) != 0 && !tLRPC$Message.edit_hide) {
+            if ((tLRPC$Message.flags & 32768) != 0 && !tLRPC$Message.edit_hide) {
                 return tLRPC$Message.edit_date;
             }
             return tLRPC$Message.date;
@@ -1138,8 +1138,8 @@ public class SavedMessagesController {
         tLRPC$TL_messages_getSavedHistory.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(j);
         tLRPC$TL_messages_getSavedHistory.limit = 1;
         tLRPC$TL_messages_getSavedHistory.hash = 0L;
-        tLRPC$TL_messages_getSavedHistory.offset_id = ConnectionsManager.DEFAULT_DATACENTER_ID;
-        tLRPC$TL_messages_getSavedHistory.offset_date = ConnectionsManager.DEFAULT_DATACENTER_ID;
+        tLRPC$TL_messages_getSavedHistory.offset_id = Integer.MAX_VALUE;
+        tLRPC$TL_messages_getSavedHistory.offset_date = Integer.MAX_VALUE;
         tLRPC$TL_messages_getSavedHistory.add_offset = -1;
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_getSavedHistory, new RequestDelegate() {
             @Override

@@ -45,10 +45,8 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.NotificationsController;
-import org.telegram.messenger.NotificationsSettingsFacade;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Dialog;
 import org.telegram.tgnet.TLRPC$Document;
@@ -190,8 +188,8 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
 
     public static boolean areStoriesNotMuted(int i, long j) {
         SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(i);
-        if (notificationsSettings.contains(NotificationsSettingsFacade.PROPERTY_STORIES_NOTIFY + j)) {
-            return notificationsSettings.getBoolean(NotificationsSettingsFacade.PROPERTY_STORIES_NOTIFY + j, true);
+        if (notificationsSettings.contains("stories_" + j)) {
+            return notificationsSettings.getBoolean("stories_" + j, true);
         } else if (notificationsSettings.contains("EnableAllStories")) {
             return notificationsSettings.getBoolean("EnableAllStories", true);
         } else {
@@ -202,7 +200,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
     public void lambda$createView$6(NotificationsSettingsActivity.NotificationException notificationException, View view, int i) {
         String sharedPrefKey = NotificationsController.getSharedPrefKey(notificationException.did, 0L);
         SharedPreferences.Editor edit = getNotificationsSettings().edit();
-        edit.remove(NotificationsSettingsFacade.PROPERTY_STORIES_NOTIFY + sharedPrefKey).commit();
+        edit.remove("stories_" + sharedPrefKey).commit();
         ArrayList<NotificationsSettingsActivity.NotificationException> arrayList = this.autoExceptions;
         if (arrayList != null) {
             arrayList.remove(notificationException);
@@ -228,10 +226,10 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
         String sharedPrefKey = NotificationsController.getSharedPrefKey(notificationException.did, 0L);
         SharedPreferences.Editor edit = getNotificationsSettings().edit();
         boolean isTop5Peer = isTop5Peer(this.currentAccount, notificationException.did);
-        notificationException.notify = z2 ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0;
+        notificationException.notify = z2 ? Integer.MAX_VALUE : 0;
         if (notificationException.auto) {
             notificationException.auto = false;
-            edit.putBoolean(NotificationsSettingsFacade.PROPERTY_STORIES_NOTIFY + sharedPrefKey, !z2).commit();
+            edit.putBoolean("stories_" + sharedPrefKey, !z2).commit();
             ArrayList<NotificationsSettingsActivity.NotificationException> arrayList = this.autoExceptions;
             if (arrayList != null) {
                 arrayList.remove(notificationException);
@@ -241,14 +239,14 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
             }
             this.exceptions.add(0, notificationException);
         } else if (isTop5Peer) {
-            edit.putBoolean(NotificationsSettingsFacade.PROPERTY_STORIES_NOTIFY + sharedPrefKey, !z2).commit();
+            edit.putBoolean("stories_" + sharedPrefKey, !z2).commit();
         } else {
             Boolean bool = this.storiesEnabled;
             if (!z2 ? !(bool == null || !bool.booleanValue()) : !(bool != null && bool.booleanValue())) {
                 lambda$createView$6(notificationException, view, i);
                 return;
             }
-            edit.putBoolean(NotificationsSettingsFacade.PROPERTY_STORIES_NOTIFY + sharedPrefKey, !z2).commit();
+            edit.putBoolean("stories_" + sharedPrefKey, !z2).commit();
         }
         if (view instanceof UserCell) {
             UserCell userCell = (UserCell) view;
@@ -539,7 +537,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
             notificationException.story = true;
             Boolean bool = this.storiesEnabled;
             if (bool != null && bool.booleanValue()) {
-                i = ConnectionsManager.DEFAULT_DATACENTER_ID;
+                i = Integer.MAX_VALUE;
             }
             notificationException.notify = i;
             if (this.exceptions == null) {
@@ -579,10 +577,10 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
         for (int i2 = 0; i2 < size; i2++) {
             NotificationsSettingsActivity.NotificationException notificationException = this.exceptions.get(i2);
             if (this.currentType == 3) {
-                edit.remove(NotificationsSettingsFacade.PROPERTY_STORIES_NOTIFY + notificationException.did);
+                edit.remove("stories_" + notificationException.did);
             } else {
-                SharedPreferences.Editor remove = edit.remove(NotificationsSettingsFacade.PROPERTY_NOTIFY + notificationException.did);
-                remove.remove(NotificationsSettingsFacade.PROPERTY_CUSTOM + notificationException.did);
+                SharedPreferences.Editor remove = edit.remove("notify2_" + notificationException.did);
+                remove.remove("custom_" + notificationException.did);
             }
             getMessagesStorage().setDialogFlags(notificationException.did, 0L);
             TLRPC$Dialog tLRPC$Dialog = getMessagesController().dialogs_dict.get(notificationException.did);
@@ -781,7 +779,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
             if (i5 == 3) {
                 this.items.add(ItemInner.asCheck(101, LocaleController.getString(R.string.NotifyMeAboutNewStories), notificationsSettings.getBoolean("EnableAllStories", false)));
                 if (!notificationsSettings.getBoolean("EnableAllStories", false)) {
-                    this.items.add(ItemInner.asCheck(R.styleable.AppCompatTheme_textAppearanceLargePopupMenu, LocaleController.getString(R.string.NotifyMeAboutImportantStories), this.storiesAuto && ((bool = this.storiesEnabled) == null || !bool.booleanValue())));
+                    this.items.add(ItemInner.asCheck(102, LocaleController.getString(R.string.NotifyMeAboutImportantStories), this.storiesAuto && ((bool = this.storiesEnabled) == null || !bool.booleanValue())));
                 }
                 this.items.add(ItemInner.asShadow(-1, LocaleController.getString(R.string.StoryAutoExceptionsInfo)));
             } else if (i5 == 4 || i5 == 5) {
@@ -795,7 +793,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
                 } else {
                     i = R.string.NotifyFromEveryone;
                 }
-                arrayList2.add(ItemInner.asCheck2(R.styleable.AppCompatTheme_textAppearanceListItem, i6, string, LocaleController.getString(i), notificationsSettings.getBoolean("EnableReactionsMessages", true)));
+                arrayList2.add(ItemInner.asCheck2(103, i6, string, LocaleController.getString(i), notificationsSettings.getBoolean("EnableReactionsMessages", true)));
                 ArrayList<ItemInner> arrayList3 = this.items;
                 int i7 = R.drawable.msg_stories_saved;
                 String string2 = LocaleController.getString(R.string.NotifyMeAboutStoriesReactions);
@@ -806,7 +804,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
                 } else {
                     i2 = R.string.NotifyFromEveryone;
                 }
-                arrayList3.add(ItemInner.asCheck2(R.styleable.AppCompatTheme_textAppearanceListItemSecondary, i7, string2, LocaleController.getString(i2), notificationsSettings.getBoolean("EnableReactionsStories", true)));
+                arrayList3.add(ItemInner.asCheck2(104, i7, string2, LocaleController.getString(i2), notificationsSettings.getBoolean("EnableReactionsStories", true)));
                 this.items.add(ItemInner.asShadow(-1, null));
             } else {
                 if (i5 == 1) {

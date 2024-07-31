@@ -78,7 +78,6 @@ import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.FilesMigrationService;
 import org.telegram.messenger.ImageLoader;
-import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
@@ -87,7 +86,6 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.NotificationsController;
-import org.telegram.messenger.NotificationsSettingsFacade;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
@@ -548,7 +546,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             float f = DialogsActivity.this.scrollYOffset;
             LinearLayoutManager linearLayoutManager = (LinearLayoutManager) this.listView.getLayoutManager();
             View view = null;
-            int i2 = ConnectionsManager.DEFAULT_DATACENTER_ID;
+            int i2 = Integer.MAX_VALUE;
             int i3 = -1;
             for (int i4 = 0; i4 < this.listView.getChildCount(); i4++) {
                 DialogsRecyclerView dialogsRecyclerView2 = this.listView;
@@ -1114,7 +1112,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                     } else {
                         measuredWidth2 = (int) (((measuredWidth / getMeasuredWidth()) + 1.0f) * 100.0f);
                     }
-                    DialogsActivity.this.tabsAnimation.setDuration(Math.max((int) ImageReceiver.DEFAULT_CROSSFADE_DURATION, Math.min(measuredWidth2, 600)));
+                    DialogsActivity.this.tabsAnimation.setDuration(Math.max(150, Math.min(measuredWidth2, 600)));
                     DialogsActivity.this.tabsAnimation.addListener(new AnimatorListenerAdapter() {
                         @Override
                         public void onAnimationEnd(Animator animator) {
@@ -1567,7 +1565,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                                             if (SharedConfig.getChatSwipeAction(((BaseFragment) DialogsActivity.this).currentAccount) == 4) {
                                                 ArrayList arrayList = new ArrayList();
                                                 arrayList.add(Long.valueOf(dialogId));
-                                                DialogsActivity.this.performSelectedDialogsAction(arrayList, R.styleable.AppCompatTheme_textAppearanceLargePopupMenu, true, false);
+                                                DialogsActivity.this.performSelectedDialogsAction(arrayList, 102, true, false);
                                             }
                                         } else {
                                             ArrayList arrayList2 = new ArrayList();
@@ -1587,7 +1585,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                                         dialogsActivity.canMuteCount = !MessagesController.getInstance(((BaseFragment) dialogsActivity).currentAccount).isDialogMuted(dialogId, 0L);
                                         DialogsActivity dialogsActivity2 = DialogsActivity.this;
                                         dialogsActivity2.canUnmuteCount = dialogsActivity2.canMuteCount > 0 ? 0 : 1;
-                                        DialogsActivity.this.performSelectedDialogsAction(arrayList3, R.styleable.AppCompatTheme_textAppearanceListItemSecondary, true, false);
+                                        DialogsActivity.this.performSelectedDialogsAction(arrayList3, 104, true, false);
                                     }
                                 } else {
                                     ArrayList arrayList4 = new ArrayList();
@@ -1687,7 +1685,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 this.animationSupportListView = recyclerListView;
                 return;
             }
-            int i = ConnectionsManager.DEFAULT_DATACENTER_ID;
+            int i = Integer.MAX_VALUE;
             DialogCell dialogCell = null;
             DialogCell dialogCell2 = null;
             for (int i2 = 0; i2 < recyclerListView2.getChildCount(); i2++) {
@@ -3564,7 +3562,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
 
         public void lambda$onUserLongPressed$7(String str, long j) {
             SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(((BaseFragment) DialogsActivity.this).currentAccount).edit();
-            edit.putBoolean(NotificationsSettingsFacade.PROPERTY_STORIES_NOTIFY + str, false).apply();
+            edit.putBoolean("stories_" + str, false).apply();
             DialogsActivity.this.getNotificationsController().updateServerNotificationsSettings(j, 0L);
             TLRPC$User user = MessagesController.getInstance(((BaseFragment) DialogsActivity.this).currentAccount).getUser(Long.valueOf(j));
             String trim = user == null ? "" : user.first_name.trim();
@@ -3577,7 +3575,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
 
         public void lambda$onUserLongPressed$8(String str, long j) {
             SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(((BaseFragment) DialogsActivity.this).currentAccount).edit();
-            edit.putBoolean(NotificationsSettingsFacade.PROPERTY_STORIES_NOTIFY + str, true).apply();
+            edit.putBoolean("stories_" + str, true).apply();
             DialogsActivity.this.getNotificationsController().updateServerNotificationsSettings(j, 0L);
             TLRPC$User user = MessagesController.getInstance(((BaseFragment) DialogsActivity.this).currentAccount).getUser(Long.valueOf(j));
             String trim = user == null ? "" : user.first_name.trim();
@@ -4802,18 +4800,18 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         });
         int i = R.drawable.msg_pin;
         this.pinItem = createActionMode.addItemWithWidth(100, i, AndroidUtilities.dp(54.0f));
-        this.muteItem = createActionMode.addItemWithWidth(R.styleable.AppCompatTheme_textAppearanceListItemSecondary, R.drawable.msg_mute, AndroidUtilities.dp(54.0f));
+        this.muteItem = createActionMode.addItemWithWidth(104, R.drawable.msg_mute, AndroidUtilities.dp(54.0f));
         int i2 = R.drawable.msg_archive;
-        this.archive2Item = createActionMode.addItemWithWidth(R.styleable.AppCompatTheme_textAppearanceSearchResultSubtitle, i2, AndroidUtilities.dp(54.0f));
-        this.deleteItem = createActionMode.addItemWithWidth(R.styleable.AppCompatTheme_textAppearanceLargePopupMenu, R.drawable.msg_delete, AndroidUtilities.dp(54.0f), LocaleController.getString("Delete", R.string.Delete));
+        this.archive2Item = createActionMode.addItemWithWidth(107, i2, AndroidUtilities.dp(54.0f));
+        this.deleteItem = createActionMode.addItemWithWidth(102, R.drawable.msg_delete, AndroidUtilities.dp(54.0f), LocaleController.getString("Delete", R.string.Delete));
         ActionBarMenuItem addItemWithWidth = createActionMode.addItemWithWidth(0, R.drawable.ic_ab_other, AndroidUtilities.dp(54.0f), LocaleController.getString("AccDescrMoreOptions", R.string.AccDescrMoreOptions));
-        this.archiveItem = addItemWithWidth.addSubItem(R.styleable.AppCompatTheme_textAppearanceListItemSmall, i2, LocaleController.getString("Archive", R.string.Archive));
-        this.pin2Item = addItemWithWidth.addSubItem(R.styleable.AppCompatTheme_textAppearanceSearchResultTitle, i, LocaleController.getString("DialogPin", R.string.DialogPin));
-        this.addToFolderItem = addItemWithWidth.addSubItem(R.styleable.AppCompatTheme_textAppearanceSmallPopupMenu, R.drawable.msg_addfolder, LocaleController.getString("FilterAddTo", R.string.FilterAddTo));
-        this.removeFromFolderItem = addItemWithWidth.addSubItem(R.styleable.AppCompatTheme_textColorAlertDialogListItem, R.drawable.msg_removefolder, LocaleController.getString("FilterRemoveFrom", R.string.FilterRemoveFrom));
+        this.archiveItem = addItemWithWidth.addSubItem(105, i2, LocaleController.getString("Archive", R.string.Archive));
+        this.pin2Item = addItemWithWidth.addSubItem(108, i, LocaleController.getString("DialogPin", R.string.DialogPin));
+        this.addToFolderItem = addItemWithWidth.addSubItem(109, R.drawable.msg_addfolder, LocaleController.getString("FilterAddTo", R.string.FilterAddTo));
+        this.removeFromFolderItem = addItemWithWidth.addSubItem(110, R.drawable.msg_removefolder, LocaleController.getString("FilterRemoveFrom", R.string.FilterRemoveFrom));
         this.readItem = addItemWithWidth.addSubItem(101, R.drawable.msg_markread, LocaleController.getString("MarkAsRead", R.string.MarkAsRead));
-        this.clearItem = addItemWithWidth.addSubItem(R.styleable.AppCompatTheme_textAppearanceListItem, R.drawable.msg_clear, LocaleController.getString("ClearHistory", R.string.ClearHistory));
-        this.blockItem = addItemWithWidth.addSubItem(R.styleable.AppCompatTheme_textAppearancePopupMenuHeader, R.drawable.msg_block, LocaleController.getString("BlockUser", R.string.BlockUser));
+        this.clearItem = addItemWithWidth.addSubItem(103, R.drawable.msg_clear, LocaleController.getString("ClearHistory", R.string.ClearHistory));
+        this.blockItem = addItemWithWidth.addSubItem(106, R.drawable.msg_block, LocaleController.getString("BlockUser", R.string.BlockUser));
         this.muteItem.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public final boolean onLongClick(View view) {
@@ -4831,7 +4829,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     public boolean lambda$createActionMode$60(View view) {
-        performSelectedDialogsAction(this.selectedDialogs, R.styleable.AppCompatTheme_textAppearanceListItemSecondary, true, true);
+        performSelectedDialogsAction(this.selectedDialogs, 104, true, true);
         return true;
     }
 
@@ -5157,7 +5155,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                     }
                 }, (this.afterSignup && (z || z3)) ? 4000L : 0L);
             }
-        } else if (!this.onlySelect && XiaomiUtilities.isMIUI() && Build.VERSION.SDK_INT >= 19 && !XiaomiUtilities.isCustomPermissionGranted(XiaomiUtilities.OP_SHOW_WHEN_LOCKED)) {
+        } else if (!this.onlySelect && XiaomiUtilities.isMIUI() && Build.VERSION.SDK_INT >= 19 && !XiaomiUtilities.isCustomPermissionGranted(10020)) {
             if (getParentActivity() == null || MessagesController.getGlobalNotificationsSettings().getBoolean("askedAboutMiuiLockscreen", false)) {
                 return;
             }
@@ -5743,7 +5741,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         if (!z && (dialogStoriesCell = this.dialogStoriesCell) != null && this.dialogStoriesCellVisible) {
             dialogStoriesCell.setVisibility(0);
         }
-        boolean z7 = SharedConfig.getDevicePerformanceClass() == 0 || !LiteMode.isEnabled(LiteMode.FLAG_CHAT_SCALE);
+        boolean z7 = SharedConfig.getDevicePerformanceClass() == 0 || !LiteMode.isEnabled(32768);
         if (z5) {
             if (z) {
                 SearchViewPager searchViewPager7 = this.searchViewPager;
@@ -6186,7 +6184,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 }
             }
         }
-        if (SharedConfig.getDevicePerformanceClass() != 0 && LiteMode.isEnabled(LiteMode.FLAG_CHAT_SCALE)) {
+        if (SharedConfig.getDevicePerformanceClass() != 0 && LiteMode.isEnabled(32768)) {
             z2 = false;
         }
         if (z) {
@@ -6651,9 +6649,9 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     public void lambda$showChatPreview$79(MessagesController.DialogFilter dialogFilter, TLRPC$Dialog tLRPC$Dialog, long j) {
         int i;
         ArrayList<TLRPC$InputDialogPeer> arrayList;
-        int i2 = ConnectionsManager.DEFAULT_DATACENTER_ID;
+        int i2 = Integer.MAX_VALUE;
         if (dialogFilter == null || !isDialogPinned(tLRPC$Dialog)) {
-            i = ConnectionsManager.DEFAULT_DATACENTER_ID;
+            i = Integer.MAX_VALUE;
         } else {
             int size = dialogFilter.pinnedDialogs.size();
             for (int i3 = 0; i3 < size; i3++) {
@@ -6716,7 +6714,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     public void lambda$showChatPreview$82(ArrayList arrayList, View view) {
-        performSelectedDialogsAction(arrayList, R.styleable.AppCompatTheme_textAppearanceLargePopupMenu, false, false);
+        performSelectedDialogsAction(arrayList, 102, false, false);
         finishPreviewFragment();
     }
 
@@ -7236,7 +7234,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 return;
             }
         }
-        int i14 = ConnectionsManager.DEFAULT_DATACENTER_ID;
+        int i14 = Integer.MAX_VALUE;
         if (dialogFilter != null && ((i == 100 || i == 108) && this.canPinCount != 0)) {
             int size3 = dialogFilter.pinnedDialogs.size();
             for (int i15 = 0; i15 < size3; i15++) {
@@ -7510,12 +7508,12 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         int i7 = 0;
         while (true) {
             if (i7 >= arrayList2.size()) {
-                i4 = R.styleable.AppCompatTheme_textAppearanceLargePopupMenu;
+                i4 = 102;
                 i5 = -1;
                 break;
             } else if (((TLRPC$Dialog) arrayList2.get(i7)).id == j) {
                 i5 = i7;
-                i4 = R.styleable.AppCompatTheme_textAppearanceLargePopupMenu;
+                i4 = 102;
                 break;
             } else {
                 i7++;
@@ -9697,10 +9695,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             this.slideBackTransitionAnimator = ofFloat;
             return ofFloat;
         }
-        int i = ImageReceiver.DEFAULT_CROSSFADE_DURATION;
-        if (getLayoutContainer() != null) {
-            i = (int) (Math.max((int) ((200.0f / getLayoutContainer().getMeasuredWidth()) * f), 80) * 1.2f);
-        }
+        int max = getLayoutContainer() != null ? (int) (Math.max((int) ((200.0f / getLayoutContainer().getMeasuredWidth()) * f), 80) * 1.2f) : 150;
         ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.slideFragmentProgress, 1.0f);
         this.slideBackTransitionAnimator = ofFloat2;
         ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -9710,7 +9705,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             }
         });
         this.slideBackTransitionAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT);
-        this.slideBackTransitionAnimator.setDuration(i);
+        this.slideBackTransitionAnimator.setDuration(max);
         this.slideBackTransitionAnimator.start();
         return this.slideBackTransitionAnimator;
     }
@@ -9733,7 +9728,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     private void setFragmentIsSliding(boolean z) {
-        if (SharedConfig.getDevicePerformanceClass() <= 1 || !LiteMode.isEnabled(LiteMode.FLAG_CHAT_SCALE)) {
+        if (SharedConfig.getDevicePerformanceClass() <= 1 || !LiteMode.isEnabled(32768)) {
             return;
         }
         if (z) {
@@ -9807,7 +9802,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         if (SharedConfig.getDevicePerformanceClass() <= 0 || this.slideFragmentProgress == f) {
             return;
         }
-        this.slideFragmentLite = SharedConfig.getDevicePerformanceClass() <= 1 || !LiteMode.isEnabled(LiteMode.FLAG_CHAT_SCALE);
+        this.slideFragmentLite = SharedConfig.getDevicePerformanceClass() <= 1 || !LiteMode.isEnabled(32768);
         this.slideFragmentProgress = f;
         View view = this.fragmentView;
         if (view != null) {

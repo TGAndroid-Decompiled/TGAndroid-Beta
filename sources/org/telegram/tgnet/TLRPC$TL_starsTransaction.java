@@ -1,6 +1,4 @@
 package org.telegram.tgnet;
-
-import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_starsTransaction extends TLRPC$StarsTransaction {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -30,10 +28,10 @@ public class TLRPC$TL_starsTransaction extends TLRPC$StarsTransaction {
         if ((this.flags & 128) != 0) {
             this.bot_payload = abstractSerializedData.readByteArray(z);
         }
-        if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
+        if ((this.flags & 256) != 0) {
             this.msg_id = abstractSerializedData.readInt32(z);
         }
-        if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+        if ((this.flags & 512) != 0) {
             int readInt322 = abstractSerializedData.readInt32(z);
             if (readInt322 != 481674261) {
                 if (z) {
@@ -83,10 +81,10 @@ public class TLRPC$TL_starsTransaction extends TLRPC$StarsTransaction {
         if ((this.flags & 128) != 0) {
             abstractSerializedData.writeByteArray(this.bot_payload);
         }
-        if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
+        if ((this.flags & 256) != 0) {
             abstractSerializedData.writeInt32(this.msg_id);
         }
-        if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+        if ((this.flags & 512) != 0) {
             abstractSerializedData.writeInt32(481674261);
             int size = this.extended_media.size();
             abstractSerializedData.writeInt32(size);

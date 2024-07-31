@@ -17,7 +17,6 @@ import kotlinx.coroutines.DebugKt;
 import kotlinx.coroutines.DebugStringsKt;
 import kotlinx.coroutines.internal.ResizableAtomicArray;
 import kotlinx.coroutines.internal.Symbol;
-import org.telegram.tgnet.ConnectionsManager;
 public final class CoroutineScheduler implements Executor, Closeable {
     public static final Symbol NOT_IN_STACK;
     private static final AtomicIntegerFieldUpdater _isTerminated$FU;
@@ -229,7 +228,7 @@ public final class CoroutineScheduler implements Executor, Closeable {
             int i5 = i4 ^ (i4 << 5);
             this.rngState = i5;
             int i6 = i - 1;
-            return (i6 & i) == 0 ? i5 & i6 : (i5 & ConnectionsManager.DEFAULT_DATACENTER_ID) % i;
+            return (i6 & i) == 0 ? i5 & i6 : (i5 & Integer.MAX_VALUE) % i;
         }
 
         private final void park() {

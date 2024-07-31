@@ -15,7 +15,6 @@ import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
@@ -611,7 +610,7 @@ public class FilterShaders {
                 allocateDirect.put((byte) -1);
             }
             allocateDirect.position(0);
-            GLES20.glTexImage2D(3553, 0, 6408, LiteMode.FLAG_CHAT_BLUR, 1, 0, 6408, 5121, allocateDirect);
+            GLES20.glTexImage2D(3553, 0, 6408, 256, 1, 0, 6408, 5121, allocateDirect);
         }
 
         public int getCurveTexture() {
@@ -1078,7 +1077,7 @@ public class FilterShaders {
                 this.hsvBuffer = ByteBuffer.allocateDirect(i2);
             }
             if (this.cdtBuffer == null) {
-                this.cdtBuffer = ByteBuffer.allocateDirect(LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM);
+                this.cdtBuffer = ByteBuffer.allocateDirect(16384);
             }
             if (this.calcBuffer == null) {
                 this.calcBuffer = ByteBuffer.allocateDirect(32896);
@@ -1086,7 +1085,7 @@ public class FilterShaders {
             GLES20.glReadPixels(0, 0, this.renderBufferWidth, this.renderBufferHeight, 6408, 5121, this.hsvBuffer);
             Utilities.calcCDT(this.hsvBuffer, this.renderBufferWidth, this.renderBufferHeight, this.cdtBuffer, this.calcBuffer);
             GLES20.glBindTexture(3553, this.enhanceTextures[1]);
-            GLES20.glTexImage2D(3553, 0, 6408, LiteMode.FLAG_CHAT_BLUR, 16, 0, 6408, 5121, this.cdtBuffer);
+            GLES20.glTexImage2D(3553, 0, 6408, 256, 16, 0, 6408, 5121, this.cdtBuffer);
             if (!this.isVideo) {
                 this.hsvBuffer = null;
                 this.cdtBuffer = null;

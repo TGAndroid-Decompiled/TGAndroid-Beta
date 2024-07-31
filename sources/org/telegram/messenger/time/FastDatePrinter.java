@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 import java.util.concurrent.ConcurrentMap;
-import org.telegram.messenger.R;
 public class FastDatePrinter implements DatePrinter, Serializable {
     public static final int FULL = 0;
     public static final int LONG = 1;
@@ -90,7 +89,7 @@ public class FastDatePrinter implements DatePrinter, Serializable {
             if (charAt != 'y') {
                 if (charAt != 'z') {
                     switch (charAt) {
-                        case R.styleable.AppCompatTheme_autoCompleteTextViewStyle:
+                        case '\'':
                             String substring = parseToken.substring(1);
                             if (substring.length() == 1) {
                                 timeZoneNameRule = new CharacterLiteral(substring.charAt(0));
@@ -99,13 +98,13 @@ public class FastDatePrinter implements DatePrinter, Serializable {
                                 timeZoneNameRule = new StringLiteral(substring);
                                 break;
                             }
-                        case R.styleable.AppCompatTheme_listPreferredItemPaddingLeft:
+                        case 'S':
                             selectNumberRule = selectNumberRule(14, length2);
                             break;
-                        case R.styleable.AppCompatTheme_panelMenuListTheme:
+                        case 'W':
                             selectNumberRule = selectNumberRule(4, length2);
                             break;
-                        case R.styleable.AppCompatTheme_popupWindowStyle:
+                        case 'Z':
                             if (length2 == 1) {
                                 selectNumberRule = TimeZoneNumberRule.INSTANCE_NO_COLON;
                                 break;
@@ -113,22 +112,22 @@ public class FastDatePrinter implements DatePrinter, Serializable {
                                 selectNumberRule = TimeZoneNumberRule.INSTANCE_COLON;
                                 break;
                             }
-                        case R.styleable.AppCompatTheme_selectableItemBackground:
+                        case 'a':
                             timeZoneNameRule = new TextField(9, amPmStrings);
                             break;
                         case 'd':
                             timeZoneNameRule = selectNumberRule(5, length2);
                             break;
-                        case R.styleable.AppCompatTheme_textAppearanceListItemSecondary:
+                        case 'h':
                             timeZoneNameRule = new TwelveHourField(selectNumberRule(10, length2));
                             break;
-                        case R.styleable.AppCompatTheme_textAppearanceSearchResultSubtitle:
+                        case 'k':
                             timeZoneNameRule = new TwentyFourHourField(selectNumberRule(11, length2));
                             break;
-                        case R.styleable.AppCompatTheme_textAppearanceSmallPopupMenu:
+                        case 'm':
                             timeZoneNameRule = selectNumberRule(12, length2);
                             break;
-                        case R.styleable.AppCompatTheme_tooltipFrameBackground:
+                        case 's':
                             timeZoneNameRule = selectNumberRule(13, length2);
                             break;
                         case 'w':
@@ -136,27 +135,27 @@ public class FastDatePrinter implements DatePrinter, Serializable {
                             break;
                         default:
                             switch (charAt) {
-                                case R.styleable.AppCompatTheme_editTextBackground:
+                                case 'D':
                                     timeZoneNameRule = selectNumberRule(6, length2);
                                     break;
-                                case R.styleable.AppCompatTheme_editTextColor:
+                                case 'E':
                                     timeZoneNameRule = new TextField(7, length2 < 4 ? shortWeekdays : weekdays);
                                     break;
-                                case R.styleable.AppCompatTheme_editTextStyle:
+                                case 'F':
                                     timeZoneNameRule = selectNumberRule(8, length2);
                                     break;
-                                case R.styleable.AppCompatTheme_homeAsUpIndicator:
+                                case 'G':
                                     timeZoneNameRule = new TextField(0, eras);
                                     break;
-                                case R.styleable.AppCompatTheme_imageButtonStyle:
+                                case 'H':
                                     timeZoneNameRule = selectNumberRule(11, length2);
                                     break;
                                 default:
                                     switch (charAt) {
-                                        case R.styleable.AppCompatTheme_listChoiceIndicatorSingleAnimated:
+                                        case 'K':
                                             timeZoneNameRule = selectNumberRule(10, length2);
                                             break;
-                                        case R.styleable.AppCompatTheme_listDividerAlertDialog:
+                                        case 'L':
                                             if (length2 < 4) {
                                                 if (length2 != 3) {
                                                     if (length2 == 2) {
@@ -174,7 +173,7 @@ public class FastDatePrinter implements DatePrinter, Serializable {
                                                 timeZoneNameRule = new TextField(2, months);
                                                 break;
                                             }
-                                        case R.styleable.AppCompatTheme_listMenuViewStyle:
+                                        case 'M':
                                             if (length2 < 4) {
                                                 if (length2 != 3) {
                                                     if (length2 == 2) {

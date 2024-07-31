@@ -32,7 +32,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessagesController;
@@ -503,7 +502,7 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
         editTextBoldCursor.setHintText(LocaleController.getString(R.string.SavedTagLabelPlaceholder));
         editTextBoldCursor.setSingleLine(true);
         editTextBoldCursor.setFocusable(true);
-        editTextBoldCursor.setInputType(LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM);
+        editTextBoldCursor.setInputType(16384);
         editTextBoldCursor.setLineColors(Theme.getColor(Theme.key_windowBackgroundWhiteInputField, resourcesProvider), Theme.getColor(Theme.key_windowBackgroundWhiteInputFieldActivated, resourcesProvider), Theme.getColor(Theme.key_text_RedRegular, resourcesProvider));
         editTextBoldCursor.setImeOptions(6);
         editTextBoldCursor.setBackgroundDrawable(null);

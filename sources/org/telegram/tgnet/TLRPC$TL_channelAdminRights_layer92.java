@@ -1,6 +1,4 @@
 package org.telegram.tgnet;
-
-import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_channelAdminRights_layer92 extends TLObject {
     public boolean add_admins;
     public boolean ban_users;
@@ -36,7 +34,7 @@ public class TLRPC$TL_channelAdminRights_layer92 extends TLObject {
         this.ban_users = (readInt32 & 16) != 0;
         this.invite_users = (readInt32 & 32) != 0;
         this.pin_messages = (readInt32 & 128) != 0;
-        this.add_admins = (readInt32 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0;
+        this.add_admins = (readInt32 & 512) != 0;
         this.manage_call = (readInt32 & 1024) != 0;
     }
 
@@ -57,7 +55,7 @@ public class TLRPC$TL_channelAdminRights_layer92 extends TLObject {
         this.flags = i6;
         int i7 = this.pin_messages ? i6 | 128 : i6 & (-129);
         this.flags = i7;
-        int i8 = this.add_admins ? i7 | LiteMode.FLAG_CALLS_ANIMATIONS : i7 & (-513);
+        int i8 = this.add_admins ? i7 | 512 : i7 & (-513);
         this.flags = i8;
         int i9 = this.manage_call ? i8 | 1024 : i8 & (-1025);
         this.flags = i9;

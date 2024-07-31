@@ -67,7 +67,6 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.IMapsProvider;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.LocationController;
 import org.telegram.messenger.MessageObject;
@@ -76,7 +75,6 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
@@ -2119,7 +2117,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
                 TLRPC$TL_messages_editMessage tLRPC$TL_messages_editMessage = new TLRPC$TL_messages_editMessage();
                 tLRPC$TL_messages_editMessage.peer = getMessagesController().getInputPeer(sharingLocationInfo.did);
                 tLRPC$TL_messages_editMessage.id = sharingLocationInfo.mid;
-                tLRPC$TL_messages_editMessage.flags |= LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM;
+                tLRPC$TL_messages_editMessage.flags |= 16384;
                 TLRPC$TL_inputMediaGeoLive tLRPC$TL_inputMediaGeoLive = new TLRPC$TL_inputMediaGeoLive();
                 tLRPC$TL_messages_editMessage.media = tLRPC$TL_inputMediaGeoLive;
                 tLRPC$TL_inputMediaGeoLive.stopped = false;
@@ -2143,18 +2141,14 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
                 TLRPC$InputMedia tLRPC$InputMedia2 = tLRPC$TL_messages_editMessage.media;
                 int i5 = tLRPC$InputMedia2.flags | 4;
                 tLRPC$InputMedia2.flags = i5;
-                int i6 = ConnectionsManager.DEFAULT_DATACENTER_ID;
-                int i7 = i2 == Integer.MAX_VALUE ? ConnectionsManager.DEFAULT_DATACENTER_ID : sharingLocationInfo.period + i2;
-                sharingLocationInfo.period = i7;
-                tLRPC$InputMedia2.period = i7;
-                if (i2 != Integer.MAX_VALUE) {
-                    i6 = sharingLocationInfo.stopTime + i2;
-                }
-                sharingLocationInfo.stopTime = i6;
+                int i6 = i2 == Integer.MAX_VALUE ? Integer.MAX_VALUE : sharingLocationInfo.period + i2;
+                sharingLocationInfo.period = i6;
+                tLRPC$InputMedia2.period = i6;
+                sharingLocationInfo.stopTime = i2 != Integer.MAX_VALUE ? sharingLocationInfo.stopTime + i2 : Integer.MAX_VALUE;
                 tLRPC$InputMedia2.flags = i5 | 2;
                 MessageObject messageObject = sharingLocationInfo.messageObject;
                 if (messageObject != null && (tLRPC$Message = messageObject.messageOwner) != null && (tLRPC$MessageMedia = tLRPC$Message.media) != null) {
-                    tLRPC$MessageMedia.period = i7;
+                    tLRPC$MessageMedia.period = i6;
                     getMessagesStorage().replaceMessageIfExists(sharingLocationInfo.messageObject.messageOwner, null, null, true);
                 }
                 getConnectionsManager().sendRequest(tLRPC$TL_messages_editMessage, null);

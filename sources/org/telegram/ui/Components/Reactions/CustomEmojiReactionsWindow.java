@@ -489,7 +489,7 @@ public class CustomEmojiReactionsWindow {
         rectF.offset(x, y);
         this.reactionsContainerLayout.setCustomEmojiEnterProgress(this.enterTransitionProgress);
         if (z) {
-            this.cascadeAnimation = SharedConfig.getDevicePerformanceClass() >= 2 && LiteMode.isEnabled(LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS);
+            this.cascadeAnimation = SharedConfig.getDevicePerformanceClass() >= 2 && LiteMode.isEnabled(8200);
             this.enterTransitionFinished = false;
         } else {
             this.cascadeAnimation = false;

@@ -251,21 +251,21 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 return "business_location";
             case 30:
                 return "business_hours";
-            case R.styleable.AppCompatTheme_actionModeWebSearchDrawable:
+            case 31:
                 return "quick_replies";
             case 32:
                 return "greeting_message";
-            case R.styleable.AppCompatTheme_actionOverflowMenuStyle:
+            case 33:
                 return "away_message";
-            case R.styleable.AppCompatTheme_activityChooserViewStyle:
+            case 34:
                 return "business_bots";
-            case R.styleable.AppCompatTheme_alertDialogButtonGroupStyle:
+            case 35:
                 return "folder_tags";
-            case R.styleable.AppCompatTheme_alertDialogCenterButtons:
+            case 36:
                 return "business_intro";
-            case R.styleable.AppCompatTheme_alertDialogStyle:
+            case 37:
                 return "business_links";
-            case R.styleable.AppCompatTheme_alertDialogTheme:
+            case 38:
                 return "effects";
             default:
                 return null;
@@ -636,21 +636,21 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 return 15;
             case 30:
                 return 31;
-            case R.styleable.AppCompatTheme_actionModeWebSearchDrawable:
+            case 31:
                 return 34;
             case ' ':
                 return 20;
-            case R.styleable.AppCompatTheme_actionOverflowMenuStyle:
+            case '!':
                 return 19;
-            case R.styleable.AppCompatTheme_activityChooserViewStyle:
+            case '\"':
                 return 9;
-            case R.styleable.AppCompatTheme_alertDialogButtonGroupStyle:
+            case '#':
                 return 16;
-            case R.styleable.AppCompatTheme_alertDialogCenterButtons:
+            case '$':
                 return 24;
-            case R.styleable.AppCompatTheme_alertDialogStyle:
+            case '%':
                 return 10;
-            case R.styleable.AppCompatTheme_alertDialogTheme:
+            case '&':
                 return 26;
             default:
                 return -1;
@@ -1213,7 +1213,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
     }
 
     public static int lambda$fillPremiumFeaturesList$5(MessagesController messagesController, PremiumFeatureData premiumFeatureData, PremiumFeatureData premiumFeatureData2) {
-        return messagesController.premiumFeaturesTypesToPosition.get(premiumFeatureData.type, ConnectionsManager.DEFAULT_DATACENTER_ID) - messagesController.premiumFeaturesTypesToPosition.get(premiumFeatureData2.type, ConnectionsManager.DEFAULT_DATACENTER_ID);
+        return messagesController.premiumFeaturesTypesToPosition.get(premiumFeatureData.type, Integer.MAX_VALUE) - messagesController.premiumFeaturesTypesToPosition.get(premiumFeatureData2.type, Integer.MAX_VALUE);
     }
 
     public static void fillBusinessFeaturesList(ArrayList<PremiumFeatureData> arrayList, int i, boolean z) {
@@ -1253,7 +1253,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
     }
 
     public static int lambda$fillBusinessFeaturesList$6(MessagesController messagesController, PremiumFeatureData premiumFeatureData, PremiumFeatureData premiumFeatureData2) {
-        return messagesController.businessFeaturesTypesToPosition.get(premiumFeatureData.type, ConnectionsManager.DEFAULT_DATACENTER_ID) - messagesController.businessFeaturesTypesToPosition.get(premiumFeatureData2.type, ConnectionsManager.DEFAULT_DATACENTER_ID);
+        return messagesController.businessFeaturesTypesToPosition.get(premiumFeatureData.type, Integer.MAX_VALUE) - messagesController.businessFeaturesTypesToPosition.get(premiumFeatureData2.type, Integer.MAX_VALUE);
     }
 
     public static CharSequence applyNewSpan(String str) {
@@ -1391,7 +1391,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 Iterator it = list.iterator();
                 while (it.hasNext()) {
                     Purchase purchase = (Purchase) it.next();
-                    if (purchase.getProducts().contains(BillingController.PREMIUM_PRODUCT_ID)) {
+                    if (purchase.getProducts().contains("telegram_premium")) {
                         final TLRPC$TL_payments_assignPlayMarketTransaction tLRPC$TL_payments_assignPlayMarketTransaction = new TLRPC$TL_payments_assignPlayMarketTransaction();
                         TLRPC$TL_dataJSON tLRPC$TL_dataJSON = new TLRPC$TL_dataJSON();
                         tLRPC$TL_payments_assignPlayMarketTransaction.receipt = tLRPC$TL_dataJSON;
@@ -1412,7 +1412,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                     }
                 }
             }
-            BillingController.getInstance().addResultListener(BillingController.PREMIUM_PRODUCT_ID, new Consumer() {
+            BillingController.getInstance().addResultListener("telegram_premium", new Consumer() {
                 @Override
                 public final void accept(Object obj) {
                     PremiumPreviewFragment.lambda$buyPremium$10(runnable, (BillingResult) obj);

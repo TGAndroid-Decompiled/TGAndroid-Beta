@@ -380,7 +380,7 @@ public class StoriesUtilities {
         }
         TLRPC$MessageMedia tLRPC$MessageMedia = tL_stories$StoryItem.media;
         if (tLRPC$MessageMedia != null && (tLRPC$Document = tLRPC$MessageMedia.document) != null) {
-            imageReceiver.setImage(ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, ConnectionsManager.DEFAULT_DATACENTER_ID), tL_stories$StoryItem.media.document), str, null, null, ImageLoader.createStripedBitmap(tL_stories$StoryItem.media.document.thumbs), 0L, null, tL_stories$StoryItem, 0);
+            imageReceiver.setImage(ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, Integer.MAX_VALUE), tL_stories$StoryItem.media.document), str, null, null, ImageLoader.createStripedBitmap(tL_stories$StoryItem.media.document.thumbs), 0L, null, tL_stories$StoryItem, 0);
             imageReceiver.addDecorator(new StoryWidgetsImageDecorator(tL_stories$StoryItem));
             return;
         }
@@ -391,7 +391,7 @@ public class StoriesUtilities {
             imageReceiver.setImageBitmap(createBitmap);
             imageReceiver.addDecorator(new StoryWidgetsImageDecorator(tL_stories$StoryItem));
         } else if (tLRPC$Photo != null && (arrayList = tLRPC$Photo.sizes) != null) {
-            imageReceiver.setImage(null, null, ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(arrayList, ConnectionsManager.DEFAULT_DATACENTER_ID), tLRPC$Photo), str, null, null, ImageLoader.createStripedBitmap(tLRPC$Photo.sizes), 0L, null, tL_stories$StoryItem, 0);
+            imageReceiver.setImage(null, null, ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(arrayList, Integer.MAX_VALUE), tLRPC$Photo), str, null, null, ImageLoader.createStripedBitmap(tLRPC$Photo.sizes), 0L, null, tL_stories$StoryItem, 0);
             imageReceiver.addDecorator(new StoryWidgetsImageDecorator(tL_stories$StoryItem));
         } else {
             imageReceiver.clearImage();
@@ -616,7 +616,7 @@ public class StoriesUtilities {
         } else {
             TLRPC$Photo tLRPC$Photo = tLRPC$MessageMedia != null ? tLRPC$MessageMedia.photo : null;
             if (tLRPC$Photo != null && (arrayList = tLRPC$Photo.sizes) != null) {
-                File pathToAttach3 = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(FileLoader.getClosestPhotoSizeWithSize(arrayList, ConnectionsManager.DEFAULT_DATACENTER_ID), "", false);
+                File pathToAttach3 = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(FileLoader.getClosestPhotoSizeWithSize(arrayList, Integer.MAX_VALUE), "", false);
                 if (pathToAttach3 != null && pathToAttach3.exists()) {
                     runnable.run();
                     return null;
@@ -669,7 +669,7 @@ public class StoriesUtilities {
         }
         TLRPC$Photo tLRPC$Photo2 = tLRPC$MessageMedia2 != null ? tLRPC$MessageMedia2.photo : null;
         if (tLRPC$Photo2 != null && (arrayList2 = tLRPC$Photo2.sizes) != null) {
-            ensureStoryFileLoadedObject.imageReceiver.setImage(null, null, ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(arrayList2, ConnectionsManager.DEFAULT_DATACENTER_ID), tLRPC$Photo2), storyImageFilter, null, null, null, 0L, null, tL_stories$StoryItem, 0);
+            ensureStoryFileLoadedObject.imageReceiver.setImage(null, null, ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(arrayList2, Integer.MAX_VALUE), tLRPC$Photo2), storyImageFilter, null, null, null, 0L, null, tL_stories$StoryItem, 0);
             return ensureStoryFileLoadedObject;
         }
         ensureStoryFileLoadedObject.runnable.run();

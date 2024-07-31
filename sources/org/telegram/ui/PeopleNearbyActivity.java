@@ -37,7 +37,6 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
@@ -489,7 +488,7 @@ public class PeopleNearbyActivity extends BaseFragment implements NotificationCe
     }
 
     public void lambda$createView$1(UserConfig userConfig, DialogInterface dialogInterface, int i) {
-        userConfig.sharingMyLocationUntil = ConnectionsManager.DEFAULT_DATACENTER_ID;
+        userConfig.sharingMyLocationUntil = Integer.MAX_VALUE;
         userConfig.saveConfig(false);
         sendRequest(false, 1);
         updateRows(null);
@@ -639,7 +638,7 @@ public class PeopleNearbyActivity extends BaseFragment implements NotificationCe
         tLRPC$TL_contacts_getLocated.geo_point._long = lastKnownLocation.getLongitude();
         if (i != 0) {
             tLRPC$TL_contacts_getLocated.flags |= 1;
-            tLRPC$TL_contacts_getLocated.self_expires = i == 1 ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0;
+            tLRPC$TL_contacts_getLocated.self_expires = i == 1 ? Integer.MAX_VALUE : 0;
         } else if (getUserConfig().sharingMyLocationUntil != 0) {
             tLRPC$TL_contacts_getLocated.flags |= 1;
             tLRPC$TL_contacts_getLocated.self_expires = getUserConfig().sharingMyLocationUntil;
@@ -826,7 +825,7 @@ public class PeopleNearbyActivity extends BaseFragment implements NotificationCe
         DiffCallback diffCallback = null;
         int i = 0;
         boolean z2 = false;
-        int i2 = ConnectionsManager.DEFAULT_DATACENTER_ID;
+        int i2 = Integer.MAX_VALUE;
         while (i < 2) {
             ArrayList<TLRPC$TL_peerLocated> arrayList = i == 0 ? this.users : this.chats;
             int size = arrayList.size();

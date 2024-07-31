@@ -273,7 +273,7 @@ public class ActionBarMenuSlider extends FrameLayout {
             i = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i) + getPaddingRight() + getPaddingLeft(), 1073741824);
         }
         super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(44.0f) + getPaddingTop() + getPaddingBottom(), 1073741824));
-        boolean z = SharedConfig.getDevicePerformanceClass() >= 2 && LiteMode.isEnabled(LiteMode.FLAG_CHAT_BLUR);
+        boolean z = SharedConfig.getDevicePerformanceClass() >= 2 && LiteMode.isEnabled(256);
         if (this.drawBlur && this.blurBitmap == null && !this.preparingBlur && z) {
             this.prepareBlur.run();
         }

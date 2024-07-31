@@ -17,7 +17,6 @@ import java.util.List;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.voip.VoIPService;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$ChannelParticipant;
@@ -362,7 +361,7 @@ public class ChatObject {
             TLRPC$GroupCall tLRPC$GroupCall = tLRPC$TL_phone_groupCall.call;
             this.call = tLRPC$GroupCall;
             this.recording = tLRPC$GroupCall.record_start_date != 0;
-            int i = ConnectionsManager.DEFAULT_DATACENTER_ID;
+            int i = Integer.MAX_VALUE;
             int size = tLRPC$TL_phone_groupCall.participants.size();
             for (int i2 = 0; i2 < size; i2++) {
                 TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant = tLRPC$TL_phone_groupCall.participants.get(i2);
@@ -575,7 +574,7 @@ public class ChatObject {
                 this.membersLoadEndReached = false;
                 this.nextLoadOffset = null;
             }
-            if (this.membersLoadEndReached || this.sortedParticipants.size() > ChatObject.MAX_PARTICIPANTS_COUNT) {
+            if (this.membersLoadEndReached || this.sortedParticipants.size() > 5000) {
                 return;
             }
             if (z) {
@@ -1300,7 +1299,7 @@ public class ChatObject {
                     if (this.canStreamVideo) {
                         if (tLRPC$TL_groupCallParticipant2.videoIndex == 0) {
                             if (z2) {
-                                tLRPC$TL_groupCallParticipant2.videoIndex = ConnectionsManager.DEFAULT_DATACENTER_ID;
+                                tLRPC$TL_groupCallParticipant2.videoIndex = Integer.MAX_VALUE;
                             } else {
                                 int i3 = videoPointer + 1;
                                 videoPointer = i3;
@@ -1339,14 +1338,14 @@ public class ChatObject {
                     this.activeVideos--;
                 }
             }
-            if (this.sortedParticipants.size() > ChatObject.MAX_PARTICIPANTS_COUNT && (!ChatObject.canManageCalls(chat) || tLRPC$TL_groupCallParticipant.raise_hand_rating == 0)) {
+            if (this.sortedParticipants.size() > 5000 && (!ChatObject.canManageCalls(chat) || tLRPC$TL_groupCallParticipant.raise_hand_rating == 0)) {
                 int size3 = this.sortedParticipants.size();
-                for (int i4 = ChatObject.MAX_PARTICIPANTS_COUNT; i4 < size3; i4++) {
-                    TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant3 = this.sortedParticipants.get(ChatObject.MAX_PARTICIPANTS_COUNT);
+                for (int i4 = 5000; i4 < size3; i4++) {
+                    TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant3 = this.sortedParticipants.get(5000);
                     if (tLRPC$TL_groupCallParticipant3.raise_hand_rating == 0) {
                         processAllSources(tLRPC$TL_groupCallParticipant3, false);
                         this.participants.remove(MessageObject.getPeerId(tLRPC$TL_groupCallParticipant3.peer));
-                        this.sortedParticipants.remove((int) ChatObject.MAX_PARTICIPANTS_COUNT);
+                        this.sortedParticipants.remove(5000);
                     }
                 }
             }
@@ -1495,7 +1494,7 @@ public class ChatObject {
             this.speakingMembersCount = 0;
             int currentTime = this.currentAccount.getConnectionsManager().getCurrentTime();
             int size = this.sortedParticipants.size();
-            int i = ConnectionsManager.DEFAULT_DATACENTER_ID;
+            int i = Integer.MAX_VALUE;
             for (int i2 = 0; i2 < size; i2++) {
                 TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant = this.sortedParticipants.get(i2);
                 int i3 = currentTime - tLRPC$TL_groupCallParticipant.active_date;

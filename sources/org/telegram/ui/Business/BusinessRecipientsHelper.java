@@ -308,7 +308,7 @@ public class BusinessRecipientsHelper {
                     arrayList.add(UItem.asFilterChat(true, this.alwaysShow.get(i).longValue()));
                 }
                 if (size != this.alwaysShow.size()) {
-                    arrayList.add(UItem.asButton((int) R.styleable.AppCompatTheme_textAppearanceLargePopupMenu, R.drawable.arrow_more, LocaleController.formatPluralString("FilterShowMoreChats", this.alwaysShow.size() - 5, new Object[0])).accent());
+                    arrayList.add(UItem.asButton(102, R.drawable.arrow_more, LocaleController.formatPluralString("FilterShowMoreChats", this.alwaysShow.size() - 5, new Object[0])).accent());
                 }
             }
         }
@@ -318,7 +318,7 @@ public class BusinessRecipientsHelper {
                 arrayList.add(UItem.asShadow(null));
             }
             arrayList.add(UItem.asHeader(LocaleController.getString(R.string.BusinessChatsExcluded)));
-            arrayList.add(UItem.asButton((int) R.styleable.AppCompatTheme_textAppearanceListItem, R.drawable.msg2_chats_add, LocaleController.getString(R.string.BusinessChatsExcludedAdd)).accent());
+            arrayList.add(UItem.asButton(103, R.drawable.msg2_chats_add, LocaleController.getString(R.string.BusinessChatsExcludedAdd)).accent());
             if (!this.bot || this.exclude) {
                 if ((flags & 1) != 0) {
                     z = false;
@@ -344,7 +344,7 @@ public class BusinessRecipientsHelper {
                 arrayList.add(UItem.asFilterChat(false, this.neverShow.get(i2).longValue()));
             }
             if (size2 != this.neverShow.size()) {
-                arrayList.add(UItem.asButton((int) R.styleable.AppCompatTheme_textAppearanceListItemSecondary, R.drawable.arrow_more, LocaleController.formatPluralString("FilterShowMoreChats", this.neverShow.size() - 5, new Object[0])).accent());
+                arrayList.add(UItem.asButton(104, R.drawable.arrow_more, LocaleController.formatPluralString("FilterShowMoreChats", this.neverShow.size() - 5, new Object[0])).accent());
             }
         }
     }

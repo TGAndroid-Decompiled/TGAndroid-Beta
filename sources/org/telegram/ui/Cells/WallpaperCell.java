@@ -360,7 +360,7 @@ public class WallpaperCell extends FrameLayout {
             } else {
                 Paint paint = new Paint();
                 this.framePaint = paint;
-                paint.setColor(AndroidUtilities.DARK_STATUS_BAR_OVERLAY);
+                paint.setColor(855638016);
                 this.circlePaint = new Paint(1);
                 this.checkDrawable = context.getResources().getDrawable(R.drawable.background_selected).mutate();
                 Paint paint2 = new Paint();

@@ -25,7 +25,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
@@ -123,7 +122,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         });
         getNotificationCenter().addObserver(this, NotificationCenter.reactionsDidLoad);
         this.allAvailableReactions.addAll(getMediaDataController().getEnabledReactionsList());
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, Integer.valueOf((int) LiteMode.FLAG_CALLS_ANIMATIONS));
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
         return super.onFragmentCreate();
     }
 
@@ -415,7 +414,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
     }
 
     public static void lambda$onTransitionAnimationEnd$10() {
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, Integer.valueOf((int) LiteMode.FLAG_CALLS_ANIMATIONS));
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
     }
 
     private void setCheckedEnableReactionCell(int i, boolean z) {
@@ -630,7 +629,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
             return;
         }
         this.emojiKeyboardVisible = true;
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, Integer.valueOf((int) LiteMode.FLAG_CALLS_ANIMATIONS));
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
         updateScrollViewMarginBottom(this.bottomDialogLayout.getMeasuredHeight());
         this.bottomDialogLayout.setVisibility(0);
         FrameLayout frameLayout = this.bottomDialogLayout;
@@ -644,7 +643,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         }).setListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator) {
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, Integer.valueOf((int) LiteMode.FLAG_CALLS_ANIMATIONS));
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
                 ChatCustomReactionsEditActivity.this.scrollView.fullScroll(130);
             }
         }).start();
@@ -664,7 +663,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
                 this.editText.clearFocus();
             }
             updateScrollViewMarginBottom(0);
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, Integer.valueOf((int) LiteMode.FLAG_CALLS_ANIMATIONS));
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
             this.bottomDialogLayout.animate().setListener(null).cancel();
             this.bottomDialogLayout.animate().translationY(this.bottomDialogLayout.getMeasuredHeight()).setDuration(350L).withLayer().setInterpolator(CubicBezierInterpolator.DEFAULT).setUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
@@ -674,7 +673,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
             }).setListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {
-                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, Integer.valueOf((int) LiteMode.FLAG_CALLS_ANIMATIONS));
+                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
                     ChatCustomReactionsEditActivity.this.bottomDialogLayout.setVisibility(4);
                     if (ChatCustomReactionsEditActivity.this.isClearFocusNotWorking()) {
                         ChatCustomReactionsEditActivity.this.switchLayout.setFocusableInTouchMode(false);

@@ -563,7 +563,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
             public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
                 if (ThemePreviewActivity.this.scroller != null) {
                     ThemePreviewActivity.this.scroller.abortAnimation();
-                    ThemePreviewActivity.this.scroller.fling((int) ThemePreviewActivity.this.currentScrollOffset, 0, Math.round(-f), Math.round(f2), 0, (int) ThemePreviewActivity.this.maxScrollOffset, 0, ConnectionsManager.DEFAULT_DATACENTER_ID);
+                    ThemePreviewActivity.this.scroller.fling((int) ThemePreviewActivity.this.currentScrollOffset, 0, Math.round(-f), Math.round(f2), 0, (int) ThemePreviewActivity.this.maxScrollOffset, 0, Integer.MAX_VALUE);
                     ThemePreviewActivity.this.backgroundImage.postInvalidate();
                     return true;
                 }
@@ -680,7 +680,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
             public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
                 if (ThemePreviewActivity.this.scroller != null) {
                     ThemePreviewActivity.this.scroller.abortAnimation();
-                    ThemePreviewActivity.this.scroller.fling((int) ThemePreviewActivity.this.currentScrollOffset, 0, Math.round(-f), Math.round(f2), 0, (int) ThemePreviewActivity.this.maxScrollOffset, 0, ConnectionsManager.DEFAULT_DATACENTER_ID);
+                    ThemePreviewActivity.this.scroller.fling((int) ThemePreviewActivity.this.currentScrollOffset, 0, Math.round(-f), Math.round(f2), 0, (int) ThemePreviewActivity.this.maxScrollOffset, 0, Integer.MAX_VALUE);
                     ThemePreviewActivity.this.backgroundImage.postInvalidate();
                     return true;
                 }
@@ -4969,7 +4969,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
             tLRPC$TL_messageService.peer_id = tLRPC$TL_peerUser2;
             tLRPC$TL_peerUser2.user_id = this.dialogId;
         }
-        tLRPC$TL_messageService.flags |= LiteMode.FLAG_CHAT_BLUR;
+        tLRPC$TL_messageService.flags |= 256;
         tLRPC$TL_messageService.date = getConnectionsManager().getCurrentTime();
         TLRPC$TL_messageActionSetChatWallPaper tLRPC$TL_messageActionSetChatWallPaper = new TLRPC$TL_messageActionSetChatWallPaper();
         tLRPC$TL_messageService.action = tLRPC$TL_messageActionSetChatWallPaper;

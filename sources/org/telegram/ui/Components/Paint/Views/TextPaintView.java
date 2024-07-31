@@ -17,7 +17,6 @@ import android.view.ViewGroup;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
@@ -91,7 +90,7 @@ public class TextPaintView extends EntityView {
             this.editText.setImeOptions(268435456);
         }
         this.editText.setFocusableInTouchMode(true);
-        this.editText.setInputType(LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM);
+        this.editText.setInputType(16384);
         this.editText.setSingleLine(false);
         addView(this.editText, LayoutHelper.createFrame(-2, -2, 51));
         if (i3 >= 29) {

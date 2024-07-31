@@ -610,7 +610,7 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
             getNotificationsController().updateServerNotificationsSettings(i);
             getNotificationsController().deleteNotificationChannelGlobal(i);
         } else {
-            getNotificationsController().setGlobalNotificationsEnabled(i, !z ? 0 : ConnectionsManager.DEFAULT_DATACENTER_ID);
+            getNotificationsController().setGlobalNotificationsEnabled(i, !z ? 0 : Integer.MAX_VALUE);
         }
         notificationsCheckCell.setChecked(!z, 0);
         this.adapter.notifyItemChanged(i2);

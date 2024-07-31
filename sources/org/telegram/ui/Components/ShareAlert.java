@@ -66,7 +66,6 @@ import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.GenericProvider;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
@@ -552,7 +551,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         new LongSparseArray();
         this.shiftDp = 4;
         this.showSendersName = true;
-        this.lastOffset = ConnectionsManager.DEFAULT_DATACENTER_ID;
+        this.lastOffset = Integer.MAX_VALUE;
         this.resourcesProvider = resourcesProvider;
         this.includeStory = z4;
         this.parentActivity = AndroidUtilities.findActivity(context);
@@ -939,8 +938,8 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                 if (Build.VERSION.SDK_INT >= 23) {
                     int systemUiVisibility = getSystemUiVisibility();
                     boolean z5 = this.lightStatusBar && ((float) 0) > ((float) AndroidUtilities.statusBarHeight) * 0.5f;
-                    if (z5 != ((systemUiVisibility & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) > 0)) {
-                        setSystemUiVisibility(z5 ? systemUiVisibility | LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM : systemUiVisibility & (-8193));
+                    if (z5 != ((systemUiVisibility & 8192) > 0)) {
+                        setSystemUiVisibility(z5 ? systemUiVisibility | 8192 : systemUiVisibility & (-8193));
                     }
                 }
                 canvas.restore();
@@ -1302,7 +1301,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         this.shadow[0].setAlpha(0.0f);
         this.shadow[0].setTag(1);
         this.containerView.addView(this.shadow[0], layoutParams);
-        this.containerView.addView(this.frameLayout, LayoutHelper.createFrame(-1, (!this.darkTheme || this.linkToCopy[1] == null) ? 58 : R.styleable.AppCompatTheme_textColorSearchUrl, 51));
+        this.containerView.addView(this.frameLayout, LayoutHelper.createFrame(-1, (!this.darkTheme || this.linkToCopy[1] == null) ? 58 : 111, 51));
         FrameLayout.LayoutParams layoutParams2 = new FrameLayout.LayoutParams(-1, AndroidUtilities.getShadowHeight(), 83);
         layoutParams2.bottomMargin = AndroidUtilities.dp(48.0f);
         this.shadow[1] = new View(context);
@@ -2603,7 +2602,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             this.lastOffset = childAt.getTop();
             runShadowAnimation(0, false);
         } else {
-            this.lastOffset = ConnectionsManager.DEFAULT_DATACENTER_ID;
+            this.lastOffset = Integer.MAX_VALUE;
             runShadowAnimation(0, true);
             top = i2;
         }
@@ -2625,7 +2624,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                 this.lastOffset = childAt2.getTop();
                 runShadowAnimation(0, false);
             } else {
-                this.lastOffset = ConnectionsManager.DEFAULT_DATACENTER_ID;
+                this.lastOffset = Integer.MAX_VALUE;
                 runShadowAnimation(0, true);
                 top2 = i4;
             }

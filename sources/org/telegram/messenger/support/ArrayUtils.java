@@ -1,7 +1,6 @@
 package org.telegram.messenger.support;
 
 import java.lang.reflect.Array;
-import org.telegram.tgnet.ConnectionsManager;
 public class ArrayUtils {
     private static final int CACHE_SIZE = 73;
     private static Object[] EMPTY = new Object[0];
@@ -67,7 +66,7 @@ public class ArrayUtils {
         if (cls == Object.class) {
             return (T[]) EMPTY;
         }
-        int identityHashCode = ((System.identityHashCode(cls) / 8) & ConnectionsManager.DEFAULT_DATACENTER_ID) % 73;
+        int identityHashCode = ((System.identityHashCode(cls) / 8) & Integer.MAX_VALUE) % 73;
         Object obj = sCache[identityHashCode];
         if (obj == null || obj.getClass().getComponentType() != cls) {
             obj = Array.newInstance((Class<?>) cls, 0);

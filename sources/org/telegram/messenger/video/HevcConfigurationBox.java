@@ -9,7 +9,7 @@ public class HevcConfigurationBox extends AbstractBox {
     private HevcDecoderConfigurationRecord hevcDecoderConfigurationRecord;
 
     public HevcConfigurationBox() {
-        super(TYPE);
+        super("hvcC");
         this.hevcDecoderConfigurationRecord = new HevcDecoderConfigurationRecord();
     }
 

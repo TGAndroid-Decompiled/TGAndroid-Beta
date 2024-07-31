@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import org.telegram.messenger.LiteMode;
 import org.webrtc.DataChannel;
 import org.webrtc.MediaStreamTrack;
 import org.webrtc.RtpTransceiver;
@@ -454,8 +453,8 @@ public class PeerConnection {
         ADAPTER_TYPE_ANY(32),
         CELLULAR_2G(64),
         CELLULAR_3G(128),
-        CELLULAR_4G(Integer.valueOf((int) LiteMode.FLAG_CHAT_BLUR)),
-        CELLULAR_5G(Integer.valueOf((int) LiteMode.FLAG_CALLS_ANIMATIONS));
+        CELLULAR_4G(256),
+        CELLULAR_5G(512);
         
         private static final Map<Integer, AdapterType> BY_BITMASK = new HashMap();
         public final Integer bitMask;

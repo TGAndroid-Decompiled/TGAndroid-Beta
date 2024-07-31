@@ -1699,7 +1699,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         this.premiumHint.setText(replaceSingleTag);
         this.premiumHint.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(8.0f), 0);
         if (getParent() instanceof FrameLayout) {
-            ((FrameLayout) getParent()).addView(this.premiumHint, LayoutHelper.createFrame(-1, (int) ImageReceiver.DEFAULT_CROSSFADE_DURATION, 51));
+            ((FrameLayout) getParent()).addView(this.premiumHint, LayoutHelper.createFrame(-1, 150, 51));
         }
         return this.premiumHint;
     }

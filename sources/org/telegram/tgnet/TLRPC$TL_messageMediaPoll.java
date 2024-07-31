@@ -12,7 +12,7 @@ public class TLRPC$TL_messageMediaPoll extends TLRPC$MessageMedia {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1272375192);
         this.poll.serializeToStream(abstractSerializedData);
         this.results.serializeToStream(abstractSerializedData);
     }

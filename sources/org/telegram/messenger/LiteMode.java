@@ -84,14 +84,14 @@ public class LiteMode {
     }
 
     private static int preprocessFlag(int i) {
-        if ((i & FLAG_ANIMATED_EMOJI_KEYBOARD) > 0) {
-            i = (i & (-16389)) | (UserConfig.hasPremiumOnAccounts() ? 4 : FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM);
+        if ((i & 16388) > 0) {
+            i = (i & (-16389)) | (UserConfig.hasPremiumOnAccounts() ? 4 : 16384);
         }
-        if ((i & FLAG_ANIMATED_EMOJI_REACTIONS) > 0) {
-            i = (i & (-8201)) | (UserConfig.hasPremiumOnAccounts() ? 8 : FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM);
+        if ((i & 8200) > 0) {
+            i = (i & (-8201)) | (UserConfig.hasPremiumOnAccounts() ? 8 : 8192);
         }
-        if ((i & FLAG_ANIMATED_EMOJI_CHAT) > 0) {
-            return (i & (-4113)) | (UserConfig.hasPremiumOnAccounts() ? 16 : FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM);
+        if ((i & 4112) > 0) {
+            return (i & (-4113)) | (UserConfig.hasPremiumOnAccounts() ? 16 : 4096);
         }
         return i;
     }
@@ -198,7 +198,7 @@ public class LiteMode {
                     i = globalMainSettings.getBoolean("autoplay_gif", true) ? i | 2048 : i & (-2049);
                 }
                 if (globalMainSettings.contains("chatBlur")) {
-                    i = globalMainSettings.getBoolean("chatBlur", true) ? i | FLAG_CHAT_BLUR : i & (-257);
+                    i = globalMainSettings.getBoolean("chatBlur", true) ? i | 256 : i & (-257);
                 }
             }
         }
@@ -262,7 +262,7 @@ public class LiteMode {
 
     private static void onFlagsUpdate(int i, int i2) {
         int i3 = (i ^ (-1)) & i2;
-        if ((i3 & FLAGS_ANIMATED_EMOJI) > 0) {
+        if ((i3 & 28700) > 0) {
             AnimatedEmojiDrawable.updateAll();
         }
         int i4 = i3 & 32;

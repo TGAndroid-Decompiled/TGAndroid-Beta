@@ -45,7 +45,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
@@ -297,7 +296,7 @@ public class SecretVoicePlayer extends Dialog {
             attributes.flags = i2 | (-2013200128);
         }
         if (!BuildVars.DEBUG_PRIVATE_VERSION) {
-            attributes.flags |= LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM;
+            attributes.flags |= 8192;
         }
         int i4 = attributes.flags | 1024;
         attributes.flags = i4;

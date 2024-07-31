@@ -19,7 +19,7 @@ public class WearReplyReceiver extends BroadcastReceiver {
         if (resultsFromIntent == null) {
             return;
         }
-        final CharSequence charSequence = resultsFromIntent.getCharSequence(NotificationsController.EXTRA_VOICE_REPLY);
+        final CharSequence charSequence = resultsFromIntent.getCharSequence("extra_voice_reply");
         if (TextUtils.isEmpty(charSequence)) {
             return;
         }

@@ -59,7 +59,7 @@ public class LineBlobDrawable {
     }
 
     public void draw(float f, float f2, float f3, float f4, Canvas canvas, Paint paint, float f5, float f6) {
-        if (!LiteMode.isEnabled(LiteMode.FLAG_CALLS_ANIMATIONS)) {
+        if (!LiteMode.isEnabled(512)) {
             canvas.drawRect(f, f2, f3, f4, paint);
             return;
         }

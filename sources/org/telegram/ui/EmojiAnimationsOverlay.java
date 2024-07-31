@@ -529,7 +529,7 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
             ImageReceiver imageReceiver2 = drawingObject.imageReceiver;
             ImageLocation forDocument = ImageLocation.getForDocument(tLRPC$VideoSize, tLRPC$Document);
             imageReceiver2.setImage(forDocument, filterWidth + "_" + filterWidth, null, "tgs", this.set, 1);
-            drawingObject.imageReceiver.setLayerNum(ConnectionsManager.DEFAULT_DATACENTER_ID);
+            drawingObject.imageReceiver.setLayerNum(Integer.MAX_VALUE);
             drawingObject.imageReceiver.setAutoRepeat(0);
             if (drawingObject.imageReceiver.getLottieAnimation() != null) {
                 if (drawingObject.isPremiumSticker) {

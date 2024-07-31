@@ -739,7 +739,7 @@ public class TranslateController extends BaseController {
 
     public void lambda$checkLanguage$8(String str, MessageObject messageObject, long j, int i) {
         if (str == null) {
-            str = UNKNOWN_LANGUAGE;
+            str = "und";
         }
         messageObject.messageOwner.originalLanguage = str;
         getMessagesStorage().updateMessageCustomParams(j, messageObject.messageOwner);
@@ -757,7 +757,7 @@ public class TranslateController extends BaseController {
     }
 
     public void lambda$checkLanguage$10(MessageObject messageObject, long j, int i) {
-        messageObject.messageOwner.originalLanguage = UNKNOWN_LANGUAGE;
+        messageObject.messageOwner.originalLanguage = "und";
         getMessagesStorage().updateMessageCustomParams(j, messageObject.messageOwner);
         this.pendingLanguageChecks.remove(Integer.valueOf(i));
     }
@@ -778,8 +778,8 @@ public class TranslateController extends BaseController {
             translatableDecision = translatableDecision2;
         }
         boolean z = true;
-        boolean z2 = isTranslatable(messageObject) && ((str2 = messageObject.messageOwner.originalLanguage) == null || UNKNOWN_LANGUAGE.equals(str2));
-        z = (!isTranslatable(messageObject) || (str = messageObject.messageOwner.originalLanguage) == null || UNKNOWN_LANGUAGE.equals(str) || RestrictedLanguagesSelectActivity.getRestrictedLanguages().contains(messageObject.messageOwner.originalLanguage)) ? false : false;
+        boolean z2 = isTranslatable(messageObject) && ((str2 = messageObject.messageOwner.originalLanguage) == null || "und".equals(str2));
+        z = (!isTranslatable(messageObject) || (str = messageObject.messageOwner.originalLanguage) == null || "und".equals(str) || RestrictedLanguagesSelectActivity.getRestrictedLanguages().contains(messageObject.messageOwner.originalLanguage)) ? false : false;
         if (z2) {
             translatableDecision.unknown.add(Integer.valueOf(messageObject.getId()));
         } else {
@@ -792,7 +792,7 @@ public class TranslateController extends BaseController {
         int size2 = translatableDecision.unknown.size();
         int size3 = translatableDecision.certainlyNotTranslatable.size();
         int i = size + size2 + size3;
-        if (i < 8 || size / (size + size3) < REQUIRED_PERCENTAGE_MESSAGES_TRANSLATABLE || size2 / i >= REQUIRED_MIN_PERCENTAGE_MESSAGES_UNKNOWN) {
+        if (i < 8 || size / (size + size3) < 0.6f || size2 / i >= 0.65f) {
             return;
         }
         this.translatableDialogs.add(Long.valueOf(dialogId));
@@ -869,7 +869,7 @@ public class TranslateController extends BaseController {
                     }
                 }
             }
-            if (pendingTranslation.symbolsCount + i >= MAX_SYMBOLS_PER_REQUEST || pendingTranslation.messageIds.size() + 1 >= 20) {
+            if (pendingTranslation.symbolsCount + i >= 25000 || pendingTranslation.messageIds.size() + 1 >= 20) {
                 AndroidUtilities.cancelRunOnUIThread(pendingTranslation.runnable);
                 AndroidUtilities.runOnUIThread(pendingTranslation.runnable);
                 pendingTranslation = new PendingTranslation();
@@ -1213,7 +1213,7 @@ public class TranslateController extends BaseController {
     }
 
     public void lambda$detectStoryLanguage$19(TL_stories$StoryItem tL_stories$StoryItem, StoryKey storyKey) {
-        tL_stories$StoryItem.detectedLng = UNKNOWN_LANGUAGE;
+        tL_stories$StoryItem.detectedLng = "und";
         getMessagesController().getStoriesController().getStoriesStorage().putStoryInternal(tL_stories$StoryItem.dialogId, tL_stories$StoryItem);
         this.detectingStories.remove(storyKey);
     }
@@ -1387,11 +1387,11 @@ public class TranslateController extends BaseController {
     }
 
     public void lambda$detectPhotoLanguage$27(MessageObject messageObject, MessageKey messageKey, Utilities.Callback callback) {
-        messageObject.messageOwner.originalLanguage = UNKNOWN_LANGUAGE;
+        messageObject.messageOwner.originalLanguage = "und";
         getMessagesStorage().updateMessageCustomParams(messageKey.dialogId, messageObject.messageOwner);
         this.detectingPhotos.remove(messageKey);
         if (callback != null) {
-            callback.run(UNKNOWN_LANGUAGE);
+            callback.run("und");
         }
     }
 

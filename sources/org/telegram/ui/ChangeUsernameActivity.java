@@ -228,7 +228,7 @@ public class ChangeUsernameActivity extends BaseFragment {
             public void dispatchDraw(Canvas canvas) {
                 int childAdapterPosition;
                 int size = (ChangeUsernameActivity.this.usernames.size() + 4) - 1;
-                int i4 = ConnectionsManager.DEFAULT_DATACENTER_ID;
+                int i4 = Integer.MAX_VALUE;
                 int i5 = Integer.MIN_VALUE;
                 for (int i6 = 0; i6 < getChildCount(); i6++) {
                     View childAt = getChildAt(i6);

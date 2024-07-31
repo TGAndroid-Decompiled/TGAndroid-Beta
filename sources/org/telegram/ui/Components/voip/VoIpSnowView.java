@@ -12,7 +12,7 @@ public class VoIpSnowView extends View {
 
     public VoIpSnowView(Context context) {
         super(context);
-        if (LiteMode.isEnabled(LiteMode.FLAG_CALLS_ANIMATIONS) && Theme.getEventType() == 0) {
+        if (LiteMode.isEnabled(512) && Theme.getEventType() == 0) {
             this.snowflakesEffect = new SnowflakesEffect(0);
         }
     }

@@ -37,7 +37,7 @@ public class TrashView extends View {
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(AndroidUtilities.dpf2(2.66f));
         paint.setShadowLayer(AndroidUtilities.dpf2(3.0f), 0.0f, AndroidUtilities.dp(1.66f), 805306368);
-        paint2.setColor(AndroidUtilities.DARK_STATUS_BAR_OVERLAY);
+        paint2.setColor(855638016);
         int i = R.raw.group_pip_delete_icon;
         RLottieDrawable rLottieDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.dp(48.0f), AndroidUtilities.dp(48.0f), true, null);
         this.drawable = rLottieDrawable;

@@ -1936,7 +1936,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             if (savedDialogId == clientUserId) {
                 return null;
             }
-            if (savedDialogId != UserObject.ANONYMOUS) {
+            if (savedDialogId != 2666000) {
                 TLRPC$Message tLRPC$Message4 = this.message.messageOwner;
                 if (tLRPC$Message4 != null && (tLRPC$MessageFwdHeader3 = tLRPC$Message4.fwd_from) != null) {
                     long peerDialogId = DialogObject.getPeerDialogId(tLRPC$MessageFwdHeader3.saved_from_id);
@@ -2059,7 +2059,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                 return new SpannableStringBuilder(str2).append(charSequence7);
             }
             if (charSequence6.length() > 150) {
-                charSequence6 = charSequence6.subSequence(0, ImageReceiver.DEFAULT_CROSSFADE_DURATION);
+                charSequence6 = charSequence6.subSequence(0, 150);
             }
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence6);
             captionMessage.spoilLoginCode();
@@ -2172,7 +2172,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                     }
                 } else {
                     if (charSequence8.length() > 150) {
-                        charSequence8 = charSequence8.subSequence(0, ImageReceiver.DEFAULT_CROSSFADE_DURATION);
+                        charSequence8 = charSequence8.subSequence(0, 150);
                     }
                     charSequence8 = AndroidUtilities.replaceNewLines(charSequence8);
                 }

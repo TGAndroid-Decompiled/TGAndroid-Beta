@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedColor;
@@ -148,7 +147,7 @@ public class EditTextCell extends FrameLayout {
         }
         editTextBoldCursor.setPadding(AndroidUtilities.dp(21.0f), AndroidUtilities.dp(15.0f), AndroidUtilities.dp((i > 0 ? 42 : 0) + 21), AndroidUtilities.dp(15.0f));
         editTextBoldCursor.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
-        editTextBoldCursor.setInputType((z ? 131072 : 0) | 16385 | LiteMode.FLAG_CHAT_SCALE | 524288);
+        editTextBoldCursor.setInputType((z ? 131072 : 0) | 16385 | 32768 | 524288);
         editTextBoldCursor.setRawInputType(573441);
         editTextBoldCursor.setHint(str);
         editTextBoldCursor.setCursorColor(Theme.getColor(i2, resourcesProvider));

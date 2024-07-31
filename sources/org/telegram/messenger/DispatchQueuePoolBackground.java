@@ -67,7 +67,7 @@ public class DispatchQueuePoolBackground {
                 if (!this.busyQueues.isEmpty() && (this.totalTasksCount / 2 <= this.busyQueues.size() || (this.queues.isEmpty() && this.createdCount >= this.maxCount))) {
                     remove = this.busyQueues.remove(0);
                 } else if (this.queues.isEmpty()) {
-                    remove = new DispatchQueue(THREAD_PREFIX + this.guid + "_" + Utilities.random.nextInt());
+                    remove = new DispatchQueue("DispatchQueuePoolThreadSafety_" + this.guid + "_" + Utilities.random.nextInt());
                     remove.setPriority(10);
                     this.createdCount = this.createdCount + 1;
                 } else {

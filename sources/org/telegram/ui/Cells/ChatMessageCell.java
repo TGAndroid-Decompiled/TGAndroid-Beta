@@ -959,7 +959,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                     this.currentPhoto = null;
                 }
                 this.avatarDrawable.setInfo(this.currentAccount, tLRPC$User);
-                this.avatarImage.setForUserOrChat(this.currentUser, this.avatarDrawable, null, LiteMode.isEnabled(LiteMode.FLAGS_CHAT), 1, false);
+                this.avatarImage.setForUserOrChat(this.currentUser, this.avatarDrawable, null, LiteMode.isEnabled(98784), 1, false);
                 return;
             }
             TLRPC$Chat tLRPC$Chat = this.currentChat;
@@ -1521,7 +1521,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             }
 
             public static boolean $default$doNotShowLoadingReply(ChatMessageCellDelegate _this, MessageObject messageObject) {
-                return messageObject != null && messageObject.getDialogId() == UserObject.REPLY_BOT;
+                return messageObject != null && messageObject.getDialogId() == 1271266957;
             }
         }
     }
@@ -7607,7 +7607,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                         if (diceValue >= 0 && diceValue <= 64) {
                             ((SlotsDrawable) rLottieDrawable).setDiceNumber(this, diceValue, stickerSetByEmojiOrName, z);
                             if (this.currentMessageObject.isOut()) {
-                                rLottieDrawable.setOnFinishCallback(this.diceFinishCallback, ConnectionsManager.DEFAULT_DATACENTER_ID);
+                                rLottieDrawable.setOnFinishCallback(this.diceFinishCallback, Integer.MAX_VALUE);
                             }
                             this.currentMessageObject.wasUnread = false;
                         }
@@ -7804,7 +7804,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
         TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader = this.currentMessageObject.messageOwner.fwd_from;
         long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
-        if (tLRPC$MessageFwdHeader != null && (tLRPC$MessageFwdHeader.from_id instanceof TLRPC$TL_peerChannel) && (this.currentMessageObject.getDialogId() == clientUserId || this.currentMessageObject.getDialogId() == UserObject.REPLY_BOT)) {
+        if (tLRPC$MessageFwdHeader != null && (tLRPC$MessageFwdHeader.from_id instanceof TLRPC$TL_peerChannel) && (this.currentMessageObject.getDialogId() == clientUserId || this.currentMessageObject.getDialogId() == 1271266957)) {
             this.currentChat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(tLRPC$MessageFwdHeader.from_id.channel_id));
         } else if (tLRPC$MessageFwdHeader != null && (tLRPC$Peer = tLRPC$MessageFwdHeader.saved_from_peer) != null) {
             long j = tLRPC$Peer.user_id;
@@ -8168,7 +8168,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             i = 0;
         }
         int dp2 = (z && (checkNeedDrawShareButton(this.currentMessageObject) || this.useTranscribeButton)) ? AndroidUtilities.dp(48.0f) : 0;
-        int i2 = ConnectionsManager.DEFAULT_DATACENTER_ID;
+        int i2 = Integer.MAX_VALUE;
         if (this.botButtons != null) {
             MessageObject messageObject3 = this.currentMessageObject;
             if (messageObject3 != null && messageObject3.isOutOwner()) {
@@ -8811,7 +8811,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                 f7 = ((f7 - this.transitionParams.animateNameX) * this.transitionParams.animateChangeProgress) + this.transitionParams.animateNameX;
             }
             this.currentNameStatusDrawable.setBounds((int) (Math.abs(f7) + (this.viaNameWidth > 0 ? i2 - AndroidUtilities.dp(32.0f) : this.nameLayoutWidth) + AndroidUtilities.dp(2.0f)), (int) (((this.nameLayout.getHeight() / 2) + f8) - AndroidUtilities.dp(10.0f)), (int) (Math.abs(f7) + (this.viaNameWidth > 0 ? i3 - AndroidUtilities.dp(32.0f) : this.nameLayoutWidth) + AndroidUtilities.dp(22.0f)), (int) (f8 + (this.nameLayout.getHeight() / 2) + AndroidUtilities.dp(10.0f)));
-            this.currentNameStatusDrawable.setColor(Integer.valueOf(ColorUtils.setAlphaComponent(i, R.styleable.AppCompatTheme_tooltipFrameBackground)));
+            this.currentNameStatusDrawable.setColor(Integer.valueOf(ColorUtils.setAlphaComponent(i, 115)));
             this.currentNameStatusDrawable.draw(canvas);
         }
         if (this.drawTopic && this.topicButton != null && ((groupedMessagePosition = this.currentPosition) == null || (groupedMessagePosition.minY == 0 && groupedMessagePosition.minX == 0))) {
@@ -10102,7 +10102,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                     int keyAt = this.accessibilityVirtualViewBounds.keyAt(i);
                     if (keyAt != this.currentFocusedVirtualView) {
                         this.currentFocusedVirtualView = keyAt;
-                        sendAccessibilityEventForVirtualView(keyAt, LiteMode.FLAG_CHAT_SCALE);
+                        sendAccessibilityEventForVirtualView(keyAt, 32768);
                         return true;
                     }
                     return true;

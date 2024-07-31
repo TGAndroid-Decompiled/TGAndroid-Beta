@@ -24,7 +24,7 @@ public class RingtoneUploader implements NotificationCenter.NotificationCenterDe
         this.currentAccount = i;
         this.filePath = str;
         subscribe();
-        FileLoader.getInstance(i).uploadFile(str, false, true, ConnectionsManager.FileTypeAudio);
+        FileLoader.getInstance(i).uploadFile(str, false, true, 50331648);
     }
 
     @Override

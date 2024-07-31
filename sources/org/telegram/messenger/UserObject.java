@@ -27,7 +27,7 @@ public class UserObject {
     }
 
     public static boolean isReplyUser(long j) {
-        return j == 708513 || j == REPLY_BOT;
+        return j == 708513 || j == 1271266957;
     }
 
     public static boolean isService(long j) {
@@ -49,7 +49,7 @@ public class UserObject {
     public static boolean isReplyUser(TLRPC$User tLRPC$User) {
         if (tLRPC$User != null) {
             long j = tLRPC$User.id;
-            if (j == 708513 || j == REPLY_BOT) {
+            if (j == 708513 || j == 1271266957) {
                 return true;
             }
         }
@@ -57,7 +57,7 @@ public class UserObject {
     }
 
     public static boolean isAnonymous(TLRPC$User tLRPC$User) {
-        return tLRPC$User != null && tLRPC$User.id == ANONYMOUS;
+        return tLRPC$User != null && tLRPC$User.id == 2666000;
     }
 
     public static String getUserName(TLRPC$User tLRPC$User) {

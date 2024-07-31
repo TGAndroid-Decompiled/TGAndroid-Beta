@@ -27,7 +27,6 @@ import java.util.Collections;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -227,7 +226,7 @@ public class AvatarPreviewer {
                 str = FileLoader.getAttachFileName(closestVideoSizeWithSize);
                 imageLocation = forPhoto;
             }
-            return new Data(imageLocation2, forUserOrChat2, imageLocation, null, str2, (imageLocation == null || imageLocation.imageType != 2) ? null : ImageLoader.AUTOPLAY_FILTER, str, bitmapDrawable, tLRPC$UserFull.user, menuItemArr, null);
+            return new Data(imageLocation2, forUserOrChat2, imageLocation, null, str2, (imageLocation == null || imageLocation.imageType != 2) ? null : "g", str, bitmapDrawable, tLRPC$UserFull.user, menuItemArr, null);
         }
 
         public static Data of(TLRPC$Chat tLRPC$Chat, int i, MenuItem... menuItemArr) {
@@ -259,7 +258,7 @@ public class AvatarPreviewer {
                 imageLocation = ImageLocation.getForPhoto(closestVideoSizeWithSize, tLRPC$ChatFull.chat_photo);
                 str = FileLoader.getAttachFileName(closestVideoSizeWithSize);
             }
-            return new Data(forUserOrChat, forUserOrChat2, imageLocation, null, str2, (imageLocation == null || imageLocation.imageType != 2) ? null : ImageLoader.AUTOPLAY_FILTER, str, bitmapDrawable, tLRPC$Chat, menuItemArr, null);
+            return new Data(forUserOrChat, forUserOrChat2, imageLocation, null, str2, (imageLocation == null || imageLocation.imageType != 2) ? null : "g", str, bitmapDrawable, tLRPC$Chat, menuItemArr, null);
         }
 
         private Data(ImageLocation imageLocation, ImageLocation imageLocation2, ImageLocation imageLocation3, String str, String str2, String str3, String str4, BitmapDrawable bitmapDrawable, Object obj, MenuItem[] menuItemArr, InfoLoadTask<?, ?> infoLoadTask) {

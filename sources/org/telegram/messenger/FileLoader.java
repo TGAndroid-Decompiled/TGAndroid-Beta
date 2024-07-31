@@ -20,7 +20,6 @@ import org.telegram.messenger.FileLoadOperation;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FilePathDatabase;
 import org.telegram.messenger.FileUploadOperation;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$ChatPhoto;
 import org.telegram.tgnet.TLRPC$Document;
@@ -205,12 +204,12 @@ public class FileLoader extends BaseController {
 
     private int getPriorityValue(int i) {
         if (i == 4) {
-            return ConnectionsManager.DEFAULT_DATACENTER_ID;
+            return Integer.MAX_VALUE;
         }
         if (i == 3) {
             int i2 = this.priorityIncreasePointer + 1;
             this.priorityIncreasePointer = i2;
-            return i2 + FileLoaderPriorityQueue.PRIORITY_VALUE_MAX;
+            return i2 + 1048576;
         } else if (i != 2) {
             return i == 1 ? 65536 : 0;
         } else {
@@ -1585,7 +1584,7 @@ public class FileLoader extends BaseController {
 
     public static boolean copyFile(InputStream inputStream, File file, int i) throws IOException {
         FileOutputStream fileOutputStream = new FileOutputStream(file);
-        byte[] bArr = new byte[LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM];
+        byte[] bArr = new byte[4096];
         int i2 = 0;
         while (true) {
             int read = inputStream.read(bArr);
@@ -1701,7 +1700,7 @@ public class FileLoader extends BaseController {
 
     public static boolean checkUploadFileSize(int i, long j) {
         boolean isPremium = AccountInstance.getInstance(i).getUserConfig().isPremium();
-        if (j >= DEFAULT_MAX_FILE_SIZE) {
+        if (j >= 2097152000) {
             return j < 4194304000L && isPremium;
         }
         return true;

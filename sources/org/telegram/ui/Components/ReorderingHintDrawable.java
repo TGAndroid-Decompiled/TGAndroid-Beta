@@ -7,7 +7,6 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.view.animation.Interpolator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
 public class ReorderingHintDrawable extends Drawable {
     private final RectDrawable primaryRectDrawable;
     private float scaleX;
@@ -75,7 +74,7 @@ public class ReorderingHintDrawable extends Drawable {
                         drawStage3(canvas, i2 / 150.0f);
                     } else {
                         drawStage3(canvas, 1.0f);
-                        if (i2 - ImageReceiver.DEFAULT_CROSSFADE_DURATION >= 100) {
+                        if (i2 - 150 >= 100) {
                             this.startedTime = System.currentTimeMillis();
                         }
                     }

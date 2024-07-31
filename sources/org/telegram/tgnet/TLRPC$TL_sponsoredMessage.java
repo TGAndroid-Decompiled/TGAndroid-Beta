@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_sponsoredMessage extends TLObject {
     public String additional_info;
     public String button_text;
@@ -34,7 +33,7 @@ public class TLRPC$TL_sponsoredMessage extends TLObject {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
         this.recommended = (readInt32 & 32) != 0;
-        this.can_report = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
+        this.can_report = (readInt32 & 4096) != 0;
         this.random_id = abstractSerializedData.readByteArray(z);
         this.url = abstractSerializedData.readString(z);
         this.title = abstractSerializedData.readString(z);
@@ -59,14 +58,14 @@ public class TLRPC$TL_sponsoredMessage extends TLObject {
         if ((this.flags & 64) != 0) {
             this.photo = TLRPC$Photo.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
-        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0) {
+        if ((this.flags & 8192) != 0) {
             this.color = TLRPC$TL_peerColor.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
         this.button_text = abstractSerializedData.readString(z);
         if ((this.flags & 128) != 0) {
             this.sponsor_info = abstractSerializedData.readString(z);
         }
-        if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
+        if ((this.flags & 256) != 0) {
             this.additional_info = abstractSerializedData.readString(z);
         }
     }
@@ -76,7 +75,7 @@ public class TLRPC$TL_sponsoredMessage extends TLObject {
         abstractSerializedData.writeInt32(-1108478618);
         int i = this.recommended ? this.flags | 32 : this.flags & (-33);
         this.flags = i;
-        int i2 = this.can_report ? i | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i & (-4097);
+        int i2 = this.can_report ? i | 4096 : i & (-4097);
         this.flags = i2;
         abstractSerializedData.writeInt32(i2);
         abstractSerializedData.writeByteArray(this.random_id);
@@ -94,14 +93,14 @@ public class TLRPC$TL_sponsoredMessage extends TLObject {
         if ((this.flags & 64) != 0) {
             this.photo.serializeToStream(abstractSerializedData);
         }
-        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0) {
+        if ((this.flags & 8192) != 0) {
             this.color.serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeString(this.button_text);
         if ((this.flags & 128) != 0) {
             abstractSerializedData.writeString(this.sponsor_info);
         }
-        if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
+        if ((this.flags & 256) != 0) {
             abstractSerializedData.writeString(this.additional_info);
         }
     }

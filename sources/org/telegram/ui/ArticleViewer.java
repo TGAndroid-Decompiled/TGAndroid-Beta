@@ -108,7 +108,6 @@ import org.telegram.messenger.FileStreamLoadOperation;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MediaDataController;
@@ -583,7 +582,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         private TLRPC$RichText textItem;
 
         private TL_pageBlockListItem() {
-            this.index = ConnectionsManager.DEFAULT_DATACENTER_ID;
+            this.index = Integer.MAX_VALUE;
         }
     }
 
@@ -609,7 +608,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         private TLRPC$RichText textItem;
 
         private TL_pageBlockOrderedListItem() {
-            this.index = ConnectionsManager.DEFAULT_DATACENTER_ID;
+            this.index = Integer.MAX_VALUE;
         }
     }
 
@@ -1508,7 +1507,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         int i2 = Theme.key_windowBackgroundWhiteInputField;
         paint4.setColor(getThemedColor(i2));
         tableLinePaint.setColor(getThemedColor(i2));
-        photoBackgroundPaint.setColor(AndroidUtilities.LIGHT_STATUS_BAR_OVERLAY);
+        photoBackgroundPaint.setColor(251658240);
         dividerPaint.setColor(getThemedColor(Theme.key_divider));
         webpageMarkPaint.setColor(getThemedColor(i) & 872415231);
         webpageMarkPaint.setPathEffect(LinkPath.getRoundedEffect());
@@ -2582,14 +2581,14 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
         if (tLRPC$RichText instanceof TLRPC$TL_textUrl) {
             if (((TLRPC$TL_textUrl) tLRPC$RichText).webpage_id != 0) {
-                return getTextFlags(tLRPC$RichText.parentRichText) | LiteMode.FLAG_CALLS_ANIMATIONS;
+                return getTextFlags(tLRPC$RichText.parentRichText) | 512;
             }
             return getTextFlags(tLRPC$RichText.parentRichText) | 8;
         } else if (tLRPC$RichText instanceof TLRPC$TL_textSubscript) {
             return getTextFlags(tLRPC$RichText.parentRichText) | 128;
         } else {
             if (tLRPC$RichText instanceof TLRPC$TL_textSuperscript) {
-                return getTextFlags(tLRPC$RichText.parentRichText) | LiteMode.FLAG_CHAT_BLUR;
+                return getTextFlags(tLRPC$RichText.parentRichText) | 256;
             }
             if (tLRPC$RichText instanceof TLRPC$TL_textMarked) {
                 return getTextFlags(tLRPC$RichText.parentRichText) | 64;
@@ -2728,12 +2727,12 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     int length = spannableStringBuilder4.length();
                     spannableStringBuilder4.append(text);
                     if (textFlags != 0 && !(text instanceof SpannableStringBuilder)) {
-                        if ((textFlags & 8) != 0 || (textFlags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+                        if ((textFlags & 8) != 0 || (textFlags & 512) != 0) {
                             String url = getUrl(tLRPC$RichText3);
                             if (url == null) {
                                 url = getUrl(tLRPC$RichText);
                             }
-                            if ((textFlags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+                            if ((textFlags & 512) != 0) {
                                 textPaintUrlSpan = new TextPaintWebpageUrlSpan(getTextPaint(tLRPC$RichText, lastRichText, tLRPC$PageBlock), url);
                             } else {
                                 textPaintUrlSpan = new TextPaintUrlSpan(getTextPaint(tLRPC$RichText, lastRichText, tLRPC$PageBlock), url);
@@ -3105,7 +3104,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             }
             textColor = -65536;
         }
-        int i = textFlags & LiteMode.FLAG_CHAT_BLUR;
+        int i = textFlags & 256;
         if (i != 0 || (textFlags & 128) != 0) {
             dp8 -= AndroidUtilities.dp(4.0f);
         }
@@ -3122,20 +3121,20 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         if (textPaint2 == null) {
             textPaint2 = new TextPaint(1);
             if ((textFlags & 4) != 0) {
-                textPaint2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MONO));
+                textPaint2.setTypeface(AndroidUtilities.getTypeface("fonts/rmono.ttf"));
             } else if (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockRelatedArticles) {
                 textPaint2.setTypeface(AndroidUtilities.bold());
             } else if (this.selectedFont != 1 && !(tLRPC$PageBlock instanceof TLRPC$TL_pageBlockTitle) && !(tLRPC$PageBlock instanceof TLRPC$TL_pageBlockKicker) && !(tLRPC$PageBlock instanceof TLRPC$TL_pageBlockHeader) && !(tLRPC$PageBlock instanceof TLRPC$TL_pageBlockSubtitle) && !(tLRPC$PageBlock instanceof TLRPC$TL_pageBlockSubheader)) {
                 int i2 = textFlags & 1;
                 if (i2 != 0 && (textFlags & 2) != 0) {
-                    textPaint2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM_ITALIC));
+                    textPaint2.setTypeface(AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf"));
                 } else if (i2 != 0) {
                     textPaint2.setTypeface(AndroidUtilities.bold());
                 } else if ((textFlags & 2) != 0) {
                     textPaint2.setTypeface(AndroidUtilities.getTypeface("fonts/ritalic.ttf"));
                 }
             } else if ((tLRPC$PageBlock instanceof TLRPC$TL_pageBlockTitle) || (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockHeader) || (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockSubtitle) || (tLRPC$PageBlock instanceof TLRPC$TL_pageBlockSubheader)) {
-                textPaint2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_MERRIWEATHER_BOLD));
+                textPaint2.setTypeface(AndroidUtilities.getTypeface("fonts/mw_bold.ttf"));
             } else {
                 int i3 = textFlags & 1;
                 if (i3 != 0 && (textFlags & 2) != 0) {
@@ -3154,7 +3153,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             if ((textFlags & 16) != 0) {
                 textPaint2.setFlags(textPaint2.getFlags() | 8);
             }
-            if ((textFlags & 8) != 0 || (textFlags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+            if ((textFlags & 8) != 0 || (textFlags & 512) != 0) {
                 textPaint2.setFlags(textPaint2.getFlags());
                 textColor = getLinkTextColor();
             }
@@ -3487,7 +3486,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         Typeface typeface = i2 == 0 ? Typeface.DEFAULT : Typeface.SERIF;
         Typeface typeface2 = i2 == 0 ? AndroidUtilities.getTypeface("fonts/ritalic.ttf") : Typeface.create("serif", 2);
         Typeface bold = this.selectedFont == 0 ? AndroidUtilities.bold() : Typeface.create("serif", 1);
-        Typeface typeface3 = this.selectedFont == 0 ? AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM_ITALIC) : Typeface.create("serif", 3);
+        Typeface typeface3 = this.selectedFont == 0 ? AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf") : Typeface.create("serif", 3);
         int i3 = 0;
         while (true) {
             SparseArray<TextPaint> sparseArray = quoteTextPaints;
@@ -3700,7 +3699,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             int keyAt = sparseArray.keyAt(i);
             TextPaint valueAt = sparseArray.valueAt(i);
             if (valueAt != null) {
-                if ((keyAt & 8) != 0 || (keyAt & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+                if ((keyAt & 8) != 0 || (keyAt & 512) != 0) {
                     valueAt.setColor(getLinkTextColor());
                 } else {
                     valueAt.setColor(getTextColor());
@@ -13755,7 +13754,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 return;
             }
             this.imageViewSet = true;
-            MediaDataController.getInstance(UserConfig.selectedAccount).setPlaceholderImage(this.imageView, AndroidUtilities.STICKERS_PLACEHOLDER_PACK_NAME, "🧐", "100_100");
+            MediaDataController.getInstance(UserConfig.selectedAccount).setPlaceholderImage(this.imageView, "tg_placeholders_android", "🧐", "100_100");
         }
     }
 

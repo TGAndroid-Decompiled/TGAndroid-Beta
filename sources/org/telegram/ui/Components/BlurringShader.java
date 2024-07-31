@@ -29,7 +29,6 @@ import javax.microedition.khronos.egl.EGLContext;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.BlurringShader;
@@ -210,7 +209,7 @@ public class BlurringShader {
         }
         GLES20.glBindFramebuffer(36160, this.framebuffer[0]);
         GLES20.glViewport(0, 0, this.width, this.height);
-        GLES20.glClear(LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM);
+        GLES20.glClear(16384);
         GLES20.glUseProgram(program.gl);
         GLES20.glUniform1i(program.texHandle, 0);
         GLES20.glActiveTexture(33984);
@@ -269,7 +268,7 @@ public class BlurringShader {
         int i4 = this.width;
         int i5 = this.padding;
         GLES20.glViewport(0, 0, i4 + (i5 * 2), this.height + (i5 * 2));
-        GLES20.glClear(LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM);
+        GLES20.glClear(16384);
         GLES20.glEnableVertexAttribArray(program.posHandle);
         GLES20.glVertexAttribPointer(program.posHandle, 2, 5126, false, 8, (Buffer) this.padPosBuffer);
         GLES20.glUniform1i(program.stepHandle, 2);

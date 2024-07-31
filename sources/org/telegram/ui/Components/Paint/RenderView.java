@@ -23,7 +23,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LiteMode;
 import org.telegram.ui.Components.BlurringShader;
 import org.telegram.ui.Components.Paint.Brush;
 import org.telegram.ui.Components.Paint.Painting;
@@ -532,7 +531,7 @@ public class RenderView extends TextureView {
                 GLES20.glBindFramebuffer(36160, 0);
                 GLES20.glViewport(0, 0, CanvasInternal.this.bufferWidth, CanvasInternal.this.bufferHeight);
                 GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-                GLES20.glClear(LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM);
+                GLES20.glClear(16384);
                 RenderView.this.painting.render();
                 GLES20.glBlendFunc(1, 771);
                 CanvasInternal.this.egl10.eglSwapBuffers(CanvasInternal.this.eglDisplay, CanvasInternal.this.eglSurface);

@@ -272,7 +272,7 @@ public class EmuDetector {
                 return false;
             }
             for (String str : sb2.split("\n")) {
-                if ((str.contains("wlan0") || str.contains("tunl0") || str.contains("eth0")) && str.contains(IP)) {
+                if ((str.contains("wlan0") || str.contains("tunl0") || str.contains("eth0")) && str.contains("10.0.2.15")) {
                     return true;
                 }
             }

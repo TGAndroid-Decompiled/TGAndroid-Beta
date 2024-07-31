@@ -7,7 +7,6 @@ import java.util.Arrays;
 import java.util.List;
 import org.webrtc.ContextUtils;
 import org.webrtc.Logging;
-import org.webrtc.MediaStreamTrack;
 public final class WebRtcAudioUtils {
     private static final int DEFAULT_SAMPLE_RATE_HZ = 16000;
     private static final String TAG = "WebRtcAudioUtils";
@@ -96,7 +95,7 @@ public final class WebRtcAudioUtils {
 
     public static synchronized void setWebRtcBasedAutomaticGainControl(boolean z) {
         synchronized (WebRtcAudioUtils.class) {
-            Logging.w(TAG, "setWebRtcBasedAutomaticGainControl() is deprecated");
+            Logging.w("WebRtcAudioUtils", "setWebRtcBasedAutomaticGainControl() is deprecated");
         }
     }
 
@@ -104,7 +103,7 @@ public final class WebRtcAudioUtils {
         boolean z;
         synchronized (WebRtcAudioUtils.class) {
             if (useWebRtcBasedAcousticEchoCanceler) {
-                Logging.w(TAG, "Overriding default behavior; now using WebRTC AEC!");
+                Logging.w("WebRtcAudioUtils", "Overriding default behavior; now using WebRTC AEC!");
             }
             z = useWebRtcBasedAcousticEchoCanceler;
         }
@@ -115,7 +114,7 @@ public final class WebRtcAudioUtils {
         boolean z;
         synchronized (WebRtcAudioUtils.class) {
             if (useWebRtcBasedNoiseSuppressor) {
-                Logging.w(TAG, "Overriding default behavior; now using WebRTC NS!");
+                Logging.w("WebRtcAudioUtils", "Overriding default behavior; now using WebRTC NS!");
             }
             z = useWebRtcBasedNoiseSuppressor;
         }
@@ -185,7 +184,7 @@ public final class WebRtcAudioUtils {
 
     public static void logAudioState(String str) {
         logDeviceInfo(str);
-        AudioManager audioManager = (AudioManager) ContextUtils.getApplicationContext().getSystemService(MediaStreamTrack.AUDIO_TRACK_KIND);
+        AudioManager audioManager = (AudioManager) ContextUtils.getApplicationContext().getSystemService("audio");
         logAudioStateBasic(str, audioManager);
         logAudioStateVolume(str, audioManager);
         logAudioDeviceInfo(str, audioManager);

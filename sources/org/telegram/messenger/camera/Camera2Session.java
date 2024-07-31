@@ -24,7 +24,6 @@ import java.util.Comparator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.camera.Camera2Session;
 @TargetApi(21)
@@ -134,7 +133,7 @@ public class Camera2Session {
         this.cameraId = str;
         this.previewSize = size;
         this.lastTime = System.currentTimeMillis();
-        this.imageReader = ImageReader.newInstance(size.getWidth(), size.getHeight(), LiteMode.FLAG_CHAT_BLUR, 1);
+        this.imageReader = ImageReader.newInstance(size.getWidth(), size.getHeight(), 256, 1);
         CameraManager cameraManager = (CameraManager) context.getSystemService("camera");
         this.cameraManager = cameraManager;
         try {

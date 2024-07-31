@@ -30,7 +30,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.CodeHighlighting;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
@@ -135,7 +134,7 @@ public class EditTextCaption extends EditTextBoldCursor {
 
     public void makeSelectedSpoiler() {
         TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun();
-        textStyleRun.flags |= LiteMode.FLAG_CHAT_BLUR;
+        textStyleRun.flags |= 256;
         applyTextStyleToSelection(new TextStyleSpan(textStyleRun));
         invalidateSpoilers();
     }
@@ -655,7 +654,7 @@ public class EditTextCaption extends EditTextBoldCursor {
                 break;
             }
             AccessibilityNodeInfoCompat.AccessibilityActionCompat accessibilityActionCompat = actionList.get(i);
-            if (accessibilityActionCompat.getId() == ACCESSIBILITY_ACTION_SHARE) {
+            if (accessibilityActionCompat.getId() == 268435456) {
                 wrap.removeAction(accessibilityActionCompat);
                 break;
             }

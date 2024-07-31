@@ -327,7 +327,7 @@ public class BirthdayController {
 
         @Override
         public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-            abstractSerializedData.writeInt32(constructor);
+            abstractSerializedData.writeInt32(290452237);
             abstractSerializedData.writeInt32(481674261);
             int size = this.contacts.size();
             abstractSerializedData.writeInt32(size);

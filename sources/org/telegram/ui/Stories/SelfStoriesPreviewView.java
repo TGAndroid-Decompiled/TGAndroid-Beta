@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stories$StoryItem;
 import org.telegram.tgnet.tl.TL_stories$StoryViews;
 import org.telegram.ui.Components.ColoredImageSpan;
@@ -461,12 +460,12 @@ public abstract class SelfStoriesPreviewView extends View {
                 SelfStoriesPreviewView.this.formatCounterText(spannableStringBuilder, tL_stories$StoryItem.views, false);
             }
             if (spannableStringBuilder.length() != 0) {
-                StaticLayout createStaticLayout = StaticLayoutEx.createStaticLayout(spannableStringBuilder, this.paint, (int) (SelfStoriesPreviewView.this.textWidth + 1.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false, null, ConnectionsManager.DEFAULT_DATACENTER_ID, 1);
+                StaticLayout createStaticLayout = StaticLayoutEx.createStaticLayout(spannableStringBuilder, this.paint, (int) (SelfStoriesPreviewView.this.textWidth + 1.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false, null, Integer.MAX_VALUE, 1);
                 this.layout = createStaticLayout;
                 if (createStaticLayout.getLineCount() > 1) {
                     SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("");
                     SelfStoriesPreviewView.this.formatCounterText(spannableStringBuilder2, this.storyItem.storyItem.views, true);
-                    this.layout = StaticLayoutEx.createStaticLayout(spannableStringBuilder2, this.paint, (int) (SelfStoriesPreviewView.this.textWidth + 1.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false, null, ConnectionsManager.DEFAULT_DATACENTER_ID, 2);
+                    this.layout = StaticLayoutEx.createStaticLayout(spannableStringBuilder2, this.paint, (int) (SelfStoriesPreviewView.this.textWidth + 1.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false, null, Integer.MAX_VALUE, 2);
                     return;
                 }
                 return;

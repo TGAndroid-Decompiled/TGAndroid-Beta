@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.telegram.messenger.R;
 import org.telegram.messenger.audioinfo.AudioInfo;
 public class ID3v2Info extends AudioInfo {
     static final Logger LOGGER = Logger.getLogger(ID3v2Info.class.getName());
@@ -465,7 +464,7 @@ public class ID3v2Info extends AudioInfo {
                 this.title = parseTextFrame(iD3v2FrameBody);
                 return;
             case 14:
-            case R.styleable.AppCompatTheme_actionModeWebSearchDrawable:
+            case 31:
                 String parseTextFrame5 = parseTextFrame(iD3v2FrameBody);
                 if (parseTextFrame5.length() > 0) {
                     try {

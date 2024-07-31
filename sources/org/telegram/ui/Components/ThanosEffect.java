@@ -27,7 +27,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.EmuDetector;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
@@ -586,7 +585,7 @@ public class ThanosEffect extends TextureView {
 
         private void draw() {
             if (this.alive) {
-                GLES31.glClear(LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM);
+                GLES31.glClear(16384);
                 int i = 0;
                 int i2 = 0;
                 while (i2 < this.pendingAnimations.size()) {

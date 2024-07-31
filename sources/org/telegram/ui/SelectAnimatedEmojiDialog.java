@@ -72,7 +72,6 @@ import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LiteMode;
@@ -1236,13 +1235,13 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
             TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document4.thumbs, 90);
             if ("video/webm".equals(tLRPC$Document4.mime_type)) {
                 forDocument = ImageLocation.getForDocument(tLRPC$Document4);
-                str = "36_36_" + ImageLoader.AUTOPLAY_FILTER;
+                str = "36_36_g";
                 if (svgThumb != null) {
-                    svgThumb.overrideWidthAndHeight(LiteMode.FLAG_CALLS_ANIMATIONS, LiteMode.FLAG_CALLS_ANIMATIONS);
+                    svgThumb.overrideWidthAndHeight(512, 512);
                 }
             } else {
                 if (svgThumb != null && MessageObject.isAnimatedStickerDocument(tLRPC$Document4, false)) {
-                    svgThumb.overrideWidthAndHeight(LiteMode.FLAG_CALLS_ANIMATIONS, LiteMode.FLAG_CALLS_ANIMATIONS);
+                    svgThumb.overrideWidthAndHeight(512, 512);
                 }
                 forDocument = ImageLocation.getForDocument(tLRPC$Document4);
             }
@@ -1973,7 +1972,7 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
                     TLRPC$TL_availableReaction tLRPC$TL_availableReaction = MediaDataController.getInstance(SelectAnimatedEmojiDialog.this.currentAccount).getReactionsMap().get(visibleReaction.emojicon);
                     if (tLRPC$TL_availableReaction != null) {
                         SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tLRPC$TL_availableReaction.activate_animation, Theme.key_windowBackgroundWhiteGrayIcon, 0.2f);
-                        if (!LiteMode.isEnabled(LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS)) {
+                        if (!LiteMode.isEnabled(8200)) {
                             imageViewEmoji2.imageReceiver.setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.select_animation), "60_60_firstframe", null, null, svgThumb, 0L, "tgs", visibleReaction, 0);
                         } else {
                             imageViewEmoji2.imageReceiver.setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.select_animation), "60_60_pcache", ImageLocation.getForDocument(tLRPC$TL_availableReaction.select_animation), "30_30_firstframe", null, null, svgThumb, 0L, "tgs", visibleReaction, 0);
@@ -2927,7 +2926,7 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
             createImageReceiver(view);
             SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tLRPC$Document, Theme.key_windowBackgroundWhiteGrayIcon, 0.2f);
             if (SelectAnimatedEmojiDialog.this.type == 6) {
-                this.imageReceiver.setImage(ImageLocation.getForDocument(tLRPC$Document), !LiteMode.isEnabled(LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD) ? "34_34_firstframe" : "34_34", null, null, svgThumb, tLRPC$Document.size, null, tLRPC$Document, 0);
+                this.imageReceiver.setImage(ImageLocation.getForDocument(tLRPC$Document), !LiteMode.isEnabled(16388) ? "34_34_firstframe" : "34_34", null, null, svgThumb, tLRPC$Document.size, null, tLRPC$Document, 0);
             } else {
                 this.imageReceiver.setImage(ImageLocation.getForDocument(tLRPC$Document), "100_100_firstframe", null, null, svgThumb, 0L, "tgs", tLRPC$Document, 0);
             }
@@ -3438,7 +3437,7 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
             ArrayList<ImageViewEmoji> drawInBackgroundViews = new ArrayList<>();
             float skewAlpha = 1.0f;
             boolean skewBelow = false;
-            boolean lite = LiteMode.isEnabled(LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS);
+            boolean lite = LiteMode.isEnabled(8200);
             private OvershootInterpolator appearScaleInterpolator = new OvershootInterpolator(3.0f);
 
             public DrawingInBackgroundLine() {
@@ -3912,7 +3911,7 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
                     }
                     SelectAnimatedEmojiDialog.this.searchBox.checkInitialization();
                     SelectAnimatedEmojiDialog.this.emojiTabs.showRecentTabStub(false);
-                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, Integer.valueOf((int) LiteMode.FLAG_CALLS_ANIMATIONS));
+                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
                     SelectAnimatedEmojiDialog.this.notificationsLocker.unlock();
                     final NotificationCenter globalInstance = NotificationCenter.getGlobalInstance();
                     Objects.requireNonNull(globalInstance);
@@ -3956,7 +3955,7 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
                     }
                 }, true);
             }
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, Integer.valueOf((int) LiteMode.FLAG_CALLS_ANIMATIONS));
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
             this.notificationsLocker.lock();
             this.showAnimator.setDuration(800L);
             this.emojiGridView.setLayerType(2, null);
@@ -5006,15 +5005,15 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
                 TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 90);
                 if ("video/webm".equals(tLRPC$Document.mime_type)) {
                     ImageLocation forDocument2 = ImageLocation.getForDocument(tLRPC$Document);
-                    String str2 = "160_160_" + ImageLoader.AUTOPLAY_FILTER;
+                    String str2 = "160_160_g";
                     if (svgThumb != null) {
-                        svgThumb.overrideWidthAndHeight(LiteMode.FLAG_CALLS_ANIMATIONS, LiteMode.FLAG_CALLS_ANIMATIONS);
+                        svgThumb.overrideWidthAndHeight(512, 512);
                     }
                     forDocument = forDocument2;
                     str = str2;
                 } else {
                     if (svgThumb != null && MessageObject.isAnimatedStickerDocument(tLRPC$Document, false)) {
-                        svgThumb.overrideWidthAndHeight(LiteMode.FLAG_CALLS_ANIMATIONS, LiteMode.FLAG_CALLS_ANIMATIONS);
+                        svgThumb.overrideWidthAndHeight(512, 512);
                     }
                     str = "160_160";
                     forDocument = ImageLocation.getForDocument(tLRPC$Document);

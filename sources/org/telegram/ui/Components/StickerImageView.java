@@ -1,7 +1,6 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 public class StickerImageView extends BackupImageView implements NotificationCenter.NotificationCenterDelegate {
     int currentAccount;
@@ -10,7 +9,7 @@ public class StickerImageView extends BackupImageView implements NotificationCen
 
     public StickerImageView(Context context, int i) {
         super(context);
-        this.stickerPackName = AndroidUtilities.STICKERS_PLACEHOLDER_PACK_NAME;
+        this.stickerPackName = "tg_placeholders_android";
         this.currentAccount = i;
     }
 

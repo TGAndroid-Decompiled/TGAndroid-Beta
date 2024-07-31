@@ -240,7 +240,7 @@ public class WebActionBar extends FrameLayout {
         editTextBoldCursor.setHint(LocaleController.getString(R.string.Search));
         editTextBoldCursor.setBackgroundResource(0);
         editTextBoldCursor.setCursorWidth(1.5f);
-        editTextBoldCursor.setGravity(R.styleable.AppCompatTheme_toolbarNavigationButtonStyle);
+        editTextBoldCursor.setGravity(112);
         editTextBoldCursor.setClipToPadding(true);
         editTextBoldCursor.setPadding(AndroidUtilities.dp(58.0f), 0, AndroidUtilities.dp(112.0f), 0);
         editTextBoldCursor.setTranslationY(-AndroidUtilities.dp(0.66f));
@@ -290,7 +290,7 @@ public class WebActionBar extends FrameLayout {
         editTextBoldCursor2.setHint(LocaleController.formatString(R.string.AddressPlaceholder, SearchEngine.getCurrent().name));
         editTextBoldCursor2.setBackgroundResource(0);
         editTextBoldCursor2.setCursorWidth(1.5f);
-        editTextBoldCursor2.setGravity(R.styleable.AppCompatTheme_toolbarNavigationButtonStyle);
+        editTextBoldCursor2.setGravity(112);
         editTextBoldCursor2.setInputType(editTextBoldCursor2.getInputType() | 524288);
         editTextBoldCursor2.setImeOptions(33554434);
         editTextBoldCursor2.setTextIsSelectable(false);

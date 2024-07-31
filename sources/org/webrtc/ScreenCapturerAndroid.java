@@ -136,7 +136,7 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
     private void createVirtualDisplay() {
         this.surfaceTextureHelper.setTextureSize(this.width, this.height);
         try {
-            this.virtualDisplay = this.mediaProjection.createVirtualDisplay("WebRTC_ScreenCapture", this.width, this.height, VIRTUAL_DISPLAY_DPI, 3, new Surface(this.surfaceTextureHelper.getSurfaceTexture()), null, null);
+            this.virtualDisplay = this.mediaProjection.createVirtualDisplay("WebRTC_ScreenCapture", this.width, this.height, 400, 3, new Surface(this.surfaceTextureHelper.getSurfaceTexture()), null, null);
         } catch (Throwable th) {
             FileLog.e(th);
         }

@@ -82,7 +82,6 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.NotificationsController;
-import org.telegram.messenger.NotificationsSettingsFacade;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.SharedConfig;
@@ -838,7 +837,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
             this.progressToAudio = new AnimatedFloat(this, 150L, cubicBezierInterpolator);
             this.progressToFullBlackoutA = new AnimatedFloat(this, 150L, cubicBezierInterpolator);
-            this.loadingDrawable = new CellFlickerDrawable(32, R.styleable.AppCompatTheme_textAppearanceLargePopupMenu, 240);
+            this.loadingDrawable = new CellFlickerDrawable(32, 102, 240);
             AnimatedFloat animatedFloat = new AnimatedFloat(this);
             this.loadingDrawableAlpha2 = animatedFloat;
             AnimatedFloat animatedFloat2 = new AnimatedFloat(this);
@@ -1838,7 +1837,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
 
         public void lambda$onCreate$27(String str, Theme.ResourcesProvider resourcesProvider, TLObject tLObject, String str2, View view) {
             SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(PeerStoriesView.this.currentAccount).edit();
-            edit.putBoolean(NotificationsSettingsFacade.PROPERTY_STORIES_NOTIFY + str, false).apply();
+            edit.putBoolean("stories_" + str, false).apply();
             NotificationsController.getInstance(PeerStoriesView.this.currentAccount).updateServerNotificationsSettings(PeerStoriesView.this.dialogId, 0L);
             BulletinFactory.of(PeerStoriesView.this.storyContainer, resourcesProvider).createUsersBulletin(Arrays.asList(tLObject), AndroidUtilities.replaceTags(LocaleController.formatString("NotificationsStoryMutedHint", R.string.NotificationsStoryMutedHint, str2))).setTag(2).show();
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
@@ -1849,7 +1848,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
 
         public void lambda$onCreate$28(String str, Theme.ResourcesProvider resourcesProvider, TLObject tLObject, String str2, View view) {
             SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(PeerStoriesView.this.currentAccount).edit();
-            edit.putBoolean(NotificationsSettingsFacade.PROPERTY_STORIES_NOTIFY + str, true).apply();
+            edit.putBoolean("stories_" + str, true).apply();
             NotificationsController.getInstance(PeerStoriesView.this.currentAccount).updateServerNotificationsSettings(PeerStoriesView.this.dialogId, 0L);
             BulletinFactory.of(PeerStoriesView.this.storyContainer, resourcesProvider).createUsersBulletin(Arrays.asList(tLObject), AndroidUtilities.replaceTags(LocaleController.formatString("NotificationsStoryUnmutedHint", R.string.NotificationsStoryUnmutedHint, str2))).setTag(2).show();
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
@@ -2137,8 +2136,8 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         linearLayout.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
         BackupImageView backupImageView = new BackupImageView(getContext());
         backupImageView.getImageReceiver().setAutoRepeat(1);
-        MediaDataController.getInstance(this.currentAccount).setPlaceholderImage(backupImageView, AndroidUtilities.STICKERS_PLACEHOLDER_PACK_NAME_2, "😎", "150_150");
-        linearLayout.addView(backupImageView, LayoutHelper.createLinear((int) ImageReceiver.DEFAULT_CROSSFADE_DURATION, (int) ImageReceiver.DEFAULT_CROSSFADE_DURATION, 1, 0, 16, 0, 16));
+        MediaDataController.getInstance(this.currentAccount).setPlaceholderImage(backupImageView, "tg_superplaceholders_android_2", "😎", "150_150");
+        linearLayout.addView(backupImageView, LayoutHelper.createLinear(150, 150, 1, 0, 16, 0, 16));
         TextView textView = new TextView(getContext());
         textView.setTypeface(AndroidUtilities.bold());
         textView.setGravity(17);
@@ -4509,7 +4508,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             TLRPC$MessageMedia tLRPC$MessageMedia2 = tL_stories$StoryItem.media;
             TLRPC$Photo tLRPC$Photo = tLRPC$MessageMedia2 != null ? tLRPC$MessageMedia2.photo : null;
             if (tLRPC$Photo != null && (arrayList = tLRPC$Photo.sizes) != null) {
-                TLRPC$PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(arrayList, ConnectionsManager.DEFAULT_DATACENTER_ID);
+                TLRPC$PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(arrayList, Integer.MAX_VALUE);
                 FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo.sizes, 800);
                 imageReceiver.setImage(null, null, ImageLocation.getForPhoto(closestPhotoSizeWithSize2, tLRPC$Photo), str, null, null, null, 0L, null, tL_stories$StoryItem, 0);
                 return;
@@ -4724,7 +4723,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
     public void createBlurredBitmap(Canvas canvas, Bitmap bitmap) {
         drawPlayingBitmap(bitmap.getWidth(), bitmap.getHeight(), canvas);
         if (AndroidUtilities.computePerceivedBrightness(AndroidUtilities.getDominantColor(bitmap)) < 0.15f) {
-            canvas.drawColor(ColorUtils.setAlphaComponent(-1, R.styleable.AppCompatTheme_textAppearanceLargePopupMenu));
+            canvas.drawColor(ColorUtils.setAlphaComponent(-1, 102));
         }
         Utilities.blurBitmap(bitmap, 3, 1, bitmap.getWidth(), bitmap.getHeight(), bitmap.getRowBytes());
         Utilities.blurBitmap(bitmap, 3, 1, bitmap.getWidth(), bitmap.getHeight(), bitmap.getRowBytes());
@@ -5591,7 +5590,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                 if (tLRPC$MessageMedia2 == null || (tLRPC$Photo = tLRPC$MessageMedia2.photo) == null) {
                     return null;
                 }
-                TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo.sizes, ConnectionsManager.DEFAULT_DATACENTER_ID);
+                TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo.sizes, Integer.MAX_VALUE);
                 File pathToAttach = FileLoader.getInstance(PeerStoriesView.this.currentAccount).getPathToAttach(closestPhotoSizeWithSize, true);
                 return !pathToAttach.exists() ? FileLoader.getInstance(PeerStoriesView.this.currentAccount).getPathToAttach(closestPhotoSizeWithSize, false) : pathToAttach;
             }
@@ -6592,7 +6591,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             Paint paint2 = new Paint(1);
             this.selectedBarPaint = paint2;
             paint2.setColor(-1);
-            int alphaComponent = ColorUtils.setAlphaComponent(-16777216, R.styleable.AppCompatTheme_textAppearanceLargePopupMenu);
+            int alphaComponent = ColorUtils.setAlphaComponent(-16777216, 102);
             this.topOverlayGradient = ContextCompat.getDrawable(context, R.drawable.shadow_story_top);
             this.bottomOverlayGradient = ContextCompat.getDrawable(context, R.drawable.shadow_story_bottom);
             Paint paint3 = new Paint();
@@ -6620,7 +6619,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
     }
 
     public void editPrivacy(StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy, final TL_stories$StoryItem tL_stories$StoryItem) {
-        this.delegate.showDialog(new StoryPrivacyBottomSheet(getContext(), tL_stories$StoryItem.pinned ? ConnectionsManager.DEFAULT_DATACENTER_ID : tL_stories$StoryItem.expire_date - tL_stories$StoryItem.date, this.resourcesProvider).setValue(storyPrivacy).enableSharing(false).isEdit(true).whenSelectedRules(new StoryPrivacyBottomSheet.DoneCallback() {
+        this.delegate.showDialog(new StoryPrivacyBottomSheet(getContext(), tL_stories$StoryItem.pinned ? Integer.MAX_VALUE : tL_stories$StoryItem.expire_date - tL_stories$StoryItem.date, this.resourcesProvider).setValue(storyPrivacy).enableSharing(false).isEdit(true).whenSelectedRules(new StoryPrivacyBottomSheet.DoneCallback() {
             @Override
             public final void done(StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy2, boolean z, boolean z2, TLRPC$InputPeer tLRPC$InputPeer, Runnable runnable) {
                 PeerStoriesView.this.lambda$editPrivacy$47(tL_stories$StoryItem, storyPrivacy2, z, z2, tLRPC$InputPeer, runnable);

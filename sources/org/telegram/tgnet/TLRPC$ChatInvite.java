@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-import org.telegram.messenger.LiteMode;
 public abstract class TLRPC$ChatInvite extends TLObject {
     public String about;
     public boolean broadcast;
@@ -36,8 +35,8 @@ public abstract class TLRPC$ChatInvite extends TLObject {
                         this.megagroup = (readInt32 & 8) != 0;
                         this.request_needed = (readInt32 & 64) != 0;
                         this.verified = (readInt32 & 128) != 0;
-                        this.scam = (readInt32 & LiteMode.FLAG_CHAT_BLUR) != 0;
-                        this.fake = (readInt32 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0;
+                        this.scam = (readInt32 & 256) != 0;
+                        this.fake = (readInt32 & 512) != 0;
                         this.title = abstractSerializedData2.readString(z2);
                         if ((this.flags & 32) != 0) {
                             this.about = abstractSerializedData2.readString(z2);
@@ -81,9 +80,9 @@ public abstract class TLRPC$ChatInvite extends TLObject {
                         this.flags = i7;
                         int i8 = this.verified ? i7 | 128 : i7 & (-129);
                         this.flags = i8;
-                        int i9 = this.scam ? i8 | LiteMode.FLAG_CHAT_BLUR : i8 & (-257);
+                        int i9 = this.scam ? i8 | 256 : i8 & (-257);
                         this.flags = i9;
-                        int i10 = this.fake ? i9 | LiteMode.FLAG_CALLS_ANIMATIONS : i9 & (-513);
+                        int i10 = this.fake ? i9 | 512 : i9 & (-513);
                         this.flags = i10;
                         abstractSerializedData2.writeInt32(i10);
                         abstractSerializedData2.writeString(this.title);
@@ -117,8 +116,8 @@ public abstract class TLRPC$ChatInvite extends TLObject {
                         this.megagroup = (readInt32 & 8) != 0;
                         this.request_needed = (readInt32 & 64) != 0;
                         this.verified = (readInt32 & 128) != 0;
-                        this.scam = (readInt32 & LiteMode.FLAG_CHAT_BLUR) != 0;
-                        this.fake = (readInt32 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0;
+                        this.scam = (readInt32 & 256) != 0;
+                        this.fake = (readInt32 & 512) != 0;
                         this.title = abstractSerializedData2.readString(z2);
                         if ((this.flags & 32) != 0) {
                             this.about = abstractSerializedData2.readString(z2);
@@ -164,9 +163,9 @@ public abstract class TLRPC$ChatInvite extends TLObject {
                         this.flags = i7;
                         int i8 = this.verified ? i7 | 128 : i7 & (-129);
                         this.flags = i8;
-                        int i9 = this.scam ? i8 | LiteMode.FLAG_CHAT_BLUR : i8 & (-257);
+                        int i9 = this.scam ? i8 | 256 : i8 & (-257);
                         this.flags = i9;
-                        int i10 = this.fake ? i9 | LiteMode.FLAG_CALLS_ANIMATIONS : i9 & (-513);
+                        int i10 = this.fake ? i9 | 512 : i9 & (-513);
                         this.flags = i10;
                         abstractSerializedData2.writeInt32(i10);
                         abstractSerializedData2.writeString(this.title);

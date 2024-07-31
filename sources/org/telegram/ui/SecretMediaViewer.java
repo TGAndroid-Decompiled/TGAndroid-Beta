@@ -68,7 +68,6 @@ import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
@@ -1029,7 +1028,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         } else {
             layoutParams2.flags = 8;
         }
-        layoutParams2.flags |= LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM;
+        layoutParams2.flags |= 8192;
         this.centerImage.setParentView(this.containerView);
         this.centerImage.setForceCrossfade(true);
         TextSelectionHelper<Cell>.TextSelectionOverlay overlayView = this.textSelectionHelper.getOverlayView(this.windowView.getContext());
@@ -1119,8 +1118,8 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
             this.captionTextViewSwitcher.getNextView().setSingleLine(false);
         }
         if (maxLines != Integer.MAX_VALUE) {
-            this.captionTextViewSwitcher.getCurrentView().setMaxLines(ConnectionsManager.DEFAULT_DATACENTER_ID);
-            this.captionTextViewSwitcher.getNextView().setMaxLines(ConnectionsManager.DEFAULT_DATACENTER_ID);
+            this.captionTextViewSwitcher.getCurrentView().setMaxLines(Integer.MAX_VALUE);
+            this.captionTextViewSwitcher.getNextView().setMaxLines(Integer.MAX_VALUE);
             this.captionTextViewSwitcher.getCurrentView().setEllipsize(null);
             this.captionTextViewSwitcher.getNextView().setEllipsize(null);
         }

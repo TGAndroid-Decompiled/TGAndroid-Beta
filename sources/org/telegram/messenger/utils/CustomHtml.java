@@ -2,7 +2,6 @@ package org.telegram.messenger.utils;
 
 import android.text.Spanned;
 import android.text.TextUtils;
-import org.telegram.messenger.CharacterCompat;
 import org.telegram.messenger.CodeHighlighting;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.QuoteSpan;
@@ -245,7 +244,7 @@ public class CustomHtml {
                 }
             } else if (charAt2 < 56320 && (i3 = i + 1) < i2 && (charAt = charSequence.charAt(i3)) >= 56320 && charAt <= 57343) {
                 sb.append("&#");
-                sb.append(65536 | ((charAt2 - CharacterCompat.MIN_HIGH_SURROGATE) << 10) | (charAt - CharacterCompat.MIN_LOW_SURROGATE));
+                sb.append(65536 | ((charAt2 - 55296) << 10) | (charAt - 56320));
                 sb.append(";");
                 i = i3;
             }

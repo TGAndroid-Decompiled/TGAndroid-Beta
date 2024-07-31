@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.animation.LinearInterpolator;
 import java.util.ArrayList;
 import java.util.List;
-import org.telegram.messenger.R;
 import org.telegram.ui.Components.BitmapShaderTools;
 public class VoIPBackgroundProvider {
     private final Paint darkPaint;
@@ -45,7 +44,7 @@ public class VoIPBackgroundProvider {
         paint.setColor(-1);
         paint.setAlpha(35);
         paint2.setColor(-16777216);
-        paint2.setAlpha(R.styleable.AppCompatTheme_textAppearanceLargePopupMenu);
+        paint2.setAlpha(102);
         paint3.setColor(-16777216);
         paint3.setAlpha(35);
         bitmapShaderTools2.paint.setAlpha(180);
@@ -81,7 +80,7 @@ public class VoIPBackgroundProvider {
                 public void onAnimationEnd(Animator animator) {
                     VoIPBackgroundProvider.this.hasVideo = false;
                     VoIPBackgroundProvider.this.darkPaint.setAlpha(35);
-                    VoIPBackgroundProvider.this.darkVideoPaint.setAlpha(R.styleable.AppCompatTheme_textAppearanceLargePopupMenu);
+                    VoIPBackgroundProvider.this.darkVideoPaint.setAlpha(102);
                     VoIPBackgroundProvider.this.whiteVideoPaint.setAlpha(35);
                     VoIPBackgroundProvider.this.invalidateViews();
                 }

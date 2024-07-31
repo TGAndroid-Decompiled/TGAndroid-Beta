@@ -1121,7 +1121,7 @@ public class SharedConfig {
     }
 
     public static void toggleChatBlur() {
-        LiteMode.toggleFlag(LiteMode.FLAG_CHAT_BLUR);
+        LiteMode.toggleFlag(256);
     }
 
     public static void toggleForceDisableTabletMode() {
@@ -1471,7 +1471,7 @@ public class SharedConfig {
     }
 
     public static boolean chatBlurEnabled() {
-        return canBlurChat() && LiteMode.isEnabled(LiteMode.FLAG_CHAT_BLUR);
+        return canBlurChat() && LiteMode.isEnabled(256);
     }
 
     public static class BackgroundActivityPrefs {

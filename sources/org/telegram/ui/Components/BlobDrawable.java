@@ -43,7 +43,7 @@ public class BlobDrawable {
     protected float[] speed;
 
     public BlobDrawable(int i) {
-        this(i, LiteMode.FLAG_CALLS_ANIMATIONS);
+        this(i, 512);
     }
 
     public BlobDrawable(int i, int i2) {

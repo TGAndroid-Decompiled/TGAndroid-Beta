@@ -156,7 +156,7 @@ public class VideoFrameDrawer {
     public void drawFrame(VideoFrame videoFrame, RendererCommon.GlDrawer glDrawer, Matrix matrix, int i, int i2, int i3, int i4, boolean z, boolean z2) {
         calculateTransformedRenderSize(z ? videoFrame.getRotatedHeight() : videoFrame.getRotatedWidth(), z ? videoFrame.getRotatedWidth() : videoFrame.getRotatedHeight(), matrix);
         if (this.renderWidth <= 0 || this.renderHeight <= 0) {
-            Logging.w(TAG, "Illegal frame size: " + this.renderWidth + "x" + this.renderHeight);
+            Logging.w("VideoFrameDrawer", "Illegal frame size: " + this.renderWidth + "x" + this.renderHeight);
             return;
         }
         boolean z3 = videoFrame.getBuffer() instanceof VideoFrame.TextureBuffer;

@@ -75,7 +75,6 @@ import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
@@ -533,9 +532,9 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             try {
                 int i = this.currentStep;
                 if ((i == 2 || i == 6) && !this.paymentForm.invoice.test) {
-                    getParentActivity().getWindow().setFlags(LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM, LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM);
+                    getParentActivity().getWindow().setFlags(8192, 8192);
                 } else if (SharedConfig.passcodeHash.length() == 0 || SharedConfig.allowScreenCapture) {
-                    getParentActivity().getWindow().clearFlags(LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM);
+                    getParentActivity().getWindow().clearFlags(8192);
                 }
             } catch (Throwable th) {
                 FileLog.e(th);
@@ -1633,7 +1632,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         try {
             int i = this.currentStep;
             if ((i == 2 || i == 6) && Build.VERSION.SDK_INT >= 23 && (SharedConfig.passcodeHash.length() == 0 || SharedConfig.allowScreenCapture)) {
-                getParentActivity().getWindow().clearFlags(LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM);
+                getParentActivity().getWindow().clearFlags(8192);
             }
         } catch (Throwable th) {
             FileLog.e(th);
@@ -2702,7 +2701,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             tLRPC$TL_payments_sendPaymentForm.shipping_option_id = tLRPC$TL_shippingOption.id;
             tLRPC$TL_payments_sendPaymentForm.flags |= 2;
         }
-        if ((this.paymentForm.invoice.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
+        if ((this.paymentForm.invoice.flags & 256) != 0) {
             Long l = this.tipAmount;
             tLRPC$TL_payments_sendPaymentForm.tip_amount = l != null ? l.longValue() : 0L;
             tLRPC$TL_payments_sendPaymentForm.flags |= 4;

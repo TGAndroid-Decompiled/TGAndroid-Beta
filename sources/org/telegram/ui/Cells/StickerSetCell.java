@@ -354,7 +354,7 @@ public class StickerSetCell extends FrameLayout {
                 forSticker = ImageLocation.getForSticker((TLRPC$PhotoSize) closestPhotoSizeWithSize, tLRPC$Document2, tLRPC$TL_messages_stickerSet.set.thumb_version);
             }
             ImageLocation imageLocation = forSticker;
-            boolean isEnabled = LiteMode.isEnabled(this.emojis ? LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD : 1);
+            boolean isEnabled = LiteMode.isEnabled(this.emojis ? 16388 : 1);
             StringBuilder sb = new StringBuilder();
             sb.append("50_50");
             sb.append(!isEnabled ? "_firstframe" : "");

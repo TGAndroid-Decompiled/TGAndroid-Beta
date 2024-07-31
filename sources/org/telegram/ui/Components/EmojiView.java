@@ -1054,7 +1054,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
 
                     @Override
                     protected boolean isTabIconsAnimationEnabled(boolean z) {
-                        return LiteMode.isEnabled(LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS);
+                        return LiteMode.isEnabled(8200);
                     }
                 };
                 this.categoriesListView = stickerCategoriesListView;
@@ -6358,10 +6358,10 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
     public void updateRecentGifs() {
         GifAdapter gifAdapter;
         int size = this.recentGifs.size();
-        long calcDocumentsHash = MediaDataController.calcDocumentsHash(this.recentGifs, ConnectionsManager.DEFAULT_DATACENTER_ID);
+        long calcDocumentsHash = MediaDataController.calcDocumentsHash(this.recentGifs, Integer.MAX_VALUE);
         ArrayList<TLRPC$Document> recentGifs = MediaDataController.getInstance(this.currentAccount).getRecentGifs();
         this.recentGifs = recentGifs;
-        long calcDocumentsHash2 = MediaDataController.calcDocumentsHash(recentGifs, ConnectionsManager.DEFAULT_DATACENTER_ID);
+        long calcDocumentsHash2 = MediaDataController.calcDocumentsHash(recentGifs, Integer.MAX_VALUE);
         if ((this.gifTabs != null && size == 0 && !this.recentGifs.isEmpty()) || (size != 0 && this.recentGifs.isEmpty())) {
             updateGifTabs();
         }
@@ -6753,7 +6753,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             TLObject closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$StickerSetCovered.set.thumbs, 90);
             SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tLRPC$StickerSetCovered.set.thumbs, Theme.key_emptyListPlaceholder, 0.2f);
             if (svgThumb != null) {
-                svgThumb.overrideWidthAndHeight(LiteMode.FLAG_CALLS_ANIMATIONS, LiteMode.FLAG_CALLS_ANIMATIONS);
+                svgThumb.overrideWidthAndHeight(512, 512);
             }
             if (closestPhotoSizeWithSize == null || MessageObject.isVideoSticker(tLRPC$Document)) {
                 closestPhotoSizeWithSize = tLRPC$Document;
@@ -6769,7 +6769,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             if (forSticker == null) {
                 return;
             }
-            String str = !LiteMode.isEnabled(this.emoji ? LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD : 1) ? "30_30_firstframe" : "30_30";
+            String str = !LiteMode.isEnabled(this.emoji ? 16388 : 1) ? "30_30_firstframe" : "30_30";
             if (z && (MessageObject.isAnimatedStickerDocument(tLRPC$Document, true) || MessageObject.isVideoSticker(tLRPC$Document))) {
                 if (svgThumb != null) {
                     backupImageView.setImage(ImageLocation.getForDocument(tLRPC$Document), str, svgThumb, 0, tLRPC$StickerSetCovered);
@@ -8600,7 +8600,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         }
 
         public GifAdapter(EmojiView emojiView, Context context, boolean z) {
-            this(context, z, z ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0);
+            this(context, z, z ? Integer.MAX_VALUE : 0);
         }
 
         public GifAdapter(Context context, boolean z, int i) {

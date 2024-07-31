@@ -11,8 +11,6 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.FileLoaderPriorityQueue;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
@@ -83,12 +81,12 @@ public class MaxFileSizeCell extends FrameLayout {
                 } else {
                     f -= 0.25f;
                     if (f < 0.25f) {
-                        f2 = (float) FileLoaderPriorityQueue.PRIORITY_VALUE_MAX;
+                        f2 = 1048576;
                         f3 = 9437184.0f;
                     } else {
                         f -= 0.25f;
                         if (f > 0.25f) {
-                            i = (int) (104857600 + (((float) (FileLoader.DEFAULT_MAX_FILE_SIZE - 104857600)) * ((f - 0.25f) / 0.25f)));
+                            i = (int) (104857600 + (((float) (2097152000 - 104857600)) * ((f - 0.25f) / 0.25f)));
                             long j = i;
                             MaxFileSizeCell.this.sizeTextView.setText(LocaleController.formatString("AutodownloadSizeLimitUpTo", R.string.AutodownloadSizeLimitUpTo, AndroidUtilities.formatFileSize(j)));
                             MaxFileSizeCell.this.currentSize = j;

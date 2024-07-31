@@ -43,7 +43,6 @@ import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.EmuDetector;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.GenericProvider;
-import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.Intro;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -165,7 +164,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         this.frameLayout2 = frameLayout3;
         this.frameContainerView.addView(frameLayout3, LayoutHelper.createFrame(-1, -2.0f, 51, 0.0f, 78.0f, 0.0f, 0.0f));
         TextureView textureView = new TextureView(context);
-        this.frameLayout2.addView(textureView, LayoutHelper.createFrame(200, (int) ImageReceiver.DEFAULT_CROSSFADE_DURATION, 17));
+        this.frameLayout2.addView(textureView, LayoutHelper.createFrame(200, 150, 17));
         textureView.setSurfaceTextureListener(new AnonymousClass2());
         ViewPager viewPager = new ViewPager(context);
         this.viewPager = viewPager;

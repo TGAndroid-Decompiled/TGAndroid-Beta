@@ -3,7 +3,6 @@ package org.telegram.ui.Components.Paint;
 import android.graphics.PointF;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import org.telegram.messenger.LiteMode;
 public class RenderState {
     private int allocatedCount;
     public float alpha;
@@ -25,8 +24,8 @@ public class RenderState {
         if (this.buffer != null) {
             return;
         }
-        this.allocatedCount = LiteMode.FLAG_CHAT_BLUR;
-        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(LiteMode.FLAG_CHAT_BLUR * 5 * 4);
+        this.allocatedCount = 256;
+        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(256 * 5 * 4);
         this.buffer = allocateDirect;
         allocateDirect.order(ByteOrder.nativeOrder());
         this.buffer.position(0);
@@ -56,7 +55,7 @@ public class RenderState {
         if (this.buffer != null) {
             this.buffer = null;
         }
-        int max = Math.max(this.allocatedCount * 2, (int) LiteMode.FLAG_CHAT_BLUR);
+        int max = Math.max(this.allocatedCount * 2, 256);
         this.allocatedCount = max;
         ByteBuffer allocateDirect = ByteBuffer.allocateDirect(max * 5 * 4);
         this.buffer = allocateDirect;

@@ -68,7 +68,7 @@ public class YuvConverter {
         this.i420TextureFrameBuffer = new GlTextureFrameBuffer(6408);
         ShaderCallbacks shaderCallbacks = new ShaderCallbacks();
         this.shaderCallbacks = shaderCallbacks;
-        this.drawer = new GlGenericDrawer(FRAGMENT_SHADER, shaderCallbacks);
+        this.drawer = new GlGenericDrawer("uniform vec2 xUnit;\nuniform vec4 coeffs;\n\nvoid main() {\n  gl_FragColor.r = coeffs.a + dot(coeffs.rgb,\n      sample(tc - 1.5 * xUnit).rgb);\n  gl_FragColor.g = coeffs.a + dot(coeffs.rgb,\n      sample(tc - 0.5 * xUnit).rgb);\n  gl_FragColor.b = coeffs.a + dot(coeffs.rgb,\n      sample(tc + 0.5 * xUnit).rgb);\n  gl_FragColor.a = coeffs.a + dot(coeffs.rgb,\n      sample(tc + 1.5 * xUnit).rgb);\n}\n", shaderCallbacks);
         this.videoFrameDrawer = videoFrameDrawer;
         threadChecker.detachThread();
     }

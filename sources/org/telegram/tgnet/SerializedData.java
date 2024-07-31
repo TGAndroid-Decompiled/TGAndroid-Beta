@@ -593,7 +593,7 @@ public class SerializedData extends AbstractSerializedData {
         try {
             return this.in.available();
         } catch (Exception unused) {
-            return ConnectionsManager.DEFAULT_DATACENTER_ID;
+            return Integer.MAX_VALUE;
         }
     }
 }

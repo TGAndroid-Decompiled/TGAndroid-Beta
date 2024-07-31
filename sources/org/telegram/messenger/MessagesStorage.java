@@ -736,7 +736,7 @@ public class MessagesStorage extends BaseController {
                 MessagesStorage.this.lambda$updateDbToLastVersion$3();
             }
         });
-        FileLog.d("MessagesStorage start db migration from " + i + " to " + LAST_DB_VERSION);
+        FileLog.d("MessagesStorage start db migration from " + i + " to 155");
         int migrate = DatabaseMigrationHelper.migrate(this, i);
         StringBuilder sb = new StringBuilder();
         sb.append("MessagesStorage db migration finished to varsion ");
@@ -917,13 +917,13 @@ public class MessagesStorage extends BaseController {
             Map<String, ?> all = MessagesController.getNotificationsSettings(this.currentAccount).getAll();
             for (Map.Entry<String, ?> entry : all.entrySet()) {
                 String key = entry.getKey();
-                if (key.startsWith(NotificationsSettingsFacade.PROPERTY_NOTIFY)) {
+                if (key.startsWith("notify2_")) {
                     Integer num = (Integer) entry.getValue();
                     if (num.intValue() == 2 || num.intValue() == 3) {
-                        String replace = key.replace(NotificationsSettingsFacade.PROPERTY_NOTIFY, "");
+                        String replace = key.replace("notify2_", "");
                         long j = 1;
                         if (num.intValue() != 2) {
-                            Integer num2 = (Integer) all.get(NotificationsSettingsFacade.PROPERTY_NOTIFY_UNTIL + replace);
+                            Integer num2 = (Integer) all.get("notifyuntil_" + replace);
                             if (num2 != null) {
                                 j = 1 | (num2.intValue() << 32);
                             }
@@ -6030,12 +6030,12 @@ public class MessagesStorage extends BaseController {
                                 TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights = tLRPC$Chat.admin_rights;
                                 if (tLRPC$TL_chatAdminRights != null) {
                                     TLdeserialize.admin_rights = tLRPC$TL_chatAdminRights;
-                                    TLdeserialize.flags |= LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM;
+                                    TLdeserialize.flags |= 16384;
                                 }
                                 TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights2 = tLRPC$Chat.banned_rights;
                                 if (tLRPC$TL_chatBannedRights2 != null) {
                                     TLdeserialize.banned_rights = tLRPC$TL_chatBannedRights2;
-                                    TLdeserialize.flags |= LiteMode.FLAG_CHAT_SCALE;
+                                    TLdeserialize.flags |= 32768;
                                 }
                                 String str = tLRPC$Chat.username;
                                 if (str != null) {
@@ -7279,7 +7279,7 @@ public class MessagesStorage extends BaseController {
             TLRPC$TL_messageMediaUnsupported_old tLRPC$TL_messageMediaUnsupported_old = new TLRPC$TL_messageMediaUnsupported_old();
             tLRPC$Message.media = tLRPC$TL_messageMediaUnsupported_old;
             tLRPC$TL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(185);
-            tLRPC$Message.flags |= LiteMode.FLAG_CALLS_ANIMATIONS;
+            tLRPC$Message.flags |= 512;
         }
     }
 

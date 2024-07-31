@@ -9,7 +9,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
@@ -83,7 +82,7 @@ public class LinkCell extends FrameLayout {
         this.imageView.setVisibility(4);
         this.linkView.setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(18.0f));
         TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun();
-        textStyleRun.flags |= LiteMode.FLAG_CHAT_BLUR;
+        textStyleRun.flags |= 256;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("t.me/giftcode/" + this.slug);
         if (this.slug == null) {
             spannableStringBuilder.append((CharSequence) "1234567891011123654897566536223");

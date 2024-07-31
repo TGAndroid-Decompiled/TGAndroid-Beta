@@ -177,13 +177,13 @@ public class ManageLinksActivity extends BaseFragment {
             setOrientation(1);
             BackupImageView backupImageView = new BackupImageView(context);
             this.stickerView = backupImageView;
-            addView(backupImageView, LayoutHelper.createLinear((int) R.styleable.AppCompatTheme_textAppearanceListItemSecondary, (int) R.styleable.AppCompatTheme_textAppearanceListItemSecondary, 49, 0, 2, 0, 0));
+            addView(backupImageView, LayoutHelper.createLinear(104, 104, 49, 0, 2, 0, 0));
         }
 
         private void setSticker() {
-            TLRPC$TL_messages_stickerSet stickerSetByName = MediaDataController.getInstance(this.currentAccount).getStickerSetByName(AndroidUtilities.STICKERS_PLACEHOLDER_PACK_NAME);
+            TLRPC$TL_messages_stickerSet stickerSetByName = MediaDataController.getInstance(this.currentAccount).getStickerSetByName("tg_placeholders_android");
             if (stickerSetByName == null) {
-                stickerSetByName = MediaDataController.getInstance(this.currentAccount).getStickerSetByEmojiOrName(AndroidUtilities.STICKERS_PLACEHOLDER_PACK_NAME);
+                stickerSetByName = MediaDataController.getInstance(this.currentAccount).getStickerSetByEmojiOrName("tg_placeholders_android");
             }
             TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet = stickerSetByName;
             if (tLRPC$TL_messages_stickerSet != null && tLRPC$TL_messages_stickerSet.documents.size() >= 4) {
@@ -191,7 +191,7 @@ public class ManageLinksActivity extends BaseFragment {
                 this.stickerView.setImage(ImageLocation.getForDocument(tLRPC$Document), "104_104", "tgs", DocumentObject.getSvgThumb(tLRPC$Document, Theme.key_windowBackgroundGray, 1.0f), tLRPC$TL_messages_stickerSet);
                 return;
             }
-            MediaDataController.getInstance(this.currentAccount).loadStickersByEmojiOrName(AndroidUtilities.STICKERS_PLACEHOLDER_PACK_NAME, false, tLRPC$TL_messages_stickerSet == null);
+            MediaDataController.getInstance(this.currentAccount).loadStickersByEmojiOrName("tg_placeholders_android", false, tLRPC$TL_messages_stickerSet == null);
         }
 
         @Override
@@ -209,7 +209,7 @@ public class ManageLinksActivity extends BaseFragment {
 
         @Override
         public void didReceivedNotification(int i, int i2, Object... objArr) {
-            if (i == NotificationCenter.diceStickersDidLoad && AndroidUtilities.STICKERS_PLACEHOLDER_PACK_NAME.equals((String) objArr[0])) {
+            if (i == NotificationCenter.diceStickersDidLoad && "tg_placeholders_android".equals((String) objArr[0])) {
                 setSticker();
             }
         }

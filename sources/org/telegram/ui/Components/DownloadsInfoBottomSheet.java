@@ -53,7 +53,7 @@ public class DownloadsInfoBottomSheet extends BottomSheet {
         StickerImageView stickerImageView = new StickerImageView(context, this.currentAccount);
         stickerImageView.setStickerNum(9);
         stickerImageView.getImageReceiver().setAutoRepeat(1);
-        linearLayout.addView(stickerImageView, LayoutHelper.createLinear((int) R.styleable.AppCompatTheme_textColorAlertDialogListItem, (int) R.styleable.AppCompatTheme_textColorAlertDialogListItem, 1, 0, 26, 0, 0));
+        linearLayout.addView(stickerImageView, LayoutHelper.createLinear(110, 110, 1, 0, 26, 0, 0));
         TextView textView = new TextView(context);
         textView.setGravity(1);
         int i2 = Theme.key_dialogTextBlack;

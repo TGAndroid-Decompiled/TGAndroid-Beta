@@ -41,7 +41,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLoaderPriorityQueue;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
@@ -947,7 +946,7 @@ public class EditTextBoldCursor extends EditTextEffects {
         if (f2 >= f3 - 1.0f) {
             return (width + scrollX) - (i2 - this.mTempRect.right);
         }
-        if (Math.abs(f2) <= 1.0f || (TextUtils.isEmpty(getText()) && FileLoaderPriorityQueue.PRIORITY_VALUE_MAX - scrollX <= f3 + 1.0f && max <= 1.0f)) {
+        if (Math.abs(f2) <= 1.0f || (TextUtils.isEmpty(getText()) && 1048576 - scrollX <= f3 + 1.0f && max <= 1.0f)) {
             i = this.mTempRect.left;
         } else {
             scrollX = (int) max;

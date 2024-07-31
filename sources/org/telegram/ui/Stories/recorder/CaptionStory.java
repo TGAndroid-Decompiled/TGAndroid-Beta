@@ -23,7 +23,6 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
@@ -127,9 +126,9 @@ public class CaptionStory extends CaptionContainerView {
         this.whitePaint = paint;
         Paint paint2 = new Paint(1);
         this.roundPaint = paint2;
-        BlobDrawable blobDrawable = new BlobDrawable(11, LiteMode.FLAGS_CHAT);
+        BlobDrawable blobDrawable = new BlobDrawable(11, 98784);
         this.tinyWaveDrawable = blobDrawable;
-        BlobDrawable blobDrawable2 = new BlobDrawable(12, LiteMode.FLAGS_CHAT);
+        BlobDrawable blobDrawable2 = new BlobDrawable(12, 98784);
         this.bigWaveDrawable = blobDrawable2;
         paint.setColor(-1);
         paint2.setColor(-15033089);
@@ -419,7 +418,7 @@ public class CaptionStory extends CaptionContainerView {
         float dp = (AndroidUtilities.dp(41.0f) + (AndroidUtilities.dp(30.0f) * f4 * (1.0f - this.slideProgress))) * f5 * f;
         float lerp = AndroidUtilities.lerp((rectF.right - AndroidUtilities.dp(20.0f)) - (((getWidth() * 0.35f) * this.slideProgress) * (1.0f - f3)), rectF.left + AndroidUtilities.dp(20.0f), f2);
         float dp2 = rectF.bottom - AndroidUtilities.dp(20.0f);
-        if (LiteMode.isEnabled(LiteMode.FLAGS_CHAT)) {
+        if (LiteMode.isEnabled(98784)) {
             this.tinyWaveDrawable.minRadius = AndroidUtilities.dp(47.0f);
             this.tinyWaveDrawable.maxRadius = AndroidUtilities.dp(47.0f) + (AndroidUtilities.dp(15.0f) * BlobDrawable.FORM_SMALL_MAX);
             this.bigWaveDrawable.minRadius = AndroidUtilities.dp(50.0f);
@@ -701,7 +700,7 @@ public class CaptionStory extends CaptionContainerView {
                 this.recordPaint.reset();
                 this.recording = true;
                 this.startTime = System.currentTimeMillis();
-                setCollapsed(true, ConnectionsManager.DEFAULT_DATACENTER_ID);
+                setCollapsed(true, Integer.MAX_VALUE);
                 invalidateDrawOver2();
                 RoundVideoRecorder roundVideoRecorder = new RoundVideoRecorder(getContext()) {
                     @Override

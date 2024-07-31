@@ -24,8 +24,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.ActionBar;
@@ -424,7 +422,7 @@ public class PhotoPickerSearchActivity extends BaseFragment {
                         } else {
                             measuredWidth2 = (int) (((measuredWidth / getMeasuredWidth()) + 1.0f) * 100.0f);
                         }
-                        PhotoPickerSearchActivity.this.tabsAnimation.setDuration(Math.max((int) ImageReceiver.DEFAULT_CROSSFADE_DURATION, Math.min(measuredWidth2, 600)));
+                        PhotoPickerSearchActivity.this.tabsAnimation.setDuration(Math.max(150, Math.min(measuredWidth2, 600)));
                         PhotoPickerSearchActivity.this.tabsAnimation.addListener(new AnimatorListenerAdapter() {
                             @Override
                             public void onAnimationEnd(Animator animator) {
@@ -569,7 +567,7 @@ public class PhotoPickerSearchActivity extends BaseFragment {
         int color = Theme.getColor(Theme.key_dialogBackground);
         if (Build.VERSION.SDK_INT >= 23 && AndroidUtilities.computePerceivedBrightness(color) >= 0.721f) {
             View view2 = this.fragmentView;
-            view2.setSystemUiVisibility(view2.getSystemUiVisibility() | LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM);
+            view2.setSystemUiVisibility(view2.getSystemUiVisibility() | 8192);
         }
         return this.fragmentView;
     }

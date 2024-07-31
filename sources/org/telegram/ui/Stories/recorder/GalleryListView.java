@@ -1423,7 +1423,7 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
         if (recyclerListView == null || recyclerListView.getChildCount() <= 0) {
             padding = getPadding();
         } else {
-            int i = ConnectionsManager.DEFAULT_DATACENTER_ID;
+            int i = Integer.MAX_VALUE;
             if (this.listView != null) {
                 for (int i2 = 0; i2 < this.listView.getChildCount(); i2++) {
                     View childAt = this.listView.getChildAt(i2);

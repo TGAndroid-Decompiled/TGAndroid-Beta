@@ -33,9 +33,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.NotificationsController;
-import org.telegram.messenger.NotificationsSettingsFacade;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$Dialog;
 import org.telegram.tgnet.TLRPC$Document;
@@ -136,7 +134,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
         if (!this.needReset) {
             String sharedPrefKey = NotificationsController.getSharedPrefKey(this.dialogId, this.topicId);
             SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(this.currentAccount).edit();
-            edit.putBoolean(NotificationsSettingsFacade.PROPERTY_CUSTOM + sharedPrefKey, true).apply();
+            edit.putBoolean("custom_" + sharedPrefKey, true).apply();
         }
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.notificationsSettingsUpdated);
     }
@@ -158,15 +156,15 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
                 if (i == -1) {
                     if (!ProfileNotificationsActivity.this.addingException && ProfileNotificationsActivity.this.notificationsEnabled) {
                         SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(((BaseFragment) ProfileNotificationsActivity.this).currentAccount).edit();
-                        edit.putInt(NotificationsSettingsFacade.PROPERTY_NOTIFY + sharedPrefKey, 0).apply();
+                        edit.putInt("notify2_" + sharedPrefKey, 0).apply();
                     }
                 } else if (i == 1) {
                     SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(((BaseFragment) ProfileNotificationsActivity.this).currentAccount);
                     SharedPreferences.Editor edit2 = notificationsSettings.edit();
-                    edit2.putBoolean(NotificationsSettingsFacade.PROPERTY_CUSTOM + sharedPrefKey, true);
+                    edit2.putBoolean("custom_" + sharedPrefKey, true);
                     TLRPC$Dialog tLRPC$Dialog = MessagesController.getInstance(((BaseFragment) ProfileNotificationsActivity.this).currentAccount).dialogs_dict.get(ProfileNotificationsActivity.this.dialogId);
                     if (ProfileNotificationsActivity.this.notificationsEnabled) {
-                        edit2.putInt(NotificationsSettingsFacade.PROPERTY_NOTIFY + sharedPrefKey, 0);
+                        edit2.putInt("notify2_" + sharedPrefKey, 0);
                         if (ProfileNotificationsActivity.this.topicId == 0) {
                             MessagesStorage.getInstance(((BaseFragment) ProfileNotificationsActivity.this).currentAccount).setDialogFlags(ProfileNotificationsActivity.this.dialogId, 0L);
                             if (tLRPC$Dialog != null) {
@@ -174,14 +172,14 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
                             }
                         }
                     } else {
-                        edit2.putInt(NotificationsSettingsFacade.PROPERTY_NOTIFY + sharedPrefKey, 2);
+                        edit2.putInt("notify2_" + sharedPrefKey, 2);
                         if (ProfileNotificationsActivity.this.topicId == 0) {
                             NotificationsController.getInstance(((BaseFragment) ProfileNotificationsActivity.this).currentAccount).removeNotificationsForDialog(ProfileNotificationsActivity.this.dialogId);
                             MessagesStorage.getInstance(((BaseFragment) ProfileNotificationsActivity.this).currentAccount).setDialogFlags(ProfileNotificationsActivity.this.dialogId, 1L);
                             if (tLRPC$Dialog != null) {
                                 TLRPC$TL_peerNotifySettings tLRPC$TL_peerNotifySettings = new TLRPC$TL_peerNotifySettings();
                                 tLRPC$Dialog.notify_settings = tLRPC$TL_peerNotifySettings;
-                                tLRPC$TL_peerNotifySettings.mute_until = ConnectionsManager.DEFAULT_DATACENTER_ID;
+                                tLRPC$TL_peerNotifySettings.mute_until = Integer.MAX_VALUE;
                             }
                         }
                     }
@@ -191,10 +189,10 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
                         NotificationsSettingsActivity.NotificationException notificationException = new NotificationsSettingsActivity.NotificationException();
                         notificationException.did = ProfileNotificationsActivity.this.dialogId;
                         notificationException.hasCustom = true;
-                        int i2 = notificationsSettings.getInt(NotificationsSettingsFacade.PROPERTY_NOTIFY + sharedPrefKey, 0);
+                        int i2 = notificationsSettings.getInt("notify2_" + sharedPrefKey, 0);
                         notificationException.notify = i2;
                         if (i2 != 0) {
-                            notificationException.muteUntil = notificationsSettings.getInt(NotificationsSettingsFacade.PROPERTY_NOTIFY_UNTIL + sharedPrefKey, 0);
+                            notificationException.muteUntil = notificationsSettings.getInt("notifyuntil_" + sharedPrefKey, 0);
                         }
                         ProfileNotificationsActivity.this.delegate.didCreateNewException(notificationException);
                     }
@@ -312,7 +310,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
                 checkRowsEnabled();
             } else if (i == this.previewRow) {
                 TextCheckCell textCheckCell2 = (TextCheckCell) view;
-                MessagesController.getNotificationsSettings(this.currentAccount).edit().putBoolean(NotificationsSettingsFacade.PROPERTY_CONTENT_PREVIEW + str, !textCheckCell2.isChecked()).apply();
+                MessagesController.getNotificationsSettings(this.currentAccount).edit().putBoolean("content_preview_" + str, !textCheckCell2.isChecked()).apply();
                 textCheckCell2.setChecked(textCheckCell2.isChecked() ^ true);
             } else if (i == this.callsVibrateRow) {
                 showDialog(AlertsCreator.createVibrationSelectDialog(getParentActivity(), this.dialogId, this.topicId, "calls_vibrate_" + str, new Runnable() {
@@ -371,9 +369,9 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
                     textCheckCell3.setChecked(z2);
                     SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(this.currentAccount).edit();
                     if (this.isInTop5Peers && z2) {
-                        edit.remove(NotificationsSettingsFacade.PROPERTY_STORIES_NOTIFY + str);
+                        edit.remove("stories_" + str);
                     } else {
-                        edit.putBoolean(NotificationsSettingsFacade.PROPERTY_STORIES_NOTIFY + str, z2);
+                        edit.putBoolean("stories_" + str, z2);
                     }
                     edit.apply();
                     getNotificationsController().updateServerNotificationsSettings(this.dialogId, this.topicId);
@@ -385,8 +383,8 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
     public void lambda$createView$0(String str, DialogInterface dialogInterface, int i) {
         this.needReset = true;
         SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(this.currentAccount).edit();
-        SharedPreferences.Editor putBoolean = edit.putBoolean(NotificationsSettingsFacade.PROPERTY_CUSTOM + str, false);
-        putBoolean.remove(NotificationsSettingsFacade.PROPERTY_NOTIFY + str).apply();
+        SharedPreferences.Editor putBoolean = edit.putBoolean("custom_" + str, false);
+        putBoolean.remove("notify2_" + str).apply();
         finishFragment();
         ProfileNotificationsActivityDelegate profileNotificationsActivityDelegate = this.delegate;
         if (profileNotificationsActivityDelegate != null) {
@@ -829,10 +827,10 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
                         return;
                     } else if (i == ProfileNotificationsActivity.this.previewRow) {
                         String sharedPrefKey3 = NotificationsController.getSharedPrefKey(ProfileNotificationsActivity.this.dialogId, ProfileNotificationsActivity.this.topicId);
-                        textCheckCell.setTextAndCheck(LocaleController.getString("MessagePreview", R.string.MessagePreview), notificationsSettings4.getBoolean(NotificationsSettingsFacade.PROPERTY_CONTENT_PREVIEW + sharedPrefKey3, true), true);
+                        textCheckCell.setTextAndCheck(LocaleController.getString("MessagePreview", R.string.MessagePreview), notificationsSettings4.getBoolean("content_preview_" + sharedPrefKey3, true), true);
                         return;
                     } else if (i == ProfileNotificationsActivity.this.storiesRow) {
-                        String str = NotificationsSettingsFacade.PROPERTY_STORIES_NOTIFY + NotificationsController.getSharedPrefKey(ProfileNotificationsActivity.this.dialogId, ProfileNotificationsActivity.this.topicId);
+                        String str = "stories_" + NotificationsController.getSharedPrefKey(ProfileNotificationsActivity.this.dialogId, ProfileNotificationsActivity.this.topicId);
                         if (ProfileNotificationsActivity.this.isInTop5Peers || (notificationsSettings4.contains("EnableAllStories") && notificationsSettings4.getBoolean("EnableAllStories", true))) {
                             r6 = true;
                         }

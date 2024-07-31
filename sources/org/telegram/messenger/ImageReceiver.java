@@ -385,7 +385,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         this.previousAlpha = 1.0f;
         this.crossfadeAlpha = (byte) 1;
         this.crossfadeByScale = 0.05f;
-        this.crossfadeDuration = DEFAULT_CROSSFADE_DURATION;
+        this.crossfadeDuration = 150;
         this.loadingOperations = new ArrayList<>();
         this.allowLoadingOnAttachedOnly = false;
         this.clip = true;
@@ -1114,7 +1114,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
             invalidate();
         }
         if (NotificationCenter.getGlobalInstance().isAnimationInProgress()) {
-            didReceivedNotification(NotificationCenter.stopAllHeavyOperations, this.currentAccount, Integer.valueOf((int) LiteMode.FLAG_CALLS_ANIMATIONS));
+            didReceivedNotification(NotificationCenter.stopAllHeavyOperations, this.currentAccount, 512);
         }
         Drawable drawable = this.staticThumbDrawable;
         if (drawable instanceof AttachableDrawable) {

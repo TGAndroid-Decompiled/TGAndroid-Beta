@@ -170,7 +170,7 @@ public class Utilities {
         }
         canvas.drawBitmap(bitmap, 0.0f, 0.0f, (Paint) null);
         canvas.restore();
-        stackBlurBitmap(createBitmap, Math.max(10, Math.max(dp, dp2) / ImageReceiver.DEFAULT_CROSSFADE_DURATION));
+        stackBlurBitmap(createBitmap, Math.max(10, Math.max(dp, dp2) / 150));
         return createBitmap;
     }
 
@@ -183,7 +183,7 @@ public class Utilities {
         canvas.scale(createBitmap.getWidth() / bitmap.getWidth(), createBitmap.getHeight() / bitmap.getHeight());
         canvas.drawBitmap(bitmap, 0.0f, 0.0f, (Paint) null);
         canvas.restore();
-        stackBlurBitmap(createBitmap, Math.max(10, Math.max(max, max2) / ImageReceiver.DEFAULT_CROSSFADE_DURATION));
+        stackBlurBitmap(createBitmap, Math.max(10, Math.max(max, max2) / 150));
         return createBitmap;
     }
 
@@ -501,7 +501,7 @@ public class Utilities {
             byte[] digest = MessageDigest.getInstance("MD5").digest(AndroidUtilities.getStringBytes(str));
             StringBuilder sb = new StringBuilder();
             for (byte b : digest) {
-                sb.append(Integer.toHexString((b & 255) | LiteMode.FLAG_CHAT_BLUR).substring(1, 3));
+                sb.append(Integer.toHexString((b & 255) | 256).substring(1, 3));
             }
             return sb.toString();
         } catch (NoSuchAlgorithmException e) {
@@ -518,7 +518,7 @@ public class Utilities {
             byte[] digest = MessageDigest.getInstance("SHA-256").digest(AndroidUtilities.getStringBytes(str));
             StringBuilder sb = new StringBuilder();
             for (byte b : digest) {
-                sb.append(Integer.toHexString((b & 255) | LiteMode.FLAG_CHAT_BLUR).substring(1, 3));
+                sb.append(Integer.toHexString((b & 255) | 256).substring(1, 3));
             }
             return sb.toString();
         } catch (NoSuchAlgorithmException e) {
@@ -554,7 +554,7 @@ public class Utilities {
     public static String generateRandomString(int i) {
         StringBuilder sb = new StringBuilder();
         for (int i2 = 0; i2 < i; i2++) {
-            sb.append(RANDOM_STRING_CHARS.charAt(fastRandom.nextInt(62)));
+            sb.append("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".charAt(fastRandom.nextInt(62)));
         }
         return sb.toString();
     }

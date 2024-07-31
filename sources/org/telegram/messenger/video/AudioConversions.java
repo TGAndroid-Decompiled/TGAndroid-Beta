@@ -5,7 +5,7 @@ public class AudioConversions {
     private static final long MICROSECONDS_PER_SECOND = 1000000;
 
     public static long bytesToUs(int i, int i2, int i3) {
-        return (i * MICROSECONDS_PER_SECOND) / ((i2 * 2) * i3);
+        return (i * 1000000) / ((i2 * 2) * i3);
     }
 
     public static int usToBytes(long j, int i, int i2) {

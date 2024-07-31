@@ -76,8 +76,6 @@ import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
@@ -90,7 +88,6 @@ import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.messenger.voip.NativeInstance;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.messenger.voip.VoipAudioManager;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
@@ -190,7 +187,6 @@ import org.telegram.ui.Components.voip.RTMPStreamPipOverlay;
 import org.telegram.ui.Components.voip.VoIPToggleButton;
 import org.telegram.ui.GroupCallActivity;
 import org.telegram.ui.PinchToZoomHelper;
-import org.webrtc.MediaStreamTrack;
 import org.webrtc.voiceengine.WebRtcAudioTrack;
 public class GroupCallActivity extends BottomSheet implements NotificationCenter.NotificationCenterDelegate, VoIPService.StateListener {
     public static GroupCallActivity groupCallInstance;
@@ -721,7 +717,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 if (i3 >= fArr.length) {
                     return;
                 }
-                if (i2 > (i3 == 0 ? 0 : i3 == 1 ? 50 : ImageReceiver.DEFAULT_CROSSFADE_DURATION)) {
+                if (i2 > (i3 == 0 ? 0 : i3 == 1 ? 50 : 150)) {
                     fArr[i3] = 1.0f;
                 } else {
                     fArr[i3] = 0.0f;
@@ -945,7 +941,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                     i2 = 50;
                 } else {
                     dp = AndroidUtilities.dp(14.0f);
-                    i2 = ImageReceiver.DEFAULT_CROSSFADE_DURATION;
+                    i2 = 150;
                 }
                 float[] fArr3 = this.volumeAlphas;
                 float dp4 = AndroidUtilities.dp(2.0f) * (f - fArr3[i6]);
@@ -3338,7 +3334,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             }
         };
         this.avatarsViewPager = profileGalleryView;
-        profileGalleryView.setImagesLayerNum(ConnectionsManager.DEFAULT_DATACENTER_ID);
+        profileGalleryView.setImagesLayerNum(Integer.MAX_VALUE);
         profileGalleryView.setInvalidateWithParent(true);
         avatarPreviewPagerIndicator.setProfileGalleryView(profileGalleryView);
         FrameLayout frameLayout2 = new FrameLayout(context) {
@@ -3615,7 +3611,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         }
         PinchToZoomHelper pinchToZoomHelper = new PinchToZoomHelper(viewGroup, this.containerView) {
             @Override
-            protected void invalidateViews() {
+            public void invalidateViews() {
                 super.invalidateViews();
                 for (int i27 = 0; i27 < GroupCallActivity.this.avatarsViewPager.getChildCount(); i27++) {
                     GroupCallActivity.this.avatarsViewPager.getChildAt(i27).invalidate();
@@ -4142,9 +4138,9 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 if (chatFull != null) {
                     chatFull.groupcall_default_join_as = GroupCallActivity.this.selfPeer;
                     if (chatFull instanceof TLRPC$TL_chatFull) {
-                        chatFull.flags |= LiteMode.FLAG_CHAT_SCALE;
+                        chatFull.flags |= 32768;
                     } else {
-                        chatFull.flags |= ConnectionsManager.FileTypeFile;
+                        chatFull.flags |= 67108864;
                     }
                 }
                 TLRPC$TL_phone_saveDefaultGroupCallJoinAs tLRPC$TL_phone_saveDefaultGroupCallJoinAs = new TLRPC$TL_phone_saveDefaultGroupCallJoinAs();
@@ -5174,7 +5170,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
     public void lambda$new$35(Context context, View view) {
         LaunchActivity launchActivity;
         if (Build.VERSION.SDK_INT >= 23 && (launchActivity = this.parentActivity) != null && launchActivity.checkSelfPermission("android.permission.CAMERA") != 0) {
-            this.parentActivity.requestPermissions(new String[]{"android.permission.CAMERA"}, R.styleable.AppCompatTheme_textAppearanceListItemSecondary);
+            this.parentActivity.requestPermissions(new String[]{"android.permission.CAMERA"}, 104);
         } else if (VoIPService.getSharedInstance() == null) {
         } else {
             if (VoIPService.getSharedInstance().getVideoState(false) != 2) {
@@ -7362,7 +7358,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 }
                 TLRPC$TL_photos_photo tLRPC$TL_photos_photo = (TLRPC$TL_photos_photo) tLObject;
                 ArrayList<TLRPC$PhotoSize> arrayList = tLRPC$TL_photos_photo.photo.sizes;
-                TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(arrayList, ImageReceiver.DEFAULT_CROSSFADE_DURATION);
+                TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(arrayList, 150);
                 TLRPC$PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(arrayList, 800);
                 TLRPC$VideoSize tLRPC$VideoSize = tLRPC$TL_photos_photo.photo.video_sizes.isEmpty() ? null : tLRPC$TL_photos_photo.photo.video_sizes.get(0);
                 TLRPC$TL_userProfilePhoto tLRPC$TL_userProfilePhoto = new TLRPC$TL_userProfilePhoto();
@@ -7675,7 +7671,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         }
         if (keyEvent.getAction() == 0 && ((keyEvent.getKeyCode() == 24 || keyEvent.getKeyCode() == 25) && VoIPService.getSharedInstance() != null && Build.VERSION.SDK_INT >= 32)) {
             boolean isSpeakerMuted = WebRtcAudioTrack.isSpeakerMuted();
-            AudioManager audioManager = (AudioManager) this.parentActivity.getSystemService(MediaStreamTrack.AUDIO_TRACK_KIND);
+            AudioManager audioManager = (AudioManager) this.parentActivity.getSystemService("audio");
             boolean z = false;
             if (audioManager.getStreamVolume(0) == audioManager.getStreamMinVolume(0) && keyEvent.getKeyCode() == 25) {
                 z = true;

@@ -39,7 +39,7 @@ public class AnimatedEmojiEffect {
         this.longAnimation = z;
         this.currentAccount = i;
         this.showGeneric = z2;
-        if (z2 && LiteMode.isEnabled(LiteMode.FLAG_ANIMATED_EMOJI_CHAT)) {
+        if (z2 && LiteMode.isEnabled(4112)) {
             ImageReceiver imageReceiver = new ImageReceiver();
             this.effectImageReceiver = imageReceiver;
             if (z) {

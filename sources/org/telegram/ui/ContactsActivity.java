@@ -49,7 +49,6 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.NotificationsController;
-import org.telegram.messenger.NotificationsSettingsFacade;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SecretChatHelper;
 import org.telegram.messenger.SharedConfig;
@@ -504,7 +503,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
 
         public void lambda$onItemClick$2(String str, long j, TLRPC$User tLRPC$User) {
             SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(((BaseFragment) ContactsActivity.this).currentAccount).edit();
-            edit.putBoolean(NotificationsSettingsFacade.PROPERTY_STORIES_NOTIFY + str, false).apply();
+            edit.putBoolean("stories_" + str, false).apply();
             ContactsActivity.this.getNotificationsController().updateServerNotificationsSettings(j, 0L);
             String trim = tLRPC$User == null ? "" : tLRPC$User.first_name.trim();
             int indexOf = trim.indexOf(" ");
@@ -516,7 +515,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
 
         public void lambda$onItemClick$3(String str, long j, TLRPC$User tLRPC$User) {
             SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(((BaseFragment) ContactsActivity.this).currentAccount).edit();
-            edit.putBoolean(NotificationsSettingsFacade.PROPERTY_STORIES_NOTIFY + str, true).apply();
+            edit.putBoolean("stories_" + str, true).apply();
             ContactsActivity.this.getNotificationsController().updateServerNotificationsSettings(j, 0L);
             String trim = tLRPC$User == null ? "" : tLRPC$User.first_name.trim();
             int indexOf = trim.indexOf(" ");

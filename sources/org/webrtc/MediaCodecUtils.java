@@ -11,6 +11,10 @@ import java.util.HashMap;
 import java.util.Map;
 import org.telegram.messenger.FileLog;
 class MediaCodecUtils {
+    static final int COLOR_QCOM_FORMATYUV420PackedSemiPlanar32m = 2141391876;
+    static final int COLOR_QCOM_FORMATYVU420PackedSemiPlanar16m4ka = 2141391874;
+    static final int COLOR_QCOM_FORMATYVU420PackedSemiPlanar32m4ka = 2141391873;
+    static final int COLOR_QCOM_FORMATYVU420PackedSemiPlanar64x32Tile2m8ka = 2141391875;
     static final String EXYNOS_PREFIX = "OMX.Exynos.";
     static final String EXYNOS_PREFIX_C2 = "c2.exynos.";
     static final String HISI_PREFIX = "OMX.hisi.";
@@ -19,12 +23,8 @@ class MediaCodecUtils {
     static final String QCOM_PREFIX = "OMX.qcom.";
     private static final String TAG = "MediaCodecUtils";
     static final String[] SOFTWARE_IMPLEMENTATION_PREFIXES = {"OMX.google.", "OMX.SEC.", "c2.android"};
-    static final int COLOR_QCOM_FORMATYVU420PackedSemiPlanar32m4ka = 2141391873;
-    static final int COLOR_QCOM_FORMATYVU420PackedSemiPlanar16m4ka = 2141391874;
-    static final int COLOR_QCOM_FORMATYVU420PackedSemiPlanar64x32Tile2m8ka = 2141391875;
-    static final int COLOR_QCOM_FORMATYUV420PackedSemiPlanar32m = 2141391876;
-    static final int[] DECODER_COLOR_FORMATS = {19, 21, 2141391872, COLOR_QCOM_FORMATYVU420PackedSemiPlanar32m4ka, COLOR_QCOM_FORMATYVU420PackedSemiPlanar16m4ka, COLOR_QCOM_FORMATYVU420PackedSemiPlanar64x32Tile2m8ka, COLOR_QCOM_FORMATYUV420PackedSemiPlanar32m};
-    static final int[] ENCODER_COLOR_FORMATS = {19, 21, 2141391872, COLOR_QCOM_FORMATYUV420PackedSemiPlanar32m};
+    static final int[] DECODER_COLOR_FORMATS = {19, 21, 2141391872, 2141391873, 2141391874, 2141391875, 2141391876};
+    static final int[] ENCODER_COLOR_FORMATS = {19, 21, 2141391872, 2141391876};
     static final int[] TEXTURE_COLOR_FORMATS = getTextureColorFormats();
 
     private static int[] getTextureColorFormats() {
@@ -39,7 +39,7 @@ class MediaCodecUtils {
                 try {
                     arrayList.add(MediaCodecList.getCodecInfoAt(i));
                 } catch (IllegalArgumentException e) {
-                    Logging.e(TAG, "Cannot retrieve codec info", e);
+                    Logging.e("MediaCodecUtils", "Cannot retrieve codec info", e);
                 }
             }
             Collections.sort(arrayList, new Comparator() {

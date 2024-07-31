@@ -25,14 +25,12 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.video.VideoPlayerHolderBase;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$TL_help_premiumPromo;
 import org.telegram.tgnet.TLRPC$TL_photoStrippedSize;
@@ -83,7 +81,7 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
         if ((file != null && file.exists()) || SharedConfig.streamMedia) {
             File file2 = this.file;
             if (file2 != null && file2.exists()) {
-                if ((NotificationCenter.getGlobalInstance().getCurrentHeavyOperationFlags() & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+                if ((NotificationCenter.getGlobalInstance().getCurrentHeavyOperationFlags() & 512) != 0) {
                     Runnable runnable = this.nextCheck;
                     if (runnable != null) {
                         AndroidUtilities.cancelRunOnUIThread(runnable);
@@ -129,7 +127,7 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
         this.svgIcon = svgDrawable;
         this.phoneFrame1.setColor(-16777216);
         this.phoneFrame2.setColor(ColorUtils.blendARGB(Theme.getColor(Theme.key_premiumGradient2, resourcesProvider), -16777216, 0.5f));
-        this.imageReceiver.setLayerNum(ConnectionsManager.DEFAULT_DATACENTER_ID);
+        this.imageReceiver.setLayerNum(Integer.MAX_VALUE);
         setVideo();
         if (i2 == 1) {
             MatrixParticlesDrawable matrixParticlesDrawable = new MatrixParticlesDrawable();

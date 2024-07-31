@@ -874,7 +874,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
 
     public void updateLightStatusBar(boolean z) {
         boolean z2 = AndroidUtilities.computePerceivedBrightness(getThemedColor(Theme.key_dialogBackground)) > 0.721f;
-        boolean z3 = AndroidUtilities.computePerceivedBrightness(Theme.blendOver(getThemedColor(Theme.key_actionBarDefault), AndroidUtilities.DARK_STATUS_BAR_OVERLAY)) > 0.721f;
+        boolean z3 = AndroidUtilities.computePerceivedBrightness(Theme.blendOver(getThemedColor(Theme.key_actionBarDefault), 855638016)) > 0.721f;
         if (!z) {
             z2 = z3;
         }

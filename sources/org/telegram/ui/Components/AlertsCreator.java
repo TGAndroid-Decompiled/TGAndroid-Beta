@@ -62,7 +62,6 @@ import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
@@ -5828,7 +5827,7 @@ public class AlertsCreator {
         } else if (iArr[0] == 1) {
             i2 = 3600;
         } else {
-            i2 = iArr[0] == 2 ? 28800 : ConnectionsManager.DEFAULT_DATACENTER_ID;
+            i2 = iArr[0] == 2 ? 28800 : Integer.MAX_VALUE;
         }
         intCallback.run(i2);
     }
@@ -5995,7 +5994,7 @@ public class AlertsCreator {
                     Intent intent = new Intent("android.settings.action.MANAGE_OVERLAY_PERMISSION", Uri.parse("package:" + context.getPackageName()));
                     Activity findActivity = AndroidUtilities.findActivity(context);
                     if (findActivity instanceof LaunchActivity) {
-                        findActivity.startActivityForResult(intent, R.styleable.AppCompatTheme_textAppearanceListItemSmall);
+                        findActivity.startActivityForResult(intent, 105);
                     } else {
                         context.startActivity(intent);
                     }
@@ -6715,7 +6714,7 @@ public class AlertsCreator {
             i = AndroidUtilities.calcDrawableColor(Theme.getCachedWallpaper())[0];
         }
         String str = null;
-        int i2 = ConnectionsManager.DEFAULT_DATACENTER_ID;
+        int i2 = Integer.MAX_VALUE;
         int red = Color.red(i);
         int green = Color.green(i);
         int blue = Color.blue(i);
@@ -6726,7 +6725,7 @@ public class AlertsCreator {
             int i4 = red - red2;
             int green2 = green - Color.green(num.intValue());
             int blue2 = blue - Color.blue(num.intValue());
-            int i5 = ((((i3 + LiteMode.FLAG_CALLS_ANIMATIONS) * i4) * i4) >> 8) + (green2 * 4 * green2) + ((((767 - i3) * blue2) * blue2) >> 8);
+            int i5 = ((((i3 + 512) * i4) * i4) >> 8) + (green2 * 4 * green2) + ((((767 - i3) * blue2) * blue2) >> 8);
             if (i5 < i2) {
                 str = (String) entry.getValue();
                 i2 = i5;

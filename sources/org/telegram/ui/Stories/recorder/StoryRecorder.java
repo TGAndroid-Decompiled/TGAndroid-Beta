@@ -996,7 +996,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         }
         if (z) {
             this.notificationsLocker.lock();
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, Integer.valueOf((int) LiteMode.FLAG_CALLS_ANIMATIONS));
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
             this.frozenDismissProgress = Float.valueOf(this.dismissProgress);
             ValueAnimator ofFloat = ValueAnimator.ofFloat(this.openProgress, f);
             this.openCloseAnimator = ofFloat;
@@ -1026,7 +1026,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                         StoryWaveEffectView unused = StoryRecorder.this.waveEffect;
                     }
                     StoryRecorder.this.notificationsLocker.unlock();
-                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, Integer.valueOf((int) LiteMode.FLAG_CALLS_ANIMATIONS));
+                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
                     NotificationCenter.getGlobalInstance().runDelayedNotifications();
                     StoryRecorder.this.checkBackgroundVisibility();
                     if (StoryRecorder.this.onFullyOpenListener != null) {
@@ -3202,7 +3202,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                 this.fromRounding = sourceView2.rounding;
                 sourceView2.hide();
                 if (SharedConfig.getDevicePerformanceClass() > 1) {
-                    LiteMode.isEnabled(LiteMode.FLAGS_CHAT);
+                    LiteMode.isEnabled(98784);
                 }
             }
             this.closingSourceProvider = null;
@@ -5171,12 +5171,12 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             int i = Build.VERSION.SDK_INT;
             if (i >= 33) {
                 if (StoryRecorder.this.activity.checkSelfPermission("android.permission.READ_MEDIA_AUDIO") != 0) {
-                    StoryRecorder.this.activity.requestPermissions(new String[]{"android.permission.READ_MEDIA_AUDIO"}, R.styleable.AppCompatTheme_tooltipFrameBackground);
+                    StoryRecorder.this.activity.requestPermissions(new String[]{"android.permission.READ_MEDIA_AUDIO"}, 115);
                     StoryRecorder.this.audioGrantedCallback = runnable;
                     return false;
                 }
             } else if (i >= 23 && StoryRecorder.this.activity.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") != 0) {
-                StoryRecorder.this.activity.requestPermissions(new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, R.styleable.AppCompatTheme_tooltipFrameBackground);
+                StoryRecorder.this.activity.requestPermissions(new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 115);
                 StoryRecorder.this.audioGrantedCallback = runnable;
                 return false;
             }
@@ -6132,7 +6132,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                         }).setNegativeButton(LocaleController.getString("ContactsPermissionAlertNotNow", R.string.ContactsPermissionAlertNotNow), null).create().show();
                         return;
                     } else {
-                        this.activity.requestPermissions(new String[]{"android.permission.CAMERA"}, R.styleable.AppCompatTheme_textColorSearchUrl);
+                        this.activity.requestPermissions(new String[]{"android.permission.CAMERA"}, 111);
                         this.requestedCameraPermission = true;
                     }
                 }
@@ -6165,12 +6165,12 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             if (i >= 33) {
                 r5 = (activity.checkSelfPermission("android.permission.READ_MEDIA_IMAGES") == 0 && this.activity.checkSelfPermission("android.permission.READ_MEDIA_VIDEO") == 0) ? true : true;
                 if (r5) {
-                    this.activity.requestPermissions(new String[]{"android.permission.READ_MEDIA_IMAGES", "android.permission.READ_MEDIA_VIDEO"}, R.styleable.AppCompatTheme_tooltipForegroundColor);
+                    this.activity.requestPermissions(new String[]{"android.permission.READ_MEDIA_IMAGES", "android.permission.READ_MEDIA_VIDEO"}, 114);
                 }
             } else if (i >= 23) {
                 r5 = activity.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") != 0;
                 if (r5) {
-                    this.activity.requestPermissions(new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, R.styleable.AppCompatTheme_tooltipForegroundColor);
+                    this.activity.requestPermissions(new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 114);
                 }
             }
             return !r5;
@@ -6182,7 +6182,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         Activity activity;
         if (Build.VERSION.SDK_INT >= 23 && (activity = this.activity) != null) {
             if (!(activity.checkSelfPermission("android.permission.RECORD_AUDIO") == 0)) {
-                this.activity.requestPermissions(new String[]{"android.permission.RECORD_AUDIO"}, R.styleable.AppCompatTheme_toolbarNavigationButtonStyle);
+                this.activity.requestPermissions(new String[]{"android.permission.RECORD_AUDIO"}, 112);
                 return false;
             }
         }

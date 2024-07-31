@@ -33,7 +33,6 @@ import java.util.HashMap;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
@@ -514,9 +513,9 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
             linksTextView.setTextIsSelectable(!z);
         }
         if (z) {
-            getWindow().addFlags(LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM);
+            getWindow().addFlags(8192);
         } else {
-            getWindow().clearFlags(LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM);
+            getWindow().clearFlags(8192);
         }
     }
 
@@ -710,7 +709,7 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
             }
             this.subtitleView.setPivotX(0.0f);
             this.subtitleView.setPivotY(0.0f);
-            if (!TextUtils.isEmpty(TranslateAlert2.this.fromLanguage) && !TranslateController.UNKNOWN_LANGUAGE.equals(TranslateAlert2.this.fromLanguage)) {
+            if (!TextUtils.isEmpty(TranslateAlert2.this.fromLanguage) && !"und".equals(TranslateAlert2.this.fromLanguage)) {
                 TextView textView2 = new TextView(context);
                 this.fromLanguageTextView = textView2;
                 textView2.setLines(1);
@@ -952,7 +951,7 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
                 if (z) {
                     blendOver = TranslateAlert2.this.getThemedColor(Theme.key_dialogBackground);
                 } else {
-                    blendOver = Theme.blendOver(TranslateAlert2.this.getThemedColor(Theme.key_actionBarDefault), AndroidUtilities.DARK_STATUS_BAR_OVERLAY);
+                    blendOver = Theme.blendOver(TranslateAlert2.this.getThemedColor(Theme.key_actionBarDefault), 855638016);
                 }
                 AndroidUtilities.setLightStatusBar(window, AndroidUtilities.computePerceivedBrightness(blendOver) > 0.721f);
             }
@@ -1037,7 +1036,7 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
     }
 
     public static String languageName(String str, boolean[] zArr) {
-        if (str == null || str.equals(TranslateController.UNKNOWN_LANGUAGE) || str.equals("auto")) {
+        if (str == null || str.equals("und") || str.equals("auto")) {
             return null;
         }
         boolean z = false;

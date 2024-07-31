@@ -25,7 +25,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.CacheChart;
@@ -277,7 +276,7 @@ public class CacheChart extends View {
         }
 
         private void drawParticles(Canvas canvas, float f, float f2, float f3, float f4, float f5, float f6, float f7, float f8, float f9, float f10) {
-            if (f10 <= 0.0f || !LiteMode.isEnabled(LiteMode.FLAGS_CHAT)) {
+            if (f10 <= 0.0f || !LiteMode.isEnabled(98784)) {
                 return;
             }
             long currentTimeMillis = System.currentTimeMillis();
@@ -462,7 +461,7 @@ public class CacheChart extends View {
             }
             Sector sector = new Sector();
             sectorArr[i3] = sector;
-            int blendOver = Theme.blendOver(Theme.getColor(iArr[i3]), ConnectionsManager.FileTypeAudio);
+            int blendOver = Theme.blendOver(Theme.getColor(iArr[i3]), 50331648);
             int blendOver2 = Theme.blendOver(Theme.getColor(iArr[i3]), 822083583);
             AndroidUtilities.dp(50.0f);
             RadialGradient radialGradient = new RadialGradient(0.0f, 0.0f, AndroidUtilities.dp(86.0f), new int[]{blendOver2, blendOver}, new float[]{0.3f, 1.0f}, Shader.TileMode.CLAMP);

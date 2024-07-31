@@ -37,7 +37,6 @@ import org.telegram.messenger.Bitmaps;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.UserConfig;
@@ -699,7 +698,7 @@ public class TextureRenderer {
         editTextOutline.setHorizontallyScrolling(false);
         editTextOutline.setImeOptions(268435456);
         editTextOutline.setFocusableInTouchMode(true);
-        editTextOutline.setInputType(editTextOutline.getInputType() | LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM);
+        editTextOutline.setInputType(editTextOutline.getInputType() | 16384);
         if (i4 >= 23) {
             setBreakStrategy(editTextOutline);
         }
@@ -830,12 +829,12 @@ public class TextureRenderer {
         mediaEntity.H = i3;
         if (i2 > 512) {
             mediaEntity.H = (int) ((i3 / i2) * 512.0f);
-            mediaEntity.W = LiteMode.FLAG_CALLS_ANIMATIONS;
+            mediaEntity.W = 512;
         }
         int i4 = mediaEntity.H;
         if (i4 > 512) {
             mediaEntity.W = (int) ((mediaEntity.W / i4) * 512.0f);
-            mediaEntity.H = LiteMode.FLAG_CALLS_ANIMATIONS;
+            mediaEntity.H = 512;
         }
         byte b = mediaEntity.subType;
         if ((b & 1) != 0) {
@@ -850,7 +849,7 @@ public class TextureRenderer {
             mediaEntity.framesPerDraw = mediaEntity.metadata[1] / this.videoFps;
         } else if ((b & 4) != 0) {
             mediaEntity.looped = false;
-            mediaEntity.animatedFileDrawable = new AnimatedFileDrawable(new File(mediaEntity.text), true, 0L, 0, null, null, null, 0L, UserConfig.selectedAccount, true, LiteMode.FLAG_CALLS_ANIMATIONS, LiteMode.FLAG_CALLS_ANIMATIONS, null);
+            mediaEntity.animatedFileDrawable = new AnimatedFileDrawable(new File(mediaEntity.text), true, 0L, 0, null, null, null, 0L, UserConfig.selectedAccount, true, 512, 512, null);
             mediaEntity.framesPerDraw = animatedFileDrawable.getFps() / this.videoFps;
             mediaEntity.currentFrame = 1.0f;
             mediaEntity.animatedFileDrawable.getNextFrame(true);
@@ -997,7 +996,7 @@ public class TextureRenderer {
     public void changeFragmentShader(String str, String str2, boolean z) {
         int createProgram;
         int createProgram2;
-        String str3 = this.messageVideoMaskPath != null ? z ? VERTEX_SHADER_MASK_300 : VERTEX_SHADER_MASK : z ? VERTEX_SHADER_300 : VERTEX_SHADER;
+        String str3 = this.messageVideoMaskPath != null ? z ? "#version 320 es\nuniform mat4 uMVPMatrix;\nuniform mat4 uSTMatrix;\nin vec4 aPosition;\nin vec4 aTextureCoord;\nin vec4 mTextureCoord;\nout vec2 vTextureCoord;\nout vec2 MTextureCoord;\nvoid main() {\n  gl_Position = uMVPMatrix * aPosition;\n  vTextureCoord = (uSTMatrix * aTextureCoord).xy;\n  MTextureCoord = (uSTMatrix * mTextureCoord).xy;\n}\n" : "uniform mat4 uMVPMatrix;\nuniform mat4 uSTMatrix;\nattribute vec4 aPosition;\nattribute vec4 aTextureCoord;\nattribute vec4 mTextureCoord;\nvarying vec2 vTextureCoord;\nvarying vec2 MTextureCoord;\nvoid main() {\n  gl_Position = uMVPMatrix * aPosition;\n  vTextureCoord = (uSTMatrix * aTextureCoord).xy;\n  MTextureCoord = (uSTMatrix * mTextureCoord).xy;\n}\n" : z ? "#version 320 es\nuniform mat4 uMVPMatrix;\nuniform mat4 uSTMatrix;\nin vec4 aPosition;\nin vec4 aTextureCoord;\nout vec2 vTextureCoord;\nvoid main() {\n  gl_Position = uMVPMatrix * aPosition;\n  vTextureCoord = (uSTMatrix * aTextureCoord).xy;\n}\n" : "uniform mat4 uMVPMatrix;\nuniform mat4 uSTMatrix;\nattribute vec4 aPosition;\nattribute vec4 aTextureCoord;\nvarying vec2 vTextureCoord;\nvoid main() {\n  gl_Position = uMVPMatrix * aPosition;\n  vTextureCoord = (uSTMatrix * aTextureCoord).xy;\n}\n";
         int i = this.NUM_EXTERNAL_SHADER;
         if (i >= 0 && i < this.mProgram.length && (createProgram2 = createProgram(str3, str, z)) != 0) {
             GLES20.glDeleteProgram(this.mProgram[this.NUM_EXTERNAL_SHADER]);

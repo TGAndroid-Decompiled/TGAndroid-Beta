@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_messages_sendMessage extends TLObject {
     public boolean background;
     public boolean clear_draft;
@@ -38,9 +37,9 @@ public class TLRPC$TL_messages_sendMessage extends TLObject {
         this.flags = i3;
         int i4 = this.clear_draft ? i3 | 128 : i3 & (-129);
         this.flags = i4;
-        int i5 = this.noforwards ? i4 | LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM : i4 & (-16385);
+        int i5 = this.noforwards ? i4 | 16384 : i4 & (-16385);
         this.flags = i5;
-        int i6 = this.update_stickersets_order ? i5 | LiteMode.FLAG_CHAT_SCALE : i5 & (-32769);
+        int i6 = this.update_stickersets_order ? i5 | 32768 : i5 & (-32769);
         this.flags = i6;
         int i7 = this.invert_media ? i6 | 65536 : i6 & (-65537);
         this.flags = i7;
@@ -65,7 +64,7 @@ public class TLRPC$TL_messages_sendMessage extends TLObject {
         if ((this.flags & 1024) != 0) {
             abstractSerializedData.writeInt32(this.schedule_date);
         }
-        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0) {
+        if ((this.flags & 8192) != 0) {
             this.send_as.serializeToStream(abstractSerializedData);
         }
         if ((this.flags & 131072) != 0) {

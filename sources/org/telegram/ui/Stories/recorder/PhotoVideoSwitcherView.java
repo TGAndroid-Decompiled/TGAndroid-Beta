@@ -53,7 +53,7 @@ public class PhotoVideoSwitcherView extends View implements FlashViews.Invertabl
         this.textPaint.setColor(-1);
         this.textPaint.setTypeface(AndroidUtilities.bold());
         this.textPaint.setTextSize(AndroidUtilities.dpf2(14.0f));
-        this.textPaint.setShadowLayer(AndroidUtilities.dpf2(1.0f), 0.0f, AndroidUtilities.dpf2(0.4f), AndroidUtilities.DARK_STATUS_BAR_OVERLAY);
+        this.textPaint.setShadowLayer(AndroidUtilities.dpf2(1.0f), 0.0f, AndroidUtilities.dpf2(0.4f), 855638016);
         String string = LocaleController.getString("StoryPhoto");
         StaticLayout staticLayout = new StaticLayout(string == null ? "Photo" : string, this.textPaint, AndroidUtilities.displaySize.x / 2, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         this.photoText = staticLayout;

@@ -197,7 +197,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
                 Boolean bool = this.statusBarOpen;
                 if (bool == null || bool.booleanValue() != z3) {
                     boolean z4 = AndroidUtilities.computePerceivedBrightness(InviteLinkBottomSheet.this.getThemedColor(Theme.key_dialogBackground)) > 0.721f;
-                    boolean z5 = AndroidUtilities.computePerceivedBrightness(Theme.blendOver(InviteLinkBottomSheet.this.getThemedColor(Theme.key_actionBarDefault), AndroidUtilities.DARK_STATUS_BAR_OVERLAY)) > 0.721f;
+                    boolean z5 = AndroidUtilities.computePerceivedBrightness(Theme.blendOver(InviteLinkBottomSheet.this.getThemedColor(Theme.key_actionBarDefault), 855638016)) > 0.721f;
                     Boolean valueOf = Boolean.valueOf(z3);
                     this.statusBarOpen = valueOf;
                     if (!valueOf.booleanValue()) {

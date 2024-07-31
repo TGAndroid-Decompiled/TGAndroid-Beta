@@ -30,7 +30,7 @@ public class UserNameResolver {
         TLRPC$TL_contacts_resolveUsername tLRPC$TL_contacts_resolveUsername;
         CachedPeer cachedPeer = this.resolvedCache.get(str);
         if (cachedPeer != null) {
-            if (System.currentTimeMillis() - cachedPeer.time < CACHE_TIME) {
+            if (System.currentTimeMillis() - cachedPeer.time < 3600000) {
                 consumer.accept(Long.valueOf(cachedPeer.peerId));
                 FileLog.d("resolve username from cache " + str + " " + cachedPeer.peerId);
                 return;

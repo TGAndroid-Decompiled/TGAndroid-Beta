@@ -15,7 +15,6 @@ import java.util.Iterator;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LiteMode;
 import org.webrtc.EglBase;
 import org.webrtc.GlGenericDrawer;
 import org.webrtc.GlUtil;
@@ -115,7 +114,7 @@ public class EglRenderer implements VideoSink {
             try {
                 super.dispatchMessage(message);
             } catch (Exception e) {
-                Logging.e(EglRenderer.TAG, "Exception on EglRenderer thread", e);
+                Logging.e("EglRenderer", "Exception on EglRenderer thread", e);
                 this.exceptionCallback.run();
                 throw e;
             }
@@ -149,7 +148,7 @@ public class EglRenderer implements VideoSink {
             this.drawer = glDrawer;
             this.usePresentationTimeStamp = z;
             this.firstFrameRendered = false;
-            HandlerThread handlerThread = new HandlerThread(this.name + TAG);
+            HandlerThread handlerThread = new HandlerThread(this.name + "EglRenderer");
             handlerThread.start();
             HandlerWithExceptionCallback handlerWithExceptionCallback = new HandlerWithExceptionCallback(handlerThread.getLooper(), new Runnable() {
                 @Override
@@ -467,7 +466,7 @@ public class EglRenderer implements VideoSink {
         }
         logD("clearSurface");
         GLES20.glClearColor(f, f2, f3, f4);
-        GLES20.glClear(LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM);
+        GLES20.glClear(16384);
         this.eglBase.swapBuffers(false);
     }
 
@@ -633,7 +632,7 @@ public class EglRenderer implements VideoSink {
                     GLES20.glBindFramebuffer(36160, this.bitmapTextureFramebuffer.getFrameBufferId());
                     GLES20.glFramebufferTexture2D(36160, 36064, 3553, this.bitmapTextureFramebuffer.getTextureId(), 0);
                     GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-                    GLES20.glClear(LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM);
+                    GLES20.glClear(16384);
                     this.frameDrawer.drawFrame(videoFrame, next.drawer, this.drawMatrix, 0, 0, rotatedWidth, rotatedHeight, false, false);
                     ByteBuffer allocateDirect = ByteBuffer.allocateDirect(rotatedWidth * rotatedHeight * 4);
                     GLES20.glViewport(0, 0, rotatedWidth, rotatedHeight);
@@ -649,14 +648,14 @@ public class EglRenderer implements VideoSink {
     }
 
     private void logE(String str, Throwable th) {
-        Logging.e(TAG, this.name + str, th);
+        Logging.e("EglRenderer", this.name + str, th);
     }
 
     private void logD(String str) {
-        Logging.d(TAG, this.name + str);
+        Logging.d("EglRenderer", this.name + str);
     }
 
     private void logW(String str) {
-        Logging.w(TAG, this.name + str);
+        Logging.w("EglRenderer", this.name + str);
     }
 }

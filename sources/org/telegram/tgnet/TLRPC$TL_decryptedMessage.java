@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_decryptedMessage extends TLRPC$DecryptedMessage {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -11,7 +10,7 @@ public class TLRPC$TL_decryptedMessage extends TLRPC$DecryptedMessage {
         this.random_id = abstractSerializedData.readInt64(z);
         this.ttl = abstractSerializedData.readInt32(z);
         this.message = abstractSerializedData.readString(z);
-        if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+        if ((this.flags & 512) != 0) {
             this.media = TLRPC$DecryptedMessageMedia.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z || BuildVars.DEBUG_PRIVATE_VERSION);
         }
         if ((this.flags & 128) != 0) {
@@ -51,7 +50,7 @@ public class TLRPC$TL_decryptedMessage extends TLRPC$DecryptedMessage {
         abstractSerializedData.writeInt64(this.random_id);
         abstractSerializedData.writeInt32(this.ttl);
         abstractSerializedData.writeString(this.message);
-        if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+        if ((this.flags & 512) != 0) {
             this.media.serializeToStream(abstractSerializedData);
         }
         if ((this.flags & 128) != 0) {

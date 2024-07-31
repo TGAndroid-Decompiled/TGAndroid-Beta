@@ -47,7 +47,6 @@ import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.FilesMigrationService;
 import org.telegram.messenger.ImageLoader;
-import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessagesController;
@@ -56,7 +55,6 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.ActionBar;
@@ -1749,8 +1747,8 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             RLottieImageView rLottieImageView = new RLottieImageView(context);
             this.imageView = rLottieImageView;
             rLottieImageView.setAutoRepeat(true);
-            this.imageView.setAnimation(R.raw.utyan_cache, ImageReceiver.DEFAULT_CROSSFADE_DURATION, ImageReceiver.DEFAULT_CROSSFADE_DURATION);
-            addView(this.imageView, LayoutHelper.createFrame(ImageReceiver.DEFAULT_CROSSFADE_DURATION, 150.0f, 49, 0.0f, 16.0f, 0.0f, 0.0f));
+            this.imageView.setAnimation(R.raw.utyan_cache, 150, 150);
+            addView(this.imageView, LayoutHelper.createFrame(150, 150.0f, 49, 0.0f, 16.0f, 0.0f, 0.0f));
             this.imageView.playAnimation();
             AnimatedTextView animatedTextView = new AnimatedTextView(context, false, true, true);
             this.percentsTextView = animatedTextView;
@@ -2457,7 +2455,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                         if (f > 32.0f) {
                             arrayList.add(32);
                         }
-                        arrayList.add(Integer.valueOf((int) ConnectionsManager.DEFAULT_DATACENTER_ID));
+                        arrayList.add(Integer.MAX_VALUE);
                         String[] strArr = new String[arrayList.size()];
                         for (int i3 = 0; i3 < arrayList.size(); i3++) {
                             if (((Integer) arrayList.get(i3)).intValue() == 1) {
@@ -2479,7 +2477,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                                 SlideChooseView.Callback.CC.$default$onTouchEnd(this);
                             }
                         });
-                        int indexOf = arrayList.indexOf(Integer.valueOf(SharedConfig.getPreferences().getInt("cache_limit", ConnectionsManager.DEFAULT_DATACENTER_ID)));
+                        int indexOf = arrayList.indexOf(Integer.valueOf(SharedConfig.getPreferences().getInt("cache_limit", Integer.MAX_VALUE)));
                         if (indexOf < 0) {
                             indexOf = arrayList.size() - 1;
                         }

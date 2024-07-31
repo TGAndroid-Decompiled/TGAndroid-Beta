@@ -260,9 +260,9 @@ public class CreateGroupCallBottomSheet extends BottomSheetWithRecyclerListView 
             setOrientation(1);
             RLottieImageView rLottieImageView = new RLottieImageView(context);
             rLottieImageView.setAutoRepeat(true);
-            rLottieImageView.setAnimation(R.raw.utyan_schedule, R.styleable.AppCompatTheme_toolbarNavigationButtonStyle, R.styleable.AppCompatTheme_toolbarNavigationButtonStyle);
+            rLottieImageView.setAnimation(R.raw.utyan_schedule, 112, 112);
             rLottieImageView.playAnimation();
-            addView(rLottieImageView, LayoutHelper.createLinear((int) R.styleable.AppCompatTheme_toolbarNavigationButtonStyle, (int) R.styleable.AppCompatTheme_toolbarNavigationButtonStyle, 49, 0, 24, 0, 0));
+            addView(rLottieImageView, LayoutHelper.createLinear(112, 112, 49, 0, 24, 0, 0));
             TextView textView = new TextView(context);
             textView.setTypeface(AndroidUtilities.bold());
             if (z) {

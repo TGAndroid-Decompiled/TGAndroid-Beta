@@ -454,7 +454,7 @@ public class StickerCategoriesListView extends RecyclerListView {
         Drawable drawable;
         float f = 1.0f;
         if (this.backgroundPaint != null) {
-            int i = ConnectionsManager.DEFAULT_DATACENTER_ID;
+            int i = Integer.MAX_VALUE;
             int i2 = Integer.MIN_VALUE;
             for (int i3 = 0; i3 < getChildCount(); i3++) {
                 View childAt = getChildAt(i3);
@@ -620,7 +620,7 @@ public class StickerCategoriesListView extends RecyclerListView {
     }
 
     protected boolean isTabIconsAnimationEnabled(boolean z) {
-        return LiteMode.isEnabled(LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD);
+        return LiteMode.isEnabled(16388);
     }
 
     public class CategoryButton extends RLottieImageView {

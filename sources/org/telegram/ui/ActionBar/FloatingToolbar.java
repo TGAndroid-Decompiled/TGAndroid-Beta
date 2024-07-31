@@ -52,7 +52,6 @@ import java.util.List;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
-import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
@@ -403,7 +402,7 @@ public final class FloatingToolbar {
             animationSet2.setAnimationListener(createOverflowAnimationListener);
             this.mShowAnimation = FloatingToolbar.createEnterAnimation(viewGroup);
             ViewGroup viewGroup2 = viewGroup;
-            this.mDismissAnimation = FloatingToolbar.createExitAnimation(viewGroup2, ImageReceiver.DEFAULT_CROSSFADE_DURATION, new AnonymousClass4(FloatingToolbar.this));
+            this.mDismissAnimation = FloatingToolbar.createExitAnimation(viewGroup2, 150, new AnonymousClass4(FloatingToolbar.this));
             this.mHideAnimation = FloatingToolbar.createExitAnimation(viewGroup2, 0, new AnonymousClass5(FloatingToolbar.this));
         }
 

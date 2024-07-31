@@ -31,12 +31,12 @@ public class NotificationsSettingsFacade {
     public void clearPreference(long j, long j2) {
         String sharedPrefKey = NotificationsController.getSharedPrefKey(j, j2, true);
         SharedPreferences.Editor edit = getPreferences().edit();
-        SharedPreferences.Editor remove = edit.remove(PROPERTY_NOTIFY + sharedPrefKey);
-        SharedPreferences.Editor remove2 = remove.remove(PROPERTY_CUSTOM + sharedPrefKey);
-        SharedPreferences.Editor remove3 = remove2.remove(PROPERTY_NOTIFY_UNTIL + sharedPrefKey);
-        SharedPreferences.Editor remove4 = remove3.remove(PROPERTY_CONTENT_PREVIEW + sharedPrefKey);
-        SharedPreferences.Editor remove5 = remove4.remove(PROPERTY_SILENT + sharedPrefKey);
-        remove5.remove(PROPERTY_STORIES_NOTIFY + sharedPrefKey).apply();
+        SharedPreferences.Editor remove = edit.remove("notify2_" + sharedPrefKey);
+        SharedPreferences.Editor remove2 = remove.remove("custom_" + sharedPrefKey);
+        SharedPreferences.Editor remove3 = remove2.remove("notifyuntil_" + sharedPrefKey);
+        SharedPreferences.Editor remove4 = remove3.remove("content_preview_" + sharedPrefKey);
+        SharedPreferences.Editor remove5 = remove4.remove("silent_" + sharedPrefKey);
+        remove5.remove("stories_" + sharedPrefKey).apply();
     }
 
     public int getProperty(String str, long j, long j2, int i) {
@@ -182,7 +182,7 @@ public class NotificationsSettingsFacade {
             editor.putLong(str2, tLRPC$TL_notificationSoundRingtone.id);
             MediaDataController.getInstance(this.currentAccount).checkRingtones(true);
             if (z && j != 0) {
-                editor.putBoolean(PROPERTY_CUSTOM + j, true);
+                editor.putBoolean("custom_" + j, true);
             }
             MediaDataController.getInstance(this.currentAccount).ringtoneDataStore.getDocument(tLRPC$TL_notificationSoundRingtone.id);
         }
@@ -191,26 +191,26 @@ public class NotificationsSettingsFacade {
     public void setSettingsForDialog(SharedPreferences.Editor editor, TLRPC$Dialog tLRPC$Dialog, TLRPC$PeerNotifySettings tLRPC$PeerNotifySettings) {
         long peerId = MessageObject.getPeerId(tLRPC$Dialog.peer);
         if ((tLRPC$Dialog.notify_settings.flags & 2) != 0) {
-            editor.putBoolean(PROPERTY_SILENT + peerId, tLRPC$Dialog.notify_settings.silent);
+            editor.putBoolean("silent_" + peerId, tLRPC$Dialog.notify_settings.silent);
         } else {
-            editor.remove(PROPERTY_SILENT + peerId);
+            editor.remove("silent_" + peerId);
         }
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(this.currentAccount);
         TLRPC$PeerNotifySettings tLRPC$PeerNotifySettings2 = tLRPC$Dialog.notify_settings;
         if ((tLRPC$PeerNotifySettings2.flags & 4) != 0) {
             if (tLRPC$PeerNotifySettings2.mute_until > connectionsManager.getCurrentTime()) {
                 if (tLRPC$Dialog.notify_settings.mute_until > connectionsManager.getCurrentTime() + 31536000) {
-                    editor.putInt(PROPERTY_NOTIFY + peerId, 2);
-                    tLRPC$Dialog.notify_settings.mute_until = ConnectionsManager.DEFAULT_DATACENTER_ID;
+                    editor.putInt("notify2_" + peerId, 2);
+                    tLRPC$Dialog.notify_settings.mute_until = Integer.MAX_VALUE;
                     return;
                 }
-                editor.putInt(PROPERTY_NOTIFY + peerId, 3);
-                editor.putInt(PROPERTY_NOTIFY_UNTIL + peerId, tLRPC$Dialog.notify_settings.mute_until);
+                editor.putInt("notify2_" + peerId, 3);
+                editor.putInt("notifyuntil_" + peerId, tLRPC$Dialog.notify_settings.mute_until);
                 return;
             }
-            editor.putInt(PROPERTY_NOTIFY + peerId, 0);
+            editor.putInt("notify2_" + peerId, 0);
             return;
         }
-        editor.remove(PROPERTY_NOTIFY + peerId);
+        editor.remove("notify2_" + peerId);
     }
 }

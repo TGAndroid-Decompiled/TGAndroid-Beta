@@ -43,7 +43,6 @@ import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.FileStreamLoadOperation;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
@@ -76,7 +75,6 @@ import org.telegram.ui.Stories.StoriesController;
 import org.telegram.ui.Stories.StoriesListPlaceProvider;
 import org.telegram.ui.Stories.StoriesUtilities;
 import org.telegram.ui.Stories.StoryViewer;
-import org.webrtc.MediaStreamTrack;
 public class StoryViewer implements NotificationCenter.NotificationCenterDelegate, BaseFragment.AttachedSheet {
     public static boolean animationInProgress;
     private static boolean isInSilentMode;
@@ -1566,7 +1564,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
     private void checkInSilentMode() {
         if (checkSilentMode) {
             checkSilentMode = false;
-            isInSilentMode = ((AudioManager) this.windowView.getContext().getSystemService(MediaStreamTrack.AUDIO_TRACK_KIND)).getRingerMode() != 2;
+            isInSilentMode = ((AudioManager) this.windowView.getContext().getSystemService("audio")).getRingerMode() != 2;
         }
     }
 
@@ -2413,10 +2411,10 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
             if (this.ATTACH_TO_FRAGMENT) {
                 if (this.fragment.getParentActivity() != null) {
                     if (z2) {
-                        this.fragment.getParentActivity().getWindow().clearFlags(LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM);
+                        this.fragment.getParentActivity().getWindow().clearFlags(8192);
                         return;
                     } else {
-                        this.fragment.getParentActivity().getWindow().addFlags(LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM);
+                        this.fragment.getParentActivity().getWindow().addFlags(8192);
                         return;
                     }
                 }
@@ -2425,7 +2423,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
             if (z2) {
                 this.windowLayoutParams.flags &= -8193;
             } else {
-                this.windowLayoutParams.flags |= LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM;
+                this.windowLayoutParams.flags |= 8192;
             }
             try {
                 this.windowManager.updateViewLayout(this.windowView, this.windowLayoutParams);

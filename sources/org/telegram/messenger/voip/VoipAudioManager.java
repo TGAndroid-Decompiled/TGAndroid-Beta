@@ -4,7 +4,6 @@ import android.media.AudioManager;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.Utilities;
-import org.webrtc.MediaStreamTrack;
 public class VoipAudioManager {
     private Boolean isSpeakerphoneOn;
 
@@ -67,6 +66,6 @@ public class VoipAudioManager {
     }
 
     private AudioManager getAudioManager() {
-        return (AudioManager) ApplicationLoader.applicationContext.getSystemService(MediaStreamTrack.AUDIO_TRACK_KIND);
+        return (AudioManager) ApplicationLoader.applicationContext.getSystemService("audio");
     }
 }

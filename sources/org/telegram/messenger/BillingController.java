@@ -32,7 +32,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.telegram.messenger.utils.BillingUtilities;
-import org.telegram.messenger.voip.VoIPController;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$InputStorePaymentPurpose;
@@ -48,7 +47,9 @@ import org.telegram.tgnet.TLRPC$Updates;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.PremiumPreviewFragment;
 public class BillingController implements PurchasesUpdatedListener, BillingClientStateListener {
+    public static final QueryProductDetailsParams.Product PREMIUM_PRODUCT = QueryProductDetailsParams.Product.newBuilder().setProductType("subs").setProductId("telegram_premium").build();
     public static ProductDetails PREMIUM_PRODUCT_DETAILS = null;
+    public static final String PREMIUM_PRODUCT_ID = "telegram_premium";
     public static boolean billingClientEmpty;
     private static NumberFormat currencyInstance;
     private static BillingController instance;
@@ -57,8 +58,6 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
     private String lastPremiumToken;
     private String lastPremiumTransaction;
     private Runnable onCanceled;
-    public static final String PREMIUM_PRODUCT_ID = "telegram_premium";
-    public static final QueryProductDetailsParams.Product PREMIUM_PRODUCT = QueryProductDetailsParams.Product.newBuilder().setProductType("subs").setProductId(PREMIUM_PRODUCT_ID).build();
     private final Map<String, Consumer<BillingResult>> resultListeners = new HashMap();
     private final List<String> requestingTokens = Collections.synchronizedList(new ArrayList());
     private final Map<String, Integer> currencyExpMap = new HashMap();
@@ -68,9 +67,9 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
     public static String getResponseCodeString(int i) {
         if (i != 12) {
             switch (i) {
-                case VoIPController.ERROR_LOCALIZED:
+                case -3:
                     return "SERVICE_TIMEOUT";
-                case VoIPController.ERROR_PRIVACY:
+                case -2:
                     return "FEATURE_NOT_SUPPORTED";
                 case -1:
                     return "SERVICE_DISCONNECTED";
@@ -326,7 +325,7 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
         } else if (list != null && !list.isEmpty()) {
             this.lastPremiumTransaction = null;
             for (final Purchase purchase : list) {
-                if (purchase.getProducts().contains(PREMIUM_PRODUCT_ID)) {
+                if (purchase.getProducts().contains("telegram_premium")) {
                     this.lastPremiumTransaction = purchase.getOrderId();
                     this.lastPremiumToken = purchase.getPurchaseToken();
                 }
@@ -454,7 +453,7 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
         FileLog.d("Billing: Query product details finished " + billingResult + ", " + list);
         if (billingResult.getResponseCode() == 0) {
             for (ProductDetails productDetails : list) {
-                if (productDetails.getProductId().equals(PREMIUM_PRODUCT_ID)) {
+                if (productDetails.getProductId().equals("telegram_premium")) {
                     PREMIUM_PRODUCT_DETAILS = productDetails;
                 }
             }

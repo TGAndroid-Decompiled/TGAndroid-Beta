@@ -20,7 +20,6 @@ import java.util.TreeMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.telegram.messenger.R;
 public class FastDateParser implements DateParser, Serializable {
     private static final long serialVersionUID = 2;
     private final int century;
@@ -326,49 +325,49 @@ public class FastDateParser implements DateParser, Serializable {
         }
         if (charAt != 'z') {
             switch (charAt) {
-                case R.styleable.AppCompatTheme_autoCompleteTextViewStyle:
+                case '\'':
                     if (str.length() > 2) {
                         return new CopyQuotedStrategy(str.substring(1, str.length() - 1));
                     }
                     return new CopyQuotedStrategy(str);
-                case R.styleable.AppCompatTheme_listPreferredItemPaddingLeft:
+                case 'S':
                     return MILLISECOND_STRATEGY;
-                case R.styleable.AppCompatTheme_panelMenuListTheme:
+                case 'W':
                     return WEEK_OF_MONTH_STRATEGY;
-                case R.styleable.AppCompatTheme_popupWindowStyle:
+                case 'Z':
                     break;
-                case R.styleable.AppCompatTheme_selectableItemBackground:
+                case 'a':
                     return getLocaleSpecificStrategy(9, calendar);
                 case 'd':
                     return DAY_OF_MONTH_STRATEGY;
-                case R.styleable.AppCompatTheme_textAppearanceListItemSecondary:
+                case 'h':
                     return MODULO_HOUR_STRATEGY;
-                case R.styleable.AppCompatTheme_textAppearanceSearchResultSubtitle:
+                case 'k':
                     return HOUR_OF_DAY_STRATEGY;
-                case R.styleable.AppCompatTheme_textAppearanceSmallPopupMenu:
+                case 'm':
                     return MINUTE_STRATEGY;
-                case R.styleable.AppCompatTheme_tooltipFrameBackground:
+                case 's':
                     return SECOND_STRATEGY;
                 case 'w':
                     return WEEK_OF_YEAR_STRATEGY;
                 default:
                     switch (charAt) {
-                        case R.styleable.AppCompatTheme_editTextBackground:
+                        case 'D':
                             return DAY_OF_YEAR_STRATEGY;
-                        case R.styleable.AppCompatTheme_editTextColor:
+                        case 'E':
                             return getLocaleSpecificStrategy(7, calendar);
-                        case R.styleable.AppCompatTheme_editTextStyle:
+                        case 'F':
                             return DAY_OF_WEEK_IN_MONTH_STRATEGY;
-                        case R.styleable.AppCompatTheme_homeAsUpIndicator:
+                        case 'G':
                             return getLocaleSpecificStrategy(0, calendar);
-                        case R.styleable.AppCompatTheme_imageButtonStyle:
+                        case 'H':
                             return MODULO_HOUR_OF_DAY_STRATEGY;
                         default:
                             switch (charAt) {
-                                case R.styleable.AppCompatTheme_listChoiceIndicatorSingleAnimated:
+                                case 'K':
                                     return HOUR_STRATEGY;
-                                case R.styleable.AppCompatTheme_listDividerAlertDialog:
-                                case R.styleable.AppCompatTheme_listMenuViewStyle:
+                                case 'L':
+                                case 'M':
                                     return str.length() >= 3 ? getLocaleSpecificStrategy(2, calendar) : NUMBER_MONTH_STRATEGY;
                             }
                             return new CopyQuotedStrategy(str);

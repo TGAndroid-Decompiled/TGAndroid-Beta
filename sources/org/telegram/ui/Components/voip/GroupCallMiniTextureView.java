@@ -1117,7 +1117,7 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
             this.bigWaveDrawable.maxRadius = AndroidUtilities.dp(95.0f);
             this.bigWaveDrawable.generateBlob();
             this.paint.setColor(ColorUtils.blendARGB(Theme.getColor(Theme.key_voipgroup_listeningText), Theme.getColor(Theme.key_voipgroup_speakingText), this.speakingProgress));
-            this.paint.setAlpha(R.styleable.AppCompatTheme_textAppearanceLargePopupMenu);
+            this.paint.setAlpha(102);
             this.backgroundPaint.setColor(ColorUtils.setAlphaComponent(-16777216, 127));
         }
 

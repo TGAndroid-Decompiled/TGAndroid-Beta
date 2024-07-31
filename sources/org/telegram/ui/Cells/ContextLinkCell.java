@@ -53,7 +53,6 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LetterDrawable;
 import org.telegram.ui.Components.RadialProgress2;
 import org.telegram.ui.PhotoViewer;
-import org.webrtc.MediaStreamTrack;
 public class ContextLinkCell extends FrameLayout implements DownloadController.FileDownloadProgressListener {
     public final Property<ContextLinkCell, Float> IMAGE_SCALE;
     private int TAG;
@@ -190,7 +189,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
             if (tLRPC$BotInlineResult != null) {
                 if (tLRPC$BotInlineResult.photo != null) {
                     this.documentAttachType = 7;
-                } else if (tLRPC$BotInlineResult.type.equals(MediaStreamTrack.AUDIO_TRACK_KIND)) {
+                } else if (tLRPC$BotInlineResult.type.equals("audio")) {
                     this.documentAttachType = 5;
                 } else if (this.inlineResult.type.equals("voice")) {
                     this.documentAttachType = 3;
@@ -534,7 +533,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
                     Theme.chat_inlineResultFile.draw(canvas);
                 } else {
                     TLRPC$BotInlineResult tLRPC$BotInlineResult2 = this.inlineResult;
-                    if (tLRPC$BotInlineResult2 != null && (tLRPC$BotInlineResult2.type.equals(MediaStreamTrack.AUDIO_TRACK_KIND) || this.inlineResult.type.equals("voice"))) {
+                    if (tLRPC$BotInlineResult2 != null && (tLRPC$BotInlineResult2.type.equals("audio") || this.inlineResult.type.equals("voice"))) {
                         int intrinsicWidth2 = Theme.chat_inlineResultAudio.getIntrinsicWidth();
                         int intrinsicHeight2 = Theme.chat_inlineResultAudio.getIntrinsicHeight();
                         int imageX2 = (int) (this.linkImageView.getImageX() + ((AndroidUtilities.dp(52.0f) - intrinsicWidth2) / 2));

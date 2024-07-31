@@ -114,6 +114,6 @@ public class SurfaceEglRenderer extends EglRenderer implements SurfaceHolder.Cal
     }
 
     private void logD(String str) {
-        Logging.d(TAG, this.name + ": " + str);
+        Logging.d("SurfaceEglRenderer", this.name + ": " + str);
     }
 }

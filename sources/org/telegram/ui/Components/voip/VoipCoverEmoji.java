@@ -37,7 +37,7 @@ public class VoipCoverEmoji {
     public VoipCoverEmoji(TLRPC$User tLRPC$User, final View view, int i) {
         this.parent = view;
         this.size = i;
-        boolean isEnabled = LiteMode.isEnabled(LiteMode.FLAG_CALLS_ANIMATIONS);
+        boolean isEnabled = LiteMode.isEnabled(512);
         this.allowAnimations = isEnabled;
         long profileEmojiId = UserObject.getProfileEmojiId(tLRPC$User);
         if (!isEnabled || profileEmojiId == 0) {

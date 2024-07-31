@@ -24,8 +24,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.R;
 import org.telegram.messenger.video.Track;
 public class Track {
     private static Map<Integer, Integer> samplingFrequencyIndexMap;
@@ -89,7 +87,7 @@ public class Track {
             this.headerBox = new VideoMediaHeaderBox();
             this.sampleDescriptionBox = new SampleDescriptionBox();
             String string = mediaFormat.getString("mime");
-            if (string.equals(MediaController.VIDEO_MIME_TYPE)) {
+            if (string.equals("video/avc")) {
                 VisualSampleEntry visualSampleEntry = new VisualSampleEntry("avc1");
                 visualSampleEntry.setDataReferenceIndex(1);
                 visualSampleEntry.setDepth(24);
@@ -166,7 +164,7 @@ public class Track {
                     } else if (integer2 == 8) {
                         avcConfigurationBox.setAvcProfileIndication(100);
                     } else if (integer2 == 16) {
-                        avcConfigurationBox.setAvcProfileIndication(R.styleable.AppCompatTheme_textColorAlertDialogListItem);
+                        avcConfigurationBox.setAvcProfileIndication(110);
                     } else if (integer2 == 32) {
                         avcConfigurationBox.setAvcProfileIndication(122);
                     } else if (integer2 == 64) {
@@ -267,7 +265,7 @@ public class Track {
         String string2 = mediaFormat.containsKey("mime") ? mediaFormat.getString("mime") : "audio/mp4-latm";
         DecoderConfigDescriptor decoderConfigDescriptor = new DecoderConfigDescriptor();
         if ("audio/mpeg".equals(string2)) {
-            decoderConfigDescriptor.setObjectTypeIndication(R.styleable.AppCompatTheme_textAppearanceListItemSmall);
+            decoderConfigDescriptor.setObjectTypeIndication(105);
         } else {
             decoderConfigDescriptor.setObjectTypeIndication(64);
         }

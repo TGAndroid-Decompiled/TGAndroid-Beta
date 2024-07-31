@@ -42,7 +42,6 @@ import org.telegram.messenger.BotWebViewVibrationEffect;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
@@ -1112,7 +1111,7 @@ public class FilterChatlistActivity extends BaseFragment {
             simpleTextView2.setTextColor(Theme.getColor(i2));
             SpannableString spannableString = new SpannableString("t.me/folder/N3k/dImA/bIo");
             TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun();
-            textStyleRun.flags |= LiteMode.FLAG_CHAT_BLUR;
+            textStyleRun.flags |= 256;
             spannableString.setSpan(new TextStyleSpan(textStyleRun), 0, spannableString.length(), 33);
             this.spoilerTextView.setText(spannableString);
             this.spoilerTextView.setAlpha(1.0f);
@@ -1382,7 +1381,7 @@ public class FilterChatlistActivity extends BaseFragment {
                 final View view = new View(getContext()) {
                     @Override
                     protected void onDraw(Canvas canvas) {
-                        canvas.drawColor(AndroidUtilities.DARK_STATUS_BAR_OVERLAY);
+                        canvas.drawColor(855638016);
                         InviteLinkCell inviteLinkCell = InviteLinkCell.this;
                         inviteLinkCell.getPointOnScreen(inviteLinkCell.linkBox, overlayContainerView, inviteLinkCell.point);
                         canvas.save();

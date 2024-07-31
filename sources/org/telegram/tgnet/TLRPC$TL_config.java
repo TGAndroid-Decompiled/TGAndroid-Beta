@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_config extends TLObject {
     public String autologin_token;
     public String autoupdate_url_prefix;
@@ -71,8 +70,8 @@ public class TLRPC$TL_config extends TLObject {
         this.default_p2p_contacts = (readInt32 & 8) != 0;
         this.preload_featured_stickers = (readInt32 & 16) != 0;
         this.revoke_pm_inbox = (readInt32 & 64) != 0;
-        this.blocked_mode = (readInt32 & LiteMode.FLAG_CHAT_BLUR) != 0;
-        this.force_try_ipv6 = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0;
+        this.blocked_mode = (readInt32 & 256) != 0;
+        this.force_try_ipv6 = (readInt32 & 16384) != 0;
         this.date = abstractSerializedData.readInt32(z);
         this.expires = abstractSerializedData.readInt32(z);
         this.test_mode = abstractSerializedData.readBool(z);
@@ -121,7 +120,7 @@ public class TLRPC$TL_config extends TLObject {
         if ((this.flags & 128) != 0) {
             this.autoupdate_url_prefix = abstractSerializedData.readString(z);
         }
-        if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+        if ((this.flags & 512) != 0) {
             this.gif_search_username = abstractSerializedData.readString(z);
         }
         if ((this.flags & 1024) != 0) {
@@ -130,7 +129,7 @@ public class TLRPC$TL_config extends TLObject {
         if ((this.flags & 2048) != 0) {
             this.img_search_username = abstractSerializedData.readString(z);
         }
-        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0) {
+        if ((this.flags & 4096) != 0) {
             this.static_maps_provider = abstractSerializedData.readString(z);
         }
         this.caption_length_max = abstractSerializedData.readInt32(z);
@@ -145,7 +144,7 @@ public class TLRPC$TL_config extends TLObject {
         if ((this.flags & 4) != 0) {
             this.base_lang_pack_version = abstractSerializedData.readInt32(z);
         }
-        if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
+        if ((this.flags & 32768) != 0) {
             this.reactions_default = TLRPC$Reaction.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
         if ((this.flags & 65536) != 0) {
@@ -162,9 +161,9 @@ public class TLRPC$TL_config extends TLObject {
         this.flags = i2;
         int i3 = this.revoke_pm_inbox ? i2 | 64 : i2 & (-65);
         this.flags = i3;
-        int i4 = this.blocked_mode ? i3 | LiteMode.FLAG_CHAT_BLUR : i3 & (-257);
+        int i4 = this.blocked_mode ? i3 | 256 : i3 & (-257);
         this.flags = i4;
-        int i5 = this.force_try_ipv6 ? i4 | LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM : i4 & (-16385);
+        int i5 = this.force_try_ipv6 ? i4 | 16384 : i4 & (-16385);
         this.flags = i5;
         abstractSerializedData.writeInt32(i5);
         abstractSerializedData.writeInt32(this.date);
@@ -206,7 +205,7 @@ public class TLRPC$TL_config extends TLObject {
         if ((this.flags & 128) != 0) {
             abstractSerializedData.writeString(this.autoupdate_url_prefix);
         }
-        if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+        if ((this.flags & 512) != 0) {
             abstractSerializedData.writeString(this.gif_search_username);
         }
         if ((this.flags & 1024) != 0) {
@@ -215,7 +214,7 @@ public class TLRPC$TL_config extends TLObject {
         if ((this.flags & 2048) != 0) {
             abstractSerializedData.writeString(this.img_search_username);
         }
-        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0) {
+        if ((this.flags & 4096) != 0) {
             abstractSerializedData.writeString(this.static_maps_provider);
         }
         abstractSerializedData.writeInt32(this.caption_length_max);
@@ -230,7 +229,7 @@ public class TLRPC$TL_config extends TLObject {
         if ((this.flags & 4) != 0) {
             abstractSerializedData.writeInt32(this.base_lang_pack_version);
         }
-        if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
+        if ((this.flags & 32768) != 0) {
             this.reactions_default.serializeToStream(abstractSerializedData);
         }
         if ((this.flags & 65536) != 0) {

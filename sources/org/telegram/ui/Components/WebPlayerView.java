@@ -50,7 +50,6 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.VideoPlayer;
 import org.telegram.ui.Components.WebPlayerView;
-import org.webrtc.MediaStreamTrack;
 public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerDelegate, AudioManager.OnAudioFocusChangeListener {
     private static int lastContainerId = 4001;
     private boolean allowInlineAnimation;
@@ -714,8 +713,8 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
             }
             try {
                 JSONObject jSONObject = new JSONObject(downloadUrlContent).getJSONObject("file_versions").getJSONObject("mobile");
-                String string = jSONObject.getString(MediaStreamTrack.VIDEO_TRACK_KIND);
-                String string2 = jSONObject.getJSONArray(MediaStreamTrack.AUDIO_TRACK_KIND).getString(0);
+                String string = jSONObject.getString("video");
+                String string2 = jSONObject.getJSONArray("audio").getString(0);
                 if (string != null && string2 != null) {
                     String[] strArr = this.results;
                     strArr[0] = string;
@@ -1501,7 +1500,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
             return;
         }
         this.hasAudioFocus = true;
-        ((AudioManager) ApplicationLoader.applicationContext.getSystemService(MediaStreamTrack.AUDIO_TRACK_KIND)).requestAudioFocus(this, 3, 1);
+        ((AudioManager) ApplicationLoader.applicationContext.getSystemService("audio")).requestAudioFocus(this, 3, 1);
     }
 
     @Override

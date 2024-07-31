@@ -544,8 +544,8 @@ public class AnimatedEmojiDrawable extends Drawable {
     }
 
     public static void updateLiteModeValues() {
-        liteModeKeyboard = LiteMode.isEnabled(LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD);
-        liteModeReactions = LiteMode.isEnabled(LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS);
+        liteModeKeyboard = LiteMode.isEnabled(16388);
+        liteModeReactions = LiteMode.isEnabled(8200);
     }
 
     public TLRPC$Document getDocument() {

@@ -91,9 +91,9 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
         Context applicationContext = getApplicationContext();
         this.mediaSession.setSessionActivity(PendingIntent.getActivity(applicationContext, 99, new Intent(applicationContext, LaunchActivity.class), 167772160));
         Bundle bundle = new Bundle();
-        bundle.putBoolean(SLOT_RESERVATION_QUEUE, true);
-        bundle.putBoolean(SLOT_RESERVATION_SKIP_TO_PREV, true);
-        bundle.putBoolean(SLOT_RESERVATION_SKIP_TO_NEXT, true);
+        bundle.putBoolean("com.google.android.gms.car.media.ALWAYS_RESERVE_SPACE_FOR.ACTION_QUEUE", true);
+        bundle.putBoolean("com.google.android.gms.car.media.ALWAYS_RESERVE_SPACE_FOR.ACTION_SKIP_TO_PREVIOUS", true);
+        bundle.putBoolean("com.google.android.gms.car.media.ALWAYS_RESERVE_SPACE_FOR.ACTION_SKIP_TO_NEXT", true);
         this.mediaSession.setExtras(bundle);
     }
 
@@ -113,7 +113,7 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
         if (str == null || (!(1000 == i || Process.myUid() == i || str.equals("com.google.android.mediasimulator") || str.equals("com.google.android.projection.gearhead")) || passcode())) {
             return null;
         }
-        return new MediaBrowserService.BrowserRoot(MEDIA_ID_ROOT, null);
+        return new MediaBrowserService.BrowserRoot("__ROOT__", null);
     }
 
     @Override

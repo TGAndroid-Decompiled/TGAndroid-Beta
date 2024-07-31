@@ -37,7 +37,6 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.browser.Browser;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
@@ -1198,7 +1197,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         public void dispatchDraw(Canvas canvas) {
             int childAdapterPosition;
             int size = (ChatEditTypeActivity.this.usernames.size() + 1) - 1;
-            int i = ConnectionsManager.DEFAULT_DATACENTER_ID;
+            int i = Integer.MAX_VALUE;
             int i2 = Integer.MIN_VALUE;
             for (int i3 = 0; i3 < getChildCount(); i3++) {
                 View childAt = getChildAt(i3);

@@ -1,6 +1,4 @@
 package okio;
-
-import org.telegram.messenger.LiteMode;
 public final class Segment {
     final byte[] data;
     int limit;
@@ -11,7 +9,7 @@ public final class Segment {
     boolean shared;
 
     public Segment() {
-        this.data = new byte[LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM];
+        this.data = new byte[8192];
         this.owner = true;
         this.shared = false;
     }

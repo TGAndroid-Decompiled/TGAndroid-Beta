@@ -60,8 +60,6 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLoader;
-import org.telegram.messenger.LiteMode;
-import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
@@ -70,13 +68,11 @@ import org.telegram.messenger.camera.CameraController;
 import org.telegram.messenger.camera.CameraView;
 import org.telegram.messenger.video.MP4Builder;
 import org.telegram.messenger.video.Mp4Movie;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.InstantCameraView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieDrawable;
-import org.webrtc.EglBase;
 @SuppressLint({"NewApi"})
 public class CameraView extends FrameLayout implements TextureView.SurfaceTextureListener, CameraController.ICameraView, CameraController.ErrorCallback {
     private static final int MSG_AUDIOFRAME_AVAILABLE = 3;
@@ -492,7 +488,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         this.outerPaint.setColor(-1);
         this.outerPaint.setStyle(Paint.Style.STROKE);
         this.outerPaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        this.innerPaint.setColor(ConnectionsManager.DEFAULT_DATACENTER_ID);
+        this.innerPaint.setColor(Integer.MAX_VALUE);
     }
 
     public void initTexture() {
@@ -1345,7 +1341,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                 } else if (iArr[0] > 0) {
                     EGLConfig eGLConfig = eGLConfigArr[0];
                     this.eglConfig = eGLConfig;
-                    EGLContext eglCreateContext = this.egl10.eglCreateContext(this.eglDisplay, eGLConfig, EGL10.EGL_NO_CONTEXT, new int[]{EGL_CONTEXT_CLIENT_VERSION, 2, 12344});
+                    EGLContext eglCreateContext = this.egl10.eglCreateContext(this.eglDisplay, eGLConfig, EGL10.EGL_NO_CONTEXT, new int[]{12440, 2, 12344});
                     this.eglContext = eglCreateContext;
                     if (eglCreateContext == null || eglCreateContext == EGL10.EGL_NO_CONTEXT) {
                         this.eglContext = null;
@@ -1975,7 +1971,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             return;
         }
         surfaceTexture.setDefaultBufferSize(sizeArr[i].getWidth(), this.previewSize[i].getHeight());
-        final CameraSession cameraSession = new CameraSession(this.info[i], this.previewSize[i], this.pictureSize[i], LiteMode.FLAG_CHAT_BLUR, false);
+        final CameraSession cameraSession = new CameraSession(this.info[i], this.previewSize[i], this.pictureSize[i], 256, false);
         cameraSession.setCurrentFlashMode("off");
         this.cameraSession[i] = CameraSessionWrapper.of(cameraSession);
         cameraGLThread.setCurrentSession(this.cameraSession[i], i);
@@ -2273,7 +2269,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             boolean z = CameraView.this.dual;
             if (z) {
                 GLES20.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-                GLES20.glClear(LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM);
+                GLES20.glClear(16384);
             }
             float f = CameraView.this.lastCrossfadeValue;
             boolean z2 = f > 0.0f;
@@ -2459,7 +2455,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         public void prepareEncoder() {
             MediaCodec mediaCodec;
             try {
-                int minBufferSize = AudioRecord.getMinBufferSize(CameraView.audioSampleRate, 16, 2);
+                int minBufferSize = AudioRecord.getMinBufferSize(44100, 16, 2);
                 if (minBufferSize <= 0) {
                     minBufferSize = 3584;
                 }
@@ -2467,7 +2463,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                 for (int i2 = 0; i2 < 3; i2++) {
                     this.buffers.add(new InstantCameraView.AudioBufferInfo());
                 }
-                AudioRecord audioRecord = new AudioRecord(0, CameraView.audioSampleRate, 16, 2, i);
+                AudioRecord audioRecord = new AudioRecord(0, 44100, 16, 2, i);
                 this.audioRecorder = audioRecord;
                 audioRecord.startRecording();
                 if (BuildVars.LOGS_ENABLED) {
@@ -2480,7 +2476,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                 this.videoBufferInfo = new MediaCodec.BufferInfo();
                 MediaFormat mediaFormat = new MediaFormat();
                 mediaFormat.setString("mime", "audio/mp4a-latm");
-                mediaFormat.setInteger("sample-rate", CameraView.audioSampleRate);
+                mediaFormat.setInteger("sample-rate", 44100);
                 mediaFormat.setInteger("channel-count", 1);
                 mediaFormat.setInteger("bitrate", 32000);
                 mediaFormat.setInteger("max-input-size", 20480);
@@ -2489,24 +2485,24 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                 createEncoderByType.configure(mediaFormat, (Surface) null, (MediaCrypto) null, 1);
                 this.audioEncoder.start();
                 boolean z = CameraView.this.isStory;
-                this.outputMimeType = z ? VIDEO_MIME_TYPE : MediaController.VIDEO_MIME_TYPE;
+                this.outputMimeType = z ? "video/hevc" : "video/avc";
                 if (z) {
                     String findGoodHevcEncoder = SharedConfig.findGoodHevcEncoder();
                     if (findGoodHevcEncoder != null) {
                         this.videoEncoder = MediaCodec.createByCodecName(findGoodHevcEncoder);
                     }
                 } else {
-                    this.outputMimeType = MediaController.VIDEO_MIME_TYPE;
-                    this.videoEncoder = MediaCodec.createEncoderByType(MediaController.VIDEO_MIME_TYPE);
+                    this.outputMimeType = "video/avc";
+                    this.videoEncoder = MediaCodec.createEncoderByType("video/avc");
                 }
-                if (this.outputMimeType.equals(VIDEO_MIME_TYPE) && (mediaCodec = this.videoEncoder) != null && !mediaCodec.getCodecInfo().isHardwareAccelerated()) {
+                if (this.outputMimeType.equals("video/hevc") && (mediaCodec = this.videoEncoder) != null && !mediaCodec.getCodecInfo().isHardwareAccelerated()) {
                     FileLog.e("hevc encoder isn't hardware accelerated");
                     this.videoEncoder.release();
                     this.videoEncoder = null;
                 }
-                if (this.videoEncoder == null && this.outputMimeType.equals(VIDEO_MIME_TYPE)) {
-                    this.outputMimeType = MediaController.VIDEO_MIME_TYPE;
-                    this.videoEncoder = MediaCodec.createEncoderByType(MediaController.VIDEO_MIME_TYPE);
+                if (this.videoEncoder == null && this.outputMimeType.equals("video/hevc")) {
+                    this.outputMimeType = "video/avc";
+                    this.videoEncoder = MediaCodec.createEncoderByType("video/avc");
                 }
                 this.firstEncode = true;
                 MediaFormat createVideoFormat = MediaFormat.createVideoFormat(this.outputMimeType, CameraView.this.videoWidth, CameraView.this.videoHeight);
@@ -2549,7 +2545,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                 }
                 if (this.eglContext == EGL14.EGL_NO_CONTEXT) {
                     android.opengl.EGLConfig[] eGLConfigArr = new android.opengl.EGLConfig[1];
-                    if (!EGL14.eglChooseConfig(this.eglDisplay, new int[]{12324, 8, 12323, 8, 12322, 8, 12321, 8, 12352, 4, EglBase.EGL_RECORDABLE_ANDROID, 1, 12344}, 0, eGLConfigArr, 0, 1, new int[1], 0)) {
+                    if (!EGL14.eglChooseConfig(this.eglDisplay, new int[]{12324, 8, 12323, 8, 12322, 8, 12321, 8, 12352, 4, 12610, 1, 12344}, 0, eGLConfigArr, 0, 1, new int[1], 0)) {
                         throw new RuntimeException("Unable to find a suitable EGLConfig");
                     }
                     this.eglContext = EGL14.eglCreateContext(this.eglDisplay, eGLConfigArr[0], this.sharedEglContext, new int[]{12440, 2, 12344}, 0);

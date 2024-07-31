@@ -903,7 +903,7 @@ public class AnimatedEmojiSpan extends ReplacementSpan {
 
         private void checkBackgroundRendering() {
             DrawingInBackgroundThreadDrawable drawingInBackgroundThreadDrawable;
-            if (this.allowBackgroundRendering && this.holders.size() >= 10 && this.backgroundThreadDrawable == null && LiteMode.isEnabled(LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD)) {
+            if (this.allowBackgroundRendering && this.holders.size() >= 10 && this.backgroundThreadDrawable == null && LiteMode.isEnabled(16388)) {
                 DrawingInBackgroundThreadDrawable drawingInBackgroundThreadDrawable2 = new DrawingInBackgroundThreadDrawable() {
                     private final ArrayList<AnimatedEmojiHolder> backgroundHolders = new ArrayList<>();
 

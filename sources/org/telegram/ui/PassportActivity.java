@@ -79,7 +79,6 @@ import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
@@ -6028,7 +6027,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                         TLRPC$account_Password tLRPC$account_Password = this.currentPassword;
                         tLRPC$account_Password.hint = (String) objArr[5];
                         tLRPC$account_Password.srp_id = -1L;
-                        byte[] bArr = new byte[LiteMode.FLAG_CHAT_BLUR];
+                        byte[] bArr = new byte[256];
                         tLRPC$account_Password.srp_B = bArr;
                         Utilities.random.nextBytes(bArr);
                         EditTextBoldCursor[] editTextBoldCursorArr2 = this.inputFields;
@@ -6672,7 +6671,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
         this.uploadingDocuments.put(secureDocument.path, secureDocument);
         this.doneItem.setEnabled(false);
         this.doneItem.setAlpha(0.5f);
-        FileLoader.getInstance(this.currentAccount).uploadFile(secureDocument.path, false, true, ConnectionsManager.FileTypePhoto);
+        FileLoader.getInstance(this.currentAccount).uploadFile(secureDocument.path, false, true, 16777216);
         addDocumentView(secureDocument, i);
         updateUploadText(i);
     }

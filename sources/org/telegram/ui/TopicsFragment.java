@@ -2048,7 +2048,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             TopicsFragment.this.getNotificationsController().muteDialog(-TopicsFragment.this.chatId, this.val$topic.id, z);
             if (BulletinFactory.canShowBulletin(TopicsFragment.this)) {
                 TopicsFragment topicsFragment = TopicsFragment.this;
-                BulletinFactory.createMuteBulletin(topicsFragment, z ? 3 : 4, z ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0, topicsFragment.getResourceProvider()).show();
+                BulletinFactory.createMuteBulletin(topicsFragment, z ? 3 : 4, z ? Integer.MAX_VALUE : 0, topicsFragment.getResourceProvider()).show();
             }
         }
     }

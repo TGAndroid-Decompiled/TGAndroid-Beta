@@ -12,7 +12,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Components.RecyclerAnimationScrollHelper;
 import org.telegram.ui.Components.RecyclerListView;
@@ -175,7 +174,7 @@ public class RecyclerAnimationScrollHelper {
             }
             RecyclerAnimationScrollHelper.this.oldStableIds.clear();
             Iterator it = this.val$oldViews.iterator();
-            int i13 = ConnectionsManager.DEFAULT_DATACENTER_ID;
+            int i13 = Integer.MAX_VALUE;
             int i14 = 0;
             while (it.hasNext()) {
                 View view3 = (View) it.next();

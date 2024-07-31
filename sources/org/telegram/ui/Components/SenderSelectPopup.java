@@ -96,7 +96,7 @@ public class SenderSelectPopup extends ActionBarPopupWindow {
         this.scrimPopupContainerLayout.setPadding(rect.left, rect.top, rect.right, rect.bottom);
         View view = new View(context);
         this.dimView = view;
-        view.setBackgroundColor(AndroidUtilities.DARK_STATUS_BAR_OVERLAY);
+        view.setBackgroundColor(855638016);
         final int dp = AndroidUtilities.dp(450.0f);
         final int width = (int) (chatActivity.contentView.getWidth() * 0.75f);
         LinearLayout linearLayout = new LinearLayout(this, context) {
@@ -576,7 +576,7 @@ public class SenderSelectPopup extends ActionBarPopupWindow {
             linearLayout.addView(textView);
             TextView textView2 = new TextView(context);
             this.subtitle = textView2;
-            textView2.setTextColor(ColorUtils.setAlphaComponent(Theme.getColor(i2), R.styleable.AppCompatTheme_textAppearanceLargePopupMenu));
+            textView2.setTextColor(ColorUtils.setAlphaComponent(Theme.getColor(i2), 102));
             textView2.setTextSize(1, 14.0f);
             textView2.setTag(textView2);
             textView2.setMaxLines(1);

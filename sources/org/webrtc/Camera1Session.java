@@ -39,7 +39,7 @@ public class Camera1Session implements CameraSession {
 
     public static void create(CameraSession.CreateSessionCallback createSessionCallback, CameraSession.Events events, boolean z, Context context, SurfaceTextureHelper surfaceTextureHelper, int i, int i2, int i3, int i4) {
         long nanoTime = System.nanoTime();
-        Logging.d(TAG, "Open camera " + i);
+        Logging.d("Camera1Session", "Open camera " + i);
         events.onCameraOpening();
         try {
             Camera open = Camera.open(i);
@@ -97,7 +97,7 @@ public class Camera1Session implements CameraSession {
 
     private static CameraEnumerationAndroid.CaptureFormat findClosestCaptureFormat(Camera.Parameters parameters, int i, int i2, int i3) {
         List<CameraEnumerationAndroid.CaptureFormat.FramerateRange> convertFramerates = Camera1Enumerator.convertFramerates(parameters.getSupportedPreviewFpsRange());
-        Logging.d(TAG, "Available fps ranges: " + convertFramerates);
+        Logging.d("Camera1Session", "Available fps ranges: " + convertFramerates);
         CameraEnumerationAndroid.CaptureFormat.FramerateRange closestSupportedFramerateRange = CameraEnumerationAndroid.getClosestSupportedFramerateRange(convertFramerates, i3);
         Size closestSupportedSize = CameraEnumerationAndroid.getClosestSupportedSize(Camera1Enumerator.convertSizes(parameters.getSupportedPreviewSizes()), i, i2);
         CameraEnumerationAndroid.reportCameraResolution(camera1ResolutionHistogram, closestSupportedSize);
@@ -109,7 +109,7 @@ public class Camera1Session implements CameraSession {
     }
 
     private Camera1Session(CameraSession.Events events, boolean z, Context context, SurfaceTextureHelper surfaceTextureHelper, int i, Camera camera, Camera.CameraInfo cameraInfo, CameraEnumerationAndroid.CaptureFormat captureFormat, long j) {
-        Logging.d(TAG, "Create new camera1 session on camera " + i);
+        Logging.d("Camera1Session", "Create new camera1 session on camera " + i);
         this.cameraThreadHandler = new Handler();
         this.events = events;
         this.captureToTexture = z;
@@ -127,7 +127,7 @@ public class Camera1Session implements CameraSession {
 
     @Override
     public void stop() {
-        Logging.d(TAG, "Stop camera1 session on camera " + this.cameraId);
+        Logging.d("Camera1Session", "Stop camera1 session on camera " + this.cameraId);
         checkIsOnCameraThread();
         if (this.state != SessionState.STOPPED) {
             long nanoTime = System.nanoTime();
@@ -137,7 +137,7 @@ public class Camera1Session implements CameraSession {
     }
 
     private void startCapturing() {
-        Logging.d(TAG, "Start capturing");
+        Logging.d("Camera1Session", "Start capturing");
         checkIsOnCameraThread();
         this.state = SessionState.RUNNING;
         this.camera.setErrorCallback(new Camera.ErrorCallback() {
@@ -149,7 +149,7 @@ public class Camera1Session implements CameraSession {
                 } else {
                     str = "Camera error: " + i;
                 }
-                Logging.e(Camera1Session.TAG, str);
+                Logging.e("Camera1Session", str);
                 Camera1Session.this.stopInternal();
                 if (i == 2) {
                     Camera1Session.this.events.onCameraDisconnected(Camera1Session.this);
@@ -173,12 +173,12 @@ public class Camera1Session implements CameraSession {
     }
 
     public void stopInternal() {
-        Logging.d(TAG, "Stop internal");
+        Logging.d("Camera1Session", "Stop internal");
         checkIsOnCameraThread();
         SessionState sessionState = this.state;
         SessionState sessionState2 = SessionState.STOPPED;
         if (sessionState == sessionState2) {
-            Logging.d(TAG, "Camera is already stopped");
+            Logging.d("Camera1Session", "Camera is already stopped");
             return;
         }
         this.state = sessionState2;
@@ -190,7 +190,7 @@ public class Camera1Session implements CameraSession {
         if (orientationHelper != null) {
             orientationHelper.stop();
         }
-        Logging.d(TAG, "Stop done");
+        Logging.d("Camera1Session", "Stop done");
     }
 
     private void listenForTextureFrames() {
@@ -210,7 +210,7 @@ public class Camera1Session implements CameraSession {
     public void lambda$listenForTextureFrames$0(VideoFrame videoFrame) {
         checkIsOnCameraThread();
         if (this.state != SessionState.RUNNING) {
-            Logging.d(TAG, "Texture frame captured but camera is no longer running.");
+            Logging.d("Camera1Session", "Texture frame captured but camera is no longer running.");
             return;
         }
         if (!this.firstFrameReported) {
@@ -231,7 +231,7 @@ public class Camera1Session implements CameraSession {
             Camera1Session.this.checkIsOnCameraThread();
             if (camera == Camera1Session.this.camera) {
                 if (Camera1Session.this.state != SessionState.RUNNING) {
-                    Logging.d(Camera1Session.TAG, "Bytebuffer frame captured but camera is no longer running.");
+                    Logging.d("Camera1Session", "Bytebuffer frame captured but camera is no longer running.");
                     return;
                 }
                 long nanos = TimeUnit.MILLISECONDS.toNanos(SystemClock.elapsedRealtime());
@@ -249,7 +249,7 @@ public class Camera1Session implements CameraSession {
                 videoFrame.release();
                 return;
             }
-            Logging.e(Camera1Session.TAG, "Callback from a different camera. This should never happen.");
+            Logging.e("Camera1Session", "Callback from a different camera. This should never happen.");
         }
 
         public void lambda$onPreviewFrame$1(final byte[] bArr) {

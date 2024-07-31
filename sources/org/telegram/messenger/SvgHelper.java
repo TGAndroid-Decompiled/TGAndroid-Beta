@@ -569,8 +569,8 @@ public class SvgHelper {
                     case '\t':
                     case '\n':
                     case ' ':
-                    case R.styleable.AppCompatTheme_buttonBarPositiveButtonStyle:
-                    case R.styleable.AppCompatTheme_buttonBarStyle:
+                    case ',':
+                    case '-':
                         if (charAt == '-' && str.charAt(i2 - 1) == 'e') {
                             break;
                         } else {
@@ -590,24 +590,24 @@ public class SvgHelper {
                                 continue;
                             }
                         }
-                    case R.styleable.AppCompatTheme_buttonBarButtonStyle:
+                    case ')':
                     case 'A':
-                    case R.styleable.AppCompatTheme_dropdownListPreferredItemHeight:
-                    case R.styleable.AppCompatTheme_imageButtonStyle:
-                    case R.styleable.AppCompatTheme_listDividerAlertDialog:
-                    case R.styleable.AppCompatTheme_listMenuViewStyle:
-                    case R.styleable.AppCompatTheme_listPreferredItemHeightSmall:
-                    case R.styleable.AppCompatTheme_listPreferredItemPaddingLeft:
-                    case R.styleable.AppCompatTheme_listPreferredItemPaddingRight:
+                    case 'C':
+                    case 'H':
+                    case 'L':
+                    case 'M':
+                    case 'Q':
+                    case 'S':
+                    case 'T':
                     case 'V':
-                    case R.styleable.AppCompatTheme_popupWindowStyle:
-                    case R.styleable.AppCompatTheme_selectableItemBackground:
-                    case R.styleable.AppCompatTheme_spinnerDropDownItemStyle:
-                    case R.styleable.AppCompatTheme_textAppearanceListItemSecondary:
-                    case R.styleable.AppCompatTheme_textAppearanceSearchResultTitle:
-                    case R.styleable.AppCompatTheme_textAppearanceSmallPopupMenu:
-                    case R.styleable.AppCompatTheme_toolbarStyle:
-                    case R.styleable.AppCompatTheme_tooltipFrameBackground:
+                    case 'Z':
+                    case 'a':
+                    case 'c':
+                    case 'h':
+                    case 'l':
+                    case 'm':
+                    case 'q':
+                    case 's':
                     case 't':
                     case 'v':
                     case 'z':
@@ -1138,8 +1138,8 @@ public class SvgHelper {
                             break;
                         }
                         break;
-                    case R.styleable.AppCompatTheme_textAppearanceListItem:
-                        if (str2.equals(ImageLoader.AUTOPLAY_FILTER)) {
+                    case 103:
+                        if (str2.equals("g")) {
                             c = 3;
                             break;
                         }
@@ -1453,8 +1453,8 @@ public class SvgHelper {
             str2.hashCode();
             char c = 65535;
             switch (str2.hashCode()) {
-                case R.styleable.AppCompatTheme_textAppearanceListItem:
-                    if (str2.equals(ImageLoader.AUTOPLAY_FILTER)) {
+                case 103:
+                    if (str2.equals("g")) {
                         c = 0;
                         break;
                     }

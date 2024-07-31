@@ -340,7 +340,7 @@ public class AndroidUtilities {
     public static Typeface bold() {
         Typeface typeface = mediumTypeface;
         if (typeface == null && typeface == null) {
-            mediumTypeface = getTypeface(TYPEFACE_ROBOTO_MEDIUM);
+            mediumTypeface = getTypeface("fonts/rmedium.ttf");
         }
         return mediumTypeface;
     }
@@ -421,7 +421,7 @@ public class AndroidUtilities {
                 indexOf -= Math.max(0, indexOf - (i2 / 2));
                 charSequence.length();
             }
-            staticLayout = new StaticLayout(charSequence, textPaint, ConnectionsManager.DEFAULT_DATACENTER_ID, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            staticLayout = new StaticLayout(charSequence, textPaint, Integer.MAX_VALUE, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             lineWidth = staticLayout.getLineWidth(0);
             f = i;
         } catch (Exception e) {
@@ -1331,10 +1331,10 @@ public class AndroidUtilities {
         double[] rgbToHsv = rgbToHsv((i2 >> 16) & 255, (i2 >> 8) & 255, i2 & 255);
         rgbToHsv[1] = Math.min(1.0d, rgbToHsv[1] + 0.05d + ((1.0d - rgbToHsv[1]) * 0.1d));
         int[] hsvToRgb = hsvToRgb(rgbToHsv[0], rgbToHsv[1], Math.max(0.0d, rgbToHsv[2] * 0.65d));
-        iArr[0] = Color.argb((int) R.styleable.AppCompatTheme_textAppearanceLargePopupMenu, hsvToRgb[0], hsvToRgb[1], hsvToRgb[2]);
+        iArr[0] = Color.argb(102, hsvToRgb[0], hsvToRgb[1], hsvToRgb[2]);
         iArr[1] = Color.argb(136, hsvToRgb[0], hsvToRgb[1], hsvToRgb[2]);
         int[] hsvToRgb2 = hsvToRgb(rgbToHsv[0], rgbToHsv[1], Math.max(0.0d, rgbToHsv[2] * 0.72d));
-        iArr[2] = Color.argb((int) R.styleable.AppCompatTheme_textAppearanceLargePopupMenu, hsvToRgb2[0], hsvToRgb2[1], hsvToRgb2[2]);
+        iArr[2] = Color.argb(102, hsvToRgb2[0], hsvToRgb2[1], hsvToRgb2[2]);
         iArr[3] = Color.argb(136, hsvToRgb2[0], hsvToRgb2[1], hsvToRgb2[2]);
         return iArr;
     }
@@ -3463,7 +3463,7 @@ public class AndroidUtilities {
     }
 
     public static boolean copyFile(InputStream inputStream, OutputStream outputStream) throws IOException {
-        byte[] bArr = new byte[LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM];
+        byte[] bArr = new byte[4096];
         while (true) {
             int read = inputStream.read(bArr);
             if (read > 0) {
@@ -4221,7 +4221,7 @@ public class AndroidUtilities {
         AccessibilityManager accessibilityManager2 = (AccessibilityManager) ApplicationLoader.applicationContext.getSystemService("accessibility");
         if (accessibilityManager2.isEnabled()) {
             AccessibilityEvent obtain = AccessibilityEvent.obtain();
-            obtain.setEventType(LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM);
+            obtain.setEventType(16384);
             obtain.getText().add(charSequence);
             accessibilityManager2.sendAccessibilityEvent(obtain);
         }
@@ -4363,7 +4363,7 @@ public class AndroidUtilities {
         int i4 = red - red2;
         int green2 = green - Color.green(i2);
         int blue2 = blue - Color.blue(i2);
-        return ((((i3 + LiteMode.FLAG_CALLS_ANIMATIONS) * i4) * i4) >> 8) + (green2 * 4 * green2) + ((((767 - i3) * blue2) * blue2) >> 8);
+        return ((((i3 + 512) * i4) * i4) >> 8) + (green2 * 4 * green2) + ((((767 - i3) * blue2) * blue2) >> 8);
     }
 
     public static int getAverageColor(int i, int i2) {
@@ -4379,8 +4379,8 @@ public class AndroidUtilities {
             View decorView = window.getDecorView();
             int systemUiVisibility = decorView.getSystemUiVisibility();
             if (z) {
-                if ((systemUiVisibility & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) == 0) {
-                    decorView.setSystemUiVisibility(systemUiVisibility | LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM);
+                if ((systemUiVisibility & 8192) == 0) {
+                    decorView.setSystemUiVisibility(systemUiVisibility | 8192);
                 }
                 if (window.getStatusBarColor() != 0) {
                     window.setStatusBarColor(0);
@@ -4388,7 +4388,7 @@ public class AndroidUtilities {
                 }
                 return;
             }
-            if ((systemUiVisibility & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0) {
+            if ((systemUiVisibility & 8192) != 0) {
                 decorView.setSystemUiVisibility(systemUiVisibility & (-8193));
             }
             if (window.getStatusBarColor() != 0) {
@@ -4416,8 +4416,8 @@ public class AndroidUtilities {
             return;
         }
         int systemUiVisibility = view.getSystemUiVisibility();
-        if (((systemUiVisibility & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) > 0) != z) {
-            view.setSystemUiVisibility(z ? systemUiVisibility | LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM : systemUiVisibility & (-8193));
+        if (((systemUiVisibility & 8192) > 0) != z) {
+            view.setSystemUiVisibility(z ? systemUiVisibility | 8192 : systemUiVisibility & (-8193));
         }
     }
 

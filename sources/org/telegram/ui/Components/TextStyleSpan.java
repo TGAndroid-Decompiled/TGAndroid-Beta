@@ -4,7 +4,6 @@ import android.graphics.Typeface;
 import android.text.TextPaint;
 import android.text.style.MetricAffectingSpan;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LiteMode;
 import org.telegram.tgnet.TLRPC$MessageEntity;
 import org.telegram.ui.ActionBar.Theme;
 public class TextStyleSpan extends MetricAffectingSpan {
@@ -57,7 +56,7 @@ public class TextStyleSpan extends MetricAffectingSpan {
             } else {
                 textPaint.setFlags(textPaint.getFlags() & (-17));
             }
-            if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+            if ((this.flags & 512) != 0) {
                 textPaint.bgColor = Theme.getColor(Theme.key_chats_archivePullDownBackground);
             }
         }
@@ -74,7 +73,7 @@ public class TextStyleSpan extends MetricAffectingSpan {
                     }
                     return null;
                 }
-                return AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM_ITALIC);
+                return AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf");
             }
             return Typeface.MONOSPACE;
         }
@@ -101,12 +100,12 @@ public class TextStyleSpan extends MetricAffectingSpan {
     }
 
     public boolean isSpoiler() {
-        return (this.style.flags & LiteMode.FLAG_CHAT_BLUR) > 0;
+        return (this.style.flags & 256) > 0;
     }
 
     public void setSpoilerRevealed(boolean z) {
         if (z) {
-            this.style.flags |= LiteMode.FLAG_CALLS_ANIMATIONS;
+            this.style.flags |= 512;
             return;
         }
         this.style.flags &= -513;

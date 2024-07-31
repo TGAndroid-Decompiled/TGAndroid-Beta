@@ -29,7 +29,6 @@ import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
@@ -261,7 +260,7 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
         this.editText = editTextCaption;
         editTextCaption.setImeOptions(268435456);
         EditTextCaption editTextCaption2 = this.editText;
-        editTextCaption2.setInputType(editTextCaption2.getInputType() | LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM);
+        editTextCaption2.setInputType(editTextCaption2.getInputType() | 16384);
         EditTextCaption editTextCaption3 = this.editText;
         editTextCaption3.setFocusable(editTextCaption3.isEnabled());
         this.editText.setCursorSize(AndroidUtilities.dp(20.0f));

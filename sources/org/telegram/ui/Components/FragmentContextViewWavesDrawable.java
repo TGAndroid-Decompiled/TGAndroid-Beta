@@ -254,7 +254,7 @@ public class FragmentContextViewWavesDrawable {
         public void setToPaint(Paint paint) {
             int i = this.currentState;
             if (i == 0 || i == 1 || i == 3) {
-                if (!LiteMode.isEnabled(LiteMode.FLAG_CALLS_ANIMATIONS)) {
+                if (!LiteMode.isEnabled(512)) {
                     paint.setShader(null);
                     if (this.currentState == 3) {
                         paint.setColor(ColorUtils.blendARGB(ColorUtils.blendARGB(this.color1, this.color2, 0.5f), this.color3, 0.5f));

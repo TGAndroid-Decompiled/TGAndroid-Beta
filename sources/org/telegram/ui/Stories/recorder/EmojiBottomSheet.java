@@ -2288,7 +2288,7 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
             public int position;
             public int startOffset;
             ArrayList<EmojiImageView> drawInBackgroundViews = new ArrayList<>();
-            boolean lite = LiteMode.isEnabled(LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS);
+            boolean lite = LiteMode.isEnabled(8200);
 
             public DrawingInBackgroundLine() {
             }
@@ -2708,7 +2708,7 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
 
                     @Override
                     protected boolean isTabIconsAnimationEnabled(boolean z2) {
-                        return LiteMode.isEnabled(LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS);
+                        return LiteMode.isEnabled(8200);
                     }
                 };
                 this.categoriesListView = stickerCategoriesListView2;
@@ -3428,6 +3428,6 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
     }
 
     public static int getCacheType(boolean z) {
-        return LiteMode.isEnabled(z ? 1 : LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD) ? 3 : 13;
+        return LiteMode.isEnabled(z ? 1 : 16388) ? 3 : 13;
     }
 }

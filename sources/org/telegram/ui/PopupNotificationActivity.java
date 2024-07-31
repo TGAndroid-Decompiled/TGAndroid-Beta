@@ -27,7 +27,6 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
@@ -1026,8 +1025,8 @@ public class PopupNotificationActivity extends Activity implements NotificationC
             intent.putExtra("chatId", -dialogId);
         }
         intent.putExtra("currentAccount", this.currentMessageObject.currentAccount);
-        intent.setAction("com.tmessages.openchat" + Math.random() + ConnectionsManager.DEFAULT_DATACENTER_ID);
-        intent.setFlags(LiteMode.FLAG_CHAT_SCALE);
+        intent.setAction("com.tmessages.openchat" + Math.random() + Integer.MAX_VALUE);
+        intent.setFlags(32768);
         startActivity(intent);
         onFinish();
         finish();

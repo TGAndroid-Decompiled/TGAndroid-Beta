@@ -1,6 +1,4 @@
 package org.telegram.tgnet;
-
-import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_groupCallParticipant extends TLObject {
     public String about;
     public int active_date;
@@ -58,11 +56,11 @@ public class TLRPC$TL_groupCallParticipant extends TLObject {
         this.can_self_unmute = (readInt32 & 4) != 0;
         this.just_joined = (readInt32 & 16) != 0;
         this.versioned = (readInt32 & 32) != 0;
-        this.min = (readInt32 & LiteMode.FLAG_CHAT_BLUR) != 0;
-        this.muted_by_you = (readInt32 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0;
+        this.min = (readInt32 & 256) != 0;
+        this.muted_by_you = (readInt32 & 512) != 0;
         this.volume_by_admin = (readInt32 & 1024) != 0;
-        this.self = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
-        this.video_joined = (readInt32 & LiteMode.FLAG_CHAT_SCALE) != 0;
+        this.self = (readInt32 & 4096) != 0;
+        this.video_joined = (readInt32 & 32768) != 0;
         this.peer = TLRPC$Peer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         this.date = abstractSerializedData.readInt32(z);
         if ((this.flags & 8) != 0) {
@@ -75,13 +73,13 @@ public class TLRPC$TL_groupCallParticipant extends TLObject {
         if ((this.flags & 2048) != 0) {
             this.about = abstractSerializedData.readString(z);
         }
-        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0) {
+        if ((this.flags & 8192) != 0) {
             this.raise_hand_rating = abstractSerializedData.readInt64(z);
         }
         if ((this.flags & 64) != 0) {
             this.video = TLRPC$TL_groupCallParticipantVideo.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
-        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
+        if ((this.flags & 16384) != 0) {
             this.presentation = TLRPC$TL_groupCallParticipantVideo.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
     }
@@ -99,15 +97,15 @@ public class TLRPC$TL_groupCallParticipant extends TLObject {
         this.flags = i4;
         int i5 = this.versioned ? i4 | 32 : i4 & (-33);
         this.flags = i5;
-        int i6 = this.min ? i5 | LiteMode.FLAG_CHAT_BLUR : i5 & (-257);
+        int i6 = this.min ? i5 | 256 : i5 & (-257);
         this.flags = i6;
-        int i7 = this.muted_by_you ? i6 | LiteMode.FLAG_CALLS_ANIMATIONS : i6 & (-513);
+        int i7 = this.muted_by_you ? i6 | 512 : i6 & (-513);
         this.flags = i7;
         int i8 = this.volume_by_admin ? i7 | 1024 : i7 & (-1025);
         this.flags = i8;
-        int i9 = this.self ? i8 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i8 & (-4097);
+        int i9 = this.self ? i8 | 4096 : i8 & (-4097);
         this.flags = i9;
-        int i10 = this.video_joined ? i9 | LiteMode.FLAG_CHAT_SCALE : i9 & (-32769);
+        int i10 = this.video_joined ? i9 | 32768 : i9 & (-32769);
         this.flags = i10;
         abstractSerializedData.writeInt32(i10);
         this.peer.serializeToStream(abstractSerializedData);
@@ -122,13 +120,13 @@ public class TLRPC$TL_groupCallParticipant extends TLObject {
         if ((this.flags & 2048) != 0) {
             abstractSerializedData.writeString(this.about);
         }
-        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0) {
+        if ((this.flags & 8192) != 0) {
             abstractSerializedData.writeInt64(this.raise_hand_rating);
         }
         if ((this.flags & 64) != 0) {
             this.video.serializeToStream(abstractSerializedData);
         }
-        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
+        if ((this.flags & 16384) != 0) {
             this.presentation.serializeToStream(abstractSerializedData);
         }
     }

@@ -42,7 +42,6 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
@@ -51,7 +50,6 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$ChatFull;
 import org.telegram.tgnet.TLRPC$Document;
@@ -1218,7 +1216,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                 if (this.namePage.selectedColor != UserObject.getColorId(currentUser) || this.namePage.selectedEmoji != UserObject.getEmojiId(currentUser)) {
                     this.applyingName = true;
                     TLRPC$TL_account_updateColor tLRPC$TL_account_updateColor = new TLRPC$TL_account_updateColor();
-                    currentUser.flags2 |= LiteMode.FLAG_CHAT_BLUR;
+                    currentUser.flags2 |= 256;
                     TLRPC$TL_peerColor tLRPC$TL_peerColor2 = currentUser.color;
                     tLRPC$TL_peerColor2.flags |= 1;
                     tLRPC$TL_account_updateColor.flags |= 4;
@@ -1246,7 +1244,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                     }
                     TLRPC$TL_account_updateColor tLRPC$TL_account_updateColor2 = new TLRPC$TL_account_updateColor();
                     tLRPC$TL_account_updateColor2.for_profile = true;
-                    currentUser.flags2 |= LiteMode.FLAG_CALLS_ANIMATIONS;
+                    currentUser.flags2 |= 512;
                     if (this.profilePage.selectedColor < 0) {
                         currentUser.profile_color.flags &= -2;
                     } else {
@@ -1461,10 +1459,10 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             }
             CharSequence string = LocaleController.getString(i2);
             if (z && !z2 && MessagesController.getInstance(i).getMainSettings().getInt("boostingappearance", 0) < 3) {
-                int i4 = ConnectionsManager.DEFAULT_DATACENTER_ID;
+                int i4 = Integer.MAX_VALUE;
                 MessagesController.PeerColors peerColors = messagesController.peerColors;
                 if (peerColors != null) {
-                    int min = Math.min((int) ConnectionsManager.DEFAULT_DATACENTER_ID, peerColors.maxLevel());
+                    int min = Math.min(Integer.MAX_VALUE, peerColors.maxLevel());
                     int max = Math.max(0, messagesController.peerColors.maxLevel());
                     i4 = Math.min(min, messagesController.peerColors.minLevel());
                     i3 = Math.max(max, messagesController.peerColors.minLevel());

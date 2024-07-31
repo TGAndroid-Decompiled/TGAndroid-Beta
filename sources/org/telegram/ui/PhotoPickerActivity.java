@@ -53,7 +53,6 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationBadge;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
@@ -1346,7 +1345,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
     private void saveRecentSearch() {
         SharedPreferences.Editor edit = ApplicationLoader.applicationContext.getSharedPreferences("web_recent_search", 0).edit();
         edit.clear();
-        edit.putInt(NotificationBadge.NewHtcHomeBadger.COUNT, this.recentSearches.size());
+        edit.putInt("count", this.recentSearches.size());
         int size = this.recentSearches.size();
         for (int i = 0; i < size; i++) {
             edit.putString("recent" + i, this.recentSearches.get(i));
@@ -1356,7 +1355,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
 
     private void loadRecentSearch() {
         SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("web_recent_search", 0);
-        int i = sharedPreferences.getInt(NotificationBadge.NewHtcHomeBadger.COUNT, 0);
+        int i = sharedPreferences.getInt("count", 0);
         for (int i2 = 0; i2 < i; i2++) {
             String string = sharedPreferences.getString("recent" + i2, null);
             if (string == null) {

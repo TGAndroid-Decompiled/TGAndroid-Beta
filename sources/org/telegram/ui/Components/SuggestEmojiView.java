@@ -1039,7 +1039,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
             Paint paint = new Paint(1);
             this.backgroundPaint = paint;
             paint.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(2.0f)));
-            this.backgroundPaint.setShadowLayer(AndroidUtilities.dp(4.33f), 0.0f, AndroidUtilities.dp(0.33333334f), AndroidUtilities.DARK_STATUS_BAR_OVERLAY);
+            this.backgroundPaint.setShadowLayer(AndroidUtilities.dp(4.33f), 0.0f, AndroidUtilities.dp(0.33333334f), 855638016);
             this.backgroundPaint.setColor(Theme.getColor(Theme.key_chat_stickersHintPanel, this.resourcesProvider));
         }
         if (f < 1.0f) {

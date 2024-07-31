@@ -59,7 +59,6 @@ import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessagesController;
@@ -841,7 +840,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         frameLayout.addView(this.bottomShadow, LayoutHelper.createFrame(-1, 160, 80));
         View view2 = new View(context);
         this.topShadow = view2;
-        view2.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{ColorUtils.setAlphaComponent(-16777216, R.styleable.AppCompatTheme_textAppearanceLargePopupMenu), 0}));
+        view2.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{ColorUtils.setAlphaComponent(-16777216, 102), 0}));
         frameLayout.addView(this.topShadow, LayoutHelper.createFrame(-1, 160, 48));
         LinearLayout linearLayout = new LinearLayout(context) {
             @Override
@@ -984,7 +983,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         this.bottomSpeakerBtn.setTranslationY(AndroidUtilities.dp(100.0f));
         this.bottomSpeakerBtn.setScaleX(0.0f);
         this.bottomSpeakerBtn.setScaleY(0.0f);
-        this.bottomSpeakerBtn.animate().setStartDelay((long) ImageReceiver.DEFAULT_CROSSFADE_DURATION).translationY(0.0f).scaleY(1.0f).scaleX(1.0f).setDuration(250L).start();
+        this.bottomSpeakerBtn.animate().setStartDelay(150).translationY(0.0f).scaleY(1.0f).scaleX(1.0f).setDuration(250L).start();
         this.bottomVideoBtn.setTranslationY(AndroidUtilities.dp(100.0f));
         this.bottomVideoBtn.setScaleX(0.0f);
         this.bottomVideoBtn.setScaleY(0.0f);
@@ -1867,7 +1866,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
             valueAnimator.cancel();
         }
         if (!z && this.uiVisible) {
-            i = ImageReceiver.DEFAULT_CROSSFADE_DURATION;
+            i = 150;
             ViewPropertyAnimator duration = this.speakerPhoneIcon.animate().alpha(0.0f).translationY(-AndroidUtilities.dp(10.0f)).setDuration(150L);
             CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
             duration.setInterpolator(cubicBezierInterpolator).start();
@@ -2333,7 +2332,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         this.hideUiRunnableWaiting = false;
         int i = Build.VERSION.SDK_INT;
         if (i >= 23 && this.activity.checkSelfPermission("android.permission.CAMERA") != 0) {
-            this.activity.requestPermissions(new String[]{"android.permission.CAMERA"}, R.styleable.AppCompatTheme_textAppearanceLargePopupMenu);
+            this.activity.requestPermissions(new String[]{"android.permission.CAMERA"}, 102);
         } else if (i < 21 && (tLRPC$PhoneCall = voIPService.privateCall) != null && !tLRPC$PhoneCall.video && !this.callingUserIsVideo && !voIPService.sharedUIParams.cameraAlertWasShowed) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this.activity);
             builder.setMessage(LocaleController.getString("VoipSwitchToVideoCall", R.string.VoipSwitchToVideoCall));

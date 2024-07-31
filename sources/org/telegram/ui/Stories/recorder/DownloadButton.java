@@ -107,7 +107,7 @@ public class DownloadButton extends ImageView {
         if (i >= 23 && ((i <= 28 || BuildVars.NO_SCOPED_STORAGE) && getContext().checkSelfPermission("android.permission.WRITE_EXTERNAL_STORAGE") != 0)) {
             Activity findActivity = AndroidUtilities.findActivity(getContext());
             if (findActivity != null) {
-                findActivity.requestPermissions(new String[]{"android.permission.WRITE_EXTERNAL_STORAGE"}, R.styleable.AppCompatTheme_toolbarStyle);
+                findActivity.requestPermissions(new String[]{"android.permission.WRITE_EXTERNAL_STORAGE"}, 113);
             }
         } else if (this.downloading || this.currentEntry == null) {
         } else {

@@ -81,13 +81,13 @@ public class MediaCodecVideoConvertor {
             createEncoderByType = findGoodHevcEncoder != null ? MediaCodec.createByCodecName(findGoodHevcEncoder) : null;
         } else {
             if (this.outputMimeType.equals("video/hevc")) {
-                this.outputMimeType = MediaController.VIDEO_MIME_TYPE;
+                this.outputMimeType = "video/avc";
             }
             createEncoderByType = MediaCodec.createEncoderByType(this.outputMimeType);
         }
         if (createEncoderByType == null && this.outputMimeType.equals("video/hevc")) {
-            this.outputMimeType = MediaController.VIDEO_MIME_TYPE;
-            return MediaCodec.createEncoderByType(MediaController.VIDEO_MIME_TYPE);
+            this.outputMimeType = "video/avc";
+            return MediaCodec.createEncoderByType("video/avc");
         }
         return createEncoderByType;
     }
@@ -245,7 +245,7 @@ public class MediaCodecVideoConvertor {
         arrayList.add(string);
         if ("video/dolby-vision".equals(string)) {
             arrayList.add("video/hevc");
-            arrayList.add(MediaController.VIDEO_MIME_TYPE);
+            arrayList.add("video/avc");
         }
         Exception exc = null;
         while (!arrayList.isEmpty()) {

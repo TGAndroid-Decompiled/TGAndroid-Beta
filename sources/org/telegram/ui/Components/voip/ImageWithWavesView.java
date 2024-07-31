@@ -38,7 +38,7 @@ public class ImageWithWavesView extends FrameLayout {
         animatorSet.playTogether(ObjectAnimator.ofFloat(this, View.SCALE_X, 1.0f, 1.05f, 1.0f, 1.05f, 1.0f), ObjectAnimator.ofFloat(this, View.SCALE_Y, 1.0f, 1.05f, 1.0f, 1.05f, 1.0f));
         this.animatorSet.setInterpolator(CubicBezierInterpolator.EASE_OUT);
         this.animatorSet.setDuration(3000L);
-        boolean isEnabled = LiteMode.isEnabled(LiteMode.FLAG_CALLS_ANIMATIONS);
+        boolean isEnabled = LiteMode.isEnabled(512);
         this.allowAnimations = isEnabled;
         if (isEnabled) {
             this.animatorSet.start();

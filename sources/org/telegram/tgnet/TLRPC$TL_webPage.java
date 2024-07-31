@@ -1,6 +1,4 @@
 package org.telegram.tgnet;
-
-import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_webPage extends TLRPC$WebPage {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -39,16 +37,16 @@ public class TLRPC$TL_webPage extends TLRPC$WebPage {
         if ((this.flags & 128) != 0) {
             this.duration = abstractSerializedData.readInt32(z);
         }
-        if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
+        if ((this.flags & 256) != 0) {
             this.author = abstractSerializedData.readString(z);
         }
-        if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+        if ((this.flags & 512) != 0) {
             this.document = TLRPC$Document.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
         if ((this.flags & 1024) != 0) {
             this.cached_page = TLRPC$Page.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
-        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0) {
+        if ((this.flags & 4096) != 0) {
             int readInt32 = abstractSerializedData.readInt32(z);
             if (readInt32 != 481674261) {
                 if (z) {
@@ -105,16 +103,16 @@ public class TLRPC$TL_webPage extends TLRPC$WebPage {
         if ((this.flags & 128) != 0) {
             abstractSerializedData.writeInt32(this.duration);
         }
-        if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
+        if ((this.flags & 256) != 0) {
             abstractSerializedData.writeString(this.author);
         }
-        if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+        if ((this.flags & 512) != 0) {
             this.document.serializeToStream(abstractSerializedData);
         }
         if ((this.flags & 1024) != 0) {
             this.cached_page.serializeToStream(abstractSerializedData);
         }
-        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0) {
+        if ((this.flags & 4096) != 0) {
             abstractSerializedData.writeInt32(481674261);
             int size = this.attributes.size();
             abstractSerializedData.writeInt32(size);
