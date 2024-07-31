@@ -141,7 +141,7 @@ public class ItemOptions {
     private void init() {
         ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(this.context, R.drawable.popup_fixed_alert2, this.resourcesProvider, this.swipeback ? 1 : 0) {
             @Override
-            public void onMeasure(int i, int i2) {
+            protected void onMeasure(int i, int i2) {
                 if (this == ItemOptions.this.layout && ItemOptions.this.maxHeight > 0) {
                     i2 = View.MeasureSpec.makeMeasureSpec(Math.min(ItemOptions.this.maxHeight, View.MeasureSpec.getSize(i2)), View.MeasureSpec.getMode(i2));
                 }

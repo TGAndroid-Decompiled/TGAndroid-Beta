@@ -102,6 +102,7 @@ import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DownloadController;
+import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.FileStreamLoadOperation;
@@ -4613,8 +4614,9 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 str = this.pages[0].adapter.currentPage.url;
                 frameLayout = this.pages[0];
             }
+            String magic2tonsite2 = BotWebViewContainer.magic2tonsite(str);
             final long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
-            SendMessagesHelper.getInstance(this.currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(str, clientUserId));
+            SendMessagesHelper.getInstance(this.currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(magic2tonsite2, clientUserId));
             TLRPC$TL_message tLRPC$TL_message = new TLRPC$TL_message();
             TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
             tLRPC$TL_message.peer_id = tLRPC$TL_peerUser;
@@ -4622,13 +4624,13 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             TLRPC$TL_peerUser tLRPC$TL_peerUser2 = new TLRPC$TL_peerUser();
             tLRPC$TL_message.from_id = tLRPC$TL_peerUser2;
             tLRPC$TL_peerUser2.user_id = clientUserId;
-            tLRPC$TL_message.message = str;
+            tLRPC$TL_message.message = magic2tonsite2;
             TLRPC$TL_messageMediaWebPage tLRPC$TL_messageMediaWebPage = new TLRPC$TL_messageMediaWebPage();
             tLRPC$TL_message.media = tLRPC$TL_messageMediaWebPage;
             tLRPC$TL_messageMediaWebPage.webpage = new TLRPC$TL_webPage();
             TLRPC$WebPage tLRPC$WebPage = tLRPC$TL_message.media.webpage;
-            tLRPC$WebPage.url = str;
-            tLRPC$WebPage.display_url = str;
+            tLRPC$WebPage.url = magic2tonsite2;
+            tLRPC$WebPage.display_url = magic2tonsite2;
             NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.bookmarkAdded, new MessageObject(this.currentAccount, tLRPC$TL_message, false, false));
             BulletinFactory.of(frameLayout, getResourcesProvider()).createSimpleBulletin(R.raw.saved_messages, AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.WebBookmarkedToast), new Runnable() {
                 @Override
@@ -13743,7 +13745,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         public void set(String str, int i, String str2) {
             this.titleView.setText(LocaleController.getString(R.string.WebErrorTitle));
             String magic2tonsite = BotWebViewContainer.magic2tonsite(str);
-            this.descriptionView.setText(AndroidUtilities.replaceTags((magic2tonsite == null || Uri.parse(magic2tonsite) == null || Uri.parse(magic2tonsite).getAuthority() == null) ? LocaleController.getString(R.string.WebErrorInfo) : LocaleController.formatString(R.string.WebErrorInfoDomain, Uri.parse(magic2tonsite).getAuthority())));
+            this.descriptionView.setText(Emoji.replaceEmoji(AndroidUtilities.replaceTags((magic2tonsite == null || Uri.parse(magic2tonsite) == null || Uri.parse(magic2tonsite).getAuthority() == null) ? LocaleController.getString(R.string.WebErrorInfo) : LocaleController.formatString(R.string.WebErrorInfoDomain, Uri.parse(magic2tonsite).getAuthority())), this.descriptionView.getPaint().getFontMetricsInt(), false));
             this.codeView.setText(str2);
         }
 

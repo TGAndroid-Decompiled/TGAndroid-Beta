@@ -1879,7 +1879,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
 
     public static String rotateTONHost(String str) {
         try {
-            str = IDN.toASCII(str);
+            str = IDN.toASCII(str, 1);
         } catch (Exception e) {
             FileLog.e(e);
         }

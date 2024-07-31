@@ -5005,7 +5005,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         } else if (i == this.balanceRow) {
             Bundle bundle5 = new Bundle();
             if (this.userInfo != null) {
-                presentFragment(new BotStarsActivity(this.dialogId));
+                presentFragment(new BotStarsActivity(this.userId));
                 return;
             }
             bundle5.putLong("chat_id", this.chatId);

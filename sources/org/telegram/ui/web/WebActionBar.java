@@ -14,6 +14,7 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -26,6 +27,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
@@ -428,11 +430,17 @@ public class WebActionBar extends FrameLayout {
     }
 
     public void setTitle(int i, String str, boolean z) {
-        this.titles[i].title.setText(str, z);
+        CharSequence text = this.titles[i].title.getText();
+        if (text == null || !TextUtils.equals(text.toString(), str)) {
+            this.titles[i].title.setText(Emoji.replaceEmoji(str, this.titles[i].title.getPaint().getFontMetricsInt(), false), z);
+        }
     }
 
     public void setSubtitle(int i, String str, boolean z) {
-        this.titles[i].subtitle.setText(str, z);
+        CharSequence text = this.titles[i].subtitle.getText();
+        if (text == null || !TextUtils.equals(text.toString(), str)) {
+            this.titles[i].subtitle.setText(Emoji.replaceEmoji(str, this.titles[i].subtitle.getPaint().getFontMetricsInt(), false), z);
+        }
     }
 
     public String getTitle() {
@@ -500,7 +508,7 @@ public class WebActionBar extends FrameLayout {
         this.progressBackgroundPaint[i].setColor(Theme.blendOver(i2, Theme.multAlpha(blendARGB, AndroidUtilities.lerp(0.07f, 0.2f, f))));
         this.shadowPaint[i].setColor(Theme.blendOver(i2, Theme.multAlpha(blendARGB, AndroidUtilities.lerp(0.14f, 0.24f, f))));
         this.titles[i].title.setTextColor(blendARGB);
-        this.titles[i].subtitle.setTextColor(Theme.multAlpha(blendARGB, 0.6f));
+        this.titles[i].subtitle.setTextColor(Theme.blendOver(i2, Theme.multAlpha(blendARGB, 0.6f)));
         invalidate();
     }
 
