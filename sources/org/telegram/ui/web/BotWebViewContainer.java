@@ -207,7 +207,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
     public void onWebViewCreated() {
     }
 
-    static int access$1408() {
+    static int access$1508() {
         int i = tags;
         tags = i + 1;
         return i;
@@ -381,6 +381,9 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             settings.setDisplayZoomControls(false);
             settings.setUseWideViewPort(true);
             settings.setLoadWithOverviewMode(true);
+            if (Build.VERSION.SDK_INT >= 26) {
+                settings.setSafeBrowsingEnabled(true);
+            }
         }
         try {
             String replace = settings.getUserAgentString().replace("; wv)", ")");
@@ -419,7 +422,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 }
                 WebViewProxy webViewProxy = this.webViewProxy;
                 if (webViewProxy == null) {
-                    WebViewProxy webViewProxy2 = new WebViewProxy(this);
+                    WebViewProxy webViewProxy2 = new WebViewProxy(this.webView, this);
                     this.webViewProxy = webViewProxy2;
                     this.webView.addJavascriptInterface(webViewProxy2, "TelegramWebview");
                 } else if (myWebView == null) {
@@ -1735,8 +1738,10 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
 
     public static class WebViewProxy {
         public BotWebViewContainer container;
+        public final MyWebView webView;
 
-        public WebViewProxy(BotWebViewContainer botWebViewContainer) {
+        public WebViewProxy(MyWebView myWebView, BotWebViewContainer botWebViewContainer) {
+            this.webView = myWebView;
             this.container = botWebViewContainer;
         }
 
@@ -1790,6 +1795,29 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             Intent intent = new Intent("android.intent.action.VIEW_DOWNLOADS");
             intent.setFlags(268468224);
             LaunchActivity.instance.startActivity(intent);
+        }
+
+        @JavascriptInterface
+        public void resolveShare(final String str, final byte[] bArr, final String str2, final String str3) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    BotWebViewContainer.WebViewProxy.this.lambda$resolveShare$4(str, bArr, str2, str3);
+                }
+            });
+        }
+
+        public void lambda$resolveShare$4(java.lang.String r9, byte[] r10, java.lang.String r11, java.lang.String r12) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.BotWebViewContainer.WebViewProxy.lambda$resolveShare$4(java.lang.String, byte[], java.lang.String, java.lang.String):void");
+        }
+
+        public void lambda$resolveShare$3(Boolean bool) {
+            MyWebView myWebView = this.webView;
+            StringBuilder sb = new StringBuilder();
+            sb.append("window.navigator.__share__receive(");
+            sb.append(bool.booleanValue() ? "" : "'abort'");
+            sb.append(")");
+            myWebView.evaluateJS(sb.toString());
         }
     }
 
@@ -1966,7 +1994,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
 
         public MyWebView(Context context, boolean z) {
             super(context);
-            this.tag = BotWebViewContainer.access$1408();
+            this.tag = BotWebViewContainer.access$1508();
             this.lastFavicons = new HashMap<>();
             this.bot = z;
             d("created new webview " + this);
@@ -2122,6 +2150,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                     myWebView2.injectedJS = true;
                     String readRes = RLottieDrawable.readRes(null, R.raw.webview_ext);
                     myWebView2.evaluateJS(readRes.replace("$DEBUG$", "" + BuildVars.DEBUG_VERSION));
+                    MyWebView.this.evaluateJS(RLottieDrawable.readRes(null, R.raw.webview_share));
                 }
                 super.onPageCommitVisible(webView, str);
             }
@@ -2301,6 +2330,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                     myWebView.injectedJS = true;
                     String readRes = RLottieDrawable.readRes(null, R.raw.webview_ext);
                     myWebView.evaluateJS(readRes.replace("$DEBUG$", "" + BuildVars.DEBUG_VERSION));
+                    MyWebView.this.evaluateJS(RLottieDrawable.readRes(null, R.raw.webview_share));
                 }
                 MyWebView.this.saveHistory();
             }

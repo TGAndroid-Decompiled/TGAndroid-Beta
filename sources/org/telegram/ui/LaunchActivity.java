@@ -317,6 +317,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     private ActionMode visibleActionMode;
     private String voicePath;
     private boolean wasMutedByAdminRaisedHand;
+    private Utilities.Callback<Boolean> webviewShareAPIDoneListener;
     public static final Pattern PREFIX_T_ME_PATTERN = Pattern.compile("^(?:http(?:s|)://|)([A-z0-9-]+?)\\.t\\.me");
     private static ArrayList<BaseFragment> mainFragmentsStack = new ArrayList<>();
     private static ArrayList<BaseFragment> layerFragmentsStack = new ArrayList<>();
@@ -2022,7 +2023,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @android.annotation.SuppressLint({"Range"})
-    private boolean handleIntent(android.content.Intent r100, boolean r101, boolean r102, boolean r103, org.telegram.messenger.browser.Browser.Progress r104, boolean r105, boolean r106) {
+    private boolean handleIntent(android.content.Intent r102, boolean r103, boolean r104, boolean r105, org.telegram.messenger.browser.Browser.Progress r106, boolean r107, boolean r108) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.handleIntent(android.content.Intent, boolean, boolean, boolean, org.telegram.messenger.browser.Browser$Progress, boolean, boolean):boolean");
     }
 
@@ -4544,6 +4545,12 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             sharedInstance.createCaptureDevice(true);
         } else if (i == 140) {
             LocationController.getInstance(this.currentAccount).startFusedLocationRequest(i2 == -1);
+        } else if (i == 521) {
+            Utilities.Callback<Boolean> callback = this.webviewShareAPIDoneListener;
+            if (callback != null) {
+                callback.run(Boolean.valueOf(i2 == -1));
+                this.webviewShareAPIDoneListener = null;
+            }
         } else {
             ThemeEditorView themeEditorView = ThemeEditorView.getInstance();
             if (themeEditorView != null) {
@@ -4571,6 +4578,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     public void lambda$onActivityResult$130() {
         GroupCallPip.clearForce();
         GroupCallPip.updateVisibility(this);
+    }
+
+    public void whenWebviewShareAPIDone(Utilities.Callback<Boolean> callback) {
+        this.webviewShareAPIDoneListener = callback;
     }
 
     @Override

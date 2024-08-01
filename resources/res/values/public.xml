@@ -2892,11 +2892,12 @@
     <public type="raw" name="wallet_perfect" id="0x7f0e0153" />
     <public type="raw" name="wallet_science" id="0x7f0e0154" />
     <public type="raw" name="webview_ext" id="0x7f0e0155" />
-    <public type="raw" name="windows_30" id="0x7f0e0156" />
-    <public type="raw" name="write_contacts_fab_icon" id="0x7f0e0157" />
-    <public type="raw" name="write_contacts_fab_icon_camera" id="0x7f0e0158" />
-    <public type="raw" name="write_contacts_fab_icon_reverse" id="0x7f0e0159" />
-    <public type="raw" name="write_contacts_fab_icon_reverse_camera" id="0x7f0e015a" />
+    <public type="raw" name="webview_share" id="0x7f0e0156" />
+    <public type="raw" name="windows_30" id="0x7f0e0157" />
+    <public type="raw" name="write_contacts_fab_icon" id="0x7f0e0158" />
+    <public type="raw" name="write_contacts_fab_icon_camera" id="0x7f0e0159" />
+    <public type="raw" name="write_contacts_fab_icon_reverse" id="0x7f0e015a" />
+    <public type="raw" name="write_contacts_fab_icon_reverse_camera" id="0x7f0e015b" />
     <public type="string" name="ALongTimeAgo" id="0x7f0f0000" />
     <public type="string" name="Abort" id="0x7f0f0001" />
     <public type="string" name="AbortEmail" id="0x7f0f0002" />

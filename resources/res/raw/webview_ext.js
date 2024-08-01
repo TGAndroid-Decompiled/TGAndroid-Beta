@@ -229,7 +229,7 @@ if (!window.__tg__webview_set) {
                 .then(r => r.blob())
                 .then(blob => {
                     blob.arrayBuffer().then(buffer => {
-                           if (window.TelegramWebview) {
+                        if (window.TelegramWebview) {
                             window.TelegramWebview.resolveBlob(url, Array.from(new Uint8Array(buffer)), blob.type);
                         }
                     })
