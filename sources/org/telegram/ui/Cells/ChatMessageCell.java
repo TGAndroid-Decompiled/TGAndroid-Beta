@@ -832,7 +832,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     private float transcribeX;
     private float transcribeY;
     public final TransitionParams transitionParams;
-    float transitionYOffsetForDrawables;
+    public float transitionYOffsetForDrawables;
     private LoadingDrawable translationLoadingDrawable;
     private ArrayList<MessageObject.TextLayoutBlock> translationLoadingDrawableText;
     private AnimatedFloat translationLoadingFloat;

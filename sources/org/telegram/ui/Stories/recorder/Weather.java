@@ -15,7 +15,6 @@ import j$.util.DesugarTimeZone;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 import java.util.TimeZone;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
@@ -351,17 +350,17 @@ public class Weather {
         ensureLocationPermission(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                Weather.lambda$getUserLocation$11(Utilities.Callback.this, z, (Boolean) obj);
+                Weather.lambda$getUserLocation$12(Utilities.Callback.this, z, (Boolean) obj);
             }
         });
     }
 
-    public static void lambda$getUserLocation$11(final Utilities.Callback callback, boolean z, Boolean bool) {
+    public static void lambda$getUserLocation$12(Utilities.Callback callback, boolean z, Boolean bool) {
         if (!bool.booleanValue()) {
             callback.run(null);
             return;
         }
-        LocationManager locationManager = (LocationManager) ApplicationLoader.applicationContext.getSystemService("location");
+        final LocationManager locationManager = (LocationManager) ApplicationLoader.applicationContext.getSystemService("location");
         List<String> providers = locationManager.getProviders(true);
         Location location = null;
         for (int size = providers.size() - 1; size >= 0; size--) {
@@ -395,13 +394,16 @@ public class Weather {
                 }
             } else {
                 try {
-                    Objects.requireNonNull(callback);
-                    locationManager.requestLocationUpdates("gps", 1L, 0.0f, new LocationListener() {
+                    final Utilities.Callback[] callbackArr = {callback};
+                    final LocationListener[] locationListenerArr = {null};
+                    LocationListener locationListener = new LocationListener() {
                         @Override
                         public final void onLocationChanged(Location location2) {
-                            Utilities.Callback.this.run(location2);
+                            Weather.lambda$getUserLocation$11(locationListenerArr, locationManager, callbackArr, location2);
                         }
-                    });
+                    };
+                    locationListenerArr[0] = locationListener;
+                    locationManager.requestLocationUpdates("gps", 1L, 0.0f, locationListener);
                     return;
                 } catch (Exception e2) {
                     FileLog.e(e2);
@@ -417,6 +419,17 @@ public class Weather {
         try {
             context.startActivity(new Intent("android.settings.LOCATION_SOURCE_SETTINGS"));
         } catch (Exception unused) {
+        }
+    }
+
+    public static void lambda$getUserLocation$11(LocationListener[] locationListenerArr, LocationManager locationManager, Utilities.Callback[] callbackArr, Location location) {
+        if (locationListenerArr[0] != null) {
+            locationManager.removeUpdates(locationListenerArr[0]);
+            locationListenerArr[0] = null;
+        }
+        if (callbackArr[0] != null) {
+            callbackArr[0].run(location);
+            callbackArr[0] = null;
         }
     }
 }

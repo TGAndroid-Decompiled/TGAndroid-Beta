@@ -446,7 +446,7 @@ public class MessageObject {
     public int textWidth;
     public float textXOffset;
     public Drawable[] topicIconDrawable;
-    private int totalAnimatedEmojiCount;
+    public int totalAnimatedEmojiCount;
     public boolean translated;
     public int type;
     public StoriesController.UploadingStory uploadingStory;
@@ -925,6 +925,7 @@ public class MessageObject {
         public boolean last;
         public float maxRight;
         public MessageObject messageObject;
+        public int originalWidth;
         public int padBottom;
         public int padTop;
         public boolean quote;
@@ -4263,7 +4264,7 @@ public class MessageObject {
         return new StaticLayout(charSequence, textPaint, i, Layout.Alignment.ALIGN_NORMAL, f, f2, false);
     }
 
-    public void generateLayout(org.telegram.tgnet.TLRPC$User r35) {
+    public void generateLayout(org.telegram.tgnet.TLRPC$User r36) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.generateLayout(org.telegram.tgnet.TLRPC$User):void");
     }
 
@@ -4329,7 +4330,7 @@ public class MessageObject {
             }
         }
 
-        public TextLayoutBlocks(org.telegram.messenger.MessageObject r30, java.lang.CharSequence r31, android.text.TextPaint r32, int r33) {
+        public TextLayoutBlocks(org.telegram.messenger.MessageObject r32, java.lang.CharSequence r33, android.text.TextPaint r34, int r35) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.TextLayoutBlocks.<init>(org.telegram.messenger.MessageObject, java.lang.CharSequence, android.text.TextPaint, int):void");
         }
     }
