@@ -15,7 +15,7 @@ if (window.navigator && !window.navigator.share) {
         }
         const { url, title, text } = data
         const file = (Array.isArray(data.file) ? data.file[0] : data.file) || data.files && data.files[0]
-        if (file && file.arrayBuffer) {
+        if (file && file.arrayBuffer && file.size < 1024 * 1024 * 3) {
             file.arrayBuffer().then(buffer => {
                 const bytes = Array.from(new Uint8Array(buffer))
                 const filename = file.name

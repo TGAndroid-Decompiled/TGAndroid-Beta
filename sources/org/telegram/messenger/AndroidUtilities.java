@@ -1175,7 +1175,9 @@ public class AndroidUtilities {
             if (str != null) {
                 str = str.replaceAll("∕|⁄|%E2%81%84|%E2%88%95", "/");
             }
-            spannable.setSpan(new URLSpan(str), linkSpec.start, linkSpec.end, 33);
+            if (!Browser.isTonsitePunycode(str)) {
+                spannable.setSpan(new URLSpan(str), linkSpec.start, linkSpec.end, 33);
+            }
         }
         return true;
     }

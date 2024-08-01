@@ -13,6 +13,7 @@ import android.text.TextUtils;
 import java.lang.ref.WeakReference;
 import java.util.List;
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
@@ -41,6 +42,7 @@ public class Browser {
     private static String customTabsPackageToBind;
     private static CustomTabsServiceConnection customTabsServiceConnection;
     private static CustomTabsSession customTabsSession;
+    private static Pattern domainPattern;
 
     private static void setCurrentSession(CustomTabsSession customTabsSession2) {
         new WeakReference(customTabsSession2);
@@ -367,6 +369,21 @@ public class Browser {
             return parse.getScheme() != null && parse.getScheme().equalsIgnoreCase("tonsite");
         }
         return true;
+    }
+
+    public static boolean isTonsitePunycode(String str) {
+        if (domainPattern == null) {
+            domainPattern = Pattern.compile("^[a-zA-Z0-9\\-\\_\\.]+\\.[a-zA-Z0-9\\-\\_]+$");
+        }
+        String hostAuthority = AndroidUtilities.getHostAuthority(str, true);
+        if (hostAuthority != null && (hostAuthority.endsWith(".ton") || hostAuthority.endsWith(".adnl"))) {
+            return !domainPattern.matcher(hostAuthority).matches();
+        }
+        Uri parse = Uri.parse(str);
+        if (parse.getScheme() == null || !parse.getScheme().equalsIgnoreCase("tonsite")) {
+            return false;
+        }
+        return !domainPattern.matcher(parse.getScheme()).matches();
     }
 
     public static boolean openInExternalApp(Context context, String str, boolean z) {

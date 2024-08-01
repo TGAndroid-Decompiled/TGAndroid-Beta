@@ -4578,9 +4578,11 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
     }
 
     public void lambda$setParentActivity$39(Activity activity, Integer num) {
-        String str;
-        FrameLayout frameLayout;
+        final String str;
         String str2;
+        String str3;
+        FrameLayout frameLayout;
+        String str4;
         if ((this.pages[0].isArticle() && this.pages[0].adapter.currentPage == null) || this.parentActivity == null) {
             return;
         }
@@ -4593,28 +4595,28 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 if (this.pages[0].getWebView() == null) {
                     return;
                 }
-                str2 = this.pages[0].getWebView().getUrl();
+                str4 = this.pages[0].getWebView().getUrl();
             } else if (this.pages[0].adapter.currentPage == null) {
                 return;
             } else {
-                str2 = this.pages[0].adapter.currentPage.url;
+                str4 = this.pages[0].adapter.currentPage.url;
             }
-            String magic2tonsite = BotWebViewContainer.magic2tonsite(str2);
+            String magic2tonsite = BotWebViewContainer.magic2tonsite(str4);
             showDialog(new ShareAlert(this.parentActivity, null, magic2tonsite, false, magic2tonsite, false, AndroidUtilities.computePerceivedBrightness(this.actionBar.getBackgroundColor()) < 0.721f ? new DarkThemeResourceProvider() : null));
         } else if (num.intValue() == 6) {
             if (this.pages[0].isWeb()) {
                 if (this.pages[0].getWebView() == null) {
                     return;
                 }
-                str = this.pages[0].getWebView().getUrl();
+                str3 = this.pages[0].getWebView().getUrl();
                 frameLayout = this.pages[0].webViewContainer;
             } else if (this.pages[0].adapter.currentPage == null) {
                 return;
             } else {
-                str = this.pages[0].adapter.currentPage.url;
+                str3 = this.pages[0].adapter.currentPage.url;
                 frameLayout = this.pages[0];
             }
-            String magic2tonsite2 = BotWebViewContainer.magic2tonsite(str);
+            String magic2tonsite2 = BotWebViewContainer.magic2tonsite(str3);
             final long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
             SendMessagesHelper.getInstance(this.currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(magic2tonsite2, clientUserId));
             TLRPC$TL_message tLRPC$TL_message = new TLRPC$TL_message();
@@ -4667,21 +4669,30 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 this.pages[0].getWebView().goForward();
             }
         } else if (num.intValue() == 3) {
-            if (!this.pages[0].isWeb() || this.pages[0].getWebView() == null) {
+            if (this.pages[0].isWeb()) {
+                if (this.pages[0].getWebView() == null) {
+                    return;
+                }
+                str = this.pages[0].getWebView().getUrl();
+                str2 = this.pages[0].getWebView().getOpenURL();
+                BotWebViewContainer botWebViewContainer = this.pages[0].webViewContainer;
+            } else if (this.pages[0].adapter.currentPage == null) {
                 return;
+            } else {
+                str = this.pages[0].adapter.currentPage.url;
+                PageLayout pageLayout = this.pages[0];
+                str2 = null;
             }
-            final String url = this.pages[0].getWebView().getUrl();
-            String openURL = this.pages[0].getWebView().getOpenURL();
             Activity activity2 = this.parentActivity;
-            if (activity2 == null || activity2.isFinishing() || url == null) {
+            if (activity2 == null || activity2.isFinishing() || str == null) {
                 return;
             }
-            final String hostAuthority = AndroidUtilities.getHostAuthority(openURL, true);
-            final String hostAuthority2 = AndroidUtilities.getHostAuthority(url, true);
+            final String hostAuthority = AndroidUtilities.getHostAuthority(str2, true);
+            final String hostAuthority2 = AndroidUtilities.getHostAuthority(str, true);
             final Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    ArticleViewer.this.lambda$setParentActivity$33(url);
+                    ArticleViewer.this.lambda$setParentActivity$33(str);
                 }
             };
             final Utilities.Callback callback = new Utilities.Callback() {
@@ -4690,7 +4701,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     ArticleViewer.this.lambda$setParentActivity$34(hostAuthority2, hostAuthority, (Boolean) obj);
                 }
             };
-            if (!RestrictedDomainsList.getInstance().isRestricted(hostAuthority2) && RestrictedDomainsList.getInstance().incrementOpen(hostAuthority2) >= 2) {
+            if (this.pages[0].isWeb() && !RestrictedDomainsList.getInstance().isRestricted(hostAuthority2) && RestrictedDomainsList.getInstance().incrementOpen(hostAuthority2) >= 2) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(activity, getResourcesProvider());
                 builder.setTitle(LocaleController.getString(R.string.BrowserExternalTitle));
                 LinearLayout linearLayout = new LinearLayout(activity);
@@ -4802,10 +4813,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
     }
 
     public void lambda$setParentActivity$33(String str) {
-        Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(str));
-        intent.putExtra("create_new_tab", true);
-        intent.putExtra("com.android.browser.application_id", this.parentActivity.getPackageName());
-        this.parentActivity.startActivity(intent);
+        Browser.openInExternalBrowser(this.parentActivity, str, false);
     }
 
     public void lambda$setParentActivity$34(String str, String str2, Boolean bool) {
