@@ -17,6 +17,7 @@
  *  hierarchy of a touch element, and does equivalent of `preventDefault` if those changes happen
  *  while `touchstart` or `touchmove` events.
  *
+ *  === feature is hidden under debug button ===
  *  # Action Bar and Navigation Bar colors
  *  Top action bar and bottom navigation bar colors are defined with:
  *    - <meta name="tg:theme-accent" content="#FFFFFF" /> — action bar, usually an accent color
@@ -26,7 +27,7 @@
  *    - <body> `background-color` css style — fallback
  *  `media` attribute on <meta> is also supported, feel free to use `prefers-color-scheme`
  *
- *  TODO(@dkaraush): apply same logic for miniapps
+ *  TODO(@dkaraush): apply same gestures logic for miniapps
  */
 
 if (!window.__tg__webview_set) {
@@ -73,12 +74,8 @@ if (!window.__tg__webview_set) {
                 setTimeout(() => {
                     if (awaitingResponse) {
                         if (window.TelegramWebview) {
-                            console.log('touchmove', { allowScroll: [
-                               !prevented && !mutatedWhileTouch && !swipesDisabled('x'),
-                               !prevented && !mutatedWhileTouch && !swipesDisabled('y')
-                            ], prevented, mutatedWhileTouch })
-                            const allowScrollX = !prevented && !mutatedWhileTouch && !swipesDisabled('x');
-                            const allowScrollY = !prevented && !mutatedWhileTouch && !swipesDisabled('y');
+                            const allowScrollX = !prevented && (!window.visualViewport || window.visualViewport.offsetLeft == 0) && !mutatedWhileTouch && !swipesDisabled('x');
+                            const allowScrollY = !prevented && (!window.visualViewport || window.visualViewport.offsetTop == 0)  && !mutatedWhileTouch && !swipesDisabled('y');
                             if (DEBUG) {
                                 console.log('tgbrowser allowScroll sent after "touchmove": x=' + allowScrollX + ' y=' + allowScrollY, { prevented, mutatedWhileTouch });
                             }
@@ -96,8 +93,11 @@ if (!window.__tg__webview_set) {
         }, false);
         document.addEventListener('scroll', e => {
             if (!e.target) return;
-            const allowScrollX = e.target.scrollLeft == 0 && !prevented && !mutatedWhileTouch && !swipesDisabled('x');
-            const allowScrollY = e.target.scrollTop == 0  && !prevented && !mutatedWhileTouch && !swipesDisabled('y');
+            const allowScrollX = e.target.scrollLeft == 0 && (!window.visualViewport || window.visualViewport.offsetLeft == 0) && !prevented && !mutatedWhileTouch && !swipesDisabled('x');
+            const allowScrollY = e.target.scrollTop == 0  && (!window.visualViewport || window.visualViewport.offsetTop == 0)  && !prevented && !mutatedWhileTouch && !swipesDisabled('y');
+            if (DEBUG) {
+                console.log('tgbrowser scroll on' + e.target + ' scrollLeft=' + e.target.scrollLeft + ' scrollTop=' + e.target.scrollTop);
+            }
             if (awaitingResponse) {
                 if (window.TelegramWebview) {
                     if (DEBUG) {

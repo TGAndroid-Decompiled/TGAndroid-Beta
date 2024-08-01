@@ -469,12 +469,6 @@ public class CheckBoxCell extends FrameLayout {
             this.linksTextView.setMaxLines(0);
             this.linksTextView.setSingleLine(false);
             this.linksTextView.setEllipsize(null);
-            if (this.currentType != 5) {
-                layoutParams.height = -2;
-                layoutParams.gravity = (LocaleController.isRTL ? 5 : 3) | 48;
-                layoutParams.topMargin = AndroidUtilities.dp(14.0f);
-                layoutParams.bottomMargin = AndroidUtilities.dp(10.0f);
-            }
         } else {
             this.linksTextView.setLines(1);
             this.linksTextView.setMaxLines(1);

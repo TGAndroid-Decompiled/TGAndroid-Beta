@@ -376,6 +376,7 @@ public class AddressBarList extends FrameLayout {
     }
 
     public void setCurrent(Bitmap bitmap, String str, String str2, final Runnable runnable, Utilities.Callback<String> callback, Utilities.Callback<String> callback2, Utilities.Callback<String> callback3, View.OnClickListener onClickListener) {
+        String str3;
         if (bitmap == null) {
             this.currentIconView.setImageResource(R.drawable.msg_language);
             this.currentIconView.setColorFilter(new PorterDuffColorFilter(this.textColor, PorterDuff.Mode.SRC_IN));
@@ -383,7 +384,8 @@ public class AddressBarList extends FrameLayout {
             this.currentIconView.setImageDrawable(new BitmapDrawable(getContext().getResources(), bitmap));
             this.currentIconView.setColorFilter((ColorFilter) null);
         }
-        this.currentTitleView.setText(str);
+        TextView textView = this.currentTitleView;
+        textView.setText(Emoji.replaceEmoji(str, textView.getPaint().getFontMetricsInt(), false));
         try {
             try {
                 Uri parse = Uri.parse(str2);
@@ -391,11 +393,13 @@ public class AddressBarList extends FrameLayout {
             } catch (Exception e) {
                 FileLog.e((Throwable) e, false);
             }
-            str2 = URLDecoder.decode(str2.replaceAll("\\+", "%2b"), "UTF-8");
+            str3 = URLDecoder.decode(str2.replaceAll("\\+", "%2b"), "UTF-8");
         } catch (Exception e2) {
             FileLog.e(e2);
+            str3 = str2;
         }
-        this.currentLinkView.setText(str2);
+        TextView textView2 = this.currentLinkView;
+        textView2.setText(Emoji.replaceEmoji(str3, textView2.getPaint().getFontMetricsInt(), false));
         this.onCurrentClick = runnable;
         this.onQueryClick = callback;
         this.onQueryInsertClick = callback2;

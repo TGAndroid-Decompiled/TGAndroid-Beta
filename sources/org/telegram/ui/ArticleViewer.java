@@ -4703,6 +4703,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 textView.setTextSize(1, 16.0f);
                 linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 0, 24, 0, 24, 0));
                 final CheckBoxCell checkBoxCell = new CheckBoxCell(activity, 1, null);
+                checkBoxCell.setMultiline(true);
                 checkBoxCell.getTextView().getLayoutParams().width = -1;
                 checkBoxCell.getTextView().setSingleLine(false);
                 checkBoxCell.getTextView().setMaxLines(3);
@@ -5406,6 +5407,10 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             this.pages[0].scrollToTop(false);
             setCurrentHeaderHeight(AndroidUtilities.dp(56.0f));
         }
+        Sheet sheet2 = this.sheet;
+        if (sheet2 != null && BotWebViewContainer.firstWebView) {
+            sheet2.animationsLock.lock();
+        }
         if (tLRPC$WebPage2 != null) {
             final String str5 = (addPageToStack(tLRPC$WebPage2, str3, i3) || str3 == null) ? null : str3;
             TLRPC$TL_messages_getWebPage tLRPC$TL_messages_getWebPage = new TLRPC$TL_messages_getWebPage();
@@ -5465,8 +5470,8 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         this.isVisible = true;
         this.animationInProgress = 1;
         if (i3 == 0) {
-            Sheet sheet2 = this.sheet;
-            if (sheet2 == null) {
+            Sheet sheet3 = this.sheet;
+            if (sheet3 == null) {
                 this.windowView.setAlpha(0.0f);
                 this.containerView.setAlpha(0.0f);
                 final AnimatorSet animatorSet = new AnimatorSet();
@@ -5488,7 +5493,9 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     }
                 });
             } else if (i3 == 0) {
-                sheet2.show();
+                sheet3.show();
+            } else if (sheet3 != null) {
+                sheet3.animationsLock.unlock();
             }
         }
         if (Build.VERSION.SDK_INT >= 18) {
@@ -12884,6 +12891,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
     }
 
     public class Sheet implements BaseFragment.AttachedSheet, BottomSheetTabsOverlay.Sheet {
+        public final AnimationNotificationsLocker animationsLock = new AnimationNotificationsLocker();
         public boolean attachedToActionBar;
         private float backProgress;
         public View containerView;
@@ -13230,6 +13238,9 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                             runnable2.run();
                         }
                         Sheet.this.checkFullyVisible();
+                        if (z) {
+                            Sheet.this.animationsLock.unlock();
+                        }
                     }
                 });
                 if (z) {
@@ -13248,6 +13259,9 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 runnable.run();
             }
             checkFullyVisible();
+            if (z) {
+                this.animationsLock.unlock();
+            }
         }
 
         public void lambda$animateOpen$2(ValueAnimator valueAnimator) {

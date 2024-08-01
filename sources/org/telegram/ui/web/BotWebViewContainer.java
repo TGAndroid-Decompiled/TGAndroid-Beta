@@ -132,6 +132,7 @@ import org.telegram.ui.web.BotWebViewContainer;
 import org.telegram.ui.web.BrowserHistory;
 import org.telegram.ui.web.WebMetadataCache;
 public abstract class BotWebViewContainer extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
+    public static boolean firstWebView = true;
     private static HashMap<String, String> rotatedTONHosts;
     private static int tags;
     private BotBiometry biometry;
@@ -432,6 +433,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             }
         }
         onWebViewCreated();
+        firstWebView = false;
     }
 
     public void onOpenUri(Uri uri) {
@@ -2030,23 +2032,27 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             @Override
             public boolean onLongClick(View view) {
                 String str;
+                String str2;
+                String str3;
+                String str4;
                 WebView.HitTestResult hitTestResult = MyWebView.this.getHitTestResult();
                 if (hitTestResult.getType() == 7) {
                     final String extra = hitTestResult.getExtra();
                     BottomSheet.Builder builder = new BottomSheet.Builder(MyWebView.this.getContext(), false, null);
                     try {
                         Uri parse = Uri.parse(extra);
-                        str = Browser.replaceHostname(parse, IDN.toUnicode(parse.getHost(), 1), null);
+                        str3 = Browser.replaceHostname(parse, IDN.toUnicode(parse.getHost(), 1), null);
                     } catch (Exception e) {
                         try {
                             FileLog.e((Throwable) e, false);
-                            str = extra;
+                            str3 = extra;
                         } catch (Exception e2) {
                             e = e2;
-                            str = extra;
+                            str3 = extra;
                             FileLog.e(e);
+                            str4 = str3;
                             builder.setTitleMultipleLines(true);
-                            builder.setTitle(str);
+                            builder.setTitle(str4);
                             builder.setItems(new CharSequence[]{LocaleController.getString(R.string.OpenInTelegramBrowser), LocaleController.getString(R.string.OpenInSystemBrowser), LocaleController.getString(R.string.Copy)}, new DialogInterface.OnClickListener() {
                                 @Override
                                 public final void onClick(DialogInterface dialogInterface, int i) {
@@ -2058,12 +2064,13 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                         }
                     }
                     try {
-                        str = URLDecoder.decode(str.replaceAll("\\+", "%2b"), "UTF-8");
+                        str4 = URLDecoder.decode(str3.replaceAll("\\+", "%2b"), "UTF-8");
                     } catch (Exception e3) {
                         e = e3;
                         FileLog.e(e);
+                        str4 = str3;
                         builder.setTitleMultipleLines(true);
-                        builder.setTitle(str);
+                        builder.setTitle(str4);
                         builder.setItems(new CharSequence[]{LocaleController.getString(R.string.OpenInTelegramBrowser), LocaleController.getString(R.string.OpenInSystemBrowser), LocaleController.getString(R.string.Copy)}, new DialogInterface.OnClickListener() {
                             @Override
                             public final void onClick(DialogInterface dialogInterface, int i) {
@@ -2074,7 +2081,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                         return true;
                     }
                     builder.setTitleMultipleLines(true);
-                    builder.setTitle(str);
+                    builder.setTitle(str4);
                     builder.setItems(new CharSequence[]{LocaleController.getString(R.string.OpenInTelegramBrowser), LocaleController.getString(R.string.OpenInSystemBrowser), LocaleController.getString(R.string.Copy)}, new DialogInterface.OnClickListener() {
                         @Override
                         public final void onClick(DialogInterface dialogInterface, int i) {
@@ -2083,8 +2090,63 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                     });
                     builder.show();
                     return true;
+                } else if (hitTestResult.getType() == 5) {
+                    final String extra2 = hitTestResult.getExtra();
+                    BottomSheet.Builder builder2 = new BottomSheet.Builder(MyWebView.this.getContext(), false, null);
+                    try {
+                        Uri parse2 = Uri.parse(extra2);
+                        str = Browser.replaceHostname(parse2, IDN.toUnicode(parse2.getHost(), 1), null);
+                    } catch (Exception e4) {
+                        try {
+                            FileLog.e((Throwable) e4, false);
+                            str = extra2;
+                        } catch (Exception e5) {
+                            e = e5;
+                            str = extra2;
+                            FileLog.e(e);
+                            str2 = str;
+                            builder2.setTitleMultipleLines(true);
+                            builder2.setTitle(str2);
+                            builder2.setItems(new CharSequence[]{LocaleController.getString(R.string.OpenInSystemBrowser), LocaleController.getString(R.string.AccActionDownload), LocaleController.getString(R.string.CopyLink)}, new DialogInterface.OnClickListener() {
+                                @Override
+                                public final void onClick(DialogInterface dialogInterface, int i) {
+                                    BotWebViewContainer.MyWebView.AnonymousClass1.this.lambda$onLongClick$1(extra2, dialogInterface, i);
+                                }
+                            });
+                            builder2.show();
+                            return true;
+                        }
+                    }
+                    try {
+                        str2 = URLDecoder.decode(str.replaceAll("\\+", "%2b"), "UTF-8");
+                    } catch (Exception e6) {
+                        e = e6;
+                        FileLog.e(e);
+                        str2 = str;
+                        builder2.setTitleMultipleLines(true);
+                        builder2.setTitle(str2);
+                        builder2.setItems(new CharSequence[]{LocaleController.getString(R.string.OpenInSystemBrowser), LocaleController.getString(R.string.AccActionDownload), LocaleController.getString(R.string.CopyLink)}, new DialogInterface.OnClickListener() {
+                            @Override
+                            public final void onClick(DialogInterface dialogInterface, int i) {
+                                BotWebViewContainer.MyWebView.AnonymousClass1.this.lambda$onLongClick$1(extra2, dialogInterface, i);
+                            }
+                        });
+                        builder2.show();
+                        return true;
+                    }
+                    builder2.setTitleMultipleLines(true);
+                    builder2.setTitle(str2);
+                    builder2.setItems(new CharSequence[]{LocaleController.getString(R.string.OpenInSystemBrowser), LocaleController.getString(R.string.AccActionDownload), LocaleController.getString(R.string.CopyLink)}, new DialogInterface.OnClickListener() {
+                        @Override
+                        public final void onClick(DialogInterface dialogInterface, int i) {
+                            BotWebViewContainer.MyWebView.AnonymousClass1.this.lambda$onLongClick$1(extra2, dialogInterface, i);
+                        }
+                    });
+                    builder2.show();
+                    return true;
+                } else {
+                    return false;
                 }
-                return false;
             }
 
             public void lambda$onLongClick$0(String str, DialogInterface dialogInterface, int i) {
@@ -2099,6 +2161,43 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                     AndroidUtilities.addToClipboard(str);
                     if (MyWebView.this.botWebViewContainer != null) {
                         MyWebView.this.botWebViewContainer.showLinkCopiedBulletin();
+                    }
+                }
+            }
+
+            public void lambda$onLongClick$1(String str, DialogInterface dialogInterface, int i) {
+                if (i == 0) {
+                    Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(str));
+                    intent.putExtra("create_new_tab", true);
+                    intent.putExtra("com.android.browser.application_id", MyWebView.this.getContext().getPackageName());
+                    MyWebView.this.getContext().startActivity(intent);
+                } else if (i != 1) {
+                    if (i == 2) {
+                        AndroidUtilities.addToClipboard(str);
+                        if (MyWebView.this.botWebViewContainer != null) {
+                            MyWebView.this.botWebViewContainer.showLinkCopiedBulletin();
+                        }
+                    }
+                } else {
+                    try {
+                        String guessFileName = URLUtil.guessFileName(str, null, "image/*");
+                        if (guessFileName == null) {
+                            guessFileName = "image.png";
+                        }
+                        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(str));
+                        request.setMimeType("image/*");
+                        request.setDescription(LocaleController.getString(R.string.WebDownloading));
+                        request.setNotificationVisibility(1);
+                        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, guessFileName);
+                        DownloadManager downloadManager = (DownloadManager) MyWebView.this.getContext().getSystemService("download");
+                        if (downloadManager != null) {
+                            downloadManager.enqueue(request);
+                        }
+                        if (MyWebView.this.botWebViewContainer != null) {
+                            BulletinFactory.of(MyWebView.this.botWebViewContainer, MyWebView.this.botWebViewContainer.resourcesProvider).createSimpleBulletin(R.raw.ic_download, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.WebDownloadingFile, guessFileName))).show(true);
+                        }
+                    } catch (Exception e) {
+                        FileLog.e(e);
                     }
                 }
             }
