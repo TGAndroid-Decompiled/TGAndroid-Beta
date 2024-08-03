@@ -386,7 +386,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
                 this.webViewContainer.loadFlickerAndSettingsItem(this.currentAccount, this.botId, this.settingsItem);
                 this.webViewContainer.setState(false, null);
                 if (this.webViewContainer.getWebView() != null) {
-                    this.webViewContainer.getWebView().loadUrl("about:blank");
+                    this.webViewContainer.getWebView().lambda$loadUrl$2("about:blank");
                 }
                 WebViewRequestProps webViewRequestProps = webTabData.props;
                 webViewRequestProps.response = null;

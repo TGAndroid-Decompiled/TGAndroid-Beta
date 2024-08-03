@@ -4304,11 +4304,11 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             if (uriParseSafe != null && uriParseSafe.getScheme() == null && uriParseSafe.getHost() == null && uriParseSafe.getPath() != null) {
                 str = Browser.replace(uriParseSafe, "https", uriParseSafe.getPath(), "/");
             }
-            pageLayout.getWebView().loadUrl(str);
+            pageLayout.getWebView().lambda$loadUrl$2(str);
             return;
         }
         AddressBarList.pushRecentSearch(activity, str);
-        pageLayout.getWebView().loadUrl(SearchEngine.getCurrent().getSearchURL(str));
+        pageLayout.getWebView().lambda$loadUrl$2(SearchEngine.getCurrent().getSearchURL(str));
     }
 
     public void lambda$setParentActivity$18(String str) {
@@ -4349,11 +4349,11 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             if (uriParseSafe.getScheme() == null && uriParseSafe.getHost() == null && uriParseSafe.getPath() != null) {
                 str = Browser.replace(uriParseSafe, "https", uriParseSafe.getPath(), "/");
             }
-            pageLayout.getWebView().loadUrl(str);
+            pageLayout.getWebView().lambda$loadUrl$2(str);
             return;
         }
         AddressBarList.pushRecentSearch(activity, str);
-        pageLayout.getWebView().loadUrl(SearchEngine.getCurrent().getSearchURL(str));
+        pageLayout.getWebView().lambda$loadUrl$2(SearchEngine.getCurrent().getSearchURL(str));
     }
 
     public void lambda$setParentActivity$22() {
@@ -4957,7 +4957,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             if (pageLayoutArr[0] == null || pageLayoutArr[0].getWebView() == null) {
                 Browser.openInTelegramBrowser(this.parentActivity, str, null);
             } else {
-                this.pages[0].getWebView().loadUrl(str);
+                this.pages[0].getWebView().lambda$loadUrl$2(str);
             }
         }
     }
@@ -4971,7 +4971,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         if (pageLayoutArr[0] == null || pageLayoutArr[0].getWebView() == null) {
             Browser.openInTelegramBrowser(this.parentActivity, entry.url, null);
         } else {
-            this.pages[0].getWebView().loadUrl(entry.url, entry.meta);
+            this.pages[0].getWebView().lambda$loadUrl$4(entry.url, entry.meta);
         }
     }
 
@@ -12012,13 +12012,34 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
     public void updateTitle(boolean z) {
         this.actionBar.setTitle(0, this.pages[0].getTitle(), z);
         this.actionBar.setSubtitle(0, this.pages[0].getSubtitle(), false);
+        this.actionBar.setIsDangerous(0, this.pages[0].isWeb() && this.pages[0].getWebView() != null && this.pages[0].getWebView().isUrlDangerous(), false);
         this.actionBar.setTitle(1, this.pages[1].getTitle(), z);
         this.actionBar.setSubtitle(1, this.pages[1].getSubtitle(), false);
+        this.actionBar.setIsDangerous(1, this.pages[1].isWeb() && this.pages[1].getWebView() != null && this.pages[1].getWebView().isUrlDangerous(), false);
+    }
+
+    public void setOpener(BotWebViewContainer.MyWebView myWebView) {
+        if (this.pages == null) {
+            return;
+        }
+        int i = 0;
+        while (true) {
+            PageLayout[] pageLayoutArr = this.pages;
+            if (i >= pageLayoutArr.length) {
+                return;
+            }
+            if (pageLayoutArr[i] != null) {
+                pageLayoutArr[i].webViewContainer.setOpener(myWebView);
+            }
+            i++;
+        }
     }
 
     public class PageLayout extends FrameLayout {
         public final WebpageAdapter adapter;
         public boolean backButton;
+        public DangerousContainer dangerousContainer;
+        private boolean dangerousShown;
         public ErrorContainer errorContainer;
         private boolean errorShown;
         private int errorShownCode;
@@ -12144,86 +12165,21 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             webViewSwipeContainer.setShouldWaitWebViewScroll(true);
             webViewSwipeContainer.setFullSize(true);
             webViewSwipeContainer.setAllowFullSizeSwipe(true);
-            BotWebViewContainer botWebViewContainer = new BotWebViewContainer(getContext(), resourcesProvider, ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundWhite), false, ArticleViewer.this) {
-                @Override
-                public void onWebViewCreated() {
-                    super.onWebViewCreated();
-                    PageLayout pageLayout = PageLayout.this;
-                    pageLayout.swipeContainer.setWebView(pageLayout.webViewContainer.getWebView());
-                }
-
-                @Override
-                protected void onURLChanged(String str, boolean z, boolean z2) {
-                    PageLayout pageLayout = PageLayout.this;
-                    boolean z3 = true;
-                    pageLayout.backButton = !z;
-                    pageLayout.forwardButton = !z2;
-                    ArticleViewer.this.updateTitle(true);
-                    PageLayout pageLayout2 = PageLayout.this;
-                    ArticleViewer articleViewer = ArticleViewer.this;
-                    if (pageLayout2 != articleViewer.pages[0] || articleViewer.actionBar.isAddressing() || ArticleViewer.this.actionBar.isSearching() || ArticleViewer.this.windowView.movingPage || ArticleViewer.this.windowView.openingPage) {
-                        return;
-                    }
-                    if (ArticleViewer.this.isFirstArticle() || ArticleViewer.this.pagesStack.size() > 1) {
-                        BackDrawable backDrawable = ArticleViewer.this.actionBar.backButtonDrawable;
-                        PageLayout pageLayout3 = PageLayout.this;
-                        backDrawable.setRotation((pageLayout3.backButton || ArticleViewer.this.pagesStack.size() > 1) ? 0.0f : 1.0f, true);
-                        WebActionBar webActionBar = ArticleViewer.this.actionBar;
-                        PageLayout pageLayout4 = PageLayout.this;
-                        webActionBar.setBackButtonCached(pageLayout4.backButton || ArticleViewer.this.pagesStack.size() > 1);
-                        ArticleViewer.this.actionBar.forwardButtonDrawable.setState(false);
-                    } else {
-                        ArticleViewer.this.actionBar.setBackButtonCached(false);
-                        ArticleViewer.this.actionBar.forwardButtonDrawable.setState(false);
-                    }
-                    ArticleViewer.this.actionBar.setHasForward(PageLayout.this.forwardButton);
-                    WebActionBar webActionBar2 = ArticleViewer.this.actionBar;
-                    PageLayout[] pageLayoutArr = ArticleViewer.this.pages;
-                    webActionBar2.setIsTonsite((pageLayoutArr[0] == null || !pageLayoutArr[0].isTonsite()) ? false : false);
-                }
-
-                @Override
-                protected void onTitleChanged(String str) {
-                    ArticleViewer.this.updateTitle(true);
-                }
-
-                @Override
-                protected void onFaviconChanged(Bitmap bitmap) {
-                    super.onFaviconChanged(bitmap);
-                }
-
-                @Override
-                protected void onErrorShown(boolean z, int i2, String str) {
-                    if (z) {
-                        PageLayout.this.createErrorContainer();
-                        PageLayout.this.errorContainer.set(getWebView() != null ? getWebView().getUrl() : null, PageLayout.this.errorShownCode = i2, PageLayout.this.errorShownDescription = str);
-                        PageLayout pageLayout = PageLayout.this;
-                        ErrorContainer errorContainer = pageLayout.errorContainer;
-                        ArticleViewer articleViewer = ArticleViewer.this;
-                        int i3 = Theme.key_iv_background;
-                        errorContainer.setDark(AndroidUtilities.computePerceivedBrightness(articleViewer.getThemedColor(i3)) <= 0.721f, false);
-                        PageLayout pageLayout2 = PageLayout.this;
-                        pageLayout2.errorContainer.setBackgroundColor(ArticleViewer.this.getThemedColor(i3));
-                    }
-                    PageLayout pageLayout3 = PageLayout.this;
-                    AndroidUtilities.updateViewVisibilityAnimated(pageLayout3.errorContainer, pageLayout3.errorShown = z, 1.0f, false);
-                    invalidate();
-                }
-            };
-            this.webViewContainer = botWebViewContainer;
-            botWebViewContainer.setOnCloseRequestedListener(new Runnable() {
+            AnonymousClass4 anonymousClass4 = new AnonymousClass4(getContext(), resourcesProvider, ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundWhite), false, ArticleViewer.this);
+            this.webViewContainer = anonymousClass4;
+            anonymousClass4.setOnCloseRequestedListener(new Runnable() {
                 @Override
                 public final void run() {
                     ArticleViewer.PageLayout.this.lambda$new$0();
                 }
             });
-            botWebViewContainer.setWebViewProgressListener(new Consumer() {
+            anonymousClass4.setWebViewProgressListener(new Consumer() {
                 @Override
                 public final void accept(Object obj) {
                     ArticleViewer.PageLayout.this.lambda$new$1((Float) obj);
                 }
             });
-            botWebViewContainer.setDelegate(new BotWebViewContainer.Delegate(ArticleViewer.this) {
+            anonymousClass4.setDelegate(new BotWebViewContainer.Delegate(ArticleViewer.this) {
                 @Override
                 public boolean isClipboardAvailable() {
                     return BotWebViewContainer.Delegate.CC.$default$isClipboardAvailable(this);
@@ -12313,13 +12269,13 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     PageLayout.this.setWebBgColor(z, i2);
                 }
             });
-            botWebViewContainer.setWebViewScrollListener(new BotWebViewContainer.WebViewScrollListener(ArticleViewer.this) {
+            anonymousClass4.setWebViewScrollListener(new BotWebViewContainer.WebViewScrollListener(ArticleViewer.this) {
                 @Override
                 public void onWebViewScrolled(WebView webView, int i2, int i3) {
                     ArticleViewer.this.updatePages();
                 }
             });
-            webViewSwipeContainer.addView(botWebViewContainer, LayoutHelper.createFrame(-1, -1.0f));
+            webViewSwipeContainer.addView(anonymousClass4, LayoutHelper.createFrame(-1, -1.0f));
             webViewSwipeContainer.setScrollEndListener(new Runnable() {
                 @Override
                 public final void run() {
@@ -12346,6 +12302,99 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             addView(webViewSwipeContainer, LayoutHelper.createFrame(-1, -1.0f));
             cleanup();
             setType(0);
+        }
+
+        public class AnonymousClass4 extends BotWebViewContainer {
+            AnonymousClass4(Context context, Theme.ResourcesProvider resourcesProvider, int i, boolean z, ArticleViewer articleViewer) {
+                super(context, resourcesProvider, i, z);
+            }
+
+            @Override
+            public void onWebViewCreated() {
+                super.onWebViewCreated();
+                PageLayout pageLayout = PageLayout.this;
+                pageLayout.swipeContainer.setWebView(pageLayout.webViewContainer.getWebView());
+            }
+
+            @Override
+            protected void onURLChanged(String str, boolean z, boolean z2) {
+                PageLayout pageLayout = PageLayout.this;
+                boolean z3 = true;
+                pageLayout.backButton = !z;
+                pageLayout.forwardButton = !z2;
+                ArticleViewer.this.updateTitle(true);
+                PageLayout pageLayout2 = PageLayout.this;
+                ArticleViewer articleViewer = ArticleViewer.this;
+                if (pageLayout2 != articleViewer.pages[0] || articleViewer.actionBar.isAddressing() || ArticleViewer.this.actionBar.isSearching() || ArticleViewer.this.windowView.movingPage || ArticleViewer.this.windowView.openingPage) {
+                    return;
+                }
+                if (ArticleViewer.this.isFirstArticle() || ArticleViewer.this.pagesStack.size() > 1) {
+                    BackDrawable backDrawable = ArticleViewer.this.actionBar.backButtonDrawable;
+                    PageLayout pageLayout3 = PageLayout.this;
+                    backDrawable.setRotation((pageLayout3.backButton || ArticleViewer.this.pagesStack.size() > 1) ? 0.0f : 1.0f, true);
+                    WebActionBar webActionBar = ArticleViewer.this.actionBar;
+                    PageLayout pageLayout4 = PageLayout.this;
+                    webActionBar.setBackButtonCached(pageLayout4.backButton || ArticleViewer.this.pagesStack.size() > 1);
+                    ArticleViewer.this.actionBar.forwardButtonDrawable.setState(false);
+                } else {
+                    ArticleViewer.this.actionBar.setBackButtonCached(false);
+                    ArticleViewer.this.actionBar.forwardButtonDrawable.setState(false);
+                }
+                ArticleViewer.this.actionBar.setHasForward(PageLayout.this.forwardButton);
+                WebActionBar webActionBar2 = ArticleViewer.this.actionBar;
+                PageLayout[] pageLayoutArr = ArticleViewer.this.pages;
+                webActionBar2.setIsTonsite((pageLayoutArr[0] == null || !pageLayoutArr[0].isTonsite()) ? false : false);
+            }
+
+            @Override
+            protected void onTitleChanged(String str) {
+                ArticleViewer.this.updateTitle(true);
+            }
+
+            @Override
+            protected void onFaviconChanged(Bitmap bitmap) {
+                super.onFaviconChanged(bitmap);
+            }
+
+            @Override
+            protected void onErrorShown(boolean z, int i, String str) {
+                if (z) {
+                    PageLayout.this.createErrorContainer();
+                    PageLayout.this.errorContainer.set(getWebView() != null ? getWebView().getUrl() : null, PageLayout.this.errorShownCode = i, PageLayout.this.errorShownDescription = str);
+                    PageLayout pageLayout = PageLayout.this;
+                    ErrorContainer errorContainer = pageLayout.errorContainer;
+                    ArticleViewer articleViewer = ArticleViewer.this;
+                    int i2 = Theme.key_iv_background;
+                    errorContainer.setDark(AndroidUtilities.computePerceivedBrightness(articleViewer.getThemedColor(i2)) <= 0.721f, false);
+                    PageLayout pageLayout2 = PageLayout.this;
+                    pageLayout2.errorContainer.setBackgroundColor(ArticleViewer.this.getThemedColor(i2));
+                }
+                PageLayout pageLayout3 = PageLayout.this;
+                AndroidUtilities.updateViewVisibilityAnimated(pageLayout3.errorContainer, pageLayout3.errorShown = z, 1.0f, false);
+                invalidate();
+            }
+
+            @Override
+            protected void onDangerousTriggered(final BotWebViewContainer.DangerousWebWarning dangerousWebWarning) {
+                PageLayout.this.createDangerousContainer();
+                if (dangerousWebWarning != null) {
+                    PageLayout.this.dangerousContainer.set(dangerousWebWarning.url, dangerousWebWarning.threatType, dangerousWebWarning.proceed);
+                    PageLayout.this.dangerousContainer.buttonView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view) {
+                            ArticleViewer.PageLayout.AnonymousClass4.this.lambda$onDangerousTriggered$0(dangerousWebWarning, view);
+                        }
+                    });
+                }
+                PageLayout pageLayout = PageLayout.this;
+                AndroidUtilities.updateViewVisibilityAnimated(pageLayout.dangerousContainer, pageLayout.dangerousShown = dangerousWebWarning != null, 1.0f, false);
+                invalidate();
+            }
+
+            public void lambda$onDangerousTriggered$0(BotWebViewContainer.DangerousWebWarning dangerousWebWarning, View view) {
+                PageLayout.this.dangerousContainer.buttonView.setOnClickListener(null);
+                dangerousWebWarning.back.run();
+            }
         }
 
         public void lambda$new$0() {
@@ -12386,6 +12435,10 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             ErrorContainer errorContainer = this.errorContainer;
             if (errorContainer != null) {
                 errorContainer.layout.setTranslationY((((-this.swipeContainer.getOffsetY()) + this.swipeContainer.getTopActionBarOffsetY()) - this.swipeContainer.getSwipeOffsetY()) / 2.0f);
+            }
+            DangerousContainer dangerousContainer = this.dangerousContainer;
+            if (dangerousContainer != null) {
+                dangerousContainer.layout.setTranslationY((((-this.swipeContainer.getOffsetY()) + this.swipeContainer.getTopActionBarOffsetY()) - this.swipeContainer.getSwipeOffsetY()) / 2.0f);
             }
             ArticleViewer.this.updatePages();
         }
@@ -12432,11 +12485,43 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     }
                 });
                 AndroidUtilities.updateViewVisibilityAnimated(this.errorContainer, this.errorShown, 1.0f, false);
+                DangerousContainer dangerousContainer = this.dangerousContainer;
+                if (dangerousContainer != null) {
+                    dangerousContainer.bringToFront();
+                }
             }
             return this.errorContainer;
         }
 
         public void lambda$createErrorContainer$5(View view) {
+            BotWebViewContainer.MyWebView webView = this.webViewContainer.getWebView();
+            if (webView != null) {
+                webView.reload();
+            }
+        }
+
+        public DangerousContainer createDangerousContainer() {
+            if (this.dangerousContainer == null) {
+                ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer webViewSwipeContainer = this.swipeContainer;
+                DangerousContainer dangerousContainer = new DangerousContainer(getContext());
+                this.dangerousContainer = dangerousContainer;
+                webViewSwipeContainer.addView(dangerousContainer, LayoutHelper.createFrame(-1, -1.0f));
+                this.dangerousContainer.buttonView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view) {
+                        ArticleViewer.PageLayout.this.lambda$createDangerousContainer$6(view);
+                    }
+                });
+                AndroidUtilities.updateViewVisibilityAnimated(this.dangerousContainer, this.dangerousShown, 1.0f, false);
+                DangerousContainer dangerousContainer2 = this.dangerousContainer;
+                if (dangerousContainer2 != null) {
+                    dangerousContainer2.bringToFront();
+                }
+            }
+            return this.dangerousContainer;
+        }
+
+        public void lambda$createDangerousContainer$6(View view) {
             BotWebViewContainer.MyWebView webView = this.webViewContainer.getWebView();
             if (webView != null) {
                 webView.reload();
@@ -12469,6 +12554,9 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         public int getBackgroundColor() {
+            if (isWeb() && this.dangerousShown) {
+                return -5036514;
+            }
             if (isWeb() && SharedConfig.adaptableColorInBrowser) {
                 if (this.errorShown) {
                     return ArticleViewer.this.getThemedColor(Theme.key_iv_background);
@@ -12499,16 +12587,18 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 Uri parse = Uri.parse(BotWebViewContainer.magic2tonsite(url));
                 String uri = (parse.getScheme() == null || !(parse.getScheme().equalsIgnoreCase("http") || parse.getScheme().equalsIgnoreCase("https"))) ? parse.toString() : parse.getSchemeSpecificPart();
                 try {
-                    try {
-                        Uri parse2 = Uri.parse(uri);
-                        uri = Browser.replaceHostname(parse2, IDN.toUnicode(parse2.getHost(), 1), null);
-                    } catch (Exception e) {
-                        FileLog.e(e);
+                    if (!isTonsite()) {
+                        try {
+                            Uri parse2 = Uri.parse(uri);
+                            uri = Browser.replaceHostname(parse2, IDN.toUnicode(parse2.getHost(), 1), null);
+                        } catch (Exception e) {
+                            FileLog.e((Throwable) e, false);
+                        }
+                        uri = URLDecoder.decode(uri.replaceAll("\\+", "%2b"), "UTF-8");
                     }
                 } catch (Exception e2) {
-                    FileLog.e((Throwable) e2, false);
+                    FileLog.e(e2);
                 }
-                uri = URLDecoder.decode(uri.replaceAll("\\+", "%2b"), "UTF-8");
                 if (uri.startsWith("//")) {
                     uri = uri.substring(2);
                 }
@@ -12730,6 +12820,11 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 ErrorContainer errorContainer2 = this.errorContainer;
                 this.errorShown = false;
                 AndroidUtilities.updateViewVisibilityAnimated(errorContainer2, false, 1.0f, false);
+            }
+            DangerousContainer dangerousContainer = this.dangerousContainer;
+            if (dangerousContainer != null) {
+                this.dangerousShown = false;
+                AndroidUtilities.updateViewVisibilityAnimated(dangerousContainer, false, 1.0f, false);
             }
             this.adapter.cleanup();
             invalidate();
@@ -13783,6 +13878,125 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             }
             this.imageViewSet = true;
             MediaDataController.getInstance(UserConfig.selectedAccount).setPlaceholderImage(this.imageView, "tg_placeholders_android", "🧐", "100_100");
+        }
+    }
+
+    public static class DangerousContainer extends FrameLayout {
+        private final ButtonWithCounterView buttonView;
+        private final TextView codeView;
+        private final TextView descriptionView;
+        private final ButtonWithCounterView detailsButtonView;
+        private final LinkSpanDrawable.LinksTextView detailsDescriptionView;
+        private final BackupImageView imageView;
+        private boolean imageViewSet;
+        public final LinearLayout layout;
+        private final TextView titleView;
+
+        public DangerousContainer(Context context) {
+            super(context);
+            setVisibility(8);
+            setBackgroundColor(-5036514);
+            LinearLayout linearLayout = new LinearLayout(context);
+            this.layout = linearLayout;
+            linearLayout.setPadding(AndroidUtilities.dp(42.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(42.0f), AndroidUtilities.dp(24.0f));
+            linearLayout.setOrientation(1);
+            linearLayout.setGravity(3);
+            addView(linearLayout, LayoutHelper.createFrame(-1, -2, 17));
+            BackupImageView backupImageView = new BackupImageView(context);
+            this.imageView = backupImageView;
+            linearLayout.addView(backupImageView, LayoutHelper.createLinear(150, 150));
+            TextView textView = new TextView(context);
+            this.titleView = textView;
+            textView.setTextSize(1, 20.0f);
+            textView.setTypeface(AndroidUtilities.bold());
+            textView.setTextColor(-1);
+            linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2, 3, 0, 10, 0, 8));
+            TextView textView2 = new TextView(context);
+            this.descriptionView = textView2;
+            textView2.setTextSize(1, 13.0f);
+            textView2.setTextColor(-1);
+            textView2.setSingleLine(false);
+            textView2.setMaxLines(15);
+            linearLayout.addView(textView2, LayoutHelper.createLinear(-2, -2, 3, 0, 0, 0, 1));
+            TextView textView3 = new TextView(context);
+            this.codeView = textView3;
+            textView3.setTextSize(1, 11.0f);
+            textView3.setTextColor(-1);
+            textView3.setAlpha(0.4f);
+            linearLayout.addView(textView3, LayoutHelper.createLinear(-2, -2, 3));
+            ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, null);
+            this.buttonView = buttonWithCounterView;
+            buttonWithCounterView.setColor(-1152913);
+            buttonWithCounterView.setMinWidth(AndroidUtilities.dp(140.0f));
+            buttonWithCounterView.setText(LocaleController.getString(R.string.WebDangerousBackButton), false);
+            linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-2, 40, 3, 0, 12, 0, 0));
+            ButtonWithCounterView buttonWithCounterView2 = new ButtonWithCounterView(context, false, null);
+            this.detailsButtonView = buttonWithCounterView2;
+            buttonWithCounterView2.setTextColor(Theme.multAlpha(-1, 0.5f));
+            buttonWithCounterView2.rippleView.setBackground(Theme.createRadSelectorDrawable(Theme.multAlpha(-1, 0.1f), 8, 8));
+            buttonWithCounterView2.setMinWidth(AndroidUtilities.dp(140.0f));
+            buttonWithCounterView2.setText(LocaleController.getString(R.string.WebDangerousDetailsButton), false);
+            linearLayout.addView(buttonWithCounterView2, LayoutHelper.createLinear(-2, 40, 3, 0, 6, 0, 8));
+            LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(this, context) {
+                @Override
+                public int overrideColor() {
+                    return Theme.multAlpha(-1, 0.25f);
+                }
+            };
+            this.detailsDescriptionView = linksTextView;
+            linksTextView.setTextSize(1, 13.0f);
+            linksTextView.setTextColor(-1);
+            linksTextView.setLinkTextColor(-1);
+            linksTextView.setSingleLine(false);
+            linksTextView.setMaxLines(15);
+            linksTextView.setVisibility(4);
+            linearLayout.addView(linksTextView, LayoutHelper.createLinear(-2, -2, 3, 0, 0, 0, 1));
+        }
+
+        public void set(String str, String str2, final Runnable runnable) {
+            this.titleView.setText(LocaleController.getString(R.string.WebDangerousTitle));
+            this.descriptionView.setText(LocaleController.getString(R.string.WebDangerousInfo));
+            this.codeView.setText(str2);
+            if (runnable == null) {
+                this.detailsButtonView.setVisibility(8);
+                this.detailsDescriptionView.setVisibility(8);
+                return;
+            }
+            this.detailsButtonView.setVisibility(0);
+            this.detailsDescriptionView.setVisibility(4);
+            this.detailsDescriptionView.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.WebDangerousDetails), -1, 4, new Runnable() {
+                @Override
+                public final void run() {
+                    runnable.run();
+                }
+            }));
+            this.detailsButtonView.setText(LocaleController.getString(R.string.WebDangerousDetailsButton), false);
+            this.detailsButtonView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    ArticleViewer.DangerousContainer.this.lambda$set$1(view);
+                }
+            });
+        }
+
+        public void lambda$set$1(View view) {
+            if (this.detailsDescriptionView.getVisibility() == 0) {
+                this.detailsDescriptionView.setVisibility(4);
+                this.detailsButtonView.setText(LocaleController.getString(R.string.WebDangerousDetailsButton), true);
+                return;
+            }
+            this.detailsDescriptionView.setVisibility(0);
+            this.detailsButtonView.setText(LocaleController.getString(R.string.WebDangerousHideDetailsButton), true);
+        }
+
+        @Override
+        public void setVisibility(int i) {
+            super.setVisibility(i);
+            if (i != 0 || this.imageViewSet) {
+                return;
+            }
+            this.imageViewSet = true;
+            MediaDataController.getInstance(UserConfig.selectedAccount).setPlaceholderImage(this.imageView, "tg_superplaceholders_android_2", "🛡", "150_150");
         }
     }
 

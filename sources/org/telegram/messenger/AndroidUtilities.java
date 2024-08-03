@@ -212,6 +212,7 @@ public class AndroidUtilities {
     public static final int REPLACING_TAG_TYPE_LINK = 0;
     public static final int REPLACING_TAG_TYPE_LINKBOLD = 2;
     public static final int REPLACING_TAG_TYPE_LINK_NBSP = 3;
+    public static final int REPLACING_TAG_TYPE_UNDERLINE = 4;
     public static final String STICKERS_PLACEHOLDER_PACK_NAME = "tg_placeholders_android";
     public static final String STICKERS_PLACEHOLDER_PACK_NAME_2 = "tg_superplaceholders_android_2";
     public static final String TYPEFACE_COURIER_NEW_BOLD = "fonts/courier_new_bold.ttf";
@@ -555,12 +556,12 @@ public class AndroidUtilities {
                 int i5 = indexOf + i3;
                 spannableStringBuilder.replace(indexOf, i5, replaceMultipleCharSequence(" ", spannableStringBuilder.subSequence(indexOf, i5), " "));
             }
-            if (i2 == 0 || i2 == 3 || i2 == 2) {
+            if (i2 == 0 || i2 == 3 || i2 == 2 || i2 == 4) {
                 spannableStringBuilder.setSpan(new ClickableSpan() {
                     @Override
                     public void updateDrawState(TextPaint textPaint) {
                         super.updateDrawState(textPaint);
-                        textPaint.setUnderlineText(false);
+                        textPaint.setUnderlineText(i2 == 4);
                         int i6 = i;
                         if (i6 >= 0) {
                             textPaint.setColor(Theme.getColor(i6, resourcesProvider));
@@ -4353,6 +4354,14 @@ public class AndroidUtilities {
         }
     }
 
+    public static String getCertificateSHA1Fingerprint() {
+        try {
+            return Utilities.bytesToHex(Utilities.computeSHA1(((X509Certificate) CertificateFactory.getInstance("X509").generateCertificate(new ByteArrayInputStream(ApplicationLoader.applicationContext.getPackageManager().getPackageInfo(ApplicationLoader.applicationContext.getPackageName(), 64).signatures[0].toByteArray()))).getEncoded()));
+        } catch (Throwable unused) {
+            return "";
+        }
+    }
+
     public static boolean isPunctuationCharacter(char c) {
         if (charactersMap == null) {
             charactersMap = new HashSet<>();
@@ -5054,7 +5063,7 @@ public class AndroidUtilities {
         return false;
     }
 
-    private static Pattern getURIParsePattern() {
+    public static Pattern getURIParsePattern() {
         if (uriParse == null) {
             uriParse = Pattern.compile("^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?");
         }

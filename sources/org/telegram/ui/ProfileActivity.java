@@ -10917,7 +10917,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             TLRPC$User user = ProfileActivity.this.getMessagesController().getUser(Long.valueOf(ProfileActivity.this.userId));
             MessagesController messagesController = ProfileActivity.this.getMessagesController();
             ProfileActivity profileActivity = ProfileActivity.this;
-            messagesController.openApp(profileActivity, user, profileActivity.getClassGuid());
+            messagesController.openApp(profileActivity, user, profileActivity.getClassGuid(), null);
         }
 
         @Override

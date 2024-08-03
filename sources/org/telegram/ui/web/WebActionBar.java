@@ -443,6 +443,17 @@ public class WebActionBar extends FrameLayout {
         }
     }
 
+    public void setIsDangerous(int i, boolean z, boolean z2) {
+        Title[] titleArr = this.titles;
+        if (titleArr[i].isDangerous != z) {
+            titleArr[i].isDangerous = z;
+            if (!z2) {
+                titleArr[i].animatedDangerous.set(z ? 1.0f : 0.0f, true);
+            }
+            invalidate();
+        }
+    }
+
     public String getTitle() {
         CharSequence text = this.titles[0].title.getText();
         return text == null ? "" : text.toString();
@@ -508,7 +519,9 @@ public class WebActionBar extends FrameLayout {
         this.progressBackgroundPaint[i].setColor(Theme.blendOver(i2, Theme.multAlpha(blendARGB, AndroidUtilities.lerp(0.07f, 0.2f, f))));
         this.shadowPaint[i].setColor(Theme.blendOver(i2, Theme.multAlpha(blendARGB, AndroidUtilities.lerp(0.14f, 0.24f, f))));
         this.titles[i].title.setTextColor(blendARGB);
-        this.titles[i].subtitle.setTextColor(Theme.blendOver(i2, Theme.multAlpha(blendARGB, 0.6f)));
+        this.titles[i].subtitleColor = Theme.blendOver(i2, Theme.multAlpha(blendARGB, 0.6f));
+        Title[] titleArr = this.titles;
+        titleArr[i].subtitle.setTextColor(ColorUtils.blendARGB(titleArr[i].subtitleColor, Theme.getColor(Theme.key_text_RedBold), this.titles[i].animatedDangerous.get()));
         invalidate();
     }
 
@@ -638,14 +651,21 @@ public class WebActionBar extends FrameLayout {
     }
 
     public class Title {
+        public final AnimatedFloat animatedDangerous;
+        public boolean isDangerous;
         public final AnimatedTextView.AnimatedTextDrawable subtitle;
+        public int subtitleColor;
         public final AnimatedTextView.AnimatedTextDrawable title;
+        public final Drawable warningDrawable;
+        public int warningDrawableColor;
 
         public Title() {
             AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(true, true, true);
             this.title = animatedTextDrawable;
             AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = new AnimatedTextView.AnimatedTextDrawable(true, true, true);
             this.subtitle = animatedTextDrawable2;
+            this.animatedDangerous = new AnimatedFloat(WebActionBar.this, 0L, 300L, CubicBezierInterpolator.EASE_OUT_QUINT);
+            this.isDangerous = false;
             animatedTextDrawable.ignoreRTL = true;
             animatedTextDrawable.setTextSize(AndroidUtilities.dp(18.33f));
             animatedTextDrawable.setScaleProperty(0.6f);
@@ -658,6 +678,7 @@ public class WebActionBar extends FrameLayout {
             animatedTextDrawable2.setEllipsizeByGradient(false);
             animatedTextDrawable2.setCallback(WebActionBar.this);
             animatedTextDrawable2.setOverrideFullWidth(9999999);
+            this.warningDrawable = WebActionBar.this.getContext().getResources().getDrawable(R.drawable.warning_sign).mutate();
         }
 
         public void draw(Canvas canvas, float f, float f2, float f3) {
@@ -673,11 +694,24 @@ public class WebActionBar extends FrameLayout {
             this.title.setBounds(0.0f, 0.0f, f, f2);
             this.title.draw(canvas);
             canvas.restore();
+            float f5 = this.animatedDangerous.set(this.isDangerous);
             canvas.save();
             canvas.translate(0.0f, (((-AndroidUtilities.dp(1.0f)) + ((f4 * (1.0f - WebActionBar.this.scale)) * isNotEmpty)) + (AndroidUtilities.dp(14.0f) * isNotEmpty)) - (AndroidUtilities.dp(4.0f) * (1.0f - isNotEmpty)));
             float lerp2 = WebActionBar.this.scale * AndroidUtilities.lerp(1.15f, 0.9f, isNotEmpty);
             canvas.scale(lerp2, lerp2, 0.0f, 0.0f);
-            this.subtitle.setBounds(0.0f, 0.0f, f, f2);
+            this.subtitle.setTextColor(ColorUtils.blendARGB(this.subtitleColor, Theme.getColor(Theme.key_text_RedBold), f5));
+            if (f5 > 0.0f) {
+                if (this.warningDrawableColor != this.subtitle.getTextColor()) {
+                    Drawable drawable = this.warningDrawable;
+                    int textColor = this.subtitle.getTextColor();
+                    this.warningDrawableColor = textColor;
+                    drawable.setColorFilter(new PorterDuffColorFilter(textColor, PorterDuff.Mode.SRC_IN));
+                }
+                this.warningDrawable.setAlpha((int) (255.0f * f5));
+                this.warningDrawable.setBounds(0, ((int) (f2 - AndroidUtilities.dp(16.0f))) / 2, AndroidUtilities.dp(16.0f), ((int) (AndroidUtilities.dp(16.0f) + f2)) / 2);
+                this.warningDrawable.draw(canvas);
+            }
+            this.subtitle.setBounds(AndroidUtilities.dp(20.0f) * f5, 0.0f, f, f2);
             this.subtitle.draw(canvas);
             canvas.restore();
             WebActionBar.this.rect.set(f - AndroidUtilities.dp(12.0f), 0.0f, f, f2);

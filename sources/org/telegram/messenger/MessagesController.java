@@ -2013,7 +2013,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.loadingPinnedDialogs = new SparseIntArray();
         this.faqSearchArray = new ArrayList<>();
         this.suggestContacts = true;
-        this.themeCheckRunnable = MessagesController$$ExternalSyntheticLambda293.INSTANCE;
+        this.themeCheckRunnable = MessagesController$$ExternalSyntheticLambda294.INSTANCE;
         this.passwordCheckRunnable = new Runnable() {
             @Override
             public final void run() {
@@ -18233,17 +18233,31 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void openApp(TLRPC$User tLRPC$User, int i) {
-        openApp(null, tLRPC$User, i);
+        openApp(null, tLRPC$User, i, null);
     }
 
-    public void openApp(final BaseFragment baseFragment, final TLRPC$User tLRPC$User, final int i) {
+    public static void lambda$openApp$446(boolean[] zArr) {
+        zArr[0] = true;
+    }
+
+    public void openApp(final BaseFragment baseFragment, final TLRPC$User tLRPC$User, final int i, final Browser.Progress progress) {
         if (tLRPC$User == null) {
             return;
+        }
+        final boolean[] zArr = {false};
+        if (progress != null) {
+            progress.onCancel(new Runnable() {
+                @Override
+                public final void run() {
+                    MessagesController.lambda$openApp$446(zArr);
+                }
+            });
+            progress.init();
         }
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                MessagesController.this.lambda$openApp$446(baseFragment, tLRPC$User, r4);
+                MessagesController.this.lambda$openApp$447(baseFragment, progress, zArr, tLRPC$User, r6);
             }
         };
         MediaDataController mediaDataController = getMediaDataController();
@@ -18257,7 +18271,7 @@ public class MessagesController extends BaseController implements NotificationCe
             mediaDataController2.loadBotInfo(j2, j2, false, i, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    MessagesController.this.lambda$openApp$448(tL_bots$BotInfoArr, tLRPC$User, i, runnable, (TL_bots$BotInfo) obj);
+                    MessagesController.this.lambda$openApp$449(zArr, tL_bots$BotInfoArr, tLRPC$User, i, runnable, (TL_bots$BotInfo) obj);
                 }
             });
         } else {
@@ -18265,9 +18279,15 @@ public class MessagesController extends BaseController implements NotificationCe
         }
     }
 
-    public void lambda$openApp$446(BaseFragment baseFragment, TLRPC$User tLRPC$User, TL_bots$BotInfo[] tL_bots$BotInfoArr) {
+    public void lambda$openApp$447(BaseFragment baseFragment, Browser.Progress progress, boolean[] zArr, TLRPC$User tLRPC$User, TL_bots$BotInfo[] tL_bots$BotInfoArr) {
         EmptyBaseFragment safeLastFragment = baseFragment != null ? baseFragment : LaunchActivity.getSafeLastFragment();
         if (safeLastFragment == null) {
+            return;
+        }
+        if (progress != null) {
+            progress.end();
+        }
+        if (zArr[0]) {
             return;
         }
         if (tLRPC$User.bot_has_main_app) {
@@ -18330,15 +18350,21 @@ public class MessagesController extends BaseController implements NotificationCe
         }
     }
 
-    public void lambda$openApp$448(final TL_bots$BotInfo[] tL_bots$BotInfoArr, TLRPC$User tLRPC$User, int i, final Runnable runnable, TL_bots$BotInfo tL_bots$BotInfo) {
+    public void lambda$openApp$449(final boolean[] zArr, final TL_bots$BotInfo[] tL_bots$BotInfoArr, TLRPC$User tLRPC$User, int i, final Runnable runnable, TL_bots$BotInfo tL_bots$BotInfo) {
+        if (zArr[0]) {
+            return;
+        }
         tL_bots$BotInfoArr[0] = tL_bots$BotInfo;
         if (tL_bots$BotInfoArr[0] == null) {
             TLRPC$UserFull userFull = getUserFull(tLRPC$User.id);
             if (userFull == null) {
+                if (zArr[0]) {
+                    return;
+                }
                 loadFullUser(tLRPC$User, i, true, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        MessagesController.lambda$openApp$447(tL_bots$BotInfoArr, runnable, (TLRPC$UserFull) obj);
+                        MessagesController.lambda$openApp$448(zArr, tL_bots$BotInfoArr, runnable, (TLRPC$UserFull) obj);
                     }
                 });
                 return;
@@ -18350,7 +18376,10 @@ public class MessagesController extends BaseController implements NotificationCe
         runnable.run();
     }
 
-    public static void lambda$openApp$447(TL_bots$BotInfo[] tL_bots$BotInfoArr, Runnable runnable, TLRPC$UserFull tLRPC$UserFull) {
+    public static void lambda$openApp$448(boolean[] zArr, TL_bots$BotInfo[] tL_bots$BotInfoArr, Runnable runnable, TLRPC$UserFull tLRPC$UserFull) {
+        if (zArr[0]) {
+            return;
+        }
         if (tLRPC$UserFull != null) {
             tL_bots$BotInfoArr[0] = tLRPC$UserFull.bot_info;
         }

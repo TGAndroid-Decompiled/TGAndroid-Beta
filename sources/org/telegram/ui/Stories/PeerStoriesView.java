@@ -990,10 +990,10 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                 }
             } else if (characterStyle instanceof URLSpanNoUnderline) {
                 String url = ((URLSpanNoUnderline) characterStyle).getURL();
-                if (url != null && url.startsWith("#")) {
+                if (url != null && (url.startsWith("#") || url.startsWith("$"))) {
                     Bundle bundle = new Bundle();
                     bundle.putInt("type", 3);
-                    bundle.putString("hashtag", url.substring(1));
+                    bundle.putString("hashtag", url);
                     StoryViewer storyViewer = this.val$storyViewer;
                     if (storyViewer != null) {
                         storyViewer.presentFragment(new MediaActivity(bundle, null));

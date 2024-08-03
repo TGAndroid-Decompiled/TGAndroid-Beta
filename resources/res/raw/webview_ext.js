@@ -26,8 +26,6 @@
  *    - <meta name="theme-background-color" content="#FFFFFF" /> — navigation bar
  *    - <body> `background-color` css style — fallback
  *  `media` attribute on <meta> is also supported, feel free to use `prefers-color-scheme`
- *
- *  TODO(@dkaraush): apply same gestures logic for miniapps
  */
 
 if (!window.__tg__webview_set) {
@@ -221,20 +219,6 @@ if (!window.__tg__webview_set) {
         window.__tg__listenColors();
         window.addEventListener('ready', __tg__listenColors, true);
         window.__tg__postColorsChange();
-
-        // DownloadManager in WebView gives me blob url with no way to download it :(
-        // getting array buffer through js injection
-        window.__tg__resolveBlob = (url) => {
-            fetch(url)
-                .then(r => r.blob())
-                .then(blob => {
-                    blob.arrayBuffer().then(buffer => {
-                        if (window.TelegramWebview) {
-                            window.TelegramWebview.resolveBlob(url, Array.from(new Uint8Array(buffer)), blob.type);
-                        }
-                    })
-                });
-        };
     })();
 };
 

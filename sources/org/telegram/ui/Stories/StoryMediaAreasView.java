@@ -169,7 +169,7 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
                     locationMarker.setIsVideo(true);
                     locationMarker.setCodeEmoji(UserConfig.selectedAccount, state.getEmoji());
                     locationMarker.setText(state.getTemperature());
-                    locationMarker.setType(0, tL_stories$TL_mediaAreaWeather.color);
+                    locationMarker.setType(3, tL_stories$TL_mediaAreaWeather.color);
                     storyReactionWidgetView = new FitViewWidget(getContext(), locationMarker, tL_stories$MediaArea);
                 } else {
                     storyReactionWidgetView = new AreaView(getContext(), this.parentView, tL_stories$MediaArea);

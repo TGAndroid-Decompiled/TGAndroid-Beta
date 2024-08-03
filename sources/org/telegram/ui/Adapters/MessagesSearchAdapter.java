@@ -66,18 +66,11 @@ public class MessagesSearchAdapter extends RecyclerListView.SelectionAdapter imp
     }
 
     public void searchStories(String str, boolean z) {
-        if (str.startsWith("$")) {
-            str = "";
-        }
-        boolean z2 = true;
-        if (str.startsWith("#")) {
-            str = str.substring(1);
-        }
         StoriesController.SearchStoriesList searchStoriesList = this.storiesList;
-        if (TextUtils.equals(searchStoriesList != null ? searchStoriesList.query : "", str)) {
+        if (TextUtils.equals(searchStoriesList == null ? "" : searchStoriesList.query, str)) {
             return;
         }
-        boolean z3 = this.containsStories;
+        boolean z2 = this.containsStories;
         AndroidUtilities.cancelRunOnUIThread(this.loadStories);
         StoriesController.SearchStoriesList searchStoriesList2 = this.storiesList;
         if (searchStoriesList2 != null) {
@@ -92,7 +85,7 @@ public class MessagesSearchAdapter extends RecyclerListView.SelectionAdapter imp
             }
         }
         StoriesController.SearchStoriesList searchStoriesList3 = this.storiesList;
-        if (((searchStoriesList3 == null || searchStoriesList3.getCount() <= 0) ? false : false) != z3) {
+        if ((searchStoriesList3 != null && searchStoriesList3.getCount() > 0) != z2) {
             notifyDataSetChanged();
         }
     }

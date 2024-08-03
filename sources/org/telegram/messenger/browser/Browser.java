@@ -755,7 +755,9 @@ public class Browser {
             sb.append("@");
         }
         if (str2 == null) {
-            sb.append(uri.getAuthority());
+            if (uri.getHost() != null) {
+                sb.append(uri.getHost());
+            }
         } else {
             sb.append(str2);
         }
