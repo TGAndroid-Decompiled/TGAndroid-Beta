@@ -1583,8 +1583,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
 
     public void setRestrictedUsers(TLRPC$Chat tLRPC$Chat, ArrayList<TLRPC$User> arrayList, ArrayList<Long> arrayList2, ArrayList<Long> arrayList3) {
         this.fromChat = tLRPC$Chat;
-        ChatObject.canUserDoAdminAction(tLRPC$Chat, 3);
-        this.canSendLink = true;
+        this.canSendLink = ChatObject.canUserDoAdminAction(tLRPC$Chat, 3);
         this.restrictedUsers = new ArrayList<>(arrayList);
         this.premiumMessagingBlockedUsers = arrayList2;
         this.premiumInviteBlockedUsers = arrayList3;

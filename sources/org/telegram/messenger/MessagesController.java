@@ -818,6 +818,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public int roundAudioBitrate;
     public int roundVideoBitrate;
     public int roundVideoSize;
+    public boolean safeBrowsingDisabled;
     public boolean saveGifsWithStickers;
     public int savedDialogsPinnedLimitDefault;
     public int savedDialogsPinnedLimitPremium;
@@ -2296,6 +2297,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.weatherSearchUsername = this.mainPreferences.getString("weatherSearchUsername", "izweatherbot");
         this.storyWeatherPreload = this.mainPreferences.getBoolean("storyWeatherPreload", true);
         this.starsGiftsEnabled = this.mainPreferences.getBoolean("starsGiftsEnabled", true);
+        this.safeBrowsingDisabled = this.mainPreferences.getBoolean("safeBrowsingDisabled", false);
         scheduleTranscriptionUpdate();
         BuildVars.GOOGLE_AUTH_CLIENT_ID = this.mainPreferences.getString("googleAuthClientId", BuildVars.GOOGLE_AUTH_CLIENT_ID);
         if (this.mainPreferences.contains("dcDomainName2")) {

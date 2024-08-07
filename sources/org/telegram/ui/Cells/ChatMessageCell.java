@@ -5435,6 +5435,8 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                     str = LocaleController.getString(R.string.OpenChannel);
                 } else if (i == 13) {
                     str = LocaleController.getString(R.string.SendMessage).toUpperCase();
+                } else if (i == 32) {
+                    str = LocaleController.getString(R.string.OpenProfile).toUpperCase();
                 } else if (i == 10) {
                     str = LocaleController.getString(R.string.OpenBot);
                 } else if (i == 2) {

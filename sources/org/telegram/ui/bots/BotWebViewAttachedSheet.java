@@ -386,7 +386,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
                 this.webViewContainer.loadFlickerAndSettingsItem(this.currentAccount, this.botId, this.settingsItem);
                 this.webViewContainer.setState(false, null);
                 if (this.webViewContainer.getWebView() != null) {
-                    this.webViewContainer.getWebView().lambda$loadUrl$2("about:blank");
+                    this.webViewContainer.getWebView().loadUrl("about:blank");
                 }
                 WebViewRequestProps webViewRequestProps = webTabData.props;
                 webViewRequestProps.response = null;
@@ -1034,6 +1034,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
     }
 
     public void requestWebView(BaseFragment baseFragment, WebViewRequestProps webViewRequestProps) {
+        TLRPC$User tLRPC$User;
         TLRPC$InputPeer inputPeer;
         TLRPC$InputPeer inputPeer2;
         this.requestProps = webViewRequestProps;
@@ -1053,7 +1054,8 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         } catch (Exception unused) {
         }
         this.actionBar.setTitle(userName);
-        if (user != null && user.verified) {
+        TLRPC$UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(this.botId);
+        if ((user != null && user.verified) || (userFull != null && (tLRPC$User = userFull.user) != null && tLRPC$User.verified)) {
             Drawable mutate = getContext().getResources().getDrawable(R.drawable.verified_profile).mutate();
             this.verifiedDrawable = mutate;
             mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_featuredStickers_addButton), PorterDuff.Mode.SRC_IN));

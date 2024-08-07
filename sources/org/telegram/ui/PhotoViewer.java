@@ -768,6 +768,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
 
         @Override
+        public boolean canEdit(int i) {
+            return false;
+        }
+
+        @Override
         public boolean canLoadMoreAvatars() {
             return PhotoViewerProvider.CC.$default$canLoadMoreAvatars(this);
         }
@@ -996,6 +1001,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         boolean allowSendingSubmenu();
 
         boolean canCaptureMorePhotos();
+
+        boolean canEdit(int i);
 
         boolean canLoadMoreAvatars();
 
@@ -12983,12 +12990,14 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         final MessageObject messageObject;
         final boolean z;
         final boolean z2;
+        final boolean z3;
         ActionBarToggleParams enableStatusBarAnimation;
         if (canSendMediaToParentChatActivity()) {
             MessageObject messageObject2 = this.currentMessageObject;
             File file2 = null;
             if (messageObject2 != null) {
-                boolean z3 = messageObject2.canEditMedia() && !this.currentMessageObject.isDocument();
+                boolean z4 = messageObject2.canEditMedia() && !this.currentMessageObject.isDocument();
+                boolean z5 = z4 && this.currentMessageObject.isOutOwner();
                 boolean isVideo = this.currentMessageObject.isVideo();
                 if (!TextUtils.isEmpty(this.currentMessageObject.messageOwner.attachPath)) {
                     File file3 = new File(this.currentMessageObject.messageOwner.attachPath);
@@ -13001,13 +13010,15 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 }
                 messageObject = messageObject2;
                 file = file2;
-                z2 = z3;
+                z2 = z4;
+                z3 = z5;
                 z = isVideo;
             } else {
                 file = null;
                 messageObject = null;
                 z = false;
                 z2 = false;
+                z3 = false;
             }
             if (file != null && file.exists()) {
                 this.savedState = new SavedState(this.currentIndex, new ArrayList(this.imagesArr), this.placeProvider);
@@ -13015,7 +13026,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        PhotoViewer.this.lambda$openCurrentPhotoInPaintModeForSelect$93(file, z, messageObject, z2);
+                        PhotoViewer.this.lambda$openCurrentPhotoInPaintModeForSelect$93(file, z, messageObject, z2, z3);
                     }
                 }, enableStatusBarAnimation.animationDuration);
                 return;
@@ -13024,7 +13035,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
     }
 
-    public void lambda$openCurrentPhotoInPaintModeForSelect$93(File file, boolean z, final MessageObject messageObject, final boolean z2) {
+    public void lambda$openCurrentPhotoInPaintModeForSelect$93(File file, boolean z, final MessageObject messageObject, final boolean z2, final boolean z3) {
         Pair<Integer, Integer> imageOrientation = AndroidUtilities.getImageOrientation(file);
         int i = this.lastImageId;
         this.lastImageId = i - 1;
@@ -13046,10 +13057,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             }
 
             @Override
-            public PlaceProviderObject getPlaceForPhoto(MessageObject messageObject2, TLRPC$FileLocation tLRPC$FileLocation, int i2, boolean z3) {
+            public PlaceProviderObject getPlaceForPhoto(MessageObject messageObject2, TLRPC$FileLocation tLRPC$FileLocation, int i2, boolean z4) {
                 PhotoViewerProvider photoViewerProvider2 = photoViewerProvider;
                 if (photoViewerProvider2 != null) {
-                    return photoViewerProvider2.getPlaceForPhoto(messageObject, null, 0, z3);
+                    return photoViewerProvider2.getPlaceForPhoto(messageObject, null, 0, z4);
                 }
                 return null;
             }
@@ -13060,8 +13071,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             }
 
             @Override
-            public void sendButtonPressed(int i2, VideoEditedInfo videoEditedInfo, boolean z3, int i3, boolean z4) {
-                sendMedia(videoEditedInfo, z3, i3, false, z4);
+            public void sendButtonPressed(int i2, VideoEditedInfo videoEditedInfo, boolean z4, int i3, boolean z5) {
+                sendMedia(videoEditedInfo, z4, i3, false, z5);
             }
 
             @Override
@@ -13073,8 +13084,13 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             }
 
             @Override
-            public boolean canReplace(int i2) {
+            public boolean canEdit(int i2) {
                 return photoViewerProvider != null && z2;
+            }
+
+            @Override
+            public boolean canReplace(int i2) {
+                return photoViewerProvider != null && z3;
             }
 
             @Override
@@ -13082,9 +13098,9 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 return messageObject;
             }
 
-            private void sendMedia(VideoEditedInfo videoEditedInfo, boolean z3, int i2, boolean z4, boolean z5) {
+            private void sendMedia(VideoEditedInfo videoEditedInfo, boolean z4, int i2, boolean z5, boolean z6) {
                 if (PhotoViewer.this.parentChatActivity != null) {
-                    MessageObject messageObject2 = z4 ? messageObject : null;
+                    MessageObject messageObject2 = z5 ? messageObject : null;
                     if (messageObject2 != null && !TextUtils.isEmpty(orientation.caption)) {
                         MediaController.PhotoEntry photoEntry = orientation;
                         messageObject2.editingMessage = photoEntry.caption;
@@ -13100,7 +13116,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                             MessageObject threadMessage = PhotoViewer.this.parentChatActivity.getThreadMessage();
                             ChatActivity.ReplyQuote replyQuote = PhotoViewer.this.parentChatActivity.getReplyQuote();
                             MediaController.PhotoEntry photoEntry3 = orientation;
-                            SendMessagesHelper.prepareSendingVideo(accountInstance, str, videoEditedInfo, dialogId, replyMessage, threadMessage, null, replyQuote, photoEntry3.entities, photoEntry3.ttl, messageObject2, z3, i2, z5, photoEntry3.hasSpoiler, photoEntry3.caption, PhotoViewer.this.parentChatActivity.quickReplyShortcut, PhotoViewer.this.parentChatActivity.getQuickReplyId(), 0L);
+                            SendMessagesHelper.prepareSendingVideo(accountInstance, str, videoEditedInfo, dialogId, replyMessage, threadMessage, null, replyQuote, photoEntry3.entities, photoEntry3.ttl, messageObject2, z4, i2, z6, photoEntry3.hasSpoiler, photoEntry3.caption, PhotoViewer.this.parentChatActivity.quickReplyShortcut, PhotoViewer.this.parentChatActivity.getQuickReplyId(), 0L);
                             return;
                         }
                         AccountInstance accountInstance2 = PhotoViewer.this.parentChatActivity.getAccountInstance();
@@ -13110,7 +13126,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                         MessageObject threadMessage2 = PhotoViewer.this.parentChatActivity.getThreadMessage();
                         ChatActivity.ReplyQuote replyQuote2 = PhotoViewer.this.parentChatActivity.getReplyQuote();
                         MediaController.PhotoEntry photoEntry4 = orientation;
-                        SendMessagesHelper.prepareSendingVideo(accountInstance2, str2, null, dialogId2, replyMessage2, threadMessage2, null, replyQuote2, photoEntry4.entities, photoEntry4.ttl, messageObject2, z3, i2, z5, photoEntry4.hasSpoiler, photoEntry4.caption, PhotoViewer.this.parentChatActivity.quickReplyShortcut, PhotoViewer.this.parentChatActivity.getQuickReplyId(), 0L);
+                        SendMessagesHelper.prepareSendingVideo(accountInstance2, str2, null, dialogId2, replyMessage2, threadMessage2, null, replyQuote2, photoEntry4.entities, photoEntry4.ttl, messageObject2, z4, i2, z6, photoEntry4.hasSpoiler, photoEntry4.caption, PhotoViewer.this.parentChatActivity.quickReplyShortcut, PhotoViewer.this.parentChatActivity.getQuickReplyId(), 0L);
                     } else if (photoEntry2.imagePath != null) {
                         AccountInstance accountInstance3 = PhotoViewer.this.parentChatActivity.getAccountInstance();
                         MediaController.PhotoEntry photoEntry5 = orientation;
@@ -13121,7 +13137,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                         MessageObject threadMessage3 = PhotoViewer.this.parentChatActivity.getThreadMessage();
                         ChatActivity.ReplyQuote replyQuote3 = PhotoViewer.this.parentChatActivity.getReplyQuote();
                         MediaController.PhotoEntry photoEntry6 = orientation;
-                        SendMessagesHelper.prepareSendingPhoto(accountInstance3, str3, str4, null, dialogId3, replyMessage3, threadMessage3, null, replyQuote3, photoEntry6.entities, photoEntry6.stickers, null, photoEntry6.ttl, messageObject2, videoEditedInfo, z3, i2, 0, z5, photoEntry6.caption, PhotoViewer.this.parentChatActivity.quickReplyShortcut, PhotoViewer.this.parentChatActivity.getQuickReplyId(), 0L);
+                        SendMessagesHelper.prepareSendingPhoto(accountInstance3, str3, str4, null, dialogId3, replyMessage3, threadMessage3, null, replyQuote3, photoEntry6.entities, photoEntry6.stickers, null, photoEntry6.ttl, messageObject2, videoEditedInfo, z4, i2, 0, z6, photoEntry6.caption, PhotoViewer.this.parentChatActivity.quickReplyShortcut, PhotoViewer.this.parentChatActivity.getQuickReplyId(), 0L);
                     } else if (photoEntry2.path != null) {
                         AccountInstance accountInstance4 = PhotoViewer.this.parentChatActivity.getAccountInstance();
                         MediaController.PhotoEntry photoEntry7 = orientation;
@@ -13132,7 +13148,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                         MessageObject threadMessage4 = PhotoViewer.this.parentChatActivity.getThreadMessage();
                         ChatActivity.ReplyQuote replyQuote4 = PhotoViewer.this.parentChatActivity.getReplyQuote();
                         MediaController.PhotoEntry photoEntry8 = orientation;
-                        SendMessagesHelper.prepareSendingPhoto(accountInstance4, str5, str6, null, dialogId4, replyMessage4, threadMessage4, null, replyQuote4, photoEntry8.entities, photoEntry8.stickers, null, photoEntry8.ttl, messageObject2, videoEditedInfo, z3, i2, 0, z5, photoEntry8.caption, PhotoViewer.this.parentChatActivity.quickReplyShortcut, PhotoViewer.this.parentChatActivity.getQuickReplyId(), 0L);
+                        SendMessagesHelper.prepareSendingPhoto(accountInstance4, str5, str6, null, dialogId4, replyMessage4, threadMessage4, null, replyQuote4, photoEntry8.entities, photoEntry8.stickers, null, photoEntry8.ttl, messageObject2, videoEditedInfo, z4, i2, 0, z6, photoEntry8.caption, PhotoViewer.this.parentChatActivity.quickReplyShortcut, PhotoViewer.this.parentChatActivity.getQuickReplyId(), 0L);
                     }
                 }
             }

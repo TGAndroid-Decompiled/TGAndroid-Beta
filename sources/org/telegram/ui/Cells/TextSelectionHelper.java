@@ -2325,6 +2325,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
         }
 
         public void draw(Canvas canvas, ArticleSelectableView articleSelectableView, int i) {
+            TextLayoutBlock textLayoutBlock;
             Paint paint = this.selectionPaint;
             int i2 = Theme.key_chat_inTextSelectionHighlight;
             paint.setColor(getThemedColor(i2));
@@ -2335,10 +2336,9 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
             }
             this.arrayList.clear();
             articleSelectableView.fillTextLayoutBlocks(this.arrayList);
-            if (this.arrayList.isEmpty()) {
+            if (this.arrayList.isEmpty() || (textLayoutBlock = this.arrayList.get(i)) == null || textLayoutBlock.getLayout() == null || textLayoutBlock.getLayout().getText() == null) {
                 return;
             }
-            TextLayoutBlock textLayoutBlock = this.arrayList.get(i);
             int i3 = this.endViewOffset;
             int length = textLayoutBlock.getLayout().getText().length();
             int i4 = i3 > length ? length : i3;

@@ -138,17 +138,16 @@ public class LinkPreview extends View {
     }
 
     public void setupLayout() {
-        WebPagePreview webPagePreview;
         double d;
         int color1;
         int i;
         int i2;
         int i3;
-        if (!this.relayout || (webPagePreview = this.webpage) == null) {
+        if (!this.relayout || this.webpage == null) {
             return;
         }
-        String fromUrl = TextUtils.isEmpty(webPagePreview.name) ? fromUrl(this.webpage.url) : this.webpage.name;
         if (withPreview()) {
+            String fromUrl = TextUtils.isEmpty(this.webpage.name) ? fromUrl(this.webpage.url) : this.webpage.name;
             TLRPC$WebPage tLRPC$WebPage = this.webpage.webpage;
             int i4 = this.maxWidth;
             int i5 = this.padx;
@@ -176,10 +175,10 @@ public class LinkPreview extends View {
             this.h = height;
             this.h = height + (this.density * 7.0f);
             this.hasPhoto = tLRPC$WebPage.photo != null || MessageObject.isVideoDocument(tLRPC$WebPage.document);
-            WebPagePreview webPagePreview2 = this.webpage;
-            boolean z = !webPagePreview2.largePhoto;
+            WebPagePreview webPagePreview = this.webpage;
+            boolean z = !webPagePreview.largePhoto;
             this.smallPhoto = z;
-            int i6 = (!this.video || (webPagePreview2.flags & 4) == 0) ? ((int) (z ? 48.0f : (f / this.density) - 40.0f)) * 2 : webPagePreview2.photoSize;
+            int i6 = (!this.video || (webPagePreview.flags & 4) == 0) ? ((int) (z ? 48.0f : (f / this.density) - 40.0f)) * 2 : webPagePreview.photoSize;
             this.photoImage.setRoundRadius((int) (this.density * 4.0f));
             TLRPC$Photo tLRPC$Photo = tLRPC$WebPage.photo;
             if (tLRPC$Photo != null) {
@@ -283,12 +282,13 @@ public class LinkPreview extends View {
             this.h = f12;
             this.h = f12 + (f10 * 11.0f);
         } else {
+            String upperCase = TextUtils.isEmpty(this.webpage.name) ? fromUrlWithoutSchema(this.webpage.url).toUpperCase() : this.webpage.name;
             int i9 = this.maxWidth;
             int i10 = this.padx;
             RectF rectF = this.padding;
             float f13 = ((i9 - i10) - i10) - ((((rectF.left + 30.0f) + 3.25f) + rectF.right) * this.density);
             this.textScale = 1.0f;
-            this.layout = new StaticLayout(TextUtils.ellipsize(fromUrl, this.layoutPaint, (int) Math.ceil(d), TextUtils.TruncateAt.END), this.layoutPaint, (int) Math.ceil(f13), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.layout = new StaticLayout(TextUtils.ellipsize(upperCase, this.layoutPaint, (int) Math.ceil(d), TextUtils.TruncateAt.END), this.layoutPaint, (int) Math.ceil(f13), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.layoutWidth = 0.0f;
             this.layoutLeft = Float.MAX_VALUE;
             for (int i11 = 0; i11 < this.layout.getLineCount(); i11++) {
@@ -377,6 +377,10 @@ public class LinkPreview extends View {
             this.animated = z;
             requestLayout();
         }
+    }
+
+    public static String fromUrlWithoutSchema(String str) {
+        return str.startsWith("https://") ? str.substring(8) : str;
     }
 
     @Override

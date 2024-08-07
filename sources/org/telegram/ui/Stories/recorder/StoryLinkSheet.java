@@ -61,6 +61,7 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
     private boolean loading;
     private EditTextCell nameEditText;
     private boolean nameOpen;
+    private boolean needRemoveDefPrefix;
     private boolean photoLarge;
     private int reqId;
     private final Runnable requestPreview;
@@ -126,6 +127,16 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                int i4;
+                if (StoryLinkSheet.this.ignoreUrlEdit) {
+                    return;
+                }
+                StoryLinkSheet storyLinkSheet = StoryLinkSheet.this;
+                boolean z = false;
+                if (charSequence != null && i == r2.length() && charSequence.subSequence(0, i).toString().equals(r2) && charSequence.length() >= (i4 = i3 + i) && charSequence.subSequence(i, i4).toString().startsWith(r2)) {
+                    z = true;
+                }
+                storyLinkSheet.needRemoveDefPrefix = z;
             }
 
             @Override
@@ -134,7 +145,17 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
                 if (StoryLinkSheet.this.ignoreUrlEdit) {
                     return;
                 }
-                StoryLinkSheet.this.checkEditURL(editable == null ? null : editable.toString());
+                if (!StoryLinkSheet.this.needRemoveDefPrefix || editable == null) {
+                    StoryLinkSheet.this.checkEditURL(editable == null ? null : editable.toString());
+                    return;
+                }
+                String substring = editable.toString().substring(r2.length());
+                StoryLinkSheet.this.ignoreUrlEdit = true;
+                StoryLinkSheet.this.urlEditText.editText.setText(substring);
+                StoryLinkSheet.this.urlEditText.editText.setSelection(0, StoryLinkSheet.this.urlEditText.editText.getText().length());
+                StoryLinkSheet.this.ignoreUrlEdit = false;
+                StoryLinkSheet.this.needRemoveDefPrefix = false;
+                StoryLinkSheet.this.checkEditURL(substring);
             }
         });
         EditTextCell editTextCell2 = new EditTextCell(context, LocaleController.getString(R.string.StoryLinkNamePlaceholder), true, -1, resourcesProvider);

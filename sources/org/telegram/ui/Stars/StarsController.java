@@ -847,12 +847,10 @@ public class StarsController {
             tLRPC$TL_inputStorePaymentStarsGift2.currency = tLRPC$TL_starsGiftOption.currency;
             tLRPC$TL_inputStorePaymentStarsGift2.amount = tLRPC$TL_starsGiftOption.amount;
             tLRPC$TL_inputStorePaymentStarsGift2.user_id = MessagesController.getInstance(this.currentAccount).getInputUser(j);
-            TLRPC$TL_payments_canPurchasePremium tLRPC$TL_payments_canPurchasePremium = new TLRPC$TL_payments_canPurchasePremium();
-            tLRPC$TL_payments_canPurchasePremium.purpose = tLRPC$TL_inputStorePaymentStarsGift2;
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_payments_canPurchasePremium, new RequestDelegate() {
+            BillingController.getInstance().queryProductDetails(Arrays.asList(QueryProductDetailsParams.Product.newBuilder().setProductType("inapp").setProductId(tLRPC$TL_starsGiftOption.store_product).build()), new ProductDetailsResponseListener() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    StarsController.lambda$buyGift$37(TLRPC$TL_starsGiftOption.this, callback2, tLRPC$TL_inputStorePaymentStarsGift2, activity, tLObject, tLRPC$TL_error);
+                public final void onProductDetailsResponse(BillingResult billingResult, List list) {
+                    StarsController.this.lambda$buyGift$37(callback2, tLRPC$TL_inputStorePaymentStarsGift2, tLRPC$TL_starsGiftOption, activity, billingResult, list);
                 }
             });
         }
@@ -922,42 +920,16 @@ public class StarsController {
         }
     }
 
-    public static void lambda$buyGift$37(final TLRPC$TL_starsGiftOption tLRPC$TL_starsGiftOption, final Utilities.Callback2 callback2, final TLRPC$TL_inputStorePaymentStarsGift tLRPC$TL_inputStorePaymentStarsGift, final Activity activity, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$buyGift$37(final Utilities.Callback2 callback2, final TLRPC$TL_inputStorePaymentStarsGift tLRPC$TL_inputStorePaymentStarsGift, final TLRPC$TL_starsGiftOption tLRPC$TL_starsGiftOption, final Activity activity, final BillingResult billingResult, final List list) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StarsController.lambda$buyGift$36(TLObject.this, tLRPC$TL_starsGiftOption, callback2, tLRPC$TL_inputStorePaymentStarsGift, activity, tLRPC$TL_error);
+                StarsController.this.lambda$buyGift$36(list, callback2, tLRPC$TL_inputStorePaymentStarsGift, tLRPC$TL_starsGiftOption, billingResult, activity);
             }
         });
     }
 
-    public static void lambda$buyGift$36(TLObject tLObject, final TLRPC$TL_starsGiftOption tLRPC$TL_starsGiftOption, final Utilities.Callback2 callback2, final TLRPC$TL_inputStorePaymentStarsGift tLRPC$TL_inputStorePaymentStarsGift, final Activity activity, TLRPC$TL_error tLRPC$TL_error) {
-        if (tLObject instanceof TLRPC$TL_boolTrue) {
-            BillingController.getInstance().queryProductDetails(Arrays.asList(QueryProductDetailsParams.Product.newBuilder().setProductType("inapp").setProductId(tLRPC$TL_starsGiftOption.store_product).build()), new ProductDetailsResponseListener() {
-                @Override
-                public final void onProductDetailsResponse(BillingResult billingResult, List list) {
-                    StarsController.lambda$buyGift$35(Utilities.Callback2.this, tLRPC$TL_inputStorePaymentStarsGift, tLRPC$TL_starsGiftOption, activity, billingResult, list);
-                }
-            });
-        } else if (tLObject instanceof TLRPC$TL_boolFalse) {
-            if (callback2 != null) {
-                callback2.run(Boolean.FALSE, "PURCHASE_FORBIDDEN");
-            }
-        } else if (callback2 != null) {
-            callback2.run(Boolean.FALSE, tLRPC$TL_error != null ? tLRPC$TL_error.text : "SERVER_ERROR");
-        }
-    }
-
-    public static void lambda$buyGift$35(final Utilities.Callback2 callback2, final TLRPC$TL_inputStorePaymentStarsGift tLRPC$TL_inputStorePaymentStarsGift, final TLRPC$TL_starsGiftOption tLRPC$TL_starsGiftOption, final Activity activity, final BillingResult billingResult, final List list) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                StarsController.lambda$buyGift$34(list, callback2, tLRPC$TL_inputStorePaymentStarsGift, tLRPC$TL_starsGiftOption, billingResult, activity);
-            }
-        });
-    }
-
-    public static void lambda$buyGift$34(List list, final Utilities.Callback2 callback2, TLRPC$TL_inputStorePaymentStarsGift tLRPC$TL_inputStorePaymentStarsGift, TLRPC$TL_starsGiftOption tLRPC$TL_starsGiftOption, final BillingResult billingResult, Activity activity) {
+    public void lambda$buyGift$36(final List list, final Utilities.Callback2 callback2, final TLRPC$TL_inputStorePaymentStarsGift tLRPC$TL_inputStorePaymentStarsGift, TLRPC$TL_starsGiftOption tLRPC$TL_starsGiftOption, final BillingResult billingResult, final Activity activity) {
         if (list.isEmpty()) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -967,7 +939,7 @@ public class StarsController {
             });
             return;
         }
-        ProductDetails productDetails = (ProductDetails) list.get(0);
+        final ProductDetails productDetails = (ProductDetails) list.get(0);
         ProductDetails.OneTimePurchaseOfferDetails oneTimePurchaseOfferDetails = productDetails.getOneTimePurchaseOfferDetails();
         if (oneTimePurchaseOfferDetails == null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
@@ -983,19 +955,14 @@ public class StarsController {
         double pow = Math.pow(10.0d, 6.0d);
         Double.isNaN(priceAmountMicros);
         tLRPC$TL_inputStorePaymentStarsGift.amount = (long) ((priceAmountMicros / pow) * Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tLRPC$TL_starsGiftOption.currency)));
-        BillingController.getInstance().addResultListener(productDetails.getProductId(), new Consumer() {
+        TLRPC$TL_payments_canPurchasePremium tLRPC$TL_payments_canPurchasePremium = new TLRPC$TL_payments_canPurchasePremium();
+        tLRPC$TL_payments_canPurchasePremium.purpose = tLRPC$TL_inputStorePaymentStarsGift;
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_payments_canPurchasePremium, new RequestDelegate() {
             @Override
-            public final void accept(Object obj) {
-                StarsController.lambda$buyGift$31(BillingResult.this, callback2, (BillingResult) obj);
+            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                StarsController.lambda$buyGift$35(ProductDetails.this, billingResult, callback2, activity, tLRPC$TL_inputStorePaymentStarsGift, list, tLObject, tLRPC$TL_error);
             }
         });
-        BillingController.getInstance().setOnCanceled(new Runnable() {
-            @Override
-            public final void run() {
-                StarsController.lambda$buyGift$33(Utilities.Callback2.this);
-            }
-        });
-        BillingController.getInstance().launchBillingFlow(activity, AccountInstance.getInstance(UserConfig.selectedAccount), tLRPC$TL_inputStorePaymentStarsGift, Collections.singletonList(BillingFlowParams.ProductDetailsParams.newBuilder().setProductDetails((ProductDetails) list.get(0)).build()));
     }
 
     public static void lambda$buyGift$28(Utilities.Callback2 callback2) {
@@ -1004,6 +971,39 @@ public class StarsController {
 
     public static void lambda$buyGift$29(Utilities.Callback2 callback2) {
         callback2.run(Boolean.FALSE, "PRODUCT_NO_ONETIME_OFFER_DETAILS");
+    }
+
+    public static void lambda$buyGift$35(final ProductDetails productDetails, final BillingResult billingResult, final Utilities.Callback2 callback2, final Activity activity, final TLRPC$TL_inputStorePaymentStarsGift tLRPC$TL_inputStorePaymentStarsGift, final List list, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                StarsController.lambda$buyGift$34(TLObject.this, productDetails, billingResult, callback2, activity, tLRPC$TL_inputStorePaymentStarsGift, list, tLRPC$TL_error);
+            }
+        });
+    }
+
+    public static void lambda$buyGift$34(TLObject tLObject, ProductDetails productDetails, final BillingResult billingResult, final Utilities.Callback2 callback2, Activity activity, TLRPC$TL_inputStorePaymentStarsGift tLRPC$TL_inputStorePaymentStarsGift, List list, TLRPC$TL_error tLRPC$TL_error) {
+        if (tLObject instanceof TLRPC$TL_boolTrue) {
+            BillingController.getInstance().addResultListener(productDetails.getProductId(), new Consumer() {
+                @Override
+                public final void accept(Object obj) {
+                    StarsController.lambda$buyGift$31(BillingResult.this, callback2, (BillingResult) obj);
+                }
+            });
+            BillingController.getInstance().setOnCanceled(new Runnable() {
+                @Override
+                public final void run() {
+                    StarsController.lambda$buyGift$33(Utilities.Callback2.this);
+                }
+            });
+            BillingController.getInstance().launchBillingFlow(activity, AccountInstance.getInstance(UserConfig.selectedAccount), tLRPC$TL_inputStorePaymentStarsGift, Collections.singletonList(BillingFlowParams.ProductDetailsParams.newBuilder().setProductDetails((ProductDetails) list.get(0)).build()));
+        } else if (tLObject instanceof TLRPC$TL_boolFalse) {
+            if (callback2 != null) {
+                callback2.run(Boolean.FALSE, "PURCHASE_FORBIDDEN");
+            }
+        } else if (callback2 != null) {
+            callback2.run(Boolean.FALSE, tLRPC$TL_error != null ? tLRPC$TL_error.text : "SERVER_ERROR");
+        }
     }
 
     public static void lambda$buyGift$31(BillingResult billingResult, final Utilities.Callback2 callback2, BillingResult billingResult2) {
