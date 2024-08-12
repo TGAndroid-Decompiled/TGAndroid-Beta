@@ -8,6 +8,8 @@ public class TLRPC$TL_starsTransaction extends TLRPC$StarsTransaction {
         this.pending = (readInt32 & 16) != 0;
         this.failed = (readInt32 & 64) != 0;
         this.gift = (readInt32 & 1024) != 0;
+        this.reaction = (readInt32 & 2048) != 0;
+        this.subscription = (readInt32 & 4096) != 0;
         this.id = abstractSerializedData.readString(z);
         this.stars = abstractSerializedData.readInt64(z);
         this.date = abstractSerializedData.readInt32(z);
@@ -48,11 +50,14 @@ public class TLRPC$TL_starsTransaction extends TLRPC$StarsTransaction {
                 this.extended_media.add(TLdeserialize);
             }
         }
+        if ((this.flags & 4096) != 0) {
+            this.subscription_period = abstractSerializedData.readInt32(z);
+        }
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(766853519);
+        abstractSerializedData.writeInt32(1127934763);
         int i = this.refund ? this.flags | 8 : this.flags & (-9);
         this.flags = i;
         int i2 = this.pending ? i | 16 : i & (-17);
@@ -61,7 +66,11 @@ public class TLRPC$TL_starsTransaction extends TLRPC$StarsTransaction {
         this.flags = i3;
         int i4 = this.gift ? i3 | 1024 : i3 & (-1025);
         this.flags = i4;
-        abstractSerializedData.writeInt32(i4);
+        int i5 = this.reaction ? i4 | 2048 : i4 & (-2049);
+        this.flags = i5;
+        int i6 = this.subscription ? i5 | 4096 : i5 & (-4097);
+        this.flags = i6;
+        abstractSerializedData.writeInt32(i6);
         abstractSerializedData.writeInt64(this.stars);
         abstractSerializedData.writeInt32(this.date);
         this.peer.serializeToStream(abstractSerializedData);
@@ -88,9 +97,12 @@ public class TLRPC$TL_starsTransaction extends TLRPC$StarsTransaction {
             abstractSerializedData.writeInt32(481674261);
             int size = this.extended_media.size();
             abstractSerializedData.writeInt32(size);
-            for (int i5 = 0; i5 < size; i5++) {
-                this.extended_media.get(i5).serializeToStream(abstractSerializedData);
+            for (int i7 = 0; i7 < size; i7++) {
+                this.extended_media.get(i7).serializeToStream(abstractSerializedData);
             }
+        }
+        if ((this.flags & 4096) != 0) {
+            abstractSerializedData.writeInt32(this.subscription_period);
         }
     }
 }

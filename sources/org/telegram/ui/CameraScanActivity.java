@@ -180,7 +180,7 @@ public class CameraScanActivity extends BaseFragment {
         final int val$type;
 
         @Override
-        protected boolean canDismissWithSwipe() {
+        public boolean canDismissWithSwipe() {
             return false;
         }
 

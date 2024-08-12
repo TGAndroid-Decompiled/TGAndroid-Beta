@@ -21,7 +21,7 @@ public class WebAppDisclaimerAlert {
     private CheckBoxCell cell;
     private TextView positiveButton;
 
-    public static void show(final Context context, final Consumer<Boolean> consumer, TLRPC$User tLRPC$User) {
+    public static void show(final Context context, final Consumer<Boolean> consumer, TLRPC$User tLRPC$User, final Runnable runnable) {
         final WebAppDisclaimerAlert webAppDisclaimerAlert = new WebAppDisclaimerAlert();
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(LocaleController.getString("TermsOfUse", R.string.TermsOfUse));
@@ -39,6 +39,7 @@ public class WebAppDisclaimerAlert {
         checkBoxCell.getTextView().getLayoutParams().width = -1;
         webAppDisclaimerAlert.cell.getTextView().setTextSize(1, 14.0f);
         linearLayout.addView(webAppDisclaimerAlert.cell, LayoutHelper.createLinear(-1, 48, 3, 8, 0, 8, 0));
+        final boolean[] zArr = new boolean[1];
         textView.setText(AndroidUtilities.replaceTags(LocaleController.getString("BotWebAppDisclaimerSubtitle", R.string.BotWebAppDisclaimerSubtitle)));
         webAppDisclaimerAlert.cell.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString("BotWebAppDisclaimerCheck", R.string.BotWebAppDisclaimerCheck), new Runnable() {
             @Override
@@ -50,7 +51,7 @@ public class WebAppDisclaimerAlert {
         builder.setPositiveButton(LocaleController.getString("Continue", R.string.Continue), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
-                WebAppDisclaimerAlert.lambda$show$1(Consumer.this, dialogInterface, i);
+                WebAppDisclaimerAlert.lambda$show$1(Consumer.this, zArr, dialogInterface, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), new DialogInterface.OnClickListener() {
@@ -73,14 +74,21 @@ public class WebAppDisclaimerAlert {
             }
         });
         webAppDisclaimerAlert.cell.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_listSelector), 7));
+        webAppDisclaimerAlert.alert.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public final void onDismiss(DialogInterface dialogInterface) {
+                WebAppDisclaimerAlert.lambda$show$4(zArr, runnable, dialogInterface);
+            }
+        });
     }
 
     public static void lambda$show$0(Context context) {
         Browser.openUrl(context, LocaleController.getString("WebAppDisclaimerUrl", R.string.WebAppDisclaimerUrl));
     }
 
-    public static void lambda$show$1(Consumer consumer, DialogInterface dialogInterface, int i) {
+    public static void lambda$show$1(Consumer consumer, boolean[] zArr, DialogInterface dialogInterface, int i) {
         consumer.accept(Boolean.TRUE);
+        zArr[0] = true;
         dialogInterface.dismiss();
     }
 
@@ -89,5 +97,15 @@ public class WebAppDisclaimerAlert {
         checkBoxCell.setChecked(!checkBoxCell.isChecked(), true);
         webAppDisclaimerAlert.positiveButton.setEnabled(webAppDisclaimerAlert.cell.isChecked());
         webAppDisclaimerAlert.positiveButton.animate().alpha(webAppDisclaimerAlert.cell.isChecked() ? 1.0f : 0.5f).start();
+    }
+
+    public static void lambda$show$4(boolean[] zArr, Runnable runnable, DialogInterface dialogInterface) {
+        if (zArr[0]) {
+            return;
+        }
+        zArr[0] = true;
+        if (runnable != null) {
+            runnable.run();
+        }
     }
 }

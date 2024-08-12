@@ -14,6 +14,8 @@ public class TLRPC$TL_chatInviteExported extends TLRPC$ExportedChatInvite {
     public int requested;
     public boolean revoked;
     public int start_date;
+    public int subscription_expired;
+    public TLRPC$TL_starsSubscriptionPricing subscription_pricing;
     public String title;
     public int usage;
     public int usage_limit;
@@ -43,14 +45,20 @@ public class TLRPC$TL_chatInviteExported extends TLRPC$ExportedChatInvite {
         if ((this.flags & 128) != 0) {
             this.requested = abstractSerializedData.readInt32(z);
         }
+        if ((this.flags & 1024) != 0) {
+            this.subscription_expired = abstractSerializedData.readInt32(z);
+        }
         if ((this.flags & 256) != 0) {
             this.title = abstractSerializedData.readString(z);
+        }
+        if ((this.flags & 512) != 0) {
+            this.subscription_pricing = TLRPC$TL_starsSubscriptionPricing.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(179611673);
+        abstractSerializedData.writeInt32(-1574126186);
         int i = this.revoked ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.permanent ? i | 32 : i & (-33);
@@ -76,8 +84,14 @@ public class TLRPC$TL_chatInviteExported extends TLRPC$ExportedChatInvite {
         if ((this.flags & 128) != 0) {
             abstractSerializedData.writeInt32(this.requested);
         }
+        if ((this.flags & 1024) != 0) {
+            abstractSerializedData.writeInt32(this.subscription_expired);
+        }
         if ((this.flags & 256) != 0) {
             abstractSerializedData.writeString(this.title);
+        }
+        if ((this.flags & 512) != 0) {
+            this.subscription_pricing.serializeToStream(abstractSerializedData);
         }
     }
 }

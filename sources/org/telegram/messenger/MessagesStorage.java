@@ -53,6 +53,7 @@ import org.telegram.tgnet.TLRPC$MessageAction;
 import org.telegram.tgnet.TLRPC$MessageEntity;
 import org.telegram.tgnet.TLRPC$MessageFwdHeader;
 import org.telegram.tgnet.TLRPC$MessageMedia;
+import org.telegram.tgnet.TLRPC$MessageReactor;
 import org.telegram.tgnet.TLRPC$MessageReplies;
 import org.telegram.tgnet.TLRPC$MessageReplyHeader;
 import org.telegram.tgnet.TLRPC$Peer;
@@ -7273,12 +7274,12 @@ public class MessagesStorage extends BaseController {
         TLRPC$MessageMedia tLRPC$MessageMedia = tLRPC$Message.media;
         if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaUnsupported_old) {
             if (tLRPC$MessageMedia.bytes.length == 0) {
-                tLRPC$MessageMedia.bytes = Utilities.intToBytes(185);
+                tLRPC$MessageMedia.bytes = Utilities.intToBytes(186);
             }
         } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaUnsupported) {
             TLRPC$TL_messageMediaUnsupported_old tLRPC$TL_messageMediaUnsupported_old = new TLRPC$TL_messageMediaUnsupported_old();
             tLRPC$Message.media = tLRPC$TL_messageMediaUnsupported_old;
-            tLRPC$TL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(185);
+            tLRPC$TL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(186);
             tLRPC$Message.flags |= 512;
         }
     }
@@ -7460,15 +7461,16 @@ public class MessagesStorage extends BaseController {
     }
 
     public static void addUsersAndChatsFromMessage(TLRPC$Message tLRPC$Message, ArrayList<Long> arrayList, ArrayList<Long> arrayList2, ArrayList<Long> arrayList3) {
+        TLRPC$Peer tLRPC$Peer;
         String str;
         TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader;
-        TLRPC$Peer tLRPC$Peer;
         TLRPC$Peer tLRPC$Peer2;
-        TLRPC$WebPage tLRPC$WebPage;
         TLRPC$Peer tLRPC$Peer3;
+        TLRPC$WebPage tLRPC$WebPage;
+        TLRPC$Peer tLRPC$Peer4;
         TL_stories$StoryFwdHeader tL_stories$StoryFwdHeader;
         TL_stories$StoryItem tL_stories$StoryItem;
-        TLRPC$Peer tLRPC$Peer4;
+        TLRPC$Peer tLRPC$Peer5;
         long fromChatId = MessageObject.getFromChatId(tLRPC$Message);
         if (DialogObject.isUserDialog(fromChatId)) {
             if (!arrayList.contains(Long.valueOf(fromChatId))) {
@@ -7582,8 +7584,8 @@ public class MessagesStorage extends BaseController {
                     }
                 }
                 TL_stories$StoryItem tL_stories$StoryItem3 = tLRPC$Message.media.storyItem;
-                if (tL_stories$StoryItem3 != null && (tLRPC$Peer4 = tL_stories$StoryItem3.from_id) != null) {
-                    addLoadPeerInfo(tLRPC$Peer4, arrayList, arrayList2);
+                if (tL_stories$StoryItem3 != null && (tLRPC$Peer5 = tL_stories$StoryItem3.from_id) != null) {
+                    addLoadPeerInfo(tLRPC$Peer5, arrayList, arrayList2);
                 }
             }
             TLRPC$MessageMedia tLRPC$MessageMedia6 = tLRPC$Message.media;
@@ -7607,15 +7609,15 @@ public class MessagesStorage extends BaseController {
                             }
                         }
                         TL_stories$StoryItem tL_stories$StoryItem6 = tLRPC$TL_webPageAttributeStory.storyItem;
-                        if (tL_stories$StoryItem6 != null && (tLRPC$Peer3 = tL_stories$StoryItem6.from_id) != null) {
-                            addLoadPeerInfo(tLRPC$Peer3, arrayList, arrayList2);
+                        if (tL_stories$StoryItem6 != null && (tLRPC$Peer4 = tL_stories$StoryItem6.from_id) != null) {
+                            addLoadPeerInfo(tLRPC$Peer4, arrayList, arrayList2);
                         }
                     }
                 }
             }
-            TLRPC$Peer tLRPC$Peer5 = tLRPC$Message.media.peer;
-            if (tLRPC$Peer5 != null) {
-                addLoadPeerInfo(tLRPC$Peer5, arrayList, arrayList2);
+            TLRPC$Peer tLRPC$Peer6 = tLRPC$Message.media.peer;
+            if (tLRPC$Peer6 != null) {
+                addLoadPeerInfo(tLRPC$Peer6, arrayList, arrayList2);
             }
         }
         TLRPC$MessageReplies tLRPC$MessageReplies = tLRPC$Message.replies;
@@ -7626,8 +7628,8 @@ public class MessagesStorage extends BaseController {
             }
         }
         TLRPC$MessageReplyHeader tLRPC$MessageReplyHeader = tLRPC$Message.reply_to;
-        if (tLRPC$MessageReplyHeader != null && (tLRPC$Peer2 = tLRPC$MessageReplyHeader.reply_to_peer_id) != null) {
-            addLoadPeerInfo(tLRPC$Peer2, arrayList, arrayList2);
+        if (tLRPC$MessageReplyHeader != null && (tLRPC$Peer3 = tLRPC$MessageReplyHeader.reply_to_peer_id) != null) {
+            addLoadPeerInfo(tLRPC$Peer3, arrayList, arrayList2);
         }
         TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader2 = tLRPC$Message.fwd_from;
         if (tLRPC$MessageFwdHeader2 != null) {
@@ -7635,20 +7637,28 @@ public class MessagesStorage extends BaseController {
             addLoadPeerInfo(tLRPC$Message.fwd_from.saved_from_peer, arrayList, arrayList2);
         }
         TLRPC$MessageReplyHeader tLRPC$MessageReplyHeader2 = tLRPC$Message.reply_to;
-        if (tLRPC$MessageReplyHeader2 != null && (tLRPC$MessageFwdHeader = tLRPC$MessageReplyHeader2.reply_from) != null && (tLRPC$Peer = tLRPC$MessageFwdHeader.from_id) != null) {
-            addLoadPeerInfo(tLRPC$Peer, arrayList, arrayList2);
+        if (tLRPC$MessageReplyHeader2 != null && (tLRPC$MessageFwdHeader = tLRPC$MessageReplyHeader2.reply_from) != null && (tLRPC$Peer2 = tLRPC$MessageFwdHeader.from_id) != null) {
+            addLoadPeerInfo(tLRPC$Peer2, arrayList, arrayList2);
         }
         HashMap<String, String> hashMap = tLRPC$Message.params;
-        if (hashMap == null || (str = hashMap.get("fwd_peer")) == null) {
+        if (hashMap != null && (str = hashMap.get("fwd_peer")) != null) {
+            long longValue = Utilities.parseLong(str).longValue();
+            if (longValue < 0) {
+                long j9 = -longValue;
+                if (!arrayList2.contains(Long.valueOf(j9))) {
+                    arrayList2.add(Long.valueOf(j9));
+                }
+            }
+        }
+        TLRPC$TL_messageReactions tLRPC$TL_messageReactions = tLRPC$Message.reactions;
+        if (tLRPC$TL_messageReactions == null || tLRPC$TL_messageReactions.top_reactors == null) {
             return;
         }
-        long longValue = Utilities.parseLong(str).longValue();
-        if (longValue < 0) {
-            long j9 = -longValue;
-            if (arrayList2.contains(Long.valueOf(j9))) {
-                return;
+        for (int i8 = 0; i8 < tLRPC$Message.reactions.top_reactors.size(); i8++) {
+            TLRPC$MessageReactor tLRPC$MessageReactor = tLRPC$Message.reactions.top_reactors.get(i8);
+            if (tLRPC$MessageReactor != null && (tLRPC$Peer = tLRPC$MessageReactor.peer_id) != null) {
+                addLoadPeerInfo(tLRPC$Peer, arrayList, arrayList2);
             }
-            arrayList2.add(Long.valueOf(j9));
         }
     }
 

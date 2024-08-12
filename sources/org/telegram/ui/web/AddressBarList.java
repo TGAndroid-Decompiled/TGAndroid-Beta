@@ -23,7 +23,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
-import java.net.IDN;
 import java.net.URLDecoder;
 import java.text.BreakIterator;
 import java.util.ArrayList;
@@ -388,7 +387,7 @@ public class AddressBarList extends FrameLayout {
         try {
             try {
                 Uri parse = Uri.parse(str2);
-                str2 = Browser.replaceHostname(parse, IDN.toUnicode(parse.getHost(), 1), null);
+                str2 = Browser.replaceHostname(parse, Browser.IDN_toUnicode(parse.getHost()), null);
             } catch (Exception e) {
                 FileLog.e((Throwable) e, false);
             }
@@ -726,7 +725,7 @@ public class AddressBarList extends FrameLayout {
             try {
                 try {
                     Uri parse = Uri.parse(link2);
-                    link2 = Browser.replaceHostname(parse, IDN.toUnicode(parse.getHost(), 1), null);
+                    link2 = Browser.replaceHostname(parse, Browser.IDN_toUnicode(parse.getHost()), null);
                 } catch (Exception e) {
                     FileLog.e((Throwable) e, false);
                 }
@@ -816,7 +815,7 @@ public class AddressBarList extends FrameLayout {
             try {
                 try {
                     Uri parse = Uri.parse(str2);
-                    str2 = Browser.replaceHostname(parse, IDN.toUnicode(parse.getHost(), 1), null);
+                    str2 = Browser.replaceHostname(parse, Browser.IDN_toUnicode(parse.getHost()), null);
                 } catch (Exception e) {
                     FileLog.e((Throwable) e, false);
                 }

@@ -14,6 +14,7 @@ public abstract class TLRPC$ChannelParticipant extends TLObject {
     public long promoted_by;
     public String rank;
     public boolean self;
+    public int subscription_until_date;
     public long user_id;
     public boolean via_invite;
 
@@ -157,7 +158,22 @@ public abstract class TLRPC$ChannelParticipant extends TLObject {
                 };
                 break;
             case -1072953408:
-                tLRPC$ChannelParticipant = new TLRPC$TL_channelParticipant();
+                tLRPC$ChannelParticipant = new TLRPC$TL_channelParticipant() {
+                    @Override
+                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                        TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
+                        this.peer = tLRPC$TL_peerUser;
+                        tLRPC$TL_peerUser.user_id = abstractSerializedData2.readInt64(z2);
+                        this.date = abstractSerializedData2.readInt32(z2);
+                    }
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(-1072953408);
+                        abstractSerializedData2.writeInt64(this.peer.user_id);
+                        abstractSerializedData2.writeInt32(this.date);
+                    }
+                };
                 break;
             case -1010402965:
                 tLRPC$ChannelParticipant = new TLRPC$TL_channelParticipantLeft() {
@@ -174,6 +190,9 @@ public abstract class TLRPC$ChannelParticipant extends TLObject {
                         abstractSerializedData2.writeInt32((int) this.peer.user_id);
                     }
                 };
+                break;
+            case -885426663:
+                tLRPC$ChannelParticipant = new TLRPC$TL_channelParticipant();
                 break;
             case -859915345:
                 tLRPC$ChannelParticipant = new TLRPC$TL_channelParticipantAdmin() {
@@ -340,7 +359,28 @@ public abstract class TLRPC$ChannelParticipant extends TLObject {
                 tLRPC$ChannelParticipant = new TLRPC$TL_channelParticipantAdmin();
                 break;
             case 900251559:
-                tLRPC$ChannelParticipant = new TLRPC$TL_channelParticipantSelf();
+                tLRPC$ChannelParticipant = new TLRPC$TL_channelParticipantSelf() {
+                    @Override
+                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                        int readInt32 = abstractSerializedData2.readInt32(z2);
+                        this.flags = readInt32;
+                        this.via_invite = (readInt32 & 1) != 0;
+                        this.user_id = abstractSerializedData2.readInt64(z2);
+                        this.inviter_id = abstractSerializedData2.readInt64(z2);
+                        this.date = abstractSerializedData2.readInt32(z2);
+                    }
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(900251559);
+                        int i2 = this.via_invite ? this.flags | 1 : this.flags & (-2);
+                        this.flags = i2;
+                        abstractSerializedData2.writeInt32(i2);
+                        abstractSerializedData2.writeInt64(this.user_id);
+                        abstractSerializedData2.writeInt64(this.inviter_id);
+                        abstractSerializedData2.writeInt32(this.date);
+                    }
+                };
                 break;
             case 1149094475:
                 tLRPC$ChannelParticipant = new TLRPC$TL_channelParticipantCreator() {
@@ -367,6 +407,9 @@ public abstract class TLRPC$ChannelParticipant extends TLObject {
                         }
                     }
                 };
+                break;
+            case 1331723247:
+                tLRPC$ChannelParticipant = new TLRPC$TL_channelParticipantSelf();
                 break;
             case 1352785878:
                 tLRPC$ChannelParticipant = new TLRPC$TL_channelParticipantBanned() {

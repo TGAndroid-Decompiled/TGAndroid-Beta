@@ -78,7 +78,7 @@ public class JoinCallAlert extends BottomSheet {
     }
 
     @Override
-    protected boolean canDismissWithSwipe() {
+    public boolean canDismissWithSwipe() {
         return false;
     }
 

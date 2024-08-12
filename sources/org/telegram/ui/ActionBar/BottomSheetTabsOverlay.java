@@ -100,7 +100,7 @@ public class BottomSheetTabsOverlay extends FrameLayout {
 
         int getNavigationBarColor(int i);
 
-        SheetView mo953getWindowView();
+        SheetView mo943getWindowView();
 
         boolean isFullSize();
 
@@ -483,7 +483,7 @@ public class BottomSheetTabsOverlay extends FrameLayout {
         }
         this.dismissingSheet = sheet;
         sheet.setLastVisible(false);
-        sheet.mo953getWindowView().setDrawingFromOverlay(true);
+        sheet.mo943getWindowView().setDrawingFromOverlay(true);
         invalidate();
         ValueAnimator valueAnimator2 = this.animator;
         if (valueAnimator2 != null) {
@@ -529,7 +529,7 @@ public class BottomSheetTabsOverlay extends FrameLayout {
         public void onAnimationEnd(Animator animator) {
             int i;
             int i2;
-            this.val$sheet.mo953getWindowView().setDrawingFromOverlay(false);
+            this.val$sheet.mo943getWindowView().setDrawingFromOverlay(false);
             final BottomSheetTabs.WebTabData webTabData = this.val$tab;
             View view = webTabData.webView;
             if (view == null) {
@@ -727,10 +727,10 @@ public class BottomSheetTabsOverlay extends FrameLayout {
             int i = iArr[0];
             int[] iArr2 = this.pos2;
             rectF.offset(i - iArr2[0], iArr[1] - iArr2[1]);
-            SheetView mo953getWindowView = this.dismissingSheet.mo953getWindowView();
+            SheetView mo943getWindowView = this.dismissingSheet.mo943getWindowView();
             RectF rectF2 = this.rect;
             float f = this.dismissProgress;
-            float drawInto = mo953getWindowView.drawInto(canvas, rectF2, f, this.clipRect, f, false);
+            float drawInto = mo943getWindowView.drawInto(canvas, rectF2, f, this.clipRect, f, false);
             if (this.dismissingTab != null) {
                 this.clipPath.rewind();
                 this.clipPath.addRoundRect(this.clipRect, drawInto, drawInto, Path.Direction.CW);
@@ -754,10 +754,6 @@ public class BottomSheetTabsOverlay extends FrameLayout {
 
     private void drawTabsPreview(android.graphics.Canvas r38) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.BottomSheetTabsOverlay.drawTabsPreview(android.graphics.Canvas):void");
-    }
-
-    private void scale(RectF rectF, float f, float f2, float f3) {
-        rectF.set(f2 - ((f2 - rectF.left) * f), f3 - ((f3 - rectF.top) * f), f2 + ((rectF.right - f2) * f), f3 + ((rectF.bottom - f3) * f));
     }
 
     @Override

@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import java.lang.ref.WeakReference;
+import java.net.IDN;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -735,6 +736,34 @@ public class Browser {
 
     public static boolean isBrowserPackageName(String str) {
         return str != null && (str.contains("browser") || str.contains("chrome") || str.contains("firefox") || "com.microsoft.emmx".equals(str) || "com.opera.mini.native".equals(str) || "com.duckduckgo.mobile.android".equals(str) || "com.UCMobile.intl".equals(str));
+    }
+
+    public static boolean isPunycodeAllowed(String str) {
+        if (str == null) {
+            return true;
+        }
+        String[] split = str.split("\\.");
+        if (split.length <= 0) {
+            return true;
+        }
+        return split[split.length - 1].startsWith("xn--");
+    }
+
+    public static String IDN_toUnicode(String str) {
+        try {
+            str = IDN.toASCII(str, 1);
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+        if (isPunycodeAllowed(str)) {
+            try {
+                return IDN.toUnicode(str, 1);
+            } catch (Exception e2) {
+                FileLog.e(e2);
+                return str;
+            }
+        }
+        return str;
     }
 
     public static String replaceHostname(Uri uri, String str, String str2) {

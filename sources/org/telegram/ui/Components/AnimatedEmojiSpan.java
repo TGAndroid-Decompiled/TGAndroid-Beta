@@ -39,7 +39,7 @@ public class AnimatedEmojiSpan extends ReplacementSpan {
     public String documentAbsolutePath;
     public long documentId;
     public String emoji;
-    private float extraScale;
+    public float extraScale;
     private Paint.FontMetricsInt fontMetrics;
     public boolean fromEmojiKeyboard;
     public boolean full;

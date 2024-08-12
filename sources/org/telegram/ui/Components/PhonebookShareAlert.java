@@ -35,7 +35,7 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.browser.Browser;
-import org.telegram.tgnet.TLRPC$TL_restrictionReason;
+import org.telegram.tgnet.TLRPC$RestrictionReason;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.AlertDialog;
@@ -73,7 +73,7 @@ public class PhonebookShareAlert extends BottomSheet {
     private int vcardStartRow;
 
     @Override
-    protected boolean canDismissWithSwipe() {
+    public boolean canDismissWithSwipe() {
         return false;
     }
 
@@ -690,11 +690,11 @@ public class PhonebookShareAlert extends BottomSheet {
                 }
             }
             this.currentUser.restriction_reason.clear();
-            TLRPC$TL_restrictionReason tLRPC$TL_restrictionReason = new TLRPC$TL_restrictionReason();
-            tLRPC$TL_restrictionReason.text = sb.toString();
-            tLRPC$TL_restrictionReason.reason = "";
-            tLRPC$TL_restrictionReason.platform = "";
-            this.currentUser.restriction_reason.add(tLRPC$TL_restrictionReason);
+            TLRPC$RestrictionReason tLRPC$RestrictionReason = new TLRPC$RestrictionReason();
+            tLRPC$RestrictionReason.text = sb.toString();
+            tLRPC$RestrictionReason.reason = "";
+            tLRPC$RestrictionReason.platform = "";
+            this.currentUser.restriction_reason.add(tLRPC$RestrictionReason);
         }
         BaseFragment baseFragment = this.parentFragment;
         if ((baseFragment instanceof ChatActivity) && ((ChatActivity) baseFragment).isInScheduleMode()) {

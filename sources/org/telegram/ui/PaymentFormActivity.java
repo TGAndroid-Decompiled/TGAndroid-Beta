@@ -2831,6 +2831,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         } else {
             createSimpleBulletin = of.createSimpleBulletin(i2, replaceTags);
         }
+        createSimpleBulletin.hideAfterBottomSheet = false;
         createSimpleBulletin.setDuration(5000);
         if (tLRPC$MessageArr[0] != null) {
             createSimpleBulletin.setOnClickListener(new View.OnClickListener() {
@@ -2966,6 +2967,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             return;
         }
         final Bulletin createSimpleBulletin = BulletinFactory.global().createSimpleBulletin(R.raw.payment_success, replaceTags);
+        createSimpleBulletin.hideAfterBottomSheet = false;
         if (tLRPC$Message != null) {
             createSimpleBulletin.setOnClickListener(new View.OnClickListener() {
                 @Override

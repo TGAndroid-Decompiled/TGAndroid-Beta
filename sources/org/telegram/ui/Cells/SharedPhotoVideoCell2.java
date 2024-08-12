@@ -296,7 +296,7 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
             this.imageReceiver.onAttachedToWindow();
             this.blurImageReceiver.onAttachedToWindow();
         }
-        String restrictionReason = MessagesController.getRestrictionReason(messageObject.messageOwner.restriction_reason);
+        String restrictionReason = MessagesController.getInstance(this.currentAccount).getRestrictionReason(messageObject.messageOwner.restriction_reason);
         String filterString = this.sharedResources.getFilterString((int) ((AndroidUtilities.displaySize.x / i) / AndroidUtilities.density));
         int photoSize = i <= 2 ? AndroidUtilities.getPhotoSize() : 320;
         this.videoText = null;

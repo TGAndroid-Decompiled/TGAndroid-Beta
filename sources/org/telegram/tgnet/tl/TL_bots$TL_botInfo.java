@@ -42,11 +42,14 @@ public class TL_bots$TL_botInfo extends TL_bots$BotInfo {
         if ((this.flags & 8) != 0) {
             this.menu_button = TL_bots$BotMenuButton.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
+        if ((this.flags & 128) != 0) {
+            this.privacy_policy_url = abstractSerializedData.readString(z);
+        }
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(-1892676777);
+        abstractSerializedData.writeInt32(-2109505932);
         int i = this.has_preview_medias ? this.flags | 64 : this.flags & (-65);
         this.flags = i;
         abstractSerializedData.writeInt32(i);
@@ -72,6 +75,9 @@ public class TL_bots$TL_botInfo extends TL_bots$BotInfo {
         }
         if ((this.flags & 8) != 0) {
             this.menu_button.serializeToStream(abstractSerializedData);
+        }
+        if ((this.flags & 128) != 0) {
+            abstractSerializedData.writeString(this.privacy_policy_url);
         }
     }
 }

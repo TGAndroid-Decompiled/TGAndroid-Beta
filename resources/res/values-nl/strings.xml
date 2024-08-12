@@ -1181,12 +1181,8 @@
     <string name="DeleteAndExit">Groep verwijderen en verlaten</string>
     <string name="DeleteAndExitButton">Verwijder en verlaat groep</string>
     <string name="DeleteAndStop">Verwijderen en stoppen</string>
-    <string name="DeleteBackground_few">%1$d Achtergronden verwijderen</string>
-    <string name="DeleteBackground_many">%1$d Achtergronden verwijderen</string>
     <string name="DeleteBackground_one">Achtergrond verwijderen</string>
     <string name="DeleteBackground_other">%1$d Achtergronden verwijderen</string>
-    <string name="DeleteBackground_two">%1$d Achtergronden verwijderen</string>
-    <string name="DeleteBackground_zero">%1$d Achtergronden verwijderen</string>
     <string name="DeleteCalls">Oproepen verwijderen</string>
     <string name="DeleteCallsForEveryone">Verwijder voor iedereen</string>
     <string name="DeleteChannelForAll">Verwijder voor alle abonnees</string>
@@ -2171,12 +2167,8 @@
     <string name="MegaPublic">Publieke groep</string>
     <string name="MegaPublicInfo">Publieke groepen zijn te vinden via de zoekfunctie, iedereen kan er lid van worden en de geschiedenis zien.</string>
     <string name="MegaUsernameHelp">Als je een permanente link instelt kunnen anderen je groep vinden en er lid van worden.\n\nJe kunt a-z, 0-9 en liggend streepje gebruiken.\nDe minimale lengte is 5 karakters.</string>
-    <string name="MembersAreSpeakingToast_few">un1 are speaking</string>
-    <string name="MembersAreSpeakingToast_many">un1 are speaking</string>
     <string name="MembersAreSpeakingToast_one">un1 is speaking</string>
     <string name="MembersAreSpeakingToast_other">un1 are speaking</string>
-    <string name="MembersAreSpeakingToast_two">un1 are speaking</string>
-    <string name="MembersAreSpeakingToast_zero">un1 are speaking</string>
     <string name="MembersCountSelected_few">%1$d van %2$d geselecteerd</string>
     <string name="MembersCountSelected_many">%1$d van %2$d geselecteerd</string>
     <string name="MembersCountSelected_one">%1$d van %2$d geselecteerd</string>

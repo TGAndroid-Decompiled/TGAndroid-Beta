@@ -94,6 +94,7 @@ import org.telegram.ui.Cells.ManageChatTextCell;
 import org.telegram.ui.Cells.ManageChatUserCell;
 import org.telegram.ui.Cells.ShadowSectionCell;
 import org.telegram.ui.Cells.TextCell;
+import org.telegram.ui.Cells.TextCheckCell;
 import org.telegram.ui.Cells.TextCheckCell2;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.Cells.TextSettingsCell;
@@ -155,6 +156,8 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     private LongSparseArray<TLRPC$TL_groupCallParticipant> ignoredUsers;
     private TLRPC$ChatFull info;
     private String initialBannedRights;
+    private boolean initialProfiles;
+    private boolean initialSignatures;
     private int initialSlowmode;
     private boolean isChannel;
     private boolean isEnabledNotRestrictBoosters;
@@ -180,6 +183,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     private int participantsStartRow;
     private int permissionsSectionRow;
     private int pinMessagesRow;
+    private boolean profiles;
     private View progressBar;
     private int recentActionsRow;
     private int removedUsersRow;
@@ -203,6 +207,10 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     private int sendMessagesRow;
     private int sendPollsRow;
     private int sendStickersRow;
+    private int signMessagesInfoRow;
+    private int signMessagesProfilesRow;
+    private int signMessagesRow;
+    private boolean signatures;
     private int slowmodeInfoRow;
     private int slowmodeRow;
     private int slowmodeSelectRow;
@@ -316,6 +324,15 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         }
         this.isChannel = z;
         this.isForum = ChatObject.isForum(this.currentChat);
+        TLRPC$Chat tLRPC$Chat = this.currentChat;
+        if (tLRPC$Chat != null) {
+            boolean z9 = tLRPC$Chat.signatures;
+            this.signatures = z9;
+            this.initialSignatures = z9;
+            boolean z10 = tLRPC$Chat.signature_profiles;
+            this.profiles = z10;
+            this.initialProfiles = z10;
+        }
     }
 
     public void updateRows() {
@@ -437,6 +454,8 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             if (this.type == 3) {
                 this.doneItem = createMenu.addItemWithWidth(1, R.drawable.ic_ab_done, AndroidUtilities.dp(56.0f), LocaleController.getString("Done", R.string.Done));
             }
+        } else if (i == 1 && ChatObject.isChannelAndNotMegaGroup(this.currentChat) && ChatObject.hasAdminRights(this.currentChat)) {
+            this.doneItem = this.actionBar.createMenu().addItemWithWidth(1, R.drawable.ic_ab_done, AndroidUtilities.dp(56.0f), LocaleController.getString("Done", R.string.Done));
         }
         FrameLayout frameLayout = new FrameLayout(context) {
             @Override
@@ -535,13 +554,11 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                 ChatUsersActivity.this.listView.invalidate();
             }
         };
-        defaultItemAnimator.setDurations(320L);
-        defaultItemAnimator.setMoveDelay(0L);
-        defaultItemAnimator.setAddDelay(0L);
+        defaultItemAnimator.setDurations(420L);
         defaultItemAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
         defaultItemAnimator.setDelayAnimations(false);
-        this.listView.setItemAnimator(defaultItemAnimator);
         defaultItemAnimator.setSupportsChangeAnimations(false);
+        this.listView.setItemAnimator(defaultItemAnimator);
         this.listView.setAnimateEmptyView(true, 0);
         RecyclerListView recyclerListView2 = this.listView;
         ListAdapter listAdapter = new ListAdapter(context);
@@ -599,7 +616,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         return this.fragmentView;
     }
 
-    public void lambda$createView$5(android.view.View r30, int r31, float r32, float r33) {
+    public void lambda$createView$5(android.view.View r28, int r29, float r30, float r31) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatUsersActivity.lambda$createView$5(android.view.View, int, float, float):void");
     }
 
@@ -1640,8 +1657,11 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     }
 
     public boolean checkDiscard() {
-        if (ChatObject.getBannedRightsString(this.defaultBannedRights).equals(this.initialBannedRights) && this.initialSlowmode == this.selectedSlowmode && !hasNotRestrictBoostersChanges()) {
-            return true;
+        boolean z;
+        if (ChatObject.getBannedRightsString(this.defaultBannedRights).equals(this.initialBannedRights) && this.initialSlowmode == this.selectedSlowmode && !hasNotRestrictBoostersChanges() && (z = this.signatures) == this.initialSignatures) {
+            if ((z && this.profiles) == this.initialProfiles) {
+                return true;
+            }
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
         builder.setTitle(LocaleController.getString("UserRestrictionsApplyChanges", R.string.UserRestrictionsApplyChanges));
@@ -1793,44 +1813,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     }
 
     public void processDone() {
-        TLRPC$ChatFull tLRPC$ChatFull;
-        if (this.type != 3) {
-            return;
-        }
-        TLRPC$Chat tLRPC$Chat = this.currentChat;
-        if (tLRPC$Chat.creator && !ChatObject.isChannel(tLRPC$Chat) && this.selectedSlowmode != this.initialSlowmode && this.info != null) {
-            MessagesController.getInstance(this.currentAccount).convertToMegaGroup(getParentActivity(), this.chatId, this, new MessagesStorage.LongCallback() {
-                @Override
-                public final void run(long j) {
-                    ChatUsersActivity.this.lambda$processDone$25(j);
-                }
-            });
-            return;
-        }
-        if (!ChatObject.getBannedRightsString(this.defaultBannedRights).equals(this.initialBannedRights)) {
-            getMessagesController().setDefaultBannedRole(this.chatId, this.defaultBannedRights, ChatObject.isChannel(this.currentChat), this);
-            TLRPC$Chat chat = getMessagesController().getChat(Long.valueOf(this.chatId));
-            if (chat != null) {
-                chat.default_banned_rights = this.defaultBannedRights;
-            }
-        }
-        int i = this.selectedSlowmode;
-        if (i != this.initialSlowmode && (tLRPC$ChatFull = this.info) != null) {
-            tLRPC$ChatFull.slowmode_seconds = getSecondsForIndex(i);
-            this.info.flags |= 131072;
-            getMessagesController().setChannelSlowMode(this.chatId, this.info.slowmode_seconds);
-        }
-        if (hasNotRestrictBoostersChanges()) {
-            boolean z = this.isEnabledNotRestrictBoosters && isNotRestrictBoostersVisible();
-            if (z && this.notRestrictBoosters == 0) {
-                getMessagesController().setBoostsToUnblockRestrictions(this.chatId, 1);
-            } else if (!z && this.notRestrictBoosters != 0) {
-                getMessagesController().setBoostsToUnblockRestrictions(this.chatId, 0);
-            } else {
-                getMessagesController().setBoostsToUnblockRestrictions(this.chatId, this.notRestrictBoosters);
-            }
-        }
-        finishFragment();
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatUsersActivity.processDone():void");
     }
 
     public void lambda$processDone$25(long j) {
@@ -2593,6 +2576,9 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         @Override
         public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
             int itemViewType = viewHolder.getItemViewType();
+            if (itemViewType == 16) {
+                return true;
+            }
             if (itemViewType == 7 || itemViewType == 14) {
                 return ChatObject.canBlockUsers(ChatUsersActivity.this.currentChat);
             }
@@ -2760,6 +2746,11 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                     });
                     slideChooseView = slideChooseView4;
                     break;
+                case 16:
+                    View textCheckCell = new TextCheckCell(this.mContext, ChatUsersActivity.this.getResourceProvider());
+                    textCheckCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                    slideChooseView = textCheckCell;
+                    break;
             }
             return new RecyclerListView.Holder(slideChooseView);
         }
@@ -2807,7 +2798,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                 if (i == ChatUsersActivity.this.restricted1SectionRow || i == ChatUsersActivity.this.permissionsSectionRow || i == ChatUsersActivity.this.slowmodeRow || i == ChatUsersActivity.this.gigaHeaderRow) {
                     return 5;
                 }
-                if (i == ChatUsersActivity.this.participantsInfoRow || i == ChatUsersActivity.this.slowmodeInfoRow || i == ChatUsersActivity.this.dontRestrictBoostersInfoRow || i == ChatUsersActivity.this.gigaInfoRow || i == ChatUsersActivity.this.antiSpamInfoRow || i == ChatUsersActivity.this.hideMembersInfoRow) {
+                if (i == ChatUsersActivity.this.participantsInfoRow || i == ChatUsersActivity.this.slowmodeInfoRow || i == ChatUsersActivity.this.dontRestrictBoostersInfoRow || i == ChatUsersActivity.this.gigaInfoRow || i == ChatUsersActivity.this.antiSpamInfoRow || i == ChatUsersActivity.this.hideMembersInfoRow || i == ChatUsersActivity.this.signMessagesInfoRow) {
                     return 1;
                 }
                 if (i == ChatUsersActivity.this.blockedEmptyRow) {
@@ -2840,7 +2831,10 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                 if (i == ChatUsersActivity.this.sendMediaRow) {
                     return 14;
                 }
-                return i == ChatUsersActivity.this.dontRestrictBoostersSliderRow ? 15 : 0;
+                if (i == ChatUsersActivity.this.dontRestrictBoostersSliderRow) {
+                    return 15;
+                }
+                return (i == ChatUsersActivity.this.signMessagesRow || i == ChatUsersActivity.this.signMessagesProfilesRow) ? 16 : 0;
             }
             return 0;
         }
@@ -3039,7 +3033,13 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             put(i13, ChatUsersActivity.this.loadingProgressRow, sparseIntArray);
             int i14 = i13 + 1;
             put(i14, ChatUsersActivity.this.loadingUserCellRow, sparseIntArray);
-            put(i14 + 1, ChatUsersActivity.this.loadingHeaderRow, sparseIntArray);
+            int i15 = i14 + 1;
+            put(i15, ChatUsersActivity.this.loadingHeaderRow, sparseIntArray);
+            int i16 = i15 + 1;
+            put(i16, ChatUsersActivity.this.signMessagesRow, sparseIntArray);
+            int i17 = i16 + 1;
+            put(i17, ChatUsersActivity.this.signMessagesProfilesRow, sparseIntArray);
+            put(i17 + 1, ChatUsersActivity.this.signMessagesInfoRow, sparseIntArray);
         }
 
         private void put(int i, int i2, SparseIntArray sparseIntArray) {

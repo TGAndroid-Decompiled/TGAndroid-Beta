@@ -1764,7 +1764,7 @@ public class ChatObject {
     }
 
     public static boolean canSendAsPeers(TLRPC$Chat tLRPC$Chat) {
-        return isChannel(tLRPC$Chat) && tLRPC$Chat.megagroup && (isPublic(tLRPC$Chat) || tLRPC$Chat.has_geo || tLRPC$Chat.has_link);
+        return isChannel(tLRPC$Chat) && ((!tLRPC$Chat.megagroup && tLRPC$Chat.signatures && hasAdminRights(tLRPC$Chat) && canWriteToChat(tLRPC$Chat)) || (tLRPC$Chat.megagroup && (isPublic(tLRPC$Chat) || tLRPC$Chat.has_geo || tLRPC$Chat.has_link)));
     }
 
     public static boolean isChannel(TLRPC$Chat tLRPC$Chat) {
@@ -1928,6 +1928,9 @@ public class ChatObject {
         } else if (tLRPC$Chat != null && (tLRPC$TL_chatAdminRights = tLRPC$Chat.admin_rights) != null && tLRPC$TL_chatAdminRights.anonymous) {
             long j2 = tLRPC$Chat.id;
             return z ? -j2 : j2;
+        } else if (tLRPC$Chat != null && !tLRPC$Chat.signatures) {
+            long j3 = tLRPC$Chat.id;
+            return z ? -j3 : j3;
         } else {
             return UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId();
         }

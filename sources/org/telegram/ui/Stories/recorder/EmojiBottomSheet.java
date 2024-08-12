@@ -1865,7 +1865,7 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
     }
 
     @Override
-    protected boolean canDismissWithSwipe() {
+    public boolean canDismissWithSwipe() {
         return this.viewPager.getTranslationY() >= ((float) ((int) this.maxPadding));
     }
 

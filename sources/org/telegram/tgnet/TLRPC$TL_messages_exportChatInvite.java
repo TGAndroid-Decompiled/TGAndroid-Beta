@@ -5,6 +5,7 @@ public class TLRPC$TL_messages_exportChatInvite extends TLObject {
     public boolean legacy_revoke_permanent;
     public TLRPC$InputPeer peer;
     public boolean request_needed;
+    public TLRPC$TL_starsSubscriptionPricing subscription_pricing;
     public String title;
     public int usage_limit;
 
@@ -15,7 +16,7 @@ public class TLRPC$TL_messages_exportChatInvite extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(-1607670315);
+        abstractSerializedData.writeInt32(-1537876336);
         int i = this.legacy_revoke_permanent ? this.flags | 4 : this.flags & (-5);
         this.flags = i;
         int i2 = this.request_needed ? i | 8 : i & (-9);
@@ -30,6 +31,9 @@ public class TLRPC$TL_messages_exportChatInvite extends TLObject {
         }
         if ((this.flags & 16) != 0) {
             abstractSerializedData.writeString(this.title);
+        }
+        if ((this.flags & 32) != 0) {
+            this.subscription_pricing.serializeToStream(abstractSerializedData);
         }
     }
 }

@@ -39,11 +39,28 @@ public class TLRPC$TL_messageReactions extends TLRPC$MessageReactions {
                 this.recent_reactions.add(TLdeserialize2);
             }
         }
+        if ((this.flags & 16) != 0) {
+            int readInt326 = abstractSerializedData.readInt32(z);
+            if (readInt326 != 481674261) {
+                if (z) {
+                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt326)));
+                }
+                return;
+            }
+            int readInt327 = abstractSerializedData.readInt32(z);
+            for (int i3 = 0; i3 < readInt327; i3++) {
+                TLRPC$MessageReactor TLdeserialize3 = TLRPC$MessageReactor.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+                if (TLdeserialize3 == null) {
+                    return;
+                }
+                this.top_reactors.add(TLdeserialize3);
+            }
+        }
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(1328256121);
+        abstractSerializedData.writeInt32(171155211);
         int i = this.min ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.can_see_list ? i | 4 : i & (-5);
@@ -63,6 +80,14 @@ public class TLRPC$TL_messageReactions extends TLRPC$MessageReactions {
             abstractSerializedData.writeInt32(size2);
             for (int i5 = 0; i5 < size2; i5++) {
                 this.recent_reactions.get(i5).serializeToStream(abstractSerializedData);
+            }
+        }
+        if ((this.flags & 16) != 0) {
+            abstractSerializedData.writeInt32(481674261);
+            int size3 = this.top_reactors.size();
+            abstractSerializedData.writeInt32(size3);
+            for (int i6 = 0; i6 < size3; i6++) {
+                this.top_reactors.get(i6).serializeToStream(abstractSerializedData);
             }
         }
     }

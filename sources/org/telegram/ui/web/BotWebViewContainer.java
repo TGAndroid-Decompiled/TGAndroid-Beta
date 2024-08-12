@@ -242,11 +242,11 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         BackupImageView backupImageView = new BackupImageView(context) {
             {
                 BotWebViewContainer.this = this;
-                this.imageReceiver = new C00491(this);
+                this.imageReceiver = new C00481(this);
             }
 
-            public class C00491 extends ImageReceiver {
-                C00491(View view) {
+            public class C00481 extends ImageReceiver {
+                C00481(View view) {
                     super(view);
                     AnonymousClass1.this = r1;
                 }
@@ -258,7 +258,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                     duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            BotWebViewContainer.AnonymousClass1.C00491.this.lambda$setImageBitmapByKey$0(valueAnimator);
+                            BotWebViewContainer.AnonymousClass1.C00481.this.lambda$setImageBitmapByKey$0(valueAnimator);
                         }
                     });
                     duration.start();
@@ -2037,7 +2037,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                     BottomSheet.Builder builder = new BottomSheet.Builder(MyWebView.this.getContext(), false, null);
                     try {
                         Uri parse = Uri.parse(extra);
-                        str3 = Browser.replaceHostname(parse, IDN.toUnicode(parse.getHost(), 1), null);
+                        str3 = Browser.replaceHostname(parse, Browser.IDN_toUnicode(parse.getHost()), null);
                     } catch (Exception e) {
                         try {
                             FileLog.e((Throwable) e, false);
@@ -2091,7 +2091,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                     BottomSheet.Builder builder2 = new BottomSheet.Builder(MyWebView.this.getContext(), false, null);
                     try {
                         Uri parse2 = Uri.parse(extra2);
-                        str = Browser.replaceHostname(parse2, IDN.toUnicode(parse2.getHost(), 1), null);
+                        str = Browser.replaceHostname(parse2, Browser.IDN_toUnicode(parse2.getHost()), null);
                     } catch (Exception e4) {
                         try {
                             FileLog.e((Throwable) e4, false);

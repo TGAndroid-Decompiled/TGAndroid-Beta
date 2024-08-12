@@ -68,7 +68,7 @@ public class TLRPC$TL_user extends TLRPC$User {
             }
             int readInt324 = abstractSerializedData.readInt32(z);
             for (int i = 0; i < readInt324; i++) {
-                TLRPC$TL_restrictionReason TLdeserialize = TLRPC$TL_restrictionReason.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+                TLRPC$RestrictionReason TLdeserialize = TLRPC$RestrictionReason.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
                 if (TLdeserialize == null) {
                     return;
                 }

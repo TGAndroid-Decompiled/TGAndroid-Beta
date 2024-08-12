@@ -31,7 +31,7 @@ public class TrendingStickersAlert extends BottomSheet {
     private final int topOffset;
 
     @Override
-    protected boolean canDismissWithSwipe() {
+    public boolean canDismissWithSwipe() {
         return false;
     }
 

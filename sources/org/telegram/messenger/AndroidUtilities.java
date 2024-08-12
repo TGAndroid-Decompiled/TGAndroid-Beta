@@ -160,8 +160,8 @@ import org.telegram.messenger.utils.CustomHtml;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestTimeDelegate;
 import org.telegram.tgnet.TLRPC$Document;
+import org.telegram.tgnet.TLRPC$RestrictionReason;
 import org.telegram.tgnet.TLRPC$TL_chatBannedRights;
-import org.telegram.tgnet.TLRPC$TL_restrictionReason;
 import org.telegram.tgnet.TLRPC$TL_userContact_old2;
 import org.telegram.tgnet.TLRPC$TL_wallPaper;
 import org.telegram.tgnet.TLRPC$User;
@@ -2107,11 +2107,11 @@ public class AndroidUtilities {
                 tLRPC$TL_userContact_old2.first_name = vcardData2.name;
                 tLRPC$TL_userContact_old2.last_name = "";
                 tLRPC$TL_userContact_old2.id = 0L;
-                TLRPC$TL_restrictionReason tLRPC$TL_restrictionReason = new TLRPC$TL_restrictionReason();
-                tLRPC$TL_restrictionReason.text = vcardData2.vcard.toString();
-                tLRPC$TL_restrictionReason.platform = "";
-                tLRPC$TL_restrictionReason.reason = "";
-                tLRPC$TL_userContact_old2.restriction_reason.add(tLRPC$TL_restrictionReason);
+                TLRPC$RestrictionReason tLRPC$RestrictionReason = new TLRPC$RestrictionReason();
+                tLRPC$RestrictionReason.text = vcardData2.vcard.toString();
+                tLRPC$RestrictionReason.platform = "";
+                tLRPC$RestrictionReason.reason = "";
+                tLRPC$TL_userContact_old2.restriction_reason.add(tLRPC$RestrictionReason);
                 arrayList3.add(tLRPC$TL_userContact_old2);
             }
         }
@@ -4313,6 +4313,14 @@ public class AndroidUtilities {
             iArr3[i] = lerp((iArr == null || i >= iArr.length) ? 0 : iArr[i], (iArr2 == null || i >= iArr2.length) ? 0 : iArr2[i], f);
             i++;
         }
+    }
+
+    public static void scaleRect(RectF rectF, float f) {
+        scaleRect(rectF, f, rectF.centerX(), rectF.centerY());
+    }
+
+    public static void scaleRect(RectF rectF, float f, float f2, float f3) {
+        rectF.set(f2 - ((f2 - rectF.left) * f), f3 - ((f3 - rectF.top) * f), f2 + ((rectF.right - f2) * f), f3 + ((rectF.bottom - f3) * f));
     }
 
     public static float cascade(float f, float f2, float f3, float f4) {

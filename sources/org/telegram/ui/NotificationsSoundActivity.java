@@ -646,7 +646,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
                 toneCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, NotificationsSoundActivity.this.resourcesProvider));
                 creationTextCell = toneCell;
             } else if (i == 2) {
-                CreationTextCell creationTextCell2 = new CreationTextCell(context, NotificationsSoundActivity.this.resourcesProvider);
+                CreationTextCell creationTextCell2 = new CreationTextCell(context, 70, NotificationsSoundActivity.this.resourcesProvider);
                 creationTextCell2.startPadding = 61;
                 creationTextCell2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, NotificationsSoundActivity.this.resourcesProvider));
                 creationTextCell = creationTextCell2;

@@ -9,6 +9,7 @@ import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
@@ -202,6 +203,17 @@ public class EditTextCell extends FrameLayout {
         });
         addView(editTextBoldCursor, LayoutHelper.createFrame(-1, -1, 48));
         updateLimitText();
+    }
+
+    public ImageView setLeftDrawable(Drawable drawable) {
+        ImageView imageView = new ImageView(getContext());
+        imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        imageView.setImageDrawable(drawable);
+        addView(imageView, LayoutHelper.createFrame(24, 24.0f, 19, 18.0f, 0.0f, 0.0f, 0.0f));
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.editText.getLayoutParams();
+        layoutParams.leftMargin = AndroidUtilities.dp(24.0f);
+        this.editText.setLayoutParams(layoutParams);
+        return imageView;
     }
 
     public void setText(CharSequence charSequence) {

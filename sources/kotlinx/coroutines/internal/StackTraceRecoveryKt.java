@@ -20,26 +20,26 @@ public final class StackTraceRecoveryKt {
 
     static {
         Object obj;
-        Object m159constructorimpl;
+        Object m151constructorimpl;
         try {
             Result.Companion companion = Result.Companion;
-            obj = Result.m159constructorimpl(Class.forName("kotlin.coroutines.jvm.internal.BaseContinuationImpl").getCanonicalName());
+            obj = Result.m151constructorimpl(Class.forName("kotlin.coroutines.jvm.internal.BaseContinuationImpl").getCanonicalName());
         } catch (Throwable th) {
             Result.Companion companion2 = Result.Companion;
-            obj = Result.m159constructorimpl(ResultKt.createFailure(th));
+            obj = Result.m151constructorimpl(ResultKt.createFailure(th));
         }
-        baseContinuationImplClassName = (String) (Result.m160exceptionOrNullimpl(obj) == null ? obj : "kotlin.coroutines.jvm.internal.BaseContinuationImpl");
+        baseContinuationImplClassName = (String) (Result.m152exceptionOrNullimpl(obj) == null ? obj : "kotlin.coroutines.jvm.internal.BaseContinuationImpl");
         try {
             Result.Companion companion3 = Result.Companion;
-            m159constructorimpl = Result.m159constructorimpl(StackTraceRecoveryKt.class.getCanonicalName());
+            m151constructorimpl = Result.m151constructorimpl(StackTraceRecoveryKt.class.getCanonicalName());
         } catch (Throwable th2) {
             Result.Companion companion4 = Result.Companion;
-            m159constructorimpl = Result.m159constructorimpl(ResultKt.createFailure(th2));
+            m151constructorimpl = Result.m151constructorimpl(ResultKt.createFailure(th2));
         }
-        if (Result.m160exceptionOrNullimpl(m159constructorimpl) != null) {
-            m159constructorimpl = "kotlinx.coroutines.internal.StackTraceRecoveryKt";
+        if (Result.m152exceptionOrNullimpl(m151constructorimpl) != null) {
+            m151constructorimpl = "kotlinx.coroutines.internal.StackTraceRecoveryKt";
         }
-        String str = (String) m159constructorimpl;
+        String str = (String) m151constructorimpl;
     }
 
     public static final <E extends Throwable> E recoverFromStackFrame(E e, CoroutineStackFrame coroutineStackFrame) {

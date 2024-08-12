@@ -460,10 +460,14 @@ public class Bulletin {
         }
         this.canHide = z2;
         if (z2) {
-            layout.postDelayed(this.hideRunnable, this.duration);
-        } else {
-            layout.removeCallbacks(this.hideRunnable);
+            int i = this.duration;
+            if (i >= 0) {
+                layout.postDelayed(this.hideRunnable, i);
+                return;
+            }
+            return;
         }
+        layout.removeCallbacks(this.hideRunnable);
     }
 
     public Bulletin setOnHideListener(Runnable runnable) {
@@ -1394,7 +1398,7 @@ public class Bulletin {
             TimerView timerView = new TimerView(getContext(), this.resourcesProvider);
             this.timerView = timerView;
             timerView.timeLeft = 5000L;
-            addView(this.timerView, LayoutHelper.createFrameRelatively(20.0f, 20.0f, 8388627, 21.0f, 0.0f, 21.0f, 0.0f));
+            addView(timerView, LayoutHelper.createFrameRelatively(20.0f, 20.0f, 8388627, 21.0f, 0.0f, 21.0f, 0.0f));
         }
     }
 
@@ -1530,6 +1534,68 @@ public class Bulletin {
             linksTextView2.setTypeface(Typeface.SANS_SERIF);
             linksTextView2.setTextSize(1, 13.0f);
             linearLayout.addView(linksTextView2);
+        }
+
+        @Override
+        protected void onShow() {
+            super.onShow();
+            this.imageView.playAnimation();
+        }
+
+        public void setAnimation(int i, String... strArr) {
+            setAnimation(i, 32, 32, strArr);
+        }
+
+        public void setAnimation(int i, int i2, int i3, String... strArr) {
+            this.imageView.setAnimation(i, i2, i3);
+            for (String str : strArr) {
+                this.imageView.setLayerColor(str + ".**", this.textColor);
+            }
+        }
+
+        @Override
+        public CharSequence getAccessibilityText() {
+            return ((Object) this.titleTextView.getText()) + ".\n" + ((Object) this.subtitleTextView.getText());
+        }
+    }
+
+    public static class TwoLineAnimatedLottieLayout extends ButtonLayout {
+        public final RLottieImageView imageView;
+        private final LinearLayout linearLayout;
+        public final AnimatedTextView subtitleTextView;
+        private final int textColor;
+        public final LinkSpanDrawable.LinksTextView titleTextView;
+
+        public TwoLineAnimatedLottieLayout(Context context, Theme.ResourcesProvider resourcesProvider) {
+            super(context, resourcesProvider);
+            int i = Theme.key_undo_infoColor;
+            this.textColor = getThemedColor(i);
+            setBackground(getThemedColor(Theme.key_undo_background));
+            RLottieImageView rLottieImageView = new RLottieImageView(context);
+            this.imageView = rLottieImageView;
+            rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
+            addView(rLottieImageView, LayoutHelper.createFrameRelatively(56.0f, 48.0f, 8388627));
+            int themedColor = getThemedColor(i);
+            getThemedColor(Theme.key_undo_cancelColor);
+            LinearLayout linearLayout = new LinearLayout(context);
+            this.linearLayout = linearLayout;
+            linearLayout.setOrientation(1);
+            addView(linearLayout, LayoutHelper.createFrameRelatively(-1.0f, -2.0f, 8388627, 52.0f, 8.0f, 8.0f, 8.0f));
+            LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context);
+            this.titleTextView = linksTextView;
+            linksTextView.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
+            linksTextView.setSingleLine();
+            linksTextView.setTextColor(themedColor);
+            linksTextView.setTextSize(1, 14.0f);
+            linksTextView.setTypeface(AndroidUtilities.bold());
+            linearLayout.addView(linksTextView);
+            AnimatedTextView animatedTextView = new AnimatedTextView(context, false, true, true);
+            this.subtitleTextView = animatedTextView;
+            animatedTextView.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
+            animatedTextView.setTextColor(themedColor);
+            animatedTextView.setTypeface(Typeface.SANS_SERIF);
+            animatedTextView.setTextSize(AndroidUtilities.dp(13.0f));
+            linearLayout.addView(animatedTextView, LayoutHelper.createLinear(-1, AndroidUtilities.dp(6.0f)));
         }
 
         @Override
@@ -1983,7 +2049,7 @@ public class Bulletin {
         private boolean isUndone;
         private final Theme.ResourcesProvider resourcesProvider;
         private Runnable undoAction;
-        private TextView undoTextView;
+        public TextView undoTextView;
 
         public UndoButton(Context context, boolean z) {
             this(context, z, null);
@@ -2117,7 +2183,7 @@ public class Bulletin {
         int textWidthOut;
         StaticLayout timeLayout;
         StaticLayout timeLayoutOut;
-        private long timeLeft;
+        public long timeLeft;
         private String timeLeftString;
         float timeReplaceProgress;
 
@@ -2128,16 +2194,18 @@ public class Bulletin {
             TextPaint textPaint = new TextPaint(1);
             this.textPaint = textPaint;
             textPaint.setTextSize(AndroidUtilities.dp(12.0f));
-            this.textPaint.setTypeface(AndroidUtilities.bold());
-            TextPaint textPaint2 = this.textPaint;
-            int i = Theme.key_undo_infoColor;
-            textPaint2.setColor(Theme.getColor(i, resourcesProvider));
+            this.textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/num.otf"));
             Paint paint = new Paint(1);
             this.progressPaint = paint;
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
             paint.setStrokeCap(Paint.Cap.ROUND);
-            paint.setColor(Theme.getColor(i, resourcesProvider));
+            setColor(Theme.getColor(Theme.key_undo_infoColor, resourcesProvider));
+        }
+
+        public void setColor(int i) {
+            this.textPaint.setColor(i);
+            this.progressPaint.setColor(i);
         }
 
         @Override
@@ -2175,7 +2243,7 @@ public class Bulletin {
                 if (f3 < 1.0f) {
                     this.textPaint.setAlpha((int) (alpha * (1.0f - f3)));
                     canvas.save();
-                    canvas.translate(this.rect.centerX() - (this.textWidthOut / 2.0f), (this.rect.centerY() - (this.timeLayoutOut.getHeight() / 2.0f)) + (AndroidUtilities.dp(10.0f) * this.timeReplaceProgress));
+                    canvas.translate(this.rect.centerX() - (this.textWidthOut / 2.0f), ((this.rect.centerY() - (this.timeLayoutOut.getHeight() / 2.0f)) + (AndroidUtilities.dp(10.0f) * this.timeReplaceProgress)) - AndroidUtilities.dp(0.5f));
                     this.timeLayoutOut.draw(canvas);
                     this.textPaint.setAlpha(alpha);
                     canvas.restore();
@@ -2187,7 +2255,7 @@ public class Bulletin {
                     this.textPaint.setAlpha((int) (alpha * f4));
                 }
                 canvas.save();
-                canvas.translate(this.rect.centerX() - (this.textWidth / 2.0f), (this.rect.centerY() - (this.timeLayout.getHeight() / 2.0f)) - (AndroidUtilities.dp(10.0f) * (1.0f - this.timeReplaceProgress)));
+                canvas.translate(this.rect.centerX() - (this.textWidth / 2.0f), ((this.rect.centerY() - (this.timeLayout.getHeight() / 2.0f)) - (AndroidUtilities.dp(10.0f) * (1.0f - this.timeReplaceProgress))) - AndroidUtilities.dp(0.5f));
                 this.timeLayout.draw(canvas);
                 if (this.timeReplaceProgress != 1.0f) {
                     this.textPaint.setAlpha(alpha);

@@ -480,7 +480,7 @@ public class MessageEntityView extends EntityView {
                             if (chatMessageCell4.getTransitionParams().wasDraw) {
                                 canvas.translate(left3, y3);
                                 chatMessageCell4.setInvalidatesParent(true);
-                                chatMessageCell4.drawReactionsLayout(canvas, alpha3);
+                                chatMessageCell4.drawReactionsLayout(canvas, alpha3, null);
                                 chatMessageCell4.setInvalidatesParent(false);
                                 canvas.restore();
                             }

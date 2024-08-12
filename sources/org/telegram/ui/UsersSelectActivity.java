@@ -1055,9 +1055,9 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
             int i4 = this.selectedCount;
             title.setText(LocaleController.formatPluralString("Chats", i4, Integer.valueOf(i4)));
             if (this.ttlPeriod > 0) {
-                this.animatedAvatarContainer.getSubtitleTextView().setText(LocaleController.getPluralString("SelectChatsForAutoDelete2", this.selectedCount));
+                this.animatedAvatarContainer.getSubtitleTextView().setText(LocaleController.getString(R.string.SelectChatsForAutoDelete2));
             } else {
-                this.animatedAvatarContainer.getSubtitleTextView().setText(LocaleController.getPluralString("SelectChatsForDisableAutoDelete2", this.selectedCount));
+                this.animatedAvatarContainer.getSubtitleTextView().setText(LocaleController.getString(R.string.SelectChatsForDisableAutoDelete2));
             }
         }
     }

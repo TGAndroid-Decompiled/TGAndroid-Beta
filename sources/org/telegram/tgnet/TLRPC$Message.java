@@ -75,7 +75,7 @@ public class TLRPC$Message extends TLObject {
     public boolean voiceTranscriptionRated;
     public boolean with_my_score;
     public ArrayList<TLRPC$MessageEntity> entities = new ArrayList<>();
-    public ArrayList<TLRPC$TL_restrictionReason> restriction_reason = new ArrayList<>();
+    public ArrayList<TLRPC$RestrictionReason> restriction_reason = new ArrayList<>();
     public int send_state = 0;
     public int fwd_msg_id = 0;
     public String attachPath = "";
@@ -190,7 +190,7 @@ public class TLRPC$Message extends TLObject {
                             }
                             int readInt325 = abstractSerializedData2.readInt32(z2);
                             for (int i3 = 0; i3 < readInt325; i3++) {
-                                TLRPC$TL_restrictionReason TLdeserialize3 = TLRPC$TL_restrictionReason.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                TLRPC$RestrictionReason TLdeserialize3 = TLRPC$RestrictionReason.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                                 if (TLdeserialize3 == null) {
                                     return;
                                 }
@@ -515,7 +515,7 @@ public class TLRPC$Message extends TLObject {
                             }
                             int readInt325 = abstractSerializedData2.readInt32(z2);
                             for (int i3 = 0; i3 < readInt325; i3++) {
-                                TLRPC$TL_restrictionReason TLdeserialize3 = TLRPC$TL_restrictionReason.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                TLRPC$RestrictionReason TLdeserialize3 = TLRPC$RestrictionReason.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                                 if (TLdeserialize3 == null) {
                                     return;
                                 }
@@ -802,7 +802,7 @@ public class TLRPC$Message extends TLObject {
                             }
                             int readInt326 = abstractSerializedData2.readInt32(z2);
                             for (int i3 = 0; i3 < readInt326; i3++) {
-                                TLRPC$TL_restrictionReason TLdeserialize3 = TLRPC$TL_restrictionReason.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                TLRPC$RestrictionReason TLdeserialize3 = TLRPC$RestrictionReason.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                                 if (TLdeserialize3 == null) {
                                     return;
                                 }
@@ -1024,7 +1024,7 @@ public class TLRPC$Message extends TLObject {
                             }
                             int readInt325 = abstractSerializedData2.readInt32(z2);
                             for (int i3 = 0; i3 < readInt325; i3++) {
-                                TLRPC$TL_restrictionReason TLdeserialize3 = TLRPC$TL_restrictionReason.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                TLRPC$RestrictionReason TLdeserialize3 = TLRPC$RestrictionReason.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                                 if (TLdeserialize3 == null) {
                                     return;
                                 }
@@ -1298,7 +1298,7 @@ public class TLRPC$Message extends TLObject {
                             }
                             int readInt325 = abstractSerializedData2.readInt32(z2);
                             for (int i3 = 0; i3 < readInt325; i3++) {
-                                TLRPC$TL_restrictionReason TLdeserialize3 = TLRPC$TL_restrictionReason.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                TLRPC$RestrictionReason TLdeserialize3 = TLRPC$RestrictionReason.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                                 if (TLdeserialize3 == null) {
                                     return;
                                 }
@@ -1501,7 +1501,7 @@ public class TLRPC$Message extends TLObject {
                             }
                             int readInt326 = abstractSerializedData2.readInt32(z2);
                             for (int i3 = 0; i3 < readInt326; i3++) {
-                                TLRPC$TL_restrictionReason TLdeserialize3 = TLRPC$TL_restrictionReason.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                TLRPC$RestrictionReason TLdeserialize3 = TLRPC$RestrictionReason.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                                 if (TLdeserialize3 == null) {
                                     return;
                                 }
@@ -2207,7 +2207,7 @@ public class TLRPC$Message extends TLObject {
                             }
                             int readInt325 = abstractSerializedData2.readInt32(z2);
                             for (int i3 = 0; i3 < readInt325; i3++) {
-                                TLRPC$TL_restrictionReason TLdeserialize3 = TLRPC$TL_restrictionReason.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                TLRPC$RestrictionReason TLdeserialize3 = TLRPC$RestrictionReason.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                                 if (TLdeserialize3 == null) {
                                     return;
                                 }
@@ -2636,7 +2636,7 @@ public class TLRPC$Message extends TLObject {
                             }
                             int readInt325 = abstractSerializedData2.readInt32(z2);
                             for (int i3 = 0; i3 < readInt325; i3++) {
-                                TLRPC$TL_restrictionReason TLdeserialize3 = TLRPC$TL_restrictionReason.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                TLRPC$RestrictionReason TLdeserialize3 = TLRPC$RestrictionReason.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                                 if (TLdeserialize3 == null) {
                                     return;
                                 }
@@ -3039,7 +3039,7 @@ public class TLRPC$Message extends TLObject {
                             }
                             int readInt325 = abstractSerializedData2.readInt32(z2);
                             for (int i3 = 0; i3 < readInt325; i3++) {
-                                TLRPC$TL_restrictionReason TLdeserialize3 = TLRPC$TL_restrictionReason.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                TLRPC$RestrictionReason TLdeserialize3 = TLRPC$RestrictionReason.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                                 if (TLdeserialize3 == null) {
                                     return;
                                 }
@@ -3372,7 +3372,7 @@ public class TLRPC$Message extends TLObject {
                             }
                             int readInt325 = abstractSerializedData2.readInt32(z2);
                             for (int i3 = 0; i3 < readInt325; i3++) {
-                                TLRPC$TL_restrictionReason TLdeserialize3 = TLRPC$TL_restrictionReason.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                TLRPC$RestrictionReason TLdeserialize3 = TLRPC$RestrictionReason.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                                 if (TLdeserialize3 == null) {
                                     return;
                                 }
@@ -3726,7 +3726,7 @@ public class TLRPC$Message extends TLObject {
                             }
                             int readInt325 = abstractSerializedData2.readInt32(z2);
                             for (int i3 = 0; i3 < readInt325; i3++) {
-                                TLRPC$TL_restrictionReason TLdeserialize3 = TLRPC$TL_restrictionReason.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                TLRPC$RestrictionReason TLdeserialize3 = TLRPC$RestrictionReason.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                                 if (TLdeserialize3 == null) {
                                     return;
                                 }
@@ -4037,7 +4037,7 @@ public class TLRPC$Message extends TLObject {
                             }
                             int readInt325 = abstractSerializedData2.readInt32(z2);
                             for (int i3 = 0; i3 < readInt325; i3++) {
-                                TLRPC$TL_restrictionReason TLdeserialize3 = TLRPC$TL_restrictionReason.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                                TLRPC$RestrictionReason TLdeserialize3 = TLRPC$RestrictionReason.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                                 if (TLdeserialize3 == null) {
                                     return;
                                 }
@@ -4186,8 +4186,8 @@ public class TLRPC$Message extends TLObject {
             if (this.params == null) {
                 this.params = new HashMap<>();
             }
-            this.layer = 185;
-            this.params.put("legacy_layer", "185");
+            this.layer = 186;
+            this.params.put("legacy_layer", "186");
         }
         if ((this.id < 0 || this.send_state == 3 || this.legacy) && (hashMap2 = this.params) != null && hashMap2.size() > 0) {
             for (Map.Entry<String, String> entry2 : this.params.entrySet()) {

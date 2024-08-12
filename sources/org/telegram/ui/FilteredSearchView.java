@@ -484,77 +484,86 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         if (messageObject.isQuickReply()) {
             QuickRepliesController.QuickReply findReply = QuickRepliesController.getInstance(messageObject.currentAccount).findReply(messageObject.getQuickReplyId());
             return findReply == null ? "" : findReply.name;
-        }
-        SpannableStringBuilder[] spannableStringBuilderArr = arrowSpan;
-        if (spannableStringBuilderArr[i] == null) {
-            spannableStringBuilderArr[i] = new SpannableStringBuilder(">");
-            if (i == 0) {
-                i2 = R.drawable.attach_arrow_right;
-            } else if (i == 1) {
-                i2 = R.drawable.msg_mini_arrow_mediathin;
-            } else if (i != 2) {
-                return "";
-            } else {
-                i2 = R.drawable.msg_mini_arrow_mediabold;
+        } else if (messageObject.isSponsored()) {
+            if (messageObject.sponsoredCanReport) {
+                return LocaleController.getString(R.string.SponsoredMessageAd);
             }
-            ColoredImageSpan coloredImageSpan = new ColoredImageSpan(ContextCompat.getDrawable(ApplicationLoader.applicationContext, i2).mutate(), i == 0 ? 2 : 1);
-            if (i == 1 || i == 2) {
-                coloredImageSpan.setScale(0.85f);
+            if (messageObject.sponsoredRecommended) {
+                return LocaleController.getString(R.string.SponsoredMessage2Recommended);
             }
-            SpannableStringBuilder[] spannableStringBuilderArr2 = arrowSpan;
-            spannableStringBuilderArr2[i].setSpan(coloredImageSpan, 0, spannableStringBuilderArr2[i].length(), 0);
-        }
-        TLRPC$Message tLRPC$Message = messageObject.messageOwner;
-        CharSequence charSequence = null;
-        if (tLRPC$Message.saved_peer_id != null) {
-            if (messageObject.getSavedDialogId() >= 0) {
-                tLRPC$User = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(messageObject.getSavedDialogId()));
-                chat = null;
-            } else if (messageObject.getSavedDialogId() < 0) {
-                chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-messageObject.getSavedDialogId()));
-                tLRPC$User = null;
-                chat2 = null;
-            } else {
-                tLRPC$User = null;
-                chat = null;
-            }
-            chat2 = chat;
+            return LocaleController.getString(R.string.SponsoredMessage2);
         } else {
-            TLRPC$User user = tLRPC$Message.from_id.user_id != 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(messageObject.messageOwner.from_id.user_id)) : null;
-            chat = messageObject.messageOwner.from_id.chat_id != 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(messageObject.messageOwner.peer_id.chat_id)) : null;
-            if (chat == null) {
-                chat = messageObject.messageOwner.from_id.channel_id != 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(messageObject.messageOwner.peer_id.channel_id)) : null;
+            SpannableStringBuilder[] spannableStringBuilderArr = arrowSpan;
+            if (spannableStringBuilderArr[i] == null) {
+                spannableStringBuilderArr[i] = new SpannableStringBuilder(">");
+                if (i == 0) {
+                    i2 = R.drawable.attach_arrow_right;
+                } else if (i == 1) {
+                    i2 = R.drawable.msg_mini_arrow_mediathin;
+                } else if (i != 2) {
+                    return "";
+                } else {
+                    i2 = R.drawable.msg_mini_arrow_mediabold;
+                }
+                ColoredImageSpan coloredImageSpan = new ColoredImageSpan(ContextCompat.getDrawable(ApplicationLoader.applicationContext, i2).mutate(), i == 0 ? 2 : 1);
+                if (i == 1 || i == 2) {
+                    coloredImageSpan.setScale(0.85f);
+                }
+                SpannableStringBuilder[] spannableStringBuilderArr2 = arrowSpan;
+                spannableStringBuilderArr2[i].setSpan(coloredImageSpan, 0, spannableStringBuilderArr2[i].length(), 0);
             }
-            chat2 = messageObject.messageOwner.peer_id.channel_id != 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(messageObject.messageOwner.peer_id.channel_id)) : null;
-            if (chat2 == null) {
-                chat2 = messageObject.messageOwner.peer_id.chat_id != 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(messageObject.messageOwner.peer_id.chat_id)) : null;
-            }
-            if (ChatObject.isChannelAndNotMegaGroup(chat2) || z) {
-                tLRPC$User = user;
+            TLRPC$Message tLRPC$Message = messageObject.messageOwner;
+            CharSequence charSequence = null;
+            if (tLRPC$Message.saved_peer_id != null) {
+                if (messageObject.getSavedDialogId() >= 0) {
+                    tLRPC$User = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(messageObject.getSavedDialogId()));
+                    chat = null;
+                } else if (messageObject.getSavedDialogId() < 0) {
+                    chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-messageObject.getSavedDialogId()));
+                    tLRPC$User = null;
+                    chat2 = null;
+                } else {
+                    tLRPC$User = null;
+                    chat = null;
+                }
+                chat2 = chat;
             } else {
-                tLRPC$User = user;
-                chat2 = null;
+                TLRPC$User user = tLRPC$Message.from_id.user_id != 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(messageObject.messageOwner.from_id.user_id)) : null;
+                chat = messageObject.messageOwner.from_id.chat_id != 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(messageObject.messageOwner.peer_id.chat_id)) : null;
+                if (chat == null) {
+                    chat = messageObject.messageOwner.from_id.channel_id != 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(messageObject.messageOwner.peer_id.channel_id)) : null;
+                }
+                chat2 = messageObject.messageOwner.peer_id.channel_id != 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(messageObject.messageOwner.peer_id.channel_id)) : null;
+                if (chat2 == null) {
+                    chat2 = messageObject.messageOwner.peer_id.chat_id != 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(messageObject.messageOwner.peer_id.chat_id)) : null;
+                }
+                if (ChatObject.isChannelAndNotMegaGroup(chat2) || z) {
+                    tLRPC$User = user;
+                } else {
+                    tLRPC$User = user;
+                    chat2 = null;
+                }
             }
+            if (tLRPC$User != null && chat2 != null) {
+                CharSequence charSequence2 = chat2.title;
+                if (ChatObject.isForum(chat2) && (findTopic2 = MessagesController.getInstance(UserConfig.selectedAccount).getTopicsController().findTopic(chat2.id, MessageObject.getTopicId(messageObject.currentAccount, messageObject.messageOwner, true))) != null) {
+                    charSequence2 = ForumUtilities.getTopicSpannedName(findTopic2, null, false);
+                }
+                CharSequence replaceEmoji = Emoji.replaceEmoji(charSequence2, textPaint == null ? null : textPaint.getFontMetricsInt(), false);
+                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+                spannableStringBuilder.append(Emoji.replaceEmoji(UserObject.getFirstName(tLRPC$User), textPaint != null ? textPaint.getFontMetricsInt() : null, false)).append((char) 8202).append((CharSequence) arrowSpan[i]).append((char) 8202).append(replaceEmoji);
+                charSequence = spannableStringBuilder;
+            } else if (tLRPC$User != null) {
+                charSequence = Emoji.replaceEmoji(UserObject.getUserName(tLRPC$User), textPaint != null ? textPaint.getFontMetricsInt() : null, false);
+            } else if (chat != null) {
+                CharSequence charSequence3 = chat.title;
+                if (ChatObject.isForum(chat) && (findTopic = MessagesController.getInstance(UserConfig.selectedAccount).getTopicsController().findTopic(chat.id, MessageObject.getTopicId(messageObject.currentAccount, messageObject.messageOwner, true))) != null) {
+                    charSequence3 = ForumUtilities.getTopicSpannedName(findTopic, null, false);
+                }
+                charSequence = Emoji.replaceEmoji(charSequence3, textPaint != null ? textPaint.getFontMetricsInt() : null, false);
+            }
+            return charSequence == null ? "" : charSequence;
         }
-        if (tLRPC$User != null && chat2 != null) {
-            CharSequence charSequence2 = chat2.title;
-            if (ChatObject.isForum(chat2) && (findTopic2 = MessagesController.getInstance(UserConfig.selectedAccount).getTopicsController().findTopic(chat2.id, MessageObject.getTopicId(messageObject.currentAccount, messageObject.messageOwner, true))) != null) {
-                charSequence2 = ForumUtilities.getTopicSpannedName(findTopic2, null, false);
-            }
-            CharSequence replaceEmoji = Emoji.replaceEmoji(charSequence2, textPaint == null ? null : textPaint.getFontMetricsInt(), false);
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-            spannableStringBuilder.append(Emoji.replaceEmoji(UserObject.getFirstName(tLRPC$User), textPaint != null ? textPaint.getFontMetricsInt() : null, false)).append((char) 8202).append((CharSequence) arrowSpan[i]).append((char) 8202).append(replaceEmoji);
-            charSequence = spannableStringBuilder;
-        } else if (tLRPC$User != null) {
-            charSequence = Emoji.replaceEmoji(UserObject.getUserName(tLRPC$User), textPaint != null ? textPaint.getFontMetricsInt() : null, false);
-        } else if (chat != null) {
-            CharSequence charSequence3 = chat.title;
-            if (ChatObject.isForum(chat) && (findTopic = MessagesController.getInstance(UserConfig.selectedAccount).getTopicsController().findTopic(chat.id, MessageObject.getTopicId(messageObject.currentAccount, messageObject.messageOwner, true))) != null) {
-                charSequence3 = ForumUtilities.getTopicSpannedName(findTopic, null, false);
-            }
-            charSequence = Emoji.replaceEmoji(charSequence3, textPaint != null ? textPaint.getFontMetricsInt() : null, false);
-        }
-        return charSequence == null ? "" : charSequence;
     }
 
     public void search(final long j, final long j2, final long j3, final FiltersView.MediaFilterData mediaFilterData, final boolean z, final String str, boolean z2) {

@@ -216,6 +216,16 @@ public final class BulletinFactory {
         return create(lottieLayout, charSequence.length() < 20 ? 1500 : 2750);
     }
 
+    public Bulletin createSimpleBulletinDetail(int i, CharSequence charSequence) {
+        Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(getContext(), this.resourcesProvider);
+        lottieLayout.setAnimation(i, 36, 36, new String[0]);
+        lottieLayout.textView.setText(charSequence);
+        lottieLayout.textView.setSingleLine(false);
+        lottieLayout.textView.setTextSize(1, 14.0f);
+        lottieLayout.textView.setMaxLines(4);
+        return create(lottieLayout, charSequence.length() < 20 ? 1500 : 2750);
+    }
+
     public Bulletin createImageBulletin(int i, CharSequence charSequence) {
         Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(getContext(), this.resourcesProvider);
         lottieLayout.setBackground(Theme.getColor(Theme.key_undo_background, this.resourcesProvider), 12);
@@ -840,7 +850,7 @@ public final class BulletinFactory {
         return create(lottieLayout, 1500);
     }
 
-    private Bulletin create(Bulletin.Layout layout, int i) {
+    public Bulletin create(Bulletin.Layout layout, int i) {
         BaseFragment baseFragment = this.fragment;
         if (baseFragment != null) {
             return Bulletin.make(baseFragment, layout, i);

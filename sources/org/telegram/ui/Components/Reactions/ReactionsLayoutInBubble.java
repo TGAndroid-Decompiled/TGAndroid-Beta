@@ -33,6 +33,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
@@ -46,6 +47,7 @@ import org.telegram.tgnet.TLRPC$TL_availableEffect;
 import org.telegram.tgnet.TLRPC$TL_availableReaction;
 import org.telegram.tgnet.TLRPC$TL_reactionCustomEmoji;
 import org.telegram.tgnet.TLRPC$TL_reactionEmoji;
+import org.telegram.tgnet.TLRPC$TL_reactionPaid;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatMessageCell;
@@ -54,9 +56,11 @@ import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AnimatedFileDrawable;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.AvatarsDrawable;
+import org.telegram.ui.Components.ButtonBounce;
 import org.telegram.ui.Components.CounterView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.RLottieDrawable;
+import org.telegram.ui.Stars.StarsReactionsSheet;
 public class ReactionsLayoutInBubble {
     private static int animationUniq;
     private int animateFromTotalHeight;
@@ -152,7 +156,7 @@ public class ReactionsLayoutInBubble {
         return (tLRPC$Reaction instanceof TLRPC$TL_reactionCustomEmoji) && (tLRPC$Reaction2 instanceof TLRPC$TL_reactionCustomEmoji) && ((TLRPC$TL_reactionCustomEmoji) tLRPC$Reaction).document_id == ((TLRPC$TL_reactionCustomEmoji) tLRPC$Reaction2).document_id;
     }
 
-    public void setMessage(org.telegram.messenger.MessageObject r19, boolean r20, boolean r21, org.telegram.ui.ActionBar.Theme.ResourcesProvider r22) {
+    public void setMessage(org.telegram.messenger.MessageObject r18, boolean r19, boolean r20, org.telegram.ui.ActionBar.Theme.ResourcesProvider r21) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble.setMessage(org.telegram.messenger.MessageObject, boolean, boolean, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
     }
 
@@ -300,7 +304,7 @@ public class ReactionsLayoutInBubble {
         }
         for (int i2 = 0; i2 < this.reactionButtons.size(); i2++) {
             ReactionButton reactionButton = this.reactionButtons.get(i2);
-            if (!Objects.equals(Integer.valueOf(reactionButton.reaction.hashCode()), this.scrimViewReaction) && ((num == null || reactionButton.reaction.hashCode() == num.intValue()) && num != null)) {
+            if ((num == null || reactionButton.reaction.hashCode() == num.intValue()) && num != null) {
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(reactionButton.drawingImageRect);
                 float dp = AndroidUtilities.dp(140.0f);
@@ -457,10 +461,17 @@ public class ReactionsLayoutInBubble {
     }
 
     public ReactionButton getReactionButton(VisibleReaction visibleReaction) {
-        String str = visibleReaction.emojicon;
-        if (str == null) {
-            str = Long.toString(visibleReaction.documentId);
+        String l;
+        if (visibleReaction.isStar) {
+            l = "stars";
+        } else {
+            String str = visibleReaction.emojicon;
+            l = str != null ? str : Long.toString(visibleReaction.documentId);
         }
+        return getReactionButton(l);
+    }
+
+    public ReactionButton getReactionButton(String str) {
         if (this.isSmall) {
             HashMap<String, ReactionButton> hashMap = this.lastDrawingReactionButtons;
             ReactionButton reactionButton = hashMap.get(str + "_");
@@ -524,6 +535,7 @@ public class ReactionsLayoutInBubble {
         public boolean attached;
         AvatarsDrawable avatarsDrawable;
         int backgroundColor;
+        public final ButtonBounce bounce;
         public boolean choosen;
         public int choosenOrder;
         public int count;
@@ -545,10 +557,12 @@ public class ReactionsLayoutInBubble {
         public int lastDrawnTextColor;
         public boolean lastImageDrawn;
         public String name;
+        public boolean paid;
         private final View parentView;
+        private StarsReactionsSheet.Particles particles;
         public AnimatedEmojiDrawable previewAnimatedEmojiDrawable;
         public ImageReceiver previewImageReceiver;
-        TLRPC$Reaction reaction;
+        public TLRPC$Reaction reaction;
         private final TLRPC$ReactionCount reactionCount;
         public int realCount;
         private final Theme.ResourcesProvider resourcesProvider;
@@ -599,8 +613,10 @@ public class ReactionsLayoutInBubble {
         }
 
         public ReactionButton(ReactionButton reactionButton, int i, View view, TLRPC$ReactionCount tLRPC$ReactionCount, boolean z, boolean z2, Theme.ResourcesProvider resourcesProvider) {
+            StarsReactionsSheet.Particles particles;
             this.currentAccount = i;
             this.parentView = view;
+            this.bounce = new ButtonBounce(view);
             this.resourcesProvider = resourcesProvider;
             this.isTag = z2;
             if (reactionButton != null) {
@@ -632,7 +648,9 @@ public class ReactionsLayoutInBubble {
             this.choosenOrder = tLRPC$ReactionCount.chosen_order;
             this.isSmall = z;
             TLRPC$Reaction tLRPC$Reaction2 = this.reaction;
-            if (tLRPC$Reaction2 instanceof TLRPC$TL_reactionEmoji) {
+            if (tLRPC$Reaction2 instanceof TLRPC$TL_reactionPaid) {
+                this.key = "stars";
+            } else if (tLRPC$Reaction2 instanceof TLRPC$TL_reactionEmoji) {
                 this.key = ((TLRPC$TL_reactionEmoji) tLRPC$Reaction2).emoticon;
             } else if (tLRPC$Reaction2 instanceof TLRPC$TL_reactionCustomEmoji) {
                 this.key = Long.toString(((TLRPC$TL_reactionCustomEmoji) tLRPC$Reaction2).document_id);
@@ -646,7 +664,11 @@ public class ReactionsLayoutInBubble {
             counterDrawable.shortFormat = true;
             if (this.reaction != null) {
                 VisibleReaction visibleReaction = this.visibleReaction;
-                if (visibleReaction.emojicon != null) {
+                if (visibleReaction.isStar) {
+                    this.paid = true;
+                    this.imageReceiver.setImageBitmap(new RLottieDrawable(R.raw.star_reaction_click, "star_reaction_click", AndroidUtilities.dp(40.0f), AndroidUtilities.dp(40.0f)));
+                    this.particles = (reactionButton == null || (particles = reactionButton.particles) == null) ? new StarsReactionsSheet.Particles(1, 30) : particles;
+                } else if (visibleReaction.emojicon != null) {
                     TLRPC$TL_availableReaction tLRPC$TL_availableReaction = MediaDataController.getInstance(i).getReactionsMap().get(this.visibleReaction.emojicon);
                     if (tLRPC$TL_availableReaction != null) {
                         this.imageReceiver.setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.center_icon), "40_40_lastreactframe", DocumentObject.getSvgThumb(tLRPC$TL_availableReaction.static_icon, Theme.key_windowBackgroundGray, 1.0f), "webp", tLRPC$TL_availableReaction, 1);
@@ -725,7 +747,7 @@ public class ReactionsLayoutInBubble {
                 animatedEmojiDrawable2.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
             }
             boolean z = false;
-            if (this.drawImage && (this.realCount > 1 || !isPlaying() || !this.isSelected)) {
+            if (this.drawImage && (this.paid || this.realCount > 1 || !isPlaying() || !this.isSelected)) {
                 ImageReceiver imageReceiver2 = getImageReceiver();
                 if (imageReceiver2 != null) {
                     z = (imageReceiver2.getLottieAnimation() == null || !imageReceiver2.getLottieAnimation().hasBitmap()) ? true : true;
@@ -847,6 +869,9 @@ public class ReactionsLayoutInBubble {
                 View view3 = (view2 == null || !(view2.getParent() instanceof View)) ? this.parentView : (View) this.parentView.getParent();
                 if (this.reaction != null) {
                     VisibleReaction visibleReaction = this.visibleReaction;
+                    if (visibleReaction.isStar) {
+                        return;
+                    }
                     if (visibleReaction.emojicon != null) {
                         TLRPC$TL_availableReaction tLRPC$TL_availableReaction = MediaDataController.getInstance(this.currentAccount).getReactionsMap().get(this.visibleReaction.emojicon);
                         if (tLRPC$TL_availableReaction == null || tLRPC$TL_availableReaction.activate_animation == null) {
@@ -910,7 +935,7 @@ public class ReactionsLayoutInBubble {
         }
     }
 
-    public boolean chekTouchEvent(MotionEvent motionEvent) {
+    public boolean checkTouchEvent(MotionEvent motionEvent) {
         MessageObject messageObject;
         TLRPC$Message tLRPC$Message;
         int i = 0;
@@ -935,11 +960,12 @@ public class ReactionsLayoutInBubble {
                         AndroidUtilities.cancelRunOnUIThread(runnable);
                         this.longPressRunnable = null;
                     }
+                    this.lastSelectedButton.bounce.setPressed(true);
                     final ReactionButton reactionButton = this.lastSelectedButton;
                     Runnable runnable2 = new Runnable() {
                         @Override
                         public final void run() {
-                            ReactionsLayoutInBubble.this.lambda$chekTouchEvent$1(reactionButton);
+                            ReactionsLayoutInBubble.this.lambda$checkTouchEvent$1(reactionButton);
                         }
                     };
                     this.longPressRunnable = runnable2;
@@ -950,6 +976,10 @@ public class ReactionsLayoutInBubble {
         } else if (motionEvent.getAction() == 2) {
             if ((this.pressed && Math.abs(motionEvent.getX() - this.lastX) > this.touchSlop) || Math.abs(motionEvent.getY() - this.lastY) > this.touchSlop) {
                 this.pressed = false;
+                ReactionButton reactionButton2 = this.lastSelectedButton;
+                if (reactionButton2 != null) {
+                    reactionButton2.bounce.setPressed(false);
+                }
                 this.lastSelectedButton = null;
                 Runnable runnable3 = this.longPressRunnable;
                 if (runnable3 != null) {
@@ -964,16 +994,23 @@ public class ReactionsLayoutInBubble {
                 this.longPressRunnable = null;
             }
             if (this.pressed && this.lastSelectedButton != null && motionEvent.getAction() == 1 && this.parentView.getDelegate() != null) {
-                this.parentView.getDelegate().didPressReaction(this.parentView, this.lastSelectedButton.reactionCount, false);
+                this.parentView.getDelegate().didPressReaction(this.parentView, this.lastSelectedButton.reactionCount, false, motionEvent.getX(), motionEvent.getY());
             }
             this.pressed = false;
+            ReactionButton reactionButton3 = this.lastSelectedButton;
+            if (reactionButton3 != null) {
+                reactionButton3.bounce.setPressed(false);
+            }
             this.lastSelectedButton = null;
         }
         return this.pressed;
     }
 
-    public void lambda$chekTouchEvent$1(ReactionButton reactionButton) {
-        this.parentView.getDelegate().didPressReaction(this.parentView, reactionButton.reactionCount, true);
+    public void lambda$checkTouchEvent$1(ReactionButton reactionButton) {
+        this.parentView.getDelegate().didPressReaction(this.parentView, reactionButton.reactionCount, true, 0.0f, 0.0f);
+        reactionButton.bounce.setPressed(false);
+        this.lastSelectedButton = null;
+        this.pressed = false;
         this.longPressRunnable = null;
     }
 
@@ -991,7 +1028,7 @@ public class ReactionsLayoutInBubble {
         return this.totalHeight;
     }
 
-    public static class ButtonsComparator implements Comparator<ReactionButton> {
+    private static class ButtonsComparator implements Comparator<ReactionButton> {
         int currentAccount;
         long dialogId;
 
@@ -1005,16 +1042,24 @@ public class ReactionsLayoutInBubble {
             int i3;
             int i4;
             if (this.dialogId >= 0) {
-                boolean z = reactionButton.isSelected;
-                if (z != reactionButton2.isSelected) {
+                boolean z = reactionButton.paid;
+                if (z != reactionButton2.paid) {
                     return z ? -1 : 1;
-                } else if (z && (i3 = reactionButton.choosenOrder) != (i4 = reactionButton2.choosenOrder)) {
+                }
+                boolean z2 = reactionButton.isSelected;
+                if (z2 != reactionButton2.isSelected) {
+                    return z2 ? -1 : 1;
+                } else if (z2 && (i3 = reactionButton.choosenOrder) != (i4 = reactionButton2.choosenOrder)) {
                     return i3 - i4;
                 } else {
                     i = reactionButton.reactionCount.lastDrawnPosition;
                     i2 = reactionButton2.reactionCount.lastDrawnPosition;
                 }
             } else {
+                boolean z3 = reactionButton.paid;
+                if (z3 != reactionButton2.paid) {
+                    return z3 ? -1 : 1;
+                }
                 int i5 = reactionButton.realCount;
                 int i6 = reactionButton2.realCount;
                 if (i5 != i6) {
@@ -1077,12 +1122,21 @@ public class ReactionsLayoutInBubble {
         public String emojicon;
         public long hash;
         public boolean isEffect;
+        public boolean isStar;
         public boolean premium;
         public boolean sticker;
 
+        public static VisibleReaction asStar() {
+            VisibleReaction visibleReaction = new VisibleReaction();
+            visibleReaction.isStar = true;
+            return visibleReaction;
+        }
+
         public static VisibleReaction fromTL(TLRPC$Reaction tLRPC$Reaction) {
             VisibleReaction visibleReaction = new VisibleReaction();
-            if (tLRPC$Reaction instanceof TLRPC$TL_reactionEmoji) {
+            if (tLRPC$Reaction instanceof TLRPC$TL_reactionPaid) {
+                visibleReaction.isStar = true;
+            } else if (tLRPC$Reaction instanceof TLRPC$TL_reactionEmoji) {
                 String str = ((TLRPC$TL_reactionEmoji) tLRPC$Reaction).emoticon;
                 visibleReaction.emojicon = str;
                 visibleReaction.hash = str.hashCode();
@@ -1108,6 +1162,9 @@ public class ReactionsLayoutInBubble {
         }
 
         public TLRPC$Reaction toTLReaction() {
+            if (this.isStar) {
+                return new TLRPC$TL_reactionPaid();
+            }
             if (this.emojicon != null) {
                 TLRPC$TL_reactionEmoji tLRPC$TL_reactionEmoji = new TLRPC$TL_reactionEmoji();
                 tLRPC$TL_reactionEmoji.emoticon = this.emojicon;

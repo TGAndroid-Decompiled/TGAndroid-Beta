@@ -634,38 +634,46 @@ public class ChatRightsEditActivity extends BaseFragment {
         if (this.canEdit || (this.currentChat.creator && this.currentType == 0 && i == this.anonymousRow)) {
             boolean z3 = false;
             if (i == this.sendMediaRow) {
-                this.sendMediaExpanded = !this.sendMediaExpanded;
-                updateRows(false);
-                if (this.sendMediaExpanded) {
-                    this.listViewAdapter.notifyItemRangeInserted(this.sendMediaRow + 1, 9);
-                    return;
-                } else {
-                    this.listViewAdapter.notifyItemRangeRemoved(this.sendMediaRow + 1, 9);
-                    return;
+                if (!(view instanceof TextCheckCell2) || ((TextCheckCell2) view).isEnabled()) {
+                    this.sendMediaExpanded = !this.sendMediaExpanded;
+                    updateRows(false);
+                    if (this.sendMediaExpanded) {
+                        this.listViewAdapter.notifyItemRangeInserted(this.sendMediaRow + 1, 9);
+                        return;
+                    } else {
+                        this.listViewAdapter.notifyItemRangeRemoved(this.sendMediaRow + 1, 9);
+                        return;
+                    }
                 }
+                return;
             }
             int i2 = this.channelMessagesRow;
             if (i == i2) {
-                this.channelMessagesExpanded = !this.channelMessagesExpanded;
-                updateRows(false);
-                this.listViewAdapter.notifyItemChanged(this.channelMessagesRow);
-                if (this.channelMessagesExpanded) {
-                    this.listViewAdapter.notifyItemRangeInserted(this.channelMessagesRow + 1, 3);
-                    return;
-                } else {
-                    this.listViewAdapter.notifyItemRangeRemoved(this.channelMessagesRow + 1, 3);
-                    return;
+                if (!(view instanceof TextCheckCell2) || ((TextCheckCell2) view).isEnabled()) {
+                    this.channelMessagesExpanded = !this.channelMessagesExpanded;
+                    updateRows(false);
+                    this.listViewAdapter.notifyItemChanged(this.channelMessagesRow);
+                    if (this.channelMessagesExpanded) {
+                        this.listViewAdapter.notifyItemRangeInserted(this.channelMessagesRow + 1, 3);
+                        return;
+                    } else {
+                        this.listViewAdapter.notifyItemRangeRemoved(this.channelMessagesRow + 1, 3);
+                        return;
+                    }
                 }
+                return;
             }
             int i3 = this.channelStoriesRow;
             if (i == i3) {
-                this.channelStoriesExpanded = !this.channelStoriesExpanded;
-                updateRows(false);
-                this.listViewAdapter.notifyItemChanged(this.channelStoriesRow);
-                if (this.channelStoriesExpanded) {
-                    this.listViewAdapter.notifyItemRangeInserted(this.channelStoriesRow + 1, 3);
-                } else {
-                    this.listViewAdapter.notifyItemRangeRemoved(this.channelStoriesRow + 1, 3);
+                if (!(view instanceof TextCheckCell2) || ((TextCheckCell2) view).isEnabled()) {
+                    this.channelStoriesExpanded = !this.channelStoriesExpanded;
+                    updateRows(false);
+                    this.listViewAdapter.notifyItemChanged(this.channelStoriesRow);
+                    if (this.channelStoriesExpanded) {
+                        this.listViewAdapter.notifyItemRangeInserted(this.channelStoriesRow + 1, 3);
+                    } else {
+                        this.listViewAdapter.notifyItemRangeRemoved(this.channelStoriesRow + 1, 3);
+                    }
                 }
             } else if (i == 0) {
                 Bundle bundle = new Bundle();

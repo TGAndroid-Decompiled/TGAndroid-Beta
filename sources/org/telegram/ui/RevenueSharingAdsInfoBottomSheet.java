@@ -38,7 +38,7 @@ public class RevenueSharingAdsInfoBottomSheet extends BottomSheet {
         this.topIconBgPaint = paint;
         paint.setStyle(Paint.Style.FILL);
         int i = Theme.key_featuredStickers_addButton;
-        paint.setColor(Theme.getColor(i));
+        paint.setColor(Theme.getColor(i, resourcesProvider));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         RLottieImageView rLottieImageView = new RLottieImageView(getContext());
@@ -72,7 +72,7 @@ public class RevenueSharingAdsInfoBottomSheet extends BottomSheet {
             }
         })), LayoutHelper.createLinear(-1, -2, 0.0f, 0, 0, 16, 0, 0));
         View view = new View(getContext());
-        view.setBackgroundColor(Theme.getColor(Theme.key_divider));
+        view.setBackgroundColor(Theme.getColor(Theme.key_divider, resourcesProvider));
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-1, 1);
         layoutParams.setMargins(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(20.0f));
         linearLayout.addView(view, layoutParams);
@@ -110,11 +110,11 @@ public class RevenueSharingAdsInfoBottomSheet extends BottomSheet {
         textView4.setSingleLine(true);
         textView4.setGravity(17);
         textView4.setEllipsize(TextUtils.TruncateAt.END);
-        textView4.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
+        textView4.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText, resourcesProvider));
         textView4.setTypeface(AndroidUtilities.bold());
         textView4.setTextSize(1, 14.0f);
         textView4.setText(LocaleController.getString("RevenueSharingAdsAlertButton", R.string.RevenueSharingAdsAlertButton));
-        textView4.setBackground(Theme.AdaptiveRipple.filledRect(Theme.getColor(i), 6.0f));
+        textView4.setBackground(Theme.AdaptiveRipple.filledRect(Theme.getColor(i, resourcesProvider), 6.0f));
         textView4.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
@@ -159,19 +159,19 @@ public class RevenueSharingAdsInfoBottomSheet extends BottomSheet {
             ImageView imageView = new ImageView(getContext());
             Drawable mutate = getContext().getResources().getDrawable(i).mutate();
             int i2 = Theme.key_windowBackgroundWhiteBlackText;
-            mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), PorterDuff.Mode.MULTIPLY));
+            mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2, ((BottomSheet) revenueSharingAdsInfoBottomSheet).resourcesProvider), PorterDuff.Mode.MULTIPLY));
             imageView.setImageDrawable(mutate);
             addView(imageView, LayoutHelper.createFrame(24, 24.0f, z ? 5 : 3, z ? 0.0f : 27.0f, 6.0f, z ? 27.0f : 0.0f, 0.0f));
             TextView textView = new TextView(getContext());
             textView.setText(charSequence);
-            textView.setTextColor(Theme.getColor(i2));
+            textView.setTextColor(Theme.getColor(i2, ((BottomSheet) revenueSharingAdsInfoBottomSheet).resourcesProvider));
             textView.setTextSize(1, 14.0f);
             textView.setTypeface(AndroidUtilities.bold());
             addView(textView, LayoutHelper.createFrame(-2, -2.0f, z ? 5 : 3, z ? 27.0f : 68.0f, 0.0f, z ? 68.0f : 27.0f, 0.0f));
             LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(getContext());
             linksTextView.setText(charSequence2);
             linksTextView.setTextSize(1, 14.0f);
-            linksTextView.setTextColor(Theme.getColor(Theme.key_player_actionBarSubtitle));
+            linksTextView.setTextColor(Theme.getColor(Theme.key_player_actionBarSubtitle, ((BottomSheet) revenueSharingAdsInfoBottomSheet).resourcesProvider));
             linksTextView.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn, ((BottomSheet) revenueSharingAdsInfoBottomSheet).resourcesProvider));
             linksTextView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
             addView(linksTextView, LayoutHelper.createFrame(-2, -2.0f, z ? 5 : 3, z ? 27.0f : 68.0f, 18.0f, z ? 68.0f : 27.0f, 0.0f));

@@ -99,6 +99,7 @@ import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.FlickerLoadingView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.OutlineTextContainerView;
@@ -2210,27 +2211,35 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
                 }, null, resourcesProvider);
                 this.listView = universalRecyclerView;
                 addView(universalRecyclerView, LayoutHelper.createFrame(-1, -1.0f));
-                universalRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener(ChannelTransactionsView.this) {
+                universalRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener(ChannelTransactionsView.this, runnable) {
+                    final Runnable val$loadMore;
+
+                    {
+                        this.val$loadMore = runnable;
+                    }
+
                     @Override
                     public void onScrolled(RecyclerView recyclerView, int i4, int i5) {
-                        Page.this.scheduleLoadTransactions();
+                        if (!Page.this.listView.canScrollVertically(1) || Page.this.isLoadingVisible()) {
+                            this.val$loadMore.run();
+                        }
                     }
                 });
             }
 
-            public void scheduleLoadTransactions() {
-                if (this.listView.canScrollVertically(1)) {
-                    return;
+            public void checkMore() {
+                if (!this.listView.canScrollVertically(1) || isLoadingVisible()) {
+                    this.loadMore.run();
                 }
-                AndroidUtilities.cancelRunOnUIThread(this.loadMore);
-                AndroidUtilities.runOnUIThread(this.loadMore, 40L);
             }
 
-            public void checkMore() {
-                if (this.listView.canScrollVertically(1)) {
-                    return;
+            public boolean isLoadingVisible() {
+                for (int i = 0; i < this.listView.getChildCount(); i++) {
+                    if (this.listView.getChildAt(i) instanceof FlickerLoadingView) {
+                        return true;
+                    }
                 }
-                this.loadMore.run();
+                return false;
             }
 
             @Override

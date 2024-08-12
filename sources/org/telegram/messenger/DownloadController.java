@@ -675,7 +675,13 @@ public class DownloadController extends BaseController implements NotificationCe
     public boolean canDownloadMedia(MessageObject messageObject) {
         TL_stories$StoryItem tL_stories$StoryItem;
         TLRPC$MessageMedia tLRPC$MessageMedia;
-        return messageObject.type == 23 ? (!SharedConfig.isAutoplayVideo() || (tL_stories$StoryItem = ((TLRPC$TL_messageMediaStory) MessageObject.getMedia(messageObject)).storyItem) == null || (tLRPC$MessageMedia = tL_stories$StoryItem.media) == null || tLRPC$MessageMedia.document == null || !tL_stories$StoryItem.isPublic) ? false : true : canDownloadMedia(messageObject.messageOwner) == 1;
+        if (messageObject.type == 23) {
+            return (!SharedConfig.isAutoplayVideo() || (tL_stories$StoryItem = ((TLRPC$TL_messageMediaStory) MessageObject.getMedia(messageObject)).storyItem) == null || (tLRPC$MessageMedia = tL_stories$StoryItem.media) == null || tLRPC$MessageMedia.document == null || !tL_stories$StoryItem.isPublic) ? false : true;
+        } else if (messageObject.sponsoredMedia != null) {
+            return true;
+        } else {
+            return !messageObject.isHiddenSensitive() && canDownloadMedia(messageObject.messageOwner) == 1;
+        }
     }
 
     public boolean canDownloadMedia(int i, long j) {
@@ -708,7 +714,7 @@ public class DownloadController extends BaseController implements NotificationCe
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.DownloadController.canDownloadMedia(org.telegram.tgnet.TLRPC$Message):int");
     }
 
-    public int canDownloadMedia(org.telegram.tgnet.TLRPC$Message r18, org.telegram.tgnet.TLRPC$MessageMedia r19) {
+    public int canDownloadMedia(org.telegram.tgnet.TLRPC$Message r14, org.telegram.tgnet.TLRPC$MessageMedia r15) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.DownloadController.canDownloadMedia(org.telegram.tgnet.TLRPC$Message, org.telegram.tgnet.TLRPC$MessageMedia):int");
     }
 

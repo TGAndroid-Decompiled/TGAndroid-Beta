@@ -49,6 +49,8 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
     public GLIconRenderer mRenderer;
     private SurfaceTexture mSurface;
     private boolean paused;
+    private volatile boolean ready;
+    private volatile Runnable readyListener;
     private boolean rendererChanged;
     StarParticlesView starParticlesView;
     private int surfaceHeight;
@@ -87,12 +89,12 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
             public void run() {
                 ValueAnimator valueAnimator;
                 AnimatorSet animatorSet = GLIconTextureView.this.animatorSet;
-                if ((animatorSet == null || !animatorSet.isRunning()) && ((valueAnimator = GLIconTextureView.this.backAnimation) == null || !valueAnimator.isRunning())) {
-                    GLIconTextureView.this.startIdleAnimation();
+                if ((animatorSet != null && animatorSet.isRunning()) || ((valueAnimator = GLIconTextureView.this.backAnimation) != null && valueAnimator.isRunning())) {
+                    GLIconTextureView gLIconTextureView = GLIconTextureView.this;
+                    gLIconTextureView.scheduleIdleAnimation(gLIconTextureView.idleDelay);
                     return;
                 }
-                GLIconTextureView gLIconTextureView = GLIconTextureView.this;
-                gLIconTextureView.scheduleIdleAnimation(gLIconTextureView.idleDelay);
+                GLIconTextureView.this.startIdleAnimation();
             }
         };
         this.xUpdater2 = new ValueAnimator.AnimatorUpdateListener() {
@@ -282,19 +284,14 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
 
     @Override
     public boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
+        this.ready = false;
         stopThread();
         return false;
     }
 
     public void stopThread() {
-        RenderThread renderThread = this.thread;
-        if (renderThread != null) {
+        if (this.thread != null) {
             this.isRunning = false;
-            try {
-                renderThread.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
             this.thread = null;
         }
     }
@@ -305,6 +302,14 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
 
     public void setBackgroundBitmap(Bitmap bitmap) {
         this.mRenderer.setBackground(bitmap);
+    }
+
+    public void whenReady(Runnable runnable) {
+        if (this.ready) {
+            runnable.run();
+        } else {
+            this.readyListener = runnable;
+        }
     }
 
     public class RenderThread extends Thread {
@@ -342,6 +347,11 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
                 if (!GLIconTextureView.this.shouldSleep()) {
                     long currentTimeMillis2 = System.currentTimeMillis();
                     GLIconTextureView.this.drawSingleFrame(((float) (currentTimeMillis2 - currentTimeMillis)) / 1000.0f);
+                    if (!GLIconTextureView.this.ready) {
+                        GLIconTextureView.this.ready = true;
+                        AndroidUtilities.runOnUIThread(GLIconTextureView.this.readyListener);
+                        GLIconTextureView.this.readyListener = null;
+                    }
                     currentTimeMillis = currentTimeMillis2;
                 }
                 try {
@@ -560,7 +570,7 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
         AndroidUtilities.runOnUIThread(this.idleAnimation, j);
     }
 
-    public void startIdleAnimation() {
+    protected void startIdleAnimation() {
         if (this.attached) {
             int intValue = this.animationIndexes.get(this.animationPointer).intValue();
             int i = this.animationPointer + 1;

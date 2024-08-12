@@ -115,7 +115,7 @@ public class PollVotesAlert extends BottomSheet {
     private HashMap<VotesList, Button> votesPercents;
 
     @Override
-    protected boolean canDismissWithSwipe() {
+    public boolean canDismissWithSwipe() {
         return false;
     }
 

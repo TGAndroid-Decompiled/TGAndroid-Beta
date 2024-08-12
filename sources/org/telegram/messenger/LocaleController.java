@@ -1788,11 +1788,15 @@ public class LocaleController {
         if (TextUtils.isEmpty(str)) {
             return "LOC_ERR:" + str;
         }
-        int identifier = ApplicationLoader.applicationContext.getResources().getIdentifier(str, "string", ApplicationLoader.applicationContext.getPackageName());
-        if (identifier != 0) {
-            return getString(str, identifier);
+        int stringResId = getStringResId(str);
+        if (stringResId != 0) {
+            return getString(str, stringResId);
         }
         return getServerString(str);
+    }
+
+    public static int getStringResId(String str) {
+        return ApplicationLoader.applicationContext.getResources().getIdentifier(str, "string", ApplicationLoader.applicationContext.getPackageName());
     }
 
     public static String nullable(String str) {
@@ -1913,7 +1917,7 @@ public class LocaleController {
                 if (BuildVars.USE_CLOUD_STRINGS && str2 != null) {
                     str3 = getInstance().localeValues.get(str2);
                 }
-                if (str3 == null) {
+                if (str3 == null && i != 0) {
                     try {
                         str3 = ApplicationLoader.applicationContext.getString(i);
                     } catch (Exception unused) {

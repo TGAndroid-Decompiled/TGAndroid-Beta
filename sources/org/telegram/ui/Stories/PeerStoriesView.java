@@ -48,7 +48,6 @@ import androidx.core.math.MathUtils;
 import androidx.recyclerview.widget.ChatListItemAnimator;
 import com.google.android.exoplayer2.util.Consumer;
 import java.io.File;
-import java.net.IDN;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -986,7 +985,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             if (characterStyle instanceof URLSpanUserMention) {
                 TLRPC$User user = MessagesController.getInstance(PeerStoriesView.this.currentAccount).getUser(Utilities.parseLong(((URLSpanUserMention) characterStyle).getURL()));
                 if (user != null) {
-                    MessagesController.openChatOrProfileWith(user, null, this.val$storyViewer.fragment, 0, false);
+                    MessagesController.getInstance(PeerStoriesView.this.currentAccount).openChatOrProfileWith(user, null, this.val$storyViewer.fragment, 0, false);
                 }
             } else if (characterStyle instanceof URLSpanNoUnderline) {
                 String url = ((URLSpanNoUnderline) characterStyle).getURL();
@@ -1057,7 +1056,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             try {
                 try {
                     Uri parse = Uri.parse(url2);
-                    url2 = Browser.replaceHostname(parse, IDN.toUnicode(parse.getHost(), 1), null);
+                    url2 = Browser.replaceHostname(parse, Browser.IDN_toUnicode(parse.getHost()), null);
                 } catch (Exception e) {
                     FileLog.e((Throwable) e, false);
                 }

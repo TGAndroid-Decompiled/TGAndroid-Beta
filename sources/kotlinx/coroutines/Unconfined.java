@@ -18,7 +18,7 @@ public final class Unconfined extends CoroutineDispatcher {
     }
 
     @Override
-    public void mo163dispatch(CoroutineContext coroutineContext, Runnable runnable) {
+    public void mo155dispatch(CoroutineContext coroutineContext, Runnable runnable) {
         if (((YieldContext) coroutineContext.get(YieldContext.Key)) == null) {
             throw new UnsupportedOperationException("Dispatchers.Unconfined.dispatch function can only be used by the yield function. If you wrap Unconfined dispatcher in your code, make sure you properly delegate isDispatchNeeded and dispatch calls.");
         }
