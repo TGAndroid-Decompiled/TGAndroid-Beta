@@ -43,7 +43,6 @@ import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
-import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.Emoji;
@@ -940,8 +939,6 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
                         }
                     }
                 }
-            } else if (BuildVars.DEBUG_PRIVATE_VERSION) {
-                throw new RuntimeException("Unknown chat reactions type: " + tLRPC$ChatFull.available_reactions);
             }
         } else {
             this.allReactionsAvailable = true;

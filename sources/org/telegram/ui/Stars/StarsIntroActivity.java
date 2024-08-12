@@ -37,9 +37,11 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BillingController;
@@ -2840,22 +2842,18 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
     }
 
     public static BottomSheet showSubscriptionSheet(final Context context, final int i, final TLRPC$StarsSubscription tLRPC$StarsSubscription, final Theme.ResourcesProvider resourcesProvider) {
-        View view;
-        BottomSheet.Builder builder;
-        final BottomSheet[] bottomSheetArr;
-        int i2;
-        int i3;
+        BottomSheet[] bottomSheetArr;
         if (tLRPC$StarsSubscription == null || context == null) {
             return null;
         }
-        BottomSheet.Builder builder2 = new BottomSheet.Builder(context, false, resourcesProvider);
+        BottomSheet.Builder builder = new BottomSheet.Builder(context, false, resourcesProvider);
         BottomSheet[] bottomSheetArr2 = new BottomSheet[1];
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         linearLayout.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(4.0f));
         linearLayout.setClipChildren(false);
         linearLayout.setClipToPadding(false);
-        View frameLayout = new FrameLayout(context);
+        FrameLayout frameLayout = new FrameLayout(context);
         linearLayout.addView(frameLayout, LayoutHelper.createLinear(-1, -2, 7, 0, 0, 0, 10));
         BackupImageView backupImageView = new BackupImageView(context);
         backupImageView.setRoundRadius(AndroidUtilities.dp(50.0f));
@@ -2865,28 +2863,27 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             TLRPC$User user = MessagesController.getInstance(i).getUser(Long.valueOf(peerDialogId));
             avatarDrawable.setInfo(user);
             backupImageView.setForUserOrChat(user, avatarDrawable);
-            view = frameLayout;
+            bottomSheetArr = bottomSheetArr2;
         } else {
-            view = frameLayout;
+            bottomSheetArr = bottomSheetArr2;
             TLRPC$Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-peerDialogId));
             avatarDrawable.setInfo(chat);
             backupImageView.setForUserOrChat(chat, avatarDrawable);
         }
-        FrameLayout frameLayout2 = view;
-        frameLayout2.addView(backupImageView, LayoutHelper.createFrame(100, 100, 17));
+        frameLayout.addView(backupImageView, LayoutHelper.createFrame(100, 100, 17));
         Drawable drawable = context.getResources().getDrawable(R.drawable.star_small_outline);
         drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogBackground, resourcesProvider), PorterDuff.Mode.SRC_IN));
         Drawable drawable2 = context.getResources().getDrawable(R.drawable.star_small_inner);
         ImageView imageView = new ImageView(context);
         imageView.setImageDrawable(drawable);
-        frameLayout2.addView(imageView, LayoutHelper.createFrame(28, 28, 17));
+        frameLayout.addView(imageView, LayoutHelper.createFrame(28, 28, 17));
         imageView.setTranslationX(AndroidUtilities.dp(34.0f));
         imageView.setTranslationY(AndroidUtilities.dp(35.0f));
         imageView.setScaleX(1.1f);
         imageView.setScaleY(1.1f);
         ImageView imageView2 = new ImageView(context);
         imageView2.setImageDrawable(drawable2);
-        frameLayout2.addView(imageView2, LayoutHelper.createFrame(28, 28, 17));
+        frameLayout.addView(imageView2, LayoutHelper.createFrame(28, 28, 17));
         imageView2.setTranslationX(AndroidUtilities.dp(34.0f));
         imageView2.setTranslationY(AndroidUtilities.dp(35.0f));
         TextView textView = new TextView(context);
@@ -2901,24 +2898,20 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         textView2.setGravity(17);
         textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText4, resourcesProvider));
         TLRPC$TL_starsSubscriptionPricing tLRPC$TL_starsSubscriptionPricing = tLRPC$StarsSubscription.pricing;
-        int i4 = tLRPC$TL_starsSubscriptionPricing.period;
-        if (i4 == 2592000) {
-            builder = builder2;
+        int i2 = tLRPC$TL_starsSubscriptionPricing.period;
+        if (i2 == 2592000) {
             textView2.setText(replaceStarsWithPlain(LocaleController.formatString(R.string.StarsSubscriptionPrice, Long.valueOf(tLRPC$TL_starsSubscriptionPricing.amount)), 0.8f));
-            bottomSheetArr = bottomSheetArr2;
         } else {
-            builder = builder2;
-            bottomSheetArr = bottomSheetArr2;
-            textView2.setText(replaceStarsWithPlain(LocaleController.formatString(R.string.StarsSubscriptionPrice, Long.valueOf(tLRPC$TL_starsSubscriptionPricing.amount), i4 == 300 ? "5min" : "min"), 0.8f));
+            textView2.setText(replaceStarsWithPlain(LocaleController.formatString(R.string.StarsSubscriptionPrice, Long.valueOf(tLRPC$TL_starsSubscriptionPricing.amount), i2 == 300 ? "5min" : "min"), 0.8f));
         }
         linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 17, 20, 0, 20, 4));
         TableView tableView = new TableView(context, resourcesProvider);
         LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, resourcesProvider);
         linksTextView.setPadding(AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f), AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f));
         linksTextView.setEllipsize(TextUtils.TruncateAt.END);
-        int i5 = Theme.key_chat_messageLinkIn;
-        linksTextView.setTextColor(Theme.getColor(i5, resourcesProvider));
-        linksTextView.setLinkTextColor(Theme.getColor(i5, resourcesProvider));
+        int i3 = Theme.key_chat_messageLinkIn;
+        linksTextView.setTextColor(Theme.getColor(i3, resourcesProvider));
+        linksTextView.setLinkTextColor(Theme.getColor(i3, resourcesProvider));
         linksTextView.setTextSize(1, 14.0f);
         linksTextView.setSingleLine(true);
         linksTextView.setDisablePaddingsOffsetY(true);
@@ -2929,10 +2922,11 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         avatarSpan.setChat(chat2);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("x  " + ((Object) str));
         spannableStringBuilder.setSpan(avatarSpan, 0, 1, 33);
+        final BottomSheet[] bottomSheetArr3 = bottomSheetArr;
         spannableStringBuilder.setSpan(new ClickableSpan() {
             @Override
-            public void onClick(View view2) {
-                bottomSheetArr[0].dismiss();
+            public void onClick(View view) {
+                bottomSheetArr3[0].dismiss();
                 BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
                 if (safeLastFragment != null) {
                     safeLastFragment.presentFragment(ChatActivity.of(peerDialogId));
@@ -2949,22 +2943,15 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             tableView.addRowUnpadded(LocaleController.getString(R.string.StarsSubscriptionChannel), linksTextView);
         }
         CharSequence string = LocaleController.getString(R.string.StarsSubscriptionSince);
-        int i6 = R.string.formatDateAtTime;
-        tableView.addRow(string, LocaleController.formatString(i6, LocaleController.getInstance().getFormatterGiveawayCard().format(new Date((tLRPC$StarsSubscription.until_date - tLRPC$StarsSubscription.pricing.period) * 1000)), LocaleController.getInstance().getFormatterDay().format(new Date((tLRPC$StarsSubscription.until_date - tLRPC$StarsSubscription.pricing.period) * 1000))));
+        int i4 = R.string.formatDateAtTime;
+        tableView.addRow(string, LocaleController.formatString(i4, LocaleController.getInstance().getFormatterGiveawayCard().format(new Date((tLRPC$StarsSubscription.until_date - tLRPC$StarsSubscription.pricing.period) * 1000)), LocaleController.getInstance().getFormatterDay().format(new Date((tLRPC$StarsSubscription.until_date - tLRPC$StarsSubscription.pricing.period) * 1000))));
         long currentTime = ConnectionsManager.getInstance(i).getCurrentTime();
-        if (tLRPC$StarsSubscription.canceled) {
-            i3 = R.string.StarsSubscriptionUntilExpires;
-            i2 = i5;
-        } else {
-            i2 = i5;
-            i3 = currentTime > ((long) tLRPC$StarsSubscription.until_date) ? R.string.StarsSubscriptionUntilExpired : R.string.StarsSubscriptionUntilRenews;
-        }
-        tableView.addRow(LocaleController.getString(i3), LocaleController.formatString(i6, LocaleController.getInstance().getFormatterGiveawayCard().format(new Date(tLRPC$StarsSubscription.until_date * 1000)), LocaleController.getInstance().getFormatterDay().format(new Date(tLRPC$StarsSubscription.until_date * 1000))));
+        tableView.addRow(LocaleController.getString(tLRPC$StarsSubscription.canceled ? R.string.StarsSubscriptionUntilExpires : currentTime > ((long) tLRPC$StarsSubscription.until_date) ? R.string.StarsSubscriptionUntilExpired : R.string.StarsSubscriptionUntilRenews), LocaleController.formatString(i4, LocaleController.getInstance().getFormatterGiveawayCard().format(new Date(tLRPC$StarsSubscription.until_date * 1000)), LocaleController.getInstance().getFormatterDay().format(new Date(tLRPC$StarsSubscription.until_date * 1000))));
         linearLayout.addView(tableView, LayoutHelper.createLinear(-1, -2, 0.0f, 17.0f, 0.0f, 0.0f));
         LinkSpanDrawable.LinksTextView linksTextView2 = new LinkSpanDrawable.LinksTextView(context, resourcesProvider);
-        int i7 = Theme.key_windowBackgroundWhiteGrayText2;
-        linksTextView2.setTextColor(Theme.getColor(i7, resourcesProvider));
-        linksTextView2.setLinkTextColor(Theme.getColor(i2, resourcesProvider));
+        int i5 = Theme.key_windowBackgroundWhiteGrayText2;
+        linksTextView2.setTextColor(Theme.getColor(i5, resourcesProvider));
+        linksTextView2.setLinkTextColor(Theme.getColor(i3, resourcesProvider));
         linksTextView2.setTextSize(1, 14.0f);
         linksTextView2.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.StarsTransactionTOS), new Runnable() {
             @Override
@@ -2977,8 +2964,8 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         if (currentTime < tLRPC$StarsSubscription.until_date) {
             if (tLRPC$StarsSubscription.can_refulfill) {
                 LinkSpanDrawable.LinksTextView linksTextView3 = new LinkSpanDrawable.LinksTextView(context, resourcesProvider);
-                linksTextView3.setTextColor(Theme.getColor(i7, resourcesProvider));
-                linksTextView3.setLinkTextColor(Theme.getColor(i2, resourcesProvider));
+                linksTextView3.setTextColor(Theme.getColor(i5, resourcesProvider));
+                linksTextView3.setLinkTextColor(Theme.getColor(i3, resourcesProvider));
                 linksTextView3.setTextSize(1, 14.0f);
                 linksTextView3.setText(LocaleController.formatString(R.string.StarsSubscriptionRefulfillInfo, LocaleController.formatDateChat(tLRPC$StarsSubscription.until_date)));
                 linksTextView3.setSingleLine(false);
@@ -2988,17 +2975,16 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                 final ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, true, resourcesProvider);
                 buttonWithCounterView.setText(LocaleController.getString(R.string.StarsSubscriptionRefulfill), false);
                 linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48));
-                final BottomSheet[] bottomSheetArr3 = bottomSheetArr;
                 buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public final void onClick(View view2) {
-                        StarsIntroActivity.lambda$showSubscriptionSheet$29(ButtonWithCounterView.this, i, tLRPC$StarsSubscription, bottomSheetArr3, peerDialogId, context, resourcesProvider, chat2, view2);
+                    public final void onClick(View view) {
+                        StarsIntroActivity.lambda$showSubscriptionSheet$29(ButtonWithCounterView.this, i, tLRPC$StarsSubscription, bottomSheetArr3, peerDialogId, context, resourcesProvider, chat2, view);
                     }
                 });
             } else if (tLRPC$StarsSubscription.canceled) {
                 LinkSpanDrawable.LinksTextView linksTextView4 = new LinkSpanDrawable.LinksTextView(context, resourcesProvider);
                 linksTextView4.setTextColor(Theme.getColor(Theme.key_color_red, resourcesProvider));
-                linksTextView4.setLinkTextColor(Theme.getColor(i2, resourcesProvider));
+                linksTextView4.setLinkTextColor(Theme.getColor(i3, resourcesProvider));
                 linksTextView4.setTextSize(1, 14.0f);
                 linksTextView4.setText(LocaleController.getString(R.string.StarsSubscriptionCancelledText));
                 linksTextView4.setSingleLine(false);
@@ -3011,15 +2997,15 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                     linearLayout.addView(buttonWithCounterView2, LayoutHelper.createLinear(-1, 48));
                     buttonWithCounterView2.setOnClickListener(new View.OnClickListener() {
                         @Override
-                        public final void onClick(View view2) {
-                            StarsIntroActivity.lambda$showSubscriptionSheet$32(ButtonWithCounterView.this, tLRPC$StarsSubscription, i, bottomSheetArr, view2);
+                        public final void onClick(View view) {
+                            StarsIntroActivity.lambda$showSubscriptionSheet$32(ButtonWithCounterView.this, tLRPC$StarsSubscription, i, bottomSheetArr3, chat2, view);
                         }
                     });
                 }
             } else {
                 LinkSpanDrawable.LinksTextView linksTextView5 = new LinkSpanDrawable.LinksTextView(context, resourcesProvider);
-                linksTextView5.setTextColor(Theme.getColor(i7, resourcesProvider));
-                linksTextView5.setLinkTextColor(Theme.getColor(i2, resourcesProvider));
+                linksTextView5.setTextColor(Theme.getColor(i5, resourcesProvider));
+                linksTextView5.setLinkTextColor(Theme.getColor(i3, resourcesProvider));
                 linksTextView5.setTextSize(1, 14.0f);
                 linksTextView5.setText(LocaleController.formatString(R.string.StarsSubscriptionCancelInfo, LocaleController.formatDateChat(tLRPC$StarsSubscription.until_date)));
                 linksTextView5.setSingleLine(false);
@@ -3032,15 +3018,15 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                 linearLayout.addView(buttonWithCounterView3, LayoutHelper.createLinear(-1, 48));
                 buttonWithCounterView3.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public final void onClick(View view2) {
-                        StarsIntroActivity.lambda$showSubscriptionSheet$35(ButtonWithCounterView.this, tLRPC$StarsSubscription, i, bottomSheetArr, view2);
+                    public final void onClick(View view) {
+                        StarsIntroActivity.lambda$showSubscriptionSheet$35(ButtonWithCounterView.this, tLRPC$StarsSubscription, i, bottomSheetArr3, chat2, view);
                     }
                 });
             }
         } else {
             LinkSpanDrawable.LinksTextView linksTextView6 = new LinkSpanDrawable.LinksTextView(context, resourcesProvider);
-            linksTextView6.setTextColor(Theme.getColor(i7, resourcesProvider));
-            linksTextView6.setLinkTextColor(Theme.getColor(i2, resourcesProvider));
+            linksTextView6.setTextColor(Theme.getColor(i5, resourcesProvider));
+            linksTextView6.setLinkTextColor(Theme.getColor(i3, resourcesProvider));
             linksTextView6.setTextSize(1, 14.0f);
             linksTextView6.setText(LocaleController.formatString(R.string.StarsSubscriptionExpiredInfo, LocaleController.formatDateChat(tLRPC$StarsSubscription.until_date)));
             linksTextView6.setSingleLine(false);
@@ -3051,23 +3037,21 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                 final ButtonWithCounterView buttonWithCounterView4 = new ButtonWithCounterView(context, true, resourcesProvider);
                 buttonWithCounterView4.setText(LocaleController.getString(R.string.StarsSubscriptionAgain), false);
                 linearLayout.addView(buttonWithCounterView4, LayoutHelper.createLinear(-1, 48));
-                final BottomSheet[] bottomSheetArr4 = bottomSheetArr;
                 buttonWithCounterView4.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public final void onClick(View view2) {
-                        StarsIntroActivity.lambda$showSubscriptionSheet$41(ButtonWithCounterView.this, tLRPC$StarsSubscription, i, bottomSheetArr4, resourcesProvider, view2);
+                    public final void onClick(View view) {
+                        StarsIntroActivity.lambda$showSubscriptionSheet$41(ButtonWithCounterView.this, tLRPC$StarsSubscription, i, bottomSheetArr3, resourcesProvider, view);
                     }
                 });
             }
         }
-        BottomSheet.Builder builder3 = builder;
-        builder3.setCustomView(linearLayout);
-        bottomSheetArr[0] = builder3.create();
-        bottomSheetArr[0].useBackgroundTopPadding = false;
-        bottomSheetArr[0].fixNavigationBar();
-        bottomSheetArr[0].makeAttached(LaunchActivity.getSafeLastFragment());
-        bottomSheetArr[0].show();
-        return bottomSheetArr[0];
+        builder.setCustomView(linearLayout);
+        bottomSheetArr3[0] = builder.create();
+        bottomSheetArr3[0].useBackgroundTopPadding = false;
+        bottomSheetArr3[0].fixNavigationBar();
+        bottomSheetArr3[0].makeAttached(LaunchActivity.getSafeLastFragment());
+        bottomSheetArr3[0].show();
+        return bottomSheetArr3[0];
     }
 
     public static void lambda$showSubscriptionSheet$25(Context context) {
@@ -3127,7 +3111,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         safeLastFragment.presentFragment(ChatActivity.of(j));
     }
 
-    public static void lambda$showSubscriptionSheet$32(final ButtonWithCounterView buttonWithCounterView, TLRPC$StarsSubscription tLRPC$StarsSubscription, final int i, final BottomSheet[] bottomSheetArr, View view) {
+    public static void lambda$showSubscriptionSheet$32(final ButtonWithCounterView buttonWithCounterView, TLRPC$StarsSubscription tLRPC$StarsSubscription, final int i, final BottomSheet[] bottomSheetArr, final TLRPC$Chat tLRPC$Chat, View view) {
         if (buttonWithCounterView.isLoading()) {
             return;
         }
@@ -3139,29 +3123,39 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_changeStarsSubscription, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                StarsIntroActivity.lambda$showSubscriptionSheet$31(ButtonWithCounterView.this, bottomSheetArr, i, tLObject, tLRPC$TL_error);
+                StarsIntroActivity.lambda$showSubscriptionSheet$31(ButtonWithCounterView.this, bottomSheetArr, i, tLRPC$Chat, tLObject, tLRPC$TL_error);
             }
         });
     }
 
-    public static void lambda$showSubscriptionSheet$31(final ButtonWithCounterView buttonWithCounterView, final BottomSheet[] bottomSheetArr, final int i, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$showSubscriptionSheet$31(final ButtonWithCounterView buttonWithCounterView, final BottomSheet[] bottomSheetArr, final int i, final TLRPC$Chat tLRPC$Chat, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StarsIntroActivity.lambda$showSubscriptionSheet$30(ButtonWithCounterView.this, bottomSheetArr, i);
+                StarsIntroActivity.lambda$showSubscriptionSheet$30(ButtonWithCounterView.this, bottomSheetArr, i, tLRPC$Chat);
             }
         });
     }
 
-    public static void lambda$showSubscriptionSheet$30(ButtonWithCounterView buttonWithCounterView, BottomSheet[] bottomSheetArr, int i) {
+    public static void lambda$showSubscriptionSheet$30(ButtonWithCounterView buttonWithCounterView, BottomSheet[] bottomSheetArr, int i, TLRPC$Chat tLRPC$Chat) {
         buttonWithCounterView.setLoading(false);
         if (bottomSheetArr[0] != null) {
             bottomSheetArr[0].dismiss();
         }
         StarsController.getInstance(i).invalidateSubscriptions(true);
+        BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+        if (safeLastFragment != null) {
+            BulletinFactory of = BulletinFactory.of(safeLastFragment);
+            List<? extends TLObject> singletonList = Collections.singletonList(tLRPC$Chat);
+            String string = LocaleController.getString(R.string.StarsSubscriptionRenewedToast);
+            int i2 = R.string.StarsSubscriptionRenewedToastText;
+            Object[] objArr = new Object[1];
+            objArr[0] = tLRPC$Chat == null ? "" : tLRPC$Chat.title;
+            of.createUsersBulletin(singletonList, string, AndroidUtilities.replaceTags(LocaleController.formatString(i2, objArr))).show(false);
+        }
     }
 
-    public static void lambda$showSubscriptionSheet$35(final ButtonWithCounterView buttonWithCounterView, TLRPC$StarsSubscription tLRPC$StarsSubscription, final int i, final BottomSheet[] bottomSheetArr, View view) {
+    public static void lambda$showSubscriptionSheet$35(final ButtonWithCounterView buttonWithCounterView, final TLRPC$StarsSubscription tLRPC$StarsSubscription, final int i, final BottomSheet[] bottomSheetArr, final TLRPC$Chat tLRPC$Chat, View view) {
         if (buttonWithCounterView.isLoading()) {
             return;
         }
@@ -3173,26 +3167,30 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_changeStarsSubscription, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                StarsIntroActivity.lambda$showSubscriptionSheet$34(ButtonWithCounterView.this, bottomSheetArr, i, tLObject, tLRPC$TL_error);
+                StarsIntroActivity.lambda$showSubscriptionSheet$34(ButtonWithCounterView.this, bottomSheetArr, i, tLRPC$Chat, tLRPC$StarsSubscription, tLObject, tLRPC$TL_error);
             }
         });
     }
 
-    public static void lambda$showSubscriptionSheet$34(final ButtonWithCounterView buttonWithCounterView, final BottomSheet[] bottomSheetArr, final int i, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$showSubscriptionSheet$34(final ButtonWithCounterView buttonWithCounterView, final BottomSheet[] bottomSheetArr, final int i, final TLRPC$Chat tLRPC$Chat, final TLRPC$StarsSubscription tLRPC$StarsSubscription, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StarsIntroActivity.lambda$showSubscriptionSheet$33(ButtonWithCounterView.this, bottomSheetArr, i);
+                StarsIntroActivity.lambda$showSubscriptionSheet$33(ButtonWithCounterView.this, bottomSheetArr, i, tLRPC$Chat, tLRPC$StarsSubscription);
             }
         });
     }
 
-    public static void lambda$showSubscriptionSheet$33(ButtonWithCounterView buttonWithCounterView, BottomSheet[] bottomSheetArr, int i) {
+    public static void lambda$showSubscriptionSheet$33(ButtonWithCounterView buttonWithCounterView, BottomSheet[] bottomSheetArr, int i, TLRPC$Chat tLRPC$Chat, TLRPC$StarsSubscription tLRPC$StarsSubscription) {
         buttonWithCounterView.setLoading(false);
         if (bottomSheetArr[0] != null) {
             bottomSheetArr[0].dismiss();
         }
         StarsController.getInstance(i).invalidateSubscriptions(true);
+        BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+        if (safeLastFragment != null) {
+            BulletinFactory.of(safeLastFragment).createUsersBulletin(Collections.singletonList(tLRPC$Chat), LocaleController.getString(R.string.StarsSubscriptionCancelledToast), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StarsSubscriptionCancelledToastText, LocaleController.formatDateChat(tLRPC$StarsSubscription.until_date)))).show(false);
+        }
     }
 
     public static void lambda$showSubscriptionSheet$41(final ButtonWithCounterView buttonWithCounterView, TLRPC$StarsSubscription tLRPC$StarsSubscription, final int i, final BottomSheet[] bottomSheetArr, final Theme.ResourcesProvider resourcesProvider, View view) {

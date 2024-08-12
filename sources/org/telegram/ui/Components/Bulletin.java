@@ -1964,7 +1964,7 @@ public class Bulletin {
                 LinearLayout linearLayout = new LinearLayout(getContext());
                 this.linearLayout = linearLayout;
                 linearLayout.setOrientation(1);
-                addView(this.linearLayout, LayoutHelper.createFrameRelatively(-1.0f, -2.0f, 8388627, 76.0f, 0.0f, 12.0f, 0.0f));
+                addView(this.linearLayout, LayoutHelper.createFrameRelatively(-1.0f, -2.0f, 8388627, 76.0f, 6.0f, 12.0f, 6.0f));
                 LinkSpanDrawable.LinksTextView linksTextView2 = new LinkSpanDrawable.LinksTextView(this, context) {
                     @Override
                     public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
@@ -1975,15 +1975,17 @@ public class Bulletin {
                 NotificationCenter.listenEmojiLoading(linksTextView2);
                 this.textView.setTypeface(Typeface.SANS_SERIF);
                 this.textView.setTextSize(1, 14.0f);
+                this.textView.setTypeface(AndroidUtilities.bold());
                 this.textView.setEllipsize(TextUtils.TruncateAt.END);
                 this.textView.setMaxLines(1);
                 this.linearLayout.addView(this.textView);
                 LinkSpanDrawable.LinksTextView linksTextView3 = new LinkSpanDrawable.LinksTextView(context);
                 this.subtitleView = linksTextView3;
                 linksTextView3.setTypeface(Typeface.SANS_SERIF);
-                this.subtitleView.setTextSize(1, 13.0f);
+                this.subtitleView.setTextSize(1, 12.0f);
                 this.subtitleView.setEllipsize(TextUtils.TruncateAt.END);
-                this.subtitleView.setMaxLines(1);
+                this.subtitleView.setSingleLine(false);
+                this.subtitleView.setMaxLines(3);
                 this.subtitleView.setLinkTextColor(getThemedColor(Theme.key_undo_cancelColor));
                 this.linearLayout.addView(this.subtitleView, LayoutHelper.createLinear(-2, -2, 0, 0, 0, 0, 0));
             }

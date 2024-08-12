@@ -70,6 +70,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
     private TextCheckCell enableReactionsCell;
     private final TLRPC$ChatFull info;
     private boolean isPaused;
+    private boolean paid;
     private TextCheckCell paidCheckCell;
     private int reactionsCount;
     private ScrollView scrollView;
@@ -145,7 +146,11 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
     }
 
     public void lambda$createView$2(View view) {
-        setCheckedEnableReactionCell(this.enableReactionsCell.isChecked() ? 2 : 1, true);
+        TextCheckCell textCheckCell;
+        if (this.enableReactionsCell.isChecked() && (textCheckCell = this.paidCheckCell) != null && textCheckCell.isChecked()) {
+            toggleStarsEnabled();
+        }
+        setCheckedEnableReactionCell(this.enableReactionsCell.isChecked() ? 2 : 1, this.enableReactionsCell.isChecked() ? false : this.paid, true);
     }
 
     public void lambda$createView$3() {
@@ -440,23 +445,24 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
     }
 
-    private void setCheckedEnableReactionCell(int i, boolean z) {
-        if (this.selectedType == i) {
+    private void setCheckedEnableReactionCell(int i, boolean z, boolean z2) {
+        if (this.selectedType == i && this.paid == z) {
             return;
         }
-        boolean z2 = i == 1 || i == 0;
-        this.enableReactionsCell.setChecked(z2);
-        int color = Theme.getColor(z2 ? Theme.key_windowBackgroundChecked : Theme.key_windowBackgroundUnchecked);
-        if (!z) {
+        this.paid = z;
+        boolean z3 = i == 1 || i == 0 || z;
+        this.enableReactionsCell.setChecked(z3);
+        int color = Theme.getColor(z3 ? Theme.key_windowBackgroundChecked : Theme.key_windowBackgroundUnchecked);
+        if (!z2) {
             this.enableReactionsCell.setBackgroundColor(color);
-        } else if (z2) {
+        } else if (z3) {
             this.enableReactionsCell.setBackgroundColorAnimated(true, color);
         } else {
             this.enableReactionsCell.setBackgroundColorAnimatedReverse(color);
         }
         this.selectedType = i;
-        if (i != 1 && i != 0) {
-            if (z) {
+        if (i != 1 && i != 0 && !z) {
+            if (z2) {
                 closeKeyboard();
                 this.actionButton.animate().setListener(null).cancel();
                 this.switchLayout.animate().setListener(null).cancel();
@@ -483,7 +489,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         }
         this.switchLayout.setVisibility(0);
         this.actionButton.setVisibility(0);
-        if (z) {
+        if (z2) {
             this.actionButton.animate().setListener(null).cancel();
             this.switchLayout.animate().setListener(null).cancel();
             ViewPropertyAnimator duration2 = this.switchLayout.animate().alpha(1.0f).setDuration(350L);
@@ -741,6 +747,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
             this.selectAnimatedEmojiDialog.setMultiSelected(-1L, true);
             checkMaxCustomReactions(false);
             this.editText.setMaxLength(this.maxReactionsCount);
+            setCheckedEnableReactionCell(this.selectedType, this.paid, true);
         } else {
             this.paidCheckCell.setChecked(true);
             try {
@@ -785,6 +792,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
             } catch (Exception e) {
                 FileLog.e(e);
             }
+            setCheckedEnableReactionCell(this.selectedType, true, true);
         }
         this.editText.updateAnimatedEmoji(true);
     }

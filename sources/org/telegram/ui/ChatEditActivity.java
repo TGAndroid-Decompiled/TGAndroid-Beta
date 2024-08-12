@@ -1758,12 +1758,12 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         String str;
         String str2;
         int i;
-        TLRPC$ChatFull chatFull = getMessagesController().getChatFull(-this.chatId);
+        TLRPC$ChatFull chatFull = getMessagesController().getChatFull(this.chatId);
         boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(this.currentChat);
         TLRPC$ChatReactions tLRPC$ChatReactions = this.availableReactions;
         if (tLRPC$ChatReactions == null || (tLRPC$ChatReactions instanceof TLRPC$TL_chatReactionsNone)) {
             String string = LocaleController.getString(R.string.ReactionsOff);
-            if (chatFull == null || !chatFull.paid_media_allowed) {
+            if (chatFull == null || !chatFull.paid_reactions_available) {
                 str = string;
                 this.reactionsCell.setTextAndValueAndIcon(LocaleController.getString(R.string.Reactions), str, z, R.drawable.msg_reactions2, true);
             }
@@ -1786,7 +1786,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
                 }
             }
             if (isChannelAndNotMegaGroup) {
-                if (chatFull != null && chatFull.paid_media_allowed) {
+                if (chatFull != null && chatFull.paid_reactions_available) {
                     i2++;
                 }
                 str2 = i2 == 0 ? LocaleController.getString(R.string.ReactionsOff) : String.valueOf(i2);
