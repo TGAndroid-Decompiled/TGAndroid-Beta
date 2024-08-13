@@ -6937,12 +6937,12 @@ public class MessageObject {
         if (tLRPC$MessageReactor == null && i2 > 0) {
             tLRPC$MessageReactor = new TLRPC$TL_messageReactor();
             tLRPC$MessageReactor.my = true;
-            tLRPC$MessageReactor.anonymous = z;
             tLRPC$MessageReactor.peer_id = MessagesController.getInstance(i).getPeer(UserConfig.getInstance(i).getClientUserId());
         }
         if (tLRPC$MessageReactor != null) {
             int max2 = Math.max(0, tLRPC$MessageReactor.count + i2);
             tLRPC$MessageReactor.count = max2;
+            tLRPC$MessageReactor.anonymous = z;
             if (max2 <= 0) {
                 tLRPC$MessageReactions.top_reactors.remove(tLRPC$MessageReactor);
             }

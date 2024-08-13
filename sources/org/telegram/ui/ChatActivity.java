@@ -1732,7 +1732,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     z = ChatObject.reactionIsAvailable(tLRPC$ChatFull2, doubleTapReaction);
                 }
                 if (z) {
-                    ChatActivity.this.selectReaction(primaryMessageObject, null, null, f, f2, ReactionsLayoutInBubble.VisibleReaction.fromEmojicon(doubleTapReaction), true, false, false, false);
+                    ChatActivity.this.selectReaction(chatMessageCell, primaryMessageObject, null, null, f, f2, ReactionsLayoutInBubble.VisibleReaction.fromEmojicon(doubleTapReaction), true, false, false, false);
                     return;
                 }
                 return;
@@ -1746,7 +1746,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 z = ChatObject.reactionIsAvailable(tLRPC$ChatFull, tLRPC$TL_availableReaction.reaction);
             }
             if (z) {
-                ChatActivity.this.selectReaction(primaryMessageObject, null, null, f, f2, ReactionsLayoutInBubble.VisibleReaction.fromEmojicon(tLRPC$TL_availableReaction), true, false, false, false);
+                ChatActivity.this.selectReaction(chatMessageCell, primaryMessageObject, null, null, f, f2, ReactionsLayoutInBubble.VisibleReaction.fromEmojicon(tLRPC$TL_availableReaction), true, false, false, false);
             }
         }
     }
@@ -7422,7 +7422,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 }
 
                 @Override
-                public void onReactionClicked(android.view.View r24, org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble.VisibleReaction r25, boolean r26, boolean r27) {
+                public void onReactionClicked(android.view.View r25, org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble.VisibleReaction r26, boolean r27, boolean r28) {
                     throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.AnonymousClass62.onReactionClicked(android.view.View, org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble$VisibleReaction, boolean, boolean):void");
                 }
             });
@@ -18840,8 +18840,8 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         BulletinFactory.of(this).createEmojiBulletin(findDocument, LocaleController.getString(R.string.ChatMultipleReactionsPromo)).setDuration(5000).show();
     }
 
-    public void selectReaction(org.telegram.messenger.MessageObject r21, org.telegram.ui.Components.ReactionsContainerLayout r22, android.view.View r23, float r24, float r25, org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble.VisibleReaction r26, boolean r27, boolean r28, boolean r29, boolean r30) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.selectReaction(org.telegram.messenger.MessageObject, org.telegram.ui.Components.ReactionsContainerLayout, android.view.View, float, float, org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble$VisibleReaction, boolean, boolean, boolean, boolean):void");
+    public void selectReaction(org.telegram.ui.Cells.ChatMessageCell r21, org.telegram.messenger.MessageObject r22, org.telegram.ui.Components.ReactionsContainerLayout r23, android.view.View r24, float r25, float r26, org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble.VisibleReaction r27, boolean r28, boolean r29, boolean r30, boolean r31) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.selectReaction(org.telegram.ui.Cells.ChatMessageCell, org.telegram.messenger.MessageObject, org.telegram.ui.Components.ReactionsContainerLayout, android.view.View, float, float, org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble$VisibleReaction, boolean, boolean, boolean, boolean):void");
     }
 
     public class AnonymousClass143 implements Runnable {
@@ -24283,7 +24283,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             TLRPC$Message tLRPC$Message;
             ReactionsLayoutInBubble.VisibleReaction fromTL = ReactionsLayoutInBubble.VisibleReaction.fromTL(tLRPC$ReactionCount.reaction);
             MessageObject primaryMessageObject = chatMessageCell.getPrimaryMessageObject();
-            ChatActivity.this.selectReaction(chatMessageCell.getPrimaryMessageObject(), null, null, f, f2, fromTL, false, false, false, false);
+            ChatActivity.this.selectReaction(chatMessageCell, chatMessageCell.getPrimaryMessageObject(), null, null, f, f2, fromTL, false, false, false, false);
             if ((primaryMessageObject != null) & (primaryMessageObject.messageOwner != null)) {
                 if (ChatActivity.this.chatAdapter.isFiltered) {
                     MessageObject messageObject = (MessageObject) ChatActivity.this.messagesDict[0].get(primaryMessageObject.getId());

@@ -9067,6 +9067,9 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                     RectF rectF = this.rect;
                     float f3 = this.sideStartX;
                     rectF.set(f3, this.sideStartY, AndroidUtilities.dp(32.0f) + f3, this.sideStartY + AndroidUtilities.dp(this.drawSideButton2 == 5 ? 64.0f : 32.0f));
+                    if (this.rect.right >= getMeasuredWidth()) {
+                        return;
+                    }
                     applyServiceShaderMatrix();
                     if (this.drawSideButton == 4 && this.drawSideButton2 == 5 && this.sideButtonPressed) {
                         Path path = this.sideButtonPath1;
