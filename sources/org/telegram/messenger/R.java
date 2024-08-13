@@ -2956,13 +2956,14 @@ public final class R {
         public static final int wallet_congrats = 0x7f0e015a;
         public static final int wallet_perfect = 0x7f0e015b;
         public static final int wallet_science = 0x7f0e015c;
-        public static final int webview_ext = 0x7f0e015d;
-        public static final int webview_share = 0x7f0e015e;
-        public static final int windows_30 = 0x7f0e015f;
-        public static final int write_contacts_fab_icon = 0x7f0e0160;
-        public static final int write_contacts_fab_icon_camera = 0x7f0e0161;
-        public static final int write_contacts_fab_icon_reverse = 0x7f0e0162;
-        public static final int write_contacts_fab_icon_reverse_camera = 0x7f0e0163;
+        public static final int webview_app_ext = 0x7f0e015d;
+        public static final int webview_ext = 0x7f0e015e;
+        public static final int webview_share = 0x7f0e015f;
+        public static final int windows_30 = 0x7f0e0160;
+        public static final int write_contacts_fab_icon = 0x7f0e0161;
+        public static final int write_contacts_fab_icon_camera = 0x7f0e0162;
+        public static final int write_contacts_fab_icon_reverse = 0x7f0e0163;
+        public static final int write_contacts_fab_icon_reverse_camera = 0x7f0e0164;
 
         private raw() {
         }

@@ -468,27 +468,17 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
     }
 
     private void updateKeyboardFocusable() {
-        boolean z = this.keyboardFocusable && this.isPageLoaded;
-        if (this.wasFocusable != z) {
-            if (!z) {
-                setDescendantFocusability(393216);
-                setFocusable(false);
-                MyWebView myWebView = this.webView;
-                if (myWebView != null) {
-                    myWebView.setDescendantFocusability(393216);
-                    this.webView.clearFocus();
-                }
-                AndroidUtilities.hideKeyboard(this);
-            } else {
-                setDescendantFocusability(131072);
-                setFocusable(true);
-                MyWebView myWebView2 = this.webView;
-                if (myWebView2 != null) {
-                    myWebView2.setDescendantFocusability(131072);
-                }
+        if (this.wasFocusable) {
+            setDescendantFocusability(393216);
+            setFocusable(false);
+            MyWebView myWebView = this.webView;
+            if (myWebView != null) {
+                myWebView.setDescendantFocusability(393216);
+                this.webView.clearFocus();
             }
+            AndroidUtilities.hideKeyboard(this);
         }
-        this.wasFocusable = z;
+        this.wasFocusable = false;
     }
 
     public void setKeyboardFocusable(boolean z) {
@@ -2332,6 +2322,11 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                     String readRes = RLottieDrawable.readRes(null, R.raw.webview_ext);
                     myWebView2.evaluateJS(readRes.replace("$DEBUG$", "" + BuildVars.DEBUG_VERSION));
                     MyWebView.this.evaluateJS(RLottieDrawable.readRes(null, R.raw.webview_share));
+                } else {
+                    MyWebView myWebView3 = MyWebView.this;
+                    myWebView3.injectedJS = true;
+                    String readRes2 = RLottieDrawable.readRes(null, R.raw.webview_app_ext);
+                    myWebView3.evaluateJS(readRes2.replace("$DEBUG$", "" + BuildVars.DEBUG_VERSION));
                 }
                 super.onPageCommitVisible(webView, str);
             }
@@ -2522,12 +2517,17 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                     String readRes = RLottieDrawable.readRes(null, R.raw.webview_ext);
                     myWebView.evaluateJS(readRes.replace("$DEBUG$", "" + BuildVars.DEBUG_VERSION));
                     MyWebView.this.evaluateJS(RLottieDrawable.readRes(null, R.raw.webview_share));
+                } else {
+                    MyWebView myWebView2 = MyWebView.this;
+                    myWebView2.injectedJS = true;
+                    String readRes2 = RLottieDrawable.readRes(null, R.raw.webview_app_ext);
+                    myWebView2.evaluateJS(readRes2.replace("$DEBUG$", "" + BuildVars.DEBUG_VERSION));
                 }
                 MyWebView.this.saveHistory();
                 if (MyWebView.this.botWebViewContainer != null) {
                     BotWebViewContainer botWebViewContainer = MyWebView.this.botWebViewContainer;
-                    MyWebView myWebView2 = MyWebView.this;
-                    botWebViewContainer.onURLChanged(myWebView2.dangerousUrl ? myWebView2.urlFallback : myWebView2.getUrl(), !MyWebView.this.canGoBack(), true ^ MyWebView.this.canGoForward());
+                    MyWebView myWebView3 = MyWebView.this;
+                    botWebViewContainer.onURLChanged(myWebView3.dangerousUrl ? myWebView3.urlFallback : myWebView3.getUrl(), !MyWebView.this.canGoBack(), true ^ MyWebView.this.canGoForward());
                 }
             }
 

@@ -135,7 +135,6 @@ if (!window.__tg__webview_set) {
                 .map(r => r.target)
                 .filter(e => !!e && e != document.body && e != document.documentElement)
                 .find(e => isParentOf(touchElement, e));
-            const isImageViewer = touchElement && touchElement.tagName && touchElement.tagName.toLowerCase() === 'img' && touchElement.src === window.location.href;
             if (isTouchElement) { // && (whiletouchstart || whiletouchmove)) {
                 if (DEBUG) {
                     console.log('tgbrowser mutation detected', mutationList);

@@ -6938,6 +6938,7 @@ public class MessageObject {
             tLRPC$MessageReactor = new TLRPC$TL_messageReactor();
             tLRPC$MessageReactor.my = true;
             tLRPC$MessageReactor.peer_id = MessagesController.getInstance(i).getPeer(UserConfig.getInstance(i).getClientUserId());
+            tLRPC$MessageReactions.top_reactors.add(tLRPC$MessageReactor);
         }
         if (tLRPC$MessageReactor != null) {
             int max2 = Math.max(0, tLRPC$MessageReactor.count + i2);

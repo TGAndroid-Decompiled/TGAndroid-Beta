@@ -783,6 +783,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     private float[] sideButtonPathCorners1;
     private float[] sideButtonPathCorners2;
     private boolean sideButtonPressed;
+    private boolean sideButtonVisible;
     private float sideStartX;
     private float sideStartY;
     public int signWidth;
@@ -9058,6 +9059,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                     this.sideStartX -= videoTranscriptionProgress;
                     this.sideStartY -= dp6;
                 }
+                this.sideButtonVisible = true;
                 if (this.drawSideButton == 3) {
                     if (!this.enterTransitionInProgress || this.currentMessageObject.isVoice()) {
                         drawCommentButton(canvas, 1.0f);
@@ -9068,6 +9070,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                     float f3 = this.sideStartX;
                     rectF.set(f3, this.sideStartY, AndroidUtilities.dp(32.0f) + f3, this.sideStartY + AndroidUtilities.dp(this.drawSideButton2 == 5 ? 64.0f : 32.0f));
                     if (this.rect.right >= getMeasuredWidth()) {
+                        this.sideButtonVisible = false;
                         return;
                     }
                     applyServiceShaderMatrix();
@@ -9085,7 +9088,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                             path2.rewind();
                         }
                         if (this.sideButtonPathCorners1 == null) {
-                            this.sideButtonPathCorners1 = r2;
+                            this.sideButtonPathCorners1 = r3;
                             float dp7 = AndroidUtilities.dp(16.0f);
                             float[] fArr = {dp7, dp7, dp7, dp7};
                         }

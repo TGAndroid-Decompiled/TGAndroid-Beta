@@ -38,6 +38,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
@@ -144,11 +145,15 @@ public class StarsReactionsSheet extends BottomSheet {
         this.slider = new StarsSlider(context) {
             @Override
             public void onValueChanged(int i2) {
-                StarsReactionsSheet.this.updateSenders(i2);
+                long j2 = i2;
+                StarsReactionsSheet.this.updateSenders(j2);
+                if (StarsReactionsSheet.this.buttonView != null) {
+                    StarsReactionsSheet.this.buttonView.setText(StarsIntroActivity.replaceStars(LocaleController.formatString(R.string.StarsReactionSend, LocaleController.formatNumber(j2, ',')), StarsReactionsSheet.this.starRef), true);
+                }
             }
         };
-        int i2 = 10;
-        int[] iArr = {1, 10, 50, 100, 500, 1000, 2000, 5000, 7500, 10000};
+        int i2 = 9;
+        int[] iArr = {1, 50, 100, 500, 1000, 2000, 5000, 7500, 10000};
         long j2 = MessagesController.getInstance(i).starsPaidReactionAmountMax;
         ArrayList arrayList2 = new ArrayList();
         int i3 = 0;
@@ -166,7 +171,7 @@ public class StarsReactionsSheet extends BottomSheet {
                 break;
             }
             i3 = i4 + 1;
-            i2 = 10;
+            i2 = 9;
         }
         int[] iArr2 = new int[arrayList2.size()];
         for (int i5 = 0; i5 < arrayList2.size(); i5++) {
@@ -297,7 +302,8 @@ public class StarsReactionsSheet extends BottomSheet {
         ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
         this.buttonView = buttonWithCounterView;
         this.layout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 14.0f, 0.0f, 14.0f, 0.0f));
-        updateSenders(50L);
+        updateSenders(0L);
+        buttonWithCounterView.setText(StarsIntroActivity.replaceStars(LocaleController.formatString(R.string.StarsReactionSend, LocaleController.formatNumber(50L, ',')), this.starRef), true);
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
@@ -463,7 +469,10 @@ public class StarsReactionsSheet extends BottomSheet {
                     }
                 }
             }
-            arrayList.add(SenderData.of(this.anonymous, clientUserId, j2 + j));
+            long j3 = j2 + j;
+            if (j3 > 0) {
+                arrayList.add(SenderData.of(this.anonymous, clientUserId, j3));
+            }
             Collections.sort(arrayList, new Comparator() {
                 @Override
                 public final int compare(Object obj, Object obj2) {
@@ -474,7 +483,6 @@ public class StarsReactionsSheet extends BottomSheet {
             });
             this.topSendersView.setSenders(new ArrayList<>(arrayList.subList(0, Math.min(3, arrayList.size()))));
         }
-        this.buttonView.setText(StarsIntroActivity.replaceStars(LocaleController.formatString(R.string.StarsReactionSend, LocaleController.formatNumber(j, ',')), this.starRef), true);
     }
 
     public static int lambda$updateSenders$7(SenderData senderData, SenderData senderData2) {
@@ -487,22 +495,19 @@ public class StarsReactionsSheet extends BottomSheet {
         }
         this.checkedVisiblity = true;
         MessageObject messageObject = this.messageObject;
-        Boolean isMyPaidReactionAnonymous = messageObject == null ? null : messageObject.isMyPaidReactionAnonymous();
-        if (isMyPaidReactionAnonymous == null) {
-            if (this.messageObject != null) {
-                StarsController.getInstance(this.currentAccount).saveAnonymous(this.messageObject, this.anonymous);
-                return;
-            }
+        if (messageObject == null) {
             return;
         }
-        boolean booleanValue = isMyPaidReactionAnonymous.booleanValue();
-        boolean z = this.anonymous;
-        if (booleanValue != z) {
-            this.messageObject.setMyPaidReactionAnonymous(z);
+        Boolean isMyPaidReactionAnonymous = messageObject.isMyPaidReactionAnonymous();
+        StarsController.getInstance(this.currentAccount).saveAnonymous(this.messageObject, this.anonymous);
+        if (isMyPaidReactionAnonymous == null || isMyPaidReactionAnonymous.booleanValue() != this.anonymous) {
+            this.messageObject.setMyPaidReactionAnonymous(this.anonymous);
+            StarsController.MessageId from = StarsController.MessageId.from(this.messageObject);
             TLRPC$TL_messages_togglePaidReactionPrivacy tLRPC$TL_messages_togglePaidReactionPrivacy = new TLRPC$TL_messages_togglePaidReactionPrivacy();
-            tLRPC$TL_messages_togglePaidReactionPrivacy.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.messageObject.getDialogId());
-            tLRPC$TL_messages_togglePaidReactionPrivacy.msg_id = this.messageObject.getId();
+            tLRPC$TL_messages_togglePaidReactionPrivacy.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(from.did);
+            tLRPC$TL_messages_togglePaidReactionPrivacy.msg_id = from.mid;
             tLRPC$TL_messages_togglePaidReactionPrivacy.isPrivate = this.anonymous;
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starReactionAnonymousUpdate, Long.valueOf(from.did), Integer.valueOf(from.mid), Boolean.valueOf(this.anonymous));
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_togglePaidReactionPrivacy, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -593,6 +598,10 @@ public class StarsReactionsSheet extends BottomSheet {
                 if (!zArr2[0]) {
                     zArr2[0] = true;
                     LaunchActivity.makeRipple(rectF2.centerX(), rectF2.centerY(), 1.5f);
+                    try {
+                        StarsReactionsSheet.this.container.performHapticFeedback(0, 1);
+                    } catch (Exception unused) {
+                    }
                     Runnable runnable3 = runnable;
                     if (runnable3 != null) {
                         runnable3.run();
@@ -646,6 +655,10 @@ public class StarsReactionsSheet extends BottomSheet {
         }
         zArr[0] = true;
         LaunchActivity.makeRipple(rectF2.centerX(), rectF2.centerY(), 1.5f);
+        try {
+            this.container.performHapticFeedback(0, 1);
+        } catch (Exception unused) {
+        }
         if (runnable2 != null) {
             runnable2.run();
         }
@@ -712,7 +725,7 @@ public class StarsReactionsSheet extends BottomSheet {
             this.sliderPaint = new Paint(1);
             this.sliderCirclePaint = new Paint(1);
             this.textBackgroundPaint = new Paint(1);
-            this.sliderParticles = new Particles(0, 200);
+            this.sliderParticles = new Particles(0, 300);
             this.textParticles = new Particles(1, 30);
             this.gradient = new LinearGradient(0.0f, 0.0f, 255.0f, 0.0f, new int[]{-1135603, -404714}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
             this.gradientMatrix = new Matrix();
@@ -852,7 +865,7 @@ public class StarsReactionsSheet extends BottomSheet {
             this.sliderPath.addRoundRect(this.sliderRect, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), Path.Direction.CW);
             this.sliderParticles.setBounds(this.sliderInnerRect);
             this.sliderParticles.setSpeed((this.progress * 15.0f) + 1.0f);
-            this.sliderParticles.setVisible((this.progress * 0.8f) + 0.2f);
+            this.sliderParticles.setVisible((this.progress * 0.85f) + 0.15f);
             this.sliderParticles.process();
             canvas.save();
             canvas.clipPath(this.sliderInnerPath);
