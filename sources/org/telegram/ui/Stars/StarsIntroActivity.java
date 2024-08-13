@@ -1884,7 +1884,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         });
         create.fixNavigationBar(Theme.getColor(i2, resourcesProvider));
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
-        if (safeLastFragment != null) {
+        if (!AndroidUtilities.isTablet() && safeLastFragment != null) {
             create.makeAttached(safeLastFragment);
         }
         create.show();
@@ -2331,9 +2331,9 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         }
 
         public void lambda$new$1() {
+            BaseFragment baseFragment;
             StarAppsSheet starAppsSheet = new StarAppsSheet(getContext());
-            BaseFragment baseFragment = this.attachedFragment;
-            if (baseFragment != null) {
+            if (!AndroidUtilities.isTablet() && (baseFragment = this.attachedFragment) != null) {
                 starAppsSheet.makeAttached(baseFragment);
             }
             starAppsSheet.show();
@@ -2807,7 +2807,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
 
     public static void lambda$showTransactionSheet$18(Context context, BottomSheet[] bottomSheetArr) {
         StarAppsSheet starAppsSheet = new StarAppsSheet(context);
-        if (bottomSheetArr[0] != null && bottomSheetArr[0].attachedFragment != null) {
+        if (!AndroidUtilities.isTablet() && bottomSheetArr[0] != null && bottomSheetArr[0].attachedFragment != null) {
             starAppsSheet.makeAttached(bottomSheetArr[0].attachedFragment);
         }
         starAppsSheet.show();
@@ -3049,7 +3049,9 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         bottomSheetArr3[0] = builder.create();
         bottomSheetArr3[0].useBackgroundTopPadding = false;
         bottomSheetArr3[0].fixNavigationBar();
-        bottomSheetArr3[0].makeAttached(LaunchActivity.getSafeLastFragment());
+        if (!AndroidUtilities.isTablet()) {
+            bottomSheetArr3[0].makeAttached(LaunchActivity.getSafeLastFragment());
+        }
         bottomSheetArr3[0].show();
         return bottomSheetArr3[0];
     }

@@ -353,9 +353,14 @@ public class StarReactionsOverlay extends View {
                 this.accumulatedRippleIntensity += 0.5f;
                 return;
             }
-            float clamp = this.accumulatedRippleIntensity * Utilities.clamp(1.0f - (((float) ((currentTimeMillis - j) - 100)) / 200.0f), 1.0f, 0.0f);
-            this.accumulatedRippleIntensity = clamp;
-            LaunchActivity.makeRipple(f, f2, Utilities.clamp(clamp, 0.9f, 0.3f));
+            this.accumulatedRippleIntensity *= Utilities.clamp(1.0f - (((float) ((currentTimeMillis - j) - 100)) / 200.0f), 1.0f, 0.0f);
+            if (getMeasuredWidth() == 0 && this.chatActivity.getLayoutContainer() != null) {
+                this.chatActivity.getLayoutContainer().getLocationInWindow(this.pos2);
+            } else {
+                getLocationInWindow(this.pos2);
+            }
+            int[] iArr = this.pos2;
+            LaunchActivity.makeRipple(iArr[0] + f, iArr[1] + f2, Utilities.clamp(this.accumulatedRippleIntensity, 0.9f, 0.3f));
             this.accumulatedRippleIntensity = 0.0f;
             this.lastRippleTime = currentTimeMillis;
         }

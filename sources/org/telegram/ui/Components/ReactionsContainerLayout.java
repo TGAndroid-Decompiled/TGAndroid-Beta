@@ -884,7 +884,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
                 }
             }
         }
-        this.hitLimit = this.type == 0 && i >= MessagesController.getInstance(this.currentAccount).getChatMaxUniqReactions(this.messageObject.getDialogId());
+        this.hitLimit = this.type == 0 && this.messageObject != null && i >= MessagesController.getInstance(this.currentAccount).getChatMaxUniqReactions(this.messageObject.getDialogId());
         ArrayList arrayList = new ArrayList();
         if (messageObject != null && messageObject.isForwardedChannelPost() && (tLRPC$ChatFull = MessagesController.getInstance(this.currentAccount).getChatFull(-messageObject.getFromChatId())) == null) {
             this.waitingLoadingChatId = -messageObject.getFromChatId();

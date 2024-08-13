@@ -437,9 +437,15 @@ public class LinkEditActivity extends BaseFragment {
             textCheckCell2.setChecked(tLRPC$TL_chatInviteExported.subscription_pricing != null);
         }
         if (tLRPC$TL_chatInviteExported.subscription_pricing != null) {
-            this.approveCell.setChecked(false);
-            this.approveCell.setCheckBoxIcon(R.drawable.permission_locked);
-            this.approveHintCell.setText(LocaleController.getString(R.string.ApproveNewMembersDescriptionFrozen));
+            TextCheckCell textCheckCell3 = this.approveCell;
+            if (textCheckCell3 != null) {
+                textCheckCell3.setChecked(false);
+                this.approveCell.setCheckBoxIcon(R.drawable.permission_locked);
+            }
+            TextInfoPrivacyCell textInfoPrivacyCell = this.approveHintCell;
+            if (textInfoPrivacyCell != null) {
+                textInfoPrivacyCell.setText(LocaleController.getString(R.string.ApproveNewMembersDescriptionFrozen));
+            }
         }
         EditTextCell editTextCell = this.subEditPriceCell;
         if (editTextCell != null) {

@@ -2148,6 +2148,9 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
     }
 
     public void makeAttached(BaseFragment baseFragment) {
+        if (AndroidUtilities.isTablet()) {
+            return;
+        }
         this.attachedFragment = baseFragment;
     }
 

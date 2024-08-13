@@ -2144,11 +2144,12 @@ public class StarsController {
             this.messageObject = messageObject;
             this.random_id = (Utilities.random.nextLong() & 4294967295L) | (j << 32);
             this.chatActivity = chatActivity;
-            Bulletin.TwoLineAnimatedLottieLayout twoLineAnimatedLottieLayout = new Bulletin.TwoLineAnimatedLottieLayout(chatActivity.getContext(), chatActivity.themeDelegate);
+            Context context = StarsController.this.getContext(chatActivity);
+            Bulletin.TwoLineAnimatedLottieLayout twoLineAnimatedLottieLayout = new Bulletin.TwoLineAnimatedLottieLayout(context, chatActivity.themeDelegate);
             this.bulletinLayout = twoLineAnimatedLottieLayout;
             twoLineAnimatedLottieLayout.setAnimation(R.raw.stars_topup, new String[0]);
             this.bulletinLayout.titleTextView.setText(LocaleController.getString(R.string.StarsSentTitle));
-            Bulletin.UndoButton undoButton = new Bulletin.UndoButton(chatActivity.getContext(), true, false, chatActivity.themeDelegate);
+            Bulletin.UndoButton undoButton = new Bulletin.UndoButton(context, true, false, chatActivity.themeDelegate);
             this.bulletinButton = undoButton;
             undoButton.setText(LocaleController.getString(R.string.StarsSentUndo));
             this.bulletinButton.setUndoAction(new Runnable() {
@@ -2157,7 +2158,7 @@ public class StarsController {
                     StarsController.PendingPaidReactions.this.cancel();
                 }
             });
-            Bulletin.TimerView timerView = new Bulletin.TimerView(chatActivity.getContext(), chatActivity.themeDelegate);
+            Bulletin.TimerView timerView = new Bulletin.TimerView(context, chatActivity.themeDelegate);
             this.timerView = timerView;
             timerView.timeLeft = 5000L;
             timerView.setColor(Theme.getColor(Theme.key_undo_cancelColor, chatActivity.themeDelegate));
@@ -2178,7 +2179,10 @@ public class StarsController {
 
         public void add(long j, boolean z) {
             if (this.committed || this.cancelled) {
-                throw new RuntimeException("adding more amount to committed reactions");
+                if (BuildVars.DEBUG_PRIVATE_VERSION) {
+                    throw new RuntimeException("adding more amount to committed reactions");
+                }
+                return;
             }
             this.amount += j;
             System.currentTimeMillis();
@@ -2354,24 +2358,50 @@ public class StarsController {
         }
     }
 
+    public Context getContext(ChatActivity chatActivity) {
+        if (chatActivity != null && chatActivity.getContext() != null) {
+            return chatActivity.getContext();
+        }
+        LaunchActivity launchActivity = LaunchActivity.instance;
+        if (launchActivity != null && !launchActivity.isFinishing()) {
+            return LaunchActivity.instance;
+        }
+        if (ApplicationLoader.applicationContext != null) {
+            return ApplicationLoader.applicationContext;
+        }
+        return null;
+    }
+
     public PendingPaidReactions sendPaidReaction(final MessageObject messageObject, final ChatActivity chatActivity, final long j, boolean z, boolean z2, final Boolean bool) {
-        String str;
         boolean z3;
+        String str;
         String str2;
         MessageId from = MessageId.from(messageObject);
         StarsController starsController = getInstance(this.currentAccount);
-        str = "";
+        Context context = getContext(chatActivity);
+        if (context == null) {
+            return null;
+        }
+        String str3 = "";
         if (z2 && starsController.balanceAvailable() && starsController.getBalance() <= 0) {
             long dialogId = chatActivity.getDialogId();
             if (dialogId >= 0) {
-                str = UserObject.getForcedFirstName(chatActivity.getMessagesController().getUser(Long.valueOf(dialogId)));
+                str2 = UserObject.getForcedFirstName(chatActivity.getMessagesController().getUser(Long.valueOf(dialogId)));
             } else {
                 TLRPC$Chat chat = chatActivity.getMessagesController().getChat(Long.valueOf(-dialogId));
                 if (chat != null) {
-                    str = chat.title;
+                    str2 = chat.title;
                 }
+                new StarsIntroActivity.StarsNeededSheet(chatActivity.getContext(), chatActivity.getResourceProvider(), j, 5, str3, new Runnable() {
+                    @Override
+                    public final void run() {
+                        StarsController.this.lambda$sendPaidReaction$77(messageObject, chatActivity, j, bool);
+                    }
+                }).show();
+                return null;
             }
-            new StarsIntroActivity.StarsNeededSheet(chatActivity.getContext(), chatActivity.getResourceProvider(), j, 5, str, new Runnable() {
+            str3 = str2;
+            new StarsIntroActivity.StarsNeededSheet(chatActivity.getContext(), chatActivity.getResourceProvider(), j, 5, str3, new Runnable() {
                 @Override
                 public final void run() {
                     StarsController.this.lambda$sendPaidReaction$77(messageObject, chatActivity, j, bool);
@@ -2402,12 +2432,22 @@ public class StarsController {
             this.currentPendingReactions.cancel();
             long dialogId2 = chatActivity.getDialogId();
             if (dialogId2 >= 0) {
-                str2 = UserObject.getForcedFirstName(chatActivity.getMessagesController().getUser(Long.valueOf(dialogId2)));
+                str = UserObject.getForcedFirstName(chatActivity.getMessagesController().getUser(Long.valueOf(dialogId2)));
             } else {
                 TLRPC$Chat chat2 = chatActivity.getMessagesController().getChat(Long.valueOf(-dialogId2));
-                str2 = chat2 != null ? chat2.title : "";
+                if (chat2 != null) {
+                    str = chat2.title;
+                }
+                new StarsIntroActivity.StarsNeededSheet(context, chatActivity.getResourceProvider(), j2, 5, str3, new Runnable() {
+                    @Override
+                    public final void run() {
+                        StarsController.this.lambda$sendPaidReaction$78(messageObject, chatActivity, j2, bool);
+                    }
+                }).show();
+                return null;
             }
-            new StarsIntroActivity.StarsNeededSheet(chatActivity.getContext(), chatActivity.getResourceProvider(), j2, 5, str2, new Runnable() {
+            str3 = str;
+            new StarsIntroActivity.StarsNeededSheet(context, chatActivity.getResourceProvider(), j2, 5, str3, new Runnable() {
                 @Override
                 public final void run() {
                     StarsController.this.lambda$sendPaidReaction$78(messageObject, chatActivity, j2, bool);
