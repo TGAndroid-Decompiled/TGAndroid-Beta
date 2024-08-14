@@ -138,7 +138,7 @@ public class StarReactionsOverlay extends View {
         }
         StarsController.getInstance(primaryMessageObject.currentAccount).commitPaidReaction();
         StarsReactionsSheet starsReactionsSheet = new StarsReactionsSheet(getContext(), chatActivity.getCurrentAccount(), chatActivity.getDialogId(), chatActivity, primaryMessageObject, arrayList, chatActivity.getResourceProvider());
-        starsReactionsSheet.setMessageCell(primaryMessageObject.getId(), this.cell);
+        starsReactionsSheet.setMessageCell(chatActivity, primaryMessageObject.getId(), this.cell);
         starsReactionsSheet.show();
     }
 

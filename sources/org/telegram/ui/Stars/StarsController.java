@@ -1842,7 +1842,7 @@ public class StarsController {
             if (launchActivity != null && launchActivity.getFireworksOverlay() != null) {
                 LaunchActivity.instance.getFireworksOverlay().start(true);
             }
-            invalidateTransactions(false);
+            invalidateTransactions(true);
             invalidateSubscriptions(true);
         } else if (tLRPC$TL_error != null && "BALANCE_TOO_LOW".equals(tLRPC$TL_error.text)) {
             if (!MessagesController.getInstance(this.currentAccount).starsPurchaseAvailable()) {

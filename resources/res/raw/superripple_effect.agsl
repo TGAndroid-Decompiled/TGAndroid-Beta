@@ -17,37 +17,6 @@ float sdfRoundedBox(in float2 p, in float2 s, in float4 r) {
     return min(max(q.x, q.y), 0.0) + length(max(q, 0.0)) - r.x;
 }
 
-//float3 rippleOffset_shadertoy(float2 uv, float2 center, float intensity, float time) {
-//    const float freq = 1.0;
-//    const float speed = 8.;
-//    const float strength = 0.2;
-//    const float dropOff = 12.;
-//    const float duration = 0.8;
-//    const float initialStrength = 3.0;
-//    const float fallOffStrength = 1.;
-//
-//    uv = (uv - center) * 2.;
-//    uv.x *= size.x / size.y;
-//
-//    float dist = length(uv);
-//    float depth = cos((dist * freq) - (time * speed));
-//
-//    if (dist > dropOff) {
-//        depth = 0.;
-//    } else {
-//        depth *= dropOff - dist;
-//    }
-//
-//    depth *= 1. - time;
-//    depth *= smoothstep(1. - time * (1.0 * intensity * initialStrength), 1., 1. - dist);
-//    depth *= smoothstep(0., time * (1.0 * intensity * fallOffStrength), dist);
-//
-//    float2 offset = (-abs(normalize(uv)) * -depth * (intensity * strength * 0.05));
-//    float add = .4 * max(0.0, depth) * strength;
-//
-//    return float3(offset, add);
-//}
-
 float3 rippleOffset_ios(float2 position, float2 center, float intensity, float time) {
     float speed = (intensity > 1.0 ? 1200.0 : 1500.0) * density;
     float frequency = (intensity > 1.0 ? 17.0 : 15.0);

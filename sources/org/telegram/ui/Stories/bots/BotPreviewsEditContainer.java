@@ -1051,7 +1051,7 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
                 }
 
                 @Override
-                protected void dispatchDraw(Canvas canvas) {
+                public void dispatchDraw(Canvas canvas) {
                     super.dispatchDraw(canvas);
                     float listBottom = getListBottom(this);
                     if (BotPreviewsEditLangContainer.this.columnsAnimation) {

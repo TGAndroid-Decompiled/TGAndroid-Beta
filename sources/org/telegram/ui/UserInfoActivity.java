@@ -495,6 +495,7 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
                 userFull.birthday = null;
             }
             arrayList.add(tLRPC$TL_account_updateBirthday);
+            getMessagesController().invalidateContentSettings();
             NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.premiumPromoUpdated, new Object[0]);
         }
         long j = this.currentChannel;

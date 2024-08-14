@@ -2572,6 +2572,7 @@ public class MessageObject {
         }
         tLRPC$Message.reactions = tLRPC$TL_messageReactions;
         tLRPC$Message.flags |= 1048576;
+        FileLog.d("msg#" + tLRPC$Message.id + " updateReactions out=" + tLRPC$Message.out);
     }
 
     public boolean hasReactions() {
@@ -4453,7 +4454,7 @@ public class MessageObject {
         TLRPC$Message tLRPC$Message = this.messageOwner;
         if (tLRPC$Message.out) {
             TLRPC$Peer tLRPC$Peer5 = tLRPC$Message.from_id;
-            if ((tLRPC$Peer5 instanceof TLRPC$TL_peerUser) || ((tLRPC$Peer5 instanceof TLRPC$TL_peerChannel) && (!ChatObject.isChannel(tLRPC$Chat) || tLRPC$Chat.megagroup))) {
+            if ((tLRPC$Peer5 instanceof TLRPC$TL_peerUser) || ((tLRPC$Peer5 instanceof TLRPC$TL_peerChannel) && !ChatObject.isChannelAndNotMegaGroup(tLRPC$Chat))) {
                 TLRPC$Message tLRPC$Message2 = this.messageOwner;
                 if (!tLRPC$Message2.post) {
                     if (tLRPC$Message2.fwd_from == null) {

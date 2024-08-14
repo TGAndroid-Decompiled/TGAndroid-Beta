@@ -18601,6 +18601,11 @@ public class MessagesController extends BaseController implements NotificationCe
         }
     }
 
+    public void invalidateContentSettings() {
+        this.contentSettings = null;
+        this.contentSettingsLoadedTime = 0L;
+    }
+
     public void setContentSettings(boolean z) {
         TL_account$contentSettings tL_account$contentSettings = this.contentSettings;
         if (tL_account$contentSettings != null) {

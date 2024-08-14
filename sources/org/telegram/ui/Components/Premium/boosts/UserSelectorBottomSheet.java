@@ -984,6 +984,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
                 UserSelectorBottomSheet.this.lambda$openBirthdaySetup$19(userFull, tLRPC$TL_birthday2, tLObject, tLRPC$TL_error);
             }
         }, 1024);
+        MessagesController.getInstance(this.currentAccount).invalidateContentSettings();
         MessagesController.getInstance(this.currentAccount).removeSuggestion(0L, "BIRTHDAY_SETUP");
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.newSuggestionsAvailable, new Object[0]);
         updateItems(true, true);

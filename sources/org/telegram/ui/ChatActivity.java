@@ -58,6 +58,7 @@ import android.text.style.CharacterStyle;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.ImageSpan;
 import android.text.style.URLSpan;
+import android.util.Log;
 import android.util.Pair;
 import android.util.Property;
 import android.util.SparseArray;
@@ -1248,27 +1249,27 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return i;
     }
 
-    public static void access$22700(ChatActivity chatActivity) {
+    public static void access$22600(ChatActivity chatActivity) {
         chatActivity.checkBotMessageHint();
     }
 
-    public static void access$22800(ChatActivity chatActivity) {
+    public static void access$22700(ChatActivity chatActivity) {
         chatActivity.checkSavedMessagesTagHint();
     }
 
-    static int access$23410(ChatActivity chatActivity) {
+    static int access$23310(ChatActivity chatActivity) {
         int i = chatActivity.newMentionsCount;
         chatActivity.newMentionsCount = i - 1;
         return i;
     }
 
-    static int access$24508(ChatActivity chatActivity) {
+    static int access$24408(ChatActivity chatActivity) {
         int i = chatActivity.lastLoadIndex;
         chatActivity.lastLoadIndex = i + 1;
         return i;
     }
 
-    static int access$33104(ChatActivity chatActivity) {
+    static int access$33004(ChatActivity chatActivity) {
         int i = chatActivity.pinBullerinTag + 1;
         chatActivity.pinBullerinTag = i;
         return i;
@@ -1286,7 +1287,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return i2;
     }
 
-    public static void access$51000(ChatActivity chatActivity) {
+    public static void access$50900(ChatActivity chatActivity) {
         chatActivity.resetProgressDialogLoading();
     }
 
@@ -5268,22 +5269,20 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         @Override
         protected boolean hasSiblingChild(int i) {
             int i2;
+            MessageObject messageObject;
+            MessageObject.GroupedMessages validGroupedMessage;
             byte b;
-            if (i >= ChatActivity.this.chatAdapter.messagesStartRow && i < ChatActivity.this.chatAdapter.messagesEndRow && (i2 = i - ChatActivity.this.chatAdapter.messagesStartRow) >= 0 && i2 < ChatActivity.this.chatAdapter.getMessages().size()) {
-                MessageObject messageObject = ChatActivity.this.chatAdapter.getMessages().get(i2);
-                MessageObject.GroupedMessages validGroupedMessage = ChatActivity.this.getValidGroupedMessage(messageObject);
-                if (validGroupedMessage != null) {
-                    MessageObject.GroupedMessagePosition position = validGroupedMessage.getPosition(messageObject);
-                    if (position.minX != position.maxX && (b = position.minY) == position.maxY && b != 0) {
-                        int size = validGroupedMessage.posArray.size();
-                        for (int i3 = 0; i3 < size; i3++) {
-                            MessageObject.GroupedMessagePosition groupedMessagePosition = validGroupedMessage.posArray.get(i3);
-                            if (groupedMessagePosition != position) {
-                                byte b2 = groupedMessagePosition.minY;
-                                byte b3 = position.minY;
-                                if (b2 <= b3 && groupedMessagePosition.maxY >= b3) {
-                                    return true;
-                                }
+            if (i >= ChatActivity.this.chatAdapter.messagesStartRow && i < ChatActivity.this.chatAdapter.messagesEndRow && (i2 = i - ChatActivity.this.chatAdapter.messagesStartRow) >= 0 && i2 < ChatActivity.this.chatAdapter.getMessages().size() && (validGroupedMessage = ChatActivity.this.getValidGroupedMessage((messageObject = ChatActivity.this.chatAdapter.getMessages().get(i2)))) != null) {
+                MessageObject.GroupedMessagePosition position = validGroupedMessage.getPosition(messageObject);
+                if (position.minX != position.maxX && (b = position.minY) == position.maxY && b != 0) {
+                    int size = validGroupedMessage.posArray.size();
+                    for (int i3 = 0; i3 < size; i3++) {
+                        MessageObject.GroupedMessagePosition groupedMessagePosition = validGroupedMessage.posArray.get(i3);
+                        if (groupedMessagePosition != position) {
+                            byte b2 = groupedMessagePosition.minY;
+                            byte b3 = position.minY;
+                            if (b2 <= b3 && groupedMessagePosition.maxY >= b3) {
+                                return true;
                             }
                         }
                     }
@@ -5569,14 +5568,14 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     AndroidUtilities.cancelRunOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            ChatActivity.access$22800(ChatActivity.this);
+                            ChatActivity.access$22700(ChatActivity.this);
                         }
                     });
                     final ChatActivity chatActivity3 = ChatActivity.this;
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            ChatActivity.access$22800(ChatActivity.this);
+                            ChatActivity.access$22700(ChatActivity.this);
                         }
                     }, 2000L);
                 }
@@ -5588,14 +5587,14 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.cancelRunOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$22700(ChatActivity.this);
+                        ChatActivity.access$22600(ChatActivity.this);
                     }
                 });
                 final ChatActivity chatActivity5 = ChatActivity.this;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$22700(ChatActivity.this);
+                        ChatActivity.access$22600(ChatActivity.this);
                     }
                 }, 2000L);
             }
@@ -6880,6 +6879,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 messageObject2.stableId = i3;
             }
             messageObject2.isOutOwnerCached = null;
+            Log.i("lolkek", "msg " + messageObject2.getId() + " isOutOwnerCached is reset (2)");
             TLRPC$Message tLRPC$Message2 = messageObject2.messageOwner;
             if (tLRPC$Message2 != null) {
                 tLRPC$Message2.out = true;
@@ -6963,6 +6963,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         for (int i8 = 0; i8 < arrayList2.size(); i8++) {
             MessageObject messageObject4 = (MessageObject) arrayList2.get(i8);
             if (!this.filteredMessagesDict.containsKey(messageObject4.getId())) {
+                Log.i("lolkek", "msg " + messageObject4.getId() + " isOutOwnerCached is reset (3)");
                 messageObject4.isOutOwnerCached = null;
                 TLRPC$Message tLRPC$Message3 = messageObject4.messageOwner;
                 if (tLRPC$Message3 != null) {
@@ -7009,10 +7010,8 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
             ArrayList<MessageObject> arrayList3 = this.filteredMessagesByDays.get(messageObject8.dateKeyInt);
             if (arrayList3 == null) {
-                LongSparseArray<ArrayList<MessageObject>> longSparseArray4 = this.filteredMessagesByDays;
-                long j = messageObject8.dateKeyInt;
                 ArrayList<MessageObject> arrayList4 = new ArrayList<>();
-                longSparseArray4.put(j, arrayList4);
+                this.filteredMessagesByDays.put(messageObject8.dateKeyInt, arrayList4);
                 arrayList3 = arrayList4;
             }
             arrayList3.add(messageObject8);
@@ -8898,18 +8897,18 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 ChatActivity.this.pinBulletin.hide();
             }
             ChatActivity.this.showPinBulletin = true;
-            final int access$33104 = ChatActivity.access$33104(ChatActivity.this);
+            final int access$33004 = ChatActivity.access$33004(ChatActivity.this);
             final int pinnedMessagesCount = ChatActivity.this.getPinnedMessagesCount();
             ChatActivity chatActivity = ChatActivity.this;
             chatActivity.pinBulletin = BulletinFactory.createUnpinAllMessagesBulletin(chatActivity, pinnedMessagesCount, z2, new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.AnonymousClass75.this.lambda$onUnpin$0(z2, arrayList, arrayList2, pinnedMessagesCount, access$33104);
+                    ChatActivity.AnonymousClass75.this.lambda$onUnpin$0(z2, arrayList, arrayList2, pinnedMessagesCount, access$33004);
                 }
             }, new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.AnonymousClass75.this.lambda$onUnpin$1(z2, access$33104);
+                    ChatActivity.AnonymousClass75.this.lambda$onUnpin$1(z2, access$33004);
                 }
             }, ChatActivity.this.themeDelegate);
         }
@@ -21953,23 +21952,23 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             return false;
         }
 
-        static int access$19700(ChatActivityAdapter chatActivityAdapter) {
+        static int access$19600(ChatActivityAdapter chatActivityAdapter) {
             return chatActivityAdapter.messagesEndRow;
         }
 
-        static int access$27800(ChatActivityAdapter chatActivityAdapter) {
+        static int access$27700(ChatActivityAdapter chatActivityAdapter) {
             return chatActivityAdapter.botInfoRow;
         }
 
-        static int access$35800(ChatActivityAdapter chatActivityAdapter) {
+        static int access$35700(ChatActivityAdapter chatActivityAdapter) {
             return chatActivityAdapter.loadingUpRow;
         }
 
-        static int access$47300(ChatActivityAdapter chatActivityAdapter) {
+        static int access$47200(ChatActivityAdapter chatActivityAdapter) {
             return chatActivityAdapter.loadingDownRow;
         }
 
-        static void access$47400(ChatActivityAdapter chatActivityAdapter) {
+        static void access$47300(ChatActivityAdapter chatActivityAdapter) {
             chatActivityAdapter.updateRowsInternal();
         }
 
@@ -22713,7 +22712,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 return;
             }
             if (!((BaseFragment) ChatActivity.this).inPreviewMode && ChatActivity.this.chatMode == 0 && !messageObject2.isVoice() && !messageObject2.isRoundVideo()) {
-                ChatActivity.access$23410(ChatActivity.this);
+                ChatActivity.access$23310(ChatActivity.this);
                 if (ChatActivity.this.newMentionsCount <= 0) {
                     ChatActivity.this.newMentionsCount = 0;
                     ChatActivity.this.hasAllMentionsLocal = true;
@@ -24644,7 +24643,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$51000(ChatActivity.this);
+                        ChatActivity.access$50900(ChatActivity.this);
                     }
                 }, 250L);
             }
@@ -24679,7 +24678,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$51000(ChatActivity.this);
+                        ChatActivity.access$50900(ChatActivity.this);
                     }
                 }, 250L);
             }
@@ -25071,7 +25070,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$51000(ChatActivity.this);
+                        ChatActivity.access$50900(ChatActivity.this);
                     }
                 }, 250L);
             }
@@ -25101,7 +25100,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$51000(ChatActivity.this);
+                        ChatActivity.access$50900(ChatActivity.this);
                     }
                 }, 250L);
             }
@@ -25131,7 +25130,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$51000(ChatActivity.this);
+                        ChatActivity.access$50900(ChatActivity.this);
                     }
                 }, 250L);
             }
@@ -25202,7 +25201,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$51000(ChatActivity.this);
+                        ChatActivity.access$50900(ChatActivity.this);
                     }
                 }, 250L);
             }
@@ -25232,7 +25231,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$51000(ChatActivity.this);
+                        ChatActivity.access$50900(ChatActivity.this);
                     }
                 }, 250L);
             }
@@ -25709,37 +25708,37 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         public ChatScrollCallback() {
         }
 
-        static MessageObject access$35902(ChatScrollCallback chatScrollCallback, MessageObject messageObject) {
+        static MessageObject access$35802(ChatScrollCallback chatScrollCallback, MessageObject messageObject) {
             chatScrollCallback.scrollTo = messageObject;
             return messageObject;
         }
 
-        static boolean access$36002(ChatScrollCallback chatScrollCallback, boolean z) {
+        static boolean access$35902(ChatScrollCallback chatScrollCallback, boolean z) {
             chatScrollCallback.lastBottom = z;
             return z;
         }
 
-        static int access$36102(ChatScrollCallback chatScrollCallback, int i) {
+        static int access$36002(ChatScrollCallback chatScrollCallback, int i) {
             chatScrollCallback.lastItemOffset = i;
             return i;
         }
 
-        static int access$36202(ChatScrollCallback chatScrollCallback, int i) {
+        static int access$36102(ChatScrollCallback chatScrollCallback, int i) {
             chatScrollCallback.lastPadding = i;
             return i;
         }
 
-        static int access$36302(ChatScrollCallback chatScrollCallback, int i) {
+        static int access$36202(ChatScrollCallback chatScrollCallback, int i) {
             chatScrollCallback.position = i;
             return i;
         }
 
-        static int access$36402(ChatScrollCallback chatScrollCallback, int i) {
+        static int access$36302(ChatScrollCallback chatScrollCallback, int i) {
             chatScrollCallback.offset = i;
             return i;
         }
 
-        static boolean access$36502(ChatScrollCallback chatScrollCallback, boolean z) {
+        static boolean access$36402(ChatScrollCallback chatScrollCallback, boolean z) {
             chatScrollCallback.bottom = z;
             return z;
         }
@@ -26989,11 +26988,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             return isCurrentThemeDark;
         }
 
-        static TLRPC$WallPaper access$46600(ThemeDelegate themeDelegate) {
+        static TLRPC$WallPaper access$46500(ThemeDelegate themeDelegate) {
             return themeDelegate.wallpaper;
         }
 
-        static EmojiThemes access$47500(ThemeDelegate themeDelegate) {
+        static EmojiThemes access$47400(ThemeDelegate themeDelegate) {
             return themeDelegate.chatTheme;
         }
 
