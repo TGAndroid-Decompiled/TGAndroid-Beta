@@ -69,6 +69,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
     private CustomReactionEditText editText;
     private TextCheckCell enableReactionsCell;
     private final TLRPC$ChatFull info;
+    private boolean initialPaid;
     private boolean isPaused;
     private boolean paid;
     private TextCheckCell paidCheckCell;
@@ -575,7 +576,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         if (tL_stories$TL_premium_boostsStatus != null && tL_stories$TL_premium_boostsStatus.level < this.selectedCustomReactions) {
             z = false;
         }
-        boolean z2 = this.selectedType != 2 ? z : false;
+        boolean z2 = this.initialPaid == this.paid ? z : true;
         if (z2) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), getResourceProvider());
             builder.setTitle(LocaleController.getString("UnsavedChanges", R.string.UnsavedChanges));
@@ -586,7 +587,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
                     ChatCustomReactionsEditActivity.this.lambda$checkChangesBeforeExit$14(dialogInterface, i);
                 }
             });
-            builder.setNegativeButton(LocaleController.getString("Discard", R.string.Discard), new DialogInterface.OnClickListener() {
+            builder.setNegativeButton(LocaleController.getString(R.string.Discard), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
                     ChatCustomReactionsEditActivity.this.lambda$checkChangesBeforeExit$15(dialogInterface, i);

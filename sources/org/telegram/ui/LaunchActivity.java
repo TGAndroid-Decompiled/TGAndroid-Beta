@@ -6455,7 +6455,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             if (iSuperRipple2 == null || iSuperRipple2.view != decorView) {
                 this.currentRipple = new SuperRipple(decorView);
             }
-        } else if (i >= 21 && ((iSuperRipple = this.currentRipple) == null || iSuperRipple.view != decorView)) {
+        } else if (i >= 26 && ((iSuperRipple = this.currentRipple) == null || iSuperRipple.view != decorView)) {
             this.currentRipple = new SuperRippleFallback(decorView);
         }
         ISuperRipple iSuperRipple3 = this.currentRipple;

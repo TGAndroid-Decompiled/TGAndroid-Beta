@@ -6150,7 +6150,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     TLRPC$Chat chat = this.accountInstance.getMessagesController().getChat(Long.valueOf(-this.dialog_id));
                     TLRPC$ChatFull chatFull = this.accountInstance.getMessagesController().getChatFull(-this.dialog_id);
                     z2 = ChatObject.isChannelAndNotMegaGroup(chat);
-                    z4 = (z2 || ChatObject.getSendAsPeerId(chat, chatFull) != (-this.dialog_id)) ? false : false;
+                    if (!z2 ? ChatObject.getSendAsPeerId(chat, chatFull) != (-this.dialog_id) : chat == null || chat.signatures || chat.signature_profiles) {
+                        z3 = false;
+                    }
+                    z4 = z3;
                 } else {
                     z2 = false;
                 }
