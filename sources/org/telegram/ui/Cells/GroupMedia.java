@@ -270,7 +270,7 @@ public class GroupMedia {
             canvas.save();
             canvas.clipPath(this.clipPath);
             drawBlurred(canvas, f);
-            canvas.drawColor(Theme.multAlpha(805306368, f));
+            canvas.drawColor(Theme.multAlpha(1342177280, f));
             this.buttonText.draw(canvas, ((this.x + (this.width / 2.0f)) - (dp / 2.0f)) + AndroidUtilities.dp(14.0f), (this.height / 2.0f) + this.y, -1, f);
             canvas.restore();
             if (isLoading()) {

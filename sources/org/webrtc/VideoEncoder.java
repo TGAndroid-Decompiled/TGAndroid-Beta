@@ -242,6 +242,11 @@ public interface VideoEncoder {
         }
 
         @CalledByNative
+        public static VideoCodecStatus $default$setRates(VideoEncoder videoEncoder, RateControlParameters rateControlParameters) {
+            return videoEncoder.setRateAllocation(rateControlParameters.bitrate, (int) Math.ceil(rateControlParameters.framerateFps));
+        }
+
+        @CalledByNative
         public static EncoderInfo $default$getEncoderInfo(VideoEncoder videoEncoder) {
             return new EncoderInfo(1, false);
         }

@@ -218,14 +218,10 @@ public class SpoilerEffect2 {
         if (num.intValue() % 4 == 3) {
             canvas.scale(1.0f, -1.0f, i3 / 2.0f, i4 / 2.0f);
         }
-        float f2 = i;
-        float f3 = i2;
-        canvas.translate(f2 / 2.0f, f3 / 2.0f);
         if (i > i3 || i2 > i4) {
-            float max = Math.max(f2 / i3, f3 / i4);
+            float max = Math.max(i / i3, i2 / i4);
             canvas.scale(max, max);
         }
-        canvas.translate((-i) / 2.0f, (-i2) / 2.0f);
         if (z) {
             Bitmap bitmap = this.textureView.getBitmap();
             if (bitmap != null) {
