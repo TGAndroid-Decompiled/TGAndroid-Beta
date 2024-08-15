@@ -198,6 +198,7 @@ public class FilterTabsView extends FrameLayout {
 
     public class TabView extends View {
         public boolean animateChange;
+        public boolean animateCounterChange;
         private float animateFromCountWidth;
         private float animateFromCounterWidth;
         int animateFromTabCount;
@@ -222,6 +223,7 @@ public class FilterTabsView extends FrameLayout {
         private float lastTabWidth;
         float lastTextX;
         String lastTitle;
+        StaticLayout lastTitleLayout;
         private int lastTitleWidth;
         private float lastWidth;
         private float locIconXOffset;
@@ -261,6 +263,7 @@ public class FilterTabsView extends FrameLayout {
             super.onDetachedFromWindow();
             this.animateChange = false;
             this.animateTabCounter = false;
+            this.animateCounterChange = false;
             this.animateTextChange = false;
             this.animateTextX = false;
             this.animateTabWidth = false;
@@ -419,6 +422,7 @@ public class FilterTabsView extends FrameLayout {
         public void clearTransitionParams() {
             this.animateChange = false;
             this.animateTabCounter = false;
+            this.animateCounterChange = false;
             this.animateTextChange = false;
             this.animateTextX = false;
             this.animateTabWidth = false;
@@ -733,7 +737,7 @@ public class FilterTabsView extends FrameLayout {
                             FilterTabsView.AnonymousClass4.lambda$animateMoveImpl$1(FilterTabsView.TabView.this, valueAnimator2);
                         }
                     });
-                    ofFloat.addListener(new AnimatorListenerAdapter(this) {
+                    ofFloat.addListener(new AnimatorListenerAdapter() {
                         @Override
                         public void onAnimationEnd(Animator animator) {
                             tabView.clearTransitionParams();
@@ -1002,7 +1006,6 @@ public class FilterTabsView extends FrameLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        String str;
         if (!this.tabs.isEmpty()) {
             int size = (View.MeasureSpec.getSize(i) - AndroidUtilities.dp(7.0f)) - AndroidUtilities.dp(7.0f);
             Tab findDefaultTab = findDefaultTab();
@@ -1010,13 +1013,7 @@ public class FilterTabsView extends FrameLayout {
                 int i3 = R.string.FilterAllChats;
                 findDefaultTab.setTitle(LocaleController.getString(i3));
                 int width = findDefaultTab.getWidth(false);
-                if (this.allTabsWidth > size) {
-                    i3 = R.string.FilterAllChatsShort;
-                    str = "FilterAllChatsShort";
-                } else {
-                    str = "FilterAllChats";
-                }
-                findDefaultTab.setTitle(LocaleController.getString(str, i3));
+                findDefaultTab.setTitle(this.allTabsWidth > size ? LocaleController.getString("FilterAllChatsShort", R.string.FilterAllChatsShort) : LocaleController.getString("FilterAllChats", i3));
                 int width2 = (this.allTabsWidth - width) + findDefaultTab.getWidth(false);
                 int i4 = this.additionalTabWidth;
                 int size2 = width2 < size ? (size - width2) / this.tabs.size() : 0;

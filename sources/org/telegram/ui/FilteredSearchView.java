@@ -109,6 +109,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
     private OnlyUserFiltersAdapter dialogsAdapter;
     StickerEmptyView emptyView;
     private boolean endReached;
+    private boolean firstLoading;
     private AnimatorSet floatingDateAnimation;
     private final ChatActionCell floatingDateView;
     private Runnable hideFloatingDateRunnable;
@@ -282,6 +283,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                 return null;
             }
         };
+        this.firstLoading = true;
         this.notificationsLocker = new AnimationNotificationsLocker();
         this.hideFloatingDateRunnable = new Runnable() {
             @Override
@@ -509,8 +511,8 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                 if (i == 1 || i == 2) {
                     coloredImageSpan.setScale(0.85f);
                 }
-                SpannableStringBuilder[] spannableStringBuilderArr2 = arrowSpan;
-                spannableStringBuilderArr2[i].setSpan(coloredImageSpan, 0, spannableStringBuilderArr2[i].length(), 0);
+                SpannableStringBuilder spannableStringBuilder = arrowSpan[i];
+                spannableStringBuilder.setSpan(coloredImageSpan, 0, spannableStringBuilder.length(), 0);
             }
             TLRPC$Message tLRPC$Message = messageObject.messageOwner;
             CharSequence charSequence = null;
@@ -550,9 +552,9 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                     charSequence2 = ForumUtilities.getTopicSpannedName(findTopic2, null, false);
                 }
                 CharSequence replaceEmoji = Emoji.replaceEmoji(charSequence2, textPaint == null ? null : textPaint.getFontMetricsInt(), false);
-                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                spannableStringBuilder.append(Emoji.replaceEmoji(UserObject.getFirstName(tLRPC$User), textPaint != null ? textPaint.getFontMetricsInt() : null, false)).append((char) 8202).append((CharSequence) arrowSpan[i]).append((char) 8202).append(replaceEmoji);
-                charSequence = spannableStringBuilder;
+                SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
+                spannableStringBuilder2.append(Emoji.replaceEmoji(UserObject.getFirstName(tLRPC$User), textPaint != null ? textPaint.getFontMetricsInt() : null, false)).append((char) 8202).append((CharSequence) arrowSpan[i]).append((char) 8202).append(replaceEmoji);
+                charSequence = spannableStringBuilder2;
             } else if (tLRPC$User != null) {
                 charSequence = Emoji.replaceEmoji(UserObject.getUserName(tLRPC$User), textPaint != null ? textPaint.getFontMetricsInt() : null, false);
             } else if (chat != null) {
@@ -605,6 +607,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                 adapter.notifyDataSetChanged();
             }
             this.requestIndex++;
+            this.firstLoading = true;
             if (this.recyclerListView.getPinnedHeader() != null) {
                 this.recyclerListView.getPinnedHeader().setAlpha(0.0f);
             }
@@ -885,6 +888,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                 delegate.updateFiltersView(TextUtils.isEmpty(this.currentDataQuery), this.localTipChats, this.localTipDates, this.localTipArchive);
             }
         }
+        this.firstLoading = false;
         final View view = null;
         final int i7 = -1;
         for (int i8 = 0; i8 < size; i8++) {
@@ -1603,7 +1607,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
             if (this == obj) {
                 return true;
             }
-            if (obj == null || MessageHashId.class != obj.getClass()) {
+            if (obj == null || getClass() != obj.getClass()) {
                 return false;
             }
             MessageHashId messageHashId = (MessageHashId) obj;
@@ -1628,7 +1632,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             DialogCell dialogCell;
             if (i == 0) {
-                dialogCell = new DialogCell(this, null, viewGroup.getContext(), true, true) {
+                dialogCell = new DialogCell(null, viewGroup.getContext(), true, true) {
                     @Override
                     public boolean isForumCell() {
                         return false;

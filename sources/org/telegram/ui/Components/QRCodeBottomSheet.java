@@ -39,7 +39,7 @@ public class QRCodeBottomSheet extends BottomSheet {
         super(context, false);
         fixNavigationBar();
         setTitle(str, true);
-        final ImageView imageView = new ImageView(this, context) {
+        final ImageView imageView = new ImageView(context) {
             @Override
             protected void onMeasure(int i, int i2) {
                 int size = View.MeasureSpec.getSize(i);
@@ -48,7 +48,7 @@ public class QRCodeBottomSheet extends BottomSheet {
         };
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
         if (Build.VERSION.SDK_INT >= 21) {
-            imageView.setOutlineProvider(new ViewOutlineProvider(this) {
+            imageView.setOutlineProvider(new ViewOutlineProvider() {
                 @Override
                 public void getOutline(View view, Outline outline) {
                     outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), AndroidUtilities.dp(12.0f));

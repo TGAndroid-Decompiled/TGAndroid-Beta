@@ -199,13 +199,21 @@ public class ShutterButton extends View {
 
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction;
+        int id;
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction2;
+        int id2;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.Button");
         accessibilityNodeInfo.setClickable(true);
         accessibilityNodeInfo.setLongClickable(true);
         if (Build.VERSION.SDK_INT >= 21) {
-            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_CLICK.getId(), LocaleController.getString("AccActionTakePicture", R.string.AccActionTakePicture)));
-            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_LONG_CLICK.getId(), LocaleController.getString("AccActionRecordVideo", R.string.AccActionRecordVideo)));
+            accessibilityAction = AccessibilityNodeInfo.AccessibilityAction.ACTION_CLICK;
+            id = accessibilityAction.getId();
+            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(id, LocaleController.getString("AccActionTakePicture", R.string.AccActionTakePicture)));
+            accessibilityAction2 = AccessibilityNodeInfo.AccessibilityAction.ACTION_LONG_CLICK;
+            id2 = accessibilityAction2.getId();
+            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(id2, LocaleController.getString("AccActionRecordVideo", R.string.AccActionRecordVideo)));
         }
     }
 }

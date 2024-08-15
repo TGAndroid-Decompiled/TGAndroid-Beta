@@ -119,7 +119,7 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
         ActionBarMenuItem addItem2 = createActionMode.addItem(2, R.drawable.msg_delete);
         this.deleteItem = addItem2;
         addItem2.setContentDescription(LocaleController.getString(R.string.Delete));
-        SizeNotifierFrameLayout sizeNotifierFrameLayout = new SizeNotifierFrameLayout(this, context) {
+        SizeNotifierFrameLayout sizeNotifierFrameLayout = new SizeNotifierFrameLayout(context) {
             @Override
             protected void onMeasure(int i, int i2) {
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824));
@@ -496,9 +496,9 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
                     if (callback3 != null) {
                         callback3.run(obj);
                     }
-                    AlertDialog[] alertDialogArr = r13;
-                    if (alertDialogArr[0] != null) {
-                        alertDialogArr[0].dismiss();
+                    AlertDialog alertDialog = r13[0];
+                    if (alertDialog != null) {
+                        alertDialog.dismiss();
                     }
                     if (r13[0] == QuickRepliesActivity.currentDialog) {
                         AlertDialog unused = QuickRepliesActivity.currentDialog = null;
@@ -549,9 +549,10 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
                     QuickRepliesActivity.lambda$openRenameReplyAlert$10(EditTextBoldCursor.this, (Runnable) obj);
                 }
             });
+            AlertDialog create2 = r14.create();
             r1 = 0;
-            r13[0] = r14.create();
-            r13[0].setOnDismissListener(new DialogInterface.OnDismissListener() {
+            r13[0] = create2;
+            create2.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
                     AndroidUtilities.hideKeyboard(EditTextBoldCursor.this);
@@ -571,17 +572,19 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
 
     public static void lambda$openRenameReplyAlert$4(Runnable[] runnableArr, ValueAnimator[] valueAnimatorArr, final TextView textView, final TextView textView2, Boolean bool) {
         AndroidUtilities.cancelRunOnUIThread(runnableArr[0]);
-        if (valueAnimatorArr[0] != null) {
-            valueAnimatorArr[0].cancel();
+        ValueAnimator valueAnimator = valueAnimatorArr[0];
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
         }
         float[] fArr = new float[2];
         fArr[0] = textView.getAlpha();
         fArr[1] = bool.booleanValue() ? 1.0f : 0.0f;
-        valueAnimatorArr[0] = ValueAnimator.ofFloat(fArr);
-        valueAnimatorArr[0].addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+        valueAnimatorArr[0] = ofFloat;
+        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                QuickRepliesActivity.lambda$openRenameReplyAlert$3(textView, textView2, valueAnimator);
+            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                QuickRepliesActivity.lambda$openRenameReplyAlert$3(textView, textView2, valueAnimator2);
             }
         });
         valueAnimatorArr[0].setDuration(320L);

@@ -25,6 +25,7 @@ public class ChecksHintView extends FrameLayout {
     private RLottieImageView[] imageView;
     private ChatMessageCell messageCell;
     private final Theme.ResourcesProvider resourcesProvider;
+    private long showingDuration;
     private TextView[] textView;
     private float translationY;
 
@@ -32,6 +33,7 @@ public class ChecksHintView extends FrameLayout {
         super(context);
         this.textView = new TextView[2];
         this.imageView = new RLottieImageView[2];
+        this.showingDuration = 2000L;
         this.resourcesProvider = resourcesProvider;
         FrameLayout frameLayout = new FrameLayout(context);
         frameLayout.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), getThemedColor(Theme.key_chat_gifSaveHintBackground)));
@@ -123,6 +125,7 @@ public class ChecksHintView extends FrameLayout {
         }
         setPivotX(left2);
         setPivotY(getMeasuredHeight());
+        this.messageCell = chatMessageCell;
         AnimatorSet animatorSet = this.animatorSet;
         if (animatorSet != null) {
             animatorSet.cancel();

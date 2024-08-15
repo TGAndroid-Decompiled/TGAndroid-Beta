@@ -62,9 +62,13 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Stories.recorder.KeyboardNotifier;
 public class PasscodeView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private static final int[] ids = {R.id.passcode_btn_0, R.id.passcode_btn_1, R.id.passcode_btn_2, R.id.passcode_btn_3, R.id.passcode_btn_4, R.id.passcode_btn_5, R.id.passcode_btn_6, R.id.passcode_btn_7, R.id.passcode_btn_8, R.id.passcode_btn_9, R.id.passcode_btn_backspace, R.id.passcode_btn_fingerprint};
+    private final int BUTTON_SIZE;
+    private final int BUTTON_X_MARGIN;
+    private final int BUTTON_Y_MARGIN;
     private SpringAnimation backgroundAnimationSpring;
     private Drawable backgroundDrawable;
     private FrameLayout backgroundFrameLayout;
+    private int backgroundFrameLayoutColor;
     private LinkedList<Boolean> backgroundSpringNextQueue;
     private LinkedList<Runnable> backgroundSpringQueue;
     private View border;
@@ -91,6 +95,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
     private boolean pinShown;
     private int[] pos;
     private android.graphics.Rect rect;
+    int resumeCount;
     private TextView retryTextView;
     private int shiftDp;
     private float shownT;
@@ -459,6 +464,9 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
     public PasscodeView(Context context) {
         super(context);
         int i;
+        this.BUTTON_X_MARGIN = 28;
+        this.BUTTON_Y_MARGIN = 16;
+        this.BUTTON_SIZE = 60;
         this.keyboardHeight = 0;
         this.rect = new android.graphics.Rect();
         this.backgroundSpringQueue = new LinkedList<>();
@@ -472,6 +480,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
                 AndroidUtilities.runOnUIThread(PasscodeView.this.checkRunnable, 100L);
             }
         };
+        this.resumeCount = 0;
         this.pinShown = true;
         this.pos = new int[2];
         setWillNotDraw(false);
@@ -557,7 +566,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
             }
         });
         this.passwordEditText.addTextChangedListener(new AnonymousClass2());
-        this.passwordEditText.setCustomSelectionActionModeCallback(new ActionMode.Callback(this) {
+        this.passwordEditText.setCustomSelectionActionModeCallback(new ActionMode.Callback() {
             @Override
             public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
                 return false;
@@ -612,7 +621,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         FrameLayout frameLayout3 = new FrameLayout(context);
         this.numbersContainer = frameLayout3;
         this.backgroundFrameLayout.addView(frameLayout3, LayoutHelper.createFrame(-1, -1, 51));
-        FrameLayout frameLayout4 = new FrameLayout(this, context) {
+        FrameLayout frameLayout4 = new FrameLayout(context) {
             @Override
             protected void onLayout(boolean z, int i3, int i4, int i5, int i6) {
                 super.onLayout(z, i3, i4, i5, i6);
@@ -1360,10 +1369,13 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         }
         setTranslationY(0.0f);
         this.backgroundDrawable = null;
+        this.backgroundFrameLayoutColor = 0;
         if (Theme.getCachedWallpaper() instanceof MotionBackgroundDrawable) {
             z3 = !Theme.isCurrentThemeDark();
             this.backgroundDrawable = Theme.getCachedWallpaper();
-            this.backgroundFrameLayout.setBackgroundColor(-1090519040);
+            FrameLayout frameLayout = this.backgroundFrameLayout;
+            this.backgroundFrameLayoutColor = -1090519040;
+            frameLayout.setBackgroundColor(-1090519040);
         } else {
             if (Theme.isCustomTheme() && !"CJz3BZ6YGEYBAAAABboWp6SAv04".equals(Theme.getSelectedBackgroundSlug()) && !"qeZWES8rGVIEAAAARfWlK1lnfiI".equals(Theme.getSelectedBackgroundSlug())) {
                 BackgroundGradientDrawable currentGradientWallpaper = Theme.getCurrentGradientWallpaper();
@@ -1372,21 +1384,33 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
                     this.backgroundDrawable = Theme.getCachedWallpaper();
                 }
                 if (this.backgroundDrawable instanceof BackgroundGradientDrawable) {
-                    this.backgroundFrameLayout.setBackgroundColor(570425344);
+                    FrameLayout frameLayout2 = this.backgroundFrameLayout;
+                    this.backgroundFrameLayoutColor = 570425344;
+                    frameLayout2.setBackgroundColor(570425344);
                 } else {
-                    this.backgroundFrameLayout.setBackgroundColor(-1090519040);
+                    FrameLayout frameLayout3 = this.backgroundFrameLayout;
+                    this.backgroundFrameLayoutColor = -1090519040;
+                    frameLayout3.setBackgroundColor(-1090519040);
                 }
             } else if ("d".equals(Theme.getSelectedBackgroundSlug()) || Theme.isPatternWallpaper()) {
-                this.backgroundFrameLayout.setBackgroundColor(-11436898);
+                FrameLayout frameLayout4 = this.backgroundFrameLayout;
+                this.backgroundFrameLayoutColor = -11436898;
+                frameLayout4.setBackgroundColor(-11436898);
             } else {
                 Drawable cachedWallpaper = Theme.getCachedWallpaper();
                 this.backgroundDrawable = cachedWallpaper;
                 if (cachedWallpaper instanceof BackgroundGradientDrawable) {
-                    this.backgroundFrameLayout.setBackgroundColor(570425344);
+                    FrameLayout frameLayout5 = this.backgroundFrameLayout;
+                    this.backgroundFrameLayoutColor = 570425344;
+                    frameLayout5.setBackgroundColor(570425344);
                 } else if (cachedWallpaper != null) {
-                    this.backgroundFrameLayout.setBackgroundColor(-1090519040);
+                    FrameLayout frameLayout6 = this.backgroundFrameLayout;
+                    this.backgroundFrameLayoutColor = -1090519040;
+                    frameLayout6.setBackgroundColor(-1090519040);
                 } else {
-                    this.backgroundFrameLayout.setBackgroundColor(-11436898);
+                    FrameLayout frameLayout7 = this.backgroundFrameLayout;
+                    this.backgroundFrameLayoutColor = -11436898;
+                    frameLayout7.setBackgroundColor(-11436898);
                 }
             }
             z3 = false;
@@ -1404,9 +1428,13 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
             }
             this.backgroundDrawable = new MotionBackgroundDrawable(colors[0], colors[1], colors[2], colors[3], false);
             if (motionBackgroundDrawable.hasPattern() && motionBackgroundDrawable.getIntensity() < 0) {
-                this.backgroundFrameLayout.setBackgroundColor(2130706432);
+                FrameLayout frameLayout8 = this.backgroundFrameLayout;
+                this.backgroundFrameLayoutColor = 2130706432;
+                frameLayout8.setBackgroundColor(2130706432);
             } else {
-                this.backgroundFrameLayout.setBackgroundColor(570425344);
+                FrameLayout frameLayout9 = this.backgroundFrameLayout;
+                this.backgroundFrameLayoutColor = 570425344;
+                frameLayout9.setBackgroundColor(570425344);
             }
             ((MotionBackgroundDrawable) this.backgroundDrawable).setParentView(this.backgroundFrameLayout);
         }
@@ -1575,7 +1603,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
                     animatorArr2[c] = ObjectAnimator.ofFloat(childAt, property4, fArr4);
                     animatorArr2[2] = ObjectAnimator.ofFloat(childAt, View.ALPHA, 0.0f, 1.0f);
                     animatorSet4.playTogether(animatorArr2);
-                    innerAnimator.animatorSet.addListener(new AnimatorListenerAdapter(this) {
+                    innerAnimator.animatorSet.addListener(new AnimatorListenerAdapter() {
                         @Override
                         public void onAnimationEnd(Animator animator) {
                             AnimatorSet animatorSet5 = animatorSet;
@@ -1768,11 +1796,9 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         int dp4 = AndroidUtilities.dp(z ? 52.0f : 82.0f);
         int i11 = 0;
         while (i11 < 12) {
-            int i12 = 11;
-            if (i11 == 0) {
-                i12 = 10;
-            } else if (i11 != 10) {
-                i12 = i11 == 11 ? 9 : i11 - 1;
+            int i12 = 10;
+            if (i11 != 0) {
+                i12 = i11 == 10 ? 11 : i11 == 11 ? 9 : i11 - 1;
             }
             FrameLayout frameLayout = this.numberFrameLayouts.get(i11);
             FrameLayout.LayoutParams layoutParams7 = (FrameLayout.LayoutParams) frameLayout.getLayoutParams();

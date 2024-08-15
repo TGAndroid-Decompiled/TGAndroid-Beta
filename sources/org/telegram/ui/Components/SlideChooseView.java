@@ -38,6 +38,7 @@ public class SlideChooseView extends View {
     private boolean startMoving;
     private int startMovingPreset;
     private TextPaint textPaint;
+    private boolean touchWasClose;
     private float xTouchDown;
     private float yTouchDown;
 
@@ -63,6 +64,7 @@ public class SlideChooseView extends View {
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
         this.selectedIndexAnimatedHolder = new AnimatedFloat(this, 120L, cubicBezierInterpolator);
         this.movingAnimatedHolder = new AnimatedFloat(this, 150L, cubicBezierInterpolator);
+        this.touchWasClose = false;
         this.resourcesProvider = resourcesProvider;
         this.paint = new Paint(1);
         this.textPaint = new TextPaint(1);

@@ -40,6 +40,7 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
     protected static final boolean ANIMATE_PICKER_SIZES;
     public static FastOutSlowInInterpolator INTERPOLATOR;
     public static final boolean USE_LINES;
+    private final int ANIM_DURATION;
     ValueAnimator alphaAnimator;
     ValueAnimator alphaBottomAnimator;
     public boolean animateLegentTo;
@@ -108,6 +109,7 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
     boolean postTransition;
     protected Theme.ResourcesProvider resourcesProvider;
     Paint ripplePaint;
+    protected float selectedCoordinate;
     protected int selectedIndex;
     Paint selectedLinePaint;
     public float selectionA;
@@ -197,6 +199,7 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
         this.horizontalLines = new ArrayList<>(10);
         this.bottomSignatureDate = new ArrayList<>(25);
         this.lines = new ArrayList<>();
+        this.ANIM_DURATION = 400;
         this.drawPointOnSelection = true;
         this.currentMaxHeight = 250.0f;
         this.currentMinHeight = 0.0f;
@@ -223,6 +226,7 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
         this.pickerDelegate = new ChartPickerDelegate(this);
         this.chartCaptured = false;
         this.selectedIndex = -1;
+        this.selectedCoordinate = -1.0f;
         this.legendShowing = false;
         this.selectionA = 0.0f;
         this.superDraw = false;
@@ -533,7 +537,9 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
                 if (i9 >= 0) {
                     long[] jArr = this.chartData.x;
                     if (i9 < jArr.length - 1) {
-                        float f3 = ((((float) (jArr[i9] - jArr[0])) / ((float) (jArr[jArr.length - 1] - jArr[0]))) * this.chartFullWidth) - f2;
+                        long j = jArr[i9];
+                        long j2 = jArr[0];
+                        float f3 = ((((float) (j - j2)) / ((float) (jArr[jArr.length - 1] - j2))) * this.chartFullWidth) - f2;
                         float f4 = f3 - BOTTOM_SIGNATURE_OFFSET;
                         if (f4 > 0.0f) {
                             float f5 = this.chartWidth;
@@ -658,13 +664,8 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
                 if (f4 > 1.0f) {
                     f4 = f3 / (f - f2);
                 }
-                float f5 = 0.045f;
                 double d = f4;
-                if (d > 0.7d) {
-                    f5 = 0.1f;
-                } else if (d < 0.1d) {
-                    f5 = 0.03f;
-                }
+                float f5 = d > 0.7d ? 0.1f : d < 0.1d ? 0.03f : 0.045f;
                 boolean z4 = ((float) j3) != this.animateToMaxHeight;
                 if (this.useMinHeight && ((float) j4) != this.animateToMinHeight) {
                     z4 = true;
@@ -865,10 +866,13 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
         float f = this.chartFullWidth;
         float f2 = (this.pickerDelegate.pickerStart * f) - HORIZONTAL_PADDING;
         float f3 = (i + f2) / f;
+        this.selectedCoordinate = f3;
         if (f3 < 0.0f) {
             this.selectedIndex = 0;
+            this.selectedCoordinate = 0.0f;
         } else if (f3 > 1.0f) {
             this.selectedIndex = t.x.length - 1;
+            this.selectedCoordinate = 1.0f;
         } else {
             int findIndex = t.findIndex(this.startXIndex, this.endXIndex, f3);
             this.selectedIndex = findIndex;
@@ -904,10 +908,12 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
     }
 
     public void runSmoothHaptic() {
+        VibrationEffect createWaveform;
         if (Build.VERSION.SDK_INT >= 26) {
             Vibrator vibrator = (Vibrator) getContext().getSystemService("vibrator");
             if (this.vibrationEffect == null) {
-                this.vibrationEffect = VibrationEffect.createWaveform(new long[]{0, 2}, -1);
+                createWaveform = VibrationEffect.createWaveform(new long[]{0, 2}, -1);
+                this.vibrationEffect = createWaveform;
             }
             vibrator.cancel();
             vibrator.vibrate(this.vibrationEffect);
@@ -1306,8 +1312,8 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
 
     public void updatePickerMinMaxHeight() {
         if (ANIMATE_PICKER_SIZES) {
-            long j = Long.MAX_VALUE;
             Iterator<L> it = this.lines.iterator();
+            long j = Long.MAX_VALUE;
             long j2 = 0;
             while (it.hasNext()) {
                 L next = it.next();
@@ -1388,11 +1394,11 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
         int i = 0;
         int i2 = 0;
         for (int i3 = 0; i3 < length; i3++) {
-            long[] jArr = chartData.x;
-            if (j2 > jArr[i3]) {
+            long j4 = chartData.x[i3];
+            if (j2 > j4) {
                 i = i3;
             }
-            if (j3 > jArr[i3]) {
+            if (j3 > j4) {
                 i2 = i3;
             }
         }

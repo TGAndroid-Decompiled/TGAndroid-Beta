@@ -102,7 +102,7 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
         this.textView.setGravity(49);
         this.textView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
         frameLayout2.addView(this.textView, LayoutHelper.createFrame(-2, -2.0f, 51, 0.0f, 44.0f, 0.0f, 0.0f));
-        FrameLayout frameLayout3 = new FrameLayout(this, context) {
+        FrameLayout frameLayout3 = new FrameLayout(context) {
             CellFlickerDrawable cellFlickerDrawable;
 
             @Override

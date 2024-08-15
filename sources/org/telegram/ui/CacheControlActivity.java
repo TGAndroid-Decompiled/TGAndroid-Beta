@@ -66,7 +66,7 @@ import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BackDrawable;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
-import org.telegram.ui.ActionBar.BottomSheet$$ExternalSyntheticLambda9;
+import org.telegram.ui.ActionBar.BottomSheet$$ExternalSyntheticLambda5;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.CacheControlActivity;
@@ -133,11 +133,13 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
     private LinearLayoutManager layoutManager;
     private ListAdapter listAdapter;
     private RecyclerListView listView;
+    private boolean loadingDialogs;
     private NestedSizeNotifierLayout nestedSizeNotifierLayout;
     private int[] percents;
     AlertDialog progressDialog;
     private ActionBarMenuSubItem resetDatabaseItem;
     private float[] tempSizes;
+    private boolean updateDatabaseSize;
     private boolean[] selected = {true, true, true, true, true, true, true, true, true, true, true};
     private long databaseSize = -1;
     private long cacheSize = -1;
@@ -267,52 +269,28 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
     }
 
     public static void lambda$getDeviceTotalSize$3(final Utilities.Callback2 callback2) {
-        File file;
-        long blockSize;
-        long availableBlocks;
-        long blockCount;
-        if (Build.VERSION.SDK_INT >= 19) {
-            ArrayList<File> rootDirs = AndroidUtilities.getRootDirs();
-            file = rootDirs.get(0);
-            file.getAbsolutePath();
-            if (!TextUtils.isEmpty(SharedConfig.storageCacheDir)) {
-                int size = rootDirs.size();
-                for (int i = 0; i < size; i++) {
-                    File file2 = rootDirs.get(i);
-                    if (file2.getAbsolutePath().startsWith(SharedConfig.storageCacheDir) && file2.canWrite()) {
-                        file = file2;
-                        break;
-                    }
+        ArrayList<File> rootDirs = AndroidUtilities.getRootDirs();
+        File file = rootDirs.get(0);
+        file.getAbsolutePath();
+        if (!TextUtils.isEmpty(SharedConfig.storageCacheDir)) {
+            int size = rootDirs.size();
+            for (int i = 0; i < size; i++) {
+                File file2 = rootDirs.get(i);
+                if (file2.getAbsolutePath().startsWith(SharedConfig.storageCacheDir) && file2.canWrite()) {
+                    file = file2;
+                    break;
                 }
             }
-        } else {
-            file = new File(SharedConfig.storageCacheDir);
         }
         try {
             StatFs statFs = new StatFs(file.getPath());
-            int i2 = Build.VERSION.SDK_INT;
-            if (i2 >= 18) {
-                blockSize = statFs.getBlockSizeLong();
-            } else {
-                blockSize = statFs.getBlockSize();
-            }
-            final long j = blockSize;
-            if (i2 >= 18) {
-                availableBlocks = statFs.getAvailableBlocksLong();
-            } else {
-                availableBlocks = statFs.getAvailableBlocks();
-            }
-            final long j2 = availableBlocks;
-            if (i2 >= 18) {
-                blockCount = statFs.getBlockCountLong();
-            } else {
-                blockCount = statFs.getBlockCount();
-            }
-            final long j3 = blockCount;
+            final long blockSizeLong = statFs.getBlockSizeLong();
+            final long availableBlocksLong = statFs.getAvailableBlocksLong();
+            final long blockCountLong = statFs.getBlockCountLong();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    CacheControlActivity.lambda$getDeviceTotalSize$2(j3, j, j2, callback2);
+                    CacheControlActivity.lambda$getDeviceTotalSize$2(blockCountLong, blockSizeLong, availableBlocksLong, callback2);
                 }
             });
         } catch (Exception e) {
@@ -335,6 +313,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         canceled = false;
         getNotificationCenter().addObserver(this, NotificationCenter.didClearDatabase);
         this.databaseSize = MessagesStorage.getInstance(this.currentAccount).getDatabaseSize();
+        this.loadingDialogs = true;
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
@@ -348,10 +327,6 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
     }
 
     public void lambda$onFragmentCreate$5() {
-        File file;
-        long blockSize;
-        long availableBlocks;
-        long blockCount;
         this.cacheSize = getDirectorySize(FileLoader.checkDirectory(4), 5);
         if (canceled) {
             return;
@@ -410,43 +385,25 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         lastTotalSizeCalculated = valueOf;
         this.totalSize = valueOf.longValue();
         lastTotalSizeCalculatedTime = System.currentTimeMillis();
-        if (Build.VERSION.SDK_INT >= 19) {
-            ArrayList<File> rootDirs = AndroidUtilities.getRootDirs();
-            file = rootDirs.get(0);
-            file.getAbsolutePath();
-            if (!TextUtils.isEmpty(SharedConfig.storageCacheDir)) {
-                int size = rootDirs.size();
-                for (int i = 0; i < size; i++) {
-                    File file2 = rootDirs.get(i);
-                    if (file2.getAbsolutePath().startsWith(SharedConfig.storageCacheDir)) {
-                        file = file2;
-                        break;
-                    }
+        ArrayList<File> rootDirs = AndroidUtilities.getRootDirs();
+        File file = rootDirs.get(0);
+        file.getAbsolutePath();
+        if (!TextUtils.isEmpty(SharedConfig.storageCacheDir)) {
+            int size = rootDirs.size();
+            for (int i = 0; i < size; i++) {
+                File file2 = rootDirs.get(i);
+                if (file2.getAbsolutePath().startsWith(SharedConfig.storageCacheDir)) {
+                    file = file2;
+                    break;
                 }
             }
-        } else {
-            file = new File(SharedConfig.storageCacheDir);
         }
         try {
             StatFs statFs = new StatFs(file.getPath());
-            int i2 = Build.VERSION.SDK_INT;
-            if (i2 >= 18) {
-                blockSize = statFs.getBlockSizeLong();
-            } else {
-                blockSize = statFs.getBlockSize();
-            }
-            if (i2 >= 18) {
-                availableBlocks = statFs.getAvailableBlocksLong();
-            } else {
-                availableBlocks = statFs.getAvailableBlocks();
-            }
-            if (i2 >= 18) {
-                blockCount = statFs.getBlockCountLong();
-            } else {
-                blockCount = statFs.getBlockCount();
-            }
-            this.totalDeviceSize = blockCount * blockSize;
-            this.totalDeviceFreeSize = availableBlocks * blockSize;
+            long blockSizeLong = statFs.getBlockSizeLong();
+            long availableBlocksLong = statFs.getAvailableBlocksLong();
+            this.totalDeviceSize = statFs.getBlockCountLong() * blockSizeLong;
+            this.totalDeviceFreeSize = availableBlocksLong * blockSizeLong;
         } catch (Exception e) {
             FileLog.e(e);
         }
@@ -584,6 +541,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
 
     public void lambda$loadDialogEntities$6(ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, CacheModel cacheModel) {
         boolean z;
+        this.loadingDialogs = false;
         getMessagesController().putUsers(arrayList, true);
         getMessagesController().putChats(arrayList2, true);
         DialogFileEntities dialogFileEntities = null;
@@ -742,6 +700,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             }
         });
         setCacheModel(null);
+        this.loadingDialogs = true;
     }
 
     public void lambda$cleanupFolders$12(final Utilities.Callback2 callback2, final Runnable runnable) {
@@ -847,8 +806,9 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                     }
                 } else {
                     file2.delete();
-                    iArr[0] = iArr[0] + 1;
-                    callback.run(Float.valueOf(iArr[0] / countDirJava));
+                    int i2 = iArr[0] + 1;
+                    iArr[0] = i2;
+                    callback.run(Float.valueOf(i2 / countDirJava));
                 }
             }
         }
@@ -1281,13 +1241,14 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
 
     public void cleanupDialogFiles(DialogFileEntities dialogFileEntities, StorageDiagramView.ClearViewData[] clearViewDataArr, CacheModel cacheModel) {
         FileEntities fileEntities;
+        StorageDiagramView.ClearViewData clearViewData;
         final AlertDialog alertDialog = new AlertDialog(getParentActivity(), 3);
         alertDialog.setCanCancel(false);
         alertDialog.showDelayed(500L);
         HashSet hashSet = new HashSet();
         long j = this.totalSize;
         for (int i = 0; i < 8; i++) {
-            if ((clearViewDataArr == null || (clearViewDataArr[i] != null && clearViewDataArr[i].clear)) && (fileEntities = dialogFileEntities.entitiesByType.get(i)) != null) {
+            if ((clearViewDataArr == null || ((clearViewData = clearViewDataArr[i]) != null && clearViewData.clear)) && (fileEntities = dialogFileEntities.entitiesByType.get(i)) != null) {
                 hashSet.addAll(fileEntities.files);
                 long j2 = dialogFileEntities.totalSize;
                 long j3 = fileEntities.totalSize;
@@ -1470,6 +1431,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             this.progressDialog = null;
             if (this.listAdapter != null) {
                 this.databaseSize = MessagesStorage.getInstance(this.currentAccount).getDatabaseSize();
+                this.updateDatabaseSize = true;
                 updateDatabaseItemSize();
                 updateRows();
             }
@@ -1537,7 +1499,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                 addView(this.subtitle[i], LayoutHelper.createFrame(-2, -2.0f, 17, 0.0f, i == 2 ? 12.0f : -6.0f, 0.0f, 0.0f));
                 i++;
             }
-            this.bottomImage = new View(this, context, CacheControlActivity.this) {
+            this.bottomImage = new View(context) {
                 @Override
                 protected void onMeasure(int i2, int i3) {
                     super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2) + getPaddingLeft() + getPaddingRight(), 1073741824), i3);
@@ -1742,7 +1704,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         TextView subtitle;
         TextView title;
 
-        public ClearingCacheView(CacheControlActivity cacheControlActivity, Context context) {
+        public ClearingCacheView(Context context) {
             super(context);
             RLottieImageView rLottieImageView = new RLottieImageView(context);
             this.imageView = rLottieImageView;
@@ -1760,7 +1722,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             this.percentsTextView.setTextSize(AndroidUtilities.dp(24.0f));
             this.percentsTextView.setTypeface(AndroidUtilities.bold());
             addView(this.percentsTextView, LayoutHelper.createFrame(-1, 32.0f, 49, 0.0f, 176.0f, 0.0f, 0.0f));
-            ProgressView progressView = new ProgressView(this, context);
+            ProgressView progressView = new ProgressView(context);
             this.progressView = progressView;
             addView(progressView, LayoutHelper.createFrame(240, 5.0f, 49, 0.0f, 226.0f, 0.0f, 0.0f));
             TextView textView = new TextView(context);
@@ -1798,7 +1760,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             float progress;
             AnimatedFloat progressT;
 
-            public ProgressView(ClearingCacheView clearingCacheView, Context context) {
+            public ProgressView(Context context) {
                 super(context);
                 this.in = new Paint(1);
                 this.out = new Paint(1);
@@ -1869,7 +1831,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         }
 
         private void doClearCache() {
-            final BottomSheet bottomSheet = new BottomSheet(this, getContext(), false) {
+            final BottomSheet bottomSheet = new BottomSheet(getContext(), false) {
                 @Override
                 protected boolean canDismissWithTouchOutside() {
                     return false;
@@ -1878,7 +1840,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             bottomSheet.fixNavigationBar();
             bottomSheet.setCanDismissWithSwipe(false);
             bottomSheet.setCancelable(false);
-            final ClearingCacheView clearingCacheView = new ClearingCacheView(CacheControlActivity.this, getContext());
+            final ClearingCacheView clearingCacheView = new ClearingCacheView(getContext());
             bottomSheet.setCustomView(clearingCacheView);
             final boolean[] zArr = {false};
             final float[] fArr = {0.0f};
@@ -1945,7 +1907,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             clearingCacheView.setProgress(1.0f);
             if (jArr[0] > 0) {
                 Objects.requireNonNull(bottomSheet);
-                AndroidUtilities.runOnUIThread(new BottomSheet$$ExternalSyntheticLambda9(bottomSheet), Math.max(0L, 1000 - (System.currentTimeMillis() - jArr[0])));
+                AndroidUtilities.runOnUIThread(new BottomSheet$$ExternalSyntheticLambda5(bottomSheet), Math.max(0L, 1000 - (System.currentTimeMillis() - jArr[0])));
                 return;
             }
             bottomSheet.dismiss();
@@ -2333,7 +2295,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                         flickerLoadingView = slideChooseView;
                         break;
                     case 5:
-                        FrameLayout userCell = new UserCell(CacheControlActivity.this.getContext(), CacheControlActivity.this.getResourceProvider());
+                        View userCell = new UserCell(CacheControlActivity.this.getContext(), CacheControlActivity.this.getResourceProvider());
                         userCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                         flickerLoadingView = userCell;
                         break;
@@ -3021,7 +2983,6 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             super(i, true);
             this.headerTopMargin = 15;
             this.headerBottomMargin = 0;
-            this.keepMediaType = -1;
             this.keepMediaType = i2;
         }
 
@@ -3058,7 +3019,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             if (this == obj) {
                 return true;
             }
-            if (obj != null && ItemInner.class == obj.getClass()) {
+            if (obj != null && getClass() == obj.getClass()) {
                 ItemInner itemInner = (ItemInner) obj;
                 int i = this.viewType;
                 if (i == itemInner.viewType) {

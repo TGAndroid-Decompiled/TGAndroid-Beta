@@ -40,7 +40,7 @@ public class DialogsRequestedEmptyCell extends LinearLayout implements Notificat
         this.currentAccount = UserConfig.selectedAccount;
         setOrientation(1);
         setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
-        LinearLayout linearLayout = new LinearLayout(this, context) {
+        LinearLayout linearLayout = new LinearLayout(context) {
             Paint paint;
             Path path = new Path();
 

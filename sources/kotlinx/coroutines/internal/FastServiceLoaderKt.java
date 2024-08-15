@@ -6,15 +6,15 @@ public final class FastServiceLoaderKt {
     private static final boolean ANDROID_DETECTED;
 
     static {
-        Object m151constructorimpl;
+        Object m153constructorimpl;
         try {
             Result.Companion companion = Result.Companion;
-            m151constructorimpl = Result.m151constructorimpl(Class.forName("android.os.Build"));
+            m153constructorimpl = Result.m153constructorimpl(Class.forName("android.os.Build"));
         } catch (Throwable th) {
             Result.Companion companion2 = Result.Companion;
-            m151constructorimpl = Result.m151constructorimpl(ResultKt.createFailure(th));
+            m153constructorimpl = Result.m153constructorimpl(ResultKt.createFailure(th));
         }
-        ANDROID_DETECTED = Result.m154isSuccessimpl(m151constructorimpl);
+        ANDROID_DETECTED = Result.m156isSuccessimpl(m153constructorimpl);
     }
 
     public static final boolean getANDROID_DETECTED() {

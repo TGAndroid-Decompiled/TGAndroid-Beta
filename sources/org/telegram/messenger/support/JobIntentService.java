@@ -160,7 +160,9 @@ public abstract class JobIntentService extends Service {
 
             @Override
             public Intent getIntent() {
-                return this.mJobWork.getIntent();
+                Intent intent;
+                intent = this.mJobWork.getIntent();
+                return intent;
             }
 
             @Override
@@ -204,6 +206,7 @@ public abstract class JobIntentService extends Service {
         @Override
         public GenericWorkItem dequeueWork() {
             JobWorkItem jobWorkItem;
+            Intent intent;
             synchronized (this.mLock) {
                 JobParameters jobParameters = this.mParams;
                 if (jobParameters == null) {
@@ -215,7 +218,8 @@ public abstract class JobIntentService extends Service {
                     jobWorkItem = null;
                 }
                 if (jobWorkItem != null) {
-                    jobWorkItem.getIntent().setExtrasClassLoader(this.mService.getClassLoader());
+                    intent = jobWorkItem.getIntent();
+                    intent.setExtrasClassLoader(this.mService.getClassLoader());
                     return new WrapperWorkItem(jobWorkItem);
                 }
                 return null;
@@ -229,8 +233,14 @@ public abstract class JobIntentService extends Service {
 
         JobWorkEnqueuer(Context context, ComponentName componentName, int i) {
             super(context, componentName);
+            JobInfo.Builder overrideDeadline;
+            JobInfo.Builder requiredNetworkType;
+            JobInfo build;
             ensureJobId(i);
-            this.mJobInfo = new JobInfo.Builder(i, this.mComponentName).setOverrideDeadline(0L).setRequiredNetworkType(1).build();
+            overrideDeadline = new JobInfo.Builder(i, this.mComponentName).setOverrideDeadline(0L);
+            requiredNetworkType = overrideDeadline.setRequiredNetworkType(1);
+            build = requiredNetworkType.build();
+            this.mJobInfo = build;
             this.mJobScheduler = (JobScheduler) context.getApplicationContext().getSystemService("jobscheduler");
         }
 

@@ -59,7 +59,7 @@ public abstract class BaseCell extends FrameLayout {
         this.imageView = backupImageView;
         backupImageView.setRoundRadius(AndroidUtilities.dp(20.0f));
         addView(backupImageView);
-        SimpleTextView simpleTextView = new SimpleTextView(this, context) {
+        SimpleTextView simpleTextView = new SimpleTextView(context) {
             @Override
             public boolean setText(CharSequence charSequence) {
                 return super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), AndroidUtilities.dp(15.0f), false));

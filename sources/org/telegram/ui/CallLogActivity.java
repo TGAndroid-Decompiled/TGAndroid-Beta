@@ -537,7 +537,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
             stateListAnimator.addState(new int[]{16842919}, ObjectAnimator.ofFloat(this.floatingButton, "translationZ", AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f)).setDuration(200L));
             stateListAnimator.addState(new int[0], ObjectAnimator.ofFloat(this.floatingButton, "translationZ", AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f)).setDuration(200L));
             this.floatingButton.setStateListAnimator(stateListAnimator);
-            this.floatingButton.setOutlineProvider(new ViewOutlineProvider(this) {
+            this.floatingButton.setOutlineProvider(new ViewOutlineProvider() {
                 @Override
                 @SuppressLint({"NewApi"})
                 public void getOutline(View view, Outline outline) {
@@ -667,8 +667,9 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
     }
 
     public static void lambda$showDeleteAlert$4(boolean[] zArr, View view) {
-        zArr[0] = !zArr[0];
-        ((CheckBoxCell) view).setChecked(zArr[0], true);
+        boolean z = !zArr[0];
+        zArr[0] = z;
+        ((CheckBoxCell) view).setChecked(z, true);
     }
 
     public void lambda$showDeleteAlert$5(boolean z, boolean[] zArr, DialogInterface dialogInterface, int i) {
@@ -782,13 +783,13 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
     }
 
     private void showOrUpdateActionMode() {
-        boolean z = false;
+        boolean z;
         if (this.actionBar.isActionModeShowed()) {
+            z = true;
             if (this.selectedIds.isEmpty()) {
                 hideActionMode(true);
                 return;
             }
-            z = true;
         } else {
             createActionMode();
             this.actionBar.showActionMode();
@@ -803,6 +804,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
             animatorSet.playTogether(arrayList);
             animatorSet.setDuration(200L);
             animatorSet.start();
+            z = false;
         }
         this.selectedDialogsCountTextView.setNumber(this.selectedIds.size(), z);
     }
@@ -1002,7 +1004,6 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
             if (this.activeHeaderRow != -1) {
                 int i3 = this.rowsCount;
                 int i4 = i3 + 1;
-                this.rowsCount = i4;
                 this.sectionRow = i3;
                 this.rowsCount = i4 + 1;
                 this.callsHeaderRow = i4;

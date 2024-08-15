@@ -757,7 +757,7 @@ public final class BulletinFactory {
         int i2 = indexOf + 1;
         int indexOf2 = formatPluralString.indexOf(42, i2);
         valueOf.replace(indexOf, indexOf2 + 1, (CharSequence) formatPluralString.substring(i2, indexOf2));
-        valueOf.setSpan(new ClickableSpan(this) {
+        valueOf.setSpan(new ClickableSpan() {
             @Override
             public void onClick(View view) {
                 runnable.run();
@@ -986,9 +986,9 @@ public final class BulletinFactory {
             Bulletin.LottieLayoutWithReactions lottieLayoutWithReactions = new Bulletin.LottieLayoutWithReactions(this.fragment, i);
             if (j == UserConfig.getInstance(UserConfig.selectedAccount).clientUserId) {
                 if (i <= 1) {
-                    replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.FwdMessageToSavedMessages), -1, 2, BulletinFactory$$ExternalSyntheticLambda5.INSTANCE);
+                    replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.FwdMessageToSavedMessages), -1, 2, new BulletinFactory$$ExternalSyntheticLambda0());
                 } else {
-                    replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.FwdMessagesToSavedMessages), -1, 2, BulletinFactory$$ExternalSyntheticLambda5.INSTANCE);
+                    replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.FwdMessagesToSavedMessages), -1, 2, new BulletinFactory$$ExternalSyntheticLambda0());
                 }
                 lottieLayoutWithReactions.setAnimation(R.raw.saved_messages, 36, 36, new String[0]);
                 lottieLayoutWithReactions.textView.setText(replaceSingleTag);

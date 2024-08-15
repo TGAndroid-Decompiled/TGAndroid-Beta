@@ -25,6 +25,7 @@ public class ChatNotificationsPopupWrapper {
     Callback callback;
     int currentAccount;
     private final View gap;
+    private final boolean isProfile;
     long lastDismissTime;
     ActionBarMenuSubItem muteForLastSelected;
     private int muteForLastSelected1Time;
@@ -63,8 +64,13 @@ public class ChatNotificationsPopupWrapper {
     public ChatNotificationsPopupWrapper(final Context context, final int i, final PopupSwipeBackLayout popupSwipeBackLayout, boolean z, boolean z2, final Callback callback, final Theme.ResourcesProvider resourcesProvider) {
         this.currentAccount = i;
         this.callback = callback;
-        ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(this, context, z ? R.drawable.popup_fixed_alert : 0, resourcesProvider) {
+        this.isProfile = z2;
+        ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(context, z ? R.drawable.popup_fixed_alert : 0, resourcesProvider) {
             Path path = new Path();
+
+            {
+                ChatNotificationsPopupWrapper.this = this;
+            }
 
             @Override
             protected boolean drawChild(Canvas canvas, View view, long j) {

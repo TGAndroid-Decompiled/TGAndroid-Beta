@@ -44,12 +44,17 @@ public class MaskPaintView extends FrameLayout {
     private Rect exclusionRect;
     private ArrayList<Rect> exclusionRects;
     private boolean ignoreLayout;
+    private float imageHeight;
+    private float imageWidth;
     private boolean inBubbleMode;
+    private float inputTransformX;
+    private float inputTransformY;
     private int orientation;
     private Size paintingSize;
     private float panTranslationY;
     private DispatchQueue queue;
     private final RenderView renderView;
+    private float scale;
     private float transformX;
     private float transformY;
     private UndoStore undoStore;
@@ -91,7 +96,7 @@ public class MaskPaintView extends FrameLayout {
         this.inBubbleMode = context instanceof BubbleActivity;
         UndoStore undoStore = new UndoStore();
         this.undoStore = undoStore;
-        undoStore.setDelegate(new UndoStore.UndoStoreDelegate(this) {
+        undoStore.setDelegate(new UndoStore.UndoStoreDelegate() {
             @Override
             public void historyChanged() {
             }
@@ -228,56 +233,49 @@ public class MaskPaintView extends FrameLayout {
 
     public void setTransform(float f, float f2, float f3, float f4, float f5, float f6) {
         float f7;
-        float f8;
-        float f9;
-        float f10;
         MediaController.CropState cropState;
-        float f11;
+        float f8;
+        this.scale = f;
+        this.imageWidth = f5;
+        this.imageHeight = f6;
+        this.inputTransformX = f2;
+        this.inputTransformY = f3;
         this.transformX = f2;
-        float f12 = f3 + this.panTranslationY;
-        this.transformY = f12;
-        int i = 0;
-        while (i < 1) {
-            if (i == 0) {
-                RenderView renderView = this.renderView;
-                MediaController.CropState cropState2 = this.currentCropState;
-                if (cropState2 != null) {
-                    float f13 = cropState2.cropScale * 1.0f;
-                    int measuredWidth = renderView.getMeasuredWidth();
-                    int measuredHeight = renderView.getMeasuredHeight();
-                    if (measuredWidth == 0 || measuredHeight == 0) {
-                        return;
-                    }
-                    int i2 = this.currentCropState.transformRotation;
-                    if (i2 == 90 || i2 == 270) {
-                        measuredHeight = measuredWidth;
-                        measuredWidth = measuredHeight;
-                    }
-                    float f14 = measuredWidth;
-                    float max = Math.max(f5 / ((int) (cropState.cropPw * f14)), f6 / ((int) (cropState.cropPh * f11)));
-                    f7 = f13 * max;
-                    MediaController.CropState cropState3 = this.currentCropState;
-                    float f15 = cropState3.cropScale;
-                    f9 = (cropState3.cropPx * f14 * f * max * f15) + f2;
-                    f10 = (cropState3.cropPy * measuredHeight * f * max * f15) + f12;
-                    f8 = f4 + cropState3.cropRotate + i2;
-                } else {
-                    f7 = i == 0 ? this.baseScale * 1.0f : 1.0f;
-                    f8 = f4;
-                    f9 = f2;
-                    f10 = f12;
-                }
-                float f16 = f7 * f;
-                float f17 = Float.isNaN(f16) ? 1.0f : f16;
-                renderView.setScaleX(f17);
-                renderView.setScaleY(f17);
-                renderView.setTranslationX(f9);
-                renderView.setTranslationY(f10);
-                renderView.setRotation(f8);
-                renderView.invalidate();
+        float f9 = f3 + this.panTranslationY;
+        this.transformY = f9;
+        RenderView renderView = this.renderView;
+        MediaController.CropState cropState2 = this.currentCropState;
+        if (cropState2 != null) {
+            float f10 = cropState2.cropScale * 1.0f;
+            int measuredWidth = renderView.getMeasuredWidth();
+            int measuredHeight = renderView.getMeasuredHeight();
+            if (measuredWidth == 0 || measuredHeight == 0) {
+                return;
             }
-            i++;
+            int i = this.currentCropState.transformRotation;
+            if (i == 90 || i == 270) {
+                measuredHeight = measuredWidth;
+                measuredWidth = measuredHeight;
+            }
+            float f11 = measuredWidth;
+            float max = Math.max(f5 / ((int) (cropState.cropPw * f11)), f6 / ((int) (cropState.cropPh * f8)));
+            f7 = f10 * max;
+            MediaController.CropState cropState3 = this.currentCropState;
+            float f12 = cropState3.cropScale;
+            f2 += cropState3.cropPx * f11 * f * max * f12;
+            f9 += cropState3.cropPy * measuredHeight * f * max * f12;
+            f4 += cropState3.cropRotate + i;
+        } else {
+            f7 = this.baseScale * 1.0f;
         }
+        float f13 = f * f7;
+        float f14 = Float.isNaN(f13) ? 1.0f : f13;
+        renderView.setScaleX(f14);
+        renderView.setScaleY(f14);
+        renderView.setTranslationX(f2);
+        renderView.setTranslationY(f9);
+        renderView.setRotation(f4);
+        renderView.invalidate();
         invalidate();
     }
 
@@ -335,7 +333,7 @@ public class MaskPaintView extends FrameLayout {
         int i5 = i3 - i;
         int i6 = i4 - i2;
         if (Build.VERSION.SDK_INT >= 21 && !this.inBubbleMode) {
-            int i7 = AndroidUtilities.statusBarHeight;
+            int i7 = AndroidUtilities.LIGHT_STATUS_BAR_OVERLAY;
         }
         int ceil = (int) Math.ceil((i5 - this.renderView.getMeasuredWidth()) / 2.0f);
         int measuredHeight = (i6 - this.renderView.getMeasuredHeight()) / 2;

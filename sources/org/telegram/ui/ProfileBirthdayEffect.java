@@ -36,6 +36,8 @@ public class ProfileBirthdayEffect extends View {
     public static String numbersEmojipack = "FestiveFontEmoji";
     private boolean attached;
     private boolean autoplayed;
+    private final int currentAccount;
+    private final long dialogId;
     private BirthdayEffectFetcher fetcher;
     private BirthdayEffectFetcher fetcherToSet;
     private boolean isPlaying;
@@ -49,8 +51,8 @@ public class ProfileBirthdayEffect extends View {
         this.sourcePoint = new PointF();
         this.t = 1.0f;
         this.isPlaying = false;
-        profileActivity.getCurrentAccount();
-        profileActivity.getDialogId();
+        this.currentAccount = profileActivity.getCurrentAccount();
+        this.dialogId = profileActivity.getDialogId();
         this.profileActivity = profileActivity;
         this.fetcher = birthdayEffectFetcher;
     }
@@ -196,6 +198,7 @@ public class ProfileBirthdayEffect extends View {
 
     public static class BirthdayEffectFetcher {
         public final int age;
+        public final int currentAccount;
         private boolean detachLater;
         public ImageReceiverAsset interactionAsset;
         private boolean loaded;
@@ -228,6 +231,7 @@ public class ProfileBirthdayEffect extends View {
         private BirthdayEffectFetcher(int i, int i2) {
             boolean[] zArr = new boolean[2];
             this.setsLoaded = zArr;
+            this.currentAccount = i;
             this.age = i2;
             if (i2 <= 0) {
                 zArr[0] = true;
@@ -396,7 +400,7 @@ public class ProfileBirthdayEffect extends View {
                 ImageReceiver.ImageReceiverDelegate.CC.$default$onAnimationReady(this, imageReceiver);
             }
 
-            AnonymousClass1(ImageReceiverAsset imageReceiverAsset, Runnable[] runnableArr) {
+            AnonymousClass1(Runnable[] runnableArr) {
                 this.val$callback = runnableArr;
             }
 
@@ -430,7 +434,7 @@ public class ProfileBirthdayEffect extends View {
         }
 
         public void setEmoji(TLRPC$Document tLRPC$Document, String str, TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet, Runnable runnable) {
-            setDelegate(new AnonymousClass1(this, new Runnable[]{runnable}));
+            setDelegate(new AnonymousClass1(new Runnable[]{runnable}));
             setImage(ImageLocation.getForDocument(tLRPC$Document), str, null, null, tLRPC$TL_messages_stickerSet, 0);
         }
     }

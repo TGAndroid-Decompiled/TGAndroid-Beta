@@ -46,6 +46,7 @@ public class TableCell extends FrameLayout {
     private final BackupImageView fromImageView;
     private final TextView fromNameTextView;
     private final TextView fromTextView;
+    private TLRPC$TL_payments_checkedGiftCode giftCode;
     private final TextView giftNameTextView;
     private final TextView giftTextView;
     private final Paint linePaint;
@@ -190,7 +191,7 @@ public class TableCell extends FrameLayout {
         }
         addView(tableLayout, LayoutHelper.createFrame(-1, -2.0f));
         if (Build.VERSION.SDK_INT >= 21) {
-            tableLayout.setOutlineProvider(new ViewOutlineProvider(this) {
+            tableLayout.setOutlineProvider(new ViewOutlineProvider() {
                 @Override
                 public void getOutline(View view, Outline outline) {
                     outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), AndroidUtilities.dp(6.0f));
@@ -202,6 +203,7 @@ public class TableCell extends FrameLayout {
     }
 
     public void setData(final TLRPC$TL_payments_checkedGiftCode tLRPC$TL_payments_checkedGiftCode, final Utilities.Callback<TLObject> callback) {
+        this.giftCode = tLRPC$TL_payments_checkedGiftCode;
         Date date = new Date(tLRPC$TL_payments_checkedGiftCode.date * 1000);
         this.dateTextView.setText(LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterYear().format(date), LocaleController.getInstance().getFormatterDay().format(date)));
         this.reasonTextView.setTextColor(Theme.getColor(tLRPC$TL_payments_checkedGiftCode.via_giveaway ? Theme.key_dialogTextBlue : Theme.key_dialogTextBlack, this.resourcesProvider));

@@ -1,9 +1,7 @@
 package kotlin.collections;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
 import kotlin.jvm.internal.Intrinsics;
@@ -70,24 +68,6 @@ public class ArraysKt___ArraysKt extends ArraysKt___ArraysJvmKt {
             }
         }
         return destination;
-    }
-
-    public static final <T> T[] sortedArrayWith(T[] tArr, Comparator<? super T> comparator) {
-        Intrinsics.checkNotNullParameter(tArr, "<this>");
-        Intrinsics.checkNotNullParameter(comparator, "comparator");
-        if (tArr.length == 0) {
-            return tArr;
-        }
-        T[] tArr2 = (T[]) Arrays.copyOf(tArr, tArr.length);
-        Intrinsics.checkNotNullExpressionValue(tArr2, "copyOf(this, size)");
-        ArraysKt___ArraysJvmKt.sortWith(tArr2, comparator);
-        return tArr2;
-    }
-
-    public static <T> List<T> sortedWith(T[] tArr, Comparator<? super T> comparator) {
-        Intrinsics.checkNotNullParameter(tArr, "<this>");
-        Intrinsics.checkNotNullParameter(comparator, "comparator");
-        return ArraysKt___ArraysJvmKt.asList(sortedArrayWith(tArr, comparator));
     }
 
     public static <T> List<T> toList(T[] tArr) {

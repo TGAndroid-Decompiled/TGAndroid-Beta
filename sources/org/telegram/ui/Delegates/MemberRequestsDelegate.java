@@ -159,7 +159,7 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
             this.recyclerView = recyclerListView;
             recyclerListView.setAdapter(this.adapter);
             this.recyclerView.setLayoutManager(linearLayoutManager);
-            this.recyclerView.setOnItemClickListener(new MemberRequestsDelegate$$ExternalSyntheticLambda10(this));
+            this.recyclerView.setOnItemClickListener(new MemberRequestsDelegate$$ExternalSyntheticLambda2(this));
             this.recyclerView.setOnScrollListener(this.listScrollListener);
             this.recyclerView.setSelectorDrawableColor(Theme.getColor(Theme.key_listSelector, this.fragment.getResourceProvider()));
             this.rootLayout.addView(this.recyclerView, -1, -1);
@@ -197,29 +197,29 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
     }
 
     public StickerEmptyView getEmptyView() {
-        int i;
         String str;
-        int i2;
+        int i;
         String str2;
+        int i2;
         if (this.emptyView == null) {
             StickerEmptyView stickerEmptyView = new StickerEmptyView(this.fragment.getParentActivity(), null, 16, this.fragment.getResourceProvider());
             this.emptyView = stickerEmptyView;
             SpoilersTextView spoilersTextView = stickerEmptyView.title;
             if (this.isChannel) {
-                i = R.string.NoSubscribeRequests;
                 str = "NoSubscribeRequests";
+                i = R.string.NoSubscribeRequests;
             } else {
-                i = R.string.NoMemberRequests;
                 str = "NoMemberRequests";
+                i = R.string.NoMemberRequests;
             }
             spoilersTextView.setText(LocaleController.getString(str, i));
             LinkSpanDrawable.LinksTextView linksTextView = this.emptyView.subtitle;
             if (this.isChannel) {
-                i2 = R.string.NoSubscribeRequestsDescription;
                 str2 = "NoSubscribeRequestsDescription";
+                i2 = R.string.NoSubscribeRequestsDescription;
             } else {
-                i2 = R.string.NoMemberRequestsDescription;
                 str2 = "NoMemberRequestsDescription";
+                i2 = R.string.NoMemberRequestsDescription;
             }
             linksTextView.setText(LocaleController.getString(str2, i2));
             this.emptyView.setAnimateLayoutChange(true);
@@ -245,7 +245,7 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
 
     public void setRecyclerView(RecyclerListView recyclerListView) {
         this.recyclerView = recyclerListView;
-        recyclerListView.setOnItemClickListener(new MemberRequestsDelegate$$ExternalSyntheticLambda10(this));
+        recyclerListView.setOnItemClickListener(new MemberRequestsDelegate$$ExternalSyntheticLambda2(this));
         final RecyclerView.OnScrollListener onScrollListener = recyclerListView.getOnScrollListener();
         if (onScrollListener == null) {
             recyclerListView.setOnScrollListener(this.listScrollListener);
@@ -680,7 +680,7 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
                 view.setBackground(Theme.getThemedDrawableByKey(viewGroup.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
                 memberRequestCell = view;
             } else if (i == 2) {
-                memberRequestCell = new View(this, viewGroup.getContext()) {
+                memberRequestCell = new View(viewGroup.getContext()) {
                     @Override
                     protected void onMeasure(int i2, int i3) {
                         super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(52.0f), 1073741824));
@@ -695,7 +695,7 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
                 memberRequestCell2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, MemberRequestsDelegate.this.fragment.getResourceProvider()));
                 memberRequestCell = memberRequestCell2;
             } else {
-                FlickerLoadingView flickerLoadingView = new FlickerLoadingView(this, MemberRequestsDelegate.this.fragment.getParentActivity(), MemberRequestsDelegate.this.fragment.getResourceProvider()) {
+                FlickerLoadingView flickerLoadingView = new FlickerLoadingView(MemberRequestsDelegate.this.fragment.getParentActivity(), MemberRequestsDelegate.this.fragment.getResourceProvider()) {
                     @Override
                     protected void onMeasure(int i2, int i3) {
                         setMeasuredDimension(View.MeasureSpec.getSize(i2), AndroidUtilities.dp(104.0f));
@@ -848,8 +848,8 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
 
         public PreviewDialog(Context context, RecyclerListView recyclerListView, Theme.ResourcesProvider resourcesProvider, boolean z) {
             super(context, R.style.TransparentDialog2);
-            int i;
             String str;
+            int i;
             Drawable mutate = getContext().getResources().getDrawable(R.drawable.popup_fixed_alert2).mutate();
             this.pagerShadowDrawable = mutate;
             TextView textView = new TextView(getContext());
@@ -974,7 +974,7 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
             this.popupLayout = actionBarPopupWindowLayout;
             actionBarPopupWindowLayout.setBackgroundColor(color);
             viewGroup.addView(actionBarPopupWindowLayout);
-            AvatarPreviewPagerIndicator avatarPreviewPagerIndicator = new AvatarPreviewPagerIndicator(this, getContext(), MemberRequestsDelegate.this) {
+            AvatarPreviewPagerIndicator avatarPreviewPagerIndicator = new AvatarPreviewPagerIndicator(getContext()) {
                 @Override
                 public void onDraw(Canvas canvas) {
                     if (this.profileGalleryView.getRealCount() > 1) {
@@ -1005,11 +1005,11 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
             int i4 = Theme.key_dialogButtonSelector;
             actionBarMenuSubItem.setSelectorColor(Theme.getColor(i4, resourcesProvider));
             if (z) {
-                i = R.string.AddToChannel;
                 str = "AddToChannel";
+                i = R.string.AddToChannel;
             } else {
-                i = R.string.AddToGroup;
                 str = "AddToGroup";
+                i = R.string.AddToGroup;
             }
             actionBarMenuSubItem.setTextAndIcon(LocaleController.getString(str, i), R.drawable.msg_requests);
             actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
@@ -1222,7 +1222,7 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
 
         public void updateBackgroundBitmap() {
             BitmapDrawable bitmapDrawable = this.backgroundDrawable;
-            int alpha = (bitmapDrawable == null || Build.VERSION.SDK_INT < 19) ? 255 : bitmapDrawable.getAlpha();
+            int alpha = bitmapDrawable != null ? bitmapDrawable.getAlpha() : 255;
             BitmapDrawable bitmapDrawable2 = new BitmapDrawable(getContext().getResources(), getBlurredBitmap());
             this.backgroundDrawable = bitmapDrawable2;
             bitmapDrawable2.setAlpha(alpha);

@@ -13,7 +13,7 @@ import kotlinx.coroutines.internal.LimitedDispatcherKt;
 public abstract class CoroutineDispatcher extends AbstractCoroutineContextElement implements ContinuationInterceptor {
     public static final Key Key = new Key(null);
 
-    public abstract void mo155dispatch(CoroutineContext coroutineContext, Runnable runnable);
+    public abstract void mo157dispatch(CoroutineContext coroutineContext, Runnable runnable);
 
     public boolean isDispatchNeeded(CoroutineContext coroutineContext) {
         return true;

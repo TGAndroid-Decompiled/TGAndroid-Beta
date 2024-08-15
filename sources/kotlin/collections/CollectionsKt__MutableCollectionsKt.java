@@ -10,8 +10,8 @@ public class CollectionsKt__MutableCollectionsKt extends CollectionsKt__MutableC
         if (elements instanceof Collection) {
             return collection.addAll((Collection) elements);
         }
-        boolean z = false;
         Iterator<? extends T> it = elements.iterator();
+        boolean z = false;
         while (it.hasNext()) {
             if (collection.add((T) it.next())) {
                 z = true;

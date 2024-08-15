@@ -110,7 +110,7 @@ public class AppIconsSelectorCell extends RecyclerListView implements Notificati
         if (launcherIcon.premium && !UserConfig.hasPremiumOnAccounts()) {
             baseFragment.showDialog(new PremiumFeatureBottomSheet(baseFragment, 10, true));
         } else if (!LauncherIconController.isEnabled(launcherIcon)) {
-            LinearSmoothScroller linearSmoothScroller = new LinearSmoothScroller(this, context) {
+            LinearSmoothScroller linearSmoothScroller = new LinearSmoothScroller(context) {
                 @Override
                 public int calculateDtToFit(int i2, int i3, int i4, int i5, int i6) {
                     return (i4 - i2) + AndroidUtilities.dp(16.0f);

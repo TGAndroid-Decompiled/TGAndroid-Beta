@@ -66,6 +66,7 @@ public class AcceptDeclineView extends View {
     Drawable rippleDrawable;
     float smallRadius;
     boolean startDrag;
+    float startX;
     float startY;
     float touchSlop;
 
@@ -421,6 +422,7 @@ public class AcceptDeclineView extends View {
 
         @Override
         public AccessibilityNodeInfo createAccessibilityNodeInfo(int i) {
+            AccessibilityNodeInfo.AccessibilityAction accessibilityAction;
             if (i == -1) {
                 AccessibilityNodeInfo obtain = AccessibilityNodeInfo.obtain(this.hostView);
                 obtain.setPackageName(this.hostView.getContext().getPackageName());
@@ -433,7 +435,8 @@ public class AcceptDeclineView extends View {
             obtain2.setPackageName(this.hostView.getContext().getPackageName());
             int i3 = Build.VERSION.SDK_INT;
             if (i3 >= 21) {
-                obtain2.addAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_CLICK);
+                accessibilityAction = AccessibilityNodeInfo.AccessibilityAction.ACTION_CLICK;
+                obtain2.addAction(accessibilityAction);
             }
             obtain2.setText(getVirtualViewText(i));
             obtain2.setClassName(Button.class.getName());

@@ -341,7 +341,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
                 switchCell = new PowerSaverSlider(context);
                 switchCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             } else if (i == 2) {
-                switchCell = new TextInfoPrivacyCell(this, context) {
+                switchCell = new TextInfoPrivacyCell(context) {
                     @Override
                     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
                         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
@@ -458,7 +458,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
             imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteGrayIcon), PorterDuff.Mode.MULTIPLY));
             this.imageView.setVisibility(8);
             addView(this.imageView, LayoutHelper.createFrame(24, 24.0f, (LocaleController.isRTL ? 5 : 3) | 16, 20.0f, 0.0f, 20.0f, 0.0f));
-            TextView textView = new TextView(this, context, LiteModeSettingsActivity.this) {
+            TextView textView = new TextView(context) {
                 @Override
                 protected void onMeasure(int i2, int i3) {
                     if (View.MeasureSpec.getMode(i2) == Integer.MIN_VALUE) {
@@ -503,9 +503,9 @@ public class LiteModeSettingsActivity extends BaseFragment {
                 this.textViewLayout.addView(this.arrowView, LayoutHelper.createLinear(16, 16, 0.0f, 16, 2, 0, 0, 0));
             }
             addView(this.textViewLayout, LayoutHelper.createFrame(-1, -2.0f, (LocaleController.isRTL ? 5 : 3) | 16, 64.0f, 0.0f, 8.0f, 0.0f));
-            Switch r5 = new Switch(context);
-            this.switchView = r5;
-            r5.setVisibility(8);
+            Switch r1 = new Switch(context);
+            this.switchView = r1;
+            r1.setVisibility(8);
             this.switchView.setColors(Theme.key_switchTrack, Theme.key_switchTrackChecked, i, i);
             this.switchView.setImportantForAccessibility(2);
             addView(this.switchView, LayoutHelper.createFrame(37, 50.0f, (LocaleController.isRTL ? 3 : 5) | 16, 19.0f, 0.0f, 19.0f, 0.0f));
@@ -698,7 +698,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
             this.headerTextView.setGravity(LocaleController.isRTL ? 5 : 3);
             this.headerTextView.setText(LocaleController.getString("LiteBatteryTitle"));
             this.headerLayout.addView(this.headerTextView, LayoutHelper.createLinear(-2, -2, 16));
-            AnimatedTextView animatedTextView = new AnimatedTextView(this, context, true, false, false, LiteModeSettingsActivity.this) {
+            AnimatedTextView animatedTextView = new AnimatedTextView(context, true, false, false) {
                 Drawable backgroundDrawable = Theme.createRoundRectDrawable(AndroidUtilities.dp(4.0f), Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhiteBlueHeader), 0.15f));
 
                 @Override
@@ -718,7 +718,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
             SeekBarView seekBarView = new SeekBarView(context, true, null);
             this.seekBarView = seekBarView;
             seekBarView.setReportChanges(true);
-            this.seekBarView.setDelegate(new SeekBarView.SeekBarViewDelegate(LiteModeSettingsActivity.this) {
+            this.seekBarView.setDelegate(new SeekBarView.SeekBarViewDelegate() {
                 @Override
                 public CharSequence getContentDescription() {
                     return " ";
@@ -764,7 +764,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
             this.leftTextView.setGravity(3);
             this.leftTextView.setText(LocaleController.getString("LiteBatteryDisabled", R.string.LiteBatteryDisabled));
             this.valuesView.addView(this.leftTextView, LayoutHelper.createFrame(-2, -2, 19));
-            AnimatedTextView animatedTextView2 = new AnimatedTextView(context, false, true, true, LiteModeSettingsActivity.this) {
+            AnimatedTextView animatedTextView2 = new AnimatedTextView(context, false, true, true) {
                 @Override
                 public void onMeasure(int i3, int i4) {
                     int size = View.MeasureSpec.getSize(i3);
@@ -795,7 +795,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
             this.rightTextView.setText(LocaleController.getString("LiteBatteryEnabled", R.string.LiteBatteryEnabled));
             this.valuesView.addView(this.rightTextView, LayoutHelper.createFrame(-2, -2, 21));
             addView(this.valuesView, LayoutHelper.createFrame(-1, -2.0f, 55, 21.0f, 52.0f, 21.0f, 0.0f));
-            this.seekBarAccessibilityDelegate = new IntSeekBarAccessibilityDelegate(LiteModeSettingsActivity.this) {
+            this.seekBarAccessibilityDelegate = new IntSeekBarAccessibilityDelegate() {
                 @Override
                 protected int getDelta() {
                     return 5;
@@ -862,8 +862,8 @@ public class LiteModeSettingsActivity extends BaseFragment {
         }
 
         public void update() {
-            int i;
             String str;
+            int i;
             int powerSaverLevel = LiteMode.getPowerSaverLevel();
             this.middleTextView.cancelAnimation();
             if (powerSaverLevel <= 0) {
@@ -877,11 +877,11 @@ public class LiteModeSettingsActivity extends BaseFragment {
             }
             AnimatedTextView animatedTextView = this.headerOnView;
             if (LiteMode.isPowerSaverApplied()) {
-                i = R.string.LiteBatteryEnabled;
                 str = "LiteBatteryEnabled";
+                i = R.string.LiteBatteryEnabled;
             } else {
-                i = R.string.LiteBatteryDisabled;
                 str = "LiteBatteryDisabled";
+                i = R.string.LiteBatteryDisabled;
             }
             animatedTextView.setText(LocaleController.getString(str, i).toUpperCase());
             updateHeaderOnVisibility(powerSaverLevel > 0 && powerSaverLevel < 100);

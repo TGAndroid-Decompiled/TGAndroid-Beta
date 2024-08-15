@@ -50,10 +50,9 @@ public abstract class FourierTransform {
             if (i >= fArr.length) {
                 break;
             }
-            float[] fArr2 = this.real;
-            float f = fArr2[i] * fArr2[i];
-            float[] fArr3 = this.imag;
-            fArr[i] = (float) Math.sqrt(f + (fArr3[i] * fArr3[i]));
+            float f = this.real[i];
+            float f2 = this.imag[i];
+            fArr[i] = (float) Math.sqrt((f * f) + (f2 * f2));
             i++;
         }
         int i2 = this.whichAverage;
@@ -61,16 +60,16 @@ public abstract class FourierTransform {
             int length = fArr.length / this.averages.length;
             for (int i3 = 0; i3 < this.averages.length; i3++) {
                 int i4 = 0;
-                float f2 = 0.0f;
+                float f3 = 0.0f;
                 while (i4 < length) {
                     int i5 = (i3 * length) + i4;
-                    float[] fArr4 = this.spectrum;
-                    if (i5 < fArr4.length) {
-                        f2 += fArr4[i5];
+                    float[] fArr2 = this.spectrum;
+                    if (i5 < fArr2.length) {
+                        f3 += fArr2[i5];
                         i4++;
                     }
                 }
-                this.averages[i3] = f2 / (i4 + 1);
+                this.averages[i3] = f3 / (i4 + 1);
             }
         } else if (i2 == 2) {
             int i6 = 0;
@@ -85,10 +84,10 @@ public abstract class FourierTransform {
                 while (true) {
                     int i9 = this.avgPerOctave;
                     if (i8 < i9) {
-                        float f3 = pow + pow2;
-                        this.averages[(i9 * i6) + i8] = calcAvg(pow, f3);
+                        float f4 = pow + pow2;
+                        this.averages[(i9 * i6) + i8] = calcAvg(pow, f4);
                         i8++;
-                        pow = f3;
+                        pow = f4;
                     }
                 }
                 i6++;
@@ -245,17 +244,17 @@ public abstract class FourierTransform {
                 return;
             }
             float[] fArr = this.real;
-            if (fArr[i] == 0.0f && this.imag[i] == 0.0f) {
+            float f2 = fArr[i];
+            if (f2 == 0.0f && this.imag[i] == 0.0f) {
                 fArr[i] = f;
                 this.spectrum[i] = f;
             } else {
-                float f2 = fArr[i];
                 float[] fArr2 = this.spectrum;
                 fArr[i] = f2 / fArr2[i];
                 float[] fArr3 = this.imag;
                 fArr3[i] = fArr3[i] / fArr2[i];
                 fArr2[i] = f;
-                fArr[i] = fArr[i] * fArr2[i];
+                fArr[i] = fArr[i] * f;
                 fArr3[i] = fArr3[i] * fArr2[i];
             }
             if (i != 0) {
@@ -281,13 +280,15 @@ public abstract class FourierTransform {
                         float[] fArr = this.real;
                         if (i3 < fArr.length) {
                             int i4 = i3 + i;
+                            float f3 = fArr[i4];
                             float[] fArr2 = this.imag;
-                            float f3 = (fArr[i4] * f) - (fArr2[i4] * f2);
-                            float f4 = (fArr2[i4] * f) + (fArr[i4] * f2);
-                            fArr[i4] = fArr[i3] - f3;
-                            fArr2[i4] = fArr2[i3] - f4;
-                            fArr[i3] = fArr[i3] + f3;
-                            fArr2[i3] = fArr2[i3] + f4;
+                            float f4 = fArr2[i4];
+                            float f5 = (f * f3) - (f2 * f4);
+                            float f6 = (f4 * f) + (f3 * f2);
+                            fArr[i4] = fArr[i3] - f5;
+                            fArr2[i4] = fArr2[i3] - f6;
+                            fArr[i3] = fArr[i3] + f5;
+                            fArr2[i3] = fArr2[i3] + f6;
                             i3 += i * 2;
                         }
                     }
@@ -377,9 +378,9 @@ public abstract class FourierTransform {
             while (true) {
                 float[] fArr3 = this.real;
                 if (i < fArr3.length) {
-                    int[] iArr = this.reverse;
-                    fArr[i] = fArr3[iArr[i]];
-                    fArr2[i] = this.imag[iArr[i]];
+                    int i2 = this.reverse[i];
+                    fArr[i] = fArr3[i2];
+                    fArr2[i] = this.imag[i2];
                     i++;
                 } else {
                     this.real = fArr;

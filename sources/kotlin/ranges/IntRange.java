@@ -2,6 +2,9 @@ package kotlin.ranges;
 
 import kotlin.jvm.internal.DefaultConstructorMarker;
 public final class IntRange extends IntProgression {
+    public static final Companion Companion = new Companion(null);
+    private static final IntRange EMPTY = new IntRange(1, 0);
+
     public IntRange(int i, int i2) {
         super(i, i2, 1);
     }
@@ -48,10 +51,5 @@ public final class IntRange extends IntProgression {
 
         private Companion() {
         }
-    }
-
-    static {
-        new Companion(null);
-        new IntRange(1, 0);
     }
 }

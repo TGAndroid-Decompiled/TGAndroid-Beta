@@ -142,7 +142,7 @@ public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerLis
         };
         this.maxCount = i;
         this.selectorListener = selectorListener;
-        SelectorHeaderCell selectorHeaderCell = new SelectorHeaderCell(this, getContext(), this.resourcesProvider) {
+        SelectorHeaderCell selectorHeaderCell = new SelectorHeaderCell(getContext(), this.resourcesProvider) {
             @Override
             protected int getHeaderHeight() {
                 if (getResources().getConfiguration().orientation == 2) {

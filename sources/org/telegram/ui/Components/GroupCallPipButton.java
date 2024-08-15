@@ -261,8 +261,7 @@ public class GroupCallPipButton extends FrameLayout implements NotificationCente
                 this.progressToState = 0.0f;
             } else {
                 this.progressToState = 1.0f;
-                boolean z = true;
-                this.wavesEnter = (weavingState3.currentState == 3 || this.currentState.currentState == 2) ? false : false ? 1.0f : 0.0f;
+                this.wavesEnter = weavingState3.currentState != 3 && this.currentState.currentState != 2 ? 1.0f : 0.0f;
             }
             VoIPService sharedInstance = VoIPService.getSharedInstance();
             if (sharedInstance != null && ChatObject.isChannelOrGiga(sharedInstance.getChat())) {
@@ -284,18 +283,18 @@ public class GroupCallPipButton extends FrameLayout implements NotificationCente
 
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        int i;
         String str;
+        int i;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         if (Build.VERSION.SDK_INT < 21 || GroupCallPip.getInstance() == null) {
             return;
         }
         if (GroupCallPip.getInstance().showAlert) {
-            i = R.string.AccDescrCloseMenu;
             str = "AccDescrCloseMenu";
+            i = R.string.AccDescrCloseMenu;
         } else {
-            i = R.string.AccDescrOpenMenu2;
             str = "AccDescrOpenMenu2";
+            i = R.string.AccDescrOpenMenu2;
         }
         accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString(str, i)));
     }

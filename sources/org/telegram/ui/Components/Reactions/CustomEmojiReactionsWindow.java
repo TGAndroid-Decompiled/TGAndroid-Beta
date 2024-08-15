@@ -57,6 +57,7 @@ import org.telegram.ui.Components.StableAnimator;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.SelectAnimatedEmojiDialog;
 public class CustomEmojiReactionsWindow {
+    private int account;
     boolean attachToParent;
     BaseFragment baseFragment;
     private boolean cascadeAnimation;
@@ -225,7 +226,7 @@ public class CustomEmojiReactionsWindow {
             i2 = 1;
         }
         this.selectAnimatedEmojiDialog.setPaused(reactionsContainerLayout.paused, reactionsContainerLayout.pausedExceptSelected);
-        this.selectAnimatedEmojiDialog.setOnLongPressedListener(new SelectAnimatedEmojiDialog.onLongPressedListener(this) {
+        this.selectAnimatedEmojiDialog.setOnLongPressedListener(new SelectAnimatedEmojiDialog.onLongPressedListener() {
             @Override
             public void onLongPressed(SelectAnimatedEmojiDialog.ImageViewEmoji imageViewEmoji) {
                 if (imageViewEmoji.isDefaultReaction) {
@@ -235,7 +236,7 @@ public class CustomEmojiReactionsWindow {
                 }
             }
         });
-        this.selectAnimatedEmojiDialog.setOnRecentClearedListener(new SelectAnimatedEmojiDialog.onRecentClearedListener(this, reactionsContainerLayout) {
+        this.selectAnimatedEmojiDialog.setOnRecentClearedListener(new SelectAnimatedEmojiDialog.onRecentClearedListener() {
         });
         this.selectAnimatedEmojiDialog.setRecentReactions(list);
         this.selectAnimatedEmojiDialog.setSelectedReactions(hashSet);
@@ -500,7 +501,7 @@ public class CustomEmojiReactionsWindow {
         updateContainersAlpha();
         this.selectAnimatedEmojiDialog.setEnterAnimationInProgress(true);
         this.selectAnimatedEmojiDialog.emojiTabs.showRecentTabStub(z && this.cascadeAnimation);
-        int i2 = UserConfig.selectedAccount;
+        this.account = UserConfig.selectedAccount;
         this.notificationsLocker.lock();
         ValueAnimator valueAnimator = this.valueAnimator;
         if (valueAnimator != null) {
@@ -932,7 +933,7 @@ public class CustomEmojiReactionsWindow {
         }
 
         @Override
-        protected void onMeasure(int r8, int r9) {
+        protected void onMeasure(int r9, int r10) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Reactions.CustomEmojiReactionsWindow.ContainerView.onMeasure(int, int):void");
         }
 

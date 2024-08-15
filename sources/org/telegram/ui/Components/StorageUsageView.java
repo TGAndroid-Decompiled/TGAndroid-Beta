@@ -41,6 +41,9 @@ public class StorageUsageView extends FrameLayout {
     TextView telegramCacheTextView;
     TextView telegramDatabaseTextView;
     TextSettingsCell textSettingsCell;
+    private long totalDeviceFreeSize;
+    private long totalDeviceSize;
+    private long totalSize;
     TextView totlaSizeTextView;
     ValueAnimator valueAnimator;
     ValueAnimator valueAnimator2;
@@ -69,7 +72,7 @@ public class StorageUsageView extends FrameLayout {
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         addView(linearLayout, LayoutHelper.createFrame(-1, -2.0f));
-        FrameLayout frameLayout = new FrameLayout(this, context) {
+        FrameLayout frameLayout = new FrameLayout(context) {
             @Override
             protected void onMeasure(int i, int i2) {
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
@@ -166,6 +169,9 @@ public class StorageUsageView extends FrameLayout {
 
     public void setStorageUsage(boolean z, long j, long j2, long j3, long j4) {
         this.calculating = z;
+        this.totalSize = j2;
+        this.totalDeviceFreeSize = j3;
+        this.totalDeviceSize = j4;
         this.freeSizeTextView.setText(LocaleController.formatString("TotalDeviceFreeSize", R.string.TotalDeviceFreeSize, AndroidUtilities.formatFileSize(j3)));
         long j5 = j4 - j3;
         this.totlaSizeTextView.setText(LocaleController.formatString("TotalDeviceSize", R.string.TotalDeviceSize, AndroidUtilities.formatFileSize(j5)));

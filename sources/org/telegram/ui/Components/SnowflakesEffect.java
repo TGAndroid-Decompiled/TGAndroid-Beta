@@ -19,6 +19,7 @@ public class SnowflakesEffect {
     private int viewType;
     private Paint bitmapPaint = new Paint();
     private int colorKey = Theme.key_actionBarDefaultTitle;
+    final float angleDiff = 1.0471976f;
     private ArrayList<Particle> particles = new ArrayList<>();
     private ArrayList<Particle> freeParticles = new ArrayList<>();
 
@@ -43,20 +44,20 @@ public class SnowflakesEffect {
                 canvas.drawPoint(this.x, this.y, SnowflakesEffect.this.particlePaint);
                 return;
             }
-            float f = -1.5707964f;
             SnowflakesEffect snowflakesEffect = SnowflakesEffect.this;
             if (snowflakesEffect.particleBitmap == null) {
                 snowflakesEffect.particleThinPaint.setAlpha(255);
                 SnowflakesEffect.this.particleBitmap = Bitmap.createBitmap(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Bitmap.Config.ARGB_8888);
                 Canvas canvas2 = new Canvas(SnowflakesEffect.this.particleBitmap);
                 float dpf2 = AndroidUtilities.dpf2(2.0f) * 2.0f;
-                float f2 = (-AndroidUtilities.dpf2(0.57f)) * 2.0f;
+                float f = (-AndroidUtilities.dpf2(0.57f)) * 2.0f;
                 float dpf22 = 2.0f * AndroidUtilities.dpf2(1.55f);
+                float f2 = -1.5707964f;
                 int i = 0;
                 while (i < 6) {
                     float dp = AndroidUtilities.dp(8.0f);
                     float dp2 = AndroidUtilities.dp(8.0f);
-                    double d = f;
+                    double d = f2;
                     float cos = ((float) Math.cos(d)) * dpf2;
                     float sin = ((float) Math.sin(d)) * dpf2;
                     float f3 = cos * 0.66f;
@@ -64,36 +65,41 @@ public class SnowflakesEffect {
                     Double.isNaN(d);
                     double d2 = (float) (d - 1.5707963267948966d);
                     double cos2 = Math.cos(d2);
-                    double d3 = f2;
+                    double d3 = f;
                     Double.isNaN(d3);
                     double sin2 = Math.sin(d2);
-                    Canvas canvas3 = canvas2;
+                    float f4 = dpf2;
                     double d4 = dpf22;
                     Double.isNaN(d4);
                     double sin3 = Math.sin(d2);
                     Double.isNaN(d3);
                     double cos3 = Math.cos(d2);
                     Double.isNaN(d4);
-                    float f4 = dp + f3;
-                    float f5 = dp2 + (sin * 0.66f);
-                    canvas3.drawLine(f4, f5, dp + ((float) ((cos2 * d3) - (sin2 * d4))), dp2 + ((float) ((sin3 * d3) + (cos3 * d4))), SnowflakesEffect.this.particleThinPaint);
+                    float f5 = dpf22;
+                    float f6 = dp + f3;
+                    float f7 = dp2 + (sin * 0.66f);
+                    canvas2.drawLine(f6, f7, dp + ((float) ((cos2 * d3) - (sin2 * d4))), dp2 + ((float) ((sin3 * d3) + (cos3 * d4))), SnowflakesEffect.this.particleThinPaint);
                     Double.isNaN(d3);
                     double d5 = (-Math.cos(d2)) * d3;
                     double sin4 = Math.sin(d2);
                     Double.isNaN(d4);
+                    float f8 = (float) (d5 - (sin4 * d4));
                     Double.isNaN(d3);
+                    double d6 = (-Math.sin(d2)) * d3;
                     double cos4 = Math.cos(d2);
                     Double.isNaN(d4);
-                    canvas3.drawLine(f4, f5, dp + ((float) (d5 - (sin4 * d4))), dp2 + ((float) (((-Math.sin(d2)) * d3) + (cos4 * d4))), SnowflakesEffect.this.particleThinPaint);
-                    f += 1.0471976f;
+                    canvas2.drawLine(f6, f7, dp + f8, dp2 + ((float) (d6 + (cos4 * d4))), SnowflakesEffect.this.particleThinPaint);
+                    f2 += 1.0471976f;
                     i++;
-                    canvas2 = canvas3;
+                    dpf2 = f4;
+                    f = f;
+                    dpf22 = f5;
                 }
             }
             SnowflakesEffect.this.bitmapPaint.setAlpha((int) (this.alpha * 255.0f));
             canvas.save();
-            float f6 = this.scale;
-            canvas.scale(f6, f6, this.x, this.y);
+            float f9 = this.scale;
+            canvas.scale(f9, f9, this.x, this.y);
             SnowflakesEffect snowflakesEffect2 = SnowflakesEffect.this;
             canvas.drawBitmap(snowflakesEffect2.particleBitmap, this.x, this.y, snowflakesEffect2.bitmapPaint);
             canvas.restore();

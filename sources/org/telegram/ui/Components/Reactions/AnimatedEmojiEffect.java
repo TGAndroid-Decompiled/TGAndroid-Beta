@@ -283,7 +283,7 @@ public class AnimatedEmojiEffect {
             return animatedEmojiEffect.bounds.width() * (Math.abs(Utilities.fastRandom.nextInt() % 100) / 100.0f);
         }
 
-        public void draw(android.graphics.Canvas r11) {
+        public void draw(android.graphics.Canvas r10) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Reactions.AnimatedEmojiEffect.Particle.draw(android.graphics.Canvas):void");
         }
     }

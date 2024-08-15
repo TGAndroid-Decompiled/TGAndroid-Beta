@@ -18,6 +18,7 @@ public class PhotoFilterCurvesControl extends View {
     private PhotoFilterView.CurvesToolValue curveValue;
     private PhotoFilterCurvesControlDelegate delegate;
     private boolean isMoving;
+    private float lastX;
     private float lastY;
     private Paint paint;
     private Paint paintCurve;
@@ -72,6 +73,7 @@ public class PhotoFilterCurvesControl extends View {
     }
 
     private void handlePan(int i, MotionEvent motionEvent) {
+        PhotoFilterView.CurvesValue curvesValue;
         float x = motionEvent.getX();
         float y = motionEvent.getY();
         if (i == 1) {
@@ -82,7 +84,6 @@ public class PhotoFilterCurvesControl extends View {
             }
         } else {
             float min = Math.min(2.0f, (this.lastY - y) / 8.0f);
-            PhotoFilterView.CurvesValue curvesValue = null;
             PhotoFilterView.CurvesToolValue curvesToolValue = this.curveValue;
             int i2 = curvesToolValue.activeType;
             if (i2 == 0) {
@@ -91,8 +92,8 @@ public class PhotoFilterCurvesControl extends View {
                 curvesValue = curvesToolValue.redCurve;
             } else if (i2 == 2) {
                 curvesValue = curvesToolValue.greenCurve;
-            } else if (i2 == 3) {
-                curvesValue = curvesToolValue.blueCurve;
+            } else {
+                curvesValue = i2 != 3 ? null : curvesToolValue.blueCurve;
             }
             int i3 = this.activeSegment;
             if (i3 == 1) {
@@ -111,6 +112,7 @@ public class PhotoFilterCurvesControl extends View {
             if (photoFilterCurvesControlDelegate != null) {
                 photoFilterCurvesControlDelegate.valueChanged();
             }
+            this.lastX = x;
             this.lastY = y;
         }
     }
@@ -133,6 +135,7 @@ public class PhotoFilterCurvesControl extends View {
     @Override
     @SuppressLint({"DrawAllocation"})
     protected void onDraw(Canvas canvas) {
+        PhotoFilterView.CurvesValue curvesValue;
         String format;
         float f = this.actualArea.width / 5.0f;
         for (int i = 0; i < 4; i++) {
@@ -146,7 +149,6 @@ public class PhotoFilterCurvesControl extends View {
         float f5 = rect2.x;
         float f6 = rect2.y;
         canvas.drawLine(f5, f6 + rect2.height, f5 + rect2.width, f6, this.paintDash);
-        PhotoFilterView.CurvesValue curvesValue = null;
         int i2 = this.curveValue.activeType;
         if (i2 == 0) {
             this.paintCurve.setColor(-1);
@@ -157,7 +159,9 @@ public class PhotoFilterCurvesControl extends View {
         } else if (i2 == 2) {
             this.paintCurve.setColor(-15667555);
             curvesValue = this.curveValue.greenCurve;
-        } else if (i2 == 3) {
+        } else if (i2 != 3) {
+            curvesValue = null;
+        } else {
             this.paintCurve.setColor(-13404165);
             curvesValue = this.curveValue.blueCurve;
         }

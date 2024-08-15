@@ -15,6 +15,7 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ShapeDrawable;
 import android.text.Layout;
 import android.text.SpannableStringBuilder;
 import android.text.StaticLayout;
@@ -201,6 +202,7 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
 
     public FolderBottomSheet(BaseFragment baseFragment, int i, List<Long> list) {
         super(baseFragment, false, false);
+        MessagesController.DialogFilter dialogFilter;
         TLRPC$Chat chat;
         this.filterId = -1;
         this.title = "";
@@ -217,20 +219,15 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
             this.selectedPeers.addAll(list);
         }
         ArrayList<MessagesController.DialogFilter> arrayList = baseFragment.getMessagesController().dialogFilters;
-        MessagesController.DialogFilter dialogFilter = null;
         if (arrayList != null) {
-            int i2 = 0;
-            while (true) {
-                if (i2 >= arrayList.size()) {
-                    break;
-                } else if (arrayList.get(i2).id == i) {
+            for (int i2 = 0; i2 < arrayList.size(); i2++) {
+                if (arrayList.get(i2).id == i) {
                     dialogFilter = arrayList.get(i2);
                     break;
-                } else {
-                    i2++;
                 }
             }
         }
+        dialogFilter = null;
         if (dialogFilter != null) {
             this.title = dialogFilter.name;
             for (int i3 = 0; i3 < this.selectedPeers.size(); i3++) {
@@ -726,18 +723,18 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
     }
 
     public void updateCount(boolean z) {
-        int i;
         String str;
+        int i;
         int size = this.selectedPeers.size();
         Button button = this.button;
         if (button != null) {
             if (this.deleting) {
                 if (size > 0) {
-                    i = R.string.FolderLinkButtonRemoveChats;
                     str = "FolderLinkButtonRemoveChats";
+                    i = R.string.FolderLinkButtonRemoveChats;
                 } else {
-                    i = R.string.FolderLinkButtonRemove;
                     str = "FolderLinkButtonRemove";
+                    i = R.string.FolderLinkButtonRemove;
                 }
                 button.setText(LocaleController.getString(str, i), z);
             } else {
@@ -762,6 +759,7 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
     }
 
     public static class Button extends FrameLayout {
+        private ShapeDrawable background;
         float countAlpha;
         AnimatedFloat countAlphaAnimated;
         private ValueAnimator countAnimator;
@@ -797,7 +795,9 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
             int i = Theme.key_featuredStickers_addButton;
             view.setBackground(Theme.AdaptiveRipple.rect(Theme.getColor(i), 8.0f));
             addView(this.rippleView, LayoutHelper.createFrame(-1, -1.0f));
-            setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(8.0f), Theme.getColor(i)));
+            ShapeDrawable createRoundRectDrawable = Theme.createRoundRectDrawable(AndroidUtilities.dp(8.0f), Theme.getColor(i));
+            this.background = createRoundRectDrawable;
+            setBackground(createRoundRectDrawable);
             Paint paint = new Paint(1);
             this.paint = paint;
             int i2 = Theme.key_featuredStickers_buttonText;
@@ -938,7 +938,7 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
                         FolderBottomSheet.Button.this.lambda$setEnabled$2(valueAnimator2);
                     }
                 });
-                this.enabledAnimator.addListener(new AnimatorListenerAdapter(this) {
+                this.enabledAnimator.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animator) {
                     }
@@ -1169,7 +1169,7 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
             super(context);
             this.already = z;
             this.title = str;
-            FoldersPreview foldersPreview = new FoldersPreview(this, context, null, LocaleController.getString("FolderLinkPreviewLeft"), str, LocaleController.getString("FolderLinkPreviewRight"), null);
+            FoldersPreview foldersPreview = new FoldersPreview(context, null, LocaleController.getString("FolderLinkPreviewLeft"), str, LocaleController.getString("FolderLinkPreviewRight"), null);
             this.preview = foldersPreview;
             addView(foldersPreview, LayoutHelper.createFrame(-1, 44.0f, 55, 0.0f, 17.33f, 0.0f, 0.0f));
             TextView textView = new TextView(context);
@@ -1238,7 +1238,7 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
             Paint selectedPaint;
             TextPaint selectedTextPaint;
 
-            public FoldersPreview(TitleCell titleCell, Context context, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, CharSequence charSequence4, CharSequence charSequence5) {
+            public FoldersPreview(Context context, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, CharSequence charSequence4, CharSequence charSequence5) {
                 super(context);
                 this.paint = new TextPaint(1);
                 this.selectedTextPaint = new TextPaint(1);

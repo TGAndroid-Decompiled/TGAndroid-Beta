@@ -90,6 +90,7 @@ public class ActionBarMenuItem extends FrameLayout {
     protected ActionBarMenuItemSearchListener listener;
     private int[] location;
     private boolean longClickEnabled;
+    private boolean measurePopup;
     private final AnimationNotificationsLocker notificationsLocker;
     private View.OnClickListener onClickListener;
     protected boolean overrideMenuClick;
@@ -108,6 +109,7 @@ public class ActionBarMenuItem extends FrameLayout {
     private CharSequence searchFieldHint;
     private CharSequence searchFieldText;
     private LinearLayout searchFilterLayout;
+    private ArrayList<SearchFilterView> searchFilterViews;
     public int searchItemPaddingStart;
     public int searchRightMargin;
     private int selectedFilterIndex;
@@ -222,10 +224,11 @@ public class ActionBarMenuItem extends FrameLayout {
 
     public ActionBarMenuItem(Context context, ActionBarMenu actionBarMenu, int i, int i2, boolean z, Theme.ResourcesProvider resourcesProvider) {
         super(context);
-        new ArrayList();
+        this.searchFilterViews = new ArrayList<>();
         this.allowCloseAnimation = true;
         this.animationEnabled = true;
         this.animateClear = true;
+        this.measurePopup = true;
         this.showSubmenuByMove = true;
         this.currentSearchFilters = new ArrayList<>();
         this.selectedFilterIndex = -1;
@@ -880,7 +883,7 @@ public class ActionBarMenuItem extends FrameLayout {
                 }
                 ActionBarPopupWindow actionBarPopupWindow3 = new ActionBarPopupWindow(actionBarPopupWindowLayout, -2, -2);
                 this.popupWindow = actionBarPopupWindow3;
-                if (this.animationEnabled && Build.VERSION.SDK_INT >= 19) {
+                if (this.animationEnabled) {
                     actionBarPopupWindow3.setAnimationStyle(0);
                 } else {
                     actionBarPopupWindow3.setAnimationStyle(R.style.PopupAnimation);
@@ -915,6 +918,7 @@ public class ActionBarMenuItem extends FrameLayout {
                 if (frameLayout != null && frameLayout.getLayoutParams() != null && this.popupLayout.getSwipeBack() != null && (childAt = this.popupLayout.getSwipeBack().getChildAt(0)) != null && childAt.getMeasuredWidth() > 0) {
                     frameLayout.getLayoutParams().width = childAt.getMeasuredWidth() + AndroidUtilities.dp(16.0f);
                 }
+                this.measurePopup = false;
                 this.processedPopupClick = false;
                 this.popupWindow.setFocusable(true);
                 updateOrShowPopup(true, actionBarPopupWindowLayout.getMeasuredWidth() == 0);
@@ -1134,14 +1138,14 @@ public class ActionBarMenuItem extends FrameLayout {
 
     public void onFiltersChanged() {
         final SearchFilterView searchFilterView;
-        FrameLayout frameLayout;
         boolean z = !this.currentSearchFilters.isEmpty();
         ArrayList arrayList = new ArrayList(this.currentSearchFilters);
-        if (Build.VERSION.SDK_INT >= 19 && (frameLayout = this.searchContainer) != null && frameLayout.getTag() != null) {
+        FrameLayout frameLayout = this.searchContainer;
+        if (frameLayout != null && frameLayout.getTag() != null) {
             TransitionSet transitionSet = new TransitionSet();
             ChangeBounds changeBounds = new ChangeBounds();
             changeBounds.setDuration(150L);
-            transitionSet.addTransition(new Visibility(this) {
+            transitionSet.addTransition(new Visibility() {
                 @Override
                 public Animator onAppear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
                     if (view instanceof SearchFilterView) {
@@ -1484,7 +1488,7 @@ public class ActionBarMenuItem extends FrameLayout {
             this.wrappedSearchFrameLayout = null;
             if (this.wrapSearchInScrollView) {
                 this.wrappedSearchFrameLayout = new FrameLayout(getContext());
-                HorizontalScrollView horizontalScrollView = new HorizontalScrollView(this, getContext()) {
+                HorizontalScrollView horizontalScrollView = new HorizontalScrollView(getContext()) {
                     boolean isDragging;
 
                     @Override
@@ -1585,7 +1589,7 @@ public class ActionBarMenuItem extends FrameLayout {
             this.searchField.setPadding(0, 0, 0, 0);
             this.searchField.setInputType(this.searchField.getInputType() | 524288);
             if (Build.VERSION.SDK_INT < 23) {
-                this.searchField.setCustomSelectionActionModeCallback(new ActionMode.Callback(this) {
+                this.searchField.setCustomSelectionActionModeCallback(new ActionMode.Callback() {
                     @Override
                     public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
                         return false;
@@ -2056,6 +2060,7 @@ public class ActionBarMenuItem extends FrameLayout {
             return;
         }
         findViewWithTag.setVisibility(8);
+        this.measurePopup = true;
     }
 
     public boolean hasSubItem(int i) {
@@ -2109,6 +2114,7 @@ public class ActionBarMenuItem extends FrameLayout {
         findViewWithTag.setAlpha(0.0f);
         findViewWithTag.animate().alpha(1.0f).setInterpolator(CubicBezierInterpolator.DEFAULT).setDuration(150L).start();
         findViewWithTag.setVisibility(0);
+        this.measurePopup = true;
     }
 
     public void setSubItemShown(int i, boolean z) {

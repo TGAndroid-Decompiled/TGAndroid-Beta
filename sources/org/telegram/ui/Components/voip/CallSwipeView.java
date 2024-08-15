@@ -12,25 +12,22 @@ import android.view.accessibility.AccessibilityManager;
 import androidx.annotation.Keep;
 import org.telegram.messenger.AndroidUtilities;
 public class CallSwipeView extends View {
-    private boolean animatingArrows;
     private Path arrow;
     private int[] arrowAlphas;
     private AnimatorSet arrowAnim;
     private Paint arrowsPaint;
+    private boolean canceled;
     private boolean dragFromRight;
     private float dragStartX;
     private boolean dragging;
-    private Listener listener;
     private Paint pullBgPaint;
     private RectF tmpRect;
     private View viewToDrag;
 
     public interface Listener {
-        void onDragCancel();
+    }
 
-        void onDragComplete();
-
-        void onDragStart();
+    public void setListener(Listener listener) {
     }
 
     @Override
@@ -38,6 +35,7 @@ public class CallSwipeView extends View {
         super.onDetachedFromWindow();
         AnimatorSet animatorSet = this.arrowAnim;
         if (animatorSet != null) {
+            this.canceled = true;
             animatorSet.cancel();
             this.arrowAnim = null;
         }
@@ -46,10 +44,6 @@ public class CallSwipeView extends View {
     public void setColor(int i) {
         this.pullBgPaint.setColor(i);
         this.pullBgPaint.setAlpha(178);
-    }
-
-    public void setListener(Listener listener) {
-        this.listener = listener;
     }
 
     private int getDraggedViewWidth() {
@@ -67,41 +61,18 @@ public class CallSwipeView extends View {
                 this.dragging = true;
                 this.dragStartX = motionEvent.getX();
                 getParent().requestDisallowInterceptTouchEvent(true);
-                this.listener.onDragStart();
-                stopAnimatingArrows();
+                throw null;
             }
-        } else {
-            if (motionEvent.getAction() == 2) {
-                this.viewToDrag.setTranslationX(Math.max(this.dragFromRight ? -(getWidth() - getDraggedViewWidth()) : 0.0f, Math.min(motionEvent.getX() - this.dragStartX, this.dragFromRight ? 0.0f : getWidth() - getDraggedViewWidth())));
-                invalidate();
-            } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                if (Math.abs(this.viewToDrag.getTranslationX()) >= getWidth() - getDraggedViewWidth() && motionEvent.getAction() == 1) {
-                    this.listener.onDragComplete();
-                } else {
-                    this.listener.onDragCancel();
-                    this.viewToDrag.animate().translationX(0.0f).setDuration(200L).start();
-                    invalidate();
-                    startAnimatingArrows();
-                    this.dragging = false;
-                }
+        } else if (motionEvent.getAction() == 2) {
+            this.viewToDrag.setTranslationX(Math.max(this.dragFromRight ? -(getWidth() - getDraggedViewWidth()) : 0.0f, Math.min(motionEvent.getX() - this.dragStartX, this.dragFromRight ? 0.0f : getWidth() - getDraggedViewWidth())));
+            invalidate();
+        } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+            if (Math.abs(this.viewToDrag.getTranslationX()) >= getWidth() - getDraggedViewWidth() && motionEvent.getAction() == 1) {
+                throw null;
             }
+            throw null;
         }
         return this.dragging;
-    }
-
-    public void stopAnimatingArrows() {
-        this.animatingArrows = false;
-    }
-
-    public void startAnimatingArrows() {
-        AnimatorSet animatorSet;
-        if (this.animatingArrows || (animatorSet = this.arrowAnim) == null) {
-            return;
-        }
-        this.animatingArrows = true;
-        if (animatorSet != null) {
-            animatorSet.start();
-        }
     }
 
     @Override
@@ -137,7 +108,7 @@ public class CallSwipeView extends View {
     @Override
     public void onPopulateAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
         if (isEnabled() && accessibilityEvent.getEventType() == 1) {
-            this.listener.onDragComplete();
+            throw null;
         }
         super.onPopulateAccessibilityEvent(accessibilityEvent);
     }

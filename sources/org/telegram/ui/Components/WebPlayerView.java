@@ -54,6 +54,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
     private static int lastContainerId = 4001;
     private boolean allowInlineAnimation;
     private AspectRatioFrameLayout aspectRatioFrameLayout;
+    private int audioFocus;
     private Paint backgroundPaint;
     private TextureView changedTextureView;
     private boolean changingTextureView;
@@ -65,6 +66,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
     private WebPlayerViewDelegate delegate;
     private boolean drawImage;
     private boolean firstFrameRendered;
+    private int fragment_container_id;
     private ImageView fullscreenButton;
     private boolean hasAudioFocus;
     private boolean inFullscreen;
@@ -74,6 +76,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
     private boolean isAutoplay;
     private boolean isCompleted;
     private boolean isInline;
+    private boolean isLoading;
     private boolean isStream;
     private long lastUpdateTime;
     private String playAudioType;
@@ -407,6 +410,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
     }
 
     public class YoutubeVideoTask extends AsyncTask<Void, Void, String[]> {
+        private boolean canRetry = true;
         private CountDownLatch countDownLatch = new CountDownLatch(1);
         private String[] result = new String[2];
         private String sig;
@@ -481,6 +485,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
     }
 
     public class VimeoVideoTask extends AsyncTask<Void, Void, String> {
+        private boolean canRetry = true;
         private String[] results = new String[2];
         private String videoId;
 
@@ -536,6 +541,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
     }
 
     public class AparatVideoTask extends AsyncTask<Void, Void, String> {
+        private boolean canRetry = true;
         private String[] results = new String[2];
         private String videoId;
 
@@ -593,9 +599,12 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
 
     public class TwitchClipVideoTask extends AsyncTask<Void, Void, String> {
         private String currentUrl;
+        private String videoId;
+        private boolean canRetry = true;
         private String[] results = new String[2];
 
         public TwitchClipVideoTask(String str, String str2) {
+            this.videoId = str2;
             this.currentUrl = str;
         }
 
@@ -639,11 +648,14 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
     }
 
     public class TwitchStreamVideoTask extends AsyncTask<Void, Void, String> {
-        private String[] results = new String[2];
+        private String currentUrl;
         private String videoId;
+        private boolean canRetry = true;
+        private String[] results = new String[2];
 
         public TwitchStreamVideoTask(String str, String str2) {
             this.videoId = str2;
+            this.currentUrl = str;
         }
 
         @Override
@@ -698,6 +710,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
     }
 
     public class CoubVideoTask extends AsyncTask<Void, Void, String> {
+        private boolean canRetry = true;
         private String[] results = new String[4];
         private String videoId;
 
@@ -966,7 +979,9 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
     @SuppressLint({"SetJavaScriptEnabled", "AddJavascriptInterface"})
     public WebPlayerView(final Context context, boolean z, boolean z2, WebPlayerViewDelegate webPlayerViewDelegate) {
         super(context);
-        lastContainerId++;
+        int i = lastContainerId;
+        lastContainerId = i + 1;
+        this.fragment_container_id = i;
         this.allowInlineAnimation = Build.VERSION.SDK_INT >= 21;
         this.backgroundPaint = new Paint();
         this.progressRunnable = new Runnable() {
@@ -982,11 +997,11 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         };
         this.surfaceTextureListener = new TextureView.SurfaceTextureListener() {
             @Override
-            public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i, int i2) {
+            public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i2, int i3) {
             }
 
             @Override
-            public void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i, int i2) {
+            public void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i2, int i3) {
             }
 
             @Override
@@ -1093,8 +1108,8 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         this.backgroundPaint.setColor(-16777216);
         AspectRatioFrameLayout aspectRatioFrameLayout = new AspectRatioFrameLayout(context) {
             @Override
-            public void onMeasure(int i, int i2) {
-                super.onMeasure(i, i2);
+            public void onMeasure(int i2, int i3) {
+                super.onMeasure(i2, i3);
                 if (WebPlayerView.this.textureViewContainer != null) {
                     ViewGroup.LayoutParams layoutParams = WebPlayerView.this.textureView.getLayoutParams();
                     layoutParams.width = getMeasuredWidth();
@@ -1110,7 +1125,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         this.aspectRatioFrameLayout = aspectRatioFrameLayout;
         addView(aspectRatioFrameLayout, LayoutHelper.createFrame(-1, -1, 17));
         this.interfaceName = "JavaScriptInterface";
-        WebView webView = new WebView(this, context) {
+        WebView webView = new WebView(context) {
             @Override
             protected void onAttachedToWindow() {
                 AndroidUtilities.checkAndroidTheme(context, true);
@@ -1500,7 +1515,9 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
             return;
         }
         this.hasAudioFocus = true;
-        ((AudioManager) ApplicationLoader.applicationContext.getSystemService("audio")).requestAudioFocus(this, 3, 1);
+        if (((AudioManager) ApplicationLoader.applicationContext.getSystemService("audio")).requestAudioFocus(this, 3, 1) == 1) {
+            this.audioFocus = 2;
+        }
     }
 
     @Override
@@ -1520,15 +1537,22 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                 updatePlayButton();
             }
             this.hasAudioFocus = false;
+            this.audioFocus = 0;
         } else if (i == 1) {
+            this.audioFocus = 2;
             if (this.resumeAudioOnFocusGain) {
                 this.resumeAudioOnFocusGain = false;
                 this.videoPlayer.play();
             }
-        } else if (i != -3 && i == -2 && this.videoPlayer.isPlaying()) {
-            this.resumeAudioOnFocusGain = true;
-            this.videoPlayer.pause();
-            updatePlayButton();
+        } else if (i == -3) {
+            this.audioFocus = 1;
+        } else if (i == -2) {
+            this.audioFocus = 0;
+            if (this.videoPlayer.isPlaying()) {
+                this.resumeAudioOnFocusGain = true;
+                this.videoPlayer.pause();
+                updatePlayButton();
+            }
         }
     }
 
@@ -1588,6 +1612,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
             this.videoPlayer.preparePlayer(Uri.parse(str), this.playVideoType);
         }
         this.videoPlayer.setPlayWhenReady(this.isAutoplay);
+        this.isLoading = false;
         if (this.videoPlayer.getDuration() != -9223372036854775807L) {
             this.controlsView.setDuration((int) (this.videoPlayer.getDuration() / 1000));
         } else {

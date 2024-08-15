@@ -60,7 +60,7 @@ public class EditTextCell extends FrameLayout {
 
     public void whenHitEnter(final Runnable runnable) {
         this.editText.setImeOptions(6);
-        this.editText.setOnEditorActionListener(new TextView.OnEditorActionListener(this) {
+        this.editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
                 if (i == 6) {

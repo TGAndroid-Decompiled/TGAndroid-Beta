@@ -2,6 +2,7 @@ package kotlinx.coroutines.internal;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.ServiceLoader;
 import kotlin.sequences.Sequence;
 import kotlin.sequences.SequencesKt__SequencesKt;
 import kotlin.sequences.SequencesKt___SequencesKt;
@@ -29,7 +30,7 @@ public final class MainDispatcherLoader {
             if (FAST_SERVICE_LOADER_ENABLED) {
                 list = FastServiceLoader.INSTANCE.loadMainDispatcherFactory$kotlinx_coroutines_core();
             } else {
-                asSequence = SequencesKt__SequencesKt.asSequence(MainDispatcherLoader$$ExternalSyntheticServiceLoad0.m());
+                asSequence = SequencesKt__SequencesKt.asSequence(ServiceLoader.load(MainDispatcherFactory.class, MainDispatcherFactory.class.getClassLoader()).iterator());
                 list = SequencesKt___SequencesKt.toList(asSequence);
             }
             Iterator<T> it = list.iterator();

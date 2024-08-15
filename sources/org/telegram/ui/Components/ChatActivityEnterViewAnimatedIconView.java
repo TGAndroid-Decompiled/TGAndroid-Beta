@@ -23,7 +23,7 @@ public class ChatActivityEnterViewAnimatedIconView extends RLottieImageView {
 
     public ChatActivityEnterViewAnimatedIconView(Context context) {
         super(context);
-        this.stateMap = new HashMap<TransitState, RLottieDrawable>(this) {
+        this.stateMap = new HashMap<TransitState, RLottieDrawable>() {
             @Override
             public RLottieDrawable get(Object obj) {
                 RLottieDrawable rLottieDrawable = (RLottieDrawable) super.get(obj);

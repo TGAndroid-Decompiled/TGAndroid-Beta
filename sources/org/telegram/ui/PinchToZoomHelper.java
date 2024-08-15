@@ -459,7 +459,11 @@ public class PinchToZoomHelper {
             if (Build.VERSION.SDK_INT >= 21) {
                 FrameLayout frameLayout = new FrameLayout(context);
                 this.videoPlayerContainer = frameLayout;
-                frameLayout.setOutlineProvider(new ViewOutlineProvider(this, r5) {
+                frameLayout.setOutlineProvider(new ViewOutlineProvider() {
+                    {
+                        ZoomOverlayView.this = this;
+                    }
+
                     @Override
                     @TargetApi(21)
                     public void getOutline(View view, Outline outline) {
@@ -479,7 +483,7 @@ public class PinchToZoomHelper {
                 });
                 this.videoPlayerContainer.setClipToOutline(true);
             } else {
-                this.videoPlayerContainer = new FrameLayout(context, r5) {
+                this.videoPlayerContainer = new FrameLayout(context) {
                     RectF rect = new RectF();
 
                     {
@@ -722,8 +726,9 @@ public class PinchToZoomHelper {
             TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, AndroidUtilities.getPhotoSize());
             if (closestPhotoSizeWithSize != null) {
                 if (iArr != null) {
-                    iArr[0] = closestPhotoSizeWithSize.size;
-                    if (iArr[0] == 0) {
+                    int i = closestPhotoSizeWithSize.size;
+                    iArr[0] = i;
+                    if (i == 0) {
                         iArr[0] = -1;
                     }
                 }
@@ -740,8 +745,9 @@ public class PinchToZoomHelper {
                 TLRPC$PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, AndroidUtilities.getPhotoSize(), false, null, true);
                 if (closestPhotoSizeWithSize2 != null) {
                     if (iArr != null) {
-                        iArr[0] = closestPhotoSizeWithSize2.size;
-                        if (iArr[0] == 0) {
+                        int i2 = closestPhotoSizeWithSize2.size;
+                        iArr[0] = i2;
+                        if (i2 == 0) {
                             iArr[0] = -1;
                         }
                     }
@@ -757,8 +763,9 @@ public class PinchToZoomHelper {
                     if (MessageObject.isDocumentHasThumb(messageObject.getDocument())) {
                         TLRPC$PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90);
                         if (iArr != null) {
-                            iArr[0] = closestPhotoSizeWithSize3.size;
-                            if (iArr[0] == 0) {
+                            int i3 = closestPhotoSizeWithSize3.size;
+                            iArr[0] = i3;
+                            if (i3 == 0) {
                                 iArr[0] = -1;
                             }
                         }

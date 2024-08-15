@@ -54,6 +54,7 @@ import org.telegram.ui.Components.LetterDrawable;
 import org.telegram.ui.Components.RadialProgress2;
 import org.telegram.ui.PhotoViewer;
 public class ContextLinkCell extends FrameLayout implements DownloadController.FileDownloadProgressListener {
+    private static AccelerateInterpolator interpolator = new AccelerateInterpolator(0.5f);
     public final Property<ContextLinkCell, Float> IMAGE_SCALE;
     private int TAG;
     private AnimatorSet animator;
@@ -106,10 +107,6 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
     public void onProgressUpload(String str, long j, long j2, boolean z) {
     }
 
-    static {
-        new AccelerateInterpolator(0.5f);
-    }
-
     public ContextLinkCell(Context context) {
         this(context, false, null);
     }
@@ -119,6 +116,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
         this.currentAccount = UserConfig.selectedAccount;
         this.titleY = AndroidUtilities.dp(7.0f);
         this.descriptionY = AndroidUtilities.dp(27.0f);
+        this.cacheFile = null;
         this.imageScale = 1.0f;
         this.IMAGE_SCALE = new AnimationProperties.FloatProperty<ContextLinkCell>("animationValue") {
             @Override
@@ -285,6 +283,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
         }
         requestLayout();
         this.fileName = null;
+        this.cacheFile = null;
         this.fileExist = false;
         this.resolvingFileName = false;
         updateButtonState(false, false);
@@ -316,6 +315,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
         this.documentAttachType = 2;
         requestLayout();
         this.fileName = null;
+        this.cacheFile = null;
         this.fileExist = false;
         this.resolvingFileName = false;
         updateButtonState(false, false);
@@ -626,7 +626,6 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
         if (str == null && !this.resolvingFileName) {
             this.resolvingFileName = true;
             int i = this.resolveFileNameId;
-            this.resolveFileNameId = i + 1;
             this.resolveFileNameId = i;
             Utilities.searchQueue.postRunnable(new AnonymousClass1(i, z));
             this.radialProgress.setIcon(4, z, false);

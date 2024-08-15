@@ -373,7 +373,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
         updateColors();
         this.activeTextPaint.setColor(-1);
         if (z) {
-            FrameLayout frameLayout = new FrameLayout(this, context) {
+            FrameLayout frameLayout = new FrameLayout(context) {
                 @Override
                 public void onDraw(Canvas canvas) {
                     canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), AndroidUtilities.getShadowHeight(), Theme.dividerPaint);
@@ -740,6 +740,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
     }
 
     public class MonthView extends FrameLayout {
+        boolean attached;
         int cellCount;
         int currentMonthInYear;
         int currentYear;
@@ -770,7 +771,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
                         return lambda$new$0;
                     }
                 });
-                this.titleView.setOnClickListener(new View.OnClickListener(CalendarActivity.this) {
+                this.titleView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         MonthView monthView;
@@ -842,6 +843,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
 
         public class AnonymousClass2 extends GestureDetector.SimpleOnGestureListener {
             final Context val$context;
+            final CalendarActivity val$this$0;
 
             @Override
             public boolean onDown(MotionEvent motionEvent) {
@@ -849,6 +851,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
             }
 
             AnonymousClass2(CalendarActivity calendarActivity, Context context) {
+                this.val$this$0 = calendarActivity;
                 this.val$context = context;
             }
 
@@ -1515,6 +1518,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
         @Override
         protected void onAttachedToWindow() {
             super.onAttachedToWindow();
+            this.attached = true;
             if (this.imagesByDays != null) {
                 for (int i = 0; i < this.imagesByDays.size(); i++) {
                     this.imagesByDays.valueAt(i).onAttachedToWindow();
@@ -1525,6 +1529,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
         @Override
         protected void onDetachedFromWindow() {
             super.onDetachedFromWindow();
+            this.attached = false;
             if (this.imagesByDays != null) {
                 for (int i = 0; i < this.imagesByDays.size(); i++) {
                     this.imagesByDays.valueAt(i).onDetachedFromWindow();
@@ -1619,14 +1624,14 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
         float toSelSEProgress;
         boolean wasDrawn;
 
-        private PeriodDay(CalendarActivity calendarActivity) {
+        private PeriodDay() {
             this.enterAlpha = 1.0f;
             this.startEnterDelay = 1.0f;
             this.hasImage = true;
         }
 
         PeriodDay(CalendarActivity calendarActivity, AnonymousClass1 anonymousClass1) {
-            this(calendarActivity);
+            this();
         }
     }
 

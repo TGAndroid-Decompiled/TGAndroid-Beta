@@ -302,9 +302,9 @@ public class RadialProgress2 {
         int ceil2;
         boolean z;
         int i2;
-        int i3;
         float centerX;
         float centerY;
+        int i3;
         float f;
         int i4;
         Canvas canvas2;
@@ -496,15 +496,15 @@ public class RadialProgress2 {
             }
             if (this.drawMiniIcon || this.circleCrossfadeColorKey >= 0) {
                 if (Math.abs(this.progressRect.width() - AndroidUtilities.dp(44.0f)) < AndroidUtilities.density) {
-                    i3 = 20;
                     float f4 = 16;
                     centerX = this.progressRect.centerX() + AndroidUtilities.dp(f4);
                     centerY = this.progressRect.centerY() + AndroidUtilities.dp(f4);
+                    i3 = 20;
                     i15 = 0;
                 } else {
-                    i3 = 22;
                     centerX = this.progressRect.centerX() + AndroidUtilities.dp(18.0f);
                     centerY = this.progressRect.centerY() + AndroidUtilities.dp(18.0f);
+                    i3 = 22;
                 }
                 int i19 = i3 / 2;
                 if (this.drawMiniIcon) {

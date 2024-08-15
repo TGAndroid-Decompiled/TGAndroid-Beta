@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Interpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.OverScroller;
 import java.util.ArrayList;
@@ -15,6 +16,14 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.Premium.CarouselView;
 public class CarouselView extends View implements PagerHeaderView {
+    static final Interpolator sQuinticInterpolator = new Interpolator() {
+        @Override
+        public final float getInterpolation(float f) {
+            float lambda$static$0;
+            lambda$static$0 = CarouselView.lambda$static$0(f);
+            return lambda$static$0;
+        }
+    };
     boolean autoPlayEnabled;
     ValueAnimator autoScrollAnimation;
     private Runnable autoScrollRunnable;
@@ -50,6 +59,11 @@ public class CarouselView extends View implements PagerHeaderView {
 
         public void select() {
         }
+    }
+
+    public static float lambda$static$0(float f) {
+        float f2 = f - 1.0f;
+        return (f2 * f2 * f2 * f2 * f2) + 1.0f;
     }
 
     private void checkSelectedHaptic() {

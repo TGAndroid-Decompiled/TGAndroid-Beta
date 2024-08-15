@@ -41,6 +41,7 @@ public class FiltersListBottomSheet extends BottomSheet implements NotificationC
     private ListAdapter adapter;
     private FiltersListBottomSheetDelegate delegate;
     private ArrayList<MessagesController.DialogFilter> dialogFilters;
+    private final DialogsActivity fragment;
     private boolean ignoreLayout;
     private RecyclerListView listView;
     private int scrollOffsetY;
@@ -61,6 +62,7 @@ public class FiltersListBottomSheet extends BottomSheet implements NotificationC
     public FiltersListBottomSheet(DialogsActivity dialogsActivity, ArrayList<Long> arrayList) {
         super(dialogsActivity.getParentActivity(), false);
         this.selectedDialogs = arrayList;
+        this.fragment = dialogsActivity;
         this.dialogFilters = new ArrayList<>(dialogsActivity.getMessagesController().dialogFilters);
         int i = 0;
         while (i < this.dialogFilters.size()) {
@@ -133,7 +135,7 @@ public class FiltersListBottomSheet extends BottomSheet implements NotificationC
             }
 
             @Override
-            protected void onDraw(android.graphics.Canvas r13) {
+            protected void onDraw(android.graphics.Canvas r12) {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.FiltersListBottomSheet.AnonymousClass1.onDraw(android.graphics.Canvas):void");
             }
 

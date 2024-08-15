@@ -9,7 +9,6 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
-import android.os.Build;
 import android.os.SystemClock;
 import android.transition.AutoTransition;
 import android.transition.Transition;
@@ -48,6 +47,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.ScrollSlidingTabStrip;
 public class ScrollSlidingTabStrip extends HorizontalScrollView {
     public static float EXPANDED_WIDTH = 64.0f;
+    private boolean animateFromPosition;
     boolean animateToExpanded;
     int currentDragPosition;
     SparseArray<StickerTabView> currentPlayingImages;
@@ -57,6 +57,7 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
     private LinearLayout.LayoutParams defaultExpandLayoutParams;
     private LinearLayout.LayoutParams defaultTabLayoutParams;
     private ScrollSlidingTabStripDelegate delegate;
+    private int dividerPadding;
     float dragDx;
     private boolean dragEnabled;
     float draggindViewDxOnScreen;
@@ -69,16 +70,21 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
     boolean expanded;
     private SparseArray<View> futureTabsPositions;
     private int imageReceiversPlayingNum;
+    private int indicatorColor;
     private GradientDrawable indicatorDrawable;
     private int indicatorHeight;
+    private long lastAnimationTime;
     private int lastScrollX;
+    private RectF leftTabBounds;
     Runnable longClickRunnable;
     boolean longClickRunning;
+    private float positionAnimationProgress;
     float pressedX;
     float pressedY;
     private HashMap<String, View> prevTypes;
     private Paint rectPaint;
     private final Theme.ResourcesProvider resourcesProvider;
+    private RectF rightTabBounds;
     private int scrollByOnNextMeasure;
     private int scrollOffset;
     boolean scrollRight;
@@ -88,12 +94,14 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
     private boolean shouldExpand;
     private boolean showSelected;
     private AnimatedFloat showSelectedAlpha;
+    private float startAnimationPosition;
     int startDragFromPosition;
     float startDragFromX;
     private float stickerTabExpandedWidth;
     private float stickerTabWidth;
     private RectF tabBounds;
     private int tabCount;
+    private int tabPadding;
     private HashMap<String, View> tabTypes;
     private LinearLayout tabsContainer;
     private float touchSlop;
@@ -128,15 +136,16 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
         this.futureTabsPositions = new SparseArray<>();
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         this.currentPositionAnimated = new AnimatedFloat(this, 350L, cubicBezierInterpolator);
-        new RectF();
-        new RectF();
+        this.leftTabBounds = new RectF();
+        this.rightTabBounds = new RectF();
         this.tabBounds = new RectF();
+        this.indicatorColor = -10066330;
         this.underlineColor = 436207616;
         this.indicatorDrawable = new GradientDrawable();
         this.scrollOffset = AndroidUtilities.dp(33.0f);
         this.underlineHeight = AndroidUtilities.dp(2.0f);
-        AndroidUtilities.dp(12.0f);
-        AndroidUtilities.dp(24.0f);
+        this.dividerPadding = AndroidUtilities.dp(12.0f);
+        this.tabPadding = AndroidUtilities.dp(24.0f);
         this.lastScrollX = 0;
         this.currentPlayingImages = new SparseArray<>();
         this.currentPlayingImagesTmp = new SparseArray<>();
@@ -254,14 +263,13 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
         this.tabTypes = new HashMap<>();
         this.futureTabsPositions.clear();
         this.tabCount = 0;
-        if (!z || Build.VERSION.SDK_INT < 19) {
-            return;
+        if (z) {
+            AutoTransition autoTransition = new AutoTransition();
+            autoTransition.setDuration(250L);
+            autoTransition.setOrdering(0);
+            autoTransition.addTransition(new AnonymousClass3());
+            TransitionManager.beginDelayedTransition(this.tabsContainer, autoTransition);
         }
-        AutoTransition autoTransition = new AutoTransition();
-        autoTransition.setDuration(250L);
-        autoTransition.setOrdering(0);
-        autoTransition.addTransition(new AnonymousClass3());
-        TransitionManager.beginDelayedTransition(this.tabsContainer, autoTransition);
     }
 
     public class AnonymousClass3 extends Transition {
@@ -851,11 +859,12 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
             }
             float dp = AndroidUtilities.dp(30.0f);
             float abs = (1.25f - ((Math.abs(0.5f - this.currentPositionAnimated.getTransitionProgressInterpolated()) * 0.25f) * 2.0f)) * dp;
+            float abs2 = dp * ((Math.abs(0.5f - this.currentPositionAnimated.getTransitionProgressInterpolated()) * 0.1f * 2.0f) + 0.9f);
             float interpolation = CubicBezierInterpolator.EASE_IN.getInterpolation(this.expandProgress);
             float lerp2 = f7 + AndroidUtilities.lerp(0, AndroidUtilities.dp(26.0f), interpolation);
             float lerp3 = AndroidUtilities.lerp(abs, textWidth + AndroidUtilities.dp(10.0f), interpolation) / 2.0f;
-            float abs2 = ((dp * (((Math.abs(0.5f - this.currentPositionAnimated.getTransitionProgressInterpolated()) * 0.1f) * 2.0f) + 0.9f)) * AndroidUtilities.lerp(1.0f, 0.55f, interpolation)) / 2.0f;
-            this.tabBounds.set(f - lerp3, lerp2 - abs2, f + lerp3, lerp2 + abs2);
+            float lerp4 = (abs2 * AndroidUtilities.lerp(1.0f, 0.55f, interpolation)) / 2.0f;
+            this.tabBounds.set(f - lerp3, lerp2 - lerp4, f + lerp3, lerp2 + lerp4);
             this.selectorPaint.setColor(ColorUtils.setAlphaComponent(getThemedColor(Theme.key_chat_emojiPanelIcon), 46));
             this.selectorPaint.setAlpha((int) (paint.getAlpha() * f5));
             canvas.drawRoundRect(this.tabBounds, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.selectorPaint);
@@ -898,24 +907,21 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
         }
         View childAt = this.tabsContainer.getChildAt(i3);
         if (childAt != null) {
-            childAt.getLeft();
-            SystemClock.elapsedRealtime();
+            this.startAnimationPosition = childAt.getLeft();
+            this.positionAnimationProgress = 0.0f;
+            this.animateFromPosition = true;
+            this.lastAnimationTime = SystemClock.elapsedRealtime();
+        } else {
+            this.animateFromPosition = false;
         }
         this.currentPosition = i;
         if (i >= this.tabsContainer.getChildCount()) {
             return;
         }
+        this.positionAnimationProgress = 0.0f;
         int i4 = 0;
-        while (true) {
-            boolean z = true;
-            if (i4 >= this.tabsContainer.getChildCount()) {
-                break;
-            }
-            View childAt2 = this.tabsContainer.getChildAt(i4);
-            if (i4 != i) {
-                z = false;
-            }
-            childAt2.setSelected(z);
+        while (i4 < this.tabsContainer.getChildCount()) {
+            this.tabsContainer.getChildAt(i4).setSelected(i4 == i);
             i4++;
         }
         if (this.expandStickerAnimator == null) {
@@ -945,6 +951,7 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
     }
 
     public void setIndicatorColor(int i) {
+        this.indicatorColor = i;
         invalidate();
     }
 
@@ -987,7 +994,8 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
             AndroidUtilities.cancelRunOnUIThread(this.longClickRunnable);
         }
         if (motionEvent.getAction() == 2 && this.draggingView != null) {
-            int ceil = ((int) Math.ceil((getScrollX() + motionEvent.getX()) / getTabSize())) - 1;
+            float scrollX = getScrollX() + motionEvent.getX();
+            int ceil = ((int) Math.ceil(scrollX / getTabSize())) - 1;
             int i = this.currentDragPosition;
             if (ceil != i) {
                 if (ceil < i) {
@@ -1012,6 +1020,7 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
                 this.tabsContainer.addView(this.draggingView, this.currentDragPosition);
                 invalidate();
             }
+            this.dragDx = scrollX - this.startDragFromX;
             this.draggindViewDxOnScreen = this.pressedX - motionEvent.getX();
             float x = motionEvent.getX();
             if (x < this.draggingView.getMeasuredWidth() / 2.0f) {

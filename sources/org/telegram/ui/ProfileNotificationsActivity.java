@@ -230,18 +230,17 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
         }
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
-        FrameLayout frameLayout2 = frameLayout;
-        frameLayout2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray, this.resourcesProvider));
+        frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray, this.resourcesProvider));
         RecyclerListView recyclerListView = new RecyclerListView(context);
         this.listView = recyclerListView;
-        frameLayout2.addView(recyclerListView, LayoutHelper.createFrame(-1, -1.0f));
+        frameLayout.addView(recyclerListView, LayoutHelper.createFrame(-1, -1.0f));
         RecyclerListView recyclerListView2 = this.listView;
         ListAdapter listAdapter = new ListAdapter(context);
         this.adapter = listAdapter;
         recyclerListView2.setAdapter(listAdapter);
         this.listView.setItemAnimator(null);
         this.listView.setLayoutAnimation(null);
-        this.listView.setLayoutManager(new LinearLayoutManager(this, context) {
+        this.listView.setLayoutManager(new LinearLayoutManager(context) {
             @Override
             public boolean supportsPredictiveItemAnimations() {
                 return false;
@@ -432,13 +431,15 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
 
     @Override
     public void onActivityResultFragment(int i, int i2, Intent intent) {
+        String str;
         Ringtone ringtone;
         if (i2 != -1 || intent == null) {
             return;
         }
         Uri uri = (Uri) intent.getParcelableExtra("android.intent.extra.ringtone.PICKED_URI");
-        String str = null;
-        if (uri != null && (ringtone = RingtoneManager.getRingtone(ApplicationLoader.applicationContext, uri)) != null) {
+        if (uri == null || (ringtone = RingtoneManager.getRingtone(ApplicationLoader.applicationContext, uri)) == null) {
+            str = null;
+        } else {
             if (i == 13) {
                 if (uri.equals(Settings.System.DEFAULT_RINGTONE_URI)) {
                     str = LocaleController.getString("DefaultRingtone", R.string.DefaultRingtone);

@@ -66,6 +66,7 @@ public class PhotoCropView extends FrameLayout {
 
     public PhotoCropView(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
+        this.isReset = true;
         this.thumbImageVisibleOverride = true;
         this.thumbAnimationProgress = 1.0f;
         this.flashAlpha = 0.0f;

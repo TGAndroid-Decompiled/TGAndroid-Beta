@@ -98,6 +98,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
     private int emojiPadding;
     private EmojiView emojiView;
     public boolean emojiViewVisible;
+    public boolean emojiViewWasVisible;
     private boolean hintShowed;
     private HintView hintView;
     private boolean isAnimatePopupClosing;
@@ -310,7 +311,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
         this.fragmentView = sizeNotifierFrameLayout2;
         sizeNotifierFrameLayout2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
         FrameLayout frameLayout = (FrameLayout) this.fragmentView;
-        RecyclerListView recyclerListView = new RecyclerListView(this, context) {
+        RecyclerListView recyclerListView = new RecyclerListView(context) {
             @Override
             public void requestChildOnScreen(View view, View view2) {
                 if (view instanceof PollEditTextCell) {
@@ -667,15 +668,11 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
     }
 
     public void updateRows() {
-        this.rowCount = 0;
         int i = 0 + 1;
-        this.rowCount = i;
         this.questionHeaderRow = 0;
         int i2 = i + 1;
-        this.rowCount = i2;
         this.questionRow = i;
         int i3 = i2 + 1;
-        this.rowCount = i3;
         this.questionSectionRow = i2;
         int i4 = i3 + 1;
         this.rowCount = i4;
@@ -696,7 +693,6 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
         }
         int i7 = this.rowCount;
         int i8 = i7 + 1;
-        this.rowCount = i8;
         this.answerSectionRow = i7;
         this.rowCount = i8 + 1;
         this.settingsHeaderRow = i8;
@@ -729,7 +725,6 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
         this.settingsSectionRow = i13;
         if (this.quizPoll) {
             int i15 = i14 + 1;
-            this.rowCount = i15;
             this.solutionRow = i14;
             this.rowCount = i15 + 1;
             this.solutionInfoRow = i15;
@@ -779,34 +774,34 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
     }
 
     public void setTextLeft(View view, int i) {
+        int i2;
         int length;
         if (view instanceof PollEditTextCell) {
             PollEditTextCell pollEditTextCell = (PollEditTextCell) view;
-            int i2 = 100;
             if (i == this.questionRow) {
                 CharSequence charSequence = this.questionString;
-                length = 255 - (charSequence != null ? charSequence.length() : 0);
                 i2 = 255;
+                length = 255 - (charSequence != null ? charSequence.length() : 0);
             } else if (i == this.solutionRow) {
                 CharSequence charSequence2 = this.solutionString;
-                length = 200 - (charSequence2 != null ? charSequence2.length() : 0);
                 i2 = 200;
+                length = 200 - (charSequence2 != null ? charSequence2.length() : 0);
             } else {
                 int i3 = this.answerStartRow;
                 if (i < i3 || i >= this.answersCount + i3) {
                     return;
                 }
-                int i4 = i - i3;
-                CharSequence[] charSequenceArr = this.answers;
-                length = 100 - (charSequenceArr[i4] != null ? charSequenceArr[i4].length() : 0);
+                CharSequence charSequence3 = this.answers[i - i3];
+                i2 = 100;
+                length = 100 - (charSequence3 != null ? charSequence3.length() : 0);
             }
             float f = i2;
             if (length <= f - (0.7f * f)) {
                 pollEditTextCell.setText2(String.format("%d", Integer.valueOf(length)));
                 SimpleTextView textView2 = pollEditTextCell.getTextView2();
-                int i5 = length < 0 ? Theme.key_text_RedRegular : Theme.key_windowBackgroundWhiteGrayText3;
-                textView2.setTextColor(Theme.getColor(i5));
-                textView2.setTag(Integer.valueOf(i5));
+                int i4 = length < 0 ? Theme.key_text_RedRegular : Theme.key_windowBackgroundWhiteGrayText3;
+                textView2.setTextColor(Theme.getColor(i4));
+                textView2.setTag(Integer.valueOf(i4));
                 return;
             }
             pollEditTextCell.setText2("");
@@ -983,6 +978,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                 boolean z = emojiView != null && emojiView.getVisibility() == 0;
                 createEmojiView();
                 this.emojiView.setVisibility(0);
+                this.emojiViewWasVisible = this.emojiViewVisible;
                 this.emojiViewVisible = true;
                 EmojiView emojiView2 = this.emojiView;
                 if (this.keyboardHeight <= 0) {
@@ -1041,6 +1037,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
             }
             EmojiView emojiView3 = this.emojiView;
             if (emojiView3 != null) {
+                this.emojiViewWasVisible = this.emojiViewVisible;
                 this.emojiViewVisible = false;
                 this.isEmojiSearchOpened = false;
                 if (AndroidUtilities.usingHardwareInput || AndroidUtilities.isInMultiwindow) {
@@ -1106,6 +1103,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                             PollCreateActivity.this.lambda$hideEmojiPopup$4(valueAnimator);
                         }
                     });
+                    this.isAnimatePopupClosing = true;
                     ofFloat.addListener(new AnimatorListenerAdapter() {
                         @Override
                         public void onAnimationEnd(Animator animator) {

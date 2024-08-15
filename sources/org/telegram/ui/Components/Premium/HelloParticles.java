@@ -26,6 +26,11 @@ public class HelloParticles {
         public RectF screenRect = new RectF();
         private Paint paint = new Paint();
         ArrayList<Particle> particles = new ArrayList<>();
+        public float speedScale = 1.0f;
+        public int size1 = 14;
+        public int size2 = 12;
+        public int size3 = 10;
+        public long minLifeTime = 2000;
         private final float dt = 1000.0f / AndroidUtilities.screenRefreshRate;
 
         public Drawable(int i) {
@@ -92,6 +97,8 @@ public class HelloParticles {
             private float scale;
             private boolean set;
             private StaticLayout staticLayout;
+            private float vecX;
+            private float vecY;
             private int w;
             private float x;
             private float y;
@@ -190,8 +197,8 @@ public class HelloParticles {
                 this.x = abs;
                 this.y = abs2;
                 double atan2 = Math.atan2(abs - Drawable.this.rect.centerX(), this.y - Drawable.this.rect.centerY());
-                Math.sin(atan2);
-                Math.cos(atan2);
+                this.vecX = (float) Math.sin(atan2);
+                this.vecY = (float) Math.cos(atan2);
                 this.alpha = (int) (((Utilities.fastRandom.nextInt(50) + 50) / 100.0f) * 255.0f);
                 this.inProgress = z ? Math.abs((Utilities.fastRandom.nextFloat() % 1.0f) * 0.9f) : 0.0f;
                 this.set = true;

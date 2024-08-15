@@ -109,7 +109,7 @@ import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.AvatarSpan;
-import org.telegram.ui.Cells.ChatActionCell$$ExternalSyntheticLambda3;
+import org.telegram.ui.Cells.ChatActionCell$$ExternalSyntheticLambda4;
 import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.SessionCell;
 import org.telegram.ui.ChatActivity;
@@ -154,11 +154,14 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
     private UniversalAdapter adapter;
     private StarsBalanceView balanceView;
     private View emptyLayout;
-    private boolean expanded = false;
     private FireworksOverlay fireworksOverlay;
     private boolean hadTransactions;
     private GLIconTextureView iconTextureView;
     private StarsTransactionsLayout transactionsLayout;
+    private boolean expanded = false;
+    private final int BUTTON_EXPAND = -1;
+    private final int BUTTON_GIFT = -2;
+    private final int BUTTON_SUBSCRIPTIONS_EXPAND = -3;
 
     public StarsIntroActivity() {
         setWhiteBackground(true);
@@ -357,6 +360,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
 
         @Override
         public void onNestedPreScroll(View view, int i, int i2, int[] iArr, int i3) {
+            int i4;
             if (view == ((GradientHeaderActivity) StarsIntroActivity.this).listView && StarsIntroActivity.this.transactionsLayout.isAttachedToWindow()) {
                 boolean isSearchFieldVisible = ((BaseFragment) StarsIntroActivity.this).actionBar.isSearchFieldVisible();
                 int top = (((View) StarsIntroActivity.this.transactionsLayout.getParent()).getTop() - AndroidUtilities.statusBarHeight) - ActionBar.getCurrentActionBarHeight();
@@ -388,12 +392,12 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                     RecyclerListView currentListView2 = StarsIntroActivity.this.transactionsLayout.getCurrentListView();
                     iArr[1] = i2;
                     if (top > 0) {
-                        iArr[1] = iArr[1] - i2;
+                        iArr[1] = i2 - i2;
                     }
-                    if (currentListView2 == null || iArr[1] <= 0) {
+                    if (currentListView2 == null || (i4 = iArr[1]) <= 0) {
                         return;
                     }
-                    currentListView2.scrollBy(0, iArr[1]);
+                    currentListView2.scrollBy(0, i4);
                 } else if (i2 > 0) {
                     RecyclerListView currentListView3 = StarsIntroActivity.this.transactionsLayout.getCurrentListView();
                     if (((GradientHeaderActivity) StarsIntroActivity.this).listView.getHeight() - bottom < 0 || currentListView3 == null || currentListView3.canScrollVertically(1)) {
@@ -678,7 +682,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             textView.setTypeface(AndroidUtilities.bold());
             addView(textView, LayoutHelper.createLinear(-2, -2, 5));
             final Drawable mutate = context.getResources().getDrawable(R.drawable.star_small_inner).mutate();
-            AnimatedTextView animatedTextView = new AnimatedTextView(this, context) {
+            AnimatedTextView animatedTextView = new AnimatedTextView(context) {
                 @Override
                 protected void dispatchDraw(Canvas canvas) {
                     int measuredWidth = (int) ((getMeasuredWidth() - getDrawable().getCurrentWidth()) - AndroidUtilities.dp(20.0f));
@@ -1004,6 +1008,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
 
     public static class StarsTransactionsLayout extends LinearLayout implements NotificationCenter.NotificationCenterDelegate {
         private final PageAdapter adapter;
+        private final long bot_id;
         private final int currentAccount;
         private final ViewPagerFixed.TabsView tabsView;
         private final ViewPagerFixed viewPager;
@@ -1095,6 +1100,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         public StarsTransactionsLayout(Context context, int i, long j, int i2, Theme.ResourcesProvider resourcesProvider) {
             super(context);
             this.currentAccount = i;
+            this.bot_id = j;
             setOrientation(1);
             ViewPagerFixed viewPagerFixed = new ViewPagerFixed(context);
             this.viewPager = viewPagerFixed;
@@ -1266,6 +1272,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         private final AvatarDrawable avatarDrawable;
         private final int currentAccount;
         private final TextView dateTextView;
+        private final LinearLayout.LayoutParams dateTextViewParams;
         private final BackupImageView imageView;
         private final BackupImageView imageView2;
         private final FrameLayout imageViewContainer;
@@ -1338,7 +1345,9 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             textView3.setTextSize(1, 14.0f);
             textView3.setEllipsize(TextUtils.TruncateAt.END);
             textView3.setSingleLine(true);
-            linearLayout.addView(textView3, LayoutHelper.createLinear(-1, -2));
+            LinearLayout.LayoutParams createLinear2 = LayoutHelper.createLinear(-1, -2);
+            this.dateTextViewParams = createLinear2;
+            linearLayout.addView(textView3, createLinear2);
             TextView textView4 = new TextView(context);
             this.amountTextView = textView4;
             textView4.setTypeface(AndroidUtilities.bold());
@@ -1945,6 +1954,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
     }
 
     public static class StarsNeededSheet extends BottomSheetWithRecyclerListView implements NotificationCenter.NotificationCenterDelegate {
+        private final int BUTTON_EXPAND;
         private UniversalAdapter adapter;
         private boolean expanded;
         private final FireworksOverlay fireworksOverlay;
@@ -2004,8 +2014,86 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.starBalanceUpdated);
         }
 
-        public StarsNeededSheet(android.content.Context r8, org.telegram.ui.ActionBar.Theme.ResourcesProvider r9, long r10, int r12, java.lang.String r13, java.lang.Runnable r14) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stars.StarsIntroActivity.StarsNeededSheet.<init>(android.content.Context, org.telegram.ui.ActionBar.Theme$ResourcesProvider, long, int, java.lang.String, java.lang.Runnable):void");
+        public StarsNeededSheet(Context context, Theme.ResourcesProvider resourcesProvider, long j, int i, String str, Runnable runnable) {
+            super(context, null, false, false, false, resourcesProvider);
+            String str2;
+            String str3;
+            this.BUTTON_EXPAND = -1;
+            this.topPadding = 0.2f;
+            this.whenPurchased = runnable;
+            NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.starOptionsLoaded);
+            NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.starBalanceUpdated);
+            fixNavigationBar();
+            RecyclerListView recyclerListView = this.recyclerListView;
+            int i2 = this.backgroundPaddingLeft;
+            recyclerListView.setPadding(i2, 0, i2, 0);
+            this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
+                @Override
+                public final void onItemClick(View view, int i3) {
+                    StarsIntroActivity.StarsNeededSheet.this.lambda$new$0(view, i3);
+                }
+            });
+            DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
+            defaultItemAnimator.setSupportsChangeAnimations(false);
+            defaultItemAnimator.setDelayAnimations(false);
+            defaultItemAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+            defaultItemAnimator.setDurations(350L);
+            this.recyclerListView.setItemAnimator(defaultItemAnimator);
+            setBackgroundColor(Theme.getColor(Theme.key_dialogBackgroundGray, resourcesProvider));
+            this.starsNeeded = j;
+            HeaderView headerView = new HeaderView(context, this.currentAccount, resourcesProvider);
+            this.headerView = headerView;
+            headerView.titleView.setText(LocaleController.formatPluralString("StarsNeededTitle", (int) Math.max(0L, j - StarsController.getInstance(this.currentAccount).getBalance()), new Object[0]));
+            if (i == 1) {
+                str2 = "StarsNeededTextBuySubscription";
+            } else if (i == 2 || i == 3) {
+                str2 = "StarsNeededTextKeepSubscription";
+            } else if (i == 4) {
+                str2 = "StarsNeededTextLink";
+                if (str == null) {
+                    str3 = "StarsNeededTextLink";
+                } else {
+                    str3 = "StarsNeededTextLink_" + str.toLowerCase();
+                }
+                if (LocaleController.nullable(LocaleController.getString(str3)) != null) {
+                    str2 = str3;
+                }
+            } else {
+                str2 = i == 5 ? "StarsNeededTextReactions" : "StarsNeededText";
+            }
+            if (TextUtils.isEmpty(str2)) {
+                headerView.subtitleView.setText("");
+            } else {
+                String nullable = LocaleController.nullable(LocaleController.formatString(str2, LocaleController.getStringResId(str2), str));
+                headerView.subtitleView.setText(AndroidUtilities.replaceTags(nullable == null ? LocaleController.getString(str2) : nullable));
+                TextView textView = headerView.subtitleView;
+                textView.setMaxWidth(HintView2.cutInFancyHalf(textView.getText(), headerView.subtitleView.getPaint()));
+            }
+            this.actionBar.setTitle(getTitle());
+            FrameLayout frameLayout = new FrameLayout(context);
+            this.footerView = frameLayout;
+            LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, resourcesProvider);
+            frameLayout.setPadding(0, AndroidUtilities.dp(11.0f), 0, AndroidUtilities.dp(11.0f));
+            linksTextView.setTextSize(1, 12.0f);
+            linksTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText4, resourcesProvider));
+            linksTextView.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn, resourcesProvider));
+            linksTextView.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.StarsTOS), new Runnable() {
+                @Override
+                public final void run() {
+                    StarsIntroActivity.StarsNeededSheet.this.lambda$new$1();
+                }
+            }));
+            linksTextView.setGravity(17);
+            linksTextView.setMaxWidth(HintView2.cutInFancyHalf(linksTextView.getText(), linksTextView.getPaint()));
+            frameLayout.addView(linksTextView, LayoutHelper.createFrame(-2, -1, 17));
+            frameLayout.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
+            FireworksOverlay fireworksOverlay = new FireworksOverlay(getContext());
+            this.fireworksOverlay = fireworksOverlay;
+            this.containerView.addView(fireworksOverlay, LayoutHelper.createFrame(-1, -1.0f));
+            UniversalAdapter universalAdapter = this.adapter;
+            if (universalAdapter != null) {
+                universalAdapter.update(false);
+            }
         }
 
         public void lambda$new$0(View view, int i) {
@@ -2221,6 +2309,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
     }
 
     public static class GiftStarsSheet extends BottomSheetWithRecyclerListView implements NotificationCenter.NotificationCenterDelegate {
+        private final int BUTTON_EXPAND;
         private UniversalAdapter adapter;
         private boolean expanded;
         private final FireworksOverlay fireworksOverlay;
@@ -2258,6 +2347,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
 
         public GiftStarsSheet(Context context, Theme.ResourcesProvider resourcesProvider, TLRPC$User tLRPC$User, Runnable runnable) {
             super(context, null, false, false, false, resourcesProvider);
+            this.BUTTON_EXPAND = -1;
             this.user = tLRPC$User;
             this.whenPurchased = runnable;
             this.topPadding = 0.2f;
@@ -2382,7 +2472,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                 }
                 boolean z = this.expanded;
                 if (!z && i > 0) {
-                    arrayList.add(ExpandView.Factory.asExpand(-1, LocaleController.getString(z ? R.string.NotifyLessOptions : R.string.NotifyMoreOptions), true ^ this.expanded).accent());
+                    arrayList.add(ExpandView.Factory.asExpand(-1, LocaleController.getString(z ? R.string.NotifyLessOptions : R.string.NotifyMoreOptions), !this.expanded).accent());
                 }
             } else {
                 arrayList.add(UItem.asFlicker(31));
@@ -2539,9 +2629,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         } else {
             spannableStringBuilder = (SpannableStringBuilder) charSequence;
         }
-        if (coloredImageSpanArr != null && coloredImageSpanArr[0] != null) {
-            coloredImageSpan = coloredImageSpanArr[0];
-        } else {
+        if (coloredImageSpanArr == null || (coloredImageSpan = coloredImageSpanArr[0]) == null) {
             coloredImageSpan = new ColoredImageSpan(R.drawable.msg_premium_liststar);
             coloredImageSpan.setScale(1.13f, 1.13f);
         }
@@ -2740,7 +2828,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                         return;
                     }
                     lottieAnimation.setCurrentFrame(0, false);
-                    AndroidUtilities.runOnUIThread(new ChatActionCell$$ExternalSyntheticLambda3(lottieAnimation));
+                    AndroidUtilities.runOnUIThread(new ChatActionCell$$ExternalSyntheticLambda4(lottieAnimation));
                     zArr[0] = true;
                 }
             });
@@ -2806,9 +2894,11 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
     }
 
     public static void lambda$showTransactionSheet$18(Context context, BottomSheet[] bottomSheetArr) {
+        BottomSheet bottomSheet;
+        BaseFragment baseFragment;
         StarAppsSheet starAppsSheet = new StarAppsSheet(context);
-        if (!AndroidUtilities.isTablet() && !AndroidUtilities.hasDialogOnTop(bottomSheetArr[0].attachedFragment) && bottomSheetArr[0] != null && bottomSheetArr[0].attachedFragment != null) {
-            starAppsSheet.makeAttached(bottomSheetArr[0].attachedFragment);
+        if (!AndroidUtilities.isTablet() && !AndroidUtilities.hasDialogOnTop(bottomSheetArr[0].attachedFragment) && (bottomSheet = bottomSheetArr[0]) != null && (baseFragment = bottomSheet.attachedFragment) != null) {
+            starAppsSheet.makeAttached(baseFragment);
         }
         starAppsSheet.show();
     }
@@ -3046,9 +3136,10 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             }
         }
         builder.setCustomView(linearLayout);
-        bottomSheetArr3[0] = builder.create();
-        bottomSheetArr3[0].useBackgroundTopPadding = false;
-        bottomSheetArr3[0].fixNavigationBar();
+        BottomSheet create = builder.create();
+        bottomSheetArr3[0] = create;
+        create.useBackgroundTopPadding = false;
+        create.fixNavigationBar();
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (!AndroidUtilities.isTablet() && !AndroidUtilities.hasDialogOnTop(safeLastFragment)) {
             bottomSheetArr3[0].makeAttached(safeLastFragment);
@@ -3103,8 +3194,9 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
 
     public static void lambda$showSubscriptionSheet$26(ButtonWithCounterView buttonWithCounterView, BottomSheet[] bottomSheetArr, int i, long j) {
         buttonWithCounterView.setLoading(false);
-        if (bottomSheetArr[0] != null) {
-            bottomSheetArr[0].dismiss();
+        BottomSheet bottomSheet = bottomSheetArr[0];
+        if (bottomSheet != null) {
+            bottomSheet.dismiss();
         }
         StarsController.getInstance(i).invalidateSubscriptions(true);
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
@@ -3142,8 +3234,9 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
 
     public static void lambda$showSubscriptionSheet$30(ButtonWithCounterView buttonWithCounterView, BottomSheet[] bottomSheetArr, int i, TLRPC$Chat tLRPC$Chat) {
         buttonWithCounterView.setLoading(false);
-        if (bottomSheetArr[0] != null) {
-            bottomSheetArr[0].dismiss();
+        BottomSheet bottomSheet = bottomSheetArr[0];
+        if (bottomSheet != null) {
+            bottomSheet.dismiss();
         }
         StarsController.getInstance(i).invalidateSubscriptions(true);
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
@@ -3186,8 +3279,9 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
 
     public static void lambda$showSubscriptionSheet$33(ButtonWithCounterView buttonWithCounterView, BottomSheet[] bottomSheetArr, int i, TLRPC$Chat tLRPC$Chat, TLRPC$StarsSubscription tLRPC$StarsSubscription) {
         buttonWithCounterView.setLoading(false);
-        if (bottomSheetArr[0] != null) {
-            bottomSheetArr[0].dismiss();
+        BottomSheet bottomSheet = bottomSheetArr[0];
+        if (bottomSheet != null) {
+            bottomSheet.dismiss();
         }
         StarsController.getInstance(i).invalidateSubscriptions(true);
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();

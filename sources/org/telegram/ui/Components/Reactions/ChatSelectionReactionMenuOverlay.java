@@ -18,6 +18,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$ReactionCount;
+import org.telegram.tgnet.TLRPC$TL_chatReactionsNone;
 import org.telegram.tgnet.TLRPC$TL_messageReactions;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.LayoutHelper;
@@ -60,7 +61,7 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
 
     private void checkCreateReactionsLayout() {
         if (this.reactionsContainerLayout == null) {
-            ReactionsContainerLayout reactionsContainerLayout = new ReactionsContainerLayout(this, (this.parentFragment.getUserConfig().getClientUserId() > this.parentFragment.getDialogId() ? 1 : (this.parentFragment.getUserConfig().getClientUserId() == this.parentFragment.getDialogId() ? 0 : -1)) == 0 ? 3 : 0, this.parentFragment, getContext(), this.parentFragment.getCurrentAccount(), this.parentFragment.getResourceProvider()) {
+            ReactionsContainerLayout reactionsContainerLayout = new ReactionsContainerLayout((this.parentFragment.getUserConfig().getClientUserId() > this.parentFragment.getDialogId() ? 1 : (this.parentFragment.getUserConfig().getClientUserId() == this.parentFragment.getDialogId() ? 0 : -1)) == 0 ? 3 : 0, this.parentFragment, getContext(), this.parentFragment.getCurrentAccount(), this.parentFragment.getResourceProvider()) {
                 float enabledAlpha = 1.0f;
                 long lastUpdate;
 
@@ -201,8 +202,37 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
         return (messageObject == null || messageObject.needDrawBluredPreview() || ((!MessageObject.isPhoto(messageObject.messageOwner) || MessageObject.getMedia(messageObject.messageOwner).webpage != null) && (messageObject.getDocument() == null || (!MessageObject.isVideoDocument(messageObject.getDocument()) && !MessageObject.isGifDocument(messageObject.getDocument()))))) ? false : true;
     }
 
-    public void setSelectedMessages(java.util.List<org.telegram.messenger.MessageObject> r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Reactions.ChatSelectionReactionMenuOverlay.setSelectedMessages(java.util.List):void");
+    public void setSelectedMessages(List<MessageObject> list) {
+        boolean z;
+        this.selectedMessages = list;
+        if (!this.parentFragment.isSecretChat() && ((this.parentFragment.getCurrentChatInfo() == null || !(this.parentFragment.getCurrentChatInfo().available_reactions instanceof TLRPC$TL_chatReactionsNone)) && !list.isEmpty())) {
+            Iterator<MessageObject> it = list.iterator();
+            long j = 0;
+            boolean z2 = false;
+            while (true) {
+                z = true;
+                if (!it.hasNext()) {
+                    break;
+                }
+                MessageObject next = it.next();
+                if (!isMessageTypeAllowed(next)) {
+                    break;
+                } else if (!z2) {
+                    j = next.getGroupId();
+                    z2 = true;
+                } else if (j != next.getGroupId() || j == 0) {
+                    break;
+                }
+            }
+        }
+        z = false;
+        if (z != this.isVisible) {
+            this.isVisible = z;
+            this.hiddenByScroll = false;
+            animateVisible(z);
+        } else if (z) {
+            this.currentPrimaryObject = findPrimaryObject();
+        }
     }
 
     private void animateVisible(boolean z) {

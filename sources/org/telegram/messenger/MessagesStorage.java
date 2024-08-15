@@ -1887,7 +1887,7 @@ public class MessagesStorage extends BaseController {
         return i < i2 ? -1 : 0;
     }
 
-    private void calcUnreadCounters(boolean r27) {
+    private void calcUnreadCounters(boolean r31) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.calcUnreadCounters(boolean):void");
     }
 
@@ -2839,7 +2839,7 @@ public class MessagesStorage extends BaseController {
         });
     }
 
-    public void lambda$updateMessageReactions$98(int r22, long r23, org.telegram.tgnet.TLRPC$TL_messageReactions r25) {
+    public void lambda$updateMessageReactions$98(int r21, long r22, org.telegram.tgnet.TLRPC$TL_messageReactions r24) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateMessageReactions$98(int, long, org.telegram.tgnet.TLRPC$TL_messageReactions):void");
     }
 
@@ -2972,6 +2972,7 @@ public class MessagesStorage extends BaseController {
 
     private void bindMessageTags(SQLitePreparedStatement sQLitePreparedStatement, TLRPC$Message tLRPC$Message) throws SQLiteException {
         ArrayList<TLRPC$ReactionCount> arrayList;
+        long j;
         long clientUserId = getUserConfig().getClientUserId();
         TLRPC$TL_messageReactions tLRPC$TL_messageReactions = tLRPC$Message.reactions;
         if (tLRPC$TL_messageReactions == null || !tLRPC$TL_messageReactions.reactions_as_tags || (arrayList = tLRPC$TL_messageReactions.results) == null || arrayList.isEmpty()) {
@@ -2991,12 +2992,11 @@ public class MessagesStorage extends BaseController {
                 sQLitePreparedStatement.requery();
                 sQLitePreparedStatement.bindLong(1, tLRPC$Message.id);
                 sQLitePreparedStatement.bindLong(2, MessageObject.getSavedDialogId(clientUserId, tLRPC$Message));
-                long j = 0;
                 TLRPC$Reaction tLRPC$Reaction2 = next.reaction;
                 if (tLRPC$Reaction2 instanceof TLRPC$TL_reactionEmoji) {
                     j = ((TLRPC$TL_reactionEmoji) tLRPC$Reaction2).emoticon.hashCode();
-                } else if (tLRPC$Reaction2 instanceof TLRPC$TL_reactionCustomEmoji) {
-                    j = ((TLRPC$TL_reactionCustomEmoji) tLRPC$Reaction2).document_id;
+                } else {
+                    j = tLRPC$Reaction2 instanceof TLRPC$TL_reactionCustomEmoji ? ((TLRPC$TL_reactionCustomEmoji) tLRPC$Reaction2).document_id : 0L;
                 }
                 sQLitePreparedStatement.bindLong(3, j);
                 sQLitePreparedStatement.bindString(4, translitString == null ? "" : translitString);
@@ -4714,7 +4714,7 @@ public class MessagesStorage extends BaseController {
         });
     }
 
-    public void lambda$processPendingRead$139(long r19, int r21, int r22, int r23, int r24) {
+    public void lambda$processPendingRead$139(long r18, int r20, int r21, int r22, int r23) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$processPendingRead$139(long, int, int, int, int):void");
     }
 
@@ -5133,10 +5133,10 @@ public class MessagesStorage extends BaseController {
         if (arrayList.isEmpty()) {
             return;
         }
-        AppWidgetManager appWidgetManager = null;
         try {
             TextUtils.join(",", arrayList);
             SQLiteCursor queryFinalized = this.database.queryFinalized(String.format(Locale.US, "SELECT DISTINCT id FROM shortcut_widget WHERE did IN(%s,-1)", TextUtils.join(",", arrayList)), new Object[0]);
+            AppWidgetManager appWidgetManager = null;
             while (queryFinalized.next()) {
                 if (appWidgetManager == null) {
                     appWidgetManager = AppWidgetManager.getInstance(ApplicationLoader.applicationContext);
@@ -6597,8 +6597,8 @@ public class MessagesStorage extends BaseController {
         SQLiteDatabase sQLiteDatabase;
         SQLiteDatabase sQLiteDatabase2;
         SQLitePreparedStatement executeFast;
-        SQLitePreparedStatement sQLitePreparedStatement = null;
         boolean z = false;
+        SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
             try {
                 this.database.beginTransaction();
@@ -6805,7 +6805,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public long[] lambda$updateMessageStateAndId$196(long r20, long r22, java.lang.Integer r24, int r25, int r26, int r27, int r28) {
+    public long[] lambda$updateMessageStateAndId$196(long r18, long r20, java.lang.Integer r22, int r23, int r24, int r25, int r26) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateMessageStateAndId$196(long, long, java.lang.Integer, int, int, int, int):long[]");
     }
 
@@ -7359,12 +7359,318 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void closeHolesInMedia(long r28, int r30, int r31, int r32, long r33) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.closeHolesInMedia(long, int, int, int, long):void");
+    public void closeHolesInMedia(long j, int i, int i2, int i3, long j2) {
+        Exception exc;
+        SQLiteCursor sQLiteCursor;
+        Throwable th;
+        SQLitePreparedStatement executeFast;
+        int i4;
+        int i5 = 2;
+        int i6 = 1;
+        SQLitePreparedStatement sQLitePreparedStatement = null;
+        try {
+            try {
+                if (j2 != 0) {
+                    if (i3 < 0) {
+                        sQLiteCursor = this.database.queryFinalized(String.format(Locale.US, "SELECT type, start, end FROM media_holes_topics WHERE uid = %d AND topic_id = %d AND type >= 0 AND ((end >= %d AND end <= %d) OR (start >= %d AND start <= %d) OR (start >= %d AND end <= %d) OR (start <= %d AND end >= %d))", Long.valueOf(j), Long.valueOf(j2), Integer.valueOf(i), Integer.valueOf(i2), Integer.valueOf(i), Integer.valueOf(i2), Integer.valueOf(i), Integer.valueOf(i2), Integer.valueOf(i), Integer.valueOf(i2)), new Object[0]);
+                    } else {
+                        sQLiteCursor = this.database.queryFinalized(String.format(Locale.US, "SELECT type, start, end FROM media_holes_topics WHERE uid = %d AND topic_id = %d AND type = %d AND ((end >= %d AND end <= %d) OR (start >= %d AND start <= %d) OR (start >= %d AND end <= %d) OR (start <= %d AND end >= %d))", Long.valueOf(j), Long.valueOf(j2), Integer.valueOf(i3), Integer.valueOf(i), Integer.valueOf(i2), Integer.valueOf(i), Integer.valueOf(i2), Integer.valueOf(i), Integer.valueOf(i2), Integer.valueOf(i), Integer.valueOf(i2)), new Object[0]);
+                    }
+                } else if (i3 < 0) {
+                    sQLiteCursor = this.database.queryFinalized(String.format(Locale.US, "SELECT type, start, end FROM media_holes_v2 WHERE uid = %d AND type >= 0 AND ((end >= %d AND end <= %d) OR (start >= %d AND start <= %d) OR (start >= %d AND end <= %d) OR (start <= %d AND end >= %d))", Long.valueOf(j), Integer.valueOf(i), Integer.valueOf(i2), Integer.valueOf(i), Integer.valueOf(i2), Integer.valueOf(i), Integer.valueOf(i2), Integer.valueOf(i), Integer.valueOf(i2)), new Object[0]);
+                } else {
+                    sQLiteCursor = this.database.queryFinalized(String.format(Locale.US, "SELECT type, start, end FROM media_holes_v2 WHERE uid = %d AND type = %d AND ((end >= %d AND end <= %d) OR (start >= %d AND start <= %d) OR (start >= %d AND end <= %d) OR (start <= %d AND end >= %d))", Long.valueOf(j), Integer.valueOf(i3), Integer.valueOf(i), Integer.valueOf(i2), Integer.valueOf(i), Integer.valueOf(i2), Integer.valueOf(i), Integer.valueOf(i2), Integer.valueOf(i), Integer.valueOf(i2)), new Object[0]);
+                }
+                ArrayList arrayList = null;
+                while (sQLiteCursor.next()) {
+                    try {
+                        try {
+                            if (arrayList == null) {
+                                arrayList = new ArrayList();
+                            }
+                            int intValue = sQLiteCursor.intValue(0);
+                            int intValue2 = sQLiteCursor.intValue(1);
+                            int intValue3 = sQLiteCursor.intValue(i5);
+                            if (intValue2 != intValue3 || intValue2 != 1) {
+                                arrayList.add(new Hole(intValue, intValue2, intValue3));
+                            }
+                            i5 = 2;
+                        } catch (Exception e) {
+                            exc = e;
+                        }
+                    } catch (Throwable th2) {
+                        th = th2;
+                    }
+                }
+                sQLiteCursor.dispose();
+                if (arrayList != null) {
+                    int i7 = 0;
+                    while (i7 < arrayList.size()) {
+                        Hole hole = (Hole) arrayList.get(i7);
+                        int i8 = hole.end;
+                        if (i2 < i8 - 1 || i > hole.start + i6) {
+                            if (i2 < i8 - 1) {
+                                int i9 = hole.start;
+                                if (i > i9 + 1) {
+                                    if (j2 != 0) {
+                                        this.database.executeFast(String.format(Locale.US, "DELETE FROM media_holes_topics WHERE uid = %d AND topic_id = %d AND type = %d AND start = %d AND end = %d", Long.valueOf(j), Long.valueOf(j2), Integer.valueOf(hole.type), Integer.valueOf(hole.start), Integer.valueOf(hole.end))).stepThis().dispose();
+                                        executeFast = this.database.executeFast("REPLACE INTO media_holes_topics VALUES(?, ?, ?, ?, ?)");
+                                    } else {
+                                        this.database.executeFast(String.format(Locale.US, "DELETE FROM media_holes_v2 WHERE uid = %d AND type = %d AND start = %d AND end = %d", Long.valueOf(j), Integer.valueOf(hole.type), Integer.valueOf(hole.start), Integer.valueOf(hole.end))).stepThis().dispose();
+                                        executeFast = this.database.executeFast("REPLACE INTO media_holes_v2 VALUES(?, ?, ?, ?)");
+                                    }
+                                    try {
+                                        executeFast.requery();
+                                        executeFast.bindLong(1, j);
+                                        if (j2 != 0) {
+                                            executeFast.bindLong(2, j2);
+                                            i4 = 3;
+                                        } else {
+                                            i4 = 2;
+                                        }
+                                        int i10 = i4 + 1;
+                                        executeFast.bindInteger(i4, hole.type);
+                                        executeFast.bindInteger(i10, hole.start);
+                                        executeFast.bindInteger(i10 + 1, i);
+                                        executeFast.step();
+                                        executeFast.requery();
+                                        executeFast.bindLong(1, j);
+                                        executeFast.bindInteger(2, hole.type);
+                                        executeFast.bindInteger(3, i2);
+                                        executeFast.bindInteger(4, hole.end);
+                                        executeFast.step();
+                                        executeFast.dispose();
+                                        i7++;
+                                        i6 = 1;
+                                    } catch (Exception e2) {
+                                        exc = e2;
+                                        sQLiteCursor = null;
+                                        sQLitePreparedStatement = executeFast;
+                                        checkSQLException(exc);
+                                        if (sQLitePreparedStatement != null) {
+                                            sQLitePreparedStatement.dispose();
+                                        }
+                                        if (sQLiteCursor != null) {
+                                            sQLiteCursor.dispose();
+                                            return;
+                                        }
+                                        return;
+                                    } catch (Throwable th3) {
+                                        th = th3;
+                                        sQLiteCursor = null;
+                                        sQLitePreparedStatement = executeFast;
+                                        if (sQLitePreparedStatement != null) {
+                                            sQLitePreparedStatement.dispose();
+                                        }
+                                        if (sQLiteCursor != null) {
+                                            sQLiteCursor.dispose();
+                                        }
+                                        throw th;
+                                    }
+                                } else if (i9 != i2) {
+                                    if (j2 != 0) {
+                                        try {
+                                            this.database.executeFast(String.format(Locale.US, "UPDATE media_holes_topics SET start = %d WHERE uid = %d AND topic_id = %d AND type = %d AND start = %d AND end = %d", Integer.valueOf(i2), Long.valueOf(j), Long.valueOf(j2), Integer.valueOf(hole.type), Integer.valueOf(hole.start), Integer.valueOf(hole.end))).stepThis().dispose();
+                                        } catch (Exception e3) {
+                                            checkSQLException(e3, false);
+                                        }
+                                    } else {
+                                        this.database.executeFast(String.format(Locale.US, "UPDATE media_holes_v2 SET start = %d WHERE uid = %d AND type = %d AND start = %d AND end = %d", Integer.valueOf(i2), Long.valueOf(j), Integer.valueOf(hole.type), Integer.valueOf(hole.start), Integer.valueOf(hole.end))).stepThis().dispose();
+                                    }
+                                }
+                            } else if (i8 != i) {
+                                if (j2 != 0) {
+                                    try {
+                                        this.database.executeFast(String.format(Locale.US, "UPDATE media_holes_topics SET end = %d WHERE uid = %d AND topic_id = %d AND type = %d AND start = %d AND end = %d", Integer.valueOf(i), Long.valueOf(j), Long.valueOf(j2), Integer.valueOf(hole.type), Integer.valueOf(hole.start), Integer.valueOf(hole.end))).stepThis().dispose();
+                                    } catch (Exception e4) {
+                                        checkSQLException(e4, false);
+                                    }
+                                } else {
+                                    this.database.executeFast(String.format(Locale.US, "UPDATE media_holes_v2 SET end = %d WHERE uid = %d AND type = %d AND start = %d AND end = %d", Integer.valueOf(i), Long.valueOf(j), Integer.valueOf(hole.type), Integer.valueOf(hole.start), Integer.valueOf(hole.end))).stepThis().dispose();
+                                }
+                            }
+                        } else if (j2 != 0) {
+                            this.database.executeFast(String.format(Locale.US, "DELETE FROM media_holes_topics WHERE uid = %d AND topic_id = %d AND type = %d AND start = %d AND end = %d", Long.valueOf(j), Long.valueOf(j2), Integer.valueOf(hole.type), Integer.valueOf(hole.start), Integer.valueOf(hole.end))).stepThis().dispose();
+                        } else {
+                            this.database.executeFast(String.format(Locale.US, "DELETE FROM media_holes_v2 WHERE uid = %d AND type = %d AND start = %d AND end = %d", Long.valueOf(j), Integer.valueOf(hole.type), Integer.valueOf(hole.start), Integer.valueOf(hole.end))).stepThis().dispose();
+                        }
+                        i7++;
+                        i6 = 1;
+                    }
+                }
+            } catch (Throwable th4) {
+                th = th4;
+                sQLiteCursor = null;
+            }
+        } catch (Exception e5) {
+            exc = e5;
+            sQLiteCursor = null;
+        }
     }
 
-    private void closeHolesInTable(java.lang.String r30, long r31, int r33, int r34, long r35) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.closeHolesInTable(java.lang.String, long, int, int, long):void");
+    private void closeHolesInTable(String str, long j, int i, int i2, long j2) {
+        Exception exc;
+        SQLiteCursor sQLiteCursor;
+        Throwable th;
+        SQLiteCursor sQLiteCursor2;
+        int i3;
+        SQLitePreparedStatement executeFast;
+        long j3;
+        int i4;
+        int i5;
+        SQLitePreparedStatement sQLitePreparedStatement = null;
+        try {
+            try {
+                try {
+                    if (j2 != 0) {
+                        sQLiteCursor = this.database.queryFinalized(String.format(Locale.US, "SELECT start, end FROM " + str + " WHERE uid = %d AND topic_id = %d AND ((end >= %d AND end <= %d) OR (start >= %d AND start <= %d) OR (start >= %d AND end <= %d) OR (start <= %d AND end >= %d))", Long.valueOf(j), Long.valueOf(j2), Integer.valueOf(i), Integer.valueOf(i2), Integer.valueOf(i), Integer.valueOf(i2), Integer.valueOf(i), Integer.valueOf(i2), Integer.valueOf(i), Integer.valueOf(i2)), new Object[0]);
+                    } else {
+                        sQLiteCursor = this.database.queryFinalized(String.format(Locale.US, "SELECT start, end FROM " + str + " WHERE uid = %d AND ((end >= %d AND end <= %d) OR (start >= %d AND start <= %d) OR (start >= %d AND end <= %d) OR (start <= %d AND end >= %d))", Long.valueOf(j), Integer.valueOf(i), Integer.valueOf(i2), Integer.valueOf(i), Integer.valueOf(i2), Integer.valueOf(i), Integer.valueOf(i2), Integer.valueOf(i), Integer.valueOf(i2)), new Object[0]);
+                    }
+                    ArrayList arrayList = null;
+                    while (sQLiteCursor.next()) {
+                        try {
+                            if (arrayList == null) {
+                                arrayList = new ArrayList();
+                            }
+                            int intValue = sQLiteCursor.intValue(0);
+                            int intValue2 = sQLiteCursor.intValue(1);
+                            if (intValue != intValue2 || intValue != 1) {
+                                arrayList.add(new Hole(intValue, intValue2));
+                            }
+                        } catch (Exception e) {
+                            exc = e;
+                        }
+                    }
+                    sQLiteCursor.dispose();
+                    if (arrayList != null) {
+                        int i6 = 0;
+                        while (i6 < arrayList.size()) {
+                            Hole hole = (Hole) arrayList.get(i6);
+                            int i7 = hole.end;
+                            ArrayList arrayList2 = arrayList;
+                            if (i2 < i7 - 1 || i > hole.start + 1) {
+                                i3 = i6;
+                                if (i2 < i7 - 1) {
+                                    int i8 = hole.start;
+                                    if (i > i8 + 1) {
+                                        if (j2 != 0) {
+                                            this.database.executeFast(String.format(Locale.US, "DELETE FROM " + str + " WHERE uid = %d AND topic_id = %d AND start = %d AND end = %d", Long.valueOf(j), Long.valueOf(j2), Integer.valueOf(hole.start), Integer.valueOf(hole.end))).stepThis().dispose();
+                                            executeFast = this.database.executeFast("REPLACE INTO " + str + " VALUES(?, ?, ?, ?)");
+                                        } else {
+                                            this.database.executeFast(String.format(Locale.US, "DELETE FROM " + str + " WHERE uid = %d AND start = %d AND end = %d", Long.valueOf(j), Integer.valueOf(hole.start), Integer.valueOf(hole.end))).stepThis().dispose();
+                                            executeFast = this.database.executeFast("REPLACE INTO " + str + " VALUES(?, ?, ?)");
+                                        }
+                                        try {
+                                            executeFast.requery();
+                                            j3 = j;
+                                            executeFast.bindLong(1, j3);
+                                            if (j2 != 0) {
+                                                executeFast.bindLong(2, j2);
+                                                i4 = 3;
+                                            } else {
+                                                i4 = 2;
+                                            }
+                                            executeFast.bindInteger(i4, hole.start);
+                                            executeFast.bindInteger(i4 + 1, i);
+                                            executeFast.step();
+                                            executeFast.requery();
+                                            executeFast.bindLong(1, j3);
+                                            if (j2 != 0) {
+                                                executeFast.bindLong(2, j2);
+                                                i5 = 3;
+                                            } else {
+                                                i5 = 2;
+                                            }
+                                            executeFast.bindInteger(i5, i2);
+                                            executeFast.bindInteger(i5 + 1, hole.end);
+                                            executeFast.step();
+                                            executeFast.dispose();
+                                            i6 = i3 + 1;
+                                            arrayList = arrayList2;
+                                        } catch (Exception e2) {
+                                            exc = e2;
+                                            sQLiteCursor = null;
+                                            sQLitePreparedStatement = executeFast;
+                                            checkSQLException(exc);
+                                            if (sQLitePreparedStatement != null) {
+                                                sQLitePreparedStatement.dispose();
+                                            }
+                                            if (sQLiteCursor != null) {
+                                                sQLiteCursor.dispose();
+                                                return;
+                                            }
+                                            return;
+                                        } catch (Throwable th2) {
+                                            th = th2;
+                                            sQLiteCursor2 = null;
+                                            sQLitePreparedStatement = executeFast;
+                                            if (sQLitePreparedStatement != null) {
+                                                sQLitePreparedStatement.dispose();
+                                            }
+                                            if (sQLiteCursor2 != null) {
+                                                sQLiteCursor2.dispose();
+                                            }
+                                            throw th;
+                                        }
+                                    } else if (i8 != i2) {
+                                        if (j2 != 0) {
+                                            try {
+                                                SQLiteDatabase sQLiteDatabase = this.database;
+                                                Locale locale = Locale.US;
+                                                sQLiteDatabase.executeFast(String.format(locale, "DELETE FROM " + str + " WHERE uid = %d AND topic_id = %d AND start = %d AND end = %d", Long.valueOf(j), Long.valueOf(j2), Integer.valueOf(hole.start), Integer.valueOf(hole.end))).stepThis().dispose();
+                                                this.database.executeFast(String.format(locale, "REPLACE INTO " + str + " VALUES(%d, %d, %d, %d)", Long.valueOf(j), Long.valueOf(j2), Integer.valueOf(i2), Integer.valueOf(hole.end))).stepThis().dispose();
+                                            } catch (Exception e3) {
+                                                checkSQLException(e3, false);
+                                            }
+                                        } else {
+                                            SQLiteDatabase sQLiteDatabase2 = this.database;
+                                            Locale locale2 = Locale.US;
+                                            sQLiteDatabase2.executeFast(String.format(locale2, "DELETE FROM " + str + " WHERE uid = %d AND start = %d AND end = %d", Long.valueOf(j), Integer.valueOf(hole.start), Integer.valueOf(hole.end))).stepThis().dispose();
+                                            this.database.executeFast(String.format(locale2, "REPLACE INTO " + str + " VALUES(%d, %d, %d)", Long.valueOf(j), Integer.valueOf(i2), Integer.valueOf(hole.end))).stepThis().dispose();
+                                        }
+                                    }
+                                } else if (i7 != i) {
+                                    if (j2 != 0) {
+                                        try {
+                                            SQLiteDatabase sQLiteDatabase3 = this.database;
+                                            Locale locale3 = Locale.US;
+                                            sQLiteDatabase3.executeFast(String.format(locale3, "DELETE FROM " + str + " WHERE uid = %d AND topic_id = %d AND start = %d AND end = %d", Long.valueOf(j), Long.valueOf(j2), Integer.valueOf(hole.start), Integer.valueOf(hole.end))).stepThis().dispose();
+                                            this.database.executeFast(String.format(locale3, "REPLACE INTO " + str + " VALUES(%d, %d, %d, %d)", Long.valueOf(j), Long.valueOf(j2), Integer.valueOf(hole.start), Integer.valueOf(i))).stepThis().dispose();
+                                        } catch (Exception e4) {
+                                            checkSQLException(e4, false);
+                                        }
+                                    } else {
+                                        SQLiteDatabase sQLiteDatabase4 = this.database;
+                                        Locale locale4 = Locale.US;
+                                        sQLiteDatabase4.executeFast(String.format(locale4, "DELETE FROM " + str + " WHERE uid = %d AND start = %d AND end = %d", Long.valueOf(j), Integer.valueOf(hole.start), Integer.valueOf(hole.end))).stepThis().dispose();
+                                        this.database.executeFast(String.format(locale4, "REPLACE INTO " + str + " VALUES(%d, %d, %d)", Long.valueOf(j), Integer.valueOf(hole.start), Integer.valueOf(i))).stepThis().dispose();
+                                    }
+                                }
+                            } else {
+                                if (j2 != 0) {
+                                    this.database.executeFast(String.format(Locale.US, "DELETE FROM " + str + " WHERE uid = %d AND topic_id = %d AND start = %d AND end = %d", Long.valueOf(j), Long.valueOf(j2), Integer.valueOf(hole.start), Integer.valueOf(hole.end))).stepThis().dispose();
+                                } else {
+                                    this.database.executeFast(String.format(Locale.US, "DELETE FROM " + str + " WHERE uid = %d AND start = %d AND end = %d", Long.valueOf(j), Integer.valueOf(hole.start), Integer.valueOf(hole.end))).stepThis().dispose();
+                                }
+                                i3 = i6;
+                            }
+                            j3 = j;
+                            i6 = i3 + 1;
+                            arrayList = arrayList2;
+                        }
+                    }
+                } catch (Throwable th3) {
+                    th = th3;
+                }
+            } catch (Throwable th4) {
+                th = th4;
+                sQLiteCursor2 = null;
+            }
+        } catch (Exception e5) {
+            exc = e5;
+            sQLiteCursor = null;
+        }
     }
 
     public void replaceMessageIfExists(final TLRPC$Message tLRPC$Message, final ArrayList<TLRPC$User> arrayList, final ArrayList<TLRPC$Chat> arrayList2, final boolean z) {
@@ -7760,7 +8066,7 @@ public class MessagesStorage extends BaseController {
         });
     }
 
-    public void lambda$updateDialogData$221(org.telegram.tgnet.TLRPC$Dialog r8) {
+    public void lambda$updateDialogData$221(org.telegram.tgnet.TLRPC$Dialog r7) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateDialogData$221(org.telegram.tgnet.TLRPC$Dialog):void");
     }
 

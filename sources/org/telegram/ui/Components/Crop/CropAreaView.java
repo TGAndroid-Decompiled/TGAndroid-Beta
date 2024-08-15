@@ -226,8 +226,8 @@ public class CropAreaView extends ViewGroup {
         this.freeform = z2;
         float f = z ? i2 / i : i / i2;
         if (!z2) {
-            this.lockAspectRatio = 1.0f;
             f = 1.0f;
+            this.lockAspectRatio = 1.0f;
         }
         setActualRect(f);
     }
@@ -572,17 +572,16 @@ public class CropAreaView extends ViewGroup {
             AnimatorSet animatorSet = new AnimatorSet();
             this.animator = animatorSet;
             animatorSet.setDuration(300L);
-            float[] fArr = {rectF.left};
-            r0[0].setInterpolator(this.interpolator);
-            float[] fArr2 = {rectF.top};
-            r0[1].setInterpolator(this.interpolator);
-            float[] fArr3 = {rectF.right};
-            r0[2].setInterpolator(this.interpolator);
-            float[] fArr4 = {rectF.bottom};
-            r0[3].setInterpolator(this.interpolator);
-            Animator[] animatorArr = {ObjectAnimator.ofFloat(this, "cropLeft", fArr), ObjectAnimator.ofFloat(this, "cropTop", fArr2), ObjectAnimator.ofFloat(this, "cropRight", fArr3), ObjectAnimator.ofFloat(this, "cropBottom", fArr4), animator};
-            animatorArr[4].setInterpolator(this.interpolator);
-            animatorSet.playTogether(animatorArr);
+            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "cropLeft", rectF.left);
+            ofFloat.setInterpolator(this.interpolator);
+            ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(this, "cropTop", rectF.top);
+            ofFloat2.setInterpolator(this.interpolator);
+            ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(this, "cropRight", rectF.right);
+            ofFloat3.setInterpolator(this.interpolator);
+            ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(this, "cropBottom", rectF.bottom);
+            ofFloat4.setInterpolator(this.interpolator);
+            animator.setInterpolator(this.interpolator);
+            animatorSet.playTogether(ofFloat, ofFloat2, ofFloat3, ofFloat4, animator);
             animatorSet.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator3) {

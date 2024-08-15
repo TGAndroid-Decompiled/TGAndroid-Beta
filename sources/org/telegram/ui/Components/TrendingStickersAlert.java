@@ -146,7 +146,7 @@ public class TrendingStickersAlert extends BottomSheet {
             this.radii = new float[8];
             setWillNotDraw(false);
             setPadding(((BottomSheet) TrendingStickersAlert.this).backgroundPaddingLeft, 0, ((BottomSheet) TrendingStickersAlert.this).backgroundPaddingLeft, 0);
-            setDelegate(new SizeNotifierFrameLayout.SizeNotifierFrameLayoutDelegate(TrendingStickersAlert.this) {
+            setDelegate(new SizeNotifierFrameLayout.SizeNotifierFrameLayoutDelegate() {
                 private boolean lastIsWidthGreater;
                 private int lastKeyboardHeight;
 

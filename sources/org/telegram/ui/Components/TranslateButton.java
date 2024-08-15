@@ -127,7 +127,7 @@ public class TranslateButton extends FrameLayout {
         actionBarPopupWindowLayout.setBackgroundColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuBackground, this.resourcesProvider));
         LinearLayout linearLayout = new LinearLayout(getContext());
         linearLayout.setOrientation(1);
-        ScrollView scrollView = new ScrollView(this, getContext()) {
+        ScrollView scrollView = new ScrollView(getContext()) {
             AnimatedFloat alphaFloat = new AnimatedFloat(this, 350, CubicBezierInterpolator.EASE_OUT_QUINT);
             Drawable topShadowDrawable;
             private boolean wasCanScrollVertically;

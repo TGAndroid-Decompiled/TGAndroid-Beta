@@ -119,6 +119,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
     private boolean highlightSensitiveRow;
     boolean lastIsDarkTheme;
     private int lastShadowRow;
+    private LinearLayoutManager layoutManager;
     private ListAdapter listAdapter;
     private RecyclerListView listView;
     private int liteModeInfoRow;
@@ -243,7 +244,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             this.sizeBar = seekBarView;
             seekBarView.setReportChanges(true);
             this.sizeBar.setSeparatorsCount((this.endFontSize - this.startFontSize) + 1);
-            this.sizeBar.setDelegate(new SeekBarView.SeekBarViewDelegate(ThemeActivity.this) {
+            this.sizeBar.setDelegate(new SeekBarView.SeekBarViewDelegate() {
                 @Override
                 public void onSeekBarPressed(boolean z) {
                 }
@@ -268,9 +269,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             addView(this.sizeBar, LayoutHelper.createFrame(-1, 38.0f, 51, 5.0f, 5.0f, 39.0f, 0.0f));
             ThemePreviewMessagesCell themePreviewMessagesCell = new ThemePreviewMessagesCell(context, ((BaseFragment) ThemeActivity.this).parentLayout, 0);
             this.messagesCell = themePreviewMessagesCell;
-            if (Build.VERSION.SDK_INT >= 19) {
-                themePreviewMessagesCell.setImportantForAccessibility(4);
-            }
+            themePreviewMessagesCell.setImportantForAccessibility(4);
             addView(this.messagesCell, LayoutHelper.createFrame(-1, -2.0f, 51, 0.0f, 53.0f, 0.0f, 0.0f));
         }
 
@@ -330,7 +329,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             this.sizeBar = seekBarView;
             seekBarView.setReportChanges(true);
             this.sizeBar.setSeparatorsCount((this.endRadius - this.startRadius) + 1);
-            this.sizeBar.setDelegate(new SeekBarView.SeekBarViewDelegate(ThemeActivity.this) {
+            this.sizeBar.setDelegate(new SeekBarView.SeekBarViewDelegate() {
                 @Override
                 public void onSeekBarPressed(boolean z) {
                 }
@@ -576,19 +575,14 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         if (i12 == 3) {
             int i13 = this.rowCount;
             int i14 = i13 + 1;
-            this.rowCount = i14;
             this.selectThemeHeaderRow = i13;
             int i15 = i14 + 1;
-            this.rowCount = i15;
             this.themeListRow2 = i14;
             int i16 = i15 + 1;
-            this.rowCount = i16;
             this.chatListInfoRow = i15;
             int i17 = i16 + 1;
-            this.rowCount = i17;
             this.themePreviewRow = i16;
             int i18 = i17 + 1;
-            this.rowCount = i18;
             this.themeHeaderRow = i17;
             this.rowCount = i18 + 1;
             this.themeListRow = i18;
@@ -616,92 +610,64 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             }
             int i22 = this.rowCount;
             int i23 = i22 + 1;
-            this.rowCount = i23;
             this.createNewThemeRow = i22;
             this.rowCount = i23 + 1;
             this.lastShadowRow = i23;
         } else if (i12 == 0) {
             int i24 = this.rowCount;
             int i25 = i24 + 1;
-            this.rowCount = i25;
             this.textSizeHeaderRow = i24;
             int i26 = i25 + 1;
-            this.rowCount = i26;
             this.textSizeRow = i25;
             int i27 = i26 + 1;
-            this.rowCount = i27;
             this.backgroundRow = i26;
             int i28 = i27 + 1;
-            this.rowCount = i28;
             this.changeUserColor = i27;
             int i29 = i28 + 1;
-            this.rowCount = i29;
             this.newThemeInfoRow = i28;
             int i30 = i29 + 1;
-            this.rowCount = i30;
             this.themeHeaderRow = i29;
             int i31 = i30 + 1;
-            this.rowCount = i31;
             this.themeListRow2 = i30;
             int i32 = i31 + 1;
-            this.rowCount = i32;
             this.themeInfoRow = i31;
             int i33 = i32 + 1;
-            this.rowCount = i33;
             this.bubbleRadiusHeaderRow = i32;
             int i34 = i33 + 1;
-            this.rowCount = i34;
             this.bubbleRadiusRow = i33;
             int i35 = i34 + 1;
-            this.rowCount = i35;
             this.bubbleRadiusInfoRow = i34;
             int i36 = i35 + 1;
-            this.rowCount = i36;
             this.chatListHeaderRow = i35;
             int i37 = i36 + 1;
-            this.rowCount = i37;
             this.chatListRow = i36;
             int i38 = i37 + 1;
-            this.rowCount = i38;
             this.chatListInfoRow = i37;
             int i39 = i38 + 1;
-            this.rowCount = i39;
             this.appIconHeaderRow = i38;
             int i40 = i39 + 1;
-            this.rowCount = i40;
             this.appIconSelectorRow = i39;
             int i41 = i40 + 1;
-            this.rowCount = i41;
             this.appIconShadowRow = i40;
             int i42 = i41 + 1;
-            this.rowCount = i42;
             this.swipeGestureHeaderRow = i41;
             int i43 = i42 + 1;
-            this.rowCount = i43;
             this.swipeGestureRow = i42;
             int i44 = i43 + 1;
-            this.rowCount = i44;
             this.swipeGestureInfoRow = i43;
             int i45 = i44 + 1;
-            this.rowCount = i45;
             this.nightThemeRow = i44;
             int i46 = i45 + 1;
-            this.rowCount = i46;
             this.browserRow = i45;
             int i47 = i46 + 1;
-            this.rowCount = i47;
             this.liteModeRow = i46;
             int i48 = i47 + 1;
-            this.rowCount = i48;
             this.stickersRow = i47;
             int i49 = i48 + 1;
-            this.rowCount = i49;
             this.stickersSectionRow = i48;
             int i50 = i49 + 1;
-            this.rowCount = i50;
             this.mediaSoundHeaderRow = i49;
             int i51 = i50 + 1;
-            this.rowCount = i51;
             this.nextMediaTapRow = i50;
             int i52 = i51 + 1;
             this.rowCount = i52;
@@ -712,19 +678,14 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             }
             int i53 = this.rowCount;
             int i54 = i53 + 1;
-            this.rowCount = i54;
             this.pauseOnRecordRow = i53;
             int i55 = i54 + 1;
-            this.rowCount = i55;
             this.pauseOnMediaRow = i54;
             int i56 = i55 + 1;
-            this.rowCount = i56;
             this.bluetoothScoRow = i55;
             int i57 = i56 + 1;
-            this.rowCount = i57;
             this.mediaSoundSectionRow = i56;
             int i58 = i57 + 1;
-            this.rowCount = i58;
             this.otherHeaderRow = i57;
             this.rowCount = i58 + 1;
             this.directShareRow = i58;
@@ -736,20 +697,16 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             }
             int i60 = this.rowCount;
             int i61 = i60 + 1;
-            this.rowCount = i61;
             this.sendByEnterRow = i60;
             int i62 = i61 + 1;
-            this.rowCount = i62;
             this.distanceRow = i61;
             this.rowCount = i62 + 1;
             this.otherSectionRow = i62;
         } else {
             int i63 = this.rowCount;
             int i64 = i63 + 1;
-            this.rowCount = i64;
             this.nightDisabledRow = i63;
             int i65 = i64 + 1;
-            this.rowCount = i65;
             this.nightScheduledRow = i64;
             int i66 = i65 + 1;
             this.rowCount = i66;
@@ -765,33 +722,27 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             int i69 = Theme.selectedAutoNightType;
             if (i69 == 1) {
                 int i70 = i68 + 1;
-                this.rowCount = i70;
                 this.scheduleHeaderRow = i68;
                 int i71 = i70 + 1;
                 this.rowCount = i71;
                 this.scheduleLocationRow = i70;
                 if (Theme.autoNightScheduleByLocation) {
                     int i72 = i71 + 1;
-                    this.rowCount = i72;
                     this.scheduleUpdateLocationRow = i71;
                     this.rowCount = i72 + 1;
                     this.scheduleLocationInfoRow = i72;
                 } else {
                     int i73 = i71 + 1;
-                    this.rowCount = i73;
                     this.scheduleFromRow = i71;
                     int i74 = i73 + 1;
-                    this.rowCount = i74;
                     this.scheduleToRow = i73;
                     this.rowCount = i74 + 1;
                     this.scheduleFromToInfoRow = i74;
                 }
             } else if (i69 == 2) {
                 int i75 = i68 + 1;
-                this.rowCount = i75;
                 this.automaticHeaderRow = i68;
                 int i76 = i75 + 1;
-                this.rowCount = i76;
                 this.automaticBrightnessRow = i75;
                 this.rowCount = i76 + 1;
                 this.automaticBrightnessInfoRow = i76;
@@ -799,7 +750,6 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             if (Theme.selectedAutoNightType != 0) {
                 int i77 = this.rowCount;
                 int i78 = i77 + 1;
-                this.rowCount = i78;
                 this.preferedHeaderRow = i77;
                 this.rowCount = i78 + 1;
                 this.themeListRow = i78;
@@ -1083,7 +1033,9 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         this.fragmentView = frameLayout;
         RecyclerListView recyclerListView = new RecyclerListView(context);
         this.listView = recyclerListView;
-        recyclerListView.setLayoutManager(new LinearLayoutManager(context, 1, false));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, 1, false);
+        this.layoutManager = linearLayoutManager;
+        recyclerListView.setLayoutManager(linearLayoutManager);
         this.listView.setVerticalScrollBarEnabled(false);
         this.listView.setAdapter(this.listAdapter);
         ((DefaultItemAnimator) this.listView.getItemAnimator()).setDelayAnimations(false);
@@ -1654,10 +1606,14 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
 
     public void updateSunTime(Location location, boolean z) {
         Activity parentActivity;
+        int checkSelfPermission;
         LocationManager locationManager = (LocationManager) ApplicationLoader.applicationContext.getSystemService("location");
-        if (Build.VERSION.SDK_INT >= 23 && (parentActivity = getParentActivity()) != null && parentActivity.checkSelfPermission("android.permission.ACCESS_COARSE_LOCATION") != 0) {
-            parentActivity.requestPermissions(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, 2);
-            return;
+        if (Build.VERSION.SDK_INT >= 23 && (parentActivity = getParentActivity()) != null) {
+            checkSelfPermission = parentActivity.checkSelfPermission("android.permission.ACCESS_COARSE_LOCATION");
+            if (checkSelfPermission != 0) {
+                parentActivity.requestPermissions(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, 2);
+                return;
+            }
         }
         if (getParentActivity() != null) {
             if (!getParentActivity().getPackageManager().hasSystemFeature("android.hardware.location.gps")) {
@@ -2211,30 +2167,30 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            DefaultThemesPreviewCell defaultThemesPreviewCell;
+            TintRecyclerListView tintRecyclerListView;
             switch (i) {
                 case 1:
                     View textSettingsCell = new TextSettingsCell(this.mContext);
                     textSettingsCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                    defaultThemesPreviewCell = textSettingsCell;
+                    tintRecyclerListView = textSettingsCell;
                     break;
                 case 2:
                     View textInfoPrivacyCell = new TextInfoPrivacyCell(this.mContext);
                     textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
-                    defaultThemesPreviewCell = textInfoPrivacyCell;
+                    tintRecyclerListView = textInfoPrivacyCell;
                     break;
                 case 3:
-                    defaultThemesPreviewCell = new ShadowSectionCell(this.mContext);
+                    tintRecyclerListView = new ShadowSectionCell(this.mContext);
                     break;
                 case 4:
                     View themeTypeCell = new ThemeTypeCell(this.mContext);
                     themeTypeCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                    defaultThemesPreviewCell = themeTypeCell;
+                    tintRecyclerListView = themeTypeCell;
                     break;
                 case 5:
                     View headerCell = new HeaderCell(this.mContext);
                     headerCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                    defaultThemesPreviewCell = headerCell;
+                    tintRecyclerListView = headerCell;
                     break;
                 case 6:
                     View view = new BrightnessControlCell(this.mContext, 0) {
@@ -2253,32 +2209,32 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                         }
                     };
                     view.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                    defaultThemesPreviewCell = view;
+                    tintRecyclerListView = view;
                     break;
                 case 7:
                     View textCheckCell = new TextCheckCell(this.mContext);
                     textCheckCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                    defaultThemesPreviewCell = textCheckCell;
+                    tintRecyclerListView = textCheckCell;
                     break;
                 case 8:
                     View textSizeCell = new TextSizeCell(this.mContext);
                     textSizeCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                    defaultThemesPreviewCell = textSizeCell;
+                    tintRecyclerListView = textSizeCell;
                     break;
                 case 9:
-                    View view2 = new ChatListCell(this, this.mContext) {
+                    View view2 = new ChatListCell(this.mContext) {
                         @Override
                         protected void didSelectChatType(boolean z) {
                             SharedConfig.setUseThreeLinesLayout(z);
                         }
                     };
                     view2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                    defaultThemesPreviewCell = view2;
+                    tintRecyclerListView = view2;
                     break;
                 case 10:
                     View notificationsCheckCell = new NotificationsCheckCell(this.mContext, 21, 60, true);
                     notificationsCheckCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                    defaultThemesPreviewCell = notificationsCheckCell;
+                    tintRecyclerListView = notificationsCheckCell;
                     break;
                 case 11:
                     this.first = true;
@@ -2300,10 +2256,10 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                     ThemeActivity.this.themesHorizontalListCell.setFocusable(false);
                     View view3 = ThemeActivity.this.themesHorizontalListCell;
                     view3.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.dp(148.0f)));
-                    defaultThemesPreviewCell = view3;
+                    tintRecyclerListView = view3;
                     break;
                 case 12:
-                    final TintRecyclerListView tintRecyclerListView = new TintRecyclerListView(this, this.mContext) {
+                    final TintRecyclerListView tintRecyclerListView2 = new TintRecyclerListView(this.mContext) {
                         @Override
                         public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
                             if (getParent() != null && getParent().getParent() != null) {
@@ -2312,24 +2268,24 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                             return super.onInterceptTouchEvent(motionEvent);
                         }
                     };
-                    tintRecyclerListView.setFocusable(false);
-                    tintRecyclerListView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                    tintRecyclerListView.setItemAnimator(null);
-                    tintRecyclerListView.setLayoutAnimation(null);
-                    tintRecyclerListView.setPadding(AndroidUtilities.dp(11.0f), 0, AndroidUtilities.dp(11.0f), 0);
-                    tintRecyclerListView.setClipToPadding(false);
+                    tintRecyclerListView2.setFocusable(false);
+                    tintRecyclerListView2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                    tintRecyclerListView2.setItemAnimator(null);
+                    tintRecyclerListView2.setLayoutAnimation(null);
+                    tintRecyclerListView2.setPadding(AndroidUtilities.dp(11.0f), 0, AndroidUtilities.dp(11.0f), 0);
+                    tintRecyclerListView2.setClipToPadding(false);
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.mContext);
                     linearLayoutManager.setOrientation(0);
-                    tintRecyclerListView.setLayoutManager(linearLayoutManager);
+                    tintRecyclerListView2.setLayoutManager(linearLayoutManager);
                     final ThemeAccentsListAdapter themeAccentsListAdapter = new ThemeAccentsListAdapter(this.mContext);
-                    tintRecyclerListView.setAdapter(themeAccentsListAdapter);
-                    tintRecyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
+                    tintRecyclerListView2.setAdapter(themeAccentsListAdapter);
+                    tintRecyclerListView2.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                         @Override
                         public final void onItemClick(View view4, int i2) {
-                            ThemeActivity.ListAdapter.this.lambda$onCreateViewHolder$2(themeAccentsListAdapter, tintRecyclerListView, view4, i2);
+                            ThemeActivity.ListAdapter.this.lambda$onCreateViewHolder$2(themeAccentsListAdapter, tintRecyclerListView2, view4, i2);
                         }
                     });
-                    tintRecyclerListView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
+                    tintRecyclerListView2.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
                         @Override
                         public final boolean onItemClick(View view4, int i2) {
                             boolean lambda$onCreateViewHolder$5;
@@ -2337,26 +2293,26 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                             return lambda$onCreateViewHolder$5;
                         }
                     });
-                    tintRecyclerListView.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.dp(62.0f)));
-                    defaultThemesPreviewCell = tintRecyclerListView;
+                    tintRecyclerListView2.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.dp(62.0f)));
+                    tintRecyclerListView = tintRecyclerListView2;
                     break;
                 case 13:
                     View bubbleRadiusCell = new BubbleRadiusCell(this.mContext);
                     bubbleRadiusCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                    defaultThemesPreviewCell = bubbleRadiusCell;
+                    tintRecyclerListView = bubbleRadiusCell;
                     break;
                 case 14:
                 case 18:
                 default:
                     View textCell = new TextCell(this.mContext);
                     textCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                    defaultThemesPreviewCell = textCell;
+                    tintRecyclerListView = textCell;
                     break;
                 case 15:
-                    defaultThemesPreviewCell = new SwipeGestureSettingsView(this.mContext, ((BaseFragment) ThemeActivity.this).currentAccount);
+                    tintRecyclerListView = new SwipeGestureSettingsView(this.mContext, ((BaseFragment) ThemeActivity.this).currentAccount);
                     break;
                 case 16:
-                    ThemePreviewMessagesCell themePreviewMessagesCell = new ThemePreviewMessagesCell(this, this.mContext, ((BaseFragment) ThemeActivity.this).parentLayout, 0) {
+                    View view4 = new ThemePreviewMessagesCell(this.mContext, ((BaseFragment) ThemeActivity.this).parentLayout, 0) {
                         @Override
                         public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
                             if (getParent() != null && getParent().getParent() != null) {
@@ -2365,34 +2321,30 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                             return super.onInterceptTouchEvent(motionEvent);
                         }
                     };
-                    defaultThemesPreviewCell = themePreviewMessagesCell;
-                    if (Build.VERSION.SDK_INT >= 19) {
-                        themePreviewMessagesCell.setImportantForAccessibility(4);
-                        defaultThemesPreviewCell = themePreviewMessagesCell;
-                        break;
-                    }
+                    view4.setImportantForAccessibility(4);
+                    tintRecyclerListView = view4;
                     break;
                 case 17:
                     Context context2 = this.mContext;
                     ThemeActivity themeActivity3 = ThemeActivity.this;
-                    DefaultThemesPreviewCell defaultThemesPreviewCell2 = new DefaultThemesPreviewCell(context2, themeActivity3, themeActivity3.currentType);
-                    defaultThemesPreviewCell2.setFocusable(false);
-                    defaultThemesPreviewCell2.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-                    defaultThemesPreviewCell = defaultThemesPreviewCell2;
+                    View defaultThemesPreviewCell = new DefaultThemesPreviewCell(context2, themeActivity3, themeActivity3.currentType);
+                    defaultThemesPreviewCell.setFocusable(false);
+                    defaultThemesPreviewCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                    tintRecyclerListView = defaultThemesPreviewCell;
                     break;
                 case 19:
-                    defaultThemesPreviewCell = new RadioButtonCell(this.mContext);
+                    tintRecyclerListView = new RadioButtonCell(this.mContext);
                     break;
                 case 20:
                     Context context3 = this.mContext;
                     ThemeActivity themeActivity4 = ThemeActivity.this;
-                    defaultThemesPreviewCell = new AppIconsSelectorCell(context3, themeActivity4, ((BaseFragment) themeActivity4).currentAccount);
+                    tintRecyclerListView = new AppIconsSelectorCell(context3, themeActivity4, ((BaseFragment) themeActivity4).currentAccount);
                     break;
                 case 21:
-                    defaultThemesPreviewCell = new PeerColorActivity.ChangeNameColorCell(((BaseFragment) ThemeActivity.this).currentAccount, 0L, this.mContext, ThemeActivity.this.getResourceProvider());
+                    tintRecyclerListView = new PeerColorActivity.ChangeNameColorCell(((BaseFragment) ThemeActivity.this).currentAccount, 0L, this.mContext, ThemeActivity.this.getResourceProvider());
                     break;
             }
-            return new RecyclerListView.Holder(defaultThemesPreviewCell);
+            return new RecyclerListView.Holder(tintRecyclerListView);
         }
 
         @Override

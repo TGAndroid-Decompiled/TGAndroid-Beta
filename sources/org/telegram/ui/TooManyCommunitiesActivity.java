@@ -240,7 +240,7 @@ public class TooManyCommunitiesActivity extends BaseFragment {
         View view = this.fragmentView;
         int i2 = Theme.key_windowBackgroundWhite;
         view.setBackgroundColor(Theme.getColor(i2));
-        FrameLayout frameLayout3 = new FrameLayout(this, context) {
+        FrameLayout frameLayout3 = new FrameLayout(context) {
             @Override
             protected void onDraw(Canvas canvas) {
                 super.onDraw(canvas);
@@ -445,15 +445,11 @@ public class TooManyCommunitiesActivity extends BaseFragment {
         }
 
         public void updateRows() {
-            this.hintPosition = -1;
-            this.shadowPosition = -1;
             this.headerPosition = -1;
             this.inactiveChatsStartRow = -1;
             this.inactiveChatsEndRow = -1;
             this.endPaddingPosition = -1;
-            this.rowCount = 0;
             int i = 0 + 1;
-            this.rowCount = i;
             this.hintPosition = 0;
             this.rowCount = i + 1;
             this.shadowPosition = i;
@@ -462,13 +458,11 @@ public class TooManyCommunitiesActivity extends BaseFragment {
             }
             int i2 = this.rowCount;
             int i3 = i2 + 1;
-            this.rowCount = i3;
             this.headerPosition = i2;
             int i4 = i3 + 1;
             this.rowCount = i4;
             this.inactiveChatsStartRow = i3;
             int size = i4 + (TooManyCommunitiesActivity.this.inactiveChats.size() - 1);
-            this.rowCount = size;
             this.inactiveChatsEndRow = size;
             this.rowCount = size + 1;
             this.endPaddingPosition = size;

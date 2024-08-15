@@ -337,10 +337,10 @@ public class GiveawayMessageCell {
                     this.chatBgPaint.setColor(chatColor);
                     this.chatBgPaint.setAlpha(25);
                     this.avatarImageReceivers[i9].draw(canvas);
-                    CharSequence[] charSequenceArr = this.chatTitles;
+                    CharSequence charSequence = this.chatTitles[i9];
                     int i12 = i10;
                     int i13 = i9;
-                    canvas.drawText(charSequenceArr[i9], 0, charSequenceArr[i9].length(), AndroidUtilities.dp(30.0f), AndroidUtilities.dp(f5), this.chatTextPaint);
+                    canvas.drawText(charSequence, 0, charSequence.length(), AndroidUtilities.dp(30.0f), AndroidUtilities.dp(f5), this.chatTextPaint);
                     this.chatRect.set(0.0f, 0.0f, this.chatTitleWidths[i13] + AndroidUtilities.dp(40.0f), AndroidUtilities.dp(24.0f));
                     canvas.drawRoundRect(this.chatRect, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), this.chatBgPaint);
                     float f9 = i12;

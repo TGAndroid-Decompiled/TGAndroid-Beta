@@ -105,8 +105,7 @@ public class ArchivedStickersActivity extends BaseFragment implements Notificati
         this.listAdapter = new ListAdapter(context);
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
-        FrameLayout frameLayout2 = frameLayout;
-        frameLayout2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
+        frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
         EmptyTextProgressView emptyTextProgressView = new EmptyTextProgressView(context);
         this.emptyView = emptyTextProgressView;
         if (this.currentType == 0) {
@@ -114,7 +113,7 @@ public class ArchivedStickersActivity extends BaseFragment implements Notificati
         } else {
             emptyTextProgressView.setText(LocaleController.getString("ArchivedMasksEmpty", R.string.ArchivedMasksEmpty));
         }
-        frameLayout2.addView(this.emptyView, LayoutHelper.createFrame(-1, -1.0f));
+        frameLayout.addView(this.emptyView, LayoutHelper.createFrame(-1, -1.0f));
         if (this.loadingStickers) {
             this.emptyView.showProgress();
         } else {
@@ -128,7 +127,7 @@ public class ArchivedStickersActivity extends BaseFragment implements Notificati
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, 1, false);
         this.layoutManager = linearLayoutManager;
         recyclerListView2.setLayoutManager(linearLayoutManager);
-        frameLayout2.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
+        frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
         this.listView.setAdapter(this.listAdapter);
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
@@ -383,8 +382,8 @@ public class ArchivedStickersActivity extends BaseFragment implements Notificati
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-            int i2;
             String str;
+            int i2;
             if (getItemViewType(i) == 0) {
                 int i3 = i - ArchivedStickersActivity.this.stickersStartRow;
                 ArchivedStickerSetCell archivedStickerSetCell = (ArchivedStickerSetCell) viewHolder.itemView;
@@ -410,11 +409,11 @@ public class ArchivedStickersActivity extends BaseFragment implements Notificati
                     textInfoPrivacyCell.setTopPadding(17);
                     textInfoPrivacyCell.setBottomPadding(10);
                     if (ArchivedStickersActivity.this.currentType == 5) {
-                        i2 = R.string.ArchivedEmojiInfo;
                         str = "ArchivedEmojiInfo";
+                        i2 = R.string.ArchivedEmojiInfo;
                     } else {
-                        i2 = R.string.ArchivedStickersInfo;
                         str = "ArchivedStickersInfo";
+                        i2 = R.string.ArchivedStickersInfo;
                     }
                     textInfoPrivacyCell.setText(LocaleController.getString(str, i2));
                     return;

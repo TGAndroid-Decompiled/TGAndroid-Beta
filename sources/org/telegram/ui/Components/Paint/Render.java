@@ -82,9 +82,9 @@ public class Render {
                 break;
             }
             add = add.add(point4.multiplyByScalar(max));
-            z2 = false;
             Double.isNaN(max);
             d7 += max;
+            z2 = false;
             z3 = z;
         }
         if (z4 && z) {

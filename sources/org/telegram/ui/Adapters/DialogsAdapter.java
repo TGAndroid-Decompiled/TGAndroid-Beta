@@ -99,6 +99,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
     private TLRPC$RequestPeerType requestPeerType;
     private ArrayList<Long> selectedDialogs;
     boolean updateListPending;
+    private boolean firstUpdate = true;
     ArrayList<ItemInternal> itemInternals = new ArrayList<>();
     ArrayList<ItemInternal> oldItems = new ArrayList<>();
     int stableIdPointer = 10;
@@ -124,12 +125,13 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
     }
 
     public DialogsAdapter(DialogsActivity dialogsActivity, Context context, int i, int i2, boolean z, ArrayList<Long> arrayList, int i3, TLRPC$RequestPeerType tLRPC$RequestPeerType) {
+        boolean z2 = true;
         this.mContext = context;
         this.parentFragment = dialogsActivity;
         this.dialogsType = i;
         this.folderId = i2;
         this.isOnlySelect = z;
-        this.hasHints = i2 == 0 && i == 0 && !z;
+        this.hasHints = (i2 == 0 && i == 0 && !z) ? false : false;
         this.selectedDialogs = arrayList;
         this.currentAccount = i3;
         if (i2 == 0) {
@@ -223,56 +225,56 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
         TLRPC$RecentMeUrl recentMeUrl;
         private final int stableId;
 
-        public ItemInternal(DialogsAdapter dialogsAdapter, TL_chatlists$TL_chatlists_chatlistUpdates tL_chatlists$TL_chatlists_chatlistUpdates) {
+        public ItemInternal(TL_chatlists$TL_chatlists_chatlistUpdates tL_chatlists$TL_chatlists_chatlistUpdates) {
             super(17, true);
             this.chatlistUpdates = tL_chatlists$TL_chatlists_chatlistUpdates;
-            int i = dialogsAdapter.stableIdPointer;
-            dialogsAdapter.stableIdPointer = i + 1;
+            int i = DialogsAdapter.this.stableIdPointer;
+            DialogsAdapter.this.stableIdPointer = i + 1;
             this.stableId = i;
         }
 
-        public ItemInternal(DialogsAdapter dialogsAdapter, int i, TLRPC$Dialog tLRPC$Dialog) {
+        public ItemInternal(int i, TLRPC$Dialog tLRPC$Dialog) {
             super(i, true);
             boolean z = true;
             this.dialog = tLRPC$Dialog;
             if (tLRPC$Dialog != null) {
-                int i2 = dialogsAdapter.dialogsStableIds.get(tLRPC$Dialog.id, -1);
+                int i2 = DialogsAdapter.this.dialogsStableIds.get(tLRPC$Dialog.id, -1);
                 if (i2 >= 0) {
                     this.stableId = i2;
                 } else {
-                    int i3 = dialogsAdapter.stableIdPointer;
-                    dialogsAdapter.stableIdPointer = i3 + 1;
+                    int i3 = DialogsAdapter.this.stableIdPointer;
+                    DialogsAdapter.this.stableIdPointer = i3 + 1;
                     this.stableId = i3;
-                    dialogsAdapter.dialogsStableIds.put(tLRPC$Dialog.id, i3);
+                    DialogsAdapter.this.dialogsStableIds.put(tLRPC$Dialog.id, i3);
                 }
             } else if (i == 19) {
                 this.stableId = 5;
             } else {
-                int i4 = dialogsAdapter.stableIdPointer;
-                dialogsAdapter.stableIdPointer = i4 + 1;
+                int i4 = DialogsAdapter.this.stableIdPointer;
+                DialogsAdapter.this.stableIdPointer = i4 + 1;
                 this.stableId = i4;
             }
             if (tLRPC$Dialog != null) {
-                if (dialogsAdapter.dialogsType == 7 || dialogsAdapter.dialogsType == 8) {
-                    MessagesController.DialogFilter dialogFilter = MessagesController.getInstance(dialogsAdapter.currentAccount).selectedDialogFilter[dialogsAdapter.dialogsType == 8 ? (char) 1 : (char) 0];
+                if (DialogsAdapter.this.dialogsType == 7 || DialogsAdapter.this.dialogsType == 8) {
+                    MessagesController.DialogFilter dialogFilter = MessagesController.getInstance(DialogsAdapter.this.currentAccount).selectedDialogFilter[DialogsAdapter.this.dialogsType == 8 ? (char) 1 : (char) 0];
                     this.pinned = (dialogFilter == null || dialogFilter.pinnedDialogs.indexOfKey(tLRPC$Dialog.id) < 0) ? false : false;
                 } else {
                     this.pinned = tLRPC$Dialog.pinned;
                 }
                 this.isFolder = tLRPC$Dialog.isFolder;
-                this.isForumCell = MessagesController.getInstance(dialogsAdapter.currentAccount).isForum(tLRPC$Dialog.id);
+                this.isForumCell = MessagesController.getInstance(DialogsAdapter.this.currentAccount).isForum(tLRPC$Dialog.id);
             }
         }
 
-        public ItemInternal(DialogsAdapter dialogsAdapter, int i, TLRPC$RecentMeUrl tLRPC$RecentMeUrl) {
+        public ItemInternal(int i, TLRPC$RecentMeUrl tLRPC$RecentMeUrl) {
             super(i, true);
             this.recentMeUrl = tLRPC$RecentMeUrl;
-            int i2 = dialogsAdapter.stableIdPointer;
-            dialogsAdapter.stableIdPointer = i2 + 1;
+            int i2 = DialogsAdapter.this.stableIdPointer;
+            DialogsAdapter.this.stableIdPointer = i2 + 1;
             this.stableId = i2;
         }
 
-        public ItemInternal(DialogsAdapter dialogsAdapter, int i) {
+        public ItemInternal(int i) {
             super(i, true);
             this.emptyType = i;
             if (i == 10) {
@@ -280,37 +282,37 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
             } else if (this.viewType == 19) {
                 this.stableId = 5;
             } else {
-                int i2 = dialogsAdapter.stableIdPointer;
-                dialogsAdapter.stableIdPointer = i2 + 1;
+                int i2 = DialogsAdapter.this.stableIdPointer;
+                DialogsAdapter.this.stableIdPointer = i2 + 1;
                 this.stableId = i2;
             }
         }
 
-        public ItemInternal(DialogsAdapter dialogsAdapter, int i, int i2) {
+        public ItemInternal(int i, int i2) {
             super(i, true);
             this.emptyType = i2;
-            int i3 = dialogsAdapter.stableIdPointer;
-            dialogsAdapter.stableIdPointer = i3 + 1;
+            int i3 = DialogsAdapter.this.stableIdPointer;
+            DialogsAdapter.this.stableIdPointer = i3 + 1;
             this.stableId = i3;
         }
 
-        public ItemInternal(DialogsAdapter dialogsAdapter, int i, TLRPC$TL_contact tLRPC$TL_contact) {
+        public ItemInternal(int i, TLRPC$TL_contact tLRPC$TL_contact) {
             super(i, true);
             this.contact = tLRPC$TL_contact;
             if (tLRPC$TL_contact != null) {
-                int i2 = dialogsAdapter.dialogsStableIds.get(tLRPC$TL_contact.user_id, -1);
+                int i2 = DialogsAdapter.this.dialogsStableIds.get(tLRPC$TL_contact.user_id, -1);
                 if (i2 > 0) {
                     this.stableId = i2;
                     return;
                 }
-                int i3 = dialogsAdapter.stableIdPointer;
-                dialogsAdapter.stableIdPointer = i3 + 1;
+                int i3 = DialogsAdapter.this.stableIdPointer;
+                DialogsAdapter.this.stableIdPointer = i3 + 1;
                 this.stableId = i3;
-                dialogsAdapter.dialogsStableIds.put(this.contact.user_id, i3);
+                DialogsAdapter.this.dialogsStableIds.put(this.contact.user_id, i3);
                 return;
             }
-            int i4 = dialogsAdapter.stableIdPointer;
-            dialogsAdapter.stableIdPointer = i4 + 1;
+            int i4 = DialogsAdapter.this.stableIdPointer;
+            DialogsAdapter.this.stableIdPointer = i4 + 1;
             this.stableId = i4;
         }
 
@@ -575,7 +577,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                 });
                 break;
             case 3:
-                flickerLoadingView = new FrameLayout(this, this.mContext) {
+                flickerLoadingView = new FrameLayout(this.mContext) {
                     @Override
                     protected void onMeasure(int i4, int i5) {
                         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i4), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(12.0f), 1073741824));
@@ -694,7 +696,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                 flickerLoadingView = new DialogsHintCell(this.mContext, null);
                 break;
             case 18:
-                flickerLoadingView = new View(this, this.mContext) {
+                flickerLoadingView = new View(this.mContext) {
                     @Override
                     protected void onMeasure(int i4, int i5) {
                         super.onMeasure(i4, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(81.0f), 1073741824));
@@ -729,10 +731,9 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
         TLRPC$Chat tLRPC$Chat;
+        TLRPC$User tLRPC$User;
         String str;
         String str2;
-        TLRPC$User tLRPC$User;
-        String formatUserStatus;
         String lowerCase;
         TLRPC$Chat chat;
         int itemViewType = viewHolder.getItemViewType();
@@ -779,27 +780,23 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                     tLRPC$User = tLRPC$Chat;
                 } else {
                     TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(tLRPC$Dialog.id));
+                    String str4 = "";
                     if (user != null) {
                         String userName = UserObject.getUserName(user);
-                        if (UserObject.isReplyUser(user)) {
-                            str = userName;
-                            str2 = "";
-                            tLRPC$User = user;
-                        } else {
+                        if (!UserObject.isReplyUser(user)) {
                             if (user.bot) {
-                                formatUserStatus = LocaleController.getString("Bot", R.string.Bot);
+                                str4 = LocaleController.getString("Bot", R.string.Bot);
                             } else {
-                                formatUserStatus = LocaleController.formatUserStatus(this.currentAccount, user);
+                                str4 = LocaleController.formatUserStatus(this.currentAccount, user);
                             }
-                            tLRPC$User = user;
-                            str = userName;
-                            str2 = formatUserStatus;
                         }
+                        tLRPC$User = user;
+                        str = userName;
                     } else {
-                        str = null;
-                        str2 = "";
                         tLRPC$User = null;
+                        str = null;
                     }
+                    str2 = str4;
                 }
                 profileSearchCell.useSeparator = tLRPC$Dialog2 != null;
                 profileSearchCell.setData(tLRPC$User, null, str, str2, false, false);
@@ -1093,6 +1090,9 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
         int currentRequestCount;
         int networkRequestCount;
         boolean resumed;
+        private final int MAX_REQUEST_COUNT = 4;
+        private final int MAX_NETWORK_REQUEST_COUNT = 6;
+        private final int NETWORK_REQUESTS_RESET_TIME = 60000;
         HashSet<Long> dialogsReadyMap = new HashSet<>();
         HashSet<Long> preloadedErrorMap = new HashSet<>();
         HashSet<Long> loadingDialogs = new HashSet<>();

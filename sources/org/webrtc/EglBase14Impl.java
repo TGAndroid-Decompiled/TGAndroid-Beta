@@ -45,7 +45,12 @@ public class EglBase14Impl implements EglBase14 {
         @Override
         @TargetApi(21)
         public long getNativeEglContext() {
-            return EglBase14Impl.CURRENT_SDK_VERSION >= 21 ? this.egl14Context.getNativeHandle() : this.egl14Context.getHandle();
+            long nativeHandle;
+            if (EglBase14Impl.CURRENT_SDK_VERSION >= 21) {
+                nativeHandle = this.egl14Context.getNativeHandle();
+                return nativeHandle;
+            }
+            return this.egl14Context.getHandle();
         }
 
         public Context(EGLContext eGLContext) {
@@ -278,14 +283,14 @@ public class EglBase14Impl implements EglBase14 {
         int[] iArr2 = new int[1];
         if (!EGL14.eglChooseConfig(eGLDisplay, iArr, 0, eGLConfigArr, 0, 1, iArr2, 0)) {
             throw new RuntimeException("eglChooseConfig failed: 0x" + Integer.toHexString(EGL14.eglGetError()));
-        } else if (iArr2[0] <= 0) {
-            throw new RuntimeException("Unable to find any matching EGL config");
-        } else {
+        } else if (iArr2[0] > 0) {
             EGLConfig eGLConfig = eGLConfigArr[0];
             if (eGLConfig != null) {
                 return eGLConfig;
             }
             throw new RuntimeException("eglChooseConfig returned null");
+        } else {
+            throw new RuntimeException("Unable to find any matching EGL config");
         }
     }
 

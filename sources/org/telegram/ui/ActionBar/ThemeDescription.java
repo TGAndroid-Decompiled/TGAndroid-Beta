@@ -165,7 +165,6 @@ public class ThemeDescription {
     }
 
     public ThemeDescription(View view, int i, Class[] clsArr, String[] strArr, Paint[] paintArr, Drawable[] drawableArr, int i2, ThemeDescriptionDelegate themeDescriptionDelegate, int i3) {
-        this.alphaOverride = -1;
         this.previousIsDefault = new boolean[1];
         this.currentKey = i3;
         this.paintToUpdate = paintArr;
@@ -237,11 +236,14 @@ public class ThemeDescription {
                 if (i3 >= paintArr.length) {
                     break;
                 }
-                if ((this.changeFlags & FLAG_LINKCOLOR) != 0 && (paintArr[i3] instanceof TextPaint)) {
-                    ((TextPaint) paintArr[i3]).linkColor = i;
-                } else {
-                    paintArr[i3].setColor(i);
+                if ((this.changeFlags & FLAG_LINKCOLOR) != 0) {
+                    Paint paint = paintArr[i3];
+                    if (paint instanceof TextPaint) {
+                        ((TextPaint) paint).linkColor = i;
+                        i3++;
+                    }
                 }
+                paintArr[i3].setColor(i);
                 i3++;
             }
         }
@@ -252,27 +254,28 @@ public class ThemeDescription {
                 if (i4 >= drawableArr.length) {
                     break;
                 }
-                if (drawableArr[i4] != null) {
-                    if (drawableArr[i4] instanceof BackDrawable) {
-                        ((BackDrawable) drawableArr[i4]).setColor(i);
-                    } else if (drawableArr[i4] instanceof ScamDrawable) {
-                        ((ScamDrawable) drawableArr[i4]).setColor(i);
-                    } else if (drawableArr[i4] instanceof RLottieDrawable) {
+                Drawable drawable = drawableArr[i4];
+                if (drawable != null) {
+                    if (drawable instanceof BackDrawable) {
+                        ((BackDrawable) drawable).setColor(i);
+                    } else if (drawable instanceof ScamDrawable) {
+                        ((ScamDrawable) drawable).setColor(i);
+                    } else if (drawable instanceof RLottieDrawable) {
                         if (this.lottieLayerName != null) {
-                            ((RLottieDrawable) drawableArr[i4]).setLayerColor(this.lottieLayerName + ".**", i);
+                            ((RLottieDrawable) drawable).setLayerColor(this.lottieLayerName + ".**", i);
                         }
-                    } else if (drawableArr[i4] instanceof CombinedDrawable) {
+                    } else if (drawable instanceof CombinedDrawable) {
                         if ((this.changeFlags & FLAG_BACKGROUNDFILTER) != 0) {
-                            ((CombinedDrawable) drawableArr[i4]).getBackground().setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
+                            ((CombinedDrawable) drawable).getBackground().setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
                         } else {
-                            ((CombinedDrawable) drawableArr[i4]).getIcon().setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
+                            ((CombinedDrawable) drawable).getIcon().setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
                         }
-                    } else if (drawableArr[i4] instanceof AvatarDrawable) {
-                        ((AvatarDrawable) drawableArr[i4]).setColor(i);
-                    } else if (drawableArr[i4] instanceof AnimatedArrowDrawable) {
-                        ((AnimatedArrowDrawable) drawableArr[i4]).setColor(i);
+                    } else if (drawable instanceof AvatarDrawable) {
+                        ((AvatarDrawable) drawable).setColor(i);
+                    } else if (drawable instanceof AnimatedArrowDrawable) {
+                        ((AnimatedArrowDrawable) drawable).setColor(i);
                     } else {
-                        drawableArr[i4].setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
+                        drawable.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
                     }
                 }
                 i4++;
@@ -419,9 +422,9 @@ public class ThemeDescription {
             View view10 = this.viewToInvalidate;
             if (view10 instanceof ImageView) {
                 if ((this.changeFlags & FLAG_USEBACKGROUNDDRAWABLE) != 0) {
-                    Drawable drawable = ((ImageView) view10).getDrawable();
-                    if ((drawable instanceof StateListDrawable) || (Build.VERSION.SDK_INT >= 21 && (drawable instanceof RippleDrawable))) {
-                        Theme.setSelectorDrawableColor(drawable, i, (this.changeFlags & FLAG_DRAWABLESELECTEDSTATE) != 0);
+                    Drawable drawable2 = ((ImageView) view10).getDrawable();
+                    if ((drawable2 instanceof StateListDrawable) || (Build.VERSION.SDK_INT >= 21 && (drawable2 instanceof RippleDrawable))) {
+                        Theme.setSelectorDrawableColor(drawable2, i, (this.changeFlags & FLAG_DRAWABLESELECTEDSTATE) != 0);
                     }
                 } else {
                     ((ImageView) view10).setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
@@ -430,9 +433,9 @@ public class ThemeDescription {
                 if (view10 instanceof SimpleTextView) {
                     ((SimpleTextView) view10).setSideDrawablesColor(i);
                 } else if ((view10 instanceof TextView) && (compoundDrawables = ((TextView) view10).getCompoundDrawables()) != null) {
-                    for (int i11 = 0; i11 < compoundDrawables.length; i11++) {
-                        if (compoundDrawables[i11] != null) {
-                            compoundDrawables[i11].setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
+                    for (Drawable drawable3 : compoundDrawables) {
+                        if (drawable3 != null) {
+                            drawable3.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
                         }
                     }
                 }
@@ -461,14 +464,14 @@ public class ThemeDescription {
             if ((this.changeFlags & FLAG_SECTIONS) != 0) {
                 ArrayList<View> headers = recyclerListView.getHeaders();
                 if (headers != null) {
-                    for (int i12 = 0; i12 < headers.size(); i12++) {
-                        processViewColor(headers.get(i12), i);
+                    for (int i11 = 0; i11 < headers.size(); i11++) {
+                        processViewColor(headers.get(i11), i);
                     }
                 }
                 ArrayList<View> headersCache = recyclerListView.getHeadersCache();
                 if (headersCache != null) {
-                    for (int i13 = 0; i13 < headersCache.size(); i13++) {
-                        processViewColor(headersCache.get(i13), i);
+                    for (int i12 = 0; i12 < headersCache.size(); i12++) {
+                        processViewColor(headersCache.get(i12), i);
                     }
                 }
                 View pinnedHeader = recyclerListView.getPinnedHeader();
@@ -477,10 +480,10 @@ public class ThemeDescription {
                 }
             }
         } else if (view13 != null && ((clsArr = this.listClasses) == null || clsArr.length == 0)) {
-            int i14 = this.changeFlags;
-            if ((FLAG_SELECTOR & i14) != 0) {
+            int i13 = this.changeFlags;
+            if ((FLAG_SELECTOR & i13) != 0) {
                 view13.setBackgroundDrawable(Theme.getSelectorDrawable(false));
-            } else if ((i14 & FLAG_SELECTORWHITE) != 0) {
+            } else if ((i13 & FLAG_SELECTORWHITE) != 0) {
                 view13.setBackgroundDrawable(Theme.getSelectorDrawable(true));
             }
         }
@@ -490,24 +493,24 @@ public class ThemeDescription {
                 RecyclerListView recyclerListView2 = (RecyclerListView) view14;
                 recyclerListView2.getRecycledViewPool().clear();
                 int hiddenChildCount = recyclerListView2.getHiddenChildCount();
-                for (int i15 = 0; i15 < hiddenChildCount; i15++) {
-                    processViewColor(recyclerListView2.getHiddenChildAt(i15), i);
+                for (int i14 = 0; i14 < hiddenChildCount; i14++) {
+                    processViewColor(recyclerListView2.getHiddenChildAt(i14), i);
                 }
                 int cachedChildCount = recyclerListView2.getCachedChildCount();
-                for (int i16 = 0; i16 < cachedChildCount; i16++) {
-                    processViewColor(recyclerListView2.getCachedChildAt(i16), i);
+                for (int i15 = 0; i15 < cachedChildCount; i15++) {
+                    processViewColor(recyclerListView2.getCachedChildAt(i15), i);
                 }
                 int attachedScrapChildCount = recyclerListView2.getAttachedScrapChildCount();
-                for (int i17 = 0; i17 < attachedScrapChildCount; i17++) {
-                    processViewColor(recyclerListView2.getAttachedScrapChildAt(i17), i);
+                for (int i16 = 0; i16 < attachedScrapChildCount; i16++) {
+                    processViewColor(recyclerListView2.getAttachedScrapChildAt(i16), i);
                 }
             }
             View view15 = this.viewToInvalidate;
             if (view15 instanceof ViewGroup) {
                 ViewGroup viewGroup = (ViewGroup) view15;
                 int childCount = viewGroup.getChildCount();
-                for (int i18 = 0; i18 < childCount; i18++) {
-                    processViewColor(viewGroup.getChildAt(i18), i);
+                for (int i17 = 0; i17 < childCount; i17++) {
+                    processViewColor(viewGroup.getChildAt(i17), i);
                 }
             }
             processViewColor(this.viewToInvalidate, i);
@@ -639,9 +642,9 @@ public class ThemeDescription {
                                     if ((FLAG_IMAGECOLOR & i6) != 0) {
                                         Drawable[] compoundDrawables = textView2.getCompoundDrawables();
                                         if (compoundDrawables != null) {
-                                            for (int i7 = 0; i7 < compoundDrawables.length; i7++) {
-                                                if (compoundDrawables[i7] != null) {
-                                                    compoundDrawables[i7].setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
+                                            for (Drawable drawable : compoundDrawables) {
+                                                if (drawable != null) {
+                                                    drawable.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
                                                 }
                                             }
                                         }
@@ -660,12 +663,12 @@ public class ThemeDescription {
                                     }
                                 } else if (obj instanceof ImageView) {
                                     ImageView imageView = (ImageView) obj;
-                                    Drawable drawable = imageView.getDrawable();
-                                    if (drawable instanceof CombinedDrawable) {
+                                    Drawable drawable2 = imageView.getDrawable();
+                                    if (drawable2 instanceof CombinedDrawable) {
                                         if ((this.changeFlags & FLAG_BACKGROUNDFILTER) != 0) {
-                                            ((CombinedDrawable) drawable).getBackground().setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
+                                            ((CombinedDrawable) drawable2).getBackground().setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
                                         } else {
-                                            ((CombinedDrawable) drawable).getIcon().setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
+                                            ((CombinedDrawable) drawable2).getIcon().setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
                                         }
                                     } else {
                                         imageView.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
@@ -702,11 +705,11 @@ public class ThemeDescription {
                                                 ((Drawable) obj).setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
                                             }
                                         }
-                                        Drawable drawable2 = (Drawable) obj;
+                                        Drawable drawable3 = (Drawable) obj;
                                         if ((i6 & FLAG_DRAWABLESELECTEDSTATE) == 0) {
                                             z2 = false;
                                         }
-                                        Theme.setSelectorDrawableColor(drawable2, i, z2);
+                                        Theme.setSelectorDrawableColor(drawable3, i, z2);
                                     }
                                 } else if (obj instanceof CheckBox) {
                                     if ((FLAG_CHECKBOX & i6) != 0) {
@@ -751,9 +754,9 @@ public class ThemeDescription {
                                     }
                                 } else if (obj instanceof AudioPlayerAlert.ClippingTextViewSwitcher) {
                                     if ((FLAG_FASTSCROLL & i6) != 0) {
-                                        int i8 = 0;
-                                        while (i8 < 2) {
-                                            TextView textView3 = i8 == 0 ? ((AudioPlayerAlert.ClippingTextViewSwitcher) obj).getTextView() : ((AudioPlayerAlert.ClippingTextViewSwitcher) obj).getNextTextView();
+                                        int i7 = 0;
+                                        while (i7 < 2) {
+                                            TextView textView3 = i7 == 0 ? ((AudioPlayerAlert.ClippingTextViewSwitcher) obj).getTextView() : ((AudioPlayerAlert.ClippingTextViewSwitcher) obj).getNextTextView();
                                             if (textView3 != null) {
                                                 CharSequence text2 = textView3.getText();
                                                 if ((text2 instanceof SpannedString) && (typefaceSpanArr2 = (TypefaceSpan[]) ((SpannedString) text2).getSpans(0, text2.length(), TypefaceSpan.class)) != null && typefaceSpanArr2.length > 0) {
@@ -762,12 +765,12 @@ public class ThemeDescription {
                                                     }
                                                 }
                                             }
-                                            i8++;
+                                            i7++;
                                         }
                                     } else if ((FLAG_TEXTCOLOR & i6) != 0 && ((i6 & FLAG_CHECKTAG) == 0 || checkTag(this.currentKey, obj))) {
-                                        int i9 = 0;
-                                        while (i9 < 2) {
-                                            TextView textView4 = i9 == 0 ? ((AudioPlayerAlert.ClippingTextViewSwitcher) obj).getTextView() : ((AudioPlayerAlert.ClippingTextViewSwitcher) obj).getNextTextView();
+                                        int i8 = 0;
+                                        while (i8 < 2) {
+                                            TextView textView4 = i8 == 0 ? ((AudioPlayerAlert.ClippingTextViewSwitcher) obj).getTextView() : ((AudioPlayerAlert.ClippingTextViewSwitcher) obj).getNextTextView();
                                             if (textView4 != null) {
                                                 textView4.setTextColor(i);
                                                 CharSequence text3 = textView4.getText();
@@ -777,7 +780,7 @@ public class ThemeDescription {
                                                     }
                                                 }
                                             }
-                                            i9++;
+                                            i8++;
                                         }
                                     }
                                 }

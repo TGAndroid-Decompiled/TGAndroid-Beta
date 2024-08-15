@@ -859,9 +859,9 @@ public class StoryEntry {
     }
 
     public void setupGradient(final Runnable runnable) {
+        final Bitmap bitmap;
         if (this.isVideo && this.gradientTopColor == 0 && this.gradientBottomColor == 0) {
             if (this.thumbPath != null) {
-                final Bitmap bitmap = null;
                 try {
                     BitmapFactory.Options options = new BitmapFactory.Options();
                     if (this.thumbPath.startsWith("vthumb://")) {
@@ -883,6 +883,7 @@ public class StoryEntry {
                         bitmap = BitmapFactory.decodeFile(this.thumbPath);
                     }
                 } catch (Exception unused) {
+                    bitmap = null;
                 }
                 if (bitmap != null) {
                     DominantColors.getColors(true, bitmap, true, new Utilities.Callback() {
@@ -992,6 +993,7 @@ public class StoryEntry {
     }
 
     public void lambda$getVideoEditedInfo$8(String str, int[] iArr, Utilities.Callback callback) {
+        int i;
         ArrayList<VideoEditedInfo.MediaEntity> arrayList;
         VideoEditedInfo videoEditedInfo = new VideoEditedInfo();
         videoEditedInfo.isStory = true;
@@ -1022,12 +1024,12 @@ public class StoryEntry {
                 videoEditedInfo.bitrate = 2000000;
                 videoEditedInfo.originalBitrate = -1;
             } else {
-                int i = videoEditedInfo.originalBitrate;
-                if (i < 500000) {
+                int i2 = videoEditedInfo.originalBitrate;
+                if (i2 < 500000) {
                     videoEditedInfo.bitrate = 2500000;
                     videoEditedInfo.originalBitrate = -1;
                 } else {
-                    videoEditedInfo.bitrate = Utilities.clamp(i, 3000000, 500000);
+                    videoEditedInfo.bitrate = Utilities.clamp(i2, 3000000, 500000);
                 }
             }
             FileLog.d("story bitrate, original = " + videoEditedInfo.originalBitrate + " => " + videoEditedInfo.bitrate);
@@ -1041,7 +1043,7 @@ public class StoryEntry {
             videoEditedInfo.estimatedDuration = j3 - j2;
             videoEditedInfo.volume = this.videoVolume;
             videoEditedInfo.muted = this.muted;
-            videoEditedInfo.estimatedSize = iArr[5] + (((iArr[4] / 1000.0f) * extractRealEncoderBitrate) / 8.0f);
+            videoEditedInfo.estimatedSize = iArr[5] + (((i / 1000.0f) * extractRealEncoderBitrate) / 8.0f);
             videoEditedInfo.estimatedSize = Math.max(this.file.length(), videoEditedInfo.estimatedSize);
             videoEditedInfo.filterState = this.filterState;
             File file5 = this.paintBlurFile;
@@ -1159,6 +1161,8 @@ public class StoryEntry {
         public int colorRange;
         public int colorStandard;
         public int colorTransfer;
+        public float maxlum;
+        public float minlum;
 
         public int getHDRType() {
             if (this.colorStandard == 6) {
@@ -1201,6 +1205,8 @@ public class StoryEntry {
                 if (hDRInfo == null) {
                     hDRInfo = new HDRInfo();
                     this.hdrInfo = hDRInfo;
+                    hDRInfo.maxlum = 1000.0f;
+                    hDRInfo.minlum = 0.001f;
                 }
                 MediaExtractor mediaExtractor = new MediaExtractor();
                 mediaExtractor.setDataSource(this.file.getAbsolutePath());
@@ -1450,13 +1456,14 @@ public class StoryEntry {
     public static long getCoverTime(TL_stories$StoryItem tL_stories$StoryItem) {
         TLRPC$MessageMedia tLRPC$MessageMedia;
         TLRPC$Document tLRPC$Document;
+        TLRPC$TL_documentAttributeVideo tLRPC$TL_documentAttributeVideo;
         if (tL_stories$StoryItem == null || (tLRPC$MessageMedia = tL_stories$StoryItem.media) == null || (tLRPC$Document = tLRPC$MessageMedia.document) == null) {
             return 0L;
         }
-        TLRPC$TL_documentAttributeVideo tLRPC$TL_documentAttributeVideo = null;
         int i = 0;
         while (true) {
             if (i >= tLRPC$Document.attributes.size()) {
+                tLRPC$TL_documentAttributeVideo = null;
                 break;
             } else if (tLRPC$Document.attributes.get(i) instanceof TLRPC$TL_documentAttributeVideo) {
                 tLRPC$TL_documentAttributeVideo = (TLRPC$TL_documentAttributeVideo) tLRPC$Document.attributes.get(i);

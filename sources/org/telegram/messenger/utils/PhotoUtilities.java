@@ -110,10 +110,8 @@ public class PhotoUtilities {
         }
         if (tLRPC$InputFile2 != null) {
             tLRPC$TL_photos_uploadProfilePhoto.video = tLRPC$InputFile2;
-            int i2 = tLRPC$TL_photos_uploadProfilePhoto.flags | 2;
-            tLRPC$TL_photos_uploadProfilePhoto.flags = i2;
             tLRPC$TL_photos_uploadProfilePhoto.video_start_ts = d;
-            tLRPC$TL_photos_uploadProfilePhoto.flags = i2 | 4;
+            tLRPC$TL_photos_uploadProfilePhoto.flags = tLRPC$TL_photos_uploadProfilePhoto.flags | 2 | 4;
         }
         if (tLRPC$VideoSize != null) {
             tLRPC$TL_photos_uploadProfilePhoto.video_emoji_markup = tLRPC$VideoSize;
@@ -313,10 +311,8 @@ public class PhotoUtilities {
             }
             if (tLRPC$InputFile2 != null) {
                 tLRPC$TL_photos_uploadProfilePhoto.video = tLRPC$InputFile2;
-                int i = tLRPC$TL_photos_uploadProfilePhoto.flags | 2;
-                tLRPC$TL_photos_uploadProfilePhoto.flags = i;
                 tLRPC$TL_photos_uploadProfilePhoto.video_start_ts = d;
-                tLRPC$TL_photos_uploadProfilePhoto.flags = i | 4;
+                tLRPC$TL_photos_uploadProfilePhoto.flags = tLRPC$TL_photos_uploadProfilePhoto.flags | 2 | 4;
             }
             if (tLRPC$VideoSize != null) {
                 tLRPC$TL_photos_uploadProfilePhoto.video_emoji_markup = tLRPC$VideoSize;

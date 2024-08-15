@@ -28,25 +28,25 @@ public class ChatListCell extends LinearLayout {
         private RectF rect;
         private TextPaint textPaint;
 
-        public ListView(ChatListCell chatListCell, Context context, boolean z) {
+        public ListView(Context context, boolean z) {
             super(context);
-            int i;
             String str;
+            int i;
             this.rect = new RectF();
             boolean z2 = true;
             this.textPaint = new TextPaint(1);
             setWillNotDraw(false);
             this.isThreeLines = z;
             if (z) {
-                i = R.string.ChatListExpanded;
                 str = "ChatListExpanded";
+                i = R.string.ChatListExpanded;
             } else {
-                i = R.string.ChatListDefault;
                 str = "ChatListDefault";
+                i = R.string.ChatListDefault;
             }
             setContentDescription(LocaleController.getString(str, i));
             this.textPaint.setTextSize(AndroidUtilities.dp(13.0f));
-            RadioButton radioButton = new RadioButton(context, chatListCell) {
+            RadioButton radioButton = new RadioButton(context) {
                 @Override
                 public void invalidate() {
                     super.invalidate();
@@ -66,8 +66,8 @@ public class ChatListCell extends LinearLayout {
 
         @Override
         protected void onDraw(Canvas canvas) {
-            int i;
             String str;
+            int i;
             int color = Theme.getColor(Theme.key_switchTrack);
             int red = Color.red(color);
             int green = Color.green(color);
@@ -80,11 +80,11 @@ public class ChatListCell extends LinearLayout {
             Theme.dialogs_onlineCirclePaint.setColor(Color.argb((int) ((1.0f - this.button.getProgress()) * 31.0f), red, green, blue));
             canvas.drawRoundRect(this.rect, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), Theme.dialogs_onlineCirclePaint);
             if (this.isThreeLines) {
-                i = R.string.ChatListExpanded;
                 str = "ChatListExpanded";
+                i = R.string.ChatListExpanded;
             } else {
-                i = R.string.ChatListDefault;
                 str = "ChatListDefault";
+                i = R.string.ChatListDefault;
             }
             String string = LocaleController.getString(str, i);
             this.textPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
@@ -116,18 +116,18 @@ public class ChatListCell extends LinearLayout {
 
         @Override
         public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-            int i;
             String str;
+            int i;
             super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
             accessibilityNodeInfo.setClassName(RadioButton.class.getName());
             accessibilityNodeInfo.setChecked(this.button.isChecked());
             accessibilityNodeInfo.setCheckable(true);
             if (this.isThreeLines) {
-                i = R.string.ChatListExpanded;
                 str = "ChatListExpanded";
+                i = R.string.ChatListExpanded;
             } else {
-                i = R.string.ChatListDefault;
                 str = "ChatListDefault";
+                i = R.string.ChatListDefault;
             }
             accessibilityNodeInfo.setContentDescription(LocaleController.getString(str, i));
         }
@@ -145,7 +145,7 @@ public class ChatListCell extends LinearLayout {
                 return;
             }
             final boolean z = i == 1;
-            listViewArr[i] = new ListView(this, context, z);
+            listViewArr[i] = new ListView(context, z);
             addView(this.listView[i], LayoutHelper.createLinear(-1, -1, 0.5f, i == 1 ? 10 : 0, 0, 0, 0));
             this.listView[i].setOnClickListener(new View.OnClickListener() {
                 @Override

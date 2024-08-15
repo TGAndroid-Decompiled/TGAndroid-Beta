@@ -24,6 +24,7 @@ public class VoiceMessageEnterTransition implements MessageEnterTransitionContai
     final Paint circlePaint = new Paint(1);
     MessageEnterTransitionContainer container;
     float fromRadius;
+    private final Matrix gradientMatrix;
     private final Paint gradientPaint;
     private final LinearGradient gradientShader;
     float lastToCx;
@@ -48,7 +49,7 @@ public class VoiceMessageEnterTransition implements MessageEnterTransitionContai
             recordCircle.voiceEnterTransitionInProgress = true;
             recordCircle.skipDraw = true;
         }
-        new Matrix();
+        this.gradientMatrix = new Matrix();
         Paint paint = new Paint(1);
         this.gradientPaint = paint;
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));

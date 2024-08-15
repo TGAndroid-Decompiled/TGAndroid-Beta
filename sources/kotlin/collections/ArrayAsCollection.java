@@ -71,6 +71,22 @@ public final class ArrayAsCollection<T> implements Collection<T> {
     }
 
     @Override
+    public boolean containsAll(Collection<? extends Object> elements) {
+        Intrinsics.checkNotNullParameter(elements, "elements");
+        Collection<? extends Object> collection = elements;
+        if (collection.isEmpty()) {
+            return true;
+        }
+        Iterator<T> it = collection.iterator();
+        while (it.hasNext()) {
+            if (!contains(it.next())) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
     public Iterator<T> iterator() {
         return ArrayIteratorKt.iterator(this.values);
     }
@@ -78,20 +94,5 @@ public final class ArrayAsCollection<T> implements Collection<T> {
     @Override
     public final Object[] toArray() {
         return CollectionsKt__CollectionsJVMKt.copyToArrayOfAny(this.values, this.isVarargs);
-    }
-
-    @Override
-    public boolean containsAll(Collection<? extends Object> elements) {
-        Intrinsics.checkNotNullParameter(elements, "elements");
-        if (elements.isEmpty()) {
-            return true;
-        }
-        Iterator<T> it = elements.iterator();
-        while (it.hasNext()) {
-            if (!contains(it.next())) {
-                return false;
-            }
-        }
-        return true;
     }
 }

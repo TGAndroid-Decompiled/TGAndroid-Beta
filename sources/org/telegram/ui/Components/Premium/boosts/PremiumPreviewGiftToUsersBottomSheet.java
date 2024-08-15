@@ -92,7 +92,6 @@ public class PremiumPreviewGiftToUsersBottomSheet extends PremiumPreviewBottomSh
 
     @Override
     protected void updateRows() {
-        this.rowCount = 0;
         int i = 0 + 1;
         this.rowCount = i;
         this.paddingRow = 0;
@@ -103,7 +102,6 @@ public class PremiumPreviewGiftToUsersBottomSheet extends PremiumPreviewBottomSh
         this.additionEndRow = size;
         this.featuresStartRow = size;
         int size2 = size + this.premiumFeatures.size();
-        this.rowCount = size2;
         this.featuresEndRow = size2;
         this.rowCount = size2 + 1;
         this.termsRow = size2;
@@ -306,7 +304,7 @@ public class PremiumPreviewGiftToUsersBottomSheet extends PremiumPreviewBottomSh
     protected void afterCellCreated(int i, View view) {
         if (i == 0) {
             if (Build.VERSION.SDK_INT >= 21) {
-                view.setOutlineProvider(new ViewOutlineProvider(this) {
+                view.setOutlineProvider(new ViewOutlineProvider() {
                     @Override
                     public void getOutline(View view2, Outline outline) {
                         float dp = AndroidUtilities.dp(12.0f);
@@ -332,6 +330,7 @@ public class PremiumPreviewGiftToUsersBottomSheet extends PremiumPreviewBottomSh
         AvatarDrawable fromAvatarDrawable;
         protected final AdditionalCounterView iconView;
         private final BackupImageView imageView;
+        public TLRPC$User user;
 
         public static View createAvatarsContainer(Context context, List<TLRPC$User> list) {
             FrameLayout frameLayout = new FrameLayout(context);
@@ -388,6 +387,7 @@ public class PremiumPreviewGiftToUsersBottomSheet extends PremiumPreviewBottomSh
         }
 
         public void setUser(TLRPC$User tLRPC$User) {
+            this.user = tLRPC$User;
             this.fromAvatarDrawable.setInfo(tLRPC$User);
             this.imageView.setForUserOrChat(tLRPC$User, this.fromAvatarDrawable);
         }

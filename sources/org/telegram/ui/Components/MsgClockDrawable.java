@@ -80,7 +80,7 @@ public class MsgClockDrawable extends Drawable {
     @Override
     public Drawable.ConstantState getConstantState() {
         if (this.constantState == null) {
-            this.constantState = new Drawable.ConstantState(this) {
+            this.constantState = new Drawable.ConstantState() {
                 @Override
                 public int getChangingConfigurations() {
                     return 0;

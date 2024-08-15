@@ -78,6 +78,7 @@ public class CaptionStory extends CaptionContainerView {
     private boolean recordTouch;
     private boolean recording;
     public ImageView roundButton;
+    public ButtonBounce roundButtonBounce;
     private final Drawable roundDrawable;
     private final Paint roundPaint;
     private float slideProgress;
@@ -187,7 +188,7 @@ public class CaptionStory extends CaptionContainerView {
         };
         ImageView imageView = new ImageView(context);
         this.roundButton = imageView;
-        new ButtonBounce(imageView);
+        this.roundButtonBounce = new ButtonBounce(imageView);
         this.roundButton.setImageResource(R.drawable.input_video_story);
         this.roundButton.setBackground(Theme.createSelectorDrawable(1090519039, 1, AndroidUtilities.dp(18.0f)));
         this.roundButton.setScaleType(ImageView.ScaleType.CENTER);

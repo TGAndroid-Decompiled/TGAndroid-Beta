@@ -195,10 +195,12 @@ public final class WebRtcAudioUtils {
     }
 
     private static boolean isVolumeFixed(AudioManager audioManager) {
+        boolean isVolumeFixed;
         if (Build.VERSION.SDK_INT < 21) {
             return false;
         }
-        return audioManager.isVolumeFixed();
+        isVolumeFixed = audioManager.isVolumeFixed();
+        return isVolumeFixed;
     }
 
     private static void logAudioStateVolume(String str, AudioManager audioManager) {
@@ -223,17 +225,29 @@ public final class WebRtcAudioUtils {
     }
 
     private static void logIsStreamMute(String str, AudioManager audioManager, int i, StringBuilder sb) {
+        boolean isStreamMute;
         if (Build.VERSION.SDK_INT >= 23) {
             sb.append(", muted=");
-            sb.append(audioManager.isStreamMute(i));
+            isStreamMute = audioManager.isStreamMute(i);
+            sb.append(isStreamMute);
         }
     }
 
     private static void logAudioDeviceInfo(String str, AudioManager audioManager) {
+        AudioDeviceInfo[] devices;
+        int type;
+        boolean isSource;
+        int[] channelCounts;
+        int[] encodings;
+        int[] sampleRates;
+        int id;
+        int[] sampleRates2;
+        int[] encodings2;
+        int[] channelCounts2;
         if (Build.VERSION.SDK_INT < 23) {
             return;
         }
-        AudioDeviceInfo[] devices = audioManager.getDevices(3);
+        devices = audioManager.getDevices(3);
         if (devices.length == 0) {
             return;
         }
@@ -241,25 +255,34 @@ public final class WebRtcAudioUtils {
         for (AudioDeviceInfo audioDeviceInfo : devices) {
             StringBuilder sb = new StringBuilder();
             sb.append("  ");
-            sb.append(deviceTypeToString(audioDeviceInfo.getType()));
-            sb.append(audioDeviceInfo.isSource() ? "(in): " : "(out): ");
-            if (audioDeviceInfo.getChannelCounts().length > 0) {
+            type = audioDeviceInfo.getType();
+            sb.append(deviceTypeToString(type));
+            isSource = audioDeviceInfo.isSource();
+            sb.append(isSource ? "(in): " : "(out): ");
+            channelCounts = audioDeviceInfo.getChannelCounts();
+            if (channelCounts.length > 0) {
                 sb.append("channels=");
-                sb.append(Arrays.toString(audioDeviceInfo.getChannelCounts()));
+                channelCounts2 = audioDeviceInfo.getChannelCounts();
+                sb.append(Arrays.toString(channelCounts2));
                 sb.append(", ");
             }
-            if (audioDeviceInfo.getEncodings().length > 0) {
+            encodings = audioDeviceInfo.getEncodings();
+            if (encodings.length > 0) {
                 sb.append("encodings=");
-                sb.append(Arrays.toString(audioDeviceInfo.getEncodings()));
+                encodings2 = audioDeviceInfo.getEncodings();
+                sb.append(Arrays.toString(encodings2));
                 sb.append(", ");
             }
-            if (audioDeviceInfo.getSampleRates().length > 0) {
+            sampleRates = audioDeviceInfo.getSampleRates();
+            if (sampleRates.length > 0) {
                 sb.append("sample rates=");
-                sb.append(Arrays.toString(audioDeviceInfo.getSampleRates()));
+                sampleRates2 = audioDeviceInfo.getSampleRates();
+                sb.append(Arrays.toString(sampleRates2));
                 sb.append(", ");
             }
             sb.append("id=");
-            sb.append(audioDeviceInfo.getId());
+            id = audioDeviceInfo.getId();
+            sb.append(id);
             Logging.d(str, sb.toString());
         }
     }

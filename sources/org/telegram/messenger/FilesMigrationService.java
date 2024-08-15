@@ -16,7 +16,6 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import j$.util.function.Consumer;
 import j$.util.stream.Stream;
-import j$.wrappers.C$r8$wrapper$java$util$stream$Stream$VWRP;
 import java.io.File;
 import java.nio.file.CopyOption;
 import java.nio.file.Files;
@@ -82,7 +81,7 @@ public class FilesMigrationService extends Service {
     public void migrateOldFolder() {
         ArrayList<File> rootDirs;
         File externalStorageDirectory = Environment.getExternalStorageDirectory();
-        if (Build.VERSION.SDK_INT >= 19 && !TextUtils.isEmpty(SharedConfig.storageCacheDir) && (rootDirs = AndroidUtilities.getRootDirs()) != null) {
+        if (!TextUtils.isEmpty(SharedConfig.storageCacheDir) && (rootDirs = AndroidUtilities.getRootDirs()) != null) {
             int size = rootDirs.size();
             int i = 0;
             while (true) {
@@ -121,10 +120,13 @@ public class FilesMigrationService extends Service {
     }
 
     private void moveDirectory(File file, final File file2) {
+        Path path;
+        Stream convert;
         if (file.exists()) {
             if (file2.exists() || file2.mkdir()) {
                 try {
-                    Stream convert = C$r8$wrapper$java$util$stream$Stream$VWRP.convert(Files.list(file.toPath()));
+                    path = file.toPath();
+                    convert = Stream.VivifiedWrapper.convert(Files.list(path));
                     convert.forEach(new Consumer() {
                         @Override
                         public final void accept(Object obj) {
@@ -150,17 +152,29 @@ public class FilesMigrationService extends Service {
     }
 
     public void lambda$moveDirectory$0(File file, Path path) {
-        File file2 = new File(file, path.getFileName().toString());
-        if (Files.isDirectory(path, new LinkOption[0])) {
-            moveDirectory(path.toFile(), file2);
+        Path fileName;
+        String path2;
+        boolean isDirectory;
+        File file2;
+        Path path3;
+        File file3;
+        fileName = path.getFileName();
+        path2 = fileName.toString();
+        File file4 = new File(file, path2);
+        isDirectory = Files.isDirectory(path, new LinkOption[0]);
+        if (isDirectory) {
+            file3 = path.toFile();
+            moveDirectory(file3, file4);
             return;
         }
         try {
-            Files.move(path, file2.toPath(), new CopyOption[0]);
+            path3 = file4.toPath();
+            Files.move(path, path3, new CopyOption[0]);
         } catch (Exception e) {
             FileLog.e((Throwable) e, false);
             try {
-                path.toFile().delete();
+                file2 = path.toFile();
+                file2.delete();
             } catch (Exception e2) {
                 FileLog.e(e2);
             }
@@ -186,9 +200,11 @@ public class FilesMigrationService extends Service {
     }
 
     public static void checkBottomSheet(BaseFragment baseFragment) {
+        boolean isExternalStorageLegacy;
         ArrayList<File> rootDirs;
         SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("systemConfig", 0);
-        if (!Environment.isExternalStorageLegacy() || sharedPreferences.getBoolean("migration_to_scoped_storage_finished", false) || sharedPreferences.getInt("migration_to_scoped_storage_count", 0) >= 5 || wasShown || filesMigrationBottomSheet != null || isRunning) {
+        isExternalStorageLegacy = Environment.isExternalStorageLegacy();
+        if (!isExternalStorageLegacy || sharedPreferences.getBoolean("migration_to_scoped_storage_finished", false) || sharedPreferences.getInt("migration_to_scoped_storage_count", 0) >= 5 || wasShown || filesMigrationBottomSheet != null || isRunning) {
             return;
         }
         if (Build.VERSION.SDK_INT >= 30) {
@@ -289,32 +305,7 @@ public class FilesMigrationService extends Service {
         }
 
         public void migrateOldFolder() {
-            Activity parentActivity = this.fragment.getParentActivity();
-            boolean z = true;
-            boolean z2 = parentActivity.checkSelfPermission("android.permission.WRITE_EXTERNAL_STORAGE") == 0;
-            int i = Build.VERSION.SDK_INT;
-            if ((i < 33 || parentActivity.checkSelfPermission("android.permission.READ_MEDIA_IMAGES") != 0 || parentActivity.checkSelfPermission("android.permission.READ_MEDIA_VIDEO") != 0 || parentActivity.checkSelfPermission("android.permission.READ_MEDIA_AUDIO") != 0) && (i >= 33 || parentActivity.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") != 0)) {
-                z = false;
-            }
-            if (!z || !z2) {
-                ArrayList arrayList = new ArrayList();
-                if (!z) {
-                    if (i >= 33) {
-                        arrayList.add("android.permission.READ_MEDIA_IMAGES");
-                        arrayList.add("android.permission.READ_MEDIA_VIDEO");
-                        arrayList.add("android.permission.READ_MEDIA_AUDIO");
-                    } else {
-                        arrayList.add("android.permission.READ_EXTERNAL_STORAGE");
-                    }
-                }
-                if (!z2) {
-                    arrayList.add("android.permission.WRITE_EXTERNAL_STORAGE");
-                }
-                parentActivity.requestPermissions((String[]) arrayList.toArray(new String[arrayList.size()]), 4);
-                return;
-            }
-            FilesMigrationService.start();
-            dismiss();
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FilesMigrationService.FilesMigrationBottomSheet.migrateOldFolder():void");
         }
 
         @Override

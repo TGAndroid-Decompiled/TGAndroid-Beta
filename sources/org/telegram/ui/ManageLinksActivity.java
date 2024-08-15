@@ -415,7 +415,6 @@ public class ManageLinksActivity extends BaseFragment {
         if (z2) {
             int i = this.rowCount;
             int i2 = i + 1;
-            this.rowCount = i2;
             this.creatorRow = i;
             this.rowCount = i2 + 1;
             this.creatorDividerRow = i2;
@@ -426,21 +425,18 @@ public class ManageLinksActivity extends BaseFragment {
         }
         int i4 = this.rowCount;
         int i5 = i4 + 1;
-        this.rowCount = i5;
         this.permanentLinkHeaderRow = i4;
         int i6 = i5 + 1;
         this.rowCount = i6;
         this.permanentLinkRow = i5;
         if (!z2) {
             int i7 = i6 + 1;
-            this.rowCount = i7;
             this.dividerRow = i6;
             this.rowCount = i7 + 1;
             this.createNewLinkRow = i7;
         } else if (!this.invites.isEmpty()) {
             int i8 = this.rowCount;
             int i9 = i8 + 1;
-            this.rowCount = i9;
             this.dividerRow = i8;
             this.rowCount = i9 + 1;
             this.linksHeaderRow = i9;
@@ -492,10 +488,8 @@ public class ManageLinksActivity extends BaseFragment {
             this.revokedHeader = i18;
             this.revokedLinksStartRow = i19;
             int size3 = i19 + this.revokedInvites.size();
-            this.rowCount = size3;
             this.revokedLinksEndRow = size3;
             int i20 = size3 + 1;
-            this.rowCount = i20;
             this.revokeAllDivider = size3;
             this.rowCount = i20 + 1;
             this.revokeAllRow = i20;
@@ -560,7 +554,7 @@ public class ManageLinksActivity extends BaseFragment {
         this.fragmentView.setTag(Integer.valueOf(i));
         FrameLayout frameLayout2 = (FrameLayout) this.fragmentView;
         this.listView = new RecyclerListView(context);
-        final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, context, 1, false) {
+        final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, 1, false) {
             @Override
             public boolean supportsPredictiveItemAnimations() {
                 return false;
@@ -738,10 +732,10 @@ public class ManageLinksActivity extends BaseFragment {
         private EmptyView emptyView;
         private TextView messageTextView;
 
-        public HintInnerCell(ManageLinksActivity manageLinksActivity, Context context) {
+        public HintInnerCell(Context context) {
             super(context);
-            int i;
             String str;
+            int i;
             EmptyView emptyView = new EmptyView(context);
             this.emptyView = emptyView;
             addView(emptyView, LayoutHelper.createFrame(-2, -2.0f, 49, 0.0f, 10.0f, 0.0f, 0.0f));
@@ -751,12 +745,12 @@ public class ManageLinksActivity extends BaseFragment {
             this.messageTextView.setTextSize(1, 14.0f);
             this.messageTextView.setGravity(17);
             TextView textView2 = this.messageTextView;
-            if (manageLinksActivity.isChannel) {
-                i = R.string.PrimaryLinkHelpChannel;
+            if (ManageLinksActivity.this.isChannel) {
                 str = "PrimaryLinkHelpChannel";
+                i = R.string.PrimaryLinkHelpChannel;
             } else {
-                i = R.string.PrimaryLinkHelp;
                 str = "PrimaryLinkHelp";
+                i = R.string.PrimaryLinkHelp;
             }
             textView2.setText(LocaleController.getString(str, i));
             addView(this.messageTextView, LayoutHelper.createFrame(-1, -2.0f, 51, 52.0f, 143.0f, 52.0f, 18.0f));
@@ -875,12 +869,12 @@ public class ManageLinksActivity extends BaseFragment {
                     textSettingsCell = textSettingsCell2;
                     break;
                 case 9:
-                    FrameLayout textInfoPrivacyCell = new TextInfoPrivacyCell(this.mContext);
+                    View textInfoPrivacyCell = new TextInfoPrivacyCell(this.mContext);
                     textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
                     textSettingsCell = textInfoPrivacyCell;
                     break;
                 case 10:
-                    FrameLayout manageChatUserCell = new ManageChatUserCell(this.mContext, 8, 6, false);
+                    View manageChatUserCell = new ManageChatUserCell(this.mContext, 8, 6, false);
                     manageChatUserCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                     textSettingsCell = manageChatUserCell;
                     break;
@@ -888,7 +882,7 @@ public class ManageLinksActivity extends BaseFragment {
                     textSettingsCell = new TextInfoPrivacyCell(this.mContext, ((BaseFragment) ManageLinksActivity.this).resourceProvider);
                     break;
                 default:
-                    View hintInnerCell = new HintInnerCell(ManageLinksActivity.this, this.mContext);
+                    View hintInnerCell = new HintInnerCell(this.mContext);
                     hintInnerCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundWhite));
                     textSettingsCell = hintInnerCell;
                     break;
@@ -1251,8 +1245,8 @@ public class ManageLinksActivity extends BaseFragment {
 
         public void setLink(TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported, int i) {
             String formatPluralString;
-            int i2;
             String str;
+            int i2;
             int i3;
             this.timerRunning = false;
             TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported2 = this.invite;
@@ -1334,11 +1328,11 @@ public class ManageLinksActivity extends BaseFragment {
                 boolean z = tLRPC$TL_chatInviteExported.revoked;
                 if (z || (i3 = tLRPC$TL_chatInviteExported.usage_limit) <= 0 || tLRPC$TL_chatInviteExported.usage < i3) {
                     if (z) {
-                        i2 = R.string.Revoked;
                         str = "Revoked";
+                        i2 = R.string.Revoked;
                     } else {
-                        i2 = R.string.Expired;
                         str = "Expired";
+                        i2 = R.string.Expired;
                     }
                     spannableStringBuilder3.append((CharSequence) LocaleController.getString(str, i2));
                 } else {

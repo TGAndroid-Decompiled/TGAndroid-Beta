@@ -165,6 +165,8 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
 
     public static class HistoryEntry {
         File dir;
+        int scrollItem;
+        int scrollOffset;
         String title;
 
         private HistoryEntry() {
@@ -578,8 +580,8 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
                 View childAt = this.listView.getChildAt(0);
                 RecyclerView.ViewHolder findContainingViewHolder = this.listView.findContainingViewHolder(childAt);
                 if (findContainingViewHolder != null) {
-                    findContainingViewHolder.getAdapterPosition();
-                    childAt.getTop();
+                    historyEntry2.scrollItem = findContainingViewHolder.getAdapterPosition();
+                    historyEntry2.scrollOffset = childAt.getTop();
                     historyEntry2.dir = this.currentDir;
                     historyEntry2.title = this.parentAlert.actionBar.getTitle();
                     prepareAnimation();
@@ -1413,6 +1415,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
         public ArrayList<String> sections = new ArrayList<>();
         public HashMap<String, ArrayList<MessageObject>> sectionArrays = new HashMap<>();
         private ArrayList<FiltersView.MediaFilterData> currentSearchFilters = new ArrayList<>();
+        private boolean firstLoading = true;
         private AnimationNotificationsLocker notificationsLocker = new AnimationNotificationsLocker();
         private Runnable clearCurrentResultsRunnable = new Runnable() {
             {
@@ -1481,14 +1484,14 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
                     } else if (tLObject instanceof TLRPC$Chat) {
                         j = -((TLRPC$Chat) tLObject).id;
                     }
-                    j4 = j;
+                    j2 = j;
                 } else if (i2 == 6) {
                     FiltersView.DateData dateData = mediaFilterData.dateData;
-                    j2 = dateData.minDate;
-                    j3 = dateData.maxDate;
+                    j3 = dateData.minDate;
+                    j4 = dateData.maxDate;
                 }
             }
-            searchGlobal(j4, j2, j3, FiltersView.filters[2], str, z);
+            searchGlobal(j2, j3, j4, FiltersView.filters[2], str, z);
         }
 
         public void lambda$search$1(final String str) {
@@ -1601,6 +1604,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
                 ChatAttachAlertDocumentLayout.this.emptyView.setVisibility(0);
                 notifyDataSetChanged();
                 this.requestIndex++;
+                this.firstLoading = true;
                 if (ChatAttachAlertDocumentLayout.this.listView.getPinnedHeader() != null) {
                     ChatAttachAlertDocumentLayout.this.listView.getPinnedHeader().setAlpha(0.0f);
                 }
@@ -1812,6 +1816,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
                 this.localTipDates.addAll(arrayList3);
                 updateFiltersView(TextUtils.isEmpty(this.currentDataQuery), this.localTipChats, this.localTipDates, true);
             }
+            this.firstLoading = false;
             final View view = null;
             final int i5 = -1;
             for (int i6 = 0; i6 < size; i6++) {

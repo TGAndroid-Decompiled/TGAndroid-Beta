@@ -3,6 +3,7 @@ package org.telegram.ui.Cells;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Canvas;
+import android.graphics.RecordingCanvas;
 import android.graphics.RenderNode;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RippleDrawable;
@@ -48,7 +49,7 @@ public abstract class BaseCell extends ViewGroup implements SizeNotifierFrameLay
         return i;
     }
 
-    private final class CheckForTap implements Runnable {
+    public final class CheckForTap implements Runnable {
         private CheckForTap() {
         }
 
@@ -64,7 +65,7 @@ public abstract class BaseCell extends ViewGroup implements SizeNotifierFrameLay
         }
     }
 
-    class CheckForLongPress implements Runnable {
+    public class CheckForLongPress implements Runnable {
         public int currentPressCount;
 
         CheckForLongPress() {
@@ -183,15 +184,20 @@ public abstract class BaseCell extends ViewGroup implements SizeNotifierFrameLay
 
     public void drawCached(Canvas canvas) {
         RenderNode renderNode;
-        if (Build.VERSION.SDK_INT >= 29 && (renderNode = this.renderNode) != null && renderNode.hasDisplayList() && canvas.isHardwareAccelerated() && !this.updatedContent) {
-            canvas.drawRenderNode(this.renderNode);
-        } else {
-            draw(canvas);
+        boolean hasDisplayList;
+        if (Build.VERSION.SDK_INT >= 29 && (renderNode = this.renderNode) != null) {
+            hasDisplayList = renderNode.hasDisplayList();
+            if (hasDisplayList && canvas.isHardwareAccelerated() && !this.updatedContent) {
+                canvas.drawRenderNode(this.renderNode);
+                return;
+            }
         }
+        draw(canvas);
     }
 
     @Override
     public void draw(Canvas canvas) {
+        RecordingCanvas beginRecording;
         boolean z = (this.cachingTop || this.cachingBottom || SharedConfig.useNewBlur) && allowCaching();
         int i = Build.VERSION.SDK_INT;
         if (i >= 29) {
@@ -208,7 +214,8 @@ public abstract class BaseCell extends ViewGroup implements SizeNotifierFrameLay
         }
         if (i >= 29 && this.renderNode != null && !this.forceNotCacheNextFrame && canvas.isHardwareAccelerated()) {
             this.renderNode.setPosition(0, 0, getWidth(), getHeight());
-            super.draw(this.renderNode.beginRecording());
+            beginRecording = this.renderNode.beginRecording();
+            super.draw(beginRecording);
             this.renderNode.endRecording();
             canvas.drawRenderNode(this.renderNode);
         } else {

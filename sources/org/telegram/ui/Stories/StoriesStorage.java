@@ -520,8 +520,9 @@ public class StoriesStorage {
         } else if (tLRPC$TL_error != null) {
             Timer.log(timer, "fillMessagesWithStories: getStoriesByID error " + tLRPC$TL_error.code + " " + tLRPC$TL_error.text);
         }
-        iArr[0] = iArr[0] - 1;
-        if (iArr[0] == 0) {
+        int i3 = iArr[0] - 1;
+        iArr[0] = i3;
+        if (i3 == 0) {
             runnable.run();
         }
     }

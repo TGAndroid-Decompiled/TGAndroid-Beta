@@ -95,6 +95,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
     private EditTextBoldCursor passwordEditText;
     private int passwordEnabledDetailRow;
     private OutlineTextContainerView passwordOutlineView;
+    private boolean paused;
     private boolean postedErrorColorTimeout;
     public boolean preloaded;
     private AlertDialog progressDialog;
@@ -499,9 +500,10 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
 
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
+        Object obj;
         if (i == NotificationCenter.twoStepPasswordChanged) {
-            if (objArr != null && objArr.length > 0 && objArr[0] != null) {
-                this.currentPasswordHash = (byte[]) objArr[0];
+            if (objArr != null && objArr.length > 0 && (obj = objArr[0]) != null) {
+                this.currentPasswordHash = (byte[]) obj;
             }
             loadPasswordInfo(false, false, null);
             updateRows();
@@ -511,11 +513,13 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
     @Override
     public void onPause() {
         super.onPause();
+        this.paused = true;
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        this.paused = false;
         AndroidUtilities.requestAdjustResize(getParentActivity(), this.classGuid);
     }
 
@@ -639,7 +643,6 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
         if (!this.loading && (tLRPC$account_Password = this.currentPassword) != null && this.passwordEntered) {
             if (tLRPC$account_Password.has_password) {
                 int i = 0 + 1;
-                this.rowCount = i;
                 this.changePasswordRow = 0;
                 int i2 = i + 1;
                 this.rowCount = i2;
@@ -656,7 +659,6 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
                 this.passwordEnabledDetailRow = i3;
             } else {
                 int i4 = 0 + 1;
-                this.rowCount = i4;
                 this.setPasswordRow = 0;
                 this.rowCount = i4 + 1;
                 this.setPasswordDetailRow = i4;
@@ -1248,7 +1250,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
         int i = Theme.key_windowBackgroundWhite;
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_CELLBACKGROUNDCOLOR, new Class[]{TextSettingsCell.class, EditTextSettingsCell.class}, null, null, null, i));
         arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_BACKGROUND | ThemeDescription.FLAG_CHECKTAG, null, null, null, null, i));
-        arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_CHECKTAG | ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_windowBackgroundGray));
+        arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_BACKGROUND | ThemeDescription.FLAG_CHECKTAG, null, null, null, null, Theme.key_windowBackgroundGray));
         ActionBar actionBar = this.actionBar;
         int i2 = ThemeDescription.FLAG_BACKGROUND;
         int i3 = Theme.key_actionBarDefault;

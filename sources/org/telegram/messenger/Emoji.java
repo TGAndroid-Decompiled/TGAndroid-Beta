@@ -33,22 +33,22 @@ import org.telegram.tgnet.TLRPC$TL_messages_stickerSet;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.ColoredImageSpan;
 public class Emoji {
-    private static String[] DEFAULT_RECENT = null;
+    private static final String[] DEFAULT_RECENT;
     private static final int MAX_RECENT_EMOJI_COUNT = 48;
     public static int bigImgSize;
     public static int drawImgSize;
     private static Bitmap[][] emojiBmp;
-    public static HashMap<String, String> emojiColor;
-    private static int[] emojiCounts;
+    public static final HashMap<String, String> emojiColor;
+    private static final int[] emojiCounts;
     public static boolean emojiDrawingUseAlpha;
     public static float emojiDrawingYOffset;
-    public static HashMap<String, Integer> emojiUseHistory;
-    public static Runnable invalidateUiRunnable;
+    public static final HashMap<String, Integer> emojiUseHistory;
+    public static final Runnable invalidateUiRunnable;
     private static boolean[][] loadingEmoji;
     public static Paint placeholderPaint;
-    public static ArrayList<String> recentEmoji;
+    public static final ArrayList<String> recentEmoji;
     private static boolean recentEmojiLoaded;
-    private static HashMap<CharSequence, DrawableInfo> rects = new HashMap<>();
+    private static final HashMap<CharSequence, DrawableInfo> rects = new HashMap<>();
     private static boolean inited = false;
 
     public static abstract class EmojiDrawable extends Drawable {
@@ -87,18 +87,18 @@ public class Emoji {
             if (i >= bitmapArr.length) {
                 break;
             }
-            int[] iArr = emojiCounts;
-            bitmapArr[i] = new Bitmap[iArr[i]];
-            loadingEmoji[i] = new boolean[iArr[i]];
+            int i2 = emojiCounts[i];
+            bitmapArr[i] = new Bitmap[i2];
+            loadingEmoji[i] = new boolean[i2];
             i++;
         }
-        for (int i2 = 0; i2 < EmojiData.data.length; i2++) {
-            int i3 = 0;
+        for (int i3 = 0; i3 < EmojiData.data.length; i3++) {
+            int i4 = 0;
             while (true) {
-                String[][] strArr2 = EmojiData.data;
-                if (i3 < strArr2[i2].length) {
-                    rects.put(strArr2[i2][i3], new DrawableInfo((byte) i2, (short) i3, i3));
-                    i3++;
+                String[] strArr2 = EmojiData.data[i3];
+                if (i4 < strArr2.length) {
+                    rects.put(strArr2[i4], new DrawableInfo((byte) i3, (short) i4, i4));
+                    i4++;
                 }
             }
         }
@@ -120,11 +120,11 @@ public class Emoji {
 
     public static void loadEmoji(final byte b, final short s) {
         if (emojiBmp[b][s] == null) {
-            boolean[][] zArr = loadingEmoji;
-            if (zArr[b][s]) {
+            boolean[] zArr = loadingEmoji[b];
+            if (zArr[s]) {
                 return;
             }
-            zArr[b][s] = true;
+            zArr[s] = true;
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
@@ -138,8 +138,9 @@ public class Emoji {
         Bitmap loadBitmap = loadBitmap("emoji/" + String.format(Locale.US, "%d_%d.png", Byte.valueOf(b), Short.valueOf(s)));
         if (loadBitmap != null) {
             emojiBmp[b][s] = loadBitmap;
-            AndroidUtilities.cancelRunOnUIThread(invalidateUiRunnable);
-            AndroidUtilities.runOnUIThread(invalidateUiRunnable);
+            Runnable runnable = invalidateUiRunnable;
+            AndroidUtilities.cancelRunOnUIThread(runnable);
+            AndroidUtilities.runOnUIThread(runnable);
         }
         loadingEmoji[b][s] = false;
     }
@@ -251,8 +252,9 @@ public class Emoji {
         if (endsWithRightArrow(charSequence)) {
             charSequence = charSequence.subSequence(0, charSequence.length() - 2);
         }
-        DrawableInfo drawableInfo = rects.get(charSequence);
-        return (drawableInfo != null || (charSequence2 = EmojiData.emojiAliasMap.get(charSequence)) == null) ? drawableInfo : rects.get(charSequence2);
+        HashMap<CharSequence, DrawableInfo> hashMap = rects;
+        DrawableInfo drawableInfo = hashMap.get(charSequence);
+        return (drawableInfo != null || (charSequence2 = EmojiData.emojiAliasMap.get(charSequence)) == null) ? drawableInfo : hashMap.get(charSequence2);
     }
 
     public static boolean isValidEmoji(CharSequence charSequence) {
@@ -260,9 +262,10 @@ public class Emoji {
         if (TextUtils.isEmpty(charSequence)) {
             return false;
         }
-        DrawableInfo drawableInfo = rects.get(charSequence);
+        HashMap<CharSequence, DrawableInfo> hashMap = rects;
+        DrawableInfo drawableInfo = hashMap.get(charSequence);
         if (drawableInfo == null && (charSequence2 = EmojiData.emojiAliasMap.get(charSequence)) != null) {
-            drawableInfo = rects.get(charSequence2);
+            drawableInfo = hashMap.get(charSequence2);
         }
         return drawableInfo != null;
     }
@@ -710,23 +713,25 @@ public class Emoji {
     }
 
     public static void addRecentEmoji(String str) {
-        Integer num = emojiUseHistory.get(str);
+        HashMap<String, Integer> hashMap = emojiUseHistory;
+        Integer num = hashMap.get(str);
         if (num == null) {
             num = 0;
         }
-        if (num.intValue() == 0 && emojiUseHistory.size() >= 48) {
+        if (num.intValue() == 0 && hashMap.size() >= 48) {
             ArrayList<String> arrayList = recentEmoji;
-            emojiUseHistory.remove(arrayList.get(arrayList.size() - 1));
-            ArrayList<String> arrayList2 = recentEmoji;
-            arrayList2.set(arrayList2.size() - 1, str);
+            hashMap.remove(arrayList.get(arrayList.size() - 1));
+            arrayList.set(arrayList.size() - 1, str);
         }
-        emojiUseHistory.put(str, Integer.valueOf(num.intValue() + 1));
+        hashMap.put(str, Integer.valueOf(num.intValue() + 1));
     }
 
     public static void removeRecentEmoji(String str) {
-        emojiUseHistory.remove(str);
-        recentEmoji.remove(str);
-        if (emojiUseHistory.isEmpty() || recentEmoji.isEmpty()) {
+        HashMap<String, Integer> hashMap = emojiUseHistory;
+        hashMap.remove(str);
+        ArrayList<String> arrayList = recentEmoji;
+        arrayList.remove(str);
+        if (hashMap.isEmpty() || arrayList.isEmpty()) {
             addRecentEmoji(DEFAULT_RECENT[0]);
         }
     }
@@ -744,15 +749,19 @@ public class Emoji {
                 return lambda$sortEmoji$3;
             }
         });
-        while (recentEmoji.size() > 48) {
+        while (true) {
             ArrayList<String> arrayList = recentEmoji;
+            if (arrayList.size() <= 48) {
+                return;
+            }
             arrayList.remove(arrayList.size() - 1);
         }
     }
 
     public static int lambda$sortEmoji$3(String str, String str2) {
-        Integer num = emojiUseHistory.get(str);
-        Integer num2 = emojiUseHistory.get(str2);
+        HashMap<String, Integer> hashMap = emojiUseHistory;
+        Integer num = hashMap.get(str);
+        Integer num2 = hashMap.get(str2);
         if (num == null) {
             num = 0;
         }

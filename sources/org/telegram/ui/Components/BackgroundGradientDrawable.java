@@ -301,8 +301,9 @@ public class BackgroundGradientDrawable extends GradientDrawable {
         if (!z) {
             this.ditheringRunnables.remove(runnableArr);
         }
-        if (listenerArr[0] != null) {
-            listenerArr[0].onSizeReady(intSize.width, intSize.height);
+        Listener listener = listenerArr[0];
+        if (listener != null) {
+            listener.onSizeReady(intSize.width, intSize.height);
             if (z) {
                 return;
             }

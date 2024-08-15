@@ -131,22 +131,17 @@ public class PeopleNearbyActivity extends BaseFragment implements NotificationCe
 
     private void updateRows(DiffCallback diffCallback) {
         int min;
-        this.rowCount = 0;
         this.usersStartRow = -1;
         this.usersEndRow = -1;
         this.showMoreRow = -1;
         this.chatsStartRow = -1;
         this.chatsEndRow = -1;
         this.chatsCreateRow = -1;
-        this.showMeRow = -1;
         int i = 0 + 1;
-        this.rowCount = i;
         this.helpRow = 0;
         int i2 = i + 1;
-        this.rowCount = i2;
         this.helpSectionRow = i;
         int i3 = i2 + 1;
-        this.rowCount = i3;
         this.usersHeaderRow = i2;
         this.rowCount = i3 + 1;
         this.showMeRow = i3;
@@ -169,10 +164,8 @@ public class PeopleNearbyActivity extends BaseFragment implements NotificationCe
         }
         int i7 = this.rowCount;
         int i8 = i7 + 1;
-        this.rowCount = i8;
         this.usersSectionRow = i7;
         int i9 = i8 + 1;
-        this.rowCount = i9;
         this.chatsHeaderRow = i8;
         this.rowCount = i9 + 1;
         this.chatsCreateRow = i9;
@@ -368,7 +361,7 @@ public class PeopleNearbyActivity extends BaseFragment implements NotificationCe
         recyclerListView3.setAdapter(listAdapter);
         this.listView.setVerticalScrollbarPosition(LocaleController.isRTL ? 1 : 2);
         frameLayout2.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
-        this.itemAnimator = new DefaultItemAnimator(this) {
+        this.itemAnimator = new DefaultItemAnimator() {
             @Override
             protected long getAddAnimationDelay(long j, long j2, long j3) {
                 return j;
@@ -894,9 +887,9 @@ public class PeopleNearbyActivity extends BaseFragment implements NotificationCe
         private TextView messageTextView;
         private TextView titleTextView;
 
-        public HintInnerCell(PeopleNearbyActivity peopleNearbyActivity, Context context) {
+        public HintInnerCell(Context context) {
             super(context);
-            int currentActionBarHeight = ((int) ((ActionBar.getCurrentActionBarHeight() + (((BaseFragment) peopleNearbyActivity).actionBar.getOccupyStatusBar() ? AndroidUtilities.statusBarHeight : 0)) / AndroidUtilities.density)) - 44;
+            int currentActionBarHeight = ((int) ((ActionBar.getCurrentActionBarHeight() + (((BaseFragment) PeopleNearbyActivity.this).actionBar.getOccupyStatusBar() ? AndroidUtilities.statusBarHeight : 0)) / AndroidUtilities.density)) - 44;
             ImageView imageView = new ImageView(context);
             this.imageView = imageView;
             imageView.setBackgroundDrawable(Theme.createCircleDrawable(AndroidUtilities.dp(74.0f), Theme.getColor(Theme.key_chats_archiveBackground)));
@@ -956,7 +949,7 @@ public class PeopleNearbyActivity extends BaseFragment implements NotificationCe
                 headerCellProgress.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                 textView = headerCellProgress;
             } else if (i == 4) {
-                TextView textView2 = new TextView(this, this.mContext) {
+                TextView textView2 = new TextView(this.mContext) {
                     @Override
                     protected void onMeasure(int i2, int i3) {
                         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(67.0f), 1073741824));
@@ -969,7 +962,7 @@ public class PeopleNearbyActivity extends BaseFragment implements NotificationCe
                 textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText3));
                 textView = textView2;
             } else {
-                View hintInnerCell = new HintInnerCell(PeopleNearbyActivity.this, this.mContext);
+                View hintInnerCell = new HintInnerCell(this.mContext);
                 hintInnerCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                 textView = hintInnerCell;
             }

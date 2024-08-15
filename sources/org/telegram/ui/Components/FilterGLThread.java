@@ -246,7 +246,13 @@ public class FilterGLThread extends DispatchQueue {
                 }
                 finish();
                 return false;
-            } else if (iArr[0] > 0) {
+            } else if (iArr[0] <= 0) {
+                if (BuildVars.LOGS_ENABLED) {
+                    FileLog.e("eglConfig not initialized");
+                }
+                finish();
+                return false;
+            } else {
                 EGLConfig eGLConfig = eGLConfigArr[0];
                 int[] iArr2 = {12440, 2, 12344};
                 BlurringShader.BlurManager blurManager = this.blurManager;
@@ -355,12 +361,6 @@ public class FilterGLThread extends DispatchQueue {
                         }
                         return false;
                     }
-                }
-                finish();
-                return false;
-            } else {
-                if (BuildVars.LOGS_ENABLED) {
-                    FileLog.e("eglConfig not initialized");
                 }
                 finish();
                 return false;

@@ -7,9 +7,9 @@ public interface IPhotoPaintView {
         public static void $default$setOffsetTranslationX(IPhotoPaintView iPhotoPaintView, float f) {
         }
 
-        public static View $default$getView(IPhotoPaintView _this) {
-            if (_this instanceof View) {
-                return (View) _this;
+        public static View $default$getView(IPhotoPaintView iPhotoPaintView) {
+            if (iPhotoPaintView instanceof View) {
+                return (View) iPhotoPaintView;
             }
             throw new IllegalArgumentException("You should override getView() if you're not inheriting from it.");
         }

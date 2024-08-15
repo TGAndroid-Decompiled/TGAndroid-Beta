@@ -34,6 +34,7 @@ import org.telegram.ui.Components.NumberPicker;
 import org.telegram.ui.Components.ProximitySheet;
 public class ProximitySheet extends FrameLayout {
     private int backgroundPaddingLeft;
+    private Paint backgroundPaint;
     private TextView buttonTextView;
     private ViewGroup containerView;
     private AnimatorSet currentAnimation;
@@ -83,7 +84,7 @@ public class ProximitySheet extends FrameLayout {
         this.startedTracking = false;
         this.currentAnimation = null;
         this.rect = new android.graphics.Rect();
-        new Paint();
+        this.backgroundPaint = new Paint();
         this.useHardwareLayer = true;
         this.openInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         setWillNotDraw(false);
@@ -94,7 +95,7 @@ public class ProximitySheet extends FrameLayout {
         mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogBackground), PorterDuff.Mode.MULTIPLY));
         mutate.getPadding(rect);
         this.backgroundPaddingLeft = rect.left;
-        FrameLayout frameLayout = new FrameLayout(this, getContext()) {
+        FrameLayout frameLayout = new FrameLayout(getContext()) {
             @Override
             public boolean hasOverlappingRendering() {
                 return false;
@@ -169,7 +170,7 @@ public class ProximitySheet extends FrameLayout {
         System.currentTimeMillis();
         FrameLayout frameLayout3 = new FrameLayout(context);
         this.infoTextView = new TextView(context);
-        this.buttonTextView = new TextView(this, context) {
+        this.buttonTextView = new TextView(context) {
             @Override
             public CharSequence getAccessibilityClassName() {
                 return Button.class.getName();
@@ -464,6 +465,7 @@ public class ProximitySheet extends FrameLayout {
         if (animatorSet != null) {
             animatorSet.cancel();
             this.currentSheetAnimation = null;
+            this.currentSheetAnimationType = 0;
         }
     }
 
@@ -477,6 +479,7 @@ public class ProximitySheet extends FrameLayout {
         }
         ViewGroup viewGroup = this.containerView;
         viewGroup.setTranslationY(viewGroup.getMeasuredHeight());
+        this.currentSheetAnimationType = 1;
         AnimatorSet animatorSet = new AnimatorSet();
         this.currentSheetAnimation = animatorSet;
         animatorSet.playTogether(ObjectAnimator.ofFloat(this.containerView, View.TRANSLATION_Y, 0.0f));
@@ -524,6 +527,7 @@ public class ProximitySheet extends FrameLayout {
         }
         this.dismissed = true;
         cancelSheetAnimation();
+        this.currentSheetAnimationType = 2;
         AnimatorSet animatorSet = new AnimatorSet();
         this.currentSheetAnimation = animatorSet;
         animatorSet.playTogether(ObjectAnimator.ofFloat(this.containerView, View.TRANSLATION_Y, viewGroup.getMeasuredHeight() + AndroidUtilities.dp(10.0f)));

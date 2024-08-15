@@ -1297,10 +1297,10 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         final String str;
         final int i;
         boolean z2;
-        int i2;
         String str2;
-        int i3;
+        int i2;
         String str3;
+        int i3;
         if (tLObject == null || this.selectType != 0) {
             return false;
         }
@@ -1375,11 +1375,11 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             boolean z12 = ChatObject.canBlockUsers(this.currentChat) && z5;
             int i5 = R.drawable.msg_remove;
             if (this.isChannel) {
-                i3 = R.string.ChannelRemoveUser;
                 str3 = "ChannelRemoveUser";
+                i3 = R.string.ChannelRemoveUser;
             } else {
-                i3 = R.string.KickFromGroup;
                 str3 = "KickFromGroup";
+                i3 = R.string.KickFromGroup;
             }
             addIf.addIf(z12, i5, (CharSequence) LocaleController.getString(str3, i3), true, new Runnable() {
                 @Override
@@ -1410,11 +1410,11 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             if (ChatObject.canAddUsers(this.currentChat) && j5 > 0) {
                 int i6 = R.drawable.msg_contact_add;
                 if (this.isChannel) {
-                    i2 = R.string.ChannelAddToChannel;
                     str2 = "ChannelAddToChannel";
+                    i2 = R.string.ChannelAddToChannel;
                 } else {
-                    i2 = R.string.ChannelAddToGroup;
                     str2 = "ChannelAddToGroup";
+                    i2 = R.string.ChannelAddToGroup;
                 }
                 makeOptions.add(i6, LocaleController.getString(str2, i2), new Runnable() {
                     @Override
@@ -2898,6 +2898,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     }
 
     public void updateListAnimated(DiffCallback diffCallback) {
+        View view;
         if (this.listViewAdapter == null) {
             updateRows();
             return;
@@ -2909,11 +2910,11 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         if (recyclerListView == null || this.layoutManager == null || recyclerListView.getChildCount() <= 0) {
             return;
         }
-        View view = null;
         int i = 0;
         int i2 = -1;
         while (true) {
             if (i >= this.listView.getChildCount()) {
+                view = null;
                 break;
             }
             RecyclerListView recyclerListView2 = this.listView;

@@ -65,6 +65,7 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
     private final int currentAccount;
     private int currentType;
     public TLRPC$WallPaper fallbackWallpaper;
+    private boolean hasAnimatedEmoji;
     boolean isSelected;
     public int lastThemeIndex;
     Theme.MessageDrawable messageDrawableIn;
@@ -219,6 +220,7 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
         boolean z3 = i != i2;
         this.lastThemeIndex = i2;
         this.chatThemeItem = chatThemeItem;
+        this.hasAnimatedEmoji = false;
         TLRPC$Document emojiAnimatedSticker = chatThemeItem.chatTheme.getEmoticon() != null ? MediaDataController.getInstance(this.currentAccount).getEmojiAnimatedSticker(chatThemeItem.chatTheme.getEmoticon()) : null;
         if (z2) {
             Runnable runnable = this.animationCancelRunnable;
@@ -529,8 +531,8 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
             int i7 = tLRPC$WallPaperSettings.second_background_color;
             int i8 = tLRPC$WallPaperSettings.third_background_color;
             i4 = tLRPC$WallPaperSettings.fourth_background_color;
-            i2 = i7;
             i5 = i6;
+            i2 = i7;
             i3 = i8;
         } else {
             i2 = 0;

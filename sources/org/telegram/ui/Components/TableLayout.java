@@ -19,10 +19,15 @@ import org.telegram.ui.ArticleViewer;
 import org.telegram.ui.Cells.TextSelectionHelper;
 public class TableLayout extends View {
     public static final Alignment BASELINE;
+    public static final Alignment BOTTOM;
+    public static final Alignment CENTER;
     public static final Alignment END;
     public static final Alignment FILL;
     private static final Alignment LEADING;
+    public static final Alignment LEFT;
+    public static final Alignment RIGHT;
     public static final Alignment START;
+    public static final Alignment TOP;
     private static final Alignment TRAILING;
     static final Alignment UNDEFINED_ALIGNMENT = new Alignment() {
         @Override
@@ -45,6 +50,7 @@ public class TableLayout extends View {
     private boolean isStriped;
     private int itemPaddingLeft;
     private int itemPaddingTop;
+    private Path linePath;
     private int mAlignmentMode;
     private int mDefaultGap;
     private final Axis mHorizontalAxis;
@@ -436,7 +442,7 @@ public class TableLayout extends View {
         this.itemPaddingLeft = AndroidUtilities.dp(8.0f);
         this.cellsToFixHeight = new ArrayList<>();
         this.rowSpans = new ArrayList<>();
-        new Path();
+        this.linePath = new Path();
         this.backgroundPath = new Path();
         this.rect = new RectF();
         this.radii = new float[8];
@@ -1518,13 +1524,14 @@ public class TableLayout extends View {
 
     public static class LayoutParams extends ViewGroup.MarginLayoutParams {
         private static final Interval DEFAULT_SPAN;
+        private static final int DEFAULT_SPAN_SIZE;
         public Spec columnSpec;
         public Spec rowSpec;
 
         static {
             Interval interval = new Interval(Integer.MIN_VALUE, -2147483647);
             DEFAULT_SPAN = interval;
-            interval.size();
+            DEFAULT_SPAN_SIZE = interval.size();
         }
 
         private LayoutParams(int i, int i2, int i3, int i4, int i5, int i6, Spec spec, Spec spec2) {
@@ -1557,7 +1564,7 @@ public class TableLayout extends View {
             if (this == obj) {
                 return true;
             }
-            if (obj == null || LayoutParams.class != obj.getClass()) {
+            if (obj == null || getClass() != obj.getClass()) {
                 return false;
             }
             LayoutParams layoutParams = (LayoutParams) obj;
@@ -1779,7 +1786,7 @@ public class TableLayout extends View {
             if (this == obj) {
                 return true;
             }
-            if (obj == null || Spec.class != obj.getClass()) {
+            if (obj == null || getClass() != obj.getClass()) {
                 return false;
             }
             Spec spec = (Spec) obj;
@@ -1849,11 +1856,13 @@ public class TableLayout extends View {
             }
         };
         TRAILING = alignment2;
+        TOP = alignment;
+        BOTTOM = alignment2;
         START = alignment;
         END = alignment2;
-        createSwitchingAlignment(alignment);
-        createSwitchingAlignment(alignment2);
-        new Alignment() {
+        LEFT = createSwitchingAlignment(alignment);
+        RIGHT = createSwitchingAlignment(alignment2);
+        CENTER = new Alignment() {
             @Override
             public int getAlignmentValue(Child child, int i) {
                 return i >> 1;
@@ -1877,7 +1886,7 @@ public class TableLayout extends View {
 
             @Override
             public Bounds getBounds() {
-                return new Bounds(this) {
+                return new Bounds() {
                     private int size;
 
                     @Override

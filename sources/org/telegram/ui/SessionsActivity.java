@@ -116,6 +116,12 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
     private ArrayList<TLObject> sessions = new ArrayList<>();
     private ArrayList<TLObject> passwordSessions = new ArrayList<>();
     private int repeatLoad = 0;
+    private final int VIEW_TYPE_TEXT = 0;
+    private final int VIEW_TYPE_INFO = 1;
+    private final int VIEW_TYPE_HEADER = 2;
+    private final int VIEW_TYPE_SESSION = 4;
+    private final int VIEW_TYPE_SCANQR = 5;
+    private final int VIEW_TYPE_SETTINGS = 6;
 
     public interface Delegate {
         void sessionsLoaded();
@@ -186,12 +192,11 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
         this.listAdapter = new ListAdapter(context);
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
-        FrameLayout frameLayout2 = frameLayout;
-        frameLayout2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
+        frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
         EmptyTextProgressView emptyTextProgressView = new EmptyTextProgressView(context);
         this.emptyView = emptyTextProgressView;
         emptyTextProgressView.showProgress();
-        frameLayout2.addView(this.emptyView, LayoutHelper.createFrame(-1, -1, 17));
+        frameLayout.addView(this.emptyView, LayoutHelper.createFrame(-1, -1, 17));
         RecyclerListView recyclerListView = new RecyclerListView(context) {
             @Override
             public Integer getSelectorColor(int i) {
@@ -202,7 +207,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
             }
         };
         this.listView = recyclerListView;
-        recyclerListView.setLayoutManager(new LinearLayoutManager(this, context, 1, false) {
+        recyclerListView.setLayoutManager(new LinearLayoutManager(context, 1, false) {
             @Override
             public boolean supportsPredictiveItemAnimations() {
                 return true;
@@ -211,7 +216,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
         this.listView.setVerticalScrollBarEnabled(false);
         this.listView.setEmptyView(this.emptyView);
         this.listView.setAnimateEmptyView(true, 0);
-        frameLayout2.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
+        frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
         this.listView.setAdapter(this.listAdapter);
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
         defaultItemAnimator.setDurations(150L);
@@ -228,7 +233,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
         if (this.currentType == 0) {
             AnonymousClass4 anonymousClass4 = new AnonymousClass4(context);
             this.undoView = anonymousClass4;
-            frameLayout2.addView(anonymousClass4, LayoutHelper.createFrame(-1, -2.0f, 83, 8.0f, 0.0f, 8.0f, 8.0f));
+            frameLayout.addView(anonymousClass4, LayoutHelper.createFrame(-1, -2.0f, 83, 8.0f, 0.0f, 8.0f, 8.0f));
         }
         updateRows();
         return this.fragmentView;
@@ -473,8 +478,9 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
 
     public static void lambda$createView$7(boolean[] zArr, View view) {
         if (view.isEnabled()) {
-            zArr[0] = !zArr[0];
-            ((CheckBoxCell) view).setChecked(zArr[0], true);
+            boolean z = !zArr[0];
+            zArr[0] = z;
+            ((CheckBoxCell) view).setChecked(z, true);
         }
     }
 
@@ -856,7 +862,6 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
         if (this.currentType == 0 && getMessagesController().qrLoginCamera) {
             int i = this.rowCount;
             int i2 = i + 1;
-            this.rowCount = i2;
             this.qrCodeRow = i;
             this.rowCount = i2 + 1;
             this.qrCodeDividerRow = i2;
@@ -865,7 +870,6 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
             if (this.currentType == 0) {
                 int i3 = this.rowCount;
                 int i4 = i3 + 1;
-                this.rowCount = i4;
                 this.currentSessionSectionRow = i3;
                 this.rowCount = i4 + 1;
                 this.currentSessionRow = i4;
@@ -876,7 +880,6 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
         if (this.currentSession != null) {
             int i5 = this.rowCount;
             int i6 = i5 + 1;
-            this.rowCount = i6;
             this.currentSessionSectionRow = i5;
             this.rowCount = i6 + 1;
             this.currentSessionRow = i6;
@@ -884,7 +887,6 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
         if (!this.passwordSessions.isEmpty() || !this.sessions.isEmpty()) {
             int i7 = this.rowCount;
             int i8 = i7 + 1;
-            this.rowCount = i8;
             this.terminateAllSessionsRow = i7;
             this.rowCount = i8 + 1;
             this.terminateAllSessionsDetailRow = i8;
@@ -907,7 +909,6 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
             this.passwordSessionsSectionRow = i10;
             this.passwordSessionsStartRow = i11;
             int size = i11 + this.passwordSessions.size();
-            this.rowCount = size;
             this.passwordSessionsEndRow = size;
             this.rowCount = size + 1;
             this.passwordSessionsDetailRow = size;
@@ -920,17 +921,14 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
             this.otherSessionsStartRow = i13;
             this.otherSessionsEndRow = i13 + this.sessions.size();
             int size2 = this.rowCount + this.sessions.size();
-            this.rowCount = size2;
             this.rowCount = size2 + 1;
             this.otherSessionsTerminateDetail = size2;
         }
         if (this.ttlDays > 0) {
             int i14 = this.rowCount;
             int i15 = i14 + 1;
-            this.rowCount = i15;
             this.ttlHeaderRow = i14;
             int i16 = i15 + 1;
-            this.rowCount = i16;
             this.ttlRow = i15;
             this.rowCount = i16 + 1;
             this.ttlDivideRow = i16;
@@ -1195,7 +1193,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
             CellFlickerDrawable cellFlickerDrawable = this.flickerDrawable;
             cellFlickerDrawable.repeatEnabled = false;
             cellFlickerDrawable.animationSpeedScale = 1.2f;
-            this.imageView.setOnClickListener(new View.OnClickListener(SessionsActivity.this) {
+            this.imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if (ScanQRCodeView.this.imageView.getImageReceiver().getLottieAnimation() == null || ScanQRCodeView.this.imageView.getImageReceiver().getLottieAnimation().isRunning()) {
@@ -1243,7 +1241,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
                 spannableStringBuilder.setSpan(new URLSpanNoUnderline(LocaleController.getString("AuthAnotherWebClientUrl", R.string.AuthAnotherWebClientUrl)), indexOf3, indexOf4 - 1, 33);
             }
             this.textView.setText(spannableStringBuilder);
-            TextView textView = new TextView(context, SessionsActivity.this) {
+            TextView textView = new TextView(context) {
                 @Override
                 public void draw(Canvas canvas) {
                     super.draw(canvas);
@@ -1279,14 +1277,18 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
         }
 
         public void lambda$new$0(View view) {
+            int checkSelfPermission;
             if (SessionsActivity.this.getParentActivity() == null) {
                 return;
             }
-            if (Build.VERSION.SDK_INT < 23 || SessionsActivity.this.getParentActivity().checkSelfPermission("android.permission.CAMERA") == 0) {
-                SessionsActivity.this.openCameraScanActivity();
-            } else {
-                SessionsActivity.this.getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 34);
+            if (Build.VERSION.SDK_INT >= 23) {
+                checkSelfPermission = SessionsActivity.this.getParentActivity().checkSelfPermission("android.permission.CAMERA");
+                if (checkSelfPermission != 0) {
+                    SessionsActivity.this.getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 34);
+                    return;
+                }
             }
+            SessionsActivity.this.openCameraScanActivity();
         }
 
         @Override

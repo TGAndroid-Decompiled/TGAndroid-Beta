@@ -20,6 +20,7 @@ public class MP3Info extends AudioInfo {
 
     public MP3Info(InputStream inputStream, long j, Level level) throws IOException, ID3v2Exception, MP3Exception {
         this.brand = "MP3";
+        this.version = "0";
         MP3Input mP3Input = new MP3Input(inputStream);
         if (ID3v2Info.isID3v2StartPosition(mP3Input)) {
             ID3v2Info iD3v2Info = new ID3v2Info(mP3Input, level);
@@ -46,7 +47,7 @@ public class MP3Info extends AudioInfo {
         long j2 = this.duration;
         if (j2 <= 0 || j2 >= 3600000) {
             try {
-                this.duration = calculateDuration(mP3Input, j, new StopReadCondition(this, j) {
+                this.duration = calculateDuration(mP3Input, j, new StopReadCondition(j) {
                     final long stopPosition;
                     final long val$fileLength;
 
@@ -209,8 +210,8 @@ public class MP3Info extends AudioInfo {
             long size = readFirstFrame.getSize();
             int bitrate = readFirstFrame.getHeader().getBitrate();
             long j2 = bitrate;
-            boolean z = false;
             int duration = 10000 / readFirstFrame.getHeader().getDuration();
+            boolean z = false;
             int i = 1;
             while (true) {
                 if (i == duration && !z && j > 0) {
@@ -219,13 +220,14 @@ public class MP3Info extends AudioInfo {
                 readFirstFrame = readNextFrame(mP3Input, stopReadCondition, readFirstFrame);
                 if (readFirstFrame != null) {
                     int bitrate2 = readFirstFrame.getHeader().getBitrate();
-                    int i2 = i;
+                    int i2 = duration;
                     if (bitrate2 != bitrate) {
                         z = true;
                     }
                     j2 += bitrate2;
                     size += readFirstFrame.getSize();
-                    i = i2 + 1;
+                    i++;
+                    duration = i2;
                 } else {
                     return (((size * 1000) * i) * 8) / j2;
                 }

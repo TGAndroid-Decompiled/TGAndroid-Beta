@@ -50,9 +50,10 @@ public class SunDate {
         double cosd = cosd(sind) - d2;
         double sqrt = Math.sqrt(1.0d - (d2 * d2)) * sind(sind);
         dArr2[0] = Math.sqrt((cosd * cosd) + (sqrt * sqrt));
-        dArr[0] = atan2d(sqrt, cosd) + (4.70935E-5d * d) + 282.9404d;
-        if (dArr[0] >= 360.0d) {
-            dArr[0] = dArr[0] - 360.0d;
+        double atan2d = atan2d(sqrt, cosd) + (4.70935E-5d * d) + 282.9404d;
+        dArr[0] = atan2d;
+        if (atan2d >= 360.0d) {
+            dArr[0] = atan2d - 360.0d;
         }
     }
 

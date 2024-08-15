@@ -285,7 +285,7 @@ public class SharingLocationsAlert extends BottomSheet implements NotificationCe
             if (i == 0) {
                 sharingLiveLocationCell = new SharingLiveLocationCell(this.context, false, 54, ((BottomSheet) SharingLocationsAlert.this).resourcesProvider);
             } else {
-                sharingLiveLocationCell = new FrameLayout(this, this.context) {
+                sharingLiveLocationCell = new FrameLayout(this.context) {
                     @Override
                     protected void onMeasure(int i2, int i3) {
                         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f) + 1, 1073741824));

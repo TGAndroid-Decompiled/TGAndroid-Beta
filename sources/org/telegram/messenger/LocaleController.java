@@ -1065,21 +1065,21 @@ public class LocaleController {
     }
 
     public int calculateTranslatedCount(HashMap<String, String> hashMap) {
+        String substring;
         HashSet hashSet = new HashSet();
         int i = 0;
         for (String str : hashMap.keySet()) {
             if (str != null) {
-                String str2 = null;
                 if (str.endsWith("_other")) {
-                    str2 = str.substring(0, str.length() - 6);
+                    substring = str.substring(0, str.length() - 6);
                 } else if (str.endsWith("_zero") || str.endsWith("_many")) {
-                    str2 = str.substring(0, str.length() - 5);
-                } else if (str.endsWith("_one") || str.endsWith("_two") || str.endsWith("_few")) {
-                    str2 = str.substring(0, str.length() - 4);
+                    substring = str.substring(0, str.length() - 5);
+                } else {
+                    substring = (str.endsWith("_one") || str.endsWith("_two") || str.endsWith("_few")) ? str.substring(0, str.length() - 4) : null;
                 }
-                if (str2 != null) {
-                    if (!hashSet.contains(str2)) {
-                        hashSet.add(str2);
+                if (substring != null) {
+                    if (!hashSet.contains(substring)) {
+                        hashSet.add(substring);
                     }
                 }
                 i++;
@@ -1970,10 +1970,10 @@ public class LocaleController {
                 while (i2 < otherNumbers.length) {
                     int i3 = 0;
                     while (true) {
-                        char[][] cArr = otherNumbers;
-                        if (i3 >= cArr[i2].length) {
+                        char[] cArr = otherNumbers[i2];
+                        if (i3 >= cArr.length) {
                             break;
-                        } else if (charAt == cArr[i2][i3]) {
+                        } else if (charAt == cArr[i3]) {
                             sb.setCharAt(i, defaultNumbers[i3]);
                             i2 = otherNumbers.length;
                             break;
@@ -3783,8 +3783,9 @@ public class LocaleController {
     }
 
     public static void lambda$applyRemoteLanguage$13(int[] iArr, int[] iArr2, Runnable runnable) {
-        iArr[0] = iArr[0] + 1;
-        if (iArr[0] < iArr2[0] || runnable == null) {
+        int i = iArr[0] + 1;
+        iArr[0] = i;
+        if (i < iArr2[0] || runnable == null) {
             return;
         }
         runnable.run();

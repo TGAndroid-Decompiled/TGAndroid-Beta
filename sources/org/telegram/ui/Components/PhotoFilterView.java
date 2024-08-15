@@ -125,6 +125,11 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
         public float midtonesLevel = 50.0f;
         public float highlightsLevel = 75.0f;
         public float whitesLevel = 100.0f;
+        public float previousBlacksLevel = 0.0f;
+        public float previousShadowsLevel = 25.0f;
+        public float previousMidtonesLevel = 50.0f;
+        public float previousHighlightsLevel = 75.0f;
+        public float previousWhitesLevel = 100.0f;
 
         public float[] getDataPoints() {
             if (this.cachedDataPoints == null) {
@@ -214,11 +219,21 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
         }
 
         public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-            this.blacksLevel = abstractSerializedData.readFloat(z);
-            this.shadowsLevel = abstractSerializedData.readFloat(z);
-            this.midtonesLevel = abstractSerializedData.readFloat(z);
-            this.highlightsLevel = abstractSerializedData.readFloat(z);
-            this.whitesLevel = abstractSerializedData.readFloat(z);
+            float readFloat = abstractSerializedData.readFloat(z);
+            this.previousBlacksLevel = readFloat;
+            this.blacksLevel = readFloat;
+            float readFloat2 = abstractSerializedData.readFloat(z);
+            this.previousShadowsLevel = readFloat2;
+            this.shadowsLevel = readFloat2;
+            float readFloat3 = abstractSerializedData.readFloat(z);
+            this.previousMidtonesLevel = readFloat3;
+            this.midtonesLevel = readFloat3;
+            float readFloat4 = abstractSerializedData.readFloat(z);
+            this.previousHighlightsLevel = readFloat4;
+            this.highlightsLevel = readFloat4;
+            float readFloat5 = abstractSerializedData.readFloat(z);
+            this.previousWhitesLevel = readFloat5;
+            this.whitesLevel = readFloat5;
         }
     }
 

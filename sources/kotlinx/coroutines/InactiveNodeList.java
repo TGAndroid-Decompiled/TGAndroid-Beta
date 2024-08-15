@@ -17,6 +17,6 @@ public final class InactiveNodeList implements Incomplete {
     }
 
     public String toString() {
-        return DebugKt.getDEBUG() ? getList().getString("New") : super.toString();
+        return super.toString();
     }
 }

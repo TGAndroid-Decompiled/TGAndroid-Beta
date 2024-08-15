@@ -270,7 +270,8 @@ public class FastDateParser implements DateParser, Serializable {
             return;
         }
         for (int i = 0; i < strArr.length; i++) {
-            if (strArr[i] != null && strArr[i].length() > 0) {
+            String str = strArr[i];
+            if (str != null && str.length() > 0) {
                 map.put(strArr[i], Integer.valueOf(i));
             }
         }

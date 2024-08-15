@@ -202,7 +202,7 @@ public class SendLocationCell extends FrameLayout {
         Theme.chat_radialProgress2Paint.setAlpha((int) (0.2f * f6 * f4));
         canvas.drawArc(this.rect, -90.0f, 360.0f, false, Theme.chat_radialProgress2Paint);
         Theme.chat_radialProgress2Paint.setAlpha((int) (f6 * f4));
-        canvas.drawArc(this.rect, -90.0f, this.progress.set(f3) * (-360.0f), false, Theme.chat_radialProgress2Paint);
+        canvas.drawArc(this.rect, -90.0f, (-360.0f) * this.progress.set(f3), false, Theme.chat_radialProgress2Paint);
         Theme.chat_radialProgress2Paint.setAlpha(alpha);
         if (sharingLocationInfo != null) {
             this.textDrawable.setText(LocaleController.formatLocationLeftTime(Math.abs(sharingLocationInfo.stopTime - currentTime)));

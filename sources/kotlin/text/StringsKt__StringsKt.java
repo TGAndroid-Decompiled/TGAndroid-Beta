@@ -101,7 +101,7 @@ public class StringsKt__StringsKt extends StringsKt__StringsJVMKt {
     public static final String substringAfterLast(String str, char c, String missingDelimiterValue) {
         Intrinsics.checkNotNullParameter(str, "<this>");
         Intrinsics.checkNotNullParameter(missingDelimiterValue, "missingDelimiterValue");
-        int lastIndexOf$default = lastIndexOf$default((CharSequence) str, c, 0, false, 6, (Object) null);
+        int lastIndexOf$default = lastIndexOf$default(str, c, 0, false, 6, null);
         if (lastIndexOf$default == -1) {
             return missingDelimiterValue;
         }
@@ -279,24 +279,5 @@ public class StringsKt__StringsKt extends StringsKt__StringsJVMKt {
             return lastIndexOfAny(charSequence, new char[]{c}, i, z);
         }
         return ((String) charSequence).lastIndexOf(c, i);
-    }
-
-    public static int lastIndexOf$default(CharSequence charSequence, String str, int i, boolean z, int i2, Object obj) {
-        if ((i2 & 2) != 0) {
-            i = getLastIndex(charSequence);
-        }
-        if ((i2 & 4) != 0) {
-            z = false;
-        }
-        return lastIndexOf(charSequence, str, i, z);
-    }
-
-    public static final int lastIndexOf(CharSequence charSequence, String string, int i, boolean z) {
-        Intrinsics.checkNotNullParameter(charSequence, "<this>");
-        Intrinsics.checkNotNullParameter(string, "string");
-        if (z || !(charSequence instanceof String)) {
-            return indexOf$StringsKt__StringsKt(charSequence, string, i, 0, z, true);
-        }
-        return ((String) charSequence).lastIndexOf(string, i);
     }
 }

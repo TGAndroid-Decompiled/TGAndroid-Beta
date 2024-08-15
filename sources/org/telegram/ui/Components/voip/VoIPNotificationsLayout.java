@@ -51,7 +51,7 @@ public class VoIPNotificationsLayout extends LinearLayout {
         this.backgroundProvider = voIPBackgroundProvider;
         TransitionSet transitionSet = new TransitionSet();
         this.transitionSet = transitionSet;
-        transitionSet.addTransition(new Fade(2).setDuration(150L)).addTransition(new ChangeBounds().setDuration(200L)).addTransition(new Visibility(this) {
+        transitionSet.addTransition(new Fade(2).setDuration(150L)).addTransition(new ChangeBounds().setDuration(200L)).addTransition(new Visibility() {
             @Override
             public Animator onAppear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
                 AnimatorSet animatorSet = new AnimatorSet();

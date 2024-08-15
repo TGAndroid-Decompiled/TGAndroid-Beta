@@ -103,7 +103,6 @@ public class IdenticonActivity extends BaseFragment implements NotificationCente
         });
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
-        FrameLayout frameLayout2 = frameLayout;
         frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
         this.fragmentView.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -117,14 +116,14 @@ public class IdenticonActivity extends BaseFragment implements NotificationCente
         this.linearLayout = linearLayout;
         linearLayout.setOrientation(1);
         this.linearLayout.setWeightSum(100.0f);
-        frameLayout2.addView(this.linearLayout, LayoutHelper.createFrame(-1, -1.0f));
-        FrameLayout frameLayout3 = new FrameLayout(context);
-        frameLayout3.setPadding(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f));
-        this.linearLayout.addView(frameLayout3, LayoutHelper.createLinear(-1, -1, 50.0f));
+        frameLayout.addView(this.linearLayout, LayoutHelper.createFrame(-1, -1.0f));
+        FrameLayout frameLayout2 = new FrameLayout(context);
+        frameLayout2.setPadding(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f));
+        this.linearLayout.addView(frameLayout2, LayoutHelper.createLinear(-1, -1, 50.0f));
         ImageView imageView = new ImageView(context);
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-        frameLayout3.addView(imageView, LayoutHelper.createFrame(-1, -1.0f));
-        FrameLayout frameLayout4 = new FrameLayout(context) {
+        frameLayout2.addView(imageView, LayoutHelper.createFrame(-1, -1.0f));
+        FrameLayout frameLayout3 = new FrameLayout(context) {
             @Override
             protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
                 super.onLayout(z, i, i2, i3, i4);
@@ -135,8 +134,8 @@ public class IdenticonActivity extends BaseFragment implements NotificationCente
                 }
             }
         };
-        this.container = frameLayout4;
-        frameLayout4.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+        this.container = frameLayout3;
+        frameLayout3.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
         this.linearLayout.addView(this.container, LayoutHelper.createLinear(-1, -1, 50.0f));
         LinearLayout linearLayout2 = new LinearLayout(context);
         this.linearLayout1 = linearLayout2;

@@ -198,7 +198,7 @@ public class EditTextCaption extends EditTextBoldCursor {
         ?? r2 = builder;
         r2.setTitle(LocaleController.getString("CreateLink", R.string.CreateLink));
         ?? frameLayout = new FrameLayout(getContext());
-        final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(this, getContext()) {
+        final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(getContext()) {
             @Override
             public void onMeasure(int i, int i2) {
                 super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f), 1073741824));
@@ -243,7 +243,7 @@ public class EditTextCaption extends EditTextBoldCursor {
                 EditTextCaption.this.lambda$makeSelectedUrl$1(editTextBoldCursor, runnable, view);
             }
         });
-        editTextBoldCursor.addTextChangedListener(new TextWatcher(this) {
+        editTextBoldCursor.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence2, int i, int i2, int i3) {
             }
@@ -427,8 +427,9 @@ public class EditTextCaption extends EditTextBoldCursor {
             for (int i2 = 0; i2 < quoteSpanArr.length; i2++) {
                 text.removeSpan(quoteSpanArr[i2]);
                 text.removeSpan(quoteSpanArr[i2].styleSpan);
-                if (quoteSpanArr[i2].collapsedSpan != null) {
-                    text.removeSpan(quoteSpanArr[i2].collapsedSpan);
+                QuoteSpan.QuoteCollapsedPart quoteCollapsedPart = quoteSpanArr[i2].collapsedSpan;
+                if (quoteCollapsedPart != null) {
+                    text.removeSpan(quoteCollapsedPart);
                 }
             }
             if (quoteSpanArr.length > 0) {
@@ -486,7 +487,7 @@ public class EditTextCaption extends EditTextBoldCursor {
                 callback.onDestroyActionMode(actionMode);
             }
         };
-        return Build.VERSION.SDK_INT >= 23 ? new ActionMode.Callback2(this) {
+        return Build.VERSION.SDK_INT >= 23 ? new ActionMode.Callback2() {
             @Override
             public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
                 return callback2.onCreateActionMode(actionMode, menu);
@@ -647,8 +648,8 @@ public class EditTextCaption extends EditTextBoldCursor {
             wrap.setHintText(this.caption);
         }
         List<AccessibilityNodeInfoCompat.AccessibilityActionCompat> actionList = wrap.getActionList();
-        int i = 0;
         int size = actionList.size();
+        int i = 0;
         while (true) {
             if (i >= size) {
                 break;

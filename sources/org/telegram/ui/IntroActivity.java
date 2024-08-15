@@ -206,7 +206,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
                 }
             }
         });
-        TextView textView = new TextView(this, context) {
+        TextView textView = new TextView(context) {
             CellFlickerDrawable cellFlickerDrawable;
 
             @Override
@@ -555,7 +555,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
             textView.setTag(IntroActivity.this.pagerHeaderTag);
             final TextView textView2 = new TextView(viewGroup.getContext());
             textView2.setTag(IntroActivity.this.pagerMessageTag);
-            FrameLayout frameLayout = new FrameLayout(this, viewGroup.getContext()) {
+            FrameLayout frameLayout = new FrameLayout(viewGroup.getContext()) {
                 @Override
                 protected void onLayout(boolean z, int i2, int i3, int i4, int i5) {
                     int dp = (((((i5 - i3) / 4) * 3) - AndroidUtilities.dp(275.0f)) / 2) + AndroidUtilities.dp(150.0f) + AndroidUtilities.dp(16.0f);
@@ -654,7 +654,8 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
                                 if (Build.VERSION.SDK_INT < 21) {
                                     EGLThread.this.maxRefreshRate = 60.0f;
                                 } else {
-                                    for (float f2 : ((WindowManager) ApplicationLoader.applicationContext.getSystemService("window")).getDefaultDisplay().getSupportedRefreshRates()) {
+                                    supportedRefreshRates = ((WindowManager) ApplicationLoader.applicationContext.getSystemService("window")).getDefaultDisplay().getSupportedRefreshRates();
+                                    for (float f2 : supportedRefreshRates) {
                                         if (f2 > f) {
                                             f = f2;
                                         }

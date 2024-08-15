@@ -16,6 +16,7 @@ public abstract class TLRPC$WebPage extends TLObject {
     public String embed_url;
     public int embed_width;
     public int flags;
+    public boolean has_large_media;
     public int hash;
     public long id;
     public TLRPC$Photo photo;

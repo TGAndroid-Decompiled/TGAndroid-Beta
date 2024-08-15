@@ -83,7 +83,8 @@ public class CircularProgressDrawable extends Drawable {
         RectF rectF = this.bounds;
         float f = this.angleOffset;
         float[] fArr = this.segment;
-        canvas.drawArc(rectF, fArr[0] + f, fArr[1] - fArr[0], false, this.paint);
+        float f2 = fArr[0];
+        canvas.drawArc(rectF, f + f2, fArr[1] - f2, false, this.paint);
         invalidateSelf();
     }
 

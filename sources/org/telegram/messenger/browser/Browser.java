@@ -40,13 +40,14 @@ import org.telegram.ui.LaunchActivity;
 public class Browser {
     private static WeakReference<Activity> currentCustomTabsActivity;
     private static CustomTabsClient customTabsClient;
+    private static WeakReference<CustomTabsSession> customTabsCurrentSession;
     private static String customTabsPackageToBind;
     private static CustomTabsServiceConnection customTabsServiceConnection;
     private static CustomTabsSession customTabsSession;
     private static Pattern domainPattern;
 
     private static void setCurrentSession(CustomTabsSession customTabsSession2) {
-        new WeakReference(customTabsSession2);
+        customTabsCurrentSession = new WeakReference<>(customTabsSession2);
     }
 
     private static CustomTabsSession getSession() {
@@ -265,11 +266,12 @@ public class Browser {
     }
 
     public static void lambda$openUrl$3(AlertDialog[] alertDialogArr, final int i) {
-        if (alertDialogArr[0] == null) {
+        AlertDialog alertDialog = alertDialogArr[0];
+        if (alertDialog == null) {
             return;
         }
         try {
-            alertDialogArr[0].setOnCancelListener(new DialogInterface.OnCancelListener() {
+            alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                 @Override
                 public final void onCancel(DialogInterface dialogInterface) {
                     Browser.lambda$openUrl$2(i, dialogInterface);

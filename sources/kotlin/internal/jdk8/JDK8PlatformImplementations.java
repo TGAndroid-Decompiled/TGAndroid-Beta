@@ -6,6 +6,7 @@ import kotlin.random.jdk8.PlatformThreadLocalRandom;
 public class JDK8PlatformImplementations extends JDK7PlatformImplementations {
 
     public static final class ReflectSdkVersion {
+        public static final ReflectSdkVersion INSTANCE = new ReflectSdkVersion();
         public static final Integer sdkVersion;
 
         private ReflectSdkVersion() {

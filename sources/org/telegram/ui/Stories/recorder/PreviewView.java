@@ -1,6 +1,5 @@
 package org.telegram.ui.Stories.recorder;
 
-import android.content.ContentUris;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -17,11 +16,9 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Build;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Pair;
-import android.util.Size;
 import android.util.SparseIntArray;
 import android.view.MotionEvent;
 import android.view.TextureView;
@@ -87,6 +84,7 @@ public class PreviewView extends FrameLayout {
     private int gradientBottom;
     private final Paint gradientPaint;
     private int gradientTop;
+    private float h;
     public Runnable invalidateBlur;
     public boolean isMuted;
     private long lastPos;
@@ -111,6 +109,7 @@ public class PreviewView extends FrameLayout {
     private boolean slowerSeekScheduled;
     private final Paint snapPaint;
     private boolean snappedRotation;
+    private boolean snappedToCenterAndScaled;
     private long tapTime;
     private VideoEditTextureView textureView;
     private final TextureViewHolder textureViewHolder;
@@ -126,6 +125,7 @@ public class PreviewView extends FrameLayout {
     private int videoHeight;
     private VideoPlayer videoPlayer;
     private int videoWidth;
+    private float w;
     private Drawable wallpaperDrawable;
     private AnimatedFloat wallpaperDrawableCrossfade;
 
@@ -237,7 +237,7 @@ public class PreviewView extends FrameLayout {
             if (storyEntry.gradientTopColor != 0 || storyEntry.gradientBottomColor != 0) {
                 setupGradient();
             } else {
-                storyEntry.setupGradient(new PreviewView$$ExternalSyntheticLambda3(this));
+                storyEntry.setupGradient(new PreviewView$$ExternalSyntheticLambda1(this));
             }
         } else {
             setupVideoPlayer(null, runnable, 0L);
@@ -265,7 +265,7 @@ public class PreviewView extends FrameLayout {
             if (storyEntry.gradientTopColor != 0 || storyEntry.gradientBottomColor != 0) {
                 setupGradient();
             } else {
-                storyEntry.setupGradient(new PreviewView$$ExternalSyntheticLambda3(this));
+                storyEntry.setupGradient(new PreviewView$$ExternalSyntheticLambda1(this));
             }
         } else {
             setupImage(storyEntry);
@@ -468,12 +468,14 @@ public class PreviewView extends FrameLayout {
         final int dp3 = (int) (AndroidUtilities.dp(4.0f) * AndroidUtilities.density);
         final Bitmap[] bitmapArr = new Bitmap[viewArr.length];
         for (int i = 0; i < viewArr.length; i++) {
-            if (viewArr[i] != null && viewArr[i].getWidth() >= 0 && viewArr[i].getHeight() > 0) {
-                if (viewArr[i] == this && (videoEditTextureView = this.textureView) != null) {
+            View view = viewArr[i];
+            if (view != null && view.getWidth() >= 0 && viewArr[i].getHeight() > 0) {
+                View view2 = viewArr[i];
+                if (view2 == this && (videoEditTextureView = this.textureView) != null) {
                     bitmapArr[i] = videoEditTextureView.getBitmap();
-                } else if (viewArr[i] instanceof TextureView) {
-                    bitmapArr[i] = ((TextureView) viewArr[i]).getBitmap();
-                } else if ((viewArr[i] instanceof ViewGroup) && ((ViewGroup) viewArr[i]).getChildCount() > 0) {
+                } else if (view2 instanceof TextureView) {
+                    bitmapArr[i] = ((TextureView) view2).getBitmap();
+                } else if ((view2 instanceof ViewGroup) && ((ViewGroup) view2).getChildCount() > 0) {
                     bitmapArr[i] = Bitmap.createBitmap(dp, dp2, Bitmap.Config.ARGB_8888);
                     Canvas canvas = new Canvas(bitmapArr[i]);
                     canvas.save();
@@ -685,92 +687,8 @@ public class PreviewView extends FrameLayout {
         }
     }
 
-    private void setupImage(final StoryEntry storyEntry) {
-        BlurringShader.BlurManager blurManager;
-        String str;
-        Uri withAppendedId;
-        Bitmap bitmap = this.bitmap;
-        if (bitmap != null && !bitmap.isRecycled()) {
-            this.bitmap.recycle();
-        }
-        this.bitmap = null;
-        Bitmap bitmap2 = this.thumbBitmap;
-        if (bitmap2 != null && !bitmap2.isRecycled()) {
-            this.thumbBitmap.recycle();
-        }
-        this.thumbBitmap = null;
-        if (storyEntry != null) {
-            int measuredWidth = getMeasuredWidth() <= 0 ? AndroidUtilities.displaySize.x : getMeasuredWidth();
-            int i = (int) ((measuredWidth * 16) / 9.0f);
-            long j = -1;
-            if (storyEntry.isVideo) {
-                Bitmap bitmap3 = storyEntry.blurredVideoThumb;
-                if (bitmap3 != null) {
-                    this.bitmap = bitmap3;
-                }
-                if (this.bitmap == null && (str = storyEntry.thumbPath) != null && str.startsWith("vthumb://")) {
-                    j = Long.parseLong(storyEntry.thumbPath.substring(9));
-                    if (this.bitmap == null && Build.VERSION.SDK_INT >= 29) {
-                        try {
-                            if (storyEntry.isVideo) {
-                                withAppendedId = ContentUris.withAppendedId(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, j);
-                            } else {
-                                withAppendedId = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, j);
-                            }
-                            this.bitmap = getContext().getContentResolver().loadThumbnail(withAppendedId, new Size(measuredWidth, i), null);
-                        } catch (Exception unused) {
-                        }
-                    }
-                }
-            }
-            final long j2 = j;
-            if (j2 < 0 && storyEntry.isVideo && storyEntry.thumbPath == null) {
-                invalidate();
-                return;
-            }
-            Bitmap bitmap4 = this.bitmap;
-            if (bitmap4 == null) {
-                File originalFile = storyEntry.getOriginalFile();
-                if (originalFile == null) {
-                    return;
-                }
-                final String path = originalFile.getPath();
-                Bitmap scaledBitmap = StoryEntry.getScaledBitmap(new StoryEntry.DecodeBitmap() {
-                    @Override
-                    public final Bitmap decode(BitmapFactory.Options options) {
-                        Bitmap lambda$setupImage$3;
-                        lambda$setupImage$3 = PreviewView.this.lambda$setupImage$3(storyEntry, j2, path, options);
-                        return lambda$setupImage$3;
-                    }
-                }, measuredWidth, i, false, true);
-                this.bitmap = scaledBitmap;
-                BlurringShader.BlurManager blurManager2 = this.blurManager;
-                if (blurManager2 == null || scaledBitmap == null) {
-                    return;
-                }
-                blurManager2.resetBitmap();
-                this.blurManager.setFallbackBlur(storyEntry.buildBitmap(0.2f, this.bitmap), 0);
-                Runnable runnable = this.invalidateBlur;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            } else if (!storyEntry.isDraft && storyEntry.isVideo && bitmap4 != null) {
-                storyEntry.width = bitmap4.getWidth();
-                storyEntry.height = this.bitmap.getHeight();
-                storyEntry.setupMatrix();
-            }
-        }
-        if (storyEntry != null && (blurManager = this.blurManager) != null && this.bitmap != null) {
-            blurManager.resetBitmap();
-            this.blurManager.setFallbackBlur(storyEntry.buildBitmap(0.2f, this.bitmap), 0);
-            Runnable runnable2 = this.invalidateBlur;
-            if (runnable2 != null) {
-                runnable2.run();
-            }
-        }
-        invalidate();
+    private void setupImage(final org.telegram.ui.Stories.recorder.StoryEntry r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.PreviewView.setupImage(org.telegram.ui.Stories.recorder.StoryEntry):void");
     }
 
     public Bitmap lambda$setupImage$3(StoryEntry storyEntry, long j, String str, BitmapFactory.Options options) {
@@ -1050,8 +968,8 @@ public class PreviewView extends FrameLayout {
             if (PreviewView.this.textureViewHolder != null && PreviewView.this.textureViewHolder.active) {
                 PreviewView.this.textureViewHolder.activateTextureView(PreviewView.this.videoWidth, PreviewView.this.videoHeight);
             }
-            Runnable[] runnableArr = this.val$whenReadyFinal;
-            if (runnableArr[0] == null) {
+            Runnable runnable = this.val$whenReadyFinal[0];
+            if (runnable == null) {
                 if (PreviewView.this.textureView != null) {
                     if (PreviewView.this.textureViewHolder == null || !PreviewView.this.textureViewHolder.active) {
                         ViewPropertyAnimator duration = PreviewView.this.textureView.animate().alpha(1.0f).setDuration(180L);
@@ -1068,7 +986,7 @@ public class PreviewView extends FrameLayout {
                 }
                 return;
             }
-            PreviewView.this.post(runnableArr[0]);
+            PreviewView.this.post(runnable);
             this.val$whenReadyFinal[0] = null;
             if (PreviewView.this.bitmap != null) {
                 PreviewView.this.bitmap.recycle();
@@ -1266,19 +1184,21 @@ public class PreviewView extends FrameLayout {
     }
 
     public long release() {
+        long j;
         VideoPlayer videoPlayer = this.audioPlayer;
         if (videoPlayer != null) {
             videoPlayer.pause();
             this.audioPlayer.releasePlayer(true);
             this.audioPlayer = null;
         }
-        long j = 0;
         VideoPlayer videoPlayer2 = this.roundPlayer;
         if (videoPlayer2 != null) {
             j = videoPlayer2.getCurrentPosition();
             this.roundPlayer.pause();
             this.roundPlayer.releasePlayer(true);
             this.roundPlayer = null;
+        } else {
+            j = 0;
         }
         VideoPlayer videoPlayer3 = this.videoPlayer;
         if (videoPlayer3 != null) {
@@ -1513,7 +1433,7 @@ public class PreviewView extends FrameLayout {
         float f = this.cx;
         float f2 = this.cy;
         float[] fArr4 = this.vertices;
-        MathUtils.distance(f, f2, fArr4[0], fArr4[1]);
+        this.w = MathUtils.distance(f, f2, fArr4[0], fArr4[1]) * 2.0f;
         float[] fArr5 = this.vertices;
         StoryEntry storyEntry3 = this.entry;
         fArr5[0] = storyEntry3.width / 2.0f;
@@ -1522,7 +1442,7 @@ public class PreviewView extends FrameLayout {
         float f3 = this.cx;
         float f4 = this.cy;
         float[] fArr6 = this.vertices;
-        MathUtils.distance(f3, f4, fArr6[0], fArr6[1]);
+        this.h = MathUtils.distance(f3, f4, fArr6[0], fArr6[1]) * 2.0f;
     }
 
     public void setDraw(boolean z) {
@@ -1641,7 +1561,6 @@ public class PreviewView extends FrameLayout {
     private boolean touchEvent(MotionEvent motionEvent) {
         double d;
         float f;
-        StoryEntry storyEntry;
         if (this.allowCropping) {
             boolean z = motionEvent.getPointerCount() > 1;
             if (z) {
@@ -1664,13 +1583,15 @@ public class PreviewView extends FrameLayout {
                 this.lastTouchRotation = d;
                 this.multitouch = z;
             }
-            if (this.entry == null) {
+            StoryEntry storyEntry = this.entry;
+            if (storyEntry == null) {
                 return false;
             }
             float width = storyEntry.resultWidth / getWidth();
             if (motionEvent.getActionMasked() == 0) {
                 this.rotationDiff = 0.0f;
                 this.snappedRotation = false;
+                this.snappedToCenterAndScaled = false;
                 this.doNotSpanRotation = false;
                 invalidate();
                 this.moving = true;
@@ -1741,6 +1662,7 @@ public class PreviewView extends FrameLayout {
                 this.moving = false;
                 this.allowRotation = false;
                 this.rotationDiff = 0.0f;
+                this.snappedToCenterAndScaled = false;
                 this.snappedRotation = false;
                 invalidate();
             }

@@ -49,12 +49,20 @@ public class FingerprintController {
     }
 
     public static void generateNewKey(final boolean z) {
+        KeyGenParameterSpec.Builder digests;
+        KeyGenParameterSpec.Builder encryptionPaddings;
+        KeyGenParameterSpec.Builder userAuthenticationRequired;
+        KeyGenParameterSpec build;
         KeyPairGenerator keyPairGenerator2 = getKeyPairGenerator();
         if (keyPairGenerator2 != null) {
             try {
                 Locale locale = Locale.getDefault();
                 setLocale(Locale.ENGLISH);
-                keyPairGenerator2.initialize(new KeyGenParameterSpec.Builder("tmessages_passcode", 3).setDigests("SHA-256", "SHA-512").setEncryptionPaddings("OAEPPadding").setUserAuthenticationRequired(true).build());
+                digests = new KeyGenParameterSpec.Builder("tmessages_passcode", 3).setDigests("SHA-256", "SHA-512");
+                encryptionPaddings = digests.setEncryptionPaddings("OAEPPadding");
+                userAuthenticationRequired = encryptionPaddings.setUserAuthenticationRequired(true);
+                build = userAuthenticationRequired.build();
+                keyPairGenerator2.initialize(build);
                 keyPairGenerator2.generateKeyPair();
                 setLocale(locale);
                 AndroidUtilities.runOnUIThread(new Runnable() {

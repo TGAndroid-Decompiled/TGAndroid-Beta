@@ -13,6 +13,7 @@ import org.telegram.messenger.R;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.RLottieDrawable;
 public class SuperRipple extends ISuperRipple {
+    public final int MAX_COUNT;
     public final float[] centerX;
     public final float[] centerY;
     public int count;
@@ -26,6 +27,7 @@ public class SuperRipple extends ISuperRipple {
     public int width;
 
     public static class Effect {
+        public final ValueAnimator animator;
         public final float cx;
         public final float cy;
         public final float intensity;
@@ -35,12 +37,14 @@ public class SuperRipple extends ISuperRipple {
             this.cx = f;
             this.cy = f2;
             this.intensity = f3;
+            this.animator = valueAnimator;
         }
     }
 
     public SuperRipple(View view) {
         super(view);
         this.effects = new ArrayList<>();
+        this.MAX_COUNT = 7;
         this.t = new float[7];
         this.centerX = new float[7];
         this.centerY = new float[7];

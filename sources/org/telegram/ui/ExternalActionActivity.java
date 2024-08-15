@@ -126,7 +126,7 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
             layoutParams.width = -1;
             layoutParams.height = -1;
             relativeLayout.setLayoutParams(layoutParams);
-            SizeNotifierFrameLayout sizeNotifierFrameLayout = new SizeNotifierFrameLayout(this, this) {
+            SizeNotifierFrameLayout sizeNotifierFrameLayout = new SizeNotifierFrameLayout(this) {
                 @Override
                 protected boolean isActionBarVisible() {
                     return false;
@@ -167,7 +167,7 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
         } else {
             RelativeLayout relativeLayout2 = new RelativeLayout(this);
             this.drawerLayoutContainer.addView(relativeLayout2, LayoutHelper.createFrame(-1, -1.0f));
-            SizeNotifierFrameLayout sizeNotifierFrameLayout2 = new SizeNotifierFrameLayout(this, this) {
+            SizeNotifierFrameLayout sizeNotifierFrameLayout2 = new SizeNotifierFrameLayout(this) {
                 @Override
                 protected boolean isActionBarVisible() {
                     return false;

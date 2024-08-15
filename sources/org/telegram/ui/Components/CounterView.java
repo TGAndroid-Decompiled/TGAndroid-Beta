@@ -97,7 +97,6 @@ public class CounterView extends View {
         int type = 0;
 
         public CounterDrawable(View view, boolean z, Theme.ResourcesProvider resourcesProvider) {
-            this.drawBackground = true;
             this.parent = view;
             this.resourcesProvider = resourcesProvider;
             this.drawBackground = z;
@@ -121,6 +120,7 @@ public class CounterView extends View {
         }
 
         private void drawInternal(Canvas canvas) {
+            boolean z;
             float f = this.radius * 2.0f;
             float dp = (this.lastH - AndroidUtilities.dp(f)) / 2.0f;
             updateX(this.countWidth);
@@ -128,12 +128,13 @@ public class CounterView extends View {
             float f2 = this.x;
             rectF.set(f2, dp, this.countWidth + f2 + AndroidUtilities.dp(this.radius - 0.5f), AndroidUtilities.dp(f) + dp);
             if (this.circlePaint != null && this.drawBackground) {
-                boolean z = false;
                 if (this.circleScale != 1.0f) {
                     canvas.save();
                     float f3 = this.circleScale;
                     canvas.scale(f3, f3, this.rectF.centerX(), this.rectF.centerY());
                     z = true;
+                } else {
+                    z = false;
                 }
                 RectF rectF2 = this.rectF;
                 float f4 = this.radius;

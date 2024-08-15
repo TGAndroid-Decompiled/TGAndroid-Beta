@@ -111,8 +111,9 @@ public class ReportAdBottomSheet extends BottomSheet {
 
     public ReportAdBottomSheet setReportChooseOption(final TLRPC$TL_channels_sponsoredMessageReportResultChooseOption tLRPC$TL_channels_sponsoredMessageReportResultChooseOption) {
         final View[] viewPages = this.viewPager.getViewPages();
-        if (viewPages[0] instanceof Page) {
-            ((Page) viewPages[0]).bind(0);
+        View view = viewPages[0];
+        if (view instanceof Page) {
+            ((Page) view).bind(0);
             this.containerView.post(new Runnable() {
                 @Override
                 public final void run() {
@@ -120,8 +121,9 @@ public class ReportAdBottomSheet extends BottomSheet {
                 }
             });
         }
-        if (viewPages[1] instanceof Page) {
-            ((Page) viewPages[1]).bind(1);
+        View view2 = viewPages[1];
+        if (view2 instanceof Page) {
+            ((Page) view2).bind(1);
         }
         return this;
     }
@@ -306,7 +308,7 @@ public class ReportAdBottomSheet extends BottomSheet {
             frameLayout.setPadding(0, AndroidUtilities.statusBarHeight, 0, 0);
             frameLayout.setClipToPadding(true);
             addView(frameLayout, LayoutHelper.createFrame(-1, -1, 119));
-            BigHeaderCell bigHeaderCell = new BigHeaderCell(this, context, ((BottomSheet) ReportAdBottomSheet.this).resourcesProvider);
+            BigHeaderCell bigHeaderCell = new BigHeaderCell(context, ((BottomSheet) ReportAdBottomSheet.this).resourcesProvider);
             this.headerView = bigHeaderCell;
             bigHeaderCell.setOnBackClickListener(new Runnable() {
                 @Override
@@ -332,7 +334,7 @@ public class ReportAdBottomSheet extends BottomSheet {
             this.listView = universalRecyclerView;
             universalRecyclerView.setClipToPadding(false);
             universalRecyclerView.layoutManager.setReverseLayout(true);
-            universalRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener(ReportAdBottomSheet.this) {
+            universalRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override
                 public void onScrolled(RecyclerView recyclerView, int i, int i2) {
                     Page.this.contentView.invalidate();
@@ -480,7 +482,7 @@ public class ReportAdBottomSheet extends BottomSheet {
             private Runnable onBackClickListener;
             private final TextView textView;
 
-            public BigHeaderCell(Page page, Context context, Theme.ResourcesProvider resourcesProvider) {
+            public BigHeaderCell(Context context, Theme.ResourcesProvider resourcesProvider) {
                 super(context);
                 TextView textView = new TextView(context);
                 this.textView = textView;

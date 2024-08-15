@@ -6,6 +6,7 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 public class ClipRoundedDrawable extends Drawable {
+    private int R;
     private Drawable.Callback callback;
     private Drawable drawable;
     private boolean hasRadius;
@@ -38,7 +39,7 @@ public class ClipRoundedDrawable extends Drawable {
         this.tempBounds = new RectF();
         this.hasRadius = false;
         this.radii = new float[8];
-        Math.round(Math.random() * 9999999.0d);
+        this.R = (int) Math.round(Math.random() * 9999999.0d);
     }
 
     public ClipRoundedDrawable(Drawable drawable) {
@@ -61,7 +62,7 @@ public class ClipRoundedDrawable extends Drawable {
         this.tempBounds = new RectF();
         this.hasRadius = false;
         this.radii = new float[8];
-        Math.round(Math.random() * 9999999.0d);
+        this.R = (int) Math.round(Math.random() * 9999999.0d);
         setDrawable(drawable);
     }
 

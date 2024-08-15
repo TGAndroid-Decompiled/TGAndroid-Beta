@@ -310,13 +310,9 @@ public class GiveawayResultsMessageCell {
             StaticLayout staticLayout4 = this.countriesLayout;
             int lineBottom2 = staticLayout4 != null ? staticLayout4.getLineBottom(staticLayout4.getLineCount() - 1) + AndroidUtilities.dp(12.0f) : 0;
             this.countriesHeight = lineBottom2;
-            int i3 = this.measuredHeight + this.topHeight;
+            int i3 = this.measuredHeight + this.topHeight + lineBottom2 + this.bottomHeight;
             this.measuredHeight = i3;
-            int i4 = i3 + lineBottom2;
-            this.measuredHeight = i4;
-            int i5 = i4 + this.bottomHeight;
-            this.measuredHeight = i5;
-            this.measuredHeight = i5 + AndroidUtilities.dp(128.0f);
+            this.measuredHeight = i3 + AndroidUtilities.dp(128.0f);
             this.measuredWidth = max;
             String str = "x" + tLRPC$TL_messageMediaGiveawayResults.winners_count;
             this.counterStr = str;
@@ -332,39 +328,40 @@ public class GiveawayResultsMessageCell {
                 }
             }
             float f4 = 0.0f;
-            for (int i6 = 0; i6 < arrayList.size(); i6++) {
-                long longValue = ((Long) arrayList.get(i6)).longValue();
+            for (int i4 = 0; i4 < arrayList.size(); i4++) {
+                long longValue = ((Long) arrayList.get(i4)).longValue();
                 TLRPC$User user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(longValue));
                 if (user != null) {
-                    this.avatarVisible[i6] = true;
-                    this.users[i6] = user;
-                    this.userTitles[i6] = TextUtils.ellipsize(Emoji.replaceEmoji(UserObject.getUserName(user), this.chatTextPaint.getFontMetricsInt(), false), this.chatTextPaint, 0.8f * f, TextUtils.TruncateAt.END);
+                    this.avatarVisible[i4] = true;
+                    this.users[i4] = user;
+                    this.userTitles[i4] = TextUtils.ellipsize(Emoji.replaceEmoji(UserObject.getUserName(user), this.chatTextPaint.getFontMetricsInt(), false), this.chatTextPaint, 0.8f * f, TextUtils.TruncateAt.END);
                     float[] fArr = this.userTitleWidths;
                     TextPaint textPaint = this.chatTextPaint;
-                    CharSequence[] charSequenceArr = this.userTitles;
-                    fArr[i6] = textPaint.measureText(charSequenceArr[i6], 0, charSequenceArr[i6].length());
-                    float dp3 = this.userTitleWidths[i6] + AndroidUtilities.dp(40.0f);
+                    CharSequence charSequence = this.userTitles[i4];
+                    fArr[i4] = textPaint.measureText(charSequence, 0, charSequence.length());
+                    float dp3 = this.userTitleWidths[i4] + AndroidUtilities.dp(40.0f);
                     f4 += dp3;
-                    if (i6 > 0) {
+                    if (i4 > 0) {
                         boolean[] zArr = this.needNewRow;
-                        zArr[i6] = f4 > 0.9f * f;
-                        if (zArr[i6]) {
+                        boolean z = f4 > 0.9f * f;
+                        zArr[i4] = z;
+                        if (z) {
                             this.measuredHeight += AndroidUtilities.dp(30.0f);
                             f4 = dp3;
                         }
                     } else {
-                        this.needNewRow[i6] = false;
+                        this.needNewRow[i4] = false;
                     }
-                    this.avatarDrawables[i6].setInfo(user);
-                    this.avatarImageReceivers[i6].setForUserOrChat(user, this.avatarDrawables[i6]);
-                    this.avatarImageReceivers[i6].setImageCoords(0.0f, 0.0f, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
+                    this.avatarDrawables[i4].setInfo(user);
+                    this.avatarImageReceivers[i4].setForUserOrChat(user, this.avatarDrawables[i4]);
+                    this.avatarImageReceivers[i4].setImageCoords(0.0f, 0.0f, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
                 } else {
-                    this.users[i6] = null;
-                    this.avatarVisible[i6] = false;
-                    this.userTitles[i6] = "";
-                    this.needNewRow[i6] = false;
-                    this.userTitleWidths[i6] = AndroidUtilities.dp(20.0f);
-                    this.avatarDrawables[i6].setInfo(longValue, "", "");
+                    this.users[i4] = null;
+                    this.avatarVisible[i4] = false;
+                    this.userTitles[i4] = "";
+                    this.needNewRow[i4] = false;
+                    this.userTitleWidths[i4] = AndroidUtilities.dp(20.0f);
+                    this.avatarDrawables[i4].setInfo(longValue, "", "");
                 }
             }
         }
@@ -499,10 +496,10 @@ public class GiveawayResultsMessageCell {
                     this.chatBgPaint.setColor(userColor);
                     this.chatBgPaint.setAlpha(25);
                     this.avatarImageReceivers[i9].draw(canvas);
-                    CharSequence[] charSequenceArr = this.userTitles;
+                    CharSequence charSequence = this.userTitles[i9];
                     int i12 = i10;
                     int i13 = i9;
-                    canvas.drawText(charSequenceArr[i9], 0, charSequenceArr[i9].length(), AndroidUtilities.dp(30.0f), AndroidUtilities.dp(16.0f), this.chatTextPaint);
+                    canvas.drawText(charSequence, 0, charSequence.length(), AndroidUtilities.dp(30.0f), AndroidUtilities.dp(16.0f), this.chatTextPaint);
                     this.chatRect.set(0.0f, 0.0f, this.userTitleWidths[i13] + AndroidUtilities.dp(40.0f), AndroidUtilities.dp(24.0f));
                     canvas.drawRoundRect(this.chatRect, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), this.chatBgPaint);
                     float f7 = i12;

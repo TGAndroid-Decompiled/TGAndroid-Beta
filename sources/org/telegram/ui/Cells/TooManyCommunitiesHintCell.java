@@ -45,7 +45,7 @@ public class TooManyCommunitiesHintCell extends FrameLayout {
         textPaint.setTextSize(AndroidUtilities.dp(12.0f));
         textPaint.setTypeface(AndroidUtilities.bold());
         final Paint paint = new Paint(1);
-        FrameLayout frameLayout = new FrameLayout(this, context) {
+        FrameLayout frameLayout = new FrameLayout(context) {
             RectF rect = new RectF();
 
             @Override

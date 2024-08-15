@@ -244,7 +244,8 @@ public class CodeFieldContainer extends LinearLayout {
                             if (i12 >= 0) {
                                 CodeNumberField[] codeNumberFieldArr3 = CodeFieldContainer.this.codeField;
                                 if (i12 < codeNumberFieldArr3.length) {
-                                    codeNumberFieldArr3[i12].setSelection(codeNumberFieldArr3[i12].length());
+                                    CodeNumberField codeNumberField2 = codeNumberFieldArr3[i12];
+                                    codeNumberField2.setSelection(codeNumberField2.length());
                                     CodeFieldContainer.this.codeField[i12].requestFocus();
                                 }
                             }

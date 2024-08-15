@@ -1435,13 +1435,6 @@
         <item name="widgetPreviewTime">12:00</item>
         <item name="widgetPreviewTitle">Rex</item>
     </style>
-    <style name="Theme.TMessages.AppWidget.Preview3" parent="@style/Theme.TMessages.AppWidget">
-        <item name="widgetPreviewContent">�� Sticker</item>
-        <item name="widgetPreviewDot">2</item>
-        <item name="widgetPreviewImage">@drawable/widget_avatar_6</item>
-        <item name="widgetPreviewTime">11:00</item>
-        <item name="widgetPreviewTitle">Dolph Ingman</item>
-    </style>
     <style name="Theme.TMessages.AppWidget.Preview4" parent="@style/Theme.TMessages.AppWidget">
         <item name="widgetPreviewDot">0</item>
         <item name="widgetPreviewImage">@drawable/widget_avatar_1</item>

@@ -10,7 +10,6 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
-import android.os.Build;
 import android.text.TextPaint;
 import android.view.View;
 import java.util.Arrays;
@@ -27,6 +26,7 @@ public class AvatarPreviewPagerIndicator extends View implements ProfileGalleryV
     private final Paint barPaint;
     private final GradientDrawable bottomOverlayGradient;
     private final Rect bottomOverlayRect;
+    private float currentAnimationValue;
     private int currentLoadingAnimationDirection;
     private float currentLoadingAnimationProgress;
     private float currentProgress;
@@ -47,6 +47,7 @@ public class AvatarPreviewPagerIndicator extends View implements ProfileGalleryV
     RectF rectF;
     private final Paint selectedBarPaint;
     private int selectedPosition;
+    private final int statusBarHeight;
     TextPaint textPaint;
     String title;
     private final GradientDrawable topOverlayGradient;
@@ -59,6 +60,7 @@ public class AvatarPreviewPagerIndicator extends View implements ProfileGalleryV
     public AvatarPreviewPagerIndicator(Context context) {
         super(context);
         this.indicatorRect = new RectF();
+        this.statusBarHeight = 0;
         this.overlayCountVisible = 1;
         this.topOverlayRect = new Rect();
         this.bottomOverlayRect = new Rect();
@@ -129,7 +131,10 @@ public class AvatarPreviewPagerIndicator extends View implements ProfileGalleryV
     }
 
     public void lambda$new$0(ValueAnimator valueAnimator) {
-        setAlphaValue(AndroidUtilities.lerp(this.animatorValues, valueAnimator.getAnimatedFraction()), true);
+        float[] fArr = this.animatorValues;
+        float animatedFraction = valueAnimator.getAnimatedFraction();
+        this.currentAnimationValue = animatedFraction;
+        setAlphaValue(AndroidUtilities.lerp(fArr, animatedFraction), true);
     }
 
     public void saveCurrentPageProgress() {
@@ -140,16 +145,15 @@ public class AvatarPreviewPagerIndicator extends View implements ProfileGalleryV
     }
 
     public void setAlphaValue(float f, boolean z) {
-        if (Build.VERSION.SDK_INT > 18) {
-            int i = (int) (255.0f * f);
-            this.topOverlayGradient.setAlpha(i);
-            this.bottomOverlayGradient.setAlpha(i);
-            this.backgroundPaint.setAlpha((int) (66.0f * f));
-            this.barPaint.setAlpha((int) (85.0f * f));
-            this.selectedBarPaint.setAlpha(i);
-            this.alpha = f;
-        } else {
-            setAlpha(f);
+        int i = (int) (255.0f * f);
+        this.topOverlayGradient.setAlpha(i);
+        this.bottomOverlayGradient.setAlpha(i);
+        this.backgroundPaint.setAlpha((int) (66.0f * f));
+        this.barPaint.setAlpha((int) (85.0f * f));
+        this.selectedBarPaint.setAlpha(i);
+        this.alpha = f;
+        if (!z) {
+            this.currentAnimationValue = f;
         }
         invalidate();
     }

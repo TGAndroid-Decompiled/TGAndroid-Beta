@@ -30,7 +30,7 @@ public class GLIconSettingsView extends LinearLayout {
         textView.setGravity((LocaleController.isRTL ? 3 : 5) | 48);
         addView(textView, LayoutHelper.createFrame(-2, -1.0f, (LocaleController.isRTL ? 3 : 5) | 48, 21.0f, 13.0f, 21.0f, 0.0f));
         SeekBarView seekBarView = new SeekBarView(context);
-        seekBarView.setDelegate(new SeekBarView.SeekBarViewDelegate(this) {
+        seekBarView.setDelegate(new SeekBarView.SeekBarViewDelegate() {
             @Override
             public CharSequence getContentDescription() {
                 return SeekBarView.SeekBarViewDelegate.CC.$default$getContentDescription(this);
@@ -67,7 +67,7 @@ public class GLIconSettingsView extends LinearLayout {
         textView2.setGravity((LocaleController.isRTL ? 3 : 5) | 48);
         addView(textView2, LayoutHelper.createFrame(-2, -1.0f, (LocaleController.isRTL ? 3 : 5) | 48, 21.0f, 13.0f, 21.0f, 0.0f));
         SeekBarView seekBarView2 = new SeekBarView(context);
-        seekBarView2.setDelegate(new SeekBarView.SeekBarViewDelegate(this) {
+        seekBarView2.setDelegate(new SeekBarView.SeekBarViewDelegate() {
             @Override
             public CharSequence getContentDescription() {
                 return SeekBarView.SeekBarViewDelegate.CC.$default$getContentDescription(this);
@@ -105,10 +105,10 @@ public class GLIconSettingsView extends LinearLayout {
         textView3.setTextColor(Theme.getColor(i2));
         int i3 = Theme.key_featuredStickers_addButton;
         textView3.setBackground(Theme.AdaptiveRipple.filledRect(Theme.getColor(i3), 4.0f));
-        textView3.setOnClickListener(new View.OnClickListener(this) {
+        textView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ColorPicker colorPicker = new ColorPicker(this, context, false, new ColorPicker.ColorPickerDelegate() {
+                ColorPicker colorPicker = new ColorPicker(context, false, new ColorPicker.ColorPickerDelegate() {
                     @Override
                     public void deleteTheme() {
                         ColorPicker.ColorPickerDelegate.CC.$default$deleteTheme(this);
@@ -157,7 +157,7 @@ public class GLIconSettingsView extends LinearLayout {
         textView4.setGravity((LocaleController.isRTL ? 3 : 5) | 48);
         addView(textView4, LayoutHelper.createFrame(-2, -1.0f, (LocaleController.isRTL ? 3 : 5) | 48, 21.0f, 13.0f, 21.0f, 0.0f));
         SeekBarView seekBarView3 = new SeekBarView(context);
-        seekBarView3.setDelegate(new SeekBarView.SeekBarViewDelegate(this) {
+        seekBarView3.setDelegate(new SeekBarView.SeekBarViewDelegate() {
             @Override
             public CharSequence getContentDescription() {
                 return SeekBarView.SeekBarViewDelegate.CC.$default$getContentDescription(this);
@@ -194,7 +194,7 @@ public class GLIconSettingsView extends LinearLayout {
         textView5.setGravity((LocaleController.isRTL ? 3 : 5) | 48);
         addView(textView5, LayoutHelper.createFrame(-2, -1.0f, (LocaleController.isRTL ? 3 : 5) | 48, 21.0f, 13.0f, 21.0f, 0.0f));
         SeekBarView seekBarView4 = new SeekBarView(context);
-        seekBarView4.setDelegate(new SeekBarView.SeekBarViewDelegate(this) {
+        seekBarView4.setDelegate(new SeekBarView.SeekBarViewDelegate() {
             @Override
             public CharSequence getContentDescription() {
                 return SeekBarView.SeekBarViewDelegate.CC.$default$getContentDescription(this);
@@ -230,10 +230,10 @@ public class GLIconSettingsView extends LinearLayout {
         textView6.setSingleLine(true);
         textView6.setTextColor(Theme.getColor(i2));
         textView6.setBackground(Theme.AdaptiveRipple.filledRect(Theme.getColor(i3), 4.0f));
-        textView6.setOnClickListener(new View.OnClickListener(this) {
+        textView6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ColorPicker colorPicker = new ColorPicker(this, context, false, new ColorPicker.ColorPickerDelegate() {
+                ColorPicker colorPicker = new ColorPicker(context, false, new ColorPicker.ColorPickerDelegate() {
                     @Override
                     public void deleteTheme() {
                         ColorPicker.ColorPickerDelegate.CC.$default$deleteTheme(this);
@@ -283,7 +283,7 @@ public class GLIconSettingsView extends LinearLayout {
         textView7.setGravity((LocaleController.isRTL ? 3 : 5) | 48);
         addView(textView7, LayoutHelper.createFrame(-2, -1.0f, (LocaleController.isRTL ? 3 : 5) | 48, 21.0f, 13.0f, 21.0f, 0.0f));
         SeekBarView seekBarView5 = new SeekBarView(context);
-        seekBarView5.setDelegate(new SeekBarView.SeekBarViewDelegate(this) {
+        seekBarView5.setDelegate(new SeekBarView.SeekBarViewDelegate() {
             @Override
             public CharSequence getContentDescription() {
                 return SeekBarView.SeekBarViewDelegate.CC.$default$getContentDescription(this);

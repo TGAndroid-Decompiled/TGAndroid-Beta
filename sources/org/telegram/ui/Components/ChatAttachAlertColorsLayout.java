@@ -22,6 +22,7 @@ import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.WallpapersListActivity;
 public class ChatAttachAlertColorsLayout extends ChatAttachAlert.AttachAlertLayout {
     Adapter adapter;
+    public int currentItemTop;
     public RecyclerListView gridView;
     private int itemSize;
     private int itemsPerRow;
@@ -37,6 +38,7 @@ public class ChatAttachAlertColorsLayout extends ChatAttachAlert.AttachAlertLayo
         super(chatAttachAlert, context, resourcesProvider);
         this.itemSize = AndroidUtilities.dp(80.0f);
         this.itemsPerRow = 3;
+        this.currentItemTop = 0;
         RecyclerListView recyclerListView = new RecyclerListView(context, resourcesProvider) {
             @Override
             public boolean onTouchEvent(MotionEvent motionEvent) {
@@ -142,7 +144,9 @@ public class ChatAttachAlertColorsLayout extends ChatAttachAlert.AttachAlertLayo
     public int getCurrentItemTop() {
         if (this.gridView.getChildCount() <= 0) {
             RecyclerListView recyclerListView = this.gridView;
-            recyclerListView.setTopGlowOffset(recyclerListView.getPaddingTop());
+            int paddingTop = recyclerListView.getPaddingTop();
+            this.currentItemTop = paddingTop;
+            recyclerListView.setTopGlowOffset(paddingTop);
             return Integer.MAX_VALUE;
         }
         View childAt = this.gridView.getChildAt(0);
@@ -153,6 +157,7 @@ public class ChatAttachAlertColorsLayout extends ChatAttachAlert.AttachAlertLayo
             top = dp;
         }
         this.gridView.setTopGlowOffset(top);
+        this.currentItemTop = top;
         return top;
     }
 

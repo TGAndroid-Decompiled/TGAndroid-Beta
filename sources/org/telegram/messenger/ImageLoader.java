@@ -26,7 +26,6 @@ import androidx.core.graphics.ColorUtils;
 import j$.util.concurrent.ConcurrentHashMap;
 import j$.util.function.Consumer;
 import j$.util.stream.Stream;
-import j$.wrappers.C$r8$wrapper$java$util$stream$Stream$VWRP;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -1714,11 +1713,13 @@ public class ImageLoader {
 
     @TargetApi(26)
     private static void moveDirectory(File file, final File file2) {
+        java.nio.file.Path path;
         if (file.exists()) {
             if (file2.exists() || file2.mkdir()) {
                 try {
-                    Stream convert = C$r8$wrapper$java$util$stream$Stream$VWRP.convert(Files.list(file.toPath()));
-                    convert.forEach(new Consumer() {
+                    path = file.toPath();
+                    Stream m = FilesMigrationService$$ExternalSyntheticAPIConversion0.m(path);
+                    m.forEach(new Consumer() {
                         @Override
                         public final void accept(Object obj) {
                             ImageLoader.lambda$moveDirectory$2(file2, (java.nio.file.Path) obj);
@@ -1729,7 +1730,7 @@ public class ImageLoader {
                             return Consumer.CC.$default$andThen(this, consumer);
                         }
                     });
-                    convert.close();
+                    m.close();
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
@@ -1738,13 +1739,23 @@ public class ImageLoader {
     }
 
     public static void lambda$moveDirectory$2(File file, java.nio.file.Path path) {
-        File file2 = new File(file, path.getFileName().toString());
-        if (Files.isDirectory(path, new LinkOption[0])) {
-            moveDirectory(path.toFile(), file2);
+        java.nio.file.Path fileName;
+        String path2;
+        boolean isDirectory;
+        java.nio.file.Path path3;
+        File file2;
+        fileName = path.getFileName();
+        path2 = fileName.toString();
+        File file3 = new File(file, path2);
+        isDirectory = Files.isDirectory(path, new LinkOption[0]);
+        if (isDirectory) {
+            file2 = path.toFile();
+            moveDirectory(file2, file3);
             return;
         }
         try {
-            Files.move(path, file2.toPath(), new CopyOption[0]);
+            path3 = file3.toPath();
+            Files.move(path, path3, new CopyOption[0]);
         } catch (Exception e) {
             FileLog.e(e);
         }
@@ -1754,17 +1765,8 @@ public class ImageLoader {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ImageLoader.createMediaPaths():android.util.SparseArray");
     }
 
-    private File getPublicStorageDir() {
-        File file = ApplicationLoader.applicationContext.getExternalMediaDirs()[0];
-        if (!TextUtils.isEmpty(SharedConfig.storageCacheDir)) {
-            for (int i = 0; i < ApplicationLoader.applicationContext.getExternalMediaDirs().length; i++) {
-                File file2 = ApplicationLoader.applicationContext.getExternalMediaDirs()[i];
-                if (file2 != null && file2.getPath().startsWith(SharedConfig.storageCacheDir)) {
-                    file = ApplicationLoader.applicationContext.getExternalMediaDirs()[i];
-                }
-            }
-        }
-        return file;
+    private java.io.File getPublicStorageDir() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ImageLoader.getPublicStorageDir():java.io.File");
     }
 
     private boolean canMoveFiles(File file, File file2, int i) {
@@ -1843,10 +1845,11 @@ public class ImageLoader {
         if (str == null || (jArr = this.fileProgresses.get(str)) == null) {
             return null;
         }
-        if (jArr[1] == 0) {
+        long j = jArr[1];
+        if (j == 0) {
             return Float.valueOf(0.0f);
         }
-        return Float.valueOf(Math.min(1.0f, ((float) jArr[0]) / ((float) jArr[1])));
+        return Float.valueOf(Math.min(1.0f, ((float) jArr[0]) / ((float) j)));
     }
 
     public long[] getFileProgressSizes(String str) {
@@ -1863,38 +1866,8 @@ public class ImageLoader {
         return this.replacedBitmaps.get(str);
     }
 
-    private void performReplace(String str, String str2) {
-        LruCache<BitmapDrawable> lruCache = this.memCache;
-        BitmapDrawable bitmapDrawable = lruCache.get(str);
-        if (bitmapDrawable == null) {
-            lruCache = this.smallImagesMemCache;
-            bitmapDrawable = lruCache.get(str);
-        }
-        this.replacedBitmaps.put(str, str2);
-        if (bitmapDrawable != null) {
-            BitmapDrawable bitmapDrawable2 = lruCache.get(str2);
-            boolean z = false;
-            if (bitmapDrawable2 != null && bitmapDrawable2.getBitmap() != null && bitmapDrawable.getBitmap() != null) {
-                Bitmap bitmap = bitmapDrawable2.getBitmap();
-                Bitmap bitmap2 = bitmapDrawable.getBitmap();
-                if (bitmap.getWidth() > bitmap2.getWidth() || bitmap.getHeight() > bitmap2.getHeight()) {
-                    z = true;
-                }
-            }
-            if (!z) {
-                this.ignoreRemoval = str;
-                lruCache.remove(str);
-                lruCache.put(str2, bitmapDrawable);
-                this.ignoreRemoval = null;
-            } else {
-                lruCache.remove(str);
-            }
-        }
-        Integer num = this.bitmapUseCounts.get(str);
-        if (num != null) {
-            this.bitmapUseCounts.put(str2, num);
-            this.bitmapUseCounts.remove(str);
-        }
+    private void performReplace(java.lang.String r7, java.lang.String r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ImageLoader.performReplace(java.lang.String, java.lang.String):void");
     }
 
     public void incrementUseCount(String str) {
@@ -2564,6 +2537,8 @@ public class ImageLoader {
         static final int[] $SwitchMap$android$graphics$Bitmap$CompressFormat;
 
         static {
+            Bitmap.CompressFormat compressFormat;
+            Bitmap.CompressFormat compressFormat2;
             int[] iArr = new int[Bitmap.CompressFormat.values().length];
             $SwitchMap$android$graphics$Bitmap$CompressFormat = iArr;
             try {
@@ -2571,11 +2546,15 @@ public class ImageLoader {
             } catch (NoSuchFieldError unused) {
             }
             try {
-                $SwitchMap$android$graphics$Bitmap$CompressFormat[Bitmap.CompressFormat.WEBP_LOSSY.ordinal()] = 2;
+                int[] iArr2 = $SwitchMap$android$graphics$Bitmap$CompressFormat;
+                compressFormat2 = Bitmap.CompressFormat.WEBP_LOSSY;
+                iArr2[compressFormat2.ordinal()] = 2;
             } catch (NoSuchFieldError unused2) {
             }
             try {
-                $SwitchMap$android$graphics$Bitmap$CompressFormat[Bitmap.CompressFormat.WEBP_LOSSLESS.ordinal()] = 3;
+                int[] iArr3 = $SwitchMap$android$graphics$Bitmap$CompressFormat;
+                compressFormat = Bitmap.CompressFormat.WEBP_LOSSLESS;
+                iArr3[compressFormat.ordinal()] = 3;
             } catch (NoSuchFieldError unused3) {
             }
         }

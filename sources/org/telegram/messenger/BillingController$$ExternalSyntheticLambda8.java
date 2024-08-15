@@ -1,11 +1,17 @@
 package org.telegram.messenger;
 
-import org.telegram.ui.ActionBar.AlertDialog;
-public final class BillingController$$ExternalSyntheticLambda8 implements Runnable {
-    public final AlertDialog f$0;
+import com.android.billingclient.api.BillingResult;
+import com.android.billingclient.api.ProductDetailsResponseListener;
+import java.util.List;
+public final class BillingController$$ExternalSyntheticLambda8 implements ProductDetailsResponseListener {
+    public final BillingController f$0;
+
+    public BillingController$$ExternalSyntheticLambda8(BillingController billingController) {
+        this.f$0 = billingController;
+    }
 
     @Override
-    public final void run() {
-        this.f$0.dismiss();
+    public final void onProductDetailsResponse(BillingResult billingResult, List list) {
+        BillingController.m168$r8$lambda$cekiSqMCb909zQh6w2CpEt3xZs(this.f$0, billingResult, list);
     }
 }

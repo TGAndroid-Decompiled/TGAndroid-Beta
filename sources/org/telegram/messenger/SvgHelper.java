@@ -197,14 +197,14 @@ public class SvgHelper {
                         if (runnable != null) {
                             AndroidUtilities.cancelRunOnUIThread(runnable);
                         }
-                        SvgHelper$SvgDrawable$$ExternalSyntheticLambda0 svgHelper$SvgDrawable$$ExternalSyntheticLambda0 = new Runnable() {
+                        Runnable runnable2 = new Runnable() {
                             @Override
                             public final void run() {
                                 SvgHelper.SvgDrawable.shiftRunnable = null;
                             }
                         };
-                        shiftRunnable = svgHelper$SvgDrawable$$ExternalSyntheticLambda0;
-                        AndroidUtilities.runOnUIThread(svgHelper$SvgDrawable$$ExternalSyntheticLambda0, ((int) (1000.0f / AndroidUtilities.screenRefreshRate)) - 1);
+                        shiftRunnable = runnable2;
+                        AndroidUtilities.runOnUIThread(runnable2, ((int) (1000.0f / AndroidUtilities.screenRefreshRate)) - 1);
                     }
                     ImageReceiver imageReceiver = this.parentImageReceiver;
                     if (imageReceiver == null || z) {
@@ -215,9 +215,9 @@ public class SvgHelper {
                         i2 = iArr[0];
                     }
                     int i4 = z ? i + 1 : 0;
-                    Matrix[] matrixArr = this.placeholderMatrix;
-                    if (matrixArr[i4] != null) {
-                        matrixArr[i4].reset();
+                    Matrix matrix = this.placeholderMatrix[i4];
+                    if (matrix != null) {
+                        matrix.reset();
                         if (z) {
                             this.placeholderMatrix[i4].postTranslate(((-i2) + totalTranslation) - f, 0.0f);
                         } else {
@@ -325,7 +325,7 @@ public class SvgHelper {
                 iArr[z ? 1 : 0] = color;
                 gradientWidth = AndroidUtilities.displaySize.x * 2;
                 if (!lite) {
-                    int alphaComponent = ColorUtils.setAlphaComponent(iArr[z ? 1 : 0], 70);
+                    int alphaComponent = ColorUtils.setAlphaComponent(color, 70);
                     if (z) {
                         if (this.backgroundPaint == null) {
                             this.backgroundPaint = new Paint(1);
@@ -1489,8 +1489,9 @@ public class SvgHelper {
                     if (sb != null) {
                         String[] split = sb.toString().split("\\}");
                         for (int i = 0; i < split.length; i++) {
-                            split[i] = split[i].trim().replace("\t", "").replace("\n", "");
-                            if (split[i].length() != 0 && split[i].charAt(0) == '.' && (indexOf = split[i].indexOf(123)) >= 0) {
+                            String replace = split[i].trim().replace("\t", "").replace("\n", "");
+                            split[i] = replace;
+                            if (replace.length() != 0 && split[i].charAt(0) == '.' && (indexOf = split[i].indexOf(123)) >= 0) {
                                 this.globalStyles.put(split[i].substring(1, indexOf).trim(), new StyleSet(split[i].substring(indexOf + 1)));
                             }
                         }

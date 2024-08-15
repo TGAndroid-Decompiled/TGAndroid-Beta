@@ -20,6 +20,7 @@ public class BrightnessControlCell extends FrameLayout {
     private ImageView rightImageView;
     public final SeekBarView seekBarView;
     private final int size;
+    private int type;
 
     protected void didChangedValue(float f) {
     }
@@ -30,11 +31,12 @@ public class BrightnessControlCell extends FrameLayout {
 
     public BrightnessControlCell(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
         super(context);
+        this.type = i;
         this.resourcesProvider = resourcesProvider;
         ImageView imageView = new ImageView(context);
         this.leftImageView = imageView;
         addView(imageView, LayoutHelper.createFrame(24, 24.0f, 51, 17.0f, 12.0f, 0.0f, 0.0f));
-        SeekBarView seekBarView = new SeekBarView(this, context, true, resourcesProvider) {
+        SeekBarView seekBarView = new SeekBarView(context, true, resourcesProvider) {
             @Override
             public boolean onTouchEvent(MotionEvent motionEvent) {
                 if (motionEvent.getAction() == 0) {

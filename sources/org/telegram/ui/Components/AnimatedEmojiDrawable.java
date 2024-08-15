@@ -965,21 +965,21 @@ public class AnimatedEmojiDrawable extends Drawable {
         public void draw(Canvas canvas) {
             float f = this.changeProgress.set(1.0f);
             android.graphics.Rect bounds = getBounds();
-            Drawable[] drawableArr = this.drawables;
-            if (drawableArr[1] != null && f < 1.0f) {
-                drawableArr[1].setAlpha((int) (this.alpha * (1.0f - f)));
+            Drawable drawable = this.drawables[1];
+            if (drawable != null && f < 1.0f) {
+                drawable.setAlpha((int) (this.alpha * (1.0f - f)));
                 int intrinsicWidth = this.drawables[1].getIntrinsicWidth() < 0 ? getIntrinsicWidth() : this.drawables[1].getIntrinsicWidth();
                 int intrinsicHeight = this.drawables[1].getIntrinsicHeight() < 0 ? getIntrinsicHeight() : this.drawables[1].getIntrinsicHeight();
-                Drawable[] drawableArr2 = this.drawables;
-                if (drawableArr2[1] instanceof AnimatedEmojiDrawable) {
-                    drawableArr2[1].setBounds(bounds);
+                Drawable drawable2 = this.drawables[1];
+                if (drawable2 instanceof AnimatedEmojiDrawable) {
+                    drawable2.setBounds(bounds);
                 } else if (this.center) {
                     int i = intrinsicWidth / 2;
                     int i2 = intrinsicHeight / 2;
-                    drawableArr2[1].setBounds(bounds.centerX() - i, bounds.centerY() - i2, bounds.centerX() + i, bounds.centerY() + i2);
+                    drawable2.setBounds(bounds.centerX() - i, bounds.centerY() - i2, bounds.centerX() + i, bounds.centerY() + i2);
                 } else {
                     int i3 = intrinsicHeight / 2;
-                    drawableArr2[1].setBounds(bounds.left, bounds.centerY() - i3, bounds.left + intrinsicWidth, bounds.centerY() + i3);
+                    drawable2.setBounds(bounds.left, bounds.centerY() - i3, bounds.left + intrinsicWidth, bounds.centerY() + i3);
                 }
                 this.drawables[1].setColorFilter(this.colorFilter);
                 this.drawables[1].draw(canvas);
@@ -989,9 +989,9 @@ public class AnimatedEmojiDrawable extends Drawable {
                 canvas.save();
                 int intrinsicWidth2 = this.drawables[0].getIntrinsicWidth() < 0 ? getIntrinsicWidth() : this.drawables[0].getIntrinsicWidth();
                 int intrinsicHeight2 = this.drawables[0].getIntrinsicHeight() < 0 ? getIntrinsicHeight() : this.drawables[0].getIntrinsicHeight();
-                Drawable[] drawableArr3 = this.drawables;
-                if (drawableArr3[0] instanceof AnimatedEmojiDrawable) {
-                    if (((AnimatedEmojiDrawable) drawableArr3[0]).imageReceiver != null) {
+                Drawable drawable3 = this.drawables[0];
+                if (drawable3 instanceof AnimatedEmojiDrawable) {
+                    if (((AnimatedEmojiDrawable) drawable3).imageReceiver != null) {
                         ((AnimatedEmojiDrawable) this.drawables[0]).imageReceiver.setRoundRadius(AndroidUtilities.dp(4.0f));
                     }
                     if (f < 1.0f) {
@@ -1040,22 +1040,22 @@ public class AnimatedEmojiDrawable extends Drawable {
         }
 
         public boolean set(long j, int i, boolean z) {
-            Drawable[] drawableArr = this.drawables;
-            if ((drawableArr[0] instanceof AnimatedEmojiDrawable) && ((AnimatedEmojiDrawable) drawableArr[0]).getDocumentId() == j) {
+            Drawable drawable = this.drawables[0];
+            if ((drawable instanceof AnimatedEmojiDrawable) && ((AnimatedEmojiDrawable) drawable).getDocumentId() == j) {
                 return false;
             }
             if (z) {
                 this.changeProgress.set(0.0f, true);
-                Drawable[] drawableArr2 = this.drawables;
-                if (drawableArr2[1] != null) {
-                    if (this.attached && (drawableArr2[1] instanceof AnimatedEmojiDrawable)) {
-                        ((AnimatedEmojiDrawable) drawableArr2[1]).removeView(this);
+                Drawable drawable2 = this.drawables[1];
+                if (drawable2 != null) {
+                    if (this.attached && (drawable2 instanceof AnimatedEmojiDrawable)) {
+                        ((AnimatedEmojiDrawable) drawable2).removeView(this);
                     }
                     this.drawables[1] = null;
                 }
-                Drawable[] drawableArr3 = this.drawables;
-                drawableArr3[1] = drawableArr3[0];
-                drawableArr3[0] = AnimatedEmojiDrawable.make(UserConfig.selectedAccount, i, j);
+                Drawable[] drawableArr = this.drawables;
+                drawableArr[1] = drawableArr[0];
+                drawableArr[0] = AnimatedEmojiDrawable.make(UserConfig.selectedAccount, i, j);
                 if (this.attached) {
                     ((AnimatedEmojiDrawable) this.drawables[0]).addView(this);
                 }
@@ -1083,38 +1083,38 @@ public class AnimatedEmojiDrawable extends Drawable {
         }
 
         public void removeOldDrawable() {
-            Drawable[] drawableArr = this.drawables;
-            if (drawableArr[1] != null) {
-                if (drawableArr[1] instanceof AnimatedEmojiDrawable) {
-                    ((AnimatedEmojiDrawable) drawableArr[1]).removeView(this);
+            Drawable drawable = this.drawables[1];
+            if (drawable != null) {
+                if (drawable instanceof AnimatedEmojiDrawable) {
+                    ((AnimatedEmojiDrawable) drawable).removeView(this);
                 }
                 this.drawables[1] = null;
             }
         }
 
         public void set(TLRPC$Document tLRPC$Document, int i, boolean z) {
-            Drawable[] drawableArr = this.drawables;
-            if ((drawableArr[0] instanceof AnimatedEmojiDrawable) && tLRPC$Document != null && ((AnimatedEmojiDrawable) drawableArr[0]).getDocumentId() == tLRPC$Document.id) {
+            Drawable drawable = this.drawables[0];
+            if ((drawable instanceof AnimatedEmojiDrawable) && tLRPC$Document != null && ((AnimatedEmojiDrawable) drawable).getDocumentId() == tLRPC$Document.id) {
                 return;
             }
             if (z) {
                 this.changeProgress.set(0.0f, true);
-                Drawable[] drawableArr2 = this.drawables;
-                if (drawableArr2[1] != null) {
-                    if (drawableArr2[1] instanceof AnimatedEmojiDrawable) {
-                        ((AnimatedEmojiDrawable) drawableArr2[1]).removeView(this);
+                Drawable drawable2 = this.drawables[1];
+                if (drawable2 != null) {
+                    if (drawable2 instanceof AnimatedEmojiDrawable) {
+                        ((AnimatedEmojiDrawable) drawable2).removeView(this);
                     }
                     this.drawables[1] = null;
                 }
-                Drawable[] drawableArr3 = this.drawables;
-                drawableArr3[1] = drawableArr3[0];
+                Drawable[] drawableArr = this.drawables;
+                drawableArr[1] = drawableArr[0];
                 if (tLRPC$Document != null) {
-                    drawableArr3[0] = AnimatedEmojiDrawable.make(UserConfig.selectedAccount, i, tLRPC$Document);
+                    drawableArr[0] = AnimatedEmojiDrawable.make(UserConfig.selectedAccount, i, tLRPC$Document);
                     if (this.attached) {
                         ((AnimatedEmojiDrawable) this.drawables[0]).addView(this);
                     }
                 } else {
-                    drawableArr3[0] = null;
+                    drawableArr[0] = null;
                 }
             } else {
                 this.changeProgress.set(1.0f, true);
@@ -1144,16 +1144,16 @@ public class AnimatedEmojiDrawable extends Drawable {
             }
             if (z) {
                 this.changeProgress.set(0.0f, true);
-                Drawable[] drawableArr = this.drawables;
-                if (drawableArr[1] != null) {
-                    if (this.attached && (drawableArr[1] instanceof AnimatedEmojiDrawable)) {
-                        ((AnimatedEmojiDrawable) drawableArr[1]).removeView(this);
+                Drawable drawable2 = this.drawables[1];
+                if (drawable2 != null) {
+                    if (this.attached && (drawable2 instanceof AnimatedEmojiDrawable)) {
+                        ((AnimatedEmojiDrawable) drawable2).removeView(this);
                     }
                     this.drawables[1] = null;
                 }
-                Drawable[] drawableArr2 = this.drawables;
-                drawableArr2[1] = drawableArr2[0];
-                drawableArr2[0] = drawable;
+                Drawable[] drawableArr = this.drawables;
+                drawableArr[1] = drawableArr[0];
+                drawableArr[0] = drawable;
             } else {
                 this.changeProgress.set(1.0f, true);
                 boolean z2 = this.attached;
@@ -1175,13 +1175,13 @@ public class AnimatedEmojiDrawable extends Drawable {
         public void detach() {
             if (this.attached) {
                 this.attached = false;
-                Drawable[] drawableArr = this.drawables;
-                if (drawableArr[0] instanceof AnimatedEmojiDrawable) {
-                    ((AnimatedEmojiDrawable) drawableArr[0]).removeView(this);
+                Drawable drawable = this.drawables[0];
+                if (drawable instanceof AnimatedEmojiDrawable) {
+                    ((AnimatedEmojiDrawable) drawable).removeView(this);
                 }
-                Drawable[] drawableArr2 = this.drawables;
-                if (drawableArr2[1] instanceof AnimatedEmojiDrawable) {
-                    ((AnimatedEmojiDrawable) drawableArr2[1]).removeView(this);
+                Drawable drawable2 = this.drawables[1];
+                if (drawable2 instanceof AnimatedEmojiDrawable) {
+                    ((AnimatedEmojiDrawable) drawable2).removeView(this);
                 }
             }
         }
@@ -1191,13 +1191,13 @@ public class AnimatedEmojiDrawable extends Drawable {
                 return;
             }
             this.attached = true;
-            Drawable[] drawableArr = this.drawables;
-            if (drawableArr[0] instanceof AnimatedEmojiDrawable) {
-                ((AnimatedEmojiDrawable) drawableArr[0]).addView(this);
+            Drawable drawable = this.drawables[0];
+            if (drawable instanceof AnimatedEmojiDrawable) {
+                ((AnimatedEmojiDrawable) drawable).addView(this);
             }
-            Drawable[] drawableArr2 = this.drawables;
-            if (drawableArr2[1] instanceof AnimatedEmojiDrawable) {
-                ((AnimatedEmojiDrawable) drawableArr2[1]).addView(this);
+            Drawable drawable2 = this.drawables[1];
+            if (drawable2 instanceof AnimatedEmojiDrawable) {
+                ((AnimatedEmojiDrawable) drawable2).addView(this);
             }
         }
 

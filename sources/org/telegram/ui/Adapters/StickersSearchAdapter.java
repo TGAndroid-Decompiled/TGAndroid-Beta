@@ -278,7 +278,7 @@ public class StickersSearchAdapter extends RecyclerListView.SelectionAdapter {
         View view;
         LinearLayout linearLayout;
         if (i == 0) {
-            StickerEmojiCell stickerEmojiCell = new StickerEmojiCell(this, this.context, false, this.resourcesProvider) {
+            StickerEmojiCell stickerEmojiCell = new StickerEmojiCell(this.context, false, this.resourcesProvider) {
                 @Override
                 public void onMeasure(int i2, int i3) {
                     super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(82.0f), 1073741824));

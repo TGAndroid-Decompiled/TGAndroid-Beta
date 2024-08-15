@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -267,7 +268,7 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance != null) {
             this.textureView.renderer.setMirror(sharedInstance.isFrontFaceCamera());
-            this.textureView.renderer.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), new RendererCommon.RendererEvents(this) {
+            this.textureView.renderer.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), new RendererCommon.RendererEvents() {
                 @Override
                 public void onFirstFrameRendered() {
                 }
@@ -301,14 +302,16 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
     }
 
     public void lambda$new$0(View view) {
+        Intent createScreenCaptureIntent;
         if (this.isDismissed) {
             return;
         }
         if (this.currentPage == 0 && this.needScreencast) {
-            ((Activity) getContext()).startActivityForResult(((MediaProjectionManager) getContext().getSystemService("media_projection")).createScreenCaptureIntent(), 520);
-        } else {
-            dismiss(false, true);
+            createScreenCaptureIntent = ((MediaProjectionManager) getContext().getSystemService("media_projection")).createScreenCaptureIntent();
+            ((Activity) getContext()).startActivityForResult(createScreenCaptureIntent, 520);
+            return;
         }
+        dismiss(false, true);
     }
 
     public void lambda$new$1(int i, View view) {
@@ -550,10 +553,11 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
 
         @Override
         public Object instantiateItem(ViewGroup viewGroup, int i) {
+            Bitmap bitmap;
             ImageView imageView;
             int i2 = 1;
             if (PrivateVideoPreviewDialog.this.needScreencast && i == 0) {
-                FrameLayout frameLayout = new FrameLayout(PrivateVideoPreviewDialog.this.getContext());
+                ?? frameLayout = new FrameLayout(PrivateVideoPreviewDialog.this.getContext());
                 frameLayout.setBackground(new MotionBackgroundDrawable(-14602694, -13935795, -14395293, -14203560, true));
                 ImageView imageView2 = new ImageView(PrivateVideoPreviewDialog.this.getContext());
                 imageView2.setScaleType(ImageView.ScaleType.CENTER);
@@ -571,7 +575,6 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
             } else {
                 ImageView imageView3 = new ImageView(PrivateVideoPreviewDialog.this.getContext());
                 imageView3.setTag(Integer.valueOf(i));
-                Bitmap bitmap = null;
                 try {
                     File filesDirFixed = ApplicationLoader.getFilesDirFixed();
                     StringBuilder sb = new StringBuilder();
@@ -583,6 +586,7 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
                     sb.append(".jpg");
                     bitmap = BitmapFactory.decodeFile(new File(filesDirFixed, sb.toString()).getAbsolutePath());
                 } catch (Throwable unused) {
+                    bitmap = null;
                 }
                 if (bitmap != null) {
                     imageView3.setImageBitmap(bitmap);

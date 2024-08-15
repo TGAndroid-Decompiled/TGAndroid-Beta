@@ -18,7 +18,6 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Parcelable;
 import android.text.Editable;
 import android.text.SpannableStringBuilder;
@@ -462,7 +461,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         public void lambda$editSticker$2(File file, ArrayList arrayList, ChatActivity chatActivity, TLRPC$Document tLRPC$Document) {
             arrayList.add(new MediaController.PhotoEntry(0, 0, 0L, file.getAbsolutePath(), 0, false, 0, 0, 0L));
             PhotoViewer.getInstance().setParentActivity(StickersAlert.this.parentFragment.getParentActivity(), ((BottomSheet) StickersAlert.this).resourcesProvider);
-            PhotoViewer.getInstance().openPhotoForSelect(arrayList, 0, 11, false, new PhotoViewer.EmptyPhotoViewerProvider(this) {
+            PhotoViewer.getInstance().openPhotoForSelect(arrayList, 0, 11, false, new PhotoViewer.EmptyPhotoViewerProvider() {
                 @Override
                 public boolean allowCaption() {
                     return false;
@@ -531,7 +530,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                 photoEntry.averageDuration = (long) (MessageObject.getDocumentDuration(tLRPC$Document) * 1000.0d);
             }
             PhotoViewer.getInstance().setParentActivity(StickersAlert.this.parentFragment.getParentActivity(), ((BottomSheet) StickersAlert.this).resourcesProvider);
-            PhotoViewer.getInstance().openPhotoForSelect(arrayList, 0, 11, false, new PhotoViewer.EmptyPhotoViewerProvider(this) {
+            PhotoViewer.getInstance().openPhotoForSelect(arrayList, 0, 11, false, new PhotoViewer.EmptyPhotoViewerProvider() {
                 @Override
                 public boolean allowCaption() {
                     return false;
@@ -828,11 +827,9 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         boolean z = false;
         this.reqId = 0;
         if (tLRPC$TL_error == null) {
-            if (Build.VERSION.SDK_INT >= 19) {
-                AnonymousClass2 anonymousClass2 = new AnonymousClass2();
-                anonymousClass2.addTarget(this.containerView);
-                TransitionManager.beginDelayedTransition(this.container, anonymousClass2);
-            }
+            AnonymousClass2 anonymousClass2 = new AnonymousClass2();
+            anonymousClass2.addTarget(this.containerView);
+            TransitionManager.beginDelayedTransition(this.container, anonymousClass2);
             this.optionsButton.setVisibility(0);
             TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet = (TLRPC$TL_messages_stickerSet) tLObject;
             this.stickerSet = tLRPC$TL_messages_stickerSet;
@@ -995,7 +992,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             }
 
             @Override
-            protected void onDraw(android.graphics.Canvas r13) {
+            protected void onDraw(android.graphics.Canvas r12) {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.StickersAlert.AnonymousClass3.onDraw(android.graphics.Canvas):void");
             }
         };
@@ -1120,7 +1117,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         this.adapter = gridAdapter;
         recyclerListView3.setAdapter(gridAdapter);
         this.gridView.setVerticalScrollBarEnabled(false);
-        this.gridView.addItemDecoration(new RecyclerView.ItemDecoration(this) {
+        this.gridView.addItemDecoration(new RecyclerView.ItemDecoration() {
             @Override
             public void getItemOffsets(android.graphics.Rect rect, View view2, RecyclerView recyclerView, RecyclerView.State state) {
                 rect.left = 0;
@@ -2164,10 +2161,11 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
     }
 
     public void lambda$showNameEnterAlert$42(final int[] iArr, final EditTextBoldCursor editTextBoldCursor, final TextView textView, final TextView textView2, AlertDialog.Builder builder, View view) {
-        if (iArr[0] == 1) {
+        int i = iArr[0];
+        if (i == 1) {
             return;
         }
-        if (iArr[0] == 0) {
+        if (i == 0) {
             iArr[0] = 1;
             TLRPC$TL_stickers_suggestShortName tLRPC$TL_stickers_suggestShortName = new TLRPC$TL_stickers_suggestShortName();
             String obj = editTextBoldCursor.getText().toString();
@@ -2179,7 +2177,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                     StickersAlert.this.lambda$showNameEnterAlert$40(editTextBoldCursor, textView, textView2, iArr, tLObject, tLRPC$TL_error);
                 }
             });
-        } else if (iArr[0] == 2) {
+        } else if (i == 2) {
             iArr[0] = 3;
             if (!this.lastNameAvailable) {
                 AndroidUtilities.shakeView(editTextBoldCursor);
@@ -2207,13 +2205,14 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
     }
 
     public void lambda$showNameEnterAlert$39(TLObject tLObject, EditTextBoldCursor editTextBoldCursor, TextView textView, TextView textView2, int[] iArr) {
+        boolean z;
         String str;
-        boolean z = true;
         if (!(tLObject instanceof TLRPC$TL_stickers_suggestedShortName) || (str = ((TLRPC$TL_stickers_suggestedShortName) tLObject).short_name) == null) {
             z = false;
         } else {
             editTextBoldCursor.setText(str);
             editTextBoldCursor.setSelection(0, editTextBoldCursor.length());
+            z = true;
             checkUrlAvailable(textView, editTextBoldCursor.getText().toString(), true);
         }
         textView2.setVisibility(0);
@@ -2331,8 +2330,8 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             setScrollOffsetY(this.gridView.getPaddingTop());
             return;
         }
-        View view = null;
         int i = 0;
+        View view = null;
         int i2 = -1;
         for (int i3 = 0; i3 < this.gridView.getChildCount(); i3++) {
             View childAt = this.gridView.getChildAt(i3);
@@ -2397,19 +2396,19 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         if (z) {
             this.shadow[i].setVisibility(0);
         }
-        AnimatorSet[] animatorSetArr = this.shadowAnimation;
-        if (animatorSetArr[i] != null) {
-            animatorSetArr[i].cancel();
+        AnimatorSet animatorSet = this.shadowAnimation[i];
+        if (animatorSet != null) {
+            animatorSet.cancel();
         }
         this.shadowAnimation[i] = new AnimatorSet();
-        AnimatorSet animatorSet = this.shadowAnimation[i];
+        AnimatorSet animatorSet2 = this.shadowAnimation[i];
         Animator[] animatorArr = new Animator[1];
         View view = this.shadow[i];
         Property property = View.ALPHA;
         float[] fArr = new float[1];
         fArr[0] = z ? 1.0f : 0.0f;
         animatorArr[0] = ObjectAnimator.ofFloat(view, property, fArr);
-        animatorSet.playTogether(animatorArr);
+        animatorSet2.playTogether(animatorArr);
         this.shadowAnimation[i].setDuration(150L);
         this.shadowAnimation[i].addListener(new AnimatorListenerAdapter() {
             @Override
@@ -2577,13 +2576,13 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             if (this.inputStickerSet != null) {
                 MediaDataController mediaDataController = MediaDataController.getInstance(this.currentAccount);
                 String str2 = this.inputStickerSet.short_name;
-                r3 = str2 != null ? mediaDataController.getStickerSetByName(str2) : null;
-                if (r3 == null) {
-                    r3 = mediaDataController.getStickerSetById(this.inputStickerSet.id);
+                r4 = str2 != null ? mediaDataController.getStickerSetByName(str2) : null;
+                if (r4 == null) {
+                    r4 = mediaDataController.getStickerSetById(this.inputStickerSet.id);
                 }
             }
-            if (r3 != null && r3 != this.stickerSet) {
-                this.stickerSet = r3;
+            if (r4 != null && r4 != this.stickerSet) {
+                this.stickerSet = r4;
                 loadStickerSet();
             }
             updateFields();

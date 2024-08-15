@@ -124,7 +124,7 @@ public class TopicCreateFragment extends BaseFragment {
         } else {
             this.actionBar.createMenu().addItem(2, R.drawable.ic_ab_done);
         }
-        SizeNotifierFrameLayout sizeNotifierFrameLayout = new SizeNotifierFrameLayout(this, context) {
+        SizeNotifierFrameLayout sizeNotifierFrameLayout = new SizeNotifierFrameLayout(context) {
             boolean keyboardWasShown;
 
             @Override
@@ -193,7 +193,7 @@ public class TopicCreateFragment extends BaseFragment {
                 }
             }
         });
-        AnonymousClass4 anonymousClass4 = new AnonymousClass4(this, context);
+        AnonymousClass4 anonymousClass4 = new AnonymousClass4(context);
         anonymousClass4.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
@@ -372,7 +372,7 @@ public class TopicCreateFragment extends BaseFragment {
         boolean pressed;
         float pressedProgress;
 
-        AnonymousClass4(TopicCreateFragment topicCreateFragment, Context context) {
+        AnonymousClass4(Context context) {
             super(context);
         }
 
@@ -488,9 +488,10 @@ public class TopicCreateFragment extends BaseFragment {
         }
         BackupImageView[] backupImageViewArr = this.backupImageView;
         BackupImageView backupImageView = backupImageViewArr[0];
-        backupImageViewArr[0] = backupImageViewArr[1];
+        BackupImageView backupImageView2 = backupImageViewArr[1];
+        backupImageViewArr[0] = backupImageView2;
         backupImageViewArr[1] = backupImageView;
-        AndroidUtilities.updateViewVisibilityAnimated(backupImageViewArr[0], true, 0.5f, true);
+        AndroidUtilities.updateViewVisibilityAnimated(backupImageView2, true, 0.5f, true);
         AndroidUtilities.updateViewVisibilityAnimated(this.backupImageView[1], false, 0.5f, true);
     }
 

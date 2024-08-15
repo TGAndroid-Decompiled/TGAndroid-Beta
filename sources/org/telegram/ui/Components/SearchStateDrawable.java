@@ -20,6 +20,7 @@ public class SearchStateDrawable extends Drawable {
     private int alpha = 255;
     private Path path = new Path();
     private RectF progressRect = new RectF();
+    private final float progressRadius = 0.25f;
     private long progressStart = -1;
     private float progressAngleFrom = 0.0f;
     private float progressAngleTo = 0.0f;

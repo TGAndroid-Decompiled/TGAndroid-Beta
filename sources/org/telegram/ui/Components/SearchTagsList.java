@@ -49,7 +49,7 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.CounterView;
-import org.telegram.ui.Components.FloatingDebug.FloatingDebugView$$ExternalSyntheticLambda3;
+import org.telegram.ui.Components.FloatingDebug.FloatingDebugView$$ExternalSyntheticLambda8;
 import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Components.RecyclerListView;
@@ -221,7 +221,6 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
         super(context, sizeNotifierFrameLayout);
         this.oldItems = new ArrayList<>();
         this.items = new ArrayList<>();
-        this.showWithCut = true;
         this.showWithCut = z;
         this.currentAccount = i;
         this.fragment = baseFragment;
@@ -267,7 +266,7 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
                 return lambda$new$4;
             }
         });
-        DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator(this) {
+        DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator() {
             @Override
             public boolean canReuseUpdatedViewHolder(RecyclerView.ViewHolder viewHolder) {
                 return true;
@@ -474,9 +473,9 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
                         return true;
                     }
                     MessagesController.getInstance(i).renameSavedReactionTag(ReactionsLayoutInBubble.VisibleReaction.fromTL(tLRPC$Reaction), obj);
-                    AlertDialog[] alertDialogArr = r14;
-                    if (alertDialogArr[0] != null) {
-                        alertDialogArr[0].dismiss();
+                    AlertDialog alertDialog = r14[0];
+                    if (alertDialog != null) {
+                        alertDialog.dismiss();
                     }
                     if (r14[0] == SearchTagsList.currentDialog) {
                         AlertDialog unused = SearchTagsList.currentDialog = null;
@@ -548,9 +547,10 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
             currentDialog.showDelayed(250L);
             r1 = 0;
         } else {
+            AlertDialog create2 = r15.create();
             r1 = 0;
-            r14[0] = r15.create();
-            r14[0].setOnDismissListener(new DialogInterface.OnDismissListener() {
+            r14[0] = create2;
+            create2.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
                     AndroidUtilities.hideKeyboard(EditTextBoldCursor.this);
@@ -632,7 +632,7 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
             }
         } else if (i == NotificationCenter.emojiLoaded) {
             invalidate();
-            AndroidUtilities.forEachViews((RecyclerView) this.listView, (com.google.android.exoplayer2.util.Consumer<View>) FloatingDebugView$$ExternalSyntheticLambda3.INSTANCE);
+            AndroidUtilities.forEachViews((RecyclerView) this.listView, (com.google.android.exoplayer2.util.Consumer<View>) new FloatingDebugView$$ExternalSyntheticLambda8());
         }
     }
 

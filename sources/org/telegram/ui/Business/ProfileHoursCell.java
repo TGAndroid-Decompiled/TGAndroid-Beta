@@ -55,7 +55,7 @@ public class ProfileHoursCell extends LinearLayout {
         int i = 0;
         for (int i2 = 7; i < i2; i2 = 7) {
             if (i == 0) {
-                FrameLayout frameLayout = new FrameLayout(this, context) {
+                FrameLayout frameLayout = new FrameLayout(context) {
                     @Override
                     protected void onMeasure(int i3, int i4) {
                         super.onMeasure(i3, View.MeasureSpec.makeMeasureSpec(Math.max(View.MeasureSpec.getSize(i4), AndroidUtilities.dp(60.0f)), View.MeasureSpec.getMode(i4)));

@@ -46,6 +46,7 @@ public class DefaultThemesPreviewCell extends LinearLayout {
     private LinearLayoutManager layoutManager;
     private ValueAnimator navBarAnimator;
     private int navBarColor;
+    BaseFragment parentFragment;
     private final FlickerLoadingView progressView;
     private final RecyclerListView recyclerView;
     private int selectedPosition;
@@ -59,6 +60,7 @@ public class DefaultThemesPreviewCell extends LinearLayout {
         this.selectedPosition = -1;
         this.wasPortrait = null;
         this.currentType = i;
+        this.parentFragment = baseFragment;
         setOrientation(1);
         FrameLayout frameLayout = new FrameLayout(context);
         addView(frameLayout, LayoutHelper.createFrame(-1, -2.0f));
@@ -66,7 +68,7 @@ public class DefaultThemesPreviewCell extends LinearLayout {
         int i2 = this.currentType;
         ChatThemeBottomSheet.Adapter adapter = new ChatThemeBottomSheet.Adapter(currentAccount, null, (i2 == 0 || i2 == -1) ? 0 : 1);
         this.adapter = adapter;
-        RecyclerListView recyclerListView = new RecyclerListView(this, getContext()) {
+        RecyclerListView recyclerListView = new RecyclerListView(getContext()) {
             @Override
             public Integer getSelectorColor(int i3) {
                 return 0;
@@ -250,7 +252,7 @@ public class DefaultThemesPreviewCell extends LinearLayout {
                         AndroidUtilities.setLightNavigationBar(window, AndroidUtilities.computePerceivedBrightness(DefaultThemesPreviewCell.this.navBarColor) >= 0.721f);
                     }
                 });
-                DefaultThemesPreviewCell.this.navBarAnimator.addListener(new AnimatorListenerAdapter(this) {
+                DefaultThemesPreviewCell.this.navBarAnimator.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animator) {
                         AndroidUtilities.setNavigationBarColor(window, color2, false);
@@ -294,7 +296,7 @@ public class DefaultThemesPreviewCell extends LinearLayout {
                 } else {
                     this.recyclerView.setHasFixedSize(false);
                     GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), i2);
-                    gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup(this) {
+                    gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
                         @Override
                         public int getSpanSize(int i3) {
                             return 1;

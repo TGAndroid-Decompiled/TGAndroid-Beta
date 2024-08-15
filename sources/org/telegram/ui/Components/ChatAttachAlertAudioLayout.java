@@ -485,7 +485,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
         new AlertDialog.Builder(getContext(), this.resourcesProvider).setTitle(LocaleController.getString("AppName", R.string.AppName)).setMessage(str).setPositiveButton(LocaleController.getString("OK", R.string.OK), null).show();
     }
 
-    private void onItemClick(android.view.View r13) {
+    private void onItemClick(android.view.View r12) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertAudioLayout.onItemClick(android.view.View):void");
     }
 
@@ -684,8 +684,9 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
     public class SearchAdapter extends RecyclerListView.SelectionAdapter {
         private int lastSearchId;
         private Context mContext;
-        private ArrayList<MediaController.AudioEntry> searchResult = new ArrayList<>();
         private Runnable searchRunnable;
+        private ArrayList<MediaController.AudioEntry> searchResult = new ArrayList<>();
+        private int reqId = 0;
 
         public SearchAdapter(Context context) {
             this.mContext = context;

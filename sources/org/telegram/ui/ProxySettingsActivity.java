@@ -188,13 +188,12 @@ public class ProxySettingsActivity extends BaseFragment {
         addItemWithWidth.setContentDescription(LocaleController.getString("Done", R.string.Done));
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
-        FrameLayout frameLayout2 = frameLayout;
         frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
         ScrollView scrollView = new ScrollView(context);
         this.scrollView = scrollView;
         scrollView.setFillViewport(true);
         AndroidUtilities.setScrollViewEdgeEffectColor(this.scrollView, Theme.getColor(Theme.key_actionBarDefault));
-        frameLayout2.addView(this.scrollView, LayoutHelper.createFrame(-1, -1.0f));
+        frameLayout.addView(this.scrollView, LayoutHelper.createFrame(-1, -1.0f));
         LinearLayout linearLayout = new LinearLayout(context);
         this.linearLayout2 = linearLayout;
         linearLayout.setOrientation(1);
@@ -233,8 +232,8 @@ public class ProxySettingsActivity extends BaseFragment {
         this.inputFields = new EditTextBoldCursor[5];
         int i2 = 0;
         for (int i3 = 5; i2 < i3; i3 = 5) {
-            FrameLayout frameLayout3 = new FrameLayout(context);
-            this.inputFieldsContainer.addView(frameLayout3, LayoutHelper.createLinear(-1, 64));
+            FrameLayout frameLayout2 = new FrameLayout(context);
+            this.inputFieldsContainer.addView(frameLayout2, LayoutHelper.createLinear(-1, 64));
             this.inputFields[i2] = new EditTextBoldCursor(context);
             this.inputFields[i2].setTag(Integer.valueOf(i2));
             this.inputFields[i2].setTextSize(1, 16.0f);
@@ -338,10 +337,10 @@ public class ProxySettingsActivity extends BaseFragment {
                 this.inputFields[i2].setHintText(LocaleController.getString("UseProxySecret", R.string.UseProxySecret));
                 this.inputFields[i2].setText(this.currentProxyInfo.secret);
             }
-            EditTextBoldCursor[] editTextBoldCursorArr = this.inputFields;
-            editTextBoldCursorArr[i2].setSelection(editTextBoldCursorArr[i2].length());
+            EditTextBoldCursor editTextBoldCursor3 = this.inputFields[i2];
+            editTextBoldCursor3.setSelection(editTextBoldCursor3.length());
             this.inputFields[i2].setPadding(0, 0, 0, 0);
-            frameLayout3.addView(this.inputFields[i2], LayoutHelper.createFrame(-1, -1.0f, 51, 17.0f, i2 == 0 ? 12.0f : 0.0f, 17.0f, 0.0f));
+            frameLayout2.addView(this.inputFields[i2], LayoutHelper.createFrame(-1, -1.0f, 51, 17.0f, i2 == 0 ? 12.0f : 0.0f, 17.0f, 0.0f));
             this.inputFields[i2].setOnEditorActionListener(new TextView.OnEditorActionListener() {
                 @Override
                 public final boolean onEditorAction(TextView textView, int i5, KeyEvent keyEvent) {
@@ -444,9 +443,10 @@ public class ProxySettingsActivity extends BaseFragment {
             if (i < strArr.length) {
                 int i2 = this.pasteType;
                 if ((i2 != 0 || i != 4) && (i2 != 1 || (i != 2 && i != 3))) {
-                    if (strArr[i] != null) {
+                    String str = strArr[i];
+                    if (str != null) {
                         try {
-                            this.inputFields[i].setText(URLDecoder.decode(strArr[i], "UTF-8"));
+                            this.inputFields[i].setText(URLDecoder.decode(str, "UTF-8"));
                         } catch (UnsupportedEncodingException unused) {
                             this.inputFields[i].setText(this.pasteFields[i]);
                         }
@@ -456,8 +456,8 @@ public class ProxySettingsActivity extends BaseFragment {
                 }
                 i++;
             } else {
-                EditTextBoldCursor[] editTextBoldCursorArr = this.inputFields;
-                editTextBoldCursorArr[0].setSelection(editTextBoldCursorArr[0].length());
+                EditTextBoldCursor editTextBoldCursor = this.inputFields[0];
+                editTextBoldCursor.setSelection(editTextBoldCursor.length());
                 setProxyType(this.pasteType, true, new Runnable() {
                     @Override
                     public final void run() {
@@ -581,10 +581,11 @@ public class ProxySettingsActivity extends BaseFragment {
         }
         EditTextBoldCursor[] editTextBoldCursorArr = this.inputFields;
         boolean z2 = false;
-        if (editTextBoldCursorArr[0] == null || editTextBoldCursorArr[1] == null) {
+        EditTextBoldCursor editTextBoldCursor = editTextBoldCursorArr[0];
+        if (editTextBoldCursor == null || editTextBoldCursorArr[1] == null) {
             return;
         }
-        if (editTextBoldCursorArr[0].length() != 0 && Utilities.parseInt((CharSequence) this.inputFields[1].getText().toString()).intValue() != 0) {
+        if (editTextBoldCursor.length() != 0 && Utilities.parseInt((CharSequence) this.inputFields[1].getText().toString()).intValue() != 0) {
             z2 = true;
         }
         setShareDoneEnabled(z2, z);
@@ -604,7 +605,7 @@ public class ProxySettingsActivity extends BaseFragment {
             if (z && i2 >= 21) {
                 TransitionSet duration = new TransitionSet().addTransition(new Fade(2)).addTransition(new ChangeBounds()).addTransition(new Fade(1)).setInterpolator((TimeInterpolator) CubicBezierInterpolator.DEFAULT).setDuration(250L);
                 if (runnable != null) {
-                    duration.addListener(new Transition.TransitionListener(this) {
+                    duration.addListener(new Transition.TransitionListener() {
                         @Override
                         public void onTransitionCancel(Transition transition) {
                         }

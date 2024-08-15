@@ -205,10 +205,8 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
             }
             int i = this.rowCount;
             int i2 = i + 1;
-            this.rowCount = i2;
             this.overviewHeaderRow = i;
             int i3 = i2 + 1;
-            this.rowCount = i3;
             this.overviewRow = i2;
             ArraySet<Integer> arraySet = this.shadowDivideCells;
             this.rowCount = i3 + 1;
@@ -216,7 +214,6 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
             if (this.interactionsViewData != null) {
                 int i4 = this.rowCount;
                 int i5 = i4 + 1;
-                this.rowCount = i5;
                 this.interactionsChartRow = i4;
                 ArraySet<Integer> arraySet2 = this.shadowDivideCells;
                 this.rowCount = i5 + 1;
@@ -225,7 +222,6 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
             if (this.reactionsByEmotionData != null) {
                 int i6 = this.rowCount;
                 int i7 = i6 + 1;
-                this.rowCount = i7;
                 this.reactionsByEmotionChartRow = i6;
                 ArraySet<Integer> arraySet3 = this.shadowDivideCells;
                 this.rowCount = i7 + 1;
@@ -238,10 +234,8 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
                 this.headerRow = i8;
                 this.startRow = i9;
                 int size = i9 + this.messages.size();
-                this.rowCount = size;
                 this.endRow = size;
                 int i10 = size + 1;
-                this.rowCount = i10;
                 this.emptyRow = size;
                 ArraySet<Integer> arraySet4 = this.shadowDivideCells;
                 this.rowCount = i10 + 1;
@@ -534,8 +528,8 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
     }
 
     public boolean lambda$createView$2(View view, int i) {
-        int i2;
         String str;
+        int i2;
         if (i >= this.startRow && i < this.endRow) {
             try {
                 view.performHapticFeedback(0, 2);
@@ -550,11 +544,11 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
             AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity(), getResourceProvider());
             if (messageObject.isStory()) {
                 if (isUserDialog) {
-                    i2 = R.string.OpenProfile;
                     str = "OpenProfile";
+                    i2 = R.string.OpenProfile;
                 } else {
-                    i2 = R.string.OpenChannel2;
                     str = "OpenChannel2";
+                    i2 = R.string.OpenChannel2;
                 }
                 arrayList.add(LocaleController.getString(str, i2));
                 arrayList3.add(Integer.valueOf(isUserDialog ? R.drawable.msg_openprofile : R.drawable.msg_channel));

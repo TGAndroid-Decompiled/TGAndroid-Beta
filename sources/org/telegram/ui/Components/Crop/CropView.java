@@ -49,6 +49,7 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
     private boolean isVisible;
     private CropViewListener listener;
     private Matrix overlayMatrix;
+    private PaintingOverlay paintingOverlay;
     private RectF previousAreaRect;
     private float rotationStartScale;
     RectF sizeRect;
@@ -290,6 +291,7 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
 
     public void setBitmap(Bitmap bitmap, int i, boolean z, boolean z2, PaintingOverlay paintingOverlay, CropTransform cropTransform, VideoEditTextureView videoEditTextureView, final MediaController.CropState cropState) {
         this.freeform = z;
+        this.paintingOverlay = paintingOverlay;
         this.videoEditTextureView = videoEditTextureView;
         this.cropTransform = cropTransform;
         this.bitmapRotation = i;
@@ -399,6 +401,7 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
 
     public void onHide() {
         this.videoEditTextureView = null;
+        this.paintingOverlay = null;
         this.isVisible = false;
     }
 
@@ -508,8 +511,9 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
     }
 
     public void lambda$fillAreaView$0(float f, float[] fArr, float f2, float f3, ValueAnimator valueAnimator) {
-        float floatValue = (((f - 1.0f) * ((Float) valueAnimator.getAnimatedValue()).floatValue()) + 1.0f) / fArr[0];
-        fArr[0] = fArr[0] * floatValue;
+        float f4 = fArr[0];
+        float floatValue = (((f - 1.0f) * ((Float) valueAnimator.getAnimatedValue()).floatValue()) + 1.0f) / f4;
+        fArr[0] = f4 * floatValue;
         this.state.scale(floatValue, f2, f3);
         updateMatrix();
     }
@@ -696,14 +700,19 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
 
     public void lambda$fitContentInBounds$1(float f, float[] fArr, float f2, float f3, ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        float f4 = (f * floatValue) - fArr[1];
-        fArr[1] = fArr[1] + f4;
-        float f5 = (f2 * floatValue) - fArr[2];
-        fArr[2] = fArr[2] + f5;
-        this.state.translate(f4 * fArr[0], f5 * fArr[0]);
-        float f6 = (((f3 - 1.0f) * floatValue) + 1.0f) / fArr[0];
-        fArr[0] = fArr[0] * f6;
-        this.state.scale(f6, 0.0f, 0.0f);
+        float f4 = fArr[1];
+        float f5 = (f * floatValue) - f4;
+        fArr[1] = f4 + f5;
+        float f6 = fArr[2];
+        float f7 = (f2 * floatValue) - f6;
+        fArr[2] = f6 + f7;
+        CropState cropState = this.state;
+        float f8 = fArr[0];
+        cropState.translate(f5 * f8, f7 * f8);
+        float f9 = fArr[0];
+        float f10 = (((f3 - 1.0f) * floatValue) + 1.0f) / f9;
+        fArr[0] = f9 * f10;
+        this.state.scale(f10, 0.0f, 0.0f);
         updateMatrix();
     }
 

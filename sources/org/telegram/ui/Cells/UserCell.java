@@ -67,6 +67,7 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
     private CharSequence currentStatus;
     protected long dialogId;
     private AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable emojiStatus;
+    private TLRPC$EncryptedChat encryptedChat;
     private ImageView imageView;
     private TLRPC$FileLocation lastAvatar;
     private String lastName;
@@ -337,6 +338,7 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
             this.avatarImageView.setImageDrawable(null);
             return;
         }
+        this.encryptedChat = tLRPC$EncryptedChat;
         this.currentStatus = charSequence2;
         if (charSequence != null) {
             try {
@@ -488,7 +490,6 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
         String str;
         TLRPC$UserStatus tLRPC$UserStatus;
         TextView textView;
-        char c;
         TLRPC$FileLocation tLRPC$FileLocation2;
         this.dialogId = 0L;
         Object obj = this.currentObject;
@@ -542,79 +543,67 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
             ((FrameLayout.LayoutParams) this.nameTextView.getLayoutParams()).topMargin = AndroidUtilities.dp(19.0f);
             String str2 = (String) this.currentObject;
             str2.hashCode();
+            char c = 65535;
             switch (str2.hashCode()) {
                 case -1716307998:
                     if (str2.equals("archived")) {
                         c = 0;
                         break;
                     }
-                    c = 65535;
                     break;
                 case -1237460524:
                     if (str2.equals("groups")) {
                         c = 1;
                         break;
                     }
-                    c = 65535;
                     break;
                 case -1197490811:
                     if (str2.equals("non_contacts")) {
                         c = 2;
                         break;
                     }
-                    c = 65535;
                     break;
                 case -567451565:
                     if (str2.equals("contacts")) {
                         c = 3;
                         break;
                     }
-                    c = 65535;
                     break;
                 case -268161860:
                     if (str2.equals("new_chats")) {
                         c = 4;
                         break;
                     }
-                    c = 65535;
                     break;
                 case 3029900:
                     if (str2.equals("bots")) {
                         c = 5;
                         break;
                     }
-                    c = 65535;
                     break;
                 case 3496342:
                     if (str2.equals("read")) {
                         c = 6;
                         break;
                     }
-                    c = 65535;
                     break;
                 case 104264043:
                     if (str2.equals("muted")) {
                         c = 7;
                         break;
                     }
-                    c = 65535;
                     break;
                 case 151051367:
                     if (str2.equals("existing_chats")) {
                         c = '\b';
                         break;
                     }
-                    c = 65535;
                     break;
                 case 1432626128:
                     if (str2.equals("channels")) {
                         c = '\t';
                         break;
                     }
-                    c = 65535;
-                    break;
-                default:
-                    c = 65535;
                     break;
             }
             switch (c) {
@@ -722,7 +711,7 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
                 } else {
                     if (this.premiumDrawable == null) {
                         this.premiumDrawable = getContext().getResources().getDrawable(R.drawable.msg_premium_liststar).mutate();
-                        AnimatedEmojiDrawable.WrapSizeDrawable wrapSizeDrawable = new AnimatedEmojiDrawable.WrapSizeDrawable(this, this.premiumDrawable, AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f)) {
+                        AnimatedEmojiDrawable.WrapSizeDrawable wrapSizeDrawable = new AnimatedEmojiDrawable.WrapSizeDrawable(this.premiumDrawable, AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f)) {
                             @Override
                             public void draw(Canvas canvas) {
                                 canvas.save();

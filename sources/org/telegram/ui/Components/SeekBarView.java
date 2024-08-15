@@ -34,6 +34,7 @@ import org.telegram.ui.ActionBar.Theme;
 public class SeekBarView extends FrameLayout {
     private static Path tmpPath;
     private static float[] tmpRadii;
+    private final float TIMESTAMP_GAP;
     private AnimatedFloat animatedThumbX;
     private float bufferedProgress;
     boolean captured;
@@ -44,13 +45,16 @@ public class SeekBarView extends FrameLayout {
     private Paint innerPaint1;
     private CharSequence lastCaption;
     private long lastDuration;
+    private int lastTimestamp;
     private long lastTimestampUpdate;
+    private long lastTimestampsAppearingUpdate;
     private long lastUpdateTime;
     int lastValue;
     private float lastWidth;
     private int lineWidthDp;
     private Paint outerPaint1;
     private boolean pressed;
+    private boolean pressedDelayed;
     private int[] pressedState;
     private float progressToSet;
     private RectF rect;
@@ -98,9 +102,6 @@ public class SeekBarView extends FrameLayout {
         void onSeekBarPressed(boolean z);
     }
 
-    public void lambda$onTouch$0() {
-    }
-
     public SeekBarView(Context context) {
         this(context, null);
     }
@@ -117,7 +118,9 @@ public class SeekBarView extends FrameLayout {
         this.transitionProgress = 1.0f;
         this.lineWidthDp = 3;
         this.timestampsAppearing = 0.0f;
+        this.TIMESTAMP_GAP = 1.0f;
         this.currentTimestamp = -1;
+        this.lastTimestamp = -1;
         this.timestampChangeT = 1.0f;
         this.lastWidth = -1.0f;
         this.rect = new RectF();
@@ -241,6 +244,7 @@ public class SeekBarView extends FrameLayout {
                         }
                     }
                     this.thumbDX = (int) (motionEvent.getX() - this.thumbX);
+                    this.pressedDelayed = true;
                     this.pressed = true;
                 }
             }
@@ -290,6 +294,7 @@ public class SeekBarView extends FrameLayout {
                             }
                         }
                         this.thumbDX = (int) (motionEvent.getX() - this.thumbX);
+                        this.pressedDelayed = true;
                         this.pressed = true;
                         this.delegate.onSeekBarPressed(true);
                         if (Build.VERSION.SDK_INT >= 21 && (drawable3 = this.hoverDrawable) != null) {
@@ -329,6 +334,10 @@ public class SeekBarView extends FrameLayout {
             }
         }
         return false;
+    }
+
+    public void lambda$onTouch$0() {
+        this.pressedDelayed = false;
     }
 
     public void setLineWidth(int i) {
@@ -680,12 +689,14 @@ public class SeekBarView extends FrameLayout {
         float f = this.lastWidth;
         if (f > 0.0f && Math.abs(f - abs) > 0.01f) {
             StaticLayout[] staticLayoutArr = this.timestampLabel;
-            if (staticLayoutArr[0] != null) {
-                staticLayoutArr[0] = makeStaticLayout(staticLayoutArr[0].getText(), (int) abs);
+            StaticLayout staticLayout = staticLayoutArr[0];
+            if (staticLayout != null) {
+                staticLayoutArr[0] = makeStaticLayout(staticLayout.getText(), (int) abs);
             }
             StaticLayout[] staticLayoutArr2 = this.timestampLabel;
-            if (staticLayoutArr2[1] != null) {
-                staticLayoutArr2[1] = makeStaticLayout(staticLayoutArr2[1].getText(), (int) abs);
+            StaticLayout staticLayout2 = staticLayoutArr2[1];
+            if (staticLayout2 != null) {
+                staticLayoutArr2[1] = makeStaticLayout(staticLayout2.getText(), (int) abs);
             }
         }
         this.lastWidth = abs;
@@ -718,6 +729,7 @@ public class SeekBarView extends FrameLayout {
                     this.timestampChangeDirection = 1;
                 }
             }
+            this.lastTimestamp = this.currentTimestamp;
             this.currentTimestamp = size;
         }
         if (this.timestampChangeT < 1.0f) {
@@ -728,7 +740,7 @@ public class SeekBarView extends FrameLayout {
         if (this.timestampsAppearing < 1.0f) {
             this.timestampsAppearing = Math.min(this.timestampsAppearing + (((float) Math.min(17L, Math.abs(SystemClock.elapsedRealtime() - this.lastTimestampUpdate))) / 200.0f), 1.0f);
             invalidate();
-            SystemClock.elapsedRealtime();
+            this.lastTimestampsAppearingUpdate = SystemClock.elapsedRealtime();
         }
         float interpolation = CubicBezierInterpolator.DEFAULT.getInterpolation(this.timestampChangeT);
         canvas.save();
@@ -758,6 +770,12 @@ public class SeekBarView extends FrameLayout {
     }
 
     private StaticLayout makeStaticLayout(CharSequence charSequence, int i) {
+        StaticLayout.Builder obtain;
+        StaticLayout.Builder maxLines;
+        StaticLayout.Builder alignment;
+        StaticLayout.Builder ellipsize;
+        StaticLayout.Builder ellipsizedWidth;
+        StaticLayout build;
         if (this.timestampLabelPaint == null) {
             TextPaint textPaint = new TextPaint(1);
             this.timestampLabelPaint = textPaint;
@@ -766,7 +784,13 @@ public class SeekBarView extends FrameLayout {
         this.timestampLabelPaint.setColor(getThemedColor(Theme.key_player_time));
         String str = charSequence == null ? "" : charSequence;
         if (Build.VERSION.SDK_INT >= 23) {
-            return StaticLayout.Builder.obtain(str, 0, str.length(), this.timestampLabelPaint, i).setMaxLines(1).setAlignment(Layout.Alignment.ALIGN_CENTER).setEllipsize(TextUtils.TruncateAt.END).setEllipsizedWidth(Math.min(AndroidUtilities.dp(400.0f), i)).build();
+            obtain = StaticLayout.Builder.obtain(str, 0, str.length(), this.timestampLabelPaint, i);
+            maxLines = obtain.setMaxLines(1);
+            alignment = maxLines.setAlignment(Layout.Alignment.ALIGN_CENTER);
+            ellipsize = alignment.setEllipsize(TextUtils.TruncateAt.END);
+            ellipsizedWidth = ellipsize.setEllipsizedWidth(Math.min(AndroidUtilities.dp(400.0f), i));
+            build = ellipsizedWidth.build();
+            return build;
         }
         return new StaticLayout(str, 0, str.length(), this.timestampLabelPaint, i, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false, TextUtils.TruncateAt.END, Math.min(AndroidUtilities.dp(400.0f), i));
     }

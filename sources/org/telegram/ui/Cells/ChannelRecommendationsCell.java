@@ -45,6 +45,7 @@ public class ChannelRecommendationsCell {
     public long chatId;
     private final ButtonBounce closeBounce;
     private int currentAccount;
+    private TLRPC$Chat currentChat;
     private long dialogId;
     private Text headerText;
     private final AnimatedFloat loadingAlpha;
@@ -52,6 +53,7 @@ public class ChannelRecommendationsCell {
     private Runnable longPressRunnable;
     private ChannelBlock longPressedBlock;
     private float lx;
+    private float ly;
     private boolean maybeScrolling;
     private MessageObject msg;
     private float scrollX;
@@ -88,7 +90,7 @@ public class ChannelRecommendationsCell {
         this.currentAccount = messageObject.currentAccount;
         this.msg = messageObject;
         this.dialogId = messageObject.getDialogId();
-        MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId));
+        this.currentChat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId));
         this.chatId = -this.dialogId;
         this.serviceTextPaint.setTypeface(AndroidUtilities.bold());
         this.serviceTextPaint.setTextSize(AndroidUtilities.dp(14.0f));
@@ -342,13 +344,14 @@ public class ChannelRecommendationsCell {
         }
 
         public ChannelBlock(int i, final ChatMessageCell chatMessageCell, TLRPC$Chat[] tLRPC$ChatArr, int i2) {
+            TLRPC$Chat tLRPC$Chat;
             this.nameTextPaint = new TextPaint(1);
             this.subscribersStrokePaint = new Paint(1);
             this.subscribersBackgroundPaint = new Paint(1);
             this.subscribersBackgroundDimPaint = new Paint(1);
             this.cell = chatMessageCell;
             this.chat = tLRPC$ChatArr[0];
-            this.bounce = new ButtonBounce(this, chatMessageCell) {
+            this.bounce = new ButtonBounce(chatMessageCell) {
                 @Override
                 public void invalidate() {
                     chatMessageCell.invalidateOutbounds();
@@ -361,14 +364,14 @@ public class ChannelRecommendationsCell {
                 this.avatarImageReceiver[i3].setParentView(chatMessageCell);
                 this.avatarImageReceiver[i3].setRoundRadius(avatarSize());
                 this.avatarDrawable[i3] = new AvatarDrawable();
-                if (i3 < tLRPC$ChatArr.length && tLRPC$ChatArr[i3] != null) {
-                    this.avatarDrawable[i3].setInfo(i, tLRPC$ChatArr[i3]);
+                if (i3 < tLRPC$ChatArr.length && (tLRPC$Chat = tLRPC$ChatArr[i3]) != null) {
+                    this.avatarDrawable[i3].setInfo(i, tLRPC$Chat);
                     this.avatarImageReceiver[i3].setForUserOrChat(tLRPC$ChatArr[i3], this.avatarDrawable[i3]);
                 } else {
                     final Paint paint = new Paint(1);
                     final int blendOver = Theme.blendOver(chatMessageCell.getThemedColor(Theme.key_chat_inBubble), Theme.multAlpha(chatMessageCell.getThemedColor(Theme.key_windowBackgroundWhiteGrayText), 0.5f));
                     paint.setColor(blendOver);
-                    this.avatarImageReceiver[i3].setImageBitmap(new Drawable(this) {
+                    this.avatarImageReceiver[i3].setImageBitmap(new Drawable() {
                         @Override
                         public int getOpacity() {
                             return -2;
@@ -400,8 +403,8 @@ public class ChannelRecommendationsCell {
             this.subscribersStrokePaint.setStyle(Paint.Style.STROKE);
             this.isLock = true;
             this.subscribersDrawable = isPremium ? null : chatMessageCell.getContext().getResources().getDrawable(R.drawable.mini_switch_lock).mutate();
-            TLRPC$Chat tLRPC$Chat = this.chat;
-            if (tLRPC$Chat == null || tLRPC$Chat.participants_count <= 1) {
+            TLRPC$Chat tLRPC$Chat2 = this.chat;
+            if (tLRPC$Chat2 == null || tLRPC$Chat2.participants_count <= 1) {
                 this.subscribersText = null;
                 return;
             }
@@ -409,11 +412,23 @@ public class ChannelRecommendationsCell {
         }
 
         private void checkNameText(int i) {
+            StaticLayout.Builder obtain;
+            StaticLayout.Builder maxLines;
+            StaticLayout.Builder ellipsize;
+            StaticLayout.Builder breakStrategy;
+            StaticLayout.Builder alignment;
+            StaticLayout build;
             StaticLayout staticLayout = this.nameText;
             if (staticLayout == null || staticLayout.getWidth() != i) {
                 if (Build.VERSION.SDK_INT >= 23) {
                     CharSequence charSequence = this.name;
-                    this.nameText = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), this.nameTextPaint, i).setMaxLines(2).setEllipsize(TextUtils.TruncateAt.END).setBreakStrategy(0).setAlignment(Layout.Alignment.ALIGN_CENTER).build();
+                    obtain = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), this.nameTextPaint, i);
+                    maxLines = obtain.setMaxLines(2);
+                    ellipsize = maxLines.setEllipsize(TextUtils.TruncateAt.END);
+                    breakStrategy = ellipsize.setBreakStrategy(0);
+                    alignment = breakStrategy.setAlignment(Layout.Alignment.ALIGN_CENTER);
+                    build = alignment.build();
+                    this.nameText = build;
                     return;
                 }
                 this.nameText = StaticLayoutEx.createStaticLayout(this.name, this.nameTextPaint, i, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false, TextUtils.TruncateAt.END, i - AndroidUtilities.dp(16.0f), 2, false);
@@ -429,22 +444,24 @@ public class ChannelRecommendationsCell {
             this.subscribersBackgroundDimPaint = new Paint(1);
             this.cell = chatMessageCell;
             this.chat = tLRPC$Chat;
-            this.bounce = new ButtonBounce(this, chatMessageCell) {
+            this.bounce = new ButtonBounce(chatMessageCell) {
                 @Override
                 public void invalidate() {
                     chatMessageCell.invalidateOutbounds();
                 }
             };
             this.avatarImageReceiver = r2;
-            ImageReceiver[] imageReceiverArr = {new ImageReceiver(chatMessageCell)};
-            imageReceiverArr[0].setParentView(chatMessageCell);
+            ImageReceiver imageReceiver = new ImageReceiver(chatMessageCell);
+            ImageReceiver[] imageReceiverArr = {imageReceiver};
+            imageReceiver.setParentView(chatMessageCell);
             imageReceiverArr[0].setRoundRadius(avatarSize());
             if (chatMessageCell.isCellAttachedToWindow()) {
                 attach();
             }
             this.avatarDrawable = r3;
-            AvatarDrawable[] avatarDrawableArr = {new AvatarDrawable()};
-            avatarDrawableArr[0].setInfo(i, tLRPC$Chat);
+            AvatarDrawable avatarDrawable = new AvatarDrawable();
+            AvatarDrawable[] avatarDrawableArr = {avatarDrawable};
+            avatarDrawable.setInfo(i, tLRPC$Chat);
             imageReceiverArr[0].setForUserOrChat(tLRPC$Chat, avatarDrawableArr[0]);
             textPaint.setTextSize(AndroidUtilities.dp(11.0f));
             String str = tLRPC$Chat != null ? tLRPC$Chat.title : "";
@@ -499,16 +516,18 @@ public class ChannelRecommendationsCell {
 
         public void draw(Canvas canvas, int i, float f) {
             float[] fArr;
+            float f2;
             float[] fArr2;
+            float f3;
             canvas.save();
             float scale = this.bounce.getScale(0.075f);
-            float f2 = i;
-            float f3 = f2 / 2.0f;
-            canvas.scale(scale, scale, f3, height() / 2.0f);
+            float f4 = i;
+            float f5 = f4 / 2.0f;
+            canvas.scale(scale, scale, f5, height() / 2.0f);
             this.subscribersStrokePaint.setStrokeWidth(AndroidUtilities.dp(2.66f));
             this.subscribersStrokePaint.setColor(this.cell.getThemedColor(Theme.key_chat_inBubble));
             for (int length = this.avatarImageReceiver.length - 1; length >= 0; length--) {
-                float dp = (f3 - ((AndroidUtilities.dp(7.0f) * (this.avatarImageReceiver.length - 1)) / 2.0f)) + (AndroidUtilities.dp(7.0f) * length);
+                float dp = (f5 - ((AndroidUtilities.dp(7.0f) * (this.avatarImageReceiver.length - 1)) / 2.0f)) + (AndroidUtilities.dp(7.0f) * length);
                 float dp2 = AndroidUtilities.dp(10.0f) + (avatarSize() / 2.0f);
                 if (this.avatarImageReceiver.length > 1) {
                     canvas.drawCircle(dp, dp2, avatarSize() / 2.0f, this.subscribersStrokePaint);
@@ -522,7 +541,7 @@ public class ChannelRecommendationsCell {
                 text.ellipsize(i - AndroidUtilities.dp(32.0f));
                 float dp3 = AndroidUtilities.dp(this.subscribersDrawable != null ? 17.0f : 8.0f) + this.subscribersText.getWidth();
                 float dp4 = AndroidUtilities.dp(10.0f) + avatarSize() + AndroidUtilities.dp(1.0f);
-                AndroidUtilities.rectTmp.set((f2 - dp3) / 2.0f, dp4 - AndroidUtilities.dp(14.33f), (f2 + dp3) / 2.0f, dp4);
+                AndroidUtilities.rectTmp.set((f4 - dp3) / 2.0f, dp4 - AndroidUtilities.dp(14.33f), (f4 + dp3) / 2.0f, dp4);
                 boolean z = this.subscribersColorSet;
                 if (!z && this.isLock) {
                     this.subscribersBackgroundPaint.setColor(Theme.blendOver(this.cell.getThemedColor(Theme.key_chat_inBubble), Theme.multAlpha(this.cell.getThemedColor(Theme.key_windowBackgroundWhiteGrayText), 0.85f)));
@@ -532,14 +551,18 @@ public class ChannelRecommendationsCell {
                     try {
                         fArr2 = new float[3];
                         ColorUtils.colorToHSL(bitmap.getPixel(bitmap.getWidth() / 2, bitmap.getHeight() - 2), fArr2);
+                        f3 = fArr2[1];
                     } catch (Exception e) {
                         FileLog.e(e);
                     }
-                    if (fArr2[1] > 0.05f && fArr2[1] < 0.95f && fArr2[2] > 0.02f && fArr2[2] < 0.98f) {
-                        fArr2[1] = 0.25f;
-                        fArr2[2] = Theme.isCurrentThemeDark() ? 0.35f : 0.65f;
-                        this.subscribersBackgroundPaint.setColor(ColorUtils.HSLToColor(fArr2));
-                        this.subscribersColorSet = true;
+                    if (f3 > 0.05f && f3 < 0.95f) {
+                        float f6 = fArr2[2];
+                        if (f6 > 0.02f && f6 < 0.98f) {
+                            fArr2[1] = 0.25f;
+                            fArr2[2] = Theme.isCurrentThemeDark() ? 0.35f : 0.65f;
+                            this.subscribersBackgroundPaint.setColor(ColorUtils.HSLToColor(fArr2));
+                            this.subscribersColorSet = true;
+                        }
                     }
                     fArr2[1] = 0.0f;
                     fArr2[2] = Theme.isCurrentThemeDark() ? 0.38f : 0.7f;
@@ -549,11 +572,12 @@ public class ChannelRecommendationsCell {
                     try {
                         fArr = new float[3];
                         ColorUtils.colorToHSL(ColorUtils.blendARGB(this.avatarDrawable[0].getColor(), this.avatarDrawable[0].getColor2(), 0.5f), fArr);
+                        f2 = fArr[1];
                     } catch (Exception e2) {
                         FileLog.e(e2);
                     }
-                    if (fArr[1] > 0.05f && fArr[1] < 0.95f) {
-                        fArr[1] = Utilities.clamp(fArr[1] - 0.06f, 0.4f, 0.0f);
+                    if (f2 > 0.05f && f2 < 0.95f) {
+                        fArr[1] = Utilities.clamp(f2 - 0.06f, 0.4f, 0.0f);
                         fArr[2] = Utilities.clamp(fArr[2] - 0.08f, 0.5f, 0.2f);
                         this.subscribersBackgroundPaint.setColor(ColorUtils.HSLToColor(fArr));
                         this.subscribersColorSetFromThumb = true;
@@ -566,7 +590,7 @@ public class ChannelRecommendationsCell {
                     this.subscribersBackgroundPaintMatrix.reset();
                     this.subscribersBackgroundPaintMatrix.postScale(avatarSize() / this.subscribersBackgroundPaintBitmapWidth, avatarSize() / this.subscribersBackgroundPaintBitmapHeight);
                     RectF rectF = AndroidUtilities.rectTmp;
-                    this.subscribersBackgroundPaintMatrix.postTranslate(f3 - (avatarSize() / 2.0f), rectF.bottom - avatarSize());
+                    this.subscribersBackgroundPaintMatrix.postTranslate(f5 - (avatarSize() / 2.0f), rectF.bottom - avatarSize());
                     this.subscribersBackgroundPaintShader.setLocalMatrix(this.subscribersBackgroundPaintMatrix);
                     canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.subscribersBackgroundPaint);
                     canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.subscribersBackgroundDimPaint);

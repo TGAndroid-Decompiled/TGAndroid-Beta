@@ -46,7 +46,7 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.CollapseTextCell;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda333;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda201;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
 import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorBtnCell;
 import org.telegram.ui.Components.RecyclerListView;
@@ -187,8 +187,9 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
             boolean[] zArr = this.filter;
             if (zArr == null || zArr[i]) {
                 boolean[] zArr2 = this.checks;
-                zArr2[i] = !zArr2[i];
-                if (zArr2[i]) {
+                boolean z = !zArr2[i];
+                zArr2[i] = z;
+                if (z) {
                     this.selectedCount++;
                 } else {
                     this.selectedCount--;
@@ -420,7 +421,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
                 public Function compose(Function function) {
                     return Function.CC.$default$compose(this, function);
                 }
-            }).collect(Collectors.toCollection(ChatActivity$$ExternalSyntheticLambda333.INSTANCE));
+            }).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda201()));
             Action action = new Action(2, arrayList2);
             this.banOrRestrict = action;
             action.setFilter(this.banFilter);
@@ -629,8 +630,9 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
                 }
             }).count());
         }
-        iArr[0] = iArr[0] - 1;
-        if (iArr[0] == 0) {
+        int i2 = iArr[0] - 1;
+        iArr[0] = i2;
+        if (i2 == 0) {
             this.participantMessageCountsLoading = false;
             this.participantMessageCountsLoaded = true;
             updateTitleAnimated();
@@ -964,7 +966,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
                 lambda$performDelete$10 = DeleteMessagesBottomSheet.this.lambda$performDelete$10((MessageObject) obj);
                 return lambda$performDelete$10;
             }
-        }).map(DeleteMessagesBottomSheet$$ExternalSyntheticLambda4.INSTANCE).collect(Collectors.toCollection(ChatActivity$$ExternalSyntheticLambda333.INSTANCE));
+        }).map(new DeleteMessagesBottomSheet$$ExternalSyntheticLambda8()).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda201()));
         ArrayList<Integer> arrayList2 = (ArrayList) Collection$EL.stream(this.messages).filter(new Predicate() {
             @Override
             public Predicate and(Predicate predicate) {
@@ -987,7 +989,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
                 lambda$performDelete$11 = DeleteMessagesBottomSheet.this.lambda$performDelete$11((MessageObject) obj);
                 return lambda$performDelete$11;
             }
-        }).map(DeleteMessagesBottomSheet$$ExternalSyntheticLambda4.INSTANCE).collect(Collectors.toCollection(ChatActivity$$ExternalSyntheticLambda333.INSTANCE));
+        }).map(new DeleteMessagesBottomSheet$$ExternalSyntheticLambda8()).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda201()));
         if (!arrayList.isEmpty()) {
             MessagesController.getInstance(this.currentAccount).deleteMessages(arrayList, null, null, -this.inChat.id, this.topicId, false, this.mode);
         }
@@ -1098,7 +1100,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
                 lambda$performDelete$14 = DeleteMessagesBottomSheet.lambda$performDelete$14(TLObject.this, (MessageObject) obj);
                 return lambda$performDelete$14;
             }
-        }).map(DeleteMessagesBottomSheet$$ExternalSyntheticLambda4.INSTANCE).collect(Collectors.toCollection(ChatActivity$$ExternalSyntheticLambda333.INSTANCE));
+        }).map(new DeleteMessagesBottomSheet$$ExternalSyntheticLambda8()).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda201()));
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_channels_reportSpam, null);
     }
 

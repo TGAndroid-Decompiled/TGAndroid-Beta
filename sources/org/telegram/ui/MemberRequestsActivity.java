@@ -28,8 +28,8 @@ public class MemberRequestsActivity extends BaseFragment {
 
     @Override
     public View createView(Context context) {
-        int i;
         String str;
+        int i;
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
@@ -42,11 +42,11 @@ public class MemberRequestsActivity extends BaseFragment {
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         ActionBar actionBar = this.actionBar;
         if (this.delegate.isChannel) {
-            i = R.string.SubscribeRequests;
             str = "SubscribeRequests";
+            i = R.string.SubscribeRequests;
         } else {
-            i = R.string.MemberRequests;
             str = "MemberRequests";
+            i = R.string.MemberRequests;
         }
         actionBar.setTitle(LocaleController.getString(str, i));
         ActionBarMenuItem actionBarMenuItemSearchListener = this.actionBar.createMenu().addItem(0, R.drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {

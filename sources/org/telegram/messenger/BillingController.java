@@ -361,7 +361,7 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
 
     public void lambda$onPurchasesUpdated$4(AlertDialog alertDialog, Purchase purchase, AccountInstance accountInstance, BillingResult billingResult, TLRPC$TL_payments_assignPlayMarketTransaction tLRPC$TL_payments_assignPlayMarketTransaction, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         Objects.requireNonNull(alertDialog);
-        AndroidUtilities.runOnUIThread(new BillingController$$ExternalSyntheticLambda8(alertDialog));
+        AndroidUtilities.runOnUIThread(new BillingController$$ExternalSyntheticLambda6(alertDialog));
         this.requestingTokens.remove(purchase.getPurchaseToken());
         if (!(tLObject instanceof TLRPC$Updates)) {
             if (tLRPC$TL_error != null) {
@@ -421,7 +421,7 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
             this.isDisconnected = false;
             this.triesLeft = 3;
             try {
-                queryProductDetails(Collections.singletonList(PREMIUM_PRODUCT), new BillingController$$ExternalSyntheticLambda2(this));
+                queryProductDetails(Collections.singletonList(PREMIUM_PRODUCT), new BillingController$$ExternalSyntheticLambda8(this));
             } catch (Exception e) {
                 FileLog.e(e);
             }
@@ -480,7 +480,7 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
 
     public void lambda$onQueriedPremiumProductDetails$7() {
         try {
-            queryProductDetails(Collections.singletonList(PREMIUM_PRODUCT), new BillingController$$ExternalSyntheticLambda2(this));
+            queryProductDetails(Collections.singletonList(PREMIUM_PRODUCT), new BillingController$$ExternalSyntheticLambda8(this));
         } catch (Exception e) {
             FileLog.e(e);
         }

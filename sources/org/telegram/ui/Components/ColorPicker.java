@@ -493,8 +493,9 @@ public class ColorPicker extends FrameLayout {
         while (true) {
             RadioButton[] radioButtonArr = this.radioButton;
             if (i < radioButtonArr.length) {
-                boolean z = radioButtonArr[i] == radioButton;
-                radioButtonArr[i].setChecked(z, true);
+                RadioButton radioButton2 = radioButtonArr[i];
+                boolean z = radioButton2 == radioButton;
+                radioButton2.setChecked(z, true);
                 if (z) {
                     this.prevSelectedColor = this.selectedColor;
                     this.selectedColor = i;
@@ -537,10 +538,11 @@ public class ColorPicker extends FrameLayout {
             if (this.radioButton[2].getColor() == 0) {
                 float[] fArr = new float[3];
                 Color.colorToHSV(this.radioButton[0].getColor(), fArr);
-                if (fArr[0] > 180.0f) {
-                    fArr[0] = fArr[0] - 60.0f;
+                float f = fArr[0];
+                if (f > 180.0f) {
+                    fArr[0] = f - 60.0f;
                 } else {
-                    fArr[0] = fArr[0] + 60.0f;
+                    fArr[0] = f + 60.0f;
                 }
                 this.radioButton[2].setColor(Color.HSVToColor(255, fArr));
             }
@@ -1063,15 +1065,17 @@ public class ColorPicker extends FrameLayout {
     public static int generateGradientColors(int i) {
         float[] fArr = new float[3];
         Color.colorToHSV(i, fArr);
-        if (fArr[1] > 0.5f) {
-            fArr[1] = fArr[1] - 0.15f;
+        float f = fArr[1];
+        if (f > 0.5f) {
+            fArr[1] = f - 0.15f;
         } else {
-            fArr[1] = fArr[1] + 0.15f;
+            fArr[1] = f + 0.15f;
         }
-        if (fArr[0] > 180.0f) {
-            fArr[0] = fArr[0] - 20.0f;
+        float f2 = fArr[0];
+        if (f2 > 180.0f) {
+            fArr[0] = f2 - 20.0f;
         } else {
-            fArr[0] = fArr[0] + 20.0f;
+            fArr[0] = f2 + 20.0f;
         }
         return Color.HSVToColor(255, fArr);
     }

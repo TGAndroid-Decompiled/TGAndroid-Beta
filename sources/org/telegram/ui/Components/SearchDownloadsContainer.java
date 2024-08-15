@@ -96,7 +96,7 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         };
         new ItemTouchHelper(new TouchHelperCallback()).attachToRecyclerView(this.recyclerListView);
         addView(this.recyclerListView);
-        this.recyclerListView.setLayoutManager(new LinearLayoutManager(this, baseFragment.getParentActivity()) {
+        this.recyclerListView.setLayoutManager(new LinearLayoutManager(baseFragment.getParentActivity()) {
             @Override
             public boolean supportsPredictiveItemAnimations() {
                 return true;
@@ -537,9 +537,9 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
             if (i == 0) {
                 view = new GraySectionCell(viewGroup.getContext());
             } else if (i == 1) {
-                view = new Cell(SearchDownloadsContainer.this, viewGroup.getContext());
+                view = new Cell(viewGroup.getContext());
             } else {
-                view = new SharedAudioCell(this, viewGroup.getContext()) {
+                view = new SharedAudioCell(viewGroup.getContext()) {
                     @Override
                     public boolean needPlayMessage(MessageObject messageObject) {
                         return MediaController.getInstance().playMessage(messageObject);
@@ -628,7 +628,7 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
     public class Cell extends FrameLayout {
         SharedDocumentCell sharedDocumentCell;
 
-        public Cell(SearchDownloadsContainer searchDownloadsContainer, Context context) {
+        public Cell(Context context) {
             super(context);
             SharedDocumentCell sharedDocumentCell = new SharedDocumentCell(context, 2);
             this.sharedDocumentCell = sharedDocumentCell;

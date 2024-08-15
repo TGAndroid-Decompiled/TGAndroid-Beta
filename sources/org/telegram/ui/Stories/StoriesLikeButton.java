@@ -18,6 +18,7 @@ public class StoriesLikeButton extends View {
     private boolean allowDrawReaction;
     ImageReceiver animateReactionImageReceiver;
     private boolean attachedToWindow;
+    ReactionsLayoutInBubble.VisibleReaction currentReaction;
     private boolean drawAnimateImageReciever;
     AnimatedEmojiDrawable emojiDrawable;
     private boolean isLike;
@@ -82,6 +83,7 @@ public class StoriesLikeButton extends View {
         } else {
             this.liked = false;
         }
+        this.currentReaction = visibleReaction;
         AnimatedEmojiDrawable animatedEmojiDrawable = this.emojiDrawable;
         if (animatedEmojiDrawable != null) {
             animatedEmojiDrawable.removeView(this);

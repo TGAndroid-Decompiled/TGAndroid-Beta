@@ -244,7 +244,7 @@ public class CustomHtml {
                 }
             } else if (charAt2 < 56320 && (i3 = i + 1) < i2 && (charAt = charSequence.charAt(i3)) >= 56320 && charAt <= 57343) {
                 sb.append("&#");
-                sb.append(65536 | ((charAt2 - 55296) << 10) | (charAt - 56320));
+                sb.append(((charAt2 - 55296) << 10) | 65536 | (charAt - 56320));
                 sb.append(";");
                 i = i3;
             }

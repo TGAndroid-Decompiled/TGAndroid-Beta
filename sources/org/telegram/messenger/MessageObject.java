@@ -993,16 +993,17 @@ public class MessageObject {
         }
 
         public float collapsed(ChatMessageCell.TransitionParams transitionParams) {
-            boolean z = true;
+            boolean collapsed;
             if (transitionParams.animateExpandedQuotes) {
                 HashSet<Integer> hashSet = transitionParams.animateExpandedQuotesFrom;
+                collapsed = true;
                 if (hashSet != null && hashSet.contains(Integer.valueOf(this.index))) {
-                    z = false;
+                    collapsed = false;
                 }
             } else {
-                z = collapsed();
+                collapsed = collapsed();
             }
-            return AndroidUtilities.lerp(z ? 1.0f : 0.0f, collapsed() ? 1.0f : 0.0f, transitionParams.animateChangeProgress);
+            return AndroidUtilities.lerp(collapsed ? 1.0f : 0.0f, collapsed() ? 1.0f : 0.0f, transitionParams.animateChangeProgress);
         }
 
         public boolean collapsed() {
@@ -2176,21 +2177,20 @@ public class MessageObject {
         String publicUsername;
         long j;
         String str2;
+        String str3;
         long j2;
-        String formatName;
         if (tLObject == null) {
-            str2 = null;
+            str2 = "";
+            str3 = null;
             j2 = 0;
-            str = "";
         } else {
             if (tLObject instanceof TLRPC$User) {
                 TLRPC$User tLRPC$User = (TLRPC$User) tLObject;
                 if (tLRPC$User.deleted) {
-                    formatName = LocaleController.getString("HiddenName", R.string.HiddenName);
+                    str = LocaleController.getString("HiddenName", R.string.HiddenName);
                 } else {
-                    formatName = ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name);
+                    str = ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name);
                 }
-                str = formatName;
                 publicUsername = UserObject.getPublicUsername(tLRPC$User);
                 j = tLRPC$User.id;
             } else {
@@ -2199,27 +2199,28 @@ public class MessageObject {
                 publicUsername = ChatObject.getPublicUsername(tLRPC$Chat);
                 j = -tLRPC$Chat.id;
             }
-            str2 = publicUsername;
+            str2 = str;
+            str3 = publicUsername;
             j2 = j;
         }
         if (i >= 0) {
             TLRPC$TL_messageEntityMentionName tLRPC$TL_messageEntityMentionName = new TLRPC$TL_messageEntityMentionName();
             tLRPC$TL_messageEntityMentionName.user_id = j2;
             tLRPC$TL_messageEntityMentionName.offset = i;
-            tLRPC$TL_messageEntityMentionName.length = str.length();
+            tLRPC$TL_messageEntityMentionName.length = str2.length();
             arrayList.add(tLRPC$TL_messageEntityMentionName);
         }
-        if (TextUtils.isEmpty(str2)) {
-            return str;
+        if (TextUtils.isEmpty(str3)) {
+            return str2;
         }
         if (i >= 0) {
             TLRPC$TL_messageEntityMentionName tLRPC$TL_messageEntityMentionName2 = new TLRPC$TL_messageEntityMentionName();
             tLRPC$TL_messageEntityMentionName2.user_id = j2;
-            tLRPC$TL_messageEntityMentionName2.offset = i + str.length() + 2;
-            tLRPC$TL_messageEntityMentionName2.length = str2.length() + 1;
+            tLRPC$TL_messageEntityMentionName2.offset = i + str2.length() + 2;
+            tLRPC$TL_messageEntityMentionName2.length = str3.length() + 1;
             arrayList.add(tLRPC$TL_messageEntityMentionName2);
         }
-        return String.format("%1$s (@%2$s)", str, str2);
+        return String.format("%1$s (@%2$s)", str2, str3);
     }
 
     public boolean updateTranslation() {
@@ -2305,11 +2306,8 @@ public class MessageObject {
         if (tLRPC$User == null && isFromUser()) {
             tLRPC$User = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.messageOwner.from_id.user_id));
         }
-        TLRPC$TL_game tLRPC$TL_game = null;
         MessageObject messageObject = this.replyMessageObject;
-        if (messageObject != null && getMedia(messageObject) != null && getMedia(this.replyMessageObject).game != null) {
-            tLRPC$TL_game = getMedia(this.replyMessageObject).game;
-        }
+        TLRPC$TL_game tLRPC$TL_game = (messageObject == null || getMedia(messageObject) == null || getMedia(this.replyMessageObject).game == null) ? null : getMedia(this.replyMessageObject).game;
         if (tLRPC$TL_game == null) {
             if (tLRPC$User == null || tLRPC$User.id != UserConfig.getInstance(this.currentAccount).getClientUserId()) {
                 this.messageText = replaceWithLink(LocaleController.formatString("ActionUserScored", R.string.ActionUserScored, LocaleController.formatPluralString("Points", this.messageOwner.action.score, new Object[0])), "un1", tLRPC$User);
@@ -3683,14 +3681,14 @@ public class MessageObject {
     }
 
     public CharSequence replaceWithLink(CharSequence charSequence, String str, ArrayList<Long> arrayList, AbstractMap<Long, TLRPC$User> abstractMap, LongSparseArray<TLRPC$User> longSparseArray) {
+        TLRPC$User tLRPC$User;
         if (TextUtils.indexOf(charSequence, str) >= 0) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("");
             for (int i = 0; i < arrayList.size(); i++) {
-                TLRPC$User tLRPC$User = null;
                 if (abstractMap != null) {
                     tLRPC$User = abstractMap.get(arrayList.get(i));
-                } else if (longSparseArray != null) {
-                    tLRPC$User = longSparseArray.get(arrayList.get(i).longValue());
+                } else {
+                    tLRPC$User = longSparseArray != null ? longSparseArray.get(arrayList.get(i).longValue()) : null;
                 }
                 if (tLRPC$User == null) {
                     tLRPC$User = MessagesController.getInstance(this.currentAccount).getUser(arrayList.get(i));
@@ -3897,13 +3895,21 @@ public class MessageObject {
 
     public float measureVoiceTranscriptionHeight() {
         StaticLayout staticLayout;
+        StaticLayout.Builder obtain;
+        StaticLayout.Builder breakStrategy;
+        StaticLayout.Builder hyphenationFrequency;
+        StaticLayout.Builder alignment;
         CharSequence voiceTranscription = getVoiceTranscription();
         if (voiceTranscription == null) {
             return 0.0f;
         }
         int dp = AndroidUtilities.displaySize.x - AndroidUtilities.dp(needDrawAvatar() ? 147.0f : 95.0f);
         if (Build.VERSION.SDK_INT >= 24) {
-            staticLayout = StaticLayout.Builder.obtain(voiceTranscription, 0, voiceTranscription.length(), Theme.chat_msgTextPaint, dp).setBreakStrategy(1).setHyphenationFrequency(0).setAlignment(Layout.Alignment.ALIGN_NORMAL).build();
+            obtain = StaticLayout.Builder.obtain(voiceTranscription, 0, voiceTranscription.length(), Theme.chat_msgTextPaint, dp);
+            breakStrategy = obtain.setBreakStrategy(1);
+            hyphenationFrequency = breakStrategy.setHyphenationFrequency(0);
+            alignment = hyphenationFrequency.setAlignment(Layout.Alignment.ALIGN_NORMAL);
+            staticLayout = alignment.build();
         } else {
             staticLayout = new StaticLayout(voiceTranscription, Theme.chat_msgTextPaint, dp, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         }
@@ -4236,54 +4242,61 @@ public class MessageObject {
     }
 
     public int getMaxMessageTextWidth() {
+        int dp;
+        Uri parse;
+        String lastPathSegment;
         if (AndroidUtilities.isTablet() && this.eventId != 0) {
             this.generatedWithMinSize = AndroidUtilities.dp(530.0f);
         } else {
             this.generatedWithMinSize = AndroidUtilities.isTablet() ? AndroidUtilities.getMinTabletSide() : getParentWidth();
         }
         this.generatedWithDensity = AndroidUtilities.density;
-        int i = 0;
         if (this.hasCode && !this.isSaved) {
-            i = this.generatedWithMinSize - AndroidUtilities.dp(60.0f);
+            dp = this.generatedWithMinSize - AndroidUtilities.dp(60.0f);
             if (needDrawAvatarInternal() && !isOutOwner() && !this.messageOwner.isThreadMessage) {
-                i -= AndroidUtilities.dp(52.0f);
+                dp -= AndroidUtilities.dp(52.0f);
             }
         } else if ((getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaWebPage) && getMedia(this.messageOwner).webpage != null && "telegram_background".equals(getMedia(this.messageOwner).webpage.type)) {
             try {
-                Uri parse = Uri.parse(getMedia(this.messageOwner).webpage.url);
-                String lastPathSegment = parse.getLastPathSegment();
-                if (parse.getQueryParameter("bg_color") != null) {
-                    i = AndroidUtilities.dp(220.0f);
-                } else if (lastPathSegment.length() == 6 || (lastPathSegment.length() == 13 && lastPathSegment.charAt(6) == '-')) {
-                    i = AndroidUtilities.dp(200.0f);
-                }
+                parse = Uri.parse(getMedia(this.messageOwner).webpage.url);
+                lastPathSegment = parse.getLastPathSegment();
             } catch (Exception unused) {
             }
-        } else if (isAndroidTheme()) {
-            i = AndroidUtilities.dp(200.0f);
+            if (parse.getQueryParameter("bg_color") != null) {
+                dp = AndroidUtilities.dp(220.0f);
+            } else {
+                if (lastPathSegment.length() == 6 || (lastPathSegment.length() == 13 && lastPathSegment.charAt(6) == '-')) {
+                    dp = AndroidUtilities.dp(200.0f);
+                }
+                dp = 0;
+            }
+        } else {
+            if (isAndroidTheme()) {
+                dp = AndroidUtilities.dp(200.0f);
+            }
+            dp = 0;
         }
-        if (i == 0) {
-            int dp = this.generatedWithMinSize - AndroidUtilities.dp(80.0f);
+        if (dp == 0) {
+            dp = this.generatedWithMinSize - AndroidUtilities.dp(80.0f);
             if (needDrawAvatarInternal() && !isOutOwner() && !this.messageOwner.isThreadMessage) {
                 dp -= AndroidUtilities.dp(52.0f);
             }
             if (needDrawShareButton() && (this.isSaved || !isOutOwner())) {
                 dp -= AndroidUtilities.dp((this.isSaved && isOutOwner()) ? 40.0f : 14.0f);
             }
-            i = dp;
             if (getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaGame) {
-                i -= AndroidUtilities.dp(10.0f);
+                dp -= AndroidUtilities.dp(10.0f);
             }
         }
-        int i2 = this.emojiOnlyCount;
-        if (i2 >= 1) {
-            int i3 = this.totalAnimatedEmojiCount;
-            if (i3 <= 100) {
-                return i2 - i3 < (SharedConfig.getDevicePerformanceClass() < 2 ? 50 : 100) ? (hasValidReplyMessageObject() || isForwarded()) ? Math.min(i, (int) (this.generatedWithMinSize * 0.65f)) : i : i;
+        int i = this.emojiOnlyCount;
+        if (i >= 1) {
+            int i2 = this.totalAnimatedEmojiCount;
+            if (i2 <= 100) {
+                return i - i2 < (SharedConfig.getDevicePerformanceClass() < 2 ? 50 : 100) ? (hasValidReplyMessageObject() || isForwarded()) ? Math.min(dp, (int) (this.generatedWithMinSize * 0.65f)) : dp : dp;
             }
-            return i;
+            return dp;
         }
-        return i;
+        return dp;
     }
 
     public void applyTimestampsHighlightForReplyMsg() {
@@ -4305,17 +4318,33 @@ public class MessageObject {
     }
 
     public static StaticLayout makeStaticLayout(CharSequence charSequence, TextPaint textPaint, int i, float f, float f2, boolean z) {
+        StaticLayout.Builder obtain;
+        StaticLayout.Builder lineSpacing;
+        StaticLayout.Builder breakStrategy;
+        StaticLayout.Builder hyphenationFrequency;
+        StaticLayout.Builder alignment;
+        StaticLayout build;
+        StaticLayout.Builder obtain2;
+        StaticLayout.Builder lineSpacing2;
+        StaticLayout.Builder breakStrategy2;
+        StaticLayout.Builder hyphenationFrequency2;
+        StaticLayout.Builder alignment2;
+        StaticLayout build2;
         int i2 = Build.VERSION.SDK_INT;
         if (i2 >= 24) {
+            obtain = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, i);
+            lineSpacing = obtain.setLineSpacing(f2, f);
             boolean z2 = true;
-            StaticLayout.Builder alignment = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, i).setLineSpacing(f2, f).setBreakStrategy(1).setHyphenationFrequency(0).setAlignment(Layout.Alignment.ALIGN_NORMAL);
+            breakStrategy = lineSpacing.setBreakStrategy(1);
+            hyphenationFrequency = breakStrategy.setHyphenationFrequency(0);
+            alignment = hyphenationFrequency.setAlignment(Layout.Alignment.ALIGN_NORMAL);
             if (z) {
                 alignment.setIncludePad(false);
                 if (i2 >= 28) {
                     alignment.setUseLineSpacingFromFallbacks(false);
                 }
             }
-            StaticLayout build = alignment.build();
+            build = alignment.build();
             int i3 = 0;
             while (true) {
                 if (i3 >= build.getLineCount()) {
@@ -4328,14 +4357,19 @@ public class MessageObject {
                 }
             }
             if (z2) {
-                StaticLayout.Builder alignment2 = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, i).setLineSpacing(f2, f).setBreakStrategy(0).setHyphenationFrequency(0).setAlignment(Layout.Alignment.ALIGN_NORMAL);
+                obtain2 = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, i);
+                lineSpacing2 = obtain2.setLineSpacing(f2, f);
+                breakStrategy2 = lineSpacing2.setBreakStrategy(0);
+                hyphenationFrequency2 = breakStrategy2.setHyphenationFrequency(0);
+                alignment2 = hyphenationFrequency2.setAlignment(Layout.Alignment.ALIGN_NORMAL);
                 if (z) {
                     alignment2.setIncludePad(false);
                     if (Build.VERSION.SDK_INT >= 28) {
                         alignment2.setUseLineSpacingFromFallbacks(false);
                     }
                 }
-                return alignment2.build();
+                build2 = alignment2.build();
+                return build2;
             }
             return build;
         }
@@ -5313,9 +5347,7 @@ public class MessageObject {
             return isGifDocument(getMedia(tLRPC$Message).webpage.document);
         }
         if (getMedia(tLRPC$Message) != null) {
-            if (isGifDocument(getMedia(tLRPC$Message).document, tLRPC$Message.grouped_id != 0)) {
-                return true;
-            }
+            return isGifDocument(getMedia(tLRPC$Message).document, (tLRPC$Message.grouped_id > 0L ? 1 : (tLRPC$Message.grouped_id == 0L ? 0 : -1)) != 0);
         }
         return false;
     }
@@ -7390,6 +7422,7 @@ public class MessageObject {
     }
 
     public static void cutIntoRanges(CharSequence charSequence, ArrayList<TextRange> arrayList) {
+        String str;
         int i;
         if (charSequence == null) {
             return;
@@ -7403,8 +7436,9 @@ public class MessageObject {
         Spanned spanned = (Spanned) charSequence;
         QuoteSpan.QuoteStyleSpan[] quoteStyleSpanArr = (QuoteSpan.QuoteStyleSpan[]) spanned.getSpans(0, spanned.length(), QuoteSpan.QuoteStyleSpan.class);
         for (int i2 = 0; i2 < quoteStyleSpanArr.length; i2++) {
-            quoteStyleSpanArr[i2].span.adaptLineHeight = false;
-            int spanStart = spanned.getSpanStart(quoteStyleSpanArr[i2]);
+            QuoteSpan.QuoteStyleSpan quoteStyleSpan = quoteStyleSpanArr[i2];
+            quoteStyleSpan.span.adaptLineHeight = false;
+            int spanStart = spanned.getSpanStart(quoteStyleSpan);
             int spanEnd = spanned.getSpanEnd(quoteStyleSpanArr[i2]);
             treeSet.add(Integer.valueOf(spanStart));
             hashMap.put(Integer.valueOf(spanStart), Integer.valueOf((hashMap.containsKey(Integer.valueOf(spanStart)) ? ((Integer) hashMap.get(Integer.valueOf(spanStart))).intValue() : 0) | (quoteStyleSpanArr[i2].span.isCollapsing ? 16 : 1)));
@@ -7446,8 +7480,9 @@ public class MessageObject {
                     intValue3--;
                 }
                 int i9 = intValue3;
-                String str = null;
-                if ((intValue4 & 8) != 0 && i5 < spanArr.length) {
+                if ((intValue4 & 8) == 0 || i5 >= spanArr.length) {
+                    str = null;
+                } else {
                     str = spanArr[i5].lng;
                     i5++;
                 }

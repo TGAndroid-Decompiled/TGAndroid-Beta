@@ -89,8 +89,8 @@ import org.telegram.ui.PhotoAlbumPickerActivity;
 @TargetApi(18)
 public class CameraScanActivity extends BaseFragment {
     private float averageProcessTime;
-    private float backShadowAlpha;
     private final RectF bounds;
+    private final long boundsUpdateDuration;
     private CameraView cameraView;
     private int currentType;
     private CameraScanActivityDelegate delegate;
@@ -98,17 +98,14 @@ public class CameraScanActivity extends BaseFragment {
     private AnimatorSet flashAnimator;
     private ImageView flashButton;
     private final RectF fromBounds;
-    private final PointF[] fromPoints;
     private ImageView galleryButton;
     private Handler handler;
     private long lastBoundsUpdate;
     private boolean needGalleryButton;
     private float newRecognizedT;
     private RectF normalBounds;
-    private final PointF[] points;
     private long processTimesCount;
-    private SpringAnimation qrAppearing;
-    private float qrAppearingValue;
+    private boolean qrLoaded;
     private boolean qrLoading;
     private QRCodeReader qrReader;
     private int recognizeFailed;
@@ -120,17 +117,23 @@ public class CameraScanActivity extends BaseFragment {
     private float recognizedT;
     private String recognizedText;
     private Runnable requestShot;
-    protected boolean shownAsBottomSheet;
     private int sps;
     private TextView titleTextView;
-    private final PointF[] tmp2Points;
-    private final PointF[] tmpPoints;
     private float useRecognizedBounds;
     private SpringAnimation useRecognizedBoundsAnimator;
     private BarcodeDetector visionQrReader;
     private HandlerThread backgroundHandlerThread = new HandlerThread("ScanCamera");
     private Paint paint = new Paint();
     private Paint cornerPaint = new Paint(1);
+    private Path path = new Path();
+    private float backShadowAlpha = 0.5f;
+    protected boolean shownAsBottomSheet = false;
+    private SpringAnimation qrAppearing = null;
+    private float qrAppearingValue = 0.0f;
+    private final PointF[] fromPoints = new PointF[4];
+    private final PointF[] points = new PointF[4];
+    private final PointF[] tmpPoints = new PointF[4];
+    private final PointF[] tmp2Points = new PointF[4];
 
     public interface CameraScanActivityDelegate {
 
@@ -236,8 +239,8 @@ public class CameraScanActivity extends BaseFragment {
 
         @Override
         public void onBackPressed() {
-            INavigationLayout[] iNavigationLayoutArr = this.val$actionBarLayout;
-            if (iNavigationLayoutArr[0] == null || iNavigationLayoutArr[0].getFragmentStack().size() <= 1) {
+            INavigationLayout iNavigationLayout = this.val$actionBarLayout[0];
+            if (iNavigationLayout == null || iNavigationLayout.getFragmentStack().size() <= 1) {
                 super.onBackPressed();
             } else {
                 this.val$actionBarLayout[0].onBackPressed();
@@ -267,15 +270,6 @@ public class CameraScanActivity extends BaseFragment {
     }
 
     public CameraScanActivity(int i) {
-        new Path();
-        this.backShadowAlpha = 0.5f;
-        this.shownAsBottomSheet = false;
-        this.qrAppearing = null;
-        this.qrAppearingValue = 0.0f;
-        this.fromPoints = new PointF[4];
-        this.points = new PointF[4];
-        this.tmpPoints = new PointF[4];
-        this.tmp2Points = new PointF[4];
         for (int i2 = 0; i2 < 4; i2++) {
             this.fromPoints[i2] = new PointF(-1.0f, -1.0f);
             this.points[i2] = new PointF(-1.0f, -1.0f);
@@ -285,9 +279,11 @@ public class CameraScanActivity extends BaseFragment {
         this.fromBounds = new RectF();
         this.bounds = new RectF();
         this.lastBoundsUpdate = 0L;
+        this.boundsUpdateDuration = 75L;
         this.recognizeFailed = 0;
         this.recognizeIndex = 0;
         this.qrLoading = false;
+        this.qrLoaded = false;
         this.qrReader = null;
         this.visionQrReader = null;
         this.recognizedT = 0.0f;
@@ -571,10 +567,14 @@ public class CameraScanActivity extends BaseFragment {
         final Paint paint = new Paint(1);
         paint.setPathEffect(LinkPath.getRoundedEffect());
         paint.setColor(ColorUtils.setAlphaComponent(-1, 40));
-        TextView textView = new TextView(this, context) {
+        TextView textView = new TextView(context) {
             LinkSpanDrawable.LinkCollector links = new LinkSpanDrawable.LinkCollector(this);
             private LinkSpanDrawable<URLSpanNoUnderline> pressedLink;
             LinkPath textPath;
+
+            {
+                CameraScanActivity.this = this;
+            }
 
             @Override
             protected void onMeasure(int i3, int i4) {
@@ -628,8 +628,12 @@ public class CameraScanActivity extends BaseFragment {
                                 layout.getSelectionPath(spanStart, spanEnd, obtainNewPath);
                             } else if (motionEvent.getAction() == 1) {
                                 LinkSpanDrawable<URLSpanNoUnderline> linkSpanDrawable2 = this.pressedLink;
-                                if (linkSpanDrawable2 != null && linkSpanDrawable2.getSpan() == clickableSpanArr[0]) {
-                                    clickableSpanArr[0].onClick(this);
+                                if (linkSpanDrawable2 != null) {
+                                    URLSpanNoUnderline span = linkSpanDrawable2.getSpan();
+                                    ClickableSpan clickableSpan = clickableSpanArr[0];
+                                    if (span == clickableSpan) {
+                                        clickableSpan.onClick(this);
+                                    }
                                 }
                                 this.pressedLink = null;
                             }
@@ -754,19 +758,25 @@ public class CameraScanActivity extends BaseFragment {
     }
 
     public void lambda$createView$2(View view) {
+        int checkSelfPermission;
+        int checkSelfPermission2;
         if (getParentActivity() == null) {
             return;
         }
         Activity parentActivity = getParentActivity();
         int i = Build.VERSION.SDK_INT;
         if (i >= 33) {
-            if (parentActivity.checkSelfPermission("android.permission.READ_MEDIA_IMAGES") != 0) {
+            checkSelfPermission2 = parentActivity.checkSelfPermission("android.permission.READ_MEDIA_IMAGES");
+            if (checkSelfPermission2 != 0) {
                 parentActivity.requestPermissions(new String[]{"android.permission.READ_MEDIA_IMAGES", "android.permission.READ_MEDIA_VIDEO"}, 4);
                 return;
             }
-        } else if (i >= 23 && parentActivity.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") != 0) {
-            parentActivity.requestPermissions(new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 4);
-            return;
+        } else if (i >= 23) {
+            checkSelfPermission = parentActivity.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE");
+            if (checkSelfPermission != 0) {
+                parentActivity.requestPermissions(new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 4);
+                return;
+            }
         }
         PhotoAlbumPickerActivity photoAlbumPickerActivity = new PhotoAlbumPickerActivity(PhotoAlbumPickerActivity.SELECT_TYPE_QR, false, false, null);
         photoAlbumPickerActivity.setMaxSelectedPhotos(1, false);
@@ -1003,8 +1013,12 @@ public class CameraScanActivity extends BaseFragment {
                 setPointsFromBounds(rectF, this.points);
             } else {
                 while (i < 4) {
-                    this.fromPoints[i].set(pointFArr[i].x, pointFArr[i].y);
-                    this.points[i].set(pointFArr[i].x, pointFArr[i].y);
+                    PointF pointF = this.fromPoints[i];
+                    PointF pointF2 = pointFArr[i];
+                    pointF.set(pointF2.x, pointF2.y);
+                    PointF pointF3 = this.points[i];
+                    PointF pointF4 = pointFArr[i];
+                    pointF3.set(pointF4.x, pointF4.y);
                     i++;
                 }
             }
@@ -1015,15 +1029,15 @@ public class CameraScanActivity extends BaseFragment {
                 RectF rectF3 = this.fromBounds;
                 AndroidUtilities.lerp(rectF3, this.bounds, min, rectF3);
                 for (int i2 = 0; i2 < 4; i2++) {
-                    PointF[] pointFArr2 = this.fromPoints;
-                    pointFArr2[i2].set(AndroidUtilities.lerp(pointFArr2[i2].x, this.points[i2].x, min), AndroidUtilities.lerp(this.fromPoints[i2].y, this.points[i2].y, min));
+                    PointF pointF5 = this.fromPoints[i2];
+                    pointF5.set(AndroidUtilities.lerp(pointF5.x, this.points[i2].x, min), AndroidUtilities.lerp(this.fromPoints[i2].y, this.points[i2].y, min));
                 }
             } else {
                 rectF2.set(this.bounds);
                 for (int i3 = 0; i3 < 4; i3++) {
-                    PointF pointF = this.fromPoints[i3];
-                    PointF[] pointFArr3 = this.points;
-                    pointF.set(pointFArr3[i3].x, pointFArr3[i3].y);
+                    PointF pointF6 = this.fromPoints[i3];
+                    PointF pointF7 = this.points[i3];
+                    pointF6.set(pointF7.x, pointF7.y);
                 }
             }
             this.bounds.set(rectF);
@@ -1031,7 +1045,9 @@ public class CameraScanActivity extends BaseFragment {
                 setPointsFromBounds(this.bounds, this.points);
             } else {
                 while (i < 4) {
-                    this.points[i].set(pointFArr[i].x, pointFArr[i].y);
+                    PointF pointF8 = this.points[i];
+                    PointF pointF9 = pointFArr[i];
+                    pointF8.set(pointF9.x, pointF9.y);
                     i++;
                 }
             }
@@ -1200,7 +1216,7 @@ public class CameraScanActivity extends BaseFragment {
                             }
                         });
                         this.recognizedStart = SystemClock.elapsedRealtime();
-                        AndroidUtilities.runOnUIThread(new CameraScanActivity$$ExternalSyntheticLambda15(this));
+                        AndroidUtilities.runOnUIThread(new CameraScanActivity$$ExternalSyntheticLambda10(this));
                     }
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
@@ -1215,7 +1231,7 @@ public class CameraScanActivity extends BaseFragment {
                         this.recognized = false;
                         this.recognizeIndex = 0;
                         this.recognizedText = null;
-                        AndroidUtilities.runOnUIThread(new CameraScanActivity$$ExternalSyntheticLambda15(this));
+                        AndroidUtilities.runOnUIThread(new CameraScanActivity$$ExternalSyntheticLambda10(this));
                         AndroidUtilities.runOnUIThread(this.requestShot, 500L);
                         return;
                     }
@@ -1325,7 +1341,7 @@ public class CameraScanActivity extends BaseFragment {
         if (this.recognized) {
             return;
         }
-        AndroidUtilities.runOnUIThread(new CameraScanActivity$$ExternalSyntheticLambda15(this), 500L);
+        AndroidUtilities.runOnUIThread(new CameraScanActivity$$ExternalSyntheticLambda10(this), 500L);
     }
 
     public void lambda$processShot$17() {
@@ -1368,65 +1384,65 @@ public class CameraScanActivity extends BaseFragment {
         PointF[] cornerPoints;
         String text;
 
-        private QrResult(CameraScanActivity cameraScanActivity) {
+        private QrResult() {
+            CameraScanActivity.this = r1;
         }
 
         QrResult(CameraScanActivity cameraScanActivity, AnonymousClass1 anonymousClass1) {
-            this(cameraScanActivity);
+            this();
         }
     }
 
     private static PointF[] toPointF(Point[] pointArr, int i, int i2) {
         PointF[] pointFArr = new PointF[pointArr.length];
         for (int i3 = 0; i3 < pointArr.length; i3++) {
-            pointFArr[i3] = new PointF(pointArr[i3].x / i, pointArr[i3].y / i2);
+            Point point = pointArr[i3];
+            pointFArr[i3] = new PointF(point.x / i, point.y / i2);
         }
         return pointFArr;
     }
 
     public QrResult tryReadQr(byte[] bArr, Size size, int i, int i2, int i3, Bitmap bitmap) {
+        int i4;
         String str;
         PointF[] pointFArr;
-        int i4;
+        int i5;
         LuminanceSource planarYUVLuminanceSource;
         ResultPoint[] resultPoints;
         Frame build;
-        int i5;
-        String str2;
         try {
             RectF rectF = new RectF();
             BarcodeDetector barcodeDetector = this.visionQrReader;
-            int i6 = 1;
             float f = Float.MIN_VALUE;
             float f2 = Float.MAX_VALUE;
-            int i7 = 0;
+            int i6 = 0;
             if (barcodeDetector != null && barcodeDetector.isOperational()) {
                 if (bitmap != null) {
                     build = new Frame.Builder().setBitmap(bitmap).build();
-                    i6 = bitmap.getWidth();
-                    i4 = bitmap.getHeight();
+                    i4 = bitmap.getWidth();
+                    i5 = bitmap.getHeight();
                 } else {
                     build = new Frame.Builder().setImageData(ByteBuffer.wrap(bArr), size.getWidth(), size.getHeight(), 17).build();
-                    i6 = size.getWidth();
                     i4 = size.getWidth();
+                    i5 = size.getWidth();
                 }
                 SparseArray<Barcode> detect = this.visionQrReader.detect(build);
                 if (detect != null && detect.size() > 0) {
                     Barcode valueAt = detect.valueAt(0);
                     str = valueAt.rawValue;
-                    pointFArr = toPointF(valueAt.cornerPoints, i6, i4);
+                    pointFArr = toPointF(valueAt.cornerPoints, i4, i5);
                     Point[] pointArr = valueAt.cornerPoints;
                     if (pointArr != null && pointArr.length != 0) {
                         int length = pointArr.length;
                         float f3 = Float.MIN_VALUE;
                         float f4 = Float.MAX_VALUE;
-                        while (i7 < length) {
-                            Point point = pointArr[i7];
+                        while (i6 < length) {
+                            Point point = pointArr[i6];
                             f2 = Math.min(f2, point.x);
                             f = Math.max(f, point.x);
                             f4 = Math.min(f4, point.y);
                             f3 = Math.max(f3, point.y);
-                            i7++;
+                            i6++;
                         }
                         rectF.set(f2, f4, f, f3);
                     }
@@ -1440,74 +1456,65 @@ public class CameraScanActivity extends BaseFragment {
                     SparseArray<Barcode> detect2 = this.visionQrReader.detect(build2);
                     if (detect2 != null && detect2.size() > 0) {
                         Barcode valueAt2 = detect2.valueAt(0);
-                        str2 = valueAt2.rawValue;
+                        String str2 = valueAt2.rawValue;
                         pointFArr = toPointF(valueAt2.cornerPoints, width, height);
                         Point[] pointArr2 = valueAt2.cornerPoints;
                         if (pointArr2 != null && pointArr2.length != 0) {
                             int length2 = pointArr2.length;
                             float f5 = Float.MIN_VALUE;
                             float f6 = Float.MAX_VALUE;
-                            while (i7 < length2) {
-                                Point point2 = pointArr2[i7];
+                            while (i6 < length2) {
+                                Point point2 = pointArr2[i6];
                                 f2 = Math.min(f2, point2.x);
                                 f = Math.max(f, point2.x);
                                 f6 = Math.min(f6, point2.y);
                                 f5 = Math.max(f5, point2.y);
-                                i7++;
+                                i6++;
                             }
                             rectF.set(f2, f6, f, f5);
-                            i5 = height;
                             str = str2;
-                            i6 = width;
-                            i4 = i5;
+                            i4 = width;
+                            i5 = height;
                         }
                         rectF = null;
-                        i5 = height;
                         str = str2;
-                        i6 = width;
-                        i4 = i5;
+                        i4 = width;
+                        i5 = height;
                     } else {
                         Bitmap monochrome = monochrome(invert, 90);
                         invert.recycle();
                         Frame build3 = new Frame.Builder().setBitmap(monochrome).build();
-                        width = invert.getWidth();
-                        height = invert.getHeight();
+                        int width2 = invert.getWidth();
+                        int height2 = invert.getHeight();
                         SparseArray<Barcode> detect3 = this.visionQrReader.detect(build3);
                         if (detect3 == null || detect3.size() <= 0) {
-                            i5 = height;
+                            i4 = width2;
                             str = null;
                             pointFArr = null;
-                            i6 = width;
-                            i4 = i5;
                         } else {
                             Barcode valueAt3 = detect3.valueAt(0);
-                            str2 = valueAt3.rawValue;
-                            pointFArr = toPointF(valueAt3.cornerPoints, width, height);
+                            str = valueAt3.rawValue;
+                            pointFArr = toPointF(valueAt3.cornerPoints, width2, height2);
                             Point[] pointArr3 = valueAt3.cornerPoints;
                             if (pointArr3 != null && pointArr3.length != 0) {
                                 int length3 = pointArr3.length;
                                 float f7 = Float.MIN_VALUE;
                                 float f8 = Float.MAX_VALUE;
-                                while (i7 < length3) {
-                                    Point point3 = pointArr3[i7];
+                                while (i6 < length3) {
+                                    Point point3 = pointArr3[i6];
                                     f2 = Math.min(f2, point3.x);
                                     f = Math.max(f, point3.x);
                                     f8 = Math.min(f8, point3.y);
                                     f7 = Math.max(f7, point3.y);
-                                    i7++;
+                                    i6++;
                                 }
                                 rectF.set(f2, f8, f, f7);
-                                i5 = height;
-                                str = str2;
-                                i6 = width;
-                                i4 = i5;
+                                i4 = width2;
                             }
                             rectF = null;
-                            i5 = height;
-                            str = str2;
-                            i6 = width;
-                            i4 = i5;
+                            i4 = width2;
                         }
+                        i5 = height2;
                     }
                 } else {
                     str = null;
@@ -1518,12 +1525,12 @@ public class CameraScanActivity extends BaseFragment {
                     int[] iArr = new int[bitmap.getWidth() * bitmap.getHeight()];
                     bitmap.getPixels(iArr, 0, bitmap.getWidth(), 0, 0, bitmap.getWidth(), bitmap.getHeight());
                     planarYUVLuminanceSource = new RGBLuminanceSource(bitmap.getWidth(), bitmap.getHeight(), iArr);
-                    i6 = bitmap.getWidth();
-                    i4 = bitmap.getHeight();
+                    i4 = bitmap.getWidth();
+                    i5 = bitmap.getHeight();
                 } else {
                     planarYUVLuminanceSource = new PlanarYUVLuminanceSource(bArr, size.getWidth(), size.getHeight(), i, i2, i3, i3, false);
-                    i6 = size.getWidth();
-                    i4 = size.getHeight();
+                    i4 = size.getWidth();
+                    i5 = size.getHeight();
                 }
                 Result decode = this.qrReader.decode(new BinaryBitmap(new GlobalHistogramBinarizer(planarYUVLuminanceSource)));
                 if (decode == null) {
@@ -1543,8 +1550,8 @@ public class CameraScanActivity extends BaseFragment {
                     rectF.set(f2, f10, f, f9);
                     if (decode.getResultPoints().length == 4) {
                         pointFArr = new PointF[4];
-                        for (int i8 = 0; i8 < 4; i8++) {
-                            pointFArr[i8] = new PointF(decode.getResultPoints()[i8].getX() / i6, decode.getResultPoints()[i8].getY() / i4);
+                        for (int i7 = 0; i7 < 4; i7++) {
+                            pointFArr[i7] = new PointF(decode.getResultPoints()[i7].getX() / i4, decode.getResultPoints()[i7].getY() / i5);
                         }
                     } else {
                         pointFArr = null;
@@ -1553,9 +1560,10 @@ public class CameraScanActivity extends BaseFragment {
                 pointFArr = null;
                 rectF = null;
             } else {
+                i4 = 1;
                 str = null;
                 pointFArr = null;
-                i4 = 1;
+                i5 = 1;
             }
             if (TextUtils.isEmpty(str)) {
                 onNoQrFound();
@@ -1572,8 +1580,8 @@ public class CameraScanActivity extends BaseFragment {
                 float dp = AndroidUtilities.dp(25.0f);
                 float dp2 = AndroidUtilities.dp(15.0f);
                 rectF.set(rectF.left - dp, rectF.top - dp2, rectF.right + dp, rectF.bottom + dp2);
-                float f11 = i6;
-                float f12 = i4;
+                float f11 = i4;
+                float f12 = i5;
                 rectF.set(rectF.left / f11, rectF.top / f12, rectF.right / f11, rectF.bottom / f12);
             }
             qrResult.cornerPoints = pointFArr;

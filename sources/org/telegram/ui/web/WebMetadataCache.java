@@ -21,8 +21,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
@@ -93,6 +91,7 @@ public class WebMetadataCache {
 
         @Override
         public void serializeToStream(AbstractSerializedData abstractSerializedData) {
+            Bitmap.CompressFormat compressFormat;
             abstractSerializedData.writeInt64(this.time);
             String str = this.domain;
             if (str == null) {
@@ -120,7 +119,9 @@ public class WebMetadataCache {
             }
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             if (Build.VERSION.SDK_INT >= 30) {
-                this.favicon.compress(Bitmap.CompressFormat.WEBP_LOSSY, 80, byteArrayOutputStream);
+                Bitmap bitmap = this.favicon;
+                compressFormat = Bitmap.CompressFormat.WEBP_LOSSY;
+                bitmap.compress(compressFormat, 80, byteArrayOutputStream);
             } else {
                 this.favicon.compress(Bitmap.CompressFormat.WEBP, 80, byteArrayOutputStream);
             }
@@ -445,8 +446,8 @@ public class WebMetadataCache {
                 if (bitmap == null) {
                     return;
                 }
-                Bitmap[] bitmapArr2 = bitmapArr;
-                if (bitmapArr2[0] == null || (bitmapArr2[0].getWidth() < bitmap.getWidth() && bitmapArr[0].getHeight() < bitmap.getHeight())) {
+                Bitmap bitmap2 = bitmapArr[0];
+                if (bitmap2 == null || (bitmap2.getWidth() < bitmap.getWidth() && bitmapArr[0].getHeight() < bitmap.getHeight())) {
                     bitmapArr[0] = bitmap;
                     callback.run(Boolean.FALSE);
                 }
@@ -483,16 +484,18 @@ public class WebMetadataCache {
     }
 
     public static void lambda$retrieveFaviconAndSitename$4(boolean[] zArr, String[] strArr, Bitmap[] bitmapArr, String str, WebView webView, FrameLayout frameLayout, Utilities.Callback2 callback2, Boolean bool) {
+        Bitmap bitmap;
         if (zArr[0]) {
             return;
         }
-        if (bool.booleanValue() || (!TextUtils.isEmpty(strArr[0]) && bitmapArr[0] != null && bitmapArr[0].getWidth() > AndroidUtilities.dp(28.0f) && bitmapArr[0].getHeight() > AndroidUtilities.dp(28.0f))) {
+        if (bool.booleanValue() || (!TextUtils.isEmpty(strArr[0]) && (bitmap = bitmapArr[0]) != null && bitmap.getWidth() > AndroidUtilities.dp(28.0f) && bitmapArr[0].getHeight() > AndroidUtilities.dp(28.0f))) {
             zArr[0] = true;
             WebMetadata webMetadata = new WebMetadata();
             webMetadata.domain = AndroidUtilities.getHostAuthority(str, true);
             webMetadata.sitename = strArr[0];
-            if (bitmapArr[0] != null) {
-                webMetadata.favicon = Bitmap.createBitmap(bitmapArr[0]);
+            Bitmap bitmap2 = bitmapArr[0];
+            if (bitmap2 != null) {
+                webMetadata.favicon = Bitmap.createBitmap(bitmap2);
             }
             getInstance().save(webMetadata);
             webView.destroy();
@@ -505,21 +508,12 @@ public class WebMetadataCache {
 
     public static void lambda$retrieveFaviconAndSitename$6(WebView webView) {
         String readRes = RLottieDrawable.readRes(null, R.raw.webview_ext);
-        String replace = readRes.replace("$DEBUG$", "" + BuildVars.DEBUG_VERSION);
-        if (Build.VERSION.SDK_INT >= 19) {
-            webView.evaluateJavascript(replace, new ValueCallback() {
-                @Override
-                public final void onReceiveValue(Object obj) {
-                    WebMetadataCache.lambda$retrieveFaviconAndSitename$5((String) obj);
-                }
-            });
-            return;
-        }
-        try {
-            webView.loadUrl("javascript:" + URLEncoder.encode(replace, "UTF-8"));
-        } catch (UnsupportedEncodingException unused) {
-            webView.loadUrl("javascript:" + URLEncoder.encode(replace));
-        }
+        webView.evaluateJavascript(readRes.replace("$DEBUG$", "" + BuildVars.DEBUG_VERSION), new ValueCallback() {
+            @Override
+            public final void onReceiveValue(Object obj) {
+                WebMetadataCache.lambda$retrieveFaviconAndSitename$5((String) obj);
+            }
+        });
     }
 
     public static void lambda$retrieveFaviconAndSitename$7(String[] strArr, Utilities.Callback callback, String str) {

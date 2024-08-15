@@ -70,6 +70,7 @@ import org.telegram.ui.FilteredSearchView;
 public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
     private Runnable cancelShowMoreAnimation;
     private int currentItemCount;
+    private String currentMessagesQuery;
     public DialogsSearchAdapterDelegate delegate;
     private final DialogsActivity dialogsActivity;
     private int dialogsType;
@@ -101,6 +102,13 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
     private long selfUserId;
     public View showMoreHeader;
     int waitingResponseCount;
+    public final int VIEW_TYPE_DIALOG_CELL = 2;
+    public final int VIEW_TYPE_TOPIC_CELL = 3;
+    public final int VIEW_TYPE_LOADING = 4;
+    public final int VIEW_TYPE_HASHTAG_CELL = 5;
+    public final int VIEW_TYPE_CATEGORY_LIST = 6;
+    public final int VIEW_TYPE_ADD_BY_PHONE = 7;
+    public final int VIEW_TYPE_INVITE_CONTACT_CELL = 8;
     private ArrayList<Object> searchResult = new ArrayList<>();
     private final ArrayList<ContactsController.Contact> searchContacts = new ArrayList<>();
     private final ArrayList<TLRPC$TL_forumTopic> searchTopics = new ArrayList<>();
@@ -447,6 +455,7 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
         if (i == this.lastForumReqId && (i2 <= 0 || i2 == this.lastSearchId)) {
             this.waitingResponseCount--;
             if (tLRPC$TL_error == null) {
+                this.currentMessagesQuery = str;
                 TLRPC$messages_Messages tLRPC$messages_Messages = (TLRPC$messages_Messages) tLObject;
                 MessagesStorage.getInstance(this.currentAccount).putUsersAndChats(tLRPC$messages_Messages.users, tLRPC$messages_Messages.chats, true, true);
                 MessagesController.getInstance(this.currentAccount).putUsers(tLRPC$messages_Messages.users, false);
@@ -598,6 +607,7 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
         if (i == this.lastReqId && (i2 <= 0 || i2 == this.lastSearchId)) {
             this.waitingResponseCount--;
             if (tLRPC$TL_error == null) {
+                this.currentMessagesQuery = str;
                 TLRPC$messages_Messages tLRPC$messages_Messages = (TLRPC$messages_Messages) tLObject;
                 MessagesStorage.getInstance(this.currentAccount).putUsersAndChats(tLRPC$messages_Messages.users, tLRPC$messages_Messages.chats, true, true);
                 MessagesController.getInstance(this.currentAccount).putUsers(tLRPC$messages_Messages.users, false);
@@ -1526,7 +1536,7 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
                 recyclerListView = new GraySectionCell(this.mContext);
                 break;
             case 2:
-                recyclerListView = new DialogCell(this, null, this.mContext, false, true) {
+                recyclerListView = new DialogCell(null, this.mContext, false, true) {
                     @Override
                     public boolean isForumCell() {
                         return false;
@@ -1546,7 +1556,7 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
                 recyclerListView = new HashtagSearchCell(this.mContext);
                 break;
             case 6:
-                RecyclerListView recyclerListView2 = new RecyclerListView(this, this.mContext) {
+                RecyclerListView recyclerListView2 = new RecyclerListView(this.mContext) {
                     @Override
                     public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
                         if (getParent() != null && getParent().getParent() != null) {
@@ -1564,7 +1574,7 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
                 recyclerListView2.setTag(9);
                 recyclerListView2.setItemAnimator(null);
                 recyclerListView2.setLayoutAnimation(null);
-                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, this.mContext) {
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.mContext) {
                     @Override
                     public boolean supportsPredictiveItemAnimations() {
                         return false;
@@ -1637,24 +1647,24 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
     }
 
     public void lambda$onBindViewHolder$22(GraySectionCell graySectionCell) {
-        int i;
         String str;
+        int i;
         boolean z = !this.phoneCollapsed;
         this.phoneCollapsed = z;
         if (z) {
-            i = R.string.ShowMore;
             str = "ShowMore";
+            i = R.string.ShowMore;
         } else {
-            i = R.string.ShowLess;
             str = "ShowLess";
+            i = R.string.ShowLess;
         }
         graySectionCell.setRightText(LocaleController.getString(str, i));
         notifyDataSetChanged();
     }
 
     public void lambda$onBindViewHolder$25(ArrayList arrayList, final int i, GraySectionCell graySectionCell) {
-        int i2;
         String str;
+        int i2;
         long elapsedRealtime = SystemClock.elapsedRealtime();
         if (elapsedRealtime - this.lastShowMoreUpdate < 300) {
             return;
@@ -1671,11 +1681,11 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
         boolean z2 = !this.globalSearchCollapsed;
         this.globalSearchCollapsed = z2;
         if (z2) {
-            i2 = R.string.ShowMore;
             str = "ShowMore";
+            i2 = R.string.ShowMore;
         } else {
-            i2 = R.string.ShowLess;
             str = "ShowLess";
+            i2 = R.string.ShowLess;
         }
         graySectionCell.setRightText(LocaleController.getString(str, i2), this.globalSearchCollapsed);
         this.showMoreHeader = null;
@@ -1763,6 +1773,7 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
     public void filterRecent(String str) {
         DialogsSearchAdapterDelegate dialogsSearchAdapterDelegate;
         String str2;
+        String str3;
         this.filteredRecentQuery = str;
         this.filtered2RecentSearchObjects.clear();
         int i = 0;
@@ -1784,7 +1795,6 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
             RecentSearchObject recentSearchObject = this.recentSearchObjects.get(i);
             if (recentSearchObject != null && recentSearchObject.object != null && (((dialogsSearchAdapterDelegate = this.delegate) == null || dialogsSearchAdapterDelegate.getSearchForumDialogId() != recentSearchObject.did) && filter(this.recentSearchObjects.get(i).object))) {
                 TLObject tLObject = recentSearchObject.object;
-                String str3 = null;
                 if (tLObject instanceof TLRPC$Chat) {
                     str3 = ((TLRPC$Chat) tLObject).title;
                     str2 = ((TLRPC$Chat) tLObject).username;
@@ -1796,6 +1806,7 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
                     str2 = null;
                 } else {
                     str2 = null;
+                    str3 = null;
                 }
                 if ((str3 != null && wordStartsWith(str3.toLowerCase(), lowerCase)) || (str2 != null && wordStartsWith(str2.toLowerCase(), lowerCase))) {
                     this.filtered2RecentSearchObjects.add(recentSearchObject);
@@ -1814,7 +1825,8 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
         }
         String[] split = str.toLowerCase().split(" ");
         for (int i = 0; i < split.length; i++) {
-            if (split[i] != null && (split[i].startsWith(str2) || str2.startsWith(split[i]))) {
+            String str3 = split[i];
+            if (str3 != null && (str3.startsWith(str2) || str2.startsWith(split[i]))) {
                 return true;
             }
         }

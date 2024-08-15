@@ -58,7 +58,7 @@ public class GroupCreateSpan extends View {
         this(context, obj, contact, false, resourcesProvider);
     }
 
-    public GroupCreateSpan(android.content.Context r28, java.lang.Object r29, org.telegram.messenger.ContactsController.Contact r30, boolean r31, org.telegram.ui.ActionBar.Theme.ResourcesProvider r32) {
+    public GroupCreateSpan(android.content.Context r34, java.lang.Object r35, org.telegram.messenger.ContactsController.Contact r36, boolean r37, org.telegram.ui.ActionBar.Theme.ResourcesProvider r38) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.GroupCreateSpan.<init>(android.content.Context, java.lang.Object, org.telegram.messenger.ContactsController$Contact, boolean, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
     }
 
@@ -118,6 +118,9 @@ public class GroupCreateSpan extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        int i;
+        int i2;
+        int i3;
         int color;
         boolean z = this.deleting;
         if ((z && this.progress != 1.0f) || (!z && this.progress != 0.0f)) {
@@ -144,10 +147,9 @@ public class GroupCreateSpan extends View {
         this.rect.set(0.0f, 0.0f, getMeasuredWidth(), AndroidUtilities.dp(this.small ? 28.0f : 32.0f));
         Paint paint = backPaint;
         int[] iArr = this.colors;
-        int i = iArr[6];
-        float f3 = iArr[7] - iArr[6];
-        float f4 = this.progress;
-        paint.setColor(Color.argb(i + ((int) (f3 * f4)), iArr[0] + ((int) ((iArr[1] - iArr[0]) * f4)), iArr[2] + ((int) ((iArr[3] - iArr[2]) * f4)), iArr[4] + ((int) ((iArr[5] - iArr[4]) * f4))));
+        int i4 = iArr[6];
+        float f3 = this.progress;
+        paint.setColor(Color.argb(i4 + ((int) ((iArr[7] - i4) * f3)), iArr[0] + ((int) ((iArr[1] - i) * f3)), iArr[2] + ((int) ((iArr[3] - i2) * f3)), iArr[4] + ((int) ((iArr[5] - i3) * f3))));
         canvas.drawRoundRect(this.rect, AndroidUtilities.dp(this.small ? 14.0f : 16.0f), AndroidUtilities.dp(this.small ? 14.0f : 16.0f), backPaint);
         if (this.progress != 1.0f) {
             this.imageReceiver.draw(canvas);
@@ -171,11 +173,15 @@ public class GroupCreateSpan extends View {
 
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction;
+        int id;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setText(this.nameLayout.getText());
         if (!isDeleting() || Build.VERSION.SDK_INT < 21) {
             return;
         }
-        accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_CLICK.getId(), LocaleController.getString("Delete", R.string.Delete)));
+        accessibilityAction = AccessibilityNodeInfo.AccessibilityAction.ACTION_CLICK;
+        id = accessibilityAction.getId();
+        accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(id, LocaleController.getString("Delete", R.string.Delete)));
     }
 }

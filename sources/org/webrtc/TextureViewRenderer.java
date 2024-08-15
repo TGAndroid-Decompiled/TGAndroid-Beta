@@ -11,7 +11,7 @@ import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.voip.VoIPService;
-import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticLambda2;
+import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticLambda6;
 import org.webrtc.EglBase;
 import org.webrtc.EglRenderer;
 import org.webrtc.GlGenericDrawer;
@@ -163,7 +163,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
         public boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
             ThreadUtils.checkIsOnMainThread();
             CountDownLatch countDownLatch = new CountDownLatch(1);
-            releaseEglSurface(new Theme$$ExternalSyntheticLambda2(countDownLatch), false);
+            releaseEglSurface(new Theme$$ExternalSyntheticLambda6(countDownLatch), false);
             ThreadUtils.awaitUninterruptibly(countDownLatch);
             return true;
         }

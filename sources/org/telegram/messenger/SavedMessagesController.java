@@ -189,8 +189,8 @@ public class SavedMessagesController {
         String translitSafe = AndroidUtilities.translitSafe(str.toLowerCase());
         for (int i = 0; i < this.allDialogs.size(); i++) {
             SavedDialog savedDialog = this.allDialogs.get(i);
-            String str3 = null;
             long j = savedDialog.dialogId;
+            String str3 = null;
             if (j == 2666000) {
                 str2 = LocaleController.getString(R.string.AnonymousForward);
             } else if (j == UserConfig.getInstance(this.currentAccount).getClientUserId()) {
@@ -579,6 +579,7 @@ public class SavedMessagesController {
     }
 
     public void updateDeleted(LongSparseArray<ArrayList<Integer>> longSparseArray) {
+        SavedDialog savedDialog;
         ArrayList<SavedDialog> arrayList = new ArrayList<>();
         boolean z = false;
         for (int i = 0; i < longSparseArray.size(); i++) {
@@ -588,10 +589,10 @@ public class SavedMessagesController {
             for (int i3 = 0; i3 < valueAt.size(); i3++) {
                 i2 = Math.max(i2, valueAt.get(i3).intValue());
             }
-            SavedDialog savedDialog = null;
             int i4 = 0;
             while (true) {
                 if (i4 >= this.allDialogs.size()) {
+                    savedDialog = null;
                     break;
                 } else if (this.allDialogs.get(i4).dialogId == keyAt) {
                     savedDialog = this.allDialogs.get(i4);
@@ -627,26 +628,26 @@ public class SavedMessagesController {
     }
 
     private void invalidate() {
+        SavedDialog savedDialog;
         if (this.dialogsLoaded && this.loadedDialogs.isEmpty()) {
             return;
         }
         for (int i = 0; i < this.loadedDialogs.size(); i++) {
-            SavedDialog savedDialog = this.loadedDialogs.get(i);
-            SavedDialog savedDialog2 = null;
+            SavedDialog savedDialog2 = this.loadedDialogs.get(i);
             int i2 = 0;
             while (true) {
                 if (i2 >= this.cachedDialogs.size()) {
+                    savedDialog = null;
                     break;
                 }
-                SavedDialog savedDialog3 = this.cachedDialogs.get(i2);
-                if (savedDialog3.dialogId == savedDialog.dialogId) {
-                    savedDialog2 = savedDialog3;
+                savedDialog = this.cachedDialogs.get(i2);
+                if (savedDialog.dialogId == savedDialog2.dialogId) {
                     break;
                 }
                 i2++;
             }
-            if (savedDialog2 == null && !savedDialog.pinned) {
-                this.cachedDialogs.add(savedDialog);
+            if (savedDialog == null && !savedDialog2.pinned) {
+                this.cachedDialogs.add(savedDialog2);
             }
         }
         this.loadedDialogs.clear();

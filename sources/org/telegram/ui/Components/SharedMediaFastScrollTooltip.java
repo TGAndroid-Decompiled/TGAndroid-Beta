@@ -27,7 +27,7 @@ public class SharedMediaFastScrollTooltip extends FrameLayout {
         textView.setTextColor(Theme.getColor(Theme.key_chat_gifSaveHintText));
         setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.getColor(Theme.key_chat_gifSaveHintBackground)));
         addView(textView, LayoutHelper.createFrame(-2, -2.0f, 16, 46.0f, 8.0f, 8.0f, 8.0f));
-        addView(new TooltipDrawableView(this, context), LayoutHelper.createFrame(29, 32.0f, 0, 8.0f, 8.0f, 8.0f, 8.0f));
+        addView(new TooltipDrawableView(context), LayoutHelper.createFrame(29, 32.0f, 0, 8.0f, 8.0f, 8.0f, 8.0f));
     }
 
     @Override
@@ -45,7 +45,7 @@ public class SharedMediaFastScrollTooltip extends FrameLayout {
         Random random;
         float toProgress;
 
-        public TooltipDrawableView(SharedMediaFastScrollTooltip sharedMediaFastScrollTooltip, Context context) {
+        public TooltipDrawableView(Context context) {
             super(context);
             this.random = new Random();
             this.paint = new Paint(1);

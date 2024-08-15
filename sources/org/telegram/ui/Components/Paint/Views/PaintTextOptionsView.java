@@ -38,6 +38,7 @@ public class PaintTextOptionsView extends FrameLayout implements NotificationCen
     private int plusIcon;
     private ImageView plusView;
     private TypefaceCell typefaceCell;
+    private PaintTypefaceListView typefaceListView;
     private int x;
 
     public interface Delegate {
@@ -50,9 +51,6 @@ public class PaintTextOptionsView extends FrameLayout implements NotificationCen
         void onTextOutlineSelected(View view);
 
         void onTypefaceButtonClicked();
-    }
-
-    public void setTypefaceListView(PaintTypefaceListView paintTypefaceListView) {
     }
 
     public PaintTextOptionsView(Context context) {
@@ -181,6 +179,10 @@ public class PaintTextOptionsView extends FrameLayout implements NotificationCen
 
     public TypefaceCell getTypefaceCell() {
         return this.typefaceCell;
+    }
+
+    public void setTypefaceListView(PaintTypefaceListView paintTypefaceListView) {
+        this.typefaceListView = paintTypefaceListView;
     }
 
     public View getColorClickableView() {

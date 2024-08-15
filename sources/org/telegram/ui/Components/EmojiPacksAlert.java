@@ -105,6 +105,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
     private ContentView contentView;
     private EmojiPacksLoader customEmojiPacks;
     private BaseFragment fragment;
+    private Float fromY;
     private GridLayoutManager gridLayoutManager;
     private boolean hasDescription;
     private AnimatedFloat highlightAlpha;
@@ -973,7 +974,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
             return;
         }
         this.loadAnimator = ValueAnimator.ofFloat(this.loadT, 1.0f);
-        this.containerView.getY();
+        this.fromY = Float.valueOf(this.lastY + this.containerView.getY());
         this.loadAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
@@ -1182,9 +1183,9 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
     }
 
     class SeparatorView extends View {
-        public SeparatorView(EmojiPacksAlert emojiPacksAlert, Context context) {
+        public SeparatorView(Context context) {
             super(context);
-            setBackgroundColor(emojiPacksAlert.getThemedColor(Theme.key_chat_emojiPanelShadowLine));
+            setBackgroundColor(EmojiPacksAlert.this.getThemedColor(Theme.key_chat_emojiPanelShadowLine));
             RecyclerView.LayoutParams layoutParams = new RecyclerView.LayoutParams(-1, AndroidUtilities.getShadowHeight());
             ((ViewGroup.MarginLayoutParams) layoutParams).topMargin = AndroidUtilities.dp(14.0f);
             setLayoutParams(layoutParams);
@@ -1192,7 +1193,18 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
     }
 
     public class Adapter extends RecyclerListView.SelectionAdapter {
+        private final int VIEW_TYPE_EMOJI;
+        private final int VIEW_TYPE_HEADER;
+        private final int VIEW_TYPE_PADDING;
+        private final int VIEW_TYPE_SEPARATOR;
+        private final int VIEW_TYPE_TEXT;
+
         private Adapter() {
+            this.VIEW_TYPE_PADDING = 0;
+            this.VIEW_TYPE_EMOJI = 1;
+            this.VIEW_TYPE_HEADER = 2;
+            this.VIEW_TYPE_TEXT = 3;
+            this.VIEW_TYPE_SEPARATOR = 4;
         }
 
         Adapter(EmojiPacksAlert emojiPacksAlert, AnonymousClass1 anonymousClass1) {
@@ -1219,7 +1231,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
                     view = new TextView(EmojiPacksAlert.this.getContext());
                 } else if (i == 4) {
                     EmojiPacksAlert emojiPacksAlert2 = EmojiPacksAlert.this;
-                    view = new SeparatorView(emojiPacksAlert2, emojiPacksAlert2.getContext());
+                    view = new SeparatorView(emojiPacksAlert2.getContext());
                 } else {
                     view = null;
                 }
@@ -1825,8 +1837,9 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
         public ArrayList<EmojiView.CustomEmoji>[] data;
         public ArrayList<TLRPC$InputStickerSet> inputStickerSets;
         public TLObject parentObject;
-        private boolean started = false;
         public ArrayList<TLRPC$TL_messages_stickerSet> stickerSets;
+        final int loadingStickersCount = 12;
+        private boolean started = false;
 
         protected void onUpdate() {
             throw null;
@@ -2023,7 +2036,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
                         this.data[i].add(null);
                     } else {
                         EmojiView.CustomEmoji customEmoji = new EmojiView.CustomEmoji();
-                        findEmoticon(tLRPC$TL_messages_stickerSet, tLRPC$Document.id);
+                        customEmoji.emoticon = findEmoticon(tLRPC$TL_messages_stickerSet, tLRPC$Document.id);
                         customEmoji.stickerSet = tLRPC$TL_messages_stickerSet;
                         customEmoji.documentId = tLRPC$Document.id;
                         this.data[i].add(customEmoji);
@@ -2057,11 +2070,12 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
                 if (i >= arrayListArr.length) {
                     return i2;
                 }
-                if (arrayListArr[i] != null) {
+                ArrayList<EmojiView.CustomEmoji> arrayList = arrayListArr[i];
+                if (arrayList != null) {
                     if (arrayListArr.length != 1) {
                         min = Math.min(EmojiPacksAlert.this.gridLayoutManager.getSpanCount() * 2, this.data[i].size());
                     } else {
-                        min = arrayListArr[i].size();
+                        min = arrayList.size();
                     }
                     i2 = i2 + min + 1;
                 }

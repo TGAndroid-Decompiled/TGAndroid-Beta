@@ -201,8 +201,9 @@ public class BusinessLinksActivity extends UniversalFragment implements Notifica
                     BusinessLinksActivity.lambda$openRenameAlert$5(currentFocus, editTextBoldCursor, (Runnable) obj);
                 }
             });
-            alertDialogArr[0] = r11.create();
-            alertDialogArr[0].setOnDismissListener(new DialogInterface.OnDismissListener() {
+            AlertDialog create2 = r11.create();
+            alertDialogArr[0] = create2;
+            create2.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
                     AndroidUtilities.hideKeyboard(EditTextBoldCursor.this);
@@ -228,8 +229,9 @@ public class BusinessLinksActivity extends UniversalFragment implements Notifica
                 return true;
             }
             BusinessLinksController.getInstance(i).editLinkTitle(tLRPC$TL_businessChatLink.link, obj);
-            if (alertDialogArr[0] != null) {
-                alertDialogArr[0].dismiss();
+            AlertDialog alertDialog = alertDialogArr[0];
+            if (alertDialog != null) {
+                alertDialog.dismiss();
             }
             if (alertDialogArr[0] == currentDialog) {
                 currentDialog = null;
@@ -515,7 +517,7 @@ public class BusinessLinksActivity extends UniversalFragment implements Notifica
             if (this == obj) {
                 return true;
             }
-            if (obj == null || BusinessLinkWrapper.class != obj.getClass()) {
+            if (obj == null || getClass() != obj.getClass()) {
                 return false;
             }
             BusinessLinkWrapper businessLinkWrapper = (BusinessLinkWrapper) obj;

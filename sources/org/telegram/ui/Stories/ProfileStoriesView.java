@@ -72,6 +72,7 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
     private float newStoryBounceT;
     private Runnable onLongPressRunnable;
     Paint paint;
+    private TL_stories$PeerStories peerStories;
     private boolean progressIsDone;
     private float progressToInsets;
     private final AnimatedFloat progressToUploading;
@@ -220,6 +221,7 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
     }
 
     public void setStories(TL_stories$PeerStories tL_stories$PeerStories) {
+        this.peerStories = tL_stories$PeerStories;
         updateStories(true, false);
     }
 

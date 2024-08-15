@@ -49,8 +49,8 @@ import org.telegram.ui.Cells.LetterSectionCell;
 import org.telegram.ui.Cells.TextSettingsCell;
 import org.telegram.ui.Components.EmptyTextProgressView;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.Premium.boosts.BoostRepository$$ExternalSyntheticLambda29;
-import org.telegram.ui.Components.Premium.boosts.BoostRepository$$ExternalSyntheticLambda31;
+import org.telegram.ui.Components.Premium.boosts.BoostRepository$$ExternalSyntheticLambda25;
+import org.telegram.ui.Components.Premium.boosts.BoostRepository$$ExternalSyntheticLambda26;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.CountrySelectActivity;
 public class CountrySelectActivity extends BaseFragment {
@@ -159,13 +159,12 @@ public class CountrySelectActivity extends BaseFragment {
         this.searchListViewAdapter = new CountrySearchAdapter(context, countryAdapter.getCountries());
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
-        FrameLayout frameLayout2 = frameLayout;
         EmptyTextProgressView emptyTextProgressView = new EmptyTextProgressView(context);
         this.emptyView = emptyTextProgressView;
         emptyTextProgressView.showTextView();
         this.emptyView.setShowAtCenter(true);
         this.emptyView.setText(LocaleController.getString("NoResult", R.string.NoResult));
-        frameLayout2.addView(this.emptyView, LayoutHelper.createFrame(-1, -1.0f));
+        frameLayout.addView(this.emptyView, LayoutHelper.createFrame(-1, -1.0f));
         RecyclerListView recyclerListView = new RecyclerListView(context);
         this.listView = recyclerListView;
         recyclerListView.setSectionsType(3);
@@ -176,7 +175,7 @@ public class CountrySelectActivity extends BaseFragment {
         this.listView.setLayoutManager(new LinearLayoutManager(context, 1, false));
         this.listView.setAdapter(this.listViewAdapter);
         this.listView.setVerticalScrollbarPosition(LocaleController.isRTL ? 1 : 2);
-        frameLayout2.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
+        frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
@@ -240,7 +239,7 @@ public class CountrySelectActivity extends BaseFragment {
             if (this == obj) {
                 return true;
             }
-            if (obj == null || Country.class != obj.getClass()) {
+            if (obj == null || getClass() != obj.getClass()) {
                 return false;
             }
             Country country = (Country) obj;
@@ -263,7 +262,7 @@ public class CountrySelectActivity extends BaseFragment {
         }
 
         public CountryAdapter(Context context, ArrayList<Country> arrayList, boolean z) {
-            final Comparator comparator;
+            final Comparator boostRepository$$ExternalSyntheticLambda26;
             this.mContext = context;
             if (arrayList != null) {
                 for (int i = 0; i < arrayList.size(); i++) {
@@ -312,17 +311,17 @@ public class CountrySelectActivity extends BaseFragment {
             if (Build.VERSION.SDK_INT >= 24) {
                 Collator collator = Collator.getInstance(LocaleController.getInstance().getCurrentLocale() != null ? LocaleController.getInstance().getCurrentLocale() : Locale.getDefault());
                 Objects.requireNonNull(collator);
-                comparator = new BoostRepository$$ExternalSyntheticLambda29(collator);
+                boostRepository$$ExternalSyntheticLambda26 = new BoostRepository$$ExternalSyntheticLambda25(collator);
             } else {
-                comparator = BoostRepository$$ExternalSyntheticLambda31.INSTANCE;
+                boostRepository$$ExternalSyntheticLambda26 = new BoostRepository$$ExternalSyntheticLambda26();
             }
-            Collections.sort(this.sortedCountries, comparator);
+            Collections.sort(this.sortedCountries, boostRepository$$ExternalSyntheticLambda26);
             for (ArrayList<Country> arrayList4 : this.countries.values()) {
                 Collections.sort(arrayList4, new Comparator() {
                     @Override
                     public final int compare(Object obj, Object obj2) {
                         int lambda$new$0;
-                        lambda$new$0 = CountrySelectActivity.CountryAdapter.lambda$new$0(comparator, (CountrySelectActivity.Country) obj, (CountrySelectActivity.Country) obj2);
+                        lambda$new$0 = CountrySelectActivity.CountryAdapter.lambda$new$0(boostRepository$$ExternalSyntheticLambda26, (CountrySelectActivity.Country) obj, (CountrySelectActivity.Country) obj2);
                         return lambda$new$0;
                     }
                 });

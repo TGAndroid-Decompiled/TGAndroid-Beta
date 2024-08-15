@@ -67,7 +67,7 @@ public class SponsoredMessageInfoView extends FrameLayout {
         int i2 = Theme.key_featuredStickers_addButton;
         paint.setColor(Theme.getColor(i2, resourcesProvider));
         paint.setStrokeWidth(AndroidUtilities.dp(1.0f));
-        TextView textView2 = new TextView(this, context) {
+        TextView textView2 = new TextView(context) {
             @Override
             protected void onDraw(Canvas canvas) {
                 super.onDraw(canvas);
@@ -76,7 +76,7 @@ public class SponsoredMessageInfoView extends FrameLayout {
                 canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint);
             }
         };
-        textView2.setOnClickListener(new View.OnClickListener(this) {
+        textView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Runnable runnable2 = runnable;

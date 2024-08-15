@@ -710,6 +710,7 @@ public class ThemesHorizontalListCell extends RecyclerListView implements Notifi
 
         @Override
         public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+            AccessibilityNodeInfo.AccessibilityAction accessibilityAction;
             super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
             accessibilityNodeInfo.setText(getThemeName());
             accessibilityNodeInfo.setClassName(Button.class.getName());
@@ -717,7 +718,8 @@ public class ThemesHorizontalListCell extends RecyclerListView implements Notifi
             accessibilityNodeInfo.setCheckable(true);
             accessibilityNodeInfo.setEnabled(true);
             if (Build.VERSION.SDK_INT >= 21) {
-                accessibilityNodeInfo.addAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_CLICK);
+                accessibilityAction = AccessibilityNodeInfo.AccessibilityAction.ACTION_CLICK;
+                accessibilityNodeInfo.addAction(accessibilityAction);
                 accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(32, LocaleController.getString("AccDescrMoreOptions", R.string.AccDescrMoreOptions)));
             }
         }
@@ -738,7 +740,7 @@ public class ThemesHorizontalListCell extends RecyclerListView implements Notifi
         }
         setItemAnimator(null);
         setLayoutAnimation(null);
-        this.horizontalLayoutManager = new LinearLayoutManager(this, context) {
+        this.horizontalLayoutManager = new LinearLayoutManager(context) {
             @Override
             public boolean supportsPredictiveItemAnimations() {
                 return false;

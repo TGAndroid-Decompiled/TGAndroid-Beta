@@ -57,6 +57,7 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
     public final AnimatedFloat parentHighlightScaleAlpha;
     private View parentView;
     float[] point;
+    private final float[] radii;
     private final Rect rect;
     private final RectF rectF;
     private Theme.ResourcesProvider resourcesProvider;
@@ -90,6 +91,7 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
         paint.setColor(-1);
         this.clipPath = new Path();
+        this.radii = new float[8];
         this.shined = false;
         this.parentView = view;
         this.resourcesProvider = resourcesProvider;

@@ -39,9 +39,11 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
     private final Context context;
     private boolean isGreenSelector;
     private List<Item> items;
+    private RecyclerListView listView;
     public boolean needChecks;
     private final Theme.ResourcesProvider resourcesProvider;
     private GraySectionCell topSectionCell;
+    private View.OnClickListener topSectionClickListener;
 
     public SelectorAdapter(Context context, boolean z, Theme.ResourcesProvider resourcesProvider) {
         this.context = context;
@@ -62,9 +64,11 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
 
     public void setData(List<Item> list, RecyclerListView recyclerListView) {
         this.items = list;
+        this.listView = recyclerListView;
     }
 
     public void setTopSectionClickListener(View.OnClickListener onClickListener) {
+        this.topSectionClickListener = onClickListener;
         GraySectionCell graySectionCell = this.topSectionCell;
         if (graySectionCell != null) {
             if (onClickListener == null) {
@@ -347,7 +351,7 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
             if (this == obj) {
                 return true;
             }
-            if (obj == null || Item.class != obj.getClass()) {
+            if (obj == null || getClass() != obj.getClass()) {
                 return false;
             }
             Item item = (Item) obj;
@@ -379,7 +383,7 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
             if (this == item) {
                 return true;
             }
-            if (item == null || Item.class != item.getClass()) {
+            if (item == null || getClass() != item.getClass()) {
                 return false;
             }
             Item item2 = (Item) item;

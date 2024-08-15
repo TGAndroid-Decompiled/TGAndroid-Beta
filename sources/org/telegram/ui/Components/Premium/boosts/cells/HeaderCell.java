@@ -48,7 +48,7 @@ public class HeaderCell extends FrameLayout {
         LinearLayout linearLayout = new LinearLayout(context);
         this.linearLayout = linearLayout;
         linearLayout.setOrientation(1);
-        GLIconTextureView gLIconTextureView = new GLIconTextureView(this, context, 1) {
+        GLIconTextureView gLIconTextureView = new GLIconTextureView(context, 1) {
             @Override
             public void onAttachedToWindow() {
                 super.onAttachedToWindow();
@@ -126,7 +126,7 @@ public class HeaderCell extends FrameLayout {
 
     public void setBoostViaGifsText(TLRPC$Chat tLRPC$Chat) {
         if (Build.VERSION.SDK_INT >= 21) {
-            setOutlineProvider(new ViewOutlineProvider(this) {
+            setOutlineProvider(new ViewOutlineProvider() {
                 @Override
                 public void getOutline(View view, Outline outline) {
                     float dp = AndroidUtilities.dp(12.0f);

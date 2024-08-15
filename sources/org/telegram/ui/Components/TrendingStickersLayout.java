@@ -391,6 +391,7 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
     @Override
     protected void dispatchDraw(Canvas canvas) {
         int i;
+        int i2;
         float f = this.highlightProgress;
         if (f != 0.0f && this.scrollToSet != null) {
             float f2 = f - 0.0053333333f;
@@ -403,25 +404,25 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
             Integer num = (Integer) this.adapter.setsToPosition.get(this.scrollToSet);
             if (num != null) {
                 View findViewByPosition = this.layoutManager.findViewByPosition(num.intValue());
-                int i2 = -1;
                 if (findViewByPosition != null) {
-                    i2 = (int) findViewByPosition.getY();
-                    i = ((int) findViewByPosition.getY()) + findViewByPosition.getMeasuredHeight();
+                    i = (int) findViewByPosition.getY();
+                    i2 = ((int) findViewByPosition.getY()) + findViewByPosition.getMeasuredHeight();
                 } else {
                     i = -1;
+                    i2 = -1;
                 }
                 View findViewByPosition2 = this.layoutManager.findViewByPosition(num.intValue() + 1);
                 if (findViewByPosition2 != null) {
                     if (findViewByPosition == null) {
-                        i2 = (int) findViewByPosition2.getY();
+                        i = (int) findViewByPosition2.getY();
                     }
-                    i = ((int) findViewByPosition2.getY()) + findViewByPosition2.getMeasuredHeight();
+                    i2 = ((int) findViewByPosition2.getY()) + findViewByPosition2.getMeasuredHeight();
                 }
                 if (findViewByPosition != null || findViewByPosition2 != null) {
                     this.paint.setColor(Theme.getColor(Theme.key_featuredStickers_addButton));
                     float f3 = this.highlightProgress;
                     this.paint.setAlpha((int) ((f3 < 0.06f ? f3 / 0.06f : 1.0f) * 25.5f));
-                    canvas.drawRect(0.0f, i2, getMeasuredWidth(), i, this.paint);
+                    canvas.drawRect(0.0f, i, getMeasuredWidth(), i2, this.paint);
                 }
             }
         }
@@ -720,7 +721,7 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
             FrameLayout frameLayout;
             FeaturedStickerSetInfoCell featuredStickerSetInfoCell;
             if (i == 0) {
-                StickerEmojiCell stickerEmojiCell = new StickerEmojiCell(this, this.context, false, TrendingStickersLayout.this.resourcesProvider) {
+                StickerEmojiCell stickerEmojiCell = new StickerEmojiCell(this.context, false, TrendingStickersLayout.this.resourcesProvider) {
                     @Override
                     public void onMeasure(int i2, int i3) {
                         super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(82.0f), 1073741824));

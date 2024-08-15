@@ -82,6 +82,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
     private RecyclerListView listView;
     private AnimatedFloat listViewCenterAnimated;
     private AnimatedFloat listViewWidthAnimated;
+    private OvershootInterpolator overshootInterpolator;
     private Path path;
     private ContentPreviewViewer.ContentPreviewViewerDelegate previewDelegate;
     private final Theme.ResourcesProvider resourcesProvider;
@@ -446,7 +447,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         this.showFloat1 = new AnimatedFloat(frameLayout, 120L, 350L, cubicBezierInterpolator);
         this.showFloat2 = new AnimatedFloat(this.containerView, 150L, 600L, cubicBezierInterpolator);
-        new OvershootInterpolator(0.4f);
+        this.overshootInterpolator = new OvershootInterpolator(0.4f);
         this.leftGradientAlpha = new AnimatedFloat(this.containerView, 300L, cubicBezierInterpolator);
         this.rightGradientAlpha = new AnimatedFloat(this.containerView, 300L, cubicBezierInterpolator);
         this.arrowXAnimated = new AnimatedFloat(this.containerView, 200L, cubicBezierInterpolator);
@@ -1146,12 +1147,14 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         private int direction;
         public Drawable drawable;
         private String emoji;
+        private final int paddingDp;
         private AnimatedFloat pressed;
 
         public EmojiImageView(Context context) {
             super(context);
             this.direction = 0;
             this.pressed = new AnimatedFloat(this, 350L, new OvershootInterpolator(5.0f));
+            this.paddingDp = 3;
         }
 
         @Override

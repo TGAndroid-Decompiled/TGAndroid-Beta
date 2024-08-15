@@ -79,8 +79,11 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
     private View mapMarker;
     private BackupImageView mapPreview;
     private FrameLayout mapPreviewContainer;
-    private int shiftDp = -4;
     private boolean valueSet;
+    final int MAX_NAME_LENGTH = 96;
+    private int shiftDp = -4;
+    private final int BUTTON_MAP = 1;
+    private final int BUTTON_CLEAR = 2;
 
     @Override
     public View createView(Context context) {
@@ -184,7 +187,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
                 LocationActivity.this.checkDone(true);
             }
         });
-        this.editText.setFilters(new InputFilter[]{new InputFilter(this) {
+        this.editText.setFilters(new InputFilter[]{new InputFilter() {
             @Override
             public CharSequence filter(CharSequence charSequence, int i3, int i4, Spanned spanned, int i5, int i6) {
                 if (charSequence != null) {

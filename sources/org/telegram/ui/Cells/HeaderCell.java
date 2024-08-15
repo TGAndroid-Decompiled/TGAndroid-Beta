@@ -183,13 +183,14 @@ public class HeaderCell extends FrameLayout {
 
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        int i = Build.VERSION.SDK_INT;
-        if (i >= 28) {
+        if (Build.VERSION.SDK_INT >= 28) {
             accessibilityNodeInfo.setHeading(true);
-        } else if (i >= 19 && (collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo()) != null) {
-            accessibilityNodeInfo.setCollectionItemInfo(AccessibilityNodeInfo.CollectionItemInfo.obtain(collectionItemInfo.getRowIndex(), collectionItemInfo.getRowSpan(), collectionItemInfo.getColumnIndex(), collectionItemInfo.getColumnSpan(), true));
+        } else {
+            AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
+            if (collectionItemInfo != null) {
+                accessibilityNodeInfo.setCollectionItemInfo(AccessibilityNodeInfo.CollectionItemInfo.obtain(collectionItemInfo.getRowIndex(), collectionItemInfo.getRowSpan(), collectionItemInfo.getColumnIndex(), collectionItemInfo.getColumnSpan(), true));
+            }
         }
         accessibilityNodeInfo.setEnabled(true);
     }

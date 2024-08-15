@@ -30,6 +30,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Cells.ChatMessageCell;
 public class ScrimOptions extends Dialog {
     private Bitmap blurBitmap;
     private Paint blurBitmapPaint;
@@ -37,14 +38,17 @@ public class ScrimOptions extends Dialog {
     private Matrix blurMatrix;
     private final FrameLayout containerView;
     public final Context context;
+    public final int currentAccount;
     private boolean dismissing;
     private final android.graphics.Rect insets;
+    private boolean isGroup;
     private ValueAnimator openAnimator;
     private float openProgress;
     private ItemOptions options;
     private FrameLayout optionsContainer;
     private View optionsView;
     public final Theme.ResourcesProvider resourcesProvider;
+    private ChatMessageCell scrimCell;
     private Drawable scrimDrawable;
     private float scrimDrawableSh;
     private float scrimDrawableSw;
@@ -56,7 +60,7 @@ public class ScrimOptions extends Dialog {
 
     public ScrimOptions(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context, R.style.TransparentDialog);
-        int i = UserConfig.selectedAccount;
+        this.currentAccount = UserConfig.selectedAccount;
         this.insets = new android.graphics.Rect();
         this.scrimDrawableSw = 1.0f;
         this.scrimDrawableSh = 1.0f;
@@ -96,8 +100,8 @@ public class ScrimOptions extends Dialog {
             }
 
             @Override
-            protected void onLayout(boolean z, int i2, int i3, int i4, int i5) {
-                super.onLayout(z, i2, i3, i4, i5);
+            protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+                super.onLayout(z, i, i2, i3, i4);
                 ScrimOptions.this.layout();
             }
         };
@@ -117,19 +121,42 @@ public class ScrimOptions extends Dialog {
             frameLayout.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
                 @Override
                 public WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-                    int i2 = Build.VERSION.SDK_INT;
-                    if (i2 < 30) {
-                        ScrimOptions.this.insets.set(windowInsets.getSystemWindowInsetLeft(), windowInsets.getSystemWindowInsetTop(), windowInsets.getSystemWindowInsetRight(), windowInsets.getSystemWindowInsetBottom());
+                    int systemWindowInsetLeft;
+                    int systemWindowInsetTop;
+                    int systemWindowInsetRight;
+                    int systemWindowInsetBottom;
+                    WindowInsets consumeSystemWindowInsets;
+                    WindowInsets windowInsets2;
+                    Insets insets;
+                    int i;
+                    int i2;
+                    int i3;
+                    int i4;
+                    int i5 = Build.VERSION.SDK_INT;
+                    if (i5 < 30) {
+                        android.graphics.Rect rect = ScrimOptions.this.insets;
+                        systemWindowInsetLeft = windowInsets.getSystemWindowInsetLeft();
+                        systemWindowInsetTop = windowInsets.getSystemWindowInsetTop();
+                        systemWindowInsetRight = windowInsets.getSystemWindowInsetRight();
+                        systemWindowInsetBottom = windowInsets.getSystemWindowInsetBottom();
+                        rect.set(systemWindowInsetLeft, systemWindowInsetTop, systemWindowInsetRight, systemWindowInsetBottom);
                     } else {
-                        Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.displayCutout() | WindowInsetsCompat.Type.systemBars());
-                        ScrimOptions.this.insets.set(insets.left, insets.top, insets.right, insets.bottom);
+                        insets = windowInsets.getInsets(WindowInsetsCompat.Type.displayCutout() | WindowInsetsCompat.Type.systemBars());
+                        android.graphics.Rect rect2 = ScrimOptions.this.insets;
+                        i = insets.left;
+                        i2 = insets.top;
+                        i3 = insets.right;
+                        i4 = insets.bottom;
+                        rect2.set(i, i2, i3, i4);
                     }
                     ScrimOptions.this.containerView.setPadding(ScrimOptions.this.insets.left, ScrimOptions.this.insets.top, ScrimOptions.this.insets.right, ScrimOptions.this.insets.bottom);
                     ScrimOptions.this.windowView.requestLayout();
-                    if (i2 >= 30) {
-                        return WindowInsets.CONSUMED;
+                    if (i5 >= 30) {
+                        windowInsets2 = WindowInsets.CONSUMED;
+                        return windowInsets2;
                     }
-                    return windowInsets.consumeSystemWindowInsets();
+                    consumeSystemWindowInsets = windowInsets.consumeSystemWindowInsets();
+                    return consumeSystemWindowInsets;
                 }
             });
         }
@@ -278,19 +305,15 @@ public class ScrimOptions extends Dialog {
         attributes.height = -1;
         attributes.gravity = 119;
         attributes.dimAmount = 0.0f;
-        int i = attributes.flags & (-3);
-        attributes.flags = i;
         attributes.softInputMode = 16;
-        int i2 = i | 131072;
-        attributes.flags = i2;
-        int i3 = Build.VERSION.SDK_INT;
-        if (i3 >= 21) {
-            attributes.flags = i2 | (-1946091264);
+        int i = (attributes.flags & (-3)) | 131072;
+        attributes.flags = i;
+        int i2 = Build.VERSION.SDK_INT;
+        if (i2 >= 21) {
+            attributes.flags = i | (-1946091264);
         }
-        int i4 = attributes.flags | 1024;
-        attributes.flags = i4;
-        attributes.flags = i4 | 128;
-        if (i3 >= 28) {
+        attributes.flags = attributes.flags | 1024 | 128;
+        if (i2 >= 28) {
             attributes.layoutInDisplayCutoutMode = 1;
         }
         window.setAttributes(attributes);
@@ -369,7 +392,7 @@ public class ScrimOptions extends Dialog {
         }
     }
 
-    public void setScrim(final org.telegram.ui.Cells.ChatMessageCell r28, android.text.style.CharacterStyle r29, java.lang.CharSequence r30) {
+    public void setScrim(final org.telegram.ui.Cells.ChatMessageCell r29, android.text.style.CharacterStyle r30, java.lang.CharSequence r31) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ScrimOptions.setScrim(org.telegram.ui.Cells.ChatMessageCell, android.text.style.CharacterStyle, java.lang.CharSequence):void");
     }
 }

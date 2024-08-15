@@ -40,7 +40,7 @@ void main() {
 //    vec3 flecksLightDir = normalize(flecksLightPos - pos);
 //    vec3 flecksReflectDir = reflect(-flecksLightDir, norm);
 //    float flecksSpec = pow(max(dot(normalize(vec3(0.0) - pos), flecksReflectDir), 0.0), 8.0);
-    vec3 flecksNormal = normalize(1.0 - texture2D(u_NormalMap, vUV + .7 * vec2(-f_xOffset, f_xOffset)).xyz);
+    vec3 flecksNormal = normalize(1.0 - texture2D(u_NormalMap, (vUV + .7 * vec2(-f_xOffset, f_xOffset)) * 2.0).xyz);
     float flecks = clamp(flecksNormal.x, 0.0, 1.0);
 //    norm = normalize(norm + flecksSpec * abs(vNormal.z) * flecksNormal);
 

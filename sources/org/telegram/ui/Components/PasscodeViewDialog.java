@@ -17,22 +17,28 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.DrawerLayoutContainer;
 import org.telegram.ui.LaunchActivity;
 public class PasscodeViewDialog extends Dialog {
+    public final Context context;
     public final PasscodeView passcodeView;
     private final FrameLayout windowView;
 
     public PasscodeViewDialog(Context context) {
         super(context, R.style.TransparentDialog);
+        this.context = context;
         FrameLayout frameLayout = new FrameLayout(context);
         this.windowView = frameLayout;
         if (Build.VERSION.SDK_INT >= 21) {
             frameLayout.setFitsSystemWindows(true);
-            frameLayout.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener(this) {
+            frameLayout.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
                 @Override
                 public WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
+                    WindowInsets consumeSystemWindowInsets;
+                    WindowInsets windowInsets2;
                     if (Build.VERSION.SDK_INT >= 30) {
-                        return WindowInsets.CONSUMED;
+                        windowInsets2 = WindowInsets.CONSUMED;
+                        return windowInsets2;
                     }
-                    return windowInsets.consumeSystemWindowInsets();
+                    consumeSystemWindowInsets = windowInsets.consumeSystemWindowInsets();
+                    return consumeSystemWindowInsets;
                 }
             });
         }
@@ -85,9 +91,7 @@ public class PasscodeViewDialog extends Dialog {
         if (i2 >= 21) {
             attributes.flags |= -2013200128;
         }
-        int i3 = attributes.flags | 1024;
-        attributes.flags = i3;
-        attributes.flags = i3 | 128;
+        attributes.flags = attributes.flags | 1024 | 128;
         if (i2 >= 28) {
             attributes.layoutInDisplayCutoutMode = 1;
         }

@@ -21,6 +21,7 @@ public class ChartHeaderView extends FrameLayout {
     public TextView back;
     private TextView dates;
     private TextView datesTmp;
+    SimpleDateFormat formatter;
     private Theme.ResourcesProvider resourcesProvider;
     private boolean showDate;
     int textMargin;
@@ -35,7 +36,7 @@ public class ChartHeaderView extends FrameLayout {
     public ChartHeaderView(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.showDate = true;
-        new SimpleDateFormat("d MMM yyyy");
+        this.formatter = new SimpleDateFormat("d MMM yyyy");
         this.resourcesProvider = resourcesProvider;
         TextPaint textPaint = new TextPaint();
         textPaint.setTextSize(14.0f);

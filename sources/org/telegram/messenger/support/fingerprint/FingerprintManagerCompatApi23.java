@@ -11,12 +11,14 @@ public final class FingerprintManagerCompatApi23 {
     }
 
     public static boolean hasEnrolledFingerprints(Context context) {
+        boolean hasEnrolledFingerprints;
         try {
             FingerprintManager fingerprintManager = getFingerprintManager(context);
             if (fingerprintManager == null) {
                 return false;
             }
-            return fingerprintManager.hasEnrolledFingerprints();
+            hasEnrolledFingerprints = fingerprintManager.hasEnrolledFingerprints();
+            return hasEnrolledFingerprints;
         } catch (Exception e) {
             FileLog.e(e);
             return false;
@@ -24,12 +26,14 @@ public final class FingerprintManagerCompatApi23 {
     }
 
     public static boolean isHardwareDetected(Context context) {
+        boolean isHardwareDetected;
         try {
             FingerprintManager fingerprintManager = getFingerprintManager(context);
             if (fingerprintManager == null) {
                 return false;
             }
-            return fingerprintManager.isHardwareDetected();
+            isHardwareDetected = fingerprintManager.isHardwareDetected();
+            return isHardwareDetected;
         } catch (Exception e) {
             FileLog.e(e);
             return false;

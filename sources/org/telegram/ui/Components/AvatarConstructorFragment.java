@@ -179,6 +179,7 @@ public class AvatarConstructorFragment extends BaseFragment {
         final ContainerLayout containerLayout = new ContainerLayout(context) {
             boolean isScrolling;
             boolean maybeScroll;
+            float scrollFromX;
             float scrollFromY;
             float startFromProgressToExpand;
 
@@ -327,7 +328,7 @@ public class AvatarConstructorFragment extends BaseFragment {
                         rect.offset(0, (int) AvatarConstructorFragment.this.linearLayout.getY());
                         if (AvatarConstructorFragment.this.keyboardVisibleProgress == 0.0f && !rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
                             this.maybeScroll = true;
-                            motionEvent.getX();
+                            this.scrollFromX = motionEvent.getX();
                             this.scrollFromY = motionEvent.getY();
                         }
                     } else if (motionEvent.getAction() == 2 && ((z = this.maybeScroll) || this.isScrolling)) {
@@ -337,7 +338,7 @@ public class AvatarConstructorFragment extends BaseFragment {
                             this.maybeScroll = false;
                             this.isScrolling = true;
                             this.startFromProgressToExpand = AvatarConstructorFragment.this.progressToExpand;
-                            motionEvent.getX();
+                            this.scrollFromX = motionEvent.getX();
                             this.scrollFromY = motionEvent.getY();
                         }
                     } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
@@ -359,7 +360,7 @@ public class AvatarConstructorFragment extends BaseFragment {
         this.linearLayout.setPadding(0, AndroidUtilities.statusBarHeight, 0, 0);
         this.linearLayout.setOrientation(1);
         LinearLayout linearLayout = this.linearLayout;
-        PreviewView previewView = new PreviewView(this, getContext()) {
+        PreviewView previewView = new PreviewView(getContext()) {
             @Override
             public void invalidate() {
                 super.invalidate();
@@ -736,7 +737,7 @@ public class AvatarConstructorFragment extends BaseFragment {
             this.colorFilter = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
             this.expandProgress = new AnimatedFloat(this, 200L, CubicBezierInterpolator.EASE_OUT);
             this.overrideExpandProgress = -1.0f;
-            BackupImageView backupImageView = new BackupImageView(context, AvatarConstructorFragment.this) {
+            BackupImageView backupImageView = new BackupImageView(context) {
                 @Override
                 public void invalidate() {
                     super.invalidate();
@@ -944,10 +945,11 @@ public class AvatarConstructorFragment extends BaseFragment {
                     int i2 = this.stableIdPointer;
                     this.stableIdPointer = i2 + 1;
                     backgroundGradient.stableId = i2;
-                    backgroundGradient.color1 = iArr[i][0];
-                    backgroundGradient.color2 = iArr[i][1];
-                    backgroundGradient.color3 = iArr[i][2];
-                    backgroundGradient.color4 = iArr[i][3];
+                    int[] iArr2 = iArr[i];
+                    backgroundGradient.color1 = iArr2[0];
+                    backgroundGradient.color2 = iArr2[1];
+                    backgroundGradient.color3 = iArr2[2];
+                    backgroundGradient.color4 = iArr2[3];
                     this.gradients.add(backgroundGradient);
                     i++;
                 } else {
@@ -958,7 +960,7 @@ public class AvatarConstructorFragment extends BaseFragment {
                             AvatarConstructorFragment.BackgroundSelectView.this.lambda$new$0(view, i3);
                         }
                     });
-                    RecyclerView.Adapter adapter = new RecyclerView.Adapter(AvatarConstructorFragment.this) {
+                    RecyclerView.Adapter adapter = new RecyclerView.Adapter() {
                         @Override
                         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i3) {
                             BackgroundSelectView backgroundSelectView = BackgroundSelectView.this;
@@ -1122,7 +1124,7 @@ public class AvatarConstructorFragment extends BaseFragment {
             }
         }).alpha(1.0f).setDuration(200L).start();
         this.colorPickerGradient = new BackgroundGradient();
-        ColorPicker colorPicker = new ColorPicker(this, getContext(), false, new ColorPicker.ColorPickerDelegate() {
+        ColorPicker colorPicker = new ColorPicker(getContext(), false, new ColorPicker.ColorPickerDelegate() {
             @Override
             public void deleteTheme() {
                 ColorPicker.ColorPickerDelegate.CC.$default$deleteTheme(this);

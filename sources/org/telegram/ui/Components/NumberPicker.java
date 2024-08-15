@@ -23,6 +23,7 @@ public class NumberPicker extends LinearLayout {
     private static final CubicBezierInterpolator interpolator = new CubicBezierInterpolator(0.0f, 0.5f, 0.5f, 1.0f);
     private int SELECTOR_MIDDLE_ITEM_INDEX;
     private int SELECTOR_WHEEL_ITEM_COUNT;
+    private SeekBarAccessibilityDelegate accessibilityDelegate;
     private Integer allItemsCount;
     private boolean drawDividers;
     private Scroller mAdjustScroller;
@@ -61,6 +62,7 @@ public class NumberPicker extends LinearLayout {
     private int mScrollState;
     private Paint mSelectionDivider;
     private int mSelectionDividerHeight;
+    private int mSelectionDividersDistance;
     private int mSelectorElementHeight;
     private final SparseArray<String> mSelectorIndexToStringCache;
     private int[] mSelectorIndices;
@@ -132,7 +134,7 @@ public class NumberPicker extends LinearLayout {
         this.mSelectionDivider = paint;
         paint.setColor(getThemedColor(Theme.key_featuredStickers_addButton));
         this.mSelectionDividerHeight = (int) TypedValue.applyDimension(1, 2.0f, getResources().getDisplayMetrics());
-        TypedValue.applyDimension(1, 48.0f, getResources().getDisplayMetrics());
+        this.mSelectionDividersDistance = (int) TypedValue.applyDimension(1, 48.0f, getResources().getDisplayMetrics());
         this.mMinHeight = -1;
         int applyDimension = (int) TypedValue.applyDimension(1, 180.0f, getResources().getDisplayMetrics());
         this.mMaxHeight = applyDimension;
@@ -169,7 +171,7 @@ public class NumberPicker extends LinearLayout {
         this.mAdjustScroller = new Scroller(getContext(), new DecelerateInterpolator(2.5f));
         updateInputTextView();
         setImportantForAccessibility(1);
-        setAccessibilityDelegate(new SeekBarAccessibilityDelegate() {
+        SeekBarAccessibilityDelegate seekBarAccessibilityDelegate = new SeekBarAccessibilityDelegate() {
             @Override
             protected boolean canScrollBackward(View view) {
                 return true;
@@ -190,7 +192,9 @@ public class NumberPicker extends LinearLayout {
                 NumberPicker numberPicker = NumberPicker.this;
                 return numberPicker.getContentDescription(numberPicker.mValue);
             }
-        });
+        };
+        this.accessibilityDelegate = seekBarAccessibilityDelegate;
+        setAccessibilityDelegate(seekBarAccessibilityDelegate);
     }
 
     protected CharSequence getContentDescription(int i) {
@@ -800,7 +804,7 @@ public class NumberPicker extends LinearLayout {
                 i2 = getWrappedSelectorIndex(i2);
             }
             iArr[i] = i2;
-            ensureCachedScrollSelectorValue(iArr[i]);
+            ensureCachedScrollSelectorValue(i2);
         }
     }
 
@@ -1036,6 +1040,8 @@ public class NumberPicker extends LinearLayout {
     }
 
     public class PressedStateHelper implements Runnable {
+        private final int MODE_PRESS = 1;
+        private final int MODE_TAPPED = 2;
         private int mManagedButton;
         private int mMode;
 

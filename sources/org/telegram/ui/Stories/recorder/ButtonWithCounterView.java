@@ -53,6 +53,7 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
     public final View rippleView;
     private boolean showZero;
     public final AnimatedTextView.AnimatedTextDrawable subText;
+    private final int subTextAlpha;
     private float subTextT;
     private boolean subTextVisible;
     private ValueAnimator subTextVisibleAnimator;
@@ -92,6 +93,7 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
         this.enabledT = 1.0f;
         this.enabled = true;
         this.globalAlpha = 255;
+        this.subTextAlpha = 200;
         this.filled = z;
         this.resourcesProvider = resourcesProvider;
         ScaleStateListAnimator.apply(this, 0.02f, 1.2f);

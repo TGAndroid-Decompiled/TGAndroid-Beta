@@ -50,6 +50,7 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
     private Theme.ResourcesProvider resourcesProvider;
     private int scrollingToChild;
     private int selectedTabId;
+    private int selectorColorKey;
     private GradientDrawable selectorDrawable;
     private boolean setInitialTab;
     private int tabCount;
@@ -93,7 +94,7 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
         this.tabLineColorKey = Theme.key_actionBarTabLine;
         this.activeTextColorKey = Theme.key_actionBarTabActiveText;
         this.unactiveTextColorKey = Theme.key_actionBarTabUnactiveText;
-        int i = Theme.key_actionBarTabSelector;
+        this.selectorColorKey = Theme.key_actionBarTabSelector;
         this.interpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         this.positionToId = new SparseIntArray(5);
         this.idToPosition = new SparseIntArray(5);
@@ -142,8 +143,8 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
             }
 
             @Override
-            protected void onLayout(boolean z, int i2, int i3, int i4, int i5) {
-                super.onLayout(z, i2, i3, i4, i5);
+            protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+                super.onLayout(z, i, i2, i3, i4);
                 if (!ScrollSlidingTextTabStrip.this.setInitialTab || ScrollSlidingTextTabStrip.this.idToPosition.indexOfKey(ScrollSlidingTextTabStrip.this.selectedTabId) < 0 || ScrollSlidingTextTabStrip.this.tabsContainer.getChildAt(ScrollSlidingTextTabStrip.this.idToPosition.get(ScrollSlidingTextTabStrip.this.selectedTabId)) == null) {
                     return;
                 }
@@ -257,6 +258,7 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
     }
 
     public void addTextTab(final int i, CharSequence charSequence, SparseArray<View> sparseArray) {
+        TextView textView;
         int i2 = this.tabCount;
         this.tabCount = i2 + 1;
         if (i2 == 0 && this.selectedTabId == -1) {
@@ -269,10 +271,11 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
             this.currentPosition = i2;
             this.prevLayoutWidth = 0;
         }
-        TextView textView = null;
         if (sparseArray != null) {
             textView = (TextView) sparseArray.get(i);
             sparseArray.delete(i);
+        } else {
+            textView = null;
         }
         if (textView == null) {
             textView = new TextView(getContext()) {
@@ -372,6 +375,7 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
         this.tabLineColorKey = i;
         this.activeTextColorKey = i2;
         this.unactiveTextColorKey = i3;
+        this.selectorColorKey = i4;
         this.selectorDrawable.setColor(processColor(Theme.getColor(i, this.resourcesProvider)));
     }
 

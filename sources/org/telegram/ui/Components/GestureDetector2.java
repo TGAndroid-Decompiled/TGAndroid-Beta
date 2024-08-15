@@ -6,10 +6,7 @@ import android.os.Message;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.ViewConfiguration;
-import java.util.Objects;
 public class GestureDetector2 {
-    public static final int DOUBLE_TAP_TIMEOUT;
-    private static final int TAP_TIMEOUT;
     private boolean mAlwaysInBiggerTapRegion;
     private boolean mAlwaysInTapRegion;
     private MotionEvent mCurrentDownEvent;
@@ -35,6 +32,9 @@ public class GestureDetector2 {
     private boolean mStillDown;
     private int mTouchSlopSquare;
     private VelocityTracker mVelocityTracker;
+    private static final int LONGPRESS_TIMEOUT = ViewConfiguration.getLongPressTimeout();
+    private static final int TAP_TIMEOUT = ViewConfiguration.getTapTimeout();
+    public static final int DOUBLE_TAP_TIMEOUT = ViewConfiguration.getDoubleTapTimeout();
 
     public interface OnDoubleTapListener {
         boolean canDoubleTap(MotionEvent motionEvent);
@@ -60,12 +60,6 @@ public class GestureDetector2 {
         boolean onSingleTapUp(MotionEvent motionEvent);
 
         void onUp(MotionEvent motionEvent);
-    }
-
-    static {
-        ViewConfiguration.getLongPressTimeout();
-        TAP_TIMEOUT = ViewConfiguration.getTapTimeout();
-        DOUBLE_TAP_TIMEOUT = ViewConfiguration.getDoubleTapTimeout();
     }
 
     private class GestureHandler extends Handler {
@@ -123,13 +117,15 @@ public class GestureDetector2 {
         int scaledTouchSlop;
         int i;
         int i2;
-        Objects.requireNonNull(this.mListener, "OnGestureListener must not be null");
+        if (this.mListener == null) {
+            throw new NullPointerException("OnGestureListener must not be null");
+        }
         this.mIsLongpressEnabled = true;
         if (context == null) {
             i = ViewConfiguration.getTouchSlop();
-            i2 = 100;
             this.mMinimumFlingVelocity = ViewConfiguration.getMinimumFlingVelocity();
             this.mMaximumFlingVelocity = ViewConfiguration.getMaximumFlingVelocity();
+            i2 = 100;
             scaledTouchSlop = i;
         } else {
             ViewConfiguration viewConfiguration = ViewConfiguration.get(context);

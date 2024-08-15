@@ -505,13 +505,14 @@ public class LocationController extends BaseController implements NotificationCe
                 }
                 tLRPC$InputMedia.heading = getHeading(this.lastKnownLocation);
                 tLRPC$TL_messages_editMessage.media.flags |= 4;
-                final int[] iArr = {getConnectionsManager().sendRequest(tLRPC$TL_messages_editMessage, new RequestDelegate() {
+                int sendRequest = getConnectionsManager().sendRequest(tLRPC$TL_messages_editMessage, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                        LocationController.this.lambda$broadcastLastKnownLocation$7(sharingLocationInfo, iArr, tLRPC$TL_messages_editMessage, tLObject, tLRPC$TL_error);
+                        LocationController.this.lambda$broadcastLastKnownLocation$7(sharingLocationInfo, r3, tLRPC$TL_messages_editMessage, tLObject, tLRPC$TL_error);
                     }
-                })};
-                this.requests.put(iArr[0], 0);
+                });
+                final int[] iArr = {sendRequest};
+                this.requests.put(sendRequest, 0);
             }
         }
         if (this.shareMyCurrentLocation) {
@@ -678,7 +679,7 @@ public class LocationController extends BaseController implements NotificationCe
     }
 
     public void setLastKnownLocation(Location location) {
-        if (location == null || Build.VERSION.SDK_INT < 17 || (SystemClock.elapsedRealtimeNanos() - location.getElapsedRealtimeNanos()) / 1000000000 <= 300) {
+        if (location == null || (SystemClock.elapsedRealtimeNanos() - location.getElapsedRealtimeNanos()) / 1000000000 <= 300) {
             this.lastKnownLocation = location;
             if (location != null) {
                 AndroidUtilities.runOnUIThread(new Runnable() {

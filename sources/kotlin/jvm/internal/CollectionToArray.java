@@ -4,14 +4,13 @@ import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.Objects;
 public final class CollectionToArray {
     private static final Object[] EMPTY = new Object[0];
 
     public static final Object[] toArray(Collection<?> collection, Object[] objArr) {
         Object[] objArr2;
         Intrinsics.checkNotNullParameter(collection, "collection");
-        Objects.requireNonNull(objArr);
+        objArr.getClass();
         int size = collection.size();
         int i = 0;
         if (size == 0) {
@@ -45,10 +44,10 @@ public final class CollectionToArray {
                 }
                 int i3 = ((i2 * 3) + 1) >>> 1;
                 if (i3 <= i2) {
+                    i3 = 2147483645;
                     if (i2 >= 2147483645) {
                         throw new OutOfMemoryError();
                     }
-                    i3 = 2147483645;
                 }
                 objArr2 = Arrays.copyOf(objArr2, i3);
                 Intrinsics.checkNotNullExpressionValue(objArr2, "copyOf(result, newSize)");
@@ -82,10 +81,10 @@ public final class CollectionToArray {
                         }
                         int i3 = ((i2 * 3) + 1) >>> 1;
                         if (i3 <= i2) {
+                            i3 = 2147483645;
                             if (i2 >= 2147483645) {
                                 throw new OutOfMemoryError();
                             }
-                            i3 = 2147483645;
                         }
                         objArr = Arrays.copyOf(objArr, i3);
                         Intrinsics.checkNotNullExpressionValue(objArr, "copyOf(result, newSize)");

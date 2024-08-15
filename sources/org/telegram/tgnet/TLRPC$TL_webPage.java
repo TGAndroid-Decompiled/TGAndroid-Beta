@@ -2,7 +2,9 @@ package org.telegram.tgnet;
 public class TLRPC$TL_webPage extends TLRPC$WebPage {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-        this.flags = abstractSerializedData.readInt32(z);
+        int readInt32 = abstractSerializedData.readInt32(z);
+        this.flags = readInt32;
+        this.has_large_media = (readInt32 & 8192) != 0;
         this.id = abstractSerializedData.readInt64(z);
         this.url = abstractSerializedData.readString(z);
         this.display_url = abstractSerializedData.readString(z);
@@ -47,15 +49,15 @@ public class TLRPC$TL_webPage extends TLRPC$WebPage {
             this.cached_page = TLRPC$Page.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
         if ((this.flags & 4096) != 0) {
-            int readInt32 = abstractSerializedData.readInt32(z);
-            if (readInt32 != 481674261) {
+            int readInt322 = abstractSerializedData.readInt32(z);
+            if (readInt322 != 481674261) {
                 if (z) {
-                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
+                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
                 }
                 return;
             }
-            int readInt322 = abstractSerializedData.readInt32(z);
-            for (int i = 0; i < readInt322; i++) {
+            int readInt323 = abstractSerializedData.readInt32(z);
+            for (int i = 0; i < readInt323; i++) {
                 TLRPC$WebPageAttribute TLdeserialize = TLRPC$WebPageAttribute.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
                 if (TLdeserialize == null) {
                     return;

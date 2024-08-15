@@ -44,8 +44,8 @@ public class AnimatedPhoneNumberEditText extends HintEditText {
 
     @Override
     public void setHintText(final String str) {
+        boolean isEmpty;
         final boolean z = !TextUtils.isEmpty(str);
-        boolean z2 = false;
         Boolean bool = this.wasHintVisible;
         if (bool == null || bool.booleanValue() != z) {
             this.hintAnimationValues.clear();
@@ -54,17 +54,19 @@ public class AnimatedPhoneNumberEditText extends HintEditText {
             }
             this.hintAnimations.clear();
             this.wasHintVisible = Boolean.valueOf(z);
-            z2 = TextUtils.isEmpty(getText());
+            isEmpty = TextUtils.isEmpty(getText());
+        } else {
+            isEmpty = false;
         }
         String str2 = z ? str : this.wasHint;
         if (str2 == null) {
             str2 = "";
         }
         this.wasHint = str;
-        if (z || !z2) {
+        if (z || !isEmpty) {
             super.setHintText(str);
         }
-        if (z2) {
+        if (isEmpty) {
             runHintAnimation(str2.length(), z, new Runnable() {
                 @Override
                 public final void run() {

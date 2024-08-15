@@ -110,7 +110,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
             BackupImageView backupImageView2 = this.avatarImageView;
             boolean z = LocaleController.isRTL;
             addView(backupImageView2, LayoutHelper.createFrame(46, 46.0f, (z ? 5 : 3) | 48, z ? 0.0f : 14.0f, 9.0f, z ? 14.0f : 0.0f, 0.0f));
-            SimpleTextView simpleTextView = new SimpleTextView(this, context) {
+            SimpleTextView simpleTextView = new SimpleTextView(context) {
                 @Override
                 public boolean setText(CharSequence charSequence, boolean z2) {
                     return super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), AndroidUtilities.dp(14.0f), false), z2);
@@ -283,7 +283,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
             if (this == obj) {
                 return true;
             }
-            if (obj == null || ListItemID.class != obj.getClass()) {
+            if (obj == null || getClass() != obj.getClass()) {
                 return false;
             }
             ListItemID listItemID = (ListItemID) obj;

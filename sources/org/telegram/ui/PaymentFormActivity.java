@@ -252,6 +252,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
     private LinearLayout tipLayout;
     private TextPriceCell totalCell;
     private String[] totalPrice;
+    private String totalPriceDecimal;
     private TLRPC$TL_payments_validateRequestedInfo validateRequest;
     private boolean waitingForEmail;
     private WebView webView;
@@ -544,7 +545,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
 
     @Override
     @android.annotation.SuppressLint({"SetJavaScriptEnabled", "AddJavascriptInterface"})
-    public android.view.View createView(android.content.Context r35) {
+    public android.view.View createView(android.content.Context r37) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PaymentFormActivity.createView(android.content.Context):android.view.View");
     }
 
@@ -783,8 +784,8 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         } else {
             this.inputFields[0].setText(LocaleController.getInstance().formatCurrencyString(j, false, true, true, this.paymentForm.invoice.currency));
         }
-        EditTextBoldCursor[] editTextBoldCursorArr = this.inputFields;
-        editTextBoldCursorArr[0].setSelection(editTextBoldCursorArr[0].length());
+        EditTextBoldCursor editTextBoldCursor = this.inputFields[0];
+        editTextBoldCursor.setSelection(editTextBoldCursor.length());
     }
 
     public void lambda$createView$16(View view) {
@@ -1307,7 +1308,9 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             if (tLRPC$TL_shippingOption != null) {
                 arrayList.addAll(tLRPC$TL_shippingOption.prices);
             }
-            jSONObject.put("totalPrice", getTotalPriceDecimalString(arrayList));
+            String totalPriceDecimalString = getTotalPriceDecimalString(arrayList);
+            this.totalPriceDecimal = totalPriceDecimalString;
+            jSONObject.put("totalPrice", totalPriceDecimalString);
             jSONObject.put("totalPriceStatus", "FINAL");
             if (!TextUtils.isEmpty(this.googlePayCountryCode)) {
                 jSONObject.put("countryCode", this.googlePayCountryCode);
@@ -1515,7 +1518,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
 
     private void initGooglePay(Context context) {
         IsReadyToPayRequest fromJson;
-        if (Build.VERSION.SDK_INT < 19 || getParentActivity() == null) {
+        if (getParentActivity() == null) {
             return;
         }
         this.paymentsClient = Wallet.getPaymentsClient(context, new Wallet.WalletOptions.Builder().setEnvironment(this.paymentForm.invoice.test ? 3 : 1).setTheme(1).build());
@@ -1749,7 +1752,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                     this.cardName = card.getBrand() + " *" + card.getLast4();
                     goToNextStep();
                 }
-                ?? r2 = new TLRPC$InputPaymentCredentials() {
+                ?? r0 = new TLRPC$InputPaymentCredentials() {
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
                         this.payment_token = TLRPC$TL_dataJSON.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
@@ -1761,8 +1764,8 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                         this.payment_token.serializeToStream(abstractSerializedData);
                     }
                 };
-                this.googlePayCredentials = r2;
-                r2.payment_token = new TLRPC$TL_dataJSON();
+                this.googlePayCredentials = r0;
+                r0.payment_token = new TLRPC$TL_dataJSON();
                 this.googlePayCredentials.payment_token.data = jSONObject2.toString();
                 String optString = jSONObject.optString("description");
                 if (!TextUtils.isEmpty(optString)) {
@@ -2006,14 +2009,14 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             this.bottomCell[0].setText(spannableStringBuilder);
             this.checkCell1.setVisibility(0);
             this.bottomCell[0].setVisibility(0);
-            ShadowSectionCell[] shadowSectionCellArr = this.sectionCell;
-            shadowSectionCellArr[2].setBackgroundDrawable(Theme.getThemedDrawableByKey(shadowSectionCellArr[2].getContext(), R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
+            ShadowSectionCell shadowSectionCell = this.sectionCell[2];
+            shadowSectionCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(shadowSectionCell.getContext(), R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
             return;
         }
         this.checkCell1.setVisibility(8);
         this.bottomCell[0].setVisibility(8);
-        ShadowSectionCell[] shadowSectionCellArr2 = this.sectionCell;
-        shadowSectionCellArr2[2].setBackgroundDrawable(Theme.getThemedDrawableByKey(shadowSectionCellArr2[2].getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+        ShadowSectionCell shadowSectionCell2 = this.sectionCell[2];
+        shadowSectionCell2.setBackgroundDrawable(Theme.getThemedDrawableByKey(shadowSectionCell2.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
     }
 
     @android.annotation.SuppressLint({"HardwareIds"})
@@ -2049,8 +2052,8 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             tLRPC$TL_account_passwordInputSettings.flags = 2;
             tLRPC$TL_account_passwordInputSettings.email = "";
             tLRPC$TL_account_updatePasswordSettings.password = new TLRPC$TL_inputCheckPasswordEmpty();
-            str2 = null;
             str = null;
+            str2 = null;
         } else {
             String obj = this.inputFields[0].getText().toString();
             if (TextUtils.isEmpty(obj)) {
@@ -2085,15 +2088,15 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                 tLRPC$TL_account_passwordInputSettings2.new_algo = this.currentPassword.new_algo;
                 tLRPC$TL_account_passwordInputSettings2.flags = i | 2;
                 tLRPC$TL_account_passwordInputSettings2.email = obj2.trim();
-                str = obj;
-                str2 = obj2;
+                str = obj2;
+                str2 = obj;
             }
         }
         showEditDoneProgress(true, true);
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                PaymentFormActivity.this.lambda$sendSavePassword$48(z, str2, str, tLRPC$TL_account_updatePasswordSettings);
+                PaymentFormActivity.this.lambda$sendSavePassword$48(z, str, str2, tLRPC$TL_account_updatePasswordSettings);
             }
         });
     }
@@ -3074,9 +3077,9 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         if (actionBar != null && actionBar.getBackButton() != null) {
             this.actionBar.getBackButton().setEnabled(!this.donePressed);
         }
-        TextDetailSettingsCell[] textDetailSettingsCellArr = this.detailSettingsCell;
-        if (textDetailSettingsCellArr[0] != null) {
-            textDetailSettingsCellArr[0].setEnabled(!this.donePressed);
+        TextDetailSettingsCell textDetailSettingsCell = this.detailSettingsCell[0];
+        if (textDetailSettingsCell != null) {
+            textDetailSettingsCell.setEnabled(!this.donePressed);
         }
     }
 

@@ -9,11 +9,6 @@ public class ScopeCoroutine<T> extends AbstractCoroutine<T> implements Coroutine
     public final Continuation<T> uCont;
 
     @Override
-    public final StackTraceElement getStackTraceElement() {
-        return null;
-    }
-
-    @Override
     protected final boolean isScopedCoroutine() {
         return true;
     }

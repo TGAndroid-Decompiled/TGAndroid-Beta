@@ -65,21 +65,15 @@ public class GroupInviteActivity extends BaseFragment implements NotificationCen
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.chatInfoDidLoad);
         getMessagesController().loadFullChat(this.chatId, this.classGuid, true);
         this.loading = true;
-        this.rowCount = 0;
         int i = 0 + 1;
-        this.rowCount = i;
         this.linkRow = 0;
         int i2 = i + 1;
-        this.rowCount = i2;
         this.linkInfoRow = i;
         int i3 = i2 + 1;
-        this.rowCount = i3;
         this.copyLinkRow = i2;
         int i4 = i3 + 1;
-        this.rowCount = i4;
         this.revokeLinkRow = i3;
         int i5 = i4 + 1;
-        this.rowCount = i5;
         this.shareLinkRow = i4;
         this.rowCount = i5 + 1;
         this.shadowRow = i5;
@@ -108,18 +102,17 @@ public class GroupInviteActivity extends BaseFragment implements NotificationCen
         this.listAdapter = new ListAdapter(context);
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
-        FrameLayout frameLayout2 = frameLayout;
-        frameLayout2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
+        frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
         EmptyTextProgressView emptyTextProgressView = new EmptyTextProgressView(context);
         this.emptyView = emptyTextProgressView;
         emptyTextProgressView.showProgress();
-        frameLayout2.addView(this.emptyView, LayoutHelper.createFrame(-1, -1, 51));
+        frameLayout.addView(this.emptyView, LayoutHelper.createFrame(-1, -1, 51));
         RecyclerListView recyclerListView = new RecyclerListView(context);
         this.listView = recyclerListView;
         recyclerListView.setLayoutManager(new LinearLayoutManager(context, 1, false));
         this.listView.setEmptyView(this.emptyView);
         this.listView.setVerticalScrollBarEnabled(false);
-        frameLayout2.addView(this.listView, LayoutHelper.createFrame(-1, -1, 51));
+        frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1, 51));
         this.listView.setAdapter(this.listAdapter);
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override

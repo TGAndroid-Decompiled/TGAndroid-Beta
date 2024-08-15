@@ -80,6 +80,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
     private boolean ignoreLayout;
     private boolean ignoreMeasure;
     private boolean isBotButtonAvailable;
+    private long lastSwipeTime;
     private int measureOffsetY;
     private boolean needCloseConfirmation;
     private boolean needReload;
@@ -279,7 +280,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
     public void lambda$new$3() {
         this.parentAlert.updateLayout(this, true, 0);
         this.webViewContainer.invalidateViewPortHeight();
-        System.currentTimeMillis();
+        this.lastSwipeTime = System.currentTimeMillis();
     }
 
     public void lambda$new$4() {
@@ -1087,6 +1088,8 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
 
         @Override
         public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+            float rawX;
+            float rawY;
             if (!this.isScrolling || motionEvent.getActionIndex() == 0) {
                 if (motionEvent.getAction() == 0 && this.shouldWaitWebViewScroll) {
                     this.allowedScrollX = false;
@@ -1095,7 +1098,9 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
                 MotionEvent obtain = MotionEvent.obtain(motionEvent);
                 int actionIndex = motionEvent.getActionIndex();
                 if (Build.VERSION.SDK_INT >= 29) {
-                    obtain.setLocation(motionEvent.getRawX(actionIndex), motionEvent.getRawY(actionIndex));
+                    rawX = motionEvent.getRawX(actionIndex);
+                    rawY = motionEvent.getRawY(actionIndex);
+                    obtain.setLocation(rawX, rawY);
                 } else {
                     obtain.setLocation(motionEvent.getX(actionIndex) + (motionEvent.getRawX() - motionEvent.getX()), motionEvent.getY(actionIndex) + (motionEvent.getRawY() - motionEvent.getY()));
                 }

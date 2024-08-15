@@ -127,6 +127,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
     private boolean firstOpenFrame;
     private boolean firstOpenFrame2;
     private boolean focusable;
+    private VisiblePart fromPart;
     private final LongSparseArray<MessageObject.GroupedMessages> groupedMessagesMap;
     private final Rect insets;
     private boolean keyboardVisible;
@@ -226,19 +227,42 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
             frameLayout.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
                 @Override
                 public WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-                    int i2 = Build.VERSION.SDK_INT;
-                    if (i2 < 30) {
-                        MessageSendPreview.this.insets.set(windowInsets.getSystemWindowInsetLeft(), windowInsets.getSystemWindowInsetTop(), windowInsets.getSystemWindowInsetRight(), windowInsets.getSystemWindowInsetBottom());
+                    int systemWindowInsetLeft;
+                    int systemWindowInsetTop;
+                    int systemWindowInsetRight;
+                    int systemWindowInsetBottom;
+                    WindowInsets consumeSystemWindowInsets;
+                    WindowInsets windowInsets2;
+                    Insets insets;
+                    int i2;
+                    int i3;
+                    int i4;
+                    int i5;
+                    int i6 = Build.VERSION.SDK_INT;
+                    if (i6 < 30) {
+                        Rect rect = MessageSendPreview.this.insets;
+                        systemWindowInsetLeft = windowInsets.getSystemWindowInsetLeft();
+                        systemWindowInsetTop = windowInsets.getSystemWindowInsetTop();
+                        systemWindowInsetRight = windowInsets.getSystemWindowInsetRight();
+                        systemWindowInsetBottom = windowInsets.getSystemWindowInsetBottom();
+                        rect.set(systemWindowInsetLeft, systemWindowInsetTop, systemWindowInsetRight, systemWindowInsetBottom);
                     } else {
-                        Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.displayCutout() | WindowInsetsCompat.Type.systemBars());
-                        MessageSendPreview.this.insets.set(insets.left, insets.top, insets.right, insets.bottom);
+                        insets = windowInsets.getInsets(WindowInsetsCompat.Type.displayCutout() | WindowInsetsCompat.Type.systemBars());
+                        Rect rect2 = MessageSendPreview.this.insets;
+                        i2 = insets.left;
+                        i3 = insets.top;
+                        i4 = insets.right;
+                        i5 = insets.bottom;
+                        rect2.set(i2, i3, i4, i5);
                     }
                     MessageSendPreview.this.containerView.setPadding(MessageSendPreview.this.insets.left, MessageSendPreview.this.insets.top, MessageSendPreview.this.insets.right, MessageSendPreview.this.insets.bottom);
                     MessageSendPreview.this.windowView.requestLayout();
-                    if (i2 >= 30) {
-                        return WindowInsets.CONSUMED;
+                    if (i6 >= 30) {
+                        windowInsets2 = WindowInsets.CONSUMED;
+                        return windowInsets2;
                     }
-                    return windowInsets.consumeSystemWindowInsets();
+                    consumeSystemWindowInsets = windowInsets.consumeSystemWindowInsets();
+                    return consumeSystemWindowInsets;
                 }
             });
         }
@@ -581,8 +605,10 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                 MessageSendPreview.this.chatListView.invalidate();
             }
         });
-        recyclerListView.setItemAnimator(new AnonymousClass7(this, null, recyclerListView, resourcesProvider));
+        recyclerListView.setItemAnimator(new AnonymousClass7(null, recyclerListView, resourcesProvider));
         GridLayoutManagerFixed gridLayoutManagerFixed = new GridLayoutManagerFixed(context, 1000, 1, true) {
+            boolean computingScroll;
+
             @Override
             public boolean supportsPredictiveItemAnimations() {
                 return true;
@@ -590,17 +616,26 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
 
             @Override
             public int computeVerticalScrollExtent(RecyclerView.State state) {
-                return super.computeVerticalScrollExtent(state);
+                this.computingScroll = true;
+                int computeVerticalScrollExtent = super.computeVerticalScrollExtent(state);
+                this.computingScroll = false;
+                return computeVerticalScrollExtent;
             }
 
             @Override
             public int computeVerticalScrollOffset(RecyclerView.State state) {
-                return super.computeVerticalScrollOffset(state);
+                this.computingScroll = true;
+                int computeVerticalScrollOffset = super.computeVerticalScrollOffset(state);
+                this.computingScroll = false;
+                return computeVerticalScrollOffset;
             }
 
             @Override
             public int computeVerticalScrollRange(RecyclerView.State state) {
-                return super.computeVerticalScrollRange(state);
+                this.computingScroll = true;
+                int computeVerticalScrollRange = super.computeVerticalScrollRange(state);
+                this.computingScroll = false;
+                return computeVerticalScrollRange;
             }
 
             @Override
@@ -648,7 +683,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
             }
         });
         recyclerListView.setLayoutManager(gridLayoutManagerFixed);
-        recyclerListView.addItemDecoration(new RecyclerView.ItemDecoration(this) {
+        recyclerListView.addItemDecoration(new RecyclerView.ItemDecoration() {
             @Override
             public void getItemOffsets(Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
                 ChatMessageCell chatMessageCell;
@@ -695,7 +730,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
             public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i2) {
                 MessageSendPreview messageSendPreview = MessageSendPreview.this;
                 MessageCell messageCell = new MessageCell(context, messageSendPreview.currentAccount, true, null, resourcesProvider);
-                messageCell.setDelegate(new ChatMessageCell.ChatMessageCellDelegate(this) {
+                messageCell.setDelegate(new ChatMessageCell.ChatMessageCellDelegate() {
                     @Override
                     public boolean canDrawOutboundsContent() {
                         return ChatMessageCell.ChatMessageCellDelegate.CC.$default$canDrawOutboundsContent(this);
@@ -1169,6 +1204,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         int chatListViewTy;
         private GradientClip clip;
         final int[] destCellPos;
+        private AnimatedFloat destCellY;
         final int[] pos;
         final int[] pos2;
         final Theme.ResourcesProvider val$resourcesProvider;
@@ -1181,7 +1217,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
             this.chatListViewTy = 0;
             this.destCellPos = new int[2];
             this.clip = new GradientClip();
-            new AnimatedFloat(0L, 100L, CubicBezierInterpolator.EASE_OUT_QUINT);
+            this.destCellY = new AnimatedFloat(0L, 100L, CubicBezierInterpolator.EASE_OUT_QUINT);
             this.backgroundPaint = new Paint(1);
         }
 
@@ -1229,7 +1265,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         public void checkIsRunning() {
         }
 
-        AnonymousClass7(MessageSendPreview messageSendPreview, ChatActivity chatActivity, RecyclerListView recyclerListView, Theme.ResourcesProvider resourcesProvider) {
+        AnonymousClass7(ChatActivity chatActivity, RecyclerListView recyclerListView, Theme.ResourcesProvider resourcesProvider) {
             super(chatActivity, recyclerListView, resourcesProvider);
         }
 
@@ -1365,19 +1401,15 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         attributes.height = -1;
         attributes.gravity = 119;
         attributes.dimAmount = 0.0f;
-        int i = attributes.flags & (-3);
-        attributes.flags = i;
         attributes.softInputMode = 16;
-        int i2 = i | 131072;
-        attributes.flags = i2;
-        int i3 = Build.VERSION.SDK_INT;
-        if (i3 >= 21) {
-            attributes.flags = i2 | (-1946091264);
+        int i = (attributes.flags & (-3)) | 131072;
+        attributes.flags = i;
+        int i2 = Build.VERSION.SDK_INT;
+        if (i2 >= 21) {
+            attributes.flags = i | (-1946091264);
         }
-        int i4 = attributes.flags | 1024;
-        attributes.flags = i4;
-        attributes.flags = i4 | 128;
-        if (i3 >= 28) {
+        attributes.flags = attributes.flags | 1024 | 128;
+        if (i2 >= 28) {
             attributes.layoutInDisplayCutoutMode = 1;
         }
         window.setAttributes(attributes);
@@ -1443,7 +1475,9 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         this.cameraRect = new RectF();
         int[] iArr = new int[2];
         textureView.getLocationOnScreen(iArr);
-        this.cameraRect.set(iArr[0], iArr[1], iArr[0] + textureView.getWidth(), iArr[1] + textureView.getHeight());
+        RectF rectF = this.cameraRect;
+        int i = iArr[0];
+        rectF.set(i, iArr[1], i + textureView.getWidth(), iArr[1] + textureView.getHeight());
     }
 
     public void setEditText(EditTextCaption editTextCaption, Utilities.Callback2<Canvas, Utilities.Callback0Return<Boolean>> callback2, Utilities.Callback<Canvas> callback) {
@@ -1508,7 +1542,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         frameLayout.setClipChildren(false);
         this.effectSelectorContainer.setClipToPadding(false);
         this.effectSelectorContainer.setPadding(0, 0, 0, AndroidUtilities.dp(24.0f));
-        ReactionsContainerLayout reactionsContainerLayout = new ReactionsContainerLayout(this, 5, null, getContext(), this.currentAccount, this.resourcesProvider) {
+        ReactionsContainerLayout reactionsContainerLayout = new ReactionsContainerLayout(5, null, getContext(), this.currentAccount, this.resourcesProvider) {
             @Override
             protected void onMeasure(int i, int i2) {
                 super.onMeasure(i, i2);
@@ -1859,12 +1893,30 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
     }
 
     public static class VisiblePart {
+        private int blurredViewBottomOffset;
+        private int blurredViewTopOffset;
+        private int childPosition;
+        public int parentHeight;
+        public int parentWidth;
+        private int visibleHeight;
+        private int visibleParent;
+        private float visibleParentOffset;
+        private float visibleTop;
+
         private VisiblePart() {
         }
 
         public static VisiblePart of(ChatMessageCell chatMessageCell) {
             VisiblePart visiblePart = new VisiblePart();
-            int i = chatMessageCell.childPosition;
+            visiblePart.childPosition = chatMessageCell.childPosition;
+            visiblePart.visibleHeight = chatMessageCell.visibleHeight;
+            visiblePart.visibleParent = chatMessageCell.visibleParent;
+            visiblePart.parentWidth = chatMessageCell.parentWidth;
+            visiblePart.parentHeight = chatMessageCell.parentHeight;
+            visiblePart.visibleTop = chatMessageCell.visibleTop;
+            visiblePart.visibleParentOffset = chatMessageCell.visibleParentOffset;
+            visiblePart.blurredViewTopOffset = chatMessageCell.blurredViewTopOffset;
+            visiblePart.blurredViewBottomOffset = chatMessageCell.blurredViewBottomOffset;
             return visiblePart;
         }
     }
@@ -1900,7 +1952,8 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
             ChatMessageCell.TransitionParams transitionParams = this.mainMessageCell.getTransitionParams();
             transitionParams.animateChange = this.mainMessageCell.getTransitionParams().animateChange();
             transitionParams.animateChangeProgress = 0.0f;
-            if ((this.mainMessageCell.getTransitionParams().lastDrawingBackgroundRect.left != this.mainMessageCell.getBackgroundDrawableLeft()) || transitionParams.lastDrawingBackgroundRect.top != this.mainMessageCell.getBackgroundDrawableTop() || transitionParams.lastDrawingBackgroundRect.bottom != this.mainMessageCell.getBackgroundDrawableBottom()) {
+            boolean z = this.mainMessageCell.getTransitionParams().lastDrawingBackgroundRect.left != this.mainMessageCell.getBackgroundDrawableLeft();
+            if (z || transitionParams.lastDrawingBackgroundRect.top != this.mainMessageCell.getBackgroundDrawableTop() || transitionParams.lastDrawingBackgroundRect.bottom != this.mainMessageCell.getBackgroundDrawableBottom()) {
                 this.cellDelta.bottom = -(this.mainMessageCell.getBackgroundDrawableBottom() - transitionParams.lastDrawingBackgroundRect.bottom);
                 this.cellDelta.top = -(this.mainMessageCell.getBackgroundDrawableTop() - transitionParams.lastDrawingBackgroundRect.top);
                 if (chatMessageCell.getMessageObject().isOutOwner()) {
@@ -1912,8 +1965,9 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                     rect.right = this.mainMessageCell.getBackgroundDrawableRight() - transitionParams.lastDrawingBackgroundRect.right;
                 }
                 transitionParams.animateBackgroundBoundsInner = true;
+                transitionParams.animateBackgroundWidth = z;
             }
-            VisiblePart.of(this.mainMessageCell);
+            this.fromPart = VisiblePart.of(this.mainMessageCell);
         }
         animateOpenTo(false, new Runnable() {
             @Override
@@ -2004,6 +2058,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
             hideEffectSelector();
         }
         this.openInProgress = true;
+        this.opening = z;
         this.closing = !z;
         this.chatListView.invalidate();
         this.firstOpenFrame = true;
@@ -2158,20 +2213,20 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
     }
 
     public void changeMessageInternal(MessageObject messageObject) {
+        ChatMessageCell chatMessageCell;
         if (this.chatListView == null) {
             return;
         }
-        ChatMessageCell chatMessageCell = null;
         int i = 0;
         while (true) {
             if (i >= this.chatListView.getChildCount()) {
+                chatMessageCell = null;
                 break;
             }
             View childAt = this.chatListView.getChildAt(i);
             if (childAt instanceof ChatMessageCell) {
-                ChatMessageCell chatMessageCell2 = (ChatMessageCell) childAt;
-                if (chatMessageCell2.getMessageObject() == messageObject) {
-                    chatMessageCell = chatMessageCell2;
+                chatMessageCell = (ChatMessageCell) childAt;
+                if (chatMessageCell.getMessageObject() == messageObject) {
                     break;
                 }
             }

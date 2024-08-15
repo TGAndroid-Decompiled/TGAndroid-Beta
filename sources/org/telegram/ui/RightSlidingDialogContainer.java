@@ -29,6 +29,7 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 public abstract class RightSlidingDialogContainer extends FrameLayout {
     public static long fragmentDialogId;
     private Paint actionModePaint;
+    private int currentAccount;
     ActionBar currentActionBarView;
     BaseFragment currentFragment;
     View currentFragmentFullscreenView;
@@ -74,7 +75,7 @@ public abstract class RightSlidingDialogContainer extends FrameLayout {
         super(context);
         this.openedProgress = 0.0f;
         this.notificationsLocker = new AnimationNotificationsLocker();
-        int i = UserConfig.selectedAccount;
+        this.currentAccount = UserConfig.selectedAccount;
         this.enabled = true;
     }
 

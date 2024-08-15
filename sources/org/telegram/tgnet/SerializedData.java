@@ -52,7 +52,6 @@ public class SerializedData extends AbstractSerializedData {
     }
 
     public SerializedData(byte[] bArr) {
-        this.isOut = true;
         this.justCalc = false;
         this.isOut = false;
         this.inbuf = new ByteArrayInputStream(bArr);

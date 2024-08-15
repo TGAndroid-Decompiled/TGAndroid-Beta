@@ -3,7 +3,6 @@ package org.telegram.ui;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -83,9 +82,7 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
                 SetDefaultReactionCell setDefaultReactionCell;
                 if (i == 0) {
                     ThemePreviewMessagesCell themePreviewMessagesCell = new ThemePreviewMessagesCell(context, ((BaseFragment) ReactionsDoubleTapManageActivity.this).parentLayout, 2);
-                    if (Build.VERSION.SDK_INT >= 19) {
-                        themePreviewMessagesCell.setImportantForAccessibility(4);
-                    }
+                    themePreviewMessagesCell.setImportantForAccessibility(4);
                     themePreviewMessagesCell.fragment = ReactionsDoubleTapManageActivity.this;
                     setDefaultReactionCell = themePreviewMessagesCell;
                 } else if (i == 2) {
@@ -98,7 +95,7 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
                     setDefaultReactionCell2.update(false);
                     setDefaultReactionCell = setDefaultReactionCell2;
                 } else if (i == 4) {
-                    View view = new View(this, context) {
+                    View view = new View(context) {
                         @Override
                         protected void onMeasure(int i2, int i3) {
                             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(16.0f), 1073741824));
@@ -232,14 +229,12 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
         }
     }
 
-    public void showSelectStatusDialog(final org.telegram.ui.ReactionsDoubleTapManageActivity.SetDefaultReactionCell r17) {
+    public void showSelectStatusDialog(final org.telegram.ui.ReactionsDoubleTapManageActivity.SetDefaultReactionCell r18) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ReactionsDoubleTapManageActivity.showSelectStatusDialog(org.telegram.ui.ReactionsDoubleTapManageActivity$SetDefaultReactionCell):void");
     }
 
     private void updateRows() {
-        this.rowCount = 0;
         int i = 0 + 1;
-        this.rowCount = i;
         this.previewRow = 0;
         this.rowCount = i + 1;
         this.infoRow = i;

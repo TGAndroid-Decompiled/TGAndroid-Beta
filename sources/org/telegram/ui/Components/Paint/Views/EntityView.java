@@ -400,6 +400,8 @@ public class EntityView extends FrameLayout {
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
         boolean z;
+        float rawX;
+        float rawY;
         if (!this.delegate.allowInteraction(this)) {
             return false;
         }
@@ -407,7 +409,10 @@ public class EntityView extends FrameLayout {
         boolean z2 = motionEvent.getPointerCount() > 1;
         if (z2) {
             if (Build.VERSION.SDK_INT >= 29) {
-                this.delegate.getTransformedTouch(motionEvent.getRawX(1), motionEvent.getRawY(1), this.xy2);
+                EntityViewDelegate entityViewDelegate = this.delegate;
+                rawX = motionEvent.getRawX(1);
+                rawY = motionEvent.getRawY(1);
+                entityViewDelegate.getTransformedTouch(rawX, rawY, this.xy2);
             } else {
                 z2 = false;
             }

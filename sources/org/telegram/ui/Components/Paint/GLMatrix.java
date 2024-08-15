@@ -16,6 +16,55 @@ public class GLMatrix {
     }
 
     public static float[] MultiplyMat4f(float[] fArr, float[] fArr2) {
-        return new float[]{(fArr[0] * fArr2[0]) + (fArr[4] * fArr2[1]) + (fArr[8] * fArr2[2]) + (fArr[12] * fArr2[3]), (fArr[1] * fArr2[0]) + (fArr[5] * fArr2[1]) + (fArr[9] * fArr2[2]) + (fArr[13] * fArr2[3]), (fArr[2] * fArr2[0]) + (fArr[6] * fArr2[1]) + (fArr[10] * fArr2[2]) + (fArr[14] * fArr2[3]), (fArr[3] * fArr2[0]) + (fArr[7] * fArr2[1]) + (fArr[11] * fArr2[2]) + (fArr[15] * fArr2[3]), (fArr[0] * fArr2[4]) + (fArr[4] * fArr2[5]) + (fArr[8] * fArr2[6]) + (fArr[12] * fArr2[7]), (fArr[1] * fArr2[4]) + (fArr[5] * fArr2[5]) + (fArr[9] * fArr2[6]) + (fArr[13] * fArr2[7]), (fArr[2] * fArr2[4]) + (fArr[6] * fArr2[5]) + (fArr[10] * fArr2[6]) + (fArr[14] * fArr2[7]), (fArr[3] * fArr2[4]) + (fArr[7] * fArr2[5]) + (fArr[11] * fArr2[6]) + (fArr[15] * fArr2[7]), (fArr[0] * fArr2[8]) + (fArr[4] * fArr2[9]) + (fArr[8] * fArr2[10]) + (fArr[12] * fArr2[11]), (fArr[1] * fArr2[8]) + (fArr[5] * fArr2[9]) + (fArr[9] * fArr2[10]) + (fArr[13] * fArr2[11]), (fArr[2] * fArr2[8]) + (fArr[6] * fArr2[9]) + (fArr[10] * fArr2[10]) + (fArr[14] * fArr2[11]), (fArr[3] * fArr2[8]) + (fArr[7] * fArr2[9]) + (fArr[11] * fArr2[10]) + (fArr[15] * fArr2[11]), (fArr[0] * fArr2[12]) + (fArr[4] * fArr2[13]) + (fArr[8] * fArr2[14]) + (fArr[12] * fArr2[15]), (fArr[1] * fArr2[12]) + (fArr[5] * fArr2[13]) + (fArr[9] * fArr2[14]) + (fArr[13] * fArr2[15]), (fArr[2] * fArr2[12]) + (fArr[6] * fArr2[13]) + (fArr[10] * fArr2[14]) + (fArr[14] * fArr2[15]), (fArr[3] * fArr2[12]) + (fArr[7] * fArr2[13]) + (fArr[11] * fArr2[14]) + (fArr[15] * fArr2[15])};
+        float f = fArr[4];
+        float f2 = fArr2[1];
+        float f3 = fArr[8];
+        float f4 = fArr2[2];
+        float f5 = fArr[12];
+        float f6 = fArr2[3];
+        float f7 = fArr[1];
+        float f8 = fArr2[0];
+        float f9 = fArr[5];
+        float f10 = fArr[9];
+        float f11 = fArr[13];
+        float f12 = fArr[6];
+        float f13 = fArr2[1];
+        float f14 = fArr[10];
+        float f15 = fArr[14];
+        float f16 = fArr[7];
+        float f17 = fArr[11];
+        float f18 = fArr[15];
+        float f19 = fArr[0];
+        float f20 = fArr2[5];
+        float f21 = (fArr2[4] * f19) + (f * f20);
+        float f22 = fArr2[6];
+        float f23 = f21 + (f3 * f22);
+        float f24 = fArr2[7];
+        float f25 = fArr[1];
+        float f26 = fArr2[4];
+        float f27 = fArr[2];
+        float f28 = fArr2[5];
+        float f29 = fArr[3];
+        float f30 = fArr[4];
+        float f31 = fArr2[9];
+        float f32 = (fArr2[8] * f19) + (f30 * f31);
+        float f33 = fArr2[10];
+        float f34 = f32 + (f3 * f33);
+        float f35 = fArr2[11];
+        float f36 = fArr2[8];
+        float f37 = fArr[5];
+        float f38 = fArr[6];
+        float f39 = fArr2[9];
+        float f40 = fArr[7];
+        float f41 = f19 * fArr2[12];
+        float f42 = fArr2[13];
+        float f43 = f41 + (f30 * f42);
+        float f44 = fArr[8];
+        float f45 = fArr2[14];
+        float f46 = f43 + (f44 * f45);
+        float f47 = fArr2[15];
+        float f48 = fArr2[12];
+        float f49 = fArr2[13];
+        return new float[]{(fArr[0] * fArr2[0]) + (f * f2) + (f3 * f4) + (f5 * f6), (f7 * f8) + (f2 * f9) + (f10 * f4) + (f11 * f6), (fArr[2] * f8) + (f12 * f13) + (f4 * f14) + (f15 * f6), (fArr[3] * f8) + (f13 * f16) + (fArr2[2] * f17) + (f6 * f18), f23 + (f5 * f24), (f25 * f26) + (f9 * f20) + (f10 * f22) + (f11 * f24), (f27 * f26) + (f12 * f28) + (f22 * f14) + (f15 * f24), (f26 * f29) + (f16 * f28) + (fArr2[6] * f17) + (f24 * f18), f34 + (f5 * f35), (f25 * f36) + (f31 * f37) + (f10 * f33) + (f11 * f35), (f27 * f36) + (f38 * f39) + (f14 * f33) + (f15 * f35), (f36 * f29) + (f39 * f40) + (f17 * fArr2[10]) + (f35 * f18), f46 + (f5 * f47), (f25 * f48) + (f37 * f42) + (fArr[9] * f45) + (f11 * f47), (f27 * f48) + (f38 * f49) + (fArr[10] * f45) + (f15 * f47), (f29 * f48) + (f40 * f49) + (fArr[11] * fArr2[14]) + (f18 * f47)};
     }
 }

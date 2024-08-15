@@ -21,6 +21,7 @@ import org.telegram.ui.Components.StickerImageView;
 public class SuggestClearDatabaseBottomSheet extends BottomSheet {
     @SuppressLint({"StaticFieldLeak"})
     private static SuggestClearDatabaseBottomSheet dialog;
+    BaseFragment fragment;
 
     public static void show(BaseFragment baseFragment) {
         if (dialog == null) {
@@ -32,6 +33,7 @@ public class SuggestClearDatabaseBottomSheet extends BottomSheet {
 
     private SuggestClearDatabaseBottomSheet(final BaseFragment baseFragment) {
         super(baseFragment.getParentActivity(), false);
+        this.fragment = baseFragment;
         Activity parentActivity = baseFragment.getParentActivity();
         LinearLayout linearLayout = new LinearLayout(parentActivity);
         linearLayout.setOrientation(1);

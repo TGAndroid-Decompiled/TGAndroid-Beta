@@ -13,6 +13,7 @@ public class CloseProgressDrawable2 extends Drawable {
     private boolean animating;
     private int currentColor;
     private int globalColorAlpha;
+    private DecelerateInterpolator interpolator;
     private long lastFrameTime;
     private Paint paint;
     private RectF rect;
@@ -41,7 +42,7 @@ public class CloseProgressDrawable2 extends Drawable {
 
     public CloseProgressDrawable2(float f) {
         this.paint = new Paint(1);
-        new DecelerateInterpolator();
+        this.interpolator = new DecelerateInterpolator();
         this.rect = new RectF();
         this.globalColorAlpha = 255;
         this.paint.setColor(-1);

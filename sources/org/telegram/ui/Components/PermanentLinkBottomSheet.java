@@ -46,8 +46,8 @@ public class PermanentLinkBottomSheet extends BottomSheet {
 
     public PermanentLinkBottomSheet(Context context, boolean z, final BaseFragment baseFragment, final TLRPC$ChatFull tLRPC$ChatFull, long j, boolean z2) {
         super(context, z);
-        int i;
         String str;
+        int i;
         TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported;
         this.chatId = j;
         setAllowNestedScroll(true);
@@ -114,11 +114,11 @@ public class PermanentLinkBottomSheet extends BottomSheet {
         TextView textView2 = new TextView(context);
         this.subtitle = textView2;
         if (z2) {
-            i = R.string.LinkInfoChannel;
             str = "LinkInfoChannel";
+            i = R.string.LinkInfoChannel;
         } else {
-            i = R.string.LinkInfo;
             str = "LinkInfo";
+            i = R.string.LinkInfo;
         }
         textView2.setText(LocaleController.getString(str, i));
         textView2.setTextSize(1, 14.0f);

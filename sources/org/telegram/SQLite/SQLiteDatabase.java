@@ -40,6 +40,7 @@ public class SQLiteDatabase {
             if (queryFinalized.next()) {
                 return Integer.valueOf(queryFinalized.intValue(0));
             }
+            queryFinalized.dispose();
             return null;
         } finally {
             queryFinalized.dispose();

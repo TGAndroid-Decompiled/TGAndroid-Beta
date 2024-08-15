@@ -19,6 +19,9 @@ public class SpeedLineParticles$Drawable {
     private Paint paint = new Paint();
     ArrayList<Particle> particles = new ArrayList<>();
     public float speedScale = 1.0f;
+    public int size1 = 14;
+    public int size2 = 12;
+    public int size3 = 10;
     public long minLifeTime = 2000;
     private final float dt = 1000.0f / AndroidUtilities.screenRefreshRate;
 
@@ -68,6 +71,7 @@ public class SpeedLineParticles$Drawable {
     }
 
     private class Particle {
+        private int alpha;
         float inProgress;
         private long lifeTime;
         private float vecX;
@@ -112,7 +116,7 @@ public class SpeedLineParticles$Drawable {
             double atan2 = Math.atan2(abs - SpeedLineParticles$Drawable.this.rect.centerX(), this.y - SpeedLineParticles$Drawable.this.rect.centerY());
             this.vecX = (float) Math.sin(atan2);
             this.vecY = (float) Math.cos(atan2);
-            Utilities.fastRandom.nextInt(50);
+            this.alpha = (int) (((Utilities.fastRandom.nextInt(50) + 50) / 100.0f) * 255.0f);
             this.inProgress = 0.0f;
         }
     }

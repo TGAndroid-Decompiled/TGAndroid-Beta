@@ -289,14 +289,14 @@ public class EglBase10Impl implements EglBase10 {
         int[] iArr2 = new int[1];
         if (!egl10.eglChooseConfig(eGLDisplay, iArr, eGLConfigArr, 1, iArr2)) {
             throw new RuntimeException("eglChooseConfig failed: 0x" + Integer.toHexString(egl10.eglGetError()));
-        } else if (iArr2[0] <= 0) {
-            throw new RuntimeException("Unable to find any matching EGL config");
-        } else {
+        } else if (iArr2[0] > 0) {
             EGLConfig eGLConfig = eGLConfigArr[0];
             if (eGLConfig != null) {
                 return eGLConfig;
             }
             throw new RuntimeException("eglChooseConfig returned null");
+        } else {
+            throw new RuntimeException("Unable to find any matching EGL config");
         }
     }
 

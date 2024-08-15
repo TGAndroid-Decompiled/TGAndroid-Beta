@@ -81,6 +81,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
     private boolean stickerRandom = true;
     private TLRPC$Document sticker = getMediaDataController().getGreetingsSticker();
     private boolean clearVisible = isEmpty();
+    private int shiftDp = -4;
 
     @Override
     public boolean onLongClick(UItem uItem, View view, int i, float f, float f2) {
@@ -127,7 +128,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
     @Override
     public View createView(Context context) {
         AndroidUtilities.requestAdjustResize(getParentActivity(), this.classGuid);
-        this.greetingsView = new ChatGreetingsView(this, context, getUserConfig().getCurrentUser(), 1, this.currentAccount, this.sticker, getResourceProvider()) {
+        this.greetingsView = new ChatGreetingsView(context, getUserConfig().getCurrentUser(), 1, this.currentAccount, this.sticker, getResourceProvider()) {
             @Override
             protected void onMeasure(int i, int i2) {
                 super.onMeasure(i, i2);
@@ -164,7 +165,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
         frameLayout.setWillNotDraw(false);
         this.greetingsViewBackground = Theme.createServiceDrawable(AndroidUtilities.dp(16.0f), this.greetingsView, this.previewContainer, getThemedPaint("paintChatActionBackground"));
         this.greetingsView.setBackground(new ColorDrawable(0));
-        ImageView imageView = new ImageView(this, context) {
+        ImageView imageView = new ImageView(context) {
             @Override
             protected void onMeasure(int i, int i2) {
                 float f;

@@ -136,10 +136,11 @@ public class ChatRightsEditActivity extends BaseFragment {
     private LinearLayoutManager linearLayoutManager;
     private RecyclerListView listView;
     private ListAdapter listViewAdapter;
-    private boolean loading = false;
     private int manageRow;
     private int manageTopicsRow;
     private TLRPC$TL_chatAdminRights myAdminRights;
+    private int permissionsEndRow;
+    private int permissionsStartRow;
     private int pinMessagesRow;
     private int postMessagesRow;
     private PollEditTextCell rankEditTextCell;
@@ -166,6 +167,8 @@ public class ChatRightsEditActivity extends BaseFragment {
     private int transferOwnerShadowRow;
     private int untilDateRow;
     private int untilSectionRow;
+    private boolean loading = false;
+    private boolean closingKeyboardAfterFinish = false;
 
     public interface ChatRightsEditActivityDelegate {
         void didChangeOwner(TLRPC$User tLRPC$User);
@@ -583,7 +586,7 @@ public class ChatRightsEditActivity extends BaseFragment {
         };
         this.listView = recyclerListView;
         recyclerListView.setClipChildren(this.currentType != 2);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, context, 1, false) {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, 1, false) {
             @Override
             public int getExtraLayoutSpace(RecyclerView.State state) {
                 return 5000;
@@ -728,8 +731,9 @@ public class ChatRightsEditActivity extends BaseFragment {
                 BottomSheet.BottomSheetCell[] bottomSheetCellArr = new BottomSheet.BottomSheetCell[5];
                 int i5 = 0;
                 for (int i6 = 5; i5 < i6; i6 = 5) {
-                    bottomSheetCellArr[i5] = new BottomSheet.BottomSheetCell(context, 0);
-                    bottomSheetCellArr[i5].setPadding(AndroidUtilities.dp(7.0f), 0, AndroidUtilities.dp(7.0f), 0);
+                    BottomSheet.BottomSheetCell bottomSheetCell = new BottomSheet.BottomSheetCell(context, 0);
+                    bottomSheetCellArr[i5] = bottomSheetCell;
+                    bottomSheetCell.setPadding(AndroidUtilities.dp(7.0f), 0, AndroidUtilities.dp(7.0f), 0);
                     bottomSheetCellArr[i5].setTag(Integer.valueOf(i5));
                     bottomSheetCellArr[i5].setBackgroundDrawable(Theme.getSelectorDrawable(false));
                     if (i5 == 0) {
@@ -1370,21 +1374,19 @@ public class ChatRightsEditActivity extends BaseFragment {
         this.addBotButtonRow = -1;
         this.manageTopicsRow = -1;
         this.rowCount = 3;
+        this.permissionsStartRow = 3;
         int i3 = this.currentType;
         if (i3 == 0 || i3 == 2) {
             if (this.isChannel) {
                 int i4 = 3 + 1;
-                this.rowCount = i4;
                 this.changeInfoRow = 3;
                 int i5 = i4 + 1;
                 this.rowCount = i5;
                 this.channelMessagesRow = i4;
                 if (this.channelMessagesExpanded) {
                     int i6 = i5 + 1;
-                    this.rowCount = i6;
                     this.channelPostMessagesRow = i5;
                     int i7 = i6 + 1;
-                    this.rowCount = i7;
                     this.channelEditMessagesRow = i6;
                     this.rowCount = i7 + 1;
                     this.channelDeleteMessagesRow = i7;
@@ -1395,20 +1397,16 @@ public class ChatRightsEditActivity extends BaseFragment {
                 this.channelStoriesRow = i8;
                 if (this.channelStoriesExpanded) {
                     int i10 = i9 + 1;
-                    this.rowCount = i10;
                     this.channelPostStoriesRow = i9;
                     int i11 = i10 + 1;
-                    this.rowCount = i11;
                     this.channelEditStoriesRow = i10;
                     this.rowCount = i11 + 1;
                     this.channelDeleteStoriesRow = i11;
                 }
                 int i12 = this.rowCount;
                 int i13 = i12 + 1;
-                this.rowCount = i13;
                 this.addUsersRow = i12;
                 int i14 = i13 + 1;
-                this.rowCount = i14;
                 this.startVoiceChatRow = i13;
                 this.rowCount = i14 + 1;
                 this.addAdminsRow = i14;
@@ -1419,16 +1417,12 @@ public class ChatRightsEditActivity extends BaseFragment {
                 }
                 int i15 = this.rowCount;
                 int i16 = i15 + 1;
-                this.rowCount = i16;
                 this.changeInfoRow = i15;
                 int i17 = i16 + 1;
-                this.rowCount = i17;
                 this.deleteMessagesRow = i16;
                 int i18 = i17 + 1;
-                this.rowCount = i18;
                 this.banUsersRow = i17;
                 int i19 = i18 + 1;
-                this.rowCount = i19;
                 this.addUsersRow = i18;
                 this.rowCount = i19 + 1;
                 this.pinMessagesRow = i19;
@@ -1439,10 +1433,8 @@ public class ChatRightsEditActivity extends BaseFragment {
                     this.channelStoriesRow = i20;
                     if (this.channelStoriesExpanded) {
                         int i22 = i21 + 1;
-                        this.rowCount = i22;
                         this.channelPostStoriesRow = i21;
                         int i23 = i22 + 1;
-                        this.rowCount = i23;
                         this.channelEditStoriesRow = i22;
                         this.rowCount = i23 + 1;
                         this.channelDeleteStoriesRow = i23;
@@ -1450,10 +1442,8 @@ public class ChatRightsEditActivity extends BaseFragment {
                 }
                 int i24 = this.rowCount;
                 int i25 = i24 + 1;
-                this.rowCount = i25;
                 this.startVoiceChatRow = i24;
                 int i26 = i25 + 1;
-                this.rowCount = i26;
                 this.addAdminsRow = i25;
                 int i27 = i26 + 1;
                 this.rowCount = i27;
@@ -1465,45 +1455,34 @@ public class ChatRightsEditActivity extends BaseFragment {
             }
         } else if (i3 == 1) {
             int i28 = 3 + 1;
-            this.rowCount = i28;
             this.sendMessagesRow = 3;
             int i29 = i28 + 1;
             this.rowCount = i29;
             this.sendMediaRow = i28;
             if (this.sendMediaExpanded) {
                 int i30 = i29 + 1;
-                this.rowCount = i30;
                 this.sendPhotosRow = i29;
                 int i31 = i30 + 1;
-                this.rowCount = i31;
                 this.sendVideosRow = i30;
                 int i32 = i31 + 1;
-                this.rowCount = i32;
                 this.sendFilesRow = i31;
                 int i33 = i32 + 1;
-                this.rowCount = i33;
                 this.sendMusicRow = i32;
                 int i34 = i33 + 1;
-                this.rowCount = i34;
                 this.sendVoiceRow = i33;
                 int i35 = i34 + 1;
-                this.rowCount = i35;
                 this.sendRoundRow = i34;
                 int i36 = i35 + 1;
-                this.rowCount = i36;
                 this.sendStickersRow = i35;
                 int i37 = i36 + 1;
-                this.rowCount = i37;
                 this.sendPollsRow = i36;
                 this.rowCount = i37 + 1;
                 this.embedLinksRow = i37;
             }
             int i38 = this.rowCount;
             int i39 = i38 + 1;
-            this.rowCount = i39;
             this.addUsersRow = i38;
             int i40 = i39 + 1;
-            this.rowCount = i40;
             this.pinMessagesRow = i39;
             int i41 = i40 + 1;
             this.rowCount = i41;
@@ -1514,22 +1493,19 @@ public class ChatRightsEditActivity extends BaseFragment {
             }
             int i42 = this.rowCount;
             int i43 = i42 + 1;
-            this.rowCount = i43;
             this.untilSectionRow = i42;
             this.rowCount = i43 + 1;
             this.untilDateRow = i43;
         }
         int i44 = this.rowCount;
+        this.permissionsEndRow = i44;
         if (this.canEdit) {
             if (!this.isChannel && ((i2 = this.currentType) == 0 || (i2 == 2 && this.asAdmin))) {
                 int i45 = i44 + 1;
-                this.rowCount = i45;
                 this.rightsShadowRow = i44;
                 int i46 = i45 + 1;
-                this.rowCount = i46;
                 this.rankHeaderRow = i45;
                 int i47 = i46 + 1;
-                this.rowCount = i47;
                 this.rankRow = i46;
                 this.rowCount = i47 + 1;
                 this.rankInfoRow = i47;
@@ -1559,7 +1535,6 @@ public class ChatRightsEditActivity extends BaseFragment {
                 }
                 int i53 = this.rowCount;
                 int i54 = i53 + 1;
-                this.rowCount = i54;
                 this.removeAdminRow = i53;
                 this.rowCount = i54 + 1;
                 this.removeAdminShadowRow = i54;
@@ -1568,10 +1543,8 @@ public class ChatRightsEditActivity extends BaseFragment {
             if (!this.isChannel && (!this.currentRank.isEmpty() || (this.currentChat.creator && UserObject.isUserSelf(this.currentUser)))) {
                 int i55 = this.rowCount;
                 int i56 = i55 + 1;
-                this.rowCount = i56;
                 this.rightsShadowRow = i55;
                 int i57 = i56 + 1;
-                this.rowCount = i57;
                 this.rankHeaderRow = i56;
                 this.rowCount = i57 + 1;
                 this.rankRow = i57;
@@ -1676,6 +1649,7 @@ public class ChatRightsEditActivity extends BaseFragment {
         if (chatRightsEditActivityDelegate != null) {
             chatRightsEditActivityDelegate.didSetRights(0, this.asAdmin ? this.adminRights : null, null, this.currentRank);
         }
+        this.closingKeyboardAfterFinish = true;
         Bundle bundle = new Bundle();
         bundle.putBoolean("scrollToTopOnResume", true);
         bundle.putLong("chat_id", this.currentChat.id);
@@ -1813,6 +1787,17 @@ public class ChatRightsEditActivity extends BaseFragment {
     public class ListAdapter extends RecyclerListView.SelectionAdapter {
         private boolean ignoreTextChange;
         private Context mContext;
+        private final int VIEW_TYPE_USER_CELL = 0;
+        private final int VIEW_TYPE_INFO_CELL = 1;
+        private final int VIEW_TYPE_TRANSFER_CELL = 2;
+        private final int VIEW_TYPE_HEADER_CELL = 3;
+        private final int VIEW_TYPE_SWITCH_CELL = 4;
+        private final int VIEW_TYPE_SHADOW_CELL = 5;
+        private final int VIEW_TYPE_UNTIL_DATE_CELL = 6;
+        private final int VIEW_TYPE_RANK_CELL = 7;
+        private final int VIEW_TYPE_ADD_BOT_CELL = 8;
+        private final int VIEW_TYPE_EXPANDABLE_SWITCH = 9;
+        private final int VIEW_TYPE_INNER_CHECK = 10;
 
         public ListAdapter(Context context) {
             if (ChatRightsEditActivity.this.currentType == 2) {
@@ -2028,8 +2013,8 @@ public class ChatRightsEditActivity extends BaseFragment {
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            int i2;
             String str;
+            int i2;
             CheckBoxCell checkBoxCell;
             switch (i) {
                 case 0:
@@ -2109,11 +2094,11 @@ public class ChatRightsEditActivity extends BaseFragment {
                     sb.append(LocaleController.getString("AddBotButton", R.string.AddBotButton));
                     sb.append(" ");
                     if (ChatRightsEditActivity.this.asAdmin) {
-                        i2 = R.string.AddBotButtonAsAdmin;
                         str = "AddBotButtonAsAdmin";
+                        i2 = R.string.AddBotButtonAsAdmin;
                     } else {
-                        i2 = R.string.AddBotButtonAsMember;
                         str = "AddBotButtonAsMember";
+                        i2 = R.string.AddBotButtonAsMember;
                     }
                     sb.append(LocaleController.getString(str, i2));
                     animatedTextView.setText(sb.toString());

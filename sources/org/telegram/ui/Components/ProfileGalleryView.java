@@ -71,6 +71,7 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
     private boolean isScrollingListView;
     private boolean isSwipingViewPager;
     private final ActionBar parentActionBar;
+    private final int parentClassGuid;
     private final RecyclerListView parentListView;
     Path path;
     private ArrayList<TLRPC$Photo> photos;
@@ -159,7 +160,7 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
         setOffscreenPageLimit(2);
         this.isProfileFragment = false;
         this.parentListView = recyclerListView;
-        ConnectionsManager.generateClassGuid();
+        this.parentClassGuid = ConnectionsManager.generateClassGuid();
         this.parentActionBar = actionBar;
         this.touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
         this.callback = callback;
@@ -296,6 +297,7 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
         this.isProfileFragment = true;
         this.dialogId = j;
         this.parentListView = recyclerListView;
+        this.parentClassGuid = i;
         this.parentActionBar = actionBar;
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getContext(), avatarImageView, actionBar);
         this.adapter = viewPagerAdapter;
@@ -1099,6 +1101,7 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
 
     public class ViewPagerAdapter extends CircularViewPager.Adapter {
         private final Context context;
+        private final ActionBar parentActionBar;
         private BackupImageView parentAvatarImageView;
         private final Paint placeholderPaint;
         private final ArrayList<Item> objects = new ArrayList<>();
@@ -1107,6 +1110,7 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
         public ViewPagerAdapter(Context context, ProfileActivity.AvatarImageView avatarImageView, ActionBar actionBar) {
             this.context = context;
             this.parentAvatarImageView = avatarImageView;
+            this.parentActionBar = actionBar;
             Paint paint = new Paint(1);
             this.placeholderPaint = paint;
             paint.setColor(-16777216);
@@ -1426,7 +1430,7 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
     }
 
     public class TextureStubView extends View {
-        public TextureStubView(ProfileGalleryView profileGalleryView, Context context) {
+        public TextureStubView(Context context) {
             super(context);
         }
     }

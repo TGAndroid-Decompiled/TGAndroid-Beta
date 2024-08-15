@@ -293,6 +293,8 @@ class AndroidVideoDecoder implements VideoDecoder, VideoSink {
     }
 
     protected void deliverDecodedFrame() {
+        Integer num;
+        int i;
         this.outputThreadChecker.checkIsOnValidThread();
         try {
             MediaCodec.BufferInfo bufferInfo = new MediaCodec.BufferInfo();
@@ -303,11 +305,12 @@ class AndroidVideoDecoder implements VideoDecoder, VideoSink {
                 Logging.v("AndroidVideoDecoder", "dequeueOutputBuffer returned " + dequeueOutputBuffer);
             } else {
                 FrameInfo poll = this.frameInfos.poll();
-                Integer num = null;
-                int i = 0;
                 if (poll != null) {
                     num = Integer.valueOf((int) (SystemClock.elapsedRealtime() - poll.decodeStartTimeMs));
                     i = poll.rotation;
+                } else {
+                    num = null;
+                    i = 0;
                 }
                 this.hasDecodedFirstFrame = true;
                 if (this.surfaceTextureHelper != null) {

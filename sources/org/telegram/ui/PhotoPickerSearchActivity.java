@@ -509,15 +509,15 @@ public class PhotoPickerSearchActivity extends BaseFragment {
                 this.viewPages[i5].setVisibility(8);
             }
             this.viewPages[i5].listView.setScrollingTouchSlop(1);
-            ViewPage[] viewPageArr2 = this.viewPages;
-            viewPageArr2[i5].fragmentView = (FrameLayout) viewPageArr2[i5].parentFragment.getFragmentView();
+            ViewPage viewPage = this.viewPages[i5];
+            viewPage.fragmentView = (FrameLayout) viewPage.parentFragment.getFragmentView();
             this.viewPages[i5].listView.setClipToPadding(false);
-            ViewPage[] viewPageArr3 = this.viewPages;
-            viewPageArr3[i5].actionBar = viewPageArr3[i5].parentFragment.getActionBar();
-            ViewPage[] viewPageArr4 = this.viewPages;
-            viewPageArr4[i5].addView(viewPageArr4[i5].fragmentView, LayoutHelper.createFrame(-1, -1.0f));
-            ViewPage[] viewPageArr5 = this.viewPages;
-            viewPageArr5[i5].addView(viewPageArr5[i5].actionBar, LayoutHelper.createFrame(-1, -2.0f));
+            ViewPage viewPage2 = this.viewPages[i5];
+            viewPage2.actionBar = viewPage2.parentFragment.getActionBar();
+            ViewPage viewPage3 = this.viewPages[i5];
+            viewPage3.addView(viewPage3.fragmentView, LayoutHelper.createFrame(-1, -1.0f));
+            ViewPage viewPage4 = this.viewPages[i5];
+            viewPage4.addView(viewPage4.actionBar, LayoutHelper.createFrame(-1, -2.0f));
             this.viewPages[i5].actionBar.setVisibility(8);
             final RecyclerView.OnScrollListener onScrollListener = this.viewPages[i5].listView.getOnScrollListener();
             this.viewPages[i5].listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -750,11 +750,13 @@ public class PhotoPickerSearchActivity extends BaseFragment {
         arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SEARCH, null, null, null, null, i4));
         arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SEARCHPLACEHOLDER, null, null, null, null, Theme.key_chat_messagePanelHint));
         arrayList.add(new ThemeDescription(this.searchItem.getSearchField(), ThemeDescription.FLAG_CURSORCOLOR, null, null, null, null, i4));
-        int i7 = Theme.key_chat_attachActiveTab;
-        arrayList.add(new ThemeDescription(this.scrollSlidingTextTabStrip.getTabsContainer(), ThemeDescription.FLAG_TEXTCOLOR | ThemeDescription.FLAG_CHECKTAG, new Class[]{TextView.class}, null, null, null, i7));
+        ViewGroup tabsContainer = this.scrollSlidingTextTabStrip.getTabsContainer();
+        int i7 = ThemeDescription.FLAG_TEXTCOLOR;
+        int i8 = Theme.key_chat_attachActiveTab;
+        arrayList.add(new ThemeDescription(tabsContainer, ThemeDescription.FLAG_CHECKTAG | i7, new Class[]{TextView.class}, null, null, null, i8));
         arrayList.add(new ThemeDescription(this.scrollSlidingTextTabStrip.getTabsContainer(), ThemeDescription.FLAG_TEXTCOLOR | ThemeDescription.FLAG_CHECKTAG, new Class[]{TextView.class}, null, null, null, Theme.key_chat_attachUnactiveTab));
-        arrayList.add(new ThemeDescription(this.scrollSlidingTextTabStrip.getTabsContainer(), ThemeDescription.FLAG_DRAWABLESELECTEDSTATE | ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{TextView.class}, null, null, null, i6));
-        arrayList.add(new ThemeDescription(null, 0, null, null, new Drawable[]{this.scrollSlidingTextTabStrip.getSelectorDrawable()}, null, i7));
+        arrayList.add(new ThemeDescription(this.scrollSlidingTextTabStrip.getTabsContainer(), ThemeDescription.FLAG_BACKGROUNDFILTER | ThemeDescription.FLAG_DRAWABLESELECTEDSTATE, new Class[]{TextView.class}, null, null, null, i6));
+        arrayList.add(new ThemeDescription(null, 0, null, null, new Drawable[]{this.scrollSlidingTextTabStrip.getSelectorDrawable()}, null, i8));
         arrayList.addAll(this.imagesSearch.getThemeDescriptions());
         arrayList.addAll(this.gifsSearch.getThemeDescriptions());
         return arrayList;

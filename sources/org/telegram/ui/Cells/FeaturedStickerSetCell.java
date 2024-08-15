@@ -15,6 +15,7 @@ public class FeaturedStickerSetCell extends FrameLayout {
     private boolean needDivider;
     private TLRPC$StickerSetCovered stickersSet;
     private TextView textView;
+    private boolean wasLayout;
 
     @Override
     protected void onMeasure(int i, int i2) {
@@ -29,11 +30,13 @@ public class FeaturedStickerSetCell extends FrameLayout {
         int top = (this.addButton.getTop() + (this.addButton.getMeasuredHeight() / 2)) - (this.checkImage.getMeasuredHeight() / 2);
         ImageView imageView = this.checkImage;
         imageView.layout(left, top, imageView.getMeasuredWidth() + left, this.checkImage.getMeasuredHeight() + top);
+        this.wasLayout = true;
     }
 
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
+        this.wasLayout = false;
     }
 
     public TLRPC$StickerSetCovered getStickerSet() {

@@ -131,18 +131,27 @@ public class Camera2Session implements CameraSession {
 
         @Override
         public void onConfigured(CameraCaptureSession cameraCaptureSession) {
+            CaptureRequest.Builder createCaptureRequest;
+            CaptureRequest.Key key;
+            CaptureRequest.Key key2;
+            CaptureRequest.Key key3;
+            CaptureRequest build;
             Camera2Session.this.checkIsOnCameraThread();
             Logging.d("Camera2Session", "Camera capture session configured.");
             Camera2Session.this.captureSession = cameraCaptureSession;
             try {
-                CaptureRequest.Builder createCaptureRequest = Camera2Session.this.cameraDevice.createCaptureRequest(3);
-                createCaptureRequest.set(CaptureRequest.CONTROL_AE_TARGET_FPS_RANGE, new Range(Integer.valueOf(Camera2Session.this.captureFormat.framerate.min / Camera2Session.this.fpsUnitFactor), Integer.valueOf(Camera2Session.this.captureFormat.framerate.max / Camera2Session.this.fpsUnitFactor)));
-                createCaptureRequest.set(CaptureRequest.CONTROL_AE_MODE, 1);
-                createCaptureRequest.set(CaptureRequest.CONTROL_AE_LOCK, Boolean.FALSE);
+                createCaptureRequest = Camera2Session.this.cameraDevice.createCaptureRequest(3);
+                key = CaptureRequest.CONTROL_AE_TARGET_FPS_RANGE;
+                createCaptureRequest.set(key, new Range(Integer.valueOf(Camera2Session.this.captureFormat.framerate.min / Camera2Session.this.fpsUnitFactor), Integer.valueOf(Camera2Session.this.captureFormat.framerate.max / Camera2Session.this.fpsUnitFactor)));
+                key2 = CaptureRequest.CONTROL_AE_MODE;
+                createCaptureRequest.set(key2, 1);
+                key3 = CaptureRequest.CONTROL_AE_LOCK;
+                createCaptureRequest.set(key3, Boolean.FALSE);
                 chooseStabilizationMode(createCaptureRequest);
                 chooseFocusMode(createCaptureRequest);
                 createCaptureRequest.addTarget(Camera2Session.this.surface);
-                cameraCaptureSession.setRepeatingRequest(createCaptureRequest.build(), new CameraCaptureCallback(), Camera2Session.this.cameraThreadHandler);
+                build = createCaptureRequest.build();
+                cameraCaptureSession.setRepeatingRequest(build, new CameraCaptureCallback(), Camera2Session.this.cameraThreadHandler);
                 Camera2Session.this.surfaceTextureHelper.startListening(new VideoSink() {
                     @Override
                     public final void onFrame(VideoFrame videoFrame) {
@@ -178,21 +187,39 @@ public class Camera2Session implements CameraSession {
         }
 
         private void chooseStabilizationMode(CaptureRequest.Builder builder) {
-            int[] iArr = (int[]) Camera2Session.this.cameraCharacteristics.get(CameraCharacteristics.LENS_INFO_AVAILABLE_OPTICAL_STABILIZATION);
+            CameraCharacteristics.Key key;
+            Object obj;
+            CameraCharacteristics.Key key2;
+            Object obj2;
+            CaptureRequest.Key key3;
+            CaptureRequest.Key key4;
+            CaptureRequest.Key key5;
+            CaptureRequest.Key key6;
+            CameraCharacteristics cameraCharacteristics = Camera2Session.this.cameraCharacteristics;
+            key = CameraCharacteristics.LENS_INFO_AVAILABLE_OPTICAL_STABILIZATION;
+            obj = cameraCharacteristics.get(key);
+            int[] iArr = (int[]) obj;
             if (iArr != null) {
                 for (int i : iArr) {
                     if (i == 1) {
-                        builder.set(CaptureRequest.LENS_OPTICAL_STABILIZATION_MODE, 1);
-                        builder.set(CaptureRequest.CONTROL_VIDEO_STABILIZATION_MODE, 0);
+                        key5 = CaptureRequest.LENS_OPTICAL_STABILIZATION_MODE;
+                        builder.set(key5, 1);
+                        key6 = CaptureRequest.CONTROL_VIDEO_STABILIZATION_MODE;
+                        builder.set(key6, 0);
                         Logging.d("Camera2Session", "Using optical stabilization.");
                         return;
                     }
                 }
             }
-            for (int i2 : (int[]) Camera2Session.this.cameraCharacteristics.get(CameraCharacteristics.CONTROL_AVAILABLE_VIDEO_STABILIZATION_MODES)) {
+            CameraCharacteristics cameraCharacteristics2 = Camera2Session.this.cameraCharacteristics;
+            key2 = CameraCharacteristics.CONTROL_AVAILABLE_VIDEO_STABILIZATION_MODES;
+            obj2 = cameraCharacteristics2.get(key2);
+            for (int i2 : (int[]) obj2) {
                 if (i2 == 1) {
-                    builder.set(CaptureRequest.CONTROL_VIDEO_STABILIZATION_MODE, 1);
-                    builder.set(CaptureRequest.LENS_OPTICAL_STABILIZATION_MODE, 0);
+                    key3 = CaptureRequest.CONTROL_VIDEO_STABILIZATION_MODE;
+                    builder.set(key3, 1);
+                    key4 = CaptureRequest.LENS_OPTICAL_STABILIZATION_MODE;
+                    builder.set(key4, 0);
                     Logging.d("Camera2Session", "Using video stabilization.");
                     return;
                 }
@@ -201,9 +228,16 @@ public class Camera2Session implements CameraSession {
         }
 
         private void chooseFocusMode(CaptureRequest.Builder builder) {
-            for (int i : (int[]) Camera2Session.this.cameraCharacteristics.get(CameraCharacteristics.CONTROL_AF_AVAILABLE_MODES)) {
+            CameraCharacteristics.Key key;
+            Object obj;
+            CaptureRequest.Key key2;
+            CameraCharacteristics cameraCharacteristics = Camera2Session.this.cameraCharacteristics;
+            key = CameraCharacteristics.CONTROL_AF_AVAILABLE_MODES;
+            obj = cameraCharacteristics.get(key);
+            for (int i : (int[]) obj) {
                 if (i == 3) {
-                    builder.set(CaptureRequest.CONTROL_AF_MODE, 3);
+                    key2 = CaptureRequest.CONTROL_AF_MODE;
+                    builder.set(key2, 3);
                     Logging.d("Camera2Session", "Using continuous video auto-focus.");
                     return;
                 }
@@ -244,13 +278,25 @@ public class Camera2Session implements CameraSession {
     }
 
     private void start() {
+        CameraCharacteristics cameraCharacteristics;
+        CameraCharacteristics.Key key;
+        Object obj;
+        CameraCharacteristics.Key key2;
+        Object obj2;
         checkIsOnCameraThread();
         Logging.d("Camera2Session", "start");
         try {
-            this.cameraCharacteristics = this.cameraManager.getCameraCharacteristics(this.cameraId);
+            cameraCharacteristics = this.cameraManager.getCameraCharacteristics(this.cameraId);
+            this.cameraCharacteristics = cameraCharacteristics;
             this.orientationHelper.start();
-            this.cameraOrientation = ((Integer) this.cameraCharacteristics.get(CameraCharacteristics.SENSOR_ORIENTATION)).intValue();
-            this.isCameraFrontFacing = ((Integer) this.cameraCharacteristics.get(CameraCharacteristics.LENS_FACING)).intValue() == 0;
+            CameraCharacteristics cameraCharacteristics2 = this.cameraCharacteristics;
+            key = CameraCharacteristics.SENSOR_ORIENTATION;
+            obj = cameraCharacteristics2.get(key);
+            this.cameraOrientation = ((Integer) obj).intValue();
+            CameraCharacteristics cameraCharacteristics3 = this.cameraCharacteristics;
+            key2 = CameraCharacteristics.LENS_FACING;
+            obj2 = cameraCharacteristics3.get(key2);
+            this.isCameraFrontFacing = ((Integer) obj2).intValue() == 0;
             findCaptureFormat();
             openCamera();
         } catch (Throwable th) {
@@ -259,8 +305,13 @@ public class Camera2Session implements CameraSession {
     }
 
     private void findCaptureFormat() {
+        CameraCharacteristics.Key key;
+        Object obj;
         checkIsOnCameraThread();
-        Range[] rangeArr = (Range[]) this.cameraCharacteristics.get(CameraCharacteristics.CONTROL_AE_AVAILABLE_TARGET_FPS_RANGES);
+        CameraCharacteristics cameraCharacteristics = this.cameraCharacteristics;
+        key = CameraCharacteristics.CONTROL_AE_AVAILABLE_TARGET_FPS_RANGES;
+        obj = cameraCharacteristics.get(key);
+        Range[] rangeArr = (Range[]) obj;
         int fpsUnitFactor = Camera2Enumerator.getFpsUnitFactor(rangeArr);
         this.fpsUnitFactor = fpsUnitFactor;
         List<CameraEnumerationAndroid.CaptureFormat.FramerateRange> convertFramerates = Camera2Enumerator.convertFramerates(rangeArr, fpsUnitFactor);

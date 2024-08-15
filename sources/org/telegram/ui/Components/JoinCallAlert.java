@@ -65,6 +65,7 @@ public class JoinCallAlert extends BottomSheet {
     private BottomSheetCell doneButton;
     private boolean ignoreLayout;
     private RecyclerListView listView;
+    private int[] location;
     private TextView messageTextView;
     private boolean schedule;
     private int scrollOffsetY;
@@ -91,8 +92,8 @@ public class JoinCallAlert extends BottomSheet {
         if (lastCachedAccount != i || (arrayList = cachedChats) == null || j > 0) {
             return;
         }
-        int i2 = 0;
         int size = arrayList.size();
+        int i2 = 0;
         while (true) {
             if (i2 >= size) {
                 break;
@@ -333,6 +334,7 @@ public class JoinCallAlert extends BottomSheet {
         int color;
         FrameLayout frameLayout;
         boolean z;
+        this.location = new int[2];
         setApplyBottomPadding(false);
         this.chats = new ArrayList<>(arrayList);
         this.delegate = joinCallAlertDelegate;
@@ -782,19 +784,19 @@ public class JoinCallAlert extends BottomSheet {
 
         @Override
         public void onViewAttachedToWindow(RecyclerView.ViewHolder viewHolder) {
+            long j;
             viewHolder.getAdapterPosition();
             long peerId = MessageObject.getPeerId(JoinCallAlert.this.selectedPeer);
             View view = viewHolder.itemView;
             if (view instanceof GroupCreateUserCell) {
                 GroupCreateUserCell groupCreateUserCell = (GroupCreateUserCell) view;
                 Object object = groupCreateUserCell.getObject();
-                long j = 0;
-                if (object != null) {
-                    if (object instanceof TLRPC$Chat) {
-                        j = -((TLRPC$Chat) object).id;
-                    } else {
-                        j = ((TLRPC$User) object).id;
-                    }
+                if (object == null) {
+                    j = 0;
+                } else if (object instanceof TLRPC$Chat) {
+                    j = -((TLRPC$Chat) object).id;
+                } else {
+                    j = ((TLRPC$User) object).id;
                 }
                 groupCreateUserCell.setChecked(peerId == j, false);
                 return;

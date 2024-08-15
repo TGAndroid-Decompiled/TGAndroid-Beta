@@ -106,6 +106,7 @@ public class FilterChatlistActivity extends BaseFragment {
     private int shiftDp = -5;
     private boolean saving = false;
     private int rowsCount = 0;
+    private int hintRow = -1;
     private int linkRow = -1;
     private int linkHeaderRow = -1;
     private int linkSectionRow = -1;
@@ -175,9 +176,8 @@ public class FilterChatlistActivity extends BaseFragment {
         checkDoneButton();
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
-        FrameLayout frameLayout2 = frameLayout;
-        frameLayout2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
-        RecyclerListView recyclerListView = new RecyclerListView(this, context) {
+        frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
+        RecyclerListView recyclerListView = new RecyclerListView(context) {
             @Override
             public boolean requestFocus(int i2, Rect rect) {
                 return false;
@@ -186,7 +186,7 @@ public class FilterChatlistActivity extends BaseFragment {
         this.listView = recyclerListView;
         recyclerListView.setLayoutManager(new LinearLayoutManager(context, 1, false));
         this.listView.setVerticalScrollBarEnabled(false);
-        frameLayout2.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
+        frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
         RecyclerListView recyclerListView2 = this.listView;
         ListAdapter listAdapter = new ListAdapter();
         this.adapter = listAdapter;
@@ -471,16 +471,14 @@ public class FilterChatlistActivity extends BaseFragment {
     }
 
     public void updateRows() {
-        this.rowsCount = 0;
         int i = 0 + 1;
         this.rowsCount = i;
+        this.hintRow = 0;
         TL_chatlists$TL_exportedChatlistInvite tL_chatlists$TL_exportedChatlistInvite = this.invite;
         if (tL_chatlists$TL_exportedChatlistInvite != null) {
             int i2 = i + 1;
-            this.rowsCount = i2;
             this.linkHeaderRow = i;
             int i3 = i2 + 1;
-            this.rowsCount = i3;
             this.linkRow = i2;
             this.rowsCount = i3 + 1;
             this.linkSectionRow = i3;
@@ -497,13 +495,11 @@ public class FilterChatlistActivity extends BaseFragment {
         } else {
             int i4 = this.rowsCount;
             int i5 = i4 + 1;
-            this.rowsCount = i5;
             this.chatsHeaderRow = i4;
             int i6 = i5 + 1;
             this.rowsCount = i6;
             this.chatsStartRow = i5;
             int size = i6 + (this.peers.size() - 1);
-            this.rowsCount = size;
             this.chatsEndRow = size;
             this.rowsCount = size + 1;
             this.chatsSectionRow = size;
@@ -529,25 +525,25 @@ public class FilterChatlistActivity extends BaseFragment {
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            FrameLayout frameLayout;
+            View view;
             if (i == 0) {
-                frameLayout = new HintInnerCell(FilterChatlistActivity.this.getContext(), R.raw.folder_share);
+                view = new HintInnerCell(FilterChatlistActivity.this.getContext(), R.raw.folder_share);
             } else if (i == 2) {
-                frameLayout = new TextInfoPrivacyCell(FilterChatlistActivity.this.getContext());
+                view = new TextInfoPrivacyCell(FilterChatlistActivity.this.getContext());
             } else if (i == 3) {
-                frameLayout = new AnonymousClass1(FilterChatlistActivity.this.getContext(), FilterChatlistActivity.this);
-                frameLayout.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-                frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                view = new AnonymousClass1(FilterChatlistActivity.this.getContext(), FilterChatlistActivity.this);
+                view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                view.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             } else if (i == 4) {
-                frameLayout = new GroupCreateUserCell(FilterChatlistActivity.this.getContext(), 1, 0, false);
-                frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                view = new GroupCreateUserCell(FilterChatlistActivity.this.getContext(), 1, 0, false);
+                view.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             } else if (i == 5) {
-                frameLayout = new FolderBottomSheet.HeaderCell(FilterChatlistActivity.this.getContext());
-                frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                view = new FolderBottomSheet.HeaderCell(FilterChatlistActivity.this.getContext());
+                view.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             } else {
-                frameLayout = null;
+                view = null;
             }
-            return new RecyclerListView.Holder(frameLayout);
+            return new RecyclerListView.Holder(view);
         }
 
         public class AnonymousClass1 extends InviteLinkCell {
@@ -634,7 +630,7 @@ public class FilterChatlistActivity extends BaseFragment {
                         return lambda$editname$5;
                     }
                 });
-                editTextBoldCursor.addTextChangedListener(new TextWatcher(this) {
+                editTextBoldCursor.addTextChangedListener(new TextWatcher() {
                     boolean ignoreTextChange;
 
                     @Override
@@ -1043,7 +1039,7 @@ public class FilterChatlistActivity extends BaseFragment {
             private float[] radii;
             private float t;
 
-            public ButtonsBox(InviteLinkCell inviteLinkCell, Context context) {
+            public ButtonsBox(Context context) {
                 super(context);
                 this.paint = new Paint();
                 this.radii = new float[8];
@@ -1138,10 +1134,10 @@ public class FilterChatlistActivity extends BaseFragment {
                 }
             });
             this.linkBox.addView(this.optionsIcon, LayoutHelper.createFrame(40, 40.0f, 21, 4.0f, 4.0f, 4.0f, 4.0f));
-            ButtonsBox buttonsBox = new ButtonsBox(this, context);
+            ButtonsBox buttonsBox = new ButtonsBox(context);
             this.buttonsBox = buttonsBox;
             addView(buttonsBox, LayoutHelper.createFrame(-1, 42.0f, 55, 22.0f, 69.0f, 22.0f, 0.0f));
-            TextView textView = new TextView(this, context) {
+            TextView textView = new TextView(context) {
                 @Override
                 protected void onMeasure(int i3, int i4) {
                     super.onMeasure(View.MeasureSpec.makeMeasureSpec((View.MeasureSpec.getSize(i3) - AndroidUtilities.dp(8.0f)) / 2, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(42.0f), 1073741824));
@@ -1170,7 +1166,7 @@ public class FilterChatlistActivity extends BaseFragment {
             this.copyButton.setAlpha(0.0f);
             this.copyButton.setVisibility(8);
             this.buttonsBox.addView(this.copyButton, LayoutHelper.createFrame(-1, -1, 3));
-            TextView textView3 = new TextView(this, context) {
+            TextView textView3 = new TextView(context) {
                 @Override
                 protected void onMeasure(int i4, int i5) {
                     super.onMeasure(View.MeasureSpec.makeMeasureSpec((View.MeasureSpec.getSize(i4) - AndroidUtilities.dp(8.0f)) / 2, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(42.0f), 1073741824));
@@ -1394,7 +1390,7 @@ public class FilterChatlistActivity extends BaseFragment {
                         canvas.restore();
                     }
                 };
-                final ViewTreeObserver.OnPreDrawListener onPreDrawListener = new ViewTreeObserver.OnPreDrawListener(this) {
+                final ViewTreeObserver.OnPreDrawListener onPreDrawListener = new ViewTreeObserver.OnPreDrawListener() {
                     @Override
                     public boolean onPreDraw() {
                         view.invalidate();

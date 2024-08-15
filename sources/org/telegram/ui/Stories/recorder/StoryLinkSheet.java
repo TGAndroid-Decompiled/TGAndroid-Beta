@@ -56,6 +56,7 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
     private ButtonWithCounterView button;
     private FrameLayout buttonContainer;
     private boolean captionAbove;
+    public boolean editing;
     private boolean ignoreUrlEdit;
     private String lastCheckedStr;
     private boolean loading;
@@ -297,6 +298,7 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
 
     public void set(LinkPreview.WebPagePreview webPagePreview) {
         this.ignoreUrlEdit = true;
+        this.editing = true;
         if (webPagePreview != null) {
             this.webpage = webPagePreview.webpage;
             this.loading = false;
@@ -327,7 +329,7 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
 
     @Override
     protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
-        UniversalAdapter universalAdapter = new UniversalAdapter(this, this.recyclerListView, getContext(), this.currentAccount, 0, true, new Utilities.Callback2() {
+        UniversalAdapter universalAdapter = new UniversalAdapter(this.recyclerListView, getContext(), this.currentAccount, 0, true, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
                 StoryLinkSheet.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
@@ -510,7 +512,7 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
             addView(imageView, LayoutHelper.createFrame(48, 48.0f, 19, 9.0f, 0.0f, 0.0f, 0.0f));
             ImageView imageView2 = new ImageView(context);
             this.loadingView = imageView2;
-            imageView2.setBackground(new CircularProgressDrawable(this, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(2.4f), -15033089) {
+            imageView2.setBackground(new CircularProgressDrawable(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(2.4f), -15033089) {
                 @Override
                 public int getIntrinsicHeight() {
                     return AndroidUtilities.dp(26.0f);

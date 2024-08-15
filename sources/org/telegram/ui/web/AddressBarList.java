@@ -81,6 +81,7 @@ public class AddressBarList extends FrameLayout {
     private final Drawable currentViewBackground;
     private int grayBackgroundColor;
     public boolean hideCurrent;
+    private float[] hsv;
     private AsyncTask<String, Void, String> lastTask;
     private int listBackgroundColor;
     public UniversalRecyclerView listView;
@@ -102,6 +103,7 @@ public class AddressBarList extends FrameLayout {
         this.currentAccount = i;
         this.suggestions = new ArrayList<>();
         this.openProgress = 0.0f;
+        this.hsv = new float[3];
         setWillNotDraw(false);
         int i2 = UserConfig.selectedAccount;
         Utilities.Callback2 callback2 = new Utilities.Callback2() {
@@ -177,7 +179,7 @@ public class AddressBarList extends FrameLayout {
                 AddressBarList.this.lambda$new$0();
             }
         });
-        this.space = new View(this, context) {
+        this.space = new View(context) {
             @Override
             protected void onMeasure(int i3, int i4) {
                 super.onMeasure(i3, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(6.0f), 1073741824));

@@ -74,6 +74,7 @@ public class StoriesUtilities {
     public static GradientTools[] storiesGradientTools = new GradientTools[2];
     public static Paint[] storyCellGreyPaint = new Paint[2];
     private static final RectF rectTmp = new RectF();
+    static boolean scheduled = false;
     static int debugState = 0;
     static Runnable debugRunnable = new Runnable() {
         @Override
@@ -266,13 +267,13 @@ public class StoriesUtilities {
         GradientTools[] gradientToolsArr = storiesGradientTools;
         if (gradientToolsArr[z ? 1 : 0] == null) {
             gradientToolsArr[z ? 1 : 0] = new GradientTools();
-            GradientTools[] gradientToolsArr2 = storiesGradientTools;
-            gradientToolsArr2[z ? 1 : 0].isDiagonal = true;
-            gradientToolsArr2[z ? 1 : 0].isRotate = true;
+            GradientTools gradientTools = storiesGradientTools[z ? 1 : 0];
+            gradientTools.isDiagonal = true;
+            gradientTools.isRotate = true;
             if (z) {
-                gradientToolsArr2[z ? 1 : 0].setColors(Theme.getColor(Theme.key_stories_circle_dialog1), Theme.getColor(Theme.key_stories_circle_dialog2));
+                gradientTools.setColors(Theme.getColor(Theme.key_stories_circle_dialog1), Theme.getColor(Theme.key_stories_circle_dialog2));
             } else {
-                gradientToolsArr2[z ? 1 : 0].setColors(Theme.getColor(Theme.key_stories_circle1), Theme.getColor(Theme.key_stories_circle2));
+                gradientTools.setColors(Theme.getColor(Theme.key_stories_circle1), Theme.getColor(Theme.key_stories_circle2));
             }
             storiesGradientTools[z ? 1 : 0].paint.setStrokeWidth(AndroidUtilities.dpf2(2.3f));
             storiesGradientTools[z ? 1 : 0].paint.setStyle(Paint.Style.STROKE);
@@ -285,13 +286,13 @@ public class StoriesUtilities {
         if (gradientTools != null) {
             gradientTools.setColors(Theme.getColor(Theme.key_stories_circle_closeFriends1), Theme.getColor(Theme.key_stories_circle_closeFriends2));
         }
-        GradientTools[] gradientToolsArr = storiesGradientTools;
-        if (gradientToolsArr[0] != null) {
-            gradientToolsArr[0].setColors(Theme.getColor(Theme.key_stories_circle_dialog1), Theme.getColor(Theme.key_stories_circle_dialog2));
+        GradientTools gradientTools2 = storiesGradientTools[0];
+        if (gradientTools2 != null) {
+            gradientTools2.setColors(Theme.getColor(Theme.key_stories_circle_dialog1), Theme.getColor(Theme.key_stories_circle_dialog2));
         }
-        GradientTools[] gradientToolsArr2 = storiesGradientTools;
-        if (gradientToolsArr2[1] != null) {
-            gradientToolsArr2[1].setColors(Theme.getColor(Theme.key_stories_circle1), Theme.getColor(Theme.key_stories_circle2));
+        GradientTools gradientTools3 = storiesGradientTools[1];
+        if (gradientTools3 != null) {
+            gradientTools3.setColors(Theme.getColor(Theme.key_stories_circle1), Theme.getColor(Theme.key_stories_circle2));
         }
         if (errorGradientTools != null) {
             int color = Theme.getColor(Theme.key_color_orange);
@@ -523,11 +524,11 @@ public class StoriesUtilities {
         if (f >= f3 || f2 >= f3 + f5) {
             z = false;
         } else {
-            z = true;
             canvas.drawArc(rectF, f, Math.min(f2, f3) - f, false, paint);
+            z = true;
         }
         float max = Math.max(f, f4);
-        float min = Math.min(f2, f3 + 360.0f);
+        float min = Math.min(f2, 360.0f + f3);
         if (min >= max) {
             canvas.drawArc(rectF, max, min - max, false, paint);
         } else if (z) {
@@ -633,20 +634,21 @@ public class StoriesUtilities {
                 StoriesUtilities.lambda$ensureStoryFileLoaded$0(StoriesUtilities.EnsureStoryFileLoadedObject.this, runnable);
             }
         };
-        final Runnable[] runnableArr = {new Runnable() {
+        Runnable runnable2 = new Runnable() {
             @Override
             public final void run() {
-                StoriesUtilities.lambda$ensureStoryFileLoaded$1(runnableArr, ensureStoryFileLoadedObject);
+                StoriesUtilities.lambda$ensureStoryFileLoaded$1(r1, ensureStoryFileLoadedObject);
             }
-        }};
-        AndroidUtilities.runOnUIThread(runnableArr[0], 3000L);
+        };
+        final Runnable[] runnableArr = {runnable2};
+        AndroidUtilities.runOnUIThread(runnable2, 3000L);
         ImageReceiver imageReceiver = new ImageReceiver() {
             @Override
             public boolean setImageBitmapByKey(Drawable drawable, String str, int i3, boolean z, int i4) {
                 boolean imageBitmapByKey = super.setImageBitmapByKey(drawable, str, i3, z, i4);
-                Runnable[] runnableArr2 = runnableArr;
-                if (runnableArr2[0] != null) {
-                    AndroidUtilities.cancelRunOnUIThread(runnableArr2[0]);
+                Runnable runnable3 = runnableArr[0];
+                if (runnable3 != null) {
+                    AndroidUtilities.cancelRunOnUIThread(runnable3);
                     ensureStoryFileLoadedObject.runnable.run();
                 }
                 AndroidUtilities.runOnUIThread(new Runnable() {
@@ -721,6 +723,7 @@ public class StoriesUtilities {
         public RectF originalAvatarRect;
         boolean pressed;
         public int prevState;
+        public int prevUnreadState;
         public float progressToArc;
         public float progressToProgressSegments;
         public float progressToSate;
@@ -934,16 +937,20 @@ public class StoriesUtilities {
     }
 
     public static class UserStoriesLoadOperation {
+        boolean canceled;
         private int currentAccount;
+        long dialogId;
+        int guid = ConnectionsManager.generateClassGuid();
+        AvatarStoryParams params;
         int reqId;
-
-        public UserStoriesLoadOperation() {
-            ConnectionsManager.generateClassGuid();
-        }
+        View view;
 
         void load(final long j, final View view, final AvatarStoryParams avatarStoryParams) {
             int i = UserConfig.selectedAccount;
             this.currentAccount = i;
+            this.dialogId = j;
+            this.params = avatarStoryParams;
+            this.view = view;
             final MessagesController messagesController = MessagesController.getInstance(i);
             messagesController.getStoriesController().setLoading(j, true);
             view.invalidate();
@@ -987,6 +994,8 @@ public class StoriesUtilities {
 
         void cancel() {
             ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.reqId, false);
+            this.canceled = true;
+            this.params = null;
         }
     }
 

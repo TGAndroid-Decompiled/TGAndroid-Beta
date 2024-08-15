@@ -61,6 +61,7 @@ public class EmojiTabsStrip extends ScrollableHorizontalScrollView {
     private ValueAnimator selectAnimator;
     private float selectT;
     private int selected;
+    private int selectedFullIndex;
     private int settingsDrawableId;
     private EmojiTabButton settingsTab;
     private boolean showSelected;
@@ -87,6 +88,21 @@ public class EmojiTabsStrip extends ScrollableHorizontalScrollView {
     protected void onTabCreate(EmojiTabButton emojiTabButton) {
     }
 
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        return super.onTouchEvent(motionEvent);
+    }
+
+    @Override
+    public void scrollTo(int i) {
+        super.scrollTo(i);
+    }
+
+    @Override
+    public boolean scrollToVisible(int i, int i2) {
+        return super.scrollToVisible(i, i2);
+    }
+
     public EmojiTabsStrip(Context context, Theme.ResourcesProvider resourcesProvider, boolean z, boolean z2, boolean z3, int i, Runnable runnable) {
         this(context, resourcesProvider, z, z2, z3, i, runnable, Theme.getColor(Theme.key_windowBackgroundWhiteBlueIcon, resourcesProvider));
     }
@@ -101,6 +117,7 @@ public class EmojiTabsStrip extends ScrollableHorizontalScrollView {
         this.selectT = 0.0f;
         this.selectAnimationT = 0.0f;
         this.selected = 0;
+        this.selectedFullIndex = 0;
         this.wasIndex = 0;
         this.animateAppear = true;
         this.animatedEmojiCacheType = 6;
@@ -626,6 +643,7 @@ public class EmojiTabsStrip extends ScrollableHorizontalScrollView {
         if (!this.recentIsShown || emojiTabButton != null) {
             i = Math.max(1, i);
         }
+        this.selectedFullIndex = i;
         int i4 = this.selected;
         int i5 = 0;
         int i6 = 0;
@@ -742,6 +760,7 @@ public class EmojiTabsStrip extends ScrollableHorizontalScrollView {
         private ValueAnimator selectAnimator;
         private float selectT;
         private boolean selected;
+        public boolean shown;
 
         public Long id() {
             Long l = this.id;
@@ -757,6 +776,7 @@ public class EmojiTabsStrip extends ScrollableHorizontalScrollView {
 
         public EmojiTabButton(Context context, int i, int i2, boolean z, boolean z2) {
             super(context);
+            this.shown = true;
             this.round = z;
             this.forceSelector = z2;
             if (z) {
@@ -782,6 +802,7 @@ public class EmojiTabsStrip extends ScrollableHorizontalScrollView {
 
         public EmojiTabButton(Context context, int i, boolean z, boolean z2) {
             super(context);
+            this.shown = true;
             this.round = z;
             this.forceSelector = z2;
             if (z) {
@@ -798,6 +819,7 @@ public class EmojiTabsStrip extends ScrollableHorizontalScrollView {
 
         public EmojiTabButton(Context context, TLRPC$Document tLRPC$Document, boolean z, boolean z2, boolean z3) {
             super(context);
+            this.shown = true;
             this.newly = true;
             this.round = z2;
             this.forceSelector = z3;
@@ -806,7 +828,7 @@ public class EmojiTabsStrip extends ScrollableHorizontalScrollView {
             } else if (z3) {
                 setBackground(Theme.createRadSelectorDrawable(EmojiTabsStrip.this.selectorColor(), 8, 8));
             }
-            ImageView imageView = new ImageView(context, EmojiTabsStrip.this) {
+            ImageView imageView = new ImageView(context) {
                 @Override
                 protected void onDraw(Canvas canvas) {
                 }
@@ -848,7 +870,7 @@ public class EmojiTabsStrip extends ScrollableHorizontalScrollView {
             this.isAnimatedEmoji = true;
             imageView.setColorFilter(EmojiTabsStrip.this.getEmojiColorFilter());
             addView(this.imageView);
-            PremiumLockIconView premiumLockIconView = new PremiumLockIconView(this, context, PremiumLockIconView.TYPE_STICKERS_PREMIUM_LOCKED, EmojiTabsStrip.this.resourcesProvider, EmojiTabsStrip.this) {
+            PremiumLockIconView premiumLockIconView = new PremiumLockIconView(context, PremiumLockIconView.TYPE_STICKERS_PREMIUM_LOCKED, EmojiTabsStrip.this.resourcesProvider) {
                 @Override
                 public void invalidate() {
                     if (HwEmojis.grab(this)) {
@@ -1258,7 +1280,7 @@ public class EmojiTabsStrip extends ScrollableHorizontalScrollView {
             if (Build.VERSION.SDK_INT >= 21) {
                 setNestedScrollingEnabled(true);
             }
-            LinearLayout linearLayout = new LinearLayout(context, EmojiTabsStrip.this) {
+            LinearLayout linearLayout = new LinearLayout(context) {
                 @Override
                 protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
                     int paddingLeft = getPaddingLeft();
@@ -1281,7 +1303,7 @@ public class EmojiTabsStrip extends ScrollableHorizontalScrollView {
             linearLayout.setOrientation(0);
             addView(this.contentView, new FrameLayout.LayoutParams(-2, -1));
             for (int i = 0; i < EmojiTabsStrip.emojiTabsDrawableIds.length; i++) {
-                this.contentView.addView(new EmojiTabButton(context, EmojiTabsStrip.emojiTabsDrawableIds[i], EmojiTabsStrip.emojiTabsAnimatedDrawableIds[i], true, false, EmojiTabsStrip.this) {
+                this.contentView.addView(new EmojiTabButton(context, EmojiTabsStrip.emojiTabsDrawableIds[i], EmojiTabsStrip.emojiTabsAnimatedDrawableIds[i], true, false) {
                     {
                         EmojiTabsStrip emojiTabsStrip = EmojiTabsStrip.this;
                     }

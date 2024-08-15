@@ -29,13 +29,12 @@ public abstract class BaseContinuationImpl implements Continuation<Object>, Coro
                 coroutine_suspended = IntrinsicsKt__IntrinsicsKt.getCOROUTINE_SUSPENDED();
             } catch (Throwable th) {
                 Result.Companion companion = Result.Companion;
-                obj = Result.m151constructorimpl(ResultKt.createFailure(th));
+                obj = Result.m153constructorimpl(ResultKt.createFailure(th));
             }
             if (invokeSuspend == coroutine_suspended) {
                 return;
             }
-            Result.Companion companion2 = Result.Companion;
-            obj = Result.m151constructorimpl(invokeSuspend);
+            obj = Result.m153constructorimpl(invokeSuspend);
             baseContinuationImpl.releaseIntercepted();
             if (!(continuation2 instanceof BaseContinuationImpl)) {
                 continuation2.resumeWith(obj);
@@ -65,7 +64,6 @@ public abstract class BaseContinuationImpl implements Continuation<Object>, Coro
         return null;
     }
 
-    @Override
     public StackTraceElement getStackTraceElement() {
         return DebugMetadataKt.getStackTraceElement(this);
     }

@@ -7,6 +7,7 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Camera;
@@ -339,7 +340,7 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance != null) {
             this.textureView.renderer.setMirror(sharedInstance.isFrontFaceCamera());
-            this.textureView.renderer.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), new RendererCommon.RendererEvents(this) {
+            this.textureView.renderer.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), new RendererCommon.RendererEvents() {
                 @Override
                 public void onFirstFrameRendered() {
                 }
@@ -444,14 +445,16 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
     }
 
     public void lambda$new$0(View view) {
+        Intent createScreenCaptureIntent;
         if (this.isDismissed) {
             return;
         }
         if (this.realCurrentPage == 0) {
-            ((Activity) getContext()).startActivityForResult(((MediaProjectionManager) getContext().getSystemService("media_projection")).createScreenCaptureIntent(), 520);
-        } else {
-            dismiss(false, true);
+            createScreenCaptureIntent = ((MediaProjectionManager) getContext().getSystemService("media_projection")).createScreenCaptureIntent();
+            ((Activity) getContext()).startActivityForResult(createScreenCaptureIntent, 520);
+            return;
         }
+        dismiss(false, true);
     }
 
     public void lambda$new$1(int i, View view) {
@@ -479,16 +482,17 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
     }
 
     private void showStub(boolean z, boolean z2) {
+        Bitmap bitmap;
         ImageView imageView = (ImageView) this.viewPager.findViewWithTag("image_stab");
         if (!z) {
             imageView.setVisibility(8);
             return;
         }
-        Bitmap bitmap = null;
         try {
             File filesDirFixed = ApplicationLoader.getFilesDirFixed();
             bitmap = BitmapFactory.decodeFile(new File(filesDirFixed, "cthumb" + this.visibleCameraPage + ".jpg").getAbsolutePath());
         } catch (Throwable unused) {
+            bitmap = null;
         }
         if (bitmap != null && bitmap.getPixel(0, 0) != 0) {
             imageView.setImageBitmap(bitmap);

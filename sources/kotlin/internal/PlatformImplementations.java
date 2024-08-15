@@ -7,7 +7,9 @@ import kotlin.random.Random;
 public class PlatformImplementations {
 
     public static final class ReflectThrowable {
+        public static final ReflectThrowable INSTANCE = new ReflectThrowable();
         public static final Method addSuppressed;
+        public static final Method getSuppressed;
 
         private ReflectThrowable() {
         }

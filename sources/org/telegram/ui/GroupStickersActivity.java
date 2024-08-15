@@ -177,8 +177,7 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
         this.searchAdapter = new SearchAdapter(context);
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
-        FrameLayout frameLayout2 = frameLayout;
-        frameLayout2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
+        frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
         this.listView = new RecyclerListView(context);
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
         defaultItemAnimator.setDurations(200L);
@@ -188,9 +187,9 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
         this.layoutManager = linearLayoutManager;
         linearLayoutManager.setOrientation(1);
         this.listView.setLayoutManager(this.layoutManager);
-        FrameLayout frameLayout3 = new FrameLayout(context);
-        this.emptyFrameView = frameLayout3;
-        frameLayout3.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+        FrameLayout frameLayout2 = new FrameLayout(context);
+        this.emptyFrameView = frameLayout2;
+        frameLayout2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
         FlickerLoadingView flickerLoadingView = new FlickerLoadingView(context, getResourceProvider());
         this.loadingView = flickerLoadingView;
         flickerLoadingView.setViewType(19);
@@ -201,10 +200,10 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
         this.emptyView = stickerEmptyView;
         VerticalPositionAutoAnimator.attach(stickerEmptyView);
         this.emptyFrameView.addView(this.emptyView);
-        frameLayout2.addView(this.emptyFrameView);
+        frameLayout.addView(this.emptyFrameView);
         this.emptyFrameView.setVisibility(8);
         this.listView.setEmptyView(this.emptyFrameView);
-        frameLayout2.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
+        frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
         this.listView.setAdapter(this.listAdapter);
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
@@ -531,7 +530,6 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
         this.rowCount = 0;
         if (this.isEmoji) {
             int i = 0 + 1;
-            this.rowCount = i;
             this.addEmojiPackTitleRow = 0;
             int i2 = i + 1;
             this.rowCount = i2;

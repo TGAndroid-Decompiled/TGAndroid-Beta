@@ -121,7 +121,7 @@ public class DilogCacheBottomSheet extends BottomSheetWithRecyclerListView {
         LinearLayout linearLayout = new LinearLayout(context);
         this.linearLayout = linearLayout;
         linearLayout.setOrientation(1);
-        StorageDiagramView storageDiagramView = new StorageDiagramView(this, getContext(), dialogFileEntities.dialogId) {
+        StorageDiagramView storageDiagramView = new StorageDiagramView(getContext(), dialogFileEntities.dialogId) {
             @Override
             public void onAvatarClick() {
                 delegate.onAvatarClick();
@@ -161,9 +161,9 @@ public class DilogCacheBottomSheet extends BottomSheetWithRecyclerListView {
             long j = fileEntities != null ? fileEntities.totalSize : 0L;
             if (j > 0) {
                 this.clearViewData[i3] = new StorageDiagramView.ClearViewData(this.circleDiagramView);
-                StorageDiagramView.ClearViewData[] clearViewDataArr = this.clearViewData;
-                clearViewDataArr[i3].size = j;
-                clearViewDataArr[i3].colorKey = i;
+                StorageDiagramView.ClearViewData clearViewData = this.clearViewData[i3];
+                clearViewData.size = j;
+                clearViewData.colorKey = i;
                 checkBoxCell = new CheckBoxCell(context, 4, 21, null);
                 checkBoxCell.setTag(Integer.valueOf(i3));
                 checkBoxCell.setBackgroundDrawable(Theme.getSelectorDrawable(false));
@@ -240,15 +240,16 @@ public class DilogCacheBottomSheet extends BottomSheetWithRecyclerListView {
         while (true) {
             StorageDiagramView.ClearViewData[] clearViewDataArr = this.clearViewData;
             if (i < clearViewDataArr.length) {
-                if (clearViewDataArr[i] != null) {
-                    boolean z = clearViewDataArr[i].clear;
+                StorageDiagramView.ClearViewData clearViewData = clearViewDataArr[i];
+                if (clearViewData != null) {
+                    boolean z = clearViewData.clear;
                 }
                 i++;
             } else {
                 CheckBoxCell checkBoxCell = (CheckBoxCell) view;
                 int intValue = ((Integer) checkBoxCell.getTag()).intValue();
-                StorageDiagramView.ClearViewData[] clearViewDataArr2 = this.clearViewData;
-                clearViewDataArr2[intValue].setClear(!clearViewDataArr2[intValue].clear);
+                StorageDiagramView.ClearViewData clearViewData2 = this.clearViewData[intValue];
+                clearViewData2.setClear(!clearViewData2.clear);
                 checkBoxCell.setChecked(this.clearViewData[intValue].clear, true);
                 cacheModel.allFilesSelcetedByType(intValue, this.clearViewData[intValue].clear);
                 this.cachedMediaLayout.update();
@@ -260,41 +261,36 @@ public class DilogCacheBottomSheet extends BottomSheetWithRecyclerListView {
     }
 
     public void syncCheckBoxes() {
-        CheckBoxCell[] checkBoxCellArr = this.checkBoxes;
-        if (checkBoxCellArr[0] != null) {
-            CheckBoxCell checkBoxCell = checkBoxCellArr[0];
+        CheckBoxCell checkBoxCell = this.checkBoxes[0];
+        if (checkBoxCell != null) {
             StorageDiagramView.ClearViewData clearViewData = this.clearViewData[0];
             boolean z = this.cacheModel.allPhotosSelected;
             clearViewData.clear = z;
             checkBoxCell.setChecked(z, true);
         }
-        CheckBoxCell[] checkBoxCellArr2 = this.checkBoxes;
-        if (checkBoxCellArr2[1] != null) {
-            CheckBoxCell checkBoxCell2 = checkBoxCellArr2[1];
+        CheckBoxCell checkBoxCell2 = this.checkBoxes[1];
+        if (checkBoxCell2 != null) {
             StorageDiagramView.ClearViewData clearViewData2 = this.clearViewData[1];
             boolean z2 = this.cacheModel.allVideosSelected;
             clearViewData2.clear = z2;
             checkBoxCell2.setChecked(z2, true);
         }
-        CheckBoxCell[] checkBoxCellArr3 = this.checkBoxes;
-        if (checkBoxCellArr3[2] != null) {
-            CheckBoxCell checkBoxCell3 = checkBoxCellArr3[2];
+        CheckBoxCell checkBoxCell3 = this.checkBoxes[2];
+        if (checkBoxCell3 != null) {
             StorageDiagramView.ClearViewData clearViewData3 = this.clearViewData[2];
             boolean z3 = this.cacheModel.allDocumentsSelected;
             clearViewData3.clear = z3;
             checkBoxCell3.setChecked(z3, true);
         }
-        CheckBoxCell[] checkBoxCellArr4 = this.checkBoxes;
-        if (checkBoxCellArr4[3] != null) {
-            CheckBoxCell checkBoxCell4 = checkBoxCellArr4[3];
+        CheckBoxCell checkBoxCell4 = this.checkBoxes[3];
+        if (checkBoxCell4 != null) {
             StorageDiagramView.ClearViewData clearViewData4 = this.clearViewData[3];
             boolean z4 = this.cacheModel.allMusicSelected;
             clearViewData4.clear = z4;
             checkBoxCell4.setChecked(z4, true);
         }
-        CheckBoxCell[] checkBoxCellArr5 = this.checkBoxes;
-        if (checkBoxCellArr5[4] != null) {
-            CheckBoxCell checkBoxCell5 = checkBoxCellArr5[4];
+        CheckBoxCell checkBoxCell5 = this.checkBoxes[4];
+        if (checkBoxCell5 != null) {
             StorageDiagramView.ClearViewData clearViewData5 = this.clearViewData[4];
             boolean z5 = this.cacheModel.allVoiceSelected;
             clearViewData5.clear = z5;

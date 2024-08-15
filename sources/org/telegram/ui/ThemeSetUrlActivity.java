@@ -70,6 +70,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
     private TLRPC$TL_theme info;
     private CharSequence infoText;
     private String lastCheckName;
+    private boolean lastNameAvailable;
     private LinearLayout linearLayoutTypeContainer;
     private EditTextBoldCursor linkField;
     private ThemePreviewMessagesCell messagesCell;
@@ -229,7 +230,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
                 return lambda$createView$1;
             }
         });
-        View view = new View(this, context) {
+        View view = new View(context) {
             @Override
             protected void onDraw(Canvas canvas) {
                 canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(20.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(20.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
@@ -437,7 +438,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
                 arrayList.add(themeInfo);
             }
         }
-        ThemesHorizontalListCell themesHorizontalListCell = new ThemesHorizontalListCell(this, context, this, 2, arrayList, new ArrayList()) {
+        ThemesHorizontalListCell themesHorizontalListCell = new ThemesHorizontalListCell(context, this, 2, arrayList, new ArrayList()) {
             @Override
             protected void updateRows() {
                 builder.getDismissRunnable().run();
@@ -500,6 +501,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
                 ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.checkReqId, true);
             }
         }
+        this.lastNameAvailable = false;
         if (str != null) {
             if (str.startsWith("_") || str.endsWith("_")) {
                 setCheckText(LocaleController.getString("SetUrlInvalid", R.string.SetUrlInvalid), Theme.key_text_RedRegular);
@@ -588,11 +590,13 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
         if (str2 == null || !str2.equals(str)) {
             return;
         }
-        if (tLRPC$TL_error == null || !("THEME_SLUG_INVALID".equals(tLRPC$TL_error.text) || "THEME_SLUG_OCCUPIED".equals(tLRPC$TL_error.text))) {
+        if (tLRPC$TL_error == null || (!"THEME_SLUG_INVALID".equals(tLRPC$TL_error.text) && !"THEME_SLUG_OCCUPIED".equals(tLRPC$TL_error.text))) {
             setCheckText(LocaleController.formatString("SetUrlAvailable", R.string.SetUrlAvailable, str), Theme.key_windowBackgroundWhiteGreenText);
-        } else {
-            setCheckText(LocaleController.getString("SetUrlInUse", R.string.SetUrlInUse), Theme.key_text_RedRegular);
+            this.lastNameAvailable = true;
+            return;
         }
+        setCheckText(LocaleController.getString("SetUrlInUse", R.string.SetUrlInUse), Theme.key_text_RedRegular);
+        this.lastNameAvailable = false;
     }
 
     private void setCheckText(String str, int i) {
@@ -664,10 +668,8 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
                 tLRPC$TL_account_updateTheme.theme = tLRPC$TL_inputTheme;
                 tLRPC$TL_account_updateTheme.format = "android";
                 tLRPC$TL_account_updateTheme.slug = obj2;
-                int i = tLRPC$TL_account_updateTheme.flags | 1;
-                tLRPC$TL_account_updateTheme.flags = i;
                 tLRPC$TL_account_updateTheme.title = obj3;
-                tLRPC$TL_account_updateTheme.flags = i | 2;
+                tLRPC$TL_account_updateTheme.flags = tLRPC$TL_account_updateTheme.flags | 1 | 2;
                 final int sendRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_account_updateTheme, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -772,7 +774,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
         int i7 = Theme.key_windowBackgroundWhiteHintText;
         arrayList.add(new ThemeDescription(editTextBoldCursor, i6, null, null, null, null, i7));
         arrayList.add(new ThemeDescription(this.linkField, ThemeDescription.FLAG_BACKGROUNDFILTER, null, null, null, null, Theme.key_windowBackgroundWhiteInputField));
-        arrayList.add(new ThemeDescription(this.linkField, ThemeDescription.FLAG_BACKGROUNDFILTER | ThemeDescription.FLAG_DRAWABLESELECTEDSTATE, null, null, null, null, Theme.key_windowBackgroundWhiteInputFieldActivated));
+        arrayList.add(new ThemeDescription(this.linkField, ThemeDescription.FLAG_DRAWABLESELECTEDSTATE | ThemeDescription.FLAG_BACKGROUNDFILTER, null, null, null, null, Theme.key_windowBackgroundWhiteInputFieldActivated));
         arrayList.add(new ThemeDescription(this.linkField, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, i5));
         arrayList.add(new ThemeDescription(this.linkField, ThemeDescription.FLAG_HINTTEXTCOLOR, null, null, null, null, i7));
         arrayList.add(new ThemeDescription(this.linkField, ThemeDescription.FLAG_CURSORCOLOR, null, null, null, null, i5));

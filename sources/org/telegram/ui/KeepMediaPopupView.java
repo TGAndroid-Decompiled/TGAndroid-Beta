@@ -150,7 +150,7 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
         this.cacheByChatsController.saveKeepMediaExceptions(this.currentType, this.exceptions);
         Bundle bundle = new Bundle();
         bundle.putInt("type", this.currentType);
-        final CacheChatsExceptionsFragment cacheChatsExceptionsFragment = new CacheChatsExceptionsFragment(this, bundle) {
+        final CacheChatsExceptionsFragment cacheChatsExceptionsFragment = new CacheChatsExceptionsFragment(bundle) {
             @Override
             public void onTransitionAnimationEnd(boolean z2, boolean z3) {
                 super.onTransitionAnimationEnd(z2, z3);

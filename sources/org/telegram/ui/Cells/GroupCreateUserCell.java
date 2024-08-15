@@ -124,7 +124,7 @@ public class GroupCreateUserCell extends FrameLayout {
         BackupImageView backupImageView2 = this.avatarImageView;
         boolean z3 = LocaleController.isRTL;
         addView(backupImageView2, LayoutHelper.createFrame(46, 46.0f, (z3 ? 5 : 3) | 48, z3 ? 0.0f : this.padding + 13, 6.0f, z3 ? this.padding + 13 : 0.0f, 0.0f));
-        SimpleTextView simpleTextView = new SimpleTextView(this, context) {
+        SimpleTextView simpleTextView = new SimpleTextView(context) {
             @Override
             public boolean setText(CharSequence charSequence, boolean z4) {
                 return super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), AndroidUtilities.dp(14.0f), false), z4);

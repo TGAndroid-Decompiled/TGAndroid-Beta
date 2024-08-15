@@ -131,14 +131,14 @@ public class WeatherView extends EntityView {
 
     @Override
     public TextViewSelectionView createSelectionView() {
-        return new TextViewSelectionView(this, getContext());
+        return new TextViewSelectionView(getContext());
     }
 
     public class TextViewSelectionView extends EntityView.SelectionView {
         private final Paint clearPaint;
         private Path path;
 
-        public TextViewSelectionView(WeatherView weatherView, Context context) {
+        public TextViewSelectionView(Context context) {
             super(context);
             Paint paint = new Paint(1);
             this.clearPaint = paint;

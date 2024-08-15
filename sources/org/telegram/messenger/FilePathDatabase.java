@@ -359,8 +359,8 @@ public class FilePathDatabase {
         if (fileMeta == null) {
             fileMeta = this.metaTmp;
         }
-        long j = 0;
         int i3 = 0;
+        long j = 0;
         try {
             try {
                 SQLiteDatabase sQLiteDatabase = this.database;

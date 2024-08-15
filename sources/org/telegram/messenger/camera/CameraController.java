@@ -116,7 +116,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
             if (cameraController.cameraInfos == null) {
                 SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
                 String string = globalMainSettings.getString("cameraCache", null);
-                CameraController$$ExternalSyntheticLambda18 cameraController$$ExternalSyntheticLambda18 = new Comparator() {
+                Comparator comparator = new Comparator() {
                     @Override
                     public final int compare(Object obj, Object obj2) {
                         int lambda$initCamera$0;
@@ -139,8 +139,8 @@ public class CameraController implements MediaRecorder.OnInfoListener {
                             cameraInfo2.pictureSizes.add(new Size(serializedData.readInt32(false), serializedData.readInt32(false)));
                         }
                         arrayList.add(cameraInfo2);
-                        Collections.sort(cameraInfo2.previewSizes, cameraController$$ExternalSyntheticLambda18);
-                        Collections.sort(cameraInfo2.pictureSizes, cameraController$$ExternalSyntheticLambda18);
+                        Collections.sort(cameraInfo2.previewSizes, comparator);
+                        Collections.sort(cameraInfo2.pictureSizes, comparator);
                     }
                     serializedData.cleanup();
                     str = "APP_PAUSED";
@@ -218,8 +218,8 @@ public class CameraController implements MediaRecorder.OnInfoListener {
                             }
                             open.release();
                             arrayList.add(cameraInfo4);
-                            Collections.sort(cameraInfo4.previewSizes, cameraController$$ExternalSyntheticLambda18);
-                            Collections.sort(cameraInfo4.pictureSizes, cameraController$$ExternalSyntheticLambda18);
+                            Collections.sort(cameraInfo4.previewSizes, comparator);
+                            Collections.sort(cameraInfo4.pictureSizes, comparator);
                             i4 += ((cameraInfo4.previewSizes.size() + cameraInfo4.pictureSizes.size()) * 8) + 8;
                             i5++;
                             cameraInfo3 = cameraInfo;

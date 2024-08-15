@@ -12,7 +12,6 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.util.Property;
 import android.view.KeyEvent;
 import android.view.View;
@@ -40,11 +39,12 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.PopupSwipeBackLayout;
 public class ActionBarPopupWindow extends PopupWindow {
     private static final ViewTreeObserver.OnScrollChangedListener NOP;
-    private static final boolean allowAnimation;
-    private static DecelerateInterpolator decelerateInterpolator;
+    private static final boolean allowAnimation = true;
+    private static DecelerateInterpolator decelerateInterpolator = new DecelerateInterpolator();
     private static Method layoutInScreenMethod;
     private static final Field superListenerField;
     private boolean animationEnabled;
+    private int currentAccount;
     private int dismissAnimationDuration;
     private boolean isClosingAnimated;
     private ViewTreeObserver.OnScrollChangedListener mSuperScrollListener;
@@ -67,8 +67,6 @@ public class ActionBarPopupWindow extends PopupWindow {
     }
 
     static {
-        allowAnimation = Build.VERSION.SDK_INT >= 18;
-        decelerateInterpolator = new DecelerateInterpolator();
         Field field = null;
         try {
             field = PopupWindow.class.getDeclaredField("mOnScrollChangedListener");
@@ -556,7 +554,7 @@ public class ActionBarPopupWindow extends PopupWindow {
     public ActionBarPopupWindow() {
         this.animationEnabled = allowAnimation;
         this.dismissAnimationDuration = 150;
-        int i = UserConfig.selectedAccount;
+        this.currentAccount = UserConfig.selectedAccount;
         this.outEmptyTime = -1L;
         this.notificationsLocker = new AnimationNotificationsLocker();
         init();
@@ -566,7 +564,7 @@ public class ActionBarPopupWindow extends PopupWindow {
         super(context);
         this.animationEnabled = allowAnimation;
         this.dismissAnimationDuration = 150;
-        int i = UserConfig.selectedAccount;
+        this.currentAccount = UserConfig.selectedAccount;
         this.outEmptyTime = -1L;
         this.notificationsLocker = new AnimationNotificationsLocker();
         init();
@@ -576,7 +574,7 @@ public class ActionBarPopupWindow extends PopupWindow {
         super(view, i, i2);
         this.animationEnabled = allowAnimation;
         this.dismissAnimationDuration = 150;
-        int i3 = UserConfig.selectedAccount;
+        this.currentAccount = UserConfig.selectedAccount;
         this.outEmptyTime = -1L;
         this.notificationsLocker = new AnimationNotificationsLocker();
         init();
@@ -774,11 +772,11 @@ public class ActionBarPopupWindow extends PopupWindow {
         ActionBarPopupWindowLayout actionBarPopupWindowLayout;
         if (this.animationEnabled && this.windowAnimatorSet == null) {
             ViewGroup viewGroup = (ViewGroup) getContentView();
-            ActionBarPopupWindowLayout actionBarPopupWindowLayout2 = null;
             if (viewGroup instanceof ActionBarPopupWindowLayout) {
                 actionBarPopupWindowLayout = (ActionBarPopupWindowLayout) viewGroup;
                 actionBarPopupWindowLayout.startAnimationPending = true;
             } else {
+                ActionBarPopupWindowLayout actionBarPopupWindowLayout2 = null;
                 for (int i = 0; i < viewGroup.getChildCount(); i++) {
                     if (viewGroup.getChildAt(i) instanceof ActionBarPopupWindowLayout) {
                         actionBarPopupWindowLayout2 = (ActionBarPopupWindowLayout) viewGroup.getChildAt(i);

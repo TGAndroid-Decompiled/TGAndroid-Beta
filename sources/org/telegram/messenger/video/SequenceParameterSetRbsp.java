@@ -159,7 +159,7 @@ public class SequenceParameterSetRbsp {
         int[] iArr3 = new int[i2];
         boolean[] zArr4 = new boolean[i2];
         int[] iArr4 = new int[i2];
-        boolean[][] zArr5 = (boolean[][]) Array.newInstance(boolean.class, i2, 32);
+        boolean[][] zArr5 = (boolean[][]) Array.newInstance(Boolean.TYPE, i2, 32);
         boolean[] zArr6 = new boolean[i2];
         boolean[] zArr7 = new boolean[i2];
         boolean[] zArr8 = new boolean[i2];

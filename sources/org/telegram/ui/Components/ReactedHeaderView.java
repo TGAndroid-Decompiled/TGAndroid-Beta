@@ -47,6 +47,7 @@ import org.telegram.ui.ActionBar.Theme;
 public class ReactedHeaderView extends FrameLayout {
     private AvatarsImageView avatarsImageView;
     private int currentAccount;
+    private long dialogId;
     private int fixedWidth;
     private FlickerLoadingView flickerLoadingView;
     private ImageView iconView;
@@ -65,6 +66,7 @@ public class ReactedHeaderView extends FrameLayout {
         this.users = new ArrayList();
         this.currentAccount = i;
         this.message = messageObject;
+        this.dialogId = j;
         FlickerLoadingView flickerLoadingView = new FlickerLoadingView(context);
         this.flickerLoadingView = flickerLoadingView;
         flickerLoadingView.setColors(Theme.key_actionBarDefaultSubmenuBackground, Theme.key_listSelector, -1);
@@ -108,7 +110,6 @@ public class ReactedHeaderView extends FrameLayout {
         public TLObject user;
 
         public UserSeen(TLObject tLObject, int i) {
-            this.date = 0;
             this.user = tLObject;
             this.date = i;
             if (tLObject instanceof TLRPC$User) {

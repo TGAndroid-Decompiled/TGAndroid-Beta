@@ -145,11 +145,13 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
                 SharedMediaLayout sharedMediaLayout = this.sharedMediaLayout;
                 if (sharedMediaLayout != null) {
                     sharedMediaLayout.setUserInfo(tLRPC$UserFull);
+                    return;
                 }
+                return;
             }
-        } else if (i != NotificationCenter.currentUserPremiumStatusChanged) {
-            int i3 = NotificationCenter.storiesEnabledUpdate;
+            return;
         }
+        int i3 = NotificationCenter.didReceiveNewMessages;
     }
 
     @Override
@@ -163,8 +165,8 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
 
         @Override
         public void onItemClick(int i) {
-            int i2;
             String str;
+            int i2;
             if (i == -1) {
                 if (MediaActivity.this.sharedMediaLayout.closeActionMode(true)) {
                     return;
@@ -191,11 +193,11 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
                 }
                 AlertDialog.Builder builder = new AlertDialog.Builder(MediaActivity.this.getContext(), MediaActivity.this.getResourceProvider());
                 if (arrayList.size() > 1) {
-                    i2 = R.string.DeleteStoriesTitle;
                     str = "DeleteStoriesTitle";
+                    i2 = R.string.DeleteStoriesTitle;
                 } else {
-                    i2 = R.string.DeleteStoryTitle;
                     str = "DeleteStoryTitle";
+                    i2 = R.string.DeleteStoryTitle;
                 }
                 builder.setTitle(LocaleController.getString(str, i2));
                 builder.setMessage(LocaleController.formatPluralString("DeleteStoriesSubtitle", arrayList.size(), new Object[0]));
@@ -531,22 +533,22 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
             boolean z3 = !zArr2[i] && z2;
             zArr2[i] = false;
             zArr[i] = z;
-            ValueAnimator[] valueAnimatorArr = this.subtitleAnimator;
-            if (valueAnimatorArr[i] != null) {
-                valueAnimatorArr[i].cancel();
+            ValueAnimator valueAnimator = this.subtitleAnimator[i];
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
                 this.subtitleAnimator[i] = null;
             }
             if (z3) {
                 this.subtitleTextView[i].setVisibility(0);
-                ValueAnimator[] valueAnimatorArr2 = this.subtitleAnimator;
+                ValueAnimator[] valueAnimatorArr = this.subtitleAnimator;
                 float[] fArr = new float[2];
                 fArr[0] = this.subtitleT[i];
                 fArr[1] = z ? 1.0f : 0.0f;
-                valueAnimatorArr2[i] = ValueAnimator.ofFloat(fArr);
+                valueAnimatorArr[i] = ValueAnimator.ofFloat(fArr);
                 this.subtitleAnimator[i].addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
-                    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        MediaActivity.this.lambda$showSubtitle$12(i, valueAnimator);
+                    public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                        MediaActivity.this.lambda$showSubtitle$12(i, valueAnimator2);
                     }
                 });
                 this.subtitleAnimator[i].addListener(new AnimatorListenerAdapter() {
@@ -606,13 +608,13 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
         this.actionBar.setItemsColor(Theme.getColor(i), true);
         this.actionBar.setItemsBackgroundColor(Theme.getColor(Theme.key_actionBarActionModeDefaultSelector), false);
         this.actionBar.setTitleColor(Theme.getColor(i));
-        SimpleTextView[] simpleTextViewArr = this.nameTextView;
-        if (simpleTextViewArr[0] != null) {
-            simpleTextViewArr[0].setTextColor(Theme.getColor(i));
+        SimpleTextView simpleTextView = this.nameTextView[0];
+        if (simpleTextView != null) {
+            simpleTextView.setTextColor(Theme.getColor(i));
         }
-        SimpleTextView[] simpleTextViewArr2 = this.nameTextView;
-        if (simpleTextViewArr2[1] != null) {
-            simpleTextViewArr2[1].setTextColor(Theme.getColor(i));
+        SimpleTextView simpleTextView2 = this.nameTextView[1];
+        if (simpleTextView2 != null) {
+            simpleTextView2.setTextColor(Theme.getColor(i));
         }
     }
 
@@ -669,7 +671,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
     }
 
     private class StoriesTabsView extends BottomPagerTabs {
-        public StoriesTabsView(MediaActivity mediaActivity, Context context, Theme.ResourcesProvider resourcesProvider) {
+        public StoriesTabsView(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context, resourcesProvider);
         }
 

@@ -47,6 +47,7 @@ public class LinkPreview extends View {
     private float descriptionLayoutLeft;
     private float descriptionLayoutWidth;
     private final TextPaint descriptionPaint;
+    private final float flagIconPadding;
     public float h;
     private boolean hasDescription;
     public boolean hasPhoto;
@@ -54,6 +55,8 @@ public class LinkPreview extends View {
     private boolean hasTitle;
     private final AnimatedFloat height;
     private final Drawable icon;
+    private final float iconPadding;
+    private final float iconSize;
     private StaticLayout layout;
     private float layoutLeft;
     private final TextPaint layoutPaint;
@@ -100,6 +103,9 @@ public class LinkPreview extends View {
         TextPaint textPaint = new TextPaint(1);
         this.layoutPaint = textPaint;
         this.padding = new RectF(4.0f, 4.33f, 7.66f, 3.0f);
+        this.iconPadding = 3.25f;
+        this.flagIconPadding = 2.25f;
+        this.iconSize = 30.0f;
         this.outlinePaint = new Paint(1);
         this.previewPaint = new Paint(1);
         this.descriptionPaint = new TextPaint(1);
@@ -171,9 +177,7 @@ public class LinkPreview extends View {
             Text maxWidth = new Text(fromUrl, 16.0f).setTextSizePx(this.density * 16.0f).setMaxWidth(f - (this.density * 20.0f));
             this.messageText = maxWidth;
             this.w = Math.max(this.w, Math.min(maxWidth.getCurrentWidth() + (this.density * 20.0f), f));
-            float height = this.h + this.messageText.getHeight();
-            this.h = height;
-            this.h = height + (this.density * 7.0f);
+            this.h = this.h + this.messageText.getHeight() + (this.density * 7.0f);
             this.hasPhoto = tLRPC$WebPage.photo != null || MessageObject.isVideoDocument(tLRPC$WebPage.document);
             WebPagePreview webPagePreview = this.webpage;
             boolean z = !webPagePreview.largePhoto;
@@ -222,9 +226,7 @@ public class LinkPreview extends View {
                 float currentWidth = maxWidth2.getCurrentWidth();
                 float f4 = this.density;
                 this.w = Math.max(f3, Math.min(currentWidth + (f4 * 40.0f) + ((this.hasPhoto && this.smallPhoto) ? f4 * 60.0f : 0.0f), f));
-                float height2 = this.previewHeight + this.siteNameText.getHeight();
-                this.previewHeight = height2;
-                this.previewHeight = height2 + (this.density * 2.66f);
+                this.previewHeight = this.previewHeight + this.siteNameText.getHeight() + (this.density * 2.66f);
                 i3 = this.siteNameText.getLineCount() + 0;
             } else {
                 i3 = 0;
@@ -240,9 +242,7 @@ public class LinkPreview extends View {
                 float currentWidth2 = maxWidth3.getCurrentWidth();
                 float f7 = this.density;
                 this.w = Math.max(f6, Math.min(currentWidth2 + (f7 * 40.0f) + ((this.hasPhoto && this.smallPhoto) ? 60.0f * f7 : 0.0f), f));
-                float height3 = this.previewHeight + this.titleText.getHeight();
-                this.previewHeight = height3;
-                this.previewHeight = height3 + (this.density * 2.66f);
+                this.previewHeight = this.previewHeight + this.titleText.getHeight() + (this.density * 2.66f);
                 i3 += this.titleText.getLineCount();
             }
             boolean z4 = !TextUtils.isEmpty(tLRPC$WebPage.description);
@@ -260,9 +260,7 @@ public class LinkPreview extends View {
                     i8++;
                 }
                 this.w = Math.max(this.w, Math.min(this.descriptionLayoutWidth + (this.density * 40.0f), f));
-                float height4 = this.previewHeight + this.descriptionLayout.getHeight();
-                this.previewHeight = height4;
-                this.previewHeight = height4 + (this.density * 2.66f);
+                this.previewHeight = this.previewHeight + this.descriptionLayout.getHeight() + (this.density * 2.66f);
             }
             if (this.hasPhoto && !this.smallPhoto) {
                 if (i <= 0 || i2 <= 0) {
@@ -270,25 +268,21 @@ public class LinkPreview extends View {
                 } else {
                     this.photoHeight = Math.min((Math.max(0.0f, this.w - (this.density * 40.0f)) / i) * i2, this.density * 200.0f);
                 }
-                float f8 = this.previewHeight + this.photoHeight;
-                this.previewHeight = f8;
-                this.previewHeight = f8 + (this.density * 2.66f);
+                this.previewHeight = this.previewHeight + this.photoHeight + (this.density * 2.66f);
             }
-            float f9 = this.previewHeight;
-            float f10 = this.density;
-            float f11 = f9 + (f10 * 7.0f);
-            this.previewHeight = f11;
-            float f12 = this.h + f11;
-            this.h = f12;
-            this.h = f12 + (f10 * 11.0f);
+            float f8 = this.previewHeight;
+            float f9 = this.density;
+            float f10 = f8 + (f9 * 7.0f);
+            this.previewHeight = f10;
+            this.h = this.h + f10 + (f9 * 11.0f);
         } else {
             String upperCase = TextUtils.isEmpty(this.webpage.name) ? fromUrlWithoutSchema(this.webpage.url).toUpperCase() : this.webpage.name;
             int i9 = this.maxWidth;
             int i10 = this.padx;
             RectF rectF = this.padding;
-            float f13 = ((i9 - i10) - i10) - ((((rectF.left + 30.0f) + 3.25f) + rectF.right) * this.density);
+            float f11 = ((i9 - i10) - i10) - ((((rectF.left + 30.0f) + 3.25f) + rectF.right) * this.density);
             this.textScale = 1.0f;
-            this.layout = new StaticLayout(TextUtils.ellipsize(upperCase, this.layoutPaint, (int) Math.ceil(d), TextUtils.TruncateAt.END), this.layoutPaint, (int) Math.ceil(f13), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.layout = new StaticLayout(TextUtils.ellipsize(upperCase, this.layoutPaint, (int) Math.ceil(d), TextUtils.TruncateAt.END), this.layoutPaint, (int) Math.ceil(f11), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.layoutWidth = 0.0f;
             this.layoutLeft = Float.MAX_VALUE;
             for (int i11 = 0; i11 < this.layout.getLineCount(); i11++) {
@@ -298,13 +292,13 @@ public class LinkPreview extends View {
             if (this.layout.getLineCount() > 2) {
                 this.textScale = 0.3f;
             } else {
-                this.textScale = Math.min(1.0f, f13 / this.layoutWidth);
+                this.textScale = Math.min(1.0f, f11 / this.layoutWidth);
             }
             RectF rectF2 = this.padding;
-            float f14 = rectF2.left + 30.0f + 3.25f + rectF2.right;
-            float f15 = this.density;
-            this.w = (f14 * f15) + (this.layoutWidth * this.textScale);
-            this.h = ((rectF2.top + rectF2.bottom) * f15) + Math.max(f15 * 30.0f, this.layout.getHeight() * this.textScale);
+            float f12 = rectF2.left + 30.0f + 3.25f + rectF2.right;
+            float f13 = this.density;
+            this.w = (f12 * f13) + (this.layoutWidth * this.textScale);
+            this.h = ((rectF2.top + rectF2.bottom) * f13) + Math.max(f13 * 30.0f, this.layout.getHeight() * this.textScale);
         }
         if (!this.animated) {
             this.captionAbove.set(this.messageAbove, true);

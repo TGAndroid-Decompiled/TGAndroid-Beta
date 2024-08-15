@@ -383,10 +383,10 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
 
     @Override
     public View createView(Context context) {
-        int i;
         String str;
-        int i2;
+        int i;
         String str2;
+        int i2;
         EditTextEmoji editTextEmoji = this.nameTextView;
         if (editTextEmoji != null) {
             editTextEmoji.onDestroy();
@@ -606,7 +606,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
                     return lambda$createView$10;
                 }
             });
-            this.descriptionTextView.addTextChangedListener(new TextWatcher(this) {
+            this.descriptionTextView.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void afterTextChanged(Editable editable) {
                 }
@@ -629,22 +629,21 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         } else if (i4 == 1) {
             ScrollView scrollView = new ScrollView(context);
             this.fragmentView = scrollView;
-            ScrollView scrollView2 = scrollView;
-            scrollView2.setFillViewport(true);
+            scrollView.setFillViewport(true);
             LinearLayout linearLayout2 = new LinearLayout(context);
             this.linearLayout = linearLayout2;
             linearLayout2.setOrientation(1);
-            scrollView2.addView(this.linearLayout, new FrameLayout.LayoutParams(-1, -2));
+            scrollView.addView(this.linearLayout, new FrameLayout.LayoutParams(-1, -2));
             TLRPC$Chat chat = getMessagesController().getChat(Long.valueOf(this.chatId));
             boolean z6 = chat != null && (!ChatObject.isChannel(chat) || ChatObject.isMegagroup(chat));
             this.isGroup = z6;
             ActionBar actionBar = this.actionBar;
             if (z6) {
-                i = R.string.GroupSettingsTitle;
                 str = "GroupSettingsTitle";
+                i = R.string.GroupSettingsTitle;
             } else {
-                i = R.string.ChannelSettingsTitle;
                 str = "ChannelSettingsTitle";
+                i = R.string.ChannelSettingsTitle;
             }
             actionBar.setTitle(LocaleController.getString(str, i));
             View view3 = this.fragmentView;
@@ -659,11 +658,11 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
             headerCell2.setBackgroundColor(Theme.getColor(i9));
             HeaderCell headerCell3 = this.headerCell2;
             if (this.isGroup) {
-                i2 = R.string.GroupTypeHeader;
                 str2 = "GroupTypeHeader";
+                i2 = R.string.GroupTypeHeader;
             } else {
-                i2 = R.string.ChannelTypeHeader;
                 str2 = "ChannelTypeHeader";
+                i2 = R.string.ChannelTypeHeader;
             }
             headerCell3.setText(LocaleController.getString(str2, i2));
             this.linearLayout.addView(this.headerCell2);
@@ -1076,10 +1075,10 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
     }
 
     private void updatePrivatePublic() {
-        int i;
         String str;
-        int i2;
+        int i;
         String str2;
+        int i2;
         if (this.sectionCell == null) {
             return;
         }
@@ -1120,22 +1119,22 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
             if (this.isGroup) {
                 TextInfoPrivacyCell textInfoPrivacyCell6 = this.typeInfoCell;
                 if (this.isPrivate) {
-                    i2 = R.string.MegaPrivateLinkHelp;
                     str2 = "MegaPrivateLinkHelp";
+                    i2 = R.string.MegaPrivateLinkHelp;
                 } else {
-                    i2 = R.string.MegaUsernameHelp;
                     str2 = "MegaUsernameHelp";
+                    i2 = R.string.MegaUsernameHelp;
                 }
                 textInfoPrivacyCell6.setText(LocaleController.getString(str2, i2));
                 this.headerCell.setText(this.isPrivate ? LocaleController.getString("ChannelInviteLinkTitle", R.string.ChannelInviteLinkTitle) : LocaleController.getString("ChannelLinkTitle", R.string.ChannelLinkTitle));
             } else {
                 TextInfoPrivacyCell textInfoPrivacyCell7 = this.typeInfoCell;
                 if (this.isPrivate) {
-                    i = R.string.ChannelPrivateLinkHelp;
                     str = "ChannelPrivateLinkHelp";
+                    i = R.string.ChannelPrivateLinkHelp;
                 } else {
-                    i = R.string.ChannelUsernameHelp;
                     str = "ChannelUsernameHelp";
+                    i = R.string.ChannelUsernameHelp;
                 }
                 textInfoPrivacyCell7.setText(LocaleController.getString(str, i));
                 this.headerCell.setText(this.isPrivate ? LocaleController.getString("ChannelInviteLinkTitle", R.string.ChannelInviteLinkTitle) : LocaleController.getString("ChannelLinkTitle", R.string.ChannelLinkTitle));

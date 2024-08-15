@@ -31,6 +31,7 @@ public class PremiumLockIconView extends ImageView {
     AnimatedEmojiDrawable emojiDrawable;
     private float iconScale;
     ImageReceiver imageReceiver;
+    public boolean isEnter;
     private boolean locked;
     Paint oldShaderPaint;
     public Paint paint;
@@ -291,6 +292,7 @@ public class PremiumLockIconView extends ImageView {
     }
 
     public void play(int i) {
+        this.isEnter = true;
         CellFlickerDrawable cellFlickerDrawable = this.cellFlickerDrawable;
         if (cellFlickerDrawable != null) {
             cellFlickerDrawable.progress = 0.0f;
@@ -301,6 +303,7 @@ public class PremiumLockIconView extends ImageView {
     }
 
     public void resetAnimation() {
+        this.isEnter = false;
         setScaleX(0.0f);
         setScaleY(0.0f);
     }

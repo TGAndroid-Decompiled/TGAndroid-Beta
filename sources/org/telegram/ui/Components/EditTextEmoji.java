@@ -54,7 +54,6 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
     AdjustPanLayoutHelper adjustPanLayoutHelper;
     private boolean allowAnimatedEmoji;
     private int currentStyle;
-    private EditTextEmojiDelegate delegate;
     private boolean destroyed;
     private EditTextCaption editText;
     private ImageView emojiButton;
@@ -83,7 +82,6 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
     private boolean waitingForKeyboardOpen;
 
     public interface EditTextEmojiDelegate {
-        void onWindowSizeChanged(int i);
     }
 
     protected boolean allowSearch() {
@@ -121,6 +119,9 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
     }
 
     protected void onWaitingForKeyboard() {
+    }
+
+    public void setDelegate(EditTextEmojiDelegate editTextEmojiDelegate) {
     }
 
     protected void updatedEmojiExpanded() {
@@ -473,10 +474,6 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
         return this.emojiView;
     }
 
-    public void setDelegate(EditTextEmojiDelegate editTextEmojiDelegate) {
-        this.delegate = editTextEmojiDelegate;
-    }
-
     public void onPause() {
         this.isPaused = true;
         closeKeyboard();
@@ -759,14 +756,7 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
     }
 
     private void onWindowSizeChanged() {
-        int height = this.sizeNotifierLayout.getHeight();
-        if (!this.keyboardVisible) {
-            height -= this.emojiPadding;
-        }
-        EditTextEmojiDelegate editTextEmojiDelegate = this.delegate;
-        if (editTextEmojiDelegate != null) {
-            editTextEmojiDelegate.onWindowSizeChanged(height);
-        }
+        this.sizeNotifierLayout.getHeight();
     }
 
     public void createEmojiView() {

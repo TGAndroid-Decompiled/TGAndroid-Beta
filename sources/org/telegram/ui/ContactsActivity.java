@@ -98,6 +98,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
     private boolean createSecretChat;
     private boolean creatingChat;
     private ContactsActivityDelegate delegate;
+    private ActionBarMenuItem deleteItem;
     private boolean destroyAfterSelect;
     private boolean disableSections;
     private StickerEmptyView emptyView;
@@ -231,6 +232,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
 
     public void lambda$createView$2(int i, View view, int i2, float f, float f2) {
         Activity parentActivity;
+        int checkSelfPermission;
         RecyclerView.Adapter adapter = this.listView.getAdapter();
         SearchAdapter searchAdapter = this.searchListViewAdapter;
         boolean z = true;
@@ -319,13 +321,16 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                     return;
                 } else if (positionInSectionForPosition == 1 && this.hasGps) {
                     int i3 = Build.VERSION.SDK_INT;
-                    if (i3 >= 23 && (parentActivity = getParentActivity()) != null && parentActivity.checkSelfPermission("android.permission.ACCESS_COARSE_LOCATION") != 0) {
-                        presentFragment(new ActionIntroActivity(1));
-                        return;
+                    if (i3 >= 23 && (parentActivity = getParentActivity()) != null) {
+                        checkSelfPermission = parentActivity.checkSelfPermission("android.permission.ACCESS_COARSE_LOCATION");
+                        if (checkSelfPermission != 0) {
+                            presentFragment(new ActionIntroActivity(1));
+                            return;
+                        }
                     }
                     if (i3 >= 28) {
                         z = ((LocationManager) ApplicationLoader.applicationContext.getSystemService("location")).isLocationEnabled();
-                    } else if (i3 >= 19) {
+                    } else {
                         try {
                             z = Settings.Secure.getInt(ApplicationLoader.applicationContext.getContentResolver(), "location_mode", 0) != 0;
                         } catch (Throwable th) {
@@ -610,17 +615,17 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
         } else {
             addOrRemoveSelectedContact = addOrRemoveSelectedContact((ProfileSearchCell) obj);
         }
-        boolean z = false;
-        if (this.actionBar.isActionModeShowed()) {
-            if (this.selectedContacts.isEmpty()) {
-                hideActionMode();
-                return;
+        boolean z = true;
+        if (!this.actionBar.isActionModeShowed()) {
+            if (addOrRemoveSelectedContact) {
+                AndroidUtilities.hideKeyboard(this.fragmentView.findFocus());
+                this.actionBar.showActionMode();
+                this.backDrawable.setRotation(1.0f, true);
             }
-            z = true;
-        } else if (addOrRemoveSelectedContact) {
-            AndroidUtilities.hideKeyboard(this.fragmentView.findFocus());
-            this.actionBar.showActionMode();
-            this.backDrawable.setRotation(1.0f, true);
+            z = false;
+        } else if (this.selectedContacts.isEmpty()) {
+            hideActionMode();
+            return;
         }
         this.selectedContactsCountTextView.setNumber(this.selectedContacts.size(), z);
     }
@@ -732,7 +737,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                 editTextBoldCursor.setInputType(2);
                 editTextBoldCursor.setImeOptions(6);
                 editTextBoldCursor.setBackgroundDrawable(Theme.createEditTextDrawable(getParentActivity(), true));
-                editTextBoldCursor.addTextChangedListener(new TextWatcher(this) {
+                editTextBoldCursor.addTextChangedListener(new TextWatcher() {
                     @Override
                     public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
                     }
@@ -833,6 +838,8 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
     @Override
     public void onResume() {
         Activity parentActivity;
+        int checkSelfPermission;
+        boolean shouldShowRequestPermissionRationale;
         super.onResume();
         AndroidUtilities.requestAdjustResize(getParentActivity(), this.classGuid);
         ContactsAdapter contactsAdapter = this.listViewAdapter;
@@ -843,8 +850,10 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
             return;
         }
         this.checkPermission = false;
-        if (parentActivity.checkSelfPermission("android.permission.READ_CONTACTS") != 0) {
-            if (parentActivity.shouldShowRequestPermissionRationale("android.permission.READ_CONTACTS")) {
+        checkSelfPermission = parentActivity.checkSelfPermission("android.permission.READ_CONTACTS");
+        if (checkSelfPermission != 0) {
+            shouldShowRequestPermissionRationale = parentActivity.shouldShowRequestPermissionRationale("android.permission.READ_CONTACTS");
+            if (shouldShowRequestPermissionRationale) {
                 AlertDialog create = AlertsCreator.createContactsPermissionDialog(parentActivity, new MessagesStorage.IntCallback() {
                     @Override
                     public final void run(int i) {
@@ -901,8 +910,13 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
 
     @TargetApi(23)
     private void askForPermissons(boolean z) {
+        int checkSelfPermission;
         Activity parentActivity = getParentActivity();
-        if (parentActivity == null || !UserConfig.getInstance(this.currentAccount).syncContacts || parentActivity.checkSelfPermission("android.permission.READ_CONTACTS") == 0) {
+        if (parentActivity == null || !UserConfig.getInstance(this.currentAccount).syncContacts) {
+            return;
+        }
+        checkSelfPermission = parentActivity.checkSelfPermission("android.permission.READ_CONTACTS");
+        if (checkSelfPermission == 0) {
             return;
         }
         if (z && this.askAboutContacts) {
@@ -1199,8 +1213,8 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
         }
         this.bounceIconAnimator = new AnimatorSet();
         float duration = (float) this.floatingButton.getAnimatedDrawable().getDuration();
-        long j = 0;
         int i = 4;
+        long j = 0;
         if (z2) {
             for (int i2 = 0; i2 < 6; i2++) {
                 AnimatorSet animatorSet3 = new AnimatorSet();

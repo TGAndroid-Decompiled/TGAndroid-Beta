@@ -170,7 +170,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
                 InviteMembersBottomSheet.this.lambda$new$0(j, baseFragment, longSparseArray, context, view, i3);
             }
         });
-        this.listView.setItemAnimator(new ItemAnimator(this));
+        this.listView.setItemAnimator(new ItemAnimator());
         updateRows();
         ScrollView scrollView = new ScrollView(context) {
             @Override
@@ -210,7 +210,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
             stateListAnimator.addState(new int[]{16842919}, ObjectAnimator.ofFloat(imageView, "translationZ", AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f)).setDuration(200L));
             stateListAnimator.addState(new int[0], ObjectAnimator.ofFloat(imageView, "translationZ", AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f)).setDuration(200L));
             imageView.setStateListAnimator(stateListAnimator);
-            imageView.setOutlineProvider(new ViewOutlineProvider(this) {
+            imageView.setOutlineProvider(new ViewOutlineProvider() {
                 @Override
                 @SuppressLint({"NewApi"})
                 public void getOutline(View view, Outline outline) {
@@ -415,7 +415,6 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         this.contactsEndRow = -1;
         this.copyLinkRow = -1;
         this.noContactsStubRow = -1;
-        this.rowCount = 0;
         this.rowCount = 0 + 1;
         this.emptyRow = 0;
         if (this.dialogsDelegate == null) {
@@ -497,7 +496,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
                 manageChatTextCell2.setColors(i2, i2);
                 manageChatTextCell = manageChatTextCell2;
             } else {
-                StickerEmptyView stickerEmptyView = new StickerEmptyView(this, context, null, 0) {
+                StickerEmptyView stickerEmptyView = new StickerEmptyView(context, null, 0) {
                     @Override
                     public void onAttachedToWindow() {
                         super.onAttachedToWindow();
@@ -778,15 +777,17 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
 
     @Override
     protected void onSearchViewTouched(MotionEvent motionEvent, final EditTextBoldCursor editTextBoldCursor) {
+        BaseFragment baseFragment;
         if (motionEvent.getAction() == 0) {
             this.y = this.scrollOffsetY;
         } else if (motionEvent.getAction() != 1 || Math.abs(this.scrollOffsetY - this.y) >= this.touchSlop || this.enterEventSent) {
         } else {
             Activity findActivity = AndroidUtilities.findActivity(getContext());
-            BaseFragment baseFragment = null;
             if (findActivity instanceof LaunchActivity) {
                 LaunchActivity launchActivity = (LaunchActivity) findActivity;
                 baseFragment = launchActivity.getActionBarLayout().getFragmentStack().get(launchActivity.getActionBarLayout().getFragmentStack().size() - 1);
+            } else {
+                baseFragment = null;
             }
             if (baseFragment instanceof ChatActivity) {
                 boolean needEnterText = ((ChatActivity) baseFragment).needEnterText();
@@ -824,6 +825,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
 
     public class SpansContainer extends ViewGroup {
         boolean addAnimation;
+        private int animationIndex;
         private boolean animationStarted;
         private ArrayList<Animator> animators;
         private View removingSpan;
@@ -831,6 +833,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         public SpansContainer(Context context) {
             super(context);
             this.animators = new ArrayList<>();
+            this.animationIndex = -1;
         }
 
         @Override
@@ -1118,12 +1121,12 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
     }
 
     private class ItemAnimator extends DefaultItemAnimator {
-        public ItemAnimator(InviteMembersBottomSheet inviteMembersBottomSheet) {
+        public ItemAnimator() {
             this.translationInterpolator = CubicBezierInterpolator.DEFAULT;
             setMoveDuration(150L);
             setAddDuration(150L);
             setRemoveDuration(150L);
-            inviteMembersBottomSheet.setShowWithoutAnimation(false);
+            InviteMembersBottomSheet.this.setShowWithoutAnimation(false);
         }
     }
 

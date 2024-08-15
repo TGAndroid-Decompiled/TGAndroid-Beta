@@ -233,23 +233,20 @@ public class OtherDocumentPlaceholderDrawable extends RecyclableDrawable impleme
         if (messageObject != null) {
             TLRPC$Message tLRPC$Message = messageObject.messageOwner;
             if (tLRPC$Message.media != null) {
-                String str = null;
-                if ((TextUtils.isEmpty(tLRPC$Message.attachPath) || !new File(this.parentMessageObject.messageOwner.attachPath).exists()) && !FileLoader.getInstance(UserConfig.selectedAccount).getPathToMessage(this.parentMessageObject.messageOwner).exists()) {
-                    str = FileLoader.getAttachFileName(this.parentMessageObject.getDocument());
-                }
+                String attachFileName = ((TextUtils.isEmpty(tLRPC$Message.attachPath) || !new File(this.parentMessageObject.messageOwner.attachPath).exists()) && !FileLoader.getInstance(UserConfig.selectedAccount).getPathToMessage(this.parentMessageObject.messageOwner).exists()) ? FileLoader.getAttachFileName(this.parentMessageObject.getDocument()) : null;
                 this.loaded = false;
-                if (str == null) {
+                if (attachFileName == null) {
                     this.progressVisible = false;
                     this.loading = false;
                     this.loaded = true;
                     DownloadController.getInstance(this.parentMessageObject.currentAccount).removeLoadingFileObserver(this);
                 } else {
-                    DownloadController.getInstance(this.parentMessageObject.currentAccount).addLoadingFileObserver(str, this);
-                    boolean isLoadingFile = FileLoader.getInstance(this.parentMessageObject.currentAccount).isLoadingFile(str);
+                    DownloadController.getInstance(this.parentMessageObject.currentAccount).addLoadingFileObserver(attachFileName, this);
+                    boolean isLoadingFile = FileLoader.getInstance(this.parentMessageObject.currentAccount).isLoadingFile(attachFileName);
                     this.loading = isLoadingFile;
                     if (isLoadingFile) {
                         this.progressVisible = true;
-                        Float fileProgress = ImageLoader.getInstance().getFileProgress(str);
+                        Float fileProgress = ImageLoader.getInstance().getFileProgress(attachFileName);
                         if (fileProgress == null) {
                             fileProgress = Float.valueOf(0.0f);
                         }

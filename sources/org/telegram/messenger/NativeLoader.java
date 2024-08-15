@@ -26,27 +26,27 @@ public class NativeLoader {
     }
 
     public static String getAbiFolder() {
-        String str = "x86_64";
+        String str = "mips";
         String str2 = "armeabi";
         try {
             String str3 = Build.CPU_ABI;
-            if (!str3.equalsIgnoreCase("x86_64")) {
-                if (str3.equalsIgnoreCase("arm64-v8a")) {
-                    str = "arm64-v8a";
-                } else if (str3.equalsIgnoreCase("armeabi-v7a")) {
-                    str = "armeabi-v7a";
-                } else {
-                    if (!str3.equalsIgnoreCase("armeabi")) {
-                        if (str3.equalsIgnoreCase("x86")) {
-                            str = "x86";
-                        } else if (str3.equalsIgnoreCase("mips")) {
-                            str = "mips";
-                        } else if (BuildVars.LOGS_ENABLED) {
+            if (str3.equalsIgnoreCase("x86_64")) {
+                str = "x86_64";
+            } else if (str3.equalsIgnoreCase("arm64-v8a")) {
+                str = "arm64-v8a";
+            } else if (str3.equalsIgnoreCase("armeabi-v7a")) {
+                str = "armeabi-v7a";
+            } else {
+                if (!str3.equalsIgnoreCase("armeabi")) {
+                    if (str3.equalsIgnoreCase("x86")) {
+                        str = "x86";
+                    } else if (!str3.equalsIgnoreCase("mips")) {
+                        if (BuildVars.LOGS_ENABLED) {
                             FileLog.e("Unsupported arch: " + str3);
                         }
                     }
-                    str = "armeabi";
                 }
+                str = "armeabi";
             }
             str2 = str;
         } catch (Exception e) {

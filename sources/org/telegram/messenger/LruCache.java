@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 public class LruCache<T> {
     private final LinkedHashMap<String, T> map;
@@ -29,7 +28,9 @@ public class LruCache<T> {
     }
 
     public final T get(String str) {
-        Objects.requireNonNull(str, "key == null");
+        if (str == null) {
+            throw new NullPointerException("key == null");
+        }
         synchronized (this) {
             T t = this.map.get(str);
             if (t != null) {
@@ -111,7 +112,9 @@ public class LruCache<T> {
     public final T remove(String str) {
         T remove;
         ArrayList<String> arrayList;
-        Objects.requireNonNull(str, "key == null");
+        if (str == null) {
+            throw new NullPointerException("key == null");
+        }
         synchronized (this) {
             remove = this.map.remove(str);
             if (remove != null) {

@@ -12,7 +12,6 @@ import android.util.SparseBooleanArray;
 import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$MessageEntity;
@@ -21,14 +20,12 @@ import org.telegram.tgnet.TLRPC$MessageMedia;
 import org.telegram.tgnet.TLRPC$MessageReplyHeader;
 import org.telegram.tgnet.TLRPC$TL_message;
 import org.telegram.tgnet.TLRPC$TL_messageEntitySpoiler;
-import org.telegram.tgnet.TLRPC$TL_messageFwdHeader;
 import org.telegram.tgnet.TLRPC$TL_messageMediaPoll;
 import org.telegram.tgnet.TLRPC$TL_messageMediaWebPage;
 import org.telegram.tgnet.TLRPC$TL_messageReplyHeader;
 import org.telegram.tgnet.TLRPC$TL_peerUser;
 import org.telegram.tgnet.TLRPC$TL_pollAnswerVoters;
 import org.telegram.tgnet.TLRPC$TL_pollResults;
-import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$WebPage;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.MessagePreviewView;
@@ -499,99 +496,8 @@ public class MessagePreviewParams {
         this.forwardMessages = null;
     }
 
-    public MessageObject toPreviewMessage(MessageObject messageObject, Boolean bool, final int i) {
-        MessageObject messageObject2;
-        TLRPC$TL_message tLRPC$TL_message = new TLRPC$TL_message();
-        if (i != 1) {
-            tLRPC$TL_message.date = ConnectionsManager.getInstance(messageObject.currentAccount).getCurrentTime();
-        } else {
-            tLRPC$TL_message.date = messageObject.messageOwner.date;
-        }
-        TLRPC$Message tLRPC$Message = messageObject.messageOwner;
-        tLRPC$TL_message.id = tLRPC$Message.id;
-        tLRPC$TL_message.grouped_id = tLRPC$Message.grouped_id;
-        tLRPC$TL_message.peer_id = tLRPC$Message.peer_id;
-        tLRPC$TL_message.from_id = tLRPC$Message.from_id;
-        tLRPC$TL_message.message = tLRPC$Message.message;
-        tLRPC$TL_message.media = tLRPC$Message.media;
-        tLRPC$TL_message.action = tLRPC$Message.action;
-        tLRPC$TL_message.edit_date = 0;
-        ArrayList<TLRPC$MessageEntity> arrayList = tLRPC$Message.entities;
-        if (arrayList != null) {
-            tLRPC$TL_message.entities.addAll(arrayList);
-        }
-        boolean booleanValue = bool == null ? messageObject.messageOwner.out : bool.booleanValue();
-        tLRPC$TL_message.out = booleanValue;
-        if (booleanValue) {
-            TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
-            tLRPC$TL_message.from_id = tLRPC$TL_peerUser;
-            tLRPC$TL_peerUser.user_id = UserConfig.getInstance(messageObject.currentAccount).getClientUserId();
-        }
-        tLRPC$TL_message.unread = false;
-        TLRPC$Message tLRPC$Message2 = messageObject.messageOwner;
-        tLRPC$TL_message.via_bot_id = tLRPC$Message2.via_bot_id;
-        tLRPC$TL_message.reply_markup = tLRPC$Message2.reply_markup;
-        tLRPC$TL_message.post = tLRPC$Message2.post;
-        tLRPC$TL_message.legacy = tLRPC$Message2.legacy;
-        tLRPC$TL_message.restriction_reason = tLRPC$Message2.restriction_reason;
-        TLRPC$Message tLRPC$Message3 = tLRPC$Message2.replyMessage;
-        tLRPC$TL_message.replyMessage = tLRPC$Message3;
-        if (tLRPC$Message3 == null && (messageObject2 = messageObject.replyMessageObject) != null) {
-            tLRPC$TL_message.replyMessage = messageObject2.messageOwner;
-        }
-        tLRPC$TL_message.reply_to = tLRPC$Message2.reply_to;
-        tLRPC$TL_message.invert_media = tLRPC$Message2.invert_media;
-        if (i == 0) {
-            TLRPC$TL_messageFwdHeader tLRPC$TL_messageFwdHeader = null;
-            long clientUserId = UserConfig.getInstance(messageObject.currentAccount).getClientUserId();
-            if (!this.isSecret) {
-                TLRPC$Message tLRPC$Message4 = messageObject.messageOwner;
-                ?? r4 = tLRPC$Message4.fwd_from;
-                if (r4 != 0) {
-                    if (!messageObject.isDice()) {
-                        this.hasSenders = true;
-                    } else {
-                        this.willSeeSenders = true;
-                    }
-                    tLRPC$TL_messageFwdHeader = r4;
-                } else {
-                    long j = tLRPC$Message4.from_id.user_id;
-                    if (j == 0 || tLRPC$Message4.dialog_id != clientUserId || j != clientUserId) {
-                        tLRPC$TL_messageFwdHeader = new TLRPC$TL_messageFwdHeader();
-                        tLRPC$TL_messageFwdHeader.from_id = messageObject.messageOwner.from_id;
-                        if (!messageObject.isDice()) {
-                            this.hasSenders = true;
-                        } else {
-                            this.willSeeSenders = true;
-                        }
-                    }
-                }
-            }
-            if (tLRPC$TL_messageFwdHeader != null) {
-                tLRPC$TL_message.fwd_from = tLRPC$TL_messageFwdHeader;
-                tLRPC$TL_message.flags |= 4;
-            }
-        }
-        MessageObject messageObject3 = new MessageObject(messageObject.currentAccount, tLRPC$TL_message, true, false) {
-            @Override
-            public void generateLayout(TLRPC$User tLRPC$User) {
-                super.generateLayout(tLRPC$User);
-                if (i == 2) {
-                    MessagePreviewParams.this.checkCurrentLink(this);
-                }
-            }
-
-            @Override
-            public boolean needDrawForwarded() {
-                if (MessagePreviewParams.this.hideForwardSendersName) {
-                    return false;
-                }
-                return super.needDrawForwarded();
-            }
-        };
-        messageObject3.previewForward = i == 0;
-        messageObject3.preview = true;
-        return messageObject3;
+    public org.telegram.messenger.MessageObject toPreviewMessage(org.telegram.messenger.MessageObject r12, java.lang.Boolean r13, final int r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagePreviewParams.toPreviewMessage(org.telegram.messenger.MessageObject, java.lang.Boolean, int):org.telegram.messenger.MessageObject");
     }
 
     public boolean isEmpty() {

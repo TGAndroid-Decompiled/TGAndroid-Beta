@@ -174,7 +174,7 @@ public class FeaturedStickerSetCell2 extends FrameLayout implements Notification
         this.textView.setText(this.stickersSet.set.title);
         this.unread = z2;
         if (z2) {
-            Drawable drawable = new Drawable(this) {
+            Drawable drawable = new Drawable() {
                 Paint paint = new Paint(1);
 
                 @Override

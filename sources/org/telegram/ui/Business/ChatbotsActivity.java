@@ -164,7 +164,7 @@ public class ChatbotsActivity extends BaseFragment {
         float f = 1.0f / AndroidUtilities.density;
         boolean z = LocaleController.isRTL;
         frameLayout4.addView(view2, LayoutHelper.createFrame(-1, f, 87, z ? 0 : 21, 0.0f, z ? 21 : 0, 0.0f));
-        FrameLayout frameLayout5 = new FrameLayout(this, context) {
+        FrameLayout frameLayout5 = new FrameLayout(context) {
             @Override
             protected void onMeasure(int i4, int i5) {
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i4), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(58.0f), 1073741824));
@@ -181,7 +181,7 @@ public class ChatbotsActivity extends BaseFragment {
         textView2.setTextColor(getThemedColor(i4));
         this.emptyView.addView(this.emptyViewText, LayoutHelper.createFrame(-2, -2, 17));
         this.emptyViewLoading = new ImageView(context);
-        this.emptyViewLoading.setImageDrawable(new CircularProgressDrawable(this, getThemedColor(i4)) {
+        this.emptyViewLoading.setImageDrawable(new CircularProgressDrawable(getThemedColor(i4)) {
             @Override
             public int getIntrinsicWidth() {
                 return (int) (this.size + (this.thickness * 2.0f));
@@ -515,8 +515,9 @@ public class ChatbotsActivity extends BaseFragment {
             this.doneButtonDrawable.animateToProgress(0.0f);
             BulletinFactory.of(this).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
         } else {
-            iArr[0] = iArr[0] + 1;
-            if (iArr[0] == arrayList.size()) {
+            int i = iArr[0] + 1;
+            iArr[0] = i;
+            if (i == arrayList.size()) {
                 BusinessChatbotController.getInstance(this.currentAccount).invalidate(true);
                 getMessagesController().clearFullUsers();
                 finishFragment();

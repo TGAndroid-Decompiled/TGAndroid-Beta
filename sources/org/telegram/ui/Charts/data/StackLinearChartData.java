@@ -12,6 +12,7 @@ public class StackLinearChartData extends ChartData {
     public int simplifiedSize;
     public long[][] simplifiedY;
     long[] ySum;
+    SegmentTree ySumSegmentTree;
 
     public StackLinearChartData(JSONObject jSONObject, boolean z) throws JSONException {
         super(jSONObject);
@@ -55,7 +56,7 @@ public class StackLinearChartData extends ChartData {
                 jArr2[i4] = jArr2[i4] + this.lines.get(i5).y[i4];
             }
         }
-        new SegmentTree(this.ySum);
+        this.ySumSegmentTree = new SegmentTree(this.ySum);
     }
 
     public StackLinearChartData(ChartData chartData, long j) {
@@ -77,7 +78,7 @@ public class StackLinearChartData extends ChartData {
         this.xPercentage = new float[i3];
         this.lines = new ArrayList<>();
         for (int i4 = 0; i4 < chartData.lines.size(); i4++) {
-            ChartData.Line line = new ChartData.Line(this);
+            ChartData.Line line = new ChartData.Line();
             line.y = new long[i3];
             line.id = chartData.lines.get(i4).id;
             line.name = chartData.lines.get(i4).name;
@@ -107,13 +108,13 @@ public class StackLinearChartData extends ChartData {
         int size = this.lines.size();
         int max = Math.max(1, Math.round(length / 140.0f));
         int i = length / max;
-        this.simplifiedY = (long[][]) Array.newInstance(long.class, size, i);
+        this.simplifiedY = (long[][]) Array.newInstance(Long.TYPE, size, i);
         long[] jArr = new long[size];
         for (int i2 = 0; i2 < length; i2++) {
             for (int i3 = 0; i3 < size; i3++) {
-                long[] jArr2 = this.lines.get(i3).y;
-                if (jArr2[i2] > jArr[i3]) {
-                    jArr[i3] = jArr2[i2];
+                long j = this.lines.get(i3).y[i2];
+                if (j > jArr[i3]) {
+                    jArr[i3] = j;
                 }
             }
             if (i2 % max == 0) {

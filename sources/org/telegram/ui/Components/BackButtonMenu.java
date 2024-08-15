@@ -134,7 +134,7 @@ public class BackButtonMenu {
         }
     }
 
-    public static java.util.ArrayList<org.telegram.ui.Components.BackButtonMenu.PulledDialog> getStackedHistoryDialogs(org.telegram.ui.ActionBar.BaseFragment r18, long r19) {
+    public static java.util.ArrayList<org.telegram.ui.Components.BackButtonMenu.PulledDialog> getStackedHistoryDialogs(org.telegram.ui.ActionBar.BaseFragment r17, long r18) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.BackButtonMenu.getStackedHistoryDialogs(org.telegram.ui.ActionBar.BaseFragment, long):java.util.ArrayList");
     }
 
@@ -144,19 +144,20 @@ public class BackButtonMenu {
 
     public static void addToPulledDialogs(BaseFragment baseFragment, int i, TLRPC$Chat tLRPC$Chat, TLRPC$User tLRPC$User, TLRPC$TL_forumTopic tLRPC$TL_forumTopic, long j, int i2, int i3) {
         INavigationLayout parentLayout;
+        boolean z;
         if ((tLRPC$Chat == null && tLRPC$User == null) || baseFragment == null || (parentLayout = baseFragment.getParentLayout()) == null) {
             return;
         }
         if (parentLayout.getPulledDialogs() == null) {
             parentLayout.setPulledDialogs(new ArrayList());
         }
-        boolean z = false;
         for (PulledDialog pulledDialog : parentLayout.getPulledDialogs()) {
             if ((tLRPC$TL_forumTopic == null && pulledDialog.dialogId == j) || (tLRPC$TL_forumTopic != null && pulledDialog.topic.id == tLRPC$TL_forumTopic.id)) {
                 z = true;
                 break;
             }
         }
+        z = false;
         if (z) {
             return;
         }

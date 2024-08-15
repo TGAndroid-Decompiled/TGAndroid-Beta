@@ -47,7 +47,7 @@ public class MediaCodecVideoConvertor {
     }
 
     @android.annotation.TargetApi(18)
-    private boolean convertVideoInternal(org.telegram.messenger.video.MediaCodecVideoConvertor.ConvertVideoParams r87, boolean r88, int r89) {
+    private boolean convertVideoInternal(org.telegram.messenger.video.MediaCodecVideoConvertor.ConvertVideoParams r91, boolean r92, int r93) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.video.MediaCodecVideoConvertor.convertVideoInternal(org.telegram.messenger.video.MediaCodecVideoConvertor$ConvertVideoParams, boolean, int):boolean");
     }
 

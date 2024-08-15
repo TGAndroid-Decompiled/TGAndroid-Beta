@@ -44,6 +44,7 @@ public class TextCell extends FrameLayout {
     public int leftPadding;
     private float loadingProgress;
     private int loadingSize;
+    private boolean measureDelay;
     private boolean needDivider;
     public int offsetFromImage;
     Paint paint;
@@ -717,7 +718,7 @@ public class TextCell extends FrameLayout {
         if (isAttachedToWindow()) {
             imageReceiver.onAttachedToWindow();
         }
-        addOnAttachStateChangeListener(new View.OnAttachStateChangeListener(this) {
+        addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
             @Override
             public void onViewAttachedToWindow(View view) {
                 imageReceiver.onAttachedToWindow();
@@ -729,7 +730,7 @@ public class TextCell extends FrameLayout {
             }
         });
         imageReceiver.setImage(str, "30_30", null, null, 0L);
-        this.emojiDrawable.set(new Drawable(this) {
+        this.emojiDrawable.set(new Drawable() {
             @Override
             public int getOpacity() {
                 return -2;
@@ -865,6 +866,8 @@ public class TextCell extends FrameLayout {
         this.loadingSize = i;
         if (!z2) {
             this.drawLoadingProgress = z ? 1.0f : 0.0f;
+        } else {
+            this.measureDelay = true;
         }
         invalidate();
     }

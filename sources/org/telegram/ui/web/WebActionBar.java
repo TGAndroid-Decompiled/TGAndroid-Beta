@@ -72,6 +72,7 @@ public class WebActionBar extends FrameLayout {
     private int fromBackgroundColor;
     public boolean hasForward;
     public int height;
+    public int iconColor;
     public boolean isTonsite;
     public final LinearLayout leftmenu;
     public final LineProgressView lineProgressView;
@@ -87,6 +88,7 @@ public class WebActionBar extends FrameLayout {
     private boolean occupyStatusBar;
     private long pressTime;
     private float pressX;
+    private float pressY;
     public final float[] progress;
     public final Paint[] progressBackgroundPaint;
     public final RectF rect;
@@ -163,7 +165,7 @@ public class WebActionBar extends FrameLayout {
         FrameLayout frameLayout2 = new FrameLayout(context);
         this.addressContainer = frameLayout2;
         addView(frameLayout2, LayoutHelper.createFrame(-1, 56, 87));
-        LinearLayout linearLayout = new LinearLayout(this, context) {
+        LinearLayout linearLayout = new LinearLayout(context) {
             @Override
             protected void onMeasure(int i2, int i3) {
                 super.onMeasure(i2, i3);
@@ -186,7 +188,7 @@ public class WebActionBar extends FrameLayout {
         this.backButtonSelector = createSelectorDrawable;
         imageView.setBackground(createSelectorDrawable);
         linearLayout.addView(imageView, LayoutHelper.createLinear(54, 56));
-        LinearLayout linearLayout2 = new LinearLayout(this, context) {
+        LinearLayout linearLayout2 = new LinearLayout(context) {
             @Override
             protected void onMeasure(int i2, int i3) {
                 super.onMeasure(i2, i3);
@@ -200,7 +202,7 @@ public class WebActionBar extends FrameLayout {
         ImageView imageView2 = new ImageView(context);
         this.forwardButton = imageView2;
         imageView2.setScaleType(ImageView.ScaleType.CENTER);
-        ForwardDrawable forwardDrawable = new ForwardDrawable(this);
+        ForwardDrawable forwardDrawable = new ForwardDrawable();
         this.forwardButtonDrawable = forwardDrawable;
         imageView2.setImageDrawable(forwardDrawable);
         forwardDrawable.setState(false);
@@ -224,7 +226,7 @@ public class WebActionBar extends FrameLayout {
         imageView3.setBackground(createSelectorDrawable3);
         imageView3.setContentDescription(LocaleController.getString("AccDescrMoreOptions", R.string.AccDescrMoreOptions));
         linearLayout2.addView(imageView3, LayoutHelper.createLinear(54, 56));
-        EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(this, context) {
+        EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context) {
             @Override
             public boolean onTouchEvent(MotionEvent motionEvent) {
                 if (motionEvent.getAction() == 0 && !AndroidUtilities.showKeyboard(this)) {
@@ -273,7 +275,7 @@ public class WebActionBar extends FrameLayout {
             }
         });
         frameLayout.addView(editTextBoldCursor, LayoutHelper.createFrame(-1, -1, 119));
-        EditTextBoldCursor editTextBoldCursor2 = new EditTextBoldCursor(this, context) {
+        EditTextBoldCursor editTextBoldCursor2 = new EditTextBoldCursor(context) {
             @Override
             public boolean onTouchEvent(MotionEvent motionEvent) {
                 if (motionEvent.getAction() == 0 && !AndroidUtilities.showKeyboard(this)) {
@@ -444,11 +446,11 @@ public class WebActionBar extends FrameLayout {
     }
 
     public void setIsDangerous(int i, boolean z, boolean z2) {
-        Title[] titleArr = this.titles;
-        if (titleArr[i].isDangerous != z) {
-            titleArr[i].isDangerous = z;
+        Title title = this.titles[i];
+        if (title.isDangerous != z) {
+            title.isDangerous = z;
             if (!z2) {
-                titleArr[i].animatedDangerous.set(z ? 1.0f : 0.0f, true);
+                title.animatedDangerous.set(z ? 1.0f : 0.0f, true);
             }
             invalidate();
         }
@@ -520,8 +522,8 @@ public class WebActionBar extends FrameLayout {
         this.shadowPaint[i].setColor(Theme.blendOver(i2, Theme.multAlpha(blendARGB, AndroidUtilities.lerp(0.14f, 0.24f, f))));
         this.titles[i].title.setTextColor(blendARGB);
         this.titles[i].subtitleColor = Theme.blendOver(i2, Theme.multAlpha(blendARGB, 0.6f));
-        Title[] titleArr = this.titles;
-        titleArr[i].subtitle.setTextColor(ColorUtils.blendARGB(titleArr[i].subtitleColor, Theme.getColor(Theme.key_text_RedBold), this.titles[i].animatedDangerous.get()));
+        Title title = this.titles[i];
+        title.subtitle.setTextColor(ColorUtils.blendARGB(title.subtitleColor, Theme.getColor(Theme.key_text_RedBold), this.titles[i].animatedDangerous.get()));
         invalidate();
     }
 
@@ -561,7 +563,7 @@ public class WebActionBar extends FrameLayout {
             }
             int blendARGB = ColorUtils.blendARGB(-16777216, -1, f);
             this.textColor = blendARGB;
-            Theme.multAlpha(blendARGB, 0.55f);
+            this.iconColor = Theme.multAlpha(blendARGB, 0.55f);
             this.backgroundColor = i;
             this.addressBackgroundColor = ColorUtils.blendARGB(-1, -16777216, f);
             int blendARGB2 = ColorUtils.blendARGB(-1, -16777216, 1.0f - f);
@@ -1051,7 +1053,7 @@ public class WebActionBar extends FrameLayout {
             AndroidUtilities.cancelRunOnUIThread(this.longPressRunnable);
             if (motionEvent.getX() > this.leftmenu.getRight() && motionEvent.getX() < this.rightmenu.getLeft() && !isSearching() && !isAddressing()) {
                 this.pressX = motionEvent.getX();
-                motionEvent.getY();
+                this.pressY = motionEvent.getY();
                 this.pressTime = System.currentTimeMillis();
                 AndroidUtilities.runOnUIThread(this.longPressRunnable, ViewConfiguration.getLongPressTimeout() * 0.8f);
             }
@@ -1087,7 +1089,7 @@ public class WebActionBar extends FrameLayout {
         public void setColorFilter(ColorFilter colorFilter) {
         }
 
-        public ForwardDrawable(WebActionBar webActionBar) {
+        public ForwardDrawable() {
             Paint paint = new Paint(1);
             this.paint = paint;
             paint.setStyle(Paint.Style.STROKE);

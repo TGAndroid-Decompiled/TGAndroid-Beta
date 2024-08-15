@@ -87,8 +87,8 @@ public class ContactsAdapter extends RecyclerListView.SectionsAdapter {
             if (this.onlineContacts == null || z) {
                 this.onlineContacts = new ArrayList<>(ContactsController.getInstance(this.currentAccount).contacts);
                 long j = UserConfig.getInstance(this.currentAccount).clientUserId;
-                int i2 = 0;
                 int size = this.onlineContacts.size();
+                int i2 = 0;
                 while (true) {
                     if (i2 >= size) {
                         break;

@@ -51,7 +51,7 @@ public class PremiumAppIconsPreviewView extends FrameLayout implements PagerHead
 
     private AdaptiveIconImageView newIconView(Context context, int i) {
         LauncherIconController.LauncherIcon launcherIcon = this.icons.get(i);
-        AdaptiveIconImageView adaptiveIconImageView = new AdaptiveIconImageView(this, context, i);
+        AdaptiveIconImageView adaptiveIconImageView = new AdaptiveIconImageView(context, i);
         adaptiveIconImageView.setLayoutParams(LayoutHelper.createFrame(-2, -2.0f, 17, 0.0f, 52.0f, 0.0f, 0.0f));
         adaptiveIconImageView.setForeground(launcherIcon.foreground);
         adaptiveIconImageView.setBackgroundResource(launcherIcon.background);
@@ -119,7 +119,7 @@ public class PremiumAppIconsPreviewView extends FrameLayout implements PagerHead
         Paint paint;
         float particlesScale;
 
-        public AdaptiveIconImageView(PremiumAppIconsPreviewView premiumAppIconsPreviewView, Context context, int i) {
+        public AdaptiveIconImageView(Context context, int i) {
             super(context);
             this.drawable = new StarParticlesView.Drawable(20);
             this.paint = new Paint(1);
@@ -133,7 +133,7 @@ public class PremiumAppIconsPreviewView extends FrameLayout implements PagerHead
             if (i == 0) {
                 drawable.type = 1002;
             }
-            drawable.resourcesProvider = premiumAppIconsPreviewView.resourcesProvider;
+            drawable.resourcesProvider = PremiumAppIconsPreviewView.this.resourcesProvider;
             StarParticlesView.Drawable drawable2 = this.drawable;
             drawable2.colorKey = Theme.key_premiumStartSmallStarsColor2;
             drawable2.init();

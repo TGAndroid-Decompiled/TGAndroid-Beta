@@ -37,7 +37,7 @@ public class ChooseSpeedLayout {
         });
         addItem.setColors(-328966, -328966);
         addItem.setSelectorColor(268435455);
-        FrameLayout frameLayout = new FrameLayout(this, context) {
+        FrameLayout frameLayout = new FrameLayout(context) {
             @Override
             protected void onMeasure(int i, int i2) {
                 super.onMeasure(i, i2);
@@ -66,7 +66,7 @@ public class ChooseSpeedLayout {
             }
         });
         this.speedSwipeBackLayout.addView((View) this.slider, LayoutHelper.createLinear(-1, 44));
-        FrameLayout frameLayout2 = new FrameLayout(this, context) {
+        FrameLayout frameLayout2 = new FrameLayout(context) {
             @Override
             protected void onMeasure(int i, int i2) {
                 super.onMeasure(i, i2);

@@ -38,6 +38,7 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestTimeDelegate;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenu;
+import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BackDrawable;
 import org.telegram.ui.ActionBar.BaseFragment;
@@ -61,6 +62,8 @@ public class ProxyListActivity extends BaseFragment implements NotificationCente
     private int connectionsHeaderRow;
     private int currentConnectionState;
     private int deleteAllRow;
+    private ActionBarMenuItem deleteMenuItem;
+    private LinearLayoutManager layoutManager;
     private ListAdapter listAdapter;
     private RecyclerListView listView;
     private int proxyAddRow;
@@ -72,6 +75,7 @@ public class ProxyListActivity extends BaseFragment implements NotificationCente
     private int rotationTimeoutRow;
     private int rowCount;
     private NumberTextView selectedCountTextView;
+    private ActionBarMenuItem shareMenuItem;
     private boolean useProxyForCalls;
     private int useProxyRow;
     private boolean useProxySettings;
@@ -389,7 +393,10 @@ public class ProxyListActivity extends BaseFragment implements NotificationCente
         ((DefaultItemAnimator) recyclerListView.getItemAnimator()).setDelayAnimations(false);
         ((DefaultItemAnimator) this.listView.getItemAnimator()).setTranslationInterpolator(CubicBezierInterpolator.DEFAULT);
         this.listView.setVerticalScrollBarEnabled(false);
-        this.listView.setLayoutManager(new LinearLayoutManager(context, 1, false));
+        RecyclerListView recyclerListView2 = this.listView;
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, 1, false);
+        this.layoutManager = linearLayoutManager;
+        recyclerListView2.setLayoutManager(linearLayoutManager);
         ((FrameLayout) this.fragmentView).addView(this.listView, LayoutHelper.createFrame(-1, -1, 51));
         this.listView.setAdapter(this.listAdapter);
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
@@ -421,8 +428,8 @@ public class ProxyListActivity extends BaseFragment implements NotificationCente
                 return lambda$createView$3;
             }
         });
-        createActionMode.addItemWithWidth(1, R.drawable.msg_share, AndroidUtilities.dp(54.0f));
-        createActionMode.addItemWithWidth(0, R.drawable.msg_delete, AndroidUtilities.dp(54.0f));
+        this.shareMenuItem = createActionMode.addItemWithWidth(1, R.drawable.msg_share, AndroidUtilities.dp(54.0f));
+        this.deleteMenuItem = createActionMode.addItemWithWidth(0, R.drawable.msg_delete, AndroidUtilities.dp(54.0f));
         this.actionBar.setActionBarMenuOnItemClick(new AnonymousClass3(context));
         return this.fragmentView;
     }

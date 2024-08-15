@@ -117,6 +117,7 @@ public class StarsController {
     private boolean giftOptionsLoading;
     private boolean insufficientSubscriptionsLoading;
     private long lastBalanceLoaded;
+    public long minus;
     private ArrayList<TLRPC$TL_starsTopupOption> options;
     private boolean optionsLoaded;
     private boolean optionsLoading;
@@ -177,7 +178,7 @@ public class StarsController {
                 }
             });
         }
-        return this.balance;
+        return Math.max(0L, this.balance - this.minus);
     }
 
     public void lambda$getBalance$1(final Runnable runnable, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -208,8 +209,9 @@ public class StarsController {
                 for (int i = 0; i < 3; i++) {
                     this.transactionsExist[i] = !this.transactions[i].isEmpty() || this.transactionsExist[i];
                     boolean[] zArr = this.endReached;
-                    zArr[i] = (tLRPC$TL_payments_starsStatus.flags & 1) == 0;
-                    if (zArr[i]) {
+                    boolean z4 = (tLRPC$TL_payments_starsStatus.flags & 1) == 0;
+                    zArr[i] = z4;
+                    if (z4) {
                         this.loading[i] = false;
                     }
                     this.offset[i] = zArr[i] ? null : tLRPC$TL_payments_starsStatus.next_offset;
@@ -233,6 +235,7 @@ public class StarsController {
                 z3 = true;
             }
             this.balance = j2;
+            this.minus = 0L;
         } else {
             z = false;
             z2 = false;
@@ -262,6 +265,10 @@ public class StarsController {
     public void updateBalance(long j) {
         if (this.balance != j) {
             this.balance = j;
+            this.minus = 0L;
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starBalanceUpdated, new Object[0]);
+        } else if (this.minus != 0) {
+            this.minus = 0L;
             NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starBalanceUpdated, new Object[0]);
         }
     }
@@ -372,6 +379,7 @@ public class StarsController {
     }
 
     public void lambda$getOptions$2(BillingResult billingResult, List list, ArrayList arrayList) {
+        TLRPC$TL_starsTopupOption tLRPC$TL_starsTopupOption;
         ProductDetails.OneTimePurchaseOfferDetails oneTimePurchaseOfferDetails;
         if (billingResult.getResponseCode() != 0) {
             bulletinError("BILLING_" + BillingController.getResponseCodeString(billingResult.getResponseCode()));
@@ -380,10 +388,10 @@ public class StarsController {
         if (list != null) {
             for (int i = 0; i < list.size(); i++) {
                 ProductDetails productDetails = (ProductDetails) list.get(i);
-                TLRPC$TL_starsTopupOption tLRPC$TL_starsTopupOption = null;
                 int i2 = 0;
                 while (true) {
                     if (i2 >= arrayList.size()) {
+                        tLRPC$TL_starsTopupOption = null;
                         break;
                     } else if (((TLRPC$TL_starsTopupOption) arrayList.get(i2)).store_product.equals(productDetails.getProductId())) {
                         tLRPC$TL_starsTopupOption = (TLRPC$TL_starsTopupOption) arrayList.get(i2);
@@ -404,7 +412,10 @@ public class StarsController {
         }
         if (this.options != null) {
             for (int i3 = 0; i3 < this.options.size(); i3++) {
-                this.options.get(i3);
+                TLRPC$TL_starsTopupOption tLRPC$TL_starsTopupOption2 = this.options.get(i3);
+                if (tLRPC$TL_starsTopupOption2 != null && tLRPC$TL_starsTopupOption2.loadingStorePrice) {
+                    tLRPC$TL_starsTopupOption2.missingStorePrice = true;
+                }
             }
         }
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starOptionsLoaded, new Object[0]);
@@ -519,6 +530,7 @@ public class StarsController {
     }
 
     public void lambda$getGiftOptions$7(BillingResult billingResult, List list, ArrayList arrayList) {
+        TLRPC$TL_starsGiftOption tLRPC$TL_starsGiftOption;
         ProductDetails.OneTimePurchaseOfferDetails oneTimePurchaseOfferDetails;
         if (billingResult.getResponseCode() != 0) {
             bulletinError("BILLING_" + BillingController.getResponseCodeString(billingResult.getResponseCode()));
@@ -527,10 +539,10 @@ public class StarsController {
         if (list != null) {
             for (int i = 0; i < list.size(); i++) {
                 ProductDetails productDetails = (ProductDetails) list.get(i);
-                TLRPC$TL_starsGiftOption tLRPC$TL_starsGiftOption = null;
                 int i2 = 0;
                 while (true) {
                     if (i2 >= arrayList.size()) {
+                        tLRPC$TL_starsGiftOption = null;
                         break;
                     } else if (((TLRPC$TL_starsGiftOption) arrayList.get(i2)).store_product.equals(productDetails.getProductId())) {
                         tLRPC$TL_starsGiftOption = (TLRPC$TL_starsGiftOption) arrayList.get(i2);
@@ -551,7 +563,10 @@ public class StarsController {
         }
         if (this.giftOptions != null) {
             for (int i3 = 0; i3 < this.giftOptions.size(); i3++) {
-                this.giftOptions.get(i3);
+                TLRPC$TL_starsGiftOption tLRPC$TL_starsGiftOption2 = this.giftOptions.get(i3);
+                if (tLRPC$TL_starsGiftOption2 != null && tLRPC$TL_starsGiftOption2.loadingStorePrice) {
+                    tLRPC$TL_starsGiftOption2.missingStorePrice = true;
+                }
             }
         }
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starGiftOptionsLoaded, new Object[0]);
@@ -624,8 +639,9 @@ public class StarsController {
             this.transactions[i].addAll(tLRPC$TL_payments_starsStatus.history);
             this.transactionsExist[i] = !this.transactions[i].isEmpty() || this.transactionsExist[i];
             boolean[] zArr = this.endReached;
-            zArr[i] = (tLRPC$TL_payments_starsStatus.flags & 1) == 0;
-            this.offset[i] = zArr[i] ? null : tLRPC$TL_payments_starsStatus.next_offset;
+            boolean z = (tLRPC$TL_payments_starsStatus.flags & 1) == 0;
+            zArr[i] = z;
+            this.offset[i] = z ? null : tLRPC$TL_payments_starsStatus.next_offset;
             updateBalance(tLRPC$TL_payments_starsStatus.balance);
             NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starTransactionsLoaded, new Object[0]);
         }
@@ -2100,8 +2116,10 @@ public class StarsController {
         public Bulletin bulletin;
         public Bulletin.UndoButton bulletinButton;
         public Bulletin.TwoLineAnimatedLottieLayout bulletinLayout;
+        public final Runnable cancelRunnable;
         public ChatActivity chatActivity;
         public final Runnable closeRunnable;
+        public long lastTime;
         public MessageId message;
         public MessageObject messageObject;
         public long not_added;
@@ -2134,7 +2152,7 @@ public class StarsController {
                 }
             };
             this.closeRunnable = runnable;
-            new Runnable() {
+            this.cancelRunnable = new Runnable() {
                 @Override
                 public final void run() {
                     StarsController.PendingPaidReactions.this.cancel();
@@ -2173,7 +2191,7 @@ public class StarsController {
             }
             this.bulletin.setOnHideListener(runnable);
             this.amount = 0L;
-            System.currentTimeMillis();
+            this.lastTime = System.currentTimeMillis();
             this.wasChosen = messageObject.isPaidReactionChosen();
         }
 
@@ -2185,7 +2203,7 @@ public class StarsController {
                 return;
             }
             this.amount += j;
-            System.currentTimeMillis();
+            this.lastTime = System.currentTimeMillis();
             this.bulletinLayout.subtitleTextView.cancelAnimation();
             this.bulletinLayout.subtitleTextView.setText(AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsSentText", (int) this.amount, new Object[0])), true);
             this.timerView.timeLeft = 5000L;
@@ -2194,7 +2212,10 @@ public class StarsController {
             if (z) {
                 this.applied = true;
                 this.messageObject.addPaidReactions((int) j, true, isAnonymous());
-                NotificationCenter.getInstance(StarsController.this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didUpdateReactions, Long.valueOf(this.messageObject.getDialogId()), Integer.valueOf(this.messageObject.getId()), this.messageObject.messageOwner.reactions);
+                StarsController starsController = StarsController.this;
+                starsController.minus += j;
+                NotificationCenter.getInstance(starsController.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didUpdateReactions, Long.valueOf(this.messageObject.getDialogId()), Integer.valueOf(this.messageObject.getId()), this.messageObject.messageOwner.reactions);
+                NotificationCenter.getInstance(StarsController.this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starBalanceUpdated, new Object[0]);
                 return;
             }
             this.applied = false;
@@ -2214,6 +2235,9 @@ public class StarsController {
             AndroidUtilities.cancelRunOnUIThread(this.closeRunnable);
             AndroidUtilities.runOnUIThread(this.closeRunnable, 5000L);
             this.messageObject.addPaidReactions((int) this.not_added, true, isAnonymous());
+            StarsController starsController = StarsController.this;
+            starsController.minus += this.not_added;
+            NotificationCenter.getInstance(starsController.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starBalanceUpdated, new Object[0]);
             this.not_added = 0L;
             NotificationCenter.getInstance(StarsController.this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didUpdateReactions, Long.valueOf(this.messageObject.getDialogId()), Integer.valueOf(this.messageObject.getId()), this.messageObject.messageOwner.reactions);
             this.bulletin.show(true);
@@ -2227,15 +2251,18 @@ public class StarsController {
             } else {
                 this.cancelled = true;
                 this.messageObject.addPaidReactions((int) (-this.amount), this.wasChosen, isAnonymous());
+                StarsController starsController = StarsController.this;
+                starsController.minus -= this.amount;
+                NotificationCenter.getInstance(starsController.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starBalanceUpdated, new Object[0]);
             }
             this.bulletin.hide();
             StarReactionsOverlay starReactionsOverlay = this.overlay;
             if (starReactionsOverlay != null && starReactionsOverlay.isShowing(this.messageObject)) {
                 this.overlay.hide();
             }
-            StarsController starsController = StarsController.this;
-            if (starsController.currentPendingReactions == this) {
-                starsController.currentPendingReactions = null;
+            StarsController starsController2 = StarsController.this;
+            if (starsController2.currentPendingReactions == this) {
+                starsController2.currentPendingReactions = null;
             }
         }
 
@@ -2248,10 +2275,13 @@ public class StarsController {
                 starReactionsOverlay.hide();
             }
             this.messageObject.addPaidReactions((int) (-this.amount), this.wasChosen, isAnonymous());
-            NotificationCenter.getInstance(StarsController.this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didUpdateReactions, Long.valueOf(this.messageObject.getDialogId()), Integer.valueOf(this.messageObject.getId()), this.messageObject.messageOwner.reactions);
             StarsController starsController = StarsController.this;
-            if (starsController.currentPendingReactions == this) {
-                starsController.currentPendingReactions = null;
+            starsController.minus -= this.amount;
+            NotificationCenter.getInstance(starsController.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starBalanceUpdated, new Object[0]);
+            NotificationCenter.getInstance(StarsController.this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didUpdateReactions, Long.valueOf(this.messageObject.getDialogId()), Integer.valueOf(this.messageObject.getId()), this.messageObject.messageOwner.reactions);
+            StarsController starsController2 = StarsController.this;
+            if (starsController2.currentPendingReactions == this) {
+                starsController2.currentPendingReactions = null;
             }
         }
 
@@ -2267,6 +2297,9 @@ public class StarsController {
             if (starsController.balanceAvailable() && starsController.getBalance() < j) {
                 this.cancelled = true;
                 this.messageObject.addPaidReactions((int) (-this.amount), this.wasChosen, isAnonymous());
+                StarsController starsController2 = StarsController.this;
+                starsController2.minus = 0L;
+                NotificationCenter.getInstance(starsController2.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starBalanceUpdated, new Object[0]);
                 NotificationCenter.getInstance(StarsController.this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didUpdateReactions, Long.valueOf(this.messageObject.getDialogId()), Integer.valueOf(this.messageObject.getId()), this.messageObject.messageOwner.reactions);
                 if (this.message.did >= 0) {
                     str = UserObject.getForcedFirstName(this.chatActivity.getMessagesController().getUser(Long.valueOf(this.message.did)));
@@ -2298,6 +2331,7 @@ public class StarsController {
             tLRPC$TL_messages_sendPaidReaction.count = (int) this.amount;
             tLRPC$TL_messages_sendPaidReaction.isPrivate = isAnonymous();
             saveAnonymous();
+            StarsController.this.invalidateBalance();
             connectionsManager.sendRequest(tLRPC$TL_messages_sendPaidReaction, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -2417,7 +2451,7 @@ public class StarsController {
                 pendingPaidReactions2.close();
             }
             z3 = z4;
-            PendingPaidReactions pendingPaidReactions3 = new PendingPaidReactions(from, messageObject, chatActivity, ConnectionsManager.getInstance(this.currentAccount).getCurrentTime(), z4);
+            PendingPaidReactions pendingPaidReactions3 = new PendingPaidReactions(from, messageObject, chatActivity, ConnectionsManager.getInstance(this.currentAccount).getCurrentTime(), z3);
             this.currentPendingReactions = pendingPaidReactions3;
             pendingPaidReactions3.anonymous = bool;
         } else {

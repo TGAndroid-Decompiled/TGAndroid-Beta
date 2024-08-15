@@ -21,6 +21,7 @@ public class BackDrawable extends Drawable {
     private int color = -1;
     private int rotatedColor = -9079435;
     private float animationTime = 300.0f;
+    private boolean rotated = true;
 
     @Override
     public int getOpacity() {

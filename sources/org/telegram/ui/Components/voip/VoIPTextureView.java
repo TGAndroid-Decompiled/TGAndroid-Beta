@@ -36,6 +36,7 @@ public class VoIPTextureView extends FrameLayout {
     public static int SCALE_TYPE_FIT = 1;
     public static int SCALE_TYPE_NONE = 3;
     int animateFromHeight;
+    float animateFromRendererH;
     float animateFromRendererW;
     float animateFromThumbScale;
     int animateFromWidth;
@@ -61,6 +62,7 @@ public class VoIPTextureView extends FrameLayout {
     float currentThumbScale;
     boolean ignoreLayout;
     public final ImageView imageView;
+    final boolean isCamera;
     public final TextureViewRenderer renderer;
     float roundRadius;
     public float scaleTextureToFill;
@@ -85,6 +87,7 @@ public class VoIPTextureView extends FrameLayout {
         this.aninateFromScale = 1.0f;
         this.aninateFromScaleBlur = 1.0f;
         this.animateFromThumbScale = 1.0f;
+        this.isCamera = z;
         this.applyRotation = z2;
         ImageView imageView = new ImageView(context);
         this.imageView = imageView;
@@ -318,7 +321,7 @@ public class VoIPTextureView extends FrameLayout {
         this.aninateFromScaleBlur = this.scaleTextureToFillBlur;
         this.animateFromThumbScale = this.scaleThumb;
         this.animateFromRendererW = this.renderer.getMeasuredWidth();
-        this.renderer.getMeasuredHeight();
+        this.animateFromRendererH = this.renderer.getMeasuredHeight();
         this.animateOnNextLayout = true;
         requestLayout();
     }

@@ -63,6 +63,7 @@ public class LimitPreviewView extends LinearLayout {
     private float percent;
     private float position;
     TextView premiumCount;
+    private final int premiumLimit;
     private boolean premiumLocked;
     private final TextView premiumText;
     float progress;
@@ -89,6 +90,7 @@ public class LimitPreviewView extends LinearLayout {
         this.percent = MathUtils.clamp(f, 0.1f, 0.9f);
         this.icon = i;
         this.currentValue = i2;
+        this.premiumLimit = i3;
         setOrientation(1);
         setClipChildren(false);
         setClipToPadding(false);
@@ -127,7 +129,7 @@ public class LimitPreviewView extends LinearLayout {
         textView3.setText(LocaleController.getString("LimitPremium", R.string.LimitPremium));
         textView3.setGravity(16);
         textView3.setTextColor(-1);
-        TextView textView4 = new TextView(this, context) {
+        TextView textView4 = new TextView(context) {
             @Override
             public void setAlpha(float f2) {
                 super.setAlpha(f2);
@@ -797,7 +799,7 @@ public class LimitPreviewView extends LinearLayout {
             ValueAnimator valueAnimator;
             float x;
 
-            private AnimatedLayout(CounterView counterView) {
+            private AnimatedLayout() {
                 this.staticLayouts = new ArrayList<>();
             }
         }

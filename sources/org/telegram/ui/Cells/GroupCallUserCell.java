@@ -98,26 +98,33 @@ public class GroupCallUserCell extends FrameLayout {
     }
 
     public void lambda$new$1() {
+        int i;
         int nextInt = Utilities.random.nextInt(100);
-        int i = 540;
-        int i2 = 420;
+        int i2 = 120;
         if (nextInt < 32) {
-            i = 120;
-            i2 = 0;
-        } else if (nextInt < 64) {
+            i = 0;
+        } else {
             i = 240;
-            i2 = 120;
-        } else if (nextInt < 97) {
-            i = 420;
-            i2 = 240;
-        } else if (nextInt != 98) {
-            i = 720;
-            i2 = 540;
+            if (nextInt < 64) {
+                i2 = 240;
+                i = 120;
+            } else {
+                i2 = 420;
+                if (nextInt >= 97) {
+                    i = 540;
+                    if (nextInt == 98) {
+                        i2 = 540;
+                        i = 420;
+                    } else {
+                        i2 = 720;
+                    }
+                }
+            }
         }
-        this.shakeHandDrawable.setCustomEndFrame(i);
-        this.shakeHandDrawable.setOnFinishCallback(this.shakeHandCallback, i - 1);
+        this.shakeHandDrawable.setCustomEndFrame(i2);
+        this.shakeHandDrawable.setOnFinishCallback(this.shakeHandCallback, i2 - 1);
         this.muteButton.setAnimation(this.shakeHandDrawable);
-        this.shakeHandDrawable.setCurrentFrame(i2);
+        this.shakeHandDrawable.setCurrentFrame(i);
         this.muteButton.playAnimation();
     }
 
@@ -541,7 +548,7 @@ public class GroupCallUserCell extends FrameLayout {
                 if (tLRPC$User2 != null && tLRPC$User2.premium) {
                     if (this.premiumDrawable == null) {
                         this.premiumDrawable = getContext().getResources().getDrawable(R.drawable.msg_premium_liststar).mutate();
-                        this.premiumDrawable = new AnimatedEmojiDrawable.WrapSizeDrawable(this, this.premiumDrawable, AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f)) {
+                        this.premiumDrawable = new AnimatedEmojiDrawable.WrapSizeDrawable(this.premiumDrawable, AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f)) {
                             @Override
                             public void draw(Canvas canvas) {
                                 canvas.save();
@@ -875,19 +882,19 @@ public class GroupCallUserCell extends FrameLayout {
 
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        int i;
         String str;
+        int i;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         if (!accessibilityNodeInfo.isEnabled() || Build.VERSION.SDK_INT < 21) {
             return;
         }
         TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant = this.participant;
         if (!tLRPC$TL_groupCallParticipant.muted || tLRPC$TL_groupCallParticipant.can_self_unmute) {
-            i = R.string.VoipMute;
             str = "VoipMute";
+            i = R.string.VoipMute;
         } else {
-            i = R.string.VoipUnmute;
             str = "VoipUnmute";
+            i = R.string.VoipUnmute;
         }
         accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString(str, i)));
     }

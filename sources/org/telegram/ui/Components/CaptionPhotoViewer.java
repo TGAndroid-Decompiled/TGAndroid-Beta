@@ -19,6 +19,7 @@ import org.telegram.ui.Stories.DarkThemeResourceProvider;
 import org.telegram.ui.Stories.recorder.CaptionContainerView;
 import org.telegram.ui.Stories.recorder.HintView2;
 public class CaptionPhotoViewer extends CaptionContainerView {
+    private final int SHOW_ONCE;
     private final ImageView addPhotoButton;
     private boolean addPhotoVisible;
     private final Runnable applyCaption;
@@ -49,6 +50,7 @@ public class CaptionPhotoViewer extends CaptionContainerView {
     public CaptionPhotoViewer(Context context, final FrameLayout frameLayout, SizeNotifierFrameLayout sizeNotifierFrameLayout, FrameLayout frameLayout2, Theme.ResourcesProvider resourcesProvider, BlurringShader.BlurManager blurManager, Runnable runnable) {
         super(context, frameLayout, sizeNotifierFrameLayout, frameLayout2, resourcesProvider, blurManager);
         this.timer = 0;
+        this.SHOW_ONCE = Integer.MAX_VALUE;
         this.values = new int[]{Integer.MAX_VALUE, 3, 10, 30, 0};
         this.applyCaption = runnable;
         ImageView imageView = new ImageView(context);

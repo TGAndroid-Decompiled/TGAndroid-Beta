@@ -751,6 +751,7 @@ public class QrActivity extends BaseFragment {
         private AnimatedFloat contentBitmapAlpha;
         private Paint crossfadeFromPaint;
         private Paint crossfadeToPaint;
+        private final int crossfadeWidthDp;
         private boolean firstPrepare;
         private final MotionBackgroundDrawable gradientDrawable;
         private final BitmapShader gradientShader;
@@ -789,6 +790,7 @@ public class QrActivity extends BaseFragment {
             this.contentBitmapAlpha = new AnimatedFloat(1.0f, this, 0L, 2000L, cubicBezierInterpolator);
             this.crossfadeFromPaint = new Paint(1);
             this.crossfadeToPaint = new Paint(1);
+            this.crossfadeWidthDp = 120;
             this.radii = new float[8];
             this.checkTimerToken = new Runnable() {
                 @Override
@@ -1055,7 +1057,7 @@ public class QrActivity extends BaseFragment {
             this.gradientDrawable.posAnimationProgress = f;
         }
 
-        public void lambda$setData$1(int r32, int r33) {
+        public void lambda$setData$1(int r37, int r38) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.QrActivity.QrView.lambda$setData$1(int, int):void");
         }
 
@@ -1147,7 +1149,7 @@ public class QrActivity extends BaseFragment {
             this.fragment = baseFragment;
             this.window = window;
             Activity parentActivity = baseFragment.getParentActivity();
-            this.scroller = new LinearSmoothScroller(this, parentActivity, QrActivity.this) {
+            this.scroller = new LinearSmoothScroller(parentActivity) {
                 @Override
                 public int calculateTimeForScrolling(int i) {
                     return super.calculateTimeForScrolling(i) * 6;
@@ -1159,6 +1161,7 @@ public class QrActivity extends BaseFragment {
             FrameLayout frameLayout = new FrameLayout(parentActivity, QrActivity.this, baseFragment) {
                 private final Rect backgroundPadding;
                 final BaseFragment val$fragment;
+                final QrActivity val$this$0;
 
                 {
                     this.val$fragment = baseFragment;
@@ -1247,7 +1250,7 @@ public class QrActivity extends BaseFragment {
             setForceDark(Theme.getActiveTheme().isDark(), false);
             rLottieDrawable.setPlayInDirectionOfCustomEndFrame(true);
             rLottieDrawable.setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.MULTIPLY));
-            RLottieImageView rLottieImageView = new RLottieImageView(parentActivity, QrActivity.this) {
+            RLottieImageView rLottieImageView = new RLottieImageView(parentActivity) {
                 @Override
                 public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
                     super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
@@ -1294,7 +1297,7 @@ public class QrActivity extends BaseFragment {
                     QrActivity.ThemeListViewController.this.onItemClicked(view, i3);
                 }
             });
-            recyclerListView.setOnScrollListener(new RecyclerView.OnScrollListener(QrActivity.this) {
+            recyclerListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
                 private int yScroll = 0;
 
                 @Override

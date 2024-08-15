@@ -55,6 +55,7 @@ public class BotHelpCell extends View {
     private StaticLayout textLayout;
     private int textX;
     private int textY;
+    public boolean wasDraw;
     private int width;
 
     public interface BotHelpCellDelegate {
@@ -268,6 +269,7 @@ public class BotHelpCell extends View {
             staticLayout.draw(canvas);
         }
         canvas.restore();
+        this.wasDraw = true;
     }
 
     @Override
@@ -280,6 +282,7 @@ public class BotHelpCell extends View {
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.imageReceiver.onDetachedFromWindow();
+        this.wasDraw = false;
     }
 
     @Override

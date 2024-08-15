@@ -866,16 +866,14 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
     }
 
     public void updateInfo() {
+        String str;
         if (this.attached) {
-            String str = null;
             long peerId = MessageObject.getPeerId(this.participant.participant.peer);
             if (DialogObject.isUserDialog(peerId)) {
                 str = UserObject.getUserName(AccountInstance.getInstance(this.currentAccount).getMessagesController().getUser(Long.valueOf(peerId)));
             } else {
                 TLRPC$Chat chat = AccountInstance.getInstance(this.currentAccount).getMessagesController().getChat(Long.valueOf(-peerId));
-                if (chat != null) {
-                    str = chat.title;
-                }
+                str = chat != null ? chat.title : null;
             }
             this.nameView.setText(str);
         }
@@ -1097,6 +1095,7 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
         private GroupCallActivity.WeavingState[] states;
         float switchProgress;
         BlobDrawable tinyWaveDrawable;
+        float wavesEnter;
 
         public NoVideoStubLayout(Context context) {
             super(context);
@@ -1105,6 +1104,7 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
             this.avatarDrawable = new AvatarDrawable();
             this.paint = new Paint(1);
             this.backgroundPaint = new Paint(1);
+            this.wavesEnter = 0.0f;
             this.states = new GroupCallActivity.WeavingState[3];
             this.muteButtonState = -1;
             this.switchProgress = 1.0f;
@@ -1232,13 +1232,11 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
                     this.states[i2].shader = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{Theme.getColor(Theme.key_voipgroup_unmuteButton2), Theme.getColor(Theme.key_voipgroup_unmuteButton)}, (float[]) null, Shader.TileMode.CLAMP);
                 }
             }
-            GroupCallActivity.WeavingState[] weavingStateArr2 = this.states;
-            int i3 = this.muteButtonState;
-            GroupCallActivity.WeavingState weavingState = weavingStateArr2[i3];
+            GroupCallActivity.WeavingState weavingState = this.states[this.muteButtonState];
             GroupCallActivity.WeavingState weavingState2 = this.currentState;
             if (weavingState != weavingState2) {
                 this.prevState = weavingState2;
-                this.currentState = weavingStateArr2[i3];
+                this.currentState = weavingState;
                 if (weavingState2 == null || !z) {
                     this.switchProgress = 1.0f;
                     this.prevState = null;

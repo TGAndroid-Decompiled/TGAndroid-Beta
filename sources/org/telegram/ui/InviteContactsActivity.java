@@ -436,7 +436,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         this.editText.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         this.spansContainer.addView(this.editText);
         this.editText.setHintText(LocaleController.getString("SearchFriends", R.string.SearchFriends));
-        this.editText.setCustomSelectionActionModeCallback(new ActionMode.Callback(this) {
+        this.editText.setCustomSelectionActionModeCallback(new ActionMode.Callback() {
             @Override
             public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
                 return false;

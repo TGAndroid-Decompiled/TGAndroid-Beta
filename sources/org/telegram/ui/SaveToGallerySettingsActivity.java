@@ -52,6 +52,15 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SeekBarView;
 import org.telegram.ui.DialogsActivity;
 public class SaveToGallerySettingsActivity extends BaseFragment {
+    private final int VIEW_TYPE_ADD_EXCEPTION;
+    private final int VIEW_TYPE_CHAT;
+    private final int VIEW_TYPE_CHOOSER;
+    private final int VIEW_TYPE_DELETE_ALL;
+    private final int VIEW_TYPE_DIVIDER;
+    private final int VIEW_TYPE_DIVIDER_INFO;
+    private final int VIEW_TYPE_DIVIDER_LAST;
+    private final int VIEW_TYPE_HEADER;
+    private final int VIEW_TYPE_TOGGLE;
     Adapter adapter;
     SaveToGallerySettingsHelper.DialogException dialogException;
     long dialogId;
@@ -66,6 +75,15 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
 
     public SaveToGallerySettingsActivity(Bundle bundle) {
         super(bundle);
+        this.VIEW_TYPE_ADD_EXCEPTION = 1;
+        this.VIEW_TYPE_CHAT = 2;
+        this.VIEW_TYPE_DIVIDER = 3;
+        this.VIEW_TYPE_DELETE_ALL = 4;
+        this.VIEW_TYPE_HEADER = 5;
+        this.VIEW_TYPE_TOGGLE = 6;
+        this.VIEW_TYPE_DIVIDER_INFO = 7;
+        this.VIEW_TYPE_CHOOSER = 8;
+        this.VIEW_TYPE_DIVIDER_LAST = 10;
         this.items = new ArrayList<>();
         this.exceptionsDialogs = new LongSparseArray<>();
     }
@@ -95,8 +113,8 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
 
     @Override
     public View createView(Context context) {
-        int i;
         String str;
+        int i;
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
         this.actionBar.setBackButtonDrawable(new BackDrawable(false));
@@ -178,11 +196,11 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
             TextView textView = new TextView(getContext());
             textView.setTextSize(1, 14.0f);
             if (this.isNewException) {
-                i = R.string.AddException;
                 str = "AddException";
+                i = R.string.AddException;
             } else {
-                i = R.string.SaveException;
                 str = "SaveException";
+                i = R.string.SaveException;
             }
             textView.setText(LocaleController.getString(str, i));
             textView.setGravity(17);
@@ -391,47 +409,46 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            UserCell2 userCell2;
-            ShadowSectionCell shadowSectionCell = null;
+            LinearLayout linearLayout = null;
             switch (i) {
                 case 1:
                     TextCell textCell = new TextCell(viewGroup.getContext());
                     textCell.setTextAndIcon((CharSequence) LocaleController.getString("NotificationsAddAnException", R.string.NotificationsAddAnException), R.drawable.msg_contact_add, true);
                     textCell.setColors(Theme.key_windowBackgroundWhiteBlueIcon, Theme.key_windowBackgroundWhiteBlueButton);
                     textCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                    shadowSectionCell = textCell;
+                    linearLayout = textCell;
                     break;
                 case 2:
                     UserCell userCell = new UserCell(viewGroup.getContext(), 4, 0, false, false);
                     userCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                    shadowSectionCell = userCell;
+                    linearLayout = userCell;
                     break;
                 case 3:
-                    shadowSectionCell = new ShadowSectionCell(viewGroup.getContext());
+                    linearLayout = new ShadowSectionCell(viewGroup.getContext());
                     break;
                 case 4:
                     TextCell textCell2 = new TextCell(viewGroup.getContext());
                     textCell2.setText(LocaleController.getString("NotificationsDeleteAllException", R.string.NotificationsDeleteAllException), false);
                     textCell2.setColors(-1, Theme.key_text_RedRegular);
                     textCell2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                    shadowSectionCell = textCell2;
+                    linearLayout = textCell2;
                     break;
                 case 5:
                     HeaderCell headerCell = new HeaderCell(viewGroup.getContext());
                     headerCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                    shadowSectionCell = headerCell;
+                    linearLayout = headerCell;
                     break;
                 case 6:
                     TextCheckCell textCheckCell = new TextCheckCell(viewGroup.getContext());
                     textCheckCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                    shadowSectionCell = textCheckCell;
+                    linearLayout = textCheckCell;
                     break;
                 case 7:
-                    shadowSectionCell = new TextInfoPrivacyCell(viewGroup.getContext());
+                    linearLayout = new TextInfoPrivacyCell(viewGroup.getContext());
                     break;
                 case 8:
-                    LinearLayout linearLayout = new LinearLayout(SaveToGallerySettingsActivity.this.getContext());
-                    linearLayout.setOrientation(1);
+                    LinearLayout linearLayout2 = new LinearLayout(SaveToGallerySettingsActivity.this.getContext());
+                    linearLayout2.setOrientation(1);
                     final SeekBarView seekBarView = new SeekBarView(SaveToGallerySettingsActivity.this.getContext());
                     FrameLayout frameLayout = new FrameLayout(SaveToGallerySettingsActivity.this.getContext());
                     SaveToGallerySettingsActivity saveToGallerySettingsActivity = SaveToGallerySettingsActivity.this;
@@ -449,8 +466,8 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
                     long j = 4194304000L;
                     selectableAnimatedTextView3.setText(AndroidUtilities.formatFileSize(4194304000L, true, false));
                     frameLayout.addView(selectableAnimatedTextView3, LayoutHelper.createFrame(-2, -2, 85));
-                    linearLayout.addView(frameLayout, LayoutHelper.createLinear(-1, 20, 0, 21, 10, 21, 0));
-                    linearLayout.addView(seekBarView, LayoutHelper.createLinear(-1, 38, 0, 5, 0, 5, 4));
+                    linearLayout2.addView(frameLayout, LayoutHelper.createLinear(-1, 20, 0, 21, 10, 21, 0));
+                    linearLayout2.addView(seekBarView, LayoutHelper.createLinear(-1, 38, 0, 5, 0, 5, 4));
                     long j2 = SaveToGallerySettingsActivity.this.getSettings().limitVideo;
                     if (j2 >= 0 && j2 <= 4194304000L) {
                         j = j2;
@@ -500,28 +517,28 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
                     });
                     seekBarView.setProgress(((float) j) > ((float) 104857600) * 0.7f ? (0.3f * (((float) (j - 104857600)) / ((float) 4089446400L))) + 0.7f : (((float) (j - 524288)) / ((float) 104333312)) * 0.7f);
                     seekBarView.delegate.onSeekBarDrag(false, seekBarView.getProgress());
-                    userCell2 = linearLayout;
-                    userCell2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                    shadowSectionCell = userCell2;
+                    linearLayout2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                    linearLayout = linearLayout2;
                     break;
                 case 9:
-                    userCell2 = new UserCell2(SaveToGallerySettingsActivity.this.getContext(), 4, 0, SaveToGallerySettingsActivity.this.getResourceProvider());
+                    UserCell2 userCell2 = new UserCell2(SaveToGallerySettingsActivity.this.getContext(), 4, 0, SaveToGallerySettingsActivity.this.getResourceProvider());
                     userCell2.setData(DialogObject.isUserDialog(SaveToGallerySettingsActivity.this.dialogId) ? MessagesController.getInstance(((BaseFragment) SaveToGallerySettingsActivity.this).currentAccount).getUser(Long.valueOf(SaveToGallerySettingsActivity.this.dialogId)) : MessagesController.getInstance(((BaseFragment) SaveToGallerySettingsActivity.this).currentAccount).getChat(Long.valueOf(-SaveToGallerySettingsActivity.this.dialogId)), null, null, 0);
                     userCell2.setBackgroundColor(SaveToGallerySettingsActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                    shadowSectionCell = userCell2;
+                    linearLayout = userCell2;
                     break;
                 case 10:
-                    ShadowSectionCell shadowSectionCell2 = new ShadowSectionCell(viewGroup.getContext());
-                    shadowSectionCell2.setBackgroundDrawable(Theme.getThemedDrawable(SaveToGallerySettingsActivity.this.getContext(), R.drawable.greydivider_bottom, Theme.getColor(Theme.key_windowBackgroundGrayShadow, SaveToGallerySettingsActivity.this.getResourceProvider())));
-                    shadowSectionCell = shadowSectionCell2;
+                    ShadowSectionCell shadowSectionCell = new ShadowSectionCell(viewGroup.getContext());
+                    shadowSectionCell.setBackgroundDrawable(Theme.getThemedDrawable(SaveToGallerySettingsActivity.this.getContext(), R.drawable.greydivider_bottom, Theme.getColor(Theme.key_windowBackgroundGrayShadow, SaveToGallerySettingsActivity.this.getResourceProvider())));
+                    linearLayout = shadowSectionCell;
                     break;
             }
-            shadowSectionCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-            return new RecyclerListView.Holder(shadowSectionCell);
+            linearLayout.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+            return new RecyclerListView.Holder(linearLayout);
         }
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+            String str;
             if (SaveToGallerySettingsActivity.this.items.get(i).viewType == 1) {
                 ((TextCell) viewHolder.itemView).setNeedDivider(SaveToGallerySettingsActivity.this.exceptionsDialogs.size() > 0);
             } else if (SaveToGallerySettingsActivity.this.items.get(i).viewType == 6) {
@@ -565,7 +582,6 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
                 UserCell userCell = (UserCell) viewHolder.itemView;
                 SaveToGallerySettingsHelper.DialogException dialogException = SaveToGallerySettingsActivity.this.items.get(i).exception;
                 TLObject userOrChat = SaveToGallerySettingsActivity.this.getMessagesController().getUserOrChat(dialogException.dialogId);
-                String str = null;
                 if (userOrChat instanceof TLRPC$User) {
                     TLRPC$User tLRPC$User = (TLRPC$User) userOrChat;
                     if (tLRPC$User.self) {
@@ -573,8 +589,8 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
                     } else {
                         str = ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name);
                     }
-                } else if (userOrChat instanceof TLRPC$Chat) {
-                    str = ((TLRPC$Chat) userOrChat).title;
+                } else {
+                    str = userOrChat instanceof TLRPC$Chat ? ((TLRPC$Chat) userOrChat).title : null;
                 }
                 String str2 = str;
                 userCell.setSelfAsSavedMessages(true);
@@ -602,17 +618,17 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
         final SaveToGallerySettingsHelper.DialogException exception;
         String title;
 
-        private Item(SaveToGallerySettingsActivity saveToGallerySettingsActivity, int i) {
+        private Item(int i) {
             super(i, false);
             this.exception = null;
         }
 
-        private Item(SaveToGallerySettingsActivity saveToGallerySettingsActivity, int i, SaveToGallerySettingsHelper.DialogException dialogException) {
+        private Item(int i, SaveToGallerySettingsHelper.DialogException dialogException) {
             super(i, false);
             this.exception = dialogException;
         }
 
-        private Item(SaveToGallerySettingsActivity saveToGallerySettingsActivity, int i, String str) {
+        private Item(int i, String str) {
             super(i, false);
             this.title = str;
             this.exception = null;
@@ -623,7 +639,7 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
             if (this == obj) {
                 return true;
             }
-            if (obj == null || Item.class != obj.getClass()) {
+            if (obj == null || getClass() != obj.getClass()) {
                 return false;
             }
             Item item = (Item) obj;

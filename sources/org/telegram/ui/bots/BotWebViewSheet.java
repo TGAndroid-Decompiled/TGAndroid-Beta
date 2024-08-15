@@ -144,12 +144,14 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
     private long botId;
     private String buttonText;
     private int currentAccount;
+    private TLRPC$BotApp currentWebApp;
     private boolean defaultFullsize;
     private Paint dimPaint;
     private boolean dismissed;
     private boolean forceExpnaded;
     private Boolean fullsize;
     private boolean ignoreLayout;
+    private long lastSwipeTime;
     private int lineColor;
     private Paint linePaint;
     private TextView mainButton;
@@ -453,7 +455,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             }
         });
         this.windowView.addView(this.swipeContainer, LayoutHelper.createFrame(-1, -1.0f, 49, 0.0f, 24.0f, 0.0f, 0.0f));
-        TextView textView = new TextView(this, context) {
+        TextView textView = new TextView(context) {
             @Override
             protected void onMeasure(int i2, int i3) {
                 if (AndroidUtilities.isTablet() && !AndroidUtilities.isInMultiwindow && !AndroidUtilities.isSmallTablet()) {
@@ -480,7 +482,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         });
         this.windowView.addView(this.mainButton, LayoutHelper.createFrame(-1, 48, 81));
         this.mainButtonAutoAnimator = VerticalPositionAutoAnimator.attach(this.mainButton);
-        RadialProgressView radialProgressView = new RadialProgressView(this, context) {
+        RadialProgressView radialProgressView = new RadialProgressView(context) {
             @Override
             protected void onMeasure(int i2, int i3) {
                 super.onMeasure(i2, i3);
@@ -502,7 +504,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         this.windowView.addView(this.radialProgressView, LayoutHelper.createFrame(28, 28.0f, 85, 0.0f, 0.0f, 10.0f, 10.0f));
         this.radialProgressAutoAnimator = VerticalPositionAutoAnimator.attach(this.radialProgressView);
         this.actionBarShadow = ContextCompat.getDrawable(getContext(), R.drawable.header_shadow).mutate();
-        ActionBar actionBar = new ActionBar(this, context, resourcesProvider) {
+        ActionBar actionBar = new ActionBar(context, resourcesProvider) {
             @Override
             public void onMeasure(int i2, int i3) {
                 if (AndroidUtilities.isTablet() && !AndroidUtilities.isInMultiwindow && !AndroidUtilities.isSmallTablet()) {
@@ -527,7 +529,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         this.actionBar.setAlpha(0.0f);
         this.windowView.addView(this.actionBar, LayoutHelper.createFrame(-1, -2, 49));
         WindowView windowView2 = this.windowView;
-        ChatAttachAlertBotWebViewLayout.WebProgressView webProgressView = new ChatAttachAlertBotWebViewLayout.WebProgressView(this, context, resourcesProvider) {
+        ChatAttachAlertBotWebViewLayout.WebProgressView webProgressView = new ChatAttachAlertBotWebViewLayout.WebProgressView(context, resourcesProvider) {
             @Override
             protected void onMeasure(int i2, int i3) {
                 if (AndroidUtilities.isTablet() && !AndroidUtilities.isInMultiwindow && !AndroidUtilities.isSmallTablet()) {
@@ -874,7 +876,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         float max = Math.max(0.0f, this.swipeContainer.getSwipeOffsetY());
         this.mainButtonAutoAnimator.setOffsetY(max);
         this.radialProgressAutoAnimator.setOffsetY(max);
-        System.currentTimeMillis();
+        this.lastSwipeTime = System.currentTimeMillis();
     }
 
     public void lambda$new$11() {
@@ -994,11 +996,17 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
     }
 
     public static WindowInsets lambda$onCreate$14(View view, WindowInsets windowInsets) {
-        view.setPadding(0, 0, 0, windowInsets.getSystemWindowInsetBottom());
+        int systemWindowInsetBottom;
+        WindowInsets consumeSystemWindowInsets;
+        WindowInsets windowInsets2;
+        systemWindowInsetBottom = windowInsets.getSystemWindowInsetBottom();
+        view.setPadding(0, 0, 0, systemWindowInsetBottom);
         if (Build.VERSION.SDK_INT >= 30) {
-            return WindowInsets.CONSUMED;
+            windowInsets2 = WindowInsets.CONSUMED;
+            return windowInsets2;
         }
-        return windowInsets.consumeSystemWindowInsets();
+        consumeSystemWindowInsets = windowInsets.consumeSystemWindowInsets();
+        return consumeSystemWindowInsets;
     }
 
     @Override
@@ -1073,6 +1081,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
 
     public void requestWebView(BaseFragment baseFragment, WebViewRequestProps webViewRequestProps) {
         TLRPC$User tLRPC$User;
+        TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot;
         TLRPC$InputPeer inputPeer;
         TLRPC$InputPeer inputPeer2;
         this.requestProps = webViewRequestProps;
@@ -1083,6 +1092,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         this.replyToMsgId = webViewRequestProps.replyToMsgId;
         this.silent = webViewRequestProps.silent;
         this.buttonText = webViewRequestProps.buttonText;
+        this.currentWebApp = webViewRequestProps.app;
         TLRPC$User user = MessagesController.getInstance(i).getUser(Long.valueOf(this.botId));
         CharSequence userName = UserObject.getUserName(user);
         try {
@@ -1136,15 +1146,14 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         }
         ActionBarMenu createMenu = this.actionBar.createMenu();
         createMenu.removeAllViews();
-        TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot = null;
         Iterator<TLRPC$TL_attachMenuBot> it = MediaDataController.getInstance(this.currentAccount).getAttachMenuBots().bots.iterator();
         while (true) {
             if (!it.hasNext()) {
+                tLRPC$TL_attachMenuBot = null;
                 break;
             }
-            TLRPC$TL_attachMenuBot next = it.next();
-            if (next.bot_id == this.botId) {
-                tLRPC$TL_attachMenuBot = next;
+            tLRPC$TL_attachMenuBot = it.next();
+            if (tLRPC$TL_attachMenuBot.bot_id == this.botId) {
                 break;
             }
         }
@@ -1585,7 +1594,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             }
             BotWebViewSheet botWebViewSheet2 = BotWebViewSheet.this;
             if (botWebViewSheet2.showExpanded || botWebViewSheet2.isFullSize()) {
-                BotWebViewSheet.this.swipeContainer.stickTo((-BotWebViewSheet.this.swipeContainer.getOffsetY()) + BotWebViewSheet.this.swipeContainer.getTopActionBarOffsetY(), new BotWebViewAttachedSheet$11$$ExternalSyntheticLambda1(animationNotificationsLocker));
+                BotWebViewSheet.this.swipeContainer.stickTo((-BotWebViewSheet.this.swipeContainer.getOffsetY()) + BotWebViewSheet.this.swipeContainer.getTopActionBarOffsetY(), new BotWebViewAttachedSheet$11$$ExternalSyntheticLambda0(animationNotificationsLocker));
             } else {
                 new SpringAnimation(BotWebViewSheet.this.swipeContainer, ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer.SWIPE_OFFSET_Y, 0.0f).setSpring(new SpringForce(0.0f).setDampingRatio(0.75f).setStiffness(500.0f)).addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                     @Override
@@ -1807,7 +1816,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
     }
 
     @Override
-    public WindowView mo943getWindowView() {
+    public WindowView mo945getWindowView() {
         return this.windowView;
     }
 
@@ -1897,7 +1906,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         @Override
         public void onAttachedToWindow() {
             super.onAttachedToWindow();
-            Bulletin.addDelegate(this, new Bulletin.Delegate(this) {
+            Bulletin.addDelegate(this, new Bulletin.Delegate() {
                 @Override
                 public boolean allowLayoutChanges() {
                     return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);

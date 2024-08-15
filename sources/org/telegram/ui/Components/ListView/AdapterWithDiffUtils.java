@@ -46,7 +46,7 @@ public abstract class AdapterWithDiffUtils extends RecyclerListView.SelectionAda
         ArrayList<? extends Item> newItems;
         ArrayList<? extends Item> oldItems;
 
-        private DiffUtilsCallback(AdapterWithDiffUtils adapterWithDiffUtils) {
+        private DiffUtilsCallback() {
         }
 
         public void setItems(ArrayList<? extends Item> arrayList, ArrayList<? extends Item> arrayList2) {

@@ -181,6 +181,7 @@ public class AudioDecoder {
     public DecodedBufferData decode() {
         int usToBytes;
         int limit;
+        ByteBuffer outputBuffer;
         int dequeueInputBuffer;
         ByteBuffer byteBuffer;
         DecodedBufferData decodedBufferData = new DecodedBufferData();
@@ -208,7 +209,8 @@ public class AudioDecoder {
             int dequeueOutputBuffer = this.decoder.dequeueOutputBuffer(bufferInfo, 0L);
             if (dequeueOutputBuffer >= 0) {
                 if (Build.VERSION.SDK_INT >= 21) {
-                    decodedBufferData.byteBuffer = this.decoder.getOutputBuffer(dequeueOutputBuffer);
+                    outputBuffer = this.decoder.getOutputBuffer(dequeueOutputBuffer);
+                    decodedBufferData.byteBuffer = outputBuffer;
                 } else {
                     decodedBufferData.byteBuffer = this.decoder.getOutputBuffers()[dequeueOutputBuffer];
                 }

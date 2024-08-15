@@ -163,8 +163,10 @@ public class LoadingDrawable extends Drawable {
         boolean z = false;
         for (int i = 0; i < 8; i++) {
             float[] fArr2 = this.radii;
-            if (fArr2[i] != fArr[i]) {
-                fArr2[i] = fArr[i];
+            float f = fArr2[i];
+            float f2 = fArr[i];
+            if (f != f2) {
+                fArr2[i] = f2;
                 z = true;
             }
         }

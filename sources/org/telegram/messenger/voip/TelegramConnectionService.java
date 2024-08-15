@@ -28,10 +28,11 @@ public class TelegramConnectionService extends ConnectionService {
 
     @Override
     public Connection onCreateIncomingConnection(PhoneAccountHandle phoneAccountHandle, ConnectionRequest connectionRequest) {
+        Bundle extras;
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d("onCreateIncomingConnection ");
         }
-        Bundle extras = connectionRequest.getExtras();
+        extras = connectionRequest.getExtras();
         if (extras.getInt("call_type") == 1) {
             VoIPService sharedInstance = VoIPService.getSharedInstance();
             if (sharedInstance == null || sharedInstance.isOutgoing()) {
@@ -65,10 +66,11 @@ public class TelegramConnectionService extends ConnectionService {
 
     @Override
     public Connection onCreateOutgoingConnection(PhoneAccountHandle phoneAccountHandle, ConnectionRequest connectionRequest) {
+        Bundle extras;
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d("onCreateOutgoingConnection ");
         }
-        Bundle extras = connectionRequest.getExtras();
+        extras = connectionRequest.getExtras();
         if (extras.getInt("call_type") == 1) {
             VoIPService sharedInstance = VoIPService.getSharedInstance();
             if (sharedInstance == null) {

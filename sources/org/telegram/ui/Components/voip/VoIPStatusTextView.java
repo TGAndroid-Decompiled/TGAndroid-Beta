@@ -23,6 +23,7 @@ import org.telegram.ui.Components.voip.VoIPStatusTextView;
 public class VoIPStatusTextView extends FrameLayout {
     boolean animationInProgress;
     ValueAnimator animator;
+    VoIPBackgroundProvider backgroundProvider;
     FrameLayout badConnectionLayer;
     TextView badConnectionTextView;
     CharSequence nextTextToSet;
@@ -34,6 +35,7 @@ public class VoIPStatusTextView extends FrameLayout {
     public VoIPStatusTextView(Context context, VoIPBackgroundProvider voIPBackgroundProvider) {
         super(context);
         this.textView = new TextView[2];
+        this.backgroundProvider = voIPBackgroundProvider;
         for (int i = 0; i < 2; i++) {
             this.textView[i] = new TextView(context);
             this.textView[i].setTextSize(1, 15.0f);

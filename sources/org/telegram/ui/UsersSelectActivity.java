@@ -429,6 +429,8 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
     @Override
     public View createView(final Context context) {
         Object chat;
+        Property property;
+        Property property2;
         this.searching = false;
         this.searchWas = false;
         this.allSpans.clear();
@@ -567,7 +569,7 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
         this.editText.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         this.spansContainer.addView(this.editText);
         this.editText.setHintText(LocaleController.getString("SearchForPeopleAndGroups", R.string.SearchForPeopleAndGroups));
-        this.editText.setCustomSelectionActionModeCallback(new ActionMode.Callback(this) {
+        this.editText.setCustomSelectionActionModeCallback(new ActionMode.Callback() {
             @Override
             public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
                 return false;
@@ -670,7 +672,7 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
         int i3 = Theme.key_listSelector;
         flickerLoadingView2.setColors(i2, i3, i3);
         viewGroup2.addView(this.progressView);
-        StickerEmptyView stickerEmptyView = new StickerEmptyView(this, context, this.progressView, 1) {
+        StickerEmptyView stickerEmptyView = new StickerEmptyView(context, this.progressView, 1) {
             @Override
             public void setVisibility(int i4) {
                 super.setVisibility(i4);
@@ -729,11 +731,13 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
         if (i4 >= 21) {
             StateListAnimator stateListAnimator = new StateListAnimator();
             ImageView imageView2 = this.floatingButton;
-            Property property = View.TRANSLATION_Z;
+            property = View.TRANSLATION_Z;
             stateListAnimator.addState(new int[]{16842919}, ObjectAnimator.ofFloat(imageView2, property, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f)).setDuration(200L));
-            stateListAnimator.addState(new int[0], ObjectAnimator.ofFloat(this.floatingButton, property, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f)).setDuration(200L));
+            ImageView imageView3 = this.floatingButton;
+            property2 = View.TRANSLATION_Z;
+            stateListAnimator.addState(new int[0], ObjectAnimator.ofFloat(imageView3, property2, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f)).setDuration(200L));
             this.floatingButton.setStateListAnimator(stateListAnimator);
-            this.floatingButton.setOutlineProvider(new ViewOutlineProvider(this) {
+            this.floatingButton.setOutlineProvider(new ViewOutlineProvider() {
                 @Override
                 @SuppressLint({"NewApi"})
                 public void getOutline(View view, Outline outline) {
@@ -889,6 +893,7 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
 
     public void checkVisibleRows() {
         long j;
+        char c;
         int childCount = this.listView.getChildCount();
         for (int i = 0; i < childCount; i++) {
             View childAt = this.listView.getChildAt(i);
@@ -897,67 +902,79 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
                 Object object = groupCreateUserCell.getObject();
                 if (object instanceof String) {
                     String str = (String) object;
-                    char c = 65535;
                     switch (str.hashCode()) {
                         case -1716307998:
                             if (str.equals("archived")) {
                                 c = '\t';
                                 break;
                             }
+                            c = 65535;
                             break;
                         case -1237460524:
                             if (str.equals("groups")) {
                                 c = 2;
                                 break;
                             }
+                            c = 65535;
                             break;
                         case -1197490811:
                             if (str.equals("non_contacts")) {
                                 c = 1;
                                 break;
                             }
+                            c = 65535;
                             break;
                         case -567451565:
                             if (str.equals("contacts")) {
                                 c = 0;
                                 break;
                             }
+                            c = 65535;
                             break;
                         case -268161860:
                             if (str.equals("new_chats")) {
                                 c = '\b';
                                 break;
                             }
+                            c = 65535;
                             break;
                         case 3029900:
                             if (str.equals("bots")) {
                                 c = 4;
                                 break;
                             }
+                            c = 65535;
                             break;
                         case 3496342:
                             if (str.equals("read")) {
                                 c = 6;
                                 break;
                             }
+                            c = 65535;
                             break;
                         case 104264043:
                             if (str.equals("muted")) {
                                 c = 5;
                                 break;
                             }
+                            c = 65535;
                             break;
                         case 151051367:
                             if (str.equals("existing_chats")) {
                                 c = 7;
                                 break;
                             }
+                            c = 65535;
                             break;
                         case 1432626128:
                             if (str.equals("channels")) {
                                 c = 3;
                                 break;
                             }
+                            c = 65535;
+                            break;
+                        default:
+                            c = 65535;
                             break;
                     }
                     j = -9223372036854775800L;

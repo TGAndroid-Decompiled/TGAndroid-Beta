@@ -54,12 +54,15 @@ public class TextMessageEnterTransition implements MessageEnterTransitionContain
     ChatActivityEnterView enterView;
     int fromColor;
     Drawable fromMessageDrawable;
+    float fromRadius;
     private float fromStartX;
     private float fromStartY;
     private Matrix gradientMatrix;
     private Paint gradientPaint;
     private LinearGradient gradientShader;
     boolean hasReply;
+    float lastMessageX;
+    float lastMessageY;
     StaticLayout layout;
     RecyclerListView listView;
     private int messageId;
@@ -67,6 +70,7 @@ public class TextMessageEnterTransition implements MessageEnterTransitionContain
     float progress;
     int replayFromColor;
     int replayObjectFromColor;
+    float replyFromObjectStartY;
     float replyFromStartWidth;
     float replyFromStartX;
     float replyFromStartY;
@@ -89,6 +93,7 @@ public class TextMessageEnterTransition implements MessageEnterTransitionContain
     private AnimationNotificationsLocker notificationsLocker = new AnimationNotificationsLocker();
     private final RectF replySelectorRect = new RectF();
     private final RectF messageReplySelectorRect = new RectF();
+    private final int currentAccount = UserConfig.selectedAccount;
 
     @SuppressLint({"WrongConstant"})
     public TextMessageEnterTransition(final ChatMessageCell chatMessageCell, final ChatActivity chatActivity, RecyclerListView recyclerListView, final MessageEnterTransitionContainer messageEnterTransitionContainer, Theme.ResourcesProvider resourcesProvider) {
@@ -96,10 +101,24 @@ public class TextMessageEnterTransition implements MessageEnterTransitionContain
         int i2;
         int i3;
         Theme.MessageDrawable currentBackgroundDrawable;
+        StaticLayout.Builder obtain;
+        StaticLayout.Builder breakStrategy;
+        StaticLayout.Builder hyphenationFrequency;
+        StaticLayout.Builder alignment;
+        StaticLayout build;
+        StaticLayout.Builder obtain2;
+        StaticLayout.Builder breakStrategy2;
+        StaticLayout.Builder hyphenationFrequency2;
+        StaticLayout.Builder alignment2;
+        StaticLayout build2;
+        StaticLayout.Builder obtain3;
+        StaticLayout.Builder breakStrategy3;
+        StaticLayout.Builder hyphenationFrequency3;
+        StaticLayout.Builder alignment3;
+        StaticLayout build3;
         Object[] spans;
         this.drawBitmaps = false;
         this.resourcesProvider = resourcesProvider;
-        int i4 = UserConfig.selectedAccount;
         if (chatMessageCell.getMessageObject().textLayoutBlocks == null || chatMessageCell.getMessageObject().textLayoutBlocks.size() > 1 || chatMessageCell.getMessageObject().textLayoutBlocks.isEmpty() || chatMessageCell.getMessageObject().textLayoutBlocks.get(0).textLayout.getLineCount() > 10) {
             return;
         }
@@ -112,7 +131,8 @@ public class TextMessageEnterTransition implements MessageEnterTransitionContain
         if (chatActivityEnterView == null || chatActivityEnterView.getEditField() == null || chatActivityEnterView.getEditField().getLayout() == null) {
             return;
         }
-        chatActivityEnterView.getRecordCircle();
+        ChatActivityEnterView.RecordCircle recordCircle = chatActivityEnterView.getRecordCircle();
+        this.fromRadius = recordCircle == null ? 0.0f : recordCircle.drawingCircleRadius;
         this.bitmapPaint.setFilterBitmap(true);
         this.currentMessageObject = chatMessageCell.getMessageObject();
         if (!chatMessageCell.getTransitionParams().wasDraw) {
@@ -198,7 +218,12 @@ public class TextMessageEnterTransition implements MessageEnterTransitionContain
         int lineCount = chatActivityEnterView.getEditField().getLayout().getLineCount();
         int width = (int) (chatActivityEnterView.getEditField().getLayout().getWidth() / this.scaleFrom);
         if (Build.VERSION.SDK_INT >= 24) {
-            this.layout = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, width).setBreakStrategy(1).setHyphenationFrequency(0).setAlignment(Layout.Alignment.ALIGN_NORMAL).build();
+            obtain3 = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, width);
+            breakStrategy3 = obtain3.setBreakStrategy(1);
+            hyphenationFrequency3 = breakStrategy3.setHyphenationFrequency(0);
+            alignment3 = hyphenationFrequency3.setAlignment(Layout.Alignment.ALIGN_NORMAL);
+            build3 = alignment3.build();
+            this.layout = build3;
         } else {
             this.layout = new StaticLayout(charSequence, textPaint, width, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         }
@@ -208,8 +233,8 @@ public class TextMessageEnterTransition implements MessageEnterTransitionContain
         this.fromStartY = ((AndroidUtilities.dp(10.0f) + y) - chatActivityEnterView.getEditField().getScrollY()) + i;
         this.toXOffset = 0.0f;
         float f = Float.MAX_VALUE;
-        for (int i5 = 0; i5 < this.layout.getLineCount(); i5++) {
-            float lineLeft = this.layout.getLineLeft(i5);
+        for (int i4 = 0; i4 < this.layout.getLineCount(); i4++) {
+            float lineLeft = this.layout.getLineLeft(i4);
             if (lineLeft < f) {
                 f = lineLeft;
             }
@@ -226,31 +251,31 @@ public class TextMessageEnterTransition implements MessageEnterTransitionContain
         MessageObject.TextLayoutBlock textLayoutBlock = chatMessageCell.getMessageObject().textLayoutBlocks.get(0);
         this.textLayoutBlock = textLayoutBlock;
         StaticLayout staticLayout = textLayoutBlock.textLayout;
-        int i6 = Theme.key_chat_messageTextOut;
-        double calculateLuminance = ColorUtils.calculateLuminance(getThemedColor(i6));
-        int i7 = Theme.key_chat_messagePanelText;
-        if (Math.abs(calculateLuminance - ColorUtils.calculateLuminance(getThemedColor(i7))) > 0.20000000298023224d) {
+        int i5 = Theme.key_chat_messageTextOut;
+        double calculateLuminance = ColorUtils.calculateLuminance(getThemedColor(i5));
+        int i6 = Theme.key_chat_messagePanelText;
+        if (Math.abs(calculateLuminance - ColorUtils.calculateLuminance(getThemedColor(i6))) > 0.20000000298023224d) {
             this.crossfade = true;
             this.changeColor = true;
         }
-        this.fromColor = getThemedColor(i7);
-        this.toColor = getThemedColor(i6);
+        this.fromColor = getThemedColor(i6);
+        this.toColor = getThemedColor(i5);
         if (staticLayout.getLineCount() == this.layout.getLineCount()) {
             lineCount = staticLayout.getLineCount();
-            int i8 = 0;
+            int i7 = 0;
             i2 = 0;
             i3 = 0;
             while (true) {
-                if (i8 < lineCount) {
-                    if (isRtlLine(this.layout, i8)) {
+                if (i7 < lineCount) {
+                    if (isRtlLine(this.layout, i7)) {
                         i3++;
                     } else {
                         i2++;
                     }
-                    if (staticLayout.getLineEnd(i8) != this.layout.getLineEnd(i8)) {
+                    if (staticLayout.getLineEnd(i7) != this.layout.getLineEnd(i7)) {
                         this.crossfade = true;
                     } else {
-                        i8++;
+                        i7++;
                     }
                 }
             }
@@ -263,18 +288,28 @@ public class TextMessageEnterTransition implements MessageEnterTransitionContain
             SpannableString spannableString = new SpannableString(charSequence);
             SpannableString spannableString2 = new SpannableString(charSequence);
             float f2 = Float.MAX_VALUE;
-            for (int i9 = 0; i9 < lineCount; i9++) {
-                if (isRtlLine(this.layout, i9)) {
-                    spannableString.setSpan(new EmptyStubSpan(), this.layout.getLineStart(i9), this.layout.getLineEnd(i9), 0);
-                    float lineLeft2 = this.layout.getLineLeft(i9);
+            for (int i8 = 0; i8 < lineCount; i8++) {
+                if (isRtlLine(this.layout, i8)) {
+                    spannableString.setSpan(new EmptyStubSpan(), this.layout.getLineStart(i8), this.layout.getLineEnd(i8), 0);
+                    float lineLeft2 = this.layout.getLineLeft(i8);
                     f2 = lineLeft2 < f2 ? lineLeft2 : f2;
                 } else {
-                    spannableString2.setSpan(new EmptyStubSpan(), this.layout.getLineStart(i9), this.layout.getLineEnd(i9), 0);
+                    spannableString2.setSpan(new EmptyStubSpan(), this.layout.getLineStart(i8), this.layout.getLineEnd(i8), 0);
                 }
             }
             if (Build.VERSION.SDK_INT >= 24) {
-                this.layout = StaticLayout.Builder.obtain(spannableString, 0, spannableString.length(), textPaint, width).setBreakStrategy(1).setHyphenationFrequency(0).setAlignment(Layout.Alignment.ALIGN_NORMAL).build();
-                this.rtlLayout = StaticLayout.Builder.obtain(spannableString2, 0, spannableString2.length(), textPaint, width).setBreakStrategy(1).setHyphenationFrequency(0).setAlignment(Layout.Alignment.ALIGN_NORMAL).build();
+                obtain = StaticLayout.Builder.obtain(spannableString, 0, spannableString.length(), textPaint, width);
+                breakStrategy = obtain.setBreakStrategy(1);
+                hyphenationFrequency = breakStrategy.setHyphenationFrequency(0);
+                alignment = hyphenationFrequency.setAlignment(Layout.Alignment.ALIGN_NORMAL);
+                build = alignment.build();
+                this.layout = build;
+                obtain2 = StaticLayout.Builder.obtain(spannableString2, 0, spannableString2.length(), textPaint, width);
+                breakStrategy2 = obtain2.setBreakStrategy(1);
+                hyphenationFrequency2 = breakStrategy2.setHyphenationFrequency(0);
+                alignment2 = hyphenationFrequency2.setAlignment(Layout.Alignment.ALIGN_NORMAL);
+                build2 = alignment2.build();
+                this.rtlLayout = build2;
             } else {
                 TextPaint textPaint2 = textPaint;
                 this.layout = new StaticLayout(spannableString, textPaint2, width, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
@@ -312,9 +347,7 @@ public class TextMessageEnterTransition implements MessageEnterTransitionContain
             this.replyFromStartWidth = ((View) replyNameTextView.getParent()).getWidth();
             this.replyFromStartY = replyNameTextView.getY() + ((View) replyNameTextView.getParent().getParent()).getY() + ((View) replyNameTextView.getParent().getParent().getParent()).getY();
             SimpleTextView replyObjectTextView = chatActivity.getReplyObjectTextView();
-            replyObjectTextView.getY();
-            ((View) replyObjectTextView.getParent().getParent()).getY();
-            ((View) replyObjectTextView.getParent().getParent().getParent()).getY();
+            this.replyFromObjectStartY = replyObjectTextView.getY() + ((View) replyObjectTextView.getParent().getParent()).getY() + ((View) replyObjectTextView.getParent().getParent().getParent()).getY();
             this.replayFromColor = chatActivity.getReplyNameTextView().getTextColor();
             this.replayObjectFromColor = chatActivity.getReplyObjectTextView().getTextColor();
             this.drawableFromTop -= AndroidUtilities.dp(46.0f);
@@ -383,7 +416,7 @@ public class TextMessageEnterTransition implements MessageEnterTransitionContain
     }
 
     @Override
-    public void onDraw(android.graphics.Canvas r46) {
+    public void onDraw(android.graphics.Canvas r47) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.TextMessageEnterTransition.onDraw(android.graphics.Canvas):void");
     }
 

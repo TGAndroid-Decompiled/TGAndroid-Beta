@@ -70,6 +70,8 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
 
     @Override
     public View createView(Context context) {
+        this.searching = false;
+        this.searchWas = false;
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setTitle(LocaleController.getString("Language", R.string.Language));
@@ -368,6 +370,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
 
     public void search(String str) {
         if (str == null) {
+            this.searching = false;
             this.searchResult = null;
             if (this.listView != null) {
                 this.emptyView.setVisibility(8);
@@ -483,29 +486,25 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View view;
+            View textRadioCell;
             if (i == 0) {
-                View textRadioCell = new TextRadioCell(this.mContext);
+                textRadioCell = new TextRadioCell(this.mContext);
                 textRadioCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                view = textRadioCell;
             } else if (i == 2) {
-                View textCheckCell = new TextCheckCell(this.mContext);
-                textCheckCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                view = textCheckCell;
+                textRadioCell = new TextCheckCell(this.mContext);
+                textRadioCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             } else if (i == 3) {
-                FrameLayout headerCell = new HeaderCell(this.mContext);
-                headerCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                view = headerCell;
+                textRadioCell = new HeaderCell(this.mContext);
+                textRadioCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             } else if (i == 4) {
-                FrameLayout textSettingsCell = new TextSettingsCell(this.mContext);
-                textSettingsCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                view = textSettingsCell;
+                textRadioCell = new TextSettingsCell(this.mContext);
+                textRadioCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             } else if (i == 5) {
-                view = new TextInfoPrivacyCell(this.mContext);
+                textRadioCell = new TextInfoPrivacyCell(this.mContext);
             } else {
-                view = new ShadowSectionCell(this.mContext);
+                textRadioCell = new ShadowSectionCell(this.mContext);
             }
-            return new RecyclerListView.Holder(view);
+            return new RecyclerListView.Holder(textRadioCell);
         }
 
         @Override

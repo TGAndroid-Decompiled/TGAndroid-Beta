@@ -44,7 +44,7 @@ public class MentionCell extends LinearLayout {
         this.imageView = backupImageView;
         backupImageView.setRoundRadius(AndroidUtilities.dp(14.0f));
         addView(backupImageView, LayoutHelper.createLinear(28, 28, 12.0f, 4.0f, 0.0f, 0.0f));
-        TextView textView = new TextView(this, context) {
+        TextView textView = new TextView(context) {
             @Override
             public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
                 super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);

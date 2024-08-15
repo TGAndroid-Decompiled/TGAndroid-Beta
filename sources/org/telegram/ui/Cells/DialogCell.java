@@ -173,6 +173,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     private int currentDialogFolderDialogsCount;
     private int currentDialogFolderId;
     private long currentDialogId;
+    private int currentEditDate;
     private TextPaint currentMessagePaint;
     private float currentRevealBounceProgress;
     private float currentRevealProgress;
@@ -185,6 +186,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     private boolean draftVoice;
     public boolean drawArchive;
     public boolean drawAvatar;
+    public boolean drawAvatarSelector;
     private boolean drawCheck1;
     private boolean drawCheck2;
     private boolean drawClock;
@@ -441,9 +443,9 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         if (this.currentDialogId != j) {
             this.lastStatusDrawableParams = -1;
         }
-        Drawable[] drawableArr = messageObject.topicIconDrawable;
-        if (drawableArr[0] instanceof ForumBubbleDrawable) {
-            ((ForumBubbleDrawable) drawableArr[0]).setColor(tLRPC$TL_forumTopic.icon_color);
+        Drawable drawable = messageObject.topicIconDrawable[0];
+        if (drawable instanceof ForumBubbleDrawable) {
+            ((ForumBubbleDrawable) drawable).setColor(tLRPC$TL_forumTopic.icon_color);
         }
         this.currentDialogId = j;
         this.lastDialogChangedTime = System.currentTimeMillis();
@@ -452,7 +454,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         this.showTopicIconInName = z;
         TLRPC$Message tLRPC$Message = messageObject.messageOwner;
         this.lastMessageDate = tLRPC$Message.date;
-        int i = tLRPC$Message.edit_date;
+        this.currentEditDate = tLRPC$Message.edit_date;
         this.markUnread = false;
         this.messageId = messageObject.getId();
         this.lastUnreadState = messageObject.isUnread();
@@ -610,9 +612,9 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             ImageReceiver[] imageReceiverArr = this.thumbImage;
             if (i2 < imageReceiverArr.length) {
                 imageReceiverArr[i2] = new ImageReceiver(this);
-                ImageReceiver[] imageReceiverArr2 = this.thumbImage;
-                imageReceiverArr2[i2].ignoreNotifications = true;
-                imageReceiverArr2[i2].setRoundRadius(AndroidUtilities.dp(2.0f));
+                ImageReceiver imageReceiver = this.thumbImage[i2];
+                imageReceiver.ignoreNotifications = true;
+                imageReceiver.setRoundRadius(AndroidUtilities.dp(2.0f));
                 this.thumbImage[i2].setAllowLoadingOnAttachedOnly(true);
                 i2++;
             } else {
@@ -732,9 +734,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         this.useMeForMyMessages = z;
         this.isDialogCell = false;
         this.lastMessageDate = i;
-        if (messageObject != null) {
-            int i2 = messageObject.messageOwner.edit_date;
-        }
+        this.currentEditDate = messageObject != null ? messageObject.messageOwner.edit_date : 0;
         this.unreadCount = 0;
         this.markUnread = false;
         this.messageId = messageObject != null ? messageObject.getId() : 0;
@@ -2085,35 +2085,22 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             TLRPC$MessageMedia tLRPC$MessageMedia = messageObject3.messageOwner.media;
             if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaPoll) {
                 TLRPC$TL_messageMediaPoll tLRPC$TL_messageMediaPoll = (TLRPC$TL_messageMediaPoll) tLRPC$MessageMedia;
-                if (Build.VERSION.SDK_INT >= 18) {
-                    TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities = tLRPC$TL_messageMediaPoll.poll.question;
-                    if (tLRPC$TL_textWithEntities == null || tLRPC$TL_textWithEntities.entities == null) {
-                        charSequence2 = String.format("📊 \u2068%s\u2069", tLRPC$TL_textWithEntities.text);
-                    } else {
-                        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(tLRPC$TL_messageMediaPoll.poll.question.text.replace('\n', ' '));
-                        TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities2 = tLRPC$TL_messageMediaPoll.poll.question;
-                        MediaDataController.addTextStyleRuns(tLRPC$TL_textWithEntities2.entities, tLRPC$TL_textWithEntities2.text, spannableStringBuilder2);
-                        MediaDataController.addAnimatedEmojiSpans(tLRPC$TL_messageMediaPoll.poll.question.entities, spannableStringBuilder2, Theme.dialogs_messagePaint[this.paintIndex].getFontMetricsInt());
-                        charSequence2 = new SpannableStringBuilder("📊 \u2068").append((CharSequence) spannableStringBuilder2).append((CharSequence) "\u2069");
-                    }
+                TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities = tLRPC$TL_messageMediaPoll.poll.question;
+                if (tLRPC$TL_textWithEntities == null || tLRPC$TL_textWithEntities.entities == null) {
+                    charSequence2 = String.format("📊 \u2068%s\u2069", tLRPC$TL_textWithEntities.text);
                 } else {
-                    TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities3 = tLRPC$TL_messageMediaPoll.poll.question;
-                    if (tLRPC$TL_textWithEntities3 == null || tLRPC$TL_textWithEntities3.entities == null) {
-                        charSequence2 = String.format("📊 %s", tLRPC$TL_textWithEntities3.text);
-                    } else {
-                        SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(tLRPC$TL_messageMediaPoll.poll.question.text.replace('\n', ' '));
-                        TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities4 = tLRPC$TL_messageMediaPoll.poll.question;
-                        MediaDataController.addTextStyleRuns(tLRPC$TL_textWithEntities4.entities, tLRPC$TL_textWithEntities4.text, spannableStringBuilder3);
-                        MediaDataController.addAnimatedEmojiSpans(tLRPC$TL_messageMediaPoll.poll.question.entities, spannableStringBuilder3, Theme.dialogs_messagePaint[this.paintIndex].getFontMetricsInt());
-                        charSequence2 = new SpannableStringBuilder("📊 ").append((CharSequence) spannableStringBuilder3);
-                    }
+                    SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(tLRPC$TL_messageMediaPoll.poll.question.text.replace('\n', ' '));
+                    TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities2 = tLRPC$TL_messageMediaPoll.poll.question;
+                    MediaDataController.addTextStyleRuns(tLRPC$TL_textWithEntities2.entities, tLRPC$TL_textWithEntities2.text, spannableStringBuilder2);
+                    MediaDataController.addAnimatedEmojiSpans(tLRPC$TL_messageMediaPoll.poll.question.entities, spannableStringBuilder2, Theme.dialogs_messagePaint[this.paintIndex].getFontMetricsInt());
+                    charSequence2 = new SpannableStringBuilder("📊 \u2068").append((CharSequence) spannableStringBuilder2).append((CharSequence) "\u2069");
                 }
             } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaGame) {
-                charSequence2 = Build.VERSION.SDK_INT >= 18 ? String.format("🎮 \u2068%s\u2069", tLRPC$MessageMedia.game.title) : String.format("🎮 %s", tLRPC$MessageMedia.game.title);
+                charSequence2 = String.format("🎮 \u2068%s\u2069", tLRPC$MessageMedia.game.title);
             } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaInvoice) {
                 charSequence2 = tLRPC$MessageMedia.title;
             } else if (messageObject3.type == 14) {
-                charSequence2 = Build.VERSION.SDK_INT >= 18 ? String.format("🎧 \u2068%s - %s\u2069", messageObject3.getMusicAuthor(), this.message.getMusicTitle()) : String.format("🎧 %s - %s", messageObject3.getMusicAuthor(), this.message.getMusicTitle());
+                charSequence2 = String.format("🎧 \u2068%s - %s\u2069", messageObject3.getMusicAuthor(), this.message.getMusicTitle());
             } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaPaidMedia) {
                 int size = ((TLRPC$TL_messageMediaPaidMedia) tLRPC$MessageMedia).extended_media.size();
                 if (this.hasVideoThumb) {
@@ -2179,22 +2166,22 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                     }
                     charSequence8 = AndroidUtilities.replaceNewLines(charSequence8);
                 }
-                ?? spannableStringBuilder4 = new SpannableStringBuilder(charSequence8);
+                ?? spannableStringBuilder3 = new SpannableStringBuilder(charSequence8);
                 MessageObject messageObject5 = this.message;
                 if (messageObject5 != null) {
                     messageObject5.spoilLoginCode();
                 }
-                MediaDataController.addTextStyleRuns(this.message, (Spannable) spannableStringBuilder4, 264);
+                MediaDataController.addTextStyleRuns(this.message, (Spannable) spannableStringBuilder3, 264);
                 MessageObject messageObject6 = this.message;
                 if (messageObject6 != null && (tLRPC$Message = messageObject6.messageOwner) != null) {
                     ArrayList<TLRPC$MessageEntity> arrayList4 = tLRPC$Message.entities;
                     TextPaint textPaint2 = this.currentMessagePaint;
-                    MediaDataController.addAnimatedEmojiSpans(arrayList4, spannableStringBuilder4, textPaint2 != null ? textPaint2.getFontMetricsInt() : null);
+                    MediaDataController.addAnimatedEmojiSpans(arrayList4, spannableStringBuilder3, textPaint2 != null ? textPaint2.getFontMetricsInt() : null);
                 }
                 if (z) {
-                    spannableStringBuilder4 = applyThumbs(spannableStringBuilder4);
+                    spannableStringBuilder3 = applyThumbs(spannableStringBuilder3);
                 }
-                return formatInternal(i, spannableStringBuilder4, charSequence);
+                return formatInternal(i, spannableStringBuilder3, charSequence);
             }
             return new SpannableStringBuilder();
         }
@@ -2349,6 +2336,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         }
 
         public void formatTopicsNames(int i, MessageObject messageObject, TLRPC$Chat tLRPC$Chat) {
+            long j;
             boolean z;
             int i2;
             int id = (messageObject == null || tLRPC$Chat == null) ? 0 : messageObject.getId();
@@ -2373,7 +2361,6 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                             }
                         }));
                         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                        long j = 0;
                         if (messageObject != null) {
                             j = MessageObject.getTopicId(i, messageObject.messageOwner, true);
                             TLRPC$TL_forumTopic findTopic = MessagesController.getInstance(i).getTopicsController().findTopic(tLRPC$Chat.id, j);
@@ -2400,6 +2387,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                                 z = false;
                             }
                         } else {
+                            j = 0;
                             z = false;
                             i2 = 0;
                         }

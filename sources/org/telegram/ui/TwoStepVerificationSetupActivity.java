@@ -118,6 +118,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
     private EditTextBoldCursor editTextSecondRow;
     private String email;
     private String emailCode;
+    private int emailCodeLength;
     private boolean emailOnly;
     private Runnable errorColorTimeout;
     private Runnable finishCallback;
@@ -131,6 +132,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
     private String hint;
     private boolean ignoreTextChange;
     private RLottieImageView imageView;
+    private boolean isPasswordVisible;
     private CustomPhoneKeyboardView keyboardView;
     private Runnable monkeyEndCallback;
     private boolean needPasswordButton;
@@ -192,6 +194,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
         this.needPasswordButton = false;
         this.otherwiseReloginDays = -1;
         this.fragmentsToClose = new ArrayList<>();
+        this.emailCodeLength = 6;
         this.currentPasswordHash = new byte[0];
         this.errorColorTimeout = new Runnable() {
             @Override
@@ -218,6 +221,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
         this.needPasswordButton = false;
         this.otherwiseReloginDays = -1;
         this.fragmentsToClose = new ArrayList<>();
+        this.emailCodeLength = 6;
         this.currentPasswordHash = new byte[0];
         this.errorColorTimeout = new Runnable() {
             @Override
@@ -312,7 +316,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
             stateListAnimator.addState(new int[]{16842919}, ObjectAnimator.ofFloat(this.floatingButtonIcon, "translationZ", AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f)).setDuration(200L));
             stateListAnimator.addState(new int[0], ObjectAnimator.ofFloat(this.floatingButtonIcon, "translationZ", AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f)).setDuration(200L));
             this.floatingButtonContainer.setStateListAnimator(stateListAnimator);
-            this.floatingButtonContainer.setOutlineProvider(new ViewOutlineProvider(this) {
+            this.floatingButtonContainer.setOutlineProvider(new ViewOutlineProvider() {
                 @Override
                 @SuppressLint({"NewApi"})
                 public void getOutline(View view, Outline outline) {
@@ -1363,27 +1367,29 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
     public void lambda$createView$13(View view) {
         this.ignoreTextChange = true;
         if (this.editTextFirstRow.getTransformationMethod() == null) {
+            this.isPasswordVisible = false;
             this.editTextFirstRow.setTransformationMethod(PasswordTransformationMethod.getInstance());
             this.showPasswordButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_chat_messagePanelIcons), PorterDuff.Mode.MULTIPLY));
             if (this.currentType == 0 && this.editTextFirstRow.length() > 0 && this.editTextFirstRow.hasFocus() && this.monkeyEndCallback == null) {
                 this.animationDrawables[3].setCustomEndFrame(-1);
                 RLottieDrawable animatedDrawable = this.imageView.getAnimatedDrawable();
-                RLottieDrawable[] rLottieDrawableArr = this.animationDrawables;
-                if (animatedDrawable != rLottieDrawableArr[3]) {
-                    this.imageView.setAnimation(rLottieDrawableArr[3]);
+                RLottieDrawable rLottieDrawable = this.animationDrawables[3];
+                if (animatedDrawable != rLottieDrawable) {
+                    this.imageView.setAnimation(rLottieDrawable);
                     this.animationDrawables[3].setCurrentFrame(18, false);
                 }
                 this.imageView.playAnimation();
             }
         } else {
+            this.isPasswordVisible = true;
             this.editTextFirstRow.setTransformationMethod(null);
             this.showPasswordButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_chat_messagePanelSend), PorterDuff.Mode.MULTIPLY));
             if (this.currentType == 0 && this.editTextFirstRow.length() > 0 && this.editTextFirstRow.hasFocus() && this.monkeyEndCallback == null) {
                 this.animationDrawables[3].setCustomEndFrame(18);
                 RLottieDrawable animatedDrawable2 = this.imageView.getAnimatedDrawable();
-                RLottieDrawable[] rLottieDrawableArr2 = this.animationDrawables;
-                if (animatedDrawable2 != rLottieDrawableArr2[3]) {
-                    this.imageView.setAnimation(rLottieDrawableArr2[3]);
+                RLottieDrawable rLottieDrawable2 = this.animationDrawables[3];
+                if (animatedDrawable2 != rLottieDrawable2) {
+                    this.imageView.setAnimation(rLottieDrawable2);
                 }
                 this.animationDrawables[3].setProgress(0.0f, false);
                 this.imageView.playAnimation();

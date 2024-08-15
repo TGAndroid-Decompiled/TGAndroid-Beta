@@ -81,18 +81,17 @@ public class AutoDeleteMessagesActivity extends BaseFragment implements Notifica
         });
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
-        FrameLayout frameLayout2 = frameLayout;
-        frameLayout2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
+        frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
         ScrollView scrollView = new ScrollView(getContext());
         LinearLayout linearLayout = new LinearLayout(getContext());
         linearLayout.setOrientation(1);
         scrollView.addView(linearLayout);
-        frameLayout2.addView(scrollView);
-        FrameLayout frameLayout3 = new FrameLayout(context);
+        frameLayout.addView(scrollView);
+        FrameLayout frameLayout2 = new FrameLayout(context);
         StickerImageView stickerImageView = new StickerImageView(context, this.currentAccount);
         stickerImageView.setStickerNum(10);
-        frameLayout3.addView(stickerImageView, LayoutHelper.createFrame(130, 130, 17));
-        linearLayout.addView(frameLayout3, LayoutHelper.createLinear(-1, 170));
+        frameLayout2.addView(stickerImageView, LayoutHelper.createFrame(130, 130, 17));
+        linearLayout.addView(frameLayout2, LayoutHelper.createLinear(-1, 170));
         LinearLayout linearLayout2 = new LinearLayout(getContext());
         this.checkBoxContainer = linearLayout2;
         linearLayout2.setOrientation(1);
@@ -101,31 +100,31 @@ public class AutoDeleteMessagesActivity extends BaseFragment implements Notifica
         HeaderCell headerCell = new HeaderCell(getContext());
         headerCell.setText(LocaleController.getString("MessageLifetime", R.string.MessageLifetime));
         this.checkBoxContainer.addView(headerCell);
-        RadioCellInternal radioCellInternal = new RadioCellInternal(this, getContext());
+        RadioCellInternal radioCellInternal = new RadioCellInternal(getContext());
         this.offCell = radioCellInternal;
         radioCellInternal.setText(LocaleController.getString("ShortMessageLifetimeForever", R.string.ShortMessageLifetimeForever), false, true);
         RadioCellInternal radioCellInternal2 = this.offCell;
         radioCellInternal2.time = 0;
         this.checkBoxContainer.addView(radioCellInternal2);
-        RadioCellInternal radioCellInternal3 = new RadioCellInternal(this, getContext());
+        RadioCellInternal radioCellInternal3 = new RadioCellInternal(getContext());
         this.afterOneDay = radioCellInternal3;
         radioCellInternal3.setText(LocaleController.getString("AutoDeleteAfter1Day", R.string.AutoDeleteAfter1Day), false, true);
         RadioCellInternal radioCellInternal4 = this.afterOneDay;
         radioCellInternal4.time = 1440;
         this.checkBoxContainer.addView(radioCellInternal4);
-        RadioCellInternal radioCellInternal5 = new RadioCellInternal(this, getContext());
+        RadioCellInternal radioCellInternal5 = new RadioCellInternal(getContext());
         this.afterOneWeek = radioCellInternal5;
         radioCellInternal5.setText(LocaleController.getString("AutoDeleteAfter1Week", R.string.AutoDeleteAfter1Week), false, true);
         RadioCellInternal radioCellInternal6 = this.afterOneWeek;
         radioCellInternal6.time = 10080;
         this.checkBoxContainer.addView(radioCellInternal6);
-        RadioCellInternal radioCellInternal7 = new RadioCellInternal(this, getContext());
+        RadioCellInternal radioCellInternal7 = new RadioCellInternal(getContext());
         this.afterOneMonth = radioCellInternal7;
         radioCellInternal7.setText(LocaleController.getString("AutoDeleteAfter1Month", R.string.AutoDeleteAfter1Month), false, true);
         RadioCellInternal radioCellInternal8 = this.afterOneMonth;
         radioCellInternal8.time = 44640;
         this.checkBoxContainer.addView(radioCellInternal8);
-        RadioCellInternal radioCellInternal9 = new RadioCellInternal(this, getContext());
+        RadioCellInternal radioCellInternal9 = new RadioCellInternal(getContext());
         this.customTimeButton = radioCellInternal9;
         radioCellInternal9.setText(LocaleController.getString("SetCustomTime", R.string.SetCustomTime), false, false);
         this.customTimeButton.hideRadioButton();
@@ -294,7 +293,7 @@ public class AutoDeleteMessagesActivity extends BaseFragment implements Notifica
                 i4++;
             }
         }
-        RadioCellInternal radioCellInternal = new RadioCellInternal(this, getContext());
+        RadioCellInternal radioCellInternal = new RadioCellInternal(getContext());
         radioCellInternal.custom = true;
         radioCellInternal.time = i;
         radioCellInternal.setText(LocaleController.formatString("AutoDeleteAfterShort", R.string.AutoDeleteAfterShort, LocaleController.formatTTLString(i * 60)), false, true);
@@ -323,7 +322,7 @@ public class AutoDeleteMessagesActivity extends BaseFragment implements Notifica
         boolean custom;
         int time;
 
-        public RadioCellInternal(AutoDeleteMessagesActivity autoDeleteMessagesActivity, Context context) {
+        public RadioCellInternal(Context context) {
             super(context);
         }
     }
@@ -337,7 +336,7 @@ public class AutoDeleteMessagesActivity extends BaseFragment implements Notifica
                     this.startFromTtl = this.arrayList.get(i).time;
                     TLRPC$TL_messages_setDefaultHistoryTTL tLRPC$TL_messages_setDefaultHistoryTTL = new TLRPC$TL_messages_setDefaultHistoryTTL();
                     tLRPC$TL_messages_setDefaultHistoryTTL.period = this.arrayList.get(i).time * 60;
-                    getConnectionsManager().sendRequest(tLRPC$TL_messages_setDefaultHistoryTTL, new RequestDelegate(this) {
+                    getConnectionsManager().sendRequest(tLRPC$TL_messages_setDefaultHistoryTTL, new RequestDelegate() {
                         @Override
                         public void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
                         }

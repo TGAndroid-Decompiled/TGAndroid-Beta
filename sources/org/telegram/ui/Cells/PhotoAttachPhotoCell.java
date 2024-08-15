@@ -201,7 +201,7 @@ public class PhotoAttachPhotoCell extends FrameLayout {
         this.imageView = backupImageView;
         backupImageView.setBlurAllowed(true);
         this.container.addView(this.imageView, LayoutHelper.createFrame(-1, -1.0f));
-        FrameLayout frameLayout2 = new FrameLayout(this, context) {
+        FrameLayout frameLayout2 = new FrameLayout(context) {
             private RectF rect = new RectF();
 
             @Override
@@ -270,12 +270,12 @@ public class PhotoAttachPhotoCell extends FrameLayout {
     }
 
     public void setStarsPrice(long j, boolean z) {
+        SpannableStringBuilder spannableStringBuilder;
         if (z == this.starsSelectedMultiple && j == this.stars) {
             return;
         }
         this.stars = j;
         this.starsSelectedMultiple = z;
-        SpannableStringBuilder spannableStringBuilder = null;
         if (j > 0) {
             spannableStringBuilder = new SpannableStringBuilder();
             if (this.star == null) {
@@ -298,6 +298,8 @@ public class PhotoAttachPhotoCell extends FrameLayout {
             } else {
                 spannableStringBuilder.append((CharSequence) Long.toString(j));
             }
+        } else {
+            spannableStringBuilder = null;
         }
         this.imageView.setBlurredText(spannableStringBuilder);
         this.imageView.invalidate();

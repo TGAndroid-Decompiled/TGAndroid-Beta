@@ -48,14 +48,7 @@ public class VectorAvatarThumbDrawable extends Drawable implements AnimatedEmoji
         this.isPremium = z;
         gradientTools.setColors(ColorUtils.setAlphaComponent(tLRPC$VideoSize.background_colors.get(0).intValue(), 255), tLRPC$VideoSize.background_colors.size() > 1 ? ColorUtils.setAlphaComponent(tLRPC$VideoSize.background_colors.get(1).intValue(), 255) : 0, tLRPC$VideoSize.background_colors.size() > 2 ? ColorUtils.setAlphaComponent(tLRPC$VideoSize.background_colors.get(2).intValue(), 255) : 0, tLRPC$VideoSize.background_colors.size() > 3 ? ColorUtils.setAlphaComponent(tLRPC$VideoSize.background_colors.get(3).intValue(), 255) : 0);
         if (tLRPC$VideoSize instanceof TLRPC$TL_videoSizeEmojiMarkup) {
-            TLRPC$TL_videoSizeEmojiMarkup tLRPC$TL_videoSizeEmojiMarkup = (TLRPC$TL_videoSizeEmojiMarkup) tLRPC$VideoSize;
-            int i2 = 8;
-            if (i == 1 && z) {
-                i2 = 7;
-            } else if (i == 2) {
-                i2 = 15;
-            }
-            AnimatedEmojiDrawable animatedEmojiDrawable = new AnimatedEmojiDrawable(i2, UserConfig.selectedAccount, tLRPC$TL_videoSizeEmojiMarkup.emoji_id);
+            AnimatedEmojiDrawable animatedEmojiDrawable = new AnimatedEmojiDrawable((i == 1 && z) ? 7 : i == 2 ? 15 : 8, UserConfig.selectedAccount, ((TLRPC$TL_videoSizeEmojiMarkup) tLRPC$VideoSize).emoji_id);
             this.animatedEmojiDrawable = animatedEmojiDrawable;
             animatedEmojiDrawable.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
         } else if (tLRPC$VideoSize instanceof TLRPC$TL_videoSizeStickerMarkup) {
@@ -183,7 +176,7 @@ public class VectorAvatarThumbDrawable extends Drawable implements AnimatedEmoji
         if (this == obj) {
             return true;
         }
-        if (obj != null && VectorAvatarThumbDrawable.class == obj.getClass()) {
+        if (obj != null && getClass() == obj.getClass()) {
             VectorAvatarThumbDrawable vectorAvatarThumbDrawable = (VectorAvatarThumbDrawable) obj;
             if (this.type == vectorAvatarThumbDrawable.type) {
                 GradientTools gradientTools = this.gradientTools;

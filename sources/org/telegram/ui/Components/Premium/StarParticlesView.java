@@ -109,12 +109,7 @@ public class StarParticlesView extends View {
         if (this.doNotFling) {
             return;
         }
-        float f2 = 15.0f;
-        if (f < 60.0f) {
-            f2 = 5.0f;
-        } else if (f < 180.0f) {
-            f2 = 9.0f;
-        }
+        float f2 = f < 60.0f ? 5.0f : f < 180.0f ? 9.0f : 15.0f;
         AnimatorSet animatorSet = new AnimatorSet();
         ValueAnimator.AnimatorUpdateListener animatorUpdateListener = new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -422,10 +417,9 @@ public class StarParticlesView extends View {
                     double sin = Math.sin(Math.toRadians(d2));
                     Double.isNaN(d);
                     this.x = centerX + ((float) (sin * d));
-                    float centerY = Drawable.this.rect.centerY() + f + Drawable.this.centerOffsetY;
                     double cos = Math.cos(Math.toRadians(d2));
                     Double.isNaN(d);
-                    this.y = centerY + ((float) (d * cos));
+                    this.y = Drawable.this.rect.centerY() + f + Drawable.this.centerOffsetY + ((float) (d * cos));
                 } else {
                     this.x = drawable2.rect.left + Math.abs(Utilities.fastRandom.nextInt() % Drawable.this.rect.width());
                     this.y = Drawable.this.rect.top + Math.abs(Utilities.fastRandom.nextInt() % Drawable.this.rect.height());
@@ -440,9 +434,9 @@ public class StarParticlesView extends View {
                     atan2 = Utilities.fastRandom.nextDouble() * 3.141592653589793d * 2.0d;
                 } else {
                     float f9 = this.y;
-                    float centerY2 = drawable4.rect.centerY();
+                    float centerY = drawable4.rect.centerY();
                     Drawable drawable5 = Drawable.this;
-                    atan2 = Math.atan2(f9 - (centerY2 + drawable5.centerOffsetY), this.x - (drawable5.rect.centerX() + Drawable.this.centerOffsetX));
+                    atan2 = Math.atan2(f9 - (centerY + drawable5.centerOffsetY), this.x - (drawable5.rect.centerX() + Drawable.this.centerOffsetX));
                 }
                 this.vecX = (float) Math.cos(atan2);
                 this.vecY = (float) Math.sin(atan2);
@@ -464,9 +458,9 @@ public class StarParticlesView extends View {
                     float centerX2 = Drawable.this.rect.centerX() + Drawable.this.centerOffsetX + (((float) Math.cos(atan2)) * nextFloat2);
                     this.x = centerX2;
                     this.x2 = centerX2;
-                    float centerY3 = Drawable.this.rect.centerY() + Drawable.this.centerOffsetY + (((float) Math.sin(atan2)) * nextFloat2);
-                    this.y = centerY3;
-                    this.y2 = centerY3;
+                    float centerY2 = Drawable.this.rect.centerY() + Drawable.this.centerOffsetY + (((float) Math.sin(atan2)) * nextFloat2);
+                    this.y = centerY2;
+                    this.y2 = centerY2;
                 }
                 this.first = false;
             }

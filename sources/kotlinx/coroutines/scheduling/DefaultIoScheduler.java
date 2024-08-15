@@ -31,12 +31,12 @@ public final class DefaultIoScheduler extends ExecutorCoroutineDispatcher implem
 
     @Override
     public void execute(Runnable runnable) {
-        mo155dispatch(EmptyCoroutineContext.INSTANCE, runnable);
+        mo157dispatch(EmptyCoroutineContext.INSTANCE, runnable);
     }
 
     @Override
-    public void mo155dispatch(CoroutineContext coroutineContext, Runnable runnable) {
-        f0default.mo155dispatch(coroutineContext, runnable);
+    public void mo157dispatch(CoroutineContext coroutineContext, Runnable runnable) {
+        f0default.mo157dispatch(coroutineContext, runnable);
     }
 
     @Override

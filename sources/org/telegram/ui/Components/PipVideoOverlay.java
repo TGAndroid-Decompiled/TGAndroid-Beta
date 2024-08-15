@@ -651,9 +651,7 @@ public class PipVideoOverlay {
         ScaleGestureDetector scaleGestureDetector = new ScaleGestureDetector(context, new AnonymousClass3());
         this.scaleGestureDetector = scaleGestureDetector;
         int i4 = Build.VERSION.SDK_INT;
-        if (i4 >= 19) {
-            scaleGestureDetector.setQuickScaleEnabled(false);
-        }
+        scaleGestureDetector.setQuickScaleEnabled(false);
         if (i4 >= 23) {
             this.scaleGestureDetector.setStylusScaleEnabled(false);
         }
@@ -787,7 +785,7 @@ public class PipVideoOverlay {
         this.contentView = pipVideoViewGroup;
         pipVideoViewGroup.addView(this.contentFrameLayout, LayoutHelper.createFrame(-1, -1.0f));
         if (i4 >= 21) {
-            this.contentFrameLayout.setOutlineProvider(new ViewOutlineProvider(this) {
+            this.contentFrameLayout.setOutlineProvider(new ViewOutlineProvider() {
                 @Override
                 public void getOutline(View view2, Outline outline) {
                     outline.setRoundRect(0, 0, view2.getMeasuredWidth(), view2.getMeasuredHeight(), AndroidUtilities.dp(10.0f));

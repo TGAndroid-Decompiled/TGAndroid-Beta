@@ -9,16 +9,15 @@ public class LineBlobDrawable {
     private final float N;
     public float maxRadius;
     public float minRadius;
-    public Path path = new Path();
     private float[] progress;
     private float[] radius;
     private float[] radiusNext;
-    final Random random;
     private float[] speed;
+    public Path path = new Path();
+    public Paint paint = new Paint(1);
+    final Random random = new Random();
 
     public LineBlobDrawable(int i) {
-        new Paint(1);
-        this.random = new Random();
         this.N = i;
         int i2 = i + 1;
         this.radius = new float[i2];
@@ -46,14 +45,15 @@ public class LineBlobDrawable {
         for (int i = 0; i <= this.N; i++) {
             float[] fArr = this.progress;
             float f3 = fArr[i];
-            float[] fArr2 = this.speed;
-            fArr[i] = f3 + (fArr2[i] * BlobDrawable.MIN_SPEED) + (fArr2[i] * f * BlobDrawable.MAX_SPEED * f2);
-            if (fArr[i] >= 1.0f) {
+            float f4 = this.speed[i];
+            float f5 = f3 + (BlobDrawable.MIN_SPEED * f4) + (f4 * f * BlobDrawable.MAX_SPEED * f2);
+            fArr[i] = f5;
+            if (f5 >= 1.0f) {
                 fArr[i] = 0.0f;
-                float[] fArr3 = this.radius;
-                float[] fArr4 = this.radiusNext;
-                fArr3[i] = fArr4[i];
-                generateBlob(fArr4, i);
+                float[] fArr2 = this.radius;
+                float[] fArr3 = this.radiusNext;
+                fArr2[i] = fArr3[i];
+                generateBlob(fArr3, i);
             }
         }
     }

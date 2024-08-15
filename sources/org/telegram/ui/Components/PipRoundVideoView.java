@@ -50,6 +50,7 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
     private AnimatorSet hideShowAnimation;
     private ImageView imageView;
     private Runnable onCloseRunnable;
+    private Activity parentActivity;
     private SharedPreferences preferences;
     private RectF rect = new RectF();
     private TextureView textureView;
@@ -60,7 +61,7 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
     private FrameLayout windowView;
 
     public class PipFrameLayout extends FrameLayout {
-        public PipFrameLayout(PipRoundVideoView pipRoundVideoView, Context context) {
+        public PipFrameLayout(Context context) {
             super(context);
         }
     }
@@ -184,7 +185,7 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
                 }
             };
             this.aspectRatioFrameLayout = aspectRatioFrameLayout;
-            aspectRatioFrameLayout.setOutlineProvider(new ViewOutlineProvider(this) {
+            aspectRatioFrameLayout.setOutlineProvider(new ViewOutlineProvider() {
                 @Override
                 @TargetApi(21)
                 public void getOutline(View view, Outline outline) {
@@ -268,6 +269,7 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
             layoutParams2.type = 99;
             layoutParams2.flags = 16777736;
             this.windowManager.addView(this.windowView, layoutParams2);
+            this.parentActivity = activity;
             int i4 = UserConfig.selectedAccount;
             this.currentAccount = i4;
             NotificationCenter.getInstance(i4).addObserver(this, NotificationCenter.messagePlayingProgressDidChanged);
@@ -345,6 +347,7 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
         if (instance == this) {
             instance = null;
         }
+        this.parentActivity = null;
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.messagePlayingProgressDidChanged);
     }
 

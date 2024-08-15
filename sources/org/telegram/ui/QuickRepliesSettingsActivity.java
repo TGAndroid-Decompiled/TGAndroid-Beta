@@ -38,18 +38,13 @@ public class QuickRepliesSettingsActivity extends BaseFragment {
     @Override
     public boolean onFragmentCreate() {
         super.onFragmentCreate();
-        this.rowCount = 0;
         int i = 0 + 1;
-        this.rowCount = i;
         this.reply1Row = 0;
         int i2 = i + 1;
-        this.rowCount = i2;
         this.reply2Row = i;
         int i3 = i2 + 1;
-        this.rowCount = i3;
         this.reply3Row = i2;
         int i4 = i3 + 1;
-        this.rowCount = i4;
         this.reply4Row = i3;
         this.rowCount = i4 + 1;
         this.explanationRow = i4;
@@ -93,8 +88,9 @@ public class QuickRepliesSettingsActivity extends BaseFragment {
         while (true) {
             EditTextSettingsCell[] editTextSettingsCellArr = this.textCells;
             if (i < editTextSettingsCellArr.length) {
-                if (editTextSettingsCellArr[i] != null) {
-                    String obj = editTextSettingsCellArr[i].getTextView().getText().toString();
+                EditTextSettingsCell editTextSettingsCell = editTextSettingsCellArr[i];
+                if (editTextSettingsCell != null) {
+                    String obj = editTextSettingsCell.getTextView().getText().toString();
                     if (!TextUtils.isEmpty(obj)) {
                         edit.putString("quick_reply_msg" + (i + 1), obj);
                     } else {
@@ -131,8 +127,55 @@ public class QuickRepliesSettingsActivity extends BaseFragment {
         }
 
         @Override
-        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r8, int r9) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.QuickRepliesSettingsActivity.ListAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+            String str;
+            String str2;
+            int itemViewType = viewHolder.getItemViewType();
+            if (itemViewType == 0) {
+                TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
+                textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+                textInfoPrivacyCell.setText(LocaleController.getString("VoipQuickRepliesExplain", R.string.VoipQuickRepliesExplain));
+                return;
+            }
+            if (itemViewType == 1) {
+                TextSettingsCell textSettingsCell = (TextSettingsCell) viewHolder.itemView;
+            } else if (itemViewType != 4) {
+                switch (itemViewType) {
+                    case 9:
+                    case 10:
+                    case 11:
+                    case 12:
+                        EditTextSettingsCell editTextSettingsCell = (EditTextSettingsCell) viewHolder.itemView;
+                        if (i != QuickRepliesSettingsActivity.this.reply1Row) {
+                            if (i != QuickRepliesSettingsActivity.this.reply2Row) {
+                                if (i != QuickRepliesSettingsActivity.this.reply3Row) {
+                                    if (i == QuickRepliesSettingsActivity.this.reply4Row) {
+                                        str = LocaleController.getString("QuickReplyDefault4", R.string.QuickReplyDefault4);
+                                        str2 = "quick_reply_msg4";
+                                    } else {
+                                        str = null;
+                                        str2 = null;
+                                    }
+                                } else {
+                                    str = LocaleController.getString("QuickReplyDefault3", R.string.QuickReplyDefault3);
+                                    str2 = "quick_reply_msg3";
+                                }
+                            } else {
+                                str = LocaleController.getString("QuickReplyDefault2", R.string.QuickReplyDefault2);
+                                str2 = "quick_reply_msg2";
+                            }
+                        } else {
+                            str = LocaleController.getString("QuickReplyDefault1", R.string.QuickReplyDefault1);
+                            str2 = "quick_reply_msg1";
+                        }
+                        editTextSettingsCell.setTextAndHint(QuickRepliesSettingsActivity.this.getParentActivity().getSharedPreferences("mainconfig", 0).getString(str2, ""), str, i != QuickRepliesSettingsActivity.this.reply4Row);
+                        return;
+                    default:
+                        return;
+                }
+            } else {
+                ((TextCheckCell) viewHolder.itemView).setTextAndCheck(LocaleController.getString("AllowCustomQuickReply", R.string.AllowCustomQuickReply), QuickRepliesSettingsActivity.this.getParentActivity().getSharedPreferences("mainconfig", 0).getBoolean("quick_reply_allow_custom", true), false);
+            }
         }
 
         @Override

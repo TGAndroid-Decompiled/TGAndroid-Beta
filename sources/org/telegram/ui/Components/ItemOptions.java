@@ -443,7 +443,7 @@ public class ItemOptions {
     }
 
     public ItemOptions addText(CharSequence charSequence, int i, int i2) {
-        TextView textView = new TextView(this, this.context) {
+        TextView textView = new TextView(this.context) {
             @Override
             protected void onMeasure(int i3, int i4) {
                 super.onMeasure(i3, i4);

@@ -227,9 +227,9 @@ public class RadialProgress {
 
     public void draw(Canvas canvas) {
         Drawable drawable;
-        int i;
         float centerX;
         float centerY;
+        int i;
         int i2;
         Drawable drawable2;
         if (this.drawMiniProgress && this.currentDrawable != null) {
@@ -247,15 +247,15 @@ public class RadialProgress {
                 this.currentDrawable.draw(canvas);
             }
             if (Math.abs(this.progressRect.width() - AndroidUtilities.dp(44.0f)) < AndroidUtilities.density) {
-                i = 20;
                 float f = 16;
                 centerX = this.progressRect.centerX() + AndroidUtilities.dp(f);
                 centerY = this.progressRect.centerY() + AndroidUtilities.dp(f);
+                i = 20;
                 i2 = 0;
             } else {
-                i = 22;
                 centerX = this.progressRect.centerX() + AndroidUtilities.dp(18.0f);
                 centerY = this.progressRect.centerY() + AndroidUtilities.dp(18.0f);
+                i = 22;
                 i2 = 2;
             }
             int i3 = i / 2;

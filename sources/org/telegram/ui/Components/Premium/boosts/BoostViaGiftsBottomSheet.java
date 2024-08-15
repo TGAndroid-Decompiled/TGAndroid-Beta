@@ -134,7 +134,7 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
         int i = this.backgroundPaddingLeft;
         recyclerListView.setPadding(i, 0, i, AndroidUtilities.dp(68.0f));
         this.recyclerListView.setItemAnimator(defaultItemAnimator);
-        this.recyclerListView.setOnScrollListener(new RecyclerView.OnScrollListener(this) {
+        this.recyclerListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int i2) {
                 if (i2 == 1) {

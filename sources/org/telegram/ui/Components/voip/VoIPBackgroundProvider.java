@@ -20,6 +20,7 @@ public class VoIPBackgroundProvider {
     private final BitmapShaderTools lightShaderTools;
     private BitmapShaderTools revealDarkShaderTools;
     private BitmapShaderTools revealShaderTools;
+    public final float scale;
     private int totalHeight;
     private int totalWidth;
     private final List<View> views;
@@ -39,6 +40,7 @@ public class VoIPBackgroundProvider {
         Paint paint3 = new Paint(1);
         this.darkPaint = paint3;
         this.views = new ArrayList();
+        this.scale = 1.12f;
         bitmapShaderTools2.setBounds(0.0f, 0.0f, 80.0f, 80.0f);
         bitmapShaderTools.setBounds(0.0f, 0.0f, 80.0f, 80.0f);
         paint.setColor(-1);

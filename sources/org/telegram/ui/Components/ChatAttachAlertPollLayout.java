@@ -96,6 +96,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
     private int emojiPadding;
     public EmojiView emojiView;
     public boolean emojiViewVisible;
+    public boolean emojiViewWasVisible;
     private int emptyRow;
     private boolean hintShowed;
     private HintView hintView;
@@ -239,7 +240,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         this.isPremium = AccountInstance.getInstance(this.parentAlert.currentAccount).getUserConfig().isPremium();
         this.parentAlert.sizeNotifierFrameLayout.setDelegate(this);
         this.listAdapter = new ListAdapter(context);
-        RecyclerListView recyclerListView = new RecyclerListView(this, context) {
+        RecyclerListView recyclerListView = new RecyclerListView(context) {
             @Override
             public void requestChildOnScreen(View view, View view2) {
                 if (view instanceof PollEditTextCell) {
@@ -370,7 +371,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         addView(this.hintView, LayoutHelper.createFrame(-2, -2.0f, 51, 19.0f, 0.0f, 19.0f, 0.0f));
         if (this.isPremium) {
             NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.emojiLoaded);
-            SuggestEmojiView suggestEmojiView = new SuggestEmojiView(this, context, this.parentAlert.currentAccount, null, resourcesProvider) {
+            SuggestEmojiView suggestEmojiView = new SuggestEmojiView(context, this.parentAlert.currentAccount, null, resourcesProvider) {
                 @Override
                 protected int emojiCacheType() {
                     return 3;
@@ -762,18 +763,13 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
     }
 
     public void updateRows() {
-        this.rowCount = 0;
         int i = 0 + 1;
-        this.rowCount = i;
         this.paddingRow = 0;
         int i2 = i + 1;
-        this.rowCount = i2;
         this.questionHeaderRow = i;
         int i3 = i2 + 1;
-        this.rowCount = i3;
         this.questionRow = i2;
         int i4 = i3 + 1;
-        this.rowCount = i4;
         this.questionSectionRow = i3;
         int i5 = i4 + 1;
         this.rowCount = i5;
@@ -794,7 +790,6 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         }
         int i8 = this.rowCount;
         int i9 = i8 + 1;
-        this.rowCount = i9;
         this.answerSectionRow = i8;
         this.rowCount = i9 + 1;
         this.settingsHeaderRow = i9;
@@ -827,7 +822,6 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         this.settingsSectionRow = i14;
         if (this.quizPoll) {
             int i16 = i15 + 1;
-            this.rowCount = i16;
             this.solutionRow = i15;
             this.rowCount = i16 + 1;
             this.solutionInfoRow = i16;
@@ -916,34 +910,34 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
     }
 
     public void setTextLeft(View view, int i) {
+        int i2;
         int length;
         if (view instanceof PollEditTextCell) {
             PollEditTextCell pollEditTextCell = (PollEditTextCell) view;
-            int i2 = 100;
             if (i == this.questionRow) {
                 CharSequence charSequence = this.questionString;
-                length = 255 - (charSequence != null ? charSequence.length() : 0);
                 i2 = 255;
+                length = 255 - (charSequence != null ? charSequence.length() : 0);
             } else if (i == this.solutionRow) {
                 CharSequence charSequence2 = this.solutionString;
-                length = 200 - (charSequence2 != null ? charSequence2.length() : 0);
                 i2 = 200;
+                length = 200 - (charSequence2 != null ? charSequence2.length() : 0);
             } else {
                 int i3 = this.answerStartRow;
                 if (i < i3 || i >= this.answersCount + i3) {
                     return;
                 }
-                int i4 = i - i3;
-                CharSequence[] charSequenceArr = this.answers;
-                length = 100 - (charSequenceArr[i4] != null ? charSequenceArr[i4].length() : 0);
+                CharSequence charSequence3 = this.answers[i - i3];
+                i2 = 100;
+                length = 100 - (charSequence3 != null ? charSequence3.length() : 0);
             }
             float f = i2;
             if (length <= f - (0.7f * f)) {
                 pollEditTextCell.setText2(String.format("%d", Integer.valueOf(length)));
                 SimpleTextView textView2 = pollEditTextCell.getTextView2();
-                int i5 = length < 0 ? Theme.key_text_RedRegular : Theme.key_windowBackgroundWhiteGrayText3;
-                textView2.setTextColor(getThemedColor(i5));
-                textView2.setTag(Integer.valueOf(i5));
+                int i4 = length < 0 ? Theme.key_text_RedRegular : Theme.key_windowBackgroundWhiteGrayText3;
+                textView2.setTextColor(getThemedColor(i4));
+                textView2.setTag(Integer.valueOf(i4));
                 return;
             }
             pollEditTextCell.setText2("");
@@ -1106,6 +1100,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                 boolean z = emojiView != null && emojiView.getVisibility() == 0;
                 createEmojiView();
                 this.emojiView.setVisibility(0);
+                this.emojiViewWasVisible = this.emojiViewVisible;
                 this.emojiViewVisible = true;
                 EmojiView emojiView2 = this.emojiView;
                 if (this.keyboardHeight <= 0) {
@@ -1166,6 +1161,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
             }
             EmojiView emojiView3 = this.emojiView;
             if (emojiView3 != null) {
+                this.emojiViewWasVisible = this.emojiViewVisible;
                 this.emojiViewVisible = false;
                 this.isEmojiSearchOpened = false;
                 if (AndroidUtilities.usingHardwareInput || AndroidUtilities.isInMultiwindow) {

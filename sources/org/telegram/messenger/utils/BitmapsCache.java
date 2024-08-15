@@ -33,6 +33,7 @@ public class BitmapsCache {
     byte[] bufferTmp;
     volatile boolean cacheCreated;
     RandomAccessFile cachedFile;
+    public volatile boolean checked;
     int compressQuality;
     boolean error;
     final File file;
@@ -102,7 +103,6 @@ public class BitmapsCache {
             bitmapCompressExecutor = new ThreadPoolExecutor(i3, i3, 60L, TimeUnit.SECONDS, new LinkedBlockingQueue());
         }
         File file2 = new File(FileLoader.checkDirectory(4), "acache");
-        boolean z2 = true;
         if (!mkdir) {
             file2.mkdir();
             mkdir = true;
@@ -117,7 +117,7 @@ public class BitmapsCache {
         sb.append(".pcache2");
         File file3 = new File(file2, sb.toString());
         this.file = file3;
-        this.useSharedBuffers = (i >= AndroidUtilities.dp(60.0f) || i2 >= AndroidUtilities.dp(60.0f)) ? false : false;
+        this.useSharedBuffers = i < AndroidUtilities.dp(60.0f) && i2 < AndroidUtilities.dp(60.0f);
         if (SharedConfig.getDevicePerformanceClass() >= 2) {
             this.fileExist = file3.exists();
             if (this.fileExist) {
@@ -136,6 +136,7 @@ public class BitmapsCache {
                             if (this.frameOffsets.size() == 0) {
                                 this.cacheCreated = false;
                                 this.fileExist = false;
+                                this.checked = true;
                                 file3.delete();
                             } else {
                                 if (this.cachedFile != randomAccessFile) {
@@ -153,9 +154,11 @@ public class BitmapsCache {
                             th.printStackTrace();
                             this.file.delete();
                             this.fileExist = false;
+                            this.checked = true;
                             if (this.cachedFile != randomAccessFile && randomAccessFile != null) {
                                 randomAccessFile.close();
                             }
+                            this.checked = true;
                             return;
                         } catch (Throwable th3) {
                             try {
@@ -172,8 +175,8 @@ public class BitmapsCache {
                     randomAccessFile = null;
                     th = th4;
                 }
-                return;
             }
+            this.checked = true;
             return;
         }
         this.fileExist = false;
@@ -289,6 +292,7 @@ public class BitmapsCache {
                         }
                         if (this.frameOffsets.size() == 0) {
                             this.cacheCreated = false;
+                            this.checked = true;
                         }
                         if (!this.cacheCreated) {
                             randomAccessFile.close();
@@ -411,7 +415,7 @@ public class BitmapsCache {
         int frameSize;
         final int index;
 
-        private FrameOffset(BitmapsCache bitmapsCache, int i) {
+        private FrameOffset(int i) {
             this.index = i;
         }
     }
@@ -432,9 +436,8 @@ public class BitmapsCache {
             this.lastSize = i3;
             for (int i4 = 0; i4 < BitmapsCache.N; i4++) {
                 if (z || this.bitmap[i4] == null) {
-                    Bitmap[] bitmapArr = this.bitmap;
-                    if (bitmapArr[i4] != null) {
-                        final Bitmap bitmap = bitmapArr[i4];
+                    final Bitmap bitmap = this.bitmap[i4];
+                    if (bitmap != null) {
                         Utilities.globalQueue.postRunnable(new Runnable() {
                             @Override
                             public final void run() {

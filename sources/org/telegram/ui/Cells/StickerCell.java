@@ -28,24 +28,25 @@ import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.PremiumLockIconView;
 public class StickerCell extends FrameLayout {
+    private static AccelerateInterpolator interpolator = new AccelerateInterpolator(0.5f);
     private boolean clearsInputField;
     private BackupImageView imageView;
     private boolean isPremiumSticker;
     private long lastUpdateTime;
     private Object parentObject;
+    private float premiumAlpha;
     private PremiumLockIconView premiumIconView;
     Theme.ResourcesProvider resourcesProvider;
     private float scale;
     private boolean scaled;
     private boolean showPremiumLock;
     private TLRPC$Document sticker;
-
-    static {
-        new AccelerateInterpolator(0.5f);
-    }
+    private long time;
 
     public StickerCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
+        this.time = 0L;
+        this.premiumAlpha = 1.0f;
         this.resourcesProvider = resourcesProvider;
         BackupImageView backupImageView = new BackupImageView(context);
         this.imageView = backupImageView;

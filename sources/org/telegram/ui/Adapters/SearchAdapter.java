@@ -200,8 +200,9 @@ public class SearchAdapter extends RecyclerListView.SelectionAdapter {
             if ((this.allowSelf || !user.self) && ((!this.onlyMutual || user.mutual_contact) && ((longSparseArray = this.ignoreUsers) == null || longSparseArray.indexOfKey(tLRPC$TL_contact.user_id) < 0))) {
                 String[] strArr4 = new String[3];
                 strArr4[0] = ContactsController.formatName(user.first_name, user.last_name).toLowerCase();
-                strArr4[1] = LocaleController.getInstance().getTranslitString(strArr4[0]);
-                if (strArr4[0].equals(strArr4[1])) {
+                String translitString2 = LocaleController.getInstance().getTranslitString(strArr4[0]);
+                strArr4[1] = translitString2;
+                if (strArr4[0].equals(translitString2)) {
                     strArr4[1] = null;
                 }
                 if (UserObject.isReplyUser(user)) {
@@ -273,7 +274,7 @@ public class SearchAdapter extends RecyclerListView.SelectionAdapter {
                 ContactEntry contactEntry = new ContactEntry();
                 contactEntry.contact = next;
                 contactEntry.q1 = (next.first_name + " " + next.last_name).toLowerCase();
-                (next.last_name + " " + next.first_name).toLowerCase();
+                contactEntry.q2 = (next.last_name + " " + next.first_name).toLowerCase();
                 this.allUnregistredContacts.add(contactEntry);
             }
         }
@@ -397,8 +398,9 @@ public class SearchAdapter extends RecyclerListView.SelectionAdapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
         long j;
-        boolean z;
         String str;
+        long j2;
+        boolean z;
         CharSequence charSequence;
         int itemViewType = viewHolder.getItemViewType();
         if (itemViewType != 0) {
@@ -443,18 +445,20 @@ public class SearchAdapter extends RecyclerListView.SelectionAdapter {
                         }
                     }
                 }
-                long j2 = tLRPC$User.id;
+                long j3 = tLRPC$User.id;
                 z = tLRPC$User.self;
-                j = j2;
-            } else if (tLObject instanceof TLRPC$Chat) {
-                TLRPC$Chat tLRPC$Chat = (TLRPC$Chat) tLObject;
-                str = ChatObject.getPublicUsername(tLRPC$Chat);
-                j = tLRPC$Chat.id;
-                z = false;
+                j2 = j3;
             } else {
-                j = 0;
+                if (tLObject instanceof TLRPC$Chat) {
+                    TLRPC$Chat tLRPC$Chat = (TLRPC$Chat) tLObject;
+                    str = ChatObject.getPublicUsername(tLRPC$Chat);
+                    j = tLRPC$Chat.id;
+                } else {
+                    j = 0;
+                    str = null;
+                }
+                j2 = j;
                 z = false;
-                str = null;
             }
             if (i < this.searchResult.size()) {
                 CharSequence charSequence3 = this.searchResultNames.get(i);
@@ -499,13 +503,13 @@ public class SearchAdapter extends RecyclerListView.SelectionAdapter {
             if (this.useUserCell) {
                 UserCell userCell = (UserCell) viewHolder.itemView;
                 userCell.setData(tLObject, charSequence2, charSequence, 0);
-                userCell.setChecked(this.selectedUsers.indexOfKey(j) >= 0, false);
+                userCell.setChecked(this.selectedUsers.indexOfKey(j2) >= 0, false);
                 return;
             }
             ProfileSearchCell profileSearchCell2 = (ProfileSearchCell) viewHolder.itemView;
             profileSearchCell2.setData(tLObject, null, z ? LocaleController.getString("SavedMessages", R.string.SavedMessages) : charSequence2, charSequence, false, z);
             profileSearchCell2.useSeparator = (i == getItemCount() - 1 || i == this.searchResult.size() - 1) ? false : true;
-            profileSearchCell2.setChecked(this.selectedUsers.indexOfKey(j) >= 0, false);
+            profileSearchCell2.setChecked(this.selectedUsers.indexOfKey(j2) >= 0, false);
         }
     }
 
@@ -521,6 +525,7 @@ public class SearchAdapter extends RecyclerListView.SelectionAdapter {
     public static class ContactEntry {
         ContactsController.Contact contact;
         String q1;
+        String q2;
 
         private ContactEntry() {
         }

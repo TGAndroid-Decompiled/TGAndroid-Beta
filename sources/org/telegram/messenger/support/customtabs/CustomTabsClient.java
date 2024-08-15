@@ -35,7 +35,7 @@ public class CustomTabsClient {
     }
 
     public CustomTabsSession newSession(final CustomTabsCallback customTabsCallback) {
-        ICustomTabsCallback.Stub stub = new ICustomTabsCallback.Stub(this) {
+        ICustomTabsCallback.Stub stub = new ICustomTabsCallback.Stub() {
             private Handler mHandler = new Handler(Looper.getMainLooper());
 
             @Override

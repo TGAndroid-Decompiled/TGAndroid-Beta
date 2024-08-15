@@ -938,7 +938,8 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
     }
 
     public void lambda$buttonClick$6(boolean[] zArr, int[] iArr, int[] iArr2, TLRPC$TL_error tLRPC$TL_error) {
-        if (zArr[0] || iArr[0] >= iArr2[0]) {
+        int i;
+        if (zArr[0] || (i = iArr[0]) >= iArr2[0]) {
             return;
         }
         if (tLRPC$TL_error != null) {
@@ -951,8 +952,9 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             BulletinFactory.of(this).createSimpleBulletin(R.raw.error, LocaleController.formatString(R.string.UnknownErrorCode, tLRPC$TL_error.text)).show();
             return;
         }
-        iArr[0] = iArr[0] + 1;
-        if (iArr[0] == iArr2[0]) {
+        int i2 = i + 1;
+        iArr[0] = i2;
+        if (i2 == iArr2[0]) {
             finishFragment();
             showBulletin();
             this.button.setLoading(false);
@@ -1100,40 +1102,30 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         };
         this.selectAnimatedEmojiDialog = selectAnimatedEmojiDialogWindow;
         selectAnimatedEmojiDialogWindowArr[0] = selectAnimatedEmojiDialogWindow;
-        selectAnimatedEmojiDialogWindowArr[0].showAsDropDown(emojiCell, 0, i3, 53);
+        selectAnimatedEmojiDialogWindow.showAsDropDown(emojiCell, 0, i3, 53);
         selectAnimatedEmojiDialogWindowArr[0].dimBehind();
     }
 
     protected void updateRows() {
         Adapter adapter;
         Adapter adapter2;
-        this.rowsCount = 0;
         int i = 0 + 1;
-        this.rowsCount = i;
         this.messagesPreviewRow = 0;
         int i2 = i + 1;
-        this.rowsCount = i2;
         this.replyColorListRow = i;
         int i3 = i2 + 1;
-        this.rowsCount = i3;
         this.replyEmojiRow = i2;
         int i4 = i3 + 1;
-        this.rowsCount = i4;
         this.replyHintRow = i3;
         int i5 = i4 + 1;
-        this.rowsCount = i5;
         this.wallpaperThemesRow = i4;
         int i6 = i5 + 1;
-        this.rowsCount = i6;
         this.wallpaperRow = i5;
         int i7 = i6 + 1;
-        this.rowsCount = i7;
         this.wallpaperHintRow = i6;
         int i8 = i7 + 1;
-        this.rowsCount = i8;
         this.profilePreviewRow = i7;
         int i9 = i8 + 1;
-        this.rowsCount = i9;
         this.profileColorGridRow = i8;
         int i10 = i9 + 1;
         this.rowsCount = i10;
@@ -1156,10 +1148,8 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         }
         int i12 = this.rowsCount;
         int i13 = i12 + 1;
-        this.rowsCount = i13;
         this.profileHintRow = i12;
         int i14 = i13 + 1;
-        this.rowsCount = i14;
         this.statusEmojiRow = i13;
         this.rowsCount = i14 + 1;
         this.statusHintRow = i14;
@@ -1486,7 +1476,8 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             ThemePreviewMessagesCell themePreviewMessagesCell = (ThemePreviewMessagesCell) findChildAt;
             ChatMessageCell[] cells = themePreviewMessagesCell.getCells();
             for (int i = 0; i < cells.length; i++) {
-                if (cells[i] != null && (messageObject = cells[i].getMessageObject()) != null) {
+                ChatMessageCell chatMessageCell = cells[i];
+                if (chatMessageCell != null && (messageObject = chatMessageCell.getMessageObject()) != null) {
                     messageObject.overrideLinkColor = this.selectedReplyColor;
                     messageObject.overrideLinkEmoji = this.selectedReplyEmoji;
                     cells[i].setAvatar(messageObject);
@@ -1626,7 +1617,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             coloredActionBar.setProgressToGradient(1.0f);
             coloredActionBar.ignoreMeasure = true;
             addView(coloredActionBar, LayoutHelper.createFrame(-1, ChannelColorActivity.this.isGroup ? 194 : 134, 119));
-            PeerColorActivity.ProfilePreview profilePreview = new PeerColorActivity.ProfilePreview(getContext(), ((BaseFragment) ChannelColorActivity.this).currentAccount, ChannelColorActivity.this.dialogId, ((BaseFragment) ChannelColorActivity.this).resourceProvider, ChannelColorActivity.this) {
+            PeerColorActivity.ProfilePreview profilePreview = new PeerColorActivity.ProfilePreview(getContext(), ((BaseFragment) ChannelColorActivity.this).currentAccount, ChannelColorActivity.this.dialogId, ((BaseFragment) ChannelColorActivity.this).resourceProvider) {
                 @Override
                 public void setColor(int i, boolean z) {
                     super.setColor(i, z);
@@ -1919,7 +1910,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                 this.progressView.setVisibility(0);
                 addView(this.progressView, LayoutHelper.createFrame(-1, 104.0f, 8388611, 16.0f, 13.0f, 16.0f, 6.0f));
             }
-            RecyclerListView recyclerListView = new RecyclerListView(this, context, resourcesProvider) {
+            RecyclerListView recyclerListView = new RecyclerListView(context, resourcesProvider) {
                 @Override
                 public Integer getSelectorColor(int i2) {
                     return 0;
@@ -1931,7 +1922,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             if (z) {
                 recyclerListView.setHasFixedSize(false);
                 GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 3);
-                gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup(this) {
+                gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
                     @Override
                     public int getSpanSize(int i2) {
                         return 1;
@@ -2368,6 +2359,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
     }
 
     public static class PeerColorPicker extends FrameLayout {
+        public final RecyclerListView.SelectionAdapter adapter;
         private final int currentAccount;
         public final LinearLayoutManager layoutManager;
         public final RecyclerListView listView;
@@ -2391,7 +2383,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             super(context);
             this.currentAccount = i;
             this.resourcesProvider = resourcesProvider;
-            RecyclerListView recyclerListView = new RecyclerListView(this, context, resourcesProvider) {
+            RecyclerListView recyclerListView = new RecyclerListView(context, resourcesProvider) {
                 @Override
                 public Integer getSelectorColor(int i2) {
                     return 0;
@@ -2400,7 +2392,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             this.listView = recyclerListView;
             recyclerListView.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(6.0f), 0);
             recyclerListView.setClipToPadding(false);
-            recyclerListView.setAdapter(new RecyclerListView.SelectionAdapter() {
+            RecyclerListView.SelectionAdapter selectionAdapter = new RecyclerListView.SelectionAdapter() {
                 @Override
                 public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
                     return true;
@@ -2431,7 +2423,9 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                     }
                     return peerColors.colors.size();
                 }
-            });
+            };
+            this.adapter = selectionAdapter;
+            recyclerListView.setAdapter(selectionAdapter);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
             this.layoutManager = linearLayoutManager;
             linearLayoutManager.setOrientation(0);

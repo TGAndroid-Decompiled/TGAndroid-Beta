@@ -126,16 +126,16 @@ public class StatsController extends BaseController {
 
     public long getSentBytesCount(int i, int i2) {
         if (i2 == 1) {
-            long[][] jArr = this.sentBytes;
-            return ((((jArr[i][6] - jArr[i][5]) - jArr[i][3]) - jArr[i][2]) - jArr[i][4]) - jArr[i][7];
+            long[] jArr = this.sentBytes[i];
+            return ((((jArr[6] - jArr[5]) - jArr[3]) - jArr[2]) - jArr[4]) - jArr[7];
         }
         return this.sentBytes[i][i2];
     }
 
     public long getReceivedBytesCount(int i, int i2) {
         if (i2 == 1) {
-            long[][] jArr = this.receivedBytes;
-            return ((((jArr[i][6] - jArr[i][5]) - jArr[i][3]) - jArr[i][2]) - jArr[i][4]) - jArr[i][7];
+            long[] jArr = this.receivedBytes[i];
+            return ((((jArr[6] - jArr[5]) - jArr[3]) - jArr[2]) - jArr[4]) - jArr[7];
         }
         return this.receivedBytes[i][i2];
     }

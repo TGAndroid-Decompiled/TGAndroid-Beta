@@ -114,6 +114,7 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
     private final FrameLayout searchContainer;
     private final StickerEmptyView searchEmptyView;
     private final ActionBarMenuItem searchItem;
+    private final GridLayoutManager searchLayoutManager;
     private final RecyclerListView searchListView;
     public MediaController.AlbumEntry selectedAlbum;
     public ArrayList<MediaController.PhotoEntry> selectedPhotos;
@@ -191,7 +192,7 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
                 return (i2 == 0 || i2 == 1 || i2 == GalleryListView.this.adapter.getItemCount() - 1) ? 3 : 1;
             }
         });
-        recyclerListView.addItemDecoration(new RecyclerView.ItemDecoration(this) {
+        recyclerListView.addItemDecoration(new RecyclerView.ItemDecoration() {
             @Override
             public void getItemOffsets(Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
                 int dp = AndroidUtilities.dp(5.0f);
@@ -278,7 +279,9 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
         addView(frameLayout, LayoutHelper.createFrame(-1, -1, 119));
         RecyclerListView recyclerListView2 = new RecyclerListView(context, resourcesProvider);
         this.searchListView = recyclerListView2;
-        recyclerListView2.setLayoutManager(new GridLayoutManager(context, 3));
+        GridLayoutManager gridLayoutManager2 = new GridLayoutManager(context, 3);
+        this.searchLayoutManager = gridLayoutManager2;
+        recyclerListView2.setLayoutManager(gridLayoutManager2);
         SearchAdapter searchAdapter = new SearchAdapter() {
             @Override
             protected void onLoadingUpdate(boolean z2) {
@@ -312,7 +315,7 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
             }
         });
         recyclerListView2.setClipToPadding(true);
-        recyclerListView2.addItemDecoration(new RecyclerView.ItemDecoration(this) {
+        recyclerListView2.addItemDecoration(new RecyclerView.ItemDecoration() {
             @Override
             public void getItemOffsets(Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
                 int dp = AndroidUtilities.dp(4.0f);
@@ -326,7 +329,7 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
             }
         });
         frameLayout.addView(recyclerListView2, LayoutHelper.createFrame(-1, -1, 119));
-        FlickerLoadingView flickerLoadingView = new FlickerLoadingView(this, context, resourcesProvider) {
+        FlickerLoadingView flickerLoadingView = new FlickerLoadingView(context, resourcesProvider) {
             @Override
             public int getColumnsCount() {
                 return 3;
@@ -1156,7 +1159,7 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
 
         @Override
         public void draw(Canvas canvas) {
-            boolean z = true;
+            boolean z = false;
             if (this.topLeft || this.topRight) {
                 canvas.save();
                 this.clipPath.rewind();
@@ -1172,8 +1175,7 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
                 fArr2[2] = dp2;
                 this.clipPath.addRoundRect(rectF, this.radii, Path.Direction.CW);
                 canvas.clipPath(this.clipPath);
-            } else {
-                z = false;
+                z = true;
             }
             super.draw(canvas);
             canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.bgPaint);
@@ -1279,7 +1281,7 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
     private class HeaderView extends FrameLayout {
         public TextView textView;
 
-        public HeaderView(GalleryListView galleryListView, Context context, boolean z) {
+        public HeaderView(Context context, boolean z) {
             super(context);
             setPadding(AndroidUtilities.dp(z ? 14.0f : 16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(10.0f));
             TextView textView = new TextView(context);
@@ -1310,7 +1312,7 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
             } else if (i == 1) {
                 GalleryListView galleryListView2 = GalleryListView.this;
                 GalleryListView galleryListView3 = GalleryListView.this;
-                cell = galleryListView2.headerView = new HeaderView(galleryListView3, galleryListView3.getContext(), GalleryListView.this.onlyPhotos);
+                cell = galleryListView2.headerView = new HeaderView(galleryListView3.getContext(), GalleryListView.this.onlyPhotos);
             } else {
                 cell = new Cell(GalleryListView.this.getContext());
             }
@@ -1557,7 +1559,7 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            return new RecyclerListView.Holder(new BackupImageView(this, GalleryListView.this.getContext()) {
+            return new RecyclerListView.Holder(new BackupImageView(GalleryListView.this.getContext()) {
                 @Override
                 protected void onMeasure(int i2, int i3) {
                     int size = View.MeasureSpec.getSize(i2);

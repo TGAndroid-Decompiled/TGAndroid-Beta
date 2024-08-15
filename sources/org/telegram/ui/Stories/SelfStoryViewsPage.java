@@ -137,6 +137,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
     private boolean showContactsFilter;
     private boolean showReactionsSort;
     private boolean showSearch;
+    private boolean showServerErrorText;
     final FiltersState state;
     SelfStoryViewsView.StoryItemInternal storyItem;
     StoryViewer storyViewer;
@@ -1442,32 +1443,33 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
             String str;
             String str2;
             String str3;
+            String str4;
             if (this.isChannel) {
                 return;
             }
             this.views.clear();
             FiltersState filtersState = this.state;
             if (filtersState.contactsOnly || !TextUtils.isEmpty(filtersState.searchQuery)) {
-                String str4 = null;
                 if (TextUtils.isEmpty(this.state.searchQuery)) {
                     str = null;
                     str2 = null;
                     str3 = null;
+                    str4 = null;
                 } else {
-                    str4 = this.state.searchQuery.trim().toLowerCase();
-                    str = LocaleController.getInstance().getTranslitString(str4);
-                    str2 = " " + str4;
+                    str = this.state.searchQuery.trim().toLowerCase();
+                    str2 = LocaleController.getInstance().getTranslitString(str);
                     str3 = " " + str;
+                    str4 = " " + str2;
                 }
                 for (int i = 0; i < this.originalViews.size(); i++) {
                     TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.originalViews.get(i).user_id));
                     boolean z = true;
                     boolean z2 = !this.state.contactsOnly || (user != null && user.contact);
-                    if (z2 && str4 != null) {
+                    if (z2 && str != null) {
                         String lowerCase = ContactsController.formatName(user.first_name, user.last_name).toLowerCase();
                         String publicUsername = UserObject.getPublicUsername(user);
                         String translitSafe = AndroidUtilities.translitSafe(lowerCase);
-                        if ((lowerCase == null || (!lowerCase.startsWith(str4) && !lowerCase.contains(str2))) && ((translitSafe == null || (!translitSafe.startsWith(str) && !translitSafe.contains(str3))) && (publicUsername == null || (!publicUsername.startsWith(str) && !publicUsername.contains(str3))))) {
+                        if ((lowerCase == null || (!lowerCase.startsWith(str) && !lowerCase.contains(str3))) && ((translitSafe == null || (!translitSafe.startsWith(str2) && !translitSafe.contains(str4))) && (publicUsername == null || (!publicUsername.startsWith(str2) && !publicUsername.contains(str4))))) {
                             z = false;
                         }
                         if (!z) {
@@ -1600,6 +1602,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
             ReplaceableIconDrawable replaceableIconDrawable = new ReplaceableIconDrawable(getContext());
             this.replacableDrawable = replaceableIconDrawable;
             replaceableIconDrawable.exactlyBounds = true;
+            this.lastSortType = true;
             replaceableIconDrawable.setIcon(R.drawable.menu_views_reactions3, false);
             ImageView imageView = new ImageView(getContext());
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
@@ -1874,7 +1877,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
             if (this == obj) {
                 return true;
             }
-            if (obj == null || FiltersState.class != obj.getClass()) {
+            if (obj == null || getClass() != obj.getClass()) {
                 return false;
             }
             FiltersState filtersState = (FiltersState) obj;

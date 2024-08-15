@@ -180,8 +180,8 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView impl
         TLRPC$UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(this.user.id);
         if (userFull != null) {
             ArrayList arrayList = new ArrayList();
-            long j = 0;
             Iterator<TLRPC$TL_premiumGiftOption> it = userFull.premium_gifts.iterator();
+            long j = 0;
             while (it.hasNext()) {
                 GiftTier giftTier = new GiftTier(it.next());
                 this.giftTiers.add(giftTier);
@@ -217,10 +217,8 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView impl
         this.headerRow = i;
         this.tiersStartRow = i2;
         int size = i2 + this.giftTiers.size();
-        this.rowsCount = size;
         this.tiersEndRow = size;
         int i3 = size + 1;
-        this.rowsCount = i3;
         this.footerRow = size;
         this.rowsCount = i3 + 1;
         this.buttonRow = i3;
@@ -525,7 +523,7 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView impl
                 if (i != 3) {
                     view = new PremiumGiftHeaderCell(GiftPremiumBottomSheet.this.getContext());
                 } else {
-                    view = new View(this, GiftPremiumBottomSheet.this.getContext()) {
+                    view = new View(GiftPremiumBottomSheet.this.getContext()) {
                         @Override
                         protected void onMeasure(int i2, int i3) {
                             super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(68.0f), 1073741824));

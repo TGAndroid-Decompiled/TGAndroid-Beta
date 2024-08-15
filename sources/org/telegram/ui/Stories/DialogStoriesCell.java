@@ -315,7 +315,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         };
         this.listViewMini = recyclerListView3;
         recyclerListView3.setLayoutManager(new LinearLayoutManager(getContext(), 0, false));
-        this.listViewMini.addItemDecoration(new RecyclerView.ItemDecoration(this) {
+        this.listViewMini.addItemDecoration(new RecyclerView.ItemDecoration() {
             @Override
             public void getItemOffsets(Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
                 int childLayoutPosition = recyclerView.getChildLayoutPosition(view);
@@ -327,7 +327,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
                 }
             }
         });
-        DefaultItemAnimator defaultItemAnimator2 = new DefaultItemAnimator(this) {
+        DefaultItemAnimator defaultItemAnimator2 = new DefaultItemAnimator() {
             @Override
             protected float animateByScale(View view) {
                 return 0.6f;
@@ -434,13 +434,13 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         this.oldMiniItems.addAll(this.miniItems);
         this.items.clear();
         if (this.type != 1) {
-            this.items.add(new Item(this, UserConfig.getInstance(this.currentAccount).getClientUserId()));
+            this.items.add(new Item(UserConfig.getInstance(this.currentAccount).getClientUserId()));
         }
         ArrayList<TL_stories$PeerStories> hiddenList = this.type == 1 ? this.storiesController.getHiddenList() : this.storiesController.getDialogListStories();
         for (int i = 0; i < hiddenList.size(); i++) {
             long peerDialogId = DialogObject.getPeerDialogId(hiddenList.get(i).peer);
             if (peerDialogId != UserConfig.getInstance(this.currentAccount).getClientUserId()) {
-                this.items.add(new Item(this, peerDialogId));
+                this.items.add(new Item(peerDialogId));
             }
         }
         int size = this.items.size();
@@ -886,7 +886,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
     public class Item extends AdapterWithDiffUtils.Item {
         final long dialogId;
 
-        public Item(DialogStoriesCell dialogStoriesCell, long j) {
+        public Item(long j) {
             super(0, false);
             this.dialogId = j;
         }

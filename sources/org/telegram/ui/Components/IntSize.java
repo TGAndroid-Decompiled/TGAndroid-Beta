@@ -15,7 +15,7 @@ public class IntSize {
         if (this == obj) {
             return true;
         }
-        if (obj == null || IntSize.class != obj.getClass()) {
+        if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
         IntSize intSize = (IntSize) obj;

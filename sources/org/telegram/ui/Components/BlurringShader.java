@@ -50,6 +50,7 @@ public class BlurringShader {
     private final Object matrixLock;
     private FloatBuffer padPosBuffer;
     private int padding;
+    private FilterGLThread parent;
     private FloatBuffer posBuffer;
     private Program[] program;
     private boolean setupTransform;
@@ -79,6 +80,7 @@ public class BlurringShader {
             }
         };
         this.iMatrix = new Matrix();
+        this.parent = filterGLThread;
     }
 
     public static class Program {
@@ -702,6 +704,7 @@ public class BlurringShader {
         public Paint paint;
         public RenderNode renderNode;
         private Paint[] tempPaints;
+        private final int type;
         private final View view;
         private boolean wasDark;
 
@@ -717,6 +720,7 @@ public class BlurringShader {
             this.wasDark = false;
             this.manager = blurManager;
             this.view = view;
+            this.type = i;
             this.animateBitmapChange = z;
             ColorMatrix colorMatrix = new ColorMatrix();
             this.colorMatrix = colorMatrix;

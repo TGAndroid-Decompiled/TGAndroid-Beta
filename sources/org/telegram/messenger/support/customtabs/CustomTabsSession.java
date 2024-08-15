@@ -5,6 +5,7 @@ import android.os.IBinder;
 public final class CustomTabsSession {
     private final ICustomTabsCallback mCallback;
     private final ComponentName mComponentName;
+    private final Object mLock = new Object();
     private final ICustomTabsService mService;
 
     public CustomTabsSession(ICustomTabsService iCustomTabsService, ICustomTabsCallback iCustomTabsCallback, ComponentName componentName) {

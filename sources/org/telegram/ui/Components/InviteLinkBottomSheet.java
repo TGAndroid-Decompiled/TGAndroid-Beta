@@ -215,7 +215,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
             }
 
             @Override
-            protected void onDraw(android.graphics.Canvas r13) {
+            protected void onDraw(android.graphics.Canvas r12) {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.InviteLinkBottomSheet.AnonymousClass1.onDraw(android.graphics.Canvas):void");
             }
 
@@ -513,7 +513,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
             Context context = viewGroup.getContext();
             switch (i) {
                 case 1:
-                    flickerLoadingView = new RevenueUserCell(InviteLinkBottomSheet.this, context);
+                    flickerLoadingView = new RevenueUserCell(context);
                     break;
                 case 2:
                     flickerLoadingView = new ShadowSectionCell(context, 12, Theme.getColor(Theme.key_windowBackgroundGray));
@@ -549,7 +549,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
                     flickerLoadingView = flickerLoadingView2;
                     break;
                 case 6:
-                    flickerLoadingView = new View(this, context) {
+                    flickerLoadingView = new View(context) {
                         @Override
                         protected void onMeasure(int i2, int i3) {
                             super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(5.0f), 1073741824));
@@ -564,7 +564,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
                     flickerLoadingView = shadowSectionCell;
                     break;
                 case 8:
-                    flickerLoadingView = new EmptyHintRow(InviteLinkBottomSheet.this, context);
+                    flickerLoadingView = new EmptyHintRow(context);
                     break;
                 case 9:
                     flickerLoadingView = new RevenueCell(context);
@@ -1091,7 +1091,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
     public class EmptyHintRow extends FrameLayout {
         TextView textView;
 
-        public EmptyHintRow(InviteLinkBottomSheet inviteLinkBottomSheet, Context context) {
+        public EmptyHintRow(Context context) {
             super(context);
             TextView textView = new TextView(context);
             this.textView = textView;
@@ -1116,7 +1116,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
         public final TextView periodView;
         public final TextView priceView;
 
-        public RevenueUserCell(InviteLinkBottomSheet inviteLinkBottomSheet, Context context) {
+        public RevenueUserCell(Context context) {
             super(context, 6, 0, true);
             LinearLayout linearLayout = new LinearLayout(context);
             this.layout = linearLayout;
@@ -1405,9 +1405,10 @@ public class InviteLinkBottomSheet extends BottomSheet {
         });
         BottomSheet.Builder builder4 = builder2;
         builder4.setCustomView(linearLayout);
-        bottomSheetArr[0] = builder4.create();
-        bottomSheetArr[0].useBackgroundTopPadding = false;
-        bottomSheetArr[0].fixNavigationBar();
+        BottomSheet create = builder4.create();
+        bottomSheetArr[0] = create;
+        create.useBackgroundTopPadding = false;
+        create.fixNavigationBar();
         bottomSheetArr[0].show();
         return bottomSheetArr[0];
     }

@@ -343,6 +343,10 @@ public class SelectorSearchCell extends ScrollView {
         private boolean animationStarted;
         private ArrayList<Animator> animators;
         private AnimatorSet currentAnimation;
+        private final int heightDp;
+        private final int padDp;
+        private final int padXDp;
+        private final int padYDp;
         private final ArrayList<View> removingSpans;
 
         public SpansContainer(Context context) {
@@ -351,6 +355,10 @@ public class SelectorSearchCell extends ScrollView {
             this.animRemovingSpans = new ArrayList<>();
             this.animators = new ArrayList<>();
             this.removingSpans = new ArrayList<>();
+            this.padDp = 14;
+            this.padYDp = 4;
+            this.padXDp = 6;
+            this.heightDp = 28;
         }
 
         @Override
@@ -463,6 +471,7 @@ public class SelectorSearchCell extends ScrollView {
                 for (int i4 = 0; i4 < arrayList.size(); i4++) {
                     removeView(arrayList.get(i4));
                 }
+                this.addingSpan = null;
                 this.removingSpans.clear();
                 this.currentAnimation = null;
                 this.animationStarted = false;

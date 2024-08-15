@@ -25,6 +25,8 @@ public class ShapeDetector {
     SharedPreferences preferences;
     private boolean shapeDetected;
     private int templatesUsageScore;
+    private final int MIN_POINTS = 8;
+    private final long TIMEOUT = 150;
     private ArrayList<Point> points = new ArrayList<>();
     private ArrayList<Template> templates = new ArrayList<>();
     private ArrayList<Point> toSave = null;

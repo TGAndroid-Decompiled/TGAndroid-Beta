@@ -1599,15 +1599,15 @@ public class ContactsController extends BaseController {
             Contact value = entry.getValue();
             int i2 = 0;
             while (true) {
-                z = true;
                 if (i2 >= value.phones.size()) {
                     z = false;
                     break;
-                } else if (hashMap.containsKey(value.shortPhones.get(i2)) || value.phoneDeleted.get(i2).intValue() == 1) {
-                    break;
-                } else {
-                    i2++;
                 }
+                z = true;
+                if (hashMap.containsKey(value.shortPhones.get(i2)) || value.phoneDeleted.get(i2).intValue() == 1) {
+                    break;
+                }
+                i2++;
             }
             if (!z) {
                 arrayList.add(value);
@@ -1703,8 +1703,10 @@ public class ContactsController extends BaseController {
 
     private boolean hasContactsPermission() {
         Cursor query;
+        int checkSelfPermission;
         if (Build.VERSION.SDK_INT >= 23) {
-            return ApplicationLoader.applicationContext.checkSelfPermission("android.permission.READ_CONTACTS") == 0;
+            checkSelfPermission = ApplicationLoader.applicationContext.checkSelfPermission("android.permission.READ_CONTACTS");
+            return checkSelfPermission == 0;
         }
         try {
             query = ApplicationLoader.applicationContext.getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, this.projectionPhones, null, null, null);
@@ -1726,7 +1728,12 @@ public class ContactsController extends BaseController {
     }
 
     private boolean hasContactsWritePermission() {
-        return Build.VERSION.SDK_INT < 23 || ApplicationLoader.applicationContext.checkSelfPermission("android.permission.WRITE_CONTACTS") == 0;
+        int checkSelfPermission;
+        if (Build.VERSION.SDK_INT >= 23) {
+            checkSelfPermission = ApplicationLoader.applicationContext.checkSelfPermission("android.permission.WRITE_CONTACTS");
+            return checkSelfPermission == 0;
+        }
+        return true;
     }
 
     public void lambda$performWriteContactsToPhoneBook$45(java.util.ArrayList<org.telegram.tgnet.TLRPC$TL_contact> r15) {
@@ -1912,6 +1919,7 @@ public class ContactsController extends BaseController {
     }
 
     public long addContactToPhoneBook(TLRPC$User tLRPC$User, boolean z) {
+        Uri uri;
         long j = -1;
         if (this.systemAccount == null || tLRPC$User == null || !hasContactsWritePermission()) {
             return -1L;
@@ -1931,8 +1939,8 @@ public class ContactsController extends BaseController {
         applyContactToPhoneBook(arrayList, tLRPC$User);
         try {
             ContentProviderResult[] applyBatch = contentResolver.applyBatch("com.android.contacts", arrayList);
-            if (applyBatch != null && applyBatch.length > 0 && applyBatch[0].uri != null) {
-                j = Long.parseLong(applyBatch[0].uri.getLastPathSegment());
+            if (applyBatch != null && applyBatch.length > 0 && (uri = applyBatch[0].uri) != null) {
+                j = Long.parseLong(uri.getLastPathSegment());
             }
         } catch (Exception e) {
             FileLog.e(e);

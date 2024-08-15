@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.messenger.AndroidUtilities;
@@ -58,14 +59,13 @@ import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.StickerCategoriesListView;
 public class StickerCategoriesListView extends RecyclerListView {
-    private static EmojiGroupFetcher fetcher = new EmojiGroupFetcher();
-    public static CacheFetcher<String, TLRPC$TL_emojiList> search = new EmojiSearch();
     private Adapter adapter;
     private Paint backgroundPaint;
     private EmojiCategory[] categories;
     private boolean categoriesShouldShow;
     private ValueAnimator categoriesShownAnimator;
     private float categoriesShownT;
+    private int categoriesType;
     private int dontOccupyWidth;
     public Integer layerNum;
     private LinearLayoutManager layoutManager;
@@ -79,6 +79,7 @@ public class StickerCategoriesListView extends RecyclerListView {
     private final RectF rect1;
     private final RectF rect2;
     private final RectF rect3;
+    private AnimatedFloat rightBoundAlpha;
     private Drawable rightBoundDrawable;
     private boolean scrolledFully;
     private boolean scrolledIntoOccupiedWidth;
@@ -87,13 +88,13 @@ public class StickerCategoriesListView extends RecyclerListView {
     private AnimatedFloat selectedIndex;
     private Paint selectedPaint;
     private float shownButtonsAtStart;
+    private static EmojiGroupFetcher fetcher = new EmojiGroupFetcher();
+    public static CacheFetcher<String, TLRPC$TL_emojiList> search = new EmojiSearch();
+    private static Set<Integer> loadedIconsType = new HashSet();
+    static int loadedCategoryIcons = 0;
 
     protected EmojiCategory[] preprocessCategories(EmojiCategory[] emojiCategoryArr) {
         return emojiCategoryArr;
-    }
-
-    static {
-        new HashSet();
     }
 
     public static void preload(final int i, int i2) {
@@ -127,7 +128,7 @@ public class StickerCategoriesListView extends RecyclerListView {
         this.categories = null;
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         this.leftBoundAlpha = new AnimatedFloat(this, 360L, cubicBezierInterpolator);
-        new AnimatedFloat(this, 360L, cubicBezierInterpolator);
+        this.rightBoundAlpha = new AnimatedFloat(this, 360L, cubicBezierInterpolator);
         this.selectedPaint = new Paint(1);
         this.selectedCategoryIndex = -1;
         this.categoriesShownT = 0.0f;
@@ -137,6 +138,7 @@ public class StickerCategoriesListView extends RecyclerListView {
         this.rect1 = new RectF();
         this.rect2 = new RectF();
         this.rect3 = new RectF();
+        this.categoriesType = i;
         setPadding(0, 0, AndroidUtilities.dp(2.0f), 0);
         Adapter adapter = new Adapter();
         this.adapter = adapter;
@@ -380,6 +382,7 @@ public class StickerCategoriesListView extends RecyclerListView {
     @Override
     public void onScrolled(int i, int i2) {
         boolean z;
+        boolean z2;
         Utilities.Callback<Integer> callback;
         super.onScrolled(i, i2);
         if (getChildCount() > 0) {
@@ -387,22 +390,22 @@ public class StickerCategoriesListView extends RecyclerListView {
             if (childAt instanceof CategoryButton) {
                 z = true;
             } else {
-                r6 = childAt.getRight() <= this.dontOccupyWidth;
+                z2 = childAt.getRight() <= this.dontOccupyWidth;
                 z = false;
             }
         } else {
             z = false;
-            r6 = false;
+            z2 = false;
         }
-        boolean z2 = this.scrolledIntoOccupiedWidth;
-        if (z2 != r6) {
-            this.scrolledIntoOccupiedWidth = r6;
+        boolean z3 = this.scrolledIntoOccupiedWidth;
+        if (z3 != z2) {
+            this.scrolledIntoOccupiedWidth = z2;
             Utilities.Callback<Integer> callback2 = this.onScrollIntoOccupiedWidth;
             if (callback2 != null) {
-                callback2.run(Integer.valueOf(r6 ? Math.max(0, getScrollToStartWidth() - (this.paddingWidth - this.dontOccupyWidth)) : 0));
+                callback2.run(Integer.valueOf(z2 ? Math.max(0, getScrollToStartWidth() - (this.paddingWidth - this.dontOccupyWidth)) : 0));
             }
             invalidate();
-        } else if (z2 && (callback = this.onScrollIntoOccupiedWidth) != null) {
+        } else if (z3 && (callback = this.onScrollIntoOccupiedWidth) != null) {
             callback.run(Integer.valueOf(Math.max(0, getScrollToStartWidth() - (this.paddingWidth - this.dontOccupyWidth))));
         }
         if (this.scrolledFully != z) {
@@ -626,6 +629,7 @@ public class StickerCategoriesListView extends RecyclerListView {
     public class CategoryButton extends RLottieImageView {
         ValueAnimator backAnimator;
         private int imageColor;
+        private int index;
         private long lastPlayed;
         ValueAnimator loadAnimator;
         float loadProgress;
@@ -644,6 +648,7 @@ public class StickerCategoriesListView extends RecyclerListView {
         }
 
         public void set(EmojiCategory emojiCategory, int i, boolean z) {
+            this.index = i;
             ValueAnimator valueAnimator = this.loadAnimator;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
@@ -887,7 +892,9 @@ public class StickerCategoriesListView extends RecyclerListView {
         public String emojis;
         public boolean greeting;
         public int iconResId;
+        public boolean premium;
         public boolean remote;
+        public String title;
 
         public static EmojiCategory remote(TLRPC$EmojiGroup tLRPC$EmojiGroup) {
             EmojiCategory emojiCategory = new EmojiCategory();
@@ -895,10 +902,12 @@ public class StickerCategoriesListView extends RecyclerListView {
             emojiCategory.documentId = tLRPC$EmojiGroup.icon_emoji_id;
             if (tLRPC$EmojiGroup instanceof TLRPC$TL_emojiGroupPremium) {
                 emojiCategory.emojis = "premium";
+                emojiCategory.premium = true;
             } else {
                 emojiCategory.emojis = TextUtils.concat((CharSequence[]) tLRPC$EmojiGroup.emoticons.toArray(new String[0])).toString();
             }
             emojiCategory.greeting = tLRPC$EmojiGroup instanceof TLRPC$TL_emojiGroupGreeting;
+            emojiCategory.title = tLRPC$EmojiGroup.title;
             return emojiCategory;
         }
     }

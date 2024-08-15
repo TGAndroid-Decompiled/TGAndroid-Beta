@@ -96,6 +96,8 @@ public class ChangeUsernameActivity extends BaseFragment {
     private InputCell inputCell;
     private ItemTouchHelper itemTouchHelper;
     private String lastCheckName;
+    private boolean lastNameAvailable;
+    private LinearLayoutManager layoutManager;
     private RecyclerListView listView;
     private ArrayList<String> loadingUsernames;
     private boolean needReorder;
@@ -245,11 +247,14 @@ public class ChangeUsernameActivity extends BaseFragment {
             }
         };
         this.fragmentView.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundGray));
-        this.listView.setLayoutManager(new LinearLayoutManager(context));
         RecyclerListView recyclerListView = this.listView;
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
+        this.layoutManager = linearLayoutManager;
+        recyclerListView.setLayoutManager(linearLayoutManager);
+        RecyclerListView recyclerListView2 = this.listView;
         Adapter adapter = new Adapter();
         this.adapter = adapter;
-        recyclerListView.setAdapter(adapter);
+        recyclerListView2.setAdapter(adapter);
         this.listView.setSelectorDrawableColor(getThemedColor(Theme.key_listSelector));
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new TouchHelperCallback());
         this.itemTouchHelper = itemTouchHelper;
@@ -279,12 +284,12 @@ public class ChangeUsernameActivity extends BaseFragment {
 
         @Override
         public void onItemClick(final View view, final int i) {
-            int i2;
             String str;
-            int i3;
+            int i2;
             String str2;
-            int i4;
+            int i3;
             String str3;
+            int i4;
             if (view instanceof UsernameCell) {
                 UsernameCell usernameCell = (UsernameCell) view;
                 final TLRPC$TL_username tLRPC$TL_username = usernameCell.currentUsername;
@@ -301,27 +306,27 @@ public class ChangeUsernameActivity extends BaseFragment {
                 }
                 AlertDialog.Builder builder = new AlertDialog.Builder(ChangeUsernameActivity.this.getContext(), ChangeUsernameActivity.this.getResourceProvider());
                 if (tLRPC$TL_username.active) {
-                    i2 = R.string.UsernameDeactivateLink;
                     str = "UsernameDeactivateLink";
+                    i2 = R.string.UsernameDeactivateLink;
                 } else {
-                    i2 = R.string.UsernameActivateLink;
                     str = "UsernameActivateLink";
+                    i2 = R.string.UsernameActivateLink;
                 }
                 AlertDialog.Builder title = builder.setTitle(LocaleController.getString(str, i2));
                 if (tLRPC$TL_username.active) {
-                    i3 = R.string.UsernameDeactivateLinkProfileMessage;
                     str2 = "UsernameDeactivateLinkProfileMessage";
+                    i3 = R.string.UsernameDeactivateLinkProfileMessage;
                 } else {
-                    i3 = R.string.UsernameActivateLinkProfileMessage;
                     str2 = "UsernameActivateLinkProfileMessage";
+                    i3 = R.string.UsernameActivateLinkProfileMessage;
                 }
                 AlertDialog.Builder message = title.setMessage(LocaleController.getString(str2, i3));
                 if (tLRPC$TL_username.active) {
-                    i4 = R.string.Hide;
                     str3 = "Hide";
+                    i4 = R.string.Hide;
                 } else {
-                    i4 = R.string.Show;
                     str3 = "Show";
+                    i4 = R.string.Show;
                 }
                 message.setPositiveButton(LocaleController.getString(str3, i4), new DialogInterface.OnClickListener() {
                     @Override
@@ -645,7 +650,7 @@ public class ChangeUsernameActivity extends BaseFragment {
             int i3 = Theme.key_windowBackgroundWhiteLinkSelection;
             linksTextView4.setHighlightColor(Theme.getColor(i3));
             this.text1View.setPadding(AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f), 0);
-            LinkSpanDrawable.LinksTextView linksTextView5 = ChangeUsernameActivity.this.statusTextView = new LinkSpanDrawable.LinksTextView(context, ChangeUsernameActivity.this) {
+            LinkSpanDrawable.LinksTextView linksTextView5 = ChangeUsernameActivity.this.statusTextView = new LinkSpanDrawable.LinksTextView(context) {
                 @Override
                 public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
                     if (charSequence != 0) {
@@ -780,7 +785,7 @@ public class ChangeUsernameActivity extends BaseFragment {
                 }
             });
             this.field.setText(ChangeUsernameActivity.this.username);
-            this.field.addTextChangedListener(new TextWatcher(ChangeUsernameActivity.this) {
+            this.field.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
                     String str = ChangeUsernameActivity.this.username;
@@ -966,10 +971,10 @@ public class ChangeUsernameActivity extends BaseFragment {
         }
 
         public void set(TLRPC$TL_username tLRPC$TL_username, boolean z, boolean z2, long j) {
-            int i;
             String str;
-            int i2;
+            int i;
             String str2;
+            int i2;
             this.currentUsername = tLRPC$TL_username;
             this.useDivider = z;
             this.botId = j;
@@ -986,27 +991,27 @@ public class ChangeUsernameActivity extends BaseFragment {
             if (this.isProfile) {
                 AnimatedTextView animatedTextView = this.activeView;
                 if (this.editable) {
-                    i2 = R.string.UsernameProfileLinkEditable;
                     str2 = "UsernameProfileLinkEditable";
+                    i2 = R.string.UsernameProfileLinkEditable;
                 } else if (this.active) {
-                    i2 = R.string.UsernameProfileLinkActive;
                     str2 = "UsernameProfileLinkActive";
+                    i2 = R.string.UsernameProfileLinkActive;
                 } else {
-                    i2 = R.string.UsernameProfileLinkInactive;
                     str2 = "UsernameProfileLinkInactive";
+                    i2 = R.string.UsernameProfileLinkInactive;
                 }
                 animatedTextView.setText(LocaleController.getString(str2, i2), z2, !this.active);
             } else {
                 AnimatedTextView animatedTextView2 = this.activeView;
                 if (this.editable) {
-                    i = R.string.UsernameLinkEditable;
                     str = "UsernameLinkEditable";
+                    i = R.string.UsernameLinkEditable;
                 } else if (this.active) {
-                    i = R.string.UsernameLinkActive;
                     str = "UsernameLinkActive";
+                    i = R.string.UsernameLinkActive;
                 } else {
-                    i = R.string.UsernameLinkInactive;
                     str = "UsernameLinkInactive";
+                    i = R.string.UsernameLinkInactive;
                 }
                 animatedTextView2.setText(LocaleController.getString(str, i), z2, !this.active);
             }
@@ -1202,6 +1207,7 @@ public class ChangeUsernameActivity extends BaseFragment {
                 ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.checkReqId, true);
             }
         }
+        this.lastNameAvailable = false;
         if (str != null) {
             if (str.startsWith("_") || str.endsWith("_")) {
                 LinkSpanDrawable.LinksTextView linksTextView2 = this.statusTextView;
@@ -1381,7 +1387,10 @@ public class ChangeUsernameActivity extends BaseFragment {
                     usernameHelpCell.update();
                 }
             }
-        } else if (this.statusTextView != null) {
+            this.lastNameAvailable = true;
+            return;
+        }
+        if (this.statusTextView != null) {
             if (tLRPC$TL_error != null && "USERNAME_INVALID".equals(tLRPC$TL_error.text) && tLRPC$TL_account_checkUsername.username.length() == 4) {
                 this.statusTextView.setText(LocaleController.getString("UsernameInvalidShort", R.string.UsernameInvalidShort));
                 LinkSpanDrawable.LinksTextView linksTextView3 = this.statusTextView;
@@ -1410,6 +1419,7 @@ public class ChangeUsernameActivity extends BaseFragment {
                 usernameHelpCell2.update();
             }
         }
+        this.lastNameAvailable = false;
     }
 
     public void saveName() {

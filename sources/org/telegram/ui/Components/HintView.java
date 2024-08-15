@@ -49,10 +49,11 @@ public class HintView extends FrameLayout {
     public TextView textView;
     private float translationY;
     private boolean useScale;
-    VisibilityListener visibleListener;
 
     public interface VisibilityListener {
-        void onVisible(boolean z);
+    }
+
+    public void setVisibleListener(VisibilityListener visibilityListener) {
     }
 
     public HintView(Context context, int i) {
@@ -290,10 +291,6 @@ public class HintView extends FrameLayout {
             }
             setTag(1);
             setVisibility(0);
-            VisibilityListener visibilityListener = this.visibleListener;
-            if (visibilityListener != null) {
-                visibilityListener.onVisible(true);
-            }
             if (z) {
                 AnimatorSet animatorSet2 = new AnimatorSet();
                 this.animatorSet = animatorSet2;
@@ -353,10 +350,6 @@ public class HintView extends FrameLayout {
         }
         setTag(1);
         setVisibility(0);
-        VisibilityListener visibilityListener = this.visibleListener;
-        if (visibilityListener != null) {
-            visibilityListener.onVisible(true);
-        }
         if (z) {
             AnimatorSet animatorSet2 = new AnimatorSet();
             this.animatorSet = animatorSet2;
@@ -447,10 +440,7 @@ public class HintView extends FrameLayout {
                 @Override
                 public void onAnimationEnd(Animator animator) {
                     HintView.this.setVisibility(4);
-                    VisibilityListener visibilityListener = HintView.this.visibleListener;
-                    if (visibilityListener != null) {
-                        visibilityListener.onVisible(false);
-                    }
+                    HintView.this.getClass();
                     HintView.this.currentView = null;
                     HintView.this.messageCell = null;
                     HintView.this.animatorSet = null;
@@ -460,10 +450,6 @@ public class HintView extends FrameLayout {
             return;
         }
         setVisibility(4);
-        VisibilityListener visibilityListener = this.visibleListener;
-        if (visibilityListener != null) {
-            visibilityListener.onVisible(false);
-        }
         this.currentView = null;
         this.messageCell = null;
         this.animatorSet = null;
@@ -495,10 +481,6 @@ public class HintView extends FrameLayout {
 
     public void setUseScale(boolean z) {
         this.useScale = z;
-    }
-
-    public void setVisibleListener(VisibilityListener visibilityListener) {
-        this.visibleListener = visibilityListener;
     }
 
     @Override

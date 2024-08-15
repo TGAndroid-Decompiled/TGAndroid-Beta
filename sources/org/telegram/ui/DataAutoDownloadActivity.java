@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -48,6 +47,7 @@ public class DataAutoDownloadActivity extends BaseFragment {
     private int filesRow;
     private String key;
     private String key2;
+    private LinearLayoutManager layoutManager;
     private ListAdapter listAdapter;
     private RecyclerListView listView;
     private int photosRow;
@@ -130,7 +130,10 @@ public class DataAutoDownloadActivity extends BaseFragment {
         this.listView = recyclerListView;
         recyclerListView.setVerticalScrollBarEnabled(false);
         ((DefaultItemAnimator) this.listView.getItemAnimator()).setDelayAnimations(false);
-        this.listView.setLayoutManager(new LinearLayoutManager(context, 1, false));
+        RecyclerListView recyclerListView2 = this.listView;
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, 1, false);
+        this.layoutManager = linearLayoutManager;
+        recyclerListView2.setLayoutManager(linearLayoutManager);
         ((FrameLayout) this.fragmentView).addView(this.listView, LayoutHelper.createFrame(-1, -1, 51));
         this.listView.setAdapter(this.listAdapter);
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListenerExtended() {
@@ -179,13 +182,15 @@ public class DataAutoDownloadActivity extends BaseFragment {
             if (maxFileSizeCellArr[0].getSize() > 2097152) {
                 textCheckCellArr[0].setEnabled(z, arrayList);
             }
-            if (animatorSetArr[0] != null) {
-                animatorSetArr[0].cancel();
+            AnimatorSet animatorSet = animatorSetArr[0];
+            if (animatorSet != null) {
+                animatorSet.cancel();
                 animatorSetArr[0] = null;
             }
-            animatorSetArr[0] = new AnimatorSet();
-            animatorSetArr[0].playTogether(arrayList);
-            animatorSetArr[0].addListener(new AnimatorListenerAdapter(this) {
+            AnimatorSet animatorSet2 = new AnimatorSet();
+            animatorSetArr[0] = animatorSet2;
+            animatorSet2.playTogether(arrayList);
+            animatorSetArr[0].addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {
                     if (animator.equals(animatorSetArr[0])) {
@@ -199,7 +204,8 @@ public class DataAutoDownloadActivity extends BaseFragment {
     }
 
     public static void lambda$createView$1(TextCheckCell[] textCheckCellArr, View view) {
-        textCheckCellArr[0].setChecked(!textCheckCellArr[0].isChecked());
+        TextCheckCell textCheckCell = textCheckCellArr[0];
+        textCheckCell.setChecked(!textCheckCell.isChecked());
     }
 
     public static void lambda$createView$2(BottomSheet.Builder builder, View view) {
@@ -226,15 +232,17 @@ public class DataAutoDownloadActivity extends BaseFragment {
                 iArr2[i5] = iArr2[i5] & (i ^ (-1));
             }
         }
-        if (maxFileSizeCellArr[0] != null) {
-            maxFileSizeCellArr[0].getSize();
+        MaxFileSizeCell maxFileSizeCell = maxFileSizeCellArr[0];
+        if (maxFileSizeCell != null) {
+            maxFileSizeCell.getSize();
             this.typePreset.sizes[i2] = (int) maxFileSizeCellArr[0].getSize();
         }
-        if (textCheckCellArr[0] != null) {
+        TextCheckCell textCheckCell = textCheckCellArr[0];
+        if (textCheckCell != null) {
             if (i3 == this.videosRow) {
-                this.typePreset.preloadVideo = textCheckCellArr[0].isChecked();
+                this.typePreset.preloadVideo = textCheckCell.isChecked();
             } else {
-                this.typePreset.preloadMusic = textCheckCellArr[0].isChecked();
+                this.typePreset.preloadMusic = textCheckCell.isChecked();
             }
         }
         SharedPreferences.Editor edit = MessagesController.getMainSettings(this.currentAccount).edit();
@@ -334,40 +342,40 @@ public class DataAutoDownloadActivity extends BaseFragment {
         boolean z2 = false;
         while (true) {
             int[] iArr = preset.mask;
-            if (i < iArr.length) {
-                if ((iArr[i] & 4) != 0) {
-                    z = true;
-                }
-                if ((iArr[i] & 8) != 0) {
-                    z2 = true;
-                }
-                if (z && z2) {
-                    break;
-                }
-                i++;
-            } else {
+            if (i >= iArr.length) {
                 break;
             }
+            int i2 = iArr[i];
+            if ((i2 & 4) != 0) {
+                z = true;
+            }
+            if ((i2 & 8) != 0) {
+                z2 = true;
+            }
+            if (z && z2) {
+                break;
+            }
+            i++;
         }
-        int i2 = 0;
+        int i3 = 0;
         boolean z3 = false;
         boolean z4 = false;
         while (true) {
             int[] iArr2 = preset2.mask;
-            if (i2 < iArr2.length) {
-                if ((iArr2[i2] & 4) != 0) {
-                    z3 = true;
-                }
-                if ((iArr2[i2] & 8) != 0) {
-                    z4 = true;
-                }
-                if (z3 && z4) {
-                    break;
-                }
-                i2++;
-            } else {
+            if (i3 >= iArr2.length) {
                 break;
             }
+            int i4 = iArr2[i3];
+            if ((i4 & 4) != 0) {
+                z3 = true;
+            }
+            if ((i4 & 8) != 0) {
+                z4 = true;
+            }
+            if (z3 && z4) {
+                break;
+            }
+            i3++;
         }
         long j = (z ? preset.sizes[typeToIndex] : 0L) + (z2 ? preset.sizes[typeToIndex2] : 0L) + (preset.preloadStories ? 1L : 0L);
         long j2 = (z3 ? preset2.sizes[typeToIndex] : 0L) + (z4 ? preset2.sizes[typeToIndex2] : 0L) + (preset2.preloadStories ? 1L : 0L);
@@ -378,37 +386,27 @@ public class DataAutoDownloadActivity extends BaseFragment {
     }
 
     private void updateRows() {
-        this.rowCount = 0;
         int i = 0 + 1;
-        this.rowCount = i;
         this.autoDownloadRow = 0;
         int i2 = i + 1;
         this.rowCount = i2;
         this.autoDownloadSectionRow = i;
         if (this.typePreset.enabled) {
             int i3 = i2 + 1;
-            this.rowCount = i3;
             this.usageHeaderRow = i2;
             int i4 = i3 + 1;
-            this.rowCount = i4;
             this.usageProgressRow = i3;
             int i5 = i4 + 1;
-            this.rowCount = i5;
             this.usageSectionRow = i4;
             int i6 = i5 + 1;
-            this.rowCount = i6;
             this.typeHeaderRow = i5;
             int i7 = i6 + 1;
-            this.rowCount = i7;
             this.photosRow = i6;
             int i8 = i7 + 1;
-            this.rowCount = i8;
             this.videosRow = i7;
             int i9 = i8 + 1;
-            this.rowCount = i9;
             this.filesRow = i8;
             int i10 = i9 + 1;
-            this.rowCount = i10;
             this.storiesRow = i9;
             this.rowCount = i10 + 1;
             this.typeSectionRow = i10;
@@ -493,13 +491,8 @@ public class DataAutoDownloadActivity extends BaseFragment {
                             textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
                             textInfoPrivacyCell.setText(null);
                             textInfoPrivacyCell.setFixedSize(12);
-                            if (Build.VERSION.SDK_INT >= 19) {
-                                textInfoPrivacyCell.setImportantForAccessibility(4);
-                                return;
-                            } else {
-                                textInfoPrivacyCell.setImportantForAccessibility(2);
-                                return;
-                            }
+                            textInfoPrivacyCell.setImportantForAccessibility(4);
+                            return;
                         }
                         return;
                     }

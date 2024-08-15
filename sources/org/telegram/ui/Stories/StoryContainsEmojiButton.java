@@ -54,6 +54,7 @@ public class StoryContainsEmojiButton extends View {
     private int lastContentWidth;
     private StaticLayout layout;
     private float layoutLeft;
+    private float layoutWidth;
     private ValueAnimator loadAnimator;
     private float loadT;
     private final LoadingDrawable loadingDrawable;
@@ -66,6 +67,7 @@ public class StoryContainsEmojiButton extends View {
     private boolean stickers;
     private final TextPaint textPaint;
     private CharSequence toSetText;
+    private TLRPC$Vector vector;
 
     public StoryContainsEmojiButton(Context context, int i, TLObject tLObject, Object obj, boolean z, ArrayList<TLRPC$InputStickerSet> arrayList, Theme.ResourcesProvider resourcesProvider) {
         super(context);
@@ -121,9 +123,7 @@ public class StoryContainsEmojiButton extends View {
         StaticLayout staticLayout = new StaticLayout(charSequence, this.textPaint, measuredWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         this.layout = staticLayout;
         this.layoutLeft = staticLayout.getLineCount() > 0 ? this.layout.getLineLeft(0) : 0.0f;
-        if (this.layout.getLineCount() > 0) {
-            this.layout.getLineWidth(0);
-        }
+        this.layoutWidth = this.layout.getLineCount() > 0 ? this.layout.getLineWidth(0) : 0.0f;
         this.stack = AnimatedEmojiSpan.update(0, this, this.stack, this.layout);
     }
 
@@ -262,6 +262,7 @@ public class StoryContainsEmojiButton extends View {
             return;
         }
         TLRPC$Vector tLRPC$Vector = (TLRPC$Vector) tLObject;
+        this.vector = tLRPC$Vector;
         lastRequestParentObject = obj;
         lastResponse = tLRPC$Vector;
         for (int i2 = 0; i2 < tLRPC$Vector.objects.size(); i2++) {
@@ -302,6 +303,7 @@ public class StoryContainsEmojiButton extends View {
                 }
             }
             this.emoji = true;
+            this.vector = null;
         }
         if (size2 == 1) {
             if (this.sets.size() >= 1) {
@@ -343,6 +345,7 @@ public class StoryContainsEmojiButton extends View {
     }
 
     private void set(TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet) {
+        TLRPC$Document tLRPC$Document;
         CharSequence charSequence;
         String string;
         if (tLRPC$TL_messages_stickerSet == null) {
@@ -351,11 +354,11 @@ public class StoryContainsEmojiButton extends View {
         SpannableString spannableString = new SpannableString("x " + tLRPC$TL_messages_stickerSet.set.title);
         spannableString.setSpan(new ForegroundColorSpan(Theme.getColor(Theme.key_chat_messageLinkIn, this.loadingDrawable.resourcesProvider)), 0, spannableString.length(), 33);
         spannableString.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, spannableString.length(), 33);
-        TLRPC$Document tLRPC$Document = null;
         ArrayList<TLRPC$Document> arrayList = tLRPC$TL_messages_stickerSet.documents;
         int i = 0;
         while (true) {
             if (i >= arrayList.size()) {
+                tLRPC$Document = null;
                 break;
             } else if (arrayList.get(i).id == tLRPC$TL_messages_stickerSet.set.thumb_document_id) {
                 tLRPC$Document = arrayList.get(i);

@@ -45,6 +45,7 @@ public class HintDialogCell extends FrameLayout {
     private boolean premiumBlocked;
     private final AnimatedFloat premiumBlockedT;
     private PremiumGradient.PremiumGradientTools premiumGradient;
+    private RectF rect;
     private Theme.ResourcesProvider resourcesProvider;
     float showOnlineProgress;
     private boolean showPremiumBlocked;
@@ -57,7 +58,7 @@ public class HintDialogCell extends FrameLayout {
     public HintDialogCell(Context context, boolean z, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.avatarDrawable = new AvatarDrawable();
-        new RectF();
+        this.rect = new RectF();
         this.currentAccount = UserConfig.selectedAccount;
         this.premiumBlockedT = new AnimatedFloat(this, 0L, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
         this.backgroundColorKey = Theme.key_windowBackgroundWhite;
@@ -66,7 +67,7 @@ public class HintDialogCell extends FrameLayout {
         this.imageView = backupImageView;
         backupImageView.setRoundRadius(AndroidUtilities.dp(27.0f));
         addView(this.imageView, LayoutHelper.createFrame(54, 54.0f, 49, 0.0f, 7.0f, 0.0f, 0.0f));
-        TextView textView = new TextView(this, context) {
+        TextView textView = new TextView(context) {
             @Override
             public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
                 super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), AndroidUtilities.dp(10.0f), false), bufferType);

@@ -199,7 +199,6 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
         this.paddingRow = i;
         this.featuresStartRow = i2;
         int size = i2 + this.premiumFeatures.size();
-        this.rowCount = size;
         this.featuresEndRow = size;
         this.rowCount = size + 1;
         this.sectionRow = size;
@@ -477,8 +476,8 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
             }
         }
         try {
-            LinkSpanDrawable.LinksTextView[] linksTextViewArr2 = this.titleView;
-            linksTextViewArr2[0].setText(Emoji.replaceEmoji(linksTextViewArr2[0].getText(), this.titleView[0].getPaint().getFontMetricsInt(), false));
+            LinkSpanDrawable.LinksTextView linksTextView6 = this.titleView[0];
+            linksTextView6.setText(Emoji.replaceEmoji(linksTextView6.getText(), this.titleView[0].getPaint().getFontMetricsInt(), false));
         } catch (Exception unused2) {
         }
     }
@@ -572,7 +571,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
                 PremiumPreviewBottomSheet premiumPreviewBottomSheet = PremiumPreviewBottomSheet.this;
                 View view2 = premiumPreviewBottomSheet.overrideTitleIcon;
                 if (view2 == null) {
-                    premiumPreviewBottomSheet.iconTextureView = new GLIconTextureView(this, context, 1) {
+                    premiumPreviewBottomSheet.iconTextureView = new GLIconTextureView(context, 1) {
                         @Override
                         public void onAttachedToWindow() {
                             super.onAttachedToWindow();
@@ -611,7 +610,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
                     PremiumPreviewBottomSheet.this.titleView = new LinkSpanDrawable.LinksTextView[2];
                     int i3 = 0;
                     while (i3 < 2) {
-                        PremiumPreviewBottomSheet.this.titleView[i3] = new LinkSpanDrawable.LinksTextView(this, context, ((BottomSheet) PremiumPreviewBottomSheet.this).resourcesProvider) {
+                        PremiumPreviewBottomSheet.this.titleView[i3] = new LinkSpanDrawable.LinksTextView(context, ((BottomSheet) PremiumPreviewBottomSheet.this).resourcesProvider) {
                             @Override
                             protected int emojiCacheType() {
                                 return 3;
@@ -648,7 +647,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
                 }
                 linearLayout.addView(PremiumPreviewBottomSheet.this.subtitleView, LayoutHelper.createLinear(-1, -2, 0.0f, 0, 16, 9, 16, 20));
                 PremiumPreviewBottomSheet.this.setTitle(false);
-                PremiumPreviewBottomSheet.this.starParticlesView = new StarParticlesView(this, context) {
+                PremiumPreviewBottomSheet.this.starParticlesView = new StarParticlesView(context) {
                     @Override
                     public void onMeasure(int i4, int i5) {
                         super.onMeasure(i4, i5);
@@ -706,7 +705,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
             } else if (i == 2) {
                 view = new ShadowSectionCell(context, 12, PremiumPreviewBottomSheet.this.getThemedColor(Theme.key_windowBackgroundGray));
             } else if (i == 3) {
-                view = new View(this, context) {
+                view = new View(context) {
                     @Override
                     protected void onMeasure(int i4, int i5) {
                         super.onMeasure(i4, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(68.0f), 1073741824));
@@ -854,6 +853,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
 
     @Override
     public void mainContainerDispatchDraw(Canvas canvas) {
+        Drawable drawable;
         View view = this.overrideTitleIcon;
         if (view != null) {
             view.setVisibility(this.enterTransitionInProgress ? 4 : 0);
@@ -870,12 +870,11 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
         canvas.save();
         float[] fArr = {this.startEnterFromX, this.startEnterFromY};
         this.startEnterFromView.getMatrix().mapPoints(fArr);
-        Drawable drawable = null;
         View view4 = this.startEnterFromView;
         if (view4 instanceof SimpleTextView) {
             drawable = ((SimpleTextView) view4).getRightDrawable();
-        } else if (view4 instanceof ChatMessageCell) {
-            drawable = ((ChatMessageCell) view4).currentNameStatusDrawable;
+        } else {
+            drawable = view4 instanceof ChatMessageCell ? ((ChatMessageCell) view4).currentNameStatusDrawable : null;
         }
         if (drawable == null) {
             canvas.restore();

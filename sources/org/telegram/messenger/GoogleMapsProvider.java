@@ -148,11 +148,12 @@ public class GoogleMapsProvider implements IMapsProvider {
         }
 
         public static void lambda$setOnCameraMoveStartedListener$0(IMapsProvider.OnCameraMoveStartedListener onCameraMoveStartedListener, int i) {
-            int i2 = 3;
-            if (i == 2) {
-                i2 = 2;
-            } else if (i != 3) {
-                i2 = 1;
+            int i2 = 2;
+            if (i != 2) {
+                i2 = 3;
+                if (i != 3) {
+                    i2 = 1;
+                }
             }
             onCameraMoveStartedListener.onCameraMoveStarted(i2);
         }

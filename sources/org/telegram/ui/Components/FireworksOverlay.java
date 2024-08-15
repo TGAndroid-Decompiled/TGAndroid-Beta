@@ -7,7 +7,6 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.SystemClock;
 import android.view.View;
 import java.util.ArrayList;
@@ -348,14 +347,12 @@ public class FireworksOverlay extends View {
             return;
         }
         this.started = false;
-        if (Build.VERSION.SDK_INT >= 18) {
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    FireworksOverlay.this.lambda$onDraw$0();
-                }
-            });
-        }
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                FireworksOverlay.this.lambda$onDraw$0();
+            }
+        });
         onStop();
     }
 

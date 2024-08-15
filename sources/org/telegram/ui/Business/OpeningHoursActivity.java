@@ -284,20 +284,25 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
             if (i10 >= i9) {
                 int i12 = i6 + 7;
                 int i13 = (i12 - 1) % 7;
-                if (!arrayListArr[i13].isEmpty() && arrayListArr[i13].get(arrayListArr[i13].size() - 1).end >= 1440) {
-                    arrayListArr[i13].get(arrayListArr[i13].size() - 1).end = 1439;
+                if (!arrayListArr[i13].isEmpty()) {
+                    ArrayList<Period> arrayList2 = arrayListArr[i13];
+                    if (arrayList2.get(arrayList2.size() - 1).end >= 1440) {
+                        ArrayList<Period> arrayList3 = arrayListArr[i13];
+                        arrayList3.get(arrayList3.size() - 1).end = 1439;
+                    }
                 }
                 int min = Math.min((i10 - i7) - 1, 2879);
-                ArrayList<Period> arrayList2 = arrayListArr[(i12 + 1) % 7];
-                if (min >= 1440 && !arrayList2.isEmpty() && arrayList2.get(0).start < min - 1440) {
-                    min = (arrayList2.get(0).start + 1440) - 1;
+                ArrayList<Period> arrayList4 = arrayListArr[(i12 + 1) % 7];
+                if (min >= 1440 && !arrayList4.isEmpty() && arrayList4.get(0).start < min - 1440) {
+                    min = (arrayList4.get(0).start + 1440) - 1;
                 }
                 arrayListArr[i6].clear();
                 arrayListArr[i6].add(new Period(0, min));
             } else {
                 int i14 = i8 % 7;
                 if (!arrayListArr[i6].isEmpty() && !arrayListArr[i14].isEmpty()) {
-                    Period period = arrayListArr[i6].get(arrayListArr[i6].size() - 1);
+                    ArrayList<Period> arrayList5 = arrayListArr[i6];
+                    Period period = arrayList5.get(arrayList5.size() - 1);
                     Period period2 = arrayListArr[i14].get(0);
                     int i15 = period.end;
                     if (i15 > 1440 && (i15 - 1440) + 1 == period2.start) {
@@ -506,9 +511,9 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
     private int maxPeriodsFor(int i) {
         int i2 = 0;
         for (int i3 = 0; i3 < 7; i3++) {
-            ArrayList<Period>[] arrayListArr = this.value;
-            if (arrayListArr[i3] != null) {
-                i2 += Math.max(1, arrayListArr[i3].size());
+            ArrayList<Period> arrayList = this.value[i3];
+            if (arrayList != null) {
+                i2 += Math.max(1, arrayList.size());
             }
         }
         return 28 - i2;
@@ -625,16 +630,16 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
         if (this.value[i].isEmpty()) {
             period = null;
         } else {
-            ArrayList<Period>[] arrayListArr = this.value;
-            period = arrayListArr[i].get(arrayListArr[i].size() - 1);
+            ArrayList<Period> arrayList = this.value[i];
+            period = arrayList.get(arrayList.size() - 1);
         }
         if (period == null) {
             return;
         }
         int i2 = ((i + 7) - 1) % 7;
         if (!this.value[i2].isEmpty()) {
-            ArrayList<Period>[] arrayListArr2 = this.value;
-            period2 = arrayListArr2[i2].get(arrayListArr2[i2].size() - 1);
+            ArrayList<Period> arrayList2 = this.value[i2];
+            period2 = arrayList2.get(arrayList2.size() - 1);
         }
         if (period2 == null || period2.end <= 1439) {
             return;

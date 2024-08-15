@@ -6,7 +6,6 @@ import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.TimeZone;
 import java.util.concurrent.ConcurrentMap;
 public abstract class FormatCache<F extends Format> {
@@ -21,7 +20,9 @@ public abstract class FormatCache<F extends Format> {
     }
 
     public F getInstance(String str, TimeZone timeZone, Locale locale) {
-        Objects.requireNonNull(str, "pattern must not be null");
+        if (str == null) {
+            throw new NullPointerException("pattern must not be null");
+        }
         if (timeZone == null) {
             timeZone = TimeZone.getDefault();
         }

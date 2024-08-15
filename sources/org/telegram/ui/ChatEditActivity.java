@@ -600,8 +600,9 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         linearLayout.addView(linearLayout2, LayoutHelper.createLinear(-1, -2));
         final RadioButtonCell[] radioButtonCellArr = new RadioButtonCell[2];
         for (int i = 0; i < 2; i++) {
-            radioButtonCellArr[i] = new RadioButtonCell(context, true);
-            radioButtonCellArr[i].setTag(Integer.valueOf(i));
+            RadioButtonCell radioButtonCell = new RadioButtonCell(context, true);
+            radioButtonCellArr[i] = radioButtonCell;
+            radioButtonCell.setTag(Integer.valueOf(i));
             radioButtonCellArr[i].setBackgroundDrawable(Theme.getSelectorDrawable(false));
             if (i == 0) {
                 radioButtonCellArr[i].setTextAndValue(LocaleController.getString("ChatHistoryVisible", R.string.ChatHistoryVisible), LocaleController.getString("ChatHistoryVisibleInfo", R.string.ChatHistoryVisibleInfo), true, !this.historyHidden);
@@ -967,10 +968,8 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
                 }
                 if (tLRPC$InputFile2 != null) {
                     tLRPC$TL_photos_uploadProfilePhoto.video = tLRPC$InputFile2;
-                    int i = tLRPC$TL_photos_uploadProfilePhoto.flags | 2;
-                    tLRPC$TL_photos_uploadProfilePhoto.flags = i;
                     tLRPC$TL_photos_uploadProfilePhoto.video_start_ts = d;
-                    tLRPC$TL_photos_uploadProfilePhoto.flags = i | 4;
+                    tLRPC$TL_photos_uploadProfilePhoto.flags = tLRPC$TL_photos_uploadProfilePhoto.flags | 2 | 4;
                 }
                 if (tLRPC$VideoSize != null) {
                     tLRPC$TL_photos_uploadProfilePhoto.video_emoji_markup = tLRPC$VideoSize;
@@ -1013,8 +1012,8 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         backupImageView.setImage(forLocal, "50_50", avatarDrawable, obj);
         this.setAvatarCell.setTextAndIcon((CharSequence) LocaleController.getString("ChatSetNewPhoto", R.string.ChatSetNewPhoto), R.drawable.msg_addphoto, true);
         if (this.cameraDrawable == null) {
-            int i2 = R.raw.camera_outline;
-            this.cameraDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
+            int i = R.raw.camera_outline;
+            this.cameraDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
         }
         this.setAvatarCell.imageView.setTranslationX(-AndroidUtilities.dp(8.0f));
         this.setAvatarCell.imageView.setAnimation(this.cameraDrawable);
@@ -1383,18 +1382,18 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
 
     private void updateFields(boolean z, boolean z2) {
         int i;
-        int i2;
         String str;
+        int i2;
         TLRPC$ChatFull tLRPC$ChatFull;
-        int i3;
         String str2;
+        int i3;
         String string;
         TextCell textCell;
         TextCell textCell2;
         TextCell textCell3;
         TextCell textCell4;
-        int i4;
         String str3;
+        int i4;
         String format;
         TextCell textCell5;
         TextCell textCell6;
@@ -1487,26 +1486,26 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
                 boolean z4 = this.currentChat.noforwards;
                 if (this.isChannel) {
                     if (!z3) {
-                        i4 = R.string.TypePublic;
                         str3 = "TypePublic";
+                        i4 = R.string.TypePublic;
                     } else if (z4) {
-                        i4 = R.string.TypePrivateRestrictedForwards;
                         str3 = "TypePrivateRestrictedForwards";
+                        i4 = R.string.TypePrivateRestrictedForwards;
                     } else {
-                        i4 = R.string.TypePrivate;
                         str3 = "TypePrivate";
+                        i4 = R.string.TypePrivate;
                     }
                     string = LocaleController.getString(str3, i4);
                 } else {
                     if (!z3) {
-                        i3 = R.string.TypePublicGroup;
                         str2 = "TypePublicGroup";
+                        i3 = R.string.TypePublicGroup;
                     } else if (z4) {
-                        i3 = R.string.TypePrivateGroupRestrictedForwards;
                         str2 = "TypePrivateGroupRestrictedForwards";
+                        i3 = R.string.TypePrivateGroupRestrictedForwards;
                     } else {
-                        i3 = R.string.TypePrivateGroup;
                         str2 = "TypePrivateGroup";
+                        i3 = R.string.TypePrivateGroup;
                     }
                     string = LocaleController.getString(str2, i3);
                 }
@@ -1527,11 +1526,11 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         }
         if (this.historyCell != null) {
             if (!this.historyHidden || this.forum) {
-                i2 = R.string.ChatHistoryVisible;
                 str = "ChatHistoryVisible";
+                i2 = R.string.ChatHistoryVisible;
             } else {
-                i2 = R.string.ChatHistoryHidden;
                 str = "ChatHistoryHidden";
+                i2 = R.string.ChatHistoryHidden;
             }
             this.historyCell.setTextAndValueAndIcon(LocaleController.getString("ChatHistoryShort", R.string.ChatHistoryShort), LocaleController.getString(str, i2), z2, R.drawable.msg_discuss, this.forumsCell != null);
             this.historyCell.setEnabled(!this.forum);

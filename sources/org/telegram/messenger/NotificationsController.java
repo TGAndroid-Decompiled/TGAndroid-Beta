@@ -313,6 +313,8 @@ public class NotificationsController extends BaseController {
 
     public static void checkOtherNotificationsChannel() {
         SharedPreferences sharedPreferences;
+        NotificationChannel notificationChannel;
+        int importance;
         if (Build.VERSION.SDK_INT < 26) {
             return;
         }
@@ -322,15 +324,18 @@ public class NotificationsController extends BaseController {
         } else {
             sharedPreferences = null;
         }
-        NotificationChannel notificationChannel = systemNotificationManager.getNotificationChannel(OTHER_NOTIFICATIONS_CHANNEL);
-        if (notificationChannel != null && notificationChannel.getImportance() == 0) {
-            try {
-                systemNotificationManager.deleteNotificationChannel(OTHER_NOTIFICATIONS_CHANNEL);
-            } catch (Exception e) {
-                FileLog.e(e);
+        notificationChannel = systemNotificationManager.getNotificationChannel(OTHER_NOTIFICATIONS_CHANNEL);
+        if (notificationChannel != null) {
+            importance = notificationChannel.getImportance();
+            if (importance == 0) {
+                try {
+                    systemNotificationManager.deleteNotificationChannel(OTHER_NOTIFICATIONS_CHANNEL);
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+                OTHER_NOTIFICATIONS_CHANNEL = null;
+                notificationChannel = null;
             }
-            OTHER_NOTIFICATIONS_CHANNEL = null;
-            notificationChannel = null;
         }
         if (OTHER_NOTIFICATIONS_CHANNEL == null) {
             if (sharedPreferences == null) {
@@ -423,6 +428,8 @@ public class NotificationsController extends BaseController {
     }
 
     public void lambda$cleanup$1() {
+        List notificationChannels;
+        String id;
         this.openedDialogId = 0L;
         this.openedTopicId = 0L;
         this.total_unread_count = 0;
@@ -457,10 +464,10 @@ public class NotificationsController extends BaseController {
                 systemNotificationManager.deleteNotificationChannelGroup("stories" + this.currentAccount);
                 systemNotificationManager.deleteNotificationChannelGroup("other" + this.currentAccount);
                 String str = this.currentAccount + "channel";
-                List<NotificationChannel> notificationChannels = systemNotificationManager.getNotificationChannels();
+                notificationChannels = systemNotificationManager.getNotificationChannels();
                 int size = notificationChannels.size();
                 for (int i = 0; i < size; i++) {
-                    String id = notificationChannels.get(i).getId();
+                    id = ((NotificationChannel) notificationChannels.get(i)).getId();
                     if (id.startsWith(str)) {
                         try {
                             systemNotificationManager.deleteNotificationChannel(id);
@@ -899,8 +906,8 @@ public class NotificationsController extends BaseController {
         if (storyNotification != null) {
             this.storyPushMessagesDict.remove(j);
             this.storyPushMessages.remove(storyNotification);
-            z = true;
             getMessagesStorage().deleteStoryPushMessage(j);
+            z = true;
         } else {
             z = false;
         }
@@ -1022,6 +1029,7 @@ public class NotificationsController extends BaseController {
     }
 
     public void lambda$processEditedMessages$21(LongSparseArray longSparseArray) {
+        long j;
         int size = longSparseArray.size();
         boolean z = false;
         for (int i = 0; i < size; i++) {
@@ -1030,14 +1038,11 @@ public class NotificationsController extends BaseController {
             int size2 = arrayList.size();
             for (int i2 = 0; i2 < size2; i2++) {
                 MessageObject messageObject = (MessageObject) arrayList.get(i2);
-                long j = 0;
                 if (messageObject.isStoryReactionPush) {
                     j = messageObject.getDialogId();
                 } else {
                     long j2 = messageObject.messageOwner.peer_id.channel_id;
-                    if (j2 != 0) {
-                        j = -j2;
-                    }
+                    j = j2 != 0 ? -j2 : 0L;
                 }
                 SparseArray<MessageObject> sparseArray = this.pushMessagesDict.get(j);
                 if (sparseArray == null) {
@@ -1494,7 +1499,7 @@ public class NotificationsController extends BaseController {
         return sb.toString();
     }
 
-    private java.lang.String getStringForMessage(org.telegram.messenger.MessageObject r30, boolean r31, boolean[] r32, boolean[] r33) {
+    private java.lang.String getStringForMessage(org.telegram.messenger.MessageObject r29, boolean r30, boolean[] r31, boolean[] r32) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsController.getStringForMessage(org.telegram.messenger.MessageObject, boolean, boolean[], boolean[]):java.lang.String");
     }
 
@@ -1909,6 +1914,11 @@ public class NotificationsController extends BaseController {
 
     @TargetApi(26)
     protected void ensureGroupsCreated() {
+        List notificationChannels;
+        String id;
+        int importance;
+        List notificationChannelGroups;
+        String id2;
         SharedPreferences notificationsSettings = getAccountInstance().getNotificationsSettings();
         if (this.groupsCreated == null) {
             this.groupsCreated = Boolean.valueOf(notificationsSettings.getBoolean("groupsCreated5", false));
@@ -1916,14 +1926,14 @@ public class NotificationsController extends BaseController {
         if (!this.groupsCreated.booleanValue()) {
             try {
                 String str = this.currentAccount + "channel";
-                List<NotificationChannel> notificationChannels = systemNotificationManager.getNotificationChannels();
+                notificationChannels = systemNotificationManager.getNotificationChannels();
                 int size = notificationChannels.size();
                 SharedPreferences.Editor editor = null;
                 for (int i = 0; i < size; i++) {
-                    NotificationChannel notificationChannel = notificationChannels.get(i);
-                    String id = notificationChannel.getId();
+                    NotificationChannel notificationChannel = (NotificationChannel) notificationChannels.get(i);
+                    id = notificationChannel.getId();
                     if (id.startsWith(str)) {
-                        int importance = notificationChannel.getImportance();
+                        importance = notificationChannel.getImportance();
                         if (importance != 4 && importance != 5 && !id.contains("_ia_")) {
                             if (id.contains("_channels_")) {
                                 if (editor == null) {
@@ -1971,7 +1981,7 @@ public class NotificationsController extends BaseController {
         if (this.channelGroupsCreated) {
             return;
         }
-        List<NotificationChannelGroup> notificationChannelGroups = systemNotificationManager.getNotificationChannelGroups();
+        notificationChannelGroups = systemNotificationManager.getNotificationChannelGroups();
         String str2 = "channels" + this.currentAccount;
         String str3 = "groups" + this.currentAccount;
         int size2 = notificationChannelGroups.size();
@@ -1980,7 +1990,7 @@ public class NotificationsController extends BaseController {
         String str6 = "stories" + this.currentAccount;
         String str7 = "private" + this.currentAccount;
         for (int i2 = 0; i2 < size2; i2++) {
-            String id2 = notificationChannelGroups.get(i2).getId();
+            id2 = ((NotificationChannelGroup) notificationChannelGroups.get(i2)).getId();
             if (str2 != null && str2.equals(id2)) {
                 str2 = null;
             } else if (str3 != null && str3.equals(id2)) {
@@ -2043,11 +2053,13 @@ public class NotificationsController extends BaseController {
 
     @SuppressLint({"NewApi"})
     private void setNotificationChannel(Notification notification, NotificationCompat.Builder builder, boolean z) {
+        String channelId;
         if (z) {
             builder.setChannelId(OTHER_NOTIFICATIONS_CHANNEL);
-        } else {
-            builder.setChannelId(notification.getChannelId());
+            return;
         }
+        channelId = notification.getChannelId();
+        builder.setChannelId(channelId);
     }
 
     public void resetNotificationSound(NotificationCompat.Builder builder, long j, long j2, String str, long[] jArr, int i, Uri uri, int i2, boolean z, boolean z2, boolean z3, int i3) {
@@ -2093,7 +2105,7 @@ public class NotificationsController extends BaseController {
     }
 
     @android.annotation.SuppressLint({"InlinedApi"})
-    private void showExtraNotifications(androidx.core.app.NotificationCompat.Builder r82, java.lang.String r83, long r84, long r86, java.lang.String r88, long[] r89, int r90, android.net.Uri r91, int r92, boolean r93, boolean r94, boolean r95, int r96) {
+    private void showExtraNotifications(androidx.core.app.NotificationCompat.Builder r79, java.lang.String r80, long r81, long r83, java.lang.String r85, long[] r86, int r87, android.net.Uri r88, int r89, boolean r90, boolean r91, boolean r92, int r93) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsController.showExtraNotifications(androidx.core.app.NotificationCompat$Builder, java.lang.String, long, long, java.lang.String, long[], int, android.net.Uri, int, boolean, boolean, boolean, int):void");
     }
 
@@ -2232,14 +2244,18 @@ public class NotificationsController extends BaseController {
     }
 
     public static Person.Builder loadRoundAvatar(File file, Person.Builder builder) {
+        ImageDecoder.Source createSource;
+        Bitmap decodeBitmap;
         if (file != null && Build.VERSION.SDK_INT >= 28) {
             try {
-                builder.setIcon(IconCompat.createWithBitmap(ImageDecoder.decodeBitmap(ImageDecoder.createSource(file), new ImageDecoder.OnHeaderDecodedListener() {
+                createSource = ImageDecoder.createSource(file);
+                decodeBitmap = ImageDecoder.decodeBitmap(createSource, new ImageDecoder.OnHeaderDecodedListener() {
                     @Override
                     public final void onHeaderDecoded(ImageDecoder imageDecoder, ImageDecoder.ImageInfo imageInfo, ImageDecoder.Source source) {
                         NotificationsController.lambda$loadRoundAvatar$44(imageDecoder, imageInfo, source);
                     }
-                })));
+                });
+                builder.setIcon(IconCompat.createWithBitmap(decodeBitmap));
             } catch (Throwable unused) {
             }
         }
@@ -2766,7 +2782,7 @@ public class NotificationsController extends BaseController {
         return isGlobalNotificationsEnabled(j, null, z, z2);
     }
 
-    public boolean isGlobalNotificationsEnabled(long r3, java.lang.Boolean r5, boolean r6, boolean r7) {
+    public boolean isGlobalNotificationsEnabled(long r1, java.lang.Boolean r3, boolean r4, boolean r5) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsController.isGlobalNotificationsEnabled(long, java.lang.Boolean, boolean, boolean):boolean");
     }
 

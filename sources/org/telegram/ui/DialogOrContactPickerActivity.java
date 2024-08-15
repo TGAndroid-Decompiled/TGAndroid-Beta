@@ -493,20 +493,20 @@ public class DialogOrContactPickerActivity extends BaseFragment {
                 this.viewPages[i].setVisibility(8);
             }
             this.viewPages[i].listView.setScrollingTouchSlop(1);
-            ViewPage[] viewPageArr2 = this.viewPages;
-            viewPageArr2[i].fragmentView = (FrameLayout) viewPageArr2[i].parentFragment.getFragmentView();
-            ViewPage[] viewPageArr3 = this.viewPages;
-            viewPageArr3[i].actionBar = viewPageArr3[i].parentFragment.getActionBar();
-            ViewPage[] viewPageArr4 = this.viewPages;
-            viewPageArr4[i].addView(viewPageArr4[i].fragmentView, LayoutHelper.createFrame(-1, -1.0f));
+            ViewPage viewPage = this.viewPages[i];
+            viewPage.fragmentView = (FrameLayout) viewPage.parentFragment.getFragmentView();
+            ViewPage viewPage2 = this.viewPages[i];
+            viewPage2.actionBar = viewPage2.parentFragment.getActionBar();
+            ViewPage viewPage3 = this.viewPages[i];
+            viewPage3.addView(viewPage3.fragmentView, LayoutHelper.createFrame(-1, -1.0f));
             AndroidUtilities.removeFromParent(this.viewPages[i].actionBar);
-            ViewPage[] viewPageArr5 = this.viewPages;
-            viewPageArr5[i].addView(viewPageArr5[i].actionBar, LayoutHelper.createFrame(-1, -2.0f));
+            ViewPage viewPage4 = this.viewPages[i];
+            viewPage4.addView(viewPage4.actionBar, LayoutHelper.createFrame(-1, -2.0f));
             this.viewPages[i].actionBar.setVisibility(8);
             int i2 = 0;
             while (i2 < 2) {
-                ViewPage[] viewPageArr6 = this.viewPages;
-                RecyclerListView recyclerListView = i2 == 0 ? viewPageArr6[i].listView : viewPageArr6[i].listView2;
+                ViewPage[] viewPageArr2 = this.viewPages;
+                RecyclerListView recyclerListView = i2 == 0 ? viewPageArr2[i].listView : viewPageArr2[i].listView2;
                 if (recyclerListView != null) {
                     recyclerListView.setClipToPadding(false);
                     final RecyclerView.OnScrollListener onScrollListener = recyclerListView.getOnScrollListener();

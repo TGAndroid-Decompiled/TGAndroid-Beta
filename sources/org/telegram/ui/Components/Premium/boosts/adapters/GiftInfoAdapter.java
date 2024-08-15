@@ -203,7 +203,7 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
                 } else {
                     string = LocaleController.getString("BoostingSendLinkToFriends", R.string.BoostingSendLinkToFriends);
                 }
-                textInfoCell.setText(AndroidUtilities.replaceSingleTag(string, Theme.key_chat_messageLinkIn, 0, new GiftInfoAdapter$$ExternalSyntheticLambda3(this), this.resourcesProvider));
+                textInfoCell.setText(AndroidUtilities.replaceSingleTag(string, Theme.key_chat_messageLinkIn, 0, new GiftInfoAdapter$$ExternalSyntheticLambda2(this), this.resourcesProvider));
             } else {
                 Date date = new Date(this.giftCode.used_date * 1000);
                 textInfoCell.setText(LocaleController.formatString("BoostingUsedLinkDate", R.string.BoostingUsedLinkDate, LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterYear().format(date), LocaleController.getInstance().getFormatterDay().format(date))));
@@ -241,7 +241,7 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
 
     public void lambda$onBindViewHolder$1(ActionBtnCell actionBtnCell, TLRPC$TL_error tLRPC$TL_error) {
         actionBtnCell.updateLoading(false);
-        BoostDialogs.processApplyGiftCodeError(tLRPC$TL_error, this.container, this.resourcesProvider, new GiftInfoAdapter$$ExternalSyntheticLambda3(this));
+        BoostDialogs.processApplyGiftCodeError(tLRPC$TL_error, this.container, this.resourcesProvider, new GiftInfoAdapter$$ExternalSyntheticLambda2(this));
     }
 
     public void lambda$onBindViewHolder$3(View view) {

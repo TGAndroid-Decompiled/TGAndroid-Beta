@@ -1655,14 +1655,20 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
 
     private boolean forbidRaiseToListen() {
         AudioDeviceInfo[] devices;
+        int type;
+        boolean isSink;
         try {
             if (Build.VERSION.SDK_INT < 23) {
                 return NotificationsController.audioManager.isWiredHeadsetOn() || NotificationsController.audioManager.isBluetoothA2dpOn() || NotificationsController.audioManager.isBluetoothScoOn();
             }
-            for (AudioDeviceInfo audioDeviceInfo : NotificationsController.audioManager.getDevices(2)) {
-                int type = audioDeviceInfo.getType();
-                if ((type == 8 || type == 7 || type == 26 || type == 27 || type == 4 || type == 3) && audioDeviceInfo.isSink()) {
-                    return true;
+            devices = NotificationsController.audioManager.getDevices(2);
+            for (AudioDeviceInfo audioDeviceInfo : devices) {
+                type = audioDeviceInfo.getType();
+                if (type == 8 || type == 7 || type == 26 || type == 27 || type == 4 || type == 3) {
+                    isSink = audioDeviceInfo.isSink();
+                    if (isSink) {
+                        return true;
+                    }
                 }
             }
             return false;
@@ -1684,13 +1690,13 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     FileLog.d("proximity changed to " + sensorEvent.values[0] + " max value = " + sensorEvent.sensor.getMaximumRange());
                 }
                 float f = this.lastProximityValue;
-                float[] fArr = sensorEvent.values;
-                if (f != fArr[0]) {
+                float f2 = sensorEvent.values[0];
+                if (f != f2) {
                     this.proximityHasDifferentValues = true;
                 }
-                this.lastProximityValue = fArr[0];
+                this.lastProximityValue = f2;
                 if (this.proximityHasDifferentValues) {
-                    this.proximityTouched = isNearToSensor(fArr[0]);
+                    this.proximityTouched = isNearToSensor(f2);
                 }
             } else {
                 Sensor sensor = sensorEvent.sensor;
@@ -1704,67 +1710,70 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                         d = 1.0d / ((d2 / 1.0E9d) + 1.0d);
                     }
                     this.lastTimestamp = sensorEvent.timestamp;
-                    float[] fArr2 = this.gravity;
-                    double d3 = fArr2[0];
+                    float[] fArr = this.gravity;
+                    double d3 = fArr[0];
                     Double.isNaN(d3);
                     double d4 = 1.0d - d;
-                    float[] fArr3 = sensorEvent.values;
-                    double d5 = fArr3[0];
+                    float[] fArr2 = sensorEvent.values;
+                    double d5 = fArr2[0];
                     Double.isNaN(d5);
-                    fArr2[0] = (float) ((d3 * d) + (d5 * d4));
-                    double d6 = fArr2[1];
+                    float f3 = (float) ((d3 * d) + (d5 * d4));
+                    fArr[0] = f3;
+                    double d6 = fArr[1];
                     Double.isNaN(d6);
-                    double d7 = fArr3[1];
+                    double d7 = fArr2[1];
                     Double.isNaN(d7);
-                    fArr2[1] = (float) ((d6 * d) + (d7 * d4));
-                    double d8 = fArr2[2];
+                    float f4 = (float) ((d6 * d) + (d7 * d4));
+                    fArr[1] = f4;
+                    double d8 = fArr[2];
                     Double.isNaN(d8);
                     double d9 = d * d8;
-                    double d10 = fArr3[2];
+                    double d10 = fArr2[2];
                     Double.isNaN(d10);
-                    fArr2[2] = (float) (d9 + (d4 * d10));
-                    float[] fArr4 = this.gravityFast;
-                    fArr4[0] = (fArr2[0] * 0.8f) + (fArr3[0] * 0.19999999f);
-                    fArr4[1] = (fArr2[1] * 0.8f) + (fArr3[1] * 0.19999999f);
-                    fArr4[2] = (fArr2[2] * 0.8f) + (fArr3[2] * 0.19999999f);
-                    float[] fArr5 = this.linearAcceleration;
-                    fArr5[0] = fArr3[0] - fArr2[0];
-                    fArr5[1] = fArr3[1] - fArr2[1];
-                    fArr5[2] = fArr3[2] - fArr2[2];
+                    float f5 = (float) (d9 + (d4 * d10));
+                    fArr[2] = f5;
+                    float[] fArr3 = this.gravityFast;
+                    fArr3[0] = (f3 * 0.8f) + (fArr2[0] * 0.19999999f);
+                    fArr3[1] = (f4 * 0.8f) + (fArr2[1] * 0.19999999f);
+                    fArr3[2] = (f5 * 0.8f) + (fArr2[2] * 0.19999999f);
+                    float[] fArr4 = this.linearAcceleration;
+                    fArr4[0] = fArr2[0] - fArr[0];
+                    fArr4[1] = fArr2[1] - fArr[1];
+                    fArr4[2] = fArr2[2] - fArr[2];
                 } else if (sensor == this.linearSensor) {
-                    float[] fArr6 = this.linearAcceleration;
-                    float[] fArr7 = sensorEvent.values;
-                    fArr6[0] = fArr7[0];
-                    fArr6[1] = fArr7[1];
-                    fArr6[2] = fArr7[2];
+                    float[] fArr5 = this.linearAcceleration;
+                    float[] fArr6 = sensorEvent.values;
+                    fArr5[0] = fArr6[0];
+                    fArr5[1] = fArr6[1];
+                    fArr5[2] = fArr6[2];
                 } else if (sensor == this.gravitySensor) {
-                    float[] fArr8 = this.gravityFast;
-                    float[] fArr9 = this.gravity;
-                    float[] fArr10 = sensorEvent.values;
-                    float f2 = fArr10[0];
-                    fArr9[0] = f2;
-                    fArr8[0] = f2;
-                    float f3 = fArr10[1];
-                    fArr9[1] = f3;
-                    fArr8[1] = f3;
-                    float f4 = fArr10[2];
-                    fArr9[2] = f4;
-                    fArr8[2] = f4;
+                    float[] fArr7 = this.gravityFast;
+                    float[] fArr8 = this.gravity;
+                    float[] fArr9 = sensorEvent.values;
+                    float f6 = fArr9[0];
+                    fArr8[0] = f6;
+                    fArr7[0] = f6;
+                    float f7 = fArr9[1];
+                    fArr8[1] = f7;
+                    fArr7[1] = f7;
+                    float f8 = fArr9[2];
+                    fArr8[2] = f8;
+                    fArr7[2] = f8;
                 }
             }
             Sensor sensor2 = sensorEvent.sensor;
             if (sensor2 == this.linearSensor || sensor2 == this.gravitySensor || sensor2 == this.accelerometerSensor) {
-                float[] fArr11 = this.gravity;
-                float f5 = fArr11[0];
-                float[] fArr12 = this.linearAcceleration;
-                float f6 = (f5 * fArr12[0]) + (fArr11[1] * fArr12[1]) + (fArr11[2] * fArr12[2]);
+                float[] fArr10 = this.gravity;
+                float f9 = fArr10[0];
+                float[] fArr11 = this.linearAcceleration;
+                float f10 = (f9 * fArr11[0]) + (fArr10[1] * fArr11[1]) + (fArr10[2] * fArr11[2]);
                 int i2 = this.raisedToBack;
-                if (i2 != 6 && ((f6 > 0.0f && this.previousAccValue > 0.0f) || (f6 < 0.0f && this.previousAccValue < 0.0f))) {
-                    if (f6 > 0.0f) {
-                        z = f6 > 15.0f;
+                if (i2 != 6 && ((f10 > 0.0f && this.previousAccValue > 0.0f) || (f10 < 0.0f && this.previousAccValue < 0.0f))) {
+                    if (f10 > 0.0f) {
+                        z = f10 > 15.0f;
                         i = 1;
                     } else {
-                        z = f6 < -15.0f;
+                        z = f10 < -15.0f;
                         i = 2;
                     }
                     int i3 = this.raisedToTopSign;
@@ -1815,9 +1824,9 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                         }
                     }
                 }
-                this.previousAccValue = f6;
-                float[] fArr13 = this.gravityFast;
-                this.accelerometerVertical = fArr13[1] > 2.5f && Math.abs(fArr13[2]) < 4.0f && Math.abs(this.gravityFast[0]) > 1.5f;
+                this.previousAccValue = f10;
+                float[] fArr12 = this.gravityFast;
+                this.accelerometerVertical = fArr12[1] > 2.5f && Math.abs(fArr12[2]) < 4.0f && Math.abs(this.gravityFast[0]) > 1.5f;
             }
             if (this.raisedToBack == 6 || this.accelerometerVertical) {
                 this.lastAccelerometerDetected = System.currentTimeMillis();
@@ -2133,9 +2142,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     private boolean isSamePlayingMessage(MessageObject messageObject) {
         MessageObject messageObject2 = this.playingMessageObject;
         if (messageObject2 != null && messageObject2.getDialogId() == messageObject.getDialogId() && this.playingMessageObject.getId() == messageObject.getId()) {
-            if ((this.playingMessageObject.eventId == 0) == (messageObject.eventId == 0)) {
-                return true;
-            }
+            return ((this.playingMessageObject.eventId > 0L ? 1 : (this.playingMessageObject.eventId == 0L ? 0 : -1)) == 0) == ((messageObject.eventId > 0L ? 1 : (messageObject.eventId == 0L ? 0 : -1)) == 0);
         }
         return false;
     }
@@ -3181,7 +3188,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         return playMessage(messageObject, false);
     }
 
-    public boolean playMessage(final org.telegram.messenger.MessageObject r30, boolean r31) {
+    public boolean playMessage(final org.telegram.messenger.MessageObject r31, boolean r32) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.playMessage(org.telegram.messenger.MessageObject, boolean):boolean");
     }
 
@@ -4576,10 +4583,11 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                             if (lowerCase.endsWith("webp")) {
                                 try {
                                     inputStream.close();
+                                    return true;
                                 } catch (Exception e) {
                                     FileLog.e(e);
+                                    return true;
                                 }
-                                return true;
                             }
                         }
                     }
@@ -4617,10 +4625,11 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                         if (new String(bArr).equalsIgnoreCase("gif")) {
                             try {
                                 inputStream.close();
+                                return true;
                             } catch (Exception e) {
                                 FileLog.e(e);
+                                return true;
                             }
-                            return true;
                         }
                     }
                     inputStream.close();
@@ -4654,18 +4663,18 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             if (uri.getScheme().equals("content")) {
                 try {
                     Cursor query = ApplicationLoader.applicationContext.getContentResolver().query(uri, new String[]{"_display_name"}, null, null, null);
-                    r2 = query.moveToFirst() ? query.getString(query.getColumnIndex("_display_name")) : null;
+                    r3 = query.moveToFirst() ? query.getString(query.getColumnIndex("_display_name")) : null;
                     query.close();
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
             }
-            if (r2 == null) {
+            if (r3 == null) {
                 String path = uri.getPath();
                 int lastIndexOf = path.lastIndexOf(47);
                 return lastIndexOf != -1 ? path.substring(lastIndexOf + 1) : path;
             }
-            return r2;
+            return r3;
         } catch (Exception e2) {
             FileLog.e(e2);
             return "";

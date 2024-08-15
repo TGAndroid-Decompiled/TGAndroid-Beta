@@ -53,6 +53,7 @@ public class MessageContainsEmojiButton extends FrameLayout implements Notificat
     private CharSequence secondPartText;
     private StaticLayout secondPartTextLayout;
     private TextPaint textPaint;
+    int type;
 
     private class BoldAndAccent extends CharacterStyle {
         private BoldAndAccent() {
@@ -82,6 +83,7 @@ public class MessageContainsEmojiButton extends FrameLayout implements Notificat
         this.checkWidth = true;
         this.loadT = 0.0f;
         this.currentAccount = i;
+        this.type = i2;
         setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector, resourcesProvider), 0, 6));
         TextPaint textPaint = new TextPaint(1);
         this.textPaint = textPaint;

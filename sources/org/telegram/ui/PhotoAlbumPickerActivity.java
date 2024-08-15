@@ -351,7 +351,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
         this.writeButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogFloatingIcon), PorterDuff.Mode.MULTIPLY));
         this.writeButton.setScaleType(ImageView.ScaleType.CENTER);
         if (i4 >= 21) {
-            this.writeButton.setOutlineProvider(new ViewOutlineProvider(this) {
+            this.writeButton.setOutlineProvider(new ViewOutlineProvider() {
                 @Override
                 @SuppressLint({"NewApi"})
                 public void getOutline(View view2, Outline outline) {

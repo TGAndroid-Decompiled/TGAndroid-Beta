@@ -13,20 +13,26 @@ public class ID3v2Info extends AudioInfo {
     private final Level debugLevel;
 
     public static class AttachedPicture {
+        final String description;
         final byte[] imageData;
+        final String imageType;
         final byte type;
 
         public AttachedPicture(byte b, String str, String str2, byte[] bArr) {
             this.type = b;
+            this.description = str;
+            this.imageType = str2;
             this.imageData = bArr;
         }
     }
 
     public static class CommentOrUnsynchronizedLyrics {
         final String description;
+        final String language;
         final String text;
 
         public CommentOrUnsynchronizedLyrics(String str, String str2, String str3) {
+            this.language = str;
             this.description = str2;
             this.text = str3;
         }
@@ -57,6 +63,7 @@ public class ID3v2Info extends AudioInfo {
         String str;
         Bitmap bitmap;
         byte b;
+        ID3v1Genre genre;
         int i;
         Logger logger = LOGGER;
         if (logger.isLoggable(this.debugLevel)) {
@@ -327,18 +334,22 @@ public class ID3v2Info extends AudioInfo {
                 String parseTextFrame = parseTextFrame(iD3v2FrameBody);
                 if (parseTextFrame.length() > 0) {
                     this.genre = parseTextFrame;
-                    ID3v1Genre iD3v1Genre = null;
                     try {
                         if (parseTextFrame.charAt(0) == '(') {
                             int indexOf = parseTextFrame.indexOf(41);
-                            if (indexOf > 1 && (iD3v1Genre = ID3v1Genre.getGenre(Integer.parseInt(parseTextFrame.substring(1, indexOf)))) == null && parseTextFrame.length() > (i = indexOf + 1)) {
-                                this.genre = parseTextFrame.substring(i);
+                            if (indexOf > 1) {
+                                genre = ID3v1Genre.getGenre(Integer.parseInt(parseTextFrame.substring(1, indexOf)));
+                                if (genre == null && parseTextFrame.length() > (i = indexOf + 1)) {
+                                    this.genre = parseTextFrame.substring(i);
+                                }
+                            } else {
+                                genre = null;
                             }
                         } else {
-                            iD3v1Genre = ID3v1Genre.getGenre(Integer.parseInt(parseTextFrame));
+                            genre = ID3v1Genre.getGenre(Integer.parseInt(parseTextFrame));
                         }
-                        if (iD3v1Genre != null) {
-                            this.genre = iD3v1Genre.getDescription();
+                        if (genre != null) {
+                            this.genre = genre.getDescription();
                             return;
                         }
                         return;

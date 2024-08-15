@@ -141,11 +141,13 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
     private String buttonText;
     private final Context context;
     private int currentAccount;
+    private TLRPC$BotApp currentWebApp;
     private BottomSheetTabDialog dialog;
     private boolean dismissed;
     private boolean forceExpnaded;
     private final BaseFragment fragment;
     private boolean ignoreLayout;
+    private long lastSwipeTime;
     private TextView mainButton;
     private VerticalPositionAutoAnimator mainButtonAutoAnimator;
     private boolean mainButtonProgressWasVisible;
@@ -262,7 +264,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
     }
 
     @Override
-    public WindowView mo943getWindowView() {
+    public WindowView mo945getWindowView() {
         return this.windowView;
     }
 
@@ -497,7 +499,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
             }
         });
         windowView.addView(this.swipeContainer, LayoutHelper.createFrame(-1, -1.0f, 49, 0.0f, 24.0f, 0.0f, 0.0f));
-        TextView textView = new TextView(this, getContext()) {
+        TextView textView = new TextView(getContext()) {
             @Override
             protected void onMeasure(int i2, int i3) {
                 super.onMeasure(i2, i3);
@@ -520,7 +522,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         });
         windowView.addView(this.mainButton, LayoutHelper.createFrame(-1, 48, 81));
         this.mainButtonAutoAnimator = VerticalPositionAutoAnimator.attach(this.mainButton);
-        RadialProgressView radialProgressView = new RadialProgressView(this, getContext()) {
+        RadialProgressView radialProgressView = new RadialProgressView(getContext()) {
             @Override
             protected void onMeasure(int i2, int i3) {
                 super.onMeasure(i2, i3);
@@ -536,7 +538,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         windowView.addView(this.radialProgressView, LayoutHelper.createFrame(28, 28.0f, 85, 0.0f, 0.0f, 10.0f, 10.0f));
         this.radialProgressAutoAnimator = VerticalPositionAutoAnimator.attach(this.radialProgressView);
         this.actionBarShadow = ContextCompat.getDrawable(getContext(), R.drawable.header_shadow).mutate();
-        ActionBar actionBar = new ActionBar(this, getContext(), this.resourcesProvider) {
+        ActionBar actionBar = new ActionBar(getContext(), this.resourcesProvider) {
             @Override
             public void onMeasure(int i2, int i3) {
                 super.onMeasure(i2, i3);
@@ -703,11 +705,11 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
 
         @Override
         public void onWebAppOpenInvoice(TLRPC$InputInvoice tLRPC$InputInvoice, final String str, TLObject tLObject) {
+            PaymentFormActivity paymentFormActivity;
             if (BotWebViewAttachedSheet.this.getContext() == null) {
                 return;
             }
             BaseFragment lastFragment = ((LaunchActivity) BotWebViewAttachedSheet.this.parentActivity).getActionBarLayout().getLastFragment();
-            PaymentFormActivity paymentFormActivity = null;
             if (tLObject instanceof TLRPC$TL_payments_paymentFormStars) {
                 AndroidUtilities.hideKeyboard(BotWebViewAttachedSheet.this.windowView);
                 final AlertDialog alertDialog = new AlertDialog(BotWebViewAttachedSheet.this.getContext(), 3);
@@ -729,8 +731,8 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
                 TLRPC$PaymentForm tLRPC$PaymentForm = (TLRPC$PaymentForm) tLObject;
                 MessagesController.getInstance(BotWebViewAttachedSheet.this.currentAccount).putUsers(tLRPC$PaymentForm.users, false);
                 paymentFormActivity = new PaymentFormActivity(tLRPC$PaymentForm, str, lastFragment);
-            } else if (tLObject instanceof TLRPC$PaymentReceipt) {
-                paymentFormActivity = new PaymentFormActivity((TLRPC$PaymentReceipt) tLObject);
+            } else {
+                paymentFormActivity = tLObject instanceof TLRPC$PaymentReceipt ? new PaymentFormActivity((TLRPC$PaymentReceipt) tLObject) : null;
             }
             if (paymentFormActivity != null) {
                 BotWebViewAttachedSheet.this.swipeContainer.stickTo((-BotWebViewAttachedSheet.this.swipeContainer.getOffsetY()) + BotWebViewAttachedSheet.this.swipeContainer.getTopActionBarOffsetY());
@@ -902,7 +904,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         float max = Math.max(0.0f, this.swipeContainer.getSwipeOffsetY());
         this.mainButtonAutoAnimator.setOffsetY(max);
         this.radialProgressAutoAnimator.setOffsetY(max);
-        System.currentTimeMillis();
+        this.lastSwipeTime = System.currentTimeMillis();
     }
 
     public void lambda$new$11() {
@@ -1040,6 +1042,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
 
     public void requestWebView(BaseFragment baseFragment, WebViewRequestProps webViewRequestProps) {
         TLRPC$User tLRPC$User;
+        TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot;
         TLRPC$InputPeer inputPeer;
         TLRPC$InputPeer inputPeer2;
         this.requestProps = webViewRequestProps;
@@ -1050,6 +1053,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         this.replyToMsgId = webViewRequestProps.replyToMsgId;
         this.silent = webViewRequestProps.silent;
         this.buttonText = webViewRequestProps.buttonText;
+        this.currentWebApp = webViewRequestProps.app;
         TLRPC$User user = MessagesController.getInstance(i).getUser(Long.valueOf(this.botId));
         CharSequence userName = UserObject.getUserName(user);
         try {
@@ -1103,15 +1107,14 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         }
         ActionBarMenu createMenu = this.actionBar.createMenu();
         createMenu.removeAllViews();
-        TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot = null;
         Iterator<TLRPC$TL_attachMenuBot> it = MediaDataController.getInstance(this.currentAccount).getAttachMenuBots().bots.iterator();
         while (true) {
             if (!it.hasNext()) {
+                tLRPC$TL_attachMenuBot = null;
                 break;
             }
-            TLRPC$TL_attachMenuBot next = it.next();
-            if (next.bot_id == this.botId) {
-                tLRPC$TL_attachMenuBot = next;
+            tLRPC$TL_attachMenuBot = it.next();
+            if (tLRPC$TL_attachMenuBot.bot_id == this.botId) {
                 break;
             }
         }
@@ -1599,7 +1602,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
                     BotWebViewAttachedSheet.this.swipeContainer.setSwipeOffsetY((-BotWebViewAttachedSheet.this.swipeContainer.getOffsetY()) + BotWebViewAttachedSheet.this.swipeContainer.getTopActionBarOffsetY());
                     animationNotificationsLocker.unlock();
                 } else {
-                    BotWebViewAttachedSheet.this.swipeContainer.stickTo((-BotWebViewAttachedSheet.this.swipeContainer.getOffsetY()) + BotWebViewAttachedSheet.this.swipeContainer.getTopActionBarOffsetY(), new BotWebViewAttachedSheet$11$$ExternalSyntheticLambda1(animationNotificationsLocker));
+                    BotWebViewAttachedSheet.this.swipeContainer.stickTo((-BotWebViewAttachedSheet.this.swipeContainer.getOffsetY()) + BotWebViewAttachedSheet.this.swipeContainer.getTopActionBarOffsetY(), new BotWebViewAttachedSheet$11$$ExternalSyntheticLambda0(animationNotificationsLocker));
                 }
             } else if (this.val$instant) {
                 BotWebViewAttachedSheet.this.swipeContainer.setSwipeOffsetY(0.0f);
@@ -1878,7 +1881,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
         @Override
         public void onAttachedToWindow() {
             super.onAttachedToWindow();
-            Bulletin.addDelegate(this, new Bulletin.Delegate(this) {
+            Bulletin.addDelegate(this, new Bulletin.Delegate() {
                 @Override
                 public boolean allowLayoutChanges() {
                     return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);

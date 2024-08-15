@@ -48,7 +48,7 @@ public final class HandlerContext extends HandlerDispatcher {
     }
 
     @Override
-    public void mo155dispatch(CoroutineContext coroutineContext, Runnable runnable) {
+    public void mo157dispatch(CoroutineContext coroutineContext, Runnable runnable) {
         if (this.handler.post(runnable)) {
             return;
         }
@@ -57,7 +57,7 @@ public final class HandlerContext extends HandlerDispatcher {
 
     private final void cancelOnRejection(CoroutineContext coroutineContext, Runnable runnable) {
         JobKt.cancel(coroutineContext, new CancellationException("The task was rejected, the handler underlying the dispatcher '" + this + "' was closed"));
-        Dispatchers.getIO().mo155dispatch(coroutineContext, runnable);
+        Dispatchers.getIO().mo157dispatch(coroutineContext, runnable);
     }
 
     @Override

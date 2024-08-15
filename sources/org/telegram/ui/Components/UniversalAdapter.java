@@ -327,10 +327,10 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
         } else {
             switch (i) {
                 case -3:
-                    checkBoxCell = new FullscreenCustomFrameLayout(this, this.context);
+                    checkBoxCell = new FullscreenCustomFrameLayout(this.context);
                     break;
                 case -2:
-                    checkBoxCell = new FrameLayout(this, this.context) {
+                    checkBoxCell = new FrameLayout(this.context) {
                         @Override
                         protected void onMeasure(int i3, int i4) {
                             int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i3), 1073741824);
@@ -344,7 +344,7 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                     };
                     break;
                 case -1:
-                    checkBoxCell = new FrameLayout(this, this.context) {
+                    checkBoxCell = new FrameLayout(this.context) {
                         @Override
                         protected void onMeasure(int i3, int i4) {
                             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i3), 1073741824), i4);
@@ -1040,7 +1040,7 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
     public class FullscreenCustomFrameLayout extends FrameLayout {
         private int minusHeight;
 
-        public FullscreenCustomFrameLayout(UniversalAdapter universalAdapter, Context context) {
+        public FullscreenCustomFrameLayout(Context context) {
             super(context);
             this.minusHeight = 0;
         }

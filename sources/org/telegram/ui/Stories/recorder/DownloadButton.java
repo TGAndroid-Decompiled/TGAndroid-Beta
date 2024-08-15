@@ -103,52 +103,59 @@ public class DownloadButton extends ImageView {
     }
 
     private void onClick() {
+        int checkSelfPermission;
         int i = Build.VERSION.SDK_INT;
-        if (i >= 23 && ((i <= 28 || BuildVars.NO_SCOPED_STORAGE) && getContext().checkSelfPermission("android.permission.WRITE_EXTERNAL_STORAGE") != 0)) {
-            Activity findActivity = AndroidUtilities.findActivity(getContext());
-            if (findActivity != null) {
-                findActivity.requestPermissions(new String[]{"android.permission.WRITE_EXTERNAL_STORAGE"}, 113);
-            }
-        } else if (this.downloading || this.currentEntry == null) {
-        } else {
-            if (this.savedToGalleryUri != null) {
-                if (i >= 30) {
-                    getContext().getContentResolver().delete(this.savedToGalleryUri, null);
-                    this.savedToGalleryUri = null;
-                } else if (i < 29) {
-                    try {
-                        new File(this.savedToGalleryUri.toString()).delete();
-                    } catch (Exception e) {
-                        FileLog.e(e);
-                    }
-                    this.savedToGalleryUri = null;
+        if (i >= 23 && (i <= 28 || BuildVars.NO_SCOPED_STORAGE)) {
+            checkSelfPermission = getContext().checkSelfPermission("android.permission.WRITE_EXTERNAL_STORAGE");
+            if (checkSelfPermission != 0) {
+                Activity findActivity = AndroidUtilities.findActivity(getContext());
+                if (findActivity != null) {
+                    findActivity.requestPermissions(new String[]{"android.permission.WRITE_EXTERNAL_STORAGE"}, 113);
+                    return;
                 }
+                return;
             }
-            this.downloading = true;
-            PreparingVideoToast preparingVideoToast = this.toast;
-            if (preparingVideoToast != null) {
-                preparingVideoToast.hide();
-                this.toast = null;
+        }
+        if (this.downloading || this.currentEntry == null) {
+            return;
+        }
+        if (this.savedToGalleryUri != null) {
+            if (i >= 30) {
+                getContext().getContentResolver().delete(this.savedToGalleryUri, null);
+                this.savedToGalleryUri = null;
+            } else if (i < 29) {
+                try {
+                    new File(this.savedToGalleryUri.toString()).delete();
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+                this.savedToGalleryUri = null;
             }
-            BuildingVideo buildingVideo = this.buildingVideo;
-            if (buildingVideo != null) {
-                buildingVideo.stop(true);
-                this.buildingVideo = null;
-            }
-            Utilities.Callback<Runnable> callback = this.prepare;
-            if (callback != null) {
-                this.preparing = true;
-                callback.run(new Runnable() {
-                    @Override
-                    public final void run() {
-                        DownloadButton.this.onClickInternal();
-                    }
-                });
-            }
-            updateImage();
-            if (this.prepare == null) {
-                onClickInternal();
-            }
+        }
+        this.downloading = true;
+        PreparingVideoToast preparingVideoToast = this.toast;
+        if (preparingVideoToast != null) {
+            preparingVideoToast.hide();
+            this.toast = null;
+        }
+        BuildingVideo buildingVideo = this.buildingVideo;
+        if (buildingVideo != null) {
+            buildingVideo.stop(true);
+            this.buildingVideo = null;
+        }
+        Utilities.Callback<Runnable> callback = this.prepare;
+        if (callback != null) {
+            this.preparing = true;
+            callback.run(new Runnable() {
+                @Override
+                public final void run() {
+                    DownloadButton.this.onClickInternal();
+                }
+            });
+        }
+        updateImage();
+        if (this.prepare == null) {
+            onClickInternal();
         }
     }
 

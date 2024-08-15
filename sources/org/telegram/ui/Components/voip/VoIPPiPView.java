@@ -77,7 +77,8 @@ public class VoIPPiPView implements VoIPService.StateListener, NotificationCente
         }
     };
     float[] point = new float[2];
-    Runnable collapseRunnable = new Runnable(this) {
+    int animationIndex = -1;
+    Runnable collapseRunnable = new Runnable() {
         @Override
         public void run() {
             if (VoIPPiPView.instance != null) {
@@ -490,7 +491,7 @@ public class VoIPPiPView implements VoIPService.StateListener, NotificationCente
             super(context);
             this.touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
             if (Build.VERSION.SDK_INT >= 21) {
-                setOutlineProvider(new ViewOutlineProvider(this, VoIPPiPView.this) {
+                setOutlineProvider(new ViewOutlineProvider() {
                     @Override
                     @TargetApi(21)
                     public void getOutline(View view, Outline outline) {

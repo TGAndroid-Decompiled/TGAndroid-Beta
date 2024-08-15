@@ -28,7 +28,7 @@ class MediaCodecUtils {
     static final int[] TEXTURE_COLOR_FORMATS = getTextureColorFormats();
 
     private static int[] getTextureColorFormats() {
-        return Build.VERSION.SDK_INT >= 18 ? new int[]{2130708361} : new int[0];
+        return new int[]{2130708361};
     }
 
     public static ArrayList<MediaCodecInfo> getSortedCodecsList() {
@@ -130,7 +130,9 @@ class MediaCodecUtils {
 
     @TargetApi(29)
     private static boolean isHardwareAcceleratedQOrHigher(MediaCodecInfo mediaCodecInfo) {
-        return mediaCodecInfo.isHardwareAccelerated();
+        boolean isHardwareAccelerated;
+        isHardwareAccelerated = mediaCodecInfo.isHardwareAccelerated();
+        return isHardwareAccelerated;
     }
 
     public static boolean isSoftwareOnly(MediaCodecInfo mediaCodecInfo) {
@@ -148,7 +150,9 @@ class MediaCodecUtils {
 
     @TargetApi(29)
     private static boolean isSoftwareOnlyQOrHigher(MediaCodecInfo mediaCodecInfo) {
-        return mediaCodecInfo.isSoftwareOnly();
+        boolean isSoftwareOnly;
+        isSoftwareOnly = mediaCodecInfo.isSoftwareOnly();
+        return isSoftwareOnly;
     }
 
     private MediaCodecUtils() {

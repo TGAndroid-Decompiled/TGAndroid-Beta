@@ -242,10 +242,8 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
             }
             if (tLRPC$InputFile2 != null) {
                 tLRPC$TL_photos_uploadProfilePhoto.video = tLRPC$InputFile2;
-                int i = tLRPC$TL_photos_uploadProfilePhoto.flags | 2;
-                tLRPC$TL_photos_uploadProfilePhoto.flags = i;
                 tLRPC$TL_photos_uploadProfilePhoto.video_start_ts = d;
-                tLRPC$TL_photos_uploadProfilePhoto.flags = i | 4;
+                tLRPC$TL_photos_uploadProfilePhoto.flags = tLRPC$TL_photos_uploadProfilePhoto.flags | 2 | 4;
             }
             if (tLRPC$VideoSize != null) {
                 tLRPC$TL_photos_uploadProfilePhoto.video_emoji_markup = tLRPC$VideoSize;
@@ -331,6 +329,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
         private BackgroundGradientDrawable.Disposable backgroundGradientDisposable;
         private ChatMessageCell cell;
         private HintView hintView;
+        private final Runnable invalidateRunnable;
         private MessageObject messageObject;
         private Drawable shadowDrawable;
 
@@ -353,9 +352,9 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
             return false;
         }
 
-        public MessageCell(PrivacyControlActivity privacyControlActivity, Context context) {
+        public MessageCell(Context context) {
             super(context);
-            new Runnable() {
+            this.invalidateRunnable = new Runnable() {
                 @Override
                 public final void run() {
                     PrivacyControlActivity.MessageCell.this.invalidate();
@@ -365,7 +364,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
             setClipToPadding(false);
             this.shadowDrawable = Theme.getThemedDrawableByKey(context, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow);
             setPadding(0, AndroidUtilities.dp(11.0f), 0, AndroidUtilities.dp(11.0f));
-            TLRPC$User user = MessagesController.getInstance(((BaseFragment) privacyControlActivity).currentAccount).getUser(Long.valueOf(UserConfig.getInstance(((BaseFragment) privacyControlActivity).currentAccount).getClientUserId()));
+            TLRPC$User user = MessagesController.getInstance(((BaseFragment) PrivacyControlActivity.this).currentAccount).getUser(Long.valueOf(UserConfig.getInstance(((BaseFragment) PrivacyControlActivity.this).currentAccount).getClientUserId()));
             TLRPC$TL_message tLRPC$TL_message = new TLRPC$TL_message();
             tLRPC$TL_message.message = LocaleController.getString("PrivacyForwardsMessageLine", R.string.PrivacyForwardsMessageLine);
             tLRPC$TL_message.date = (((int) (System.currentTimeMillis() / 1000)) - 3600) + 60;
@@ -380,14 +379,14 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
             tLRPC$TL_message.out = false;
             TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
             tLRPC$TL_message.peer_id = tLRPC$TL_peerUser;
-            tLRPC$TL_peerUser.user_id = UserConfig.getInstance(((BaseFragment) privacyControlActivity).currentAccount).getClientUserId();
-            MessageObject messageObject = new MessageObject(((BaseFragment) privacyControlActivity).currentAccount, tLRPC$TL_message, true, false);
+            tLRPC$TL_peerUser.user_id = UserConfig.getInstance(((BaseFragment) PrivacyControlActivity.this).currentAccount).getClientUserId();
+            MessageObject messageObject = new MessageObject(((BaseFragment) PrivacyControlActivity.this).currentAccount, tLRPC$TL_message, true, false);
             this.messageObject = messageObject;
             messageObject.eventId = 1L;
             messageObject.resetLayout();
-            ChatMessageCell chatMessageCell = new ChatMessageCell(context, ((BaseFragment) privacyControlActivity).currentAccount);
+            ChatMessageCell chatMessageCell = new ChatMessageCell(context, ((BaseFragment) PrivacyControlActivity.this).currentAccount);
             this.cell = chatMessageCell;
-            chatMessageCell.setDelegate(new ChatMessageCell.ChatMessageCellDelegate(this, privacyControlActivity) {
+            chatMessageCell.setDelegate(new ChatMessageCell.ChatMessageCellDelegate() {
                 @Override
                 public boolean canDrawOutboundsContent() {
                     return ChatMessageCell.ChatMessageCellDelegate.CC.$default$canDrawOutboundsContent(this);
@@ -868,7 +867,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
     @Override
     public View createView(Context context) {
         if (this.rulesType == 5) {
-            this.messageCell = new MessageCell(this, context);
+            this.messageCell = new MessageCell(context);
         }
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
@@ -917,8 +916,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
         this.listAdapter = new ListAdapter(context);
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
-        FrameLayout frameLayout2 = frameLayout;
-        frameLayout2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
+        frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
         RecyclerListView recyclerListView = new RecyclerListView(context) {
             @Override
             public void dispatchDraw(Canvas canvas) {
@@ -930,7 +928,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
         recyclerListView.setLayoutManager(new LinearLayoutManager(context, 1, false));
         this.listView.setVerticalScrollBarEnabled(false);
         ((DefaultItemAnimator) this.listView.getItemAnimator()).setDelayAnimations(false);
-        frameLayout2.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
+        frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
         this.listView.setAdapter(this.listAdapter);
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
@@ -1155,6 +1153,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
     }
 
     private void applyCurrentPrivacySettings() {
+        final AlertDialog alertDialog;
         TLRPC$InputUser inputUser;
         TLRPC$InputUser inputUser2;
         if (this.rulesType == 10) {
@@ -1263,11 +1262,12 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
                 tLRPC$TL_account_setPrivacy.rules.add(new TLRPC$TL_inputPrivacyValueAllowPremium());
             }
         }
-        final AlertDialog alertDialog = null;
         if (getParentActivity() != null) {
             alertDialog = new AlertDialog(getParentActivity(), 3);
             alertDialog.setCanCancel(false);
             alertDialog.show();
+        } else {
+            alertDialog = null;
         }
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_account_setPrivacy, new RequestDelegate() {
             @Override
@@ -1594,10 +1594,8 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
         }
         int i6 = this.rowCount;
         int i7 = i6 + 1;
-        this.rowCount = i7;
         this.sectionRow = i6;
         int i8 = i7 + 1;
-        this.rowCount = i8;
         this.everybodyRow = i7;
         int i9 = i8 + 1;
         this.rowCount = i9;
@@ -1609,13 +1607,10 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
         if (i4 == 6 && this.currentType == 1) {
             int i10 = this.rowCount;
             int i11 = i10 + 1;
-            this.rowCount = i11;
             this.phoneDetailRow = i10;
             int i12 = i11 + 1;
-            this.rowCount = i12;
             this.phoneSectionRow = i11;
             int i13 = i12 + 1;
-            this.rowCount = i13;
             this.phoneEverybodyRow = i12;
             this.rowCount = i13 + 1;
             this.phoneContactsRow = i13;
@@ -1645,10 +1640,8 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
             int i21 = this.rulesType;
             if (i21 == 2) {
                 int i22 = i20 + 1;
-                this.rowCount = i22;
                 this.p2pSectionRow = i20;
                 int i23 = i22 + 1;
-                this.rowCount = i23;
                 this.p2pRow = i22;
                 this.rowCount = i23 + 1;
                 this.p2pDetailRow = i23;
@@ -1669,7 +1662,6 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
             if (this.rulesType == 0 && (this.currentType != 0 || ((arrayList = this.currentMinus) != null && !arrayList.isEmpty()))) {
                 int i27 = this.rowCount;
                 int i28 = i27 + 1;
-                this.rowCount = i28;
                 this.readRow = i27;
                 this.rowCount = i28 + 1;
                 this.readDetailRow = i28;
@@ -1677,7 +1669,6 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
             if (this.rulesType == 0 && !getMessagesController().premiumFeaturesBlocked()) {
                 int i29 = this.rowCount;
                 int i30 = i29 + 1;
-                this.rowCount = i30;
                 this.readPremiumRow = i29;
                 this.rowCount = i30 + 1;
                 this.readPremiumDetailRow = i30;

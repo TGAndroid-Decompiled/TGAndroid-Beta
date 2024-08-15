@@ -604,7 +604,7 @@ public class Bulletin {
     }
 
     private static boolean isTransitionsEnabled() {
-        return MessagesController.getGlobalMainSettings().getBoolean("view_animations", true) && Build.VERSION.SDK_INT >= 18;
+        return MessagesController.getGlobalMainSettings().getBoolean("view_animations", true);
     }
 
     public void updatePosition() {
@@ -953,11 +953,11 @@ public class Bulletin {
             boolean isWideScreen = isWideScreen();
             int i = isWideScreen ? this.wideScreenWidth : -1;
             if (isWideScreen) {
-                r3 = (this.top ? 48 : 80) | this.wideScreenGravity;
+                r2 = (this.top ? 48 : 80) | this.wideScreenGravity;
             } else if (!this.top) {
-                r3 = 80;
+                r2 = 80;
             }
-            setLayoutParams(LayoutHelper.createFrame(i, -2, r3));
+            setLayoutParams(LayoutHelper.createFrame(i, -2, r2));
         }
 
         private boolean isWideScreen() {
@@ -1115,7 +1115,11 @@ public class Bulletin {
                 ofFloat.setDuration(this.duration);
                 ofFloat.setInterpolator(Easings.easeOutQuad);
                 if (runnable != null || runnable2 != null) {
-                    ofFloat.addListener(new AnimatorListenerAdapter(this) {
+                    ofFloat.addListener(new AnimatorListenerAdapter() {
+                        {
+                            DefaultTransition.this = this;
+                        }
+
                         @Override
                         public void onAnimationStart(Animator animator) {
                             Runnable runnable3 = runnable;
@@ -1154,7 +1158,11 @@ public class Bulletin {
                 ofFloat.setDuration(175L);
                 ofFloat.setInterpolator(Easings.easeInQuad);
                 if (runnable != null || runnable2 != null) {
-                    ofFloat.addListener(new AnimatorListenerAdapter(this) {
+                    ofFloat.addListener(new AnimatorListenerAdapter() {
+                        {
+                            DefaultTransition.this = this;
+                        }
+
                         @Override
                         public void onAnimationStart(Animator animator) {
                             Runnable runnable3 = runnable;
@@ -1828,8 +1836,9 @@ public class Bulletin {
             this.imageView = rLottieImageView;
             rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
             addView(this.imageView, LayoutHelper.createFrameRelatively(56.0f, 48.0f, 8388627));
-            LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(this, context) {
+            LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context) {
                 {
+                    LottieLayout.this = this;
                     setDisablePaddingsOffset(true);
                 }
 
@@ -1946,7 +1955,11 @@ public class Bulletin {
             this.avatarsImageView.setAvatarsTextSize(AndroidUtilities.dp(18.0f));
             addView(this.avatarsImageView, LayoutHelper.createFrameRelatively(56.0f, 48.0f, 8388627, 12.0f, 0.0f, 0.0f, 0.0f));
             if (!z) {
-                LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(this, context) {
+                LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context) {
+                    {
+                        UsersLayout.this = this;
+                    }
+
                     @Override
                     public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
                         super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), AndroidUtilities.dp(13.0f), false), bufferType);
@@ -1965,7 +1978,11 @@ public class Bulletin {
                 this.linearLayout = linearLayout;
                 linearLayout.setOrientation(1);
                 addView(this.linearLayout, LayoutHelper.createFrameRelatively(-1.0f, -2.0f, 8388627, 76.0f, 6.0f, 12.0f, 6.0f));
-                LinkSpanDrawable.LinksTextView linksTextView2 = new LinkSpanDrawable.LinksTextView(this, context) {
+                LinkSpanDrawable.LinksTextView linksTextView2 = new LinkSpanDrawable.LinksTextView(context) {
+                    {
+                        UsersLayout.this = this;
+                    }
+
                     @Override
                     public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
                         super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), AndroidUtilities.dp(13.0f), false), bufferType);
@@ -2311,7 +2328,7 @@ public class Bulletin {
                     bulletinWindowLayout.setSystemUiVisibility(1280);
                 }
             }
-            Bulletin.addDelegate(bulletinWindowLayout, new Delegate(this) {
+            Bulletin.addDelegate(bulletinWindowLayout, new Delegate() {
                 @Override
                 public boolean allowLayoutChanges() {
                     return Delegate.CC.$default$allowLayoutChanges(this);
@@ -2335,6 +2352,10 @@ public class Bulletin {
                 @Override
                 public void onShow(Bulletin bulletin) {
                     Delegate.CC.$default$onShow(this, bulletin);
+                }
+
+                {
+                    BulletinWindow.this = this;
                 }
 
                 @Override
@@ -2368,23 +2389,16 @@ public class Bulletin {
                 attributes.height = -1;
                 attributes.gravity = 51;
                 attributes.dimAmount = 0.0f;
-                int i2 = attributes.flags & (-3);
+                int i2 = (attributes.flags & (-3)) | 8 | 201326592 | 16;
                 attributes.flags = i2;
-                int i3 = i2 | 8;
-                attributes.flags = i3;
-                if (i >= 19) {
-                    attributes.flags = i3 | 201326592;
-                }
-                int i4 = attributes.flags | 16;
-                attributes.flags = i4;
                 if (i >= 21) {
-                    attributes.flags = i4 | (-2147417856);
+                    attributes.flags = i2 | (-2147417856);
                 }
                 attributes.flags &= -1025;
                 if (i >= 28) {
                     attributes.layoutInDisplayCutoutMode = 1;
                 }
-                window.setAttributes(attributes);
+                window.setAttributes(this.params);
                 if (AndroidUtilities.computePerceivedBrightness(Theme.getColor(Theme.key_windowBackgroundGray)) <= 0.721f) {
                     z = false;
                 }
@@ -2394,12 +2408,16 @@ public class Bulletin {
         }
 
         public WindowInsets lambda$new$0(View view, WindowInsets windowInsets) {
+            WindowInsets consumeSystemWindowInsets;
+            WindowInsets windowInsets2;
             applyInsets(windowInsets);
             view.requestLayout();
             if (Build.VERSION.SDK_INT >= 30) {
-                return WindowInsets.CONSUMED;
+                windowInsets2 = WindowInsets.CONSUMED;
+                return windowInsets2;
             }
-            return windowInsets.consumeSystemWindowInsets();
+            consumeSystemWindowInsets = windowInsets.consumeSystemWindowInsets();
+            return consumeSystemWindowInsets;
         }
 
         @Override
@@ -2410,9 +2428,17 @@ public class Bulletin {
         }
 
         private void applyInsets(WindowInsets windowInsets) {
+            int systemWindowInsetLeft;
+            int systemWindowInsetTop;
+            int systemWindowInsetRight;
+            int systemWindowInsetBottom;
             BulletinWindowLayout bulletinWindowLayout = this.container;
             if (bulletinWindowLayout != null) {
-                bulletinWindowLayout.setPadding(windowInsets.getSystemWindowInsetLeft(), windowInsets.getSystemWindowInsetTop(), windowInsets.getSystemWindowInsetRight(), windowInsets.getSystemWindowInsetBottom());
+                systemWindowInsetLeft = windowInsets.getSystemWindowInsetLeft();
+                systemWindowInsetTop = windowInsets.getSystemWindowInsetTop();
+                systemWindowInsetRight = windowInsets.getSystemWindowInsetRight();
+                systemWindowInsetBottom = windowInsets.getSystemWindowInsetBottom();
+                bulletinWindowLayout.setPadding(systemWindowInsetLeft, systemWindowInsetTop, systemWindowInsetRight, systemWindowInsetBottom);
             }
         }
 

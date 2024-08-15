@@ -266,6 +266,7 @@ public class BotBiometry {
     }
 
     private SecretKey getSecretKey() throws Exception {
+        KeyGenParameterSpec build;
         if (keyStore == null) {
             KeyStore keyStore2 = KeyStore.getInstance("AndroidKeyStore");
             keyStore = keyStore2;
@@ -288,7 +289,8 @@ public class BotBiometry {
             builder.setInvalidatedByBiometricEnrollment(true);
         }
         KeyGenerator keyGenerator = KeyGenerator.getInstance("AES", "AndroidKeyStore");
-        keyGenerator.init(builder.build());
+        build = builder.build();
+        keyGenerator.init(build);
         return keyGenerator.generateKey();
     }
 

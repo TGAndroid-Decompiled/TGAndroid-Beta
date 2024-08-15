@@ -9,7 +9,6 @@ import kotlin.coroutines.CoroutineContext;
 import kotlin.jvm.functions.Function1;
 import kotlinx.coroutines.CompletionStateKt;
 import kotlinx.coroutines.CoroutineContextKt;
-import kotlinx.coroutines.DebugKt;
 import kotlinx.coroutines.EventLoop;
 import kotlinx.coroutines.Job;
 import kotlinx.coroutines.ThreadLocalEventLoop;
@@ -37,10 +36,9 @@ public final class DispatchedContinuationKt {
             if (dispatchedContinuation.dispatcher.isDispatchNeeded(dispatchedContinuation.getContext())) {
                 dispatchedContinuation._state = state;
                 dispatchedContinuation.resumeMode = 1;
-                dispatchedContinuation.dispatcher.mo155dispatch(dispatchedContinuation.getContext(), dispatchedContinuation);
+                dispatchedContinuation.dispatcher.mo157dispatch(dispatchedContinuation.getContext(), dispatchedContinuation);
                 return;
             }
-            DebugKt.getASSERTIONS_ENABLED();
             EventLoop eventLoop$kotlinx_coroutines_core = ThreadLocalEventLoop.INSTANCE.getEventLoop$kotlinx_coroutines_core();
             if (!eventLoop$kotlinx_coroutines_core.isUnconfinedLoopActive()) {
                 eventLoop$kotlinx_coroutines_core.incrementUseCount(true);
@@ -52,7 +50,7 @@ public final class DispatchedContinuationKt {
                         CancellationException cancellationException = job.getCancellationException();
                         dispatchedContinuation.cancelCompletedResult$kotlinx_coroutines_core(state, cancellationException);
                         Result.Companion companion = Result.Companion;
-                        dispatchedContinuation.resumeWith(Result.m151constructorimpl(ResultKt.createFailure(cancellationException)));
+                        dispatchedContinuation.resumeWith(Result.m153constructorimpl(ResultKt.createFailure(cancellationException)));
                         z = true;
                     }
                     if (!z) {

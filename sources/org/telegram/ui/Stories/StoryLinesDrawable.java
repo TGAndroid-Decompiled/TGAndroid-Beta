@@ -20,6 +20,7 @@ public class StoryLinesDrawable {
     boolean incrementBuffering;
     int lastPosition;
     private final PeerStoriesView.SharedResources sharedResources;
+    private final View view;
     private final StaticLayout zoomHintLayout;
     private final float zoomHintLayoutLeft;
     private final float zoomHintLayoutWidth;
@@ -27,6 +28,7 @@ public class StoryLinesDrawable {
     private final AnimatedFloat zoomT;
 
     public StoryLinesDrawable(View view, PeerStoriesView.SharedResources sharedResources) {
+        this.view = view;
         this.sharedResources = sharedResources;
         this.zoomT = new AnimatedFloat(view, 0L, 360L, CubicBezierInterpolator.EASE_OUT_QUINT);
         TextPaint textPaint = new TextPaint(1);
@@ -102,8 +104,8 @@ public class StoryLinesDrawable {
                         f6 = f9;
                         f7 = 1.0f;
                     } else {
-                        RectF rectF = AndroidUtilities.rectTmp;
                         f5 = min;
+                        RectF rectF = AndroidUtilities.rectTmp;
                         i4 = dp;
                         f6 = f9;
                         rectF.set(dp3, 0.0f, f10, AndroidUtilities.lerp(AndroidUtilities.dpf2(2.0f), AndroidUtilities.dpf2(5.0f), (i2 == i7 ? 1 : 0) * f8));
@@ -154,8 +156,8 @@ public class StoryLinesDrawable {
                     canvas.drawRoundRect(rectF2, lerp2, lerp2, paint3);
                     i7++;
                     storyLinesDrawable = this;
-                    i6 = i3;
                     f9 = f6;
+                    i6 = i3;
                     paint = paint2;
                     min = f5;
                     dp = i4;
@@ -167,8 +169,8 @@ public class StoryLinesDrawable {
             paint2 = paint;
             i7++;
             storyLinesDrawable = this;
-            i6 = i3;
             f9 = f6;
+            i6 = i3;
             paint = paint2;
             min = f5;
             dp = i4;

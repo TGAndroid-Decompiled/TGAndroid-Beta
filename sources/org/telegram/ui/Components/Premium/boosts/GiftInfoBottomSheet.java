@@ -140,7 +140,7 @@ public class GiftInfoBottomSheet extends BottomSheetWithRecyclerListView {
     @Override
     public void onViewCreated(FrameLayout frameLayout) {
         super.onViewCreated(frameLayout);
-        Bulletin.addDelegate(this.container, new Bulletin.Delegate(this) {
+        Bulletin.addDelegate(this.container, new Bulletin.Delegate() {
             @Override
             public boolean allowLayoutChanges() {
                 return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);

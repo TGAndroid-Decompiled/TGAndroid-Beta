@@ -75,6 +75,7 @@ public class UndoView extends FrameLayout {
     private TextView subinfoTextView;
     private TextPaint textPaint;
     private int textWidth;
+    int textWidthOut;
     StaticLayout timeLayout;
     StaticLayout timeLayoutOut;
     private long timeLeft;
@@ -458,6 +459,7 @@ public class UndoView extends FrameLayout {
                 if (staticLayout != null) {
                     this.timeLayoutOut = staticLayout;
                     this.timeReplaceProgress = 0.0f;
+                    this.textWidthOut = this.textWidth;
                 }
                 this.textWidth = (int) Math.ceil(this.textPaint.measureText(format));
                 this.timeLayout = new StaticLayout(this.timeLeftString, this.textPaint, Integer.MAX_VALUE, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);

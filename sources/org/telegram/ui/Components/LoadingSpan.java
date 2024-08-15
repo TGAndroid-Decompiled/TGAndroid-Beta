@@ -8,6 +8,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 public class LoadingSpan extends ReplacementSpan {
     private LoadingDrawable drawable;
+    private Paint paint;
     private float scaleY;
     private int size;
     private View view;
@@ -46,6 +47,7 @@ public class LoadingSpan extends ReplacementSpan {
 
     @Override
     public int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
+        this.paint = paint;
         if (paint != null) {
             LoadingDrawable loadingDrawable = this.drawable;
             if (loadingDrawable.color1 == null && loadingDrawable.color2 == null) {

@@ -161,7 +161,7 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
         Drawable mutate2 = context.getResources().getDrawable(R.drawable.poll_add_plus).mutate();
         mutate.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_switchTrackChecked), PorterDuff.Mode.MULTIPLY));
         mutate2.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_checkboxCheck), PorterDuff.Mode.MULTIPLY));
-        this.addIcon = new CombinedDrawable(this, mutate, mutate2) {
+        this.addIcon = new CombinedDrawable(mutate, mutate2) {
             @Override
             public void setColorFilter(ColorFilter colorFilter) {
             }
@@ -184,7 +184,7 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
     }
 
     @Override
-    public void fillItems(java.util.ArrayList<org.telegram.ui.Components.UItem> r10, org.telegram.ui.Components.UniversalAdapter r11) {
+    public void fillItems(java.util.ArrayList<org.telegram.ui.Components.UItem> r9, org.telegram.ui.Components.UniversalAdapter r10) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.WebBrowserSettings.fillItems(java.util.ArrayList, org.telegram.ui.Components.UniversalAdapter):void");
     }
 
@@ -238,8 +238,8 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
                     }
                 }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).makeRed(-1).show();
             } else if (i2 == 7) {
-                long j = Long.MAX_VALUE;
                 Iterator<BrowserHistory.Entry> it = BrowserHistory.getHistory().iterator();
+                long j = Long.MAX_VALUE;
                 while (it.hasNext()) {
                     j = Math.min(j, it.next().time);
                 }
@@ -251,13 +251,14 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
                 }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).makeRed(-1).show();
             } else if (i2 == 9) {
                 final HistoryFragment[] historyFragmentArr = {null};
-                historyFragmentArr[0] = new HistoryFragment(null, new Utilities.Callback() {
+                HistoryFragment historyFragment = new HistoryFragment(null, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
                         WebBrowserSettings.this.lambda$onClick$6(historyFragmentArr, (BrowserHistory.Entry) obj);
                     }
                 });
-                presentFragment(historyFragmentArr[0]);
+                historyFragmentArr[0] = historyFragment;
+                presentFragment(historyFragment);
             } else if (i2 == 5) {
                 RestrictedDomainsList.getInstance().restrictedDomains.clear();
                 RestrictedDomainsList.getInstance().scheduleSave();
@@ -314,7 +315,7 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
                     textView.setTextSize(1, 16.0f);
                     textView.setText(LocaleController.getString(R.string.BrowserSettingsAddText));
                     linearLayout2.addView(textView, LayoutHelper.createLinear(-1, -2, 24.0f, 5.0f, 24.0f, 12.0f));
-                    final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(this, getContext()) {
+                    final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(getContext()) {
                         @Override
                         public void onMeasure(int i8, int i9) {
                             super.onMeasure(i8, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(36.0f), 1073741824));
@@ -326,7 +327,7 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
                             WebBrowserSettings.this.lambda$onClick$11(editTextBoldCursor, r3);
                         }
                     };
-                    editTextBoldCursor.setOnEditorActionListener(new TextView.OnEditorActionListener(this) {
+                    editTextBoldCursor.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                         @Override
                         public boolean onEditorAction(TextView textView2, int i8, KeyEvent keyEvent) {
                             if (i8 == 6) {
@@ -363,8 +364,9 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
                             dialogInterface.dismiss();
                         }
                     });
-                    final AlertDialog[] alertDialogArr = {builder.create()};
-                    alertDialogArr[0].setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    AlertDialog create2 = builder.create();
+                    final AlertDialog[] alertDialogArr = {create2};
+                    create2.setOnDismissListener(new DialogInterface.OnDismissListener() {
                         @Override
                         public final void onDismiss(DialogInterface dialogInterface) {
                             AndroidUtilities.hideKeyboard(EditTextBoldCursor.this);
@@ -475,25 +477,26 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
         RestrictedDomainsList.getInstance().setRestricted(true, lowerCase);
         WebMetadataCache.WebMetadata webMetadata = WebMetadataCache.getInstance().get(lowerCase);
         if (webMetadata != null && !TextUtils.isEmpty(webMetadata.sitename) && webMetadata.favicon != null) {
-            if (alertDialogArr[0] != null) {
-                alertDialogArr[0].dismiss();
+            AlertDialog alertDialog = alertDialogArr[0];
+            if (alertDialog != null) {
+                alertDialog.dismiss();
             }
             this.listView.adapter.update(true);
             return;
         }
-        final AlertDialog alertDialog = new AlertDialog(getContext(), 3);
+        final AlertDialog alertDialog2 = new AlertDialog(getContext(), 3);
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                WebBrowserSettings.this.lambda$onClick$9(alertDialogArr, alertDialog);
+                WebBrowserSettings.this.lambda$onClick$9(alertDialogArr, alertDialog2);
             }
         };
         AndroidUtilities.runOnUIThread(runnable, 5000L);
-        alertDialog.showDelayed(300L);
+        alertDialog2.showDelayed(300L);
         WebMetadataCache.retrieveFaviconAndSitename("https://" + obj + "/", new Utilities.Callback2() {
             @Override
             public final void run(Object obj2, Object obj3) {
-                WebBrowserSettings.this.lambda$onClick$10(runnable, alertDialog, lowerCase, (String) obj2, (Bitmap) obj3);
+                WebBrowserSettings.this.lambda$onClick$10(runnable, alertDialog2, lowerCase, (String) obj2, (Bitmap) obj3);
             }
         });
     }
@@ -589,7 +592,7 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
             if (bitmap != null) {
                 this.imageView.setImageBitmap(bitmap);
             } else {
-                CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText), 0.1f)), new Drawable(this, charSequence2) {
+                CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText), 0.1f)), new Drawable(charSequence2) {
                     private final Text text;
                     final String val$s;
 

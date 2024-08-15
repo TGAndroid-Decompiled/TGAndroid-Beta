@@ -106,7 +106,7 @@ public class ReactedUserHolderView extends FrameLayout {
         if (i == STYLE_STORY) {
             setClipChildren(false);
         }
-        SimpleTextView simpleTextView = new SimpleTextView(this, context) {
+        SimpleTextView simpleTextView = new SimpleTextView(context) {
             @Override
             public boolean setText(CharSequence charSequence) {
                 return super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), AndroidUtilities.dp(14.0f), false));

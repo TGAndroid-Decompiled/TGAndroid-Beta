@@ -408,8 +408,8 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
 
     @Override
     public View createView(final Context context) {
-        int i;
         String str;
+        int i;
         this.searching = false;
         this.searchWas = false;
         this.allSpans.clear();
@@ -452,11 +452,11 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         } else {
             ActionBar actionBar = this.actionBar;
             if (i2 == 0) {
-                i = R.string.NewGroup;
                 str = "NewGroup";
+                i = R.string.NewGroup;
             } else {
-                i = R.string.NewBroadcastList;
                 str = "NewBroadcastList";
+                i = R.string.NewBroadcastList;
             }
             actionBar.setTitle(LocaleController.getString(str, i));
         }
@@ -616,7 +616,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         this.editText.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         this.spansContainer.addView(this.editText);
         updateEditTextHint();
-        this.editText.setCustomSelectionActionModeCallback(new ActionMode.Callback(this) {
+        this.editText.setCustomSelectionActionModeCallback(new ActionMode.Callback() {
             @Override
             public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
                 return false;
@@ -761,7 +761,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
             stateListAnimator.addState(new int[]{16842919}, ObjectAnimator.ofFloat(this.floatingButton, "translationZ", AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f)).setDuration(200L));
             stateListAnimator.addState(new int[0], ObjectAnimator.ofFloat(this.floatingButton, "translationZ", AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f)).setDuration(200L));
             this.floatingButton.setStateListAnimator(stateListAnimator);
-            this.floatingButton.setOutlineProvider(new ViewOutlineProvider(this) {
+            this.floatingButton.setOutlineProvider(new ViewOutlineProvider() {
                 @Override
                 @SuppressLint({"NewApi"})
                 public void getOutline(View view, Outline outline) {
@@ -1145,8 +1145,9 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
             if (!ChatObject.isChannel(chat)) {
                 LinearLayout linearLayout = new LinearLayout(getParentActivity());
                 linearLayout.setOrientation(1);
-                checkBoxCellArr[0] = new CheckBoxCell(getParentActivity(), 1, this.resourceProvider);
-                checkBoxCellArr[0].setBackgroundDrawable(Theme.getSelectorDrawable(false));
+                CheckBoxCell checkBoxCell = new CheckBoxCell(getParentActivity(), 1, this.resourceProvider);
+                checkBoxCellArr[0] = checkBoxCell;
+                checkBoxCell.setBackgroundDrawable(Theme.getSelectorDrawable(false));
                 checkBoxCellArr[0].setMultiline(true);
                 if (this.selectedContacts.size() == 1) {
                     checkBoxCellArr[0].setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.AddOneMemberForwardMessages, UserObject.getFirstName(getMessagesController().getUser(Long.valueOf(this.selectedContacts.keyAt(0)))))), "", true, false);
@@ -1219,12 +1220,14 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
     }
 
     public static void lambda$onDonePressed$7(CheckBoxCell[] checkBoxCellArr, View view) {
-        checkBoxCellArr[0].setChecked(!checkBoxCellArr[0].isChecked(), true);
+        CheckBoxCell checkBoxCell = checkBoxCellArr[0];
+        checkBoxCell.setChecked(!checkBoxCell.isChecked(), true);
     }
 
     public void lambda$onDonePressed$8(CheckBoxCell[] checkBoxCellArr, DialogInterface dialogInterface, int i) {
         int i2 = 0;
-        if (checkBoxCellArr[0] != null && checkBoxCellArr[0].isChecked()) {
+        CheckBoxCell checkBoxCell = checkBoxCellArr[0];
+        if (checkBoxCell != null && checkBoxCell.isChecked()) {
             i2 = 100;
         }
         onAddToGroupDone(i2);
@@ -1513,7 +1516,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
                 if (i == 1) {
                     groupCreateUserCell = new GroupCreateUserCell(this.context, 1, 0, false);
                 } else if (i == 3) {
-                    StickerEmptyView stickerEmptyView = new StickerEmptyView(this, this.context, null, 0) {
+                    StickerEmptyView stickerEmptyView = new StickerEmptyView(this.context, null, 0) {
                         @Override
                         public void onAttachedToWindow() {
                             super.onAttachedToWindow();

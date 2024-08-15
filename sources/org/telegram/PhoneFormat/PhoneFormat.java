@@ -235,6 +235,7 @@ public class PhoneFormat {
         Integer num;
         byte[] bArr;
         int i;
+        boolean z;
         PhoneFormat phoneFormat = this;
         CallingCodeInfo callingCodeInfo = phoneFormat.callingCodeData.get(str);
         if (callingCodeInfo != null || (num = phoneFormat.callingCodeOffsets.get(str)) == null) {
@@ -244,7 +245,7 @@ public class PhoneFormat {
         int intValue = num.intValue();
         CallingCodeInfo callingCodeInfo2 = new CallingCodeInfo();
         callingCodeInfo2.callingCode = str;
-        phoneFormat.callingCodeCountries.get(str);
+        callingCodeInfo2.countries = phoneFormat.callingCodeCountries.get(str);
         phoneFormat.callingCodeData.put(str, callingCodeInfo2);
         short value16 = phoneFormat.value16(intValue);
         int i2 = 2;
@@ -293,17 +294,17 @@ public class PhoneFormat {
                 phoneRule.maxVal = phoneFormat.value32(i12);
                 int i13 = i12 + 4;
                 int i14 = i13 + 1;
-                byte b = bArr2[i13];
+                phoneRule.byte8 = bArr2[i13];
                 int i15 = i14 + 1;
                 phoneRule.maxLen = bArr2[i14];
                 int i16 = i15 + 1;
-                byte b2 = bArr2[i15];
+                phoneRule.otherFlag = bArr2[i15];
                 int i17 = i16 + 1;
-                byte b3 = bArr2[i16];
+                phoneRule.prefixLen = bArr2[i16];
                 int i18 = i17 + 1;
                 phoneRule.flag12 = bArr2[i17];
                 int i19 = i18 + 1;
-                byte b4 = bArr2[i18];
+                phoneRule.flag13 = bArr2[i18];
                 short value165 = phoneFormat.value16(i19);
                 i8 = i19 + i2;
                 String valueString3 = phoneFormat.valueString(i7 + value162 + value165);
@@ -313,13 +314,21 @@ public class PhoneFormat {
                     bArr = bArr2;
                     i = i7;
                     i2 = 2;
+                    z = true;
                     phoneRule.format = String.format("%s%s", phoneRule.format.substring(0, indexOf), phoneRule.format.substring(phoneRule.format.indexOf("]]") + 2));
                 } else {
                     bArr = bArr2;
                     i = i7;
+                    z = true;
                     i2 = 2;
                 }
                 arrayList4.add(phoneRule);
+                if (phoneRule.hasIntlPrefix) {
+                    ruleSet.hasRuleWithIntlPrefix = z;
+                }
+                if (phoneRule.hasTrunkPrefix) {
+                    ruleSet.hasRuleWithTrunkPrefix = z;
+                }
                 i11++;
                 phoneFormat = this;
                 bArr2 = bArr;

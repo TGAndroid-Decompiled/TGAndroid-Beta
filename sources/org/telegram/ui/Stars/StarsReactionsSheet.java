@@ -106,7 +106,7 @@ public class StarsReactionsSheet extends BottomSheet {
     private final FrameLayout topLayout;
     private final TopSendersView topSendersView;
 
-    public StarsReactionsSheet(final Context context, final int i, long j, final ChatActivity chatActivity, final MessageObject messageObject, ArrayList<TLRPC$MessageReactor> arrayList, final Theme.ResourcesProvider resourcesProvider) {
+    public StarsReactionsSheet(final Context context, final int i, long j, final ChatActivity chatActivity, final MessageObject messageObject, ArrayList<TLRPC$MessageReactor> arrayList, boolean z, final Theme.ResourcesProvider resourcesProvider) {
         super(context, false, resourcesProvider);
         TLRPC$MessageReactor tLRPC$MessageReactor;
         String formatString;
@@ -134,7 +134,7 @@ public class StarsReactionsSheet extends BottomSheet {
         } else {
             tLRPC$MessageReactor = null;
         }
-        boolean z = (arrayList == null || arrayList.isEmpty()) ? false : true;
+        boolean z2 = (arrayList == null || arrayList.isEmpty()) ? false : true;
         this.anonymous = StarsController.getInstance(i).arePaidReactionsAnonymous(messageObject);
         fixNavigationBar(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
         LinearLayout linearLayout = new LinearLayout(context);
@@ -162,33 +162,36 @@ public class StarsReactionsSheet extends BottomSheet {
             if (i3 >= i2) {
                 break;
             }
-            int i4 = i3;
-            if (iArr[i3] > j2) {
+            int i4 = iArr[i3];
+            int i5 = i3;
+            if (i4 > j2) {
                 arrayList2.add(Integer.valueOf((int) j2));
                 break;
             }
-            arrayList2.add(Integer.valueOf(iArr[i4]));
-            if (iArr[i4] == j2) {
+            arrayList2.add(Integer.valueOf(i4));
+            if (iArr[i5] == j2) {
                 break;
             }
-            i3 = i4 + 1;
+            i3 = i5 + 1;
             i2 = 9;
         }
         int[] iArr2 = new int[arrayList2.size()];
-        for (int i5 = 0; i5 < arrayList2.size(); i5++) {
-            iArr2[i5] = ((Integer) arrayList2.get(i5)).intValue();
+        for (int i6 = 0; i6 < arrayList2.size(); i6++) {
+            iArr2[i6] = ((Integer) arrayList2.get(i6)).intValue();
         }
         this.slider.setSteps(100, iArr2);
-        this.topLayout.addView(this.slider, LayoutHelper.createFrame(-1, -2.0f));
-        TextView textView = new TextView(this, context) {
+        if (z) {
+            this.topLayout.addView(this.slider, LayoutHelper.createFrame(-1, -2.0f));
+        }
+        TextView textView = new TextView(context) {
             @Override
-            protected void onMeasure(int i6, int i7) {
-                super.onMeasure(i6, View.MeasureSpec.makeMeasureSpec(ActionBar.getCurrentActionBarHeight(), 1073741824));
+            protected void onMeasure(int i7, int i8) {
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(ActionBar.getCurrentActionBarHeight(), 1073741824));
             }
         };
         this.titleView = textView;
-        int i6 = Theme.key_windowBackgroundWhiteBlackText;
-        textView.setTextColor(Theme.getColor(i6));
+        int i7 = Theme.key_windowBackgroundWhiteBlackText;
+        textView.setTextColor(Theme.getColor(i7));
         textView.setTextSize(1, 20.0f);
         textView.setText(LocaleController.getString(R.string.StarsReactionTitle));
         textView.setGravity(16);
@@ -206,11 +209,11 @@ public class StarsReactionsSheet extends BottomSheet {
         this.topLayout.addView(starsBalanceView, LayoutHelper.createFrame(-2, -2.0f, 53, 6.0f, 0.0f, 6.0f, 0.0f));
         LinearLayout linearLayout2 = new LinearLayout(context);
         linearLayout2.setOrientation(1);
-        this.topLayout.addView(linearLayout2, LayoutHelper.createFrame(-1, -2.0f, 55, 0.0f, 179.0f, 0.0f, 15.0f));
+        this.topLayout.addView(linearLayout2, LayoutHelper.createFrame(-1, -2.0f, 55, 0.0f, z ? 179.0f : 45.0f, 0.0f, 15.0f));
         final TLRPC$Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-j));
         TextView textView2 = new TextView(context);
         this.statusView = textView2;
-        textView2.setTextColor(Theme.getColor(i6));
+        textView2.setTextColor(Theme.getColor(i7));
         textView2.setTextSize(1, 14.0f);
         textView2.setGravity(17);
         textView2.setSingleLine(false);
@@ -218,15 +221,17 @@ public class StarsReactionsSheet extends BottomSheet {
         if (tLRPC$MessageReactor != null) {
             formatString = LocaleController.formatPluralStringComma("StarsReactionTextSent", tLRPC$MessageReactor.count);
         } else {
-            int i7 = R.string.StarsReactionText;
+            int i8 = R.string.StarsReactionText;
             Object[] objArr = new Object[1];
             objArr[0] = chat == null ? "" : chat.title;
-            formatString = LocaleController.formatString(i7, objArr);
+            formatString = LocaleController.formatString(i8, objArr);
         }
         textView2.setText(AndroidUtilities.replaceTags(formatString));
-        linearLayout2.addView(textView2, LayoutHelper.createLinear(-1, -2, 55, 40, 0, 40, 0));
         if (z) {
-            View view = new View(this, context) {
+            linearLayout2.addView(textView2, LayoutHelper.createLinear(-1, -2, 55, 40, 0, 40, 0));
+        }
+        if (z2) {
+            View view = new View(context) {
                 private final LinearGradient gradient = new LinearGradient(0.0f, 0.0f, 255.0f, 0.0f, new int[]{-1135603, -404714}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
                 private final Matrix gradientMatrix = new Matrix();
                 private final Paint backgroundPaint = new Paint(1);
@@ -264,7 +269,9 @@ public class StarsReactionsSheet extends BottomSheet {
             View view2 = new View(context);
             this.checkSeparatorView = view2;
             view2.setBackgroundColor(Theme.getColor(Theme.key_divider, resourcesProvider));
-            this.layout.addView(view2, LayoutHelper.createLinear(-1, 1.0f / AndroidUtilities.density, 7, 24, 0, 24, 0));
+            if (z || tLRPC$MessageReactor != null) {
+                this.layout.addView(view2, LayoutHelper.createLinear(-1, 1.0f / AndroidUtilities.density, 7, 24, 0, 24, 0));
+            }
         } else {
             this.separatorView = null;
             this.topSendersView = null;
@@ -282,7 +289,7 @@ public class StarsReactionsSheet extends BottomSheet {
         checkBox2.setDrawBackgroundAsArc(10);
         TextView textView3 = new TextView(context);
         this.checkTextView = textView3;
-        textView3.setTextColor(Theme.getColor(i6, resourcesProvider));
+        textView3.setTextColor(Theme.getColor(i7, resourcesProvider));
         textView3.setTextSize(1, 14.0f);
         textView3.setText(LocaleController.getString(R.string.StarsReactionShowMeInTopSenders));
         LinearLayout linearLayout3 = new LinearLayout(context);
@@ -299,10 +306,14 @@ public class StarsReactionsSheet extends BottomSheet {
         });
         ScaleStateListAnimator.apply(linearLayout3, 0.05f, 1.2f);
         linearLayout3.setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector, resourcesProvider), 6, 6));
-        this.layout.addView(linearLayout3, LayoutHelper.createLinear(-2, -2, 1, 0, z ? 10 : 4, 0, 10));
+        if (z || tLRPC$MessageReactor != null) {
+            this.layout.addView(linearLayout3, LayoutHelper.createLinear(-2, -2, 1, 0, z2 ? 10 : 4, 0, 10));
+        }
         ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
         this.buttonView = buttonWithCounterView;
-        this.layout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 14.0f, 0.0f, 14.0f, 0.0f));
+        if (z) {
+            this.layout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 14.0f, 0.0f, 14.0f, 0.0f));
+        }
         updateSenders(0L);
         buttonWithCounterView.setText(StarsIntroActivity.replaceStars(LocaleController.formatString(R.string.StarsReactionSend, LocaleController.formatNumber(50L, ',')), this.starRef), true);
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
@@ -322,9 +333,11 @@ public class StarsReactionsSheet extends BottomSheet {
         }));
         linksTextView.setGravity(17);
         linksTextView.setLinkTextColor(getThemedColor(Theme.key_dialogTextLink));
-        this.layout.addView(linksTextView, LayoutHelper.createLinear(-1, -2, 17, 14, 14, 14, 12));
+        if (z) {
+            this.layout.addView(linksTextView, LayoutHelper.createLinear(-1, -2, 17, 14, 14, 14, 12));
+        }
         setCustomView(this.layout);
-        GLIconTextureView gLIconTextureView = new GLIconTextureView(this, context, 1, 2) {
+        GLIconTextureView gLIconTextureView = new GLIconTextureView(context, 1, 2) {
             @Override
             protected void startIdleAnimation() {
             }
@@ -341,8 +354,8 @@ public class StarsReactionsSheet extends BottomSheet {
         this.slider.setValue(50);
         if (arrayList != null) {
             long j3 = 0;
-            for (int i8 = 0; i8 < arrayList.size(); i8++) {
-                long j4 = arrayList.get(i8).count;
+            for (int i9 = 0; i9 < arrayList.size(); i9++) {
+                long j4 = arrayList.get(i9).count;
                 if (j4 > j3) {
                     j3 = j4;
                 }
@@ -539,6 +552,7 @@ public class StarsReactionsSheet extends BottomSheet {
     }
 
     private void animate3dIcon(final Runnable runnable) {
+        MessageObject messageObject;
         ChatMessageCell chatMessageCell = this.messageCell;
         if (chatMessageCell == null || !chatMessageCell.isCellAttachedToWindow() || this.messageCell.getPrimaryMessageObject() == null || this.messageCell.getPrimaryMessageObject().getId() != this.messageId) {
             return;
@@ -548,18 +562,17 @@ public class StarsReactionsSheet extends BottomSheet {
         if (reactionButton == null) {
             MessageObject.GroupedMessages validGroupedMessage = this.chatActivity.getValidGroupedMessage(this.messageCell.getPrimaryMessageObject());
             if (validGroupedMessage != null && !validGroupedMessage.posArray.isEmpty()) {
-                MessageObject messageObject = null;
                 Iterator<MessageObject> it = validGroupedMessage.messages.iterator();
                 while (true) {
                     if (!it.hasNext()) {
+                        messageObject = null;
                         break;
                     }
-                    MessageObject next = it.next();
-                    MessageObject.GroupedMessagePosition position = validGroupedMessage.getPosition(next);
+                    messageObject = it.next();
+                    MessageObject.GroupedMessagePosition position = validGroupedMessage.getPosition(messageObject);
                     if (position != null) {
                         int i = position.flags;
                         if ((i & 1) != 0 && (i & 8) != 0) {
-                            messageObject = next;
                             break;
                         }
                     }
@@ -649,7 +662,7 @@ public class StarsReactionsSheet extends BottomSheet {
             }
         });
         this.iconAnimator.setDuration(800L);
-        this.iconAnimator.setInterpolator(new Interpolator(this) {
+        this.iconAnimator.setInterpolator(new Interpolator() {
             @Override
             public float getInterpolation(float f) {
                 return (float) Math.pow(f, 2.0d);
@@ -741,6 +754,7 @@ public class StarsReactionsSheet extends BottomSheet {
         private final Path sliderPath;
         private final RectF sliderRect;
         private final ColoredImageSpan[] starRef;
+        public int steps;
         public int[] stops;
         private final Paint textBackgroundPaint;
         private final Particles textParticles;
@@ -808,6 +822,7 @@ public class StarsReactionsSheet extends BottomSheet {
         }
 
         public void setSteps(int i, int... iArr) {
+            this.steps = i;
             this.stops = iArr;
         }
 
@@ -843,21 +858,25 @@ public class StarsReactionsSheet extends BottomSheet {
             int[] iArr2 = this.stops;
             float length = f * (iArr2.length - 1);
             int i = (int) length;
-            return Math.round(iArr2[i] + ((length - i) * (iArr2[i + 1] - iArr2[i])));
+            float f2 = length - i;
+            int i2 = iArr2[i];
+            return Math.round(i2 + (f2 * (iArr2[i + 1] - i2)));
         }
 
         public float getProgress(int i) {
-            int i2;
-            int i3 = 1;
+            int i2 = 1;
             while (true) {
                 int[] iArr = this.stops;
-                if (i3 >= iArr.length) {
+                if (i2 >= iArr.length) {
                     return 1.0f;
                 }
-                if (i <= iArr[i3]) {
-                    return ((i3 - 1) + ((i - iArr[i2]) / (iArr[i3] - iArr[i2]))) / (iArr.length - 1);
+                int i3 = iArr[i2];
+                if (i <= i3) {
+                    int i4 = i2 - 1;
+                    int i5 = iArr[i4];
+                    return (i4 + ((i - i5) / (i3 - i5))) / (iArr.length - 1);
                 }
-                i3++;
+                i2++;
             }
         }
 

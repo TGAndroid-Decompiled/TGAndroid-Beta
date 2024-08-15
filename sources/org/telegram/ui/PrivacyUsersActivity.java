@@ -44,7 +44,6 @@ import org.telegram.ui.PrivacyUsersActivity;
 public class PrivacyUsersActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate, ContactsActivity.ContactsActivityDelegate {
     private int blockUserDetailRow;
     private int blockUserRow;
-    private PrivacyActivityDelegate delegate;
     private int deleteAllRow;
     private EmptyTextProgressView emptyView;
     private boolean isAlwaysShare;
@@ -61,10 +60,6 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
     private int usersStartRow;
     private int currentType = 1;
     private boolean blockedUsersActivity = true;
-
-    public interface PrivacyActivityDelegate {
-        void didUpdateUserList(ArrayList<Long> arrayList, boolean z);
-    }
 
     public PrivacyUsersActivity loadBlocked() {
         getMessagesController().getBlockedPeers(true);
@@ -124,8 +119,7 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
         });
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
-        FrameLayout frameLayout2 = frameLayout;
-        frameLayout2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
+        frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
         EmptyTextProgressView emptyTextProgressView = new EmptyTextProgressView(context);
         this.emptyView = emptyTextProgressView;
         if (this.currentType == 1) {
@@ -133,7 +127,7 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
         } else {
             emptyTextProgressView.setText(LocaleController.getString("NoContacts", R.string.NoContacts));
         }
-        frameLayout2.addView(this.emptyView, LayoutHelper.createFrame(-1, -1.0f));
+        frameLayout.addView(this.emptyView, LayoutHelper.createFrame(-1, -1.0f));
         RecyclerListView recyclerListView = new RecyclerListView(context);
         this.listView = recyclerListView;
         recyclerListView.setItemSelectorColorProvider(new GenericProvider() {
@@ -155,7 +149,7 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
         this.listViewAdapter = listAdapter;
         recyclerListView3.setAdapter(listAdapter);
         this.listView.setVerticalScrollbarPosition(LocaleController.isRTL ? 1 : 2);
-        frameLayout2.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
+        frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
@@ -258,10 +252,6 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
         this.uidArray.clear();
         updateRows();
         finishFragment();
-        PrivacyActivityDelegate privacyActivityDelegate = this.delegate;
-        if (privacyActivityDelegate != null) {
-            privacyActivityDelegate.didUpdateUserList(this.uidArray, true);
-        }
     }
 
     public void lambda$createView$2(boolean z, ArrayList arrayList) {
@@ -273,10 +263,6 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
             }
         }
         updateRows();
-        PrivacyActivityDelegate privacyActivityDelegate = this.delegate;
-        if (privacyActivityDelegate != null) {
-            privacyActivityDelegate.didUpdateUserList(this.uidArray, true);
-        }
     }
 
     public boolean lambda$createView$4(View view, int i) {
@@ -318,10 +304,6 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
     public void lambda$showUnblockAlert$6(Long l) {
         this.uidArray.remove(l);
         updateRows();
-        PrivacyActivityDelegate privacyActivityDelegate = this.delegate;
-        if (privacyActivityDelegate != null) {
-            privacyActivityDelegate.didUpdateUserList(this.uidArray, false);
-        }
         if (this.uidArray.isEmpty()) {
             finishFragment();
         }
@@ -358,7 +340,6 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
                 int i6 = this.rowCount;
                 this.usersStartRow = i6;
                 int i7 = i6 + size;
-                this.rowCount = i7;
                 this.usersEndRow = i7;
                 int i8 = i7 + 1;
                 this.rowCount = i8;

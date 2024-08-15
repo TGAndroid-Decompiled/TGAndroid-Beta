@@ -101,7 +101,7 @@ public class SenderSelectPopup extends ActionBarPopupWindow {
         view.setBackgroundColor(855638016);
         final int dp = AndroidUtilities.dp(450.0f);
         final int width = (int) (chatActivity.contentView.getWidth() * 0.75f);
-        LinearLayout linearLayout = new LinearLayout(this, context) {
+        LinearLayout linearLayout = new LinearLayout(context) {
             @Override
             protected void onMeasure(int i, int i2) {
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i), width), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i2), dp), View.MeasureSpec.getMode(i2)));
@@ -129,7 +129,7 @@ public class SenderSelectPopup extends ActionBarPopupWindow {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
         this.layoutManager = linearLayoutManager;
         this.recyclerView.setLayoutManager(linearLayoutManager);
-        this.recyclerView.setAdapter(new RecyclerListView.SelectionAdapter(this) {
+        this.recyclerView.setAdapter(new RecyclerListView.SelectionAdapter() {
             @Override
             public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
                 return true;

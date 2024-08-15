@@ -76,8 +76,10 @@ public class VideoFrameDrawer {
             int[] iArr3 = {i2, i4, i4};
             int i5 = 0;
             for (int i6 = 0; i6 < 3; i6++) {
-                if (iArr[i6] > iArr2[i6]) {
-                    i5 = Math.max(i5, iArr2[i6] * iArr3[i6]);
+                int i7 = iArr[i6];
+                int i8 = iArr2[i6];
+                if (i7 > i8) {
+                    i5 = Math.max(i5, i8 * iArr3[i6]);
                 }
             }
             if (i5 > 0 && ((byteBuffer2 = this.copyBuffer) == null || byteBuffer2.capacity() < i5)) {
@@ -85,20 +87,22 @@ public class VideoFrameDrawer {
             }
             if (this.yuvTextures == null) {
                 this.yuvTextures = new int[3];
-                for (int i7 = 0; i7 < 3; i7++) {
-                    this.yuvTextures[i7] = GlUtil.generateTexture(3553);
+                for (int i9 = 0; i9 < 3; i9++) {
+                    this.yuvTextures[i9] = GlUtil.generateTexture(3553);
                 }
             }
-            for (int i8 = 0; i8 < 3; i8++) {
-                GLES20.glActiveTexture(33984 + i8);
-                GLES20.glBindTexture(3553, this.yuvTextures[i8]);
-                if (iArr[i8] == iArr2[i8]) {
-                    byteBuffer = byteBufferArr[i8];
+            for (int i10 = 0; i10 < 3; i10++) {
+                GLES20.glActiveTexture(33984 + i10);
+                GLES20.glBindTexture(3553, this.yuvTextures[i10]);
+                int i11 = iArr[i10];
+                int i12 = iArr2[i10];
+                if (i11 == i12) {
+                    byteBuffer = byteBufferArr[i10];
                 } else {
-                    YuvHelper.copyPlane(byteBufferArr[i8], iArr[i8], this.copyBuffer, iArr2[i8], iArr2[i8], iArr3[i8]);
+                    YuvHelper.copyPlane(byteBufferArr[i10], i11, this.copyBuffer, i12, i12, iArr3[i10]);
                     byteBuffer = this.copyBuffer;
                 }
-                GLES20.glTexImage2D(3553, 0, 6409, iArr2[i8], iArr3[i8], 0, 6409, 5121, byteBuffer);
+                GLES20.glTexImage2D(3553, 0, 6409, iArr2[i10], iArr3[i10], 0, 6409, 5121, byteBuffer);
             }
             return this.yuvTextures;
         }

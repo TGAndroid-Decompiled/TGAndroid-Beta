@@ -54,12 +54,12 @@ public class JoinGroupAlert extends BottomSheet {
         boolean z2;
         int i3;
         String lowerCase;
-        int i4;
         String str3;
-        int i5;
+        int i4;
         String str4;
-        int i6;
+        int i5;
         String str5;
+        int i6;
         CharSequence format;
         setApplyBottomPadding(false);
         setApplyTopPadding(false);
@@ -201,11 +201,11 @@ public class JoinGroupAlert extends BottomSheet {
             this.requestTextView.setSingleLine(true);
             TextView textView4 = this.requestTextView;
             if (z4) {
-                i4 = R.string.RequestToJoinChannel;
                 str3 = "RequestToJoinChannel";
+                i4 = R.string.RequestToJoinChannel;
             } else {
-                i4 = R.string.RequestToJoinGroup;
                 str3 = "RequestToJoinGroup";
+                i4 = R.string.RequestToJoinGroup;
             }
             textView4.setText(LocaleController.getString(str3, i4));
             this.requestTextView.setTextColor(getThemedColor(Theme.key_featuredStickers_buttonText));
@@ -222,11 +222,11 @@ public class JoinGroupAlert extends BottomSheet {
             textView5.setGravity(17);
             textView5.setTextSize(1, 14.0f);
             if (z4) {
-                i5 = R.string.RequestToJoinChannelDescription;
                 str4 = "RequestToJoinChannelDescription";
+                i5 = R.string.RequestToJoinChannelDescription;
             } else {
-                i5 = R.string.RequestToJoinGroupDescription;
                 str4 = "RequestToJoinGroupDescription";
+                i5 = R.string.RequestToJoinGroupDescription;
             }
             textView5.setText(LocaleController.getString(str4, i5));
             textView5.setTextColor(getThemedColor(i8));
@@ -272,11 +272,11 @@ public class JoinGroupAlert extends BottomSheet {
             textView7.setGravity(17);
             textView7.setSingleLine(true);
             if (z6) {
-                i6 = R.string.ProfileJoinChannel;
                 str5 = "ProfileJoinChannel";
+                i6 = R.string.ProfileJoinChannel;
             } else {
-                i6 = R.string.ProfileJoinGroup;
                 str5 = "ProfileJoinGroup";
+                i6 = R.string.ProfileJoinGroup;
             }
             textView7.setText(LocaleController.getString(str5, i6));
             textView7.setTextColor(getThemedColor(Theme.key_featuredStickers_buttonText));

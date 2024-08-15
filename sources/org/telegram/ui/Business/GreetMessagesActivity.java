@@ -313,17 +313,16 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
             this.recipientsHelper.fillItems(arrayList);
             arrayList.add(UItem.asShadow(LocaleController.getString(R.string.BusinessGreetRecipientsInfo)));
             arrayList.add(UItem.asHeader(LocaleController.getString(R.string.BusinessGreetPeriod)));
-            int i = -1;
-            int i2 = 0;
+            int i = 0;
             while (true) {
                 int[] iArr = this.daysOfInactivity;
-                if (i2 >= iArr.length) {
+                if (i >= iArr.length) {
+                    i = -1;
                     break;
-                } else if (iArr[i2] == this.inactivityDays) {
-                    i = i2;
+                } else if (iArr[i] == this.inactivityDays) {
                     break;
                 } else {
-                    i2++;
+                    i++;
                 }
             }
             arrayList.add(UItem.asSlideView(this.daysOfInactivityTexts, i, new Utilities.Callback() {

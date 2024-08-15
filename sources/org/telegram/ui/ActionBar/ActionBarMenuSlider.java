@@ -387,9 +387,9 @@ public class ActionBarMenuSlider extends FrameLayout {
         if (bitmap == null) {
             return null;
         }
-        int[] iArr = this.location;
-        float f = iArr[0] / AndroidUtilities.displaySize.x;
-        float measuredWidth = (iArr[0] + getMeasuredWidth()) / AndroidUtilities.displaySize.x;
+        int i = this.location[0];
+        float f = i / AndroidUtilities.displaySize.x;
+        float measuredWidth = (i + getMeasuredWidth()) / AndroidUtilities.displaySize.x;
         float currentActionBarHeight = ((this.location[1] - AndroidUtilities.statusBarHeight) - ActionBar.getCurrentActionBarHeight()) / AndroidUtilities.displaySize.y;
         int width = (int) (f * bitmap.getWidth());
         int width2 = (int) (measuredWidth * bitmap.getWidth());
@@ -403,16 +403,16 @@ public class ActionBarMenuSlider extends FrameLayout {
     private void updatePseudoBlurColors() {
         int color;
         int i;
+        Bitmap bitmap;
         if (this.blurIsInChat) {
             Drawable cachedWallpaper = Theme.getCachedWallpaper();
             if (cachedWallpaper instanceof ColorDrawable) {
                 color = ((ColorDrawable) cachedWallpaper).getColor();
             } else {
-                Bitmap bitmap = null;
                 if (cachedWallpaper instanceof MotionBackgroundDrawable) {
                     bitmap = ((MotionBackgroundDrawable) cachedWallpaper).getBitmap();
-                } else if (cachedWallpaper instanceof BitmapDrawable) {
-                    bitmap = ((BitmapDrawable) cachedWallpaper).getBitmap();
+                } else {
+                    bitmap = cachedWallpaper instanceof BitmapDrawable ? ((BitmapDrawable) cachedWallpaper).getBitmap() : null;
                 }
                 Pair<Integer, Integer> bitmapGradientColors = getBitmapGradientColors(bitmap);
                 if (bitmapGradientColors != null) {

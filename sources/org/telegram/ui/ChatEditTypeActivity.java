@@ -119,6 +119,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
     private LinearLayout linkContainer;
     private LoadingCell loadingAdminedCell;
     private boolean loadingAdminedChannels;
+    private boolean loadingInvite;
     private TextInfoPrivacyCell manageLinksInfoCell;
     private TextCell manageLinksTextView;
     private LinkActionView permanentLinkView;
@@ -149,6 +150,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         }
     };
     private boolean deactivatingLinks = false;
+    private boolean activatingEditableLink = false;
 
     public ChatEditTypeActivity(long j, boolean z) {
         this.chatId = j;
@@ -746,19 +748,28 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
     }
 
     public class UsernamesListView extends RecyclerListView {
+        private final int VIEW_TYPE_HEADER;
+        private final int VIEW_TYPE_HELP;
+        private final int VIEW_TYPE_USERNAME;
         private Adapter adapter;
         private Paint backgroundPaint;
         private ItemTouchHelper itemTouchHelper;
+        private LinearLayoutManager layoutManager;
         private boolean needReorder;
 
         public UsernamesListView(Context context) {
             super(context);
+            this.VIEW_TYPE_HEADER = 0;
+            this.VIEW_TYPE_USERNAME = 1;
+            this.VIEW_TYPE_HELP = 2;
             this.needReorder = false;
             this.backgroundPaint = new Paint(1);
             Adapter adapter = new Adapter();
             this.adapter = adapter;
             setAdapter(adapter);
-            setLayoutManager(new LinearLayoutManager(context));
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
+            this.layoutManager = linearLayoutManager;
+            setLayoutManager(linearLayoutManager);
             setOnItemClickListener(new AnonymousClass1(ChatEditTypeActivity.this));
             ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new TouchHelperCallback());
             this.itemTouchHelper = itemTouchHelper;
@@ -766,18 +777,21 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         }
 
         public class AnonymousClass1 implements RecyclerListView.OnItemClickListener {
+            final ChatEditTypeActivity val$this$0;
+
             AnonymousClass1(ChatEditTypeActivity chatEditTypeActivity) {
+                this.val$this$0 = chatEditTypeActivity;
             }
 
             @Override
             public void onItemClick(final View view, int i) {
                 final TLRPC$TL_username tLRPC$TL_username;
-                int i2;
                 String str;
-                int i3;
+                int i2;
                 String str2;
-                int i4;
+                int i3;
                 String str3;
+                int i4;
                 if (!(view instanceof ChangeUsernameActivity.UsernameCell) || (tLRPC$TL_username = ((ChangeUsernameActivity.UsernameCell) view).currentUsername) == null) {
                     return;
                 }
@@ -793,27 +807,27 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
                 }
                 AlertDialog.Builder builder = new AlertDialog.Builder(UsernamesListView.this.getContext(), ChatEditTypeActivity.this.getResourceProvider());
                 if (tLRPC$TL_username.active) {
-                    i2 = R.string.UsernameDeactivateLink;
                     str = "UsernameDeactivateLink";
+                    i2 = R.string.UsernameDeactivateLink;
                 } else {
-                    i2 = R.string.UsernameActivateLink;
                     str = "UsernameActivateLink";
+                    i2 = R.string.UsernameActivateLink;
                 }
                 AlertDialog.Builder title = builder.setTitle(LocaleController.getString(str, i2));
                 if (tLRPC$TL_username.active) {
-                    i3 = R.string.UsernameDeactivateLinkChannelMessage;
                     str2 = "UsernameDeactivateLinkChannelMessage";
+                    i3 = R.string.UsernameDeactivateLinkChannelMessage;
                 } else {
-                    i3 = R.string.UsernameActivateLinkChannelMessage;
                     str2 = "UsernameActivateLinkChannelMessage";
+                    i3 = R.string.UsernameActivateLinkChannelMessage;
                 }
                 AlertDialog.Builder message = title.setMessage(LocaleController.getString(str2, i3));
                 if (tLRPC$TL_username.active) {
-                    i4 = R.string.Hide;
                     str3 = "Hide";
+                    i4 = R.string.Hide;
                 } else {
-                    i4 = R.string.Show;
                     str3 = "Show";
+                    i4 = R.string.Show;
                 }
                 message.setPositiveButton(LocaleController.getString(str3, i4), new DialogInterface.OnClickListener() {
                     @Override
@@ -1475,10 +1489,10 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
     }
 
     private void updatePrivatePublic() {
-        int i;
         String str;
-        int i2;
+        int i;
         String str2;
+        int i2;
         if (this.sectionCell2 == null) {
             return;
         }
@@ -1531,22 +1545,22 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
             if (this.isChannel) {
                 TextInfoPrivacyCell textInfoPrivacyCell5 = this.typeInfoCell;
                 if (this.isPrivate) {
-                    i2 = R.string.ChannelPrivateLinkHelp;
                     str2 = "ChannelPrivateLinkHelp";
+                    i2 = R.string.ChannelPrivateLinkHelp;
                 } else {
-                    i2 = R.string.ChannelUsernameHelp;
                     str2 = "ChannelUsernameHelp";
+                    i2 = R.string.ChannelUsernameHelp;
                 }
                 textInfoPrivacyCell5.setText(LocaleController.getString(str2, i2));
                 this.headerCell.setText(this.isPrivate ? LocaleController.getString("ChannelInviteLinkTitle", R.string.ChannelInviteLinkTitle) : LocaleController.getString("ChannelLinkTitle", R.string.ChannelLinkTitle));
             } else {
                 TextInfoPrivacyCell textInfoPrivacyCell6 = this.typeInfoCell;
                 if (this.isPrivate) {
-                    i = R.string.MegaPrivateLinkHelp;
                     str = "MegaPrivateLinkHelp";
+                    i = R.string.MegaPrivateLinkHelp;
                 } else {
-                    i = R.string.MegaUsernameHelp;
                     str = "MegaUsernameHelp";
+                    i = R.string.MegaUsernameHelp;
                 }
                 textInfoPrivacyCell6.setText(LocaleController.getString(str, i));
                 this.headerCell.setText(this.isPrivate ? LocaleController.getString("ChannelInviteLinkTitle", R.string.ChannelInviteLinkTitle) : LocaleController.getString("ChannelLinkTitle", R.string.ChannelLinkTitle));
@@ -1739,6 +1753,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
     }
 
     public void generateLink(final boolean z) {
+        this.loadingInvite = true;
         TLRPC$TL_messages_exportChatInvite tLRPC$TL_messages_exportChatInvite = new TLRPC$TL_messages_exportChatInvite();
         tLRPC$TL_messages_exportChatInvite.legacy_revoke_permanent = true;
         tLRPC$TL_messages_exportChatInvite.peer = getMessagesController().getInputPeer(-this.chatId);
@@ -1778,6 +1793,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
                 showDialog(builder.create());
             }
         }
+        this.loadingInvite = false;
         LinkActionView linkActionView = this.permanentLinkView;
         if (linkActionView != null) {
             TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported2 = this.invite;

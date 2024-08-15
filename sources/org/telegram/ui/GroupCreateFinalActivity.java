@@ -288,8 +288,8 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
 
     @Override
     public View createView(Context context) {
-        int i;
         String str;
+        int i;
         SizeNotifierFrameLayout sizeNotifierFrameLayout;
         EditTextEmoji editTextEmoji = this.editText;
         if (editTextEmoji != null) {
@@ -475,11 +475,11 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         this.editText = editTextEmoji2;
         int i3 = this.chatType;
         if (i3 == 0 || i3 == 4 || i3 == 5) {
-            i = R.string.EnterGroupNamePlaceholder;
             str = "EnterGroupNamePlaceholder";
+            i = R.string.EnterGroupNamePlaceholder;
         } else {
-            i = R.string.EnterListName;
             str = "EnterListName";
+            i = R.string.EnterListName;
         }
         editTextEmoji2.setHint(LocaleController.getString(str, i));
         String str2 = this.nameToSet;
@@ -547,7 +547,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
             stateListAnimator.addState(new int[]{16842919}, ObjectAnimator.ofFloat(this.floatingButtonIcon, "translationZ", AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f)).setDuration(200L));
             stateListAnimator.addState(new int[0], ObjectAnimator.ofFloat(this.floatingButtonIcon, "translationZ", AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f)).setDuration(200L));
             this.floatingButtonContainer.setStateListAnimator(stateListAnimator);
-            this.floatingButtonContainer.setOutlineProvider(new ViewOutlineProvider(this) {
+            this.floatingButtonContainer.setOutlineProvider(new ViewOutlineProvider() {
                 @Override
                 @SuppressLint({"NewApi"})
                 public void getOutline(View view2, Outline outline) {
@@ -972,27 +972,27 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         @Override
         public void notifyDataSetChanged() {
             this.items.clear();
-            this.items.add(new InnerItem(this, 0));
+            this.items.add(new InnerItem(0));
             if (GroupCreateFinalActivity.this.chatType == 5) {
-                this.items.add(new InnerItem(this, 6));
-                this.items.add(new InnerItem(this, 5, LocaleController.getString("ForumToggleDescription", R.string.ForumToggleDescription)));
+                this.items.add(new InnerItem(6));
+                this.items.add(new InnerItem(5, LocaleController.getString("ForumToggleDescription", R.string.ForumToggleDescription)));
             } else {
-                this.items.add(new InnerItem(this, 4));
-                this.items.add(new InnerItem(this, 5, LocaleController.getString("GroupCreateAutodeleteDescription", R.string.GroupCreateAutodeleteDescription)));
+                this.items.add(new InnerItem(4));
+                this.items.add(new InnerItem(5, LocaleController.getString("GroupCreateAutodeleteDescription", R.string.GroupCreateAutodeleteDescription)));
             }
             if (GroupCreateFinalActivity.this.currentGroupCreateAddress != null) {
-                this.items.add(new InnerItem(this, 1));
-                this.items.add(new InnerItem(this, 3));
-                this.items.add(new InnerItem(this, 0));
+                this.items.add(new InnerItem(1));
+                this.items.add(new InnerItem(3));
+                this.items.add(new InnerItem(0));
             }
             if (GroupCreateFinalActivity.this.selectedContacts.size() > 0) {
-                this.items.add(new InnerItem(this, 1));
+                this.items.add(new InnerItem(1));
                 this.usersStartRow = this.items.size();
                 for (int i = 0; i < GroupCreateFinalActivity.this.selectedContacts.size(); i++) {
-                    this.items.add(new InnerItem(this, 2));
+                    this.items.add(new InnerItem(2));
                 }
             }
-            this.items.add(new InnerItem(this, 7));
+            this.items.add(new InnerItem(7));
             super.notifyDataSetChanged();
         }
 
@@ -1105,11 +1105,11 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         public class InnerItem extends AdapterWithDiffUtils.Item {
             String string;
 
-            public InnerItem(GroupCreateAdapter groupCreateAdapter, int i) {
+            public InnerItem(int i) {
                 super(i, true);
             }
 
-            public InnerItem(GroupCreateAdapter groupCreateAdapter, int i, String str) {
+            public InnerItem(int i, String str) {
                 super(i, true);
                 this.string = str;
             }

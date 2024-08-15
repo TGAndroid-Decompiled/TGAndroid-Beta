@@ -15,7 +15,6 @@ import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
-import android.view.animation.Interpolator;
 import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.ChatListItemAnimator;
 import java.util.ArrayList;
@@ -68,6 +67,7 @@ public class ReactionsLayoutInBubble {
     private boolean animateMove;
     private boolean animateWidth;
     boolean attached;
+    int availableWidth;
     public float drawServiceShaderBackground;
     public int fromWidth;
     private float fromX;
@@ -168,6 +168,7 @@ public class ReactionsLayoutInBubble {
         if (this.isEmpty) {
             return;
         }
+        this.availableWidth = i;
         int i3 = 0;
         int i4 = 0;
         int i5 = 0;
@@ -572,6 +573,7 @@ public class ReactionsLayoutInBubble {
         public AnimatedTextView.AnimatedTextDrawable textDrawable;
         ArrayList<TLObject> users;
         VisibleReaction visibleReaction;
+        public boolean wasDrawn;
         public int width;
         public int x;
         public int y;
@@ -688,9 +690,10 @@ public class ReactionsLayoutInBubble {
                 AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = this.textDrawable;
                 animatedTextDrawable2.setText(Emoji.replaceEmoji(this.name, animatedTextDrawable2.getPaint().getFontMetricsInt(), false), !LocaleController.isRTL);
                 if (drawTextWithCounter()) {
-                    Integer.toString(tLRPC$ReactionCount.count);
+                    this.countText = Integer.toString(tLRPC$ReactionCount.count);
                     this.counterDrawable.setCount(this.count, false);
                 } else {
+                    this.countText = "";
                     this.counterDrawable.setCount(0, false);
                 }
             } else {
@@ -698,7 +701,7 @@ public class ReactionsLayoutInBubble {
                 if (animatedTextDrawable3 != null) {
                     animatedTextDrawable3.setText("", false);
                 }
-                Integer.toString(tLRPC$ReactionCount.count);
+                this.countText = Integer.toString(tLRPC$ReactionCount.count);
                 this.counterDrawable.setCount(this.count, false);
             }
             this.counterDrawable.setType(2);
@@ -736,8 +739,8 @@ public class ReactionsLayoutInBubble {
 
         public void drawImage(Canvas canvas, Rect rect, float f) {
             AnimatedEmojiDrawable animatedEmojiDrawable = this.animatedEmojiDrawable;
-            ImageReceiver imageReceiver = animatedEmojiDrawable != null ? animatedEmojiDrawable.getImageReceiver() : this.imageReceiver;
-            if (rect != null) {
+            ImageReceiver imageReceiver = (animatedEmojiDrawable == null || animatedEmojiDrawable.getImageReceiver() == null) ? this.imageReceiver : this.animatedEmojiDrawable.getImageReceiver();
+            if (imageReceiver != null && rect != null) {
                 imageReceiver.setImageCoords(rect);
             }
             AnimatedEmojiDrawable animatedEmojiDrawable2 = this.animatedEmojiDrawable;
@@ -792,7 +795,7 @@ public class ReactionsLayoutInBubble {
                     AvatarsDrawable avatarsDrawable = new AvatarsDrawable(this.parentView, false);
                     this.avatarsDrawable = avatarsDrawable;
                     avatarsDrawable.transitionDuration = 250L;
-                    Interpolator interpolator = ChatListItemAnimator.DEFAULT_INTERPOLATOR;
+                    avatarsDrawable.transitionInterpolator = ChatListItemAnimator.DEFAULT_INTERPOLATOR;
                     avatarsDrawable.setSize(AndroidUtilities.dp(20.0f));
                     this.avatarsDrawable.width = AndroidUtilities.dp(100.0f);
                     AvatarsDrawable avatarsDrawable2 = this.avatarsDrawable;
@@ -1216,7 +1219,7 @@ public class ReactionsLayoutInBubble {
             if (this == obj) {
                 return true;
             }
-            if (obj == null || VisibleReaction.class != obj.getClass()) {
+            if (obj == null || getClass() != obj.getClass()) {
                 return false;
             }
             VisibleReaction visibleReaction = (VisibleReaction) obj;

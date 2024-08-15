@@ -86,6 +86,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
     private int contextQueryReqid;
     private Runnable contextQueryRunnable;
     private int contextUsernameReqid;
+    private boolean delayLocalResults;
     private MentionsAdapterDelegate delegate;
     private long dialog_id;
     private TLRPC$User foundContextBot;
@@ -134,6 +135,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
     private boolean allowStickers = true;
     private boolean allowBots = true;
     private boolean allowChats = true;
+    private final boolean USE_DIVIDERS = false;
     private int currentAccount = UserConfig.selectedAccount;
     private boolean needUsernames = true;
     private boolean needBotContext = true;
@@ -382,6 +384,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         ArrayList<StickerResult> arrayList;
         this.lastReqId = 0;
         if (str.equals(this.lastSticker) && (tLObject instanceof TLRPC$TL_messages_stickers)) {
+            this.delayLocalResults = false;
             TLRPC$TL_messages_stickers tLRPC$TL_messages_stickers = (TLRPC$TL_messages_stickers) tLObject;
             ArrayList<StickerResult> arrayList2 = this.stickers;
             int size = arrayList2 != null ? arrayList2.size() : 0;
@@ -413,11 +416,11 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             this.lastData = new Object[getItemCount()];
             while (true) {
                 Object[] objArr = this.lastData;
-                if (r1 >= objArr.length) {
+                if (r2 >= objArr.length) {
                     return;
                 }
-                objArr[r1] = getItem(r1);
-                r1++;
+                objArr[r2] = getItem(r2);
+                r2++;
             }
         } else {
             int itemCount = getItemCount();
@@ -427,12 +430,12 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             for (int i2 = 0; i2 < itemCount; i2++) {
                 objArr2[i2] = getItem(i2);
             }
-            while (r1 < min) {
-                if (r1 >= 0) {
+            while (r2 < min) {
+                if (r2 >= 0) {
                     Object[] objArr3 = this.lastData;
-                    r1 = (r1 < objArr3.length && r1 < itemCount && itemsEqual(objArr3[r1], objArr2[r1])) ? r1 + 1 : 0;
+                    r2 = (r2 < objArr3.length && r2 < itemCount && itemsEqual(objArr3[r2], objArr2[r2])) ? r2 + 1 : 0;
                 }
-                notifyItemChanged(r1);
+                notifyItemChanged(r2);
                 z = true;
             }
             notifyItemRangeRemoved(min, i - min);
@@ -840,13 +843,17 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
     }
 
     private void checkLocationPermissionsOrStart() {
+        int checkSelfPermission;
         ChatActivity chatActivity = this.parentFragment;
         if (chatActivity == null || chatActivity.getParentActivity() == null) {
             return;
         }
-        if (Build.VERSION.SDK_INT >= 23 && this.parentFragment.getParentActivity().checkSelfPermission("android.permission.ACCESS_COARSE_LOCATION") != 0) {
-            this.parentFragment.getParentActivity().requestPermissions(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, 2);
-            return;
+        if (Build.VERSION.SDK_INT >= 23) {
+            checkSelfPermission = this.parentFragment.getParentActivity().checkSelfPermission("android.permission.ACCESS_COARSE_LOCATION");
+            if (checkSelfPermission != 0) {
+                this.parentFragment.getParentActivity().requestPermissions(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, 2);
+                return;
+            }
         }
         TLRPC$User tLRPC$User = this.foundContextBot;
         if (tLRPC$User == null || !tLRPC$User.bot_inline_geo) {

@@ -2,7 +2,6 @@ package org.telegram.ui.Components.Paint.Views;
 
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
-import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
@@ -23,7 +22,6 @@ public class ColorPicker extends FrameLayout {
     private static final float[] LOCATIONS = {0.0f, 0.14f, 0.24f, 0.39f, 0.49f, 0.62f, 0.73f, 0.85f, 1.0f};
     private Paint backgroundPaint;
     private boolean changingWeight;
-    private ColorPickerDelegate delegate;
     private boolean dragging;
     private float draggingFactor;
     private Paint gradientPaint;
@@ -40,20 +38,14 @@ public class ColorPicker extends FrameLayout {
     private float weight;
 
     public interface ColorPickerDelegate {
-        void onBeganColorPicking();
+    }
 
-        void onColorValueChanged();
-
-        void onFinishedColorPicking();
+    public void setDelegate(ColorPickerDelegate colorPickerDelegate) {
     }
 
     public void setUndoEnabled(boolean z) {
         this.undoButton.setAlpha(z ? 1.0f : 0.3f);
         this.undoButton.setEnabled(z);
-    }
-
-    public void setDelegate(ColorPickerDelegate colorPickerDelegate) {
-        this.delegate = colorPickerDelegate;
     }
 
     public View getSettingsButton() {
@@ -86,9 +78,9 @@ public class ColorPicker extends FrameLayout {
         }
         while (true) {
             fArr = LOCATIONS;
-            i = -1;
             if (i2 >= fArr.length) {
                 i2 = -1;
+                i = -1;
                 break;
             } else if (fArr[i2] >= f) {
                 i = i2 - 1;
@@ -118,12 +110,15 @@ public class ColorPicker extends FrameLayout {
         this.swatchPaint.setColor(colorForLocation);
         float[] fArr = new float[3];
         Color.colorToHSV(colorForLocation, fArr);
-        if (fArr[0] < 0.001d && fArr[1] < 0.001d && fArr[2] > 0.92f) {
-            int i = (int) ((1.0f - (((fArr[2] - 0.92f) / 0.08f) * 0.22f)) * 255.0f);
-            this.swatchStrokePaint.setColor(Color.rgb(i, i, i));
-        } else {
-            this.swatchStrokePaint.setColor(colorForLocation);
+        if (fArr[0] < 0.001d && fArr[1] < 0.001d) {
+            float f2 = fArr[2];
+            if (f2 > 0.92f) {
+                int i = (int) ((1.0f - (((f2 - 0.92f) / 0.08f) * 0.22f)) * 255.0f);
+                this.swatchStrokePaint.setColor(Color.rgb(i, i, i));
+                invalidate();
+            }
         }
+        this.swatchStrokePaint.setColor(colorForLocation);
         invalidate();
     }
 
@@ -134,7 +129,6 @@ public class ColorPicker extends FrameLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        ColorPickerDelegate colorPickerDelegate;
         if (motionEvent.getPointerCount() > 1) {
             return false;
         }
@@ -143,13 +137,7 @@ public class ColorPicker extends FrameLayout {
         if (this.interacting || y >= (-AndroidUtilities.dp(10.0f))) {
             int actionMasked = motionEvent.getActionMasked();
             if (actionMasked == 3 || actionMasked == 1 || actionMasked == 6) {
-                if (this.interacting && (colorPickerDelegate = this.delegate) != null) {
-                    colorPickerDelegate.onFinishedColorPicking();
-                    SharedPreferences.Editor edit = getContext().getSharedPreferences("paint", 0).edit();
-                    edit.putFloat("last_color_location", this.location);
-                    edit.putFloat("last_color_weight", this.weight);
-                    edit.commit();
-                }
+                boolean z = this.interacting;
                 this.interacting = false;
                 this.wasChangingWeight = this.changingWeight;
                 this.changingWeight = false;
@@ -157,20 +145,12 @@ public class ColorPicker extends FrameLayout {
             } else if (actionMasked == 0 || actionMasked == 2) {
                 if (!this.interacting) {
                     this.interacting = true;
-                    ColorPickerDelegate colorPickerDelegate2 = this.delegate;
-                    if (colorPickerDelegate2 != null) {
-                        colorPickerDelegate2.onBeganColorPicking();
-                    }
                 }
                 setLocation(Math.max(0.0f, Math.min(1.0f, x / this.rectF.width())));
                 setDragging(true, true);
                 if (y < (-AndroidUtilities.dp(10.0f))) {
                     this.changingWeight = true;
                     setWeight(Math.max(0.0f, Math.min(1.0f, ((-y) - AndroidUtilities.dp(10.0f)) / AndroidUtilities.dp(190.0f))));
-                }
-                ColorPickerDelegate colorPickerDelegate3 = this.delegate;
-                if (colorPickerDelegate3 != null) {
-                    colorPickerDelegate3.onColorValueChanged();
                 }
                 return true;
             }

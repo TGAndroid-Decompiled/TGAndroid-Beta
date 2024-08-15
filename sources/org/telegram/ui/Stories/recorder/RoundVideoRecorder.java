@@ -21,6 +21,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.Paint.Views.RoundView;
 public class RoundVideoRecorder extends FrameLayout {
+    public final long MAX_DURATION;
     private float alpha;
     public final CameraView cameraView;
     private ValueAnimator cameraViewAnimator;
@@ -45,6 +46,7 @@ public class RoundVideoRecorder extends FrameLayout {
         super(context);
         this.recordingStarted = -1L;
         this.recordingStopped = -1L;
+        this.MAX_DURATION = 59500L;
         this.shadowPaint = new Paint(1);
         Paint paint = new Paint(1);
         this.progressPaint = paint;

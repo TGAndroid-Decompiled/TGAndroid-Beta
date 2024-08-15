@@ -47,12 +47,14 @@ public class ReactionsEffectOverlay {
     private final int animationType;
     private ChatMessageCell cell;
     private final FrameLayout container;
+    private final int currentAccount;
     private ViewGroup decorView;
     private float dismissProgress;
     private boolean dismissed;
     private final AnimationView effectImageView;
     private final AnimationView emojiImageView;
     private final AnimationView emojiStaticImageView;
+    private final BaseFragment fragment;
     private final long groupId;
     private ReactionsContainerLayout.ReactionHolderView holderView;
     boolean isFinished;
@@ -69,6 +71,7 @@ public class ReactionsEffectOverlay {
     private WindowManager windowManager;
     public FrameLayout windowView;
     int[] loc = new int[2];
+    private SelectAnimatedEmojiDialog.ImageViewEmoji holderView2 = null;
     ArrayList<AvatarParticle> avatars = new ArrayList<>();
 
     static float access$216(ReactionsEffectOverlay reactionsEffectOverlay, float f) {
@@ -97,8 +100,8 @@ public class ReactionsEffectOverlay {
         boolean z2;
         String str;
         Random random;
-        ArrayList<TLRPC$MessagePeerReaction> arrayList;
         this.holderView = null;
+        this.fragment = baseFragment;
         this.isStories = z;
         if (chatMessageCell != null) {
             this.messageId = chatMessageCell.getMessageObject().getId();
@@ -109,6 +112,7 @@ public class ReactionsEffectOverlay {
         }
         this.reaction = visibleReaction;
         this.animationType = i2;
+        this.currentAccount = i;
         this.cell = chatMessageCell;
         ReactionsLayoutInBubble.ReactionButton reactionButton2 = chatMessageCell != null ? chatMessageCell.getReactionButton(visibleReaction) : null;
         if (z && i2 == 2) {
@@ -141,14 +145,14 @@ public class ReactionsEffectOverlay {
         float f6 = 0.8f;
         if (i2 == 1) {
             Random random2 = new Random();
-            ArrayList<TLRPC$MessagePeerReaction> arrayList2 = (chatMessageCell2 == null || chatMessageCell.getMessageObject().messageOwner.reactions == null) ? null : chatMessageCell.getMessageObject().messageOwner.reactions.recent_reactions;
-            if (arrayList2 != null && chatActivity != null && chatActivity.getDialogId() < j) {
+            ArrayList<TLRPC$MessagePeerReaction> arrayList = (chatMessageCell2 == null || chatMessageCell.getMessageObject().messageOwner.reactions == null) ? null : chatMessageCell.getMessageObject().messageOwner.reactions.recent_reactions;
+            if (arrayList != null && chatActivity != null && chatActivity.getDialogId() < j) {
                 int i11 = 0;
-                while (i11 < arrayList2.size()) {
-                    if (this.reaction.equals(arrayList2.get(i11).reaction) && arrayList2.get(i11).unread) {
+                while (i11 < arrayList.size()) {
+                    if (this.reaction.equals(arrayList.get(i11).reaction) && arrayList.get(i11).unread) {
                         AvatarDrawable avatarDrawable = new AvatarDrawable();
                         ImageReceiver imageReceiver = new ImageReceiver();
-                        long peerId = MessageObject.getPeerId(arrayList2.get(i11).peer_id);
+                        long peerId = MessageObject.getPeerId(arrayList.get(i11).peer_id);
                         if (peerId < j) {
                             TLRPC$Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-peerId));
                             if (chat != null) {
@@ -162,10 +166,8 @@ public class ReactionsEffectOverlay {
                                 imageReceiver.setForUserOrChat(user, avatarDrawable);
                             }
                             random = random2;
-                            arrayList = arrayList2;
                             i11++;
                             random2 = random;
-                            arrayList2 = arrayList;
                             f6 = 0.8f;
                         }
                         AvatarParticle avatarParticle = new AvatarParticle(this, null);
@@ -174,65 +176,59 @@ public class ReactionsEffectOverlay {
                         avatarParticle.fromY = 0.5f;
                         float f7 = 100.0f;
                         avatarParticle.jumpY = ((Math.abs(random2.nextInt() % 100) / 100.0f) * 0.1f) + 0.3f;
+                        float f8 = 0.4f;
                         avatarParticle.randomScale = ((Math.abs(random2.nextInt() % 100) / 100.0f) * 0.4f) + f6;
                         avatarParticle.randomRotation = (Math.abs(random2.nextInt() % 100) * 60) / 100.0f;
                         avatarParticle.leftTime = (int) (((Math.abs(random2.nextInt() % 100) / 100.0f) * 200.0f) + 400.0f);
-                        float f8 = 0.6f;
                         if (this.avatars.isEmpty()) {
                             avatarParticle.toX = ((Math.abs(random2.nextInt() % 100) * 0.6f) / 100.0f) + 0.2f;
                             avatarParticle.toY = (Math.abs(random2.nextInt() % 100) * 0.4f) / 100.0f;
                             random = random2;
-                            arrayList = arrayList2;
                         } else {
                             float f9 = 0.0f;
-                            float f10 = 0.0f;
                             int i12 = 0;
+                            float f10 = 0.0f;
                             float f11 = 0.0f;
                             while (i12 < 10) {
-                                float abs = ((Math.abs(random2.nextInt() % 100) * f8) / f7) + 0.2f;
-                                float abs2 = ((Math.abs(random2.nextInt() % 100) * 0.4f) / f7) + 0.2f;
+                                float abs = ((Math.abs(random2.nextInt() % 100) * 0.6f) / f7) + 0.2f;
+                                float abs2 = ((Math.abs(random2.nextInt() % 100) * f8) / 100.0f) + 0.2f;
                                 float f12 = 2.14748365E9f;
                                 Random random3 = random2;
                                 int i13 = 0;
                                 while (i13 < this.avatars.size()) {
                                     float f13 = this.avatars.get(i13).toX - abs;
-                                    ArrayList<TLRPC$MessagePeerReaction> arrayList3 = arrayList2;
-                                    float f14 = this.avatars.get(i13).toY - abs2;
-                                    float f15 = (f13 * f13) + (f14 * f14);
-                                    if (f15 < f12) {
-                                        f12 = f15;
+                                    float f14 = abs;
+                                    float f15 = this.avatars.get(i13).toY - abs2;
+                                    float f16 = (f13 * f13) + (f15 * f15);
+                                    if (f16 < f12) {
+                                        f12 = f16;
                                     }
                                     i13++;
-                                    arrayList2 = arrayList3;
+                                    abs = f14;
                                 }
-                                ArrayList<TLRPC$MessagePeerReaction> arrayList4 = arrayList2;
+                                float f17 = abs;
                                 if (f12 > f11) {
-                                    f9 = abs;
-                                    f10 = abs2;
+                                    f9 = abs2;
                                     f11 = f12;
+                                    f10 = f17;
                                 }
                                 i12++;
                                 random2 = random3;
-                                arrayList2 = arrayList4;
                                 f7 = 100.0f;
-                                f8 = 0.6f;
+                                f8 = 0.4f;
                             }
                             random = random2;
-                            arrayList = arrayList2;
-                            avatarParticle.toX = f9;
-                            avatarParticle.toY = f10;
+                            avatarParticle.toX = f10;
+                            avatarParticle.toY = f9;
                         }
                         this.avatars.add(avatarParticle);
                         i11++;
                         random2 = random;
-                        arrayList2 = arrayList;
                         f6 = 0.8f;
                     }
                     random = random2;
-                    arrayList = arrayList2;
                     i11++;
                     random2 = random;
-                    arrayList2 = arrayList;
                     f6 = 0.8f;
                 }
             }
@@ -242,19 +238,19 @@ public class ReactionsEffectOverlay {
         if (view != null) {
             view.getLocationOnScreen(this.loc);
             int[] iArr = this.loc;
-            float f16 = iArr[0];
-            float f17 = iArr[1];
+            float f18 = iArr[0];
+            float f19 = iArr[1];
             f5 = view.getWidth() * view.getScaleX();
             if (view instanceof SelectAnimatedEmojiDialog.ImageViewEmoji) {
-                float f18 = ((SelectAnimatedEmojiDialog.ImageViewEmoji) view).bigReactionSelectedProgress;
-                if (f18 > 0.0f) {
-                    f5 = view.getWidth() * ((f18 * 2.0f) + 1.0f);
-                    f16 -= (f5 - view.getWidth()) / 2.0f;
-                    f17 -= f5 - view.getWidth();
+                float f20 = ((SelectAnimatedEmojiDialog.ImageViewEmoji) view).bigReactionSelectedProgress;
+                if (f20 > 0.0f) {
+                    f5 = view.getWidth() * ((f20 * 2.0f) + 1.0f);
+                    f18 -= (f5 - view.getWidth()) / 2.0f;
+                    f19 -= f5 - view.getWidth();
                 }
             }
-            f4 = f17;
-            f3 = f16;
+            f4 = f19;
+            f3 = f18;
         } else if (reactionHolderView != null) {
             reactionHolderView.getLocationOnScreen(this.loc);
             f3 = this.loc[0] + this.holderView.loopImageView.getX();
@@ -264,12 +260,12 @@ public class ReactionsEffectOverlay {
             ReactionsLayoutInBubble.ReactionButton reactionButton3 = reactionButton;
             if (reactionButton3 != null) {
                 chatMessageCell2.getLocationInWindow(this.loc);
-                float f19 = this.loc[0];
+                float f21 = this.loc[0];
                 ImageReceiver imageReceiver2 = reactionButton3.imageReceiver;
-                float imageX = f19 + (imageReceiver2 == null ? 0.0f : imageReceiver2.getImageX());
-                float f20 = this.loc[1];
+                float imageX = f21 + (imageReceiver2 == null ? 0.0f : imageReceiver2.getImageX());
+                float f22 = this.loc[1];
                 ImageReceiver imageReceiver3 = reactionButton3.imageReceiver;
-                float imageY = f20 + (imageReceiver3 == null ? 0.0f : imageReceiver3.getImageY());
+                float imageY = f22 + (imageReceiver3 == null ? 0.0f : imageReceiver3.getImageY());
                 ImageReceiver imageReceiver4 = reactionButton3.imageReceiver;
                 f5 = imageReceiver4 == null ? 0.0f : imageReceiver4.getImageHeight();
                 f3 = imageX;
@@ -310,14 +306,14 @@ public class ReactionsEffectOverlay {
         }
         int i14 = i3 >> 1;
         int i15 = i4 >> 1;
-        float f21 = f5 / i14;
+        float f23 = f5 / i14;
         this.animateInProgress = 0.0f;
         this.animateOutProgress = 0.0f;
         FrameLayout frameLayout = new FrameLayout(context);
         this.container = frameLayout;
         int i16 = i4;
         int i17 = i3;
-        this.windowView = new AnonymousClass1(context, baseFragment, chatMessageCell, z, chatActivity, i14, i2, z3, f21, f3, f4, visibleReaction);
+        this.windowView = new AnonymousClass1(context, baseFragment, chatMessageCell, z, chatActivity, i14, i2, z3, f23, f3, f4, visibleReaction);
         AnimationView animationView = new AnimationView(context);
         this.effectImageView = animationView;
         AnimationView animationView2 = new AnimationView(context);
@@ -742,11 +738,11 @@ public class ReactionsEffectOverlay {
         float toX;
         float toY;
 
-        private AvatarParticle(ReactionsEffectOverlay reactionsEffectOverlay) {
+        private AvatarParticle() {
         }
 
         AvatarParticle(ReactionsEffectOverlay reactionsEffectOverlay, AnonymousClass1 anonymousClass1) {
-            this(reactionsEffectOverlay);
+            this();
         }
     }
 }

@@ -85,14 +85,23 @@ public class OKLCH {
         rgb2oklch2[2] = rgb2oklch[2];
         if (Double.isNaN(rgb2oklch[2]) || rgb2oklch[1] < 0.07999999821186066d) {
             rgb2oklch2[1] = rgb2oklch[1];
-            if (!Theme.isCurrentThemeDark() && rgb2oklch2[0] < 0.800000011920929d) {
-                rgb2oklch2[0] = Utilities.clamp(rgb2oklch2[0] - 0.1d, 1.0d, 0.0d);
+            if (!Theme.isCurrentThemeDark()) {
+                double d = rgb2oklch2[0];
+                if (d < 0.800000011920929d) {
+                    rgb2oklch2[0] = Utilities.clamp(d - 0.1d, 1.0d, 0.0d);
+                }
             }
         }
         return ColorUtils.setAlphaComponent(rgb(oklch2rgb(rgb2oklch2)), Color.alpha(i));
     }
 
     private static double[] multiply(double[] dArr, double[] dArr2) {
-        return new double[]{(dArr[0] * dArr2[0]) + (dArr[1] * dArr2[1]) + (dArr[2] * dArr2[2]), (dArr[3] * dArr2[0]) + (dArr[4] * dArr2[1]) + (dArr[5] * dArr2[2]), (dArr[6] * dArr2[0]) + (dArr[7] * dArr2[1]) + (dArr[8] * dArr2[2])};
+        double d = dArr[1];
+        double d2 = dArr2[1];
+        double d3 = dArr[2];
+        double d4 = dArr2[2];
+        double d5 = dArr[3];
+        double d6 = dArr2[0];
+        return new double[]{(dArr[0] * dArr2[0]) + (d * d2) + (d3 * d4), (d5 * d6) + (dArr[4] * d2) + (dArr[5] * d4), (dArr[6] * d6) + (dArr[7] * dArr2[1]) + (dArr[8] * d4)};
     }
 }

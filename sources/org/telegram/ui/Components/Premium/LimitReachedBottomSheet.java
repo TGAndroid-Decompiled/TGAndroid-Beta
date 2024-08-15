@@ -147,6 +147,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
     LimitPreviewView limitPreviewView;
     private int linkRow;
     private boolean loading;
+    boolean loadingAdminedChannels;
     int loadingRow;
     private boolean lockInvalidation;
     public Runnable onShowPremiumScreenRunnable;
@@ -274,6 +275,16 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
         public static class BoostFeatureLevel extends BoostFeature {
             public final boolean isFirst;
             public final int lvl;
+
+            @Override
+            public BoostFeature asIncremental() {
+                return super.asIncremental();
+            }
+
+            @Override
+            public boolean equals(BoostFeature boostFeature) {
+                return super.equals(boostFeature);
+            }
 
             public BoostFeatureLevel(int i, boolean z) {
                 super(-1, -1, null, null, -1);
@@ -592,7 +603,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
                 final Paint paint = new Paint(1);
                 paint.setColor(Theme.getColor(Theme.key_dialogBackground));
                 final Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.filled_limit_boost);
-                frameLayout.addView(new View(this, getContext()) {
+                frameLayout.addView(new View(getContext()) {
                     @Override
                     protected void onDraw(Canvas canvas) {
                         float measuredWidth = getMeasuredWidth() / 2.0f;
@@ -872,7 +883,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
             this.boostToUnlockGroupBtn.setCount(neededBoostsForUnlockGroup, true);
         }
         TransitionSet transitionSet = new TransitionSet();
-        transitionSet.addTransition(new Visibility(this) {
+        transitionSet.addTransition(new Visibility() {
             @Override
             public Animator onAppear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
                 AnimatorSet animatorSet = new AnimatorSet();
@@ -1045,6 +1056,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
     }
 
     private void updateButton() {
+        String formatPluralString;
         int i = this.type;
         if (i == 19 || i == 32 || isMiniBoostBtnForAdminAvailable()) {
             ChannelBoostsController.CanApplyBoost canApplyBoost = this.canApplyBoost;
@@ -1104,14 +1116,13 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
             this.premiumButtonView.counterView.setCount(this.selectedChats.size(), true);
             this.premiumButtonView.invalidate();
         } else if (this.selectedChats.size() > 0) {
-            String str = null;
             int i4 = this.type;
             if (i4 == 2) {
-                str = LocaleController.formatPluralString("RevokeLinks", this.selectedChats.size(), new Object[0]);
-            } else if (i4 == 5) {
-                str = LocaleController.formatPluralString("LeaveCommunities", this.selectedChats.size(), new Object[0]);
+                formatPluralString = LocaleController.formatPluralString("RevokeLinks", this.selectedChats.size(), new Object[0]);
+            } else {
+                formatPluralString = i4 == 5 ? LocaleController.formatPluralString("LeaveCommunities", this.selectedChats.size(), new Object[0]) : null;
             }
-            this.premiumButtonView.setOverlayText(str, true, true);
+            this.premiumButtonView.setOverlayText(formatPluralString, true, true);
         } else {
             this.premiumButtonView.clearOverlayText();
         }
@@ -1288,7 +1299,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
                     linearLayout = flickerLoadingView;
                     break;
                 case 6:
-                    linearLayout = new View(this, LimitReachedBottomSheet.this.getContext()) {
+                    linearLayout = new View(LimitReachedBottomSheet.this.getContext()) {
                         @Override
                         protected void onMeasure(int i2, int i3) {
                             super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(16.0f), 1073741824));
@@ -1416,7 +1427,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
                     break;
                 case 9:
                     LimitReachedBottomSheet limitReachedBottomSheet2 = LimitReachedBottomSheet.this;
-                    linearLayout = new BoostFeatureCell(limitReachedBottomSheet2, context, ((BottomSheet) limitReachedBottomSheet2).resourcesProvider);
+                    linearLayout = new BoostFeatureCell(context, ((BottomSheet) limitReachedBottomSheet2).resourcesProvider);
                     break;
                 default:
                     linearLayout = LimitReachedBottomSheet.this.headerView = new HeaderView(context);
@@ -1979,6 +1990,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
     }
 
     private void loadAdminedChannels() {
+        this.loadingAdminedChannels = true;
         this.loading = true;
         updateRows();
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TLRPC$TL_channels_getAdminedPublicChannels(), new RequestDelegate() {
@@ -2000,6 +2012,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
 
     public void lambda$loadAdminedChannels$22(TLObject tLObject) {
         int i;
+        this.loadingAdminedChannels = false;
         if (tLObject != null) {
             this.chats.clear();
             this.chats.addAll(((TLRPC$TL_messages_chats) tLObject).chats);
@@ -2033,7 +2046,6 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
         ArrayList<Long> arrayList2;
         ArrayList<Long> arrayList3;
         ArrayList<Long> arrayList4;
-        this.rowCount = 0;
         this.dividerRow = -1;
         this.chatStartRow = -1;
         this.chatEndRow = -1;
@@ -2078,7 +2090,6 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
             if (i8 != 11) {
                 int i9 = this.rowCount;
                 int i10 = i9 + 1;
-                this.rowCount = i10;
                 this.dividerRow = i9;
                 this.rowCount = i10 + 1;
                 this.chatsTitleRow = i10;
@@ -2260,8 +2271,8 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
     private void setupBoostFeatures() {
         this.boostFeatures = new ArrayList<>();
         TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus = this.boostsStatus;
-        int i = 10;
         MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
+        int i = 10;
         if (messagesController != null) {
             MessagesController.PeerColors peerColors = messagesController.peerColors;
             int max = Math.max(10, peerColors != null ? peerColors.maxLevel(isGroup()) : 0);
@@ -2346,10 +2357,10 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
         private final Theme.ResourcesProvider resourcesProvider;
         private final SimpleTextView textView;
 
-        public BoostFeatureCell(LimitReachedBottomSheet limitReachedBottomSheet, Context context, Theme.ResourcesProvider resourcesProvider) {
+        public BoostFeatureCell(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context);
             this.resourcesProvider = resourcesProvider;
-            setPadding(((BottomSheet) limitReachedBottomSheet).backgroundPaddingLeft, 0, ((BottomSheet) limitReachedBottomSheet).backgroundPaddingLeft, 0);
+            setPadding(((BottomSheet) LimitReachedBottomSheet.this).backgroundPaddingLeft, 0, ((BottomSheet) LimitReachedBottomSheet.this).backgroundPaddingLeft, 0);
             ImageView imageView = new ImageView(context);
             this.imageView = imageView;
             imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
@@ -2368,10 +2379,11 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
             simpleTextView2.setWidthWrapContent(true);
             simpleTextView2.setTypeface(AndroidUtilities.bold());
             simpleTextView2.setTextSize(14);
-            FrameLayout frameLayout = new FrameLayout(context, limitReachedBottomSheet, resourcesProvider) {
+            FrameLayout frameLayout = new FrameLayout(context, LimitReachedBottomSheet.this, resourcesProvider) {
                 private final Paint dividerPaint;
                 private final PremiumGradient.PremiumGradientTools gradientTools;
                 final Theme.ResourcesProvider val$resourcesProvider;
+                final LimitReachedBottomSheet val$this$0;
 
                 {
                     this.val$resourcesProvider = resourcesProvider;

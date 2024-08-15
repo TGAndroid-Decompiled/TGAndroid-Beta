@@ -44,7 +44,7 @@ public class LinkEditActivity extends BaseFragment {
     private TextInfoPrivacyCell divider;
     private TextInfoPrivacyCell dividerName;
     private TextInfoPrivacyCell dividerUses;
-    private boolean firstLayout;
+    private boolean finished;
     private boolean ignoreSet;
     TLRPC$TL_chatInviteExported inviteToEdit;
     boolean loading;
@@ -66,6 +66,7 @@ public class LinkEditActivity extends BaseFragment {
     private EditText usesEditText;
     private HeaderCell usesHeaderCell;
     private int shakeDp = -3;
+    private boolean firstLayout = true;
     private ArrayList<Integer> dispalyedDates = new ArrayList<>();
     private final int[] defaultDates = {3600, 86400, 604800};
     private ArrayList<Integer> dispalyedUses = new ArrayList<>();
@@ -108,6 +109,7 @@ public class LinkEditActivity extends BaseFragment {
         textCheckCell3.setBackgroundColorAnimated(z, Theme.getColor(z ? Theme.key_windowBackgroundChecked : Theme.key_windowBackgroundUnchecked));
         textCheckCell3.setChecked(z);
         setUsesVisible(!z);
+        this.firstLayout = true;
         if (this.subCell != null) {
             if (textCheckCell3.isChecked()) {
                 this.subCell.setChecked(false);
@@ -285,39 +287,40 @@ public class LinkEditActivity extends BaseFragment {
     }
 
     public void chooseUses(int i) {
+        int i2;
         this.dispalyedUses.clear();
-        int i2 = 0;
-        boolean z = false;
         int i3 = 0;
+        boolean z = false;
+        int i4 = 0;
         while (true) {
             int[] iArr = this.defaultUses;
-            if (i2 >= iArr.length) {
+            if (i3 >= iArr.length) {
                 break;
             }
-            if (!z && i <= iArr[i2]) {
-                if (i != iArr[i2]) {
+            if (!z && i <= (i2 = iArr[i3])) {
+                if (i != i2) {
                     this.dispalyedUses.add(Integer.valueOf(i));
                 }
-                i3 = i2;
+                i4 = i3;
                 z = true;
             }
-            this.dispalyedUses.add(Integer.valueOf(this.defaultUses[i2]));
-            i2++;
+            this.dispalyedUses.add(Integer.valueOf(this.defaultUses[i3]));
+            i3++;
         }
         if (!z) {
             this.dispalyedUses.add(Integer.valueOf(i));
-            i3 = this.defaultUses.length;
+            i4 = this.defaultUses.length;
         }
         int size = this.dispalyedUses.size() + 1;
         String[] strArr = new String[size];
-        for (int i4 = 0; i4 < size; i4++) {
-            if (i4 == size - 1) {
-                strArr[i4] = LocaleController.getString("NoLimit", R.string.NoLimit);
+        for (int i5 = 0; i5 < size; i5++) {
+            if (i5 == size - 1) {
+                strArr[i5] = LocaleController.getString("NoLimit", R.string.NoLimit);
             } else {
-                strArr[i4] = this.dispalyedUses.get(i4).toString();
+                strArr[i5] = this.dispalyedUses.get(i5).toString();
             }
         }
-        this.usesChooseView.setOptions(i3, strArr);
+        this.usesChooseView.setOptions(i4, strArr);
     }
 
     private void chooseDate(int i) {
@@ -469,6 +472,7 @@ public class LinkEditActivity extends BaseFragment {
     @Override
     public void finishFragment() {
         this.scrollView.getLayoutParams().height = this.scrollView.getHeight();
+        this.finished = true;
         super.finishFragment();
     }
 

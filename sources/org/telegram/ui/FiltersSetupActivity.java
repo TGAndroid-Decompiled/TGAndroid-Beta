@@ -75,12 +75,14 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
     private ItemTouchHelper itemTouchHelper;
     private RecyclerListView listView;
     private boolean loadedColors;
+    private boolean loadingFiltersForColors;
     private boolean orderChanged;
     private UndoView undoView;
     private ArrayList<ItemInner> oldItems = new ArrayList<>();
     private ArrayList<ItemInner> items = new ArrayList<>();
     private int filtersSectionStart = -1;
     private int filtersSectionEnd = -1;
+    private int shiftDp = -4;
 
     public static void lambda$onFragmentDestroy$1(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
     }
@@ -329,23 +331,17 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             int i2 = Theme.key_listSelector;
             int color = Theme.getColor(i2);
             loadingDrawable.setColors(Theme.multAlpha(color, 0.4f), Theme.multAlpha(color, 1.0f), Theme.multAlpha(color, 0.9f), Theme.multAlpha(color, 1.7f));
-            int dp = AndroidUtilities.dp(1.0f);
+            final int dp = AndroidUtilities.dp(1.0f);
             loadingDrawable.strokePaint.setStrokeWidth(dp);
             loadingDrawable.setRadiiDp(40.0f);
-            ImageView imageView2 = new ImageView(context, FiltersSetupActivity.this, dp) {
-                final int val$stroke;
-
-                {
-                    this.val$stroke = dp;
-                }
-
+            ImageView imageView2 = new ImageView(context) {
                 @Override
                 protected void onDraw(Canvas canvas) {
                     super.onDraw(canvas);
                     if (FilterCell.this.shareLoading) {
                         LoadingDrawable loadingDrawable2 = FilterCell.this.shareLoadingDrawable;
-                        int i3 = this.val$stroke;
-                        loadingDrawable2.setBounds(i3 / 2, i3 / 2, getWidth() - (this.val$stroke / 2), getHeight() - (this.val$stroke / 2));
+                        int i3 = dp;
+                        loadingDrawable2.setBounds(i3 / 2, i3 / 2, getWidth() - (dp / 2), getHeight() - (dp / 2));
                         FilterCell.this.shareLoadingDrawable.draw(canvas);
                     }
                 }
@@ -577,8 +573,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         });
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
-        FrameLayout frameLayout2 = frameLayout;
-        frameLayout2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
+        frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
         this.listView = new AnonymousClass2(context);
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
         defaultItemAnimator.setDurations(350L);
@@ -592,7 +587,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new TouchHelperCallback());
         this.itemTouchHelper = itemTouchHelper;
         itemTouchHelper.attachToRecyclerView(this.listView);
-        frameLayout2.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
+        frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
         RecyclerListView recyclerListView = this.listView;
         ListAdapter listAdapter = new ListAdapter(context);
         this.adapter = listAdapter;
@@ -713,6 +708,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         if (!tLRPC$TL_messages_toggleDialogFilterTags.enabled || this.loadedColors) {
             return;
         }
+        this.loadingFiltersForColors = true;
         getMessagesController().loadRemoteFilters(true);
         this.loadedColors = true;
     }

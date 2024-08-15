@@ -32,6 +32,7 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.Point;
 import org.telegram.ui.Stories.recorder.FlashViews;
 public class RecordControl extends View implements FlashViews.Invertable {
+    private final float HALF_PI;
     public float amplitude;
     public final AnimatedFloat animatedAmplitude;
     private final Paint buttonPaint;
@@ -96,8 +97,10 @@ public class RecordControl extends View implements FlashViews.Invertable {
     private final AnimatedFloat touchIsButtonT;
     private final AnimatedFloat touchIsCenter2T;
     private final AnimatedFloat touchIsCenterT;
+    private long touchStart;
     private final AnimatedFloat touchT;
     private float touchX;
+    private float touchY;
     private final Drawable unlockDrawable;
 
     public interface Delegate {
@@ -192,6 +195,7 @@ public class RecordControl extends View implements FlashViews.Invertable {
         };
         this.metaballsPath = new Path();
         this.circlePath = new Path();
+        this.HALF_PI = 1.5707964f;
         this.p1 = new Point();
         this.p2 = new Point();
         this.p3 = new Point();
@@ -257,10 +261,7 @@ public class RecordControl extends View implements FlashViews.Invertable {
             return;
         }
         MediaController.AlbumEntry albumEntry = MediaController.allMediaAlbumEntry;
-        MediaController.PhotoEntry photoEntry = null;
-        if (albumEntry != null && (arrayList = albumEntry.photos) != null && !arrayList.isEmpty()) {
-            photoEntry = albumEntry.photos.get(0);
-        }
+        MediaController.PhotoEntry photoEntry = (albumEntry == null || (arrayList = albumEntry.photos) == null || arrayList.isEmpty()) ? null : albumEntry.photos.get(0);
         if (photoEntry != null && (str = photoEntry.thumbPath) != null) {
             this.galleryImage.setImage(ImageLocation.getForPath(str), "80_80", null, null, this.noGalleryDrawable, 0L, null, null, 0);
         } else if (photoEntry != null && photoEntry.path != null) {
@@ -455,8 +456,9 @@ public class RecordControl extends View implements FlashViews.Invertable {
         if (action == 0) {
             this.touch = true;
             this.discardParentTouch = (this.recordButton.isPressed() || this.flipButton.isPressed()) ? true : true;
-            System.currentTimeMillis();
+            this.touchStart = System.currentTimeMillis();
             this.touchX = clamp;
+            this.touchY = y;
             if (Math.abs(clamp - this.cx) < AndroidUtilities.dp(50.0f)) {
                 AndroidUtilities.runOnUIThread(this.onRecordLongPressRunnable, ViewConfiguration.getLongPressTimeout());
             }
@@ -468,6 +470,7 @@ public class RecordControl extends View implements FlashViews.Invertable {
                 return false;
             }
             this.touchX = Utilities.clamp(clamp, this.rightCx, this.leftCx);
+            this.touchY = y;
             invalidate();
             if (this.recording && !this.flipButtonWasPressed && isPressed) {
                 rotateFlip(180.0f);

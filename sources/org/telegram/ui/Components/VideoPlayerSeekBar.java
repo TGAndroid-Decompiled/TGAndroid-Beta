@@ -45,6 +45,7 @@ public class VideoPlayerSeekBar {
     private int horizontalPadding;
     private CharSequence lastCaption;
     private long lastTimestampUpdate;
+    private long lastTimestampsAppearingUpdate;
     private long lastUpdateTime;
     private long lastVideoDuration;
     private float loopBackWasThumbX;
@@ -72,7 +73,9 @@ public class VideoPlayerSeekBar {
     private int fromThumbX = 0;
     private float animateThumbProgress = 1.0f;
     private float timestampsAppearing = 0.0f;
+    private final float TIMESTAMP_GAP = 1.0f;
     private int currentTimestamp = -1;
+    private int lastTimestamp = -1;
     private float timestampChangeT = 1.0f;
     private float lastWidth = -1.0f;
 
@@ -648,12 +651,14 @@ public class VideoPlayerSeekBar {
         float f5 = this.lastWidth;
         if (f5 > 0.0f && Math.abs(f5 - abs) > 0.01f) {
             StaticLayout[] staticLayoutArr = this.timestampLabel;
-            if (staticLayoutArr[0] != null) {
-                staticLayoutArr[0] = makeStaticLayout(staticLayoutArr[0].getText(), (int) abs);
+            StaticLayout staticLayout = staticLayoutArr[0];
+            if (staticLayout != null) {
+                staticLayoutArr[0] = makeStaticLayout(staticLayout.getText(), (int) abs);
             }
             StaticLayout[] staticLayoutArr2 = this.timestampLabel;
-            if (staticLayoutArr2[1] != null) {
-                staticLayoutArr2[1] = makeStaticLayout(staticLayoutArr2[1].getText(), (int) abs);
+            StaticLayout staticLayout2 = staticLayoutArr2[1];
+            if (staticLayout2 != null) {
+                staticLayoutArr2[1] = makeStaticLayout(staticLayout2.getText(), (int) abs);
             }
         }
         this.lastWidth = abs;
@@ -686,6 +691,7 @@ public class VideoPlayerSeekBar {
                     this.timestampChangeDirection = 1;
                 }
             }
+            this.lastTimestamp = this.currentTimestamp;
             this.currentTimestamp = size;
         }
         if (this.timestampChangeT < 1.0f) {
@@ -696,7 +702,7 @@ public class VideoPlayerSeekBar {
         if (this.timestampsAppearing < 1.0f) {
             this.timestampsAppearing = Math.min(this.timestampsAppearing + (((float) Math.min(17L, Math.abs(SystemClock.elapsedRealtime() - this.lastTimestampUpdate))) / 200.0f), 1.0f);
             this.parentView.invalidate();
-            SystemClock.elapsedRealtime();
+            this.lastTimestampsAppearingUpdate = SystemClock.elapsedRealtime();
         }
         float interpolation = CubicBezierInterpolator.DEFAULT.getInterpolation(this.timestampChangeT);
         canvas.save();
@@ -732,6 +738,12 @@ public class VideoPlayerSeekBar {
     }
 
     private StaticLayout makeStaticLayout(CharSequence charSequence, int i) {
+        StaticLayout.Builder obtain;
+        StaticLayout.Builder maxLines;
+        StaticLayout.Builder alignment;
+        StaticLayout.Builder ellipsize;
+        StaticLayout.Builder ellipsizedWidth;
+        StaticLayout build;
         if (this.timestampLabelPaint == null) {
             TextPaint textPaint = new TextPaint(1);
             this.timestampLabelPaint = textPaint;
@@ -740,7 +752,13 @@ public class VideoPlayerSeekBar {
         }
         String str = charSequence == null ? "" : charSequence;
         if (Build.VERSION.SDK_INT >= 23) {
-            return StaticLayout.Builder.obtain(str, 0, str.length(), this.timestampLabelPaint, i).setMaxLines(1).setAlignment(Layout.Alignment.ALIGN_CENTER).setEllipsize(TextUtils.TruncateAt.END).setEllipsizedWidth(Math.min(AndroidUtilities.dp(400.0f), i)).build();
+            obtain = StaticLayout.Builder.obtain(str, 0, str.length(), this.timestampLabelPaint, i);
+            maxLines = obtain.setMaxLines(1);
+            alignment = maxLines.setAlignment(Layout.Alignment.ALIGN_CENTER);
+            ellipsize = alignment.setEllipsize(TextUtils.TruncateAt.END);
+            ellipsizedWidth = ellipsize.setEllipsizedWidth(Math.min(AndroidUtilities.dp(400.0f), i));
+            build = ellipsizedWidth.build();
+            return build;
         }
         return new StaticLayout(str, 0, str.length(), this.timestampLabelPaint, i, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false, TextUtils.TruncateAt.END, Math.min(AndroidUtilities.dp(400.0f), i));
     }

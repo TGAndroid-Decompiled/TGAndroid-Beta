@@ -80,7 +80,7 @@ public class FileLog {
                 if (tLObject2 != null) {
                     str2 = "res -> " + tLObject2.getClass().getSimpleName() + " : " + gson.toJson(tLObject2);
                 } else if (tLRPC$TL_error != null) {
-                    str2 = "err -> " + TLRPC$TL_error.class.getSimpleName() + " : " + gson.toJson(tLRPC$TL_error);
+                    str2 = "err -> " + tLRPC$TL_error.getClass().getSimpleName() + " : " + gson.toJson(tLRPC$TL_error);
                 }
                 final String str3 = str2;
                 final long currentTimeMillis = System.currentTimeMillis();

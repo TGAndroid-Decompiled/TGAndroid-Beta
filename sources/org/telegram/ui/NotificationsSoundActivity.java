@@ -13,7 +13,6 @@ import android.graphics.drawable.Drawable;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.TextUtils;
@@ -99,6 +98,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
     int systemTonesEndRow;
     int systemTonesHeaderRow;
     int systemTonesStartRow;
+    private final int tonesStreamType;
     long topicId;
     int uploadRow;
     ArrayList<Tone> uploadingTones;
@@ -125,6 +125,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
         this.stableIds = 100;
         this.selectedTones = new SparseArray<>();
         this.currentType = -1;
+        this.tonesStreamType = 4;
         this.topicId = 0L;
         this.resourcesProvider = resourcesProvider;
     }
@@ -246,11 +247,10 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
         createActionMode.addItemWithWidth(1, R.drawable.msg_delete, AndroidUtilities.dp(54.0f), LocaleController.getString("Delete", R.string.Delete));
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
-        FrameLayout frameLayout2 = frameLayout;
-        frameLayout2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray, this.resourcesProvider));
+        frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray, this.resourcesProvider));
         RecyclerListView recyclerListView = new RecyclerListView(context);
         this.listView = recyclerListView;
-        frameLayout2.addView(recyclerListView, LayoutHelper.createFrame(-1, -1.0f));
+        frameLayout.addView(recyclerListView, LayoutHelper.createFrame(-1, -1.0f));
         Adapter adapter = new Adapter(this, null);
         this.adapter = adapter;
         adapter.setHasStableIds(true);
@@ -482,6 +482,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
         this.stableIds = i3 + 1;
         tone3.stableId = i3;
         tone3.title = LocaleController.getString("NoSound", R.string.NoSound);
+        tone3.isSystemNoSound = true;
         this.systemTones.add(tone3);
         Tone tone4 = new Tone(null);
         int i4 = this.stableIds;
@@ -544,7 +545,6 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
     }
 
     public void updateRows() {
-        this.serverTonesHeaderRow = -1;
         this.serverTonesStartRow = -1;
         this.serverTonesEndRow = -1;
         this.uploadRow = -1;
@@ -552,7 +552,6 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
         this.systemTonesHeaderRow = -1;
         this.systemTonesStartRow = -1;
         this.systemTonesEndRow = -1;
-        this.rowCount = 0;
         this.rowCount = 0 + 1;
         this.serverTonesHeaderRow = 0;
         if (!this.serverTones.isEmpty()) {
@@ -564,7 +563,6 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
         }
         int i2 = this.rowCount;
         int i3 = i2 + 1;
-        this.rowCount = i3;
         this.uploadRow = i2;
         this.rowCount = i3 + 1;
         this.dividerRow = i3;
@@ -690,12 +688,9 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
                 }
             }
             ToneCell toneCell = (ToneCell) viewHolder.itemView;
-            Tone tone = null;
             NotificationsSoundActivity notificationsSoundActivity2 = NotificationsSoundActivity.this;
             int i2 = notificationsSoundActivity2.systemTonesStartRow;
-            if (i >= i2 && i < notificationsSoundActivity2.systemTonesEndRow) {
-                tone = notificationsSoundActivity2.systemTones.get(i - i2);
-            }
+            Tone tone = (i < i2 || i >= notificationsSoundActivity2.systemTonesEndRow) ? null : notificationsSoundActivity2.systemTones.get(i - i2);
             NotificationsSoundActivity notificationsSoundActivity3 = NotificationsSoundActivity.this;
             int i3 = notificationsSoundActivity3.serverTonesStartRow;
             if (i >= i3 && i < notificationsSoundActivity3.serverTonesEndRow) {
@@ -951,9 +946,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
     public void startDocumentSelectActivity() {
         try {
             Intent intent = new Intent("android.intent.action.GET_CONTENT");
-            if (Build.VERSION.SDK_INT >= 18) {
-                intent.putExtra("android.intent.extra.ALLOW_MULTIPLE", true);
-            }
+            intent.putExtra("android.intent.extra.ALLOW_MULTIPLE", true);
             intent.setType("audio/mpeg");
             startActivityForResult(intent, 21);
         } catch (Exception e) {
@@ -1001,6 +994,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
         TLRPC$Document document;
         public boolean fromServer;
         boolean isSystemDefault;
+        boolean isSystemNoSound;
         int localId;
         int stableId;
         String title;

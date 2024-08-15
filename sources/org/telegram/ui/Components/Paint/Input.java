@@ -29,6 +29,7 @@ public class Input {
     private boolean lastAngleSet;
     private Point lastLocation;
     private double lastRemainder;
+    private float lastScale;
     private Point lastThickLocation;
     private long lastVelocityUpdate;
     private int pointsCount;
@@ -177,7 +178,7 @@ public class Input {
         this.ignore = true;
     }
 
-    public void process(android.view.MotionEvent r21, float r22) {
+    public void process(android.view.MotionEvent r22, float r23) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Paint.Input.process(android.view.MotionEvent, float):void");
     }
 
@@ -192,18 +193,19 @@ public class Input {
         double d4 = f2;
         Double.isNaN(d4);
         double d5 = cos * d4;
-        double d6 = fArr[0];
+        float f3 = fArr[0];
+        double d6 = f3;
         Double.isNaN(d6);
         double d7 = d3 + (d6 * d5);
         double d8 = point.y;
         Double.isNaN(d4);
         double d9 = sin * d4;
-        double d10 = fArr[0];
+        double d10 = f3;
         Double.isNaN(d10);
         double d11 = point.x;
         double d12 = floatValue;
         Double.isNaN(d12);
-        double d13 = d11 + (d5 * d12);
+        double d13 = (d5 * d12) + d11;
         double d14 = point.y;
         Double.isNaN(d12);
         paintPath(new Path(new Point[]{new Point(d7, d8 + (d10 * d9), d), new Point(d13, d14 + (d9 * d12), d, true)}));
@@ -214,13 +216,14 @@ public class Input {
         double d15 = point.x;
         Double.isNaN(d4);
         double d16 = cos2 * d4;
-        double d17 = fArr[0];
+        float f4 = fArr[0];
+        double d17 = f4;
         Double.isNaN(d17);
         double d18 = d15 + (d17 * d16);
         double d19 = point.y;
         Double.isNaN(d4);
-        double d20 = d4 * sin2;
-        double d21 = fArr[0];
+        double d20 = sin2 * d4;
+        double d21 = f4;
         Double.isNaN(d21);
         double d22 = point.x;
         Double.isNaN(d12);

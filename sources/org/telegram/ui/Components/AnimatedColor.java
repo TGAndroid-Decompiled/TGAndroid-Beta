@@ -29,7 +29,7 @@ public class AnimatedColor {
     public AnimatedColor(View view, long j, TimeInterpolator timeInterpolator) {
         this.transitionDelay = 0L;
         this.transitionDuration = 200L;
-        this.transitionInterpolator = CubicBezierInterpolator.DEFAULT;
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
         this.parent = view;
         this.transitionDuration = j;
         this.transitionInterpolator = timeInterpolator;
@@ -39,7 +39,7 @@ public class AnimatedColor {
     public AnimatedColor(View view, long j, long j2, TimeInterpolator timeInterpolator) {
         this.transitionDelay = 0L;
         this.transitionDuration = 200L;
-        this.transitionInterpolator = CubicBezierInterpolator.DEFAULT;
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
         this.parent = view;
         this.transitionDelay = j;
         this.transitionDuration = j2;
@@ -50,7 +50,7 @@ public class AnimatedColor {
     public AnimatedColor(Runnable runnable, long j, TimeInterpolator timeInterpolator) {
         this.transitionDelay = 0L;
         this.transitionDuration = 200L;
-        this.transitionInterpolator = CubicBezierInterpolator.DEFAULT;
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
         this.invalidate = runnable;
         this.transitionDuration = j;
         this.transitionInterpolator = timeInterpolator;

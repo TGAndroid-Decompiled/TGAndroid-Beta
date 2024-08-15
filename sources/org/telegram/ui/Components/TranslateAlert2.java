@@ -76,6 +76,7 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
     private BaseFragment fragment;
     private String fromLanguage;
     private HeaderView headerView;
+    private LinearLayoutManager layoutManager;
     private RecyclerListView listView;
     private LoadingTextView loadingTextView;
     private Utilities.CallbackReturn<URLSpan, Boolean> onLinkPress;
@@ -113,7 +114,7 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
         ContainerView containerView = new ContainerView(context);
         this.containerView = containerView;
         this.sheetTopAnimated = new AnimatedFloat(containerView, 320L, CubicBezierInterpolator.EASE_OUT_QUINT);
-        LoadingTextView loadingTextView = new LoadingTextView(this, context);
+        LoadingTextView loadingTextView = new LoadingTextView(context);
         this.loadingTextView = loadingTextView;
         loadingTextView.setPadding(AndroidUtilities.dp(22.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(22.0f), AndroidUtilities.dp(6.0f));
         this.loadingTextView.setTextSize(1, SharedConfig.fontSize);
@@ -122,7 +123,7 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
         loadingTextView2.setTextColor(getThemedColor(i2));
         this.loadingTextView.setLinkTextColor(Theme.multAlpha(getThemedColor(i2), 0.2f));
         this.loadingTextView.setText(Emoji.replaceEmoji(charSequence == null ? "" : charSequence.toString(), this.loadingTextView.getPaint().getFontMetricsInt(), true));
-        this.textViewContainer = new FrameLayout(this, context) {
+        this.textViewContainer = new FrameLayout(context) {
             @Override
             protected void onMeasure(int i3, int i4) {
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i3), 1073741824), i4);
@@ -173,11 +174,14 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
         recyclerListView.setOverScrollMode(1);
         this.listView.setPadding(0, AndroidUtilities.statusBarHeight + AndroidUtilities.dp(56.0f), 0, AndroidUtilities.dp(80.0f));
         this.listView.setClipToPadding(true);
-        this.listView.setLayoutManager(new LinearLayoutManager(context));
         RecyclerListView recyclerListView2 = this.listView;
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
+        this.layoutManager = linearLayoutManager;
+        recyclerListView2.setLayoutManager(linearLayoutManager);
+        RecyclerListView recyclerListView3 = this.listView;
         PaddedAdapter paddedAdapter = new PaddedAdapter(context, this.loadingTextView);
         this.adapter = paddedAdapter;
-        recyclerListView2.setAdapter(paddedAdapter);
+        recyclerListView3.setAdapter(paddedAdapter);
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int i3, int i4) {
@@ -378,48 +382,47 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
                         ArrayList<Emoji.EmojiSpanRange> arrayList2 = groupEmojiRanges.get(substring2);
                         ArrayList<Emoji.EmojiSpanRange> arrayList3 = groupEmojiRanges2.get(substring2);
                         if (arrayList2 != null && arrayList3 != null) {
-                            int i5 = -1;
-                            int i6 = 0;
+                            int i5 = 0;
                             while (true) {
-                                if (i6 >= arrayList2.size()) {
+                                if (i5 >= arrayList2.size()) {
+                                    i5 = -1;
                                     break;
                                 }
-                                Emoji.EmojiSpanRange emojiSpanRange2 = arrayList2.get(i6);
-                                int i7 = emojiSpanRange2.start;
-                                int i8 = tLRPC$MessageEntity2.offset;
-                                if (i7 == i8 && emojiSpanRange2.end == i8 + tLRPC$MessageEntity2.length) {
-                                    i5 = i6;
+                                Emoji.EmojiSpanRange emojiSpanRange2 = arrayList2.get(i5);
+                                int i6 = emojiSpanRange2.start;
+                                int i7 = tLRPC$MessageEntity2.offset;
+                                if (i6 == i7 && emojiSpanRange2.end == i7 + tLRPC$MessageEntity2.length) {
                                     break;
                                 }
-                                i6++;
+                                i5++;
                             }
                             if (i5 >= 0 && i5 < arrayList3.size() && (emojiSpanRange = arrayList3.get(i5)) != null) {
-                                int i9 = 0;
+                                int i8 = 0;
                                 while (true) {
-                                    if (i9 >= tLRPC$TL_textWithEntities2.entities.size()) {
+                                    if (i8 >= tLRPC$TL_textWithEntities2.entities.size()) {
                                         z = false;
                                         break;
                                     }
-                                    TLRPC$MessageEntity tLRPC$MessageEntity3 = tLRPC$TL_textWithEntities2.entities.get(i9);
+                                    TLRPC$MessageEntity tLRPC$MessageEntity3 = tLRPC$TL_textWithEntities2.entities.get(i8);
                                     if (tLRPC$MessageEntity3 instanceof TLRPC$TL_messageEntityCustomEmoji) {
-                                        int i10 = emojiSpanRange.start;
-                                        int i11 = emojiSpanRange.end;
-                                        int i12 = tLRPC$MessageEntity3.offset;
-                                        if (AndroidUtilities.intersect1d(i10, i11, i12, tLRPC$MessageEntity3.length + i12)) {
+                                        int i9 = emojiSpanRange.start;
+                                        int i10 = emojiSpanRange.end;
+                                        int i11 = tLRPC$MessageEntity3.offset;
+                                        if (AndroidUtilities.intersect1d(i9, i10, i11, tLRPC$MessageEntity3.length + i11)) {
                                             z = true;
                                             break;
                                         }
                                     }
-                                    i9++;
+                                    i8++;
                                 }
                                 if (!z) {
                                     TLRPC$TL_messageEntityCustomEmoji tLRPC$TL_messageEntityCustomEmoji = new TLRPC$TL_messageEntityCustomEmoji();
                                     TLRPC$TL_messageEntityCustomEmoji tLRPC$TL_messageEntityCustomEmoji2 = (TLRPC$TL_messageEntityCustomEmoji) tLRPC$MessageEntity2;
                                     tLRPC$TL_messageEntityCustomEmoji.document_id = tLRPC$TL_messageEntityCustomEmoji2.document_id;
                                     tLRPC$TL_messageEntityCustomEmoji.document = tLRPC$TL_messageEntityCustomEmoji2.document;
-                                    int i13 = emojiSpanRange.start;
-                                    tLRPC$TL_messageEntityCustomEmoji.offset = i13;
-                                    tLRPC$TL_messageEntityCustomEmoji.length = emojiSpanRange.end - i13;
+                                    int i12 = emojiSpanRange.start;
+                                    tLRPC$TL_messageEntityCustomEmoji.offset = i12;
+                                    tLRPC$TL_messageEntityCustomEmoji.length = emojiSpanRange.end - i12;
                                     tLRPC$TL_textWithEntities2.entities.add(tLRPC$TL_messageEntityCustomEmoji);
                                 }
                             }
@@ -523,7 +526,7 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
         private final LoadingDrawable loadingDrawable;
         private final LinkPath path;
 
-        public LoadingTextView(TranslateAlert2 translateAlert2, Context context) {
+        public LoadingTextView(Context context) {
             super(context);
             LinkPath linkPath = new LinkPath(true);
             this.path = linkPath;
@@ -604,7 +607,7 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             if (i == 0) {
-                return new RecyclerListView.Holder(new View(this, this.mContext) {
+                return new RecyclerListView.Holder(new View(this.mContext) {
                     @Override
                     protected void onMeasure(int i2, int i3) {
                         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (AndroidUtilities.displaySize.y * 0.4f), 1073741824));
@@ -677,7 +680,7 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
                 }
             });
             addView(this.backButton, LayoutHelper.createFrame(54, 54.0f, 48, 1.0f, 1.0f, 1.0f, 1.0f));
-            TextView textView = new TextView(context, TranslateAlert2.this) {
+            TextView textView = new TextView(context) {
                 @Override
                 protected void onMeasure(int i2, int i3) {
                     super.onMeasure(i2, i3);
@@ -694,7 +697,7 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
             this.titleTextView.setPivotX(0.0f);
             this.titleTextView.setPivotY(0.0f);
             addView(this.titleTextView, LayoutHelper.createFrame(-1, -2.0f, 55, 22.0f, 20.0f, 22.0f, 0.0f));
-            LinearLayout linearLayout = new LinearLayout(context, TranslateAlert2.this) {
+            LinearLayout linearLayout = new LinearLayout(context) {
                 @Override
                 protected void onMeasure(int i2, int i3) {
                     super.onMeasure(i2, i3);
@@ -727,7 +730,7 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
             if (LocaleController.isRTL) {
                 this.arrowView.setScaleX(-1.0f);
             }
-            AnimatedTextView animatedTextView = new AnimatedTextView(context, TranslateAlert2.this) {
+            AnimatedTextView animatedTextView = new AnimatedTextView(context) {
                 private Paint bgPaint = new Paint(1);
                 private LinkSpanDrawable.LinkCollector links = new LinkSpanDrawable.LinkCollector();
 
@@ -818,7 +821,7 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
         }
 
         public void openLanguagesSelect() {
-            ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(this, getContext()) {
+            ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(getContext()) {
                 @Override
                 public void onMeasure(int i, int i2) {
                     super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(Math.min((int) (AndroidUtilities.displaySize.y * 0.33f), View.MeasureSpec.getSize(i2)), 1073741824));
@@ -865,12 +868,14 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
             this.toLanguageTextView.getLocationInWindow(iArr);
             actionBarPopupWindowLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.x, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.y, Integer.MIN_VALUE));
             int measuredHeight = actionBarPopupWindowLayout.getMeasuredHeight();
-            actionBarPopupWindow.showAtLocation(((BottomSheet) TranslateAlert2.this).containerView, 51, iArr[0] - AndroidUtilities.dp(8.0f), ((float) iArr[1]) > (((float) AndroidUtilities.displaySize.y) * 0.9f) - ((float) measuredHeight) ? (iArr[1] - measuredHeight) + AndroidUtilities.dp(8.0f) : (iArr[1] + this.toLanguageTextView.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
+            int i2 = iArr[1];
+            actionBarPopupWindow.showAtLocation(((BottomSheet) TranslateAlert2.this).containerView, 51, iArr[0] - AndroidUtilities.dp(8.0f), ((float) i2) > (((float) AndroidUtilities.displaySize.y) * 0.9f) - ((float) measuredHeight) ? (i2 - measuredHeight) + AndroidUtilities.dp(8.0f) : (i2 + this.toLanguageTextView.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
         }
 
         public void lambda$openLanguagesSelect$2(Runnable[] runnableArr, LocaleController.LocaleInfo localeInfo, View view) {
-            if (runnableArr[0] != null) {
-                runnableArr[0].run();
+            Runnable runnable = runnableArr[0];
+            if (runnable != null) {
+                runnable.run();
             }
             if (TextUtils.equals(TranslateAlert2.this.toLanguage, localeInfo.pluralLangCode)) {
                 return;
@@ -965,7 +970,7 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
         @Override
         protected void onAttachedToWindow() {
             super.onAttachedToWindow();
-            Bulletin.addDelegate(this, new Bulletin.Delegate(this) {
+            Bulletin.addDelegate(this, new Bulletin.Delegate() {
                 @Override
                 public boolean allowLayoutChanges() {
                     return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);

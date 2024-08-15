@@ -86,6 +86,7 @@ public class TranscribeButton {
     private Paint strokePaint;
     private boolean clickedToOpen = false;
     private boolean pressed = false;
+    private long pressId = 0;
     private final FastOutSlowInInterpolator interpolator = new FastOutSlowInInterpolator();
     private long start = SystemClock.elapsedRealtime();
     private android.graphics.Rect bounds = new android.graphics.Rect(0, 0, AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f));
@@ -635,7 +636,7 @@ public class TranscribeButton {
         public LoadingPointsDrawable(TextPaint textPaint) {
             this.paint = textPaint;
             float textSize = textPaint.getTextSize() * 0.89f;
-            RLottieDrawable rLottieDrawable = new RLottieDrawable(this, R.raw.dots_loading, "dots_loading", (int) textSize, (int) (textSize * 1.25f)) {
+            RLottieDrawable rLottieDrawable = new RLottieDrawable(R.raw.dots_loading, "dots_loading", (int) textSize, (int) (textSize * 1.25f)) {
                 @Override
                 public boolean hasParentView() {
                     return true;
@@ -852,14 +853,11 @@ public class TranscribeButton {
     }
 
     public static boolean finishTranscription(final MessageObject messageObject, final long j, final String str) {
-        MessageObject messageObject2 = null;
         try {
             HashMap<Long, MessageObject> hashMap = transcribeOperationsById;
-            if (hashMap != null && hashMap.containsKey(Long.valueOf(j))) {
-                messageObject2 = transcribeOperationsById.remove(Long.valueOf(j));
-            }
+            MessageObject remove = (hashMap == null || !hashMap.containsKey(Long.valueOf(j))) ? null : transcribeOperationsById.remove(Long.valueOf(j));
             if (messageObject == null) {
-                messageObject = messageObject2;
+                messageObject = remove;
             }
             if (messageObject != null && messageObject.messageOwner != null) {
                 HashMap<Integer, MessageObject> hashMap2 = transcribeOperationsByDialogPosition;

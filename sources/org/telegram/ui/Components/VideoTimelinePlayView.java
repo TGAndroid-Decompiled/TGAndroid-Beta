@@ -406,12 +406,8 @@ public class VideoTimelinePlayView extends View {
         }
         if (i == 0) {
             this.frameHeight = AndroidUtilities.dp(38.0f);
-            float f = 1.0f;
             int i3 = this.videoWidth;
-            if (i3 != 0 && (i2 = this.videoHeight) != 0) {
-                f = i3 / i2;
-            }
-            this.framesToLoad = Math.max(1, (int) Math.ceil((getMeasuredWidth() - AndroidUtilities.dp(32.0f)) / (this.frameHeight * Utilities.clamp(f, 1.3333334f, 0.5625f))));
+            this.framesToLoad = Math.max(1, (int) Math.ceil((getMeasuredWidth() - AndroidUtilities.dp(32.0f)) / (this.frameHeight * Utilities.clamp((i3 == 0 || (i2 = this.videoHeight) == 0) ? 1.0f : i3 / i2, 1.3333334f, 0.5625f))));
             this.frameWidth = (int) Math.ceil((getMeasuredWidth() - AndroidUtilities.dp(32.0f)) / this.framesToLoad);
             this.frameTimeOffset = this.videoLength / this.framesToLoad;
         }

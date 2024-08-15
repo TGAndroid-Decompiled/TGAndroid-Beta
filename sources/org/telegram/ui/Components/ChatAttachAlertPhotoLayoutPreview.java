@@ -65,6 +65,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
     private float draggingCellTop;
     private float draggingCellTouchX;
     private float draggingCellTouchY;
+    private final long durationMultiplier;
     private PreviewGroupsView groupsView;
     public TextView header;
     private ViewPropertyAnimator headerAnimator;
@@ -102,6 +103,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
 
     public ChatAttachAlertPhotoLayoutPreview(ChatAttachAlert chatAttachAlert, Context context, Theme.ResourcesProvider resourcesProvider) {
         super(chatAttachAlert, context, resourcesProvider);
+        this.durationMultiplier = 1L;
         this.draggingCellTouchX = 0.0f;
         this.draggingCellTouchY = 0.0f;
         this.draggingCellTop = 0.0f;
@@ -334,25 +336,26 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         int maxX;
         int maxY;
         ArrayList<MediaController.PhotoEntry> photos;
+        int width;
         public ArrayList<MessageObject.GroupedMessagePosition> posArray = new ArrayList<>();
         public HashMap<MediaController.PhotoEntry, MessageObject.GroupedMessagePosition> positions = new HashMap<>();
-        int width;
+        private final int maxSizeWidth = 1000;
 
         public class MessageGroupedLayoutAttempt {
             public float[] heights;
             public int[] lineCounts;
 
-            public MessageGroupedLayoutAttempt(GroupCalculator groupCalculator, int i, int i2, float f, float f2) {
+            public MessageGroupedLayoutAttempt(int i, int i2, float f, float f2) {
                 this.lineCounts = new int[]{i, i2};
                 this.heights = new float[]{f, f2};
             }
 
-            public MessageGroupedLayoutAttempt(GroupCalculator groupCalculator, int i, int i2, int i3, float f, float f2, float f3) {
+            public MessageGroupedLayoutAttempt(int i, int i2, int i3, float f, float f2, float f3) {
                 this.lineCounts = new int[]{i, i2, i3};
                 this.heights = new float[]{f, f2, f3};
             }
 
-            public MessageGroupedLayoutAttempt(GroupCalculator groupCalculator, int i, int i2, int i3, int i4, float f, float f2, float f3, float f4) {
+            public MessageGroupedLayoutAttempt(int i, int i2, int i3, int i4, float f, float f2, float f3, float f4) {
                 this.lineCounts = new int[]{i, i2, i3, i4};
                 this.heights = new float[]{f, f2, f3, f4};
             }
@@ -389,8 +392,9 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             }
             int i4 = iArr[0];
             for (int i5 = 1; i5 < 10; i5++) {
-                if (i4 < iArr[i5]) {
-                    i4 = iArr[i5];
+                int i6 = iArr[i5];
+                if (i4 < i6) {
+                    i4 = i6;
                 }
             }
             return i4;
@@ -409,8 +413,9 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             }
             float f2 = fArr[0];
             for (int i3 = 1; i3 < 10; i3++) {
-                if (f2 < fArr[i3]) {
-                    f2 = fArr[i3];
+                float f3 = fArr[i3];
+                if (f2 < f3) {
+                    f2 = f3;
                 }
             }
             return f2;
@@ -432,8 +437,9 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                 }
             }
             for (int i6 = 0; i6 < i4; i6++) {
-                if (f < fArr[i6]) {
-                    f = fArr[i6];
+                float f2 = fArr[i6];
+                if (f < f2) {
+                    f = f2;
                 }
             }
             return f;
@@ -454,8 +460,9 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                 }
             }
             for (int i5 = 0; i5 < i2; i5++) {
-                if (f < fArr[i5]) {
-                    f = fArr[i5];
+                float f2 = fArr[i5];
+                if (f < f2) {
+                    f = f2;
                 }
             }
             return f;
@@ -578,6 +585,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         private float draggingT;
         private ArrayList<PreviewGroupCell> groupCells;
         private ChatActionCell hintView;
+        private HashMap<MediaController.PhotoEntry, ImageReceiver> images;
         boolean[] lastGroupSeen;
         private int lastMeasuredHeight;
         private int paddingBottom;
@@ -648,7 +656,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             };
             this.photoViewerProvider = new GroupingPhotoViewerProvider();
             this.undoViewId = 0;
-            new HashMap();
+            this.images = new HashMap<>();
             setWillNotDraw(false);
             ChatActionCell chatActionCell = new ChatActionCell(context, true, ChatAttachAlertPhotoLayoutPreview.this.themeDelegate);
             this.hintView = chatActionCell;
@@ -1312,12 +1320,14 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             private float right;
             public long stars;
             private float top;
+            private final long updateDuration;
             private float width;
             public float y;
 
             private PreviewGroupCell() {
                 this.y = 0.0f;
                 this.indexStart = 0;
+                this.updateDuration = 200L;
                 this.lastMediaUpdate = 0L;
                 this.groupWidth = 0.0f;
                 this.groupHeight = 0.0f;
@@ -1376,6 +1386,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                 private Paint strokePaint;
                 private RectF tempRect;
                 private TextPaint textPaint;
+                private final long updateDuration;
                 private Bitmap videoDurationBitmap;
                 private String videoDurationBitmapText;
                 private String videoDurationText;
@@ -1388,6 +1399,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                     this.fromRect = null;
                     this.rect = new RectF();
                     this.lastUpdate = 0L;
+                    this.updateDuration = 200L;
                     this.positionFlags = 0;
                     this.fromScale = 1.0f;
                     this.scale = 0.0f;

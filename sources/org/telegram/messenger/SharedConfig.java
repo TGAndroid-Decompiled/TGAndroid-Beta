@@ -242,41 +242,7 @@ public class SharedConfig {
     }
 
     public static boolean allowPreparingHevcPlayers() {
-        int maxSupportedInstances;
-        if (Build.VERSION.SDK_INT < 23) {
-            return false;
-        }
-        if (allowPreparingHevcPlayers == null) {
-            int codecCount = MediaCodecList.getCodecCount();
-            int i = 0;
-            int i2 = 0;
-            while (true) {
-                boolean z = true;
-                if (i >= codecCount) {
-                    break;
-                }
-                MediaCodecInfo codecInfoAt = MediaCodecList.getCodecInfoAt(i);
-                if (!codecInfoAt.isEncoder()) {
-                    int i3 = 0;
-                    while (true) {
-                        if (i3 >= codecInfoAt.getSupportedTypes().length) {
-                            z = false;
-                            break;
-                        } else if (codecInfoAt.getSupportedTypes()[i3].contains("video/hevc")) {
-                            break;
-                        } else {
-                            i3++;
-                        }
-                    }
-                    if (z && (maxSupportedInstances = codecInfoAt.getCapabilitiesForType("video/hevc").getMaxSupportedInstances()) > i2) {
-                        i2 = maxSupportedInstances;
-                    }
-                }
-                i++;
-            }
-            allowPreparingHevcPlayers = Boolean.valueOf(i2 >= 8);
-        }
-        return allowPreparingHevcPlayers.booleanValue();
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SharedConfig.allowPreparingHevcPlayers():boolean");
     }
 
     public static void togglePaymentByInvoice() {
@@ -350,16 +316,20 @@ public class SharedConfig {
     }
 
     public static String findGoodHevcEncoder() {
+        boolean isHardwareAccelerated;
         if (goodHevcEncoder == null) {
             int codecCount = MediaCodecList.getCodecCount();
             for (int i = 0; i < codecCount; i++) {
                 MediaCodecInfo codecInfoAt = MediaCodecList.getCodecInfoAt(i);
                 if (codecInfoAt.isEncoder()) {
                     for (int i2 = 0; i2 < codecInfoAt.getSupportedTypes().length; i2++) {
-                        if (codecInfoAt.getSupportedTypes()[i2].contains("video/hevc") && codecInfoAt.isHardwareAccelerated() && isWhitelisted(codecInfoAt)) {
-                            String name = codecInfoAt.getName();
-                            goodHevcEncoder = name;
-                            return name;
+                        if (codecInfoAt.getSupportedTypes()[i2].contains("video/hevc")) {
+                            isHardwareAccelerated = codecInfoAt.isHardwareAccelerated();
+                            if (isHardwareAccelerated && isWhitelisted(codecInfoAt)) {
+                                String name = codecInfoAt.getName();
+                                goodHevcEncoder = name;
+                                return name;
+                            }
                         }
                     }
                     continue;
@@ -879,11 +849,8 @@ public class SharedConfig {
     }
 
     public static void toggleDebugWebView() {
-        boolean z = !debugWebView;
-        debugWebView = z;
-        if (Build.VERSION.SDK_INT >= 19) {
-            WebView.setWebContentsDebuggingEnabled(z);
-        }
+        debugWebView = !debugWebView;
+        WebView.setWebContentsDebuggingEnabled(debugWebView);
         SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
         edit.putBoolean("debugWebView", debugWebView);
         edit.apply();
@@ -1391,21 +1358,26 @@ public class SharedConfig {
     public static int measureDevicePerformanceClass() {
         long j;
         String str;
+        String str2;
         int i = Build.VERSION.SDK_INT;
         int i2 = ConnectionsManager.CPU_COUNT;
         int memoryClass = ((ActivityManager) ApplicationLoader.applicationContext.getSystemService("activity")).getMemoryClass();
         int i3 = 0;
-        if (i >= 31 && (str = Build.SOC_MODEL) != null) {
-            int hashCode = str.toUpperCase().hashCode();
-            int i4 = 0;
-            while (true) {
-                int[] iArr = LOW_SOC;
-                if (i4 >= iArr.length) {
-                    break;
-                } else if (iArr[i4] == hashCode) {
-                    return 0;
-                } else {
-                    i4++;
+        if (i >= 31) {
+            str = Build.SOC_MODEL;
+            if (str != null) {
+                str2 = Build.SOC_MODEL;
+                int hashCode = str2.toUpperCase().hashCode();
+                int i4 = 0;
+                while (true) {
+                    int[] iArr = LOW_SOC;
+                    if (i4 >= iArr.length) {
+                        break;
+                    } else if (iArr[i4] == hashCode) {
+                        return 0;
+                    } else {
+                        i4++;
+                    }
                 }
             }
         }

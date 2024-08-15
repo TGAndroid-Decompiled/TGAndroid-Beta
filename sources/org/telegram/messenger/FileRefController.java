@@ -248,7 +248,7 @@ public class FileRefController extends BaseController {
         }
     }
 
-    public void requestReference(java.lang.Object r12, java.lang.Object... r13) {
+    public void requestReference(java.lang.Object r14, java.lang.Object... r15) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileRefController.requestReference(java.lang.Object, java.lang.Object[]):void");
     }
 
@@ -991,7 +991,8 @@ public class FileRefController extends BaseController {
     }
 
     private void sendErrorToObject(final Object[] objArr, int i) {
-        if (objArr[0] instanceof TLRPC$TL_inputSingleMedia) {
+        Object obj = objArr[0];
+        if (obj instanceof TLRPC$TL_inputSingleMedia) {
             final TLRPC$TL_messages_sendMultiMedia tLRPC$TL_messages_sendMultiMedia = (TLRPC$TL_messages_sendMultiMedia) objArr[1];
             final Object[] objArr2 = this.multiMediaCache.get(tLRPC$TL_messages_sendMultiMedia);
             if (objArr2 != null) {
@@ -1002,41 +1003,53 @@ public class FileRefController extends BaseController {
                         FileRefController.this.lambda$sendErrorToObject$37(tLRPC$TL_messages_sendMultiMedia, objArr2);
                     }
                 });
+                return;
             }
-        } else if (((objArr[0] instanceof TLRPC$TL_inputMediaDocument) || (objArr[0] instanceof TLRPC$TL_inputMediaPhoto)) && (objArr[1] instanceof TLRPC$TL_messages_sendMedia)) {
-            final TLRPC$TL_messages_sendMedia tLRPC$TL_messages_sendMedia = (TLRPC$TL_messages_sendMedia) objArr[1];
-            final Object[] objArr3 = this.multiMediaCache.get(tLRPC$TL_messages_sendMedia);
-            if (objArr3 != null) {
-                this.multiMediaCache.remove(tLRPC$TL_messages_sendMedia);
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        FileRefController.this.lambda$sendErrorToObject$38(tLRPC$TL_messages_sendMedia, objArr3);
-                    }
-                });
+            return;
+        }
+        if ((obj instanceof TLRPC$TL_inputMediaDocument) || (obj instanceof TLRPC$TL_inputMediaPhoto)) {
+            Object obj2 = objArr[1];
+            if (obj2 instanceof TLRPC$TL_messages_sendMedia) {
+                final TLRPC$TL_messages_sendMedia tLRPC$TL_messages_sendMedia = (TLRPC$TL_messages_sendMedia) obj2;
+                final Object[] objArr3 = this.multiMediaCache.get(tLRPC$TL_messages_sendMedia);
+                if (objArr3 != null) {
+                    this.multiMediaCache.remove(tLRPC$TL_messages_sendMedia);
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            FileRefController.this.lambda$sendErrorToObject$38(tLRPC$TL_messages_sendMedia, objArr3);
+                        }
+                    });
+                    return;
+                }
+                return;
             }
-        } else if (((objArr[0] instanceof TLRPC$TL_messages_sendMedia) && !(((TLRPC$TL_messages_sendMedia) objArr[0]).media instanceof TLRPC$TL_inputMediaPaidMedia)) || (objArr[0] instanceof TLRPC$TL_messages_editMessage)) {
+        }
+        if (((obj instanceof TLRPC$TL_messages_sendMedia) && !(((TLRPC$TL_messages_sendMedia) obj).media instanceof TLRPC$TL_inputMediaPaidMedia)) || (obj instanceof TLRPC$TL_messages_editMessage)) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
                     FileRefController.this.lambda$sendErrorToObject$39(objArr);
                 }
             });
-        } else if (objArr[0] instanceof TLRPC$TL_messages_saveGif) {
-            TLRPC$TL_messages_saveGif tLRPC$TL_messages_saveGif = (TLRPC$TL_messages_saveGif) objArr[0];
-        } else if (objArr[0] instanceof TLRPC$TL_messages_saveRecentSticker) {
-            TLRPC$TL_messages_saveRecentSticker tLRPC$TL_messages_saveRecentSticker = (TLRPC$TL_messages_saveRecentSticker) objArr[0];
-        } else if (objArr[0] instanceof TLRPC$TL_stickers_addStickerToSet) {
-            TLRPC$TL_stickers_addStickerToSet tLRPC$TL_stickers_addStickerToSet = (TLRPC$TL_stickers_addStickerToSet) objArr[0];
-        } else if (objArr[0] instanceof TLRPC$TL_messages_faveSticker) {
-            TLRPC$TL_messages_faveSticker tLRPC$TL_messages_faveSticker = (TLRPC$TL_messages_faveSticker) objArr[0];
-        } else if (objArr[0] instanceof TLRPC$TL_messages_getAttachedStickers) {
-            getConnectionsManager().sendRequest((TLRPC$TL_messages_getAttachedStickers) objArr[0], (RequestDelegate) objArr[1]);
-        } else if (objArr[1] instanceof FileLoadOperation) {
-            FileLoadOperation fileLoadOperation = (FileLoadOperation) objArr[1];
-            fileLoadOperation.requestingReference = false;
-            FileLog.e("debug_loading: " + fileLoadOperation.getCacheFileFinal().getName() + " reference can't update: fail operation ");
-            fileLoadOperation.onFail(false, 0);
+        } else if (obj instanceof TLRPC$TL_messages_saveGif) {
+            TLRPC$TL_messages_saveGif tLRPC$TL_messages_saveGif = (TLRPC$TL_messages_saveGif) obj;
+        } else if (obj instanceof TLRPC$TL_messages_saveRecentSticker) {
+            TLRPC$TL_messages_saveRecentSticker tLRPC$TL_messages_saveRecentSticker = (TLRPC$TL_messages_saveRecentSticker) obj;
+        } else if (obj instanceof TLRPC$TL_stickers_addStickerToSet) {
+            TLRPC$TL_stickers_addStickerToSet tLRPC$TL_stickers_addStickerToSet = (TLRPC$TL_stickers_addStickerToSet) obj;
+        } else if (obj instanceof TLRPC$TL_messages_faveSticker) {
+            TLRPC$TL_messages_faveSticker tLRPC$TL_messages_faveSticker = (TLRPC$TL_messages_faveSticker) obj;
+        } else if (obj instanceof TLRPC$TL_messages_getAttachedStickers) {
+            getConnectionsManager().sendRequest((TLRPC$TL_messages_getAttachedStickers) obj, (RequestDelegate) objArr[1]);
+        } else {
+            Object obj3 = objArr[1];
+            if (obj3 instanceof FileLoadOperation) {
+                FileLoadOperation fileLoadOperation = (FileLoadOperation) obj3;
+                fileLoadOperation.requestingReference = false;
+                FileLog.e("debug_loading: " + fileLoadOperation.getCacheFileFinal().getName() + " reference can't update: fail operation ");
+                fileLoadOperation.onFail(false, 0);
+            }
         }
     }
 
@@ -1124,15 +1137,15 @@ public class FileRefController extends BaseController {
                     TLRPC$PhotoSize tLRPC$PhotoSize = tLRPC$Document.thumbs.get(i);
                     byte[] fileReference = getFileReference(tLRPC$PhotoSize, tLRPC$InputFileLocation, zArr);
                     if (zArr != null && zArr[0]) {
-                        tLRPC$InputFileLocationArr[0] = new TLRPC$TL_inputDocumentFileLocation();
-                        tLRPC$InputFileLocationArr[0].id = tLRPC$Document.id;
-                        tLRPC$InputFileLocationArr[0].volume_id = tLRPC$InputFileLocation.volume_id;
-                        tLRPC$InputFileLocationArr[0].local_id = tLRPC$InputFileLocation.local_id;
-                        tLRPC$InputFileLocationArr[0].access_hash = tLRPC$Document.access_hash;
-                        TLRPC$InputFileLocation tLRPC$InputFileLocation2 = tLRPC$InputFileLocationArr[0];
+                        TLRPC$TL_inputDocumentFileLocation tLRPC$TL_inputDocumentFileLocation = new TLRPC$TL_inputDocumentFileLocation();
+                        tLRPC$InputFileLocationArr[0] = tLRPC$TL_inputDocumentFileLocation;
+                        tLRPC$TL_inputDocumentFileLocation.id = tLRPC$Document.id;
+                        tLRPC$TL_inputDocumentFileLocation.volume_id = tLRPC$InputFileLocation.volume_id;
+                        tLRPC$TL_inputDocumentFileLocation.local_id = tLRPC$InputFileLocation.local_id;
+                        tLRPC$TL_inputDocumentFileLocation.access_hash = tLRPC$Document.access_hash;
                         byte[] bArr = tLRPC$Document.file_reference;
-                        tLRPC$InputFileLocation2.file_reference = bArr;
-                        tLRPC$InputFileLocationArr[0].thumb_size = tLRPC$PhotoSize.type;
+                        tLRPC$TL_inputDocumentFileLocation.file_reference = bArr;
+                        tLRPC$TL_inputDocumentFileLocation.thumb_size = tLRPC$PhotoSize.type;
                         return bArr;
                     } else if (fileReference != null) {
                         return fileReference;
@@ -1236,15 +1249,15 @@ public class FileRefController extends BaseController {
                 TLRPC$PhotoSize tLRPC$PhotoSize = tLRPC$Photo.sizes.get(i);
                 byte[] fileReference = getFileReference(tLRPC$PhotoSize, tLRPC$InputFileLocation, zArr);
                 if (zArr != null && zArr[0]) {
-                    tLRPC$InputFileLocationArr[0] = new TLRPC$TL_inputPhotoFileLocation();
-                    tLRPC$InputFileLocationArr[0].id = tLRPC$Photo.id;
-                    tLRPC$InputFileLocationArr[0].volume_id = tLRPC$InputFileLocation.volume_id;
-                    tLRPC$InputFileLocationArr[0].local_id = tLRPC$InputFileLocation.local_id;
-                    tLRPC$InputFileLocationArr[0].access_hash = tLRPC$Photo.access_hash;
-                    TLRPC$InputFileLocation tLRPC$InputFileLocation2 = tLRPC$InputFileLocationArr[0];
+                    TLRPC$TL_inputPhotoFileLocation tLRPC$TL_inputPhotoFileLocation = new TLRPC$TL_inputPhotoFileLocation();
+                    tLRPC$InputFileLocationArr[0] = tLRPC$TL_inputPhotoFileLocation;
+                    tLRPC$TL_inputPhotoFileLocation.id = tLRPC$Photo.id;
+                    tLRPC$TL_inputPhotoFileLocation.volume_id = tLRPC$InputFileLocation.volume_id;
+                    tLRPC$TL_inputPhotoFileLocation.local_id = tLRPC$InputFileLocation.local_id;
+                    tLRPC$TL_inputPhotoFileLocation.access_hash = tLRPC$Photo.access_hash;
                     byte[] bArr = tLRPC$Photo.file_reference;
-                    tLRPC$InputFileLocation2.file_reference = bArr;
-                    tLRPC$InputFileLocationArr[0].thumb_size = tLRPC$PhotoSize.type;
+                    tLRPC$TL_inputPhotoFileLocation.file_reference = bArr;
+                    tLRPC$TL_inputPhotoFileLocation.thumb_size = tLRPC$PhotoSize.type;
                     return bArr;
                 } else if (fileReference != null) {
                     return fileReference;

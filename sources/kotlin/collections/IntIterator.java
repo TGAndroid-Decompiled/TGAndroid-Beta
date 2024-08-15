@@ -9,6 +9,11 @@ public abstract class IntIterator implements Iterator<Integer>, j$.util.Iterator
         Iterator.CC.$default$forEachRemaining(this, consumer);
     }
 
+    @Override
+    public void forEachRemaining(java.util.function.Consumer<? super Integer> consumer) {
+        forEachRemaining(Consumer.VivifiedWrapper.convert(consumer));
+    }
+
     public abstract int nextInt();
 
     @Override

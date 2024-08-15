@@ -5,7 +5,6 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
@@ -65,9 +64,7 @@ public class StickerSetNameCell extends FrameLayout {
         this.textView.setSingleLine(true);
         if (z) {
             this.textView.setGravity(17);
-            if (Build.VERSION.SDK_INT >= 17) {
-                this.textView.setTextAlignment(4);
-            }
+            this.textView.setTextAlignment(4);
         }
         if (z2) {
             createFrame = LayoutHelper.createFrameRelatively(-2.0f, -2.0f, 8388659, z ? 5.0f : 15.0f, 5.0f, z ? 15.0f : 25.0f, 0.0f);

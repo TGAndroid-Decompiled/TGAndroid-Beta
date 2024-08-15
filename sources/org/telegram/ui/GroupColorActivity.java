@@ -75,12 +75,9 @@ public class GroupColorActivity extends ChannelColorActivity {
     protected void updateRows() {
         ChannelColorActivity.Adapter adapter;
         ChannelColorActivity.Adapter adapter2;
-        this.rowsCount = 0;
         int i = 0 + 1;
-        this.rowsCount = i;
         this.profilePreviewRow = 0;
         int i2 = i + 1;
-        this.rowsCount = i2;
         this.profileColorGridRow = i;
         int i3 = i2 + 1;
         this.rowsCount = i3;
@@ -104,16 +101,12 @@ public class GroupColorActivity extends ChannelColorActivity {
         }
         int i5 = this.rowsCount;
         int i6 = i5 + 1;
-        this.rowsCount = i6;
         this.profileHintRow = i5;
         int i7 = i6 + 1;
-        this.rowsCount = i7;
         this.packEmojiRow = i6;
         int i8 = i7 + 1;
-        this.rowsCount = i8;
         this.packEmojiHintRow = i7;
         int i9 = i8 + 1;
-        this.rowsCount = i9;
         this.statusEmojiRow = i8;
         this.rowsCount = i9 + 1;
         this.statusHintRow = i9;
@@ -121,7 +114,6 @@ public class GroupColorActivity extends ChannelColorActivity {
         if (chatFull != null && chatFull.can_set_stickers) {
             int i10 = this.rowsCount;
             int i11 = i10 + 1;
-            this.rowsCount = i11;
             this.packStickerRow = i10;
             this.rowsCount = i11 + 1;
             this.packStickerHintRow = i11;
@@ -131,13 +123,10 @@ public class GroupColorActivity extends ChannelColorActivity {
         }
         int i12 = this.rowsCount;
         int i13 = i12 + 1;
-        this.rowsCount = i13;
         this.messagesPreviewRow = i12;
         int i14 = i13 + 1;
-        this.rowsCount = i14;
         this.wallpaperThemesRow = i13;
         int i15 = i14 + 1;
-        this.rowsCount = i15;
         this.wallpaperRow = i14;
         this.rowsCount = i15 + 1;
         this.wallpaperHintRow = i15;

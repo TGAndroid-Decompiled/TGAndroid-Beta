@@ -1,6 +1,5 @@
 package org.telegram.messenger.video;
 
-import android.media.MediaCodec;
 import android.media.MediaFormat;
 import com.coremedia.iso.boxes.AbstractMediaHeaderBox;
 import com.coremedia.iso.boxes.SampleDescriptionBox;
@@ -292,16 +291,8 @@ public class Track {
         return this.trackId;
     }
 
-    public void addSample(long j, MediaCodec.BufferInfo bufferInfo) {
-        boolean z = true;
-        z = (this.isAudio || (bufferInfo.flags & 1) == 0) ? false : false;
-        this.samples.add(new Sample(j, bufferInfo.size));
-        LinkedList<Integer> linkedList = this.syncSamples;
-        if (linkedList != null && z) {
-            linkedList.add(Integer.valueOf(this.samples.size()));
-        }
-        ArrayList<SamplePresentationTime> arrayList = this.samplePresentationTimes;
-        arrayList.add(new SamplePresentationTime(arrayList.size(), ((bufferInfo.presentationTimeUs * this.timeScale) + 500000) / 1000000));
+    public void addSample(long r6, android.media.MediaCodec.BufferInfo r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.video.Track.addSample(long, android.media.MediaCodec$BufferInfo):void");
     }
 
     public void prepare() {
@@ -329,15 +320,17 @@ public class Track {
             long j3 = samplePresentationTime.presentationTime - j2;
             j2 = samplePresentationTime.presentationTime;
             this.sampleDurations[samplePresentationTime.index] = j3;
-            long j4 = j;
+            int i3 = i2;
             if (samplePresentationTime.index != 0) {
                 this.duration += j3;
             }
-            j = (j3 <= 0 || j3 >= 2147483647L) ? j4 : Math.min(j4, j3);
-            if (samplePresentationTime.index != i2) {
+            if (j3 > 0 && j3 < 2147483647L) {
+                j = Math.min(j, j3);
+            }
+            if (samplePresentationTime.index != i3) {
                 z = true;
             }
-            i2++;
+            i2 = i3 + 1;
         }
         long[] jArr = this.sampleDurations;
         if (jArr.length > 0) {
@@ -349,8 +342,8 @@ public class Track {
         }
         if (z) {
             this.sampleCompositions = new int[this.samplePresentationTimes.size()];
-            for (int i3 = 0; i3 < this.samplePresentationTimes.size(); i3++) {
-                SamplePresentationTime samplePresentationTime2 = this.samplePresentationTimes.get(i3);
+            for (int i4 = 0; i4 < this.samplePresentationTimes.size(); i4++) {
+                SamplePresentationTime samplePresentationTime2 = this.samplePresentationTimes.get(i4);
                 this.sampleCompositions[samplePresentationTime2.index] = (int) (samplePresentationTime2.presentationTime - samplePresentationTime2.dt);
             }
         }

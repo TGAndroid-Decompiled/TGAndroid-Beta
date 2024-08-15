@@ -253,6 +253,7 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
         AnimatorSet moveToBoundsAnimator;
         boolean pressed;
         Runnable pressedRunnable;
+        long startTime;
         float startX;
         float startY;
         final float val$touchSlop;

@@ -20,7 +20,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import kotlinx.coroutines.CoroutineId$$ExternalSyntheticBackport0;
 import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLitePreparedStatement;
@@ -252,7 +251,7 @@ public class FactCheckController {
         }
 
         public int hashCode() {
-            return CoroutineId$$ExternalSyntheticBackport0.m(this.hash);
+            return FactCheckController$Key$$ExternalSyntheticBackport0.m(this.hash);
         }
 
         public static Key of(MessageObject messageObject) {
@@ -493,11 +492,12 @@ public class FactCheckController {
                     TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities2 = new TLRPC$TL_textWithEntities();
                     CharSequence[] charSequenceArr = {editTextCaption.getText()};
                     tLRPC$TL_textWithEntities2.entities = MediaDataController.getInstance(FactCheckController.this.currentAccount).getEntities(charSequenceArr, true);
-                    tLRPC$TL_textWithEntities2.text = charSequenceArr[0] == null ? "" : charSequenceArr[0].toString();
+                    CharSequence charSequence = charSequenceArr[0];
+                    tLRPC$TL_textWithEntities2.text = charSequence == null ? "" : charSequence.toString();
                     FactCheckController.this.applyFactCheck(messageObject, tLRPC$TL_textWithEntities2, z4);
-                    AlertDialog[] alertDialogArr2 = alertDialogArr;
-                    if (alertDialogArr2[0] != null) {
-                        alertDialogArr2[0].dismiss();
+                    AlertDialog alertDialog = alertDialogArr[0];
+                    if (alertDialog != null) {
+                        alertDialog.dismiss();
                     }
                     if (alertDialogArr[0] == FactCheckController.currentDialog) {
                         AlertDialog unused = FactCheckController.currentDialog = null;
@@ -601,9 +601,10 @@ public class FactCheckController {
             currentDialog.showDelayed(250L);
             r1 = 0;
         } else {
+            AlertDialog create2 = builder2.create();
             r1 = 0;
-            alertDialogArr[0] = builder2.create();
-            alertDialogArr[0].setOnDismissListener(new DialogInterface.OnDismissListener() {
+            alertDialogArr[0] = create2;
+            create2.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
                     AndroidUtilities.hideKeyboard(EditTextCaption.this);
@@ -633,7 +634,8 @@ public class FactCheckController {
         TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities = new TLRPC$TL_textWithEntities();
         CharSequence[] charSequenceArr = {editTextCaption.getText()};
         tLRPC$TL_textWithEntities.entities = MediaDataController.getInstance(this.currentAccount).getEntities(charSequenceArr, true);
-        tLRPC$TL_textWithEntities.text = charSequenceArr[0] == null ? "" : charSequenceArr[0].toString();
+        CharSequence charSequence = charSequenceArr[0];
+        tLRPC$TL_textWithEntities.text = charSequence == null ? "" : charSequence.toString();
         applyFactCheck(messageObject, tLRPC$TL_textWithEntities, z);
         dialogInterface.dismiss();
     }

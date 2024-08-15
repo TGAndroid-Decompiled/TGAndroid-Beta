@@ -8,6 +8,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.drawable.Drawable;
 import android.view.View;
+import android.view.animation.Interpolator;
 import java.util.Random;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
@@ -32,7 +33,6 @@ public class AvatarsDrawable {
     private boolean isInCall;
     private int overrideSize;
     View parent;
-    Random random;
     private boolean showSavedMessages;
     StoriesGradientTools storiesTools;
     private boolean transitionInProgress;
@@ -50,6 +50,8 @@ public class AvatarsDrawable {
     private float overrideSizeStepFactor = 0.8f;
     private float overrideAlpha = 1.0f;
     public long transitionDuration = 220;
+    public Interpolator transitionInterpolator = CubicBezierInterpolator.DEFAULT;
+    Random random = new Random();
 
     public void commitTransition(boolean z) {
         commitTransition(z, true);
@@ -115,8 +117,9 @@ public class AvatarsDrawable {
             }
         }
         for (int i4 = 0; i4 < 3; i4++) {
-            if (drawingStateArr[i4] != null) {
-                drawingStateArr[i4].animationType = 1;
+            DrawingState drawingState = drawingStateArr[i4];
+            if (drawingState != null) {
+                drawingState.animationType = 1;
             }
         }
         ValueAnimator valueAnimator = this.transitionProgressAnimator;
@@ -256,8 +259,6 @@ public class AvatarsDrawable {
     }
 
     public AvatarsDrawable(View view, boolean z) {
-        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
-        this.random = new Random();
         this.parent = view;
         for (int i = 0; i < 3; i++) {
             this.currentStates[i] = new DrawingState();
@@ -280,12 +281,12 @@ public class AvatarsDrawable {
 
     public void setAvatarsTextSize(int i) {
         for (int i2 = 0; i2 < 3; i2++) {
-            DrawingState[] drawingStateArr = this.currentStates;
-            if (drawingStateArr[i2] != null && drawingStateArr[i2].avatarDrawable != null) {
+            DrawingState drawingState = this.currentStates[i2];
+            if (drawingState != null && drawingState.avatarDrawable != null) {
                 this.currentStates[i2].avatarDrawable.setTextSize(i);
             }
-            DrawingState[] drawingStateArr2 = this.animatingStates;
-            if (drawingStateArr2[i2] != null && drawingStateArr2[i2].avatarDrawable != null) {
+            DrawingState drawingState2 = this.animatingStates[i2];
+            if (drawingState2 != null && drawingState2.avatarDrawable != null) {
                 this.animatingStates[i2].avatarDrawable.setTextSize(i);
             }
         }
@@ -295,15 +296,15 @@ public class AvatarsDrawable {
         TLRPC$Chat tLRPC$Chat;
         TLRPC$Chat chat;
         this.animatingStates[i].id = 0L;
-        DrawingState[] drawingStateArr = this.animatingStates;
+        DrawingState drawingState = this.animatingStates[i];
         TLRPC$User tLRPC$User = null;
-        drawingStateArr[i].participant = null;
+        drawingState.participant = null;
         if (tLObject == null) {
-            drawingStateArr[i].imageReceiver.setImageBitmap((Drawable) null);
+            drawingState.imageReceiver.setImageBitmap((Drawable) null);
             invalidate();
             return;
         }
-        drawingStateArr[i].lastSpeakTime = -1L;
+        drawingState.lastSpeakTime = -1L;
         this.animatingStates[i].object = tLObject;
         if (tLObject instanceof TLRPC$TL_groupCallParticipant) {
             TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant = (TLRPC$TL_groupCallParticipant) tLObject;
@@ -365,7 +366,7 @@ public class AvatarsDrawable {
         invalidate();
     }
 
-    public void onDraw(android.graphics.Canvas r36) {
+    public void onDraw(android.graphics.Canvas r37) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AvatarsDrawable.onDraw(android.graphics.Canvas):void");
     }
 

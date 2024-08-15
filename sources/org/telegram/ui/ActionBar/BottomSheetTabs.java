@@ -230,6 +230,7 @@ public class BottomSheetTabs extends FrameLayout {
 
     public WebTabData tryReopenTab(String str) {
         ArticleViewer.PageLayout[] pageLayoutArr;
+        ArticleViewer.PageLayout pageLayout;
         if (TextUtils.isEmpty(str)) {
             return null;
         }
@@ -242,8 +243,8 @@ public class BottomSheetTabs extends FrameLayout {
                 Object obj = arrayList.get(arrayList.size() - 1);
                 if (obj instanceof ArticleViewer.CachedWeb) {
                     BotWebViewContainer.MyWebView myWebView = ((ArticleViewer.CachedWeb) obj).webView;
-                    if (myWebView == null && (pageLayoutArr = webTabData.articleViewer.pages) != null && pageLayoutArr[0] != null) {
-                        myWebView = pageLayoutArr[0].getWebView();
+                    if (myWebView == null && (pageLayoutArr = webTabData.articleViewer.pages) != null && (pageLayout = pageLayoutArr[0]) != null) {
+                        myWebView = pageLayout.getWebView();
                     }
                     if (myWebView == null) {
                         continue;
@@ -305,11 +306,11 @@ public class BottomSheetTabs extends FrameLayout {
                 }
                 BaseFragment.AttachedSheet attachedSheet = safeLastFragment.sheetsStack.get(i);
                 if (attachedSheet instanceof BotWebViewAttachedSheet) {
+                    z = true;
                     if (bottomSheetTabsOverlay != null) {
                         bottomSheetTabsOverlay.setSlowerDismiss(true);
                     }
                     ((BotWebViewAttachedSheet) attachedSheet).dismiss(true, null);
-                    z = true;
                 }
                 i++;
             }
@@ -515,18 +516,19 @@ public class BottomSheetTabs extends FrameLayout {
         } else {
             TLRPC$User user = MessagesController.getInstance(webTabData.props.currentAccount).getUser(Long.valueOf(webTabData.props.botId));
             final boolean[] zArr = {false};
-            final AlertDialog[] alertDialogArr = {new AlertDialog.Builder(getContext()).setTitle(user != null ? ContactsController.formatName(user.first_name, user.last_name) : null).setMessage(LocaleController.getString(R.string.BotWebViewChangesMayNotBeSaved)).setPositiveButton(LocaleController.getString(R.string.BotWebViewCloseAnyway), new DialogInterface.OnClickListener() {
+            AlertDialog create = new AlertDialog.Builder(getContext()).setTitle(user != null ? ContactsController.formatName(user.first_name, user.last_name) : null).setMessage(LocaleController.getString(R.string.BotWebViewChangesMayNotBeSaved)).setPositiveButton(LocaleController.getString(R.string.BotWebViewCloseAnyway), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
-                    BottomSheetTabs.this.lambda$removeTab$3(zArr, webTabData, callback, alertDialogArr, dialogInterface, i);
+                    BottomSheetTabs.this.lambda$removeTab$3(zArr, webTabData, callback, r5, dialogInterface, i);
                 }
             }).setNegativeButton(LocaleController.getString(R.string.Cancel), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
-                    BottomSheetTabs.lambda$removeTab$4(zArr, callback, alertDialogArr, dialogInterface, i);
+                    BottomSheetTabs.lambda$removeTab$4(zArr, callback, r3, dialogInterface, i);
                 }
-            }).create()};
-            alertDialogArr[0].setOnDismissListener(new DialogInterface.OnDismissListener() {
+            }).create();
+            final AlertDialog[] alertDialogArr = {create};
+            create.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
                     BottomSheetTabs.lambda$removeTab$5(zArr, callback, dialogInterface);
@@ -705,6 +707,7 @@ public class BottomSheetTabs extends FrameLayout {
         private final Paint iconPaint;
         public int index;
         private Text overrideTitle;
+        public final View parentView;
         private int position;
         private float progress;
         private final float[] radii;
@@ -729,6 +732,7 @@ public class BottomSheetTabs extends FrameLayout {
             this.closePath = path;
             Path path2 = new Path();
             this.expandPath = path2;
+            this.parentView = view;
             this.tab = webTabData;
             createSelectorDrawable.setCallback(view);
             paint.setStyle(Paint.Style.STROKE);
@@ -891,6 +895,7 @@ public class BottomSheetTabs extends FrameLayout {
         public boolean backButton;
         public int backgroundColor;
         public boolean confirmDismiss;
+        public String currentUrl;
         public boolean expanded;
         public Bitmap favicon;
         public boolean fullsize;

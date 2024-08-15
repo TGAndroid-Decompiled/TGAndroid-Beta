@@ -320,7 +320,8 @@ public class CodeHighlighting {
             return null;
         }
         for (int i = 0; i < tokenPatternArr.length; i++) {
-            if (tokenPatternArr[i].pattern != null && "REST".equals(tokenPatternArr[i].pattern.patternSource)) {
+            CachedPattern cachedPattern = tokenPatternArr[i].pattern;
+            if (cachedPattern != null && "REST".equals(cachedPattern.patternSource)) {
                 if (arrayList == null) {
                     arrayList = new ArrayList();
                     Collections.addAll(arrayList, tokenPatternArr);
@@ -712,7 +713,6 @@ public class CodeHighlighting {
         public final CachedPattern pattern;
 
         public TokenPattern(int i, CachedPattern cachedPattern) {
-            this.group = -1;
             this.pattern = cachedPattern;
             this.group = i;
         }
@@ -730,7 +730,6 @@ public class CodeHighlighting {
         }
 
         public TokenPattern(int i, CachedPattern cachedPattern, TokenPattern... tokenPatternArr) {
-            this.group = -1;
             this.group = i;
             this.pattern = cachedPattern;
             this.insideTokenPatterns = tokenPatternArr;

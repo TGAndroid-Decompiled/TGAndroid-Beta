@@ -51,7 +51,7 @@ public class JoinToSendSettingsView extends LinearLayout {
         headerCell.setText(LocaleController.getString("ChannelSettingsJoinTitle", R.string.ChannelSettingsJoinTitle));
         this.joinHeaderCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
         addView(this.joinHeaderCell);
-        TextCheckCell textCheckCell = new TextCheckCell(this, context) {
+        TextCheckCell textCheckCell = new TextCheckCell(context) {
         };
         this.joinToSendCell = textCheckCell;
         textCheckCell.setBackground(Theme.getSelectorDrawable(true));
@@ -67,7 +67,7 @@ public class JoinToSendSettingsView extends LinearLayout {
             }
         });
         addView(this.joinToSendCell);
-        TextCheckCell textCheckCell3 = new TextCheckCell(this, context) {
+        TextCheckCell textCheckCell3 = new TextCheckCell(context) {
         };
         this.joinRequestCell = textCheckCell3;
         textCheckCell3.setBackground(Theme.getSelectorDrawable(true));

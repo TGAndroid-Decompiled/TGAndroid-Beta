@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 import org.telegram.messenger.FileLog;
 public class DispatchQueuePriority {
     private volatile CountDownLatch pauseLatch;
-    ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(1, 1, 60, TimeUnit.SECONDS, new PriorityBlockingQueue(10, new Comparator<Runnable>(this) {
+    ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(1, 1, 60, TimeUnit.SECONDS, new PriorityBlockingQueue(10, new Comparator<Runnable>() {
         @Override
         public int compare(Runnable runnable, Runnable runnable2) {
             return (runnable2 instanceof PriorityRunnable ? ((PriorityRunnable) runnable2).priority : 1) - (runnable instanceof PriorityRunnable ? ((PriorityRunnable) runnable).priority : 1);

@@ -441,8 +441,7 @@ public class FilterCreateActivity extends BaseFragment {
         this.doneItem = createMenu.addItem(1, LocaleController.getString("Save", R.string.Save).toUpperCase());
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
-        FrameLayout frameLayout2 = frameLayout;
-        frameLayout2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
+        frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
         RecyclerListView recyclerListView = new RecyclerListView(context) {
             @Override
             public boolean requestFocus(int i, Rect rect) {
@@ -465,7 +464,7 @@ public class FilterCreateActivity extends BaseFragment {
         this.listView = recyclerListView;
         recyclerListView.setLayoutManager(new LinearLayoutManager(context, 1, false));
         this.listView.setVerticalScrollBarEnabled(false);
-        frameLayout2.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
+        frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
         RecyclerListView recyclerListView2 = this.listView;
         ListAdapter listAdapter = new ListAdapter(context);
         this.adapter = listAdapter;
@@ -537,8 +536,8 @@ public class FilterCreateActivity extends BaseFragment {
 
     public void lambda$createView$6(ItemInner itemInner) {
         FilterChatlistActivity filterChatlistActivity = new FilterChatlistActivity(this.filter, itemInner.link);
-        filterChatlistActivity.setOnEdit(new FilterCreateActivity$$ExternalSyntheticLambda22(this));
-        filterChatlistActivity.setOnDelete(new FilterCreateActivity$$ExternalSyntheticLambda23(this));
+        filterChatlistActivity.setOnEdit(new FilterCreateActivity$$ExternalSyntheticLambda23(this));
+        filterChatlistActivity.setOnDelete(new FilterCreateActivity$$ExternalSyntheticLambda24(this));
         presentFragment(filterChatlistActivity);
     }
 
@@ -614,8 +613,8 @@ public class FilterCreateActivity extends BaseFragment {
             });
         } else {
             FilterChatlistActivity filterChatlistActivity = new FilterChatlistActivity(this.filter, null);
-            filterChatlistActivity.setOnEdit(new FilterCreateActivity$$ExternalSyntheticLambda22(this));
-            filterChatlistActivity.setOnDelete(new FilterCreateActivity$$ExternalSyntheticLambda23(this));
+            filterChatlistActivity.setOnEdit(new FilterCreateActivity$$ExternalSyntheticLambda23(this));
+            filterChatlistActivity.setOnDelete(new FilterCreateActivity$$ExternalSyntheticLambda24(this));
             presentFragment(filterChatlistActivity);
         }
     }
@@ -635,8 +634,8 @@ public class FilterCreateActivity extends BaseFragment {
             getMessagesController().loadRemoteFilters(true);
             final TL_chatlists$TL_chatlists_exportedChatlistInvite tL_chatlists$TL_chatlists_exportedChatlistInvite = (TL_chatlists$TL_chatlists_exportedChatlistInvite) tLObject;
             FilterChatlistActivity filterChatlistActivity = new FilterChatlistActivity(this.filter, tL_chatlists$TL_chatlists_exportedChatlistInvite.invite);
-            filterChatlistActivity.setOnEdit(new FilterCreateActivity$$ExternalSyntheticLambda22(this));
-            filterChatlistActivity.setOnDelete(new FilterCreateActivity$$ExternalSyntheticLambda23(this));
+            filterChatlistActivity.setOnEdit(new FilterCreateActivity$$ExternalSyntheticLambda23(this));
+            filterChatlistActivity.setOnDelete(new FilterCreateActivity$$ExternalSyntheticLambda24(this));
             presentFragment(filterChatlistActivity);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -654,7 +653,11 @@ public class FilterCreateActivity extends BaseFragment {
     private void showSaveHint() {
         HintView hintView = this.saveHintView;
         if (hintView == null || hintView.getVisibility() != 0) {
-            HintView hintView2 = new HintView(this, getContext(), 6, true) {
+            HintView hintView2 = new HintView(getContext(), 6, true) {
+                {
+                    FilterCreateActivity.this = this;
+                }
+
                 @Override
                 public void setVisibility(int i) {
                     super.setVisibility(i);
@@ -709,16 +712,15 @@ public class FilterCreateActivity extends BaseFragment {
         if (tL_chatlists$TL_exportedChatlistInvite == null) {
             return;
         }
-        int i = -1;
-        int i2 = 0;
+        int i = 0;
         while (true) {
-            if (i2 >= this.invites.size()) {
+            if (i >= this.invites.size()) {
+                i = -1;
                 break;
-            } else if (TextUtils.equals(this.invites.get(i2).url, tL_chatlists$TL_exportedChatlistInvite.url)) {
-                i = i2;
+            } else if (TextUtils.equals(this.invites.get(i).url, tL_chatlists$TL_exportedChatlistInvite.url)) {
                 break;
             } else {
-                i2++;
+                i++;
             }
         }
         if (i < 0) {
@@ -1467,7 +1469,7 @@ public class FilterCreateActivity extends BaseFragment {
             if (this == obj) {
                 return true;
             }
-            if (obj == null || ItemInner.class != obj.getClass()) {
+            if (obj == null || getClass() != obj.getClass()) {
                 return false;
             }
             ItemInner itemInner = (ItemInner) obj;
@@ -1997,6 +1999,7 @@ public class FilterCreateActivity extends BaseFragment {
         private int filterId;
         private BaseFragment fragment;
         private TL_chatlists$TL_exportedChatlistInvite lastInvite;
+        private boolean lastRevoked;
         protected String lastUrl;
         Drawable linkIcon;
         boolean needDivider;
@@ -2098,6 +2101,7 @@ public class FilterCreateActivity extends BaseFragment {
         }
 
         public void setRevoked(final boolean z, boolean z2) {
+            this.lastRevoked = z;
             if ((z ? 1.0f : 0.0f) != this.revokeT) {
                 ValueAnimator valueAnimator = this.valueAnimator;
                 if (valueAnimator != null) {
@@ -2944,7 +2948,7 @@ public class FilterCreateActivity extends BaseFragment {
             int i2 = this.padding;
             addView(textView, LayoutHelper.createFrame(-1, -1.0f, i, i2, 16.66f, i2, this.bottomMargin));
             textView.setAlpha(0.0f);
-            AnimatedTextView animatedTextView = new AnimatedTextView(getContext(), false, true, true, r19) {
+            AnimatedTextView animatedTextView = new AnimatedTextView(getContext(), false, true, true) {
                 private final Paint backgroundPaint = new Paint(1);
 
                 {

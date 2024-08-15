@@ -318,14 +318,17 @@ public class CopyUtilities {
         }
 
         private <T extends ParsedSpan> T getLast(Editable editable, Class<T> cls, int i) {
-            Object[] objArr = (ParsedSpan[]) editable.getSpans(0, editable.length(), cls);
-            if (objArr.length == 0) {
+            ParsedSpan[] parsedSpanArr = (ParsedSpan[]) editable.getSpans(0, editable.length(), cls);
+            if (parsedSpanArr.length == 0) {
                 return null;
             }
-            for (int length = objArr.length; length > 0; length--) {
+            for (int length = parsedSpanArr.length; length > 0; length--) {
                 int i2 = length - 1;
-                if (editable.getSpanFlags(objArr[i2]) == 17 && objArr[i2].type == i) {
-                    return (T) objArr[i2];
+                if (editable.getSpanFlags(parsedSpanArr[i2]) == 17) {
+                    T t = (T) parsedSpanArr[i2];
+                    if (t.type == i) {
+                        return t;
+                    }
                 }
             }
             return null;

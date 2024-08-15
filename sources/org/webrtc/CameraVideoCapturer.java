@@ -42,12 +42,12 @@ public interface CameraVideoCapturer extends VideoCapturer {
 
     public final class CC {
         @Deprecated
-        public static void $default$addMediaRecorderToCamera(CameraVideoCapturer _this, MediaRecorder mediaRecorder, MediaRecorderHandler mediaRecorderHandler) {
+        public static void $default$addMediaRecorderToCamera(CameraVideoCapturer cameraVideoCapturer, MediaRecorder mediaRecorder, MediaRecorderHandler mediaRecorderHandler) {
             throw new UnsupportedOperationException("Deprecated and not implemented.");
         }
 
         @Deprecated
-        public static void $default$removeMediaRecorderFromCamera(CameraVideoCapturer _this, MediaRecorderHandler mediaRecorderHandler) {
+        public static void $default$removeMediaRecorderFromCamera(CameraVideoCapturer cameraVideoCapturer, MediaRecorderHandler mediaRecorderHandler) {
             throw new UnsupportedOperationException("Deprecated and not implemented.");
         }
     }

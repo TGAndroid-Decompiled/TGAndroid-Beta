@@ -255,7 +255,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
             this.selectedIds.add(Long.valueOf(user.id));
             this.allSelectedObjects.put(Long.valueOf(user.id), user);
         }
-        SelectorHeaderCell selectorHeaderCell = new SelectorHeaderCell(this, getContext(), this.resourcesProvider) {
+        SelectorHeaderCell selectorHeaderCell = new SelectorHeaderCell(getContext(), this.resourcesProvider) {
             @Override
             protected int getHeaderHeight() {
                 if (getResources().getConfiguration().orientation == 2) {
@@ -265,7 +265,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
             }
         };
         this.headerView = selectorHeaderCell;
-        selectorHeaderCell.setOnCloseClickListener(new UserSelectorBottomSheet$$ExternalSyntheticLambda4(this));
+        selectorHeaderCell.setOnCloseClickListener(new UserSelectorBottomSheet$$ExternalSyntheticLambda0(this));
         selectorHeaderCell.setText(getTitle());
         selectorHeaderCell.setCloseImageVisible(false);
         selectorHeaderCell.backDrawable.setRotation(0.0f, false);
@@ -430,7 +430,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
                 if (selectorSearchCell != null) {
                     AndroidUtilities.hideKeyboard(selectorSearchCell.getEditText());
                 }
-                StarsIntroActivity.GiftStarsSheet giftStarsSheet = new StarsIntroActivity.GiftStarsSheet(getContext(), this.resourcesProvider, user, new UserSelectorBottomSheet$$ExternalSyntheticLambda4(this));
+                StarsIntroActivity.GiftStarsSheet giftStarsSheet = new StarsIntroActivity.GiftStarsSheet(getContext(), this.resourcesProvider, user, new UserSelectorBottomSheet$$ExternalSyntheticLambda0(this));
                 if (!AndroidUtilities.isTablet()) {
                     giftStarsSheet.makeAttached(this.attachedFragment);
                 }
@@ -749,8 +749,8 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
             if (this.birthdays != null) {
                 i = i + addSection(this.items, LocaleController.getString(R.string.BirthdayToday), this.birthdays.today, true) + addSection(this.items, LocaleController.getString(R.string.BirthdayYesterday), this.birthdays.yesterday, true) + addSection(this.items, LocaleController.getString(R.string.BirthdayTomorrow), this.birthdays.tomorrow, true);
             }
-            SelectorAdapter.Item item = null;
             final ArrayList arrayList = new ArrayList();
+            SelectorAdapter.Item item = null;
             if (!this.hints.isEmpty()) {
                 ArrayList arrayList2 = new ArrayList();
                 for (TLRPC$TL_topPeer tLRPC$TL_topPeer : this.hints) {

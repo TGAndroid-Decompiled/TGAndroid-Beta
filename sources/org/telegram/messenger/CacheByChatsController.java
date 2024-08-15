@@ -122,11 +122,8 @@ public class CacheByChatsController {
     }
 
     public int getKeepMedia(int i) {
-        int[] iArr = this.keepMediaByTypes;
-        if (iArr[i] == -1) {
-            return SharedConfig.keepMedia;
-        }
-        return iArr[i];
+        int i2 = this.keepMediaByTypes[i];
+        return i2 == -1 ? SharedConfig.keepMedia : i2;
     }
 
     public void setKeepMedia(int i, int i2) {

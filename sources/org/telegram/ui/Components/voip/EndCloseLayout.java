@@ -45,13 +45,13 @@ public class EndCloseLayout extends FrameLayout {
         TransitionSet transitionSet = new TransitionSet();
         this.transitionSet = transitionSet;
         transitionSet.setOrdering(0);
-        transitionSet.addTransition(new AnonymousClass1(this));
+        transitionSet.addTransition(new AnonymousClass1());
         transitionSet.setDuration(500L);
         transitionSet.setInterpolator((TimeInterpolator) CubicBezierInterpolator.DEFAULT);
     }
 
     class AnonymousClass1 extends ChangeBounds {
-        AnonymousClass1(EndCloseLayout endCloseLayout) {
+        AnonymousClass1() {
         }
 
         @Override
@@ -131,7 +131,7 @@ public class EndCloseLayout extends FrameLayout {
                     }
                 });
                 animatorSet.playTogether(ofInt3);
-                animatorSet.addListener(new AnimatorListenerAdapter(this) {
+                animatorSet.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationStart(Animator animator) {
                         super.onAnimationStart(animator);

@@ -84,16 +84,16 @@ public class TrashView extends View {
     }
 
     public void onDragInfo(boolean z, boolean z2) {
-        int i;
         String str;
+        int i;
         this.bounce.setPressed(z);
         AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.textDrawable;
         if (z || z2) {
-            i = R.string.TrashHintRelease;
             str = "TrashHintRelease";
+            i = R.string.TrashHintRelease;
         } else {
-            i = R.string.TrashHintDrag;
             str = "TrashHintDrag";
+            i = R.string.TrashHintDrag;
         }
         animatedTextDrawable.setText(LocaleController.getString(str, i));
         boolean z3 = z && !z2;

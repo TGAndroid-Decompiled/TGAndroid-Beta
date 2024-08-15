@@ -13,7 +13,6 @@ import java.io.RandomAccessFile;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.tgnet.TLRPC$Document;
@@ -37,8 +36,8 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
     private Uri uri;
 
     @Override
-    public Map<String, List<String>> getResponseHeaders() {
-        Map<String, List<String>> emptyMap;
+    public Map getResponseHeaders() {
+        Map emptyMap;
         emptyMap = Collections.emptyMap();
         return emptyMap;
     }

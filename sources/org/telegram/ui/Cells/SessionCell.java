@@ -274,6 +274,8 @@ public class SessionCell extends FrameLayout {
     }
 
     public static class CircleGradientDrawable extends Drawable {
+        private int colorBottom;
+        private int colorTop;
         private Paint paint;
         private int size;
 
@@ -288,6 +290,8 @@ public class SessionCell extends FrameLayout {
 
         public CircleGradientDrawable(int i, int i2, int i3) {
             this.size = i;
+            this.colorTop = i2;
+            this.colorBottom = i3;
             Paint paint = new Paint(1);
             this.paint = paint;
             paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, i, new int[]{i2, i3}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));

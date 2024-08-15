@@ -118,6 +118,7 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
 
     public VideoScreenPreview(Context context, SvgHelper.SvgDrawable svgDrawable, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
         super(context);
+        int i3;
         this.phoneFrame1 = new Paint(1);
         this.phoneFrame2 = new Paint(1);
         this.fromTop = false;
@@ -163,18 +164,15 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
             this.helloParticlesDrawable = drawable2;
             drawable2.init();
         } else {
-            int i3 = 100;
             if (SharedConfig.getDevicePerformanceClass() == 2) {
                 i3 = 800;
-            } else if (SharedConfig.getDevicePerformanceClass() == 1) {
-                i3 = 400;
+            } else {
+                i3 = SharedConfig.getDevicePerformanceClass() == 1 ? 400 : 100;
             }
             StarParticlesView.Drawable drawable3 = new StarParticlesView.Drawable(i3);
             this.starDrawable = drawable3;
             drawable3.resourcesProvider = resourcesProvider;
             drawable3.colorKey = Theme.key_premiumStartSmallStarsColor2;
-            drawable3.size1 = 8;
-            drawable3.size1 = 6;
             drawable3.size1 = 4;
             drawable3.k3 = 0.98f;
             drawable3.k2 = 0.98f;
@@ -228,24 +226,23 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
         TLRPC$TL_help_premiumPromo premiumPromo = MediaDataController.getInstance(this.currentAccount).getPremiumPromo();
         String featureTypeToServerString = PremiumPreviewFragment.featureTypeToServerString(this.type);
         if (premiumPromo != null) {
-            int i = -1;
-            int i2 = 0;
+            int i = 0;
             while (true) {
-                if (i2 >= premiumPromo.video_sections.size()) {
+                if (i >= premiumPromo.video_sections.size()) {
+                    i = -1;
                     break;
-                } else if (premiumPromo.video_sections.get(i2).equals(featureTypeToServerString)) {
-                    i = i2;
+                } else if (premiumPromo.video_sections.get(i).equals(featureTypeToServerString)) {
                     break;
                 } else {
-                    i2++;
+                    i++;
                 }
             }
             if (i >= 0) {
                 final TLRPC$Document tLRPC$Document = premiumPromo.videos.get(i);
                 CombinedDrawable combinedDrawable = null;
-                for (int i3 = 0; i3 < tLRPC$Document.thumbs.size(); i3++) {
-                    if (tLRPC$Document.thumbs.get(i3) instanceof TLRPC$TL_photoStrippedSize) {
-                        this.roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(getResources(), ImageLoader.getStrippedPhotoBitmap(tLRPC$Document.thumbs.get(i3).bytes, "b"));
+                for (int i2 = 0; i2 < tLRPC$Document.thumbs.size(); i2++) {
+                    if (tLRPC$Document.thumbs.get(i2) instanceof TLRPC$TL_photoStrippedSize) {
+                        this.roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(getResources(), ImageLoader.getStrippedPhotoBitmap(tLRPC$Document.thumbs.get(i2).bytes, "b"));
                         CellFlickerDrawable cellFlickerDrawable = new CellFlickerDrawable();
                         cellFlickerDrawable.repeatProgress = 4.0f;
                         cellFlickerDrawable.progress = 3.5f;
@@ -253,12 +250,12 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
                         this.cellFlickerDrawable = cellFlickerDrawable.getDrawableInterface(this, this.svgIcon);
                         combinedDrawable = new CombinedDrawable(this.roundedBitmapDrawable, this.cellFlickerDrawable) {
                             @Override
-                            public void setBounds(int i4, int i5, int i6, int i7) {
+                            public void setBounds(int i3, int i4, int i5, int i6) {
                                 VideoScreenPreview videoScreenPreview = VideoScreenPreview.this;
                                 if (videoScreenPreview.fromTop) {
-                                    super.setBounds(i4, (int) (i5 - videoScreenPreview.roundRadius), i6, i7);
+                                    super.setBounds(i3, (int) (i4 - videoScreenPreview.roundRadius), i5, i6);
                                 } else {
-                                    super.setBounds(i4, i5, i6, (int) (i7 + videoScreenPreview.roundRadius));
+                                    super.setBounds(i3, i4, i5, (int) (i6 + videoScreenPreview.roundRadius));
                                 }
                             }
                         };
@@ -376,6 +373,7 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
     @Override
     protected void dispatchDraw(Canvas canvas) {
         float f;
+        float f2;
         if (this.starDrawable != null || this.speedLinesDrawable != null || this.helloParticlesDrawable != null || this.matrixParticlesDrawable != null) {
             if (this.progress < 0.5f) {
                 float pow = (float) Math.pow(1.0f - f, 2.0d);
@@ -389,7 +387,6 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
                     if (drawable != null) {
                         drawable.onDraw(canvas);
                     } else if (this.speedLinesDrawable != null) {
-                        float f2 = 0.2f;
                         VideoPlayerHolderBase videoPlayerHolderBase = this.videoPlayerBase;
                         if (videoPlayerHolderBase != null) {
                             float clamp = Utilities.clamp(((float) videoPlayerHolderBase.getCurrentPosition()) / ((float) this.videoPlayerBase.getDuration()), 1.0f, 0.0f);
@@ -403,6 +400,8 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
                             } else {
                                 f2 = fArr[i];
                             }
+                        } else {
+                            f2 = 0.2f;
                         }
                         SpeedLineParticles$Drawable speedLineParticles$Drawable = this.speedLinesDrawable;
                         speedLineParticles$Drawable.speedScale = (((1.0f - Utilities.clamp(this.progress / 0.1f, 1.0f, 0.0f)) * 0.9f) + 0.1f) * 150.0f * f2;
@@ -485,7 +484,7 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
             this.progress = Math.abs(measuredWidth);
             z = measuredWidth < 1.0f;
             if (measuredWidth >= 0.1f) {
-                r2 = false;
+                r1 = false;
             }
         } else {
             float measuredWidth2 = (-f) / getMeasuredWidth();
@@ -497,16 +496,16 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
                 setTranslationY((-getMeasuredHeight()) * 0.3f * measuredWidth2);
             }
             z = measuredWidth2 > -1.0f;
-            r2 = measuredWidth2 > -0.1f;
+            r1 = measuredWidth2 > -0.1f;
             this.progress = Math.abs(measuredWidth2);
         }
         if (z != this.visible) {
             this.visible = z;
             updateAttachState();
         }
-        if (r2 != this.allowPlay) {
-            this.allowPlay = r2;
-            this.imageReceiver.setAllowStartAnimation(r2);
+        if (r1 != this.allowPlay) {
+            this.allowPlay = r1;
+            this.imageReceiver.setAllowStartAnimation(r1);
             if (this.allowPlay) {
                 this.imageReceiver.startAnimation();
                 runVideoPlayer();

@@ -45,6 +45,8 @@ import org.telegram.ui.Components.WallpaperParallaxEffect;
 public class SizeNotifierFrameLayout extends FrameLayout {
     private static DispatchQueue blurQueue;
     public static boolean drawingBlur;
+    private final float DOWN_SCALE;
+    private final int TOP_CLIP_OFFSET;
     public AdjustPanLayoutHelper adjustPanLayoutHelper;
     private boolean animationInProgress;
     boolean attached;
@@ -52,6 +54,7 @@ public class SizeNotifierFrameLayout extends FrameLayout {
     private boolean backgroundMotion;
     private int backgroundTranslationY;
     protected View backgroundView;
+    private float bgAngle;
     final BlurBackgroundTask blurBackgroundTask;
     public ArrayList<View> blurBehindViews;
     ValueAnimator blurCrossfade;
@@ -187,6 +190,8 @@ public class SizeNotifierFrameLayout extends FrameLayout {
         this.blurPaintTop2 = new Paint();
         this.blurPaintBottom = new Paint();
         this.blurPaintBottom2 = new Paint();
+        this.DOWN_SCALE = 12.0f;
+        this.TOP_CLIP_OFFSET = 34;
         this.themeAnimationValue = 1.0f;
         this.blurBackgroundTask = new BlurBackgroundTask();
         this.blurNodeInvalidatedThisFrame = new boolean[2];
@@ -198,7 +203,7 @@ public class SizeNotifierFrameLayout extends FrameLayout {
         this.adjustPanLayoutHelper = createAdjustPanLayoutHelper();
     }
 
-    private class BackgroundView extends View {
+    public class BackgroundView extends View {
         public BackgroundView(Context context) {
             super(context);
         }
@@ -431,6 +436,7 @@ public class SizeNotifierFrameLayout extends FrameLayout {
     public void lambda$checkMotion$0(int i, int i2, float f) {
         this.translationX = i;
         this.translationY = i2;
+        this.bgAngle = f;
         View view = this.backgroundView;
         if (view != null) {
             view.invalidate();
@@ -960,6 +966,11 @@ public class SizeNotifierFrameLayout extends FrameLayout {
 
     public void drawBlurRect(Canvas canvas, float f, android.graphics.Rect rect, Paint paint, boolean z) {
         float f2;
+        RecordingCanvas beginRecording;
+        Shader.TileMode tileMode;
+        RenderEffect createBlurEffect;
+        RenderEffect createColorFilterEffect;
+        RenderEffect createChainEffect;
         int alpha = Color.alpha(Theme.getColor((DRAW_USING_RENDERNODE() && SharedConfig.getDevicePerformanceClass() == 2) ? Theme.key_chat_BlurAlpha : Theme.key_chat_BlurAlphaSlow));
         if (!SharedConfig.chatBlurEnabled()) {
             canvas.drawRect(rect, paint);
@@ -983,12 +994,19 @@ public class SizeNotifierFrameLayout extends FrameLayout {
                     renderNodeArr[i] = new RenderNode("blurNode" + i);
                     ColorMatrix colorMatrix = new ColorMatrix();
                     colorMatrix.setSaturation(2.0f);
-                    this.blurNodes[i].setRenderEffect(RenderEffect.createChainEffect(RenderEffect.createBlurEffect(getBlurRadius(), getBlurRadius(), Shader.TileMode.DECAL), RenderEffect.createColorFilterEffect(new ColorMatrixColorFilter(colorMatrix))));
+                    RenderNode renderNode = this.blurNodes[i];
+                    float blurRadius = getBlurRadius();
+                    float blurRadius2 = getBlurRadius();
+                    tileMode = Shader.TileMode.DECAL;
+                    createBlurEffect = RenderEffect.createBlurEffect(blurRadius, blurRadius2, tileMode);
+                    createColorFilterEffect = RenderEffect.createColorFilterEffect(new ColorMatrixColorFilter(colorMatrix));
+                    createChainEffect = RenderEffect.createChainEffect(createBlurEffect, createColorFilterEffect);
+                    renderNode.setRenderEffect(createChainEffect);
                 }
                 int measuredWidth = getMeasuredWidth();
                 int currentActionBarHeight = ActionBar.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight + AndroidUtilities.dp(100.0f);
                 this.blurNodes[i].setPosition(0, 0, (int) (measuredWidth / renderNodeScale), (int) (((dp * 2) + currentActionBarHeight) / renderNodeScale));
-                RecordingCanvas beginRecording = this.blurNodes[i].beginRecording();
+                beginRecording = this.blurNodes[i].beginRecording();
                 drawingBlur = true;
                 float f3 = 1.0f / renderNodeScale;
                 beginRecording.scale(f3, f3);
@@ -1014,9 +1032,9 @@ public class SizeNotifierFrameLayout extends FrameLayout {
             canvas.save();
             canvas.drawRect(rect, paint);
             canvas.clipRect(rect);
-            RenderNode[] renderNodeArr2 = this.blurNodes;
-            if (renderNodeArr2[i] != null && alpha < 255) {
-                renderNodeArr2[i].setAlpha(1.0f - (alpha / 255.0f));
+            RenderNode renderNode2 = this.blurNodes[i];
+            if (renderNode2 != null && alpha < 255) {
+                renderNode2.setAlpha(1.0f - (alpha / 255.0f));
                 if (z) {
                     f2 = 0.0f;
                     canvas.translate(0.0f, (-f) - getTranslationY());

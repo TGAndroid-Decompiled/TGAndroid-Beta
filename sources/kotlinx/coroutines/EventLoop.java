@@ -70,15 +70,7 @@ public abstract class EventLoop extends CoroutineDispatcher {
     public final void decrementUseCount(boolean z) {
         long delta = this.useCount - delta(z);
         this.useCount = delta;
-        if (delta > 0) {
-            return;
-        }
-        if (DebugKt.getASSERTIONS_ENABLED()) {
-            if (!(this.useCount == 0)) {
-                throw new AssertionError();
-            }
-        }
-        if (this.shared) {
+        if (delta <= 0 && this.shared) {
             shutdown();
         }
     }

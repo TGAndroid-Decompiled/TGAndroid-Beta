@@ -66,6 +66,7 @@ public class ChatGreetingsView extends LinearLayout {
     private AnimatorSet togglingStickersAnimator;
     private float viewTop;
     private float viewTranslationX;
+    private boolean visiblePartSet;
     boolean wasDraw;
 
     public interface Listener {
@@ -165,7 +166,7 @@ public class ChatGreetingsView extends LinearLayout {
             textView3.setTextColor(getThemedColor(i));
             this.premiumTextView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
             if (this.premiumButtonView == null) {
-                TextView textView4 = new TextView(this, getContext()) {
+                TextView textView4 = new TextView(getContext()) {
                     private final Path clipPath = new Path();
                     StarParticlesView.Drawable starParticlesDrawable;
 
@@ -521,6 +522,7 @@ public class ChatGreetingsView extends LinearLayout {
     }
 
     public void setVisiblePart(float f, int i) {
+        this.visiblePartSet = true;
         this.backgroundHeight = i;
         this.viewTop = f;
         this.viewTranslationX = 0.0f;

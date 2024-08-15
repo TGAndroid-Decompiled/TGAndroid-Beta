@@ -294,7 +294,6 @@ public class VideoSeekPreviewImage extends View {
 
     public void lambda$open$4(Uri uri) {
         String absolutePath;
-        final VideoSeekPreviewImage videoSeekPreviewImage = this;
         if ("tg".equals(uri.getScheme())) {
             int intValue = Utilities.parseInt((CharSequence) uri.getQueryParameter("account")).intValue();
             Object parentObject = FileLoader.getInstance(intValue).getParentObject(Utilities.parseInt((CharSequence) uri.getQueryParameter("rid")).intValue());
@@ -315,16 +314,15 @@ public class VideoSeekPreviewImage extends View {
             } else {
                 absolutePath = FileLoader.getInstance(intValue).getPathToAttach(tLRPC$TL_document, false).getAbsolutePath();
             }
-            videoSeekPreviewImage.fileDrawable = new AnimatedFileDrawable(new File(absolutePath), true, tLRPC$TL_document.size, 1, tLRPC$TL_document, null, parentObject, 0L, intValue, true, null);
+            this.fileDrawable = new AnimatedFileDrawable(new File(absolutePath), true, tLRPC$TL_document.size, 1, tLRPC$TL_document, null, parentObject, 0L, intValue, true, null);
         } else {
-            videoSeekPreviewImage = this;
-            videoSeekPreviewImage.fileDrawable = new AnimatedFileDrawable(new File(uri.getPath()), true, 0L, 0, null, null, null, 0L, 0, true, null);
+            this.fileDrawable = new AnimatedFileDrawable(new File(uri.getPath()), true, 0L, 0, null, null, null, 0L, 0, true, null);
         }
-        videoSeekPreviewImage.duration = videoSeekPreviewImage.fileDrawable.getDurationMs();
-        float f = videoSeekPreviewImage.pendingProgress;
+        this.duration = this.fileDrawable.getDurationMs();
+        float f = this.pendingProgress;
         if (f != 0.0f) {
-            videoSeekPreviewImage.setProgress(f, videoSeekPreviewImage.pixelWidth);
-            videoSeekPreviewImage.pendingProgress = 0.0f;
+            setProgress(f, this.pixelWidth);
+            this.pendingProgress = 0.0f;
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override

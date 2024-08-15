@@ -353,9 +353,9 @@ public class ForumUtilities {
     public static void applyTopicToMessage(MessageObject messageObject) {
         TLRPC$TL_forumTopic findTopic;
         if (messageObject.getDialogId() <= 0 && (findTopic = MessagesController.getInstance(messageObject.currentAccount).getTopicsController().findTopic(-messageObject.getDialogId(), MessageObject.getTopicId(messageObject.currentAccount, messageObject.messageOwner, true))) != null) {
-            Drawable[] drawableArr = messageObject.topicIconDrawable;
-            if (drawableArr[0] instanceof ForumBubbleDrawable) {
-                ((ForumBubbleDrawable) drawableArr[0]).setColor(findTopic.icon_color);
+            Drawable drawable = messageObject.topicIconDrawable[0];
+            if (drawable instanceof ForumBubbleDrawable) {
+                ((ForumBubbleDrawable) drawable).setColor(findTopic.icon_color);
             }
         }
     }

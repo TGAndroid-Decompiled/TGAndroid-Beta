@@ -98,7 +98,7 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
         } else {
             addView(backupImageView, LayoutHelper.createFrame(56, 56.0f, 49, 0.0f, 7.0f, 0.0f, 0.0f));
         }
-        TextView textView = new TextView(this, context) {
+        TextView textView = new TextView(context) {
             @Override
             public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
                 super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), AndroidUtilities.dp(10.0f), false), bufferType);

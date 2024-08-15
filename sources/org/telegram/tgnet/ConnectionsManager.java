@@ -426,15 +426,11 @@ public class ConnectionsManager extends BaseController {
             NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tLObject.getObjectSize());
             tLObject.serializeToStream(nativeByteBuffer);
             tLObject.freeResources();
-            long j = 0;
-            if (BuildVars.DEBUG_PRIVATE_VERSION && BuildVars.LOGS_ENABLED) {
-                j = System.currentTimeMillis();
-            }
-            final long j2 = j;
+            final long currentTimeMillis = (BuildVars.DEBUG_PRIVATE_VERSION && BuildVars.LOGS_ENABLED) ? System.currentTimeMillis() : 0L;
             listen(i4, new RequestDelegateInternal() {
                 @Override
-                public final void run(long j3, int i5, String str, int i6, long j4, long j5) {
-                    ConnectionsManager.this.lambda$sendRequestInternal$4(tLObject, requestDelegate, requestDelegateTimestamp, quickAckDelegate, writeToSocketDelegate, i, i2, i3, z, j2, i4, j3, i5, str, i6, j4, j5);
+                public final void run(long j, int i5, String str, int i6, long j2, long j3) {
+                    ConnectionsManager.this.lambda$sendRequestInternal$4(tLObject, requestDelegate, requestDelegateTimestamp, quickAckDelegate, writeToSocketDelegate, i, i2, i3, z, currentTimeMillis, i4, j, i5, str, i6, j2, j3);
                 }
             }, quickAckDelegate, writeToSocketDelegate);
             native_sendRequest(this.currentAccount, nativeByteBuffer.address, i, i2, i3, z, i4);
@@ -1109,9 +1105,6 @@ public class ConnectionsManager extends BaseController {
 
     @SuppressLint({"NewApi"})
     protected byte getIpStrategy() {
-        if (Build.VERSION.SDK_INT < 19) {
-            return (byte) 0;
-        }
         if (BuildVars.LOGS_ENABLED) {
             try {
                 Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
@@ -1232,8 +1225,6 @@ public class ConnectionsManager extends BaseController {
         public NativeByteBuffer doInBackground(Void... voidArr) {
             ByteArrayOutputStream byteArrayOutputStream;
             InputStream inputStream;
-            InputStream inputStream2;
-            ByteArrayOutputStream byteArrayOutputStream2;
             int read;
             boolean z = false;
             try {
@@ -1248,100 +1239,100 @@ public class ConnectionsManager extends BaseController {
                 openConnection.setConnectTimeout(5000);
                 openConnection.setReadTimeout(5000);
                 openConnection.connect();
-                inputStream2 = openConnection.getInputStream();
+                InputStream inputStream2 = openConnection.getInputStream();
                 try {
                     this.responseDate = (int) (openConnection.getDate() / 1000);
-                    byteArrayOutputStream2 = new ByteArrayOutputStream();
-                } catch (Throwable th) {
-                    th = th;
+                    ByteArrayOutputStream byteArrayOutputStream2 = new ByteArrayOutputStream();
+                    try {
+                        byte[] bArr = new byte[32768];
+                        while (!isCancelled() && (read = inputStream2.read(bArr)) > 0) {
+                            byteArrayOutputStream2.write(bArr, 0, read);
+                        }
+                        JSONArray jSONArray = new JSONObject(new String(byteArrayOutputStream2.toByteArray())).getJSONArray("Answer");
+                        int length = jSONArray.length();
+                        ArrayList arrayList = new ArrayList(length);
+                        for (int i2 = 0; i2 < length; i2++) {
+                            JSONObject jSONObject = jSONArray.getJSONObject(i2);
+                            if (jSONObject.getInt("type") == 16) {
+                                arrayList.add(jSONObject.getString("data"));
+                            }
+                        }
+                        Collections.sort(arrayList, new Comparator() {
+                            @Override
+                            public final int compare(Object obj, Object obj2) {
+                                int lambda$doInBackground$0;
+                                lambda$doInBackground$0 = ConnectionsManager.GoogleDnsLoadTask.lambda$doInBackground$0((String) obj, (String) obj2);
+                                return lambda$doInBackground$0;
+                            }
+                        });
+                        StringBuilder sb2 = new StringBuilder();
+                        for (int i3 = 0; i3 < arrayList.size(); i3++) {
+                            sb2.append(((String) arrayList.get(i3)).replace("\"", ""));
+                        }
+                        byte[] decode = Base64.decode(sb2.toString(), 0);
+                        NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(decode.length);
+                        nativeByteBuffer.writeBytes(decode);
+                        if (inputStream2 != null) {
+                            try {
+                                inputStream2.close();
+                            } catch (Throwable th) {
+                                FileLog.e(th);
+                            }
+                        }
+                        try {
+                            byteArrayOutputStream2.close();
+                        } catch (Exception unused) {
+                        }
+                        return nativeByteBuffer;
+                    } catch (Throwable th2) {
+                        byteArrayOutputStream = byteArrayOutputStream2;
+                        th = th2;
+                        inputStream = inputStream2;
+                        try {
+                            if (!(th instanceof SocketTimeoutException) && !(th instanceof SSLException)) {
+                                z = true;
+                            }
+                            FileLog.e(th, z);
+                            if (inputStream != null) {
+                                try {
+                                    inputStream.close();
+                                } catch (Throwable th3) {
+                                    FileLog.e(th3);
+                                }
+                            }
+                            if (byteArrayOutputStream != null) {
+                                try {
+                                    byteArrayOutputStream.close();
+                                } catch (Exception unused2) {
+                                }
+                            }
+                            return null;
+                        } catch (Throwable th4) {
+                            if (inputStream != null) {
+                                try {
+                                    inputStream.close();
+                                } catch (Throwable th5) {
+                                    FileLog.e(th5);
+                                }
+                            }
+                            if (byteArrayOutputStream != null) {
+                                try {
+                                    byteArrayOutputStream.close();
+                                } catch (Exception unused3) {
+                                }
+                            }
+                            throw th4;
+                        }
+                    }
+                } catch (Throwable th6) {
+                    th = th6;
                     inputStream = inputStream2;
                     byteArrayOutputStream = null;
                 }
-            } catch (Throwable th2) {
-                th = th2;
+            } catch (Throwable th7) {
+                th = th7;
                 byteArrayOutputStream = null;
                 inputStream = null;
-            }
-            try {
-                byte[] bArr = new byte[32768];
-                while (!isCancelled() && (read = inputStream2.read(bArr)) > 0) {
-                    byteArrayOutputStream2.write(bArr, 0, read);
-                }
-                JSONArray jSONArray = new JSONObject(new String(byteArrayOutputStream2.toByteArray())).getJSONArray("Answer");
-                int length = jSONArray.length();
-                ArrayList arrayList = new ArrayList(length);
-                for (int i2 = 0; i2 < length; i2++) {
-                    JSONObject jSONObject = jSONArray.getJSONObject(i2);
-                    if (jSONObject.getInt("type") == 16) {
-                        arrayList.add(jSONObject.getString("data"));
-                    }
-                }
-                Collections.sort(arrayList, new Comparator() {
-                    @Override
-                    public final int compare(Object obj, Object obj2) {
-                        int lambda$doInBackground$0;
-                        lambda$doInBackground$0 = ConnectionsManager.GoogleDnsLoadTask.lambda$doInBackground$0((String) obj, (String) obj2);
-                        return lambda$doInBackground$0;
-                    }
-                });
-                StringBuilder sb2 = new StringBuilder();
-                for (int i3 = 0; i3 < arrayList.size(); i3++) {
-                    sb2.append(((String) arrayList.get(i3)).replace("\"", ""));
-                }
-                byte[] decode = Base64.decode(sb2.toString(), 0);
-                NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(decode.length);
-                nativeByteBuffer.writeBytes(decode);
-                if (inputStream2 != null) {
-                    try {
-                        inputStream2.close();
-                    } catch (Throwable th3) {
-                        FileLog.e(th3);
-                    }
-                }
-                try {
-                    byteArrayOutputStream2.close();
-                } catch (Exception unused) {
-                }
-                return nativeByteBuffer;
-            } catch (Throwable th4) {
-                byteArrayOutputStream = byteArrayOutputStream2;
-                th = th4;
-                inputStream = inputStream2;
-                try {
-                    if (!(th instanceof SocketTimeoutException) && !(th instanceof SSLException)) {
-                        z = true;
-                    }
-                    FileLog.e(th, z);
-                    if (inputStream != null) {
-                        try {
-                            inputStream.close();
-                        } catch (Throwable th5) {
-                            FileLog.e(th5);
-                        }
-                    }
-                    if (byteArrayOutputStream != null) {
-                        try {
-                            byteArrayOutputStream.close();
-                        } catch (Exception unused2) {
-                        }
-                    }
-                    return null;
-                } catch (Throwable th6) {
-                    if (inputStream != null) {
-                        try {
-                            inputStream.close();
-                        } catch (Throwable th7) {
-                            FileLog.e(th7);
-                        }
-                    }
-                    if (byteArrayOutputStream != null) {
-                        try {
-                            byteArrayOutputStream.close();
-                        } catch (Exception unused3) {
-                        }
-                    }
-                    throw th6;
-                }
             }
         }
 

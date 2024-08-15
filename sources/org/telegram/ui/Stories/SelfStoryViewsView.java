@@ -333,12 +333,12 @@ public class SelfStoryViewsView extends FrameLayout {
         this.storyItems.clear();
         this.dialogId = j;
         for (int i2 = 0; i2 < arrayList.size(); i2++) {
-            this.storyItems.add(new StoryItemInternal(this, arrayList.get(i2)));
+            this.storyItems.add(new StoryItemInternal(arrayList.get(i2)));
         }
         ArrayList<StoriesController.UploadingStory> uploadingStories = MessagesController.getInstance(this.storyViewer.currentAccount).storiesController.getUploadingStories(UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId());
         if (uploadingStories != null) {
             for (int i3 = 0; i3 < uploadingStories.size(); i3++) {
-                this.storyItems.add(new StoryItemInternal(this, uploadingStories.get(i3)));
+                this.storyItems.add(new StoryItemInternal(uploadingStories.get(i3)));
             }
         }
         this.selfStoriesPreviewView.setItems(this.storyItems, i);
@@ -471,11 +471,11 @@ public class SelfStoryViewsView extends FrameLayout {
         public TL_stories$StoryItem storyItem;
         public StoriesController.UploadingStory uploadingStory;
 
-        public StoryItemInternal(SelfStoryViewsView selfStoryViewsView, TL_stories$StoryItem tL_stories$StoryItem) {
+        public StoryItemInternal(TL_stories$StoryItem tL_stories$StoryItem) {
             this.storyItem = tL_stories$StoryItem;
         }
 
-        public StoryItemInternal(SelfStoryViewsView selfStoryViewsView, StoriesController.UploadingStory uploadingStory) {
+        public StoryItemInternal(StoriesController.UploadingStory uploadingStory) {
             this.uploadingStory = uploadingStory;
         }
     }

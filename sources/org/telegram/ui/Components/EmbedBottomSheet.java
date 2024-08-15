@@ -76,6 +76,7 @@ public class EmbedBottomSheet extends BottomSheet {
     private int height;
     private LinearLayout imageButtonsContainer;
     private boolean isYouTube;
+    private int lastOrientation;
     private DialogInterface.OnShowListener onShowListener;
     private String openUrl;
     private OrientationEventListener orientationEventListener;
@@ -91,6 +92,7 @@ public class EmbedBottomSheet extends BottomSheet {
     private boolean wasInLandscape;
     private WebView webView;
     private int width;
+    private final String youtubeFrame;
 
     public static boolean lambda$new$0(View view, MotionEvent motionEvent) {
         return true;
@@ -148,7 +150,9 @@ public class EmbedBottomSheet extends BottomSheet {
     private EmbedBottomSheet(final Context context, String str, String str2, String str3, String str4, int i, int i2, int i3) {
         super(context, false);
         this.position = new int[2];
+        this.lastOrientation = -1;
         this.prevOrientation = -2;
+        this.youtubeFrame = "<!DOCTYPE html><html><head><style>body { margin: 0; width:100%%; height:100%%;  background-color:#000; }html { width:100%%; height:100%%; background-color:#000; }.embed-container iframe,.embed-container object,   .embed-container embed {       position: absolute;       top: 0;       left: 0;       width: 100%% !important;       height: 100%% !important;   }   </style></head><body>   <div class=\"embed-container\">       <div id=\"player\"></div>   </div>   <script src=\"https://www.youtube.com/iframe_api\"></script>   <script>   var player;   var observer;   var videoEl;   var playing;   var posted = false;   YT.ready(function() {       player = new YT.Player(\"player\", {                              \"width\" : \"100%%\",                              \"events\" : {                              \"onReady\" : \"onReady\",                              \"onError\" : \"onError\",                              \"onStateChange\" : \"onStateChange\",                              },                              \"videoId\" : \"%1$s\",                              \"height\" : \"100%%\",                              \"playerVars\" : {                              \"start\" : %2$d,                              \"rel\" : 1,                              \"showinfo\" : 0,                              \"modestbranding\" : 0,                              \"iv_load_policy\" : 3,                              \"autohide\" : 1,                              \"autoplay\" : 1,                              \"cc_load_policy\" : 1,                              \"playsinline\" : 1,                              \"controls\" : 1                              }                            });        player.setSize(window.innerWidth, window.innerHeight);    });    function hideControls() {        playing = !videoEl.paused;       videoEl.controls = 0;       observer.observe(videoEl, {attributes: true});    }    function showControls() {        playing = !videoEl.paused;       observer.disconnect();       videoEl.controls = 1;    }    function onError(event) {       if (!posted) {            if (window.YoutubeProxy !== undefined) {                   YoutubeProxy.postEvent(\"loaded\", null);             }            posted = true;       }    }    function onStateChange(event) {       if (event.data == YT.PlayerState.PLAYING && !posted) {            if (window.YoutubeProxy !== undefined) {                   YoutubeProxy.postEvent(\"loaded\", null);             }            posted = true;       }    }    function onReady(event) {       player.playVideo();    }    window.onresize = function() {       player.setSize(window.innerWidth, window.innerHeight);       player.playVideo();    }    </script></body></html>";
         this.onShowListener = new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface dialogInterface) {
@@ -265,9 +269,7 @@ public class EmbedBottomSheet extends BottomSheet {
         this.webView = webView;
         webView.getSettings().setJavaScriptEnabled(true);
         this.webView.getSettings().setDomStorageEnabled(true);
-        if (i4 >= 17) {
-            this.webView.getSettings().setMediaPlaybackRequiresUserGesture(false);
-        }
+        this.webView.getSettings().setMediaPlaybackRequiresUserGesture(false);
         if (i4 >= 21) {
             this.webView.getSettings().setMixedContentMode(0);
             CookieManager.getInstance().setAcceptThirdPartyCookies(this.webView, true);
@@ -698,9 +700,7 @@ public class EmbedBottomSheet extends BottomSheet {
                         EmbedBottomSheet.this.progressBarBlackBackground.setVisibility(0);
                         EmbedBottomSheet.this.isYouTube = true;
                         String str5 = null;
-                        if (Build.VERSION.SDK_INT >= 17) {
-                            EmbedBottomSheet.this.webView.addJavascriptInterface(new YoutubeProxy(), "YoutubeProxy");
-                        }
+                        EmbedBottomSheet.this.webView.addJavascriptInterface(new YoutubeProxy(), "YoutubeProxy");
                         if (EmbedBottomSheet.this.openUrl != null) {
                             try {
                                 Uri parse = Uri.parse(EmbedBottomSheet.this.openUrl);
@@ -828,12 +828,13 @@ public class EmbedBottomSheet extends BottomSheet {
         @Override
         public void onPageFinished(WebView webView, String str) {
             super.onPageFinished(webView, str);
-            if (!EmbedBottomSheet.this.isYouTube || Build.VERSION.SDK_INT < 17) {
-                EmbedBottomSheet.this.progressBar.setVisibility(4);
-                EmbedBottomSheet.this.progressBarBlackBackground.setVisibility(4);
-                EmbedBottomSheet.this.pipButton.setEnabled(true);
-                EmbedBottomSheet.this.pipButton.setAlpha(1.0f);
+            if (EmbedBottomSheet.this.isYouTube) {
+                return;
             }
+            EmbedBottomSheet.this.progressBar.setVisibility(4);
+            EmbedBottomSheet.this.progressBarBlackBackground.setVisibility(4);
+            EmbedBottomSheet.this.pipButton.setEnabled(true);
+            EmbedBottomSheet.this.pipButton.setAlpha(1.0f);
         }
 
         @Override
@@ -907,15 +908,20 @@ public class EmbedBottomSheet extends BottomSheet {
     }
 
     public boolean checkInlinePermissions() {
+        boolean canDrawOverlays;
         Activity activity = this.parentActivity;
         if (activity == null) {
             return false;
         }
-        if (Build.VERSION.SDK_INT < 23 || Settings.canDrawOverlays(activity)) {
-            return true;
+        if (Build.VERSION.SDK_INT >= 23) {
+            canDrawOverlays = Settings.canDrawOverlays(activity);
+            if (canDrawOverlays) {
+                return true;
+            }
+            AlertsCreator.createDrawOverlayPermissionDialog(this.parentActivity, null);
+            return false;
         }
-        AlertsCreator.createDrawOverlayPermissionDialog(this.parentActivity, null);
-        return false;
+        return true;
     }
 
     @Override

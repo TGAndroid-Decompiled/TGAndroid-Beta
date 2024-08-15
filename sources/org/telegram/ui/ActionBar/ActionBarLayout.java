@@ -104,6 +104,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     private INavigationLayout.INavigationLayoutDelegate delegate;
     private DrawerLayoutContainer drawerLayoutContainer;
     private List<BaseFragment> fragmentsStack;
+    public boolean highlightActionButtons;
     private boolean inActionMode;
     private boolean inBubbleMode;
     private boolean inPreviewMode;
@@ -112,6 +113,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     private boolean isSheet;
     ArrayList<String> lastActions;
     private long lastFrameTime;
+    private View layoutToIgnore;
     private final boolean main;
     private boolean maybeStartTracking;
     private int[] measureSpec;
@@ -163,24 +165,20 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
 
     @Override
     public boolean addFragmentToStack(BaseFragment baseFragment) {
-        boolean addFragmentToStack;
-        addFragmentToStack = addFragmentToStack(baseFragment, -1);
-        return addFragmentToStack;
+        return INavigationLayout.CC.$default$addFragmentToStack(this, baseFragment);
     }
 
-    @Override
     public void animateThemedValues(Theme.ThemeInfo themeInfo, int i, boolean z, boolean z2) {
-        animateThemedValues(new INavigationLayout.ThemeAnimationSettings(themeInfo, i, z, z2), null);
+        INavigationLayout.CC.$default$animateThemedValues(this, themeInfo, i, z, z2);
     }
 
-    @Override
     public void animateThemedValues(Theme.ThemeInfo themeInfo, int i, boolean z, boolean z2, Runnable runnable) {
-        animateThemedValues(new INavigationLayout.ThemeAnimationSettings(themeInfo, i, z, z2), runnable);
+        INavigationLayout.CC.$default$animateThemedValues(this, themeInfo, i, z, z2, runnable);
     }
 
     @Override
     public void closeLastFragment() {
-        closeLastFragment(true);
+        INavigationLayout.CC.$default$closeLastFragment(this);
     }
 
     @Override
@@ -190,7 +188,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
 
     @Override
     public void drawHeaderShadow(Canvas canvas, int i) {
-        drawHeaderShadow(canvas, 255, i);
+        INavigationLayout.CC.$default$drawHeaderShadow(this, canvas, i);
     }
 
     public BaseFragment getBackgroundFragment() {
@@ -239,44 +237,32 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
 
     @Override
     public boolean presentFragment(BaseFragment baseFragment) {
-        boolean presentFragment;
-        presentFragment = presentFragment(new INavigationLayout.NavigationParams(baseFragment));
-        return presentFragment;
+        return INavigationLayout.CC.$default$presentFragment(this, baseFragment);
     }
 
     @Override
     public boolean presentFragment(BaseFragment baseFragment, boolean z) {
-        boolean presentFragment;
-        presentFragment = presentFragment(new INavigationLayout.NavigationParams(baseFragment).setRemoveLast(z));
-        return presentFragment;
+        return INavigationLayout.CC.$default$presentFragment(this, baseFragment, z);
     }
 
     @Override
     public boolean presentFragment(BaseFragment baseFragment, boolean z, boolean z2, boolean z3, boolean z4) {
-        boolean presentFragment;
-        presentFragment = presentFragment(new INavigationLayout.NavigationParams(baseFragment).setRemoveLast(z).setNoAnimation(z2).setCheckPresentFromDelegate(z3).setPreview(z4));
-        return presentFragment;
+        return INavigationLayout.CC.$default$presentFragment(this, baseFragment, z, z2, z3, z4);
     }
 
     @Override
     public boolean presentFragment(BaseFragment baseFragment, boolean z, boolean z2, boolean z3, boolean z4, ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout) {
-        boolean presentFragment;
-        presentFragment = presentFragment(new INavigationLayout.NavigationParams(baseFragment).setRemoveLast(z).setNoAnimation(z2).setCheckPresentFromDelegate(z3).setPreview(z4).setMenuView(actionBarPopupWindowLayout));
-        return presentFragment;
+        return INavigationLayout.CC.$default$presentFragment(this, baseFragment, z, z2, z3, z4, actionBarPopupWindowLayout);
     }
 
     @Override
     public boolean presentFragmentAsPreview(BaseFragment baseFragment) {
-        boolean presentFragment;
-        presentFragment = presentFragment(new INavigationLayout.NavigationParams(baseFragment).setPreview(true));
-        return presentFragment;
+        return INavigationLayout.CC.$default$presentFragmentAsPreview(this, baseFragment);
     }
 
     @Override
     public boolean presentFragmentAsPreviewWithMenu(BaseFragment baseFragment, ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout) {
-        boolean presentFragment;
-        presentFragment = presentFragment(new INavigationLayout.NavigationParams(baseFragment).setPreview(true).setMenuView(actionBarPopupWindowLayout));
-        return presentFragment;
+        return INavigationLayout.CC.$default$presentFragmentAsPreviewWithMenu(this, baseFragment, actionBarPopupWindowLayout);
     }
 
     @Override
@@ -291,17 +277,18 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
 
     @Override
     public void removeFragmentFromStack(BaseFragment baseFragment) {
-        removeFragmentFromStack(baseFragment, false);
-    }
-
-    @Override
-    public void setHighlightActionButtons(boolean z) {
+        INavigationLayout.CC.$default$removeFragmentFromStack(this, baseFragment);
     }
 
     static float access$1216(ActionBarLayout actionBarLayout, float f) {
         float f2 = actionBarLayout.animationProgress + f;
         actionBarLayout.animationProgress = f2;
         return f2;
+    }
+
+    @Override
+    public void setHighlightActionButtons(boolean z) {
+        this.highlightActionButtons = z;
     }
 
     public boolean storyViewerAttached() {
@@ -526,6 +513,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
 
     public ActionBarLayout(Context context, boolean z) {
         super(context);
+        this.highlightActionButtons = false;
         this.decelerateInterpolator = new DecelerateInterpolator(1.5f);
         this.overshootInterpolator = new OvershootInterpolator(1.02f);
         this.accelerateDecelerateInterpolator = new AccelerateDecelerateInterpolator();
@@ -703,11 +691,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             return;
         }
         int i3 = i / 2;
-        if (Build.VERSION.SDK_INT >= 19) {
-            if (headerShadowDrawable.getAlpha() != i3) {
-                headerShadowDrawable.setAlpha(i3);
-            }
-        } else {
+        if (headerShadowDrawable.getAlpha() != i3) {
             headerShadowDrawable.setAlpha(i3);
         }
         headerShadowDrawable.setBounds(0, i2, getMeasuredWidth(), headerShadowDrawable.getIntrinsicHeight() + i2);
@@ -996,23 +980,27 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             baseFragment2.onResume();
             baseFragment2.onBecomeFullyVisible();
             baseFragment2.prepareFragmentToSlide(false, false);
-        } else if (this.fragmentsStack.size() >= 2) {
-            List<BaseFragment> list4 = this.fragmentsStack;
-            list4.get(list4.size() - 1).prepareFragmentToSlide(true, false);
-            List<BaseFragment> list5 = this.fragmentsStack;
-            BaseFragment baseFragment3 = list5.get(list5.size() - 2);
-            baseFragment3.prepareFragmentToSlide(false, false);
-            baseFragment3.onPause();
-            View view2 = baseFragment3.fragmentView;
-            if (view2 != null && (viewGroup2 = (ViewGroup) view2.getParent()) != null) {
-                baseFragment3.onRemoveFromParent();
-                viewGroup2.removeViewInLayout(baseFragment3.fragmentView);
+            this.layoutToIgnore = this.containerView;
+        } else {
+            if (this.fragmentsStack.size() >= 2) {
+                List<BaseFragment> list4 = this.fragmentsStack;
+                list4.get(list4.size() - 1).prepareFragmentToSlide(true, false);
+                List<BaseFragment> list5 = this.fragmentsStack;
+                BaseFragment baseFragment3 = list5.get(list5.size() - 2);
+                baseFragment3.prepareFragmentToSlide(false, false);
+                baseFragment3.onPause();
+                View view2 = baseFragment3.fragmentView;
+                if (view2 != null && (viewGroup2 = (ViewGroup) view2.getParent()) != null) {
+                    baseFragment3.onRemoveFromParent();
+                    viewGroup2.removeViewInLayout(baseFragment3.fragmentView);
+                }
+                ActionBar actionBar = baseFragment3.actionBar;
+                if (actionBar != null && actionBar.shouldAddToContainer() && (viewGroup = (ViewGroup) baseFragment3.actionBar.getParent()) != null) {
+                    viewGroup.removeViewInLayout(baseFragment3.actionBar);
+                }
+                baseFragment3.detachSheets();
             }
-            ActionBar actionBar = baseFragment3.actionBar;
-            if (actionBar != null && actionBar.shouldAddToContainer() && (viewGroup = (ViewGroup) baseFragment3.actionBar.getParent()) != null) {
-                viewGroup.removeViewInLayout(baseFragment3.actionBar);
-            }
-            baseFragment3.detachSheets();
+            this.layoutToIgnore = null;
         }
         this.containerViewBack.setVisibility(4);
         this.startedTracking = false;
@@ -1025,6 +1013,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     private void prepareForMoving(MotionEvent motionEvent) {
         this.maybeStartTracking = false;
         this.startedTracking = true;
+        this.layoutToIgnore = this.containerViewBack;
         this.startedTrackingX = (int) motionEvent.getX();
         this.containerViewBack.setVisibility(0);
         this.beginTrackingSent = false;
@@ -1178,9 +1167,11 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                     });
                     animatorSet.start();
                     this.animationInProgress = true;
+                    this.layoutToIgnore = this.containerViewBack;
                 } else {
                     this.maybeStartTracking = false;
                     this.startedTracking = false;
+                    this.layoutToIgnore = null;
                 }
                 VelocityTracker velocityTracker2 = this.velocityTracker;
                 if (velocityTracker2 != null) {
@@ -1190,6 +1181,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             } else if (motionEvent == null) {
                 this.maybeStartTracking = false;
                 this.startedTracking = false;
+                this.layoutToIgnore = null;
                 VelocityTracker velocityTracker3 = this.velocityTracker;
                 if (velocityTracker3 != null) {
                     velocityTracker3.recycle();
@@ -1589,7 +1581,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         this.containerView.setTranslationY(0.0f);
         if (z4) {
             if (Build.VERSION.SDK_INT >= 21) {
-                view.setOutlineProvider(new ViewOutlineProvider(this) {
+                view.setOutlineProvider(new ViewOutlineProvider() {
                     @Override
                     @TargetApi(21)
                     public void getOutline(View view2, Outline outline) {
@@ -1625,6 +1617,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 presentFragmentInternalRemoveOld(z, baseFragment);
                 this.transitionAnimationStartTime = System.currentTimeMillis();
                 this.transitionAnimationInProgress = true;
+                this.layoutToIgnore = this.containerView;
                 this.onOpenAnimationEndRunnable = new Runnable() {
                     @Override
                     public final void run() {
@@ -1658,6 +1651,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 this.transitionAnimationPreviewMode = z4;
                 this.transitionAnimationStartTime = System.currentTimeMillis();
                 this.transitionAnimationInProgress = true;
+                this.layoutToIgnore = this.containerView;
                 final BaseFragment baseFragment3 = baseFragment;
                 this.onOpenAnimationEndRunnable = new Runnable() {
                     @Override
@@ -2111,6 +2105,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 if (z3) {
                     this.transitionAnimationStartTime = System.currentTimeMillis();
                     this.transitionAnimationInProgress = true;
+                    this.layoutToIgnore = this.containerView;
                     baseFragment2.setRemovingFromStack(true);
                     this.onCloseAnimationEndRunnable = new Runnable() {
                         @Override
@@ -2159,6 +2154,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             } else if (this.useAlphaAnimations && !z2) {
                 this.transitionAnimationStartTime = System.currentTimeMillis();
                 this.transitionAnimationInProgress = true;
+                this.layoutToIgnore = this.containerView;
                 this.onCloseAnimationEndRunnable = new Runnable() {
                     @Override
                     public final void run() {
@@ -2693,6 +2689,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             animatorSet.cancel();
         }
         this.transitionAnimationInProgress = false;
+        this.layoutToIgnore = null;
         this.transitionAnimationPreviewMode = false;
         this.transitionAnimationStartTime = 0L;
         this.newFragment = null;
@@ -2729,6 +2726,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             return;
         }
         this.transitionAnimationInProgress = false;
+        this.layoutToIgnore = null;
         this.transitionAnimationPreviewMode = false;
         this.transitionAnimationStartTime = 0L;
         this.newFragment = null;

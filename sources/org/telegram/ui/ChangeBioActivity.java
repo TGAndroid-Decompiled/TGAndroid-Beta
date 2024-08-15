@@ -74,8 +74,7 @@ public class ChangeBioActivity extends BaseFragment {
         addItemWithWidth.setContentDescription(LocaleController.getString("Done", R.string.Done));
         LinearLayout linearLayout = new LinearLayout(context);
         this.fragmentView = linearLayout;
-        LinearLayout linearLayout2 = linearLayout;
-        linearLayout2.setOrientation(1);
+        linearLayout.setOrientation(1);
         this.fragmentView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
@@ -85,7 +84,7 @@ public class ChangeBioActivity extends BaseFragment {
             }
         });
         FrameLayout frameLayout = new FrameLayout(context);
-        linearLayout2.addView(frameLayout, LayoutHelper.createLinear(-1, -2, 24.0f, 24.0f, 20.0f, 0.0f));
+        linearLayout.addView(frameLayout, LayoutHelper.createLinear(-1, -2, 24.0f, 24.0f, 20.0f, 0.0f));
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context) {
             @Override
             public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
@@ -170,7 +169,7 @@ public class ChangeBioActivity extends BaseFragment {
         this.helpTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText8));
         this.helpTextView.setGravity(LocaleController.isRTL ? 5 : 3);
         this.helpTextView.setText(AndroidUtilities.replaceTags(LocaleController.getString("UserBioInfo", R.string.UserBioInfo)));
-        linearLayout2.addView(this.helpTextView, LayoutHelper.createLinear(-2, -2, LocaleController.isRTL ? 5 : 3, 24, 10, 24, 0));
+        linearLayout.addView(this.helpTextView, LayoutHelper.createLinear(-2, -2, LocaleController.isRTL ? 5 : 3, 24, 10, 24, 0));
         TLRPC$UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(UserConfig.getInstance(this.currentAccount).getClientUserId());
         if (userFull != null && (str = userFull.about) != null) {
             this.firstNameField.setText(str);

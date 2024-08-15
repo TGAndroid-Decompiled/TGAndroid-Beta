@@ -197,7 +197,7 @@ public class StackLinearChartView<T extends StackLinearViewData> extends BaseCha
     }
 
     @Override
-    public void fillTransitionParams(org.telegram.ui.Charts.view_data.TransitionParams r21) {
+    public void fillTransitionParams(org.telegram.ui.Charts.view_data.TransitionParams r20) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Charts.StackLinearChartView.fillTransitionParams(org.telegram.ui.Charts.view_data.TransitionParams):void");
     }
 }

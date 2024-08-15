@@ -960,7 +960,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 PremiumPreviewFragment.this.checkButtonDivider();
             }
         });
-        this.backgroundView = new BackgroundView(this, context) {
+        this.backgroundView = new BackgroundView(context) {
             @Override
             public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
                 return true;
@@ -1608,7 +1608,6 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
 
     private void updateRows() {
         SubscriptionTier subscriptionTier;
-        this.rowCount = 0;
         this.sectionRow = -1;
         this.privacyRow = -1;
         this.moreHeaderRow = -1;
@@ -1628,7 +1627,6 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         if (this.type == 1 && getUserConfig().isPremium()) {
             int i2 = this.rowCount;
             int i3 = i2 + 1;
-            this.rowCount = i3;
             this.sectionRow = i2;
             int i4 = i3 + 1;
             this.rowCount = i4;
@@ -1640,17 +1638,14 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         }
         int i5 = this.rowCount;
         int i6 = i5 + 1;
-        this.rowCount = i6;
         this.statusRow = i5;
         this.rowCount = i6 + 1;
         this.lastPaddingRow = i6;
         if (this.type == 1 && getUserConfig().isPremium()) {
             int i7 = this.rowCount;
             int i8 = i7 + 1;
-            this.rowCount = i8;
             this.showAdsHeaderRow = i7;
             int i9 = i8 + 1;
-            this.rowCount = i9;
             this.showAdsRow = i8;
             this.rowCount = i9 + 1;
             this.showAdsInfoRow = i9;
@@ -1854,28 +1849,22 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         private boolean tierListViewVisible;
         TextView titleView;
 
-        public BackgroundView(Context context) {
+        public BackgroundView(final Context context) {
             super(context);
             setOrientation(1);
             FrameLayout frameLayout = new FrameLayout(context);
             this.imageFrameLayout = frameLayout;
             int i = PremiumPreviewFragment.this.type == 1 ? 175 : 190;
             addView(frameLayout, LayoutHelper.createLinear(i, i, 1));
-            GLIconTextureView gLIconTextureView = new GLIconTextureView(context, PremiumPreviewFragment.this.whiteBackground ? 1 : 0, PremiumPreviewFragment.this.type == 1 ? 1 : 0, PremiumPreviewFragment.this, context) {
-                final Context val$context;
-
-                {
-                    this.val$context = context;
-                }
-
+            GLIconTextureView gLIconTextureView = new GLIconTextureView(context, PremiumPreviewFragment.this.whiteBackground ? 1 : 0, PremiumPreviewFragment.this.type == 1 ? 1 : 0) {
                 @Override
                 public void onLongPress() {
                     super.onLongPress();
                     PremiumPreviewFragment premiumPreviewFragment = PremiumPreviewFragment.this;
                     if (premiumPreviewFragment.settingsView == null && BuildVars.DEBUG_PRIVATE_VERSION) {
-                        premiumPreviewFragment.settingsView = new FrameLayout(this.val$context);
-                        ScrollView scrollView = new ScrollView(this.val$context);
-                        scrollView.addView(new GLIconSettingsView(this.val$context, BackgroundView.this.imageView.mRenderer));
+                        premiumPreviewFragment.settingsView = new FrameLayout(context);
+                        ScrollView scrollView = new ScrollView(context);
+                        scrollView.addView(new GLIconSettingsView(context, BackgroundView.this.imageView.mRenderer));
                         PremiumPreviewFragment.this.settingsView.addView(scrollView);
                         PremiumPreviewFragment.this.settingsView.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground));
                         PremiumPreviewFragment.this.contentView.addView(PremiumPreviewFragment.this.settingsView, LayoutHelper.createFrame(-1, -1, 80));
@@ -1901,7 +1890,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             textView2.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
             textView2.setGravity(1);
             addView(textView2, LayoutHelper.createLinear(-1, -2, 0.0f, 1, 16, 7, 16, 0));
-            RecyclerListView recyclerListView = new RecyclerListView(context, PremiumPreviewFragment.this) {
+            RecyclerListView recyclerListView = new RecyclerListView(context) {
                 Paint paint;
                 private Path path;
 
@@ -1977,8 +1966,10 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
 
         public class AnonymousClass3 extends RecyclerListView.SelectionAdapter {
             final Context val$context;
+            final PremiumPreviewFragment val$this$0;
 
             AnonymousClass3(PremiumPreviewFragment premiumPreviewFragment, Context context) {
+                this.val$this$0 = premiumPreviewFragment;
                 this.val$context = context;
             }
 
@@ -2542,7 +2533,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         }
     }
 
-    public void showSelectStatusDialog(org.telegram.ui.PremiumFeatureCell r23, java.lang.Long r24, final org.telegram.messenger.Utilities.Callback2<java.lang.Long, java.lang.Integer> r25) {
+    public void showSelectStatusDialog(org.telegram.ui.PremiumFeatureCell r24, java.lang.Long r25, final org.telegram.messenger.Utilities.Callback2<java.lang.Long, java.lang.Integer> r26) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PremiumPreviewFragment.showSelectStatusDialog(org.telegram.ui.PremiumFeatureCell, java.lang.Long, org.telegram.messenger.Utilities$Callback2):void");
     }
 }

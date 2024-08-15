@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.Theme;
@@ -22,6 +23,7 @@ public class TextDetailCell extends FrameLayout {
     private boolean multiline;
     private boolean needDivider;
     private Theme.ResourcesProvider resourcesProvider;
+    private final TextView showMoreTextView;
     public final LinkSpanDrawable.LinksTextView textView;
     public final LinkSpanDrawable.LinksTextView valueTextView;
 
@@ -39,6 +41,7 @@ public class TextDetailCell extends FrameLayout {
 
     public TextDetailCell(Context context, Theme.ResourcesProvider resourcesProvider, boolean z) {
         super(context);
+        this.showMoreTextView = null;
         this.resourcesProvider = resourcesProvider;
         LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, resourcesProvider) {
             @Override

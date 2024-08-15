@@ -64,7 +64,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
     static {
         int i = Build.VERSION.SDK_INT;
         boolean z = true;
-        supportBigNotifications = i >= 16;
+        supportBigNotifications = true;
         if (i >= 21 && TextUtils.isEmpty(AndroidUtilities.getSystemProperty("ro.miui.ui.version.code"))) {
             z = false;
         }
@@ -289,21 +289,25 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
     }
 
     public void updatePlaybackState(long j) {
+        PlaybackState.Builder state;
+        PlaybackState build;
+        PlaybackState.Builder state2;
         if (Build.VERSION.SDK_INT < 21) {
             return;
         }
         boolean z = !MediaController.getInstance().isMessagePaused();
         if (MediaController.getInstance().isDownloadingCurrentMessage()) {
-            this.playbackState.setState(6, 0L, 1.0f).setActions(0L);
+            state2 = this.playbackState.setState(6, 0L, 1.0f);
+            state2.setActions(0L);
         } else {
-            long j2 = 774;
             MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
-            if (playingMessageObject != null && playingMessageObject.isMusic()) {
-                j2 = 822;
-            }
-            this.playbackState.setState(z ? 3 : 2, j, getPlaybackSpeed(z, playingMessageObject)).setActions(j2);
+            long j2 = (playingMessageObject == null || !playingMessageObject.isMusic()) ? 774L : 822L;
+            state = this.playbackState.setState(z ? 3 : 2, j, getPlaybackSpeed(z, playingMessageObject));
+            state.setActions(j2);
         }
-        this.mediaSession.setPlaybackState(this.playbackState.build());
+        MediaSession mediaSession = this.mediaSession;
+        build = this.playbackState.build();
+        mediaSession.setPlaybackState(build);
     }
 
     private float getPlaybackSpeed(boolean z, MessageObject messageObject) {
@@ -374,10 +378,9 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
             long round = Math.round(playingMessageObject2.audioPlayerDuration * ((Float) objArr[1]).floatValue()) * 1000;
             updatePlaybackState(round);
             RemoteControlClient remoteControlClient = this.remoteControlClient;
-            if (remoteControlClient == null || Build.VERSION.SDK_INT < 18) {
-                return;
+            if (remoteControlClient != null) {
+                remoteControlClient.setPlaybackState(MediaController.getInstance().isMessagePaused() ? 2 : 3, round, MediaController.getInstance().isMessagePaused() ? 0.0f : 1.0f);
             }
-            remoteControlClient.setPlaybackState(MediaController.getInstance().isMessagePaused() ? 2 : 3, round, MediaController.getInstance().isMessagePaused() ? 0.0f : 1.0f);
         } else if (i == NotificationCenter.httpFileDidLoad) {
             String str3 = (String) objArr[0];
             MessageObject playingMessageObject3 = MediaController.getInstance().getPlayingMessageObject();

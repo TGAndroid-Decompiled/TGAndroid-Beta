@@ -24,6 +24,7 @@ public class AlbumButton extends View {
     private float countLayoutWidth;
     private final TextPaint countPaintLayout;
     private final ImageReceiver imageReceiver;
+    final float imageSize;
     private StaticLayout nameLayout;
     private float nameLayoutLeft;
     private float nameLayoutWidth;
@@ -40,6 +41,7 @@ public class AlbumButton extends View {
         this.namePaintLayout = textPaint;
         TextPaint textPaint2 = new TextPaint(1);
         this.countPaintLayout = textPaint2;
+        this.imageSize = 30.0f;
         setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
         setBackground(Theme.getSelectorDrawable(false));
         setMinimumWidth(AndroidUtilities.dp(196.0f));

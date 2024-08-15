@@ -7,6 +7,7 @@ import android.view.animation.LinearInterpolator;
 import android.view.animation.PathInterpolator;
 import androidx.core.graphics.PathParser;
 public class CubicBezierInterpolator implements Interpolator {
+    public static final Interpolator Emphasized;
     protected PointF a;
     protected PointF b;
     protected PointF c;
@@ -20,11 +21,7 @@ public class CubicBezierInterpolator implements Interpolator {
     public static final CubicBezierInterpolator EASE_OUT_BACK = new CubicBezierInterpolator(0.34d, 1.56d, 0.64d, 1.0d);
 
     static {
-        if (Build.VERSION.SDK_INT >= 21) {
-            new PathInterpolator(PathParser.createPathFromPathData("M 0,0 C 0.05, 0, 0.133333, 0.06, 0.166666, 0.4 C 0.208333, 0.82, 0.25, 1, 1, 1"));
-        } else {
-            new LinearInterpolator();
-        }
+        Emphasized = Build.VERSION.SDK_INT >= 21 ? new PathInterpolator(PathParser.createPathFromPathData("M 0,0 C 0.05, 0, 0.133333, 0.06, 0.166666, 0.4 C 0.208333, 0.82, 0.25, 1, 1, 1")) : new LinearInterpolator();
     }
 
     public CubicBezierInterpolator(PointF pointF, PointF pointF2) throws IllegalArgumentException {

@@ -42,7 +42,7 @@ public class GraySectionCell extends FrameLayout implements Theme.Colorable {
         textViewEmojis2.setTextColor(getThemedColor(i));
         this.textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         addView(this.textView, LayoutHelper.createFrame(-1, -1.0f, (LocaleController.isRTL ? 5 : 3) | 48, 16.0f, 0.0f, 16.0f, 0.0f));
-        AnimatedTextView animatedTextView = new AnimatedTextView(this, getContext(), true, true, true) {
+        AnimatedTextView animatedTextView = new AnimatedTextView(getContext(), true, true, true) {
             @Override
             public CharSequence getAccessibilityClassName() {
                 return Button.class.getName();

@@ -34,7 +34,7 @@ import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.EmptyStubSpan;
 import org.telegram.ui.Components.StaticLayoutEx;
 import org.telegram.ui.Components.spoilers.SpoilerEffect;
-public class SimpleTextView extends View {
+public class SimpleTextView extends View implements Drawable.Callback {
     private boolean attachedToWindow;
     private boolean buildFullLayout;
     private boolean canHideRightDrawable;
@@ -1231,6 +1231,7 @@ public class SimpleTextView extends View {
     }
 
     private void updateScrollAnimation() {
+        float dp;
         if (this.scrollNonFitText) {
             if (this.textDoesNotFit || this.scrollingOffset != 0.0f) {
                 long elapsedRealtime = SystemClock.elapsedRealtime();
@@ -1242,17 +1243,16 @@ public class SimpleTextView extends View {
                 if (i > 0) {
                     this.currentScrollDelay = (int) (i - j);
                 } else {
-                    int dp = this.totalWidth + AndroidUtilities.dp(16.0f);
-                    float f = 50.0f;
+                    int dp2 = this.totalWidth + AndroidUtilities.dp(16.0f);
                     if (this.scrollingOffset < AndroidUtilities.dp(100.0f)) {
-                        f = ((this.scrollingOffset / AndroidUtilities.dp(100.0f)) * 20.0f) + 30.0f;
-                    } else if (this.scrollingOffset >= dp - AndroidUtilities.dp(100.0f)) {
-                        f = 50.0f - (((this.scrollingOffset - (dp - AndroidUtilities.dp(100.0f))) / AndroidUtilities.dp(100.0f)) * 20.0f);
+                        dp = ((this.scrollingOffset / AndroidUtilities.dp(100.0f)) * 20.0f) + 30.0f;
+                    } else {
+                        dp = this.scrollingOffset >= ((float) (dp2 - AndroidUtilities.dp(100.0f))) ? 50.0f - (((this.scrollingOffset - (dp2 - AndroidUtilities.dp(100.0f))) / AndroidUtilities.dp(100.0f)) * 20.0f) : 50.0f;
                     }
-                    float dp2 = this.scrollingOffset + ((((float) j) / 1000.0f) * AndroidUtilities.dp(f));
-                    this.scrollingOffset = dp2;
+                    float dp3 = this.scrollingOffset + ((((float) j) / 1000.0f) * AndroidUtilities.dp(dp));
+                    this.scrollingOffset = dp3;
                     this.lastUpdateTime = elapsedRealtime;
-                    if (dp2 > dp) {
+                    if (dp3 > dp2) {
                         this.scrollingOffset = 0.0f;
                         this.currentScrollDelay = 500;
                     }

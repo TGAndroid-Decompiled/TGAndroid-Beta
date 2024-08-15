@@ -564,17 +564,18 @@ public class DownloadController extends BaseController implements NotificationCe
         }
         int i = 0;
         for (int i2 = 0; i2 < iArr.length; i2++) {
-            int i3 = (iArr[i2] & 1) != 0 ? 1 : 0;
-            if ((iArr[i2] & 2) != 0) {
-                i3 |= 2;
+            int i3 = iArr[i2];
+            int i4 = (i3 & 1) != 0 ? 1 : 0;
+            if ((i3 & 2) != 0) {
+                i4 |= 2;
             }
-            if ((iArr[i2] & 4) != 0) {
-                i3 |= 4;
+            if ((i3 & 4) != 0) {
+                i4 |= 4;
             }
-            if ((iArr[i2] & 8) != 0) {
-                i3 |= 8;
+            if ((i3 & 8) != 0) {
+                i4 |= 8;
             }
-            i |= i3 << (i2 * 8);
+            i |= i4 << (i2 * 8);
         }
         return i;
     }
@@ -785,23 +786,23 @@ public class DownloadController extends BaseController implements NotificationCe
         boolean z4 = false;
         while (true) {
             int[] iArr = currentRoamingPreset.mask;
-            if (i2 < iArr.length) {
-                if ((iArr[i2] & 1) != 0) {
-                    z2 = true;
-                }
-                if ((iArr[i2] & 4) != 0) {
-                    z3 = true;
-                }
-                if ((iArr[i2] & 8) != 0) {
-                    z4 = true;
-                }
-                if (z2 && z3 && z4) {
-                    break;
-                }
-                i2++;
-            } else {
+            if (i2 >= iArr.length) {
                 break;
             }
+            int i3 = iArr[i2];
+            if ((i3 & 1) != 0) {
+                z2 = true;
+            }
+            if ((i3 & 4) != 0) {
+                z3 = true;
+            }
+            if ((i3 & 8) != 0) {
+                z4 = true;
+            }
+            if (z2 && z3 && z4) {
+                break;
+            }
+            i2++;
         }
         TLRPC$TL_autoDownloadSettings tLRPC$TL_autoDownloadSettings2 = tLRPC$TL_account_saveAutoDownloadSettings.settings;
         tLRPC$TL_autoDownloadSettings2.photo_size_max = z2 ? (int) currentRoamingPreset.sizes[0] : 0;
@@ -1091,10 +1092,14 @@ public class DownloadController extends BaseController implements NotificationCe
     }
 
     public static float getProgress(long[] jArr) {
-        if (jArr == null || jArr.length < 2 || jArr[1] == 0) {
+        if (jArr == null || jArr.length < 2) {
             return 0.0f;
         }
-        return Math.min(1.0f, ((float) jArr[0]) / ((float) jArr[1]));
+        long j = jArr[1];
+        if (j == 0) {
+            return 0.0f;
+        }
+        return Math.min(1.0f, ((float) jArr[0]) / ((float) j));
     }
 
     public void startDownloadFile(TLRPC$Document tLRPC$Document, final MessageObject messageObject) {

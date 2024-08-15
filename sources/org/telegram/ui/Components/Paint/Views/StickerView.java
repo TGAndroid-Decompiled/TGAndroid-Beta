@@ -204,7 +204,7 @@ public class StickerView extends EntityView {
 
     @Override
     protected EntityView.SelectionView createSelectionView() {
-        return new StickerViewSelectionView(this, getContext());
+        return new StickerViewSelectionView(getContext());
     }
 
     public TLRPC$Document getSticker() {
@@ -222,7 +222,7 @@ public class StickerView extends EntityView {
     public class StickerViewSelectionView extends EntityView.SelectionView {
         private RectF arcRect;
 
-        public StickerViewSelectionView(StickerView stickerView, Context context) {
+        public StickerViewSelectionView(Context context) {
             super(context);
             this.arcRect = new RectF();
         }

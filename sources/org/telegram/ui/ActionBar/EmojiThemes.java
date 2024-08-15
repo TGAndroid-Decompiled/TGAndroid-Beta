@@ -31,10 +31,11 @@ public class EmojiThemes {
     private static final int[] previewColorKeys = {Theme.key_chat_inBubble, Theme.key_chat_outBubble, Theme.key_featuredStickers_addButton, Theme.key_chat_wallpaper, Theme.key_chat_wallpaper_gradient_to1, Theme.key_chat_wallpaper_gradient_to2, Theme.key_chat_wallpaper_gradient_to3, Theme.key_chat_wallpaper_gradient_rotation};
     private final int currentAccount;
     public String emoji;
-    public ArrayList<ThemeItem> items = new ArrayList<>();
     public boolean showAsDefaultStub;
     public boolean showAsRemovedStub;
     public TLRPC$WallPaper wallpaper;
+    int currentIndex = 0;
+    public ArrayList<ThemeItem> items = new ArrayList<>();
 
     public EmojiThemes(int i) {
         this.currentAccount = i;

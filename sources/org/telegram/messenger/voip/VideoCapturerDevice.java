@@ -54,9 +54,6 @@ public class VideoCapturerDevice {
     }
 
     public VideoCapturerDevice(final boolean z) {
-        if (Build.VERSION.SDK_INT < 18) {
-            return;
-        }
         Logging.enableLogToDebugOutput(Logging.Severity.LS_INFO);
         Logging.d("VideoCapturerDevice", "device model = " + Build.MANUFACTURER + Build.MODEL);
         AndroidUtilities.runOnUIThread(new Runnable() {
@@ -83,16 +80,15 @@ public class VideoCapturerDevice {
             return;
         }
         final Point screenCaptureSize = getScreenCaptureSize();
-        VideoCapturerDevice[] videoCapturerDeviceArr = instance;
-        int i = videoCapturerDeviceArr[1].currentWidth;
+        final VideoCapturerDevice videoCapturerDevice = instance[1];
+        int i = videoCapturerDevice.currentWidth;
         int i2 = screenCaptureSize.x;
-        if (i == i2 && videoCapturerDeviceArr[1].currentHeight == screenCaptureSize.y) {
+        if (i == i2 && videoCapturerDevice.currentHeight == screenCaptureSize.y) {
             return;
         }
-        videoCapturerDeviceArr[1].currentWidth = i2;
-        videoCapturerDeviceArr[1].currentHeight = screenCaptureSize.y;
-        final VideoCapturerDevice videoCapturerDevice = videoCapturerDeviceArr[1];
-        videoCapturerDeviceArr[1].handler.post(new Runnable() {
+        videoCapturerDevice.currentWidth = i2;
+        videoCapturerDevice.currentHeight = screenCaptureSize.y;
+        videoCapturerDevice.handler.post(new Runnable() {
             @Override
             public final void run() {
                 VideoCapturerDevice.lambda$checkScreenCapturerSize$1(VideoCapturerDevice.this, screenCaptureSize);
@@ -157,9 +153,6 @@ public class VideoCapturerDevice {
     }
 
     private void init(final long j, final String str) {
-        if (Build.VERSION.SDK_INT < 18) {
-            return;
-        }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -343,17 +336,14 @@ public class VideoCapturerDevice {
     }
 
     public static MediaProjection getMediaProjection() {
-        VideoCapturerDevice[] videoCapturerDeviceArr = instance;
-        if (videoCapturerDeviceArr[1] == null) {
+        VideoCapturerDevice videoCapturerDevice = instance[1];
+        if (videoCapturerDevice == null) {
             return null;
         }
-        return ((ScreenCapturerAndroid) videoCapturerDeviceArr[1].videoCapturer).getMediaProjection();
+        return ((ScreenCapturerAndroid) videoCapturerDevice.videoCapturer).getMediaProjection();
     }
 
     private void onStateChanged(final long j, final int i) {
-        if (Build.VERSION.SDK_INT < 18) {
-            return;
-        }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -391,9 +381,6 @@ public class VideoCapturerDevice {
     }
 
     private void onDestroy() {
-        if (Build.VERSION.SDK_INT < 18) {
-            return;
-        }
         this.nativePtr = 0L;
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override

@@ -1031,16 +1031,42 @@ public class FileLoader extends BaseController {
         return false;
     }
 
-    private boolean canSaveToPublicStorage(java.lang.Object r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileLoader.canSaveToPublicStorage(java.lang.Object):boolean");
+    private boolean canSaveToPublicStorage(Object obj) {
+        FilePathDatabase.FileMeta fileMetadataFromParent;
+        MessageObject messageObject;
+        if (!BuildVars.NO_SCOPED_STORAGE && (fileMetadataFromParent = getFileMetadataFromParent(this.currentAccount, obj)) != null) {
+            long j = fileMetadataFromParent.dialogId;
+            long j2 = -j;
+            if (!getMessagesController().isChatNoForwards(getMessagesController().getChat(Long.valueOf(j2))) && !DialogObject.isEncryptedDialog(j)) {
+                int i = 2;
+                if (obj instanceof MessageObject) {
+                    messageObject = (MessageObject) obj;
+                    if (messageObject.isRoundVideo() || messageObject.isVoice() || messageObject.isAnyKindOfSticker() || messageObject.messageOwner.noforwards) {
+                        return false;
+                    }
+                } else {
+                    int i2 = fileMetadataFromParent.messageType;
+                    messageObject = (i2 == 5 || i2 == 13 || i2 == 2) ? null : null;
+                }
+                if (j >= 0) {
+                    i = 1;
+                } else if (ChatObject.isChannelAndNotMegaGroup(getMessagesController().getChat(Long.valueOf(j2)))) {
+                    i = 4;
+                }
+                if (SaveToGallerySettingsHelper.needSave(i, fileMetadataFromParent, messageObject, this.currentAccount)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     private void addOperationToQueue(FileLoadOperation fileLoadOperation, LinkedList<FileLoadOperation> linkedList) {
         int priority = fileLoadOperation.getPriority();
         if (priority > 0) {
             int size = linkedList.size();
-            int i = 0;
             int size2 = linkedList.size();
+            int i = 0;
             while (true) {
                 if (i >= size2) {
                     break;

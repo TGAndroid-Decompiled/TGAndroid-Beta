@@ -81,7 +81,7 @@ public class AddReactionsSpan extends ReplacementSpan {
                 AddReactionsSpan.this.lambda$hide$1(view, valueAnimator);
             }
         });
-        ofInt.addListener(new AnimatorListenerAdapter(this) {
+        ofInt.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator) {
                 runnable.run();

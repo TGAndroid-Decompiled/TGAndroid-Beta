@@ -34,7 +34,7 @@ public class CustomReactionEditText extends EditTextCaption {
     public CustomReactionEditText(Context context, Theme.ResourcesProvider resourcesProvider, int i) {
         super(context, resourcesProvider);
         this.resourcesProvider = resourcesProvider;
-        this.gestureDetector = new GestureDetectorCompat(getContext(), new GestureDetector.SimpleOnGestureListener(this) {
+        this.gestureDetector = new GestureDetectorCompat(getContext(), new GestureDetector.SimpleOnGestureListener() {
             @Override
             public boolean onDoubleTap(MotionEvent motionEvent) {
                 return true;

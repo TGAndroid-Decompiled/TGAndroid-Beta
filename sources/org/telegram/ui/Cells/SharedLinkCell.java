@@ -272,9 +272,9 @@ public class SharedLinkCell extends FrameLayout {
         });
         int i4 = i - dp;
         float sqrt = (float) Math.sqrt(Math.pow(getWidth(), 2.0d) + Math.pow(getHeight(), 2.0d));
-        float f = 0.0f;
         int i5 = this.spoilerTypePressed;
         if (i5 == 0) {
+            float f = 0.0f;
             for (int i6 = 0; i6 < this.linkLayout.size(); i6++) {
                 StaticLayout staticLayout = this.linkLayout.get(i6);
                 f += staticLayout.getLineBottom(staticLayout.getLineCount() - 1);

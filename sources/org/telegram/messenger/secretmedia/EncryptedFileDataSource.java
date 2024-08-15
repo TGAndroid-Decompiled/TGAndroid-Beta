@@ -8,7 +8,6 @@ import com.google.android.exoplayer2.upstream.TransferListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 import org.telegram.messenger.FileLoader;
 public final class EncryptedFileDataSource extends BaseDataSource {
@@ -18,8 +17,8 @@ public final class EncryptedFileDataSource extends BaseDataSource {
     private Uri uri;
 
     @Override
-    public Map<String, List<String>> getResponseHeaders() {
-        Map<String, List<String>> emptyMap;
+    public Map getResponseHeaders() {
+        Map emptyMap;
         emptyMap = Collections.emptyMap();
         return emptyMap;
     }

@@ -107,7 +107,7 @@ public class QuickRepliesController {
         public MessageObject topMessage;
         public int topMessageId;
 
-        public QuickReply(QuickRepliesController quickRepliesController) {
+        public QuickReply() {
         }
 
         public int getTopMessageId() {
@@ -179,7 +179,7 @@ public class QuickRepliesController {
             long calcHash = MediaDataController.calcHash(tLRPC$TL_messages_getQuickReplies.hash, quickReply.id);
             tLRPC$TL_messages_getQuickReplies.hash = calcHash;
             String str = quickReply.name;
-            long calcHash2 = MediaDataController.calcHash(calcHash, str == null ? 0L : QuickRepliesController$$ExternalSyntheticBackport0.m(r6, 0, Utilities.MD5(str).substring(0, 16).length(), 16));
+            long calcHash2 = MediaDataController.calcHash(calcHash, str == null ? 0L : QuickRepliesController$$ExternalSyntheticBackport1.m(r6, 0, Utilities.MD5(str).substring(0, 16).length(), 16));
             tLRPC$TL_messages_getQuickReplies.hash = calcHash2;
             MessageObject messageObject = quickReply.topMessage;
             long calcHash3 = MediaDataController.calcHash(calcHash2, messageObject == null ? 0L : messageObject.getId());
@@ -237,7 +237,7 @@ public class QuickRepliesController {
             ArrayList arrayList2 = new ArrayList();
             for (int i = 0; i < tLRPC$TL_messages_quickReplies.quick_replies.size(); i++) {
                 TLRPC$TL_quickReply tLRPC$TL_quickReply = tLRPC$TL_messages_quickReplies.quick_replies.get(i);
-                QuickReply quickReply = new QuickReply(this);
+                QuickReply quickReply = new QuickReply();
                 quickReply.id = tLRPC$TL_quickReply.shortcut_id;
                 quickReply.name = tLRPC$TL_quickReply.shortcut;
                 quickReply.messagesCount = tLRPC$TL_quickReply.count;
@@ -706,7 +706,7 @@ public class QuickRepliesController {
         if ((tLRPC$Message.flags & 1073741824) != 0) {
             QuickReply findReply = findReply(tLRPC$Message.quick_reply_shortcut_id);
             if (findReply == null) {
-                QuickReply quickReply = new QuickReply(this);
+                QuickReply quickReply = new QuickReply();
                 quickReply.id = tLRPC$Message.quick_reply_shortcut_id;
                 quickReply.topMessageId = tLRPC$Message.id;
                 MessageObject messageObject = new MessageObject(this.currentAccount, tLRPC$Message, false, true);
@@ -769,7 +769,7 @@ public class QuickRepliesController {
                 }
             }
             if (quickReply == null) {
-                quickReply = new QuickReply(this);
+                quickReply = new QuickReply();
             }
             quickReply.id = tLRPC$TL_quickReply.shortcut_id;
             quickReply.name = tLRPC$TL_quickReply.shortcut;
@@ -801,7 +801,7 @@ public class QuickRepliesController {
                 return;
             }
         } else {
-            QuickReply quickReply = new QuickReply(this);
+            QuickReply quickReply = new QuickReply();
             quickReply.id = tLRPC$TL_quickReply.shortcut_id;
             quickReply.name = tLRPC$TL_quickReply.shortcut;
             quickReply.messagesCount = tLRPC$TL_quickReply.count;
@@ -868,7 +868,7 @@ public class QuickRepliesController {
             if (next.isSending() && findReply(next.getQuickReplyId()) == null && next.getQuickReplyName() != null && findReply(next.getQuickReplyName()) == null) {
                 QuickReply findLocalReply = findLocalReply(next.getQuickReplyName());
                 if (findLocalReply == null) {
-                    findLocalReply = new QuickReply(this);
+                    findLocalReply = new QuickReply();
                     findLocalReply.local = true;
                     findLocalReply.name = next.getQuickReplyName();
                     findLocalReply.id = -1;

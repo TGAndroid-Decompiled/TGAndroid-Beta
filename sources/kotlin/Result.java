@@ -6,19 +6,19 @@ import kotlin.jvm.internal.Intrinsics;
 public final class Result<T> implements Serializable {
     public static final Companion Companion = new Companion(null);
 
-    public static <T> Object m151constructorimpl(Object obj) {
+    public static <T> Object m153constructorimpl(Object obj) {
         return obj;
     }
 
-    public static final boolean m154isSuccessimpl(Object obj) {
+    public static final boolean m156isSuccessimpl(Object obj) {
         return !(obj instanceof Failure);
     }
 
-    public static final boolean m153isFailureimpl(Object obj) {
+    public static final boolean m155isFailureimpl(Object obj) {
         return obj instanceof Failure;
     }
 
-    public static final Throwable m152exceptionOrNullimpl(Object obj) {
+    public static final Throwable m154exceptionOrNullimpl(Object obj) {
         if (obj instanceof Failure) {
             return ((Failure) obj).exception;
         }

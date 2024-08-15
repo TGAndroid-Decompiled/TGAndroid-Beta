@@ -188,8 +188,8 @@ public abstract class SelfStoriesPreviewView extends View {
         this.imageReceiversTmp.clear();
         this.imageReceiversTmp.addAll(this.lastDrawnImageReceivers);
         this.lastDrawnImageReceivers.clear();
-        float f7 = 2.14748365E9f;
         int i2 = -1;
+        float f7 = 2.14748365E9f;
         int i3 = 0;
         int i4 = -1;
         while (i3 < this.storyItems.size()) {

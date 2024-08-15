@@ -18,6 +18,11 @@ public final class EmptyIterator implements ListIterator, Iterator {
     }
 
     @Override
+    public void forEachRemaining(java.util.function.Consumer consumer) {
+        forEachRemaining(Consumer.VivifiedWrapper.convert(consumer));
+    }
+
+    @Override
     public boolean hasNext() {
         return false;
     }

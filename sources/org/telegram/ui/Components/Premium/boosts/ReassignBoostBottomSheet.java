@@ -61,6 +61,7 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
     private final List<TL_stories$TL_myBoost> allUsedBoosts;
     private final SelectorBtnCell buttonContainer;
     private final TLRPC$Chat currentChat;
+    private final TL_stories$TL_premium_myBoosts myBoosts;
     private final List<TL_stories$TL_myBoost> selectedBoosts;
     private CountDownTimer timer;
     private TopCell topCell;
@@ -76,6 +77,7 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
         this.selectedBoosts = new ArrayList();
         this.allUsedBoosts = new ArrayList();
         this.topPadding = 0.3f;
+        this.myBoosts = tL_stories$TL_premium_myBoosts;
         this.currentChat = tLRPC$Chat;
         Iterator<TL_stories$TL_myBoost> it = tL_stories$TL_premium_myBoosts.my_boosts.iterator();
         while (it.hasNext()) {
@@ -117,7 +119,7 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
         fixNavigationBar();
         updateTitle();
         updateActionButton(false);
-        Bulletin.addDelegate(this.container, new Bulletin.Delegate(this) {
+        Bulletin.addDelegate(this.container, new Bulletin.Delegate() {
             @Override
             public boolean allowLayoutChanges() {
                 return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);

@@ -7,7 +7,6 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.BitmapDrawable;
-import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
@@ -43,6 +42,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
     protected int autoRepeat;
     protected int autoRepeatCount;
     protected int autoRepeatPlayCount;
+    protected long autoRepeatTimeout;
     protected volatile Bitmap backgroundBitmap;
     private Paint[] backgroundPaint;
     BitmapsCache bitmapsCache;
@@ -147,9 +147,6 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
     @Override
     public int getOpacity() {
         return -2;
-    }
-
-    public void setAutoRepeatTimeout(long j) {
     }
 
     public class AnonymousClass3 implements Runnable {
@@ -361,6 +358,8 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
             }
         };
         this.loadFrameRunnable = new Runnable() {
+            private long lastUpdate = 0;
+
             @Override
             public void run() {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.RLottieDrawable.AnonymousClass5.run():void");
@@ -472,6 +471,8 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
             }
         };
         this.loadFrameRunnable = new Runnable() {
+            private long lastUpdate = 0;
+
             @Override
             public void run() {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.RLottieDrawable.AnonymousClass5.run():void");
@@ -615,6 +616,8 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
             }
         };
         this.loadFrameRunnable = new Runnable() {
+            private long lastUpdate = 0;
+
             @Override
             public void run() {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.RLottieDrawable.AnonymousClass5.run():void");
@@ -813,6 +816,8 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
             }
         };
         this.loadFrameRunnable = new Runnable() {
+            private long lastUpdate = 0;
+
             @Override
             public void run() {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.RLottieDrawable.AnonymousClass5.run():void");
@@ -946,8 +951,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
             return;
         }
         boolean z = true;
-        boolean z2 = this.parentViews.isEmpty() && getCallback() == null;
-        if (Build.VERSION.SDK_INT < 19 ? !z2 || this.masterParent != null : !z2 || ((view = this.masterParent) != null && view.isAttachedToWindow())) {
+        if (!(this.parentViews.isEmpty() && getCallback() == null) || ((view = this.masterParent) != null && view.isAttachedToWindow())) {
             z = false;
         }
         if (z) {
@@ -1018,6 +1022,10 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
 
     public void setAutoRepeatCount(int i) {
         this.autoRepeatCount = i;
+    }
+
+    public void setAutoRepeatTimeout(long j) {
+        this.autoRepeatTimeout = j;
     }
 
     protected void finalize() throws Throwable {

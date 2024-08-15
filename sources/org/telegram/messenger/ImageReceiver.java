@@ -767,9 +767,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
     public void setLayerNum(int i) {
         this.currentLayerNum = i;
         if (this.attachedToWindow) {
-            int currentHeavyOperationFlags = NotificationCenter.getGlobalInstance().getCurrentHeavyOperationFlags();
-            this.currentOpenedLayerFlags = currentHeavyOperationFlags;
-            this.currentOpenedLayerFlags = currentHeavyOperationFlags & (this.currentLayerNum ^ (-1));
+            this.currentOpenedLayerFlags = NotificationCenter.getGlobalInstance().getCurrentHeavyOperationFlags() & (this.currentLayerNum ^ (-1));
         }
     }
 
@@ -899,15 +897,16 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
     }
 
     private void setStaticDrawable(Drawable drawable) {
+        AttachableDrawable attachableDrawable;
         Drawable drawable2 = this.staticThumbDrawable;
         if (drawable == drawable2) {
             return;
         }
-        AttachableDrawable attachableDrawable = null;
-        if (drawable2 instanceof AttachableDrawable) {
-            if (drawable2.equals(drawable)) {
-                return;
-            }
+        if (!(drawable2 instanceof AttachableDrawable)) {
+            attachableDrawable = null;
+        } else if (drawable2.equals(drawable)) {
+            return;
+        } else {
             attachableDrawable = (AttachableDrawable) this.staticThumbDrawable;
         }
         this.staticThumbDrawable = drawable;
@@ -1086,9 +1085,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
             return false;
         }
         this.attachedToWindow = true;
-        int currentHeavyOperationFlags = NotificationCenter.getGlobalInstance().getCurrentHeavyOperationFlags();
-        this.currentOpenedLayerFlags = currentHeavyOperationFlags;
-        this.currentOpenedLayerFlags = currentHeavyOperationFlags & (this.currentLayerNum ^ (-1));
+        this.currentOpenedLayerFlags = NotificationCenter.getGlobalInstance().getCurrentHeavyOperationFlags() & (this.currentLayerNum ^ (-1));
         if (!this.ignoreNotifications) {
             NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.didReplacedPhotoInMemCache);
             NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.stopAllHeavyOperations);
@@ -1761,13 +1758,15 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
             if (i2 >= iArr2.length) {
                 break;
             }
-            if (iArr2[i2] != iArr[i2]) {
+            int i3 = iArr2[i2];
+            int i4 = iArr[i2];
+            if (i3 != i4) {
                 z = true;
             }
-            if (i != iArr[i2]) {
+            if (i != i4) {
                 this.isRoundRect = false;
             }
-            iArr2[i2] = iArr[i2];
+            iArr2[i2] = i4;
             i2++;
         }
         if (z) {
@@ -1794,7 +1793,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         if (this.useRoundRadius != z) {
             this.useRoundRadius = z;
             if (!z && this.emptyRoundRadius == null) {
-                this.emptyRoundRadius = r5;
+                this.emptyRoundRadius = r3;
                 int[] iArr = {0, 0, 0, 0};
             }
             Drawable drawable = this.currentImageDrawable;
@@ -2157,19 +2156,21 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
             String str2 = this.currentMediaKey;
             if (str2 != null && str2.equals(str)) {
                 this.currentMediaKey = (String) objArr[1];
-                this.currentMediaLocation = (ImageLocation) objArr[2];
+                Object obj = objArr[2];
+                this.currentMediaLocation = (ImageLocation) obj;
                 SetImageBackup setImageBackup = this.setImageBackup;
                 if (setImageBackup != null) {
-                    setImageBackup.mediaLocation = (ImageLocation) objArr[2];
+                    setImageBackup.mediaLocation = (ImageLocation) obj;
                 }
             }
             String str3 = this.currentImageKey;
             if (str3 != null && str3.equals(str)) {
                 this.currentImageKey = (String) objArr[1];
-                this.currentImageLocation = (ImageLocation) objArr[2];
+                Object obj2 = objArr[2];
+                this.currentImageLocation = (ImageLocation) obj2;
                 SetImageBackup setImageBackup2 = this.setImageBackup;
                 if (setImageBackup2 != null) {
-                    setImageBackup2.imageLocation = (ImageLocation) objArr[2];
+                    setImageBackup2.imageLocation = (ImageLocation) obj2;
                 }
             }
             String str4 = this.currentThumbKey;
@@ -2177,10 +2178,11 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
                 return;
             }
             this.currentThumbKey = (String) objArr[1];
-            this.currentThumbLocation = (ImageLocation) objArr[2];
+            Object obj3 = objArr[2];
+            this.currentThumbLocation = (ImageLocation) obj3;
             SetImageBackup setImageBackup3 = this.setImageBackup;
             if (setImageBackup3 != null) {
-                setImageBackup3.thumbLocation = (ImageLocation) objArr[2];
+                setImageBackup3.thumbLocation = (ImageLocation) obj3;
             }
         } else if (i == NotificationCenter.stopAllHeavyOperations) {
             Integer num = (Integer) objArr[0];
@@ -2263,34 +2265,29 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
 
     public void moveLottieToFront() {
         BitmapDrawable bitmapDrawable;
-        BitmapDrawable bitmapDrawable2;
         String str;
         Drawable drawable = this.currentMediaDrawable;
-        String str2 = null;
         if (drawable instanceof RLottieDrawable) {
-            bitmapDrawable2 = (BitmapDrawable) drawable;
+            bitmapDrawable = (BitmapDrawable) drawable;
             str = this.currentMediaKey;
         } else {
             Drawable drawable2 = this.currentImageDrawable;
-            if (!(drawable2 instanceof RLottieDrawable)) {
+            if (drawable2 instanceof RLottieDrawable) {
+                bitmapDrawable = (BitmapDrawable) drawable2;
+                str = this.currentImageKey;
+            } else {
                 bitmapDrawable = null;
-                if (str2 != null || bitmapDrawable == null) {
-                }
-                ImageLoader.getInstance().moveToFront(str2);
-                if (ImageLoader.getInstance().isInMemCache(str2, true)) {
-                    return;
-                }
-                ImageLoader.getInstance().getLottieMemCahce().put(str2, bitmapDrawable);
-                return;
+                str = null;
             }
-            bitmapDrawable2 = (BitmapDrawable) drawable2;
-            str = this.currentImageKey;
         }
-        BitmapDrawable bitmapDrawable3 = bitmapDrawable2;
-        str2 = str;
-        bitmapDrawable = bitmapDrawable3;
-        if (str2 != null) {
+        if (str == null || bitmapDrawable == null) {
+            return;
         }
+        ImageLoader.getInstance().moveToFront(str);
+        if (ImageLoader.getInstance().isInMemCache(str, true)) {
+            return;
+        }
+        ImageLoader.getInstance().getLottieMemCahce().put(str, bitmapDrawable);
     }
 
     public View getParentView() {

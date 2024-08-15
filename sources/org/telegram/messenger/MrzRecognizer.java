@@ -209,19 +209,14 @@ public class MrzRecognizer {
     }
 
     private static int checksum(String str) {
-        int i;
         char[] charArray = str.toCharArray();
         int[] iArr = {7, 3, 1};
-        int i2 = 0;
-        for (int i3 = 0; i3 < charArray.length; i3++) {
-            if (charArray[i3] >= '0' && charArray[i3] <= '9') {
-                i = charArray[i3] - '0';
-            } else {
-                i = (charArray[i3] < 'A' || charArray[i3] > 'Z') ? 0 : (charArray[i3] - 'A') + 10;
-            }
-            i2 += i * iArr[i3 % 3];
+        int i = 0;
+        for (int i2 = 0; i2 < charArray.length; i2++) {
+            char c = charArray[i2];
+            i += ((c < '0' || c > '9') ? (c < 'A' || c > 'Z') ? 0 : (c - 'A') + 10 : c - '0') * iArr[i2 % 3];
         }
-        return i2 % 10;
+        return i % 10;
     }
 
     private static void parseBirthDate(String str, Result result) {

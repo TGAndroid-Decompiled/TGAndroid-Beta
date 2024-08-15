@@ -75,7 +75,7 @@ public class ChatActivityMemberRequestsDelegate {
             LinearLayout linearLayout = new LinearLayout(this.fragment.getParentActivity());
             linearLayout.setOrientation(0);
             this.root.addView(linearLayout, LayoutHelper.createFrame(-1, -1.0f, 48, 0.0f, 0.0f, 36.0f, 0.0f));
-            AvatarsImageView avatarsImageView = new AvatarsImageView(this, this.fragment.getParentActivity(), false) {
+            AvatarsImageView avatarsImageView = new AvatarsImageView(this.fragment.getParentActivity(), false) {
                 @Override
                 public void onMeasure(int i, int i2) {
                     int i3 = this.avatarsDrawable.count;

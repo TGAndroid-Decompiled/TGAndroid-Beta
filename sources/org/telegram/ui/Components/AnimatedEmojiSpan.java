@@ -362,7 +362,8 @@ public class AnimatedEmojiSpan extends ReplacementSpan {
         if (layout != null && (layout.getText() instanceof Spanned)) {
             TextStyleSpan[] textStyleSpanArr = (TextStyleSpan[]) ((Spanned) layout.getText()).getSpans(Math.max(0, i), Math.min(layout.getText().length() - 1, i2), TextStyleSpan.class);
             for (int i3 = 0; textStyleSpanArr != null && i3 < textStyleSpanArr.length; i3++) {
-                if (textStyleSpanArr[i3] != null && textStyleSpanArr[i3].isSpoiler()) {
+                TextStyleSpan textStyleSpan = textStyleSpanArr[i3];
+                if (textStyleSpan != null && textStyleSpan.isSpoiler()) {
                     return true;
                 }
             }
@@ -412,17 +413,17 @@ public class AnimatedEmojiSpan extends ReplacementSpan {
                 imageReceiver.setImageCoords(this.drawableBounds);
                 ImageReceiver.BackgroundThreadDrawHolder[] backgroundThreadDrawHolderArr = this.backgroundDrawHolder;
                 backgroundThreadDrawHolderArr[i] = imageReceiver.setDrawInBackgroundThread(backgroundThreadDrawHolderArr[i], i);
-                ImageReceiver.BackgroundThreadDrawHolder[] backgroundThreadDrawHolderArr2 = this.backgroundDrawHolder;
-                backgroundThreadDrawHolderArr2[i].overrideAlpha = this.alpha;
-                backgroundThreadDrawHolderArr2[i].setBounds(this.drawableBounds);
+                ImageReceiver.BackgroundThreadDrawHolder backgroundThreadDrawHolder = this.backgroundDrawHolder[i];
+                backgroundThreadDrawHolder.overrideAlpha = this.alpha;
+                backgroundThreadDrawHolder.setBounds(this.drawableBounds);
                 this.backgroundDrawHolder[i].time = j;
             }
         }
 
         public void releaseDrawInBackground(int i) {
-            ImageReceiver.BackgroundThreadDrawHolder[] backgroundThreadDrawHolderArr = this.backgroundDrawHolder;
-            if (backgroundThreadDrawHolderArr[i] != null) {
-                backgroundThreadDrawHolderArr[i].release();
+            ImageReceiver.BackgroundThreadDrawHolder backgroundThreadDrawHolder = this.backgroundDrawHolder[i];
+            if (backgroundThreadDrawHolder != null) {
+                backgroundThreadDrawHolder.release();
             }
         }
 
@@ -691,12 +692,13 @@ public class AnimatedEmojiSpan extends ReplacementSpan {
                     if (i4 >= animatedEmojiSpanArr.length) {
                         z = false;
                         break;
-                    } else if (animatedEmojiSpanArr[i4] != null && animatedEmojiSpanArr[i4].getDocumentId() == keyAt) {
+                    }
+                    AnimatedEmojiSpan animatedEmojiSpan = animatedEmojiSpanArr[i4];
+                    if (animatedEmojiSpan != null && animatedEmojiSpan.getDocumentId() == keyAt) {
                         z = true;
                         break;
-                    } else {
-                        i4++;
                     }
+                    i4++;
                 }
                 if (z) {
                     i3++;
@@ -708,24 +710,24 @@ public class AnimatedEmojiSpan extends ReplacementSpan {
             i3--;
             i3++;
         }
-        for (AnimatedEmojiSpan animatedEmojiSpan : animatedEmojiSpanArr) {
-            if (animatedEmojiSpan != null && longSparseArray.get(animatedEmojiSpan.getDocumentId()) == null) {
-                if (animatedEmojiSpan.standard) {
+        for (AnimatedEmojiSpan animatedEmojiSpan2 : animatedEmojiSpanArr) {
+            if (animatedEmojiSpan2 != null && longSparseArray.get(animatedEmojiSpan2.getDocumentId()) == null) {
+                if (animatedEmojiSpan2.standard) {
                     i2 = 8;
                 } else {
-                    i2 = animatedEmojiSpan.cacheType;
+                    i2 = animatedEmojiSpan2.cacheType;
                     if (i2 < 0) {
                         i2 = i;
                     }
                 }
-                TLRPC$Document tLRPC$Document = animatedEmojiSpan.document;
+                TLRPC$Document tLRPC$Document = animatedEmojiSpan2.document;
                 if (tLRPC$Document != null) {
                     make = AnimatedEmojiDrawable.make(UserConfig.selectedAccount, i2, tLRPC$Document);
                 } else {
-                    make = AnimatedEmojiDrawable.make(UserConfig.selectedAccount, i2, animatedEmojiSpan.documentId);
+                    make = AnimatedEmojiDrawable.make(UserConfig.selectedAccount, i2, animatedEmojiSpan2.documentId);
                 }
                 make.addView(view);
-                longSparseArray.put(animatedEmojiSpan.getDocumentId(), make);
+                longSparseArray.put(animatedEmojiSpan2.getDocumentId(), make);
             }
         }
         return longSparseArray;
@@ -1004,12 +1006,9 @@ public class AnimatedEmojiSpan extends ReplacementSpan {
                         float f6 = animatedEmojiSpan.lastDrawnCx;
                         float f7 = animatedEmojiSpan.lastDrawnCy;
                         animatedEmojiHolder.drawableBounds.set((int) (f6 - f5), (int) (f7 - f5), (int) (f6 + f5), (int) (f7 + f5));
-                        float f8 = 1.0f;
-                        if (list != null && !list.isEmpty() && animatedEmojiHolder.insideSpoiler) {
-                            f8 = Math.max(0.0f, list.get(0).getRippleProgress());
-                        }
+                        float max = (list == null || list.isEmpty() || !animatedEmojiHolder.insideSpoiler) ? 1.0f : Math.max(0.0f, list.get(0).getRippleProgress());
                         animatedEmojiHolder.drawingYOffset = f3;
-                        animatedEmojiHolder.alpha = f8;
+                        animatedEmojiHolder.alpha = max;
                         if (this.backgroundThreadDrawable == null) {
                             animatedEmojiHolder.draw(canvas, j, f, f2, f4, colorFilter);
                         }
@@ -1059,8 +1058,9 @@ public class AnimatedEmojiSpan extends ReplacementSpan {
                 }
                 charSequence = new SpannableString(spanned);
                 for (int i2 = 0; i2 < characterStyleArr.length; i2++) {
-                    if (characterStyleArr[i2] != null && (characterStyleArr[i2] instanceof AnimatedEmojiSpan)) {
-                        int spanStart = spanned.getSpanStart(characterStyleArr[i2]);
+                    CharacterStyle characterStyle = characterStyleArr[i2];
+                    if (characterStyle != null && (characterStyle instanceof AnimatedEmojiSpan)) {
+                        int spanStart = spanned.getSpanStart(characterStyle);
                         int spanEnd = spanned.getSpanEnd(characterStyleArr[i2]);
                         AnimatedEmojiSpan animatedEmojiSpan = (AnimatedEmojiSpan) characterStyleArr[i2];
                         charSequence.removeSpan(animatedEmojiSpan);

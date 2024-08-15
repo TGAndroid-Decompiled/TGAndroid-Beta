@@ -79,6 +79,7 @@ public class StickerSetLinkIcon extends Drawable {
 
     @Override
     public void draw(Canvas canvas) {
+        AnimatedEmojiDrawable animatedEmojiDrawable;
         if (this.alpha <= 0) {
             return;
         }
@@ -97,8 +98,8 @@ public class StickerSetLinkIcon extends Drawable {
                     int i4 = (i3 * i) + i2;
                     if (i4 >= 0) {
                         AnimatedEmojiDrawable[] animatedEmojiDrawableArr = this.drawables;
-                        if (i4 < animatedEmojiDrawableArr.length && animatedEmojiDrawableArr[i4] != null) {
-                            animatedEmojiDrawableArr[i4].setBounds((int) ((i2 * intrinsicWidth) + centerX), (int) ((i * intrinsicHeight) + centerY), (int) (((i2 + 1) * intrinsicWidth) + centerX), (int) (((i + 1) * intrinsicHeight) + centerY));
+                        if (i4 < animatedEmojiDrawableArr.length && (animatedEmojiDrawable = animatedEmojiDrawableArr[i4]) != null) {
+                            animatedEmojiDrawable.setBounds((int) ((i2 * intrinsicWidth) + centerX), (int) ((i * intrinsicHeight) + centerY), (int) (((i2 + 1) * intrinsicWidth) + centerX), (int) (((i + 1) * intrinsicHeight) + centerY));
                             this.drawables[i4].setAlpha(this.alpha);
                             this.drawables[i4].setColorFilter(this.out ? Theme.chat_outAnimatedEmojiTextColorFilter : Theme.chat_animatedEmojiTextColorFilter);
                             this.drawables[i4].draw(canvas);

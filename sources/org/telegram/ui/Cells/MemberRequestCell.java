@@ -33,8 +33,8 @@ public class MemberRequestCell extends FrameLayout {
 
     public MemberRequestCell(Context context, final OnClickListener onClickListener, boolean z) {
         super(context);
-        int i;
         String str;
+        int i;
         this.avatarDrawable = new AvatarDrawable();
         BackupImageView backupImageView = new BackupImageView(getContext());
         this.avatarImageView = backupImageView;
@@ -64,11 +64,11 @@ public class MemberRequestCell extends FrameLayout {
         textView.setMaxLines(1);
         textView.setPadding(dp, 0, dp, 0);
         if (z) {
-            i = R.string.AddToChannel;
             str = "AddToChannel";
+            i = R.string.AddToChannel;
         } else {
-            i = R.string.AddToGroup;
             str = "AddToGroup";
+            i = R.string.AddToGroup;
         }
         textView.setText(LocaleController.getString(str, i));
         textView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));

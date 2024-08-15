@@ -28,6 +28,8 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
 
     @Override
     protected void startAppCenterInternal(Activity activity) {
+        String str;
+        String str2;
         try {
             if (BuildVars.DEBUG_VERSION) {
                 Distribute.setEnabledForDebuggableBuild(true);
@@ -45,8 +47,10 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
                 customProperties.set("model", Build.MODEL);
                 customProperties.set("manufacturer", Build.MANUFACTURER);
                 if (Build.VERSION.SDK_INT >= 31) {
-                    customProperties.set("model", Build.SOC_MODEL);
-                    customProperties.set("manufacturer", Build.SOC_MANUFACTURER);
+                    str = Build.SOC_MODEL;
+                    customProperties.set("model", str);
+                    str2 = Build.SOC_MANUFACTURER;
+                    customProperties.set("manufacturer", str2);
                 }
                 customProperties.set("device", Build.DEVICE);
                 customProperties.set("product", Build.PRODUCT);
@@ -103,11 +107,16 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
 
     @Override
     public boolean checkApkInstallPermissions(Context context) {
-        if (Build.VERSION.SDK_INT < 26 || ApplicationLoader.applicationContext.getPackageManager().canRequestPackageInstalls()) {
-            return true;
+        boolean canRequestPackageInstalls;
+        if (Build.VERSION.SDK_INT >= 26) {
+            canRequestPackageInstalls = ApplicationLoader.applicationContext.getPackageManager().canRequestPackageInstalls();
+            if (canRequestPackageInstalls) {
+                return true;
+            }
+            AlertsCreator.createApkRestrictedDialog(context, null).show();
+            return false;
         }
-        AlertsCreator.createApkRestrictedDialog(context, null).show();
-        return false;
+        return true;
     }
 
     @Override

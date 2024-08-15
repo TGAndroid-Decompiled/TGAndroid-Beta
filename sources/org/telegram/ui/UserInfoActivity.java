@@ -574,8 +574,9 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
             BulletinFactory.of(this).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
         } else {
             this.wasSaved = true;
-            iArr[0] = iArr[0] + 1;
-            if (iArr[0] == arrayList.size()) {
+            int i = iArr[0] + 1;
+            iArr[0] = i;
+            if (i == arrayList.size()) {
                 finishFragment();
             }
         }

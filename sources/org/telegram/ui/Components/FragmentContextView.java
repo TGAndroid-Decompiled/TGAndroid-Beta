@@ -673,16 +673,16 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
 
         @Override
         public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-            int i;
             String str;
+            int i;
             super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
             accessibilityNodeInfo.setClassName(Button.class.getName());
             if (FragmentContextView.this.isMuted) {
-                i = R.string.VoipUnmute;
                 str = "VoipUnmute";
+                i = R.string.VoipUnmute;
             } else {
-                i = R.string.VoipMute;
                 str = "VoipMute";
+                i = R.string.VoipMute;
             }
             accessibilityNodeInfo.setText(LocaleController.getString(str, i));
         }
@@ -1011,7 +1011,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         if (this.fragment == null || !(getParent() instanceof ViewGroup)) {
             return;
         }
-        HintView hintView = new HintView(this, getContext(), 6, true) {
+        HintView hintView = new HintView(getContext(), 6, true) {
             @Override
             public void setVisibility(int i) {
                 super.setVisibility(i);
@@ -2242,11 +2242,11 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
+        boolean z;
         if (this.frameLayout == null) {
             return;
         }
         if (!this.drawOverlay || getVisibility() == 0) {
-            boolean z = false;
             int i = this.currentStyle;
             if (i == 3 || i == 1) {
                 Theme.getFragmentContextViewWavesDrawable().updateState(this.wasDraw);
@@ -2267,6 +2267,8 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 canvas.clipRect(0.0f, dp2, getMeasuredWidth(), getMeasuredHeight());
                 invalidate();
                 z = true;
+            } else {
+                z = false;
             }
             super.dispatchDraw(canvas);
             if (z) {

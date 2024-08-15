@@ -17,6 +17,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC$Chat;
+import org.telegram.tgnet.TLRPC$ChatFull;
 import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$MessageReactor;
 import org.telegram.tgnet.TLRPC$TL_messageReactions;
@@ -36,6 +37,7 @@ public class StarReactionsOverlay extends View {
     private ChatMessageCell cell;
     private final ChatActivity chatActivity;
     private final RectF clickBounds;
+    private final GradientClip clip;
     private final AnimatedTextView.AnimatedTextDrawable counter;
     private final AnimatedFloat counterAlpha;
     private boolean counterShown;
@@ -64,7 +66,7 @@ public class StarReactionsOverlay extends View {
         this.counterAlpha = new AnimatedFloat(this, 0L, 420L, CubicBezierInterpolator.EASE_OUT_QUINT);
         AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable();
         this.counter = animatedTextDrawable;
-        new GradientClip();
+        this.clip = new GradientClip();
         this.effects = new ArrayList<>();
         this.effectAssets = new int[]{R.raw.star_reaction_effect1, R.raw.star_reaction_effect2, R.raw.star_reaction_effect3, R.raw.star_reaction_effect4, R.raw.star_reaction_effect5};
         this.chatActivity = chatActivity;
@@ -79,47 +81,25 @@ public class StarReactionsOverlay extends View {
         this.hideCounterRunnable = new Runnable() {
             @Override
             public final void run() {
-                StarReactionsOverlay.this.lambda$new$1(chatActivity);
+                StarReactionsOverlay.this.lambda$new$0();
             }
         };
         this.longPressRunnable = new Runnable() {
             @Override
             public final void run() {
-                StarReactionsOverlay.this.lambda$new$2(chatActivity);
+                StarReactionsOverlay.this.lambda$new$1(chatActivity);
             }
         };
     }
 
-    public void lambda$new$1(final ChatActivity chatActivity) {
-        String str;
+    public void lambda$new$0() {
         this.counterShown = false;
         invalidate();
-        ChatMessageCell chatMessageCell = this.cell;
-        if (chatMessageCell != null && chatMessageCell.getPrimaryMessageObject() != null) {
-            final MessageObject primaryMessageObject = this.cell.getPrimaryMessageObject();
-            final StarsController starsController = StarsController.getInstance(chatActivity.getCurrentAccount());
-            final long pendingPaidReactions = starsController.getPendingPaidReactions(primaryMessageObject);
-            if (starsController.balanceAvailable() && starsController.getBalance() < pendingPaidReactions) {
-                StarsController.getInstance(chatActivity.getCurrentAccount()).undoPaidReaction();
-                long dialogId = chatActivity.getDialogId();
-                if (dialogId >= 0) {
-                    str = UserObject.getForcedFirstName(chatActivity.getMessagesController().getUser(Long.valueOf(dialogId)));
-                } else {
-                    TLRPC$Chat chat = chatActivity.getMessagesController().getChat(Long.valueOf(-dialogId));
-                    str = chat == null ? "" : chat.title;
-                }
-                new StarsIntroActivity.StarsNeededSheet(chatActivity.getContext(), chatActivity.getResourceProvider(), pendingPaidReactions, 5, str, new Runnable() {
-                    @Override
-                    public final void run() {
-                        StarsController.this.sendPaidReaction(primaryMessageObject, chatActivity, pendingPaidReactions, true, true, null);
-                    }
-                }).show();
-            }
-        }
+        checkBalance();
         hide();
     }
 
-    public void lambda$new$2(ChatActivity chatActivity) {
+    public void lambda$new$1(ChatActivity chatActivity) {
         TLRPC$TL_messageReactions tLRPC$TL_messageReactions;
         ChatMessageCell chatMessageCell = this.cell;
         if (chatMessageCell == null) {
@@ -127,19 +107,49 @@ public class StarReactionsOverlay extends View {
         }
         chatMessageCell.performHapticFeedback(0);
         onTouchEvent(MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0));
-        ArrayList<TLRPC$MessageReactor> arrayList = null;
         MessageObject primaryMessageObject = this.cell.getPrimaryMessageObject();
         if (primaryMessageObject == null) {
             return;
         }
         TLRPC$Message tLRPC$Message = primaryMessageObject.messageOwner;
-        if (tLRPC$Message != null && (tLRPC$TL_messageReactions = tLRPC$Message.reactions) != null) {
-            arrayList = tLRPC$TL_messageReactions.top_reactors;
-        }
+        ArrayList<TLRPC$MessageReactor> arrayList = (tLRPC$Message == null || (tLRPC$TL_messageReactions = tLRPC$Message.reactions) == null) ? null : tLRPC$TL_messageReactions.top_reactors;
         StarsController.getInstance(primaryMessageObject.currentAccount).commitPaidReaction();
-        StarsReactionsSheet starsReactionsSheet = new StarsReactionsSheet(getContext(), chatActivity.getCurrentAccount(), chatActivity.getDialogId(), chatActivity, primaryMessageObject, arrayList, chatActivity.getResourceProvider());
+        TLRPC$ChatFull currentChatInfo = chatActivity.getCurrentChatInfo();
+        StarsReactionsSheet starsReactionsSheet = new StarsReactionsSheet(getContext(), chatActivity.getCurrentAccount(), chatActivity.getDialogId(), chatActivity, primaryMessageObject, arrayList, currentChatInfo == null || currentChatInfo.paid_reactions_available, chatActivity.getResourceProvider());
         starsReactionsSheet.setMessageCell(chatActivity, primaryMessageObject.getId(), this.cell);
         starsReactionsSheet.show();
+    }
+
+    private void checkBalance() {
+        String str;
+        ChatMessageCell chatMessageCell = this.cell;
+        if (chatMessageCell == null || chatMessageCell.getPrimaryMessageObject() == null) {
+            return;
+        }
+        final MessageObject primaryMessageObject = this.cell.getPrimaryMessageObject();
+        final StarsController starsController = StarsController.getInstance(this.chatActivity.getCurrentAccount());
+        final long pendingPaidReactions = starsController.getPendingPaidReactions(primaryMessageObject);
+        if (!starsController.balanceAvailable() || starsController.getBalance() >= pendingPaidReactions) {
+            return;
+        }
+        StarsController.getInstance(this.chatActivity.getCurrentAccount()).undoPaidReaction();
+        long dialogId = this.chatActivity.getDialogId();
+        if (dialogId >= 0) {
+            str = UserObject.getForcedFirstName(this.chatActivity.getMessagesController().getUser(Long.valueOf(dialogId)));
+        } else {
+            TLRPC$Chat chat = this.chatActivity.getMessagesController().getChat(Long.valueOf(-dialogId));
+            str = chat == null ? "" : chat.title;
+        }
+        new StarsIntroActivity.StarsNeededSheet(this.chatActivity.getContext(), this.chatActivity.getResourceProvider(), pendingPaidReactions, 5, str, new Runnable() {
+            @Override
+            public final void run() {
+                StarReactionsOverlay.this.lambda$checkBalance$2(starsController, primaryMessageObject, pendingPaidReactions);
+            }
+        }).show();
+    }
+
+    public void lambda$checkBalance$2(StarsController starsController, MessageObject messageObject, long j) {
+        starsController.sendPaidReaction(messageObject, this.chatActivity, j, true, true, null);
     }
 
     public void setMessageCell(ChatMessageCell chatMessageCell) {
@@ -257,6 +267,9 @@ public class StarReactionsOverlay extends View {
             this.counter.setBounds(centerX - AndroidUtilities.dp(100.0f), this.reactionBounds.top - AndroidUtilities.dp(48.0f), centerX + AndroidUtilities.dp(100.0f), this.reactionBounds.top - AndroidUtilities.dp(24.0f));
             this.counter.draw(canvas);
             canvas.restore();
+        }
+        if (!this.counterShown) {
+            checkBalance();
         }
         invalidate();
     }

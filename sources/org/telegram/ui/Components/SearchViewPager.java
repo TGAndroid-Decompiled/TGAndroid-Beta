@@ -410,7 +410,7 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
         this.botsSearchContainer.addView(this.botsSearchListView);
         this.botsSearchListView.setEmptyView(this.botsEmptyView);
         RecyclerListView recyclerListView5 = this.botsSearchListView;
-        DialogsBotsAdapter dialogsBotsAdapter = new DialogsBotsAdapter(recyclerListView5, context, this.currentAccount, i3, false, null, dialogsActivity) {
+        DialogsBotsAdapter dialogsBotsAdapter = new DialogsBotsAdapter(recyclerListView5, context, this.currentAccount, i3, false, null) {
             @Override
             public void update(boolean z) {
                 ArrayList<MessageObject> arrayList2;
@@ -1245,7 +1245,7 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
             int filterIndex;
             private final int type;
 
-            private Item(ViewPagerAdapter viewPagerAdapter, int i) {
+            private Item(int i) {
                 this.type = i;
             }
         }

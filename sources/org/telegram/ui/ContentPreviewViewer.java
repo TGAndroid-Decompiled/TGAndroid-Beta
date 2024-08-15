@@ -778,10 +778,12 @@ public class ContentPreviewViewer {
     }
 
     protected void runSmoothHaptic() {
+        VibrationEffect createWaveform;
         if (Build.VERSION.SDK_INT >= 26) {
             Vibrator vibrator = (Vibrator) this.containerView.getContext().getSystemService("vibrator");
             if (this.vibrationEffect == null) {
-                this.vibrationEffect = VibrationEffect.createWaveform(new long[]{0, 2}, -1);
+                createWaveform = VibrationEffect.createWaveform(new long[]{0, 2}, -1);
+                this.vibrationEffect = createWaveform;
             }
             vibrator.cancel();
             vibrator.vibrate(this.vibrationEffect);
@@ -789,6 +791,7 @@ public class ContentPreviewViewer {
     }
 
     public boolean onInterceptTouchEvent(MotionEvent motionEvent, final RecyclerListView recyclerListView, int i, ContentPreviewViewerDelegate contentPreviewViewerDelegate, final Theme.ResourcesProvider resourcesProvider) {
+        final int i2;
         this.delegate = contentPreviewViewerDelegate;
         if (contentPreviewViewerDelegate != null) {
             this.isPhotoEditor = contentPreviewViewerDelegate.isPhotoEditor();
@@ -799,8 +802,8 @@ public class ContentPreviewViewer {
             int x = (int) motionEvent.getX();
             int y = (int) motionEvent.getY();
             int childCount = recyclerListView.getChildCount();
-            for (int i2 = 0; i2 < childCount; i2++) {
-                View childAt = recyclerListView.getChildAt(i2);
+            for (int i3 = 0; i3 < childCount; i3++) {
+                View childAt = recyclerListView.getChildAt(i3);
                 if (childAt == null) {
                     return false;
                 }
@@ -809,42 +812,44 @@ public class ContentPreviewViewer {
                 int left = childAt.getLeft();
                 int right = childAt.getRight();
                 if (top <= y && bottom >= y && left <= x && right >= x) {
-                    final int i3 = 2;
                     if (childAt instanceof StickerEmojiCell) {
                         if (((StickerEmojiCell) childAt).showingBitmap()) {
                             this.centerImage.setRoundRadius(0);
-                            i3 = 0;
+                            i2 = 0;
                         }
-                        i3 = -1;
+                        i2 = -1;
                     } else if (childAt instanceof StickerCell) {
                         if (((StickerCell) childAt).showingBitmap()) {
                             this.centerImage.setRoundRadius(0);
-                            i3 = 0;
+                            i2 = 0;
                         }
-                        i3 = -1;
+                        i2 = -1;
                     } else if (childAt instanceof ContextLinkCell) {
                         ContextLinkCell contextLinkCell = (ContextLinkCell) childAt;
                         if (contextLinkCell.showingBitmap()) {
                             if (contextLinkCell.isSticker()) {
                                 this.centerImage.setRoundRadius(0);
-                                i3 = 0;
+                                i2 = 0;
                             } else if (contextLinkCell.isGif()) {
                                 this.centerImage.setRoundRadius(AndroidUtilities.dp(6.0f));
-                                i3 = 1;
+                                i2 = 1;
                             }
                         }
-                        i3 = -1;
-                    } else if (childAt instanceof EmojiPacksAlert.EmojiImageView) {
-                        this.centerImage.setRoundRadius(0);
-                    } else if ((childAt instanceof EmojiView.ImageViewEmoji) && ((EmojiView.ImageViewEmoji) childAt).getSpan() != null) {
-                        this.centerImage.setRoundRadius(0);
+                        i2 = -1;
                     } else {
-                        if ((childAt instanceof SuggestEmojiView.EmojiImageView) && (((SuggestEmojiView.EmojiImageView) childAt).drawable instanceof AnimatedEmojiDrawable)) {
+                        if (childAt instanceof EmojiPacksAlert.EmojiImageView) {
                             this.centerImage.setRoundRadius(0);
+                        } else if ((childAt instanceof EmojiView.ImageViewEmoji) && ((EmojiView.ImageViewEmoji) childAt).getSpan() != null) {
+                            this.centerImage.setRoundRadius(0);
+                        } else {
+                            if ((childAt instanceof SuggestEmojiView.EmojiImageView) && (((SuggestEmojiView.EmojiImageView) childAt).drawable instanceof AnimatedEmojiDrawable)) {
+                                this.centerImage.setRoundRadius(0);
+                            }
+                            i2 = -1;
                         }
-                        i3 = -1;
+                        i2 = 2;
                     }
-                    if (i3 == -1) {
+                    if (i2 == -1) {
                         return false;
                     }
                     this.startX = x;
@@ -853,7 +858,7 @@ public class ContentPreviewViewer {
                     Runnable runnable = new Runnable() {
                         @Override
                         public final void run() {
-                            ContentPreviewViewer.this.lambda$onInterceptTouchEvent$5(recyclerListView, i3, resourcesProvider);
+                            ContentPreviewViewer.this.lambda$onInterceptTouchEvent$5(recyclerListView, i2, resourcesProvider);
                         }
                     };
                     this.openPreviewRunnable = runnable;
@@ -1336,6 +1341,8 @@ public class ContentPreviewViewer {
         StaticLayout staticLayout;
         Drawable drawable;
         WindowInsets windowInsets;
+        int stableInsetBottom;
+        int stableInsetTop;
         float f;
         if (this.containerView == null || this.backgroundDrawable == null) {
             return;
@@ -1391,7 +1398,9 @@ public class ContentPreviewViewer {
         this.backgroundDrawable.draw(canvas);
         canvas.save();
         if (Build.VERSION.SDK_INT >= 21 && (windowInsets = this.lastInsets) != null) {
-            i2 = windowInsets.getStableInsetBottom() + this.lastInsets.getStableInsetTop();
+            stableInsetBottom = windowInsets.getStableInsetBottom();
+            stableInsetTop = this.lastInsets.getStableInsetTop();
+            i2 = stableInsetBottom + stableInsetTop;
             i = this.lastInsets.getStableInsetTop();
         } else {
             i = AndroidUtilities.statusBarHeight;
@@ -1650,7 +1659,11 @@ public class ContentPreviewViewer {
         TLRPC$TL_messages_getMyStickers tLRPC$TL_messages_getMyStickers = new TLRPC$TL_messages_getMyStickers();
         tLRPC$TL_messages_getMyStickers.limit = 100;
         getMyStickersRemote(tLRPC$TL_messages_getMyStickers, arrayList);
-        RecyclerListView recyclerListView = new RecyclerListView(this, this.parentActivity) {
+        RecyclerListView recyclerListView = new RecyclerListView(this.parentActivity) {
+            {
+                ContentPreviewViewer.this = this;
+            }
+
             @Override
             public void onMeasure(int i, int i2) {
                 int size = View.MeasureSpec.getSize(i2);
@@ -1662,7 +1675,11 @@ public class ContentPreviewViewer {
             }
         };
         recyclerListView.setLayoutManager(new LinearLayoutManager(this.parentActivity));
-        recyclerListView.addItemDecoration(new RecyclerView.ItemDecoration(this) {
+        recyclerListView.addItemDecoration(new RecyclerView.ItemDecoration() {
+            {
+                ContentPreviewViewer.this = this;
+            }
+
             @Override
             public void getItemOffsets(Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
                 if (recyclerView.getChildAdapterPosition(view) == arrayList.size() - 1) {

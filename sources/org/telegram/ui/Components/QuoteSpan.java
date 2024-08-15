@@ -196,6 +196,7 @@ public class QuoteSpan implements LeadingMarginSpan {
     }
 
     public static ArrayList<Block> updateQuoteBlocksSpanned(Layout layout, ArrayList<Block> arrayList) {
+        QuoteSpan[] quoteSpanArr;
         if (layout == null) {
             if (arrayList != null) {
                 arrayList.clear();
@@ -213,10 +214,9 @@ public class QuoteSpan implements LeadingMarginSpan {
         if (arrayList != null) {
             arrayList.clear();
         }
-        QuoteSpan[] quoteSpanArr = (QuoteSpan[]) spanned.getSpans(0, spanned.length(), QuoteSpan.class);
-        for (int i = 0; i < quoteSpanArr.length; i++) {
-            boolean z = quoteSpanArr[i].last;
-            Block block = new Block(null, layout, spanned, quoteSpanArr[i]);
+        for (QuoteSpan quoteSpan : (QuoteSpan[]) spanned.getSpans(0, spanned.length(), QuoteSpan.class)) {
+            boolean z = quoteSpan.last;
+            Block block = new Block(null, layout, spanned, quoteSpan);
             if (arrayList == null) {
                 arrayList = new ArrayList<>();
             }

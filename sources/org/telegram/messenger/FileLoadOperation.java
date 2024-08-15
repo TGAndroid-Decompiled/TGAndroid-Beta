@@ -212,11 +212,11 @@ public class FileLoadOperation {
     public boolean checkPrefixPreloadFinished() {
         int i = this.preloadPrefixSize;
         if (i > 0 && this.downloadedBytes > i) {
-            long j = Long.MAX_VALUE;
             ArrayList<Range> arrayList = this.notLoadedBytesRanges;
             if (arrayList == null) {
                 return true;
             }
+            long j = Long.MAX_VALUE;
             for (int i2 = 0; i2 < arrayList.size(); i2++) {
                 try {
                     j = Math.min(j, arrayList.get(i2).start);
@@ -1147,8 +1147,9 @@ public class FileLoadOperation {
     public static void lambda$cancelRequests$13(RequestInfo requestInfo, int[] iArr, Runnable runnable) {
         requestInfo.whenCancelled = null;
         requestInfo.cancelled = true;
-        iArr[0] = iArr[0] - 1;
-        if (iArr[0] == 0) {
+        int i = iArr[0] - 1;
+        iArr[0] = i;
+        if (i == 0) {
             runnable.run();
         }
     }

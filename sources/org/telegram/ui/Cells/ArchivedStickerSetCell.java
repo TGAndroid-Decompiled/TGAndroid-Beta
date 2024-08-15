@@ -7,7 +7,6 @@ import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.TextUtils;
 import android.view.View;
@@ -16,21 +15,10 @@ import android.widget.Button;
 import android.widget.Checkable;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DocumentObject;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
-import org.telegram.messenger.SvgHelper;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$PhotoSize;
-import org.telegram.tgnet.TLRPC$StickerSet;
 import org.telegram.tgnet.TLRPC$StickerSetCovered;
-import org.telegram.tgnet.TLRPC$TL_stickerSetFullCovered;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
@@ -154,79 +142,8 @@ public class ArchivedStickerSetCell extends FrameLayout implements Checkable {
         }
     }
 
-    public void setStickersSet(TLRPC$StickerSetCovered tLRPC$StickerSetCovered, boolean z) {
-        ImageLocation forSticker;
-        this.needDivider = z;
-        this.stickersSet = tLRPC$StickerSetCovered;
-        setWillNotDraw(!z);
-        this.textView.setText(this.stickersSet.set.title);
-        TLRPC$StickerSet tLRPC$StickerSet = tLRPC$StickerSetCovered.set;
-        if (tLRPC$StickerSet.emojis) {
-            this.valueTextView.setText(LocaleController.formatPluralString("EmojiCount", tLRPC$StickerSet.count, new Object[0]));
-        } else {
-            this.valueTextView.setText(LocaleController.formatPluralString("Stickers", tLRPC$StickerSet.count, new Object[0]));
-        }
-        TLRPC$Document tLRPC$Document = null;
-        if (tLRPC$StickerSetCovered instanceof TLRPC$TL_stickerSetFullCovered) {
-            ArrayList<TLRPC$Document> arrayList = ((TLRPC$TL_stickerSetFullCovered) tLRPC$StickerSetCovered).documents;
-            if (arrayList == null) {
-                return;
-            }
-            long j = tLRPC$StickerSetCovered.set.thumb_document_id;
-            int i = 0;
-            while (true) {
-                if (i < arrayList.size()) {
-                    TLRPC$Document tLRPC$Document2 = arrayList.get(i);
-                    if (tLRPC$Document2 != null && tLRPC$Document2.id == j) {
-                        tLRPC$Document = tLRPC$Document2;
-                        break;
-                    }
-                    i++;
-                } else {
-                    break;
-                }
-            }
-            if (tLRPC$Document == null && !arrayList.isEmpty()) {
-                tLRPC$Document = arrayList.get(0);
-            }
-        } else {
-            TLRPC$Document tLRPC$Document3 = tLRPC$StickerSetCovered.cover;
-            if (tLRPC$Document3 != null) {
-                tLRPC$Document = tLRPC$Document3;
-            } else if (!tLRPC$StickerSetCovered.covers.isEmpty()) {
-                tLRPC$Document = tLRPC$StickerSetCovered.covers.get(0);
-            }
-        }
-        if (tLRPC$Document != null) {
-            TLObject closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$StickerSetCovered.set.thumbs, 90);
-            if (closestPhotoSizeWithSize == null) {
-                closestPhotoSizeWithSize = tLRPC$Document;
-            }
-            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tLRPC$StickerSetCovered.set.thumbs, Theme.key_windowBackgroundGray, 1.0f);
-            boolean z2 = closestPhotoSizeWithSize instanceof TLRPC$Document;
-            if (z2) {
-                forSticker = ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 90), tLRPC$Document);
-            } else {
-                forSticker = ImageLocation.getForSticker((TLRPC$PhotoSize) closestPhotoSizeWithSize, tLRPC$Document, tLRPC$StickerSetCovered.set.thumb_version);
-            }
-            ImageLocation imageLocation = forSticker;
-            if (z2 && (MessageObject.isAnimatedStickerDocument(tLRPC$Document, true) || MessageObject.isVideoSticker(tLRPC$Document))) {
-                if (svgThumb != null) {
-                    this.imageView.setImage(ImageLocation.getForDocument(tLRPC$Document), "50_50", svgThumb, 0, tLRPC$StickerSetCovered);
-                    return;
-                } else {
-                    this.imageView.setImage(ImageLocation.getForDocument(tLRPC$Document), "50_50", imageLocation, (String) null, 0, tLRPC$StickerSetCovered);
-                    return;
-                }
-            } else if (imageLocation != null && imageLocation.imageType == 1) {
-                this.imageView.setImage(imageLocation, "50_50", "tgs", svgThumb, tLRPC$StickerSetCovered);
-                return;
-            } else {
-                this.imageView.setImage(imageLocation, "50_50", "webp", svgThumb, tLRPC$StickerSetCovered);
-                return;
-            }
-        }
-        this.imageView.setImage((ImageLocation) null, (String) null, "webp", (Drawable) null, tLRPC$StickerSetCovered);
+    public void setStickersSet(org.telegram.tgnet.TLRPC$StickerSetCovered r13, boolean r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ArchivedStickerSetCell.setStickersSet(org.telegram.tgnet.TLRPC$StickerSetCovered, boolean):void");
     }
 
     public TLRPC$StickerSetCovered getStickersSet() {

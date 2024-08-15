@@ -21,6 +21,7 @@ import java.io.File;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
@@ -66,7 +67,7 @@ public class WallpaperCell extends FrameLayout {
         public WallpaperView(Context context) {
             super(context);
             setWillNotDraw(false);
-            BackupImageView backupImageView = new BackupImageView(context, WallpaperCell.this) {
+            BackupImageView backupImageView = new BackupImageView(context) {
                 @Override
                 public void onDraw(Canvas canvas) {
                     super.onDraw(canvas);
@@ -115,7 +116,9 @@ public class WallpaperCell extends FrameLayout {
         public void setWallpaper(Object obj, Object obj2, Drawable drawable, boolean z) {
             TLRPC$PhotoSize tLRPC$PhotoSize;
             int patternColor;
+            BlendMode blendMode;
             int patternColor2;
+            BlendMode blendMode2;
             this.currentWallpaper = obj;
             this.imageView.setVisibility(0);
             this.imageView2.setVisibility(4);
@@ -149,7 +152,9 @@ public class WallpaperCell extends FrameLayout {
                     if (tLRPC$TL_wallPaper.settings.intensity >= 0 || !Theme.getActiveTheme().isDark()) {
                         this.imageView.setBackground(motionBackgroundDrawable);
                         if (Build.VERSION.SDK_INT >= 29) {
-                            this.imageView.getImageReceiver().setBlendMode(BlendMode.SOFT_LIGHT);
+                            ImageReceiver imageReceiver = this.imageView.getImageReceiver();
+                            blendMode2 = BlendMode.SOFT_LIGHT;
+                            imageReceiver.setBlendMode(blendMode2);
                         }
                     } else {
                         this.imageView.getImageReceiver().setGradientBitmap(motionBackgroundDrawable.getBitmap());
@@ -177,7 +182,9 @@ public class WallpaperCell extends FrameLayout {
                         if (colorWallpaper.intensity >= 0.0f) {
                             this.imageView.setBackground(new MotionBackgroundDrawable(colorWallpaper.color, colorWallpaper.gradientColor1, colorWallpaper.gradientColor2, colorWallpaper.gradientColor3, true));
                             if (Build.VERSION.SDK_INT >= 29) {
-                                this.imageView.getImageReceiver().setBlendMode(BlendMode.SOFT_LIGHT);
+                                ImageReceiver imageReceiver2 = this.imageView.getImageReceiver();
+                                blendMode = BlendMode.SOFT_LIGHT;
+                                imageReceiver2.setBlendMode(blendMode);
                             }
                         } else {
                             this.imageView.getImageReceiver().setGradientBitmap(motionBackgroundDrawable2.getBitmap());
@@ -414,8 +421,8 @@ public class WallpaperCell extends FrameLayout {
         int dp2 = this.isTop ? AndroidUtilities.dp(14.0f) : 0;
         for (int i5 = 0; i5 < this.spanCount; i5++) {
             int measuredWidth = this.wallpaperViews[i5].getMeasuredWidth();
-            WallpaperView[] wallpaperViewArr = this.wallpaperViews;
-            wallpaperViewArr[i5].layout(dp, dp2, dp + measuredWidth, wallpaperViewArr[i5].getMeasuredHeight() + dp2);
+            WallpaperView wallpaperView = this.wallpaperViews[i5];
+            wallpaperView.layout(dp, dp2, dp + measuredWidth, wallpaperView.getMeasuredHeight() + dp2);
             dp += measuredWidth + AndroidUtilities.dp(6.0f);
         }
     }

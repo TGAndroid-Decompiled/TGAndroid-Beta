@@ -135,12 +135,12 @@ public class StealthModeAlert extends BottomSheet {
             simpleTextView.setText(LocaleController.getString("StealthModePremiumHint", R.string.StealthModePremiumHint));
         }
         linearLayout.addView(simpleTextView, LayoutHelper.createLinear(-2, -2, 1, 36, 10, 36, 0));
-        ItemCell itemCell = new ItemCell(this, getContext());
+        ItemCell itemCell = new ItemCell(getContext());
         itemCell.imageView.setImageResource(R.drawable.msg_stealth_5min);
         itemCell.textView.setText(LocaleController.getString("HideRecentViews", R.string.HideRecentViews));
         itemCell.description.setText(LocaleController.getString("HideRecentViewsDescription", R.string.HideRecentViewsDescription));
         linearLayout.addView(itemCell, LayoutHelper.createLinear(-1, -2, 0, 0, 20, 0, 0));
-        ItemCell itemCell2 = new ItemCell(this, getContext());
+        ItemCell itemCell2 = new ItemCell(getContext());
         itemCell2.imageView.setImageResource(R.drawable.msg_stealth_25min);
         itemCell2.textView.setText(LocaleController.getString("HideNextViews", R.string.HideNextViews));
         itemCell2.description.setText(LocaleController.getString("HideNextViewsDescription", R.string.HideNextViewsDescription));
@@ -311,7 +311,7 @@ public class StealthModeAlert extends BottomSheet {
         ImageView imageView;
         TextView textView;
 
-        public ItemCell(StealthModeAlert stealthModeAlert, Context context) {
+        public ItemCell(Context context) {
             super(context);
             ImageView imageView = new ImageView(context);
             this.imageView = imageView;
@@ -320,12 +320,12 @@ public class StealthModeAlert extends BottomSheet {
             TextView textView = new TextView(context);
             this.textView = textView;
             textView.setTypeface(AndroidUtilities.bold());
-            this.textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, ((BottomSheet) stealthModeAlert).resourcesProvider));
+            this.textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, ((BottomSheet) StealthModeAlert.this).resourcesProvider));
             this.textView.setTextSize(1, 14.0f);
             addView(this.textView, LayoutHelper.createFrame(-1, -2.0f, 0, 68.0f, 8.0f, 16.0f, 0.0f));
             TextView textView2 = new TextView(context);
             this.description = textView2;
-            textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, ((BottomSheet) stealthModeAlert).resourcesProvider));
+            textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, ((BottomSheet) StealthModeAlert.this).resourcesProvider));
             this.description.setTextSize(1, 14.0f);
             addView(this.description, LayoutHelper.createFrame(-1, -2.0f, 0, 68.0f, 28.0f, 16.0f, 8.0f));
         }

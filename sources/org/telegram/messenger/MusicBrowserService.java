@@ -32,7 +32,6 @@ import java.util.List;
 import java.util.Locale;
 import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.audioinfo.AudioInfo;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$Message;
@@ -80,12 +79,14 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
     }
 
     public void createMediaSession() {
+        MediaSession.Token sessionToken;
         if (this.mediaSession != null) {
             return;
         }
         MediaSession mediaSession = new MediaSession(this, "MusicService");
         this.mediaSession = mediaSession;
-        setSessionToken(mediaSession.getSessionToken());
+        sessionToken = mediaSession.getSessionToken();
+        setSessionToken(sessionToken);
         this.mediaSession.setCallback(new MediaSessionCallback());
         this.mediaSession.setFlags(3);
         Context applicationContext = getApplicationContext();
@@ -141,6 +142,8 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
     }
 
     public void lambda$onLoadChildren$1(MessagesStorage messagesStorage, final String str, final MediaBrowserService.Result result) {
+        MediaDescription.Builder mediaId;
+        MediaDescription build;
         try {
             ArrayList<Long> arrayList = new ArrayList<>();
             ArrayList arrayList2 = new ArrayList();
@@ -180,10 +183,11 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
                             MessageObject messageObject = new MessageObject(this.currentAccount, TLdeserialize, false, true);
                             arrayList3.add(0, messageObject);
                             MediaDescription.Builder builder = new MediaDescription.Builder();
-                            MediaDescription.Builder mediaId = builder.setMediaId(longValue2 + "_" + arrayList3.size());
+                            mediaId = builder.setMediaId(longValue2 + "_" + arrayList3.size());
                             mediaId.setTitle(messageObject.getMusicTitle());
                             mediaId.setSubtitle(messageObject.getMusicAuthor());
-                            arrayList4.add(0, new MediaSession.QueueItem(mediaId.build(), (long) arrayList4.size()));
+                            build = mediaId.build();
+                            arrayList4.add(0, new MediaSession.QueueItem(build, (long) arrayList4.size()));
                         }
                     }
                 }
@@ -217,6 +221,7 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
     }
 
     public void lambda$onLoadChildren$0(String str, MediaBrowserService.Result result) {
+        MediaMetadata build;
         this.chatsLoaded = true;
         this.loadingChats = false;
         loadChildrenImpl(str, result);
@@ -251,7 +256,9 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
                 builder.putLong("android.media.metadata.DURATION", (long) (messageObject.getDuration() * 1000.0d));
                 builder.putString("android.media.metadata.ARTIST", messageObject.getMusicAuthor());
                 builder.putString("android.media.metadata.TITLE", messageObject.getMusicTitle());
-                this.mediaSession.setMetadata(builder.build());
+                MediaSession mediaSession = this.mediaSession;
+                build = builder.build();
+                mediaSession.setMetadata(build);
             }
         }
         updatePlaybackState(null);
@@ -414,11 +421,13 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
     }
 
     private void updatePlaybackState(String str) {
+        PlaybackState.Builder actions;
         int i;
         int i2;
+        PlaybackState build;
         MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
         long j = playingMessageObject != null ? playingMessageObject.audioProgressSec * 1000 : -1L;
-        PlaybackState.Builder actions = new PlaybackState.Builder().setActions(getAvailableActions());
+        actions = new PlaybackState.Builder().setActions(getAvailableActions());
         if (playingMessageObject == null) {
             i = 1;
         } else if (MediaController.getInstance().isDownloadingCurrentMessage()) {
@@ -440,7 +449,8 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
         }
         MediaSession mediaSession = this.mediaSession;
         if (mediaSession != null) {
-            mediaSession.setPlaybackState(actions.build());
+            build = actions.build();
+            mediaSession.setPlaybackState(build);
         }
     }
 
@@ -463,34 +473,7 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
     }
 
     public void handlePlayRequest() {
-        Bitmap cover;
-        this.delayedStopHandler.removeCallbacksAndMessages(null);
-        if (!this.serviceStarted) {
-            try {
-                startService(new Intent(getApplicationContext(), MusicBrowserService.class));
-            } catch (Throwable th) {
-                FileLog.e(th);
-            }
-            this.serviceStarted = true;
-        }
-        MediaSession mediaSession = this.mediaSession;
-        if (mediaSession == null || !mediaSession.isActive()) {
-            createMediaSession();
-            this.mediaSession.setActive(true);
-        }
-        MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
-        if (playingMessageObject == null) {
-            return;
-        }
-        MediaMetadata.Builder builder = new MediaMetadata.Builder();
-        builder.putLong("android.media.metadata.DURATION", (long) (playingMessageObject.getDuration() * 1000.0d));
-        builder.putString("android.media.metadata.ARTIST", playingMessageObject.getMusicAuthor());
-        builder.putString("android.media.metadata.TITLE", playingMessageObject.getMusicTitle());
-        AudioInfo audioInfo = MediaController.getInstance().getAudioInfo();
-        if (audioInfo != null && (cover = audioInfo.getCover()) != null) {
-            builder.putBitmap("android.media.metadata.ALBUM_ART", cover);
-        }
-        this.mediaSession.setMetadata(builder.build());
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MusicBrowserService.handlePlayRequest():void");
     }
 
     public void handlePauseRequest() {

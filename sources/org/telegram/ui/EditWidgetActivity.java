@@ -326,9 +326,7 @@ public class EditWidgetActivity extends BaseFragment {
     }
 
     public void updateRows() {
-        this.rowCount = 0;
         int i = 0 + 1;
-        this.rowCount = i;
         this.previewRow = 0;
         this.rowCount = i + 1;
         this.selectChatsRow = i;

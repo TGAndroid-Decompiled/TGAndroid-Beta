@@ -14,9 +14,7 @@ public class MP3Frame {
             do {
                 short s = this.crc;
                 if (((32768 & s) == 0) ^ ((i & i3) == 0)) {
-                    short s2 = (short) (s << 1);
-                    this.crc = s2;
-                    this.crc = (short) (s2 ^ 32773);
+                    this.crc = (short) (((short) (s << 1)) ^ 32773);
                 } else {
                     this.crc = (short) (s << 1);
                 }
@@ -174,10 +172,11 @@ public class MP3Frame {
         int xingOffset = this.header.getXingOffset();
         byte[] bArr = this.bytes;
         if (bArr.length >= xingOffset + 12 && xingOffset >= 0 && bArr.length >= xingOffset + 8) {
-            if (bArr[xingOffset] == 88 && bArr[xingOffset + 1] == 105 && bArr[xingOffset + 2] == 110 && bArr[xingOffset + 3] == 103) {
+            byte b = bArr[xingOffset];
+            if (b == 88 && bArr[xingOffset + 1] == 105 && bArr[xingOffset + 2] == 110 && bArr[xingOffset + 3] == 103) {
                 return true;
             }
-            if (bArr[xingOffset] == 73 && bArr[xingOffset + 1] == 110 && bArr[xingOffset + 2] == 102 && bArr[xingOffset + 3] == 111) {
+            if (b == 73 && bArr[xingOffset + 1] == 110 && bArr[xingOffset + 2] == 102 && bArr[xingOffset + 3] == 111) {
                 return true;
             }
         }

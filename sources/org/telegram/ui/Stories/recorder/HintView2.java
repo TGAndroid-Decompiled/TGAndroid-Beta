@@ -70,6 +70,8 @@ public class HintView2 extends View {
     private final ButtonBounce bounce;
     private ValueAnimator bounceAnimator;
     private float bounceT;
+    private float bounceX;
+    private float bounceY;
     private final RectF bounds;
     private final Rect boundsWithArrow;
     private boolean closeButton;
@@ -122,6 +124,7 @@ public class HintView2 extends View {
     private boolean useAlpha;
     private boolean useBlur;
     private boolean useScale;
+    private boolean useTranslate;
 
     public HintView2(Context context) {
         this(context, 0);
@@ -133,6 +136,7 @@ public class HintView2 extends View {
         this.jointTranslate = 0.0f;
         this.duration = 3500L;
         this.useScale = true;
+        this.useTranslate = true;
         this.useAlpha = true;
         this.useBlur = false;
         this.textMaxWidth = -1;
@@ -311,7 +315,8 @@ public class HintView2 extends View {
         }
         int i2 = i;
         for (int i3 = 0; i3 < coloredImageSpanArr.length; i3++) {
-            i2 += coloredImageSpanArr[i3].getSize(textPaint, charSequence, spanned.getSpanStart(coloredImageSpanArr[i3]), spanned.getSpanEnd(coloredImageSpanArr[i3]), textPaint.getFontMetricsInt());
+            ColoredImageSpan coloredImageSpan = coloredImageSpanArr[i3];
+            i2 += coloredImageSpan.getSize(textPaint, charSequence, spanned.getSpanStart(coloredImageSpan), spanned.getSpanEnd(coloredImageSpanArr[i3]), textPaint.getFontMetricsInt());
         }
         for (AnimatedEmojiSpan animatedEmojiSpan : animatedEmojiSpanArr) {
             i2 = (int) (i2 + animatedEmojiSpan.size);
@@ -934,6 +939,8 @@ public class HintView2 extends View {
         float x = motionEvent.getX();
         float y = motionEvent.getY();
         if (motionEvent.getAction() == 0 && containsTouch(motionEvent, 0.0f, 0.0f)) {
+            this.bounceX = x;
+            this.bounceY = y;
             this.bounce.setPressed(true);
             Drawable drawable = this.selectorDrawable;
             if (drawable != null && Build.VERSION.SDK_INT >= 21) {

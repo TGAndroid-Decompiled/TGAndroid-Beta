@@ -1,6 +1,6 @@
 package kotlinx.coroutines.internal;
 
-import kotlin.text.StringsKt;
+import kotlin.text.StringsKt__StringNumberConversionsKt;
 public final class SystemPropsKt__SystemProps_commonKt {
     public static final boolean systemProp(String str, boolean z) {
         String systemProp = SystemPropsKt.systemProp(str);
@@ -33,11 +33,12 @@ public final class SystemPropsKt__SystemProps_commonKt {
     }
 
     public static final long systemProp(String str, long j, long j2, long j3) {
+        Long longOrNull;
         String systemProp = SystemPropsKt.systemProp(str);
         if (systemProp == null) {
             return j;
         }
-        Long longOrNull = StringsKt.toLongOrNull(systemProp);
+        longOrNull = StringsKt__StringNumberConversionsKt.toLongOrNull(systemProp);
         if (longOrNull == null) {
             throw new IllegalStateException(("System property '" + str + "' has unrecognized value '" + systemProp + '\'').toString());
         }

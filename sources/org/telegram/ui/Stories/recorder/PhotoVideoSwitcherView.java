@@ -20,11 +20,13 @@ import org.telegram.ui.Stories.recorder.FlashViews;
 public class PhotoVideoSwitcherView extends View implements FlashViews.Invertable {
     private ValueAnimator animator;
     private boolean mIsScrolling;
+    private boolean mIsTouch;
     private long mLastTouchTime;
     private float mLastX;
     private int mTouchSlop;
     private VelocityTracker mVelocityTracker;
     private float mode;
+    private float modeAtTouchDown;
     private Utilities.Callback<Boolean> onSwitchModeListener;
     private Utilities.Callback<Float> onSwitchingModeListener;
     private RectF photoRect;
@@ -33,6 +35,7 @@ public class PhotoVideoSwitcherView extends View implements FlashViews.Invertabl
     private float photoTextLeft;
     private float photoTextWidth;
     private float scrollWidth;
+    private boolean scrolledEnough;
     private Paint selectorPaint;
     private RectF selectorRect;
     private TextPaint textPaint;
@@ -116,6 +119,7 @@ public class PhotoVideoSwitcherView extends View implements FlashViews.Invertabl
     public void scrollX(float f) {
         if (!this.mIsScrolling && Math.abs(f) > this.mTouchSlop) {
             this.mIsScrolling = true;
+            this.modeAtTouchDown = this.mode;
         }
         if (this.mIsScrolling) {
             float f2 = this.mode;
@@ -135,20 +139,19 @@ public class PhotoVideoSwitcherView extends View implements FlashViews.Invertabl
     }
 
     public boolean stopScroll(float f) {
-        boolean z = false;
-        if (this.mIsScrolling) {
-            this.mIsScrolling = false;
-            if (Math.abs(f) <= 500.0f ? this.mode > 0.5f : f < 0.0f) {
-                z = true;
-            }
-            switchMode(z);
-            Utilities.Callback<Boolean> callback = this.onSwitchModeListener;
-            if (callback != null) {
-                callback.run(Boolean.valueOf(z));
-            }
-            return true;
+        if (!this.mIsScrolling) {
+            this.scrolledEnough = false;
+            return false;
         }
-        return false;
+        this.mIsScrolling = false;
+        boolean z = Math.abs(f) <= 500.0f ? this.mode > 0.5f : f < 0.0f;
+        switchMode(z);
+        Utilities.Callback<Boolean> callback = this.onSwitchModeListener;
+        if (callback != null) {
+            callback.run(Boolean.valueOf(z));
+        }
+        this.scrolledEnough = false;
+        return true;
     }
 
     @Override
@@ -178,7 +181,7 @@ public class PhotoVideoSwitcherView extends View implements FlashViews.Invertabl
     }
 
     @Override
-    public boolean onTouchEvent(android.view.MotionEvent r7) {
+    public boolean onTouchEvent(android.view.MotionEvent r8) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.PhotoVideoSwitcherView.onTouchEvent(android.view.MotionEvent):boolean");
     }
 

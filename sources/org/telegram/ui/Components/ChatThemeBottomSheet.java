@@ -225,7 +225,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
             }
         });
         this.rootLayout.addView(rLottieImageView, LayoutHelper.createFrame(44, 44.0f, 8388661, 0.0f, -2.0f, 7.0f, 0.0f));
-        this.scroller = new LinearSmoothScroller(this, getContext()) {
+        this.scroller = new LinearSmoothScroller(getContext()) {
             @Override
             public int calculateTimeForScrolling(int i4) {
                 return super.calculateTimeForScrolling(i4) * 6;
@@ -1407,6 +1407,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
     }
 
     class AnonymousClass11 implements ChatAttachAlert.ChatAttachViewDelegate {
+        long start;
         final TL_stories$TL_premium_boostsStatus val$cachedBoostsStatus;
         final ChatAttachAlert val$chatAttachAlert;
         final long val$dialogId;
@@ -1457,7 +1458,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
 
         @Override
         public boolean selectItemOnClicking() {
-            System.currentTimeMillis();
+            this.start = System.currentTimeMillis();
             return true;
         }
 
@@ -1479,7 +1480,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
                     android.graphics.Point realScreenSize = AndroidUtilities.getRealScreenSize();
                     Bitmap loadBitmap = ImageLoader.loadBitmap(str, null, (float) realScreenSize.x, (float) realScreenSize.y, true);
                     loadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
-                    ThemePreviewActivity themePreviewActivity = new ThemePreviewActivity(this, new WallpapersListActivity.FileWallpaper("", file, file), loadBitmap) {
+                    ThemePreviewActivity themePreviewActivity = new ThemePreviewActivity(new WallpapersListActivity.FileWallpaper("", file, file), loadBitmap) {
                         @Override
                         public boolean insideBottomSheet() {
                             return true;
@@ -1519,7 +1520,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
 
         @Override
         public void onWallpaperSelected(Object obj) {
-            ThemePreviewActivity themePreviewActivity = new ThemePreviewActivity(this, obj, null, true, false) {
+            ThemePreviewActivity themePreviewActivity = new ThemePreviewActivity(obj, null, true, false) {
                 @Override
                 public boolean insideBottomSheet() {
                     return true;
@@ -1599,6 +1600,8 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
     }
 
     public class AnonymousClass12 implements ChatAttachAlert.ChatAttachViewDelegate {
+        long start;
+
         @Override
         public void didSelectBot(TLRPC$User tLRPC$User) {
             ChatAttachAlert.ChatAttachViewDelegate.CC.$default$didSelectBot(this, tLRPC$User);
@@ -1634,7 +1637,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
 
         @Override
         public boolean selectItemOnClicking() {
-            System.currentTimeMillis();
+            this.start = System.currentTimeMillis();
             return true;
         }
 
@@ -1656,7 +1659,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
                     android.graphics.Point realScreenSize = AndroidUtilities.getRealScreenSize();
                     Bitmap loadBitmap = ImageLoader.loadBitmap(str, null, (float) realScreenSize.x, (float) realScreenSize.y, true);
                     loadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
-                    ThemePreviewActivity themePreviewActivity = new ThemePreviewActivity(this, new WallpapersListActivity.FileWallpaper("", file, file), loadBitmap) {
+                    ThemePreviewActivity themePreviewActivity = new ThemePreviewActivity(new WallpapersListActivity.FileWallpaper("", file, file), loadBitmap) {
                         @Override
                         public boolean insideBottomSheet() {
                             return true;
@@ -1685,7 +1688,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
 
         @Override
         public void onWallpaperSelected(Object obj) {
-            ThemePreviewActivity themePreviewActivity = new ThemePreviewActivity(this, obj, null, true, false) {
+            ThemePreviewActivity themePreviewActivity = new ThemePreviewActivity(obj, null, true, false) {
                 @Override
                 public boolean insideBottomSheet() {
                     return true;
@@ -1855,7 +1858,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
     }
 
     public static class ChatThemeItem {
-        public float animationProgress;
+        public float animationProgress = 1.0f;
         public final EmojiThemes chatTheme;
         public Bitmap icon;
         public boolean isSelected;

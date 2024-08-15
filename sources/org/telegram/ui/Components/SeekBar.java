@@ -35,6 +35,7 @@ public class SeekBar {
     private int height;
     private CharSequence lastCaption;
     private long lastTimestampUpdate;
+    private long lastTimestampsAppearingUpdate;
     private long lastUpdateTime;
     private long lastVideoDuration;
     private View parentView;
@@ -53,8 +54,11 @@ public class SeekBar {
     private int lineHeight = AndroidUtilities.dp(2.0f);
     private float alpha = 1.0f;
     private float timestampsAppearing = 0.0f;
+    private final float TIMESTAMP_GAP = 1.0f;
     private int currentTimestamp = -1;
+    private int lastTimestamp = -1;
     private float timestampChangeT = 1.0f;
+    private float lastWidth = -1.0f;
 
     public interface SeekBarDelegate {
 
@@ -540,8 +544,7 @@ public class SeekBar {
             this.timestampLabel = new StaticLayout[2];
         }
         int i = thumbWidth;
-        Math.abs((i / 2.0f) - (this.width - (i / 2.0f)));
-        AndroidUtilities.dp(66.0f);
+        this.lastWidth = Math.abs((i / 2.0f) - (this.width - (i / 2.0f))) - AndroidUtilities.dp(66.0f);
         if (size != this.currentTimestamp) {
             if (this.pressed) {
                 AndroidUtilities.vibrateCursor(this.parentView);
@@ -565,7 +568,7 @@ public class SeekBar {
             if (view2 != null) {
                 view2.invalidate();
             }
-            SystemClock.elapsedRealtime();
+            this.lastTimestampsAppearingUpdate = SystemClock.elapsedRealtime();
         }
     }
 }

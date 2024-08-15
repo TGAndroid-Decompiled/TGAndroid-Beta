@@ -69,6 +69,7 @@ public class LinkActionView extends LinearLayout {
     private QRCodeBottomSheet qrCodeBottomSheet;
     private String qrText;
     private final TextView removeView;
+    private boolean revoked;
     private final TextView shareView;
     private int usersCount;
 
@@ -344,7 +345,7 @@ public class LinkActionView extends LinearLayout {
                     canvas.restore();
                 }
             };
-            final ViewTreeObserver.OnPreDrawListener onPreDrawListener = new ViewTreeObserver.OnPreDrawListener(this) {
+            final ViewTreeObserver.OnPreDrawListener onPreDrawListener = new ViewTreeObserver.OnPreDrawListener() {
                 @Override
                 public boolean onPreDraw() {
                     view2.invalidate();
@@ -457,19 +458,19 @@ public class LinkActionView extends LinearLayout {
     }
 
     private void showQrCode() {
-        int i;
         String str;
+        int i;
         Context context = getContext();
         String string = LocaleController.getString("InviteByQRCode", R.string.InviteByQRCode);
         String str2 = this.link;
         String str3 = this.qrText;
         if (str3 == null) {
             if (this.isChannel) {
-                i = R.string.QRCodeLinkHelpChannel;
                 str = "QRCodeLinkHelpChannel";
+                i = R.string.QRCodeLinkHelpChannel;
             } else {
-                i = R.string.QRCodeLinkHelpGroup;
                 str = "QRCodeLinkHelpGroup";
+                i = R.string.QRCodeLinkHelpGroup;
             }
             str3 = LocaleController.getString(str, i);
         }
@@ -528,6 +529,7 @@ public class LinkActionView extends LinearLayout {
     }
 
     public void setRevoke(boolean z) {
+        this.revoked = z;
         if (z) {
             this.optionsView.setVisibility(8);
             this.shareView.setVisibility(8);
@@ -563,7 +565,7 @@ public class LinkActionView extends LinearLayout {
 
         public AvatarsContainer(Context context) {
             super(context);
-            this.avatarsImageView = new AvatarsImageView(context, false, LinkActionView.this) {
+            this.avatarsImageView = new AvatarsImageView(context, false) {
                 @Override
                 public void onMeasure(int i, int i2) {
                     int min = Math.min(3, LinkActionView.this.usersCount);

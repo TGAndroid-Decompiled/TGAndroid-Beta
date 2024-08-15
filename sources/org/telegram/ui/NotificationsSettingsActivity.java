@@ -78,6 +78,7 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
     private int inappSoundRow;
     private int inappVibrateRow;
     private int inchatSoundRow;
+    private LinearLayoutManager layoutManager;
     private RecyclerListView listView;
     private int notificationsSection2Row;
     private int notificationsSectionRow;
@@ -124,10 +125,8 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
         if (UserConfig.getActivatedAccountsCount() > 1) {
             int i = this.rowCount;
             int i2 = i + 1;
-            this.rowCount = i2;
             this.accountsSectionRow = i;
             int i3 = i2 + 1;
-            this.rowCount = i3;
             this.accountsAllRow = i2;
             this.rowCount = i3 + 1;
             this.accountsInfoRow = i3;
@@ -138,64 +137,44 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
         }
         int i4 = this.rowCount;
         int i5 = i4 + 1;
-        this.rowCount = i5;
         this.notificationsSectionRow = i4;
         int i6 = i5 + 1;
-        this.rowCount = i6;
         this.privateRow = i5;
         int i7 = i6 + 1;
-        this.rowCount = i7;
         this.groupRow = i6;
         int i8 = i7 + 1;
-        this.rowCount = i8;
         this.channelsRow = i7;
         int i9 = i8 + 1;
-        this.rowCount = i9;
         this.storiesRow = i8;
         int i10 = i9 + 1;
-        this.rowCount = i10;
         this.reactionsRow = i9;
         int i11 = i10 + 1;
-        this.rowCount = i11;
         this.notificationsSection2Row = i10;
         int i12 = i11 + 1;
-        this.rowCount = i12;
         this.callsSectionRow = i11;
         int i13 = i12 + 1;
-        this.rowCount = i13;
         this.callsVibrateRow = i12;
         int i14 = i13 + 1;
-        this.rowCount = i14;
         this.callsRingtoneRow = i13;
         int i15 = i14 + 1;
-        this.rowCount = i15;
         this.eventsSection2Row = i14;
         int i16 = i15 + 1;
-        this.rowCount = i16;
         this.badgeNumberSection = i15;
         int i17 = i16 + 1;
-        this.rowCount = i17;
         this.badgeNumberShowRow = i16;
         int i18 = i17 + 1;
-        this.rowCount = i18;
         this.badgeNumberMutedRow = i17;
         int i19 = i18 + 1;
-        this.rowCount = i19;
         this.badgeNumberMessagesRow = i18;
         int i20 = i19 + 1;
-        this.rowCount = i20;
         this.badgeNumberSection2Row = i19;
         int i21 = i20 + 1;
-        this.rowCount = i21;
         this.inappSectionRow = i20;
         int i22 = i21 + 1;
-        this.rowCount = i22;
         this.inappSoundRow = i21;
         int i23 = i22 + 1;
-        this.rowCount = i23;
         this.inappVibrateRow = i22;
         int i24 = i23 + 1;
-        this.rowCount = i24;
         this.inappPreviewRow = i23;
         int i25 = i24 + 1;
         this.rowCount = i25;
@@ -208,41 +187,29 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
         }
         int i26 = this.rowCount;
         int i27 = i26 + 1;
-        this.rowCount = i27;
         this.callsSection2Row = i26;
         int i28 = i27 + 1;
-        this.rowCount = i28;
         this.eventsSectionRow = i27;
         int i29 = i28 + 1;
-        this.rowCount = i29;
         this.contactJoinedRow = i28;
         int i30 = i29 + 1;
-        this.rowCount = i30;
         this.pinnedMessageRow = i29;
         int i31 = i30 + 1;
-        this.rowCount = i31;
         this.otherSection2Row = i30;
         int i32 = i31 + 1;
-        this.rowCount = i32;
         this.otherSectionRow = i31;
         int i33 = i32 + 1;
-        this.rowCount = i33;
         this.notificationsServiceRow = i32;
         int i34 = i33 + 1;
-        this.rowCount = i34;
         this.notificationsServiceConnectionRow = i33;
         this.androidAutoAlertRow = -1;
         int i35 = i34 + 1;
-        this.rowCount = i35;
         this.repeatRow = i34;
         int i36 = i35 + 1;
-        this.rowCount = i36;
         this.resetSection2Row = i35;
         int i37 = i36 + 1;
-        this.rowCount = i37;
         this.resetSectionRow = i36;
         int i38 = i37 + 1;
-        this.rowCount = i38;
         this.resetNotificationsRow = i37;
         this.rowCount = i38 + 1;
         this.resetNotificationsSectionRow = i38;
@@ -302,24 +269,26 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
         });
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
-        FrameLayout frameLayout2 = frameLayout;
-        frameLayout2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
+        frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
         RecyclerListView recyclerListView = new RecyclerListView(context);
         this.listView = recyclerListView;
         recyclerListView.setItemAnimator(null);
         this.listView.setLayoutAnimation(null);
-        this.listView.setLayoutManager(new LinearLayoutManager(this, context, 1, false) {
+        RecyclerListView recyclerListView2 = this.listView;
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, 1, false) {
             @Override
             public boolean supportsPredictiveItemAnimations() {
                 return false;
             }
-        });
+        };
+        this.layoutManager = linearLayoutManager;
+        recyclerListView2.setLayoutManager(linearLayoutManager);
         this.listView.setVerticalScrollBarEnabled(false);
-        frameLayout2.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
-        RecyclerListView recyclerListView2 = this.listView;
+        frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
+        RecyclerListView recyclerListView3 = this.listView;
         ListAdapter listAdapter = new ListAdapter(context);
         this.adapter = listAdapter;
-        recyclerListView2.setAdapter(listAdapter);
+        recyclerListView3.setAdapter(listAdapter);
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListenerExtended() {
             @Override
             public boolean hasDoubleTap(View view, int i) {
@@ -676,11 +645,13 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
 
     @Override
     public void onActivityResultFragment(int i, int i2, Intent intent) {
+        String str;
         Ringtone ringtone;
         if (i2 == -1) {
             Uri uri = (Uri) intent.getParcelableExtra("android.intent.extra.ringtone.PICKED_URI");
-            String str = null;
-            if (uri != null && (ringtone = RingtoneManager.getRingtone(getParentActivity(), uri)) != null) {
+            if (uri == null || (ringtone = RingtoneManager.getRingtone(getParentActivity(), uri)) == null) {
+                str = null;
+            } else {
                 if (i == this.callsRingtoneRow) {
                     if (uri.equals(Settings.System.DEFAULT_RINGTONE_URI)) {
                         str = LocaleController.getString("DefaultRingtone", R.string.DefaultRingtone);

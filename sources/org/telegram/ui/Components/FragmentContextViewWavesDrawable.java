@@ -23,7 +23,6 @@ public class FragmentContextViewWavesDrawable {
     private float animateToAmplitude;
     WeavingState currentState;
     private long lastUpdateTime;
-    Path path;
     WeavingState pausedState;
     WeavingState previousState;
     WeavingState[] states = new WeavingState[4];
@@ -33,11 +32,11 @@ public class FragmentContextViewWavesDrawable {
     LineBlobDrawable lineBlobDrawable = new LineBlobDrawable(5);
     LineBlobDrawable lineBlobDrawable1 = new LineBlobDrawable(7);
     LineBlobDrawable lineBlobDrawable2 = new LineBlobDrawable(8);
+    RectF rect = new RectF();
+    Path path = new Path();
+    private final Paint selectedPaint = new Paint(1);
 
     public FragmentContextViewWavesDrawable() {
-        new RectF();
-        this.path = new Path();
-        new Paint(1);
         for (int i = 0; i < 4; i++) {
             this.states[i] = new WeavingState(i);
         }

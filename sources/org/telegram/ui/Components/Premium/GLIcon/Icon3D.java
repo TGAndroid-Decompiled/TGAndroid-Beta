@@ -163,8 +163,9 @@ public class Icon3D {
         GLES20.glBindBuffer(34962, 0);
         int[] iArr2 = new int[1];
         GLES20.glGenTextures(1, iArr2, 0);
-        this.mTextureDataHandle = iArr2[0];
-        GLES20.glBindTexture(3553, iArr2[0]);
+        int i4 = iArr2[0];
+        this.mTextureDataHandle = i4;
+        GLES20.glBindTexture(3553, i4);
         GLES20.glTexParameteri(3553, 10241, 9729);
         GLES20.glTexParameteri(3553, 10240, 9729);
         GLES20.glBindTexture(3553, this.mTextureDataHandle);
@@ -178,14 +179,15 @@ public class Icon3D {
         bitmapFromAsset.recycle();
         int[] iArr4 = new int[1];
         GLES20.glGenTextures(1, iArr4, 0);
-        this.mBackgroundTextureHandle = iArr4[0];
-        GLES20.glBindTexture(3553, iArr4[0]);
+        int i5 = iArr4[0];
+        this.mBackgroundTextureHandle = i5;
+        GLES20.glBindTexture(3553, i5);
         GLES20.glTexParameteri(3553, 10241, 9729);
         GLES20.glTexParameteri(3553, 10240, 9729);
         GLES20.glBindTexture(3553, this.mBackgroundTextureHandle);
-        int i4 = this.type;
-        if (i4 == 0 || i4 == 2) {
-            if (i4 == 2) {
+        int i6 = this.type;
+        if (i6 == 0 || i6 == 2) {
+            if (i6 == 2) {
                 bitmap = SvgHelper.getBitmap(R.raw.start_texture, 240, 240, -1);
             } else {
                 bitmap = SvgHelper.getBitmap(R.raw.start_texture, 80, 80, -1);
@@ -204,7 +206,7 @@ public class Icon3D {
             GLES20.glActiveTexture(33985);
             GLES20.glBindTexture(3553, iArr3[0]);
             GLES20.glUniform1i(this.mNormalMapUniformHandle, 1);
-        } else if (i4 == 1) {
+        } else if (i6 == 1) {
             Bitmap bitmapFromAsset2 = getBitmapFromAsset(context, "models/coin_border.png");
             int[] iArr6 = new int[1];
             GLES20.glGenTextures(1, iArr6, 0);

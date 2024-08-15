@@ -11,6 +11,9 @@ class StringMaker {
     boolean includeThrows = false;
     boolean includeModifiers = false;
     boolean shortPrimaryTypeNames = false;
+    boolean includeJoinPointTypeName = true;
+    boolean includeEnclosingPoint = true;
+    boolean shortKindName = true;
 
     StringMaker() {
     }
@@ -23,6 +26,8 @@ class StringMaker {
         stringMaker.includeThrows = false;
         stringMaker.includeModifiers = false;
         stringMaker.shortPrimaryTypeNames = true;
+        stringMaker.includeJoinPointTypeName = false;
+        stringMaker.includeEnclosingPoint = false;
         stringMaker.cacheOffset = 0;
         StringMaker stringMaker2 = new StringMaker();
         middleStringMaker = stringMaker2;
@@ -39,6 +44,7 @@ class StringMaker {
         stringMaker3.includeThrows = false;
         stringMaker3.includeModifiers = true;
         stringMaker3.shortPrimaryTypeNames = false;
+        stringMaker3.shortKindName = false;
         stringMaker3.cacheOffset = 2;
     }
 

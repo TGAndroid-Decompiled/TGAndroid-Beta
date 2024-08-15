@@ -330,6 +330,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
         this.customViewGravity = 83;
         final Drawable mutate = ContextCompat.getDrawable(getContext(), R.drawable.header_shadow).mutate();
         FrameLayout frameLayout3 = new FrameLayout(getContext()) {
+            int lastSize;
             Path path = new Path();
 
             @Override
@@ -345,6 +346,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
 
             @Override
             protected void onMeasure(int i4, int i5) {
+                this.lastSize = (i4 + i5) << 16;
                 PremiumFeatureBottomSheet.this.topGlobalOffset = 0;
                 scrollView.measure(i4, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i5), Integer.MIN_VALUE));
                 PremiumFeatureBottomSheet.this.topGlobalOffset = (View.MeasureSpec.getSize(i5) - scrollView.getMeasuredHeight()) + ((BottomSheet) PremiumFeatureBottomSheet.this).backgroundPaddingTop;
@@ -799,7 +801,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
             });
             return featuresPageView;
         } else if (i2 == 5) {
-            return new PremiumStickersPreviewRecycler(this, context, this.currentAccount) {
+            return new PremiumStickersPreviewRecycler(context, this.currentAccount) {
                 @Override
                 public void setOffset(float f) {
                     setAutoPlayEnabled(f == 0.0f);
@@ -824,7 +826,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(viewPage.getMeasuredWidth(), 0.0f);
                 premiumAppIconsPreviewView.setOffset(viewPage.getMeasuredWidth());
                 this.enterAnimationIsRunning = true;
-                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
+                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public void onAnimationUpdate(ValueAnimator valueAnimator) {
                         premiumAppIconsPreviewView.setOffset(((Float) valueAnimator.getAnimatedValue()).floatValue());

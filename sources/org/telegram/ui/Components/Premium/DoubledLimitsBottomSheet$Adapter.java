@@ -26,6 +26,7 @@ public class DoubledLimitsBottomSheet$Adapter extends RecyclerListView.Selection
     int headerRow;
     int lastViewRow;
     final ArrayList<DoubledLimitsBottomSheet$Limit> limits;
+    int limitsStartEnd;
     int limitsStartRow;
     private final Theme.ResourcesProvider resourcesProvider;
     int rowCount;
@@ -59,12 +60,13 @@ public class DoubledLimitsBottomSheet$Adapter extends RecyclerListView.Selection
         arrayList.add(new DoubledLimitsBottomSheet$Limit(LocaleController.getString("ChatPerFolderLimitTitle", R.string.ChatPerFolderLimitTitle), LocaleController.formatString("ChatPerFolderLimitSubtitle", R.string.ChatPerFolderLimitSubtitle, Integer.valueOf(messagesController.dialogFiltersChatsLimitPremium)), messagesController.dialogFiltersChatsLimitDefault, messagesController.dialogFiltersChatsLimitPremium, null));
         arrayList.add(new DoubledLimitsBottomSheet$Limit(LocaleController.getString("ConnectedAccountsLimitTitle", R.string.ConnectedAccountsLimitTitle), LocaleController.formatString("ConnectedAccountsLimitSubtitle", R.string.ConnectedAccountsLimitSubtitle, 4), 3, 4, null));
         arrayList.add(new DoubledLimitsBottomSheet$Limit(LocaleController.getString(R.string.SimilarChannelsLimitTitle), LocaleController.formatString(R.string.SimilarChannelsLimitSubtitle, Integer.valueOf(messagesController.recommendedChannelsLimitPremium)), messagesController.recommendedChannelsLimitDefault, messagesController.recommendedChannelsLimitPremium, null));
-        this.rowCount = 0;
         int i2 = 1 + 0;
         this.rowCount = i2;
         this.headerRow = 0;
         this.limitsStartRow = i2;
-        this.rowCount = i2 + arrayList.size();
+        int size = i2 + arrayList.size();
+        this.rowCount = size;
+        this.limitsStartEnd = size;
     }
 
     @Override
@@ -73,7 +75,7 @@ public class DoubledLimitsBottomSheet$Adapter extends RecyclerListView.Selection
         Context context = viewGroup.getContext();
         if (i != 1) {
             if (i != 2) {
-                DoubledLimitsBottomSheet$LimitCell doubledLimitsBottomSheet$LimitCell = new DoubledLimitsBottomSheet$LimitCell(context, this.resourcesProvider);
+                ?? doubledLimitsBottomSheet$LimitCell = new DoubledLimitsBottomSheet$LimitCell(context, this.resourcesProvider);
                 doubledLimitsBottomSheet$LimitCell.previewView.setParentViewForGradien(this.containerView);
                 doubledLimitsBottomSheet$LimitCell.previewView.setStaticGradinet(this.gradientTools);
                 fixedHeightEmptyCell = doubledLimitsBottomSheet$LimitCell;
@@ -81,7 +83,7 @@ public class DoubledLimitsBottomSheet$Adapter extends RecyclerListView.Selection
                 fixedHeightEmptyCell = new FixedHeightEmptyCell(context, 16);
             }
         } else if (this.drawHeader) {
-            FrameLayout frameLayout = new FrameLayout(this, context) {
+            ?? r15 = new FrameLayout(context) {
                 @Override
                 protected void onMeasure(int i2, int i3) {
                     super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(86.0f), 1073741824));
@@ -99,8 +101,8 @@ public class DoubledLimitsBottomSheet$Adapter extends RecyclerListView.Selection
             textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider));
             textView.setTypeface(AndroidUtilities.bold());
             linearLayout.addView(textView, LayoutHelper.createFrame(-2, -2, 16));
-            frameLayout.addView(linearLayout, LayoutHelper.createFrame(-2, -2, 17));
-            fixedHeightEmptyCell = frameLayout;
+            r15.addView(linearLayout, LayoutHelper.createFrame(-2, -2, 17));
+            fixedHeightEmptyCell = r15;
         } else {
             fixedHeightEmptyCell = new FixedHeightEmptyCell(context, 64);
         }

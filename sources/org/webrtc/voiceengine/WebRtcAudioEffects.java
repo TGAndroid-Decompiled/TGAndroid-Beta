@@ -49,9 +49,6 @@ public class WebRtcAudioEffects {
 
     private static boolean isAcousticEchoCancelerExcludedByUUID() {
         AudioEffect.Descriptor[] availableEffects;
-        if (Build.VERSION.SDK_INT < 18) {
-            return false;
-        }
         for (AudioEffect.Descriptor descriptor : getAvailableEffects()) {
             if (descriptor.type.equals(AudioEffect.EFFECT_TYPE_AEC) && descriptor.uuid.equals(AOSP_ACOUSTIC_ECHO_CANCELER)) {
                 return true;
@@ -62,9 +59,6 @@ public class WebRtcAudioEffects {
 
     private static boolean isNoiseSuppressorExcludedByUUID() {
         AudioEffect.Descriptor[] availableEffects;
-        if (Build.VERSION.SDK_INT < 18) {
-            return false;
-        }
         for (AudioEffect.Descriptor descriptor : getAvailableEffects()) {
             if (descriptor.type.equals(AudioEffect.EFFECT_TYPE_NS) && descriptor.uuid.equals(AOSP_NOISE_SUPPRESSOR)) {
                 return true;
@@ -74,16 +68,10 @@ public class WebRtcAudioEffects {
     }
 
     private static boolean isAcousticEchoCancelerEffectAvailable() {
-        if (Build.VERSION.SDK_INT < 18) {
-            return false;
-        }
         return isEffectTypeAvailable(AudioEffect.EFFECT_TYPE_AEC);
     }
 
     private static boolean isNoiseSuppressorEffectAvailable() {
-        if (Build.VERSION.SDK_INT < 18) {
-            return false;
-        }
         return isEffectTypeAvailable(AudioEffect.EFFECT_TYPE_NS);
     }
 
@@ -201,9 +189,6 @@ public class WebRtcAudioEffects {
     }
 
     private boolean effectTypeIsVoIP(UUID uuid) {
-        if (Build.VERSION.SDK_INT < 18) {
-            return false;
-        }
         return (AudioEffect.EFFECT_TYPE_AEC.equals(uuid) && isAcousticEchoCancelerSupported()) || (AudioEffect.EFFECT_TYPE_NS.equals(uuid) && isNoiseSuppressorSupported());
     }
 

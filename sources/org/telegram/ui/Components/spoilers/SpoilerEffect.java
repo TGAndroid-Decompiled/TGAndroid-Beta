@@ -54,6 +54,7 @@ public class SpoilerEffect extends Drawable {
     private boolean enableAlpha;
     public boolean insideQuote;
     private boolean invalidateParent;
+    private boolean isLowDevice;
     private int lastColor;
     private long lastDrawTime;
     private int mAlpha;
@@ -75,6 +76,7 @@ public class SpoilerEffect extends Drawable {
     private float rippleY;
     private boolean shouldInvalidateColor;
     private List<RectF> spaces;
+    private boolean suppressUpdates;
     private RectF visibleRect;
     public static final int MAX_PARTICLES_PER_ENTITY = measureMaxParticlesCount();
     public static final int PARTICLES_PER_CHARACTER = measureParticlesPerCharacter();
@@ -102,7 +104,7 @@ public class SpoilerEffect extends Drawable {
         float[] fArr = ALPHAS;
         this.particlePaints = new Paint[fArr.length];
         this.particlesPool = new Stack<>();
-        this.particlePoints = (float[][]) Array.newInstance(float.class, fArr.length, MAX_PARTICLES_PER_ENTITY * 5);
+        this.particlePoints = (float[][]) Array.newInstance(Float.TYPE, fArr.length, MAX_PARTICLES_PER_ENTITY * 5);
         this.particleRands = new float[14];
         this.renderCount = new int[fArr.length];
         this.particles = new ArrayList<>();
@@ -129,12 +131,13 @@ public class SpoilerEffect extends Drawable {
                 this.particlePaints[i].setStrokeCap(Paint.Cap.ROUND);
             }
         }
-        SharedConfig.getDevicePerformanceClass();
+        this.isLowDevice = SharedConfig.getDevicePerformanceClass() == 0;
         this.enableAlpha = true;
         setColor(0);
     }
 
     public void setSuppressUpdates(boolean z) {
+        this.suppressUpdates = z;
         invalidateSelf();
     }
 
@@ -339,39 +342,39 @@ public class SpoilerEffect extends Drawable {
                     Particle particle3 = this.particles.get(i14);
                     RectF rectF = this.visibleRect;
                     if ((rectF == null || rectF.contains(particle3.x, particle3.y)) && (particle3.alpha == length || !this.enableAlpha)) {
-                        float[][] fArr2 = this.particlePoints;
-                        if (i13 < fArr2[length].length - 2) {
-                            fArr2[length][i13] = particle3.x;
+                        float[] fArr2 = this.particlePoints[length];
+                        if (i13 < fArr2.length - 2) {
+                            fArr2[i13] = particle3.x;
                             this.particlePoints[length][i13 + 1] = particle3.y;
                             i13 += 2;
                             if (particle3.x < strokeWidth) {
-                                float[][] fArr3 = this.particlePoints;
-                                if (i13 < fArr3[length].length - 2) {
-                                    fArr3[length][i13] = particle3.x + this.bitmapSize;
+                                float[] fArr3 = this.particlePoints[length];
+                                if (i13 < fArr3.length - 2) {
+                                    fArr3[i13] = particle3.x + this.bitmapSize;
                                     this.particlePoints[length][i13 + 1] = particle3.y;
                                     i13 += 2;
                                 }
                             }
                             if (particle3.x > this.bitmapSize - strokeWidth) {
-                                float[][] fArr4 = this.particlePoints;
-                                if (i13 < fArr4[length].length - 2) {
-                                    fArr4[length][i13] = particle3.x - this.bitmapSize;
+                                float[] fArr4 = this.particlePoints[length];
+                                if (i13 < fArr4.length - 2) {
+                                    fArr4[i13] = particle3.x - this.bitmapSize;
                                     this.particlePoints[length][i13 + 1] = particle3.y;
                                     i13 += 2;
                                 }
                             }
                             if (particle3.y < strokeWidth) {
-                                float[][] fArr5 = this.particlePoints;
-                                if (i13 < fArr5[length].length - 2) {
-                                    fArr5[length][i13] = particle3.x;
+                                float[] fArr5 = this.particlePoints[length];
+                                if (i13 < fArr5.length - 2) {
+                                    fArr5[i13] = particle3.x;
                                     this.particlePoints[length][i13 + 1] = particle3.y + this.bitmapSize;
                                     i13 += 2;
                                 }
                             }
                             if (particle3.y > this.bitmapSize - strokeWidth) {
-                                float[][] fArr6 = this.particlePoints;
-                                if (i13 < fArr6[length].length - 2) {
-                                    fArr6[length][i13] = particle3.x;
+                                float[] fArr6 = this.particlePoints[length];
+                                if (i13 < fArr6.length - 2) {
+                                    fArr6[i13] = particle3.x;
                                     this.particlePoints[length][i13 + 1] = particle3.y - this.bitmapSize;
                                     i13 += 2;
                                 }
@@ -532,15 +535,13 @@ public class SpoilerEffect extends Drawable {
                 int spanStart = spanned.getSpanStart(objArr[i5]);
                 int spanEnd = spanned.getSpanEnd(objArr[i5]);
                 if (i == -1 && i2 == -1) {
-                    int i6 = Integer.MAX_VALUE;
-                    int i7 = Integer.MIN_VALUE;
                     int lineForOffset = layout.getLineForOffset(spanEnd);
+                    i3 = Integer.MAX_VALUE;
+                    i4 = Integer.MIN_VALUE;
                     for (int lineForOffset2 = layout.getLineForOffset(spanStart); lineForOffset2 <= lineForOffset; lineForOffset2++) {
-                        i6 = Math.min(i6, (int) layout.getLineLeft(lineForOffset2));
-                        i7 = Math.max(i7, (int) layout.getLineRight(lineForOffset2));
+                        i3 = Math.min(i3, (int) layout.getLineLeft(lineForOffset2));
+                        i4 = Math.max(i4, (int) layout.getLineRight(lineForOffset2));
                     }
-                    i3 = i6;
-                    i4 = i7;
                 } else {
                     i3 = i;
                     i4 = i2;
@@ -629,6 +630,11 @@ public class SpoilerEffect extends Drawable {
     @SuppressLint({"WrongConstant"})
     public static void renderWithRipple(View view, boolean z, int i, int i2, AtomicReference<Layout> atomicReference, Layout layout, List<SpoilerEffect> list, Canvas canvas, boolean z2) {
         StaticLayout staticLayout;
+        StaticLayout.Builder obtain;
+        StaticLayout.Builder breakStrategy;
+        StaticLayout.Builder hyphenationFrequency;
+        StaticLayout.Builder alignment;
+        StaticLayout.Builder lineSpacing;
         TextStyleSpan[] textStyleSpanArr;
         int i3;
         if (list.isEmpty()) {
@@ -686,7 +692,12 @@ public class SpoilerEffect extends Drawable {
                 }
             }
             if (Build.VERSION.SDK_INT >= 24) {
-                staticLayout = StaticLayout.Builder.obtain(spannableStringBuilder, 0, spannableStringBuilder.length(), layout.getPaint(), layout.getWidth()).setBreakStrategy(1).setHyphenationFrequency(0).setAlignment(layout.getAlignment()).setLineSpacing(layout.getSpacingAdd(), layout.getSpacingMultiplier()).build();
+                obtain = StaticLayout.Builder.obtain(spannableStringBuilder, 0, spannableStringBuilder.length(), layout.getPaint(), layout.getWidth());
+                breakStrategy = obtain.setBreakStrategy(1);
+                hyphenationFrequency = breakStrategy.setHyphenationFrequency(0);
+                alignment = hyphenationFrequency.setAlignment(layout.getAlignment());
+                lineSpacing = alignment.setLineSpacing(layout.getSpacingAdd(), layout.getSpacingMultiplier());
+                staticLayout = lineSpacing.build();
             } else {
                 staticLayout = new StaticLayout(spannableStringBuilder, layout.getPaint(), layout.getWidth(), layout.getAlignment(), layout.getSpacingMultiplier(), layout.getSpacingAdd(), false);
             }

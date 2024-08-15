@@ -1449,7 +1449,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
 
     private void showSpeedHint() {
         if (this.containerView != null) {
-            HintView hintView = new HintView(this, getContext(), 5, false) {
+            HintView hintView = new HintView(getContext(), 5, false) {
                 @Override
                 public void setVisibility(int i) {
                     super.setVisibility(i);
@@ -1876,55 +1876,8 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         updateProgress(messageObject, false);
     }
 
-    private void updateProgress(MessageObject messageObject, boolean z) {
-        int i;
-        int i2;
-        SeekBarView seekBarView = this.seekBarView;
-        if (seekBarView != null) {
-            if (seekBarView.isDragging()) {
-                double duration = messageObject.getDuration();
-                double progress = this.seekBarView.getProgress();
-                Double.isNaN(progress);
-                i = (int) (duration * progress);
-            } else {
-                boolean z2 = true;
-                if (this.rewindingProgress < 0.0f || ((i2 = this.rewindingState) != -1 && (i2 != 1 || !MediaController.getInstance().isMessagePaused()))) {
-                    z2 = false;
-                }
-                if (z2) {
-                    this.seekBarView.setProgress(this.rewindingProgress, z);
-                } else {
-                    this.seekBarView.setProgress(messageObject.audioProgress, z);
-                }
-                if (!this.currentAudioFinishedLoading) {
-                    long elapsedRealtime = SystemClock.elapsedRealtime();
-                    if (Math.abs(elapsedRealtime - this.lastBufferedPositionCheck) >= 500) {
-                        r1 = MediaController.getInstance().isStreamingCurrentAudio() ? FileLoader.getInstance(this.currentAccount).getBufferedProgressFromPosition(messageObject.audioProgress, this.currentFile) : 1.0f;
-                        this.lastBufferedPositionCheck = elapsedRealtime;
-                    } else {
-                        r1 = -1.0f;
-                    }
-                }
-                if (r1 != -1.0f) {
-                    this.seekBarBufferSpring.getSpring().setFinalPosition(r1 * 1000.0f);
-                    this.seekBarBufferSpring.start();
-                }
-                if (z2) {
-                    double duration2 = messageObject.getDuration();
-                    double progress2 = this.seekBarView.getProgress();
-                    Double.isNaN(progress2);
-                    i = (int) (duration2 * progress2);
-                    messageObject.audioProgressSec = i;
-                } else {
-                    i = messageObject.audioProgressSec;
-                }
-            }
-            if (this.lastTime != i) {
-                this.lastTime = i;
-                this.timeTextView.setText(AndroidUtilities.formatShortDuration(i));
-            }
-            this.seekBarView.updateTimestamps(messageObject, null);
-        }
+    private void updateProgress(org.telegram.messenger.MessageObject r10, boolean r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AudioPlayerAlert.updateProgress(org.telegram.messenger.MessageObject, boolean):void");
     }
 
     private void checkIfMusicDownloaded(MessageObject messageObject) {
@@ -2495,7 +2448,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
                         AudioPlayerAlert.CoverContainer.lambda$switchImageViews$2(BackupImageView.this, backupImageView2, valueAnimator);
                     }
                 });
-                ofFloat2.addListener(new AnimatorListenerAdapter(this) {
+                ofFloat2.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animator) {
                         backupImageView.setVisibility(8);

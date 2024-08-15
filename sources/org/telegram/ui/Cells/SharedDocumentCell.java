@@ -7,7 +7,6 @@ import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.transition.ChangeBounds;
@@ -529,7 +528,7 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
     }
 
     public void updateFileExistIcon(boolean z) {
-        if (z && Build.VERSION.SDK_INT >= 19) {
+        if (z) {
             TransitionSet transitionSet = new TransitionSet();
             ChangeBounds changeBounds = new ChangeBounds();
             changeBounds.setDuration(150L);

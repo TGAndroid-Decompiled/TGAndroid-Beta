@@ -57,19 +57,19 @@ class WebRtcAudioManager {
     }
 
     private static int getSampleRateForApiLevel(AudioManager audioManager) {
-        String property;
-        if (Build.VERSION.SDK_INT >= 17 && (property = audioManager.getProperty("android.media.property.OUTPUT_SAMPLE_RATE")) != null) {
-            return Integer.parseInt(property);
+        String property = audioManager.getProperty("android.media.property.OUTPUT_SAMPLE_RATE");
+        if (property == null) {
+            return 16000;
         }
-        return 16000;
+        return Integer.parseInt(property);
     }
 
     private static int getLowLatencyFramesPerBuffer(AudioManager audioManager) {
-        String property;
-        if (Build.VERSION.SDK_INT >= 17 && (property = audioManager.getProperty("android.media.property.OUTPUT_FRAMES_PER_BUFFER")) != null) {
-            return Integer.parseInt(property);
+        String property = audioManager.getProperty("android.media.property.OUTPUT_FRAMES_PER_BUFFER");
+        if (property == null) {
+            return 256;
         }
-        return 256;
+        return Integer.parseInt(property);
     }
 
     private static int getMinOutputFrameSize(int i, int i2) {

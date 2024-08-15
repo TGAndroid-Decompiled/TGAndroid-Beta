@@ -318,7 +318,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         if (messageObject != null && !messageObject.playedGiftAnimation) {
             messageObject.playedGiftAnimation = true;
             lottieAnimation.setCurrentFrame(0, false);
-            AndroidUtilities.runOnUIThread(new ChatActionCell$$ExternalSyntheticLambda3(lottieAnimation));
+            AndroidUtilities.runOnUIThread(new ChatActionCell$$ExternalSyntheticLambda4(lottieAnimation));
             if (messageObject.wasUnread || this.forceWasUnread) {
                 messageObject.wasUnread = false;
                 this.forceWasUnread = false;
@@ -1034,22 +1034,23 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         Paint paint3;
         Paint paint4;
         int i;
-        float f;
         int i2;
+        float f;
         int i3;
+        int i4;
         Paint paint5;
         Paint paint6;
-        int i4;
-        float f2;
         int i5;
-        float f3;
+        float f2;
         int i6;
+        float f3;
         int i7;
         int i8;
-        float f4;
         int i9;
+        float f4;
         int i10;
         int i11;
+        int i12;
         if (this.canDrawInParent) {
             if (hasGradientService() && !z) {
                 return;
@@ -1061,9 +1062,9 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         Paint themedPaint = getThemedPaint("paintChatActionBackground");
         Paint themedPaint2 = getThemedPaint("paintChatActionBackgroundDarken");
         this.textPaint = (TextPaint) getThemedPaint("paintChatActionText");
-        int i12 = this.overrideBackground;
-        if (i12 >= 0) {
-            int themedColor = getThemedColor(i12);
+        int i13 = this.overrideBackground;
+        if (i13 >= 0) {
+            int themedColor = getThemedColor(i13);
             if (this.overrideBackgroundPaint == null) {
                 Paint paint7 = new Paint(1);
                 this.overrideBackgroundPaint = paint7;
@@ -1086,162 +1087,162 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
             int lineCount = staticLayout == null ? 0 : staticLayout.getLineCount();
             int dp = AndroidUtilities.dp(11.0f);
             int dp2 = AndroidUtilities.dp(8.0f);
-            int i13 = 0;
             int i14 = 0;
+            int i15 = 0;
             while (true) {
                 f = 1.5f;
-                if (i13 >= lineCount) {
+                if (i14 >= lineCount) {
                     break;
                 }
-                int ceil = (int) Math.ceil(this.textLayout.getLineWidth(i13));
-                if (i13 == 0 || (i11 = i14 - ceil) <= 0 || i11 > (dp * 1.5f) + dp2) {
-                    i14 = ceil;
+                int ceil = (int) Math.ceil(this.textLayout.getLineWidth(i14));
+                if (i14 == 0 || (i12 = i15 - ceil) <= 0 || i12 > (dp * 1.5f) + dp2) {
+                    i15 = ceil;
                 }
-                this.lineWidths.add(Integer.valueOf(i14));
-                i13++;
+                this.lineWidths.add(Integer.valueOf(i15));
+                i14++;
             }
-            int i15 = lineCount - 2;
-            while (i15 >= 0) {
-                int intValue = this.lineWidths.get(i15).intValue();
-                int i16 = i14 - intValue;
-                if (i16 <= 0 || i16 > (dp * f) + dp2) {
-                    i14 = intValue;
+            int i16 = lineCount - 2;
+            while (i16 >= 0) {
+                int intValue = this.lineWidths.get(i16).intValue();
+                int i17 = i15 - intValue;
+                if (i17 <= 0 || i17 > (dp * f) + dp2) {
+                    i15 = intValue;
                 }
-                this.lineWidths.set(i15, Integer.valueOf(i14));
-                i15--;
+                this.lineWidths.set(i16, Integer.valueOf(i15));
+                i16--;
                 f = 1.5f;
             }
             int dp3 = AndroidUtilities.dp(4.0f);
             int measuredWidth = getMeasuredWidth() / 2;
             int dp4 = AndroidUtilities.dp(3.0f);
             int dp5 = AndroidUtilities.dp(6.0f);
-            int i17 = dp - dp4;
+            int i18 = dp - dp4;
             this.lineHeights.clear();
             this.backgroundPath.reset();
             float f5 = measuredWidth;
             this.backgroundPath.moveTo(f5, dp3);
-            int i18 = 0;
             int i19 = 0;
-            while (i18 < lineCount) {
-                int intValue2 = this.lineWidths.get(i18).intValue();
-                int i20 = dp5;
-                int lineBottom = this.textLayout.getLineBottom(i18);
-                int i21 = lineCount - 1;
-                if (i18 < i21) {
+            int i20 = 0;
+            while (i19 < lineCount) {
+                int intValue2 = this.lineWidths.get(i19).intValue();
+                int i21 = dp5;
+                int lineBottom = this.textLayout.getLineBottom(i19);
+                int i22 = lineCount - 1;
+                if (i19 < i22) {
                     paint6 = themedPaint2;
                     paint5 = themedPaint;
-                    i4 = this.lineWidths.get(i18 + 1).intValue();
+                    i5 = this.lineWidths.get(i19 + 1).intValue();
                 } else {
                     paint5 = themedPaint;
                     paint6 = themedPaint2;
-                    i4 = 0;
+                    i5 = 0;
                 }
-                int i22 = lineBottom - i19;
-                if (i18 == 0 || intValue2 > i14) {
+                int i23 = lineBottom - i20;
+                if (i19 == 0 || intValue2 > i15) {
                     f2 = 3.0f;
-                    i22 += AndroidUtilities.dp(3.0f);
+                    i23 += AndroidUtilities.dp(3.0f);
                 } else {
                     f2 = 3.0f;
                 }
-                if (i18 == i21 || intValue2 > i4) {
-                    i22 += AndroidUtilities.dp(f2);
+                if (i19 == i22 || intValue2 > i5) {
+                    i23 += AndroidUtilities.dp(f2);
                 }
                 float f6 = (intValue2 / 2.0f) + f5;
-                int i23 = (i18 == i21 || intValue2 >= i4 || i18 == 0 || intValue2 >= i14) ? dp2 : i20;
-                if (i18 == 0 || intValue2 > i14) {
-                    i5 = measuredWidth;
+                int i24 = (i19 == i22 || intValue2 >= i5 || i19 == 0 || intValue2 >= i15) ? dp2 : i21;
+                if (i19 == 0 || intValue2 > i15) {
+                    i6 = measuredWidth;
                     f3 = f5;
-                    i6 = lineCount;
-                    i7 = i14;
-                    i8 = lineBottom;
-                    this.rect.set((f6 - dp4) - dp, dp3, i17 + f6, (dp * 2) + dp3);
+                    i7 = lineCount;
+                    i8 = i15;
+                    i9 = lineBottom;
+                    this.rect.set((f6 - dp4) - dp, dp3, i18 + f6, (dp * 2) + dp3);
                     checkLeftRightBounds();
                     this.backgroundPath.arcTo(this.rect, -90.0f, 90.0f);
-                } else if (intValue2 < i14) {
+                } else if (intValue2 < i15) {
                     f3 = f5;
-                    i8 = lineBottom;
-                    float f7 = i17 + f6;
-                    i5 = measuredWidth;
-                    i6 = lineCount;
-                    i7 = i14;
-                    this.rect.set(f7, dp3, (i23 * 2) + f7, i10 + dp3);
+                    i9 = lineBottom;
+                    float f7 = i18 + f6;
+                    i6 = measuredWidth;
+                    i7 = lineCount;
+                    i8 = i15;
+                    this.rect.set(f7, dp3, (i24 * 2) + f7, i11 + dp3);
                     checkLeftRightBounds();
                     this.backgroundPath.arcTo(this.rect, -90.0f, -90.0f);
                 } else {
-                    i5 = measuredWidth;
+                    i6 = measuredWidth;
                     f3 = f5;
-                    i6 = lineCount;
-                    i7 = i14;
-                    i8 = lineBottom;
+                    i7 = lineCount;
+                    i8 = i15;
+                    i9 = lineBottom;
                 }
-                dp3 += i22;
-                if (i18 == i21 || intValue2 >= i4) {
+                dp3 += i23;
+                if (i19 == i22 || intValue2 >= i5) {
                     f4 = 3.0f;
                 } else {
                     f4 = 3.0f;
                     dp3 -= AndroidUtilities.dp(3.0f);
-                    i22 -= AndroidUtilities.dp(3.0f);
+                    i23 -= AndroidUtilities.dp(3.0f);
                 }
-                if (i18 != 0 && intValue2 < i7) {
+                if (i19 != 0 && intValue2 < i8) {
                     dp3 -= AndroidUtilities.dp(f4);
-                    i22 -= AndroidUtilities.dp(f4);
+                    i23 -= AndroidUtilities.dp(f4);
                 }
-                this.lineHeights.add(Integer.valueOf(i22));
-                if (i18 == i21 || intValue2 > i4) {
-                    this.rect.set((f6 - dp4) - dp, dp3 - (dp * 2), f6 + i17, dp3);
+                this.lineHeights.add(Integer.valueOf(i23));
+                if (i19 == i22 || intValue2 > i5) {
+                    this.rect.set((f6 - dp4) - dp, dp3 - (dp * 2), f6 + i18, dp3);
                     checkLeftRightBounds();
                     this.backgroundPath.arcTo(this.rect, 0.0f, 90.0f);
-                } else if (intValue2 < i4) {
-                    float f8 = f6 + i17;
-                    this.rect.set(f8, dp3 - i9, (i23 * 2) + f8, dp3);
+                } else if (intValue2 < i5) {
+                    float f8 = f6 + i18;
+                    this.rect.set(f8, dp3 - i10, (i24 * 2) + f8, dp3);
                     checkLeftRightBounds();
                     this.backgroundPath.arcTo(this.rect, 180.0f, -90.0f);
                 }
-                i18++;
-                i14 = intValue2;
-                dp5 = i20;
+                i19++;
+                i15 = intValue2;
+                dp5 = i21;
                 themedPaint2 = paint6;
                 themedPaint = paint5;
                 f5 = f3;
-                i19 = i8;
-                measuredWidth = i5;
-                lineCount = i6;
+                i20 = i9;
+                measuredWidth = i6;
+                lineCount = i7;
             }
             paint = themedPaint;
             paint2 = themedPaint2;
-            int i24 = measuredWidth;
-            int i25 = dp5;
-            int i26 = lineCount - 1;
-            int i27 = i26;
-            while (i27 >= 0) {
-                int intValue3 = i27 != 0 ? this.lineWidths.get(i27 - 1).intValue() : 0;
-                int intValue4 = this.lineWidths.get(i27).intValue();
-                int intValue5 = i27 != i26 ? this.lineWidths.get(i27 + 1).intValue() : 0;
-                this.textLayout.getLineBottom(i27);
-                float f9 = i24 - (intValue4 / 2);
-                int i28 = (i27 == i26 || intValue4 >= intValue5 || i27 == 0 || intValue4 >= intValue3) ? dp2 : i25;
-                if (i27 == i26 || intValue4 > intValue5) {
-                    this.rect.set(f9 - i17, dp3 - (dp * 2), dp4 + f9 + dp, dp3);
+            int i25 = measuredWidth;
+            int i26 = dp5;
+            int i27 = lineCount - 1;
+            int i28 = i27;
+            while (i28 >= 0) {
+                int intValue3 = i28 != 0 ? this.lineWidths.get(i28 - 1).intValue() : 0;
+                int intValue4 = this.lineWidths.get(i28).intValue();
+                int intValue5 = i28 != i27 ? this.lineWidths.get(i28 + 1).intValue() : 0;
+                this.textLayout.getLineBottom(i28);
+                float f9 = i25 - (intValue4 / 2);
+                int i29 = (i28 == i27 || intValue4 >= intValue5 || i28 == 0 || intValue4 >= intValue3) ? dp2 : i26;
+                if (i28 == i27 || intValue4 > intValue5) {
+                    this.rect.set(f9 - i18, dp3 - (dp * 2), dp4 + f9 + dp, dp3);
                     checkLeftRightBounds();
                     this.backgroundPath.arcTo(this.rect, 90.0f, 90.0f);
                 } else if (intValue4 < intValue5) {
-                    float f10 = f9 - i17;
-                    this.rect.set(f10 - (i28 * 2), dp3 - i3, f10, dp3);
+                    float f10 = f9 - i18;
+                    this.rect.set(f10 - (i29 * 2), dp3 - i4, f10, dp3);
                     checkLeftRightBounds();
                     this.backgroundPath.arcTo(this.rect, 90.0f, -90.0f);
                 }
-                dp3 -= this.lineHeights.get(i27).intValue();
-                if (i27 == 0 || intValue4 > intValue3) {
-                    this.rect.set(f9 - i17, dp3, f9 + dp4 + dp, (dp * 2) + dp3);
+                dp3 -= this.lineHeights.get(i28).intValue();
+                if (i28 == 0 || intValue4 > intValue3) {
+                    this.rect.set(f9 - i18, dp3, f9 + dp4 + dp, (dp * 2) + dp3);
                     checkLeftRightBounds();
                     this.backgroundPath.arcTo(this.rect, 180.0f, 90.0f);
                 } else if (intValue4 < intValue3) {
-                    float f11 = f9 - i17;
-                    this.rect.set(f11 - (i28 * 2), dp3, f11, i2 + dp3);
+                    float f11 = f9 - i18;
+                    this.rect.set(f11 - (i29 * 2), dp3, f11, i3 + dp3);
                     checkLeftRightBounds();
                     this.backgroundPath.arcTo(this.rect, 0.0f, -90.0f);
                 }
-                i27--;
+                i28--;
             }
             this.backgroundPath.close();
         } else {
@@ -1257,24 +1258,24 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         } else {
             Theme.applyServiceShaderMatrix(getMeasuredWidth(), this.backgroundHeight, this.viewTranslationX, this.viewTop + AndroidUtilities.dp(4.0f));
         }
-        int i29 = -1;
         if (z && (getAlpha() != 1.0f || isFloating())) {
-            i29 = paint.getAlpha();
-            i = paint2.getAlpha();
+            i = paint.getAlpha();
+            i2 = paint2.getAlpha();
             paint4 = paint;
-            paint4.setAlpha((int) (i29 * getAlpha() * (isFloating() ? 0.75f : 1.0f)));
+            paint4.setAlpha((int) (i * getAlpha() * (isFloating() ? 0.75f : 1.0f)));
             paint3 = paint2;
-            paint3.setAlpha((int) (i * getAlpha() * (isFloating() ? 0.75f : 1.0f)));
+            paint3.setAlpha((int) (i2 * getAlpha() * (isFloating() ? 0.75f : 1.0f)));
         } else {
             paint3 = paint2;
             paint4 = paint;
             if (isFloating()) {
-                i29 = paint4.getAlpha();
-                i = paint3.getAlpha();
-                paint4.setAlpha((int) (i29 * (isFloating() ? 0.75f : 1.0f)));
-                paint3.setAlpha((int) (i * (isFloating() ? 0.75f : 1.0f)));
+                i = paint4.getAlpha();
+                i2 = paint3.getAlpha();
+                paint4.setAlpha((int) (i * (isFloating() ? 0.75f : 1.0f)));
+                paint3.setAlpha((int) (i2 * (isFloating() ? 0.75f : 1.0f)));
             } else {
                 i = -1;
+                i2 = -1;
             }
         }
         canvas.drawPath(this.backgroundPath, paint4);
@@ -1310,9 +1311,9 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
                 canvas.drawRoundRect(this.backgroundRect, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), paint3);
             }
         }
-        if (i29 >= 0) {
-            paint4.setAlpha(i29);
-            paint3.setAlpha(i);
+        if (i >= 0) {
+            paint4.setAlpha(i);
+            paint3.setAlpha(i2);
         }
     }
 
@@ -1343,20 +1344,20 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
 
     @Override
     public void onSuccessDownload(String str) {
+        TLRPC$PhotoSize tLRPC$PhotoSize;
         MessageObject messageObject = this.currentMessageObject;
         if (messageObject == null || messageObject.type != 11) {
             return;
         }
-        TLRPC$PhotoSize tLRPC$PhotoSize = null;
-        int i = 0;
         int size = messageObject.photoThumbs.size();
+        int i = 0;
         while (true) {
             if (i >= size) {
+                tLRPC$PhotoSize = null;
                 break;
             }
-            TLRPC$PhotoSize tLRPC$PhotoSize2 = messageObject.photoThumbs.get(i);
-            if (tLRPC$PhotoSize2 instanceof TLRPC$TL_photoStrippedSize) {
-                tLRPC$PhotoSize = tLRPC$PhotoSize2;
+            tLRPC$PhotoSize = messageObject.photoThumbs.get(i);
+            if (tLRPC$PhotoSize instanceof TLRPC$TL_photoStrippedSize) {
                 break;
             }
             i++;

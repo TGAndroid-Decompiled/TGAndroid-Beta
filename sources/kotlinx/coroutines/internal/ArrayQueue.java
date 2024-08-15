@@ -1,6 +1,5 @@
 package kotlinx.coroutines.internal;
 
-import java.util.Objects;
 import kotlin.collections.ArraysKt___ArraysJvmKt;
 public class ArrayQueue<T> {
     private Object[] elements = new Object[16];
@@ -31,8 +30,10 @@ public class ArrayQueue<T> {
         T t = (T) objArr[i];
         objArr[i] = null;
         this.head = (i + 1) & (objArr.length - 1);
-        Objects.requireNonNull(t, "null cannot be cast to non-null type T of kotlinx.coroutines.internal.ArrayQueue");
-        return t;
+        if (t != null) {
+            return t;
+        }
+        throw new NullPointerException("null cannot be cast to non-null type T of kotlinx.coroutines.internal.ArrayQueue");
     }
 
     private final void ensureCapacity() {

@@ -729,6 +729,7 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
     }
 
     public void lambda$createView$2(View view) {
+        int checkSelfPermission;
         if (getParentActivity() == null) {
             return;
         }
@@ -777,13 +778,15 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
                 if (getParentActivity() == null) {
                     return;
                 }
-                if (Build.VERSION.SDK_INT >= 23 && getParentActivity().checkSelfPermission("android.permission.CAMERA") != 0) {
-                    getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 34);
-                    return;
-                } else {
-                    processOpenQrReader();
-                    return;
+                if (Build.VERSION.SDK_INT >= 23) {
+                    checkSelfPermission = getParentActivity().checkSelfPermission("android.permission.CAMERA");
+                    if (checkSelfPermission != 0) {
+                        getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 34);
+                        return;
+                    }
                 }
+                processOpenQrReader();
+                return;
             case 6:
                 presentFragment(new PasscodeActivity(1), true);
                 return;
@@ -833,18 +836,15 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
         boolean z;
         super.onResume();
         if (this.currentType == 4) {
-            int i = Build.VERSION.SDK_INT;
-            if (i >= 28) {
+            if (Build.VERSION.SDK_INT >= 28) {
                 z = ((LocationManager) ApplicationLoader.applicationContext.getSystemService("location")).isLocationEnabled();
             } else {
-                if (i >= 19) {
-                    try {
-                        if (Settings.Secure.getInt(ApplicationLoader.applicationContext.getContentResolver(), "location_mode", 0) == 0) {
-                            z = false;
-                        }
-                    } catch (Throwable th) {
-                        FileLog.e(th);
+                try {
+                    if (Settings.Secure.getInt(ApplicationLoader.applicationContext.getContentResolver(), "location_mode", 0) == 0) {
+                        z = false;
                     }
+                } catch (Throwable th) {
+                    FileLog.e(th);
                 }
                 z = true;
             }

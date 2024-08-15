@@ -105,6 +105,8 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
     private boolean balanceEditTextIgnore = false;
     private boolean balanceEditTextAll = true;
     private ColoredImageSpan[] starRef = new ColoredImageSpan[1];
+    private int shakeDp = 4;
+    private final int BALANCE = 1;
     private Runnable setBalanceButtonText = new Runnable() {
         @Override
         public final void run() {
@@ -166,7 +168,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         int i2 = Theme.key_windowBackgroundWhite;
         actionBar.setBackgroundColor(Theme.getColor(i2));
         this.transactionsLayout = new StarsIntroActivity.StarsTransactionsLayout(context, this.currentAccount, this.bot_id, getClassGuid(), getResourceProvider());
-        LinearLayout linearLayout = new LinearLayout(this, context) {
+        LinearLayout linearLayout = new LinearLayout(context) {
             @Override
             protected void onMeasure(int i3, int i4) {
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i3), 1073741824), i4);
@@ -211,7 +213,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         this.balanceEditTextContainer = outlineTextContainerView;
         outlineTextContainerView.setText(LocaleController.getString(R.string.BotStarsWithdrawPlaceholder));
         this.balanceEditTextContainer.setLeftPadding(AndroidUtilities.dp(36.0f));
-        EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(this, context) {
+        EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context) {
             @Override
             public void onDetachedFromWindow() {
                 super.onDetachedFromWindow();
@@ -290,7 +292,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         this.balanceEditTextContainer.setVisibility(8);
         LinearLayout linearLayout3 = new LinearLayout(context);
         linearLayout3.setOrientation(0);
-        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(this, context, getResourceProvider()) {
+        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, getResourceProvider()) {
             @Override
             protected boolean subTextSplitToWords() {
                 return false;
@@ -699,6 +701,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
 
         @Override
         public void onNestedPreScroll(View view, int i, int i2, int[] iArr, int i3) {
+            int i4;
             if (view == BotStarsActivity.this.listView && BotStarsActivity.this.transactionsLayout.isAttachedToWindow()) {
                 boolean isSearchFieldVisible = ((BaseFragment) BotStarsActivity.this).actionBar.isSearchFieldVisible();
                 int top = (((View) BotStarsActivity.this.transactionsLayout.getParent()).getTop() - AndroidUtilities.statusBarHeight) - ActionBar.getCurrentActionBarHeight();
@@ -709,12 +712,12 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
                         RecyclerListView currentListView = BotStarsActivity.this.transactionsLayout.getCurrentListView();
                         iArr[1] = i2;
                         if (top > 0) {
-                            iArr[1] = iArr[1] - i2;
+                            iArr[1] = i2 - i2;
                         }
-                        if (currentListView == null || iArr[1] <= 0) {
+                        if (currentListView == null || (i4 = iArr[1]) <= 0) {
                             return;
                         }
-                        currentListView.scrollBy(0, iArr[1]);
+                        currentListView.scrollBy(0, i4);
                         return;
                     } else if (i2 > 0) {
                         RecyclerListView currentListView2 = BotStarsActivity.this.transactionsLayout.getCurrentListView();

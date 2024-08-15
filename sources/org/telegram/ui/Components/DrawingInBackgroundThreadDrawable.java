@@ -149,11 +149,9 @@ public class DrawingInBackgroundThreadDrawable implements NotificationCenter.Not
         }
         this.attachedToWindow = true;
         this.error = false;
-        int currentHeavyOperationFlags = NotificationCenter.getGlobalInstance().getCurrentHeavyOperationFlags();
+        int currentHeavyOperationFlags = NotificationCenter.getGlobalInstance().getCurrentHeavyOperationFlags() & (this.currentLayerNum ^ (-1));
         this.currentOpenedLayerFlags = currentHeavyOperationFlags;
-        int i = currentHeavyOperationFlags & (this.currentLayerNum ^ (-1));
-        this.currentOpenedLayerFlags = i;
-        if (i == 0 && this.paused) {
+        if (currentHeavyOperationFlags == 0 && this.paused) {
             this.paused = false;
             onResume();
         }
@@ -261,9 +259,7 @@ public class DrawingInBackgroundThreadDrawable implements NotificationCenter.Not
     public void setLayerNum(int i) {
         this.currentLayerNum = i;
         if (this.attachedToWindow) {
-            int currentHeavyOperationFlags = NotificationCenter.getGlobalInstance().getCurrentHeavyOperationFlags();
-            this.currentOpenedLayerFlags = currentHeavyOperationFlags;
-            this.currentOpenedLayerFlags = currentHeavyOperationFlags & (this.currentLayerNum ^ (-1));
+            this.currentOpenedLayerFlags = NotificationCenter.getGlobalInstance().getCurrentHeavyOperationFlags() & (this.currentLayerNum ^ (-1));
         }
     }
 }

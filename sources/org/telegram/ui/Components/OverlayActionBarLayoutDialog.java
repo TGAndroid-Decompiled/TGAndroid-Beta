@@ -164,7 +164,9 @@ public class OverlayActionBarLayoutDialog extends Dialog implements INavigationL
     }
 
     public static WindowInsets lambda$onCreate$1(View view, WindowInsets windowInsets) {
-        view.setPadding(0, 0, 0, windowInsets.getSystemWindowInsetBottom());
+        int systemWindowInsetBottom;
+        systemWindowInsetBottom = windowInsets.getSystemWindowInsetBottom();
+        view.setPadding(0, 0, 0, systemWindowInsetBottom);
         return windowInsets;
     }
 

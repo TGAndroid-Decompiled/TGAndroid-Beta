@@ -5,6 +5,7 @@ import kotlin.jvm.internal.Intrinsics;
 public class JDK7PlatformImplementations extends PlatformImplementations {
 
     public static final class ReflectSdkVersion {
+        public static final ReflectSdkVersion INSTANCE = new ReflectSdkVersion();
         public static final Integer sdkVersion;
 
         private ReflectSdkVersion() {

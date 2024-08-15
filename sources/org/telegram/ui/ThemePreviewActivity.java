@@ -263,6 +263,9 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
     private int lastSizeHash;
     private RecyclerListView listView;
     private RecyclerListView listView2;
+    private String loadingFile;
+    private File loadingFileObject;
+    private TLRPC$PhotoSize loadingSize;
     private ColoredImageSpan lockSpan;
     float maxScrollOffset;
     private int maxWallpaperSize;
@@ -517,6 +520,9 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         this.dimAmount = 0.0f;
         this.blendMode = PorterDuff.Mode.SRC_IN;
         this.parallaxScale = 1.0f;
+        this.loadingFile = null;
+        this.loadingFileObject = null;
+        this.loadingSize = null;
         this.imageFilter = "640_360";
         this.maxWallpaperSize = 1920;
         this.self = true;
@@ -634,6 +640,9 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         this.dimAmount = 0.0f;
         this.blendMode = PorterDuff.Mode.SRC_IN;
         this.parallaxScale = 1.0f;
+        this.loadingFile = null;
+        this.loadingFileObject = null;
+        this.loadingSize = null;
         this.imageFilter = "640_360";
         this.maxWallpaperSize = 1920;
         this.self = true;
@@ -1370,7 +1379,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         return getMessagesController().groupCustomWallpaperLevelMin;
     }
 
-    private void applyWallpaperBackground(boolean r33) {
+    private void applyWallpaperBackground(boolean r32) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ThemePreviewActivity.applyWallpaperBackground(boolean):void");
     }
 
@@ -1701,14 +1710,15 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         }
         BackgroundView[] backgroundViewArr = this.backgroundImages;
         BackgroundView backgroundView = backgroundViewArr[0];
-        backgroundViewArr[0] = backgroundViewArr[1];
+        BackgroundView backgroundView2 = backgroundViewArr[1];
+        backgroundViewArr[0] = backgroundView2;
         backgroundViewArr[1] = backgroundView;
-        this.page2.removeView(backgroundViewArr[0]);
+        this.page2.removeView(backgroundView2);
         this.page2.addView(this.backgroundImages[0], this.page2.indexOfChild(this.backgroundImages[1]) + 1);
         BackgroundView[] backgroundViewArr2 = this.backgroundImages;
-        BackgroundView backgroundView2 = backgroundViewArr2[0];
-        this.backgroundImage = backgroundView2;
-        backgroundView2.setBackground(backgroundViewArr2[1].getBackground());
+        BackgroundView backgroundView3 = backgroundViewArr2[0];
+        this.backgroundImage = backgroundView3;
+        backgroundView3.setBackground(backgroundViewArr2[1].getBackground());
         updateIntensity();
         this.backgroundImages[1].setVisibility(0);
         this.backgroundImages[1].setAlpha(1.0f);
@@ -1962,6 +1972,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
     }
 
     private BitmapDrawable checkBlur(Drawable drawable) {
+        ColorFilter colorFilter;
         WeakReference<Drawable> weakReference = this.lastDrawableToBlur;
         if (weakReference != null && weakReference.get() == drawable) {
             return this.blurredDrawable;
@@ -1980,7 +1991,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         Bitmap createBitmap = Bitmap.createBitmap(intrinsicWidth, 24, Bitmap.Config.ARGB_8888);
         drawable.setBounds(0, 0, intrinsicWidth, 24);
         if (Build.VERSION.SDK_INT >= 21) {
-            ColorFilter colorFilter = drawable.getColorFilter();
+            colorFilter = drawable.getColorFilter();
             ColorMatrix colorMatrix = new ColorMatrix();
             colorMatrix.setSaturation(1.3f);
             AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, 0.94f);
@@ -2023,8 +2034,9 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 if (i3 >= wallpaperCheckBoxViewArr.length) {
                     break;
                 }
-                if (wallpaperCheckBoxViewArr[i3] != null) {
-                    wallpaperCheckBoxViewArr[i3].setDimAmount(this.shouldShowBrightnessControll ? this.dimAmount * this.progressToDarkTheme : 0.0f);
+                WallpaperCheckBoxView wallpaperCheckBoxView = wallpaperCheckBoxViewArr[i3];
+                if (wallpaperCheckBoxView != null) {
+                    wallpaperCheckBoxView.setDimAmount(this.shouldShowBrightnessControll ? this.dimAmount * this.progressToDarkTheme : 0.0f);
                     this.backgroundCheckBoxView[i3].invalidate();
                 }
                 i3++;
@@ -2728,8 +2740,8 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         if (this.screenType == 1 || (this.currentWallpaper instanceof WallpapersListActivity.ColorWallpaper)) {
             WallpapersListActivity.ColorWallpaper colorWallpaper = (WallpapersListActivity.ColorWallpaper) this.currentWallpaper;
             if (colorWallpaper.patternId != 0) {
-                int i = 0;
                 int size = arrayList.size();
+                int i = 0;
                 while (true) {
                     if (i >= size) {
                         break;
@@ -2969,8 +2981,8 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                         arrayList2.add(ObjectAnimator.ofFloat(this.patternLayout[i], View.ALPHA, 0.0f, 1.0f));
                         this.patternLayout[i].setTranslationY(0.0f);
                     } else {
-                        FrameLayout[] frameLayoutArr = this.patternLayout;
-                        arrayList2.add(ObjectAnimator.ofFloat(frameLayoutArr[i], View.TRANSLATION_Y, frameLayoutArr[i].getMeasuredHeight(), 0.0f));
+                        FrameLayout frameLayout = this.patternLayout[i];
+                        arrayList2.add(ObjectAnimator.ofFloat(frameLayout, View.TRANSLATION_Y, frameLayout.getMeasuredHeight(), 0.0f));
                     }
                 } else {
                     if (i == 1) {
@@ -2983,8 +2995,8 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 }
             } else {
                 arrayList2.add(ObjectAnimator.ofFloat(this.listView2, View.TRANSLATION_Y, 0.0f));
-                FrameLayout[] frameLayoutArr2 = this.patternLayout;
-                arrayList2.add(ObjectAnimator.ofFloat(frameLayoutArr2[i], View.TRANSLATION_Y, frameLayoutArr2[i].getMeasuredHeight()));
+                FrameLayout frameLayout2 = this.patternLayout[i];
+                arrayList2.add(ObjectAnimator.ofFloat(frameLayout2, View.TRANSLATION_Y, frameLayout2.getMeasuredHeight()));
                 arrayList2.add(ObjectAnimator.ofFloat(this.backgroundCheckBoxView[0], View.ALPHA, 1.0f));
                 arrayList2.add(ObjectAnimator.ofFloat(this.backgroundCheckBoxView[2], View.ALPHA, 0.0f));
                 arrayList2.add(ObjectAnimator.ofFloat(this.backgroundImage, View.ALPHA, 1.0f));
@@ -3050,8 +3062,8 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
             }
         } else {
             this.listView2.setTranslationY(0.0f);
-            FrameLayout[] frameLayoutArr3 = this.patternLayout;
-            frameLayoutArr3[i].setTranslationY(frameLayoutArr3[i].getMeasuredHeight());
+            FrameLayout frameLayout3 = this.patternLayout[i];
+            frameLayout3.setTranslationY(frameLayout3.getMeasuredHeight());
             this.backgroundCheckBoxView[0].setAlpha(1.0f);
             this.backgroundCheckBoxView[2].setAlpha(1.0f);
             this.backgroundImage.setAlpha(1.0f);
@@ -3115,8 +3127,9 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 if (i3 >= wallpaperCheckBoxViewArr.length) {
                     break;
                 }
-                if (wallpaperCheckBoxViewArr[i3] != null) {
-                    wallpaperCheckBoxViewArr[i3].setColor(i2, i);
+                WallpaperCheckBoxView wallpaperCheckBoxView = wallpaperCheckBoxViewArr[i3];
+                if (wallpaperCheckBoxView != null) {
+                    wallpaperCheckBoxView.setColor(i2, i);
                 }
                 i3++;
             }
@@ -3961,7 +3974,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 TLRPC$TL_peerUser tLRPC$TL_peerUser22 = new TLRPC$TL_peerUser();
                 tLRPC$TL_message15.peer_id = tLRPC$TL_peerUser22;
                 tLRPC$TL_peerUser22.user_id = UserConfig.getInstance(((BaseFragment) ThemePreviewActivity.this).currentAccount).getClientUserId();
-                MessageObject messageObject11 = new MessageObject(this, ((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message15, true, false, ThemePreviewActivity.this) {
+                MessageObject messageObject11 = new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message15, true, false) {
                     @Override
                     public boolean needDrawAvatar() {
                         return false;
@@ -3978,7 +3991,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 TLRPC$TL_message tLRPC$TL_message17 = new TLRPC$TL_message();
                 tLRPC$TL_message17.message = LocaleController.getString(R.string.ChannelBackgroundMessageReplyText);
                 j = 0;
-                messageObject = new MessageObject(this, ((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message17, true, false, ThemePreviewActivity.this) {
+                messageObject = new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message17, true, false) {
                     @Override
                     public boolean needDrawAvatar() {
                         return false;
@@ -4014,7 +4027,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
             tLRPC$TL_message16.id = 1;
             tLRPC$TL_message16.media = new TLRPC$TL_messageMediaEmpty();
             tLRPC$TL_message16.out = false;
-            MessageObject messageObject12 = new MessageObject(this, ((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message16, messageObject, true, false, ThemePreviewActivity.this) {
+            MessageObject messageObject12 = new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message16, messageObject, true, false) {
                 @Override
                 public boolean needDrawAvatar() {
                     return false;
@@ -4158,7 +4171,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                         }
                     }
                 });
-                chatMessageCell.setDelegate(new ChatMessageCell.ChatMessageCellDelegate(this) {
+                chatMessageCell.setDelegate(new ChatMessageCell.ChatMessageCellDelegate() {
                     @Override
                     public boolean canDrawOutboundsContent() {
                         return ChatMessageCell.ChatMessageCellDelegate.CC.$default$canDrawOutboundsContent(this);
@@ -4512,7 +4525,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 frameLayout = chatMessageCell;
             } else if (i == 1) {
                 ?? chatActionCell = new ChatActionCell(this.mContext, false, ThemePreviewActivity.this.themeDelegate);
-                chatActionCell.setDelegate(new ChatActionCell.ChatActionCellDelegate(this) {
+                chatActionCell.setDelegate(new ChatActionCell.ChatActionCellDelegate() {
                     @Override
                     public boolean canDrawOutboundsContent() {
                         return ChatActionCell.ChatActionCellDelegate.CC.$default$canDrawOutboundsContent(this);
@@ -4583,7 +4596,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 if (ThemePreviewActivity.this.backgroundButtonsContainer.getParent() != null) {
                     ((ViewGroup) ThemePreviewActivity.this.backgroundButtonsContainer.getParent()).removeView(ThemePreviewActivity.this.backgroundButtonsContainer);
                 }
-                FrameLayout frameLayout2 = new FrameLayout(this, this.mContext) {
+                FrameLayout frameLayout2 = new FrameLayout(this.mContext) {
                     @Override
                     protected void onMeasure(int i2, int i3) {
                         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f), 1073741824));
@@ -4595,7 +4608,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 if (ThemePreviewActivity.this.messagesButtonsContainer.getParent() != null) {
                     ((ViewGroup) ThemePreviewActivity.this.messagesButtonsContainer.getParent()).removeView(ThemePreviewActivity.this.messagesButtonsContainer);
                 }
-                FrameLayout frameLayout3 = new FrameLayout(this, this.mContext) {
+                FrameLayout frameLayout3 = new FrameLayout(this.mContext) {
                     @Override
                     protected void onMeasure(int i2, int i3) {
                         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f), 1073741824));
@@ -4604,7 +4617,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 frameLayout3.addView(ThemePreviewActivity.this.messagesButtonsContainer, LayoutHelper.createFrame(-1, 76, 17));
                 frameLayout = frameLayout3;
             } else {
-                frameLayout = new View(this, ThemePreviewActivity.this.getContext()) {
+                frameLayout = new View(ThemePreviewActivity.this.getContext()) {
                     @Override
                     protected void onMeasure(int i2, int i3) {
                         super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(4.0f), 1073741824));
@@ -4732,6 +4745,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+            BlendMode blendMode;
             PatternCell patternCell = (PatternCell) viewHolder.itemView;
             patternCell.setPattern((TLRPC$TL_wallPaper) ThemePreviewActivity.this.patterns.get(i));
             patternCell.getImageReceiver().setColorFilter(new PorterDuffColorFilter(ThemePreviewActivity.this.patternColor, ThemePreviewActivity.this.blendMode));
@@ -4752,10 +4766,12 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     }
                 }
                 if (i2 != 0 && ThemePreviewActivity.this.currentIntensity >= 0.0f) {
-                    ThemePreviewActivity.this.backgroundImage.getImageReceiver().setBlendMode(BlendMode.SOFT_LIGHT);
-                } else {
-                    patternCell.getImageReceiver().setBlendMode(null);
+                    ImageReceiver imageReceiver = ThemePreviewActivity.this.backgroundImage.getImageReceiver();
+                    blendMode = BlendMode.SOFT_LIGHT;
+                    imageReceiver.setBlendMode(blendMode);
+                    return;
                 }
+                patternCell.getImageReceiver().setBlendMode(null);
             }
         }
     }
@@ -4913,8 +4929,9 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 if (i2 >= wallpaperCheckBoxViewArr.length) {
                     break;
                 }
-                if (wallpaperCheckBoxViewArr[i2] != null) {
-                    wallpaperCheckBoxViewArr[i2].invalidate();
+                WallpaperCheckBoxView wallpaperCheckBoxView = wallpaperCheckBoxViewArr[i2];
+                if (wallpaperCheckBoxView != null) {
+                    wallpaperCheckBoxView.invalidate();
                 }
                 i2++;
             }
@@ -4925,8 +4942,9 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 if (i >= wallpaperCheckBoxViewArr2.length) {
                     break;
                 }
-                if (wallpaperCheckBoxViewArr2[i] != null) {
-                    wallpaperCheckBoxViewArr2[i].invalidate();
+                WallpaperCheckBoxView wallpaperCheckBoxView2 = wallpaperCheckBoxViewArr2[i];
+                if (wallpaperCheckBoxView2 != null) {
+                    wallpaperCheckBoxView2.invalidate();
                 }
                 i++;
             }

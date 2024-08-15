@@ -153,6 +153,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
     public TLRPC$InputPeer selectedPeer;
     private int selectedType;
     private boolean sendAsMessageEnabled;
+    private int shiftDp;
     private HashMap<Long, Integer> smallChatsParticipantsCount;
     private boolean startedFromSendAsMessage;
     private int storyPeriod;
@@ -206,6 +207,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         private boolean scrolling;
         private SearchUsersCell searchField;
         private ValueAnimator searchFieldAnimator;
+        private int searchPosition;
         private boolean searchTranslationAnimating;
         private float searchTranslationAnimatingTo;
         private GraySectionCell sectionCell;
@@ -222,6 +224,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             this.changelog = new LongSparseArray<>();
             this.selectedUsers = new ArrayList<>();
             this.selectedUsersByGroup = new HashMap<>();
+            this.searchPosition = -1;
             this.atTop = new ArrayList<>();
             this.oldItems = new ArrayList<>();
             this.items = new ArrayList<>();
@@ -232,7 +235,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                 public final void run() {
                     StoryPrivacyBottomSheet.Page.this.lambda$new$0();
                 }
-            }, StoryPrivacyBottomSheet.this) {
+            }) {
                 {
                     StoryPrivacyBottomSheet storyPrivacyBottomSheet = StoryPrivacyBottomSheet.this;
                 }
@@ -295,7 +298,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
             this.layoutManager = linearLayoutManager;
             recyclerListView3.setLayoutManager(linearLayoutManager);
-            this.listView.setOnScrollListener(new RecyclerView.OnScrollListener(StoryPrivacyBottomSheet.this) {
+            this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
                 private boolean canScrollDown;
 
                 @Override
@@ -345,21 +348,21 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                 }
             });
             frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
-            DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator(StoryPrivacyBottomSheet.this) {
+            DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator() {
                 @Override
                 public boolean canReuseUpdatedViewHolder(RecyclerView.ViewHolder viewHolder) {
                     return true;
                 }
 
                 @Override
-                public void onMoveAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
+                protected void onMoveAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
                     ((BottomSheet) StoryPrivacyBottomSheet.this).containerView.invalidate();
                     Page.this.contentView.invalidate();
                     Page.this.listView.invalidate();
                 }
 
                 @Override
-                public void onChangeAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
+                protected void onChangeAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
                     ((BottomSheet) StoryPrivacyBottomSheet.this).containerView.invalidate();
                     Page.this.contentView.invalidate();
                 }
@@ -964,7 +967,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                         storyPrivacy.selectedUserIdsByGroup.putAll(StoryPrivacyBottomSheet.this.selectedContactsByGroup);
                     }
                     StoryPrivacyBottomSheet storyPrivacyBottomSheet3 = StoryPrivacyBottomSheet.this;
-                    storyPrivacyBottomSheet3.done(storyPrivacy, new StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda15(storyPrivacyBottomSheet3));
+                    storyPrivacyBottomSheet3.done(storyPrivacy, new StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda13(storyPrivacyBottomSheet3));
                     return;
                 }
                 StoryPrivacyBottomSheet.this.dismiss();
@@ -972,7 +975,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                 if (StoryPrivacyBottomSheet.this.isEdit) {
                     StoryPrivacyBottomSheet.this.closeKeyboard();
                     StoryPrivacyBottomSheet storyPrivacyBottomSheet4 = StoryPrivacyBottomSheet.this;
-                    storyPrivacyBottomSheet4.done(new StoryPrivacy(2, ((BottomSheet) storyPrivacyBottomSheet4).currentAccount, this.selectedUsers), new StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda15(StoryPrivacyBottomSheet.this));
+                    storyPrivacyBottomSheet4.done(new StoryPrivacy(2, ((BottomSheet) storyPrivacyBottomSheet4).currentAccount, this.selectedUsers), new StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda13(StoryPrivacyBottomSheet.this));
                     return;
                 }
                 StoryPrivacyBottomSheet.this.closeKeyboard();
@@ -1043,7 +1046,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             StoryPrivacyBottomSheet.this.closeKeyboard();
             if (StoryPrivacyBottomSheet.this.isEdit) {
                 StoryPrivacyBottomSheet storyPrivacyBottomSheet = StoryPrivacyBottomSheet.this;
-                storyPrivacyBottomSheet.done(new StoryPrivacy(1, ((BottomSheet) storyPrivacyBottomSheet).currentAccount, (ArrayList<Long>) null), new StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda15(StoryPrivacyBottomSheet.this));
+                storyPrivacyBottomSheet.done(new StoryPrivacy(1, ((BottomSheet) storyPrivacyBottomSheet).currentAccount, (ArrayList<Long>) null), new StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda13(StoryPrivacyBottomSheet.this));
                 return;
             }
             StoryPrivacyBottomSheet.this.closeKeyboard();
@@ -1079,7 +1082,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
 
         public void lambda$onButton2Click$13(ArrayList arrayList) {
             StoryPrivacyBottomSheet storyPrivacyBottomSheet = StoryPrivacyBottomSheet.this;
-            storyPrivacyBottomSheet.done(new StoryPrivacy(5, ((BottomSheet) storyPrivacyBottomSheet).currentAccount, arrayList), new StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda15(StoryPrivacyBottomSheet.this));
+            storyPrivacyBottomSheet.done(new StoryPrivacy(5, ((BottomSheet) storyPrivacyBottomSheet).currentAccount, arrayList), new StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda13(StoryPrivacyBottomSheet.this));
         }
 
         public float top() {
@@ -1644,7 +1647,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         }
 
         public class PadView extends View {
-            public PadView(Page page, Context context) {
+            public PadView(Context context) {
                 super(context);
             }
         }
@@ -1673,7 +1676,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
                 View view;
                 if (i == -1) {
-                    view = new PadView(Page.this, this.context);
+                    view = new PadView(this.context);
                 } else if (i == 0) {
                     view = new View(this.context);
                     view.setTag(35);
@@ -1701,7 +1704,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                 } else if (i == 9) {
                     view = new TextCell(this.context, 23, true, false, this.resourcesProvider);
                 } else {
-                    view = new View(this, this.context) {
+                    view = new View(this.context) {
                         @Override
                         protected void onMeasure(int i2, int i3) {
                             super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
@@ -1859,6 +1862,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         this.selectedType = 4;
         this.sendAsMessageEnabled = false;
         this.smallChatsParticipantsCount = new HashMap<>();
+        this.shiftDp = -6;
         this.storyPeriod = 86400;
         this.backgroundPaint = new Paint(1);
         this.applyWhenDismiss = false;
@@ -1923,7 +1927,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
     }
 
     private void init(Context context) {
-        Bulletin.addDelegate(this.container, new Bulletin.Delegate(this) {
+        Bulletin.addDelegate(this.container, new Bulletin.Delegate() {
             @Override
             public boolean allowLayoutChanges() {
                 return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);
@@ -2050,6 +2054,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         this.selectedType = 4;
         this.sendAsMessageEnabled = false;
         this.smallChatsParticipantsCount = new HashMap<>();
+        this.shiftDp = -6;
         this.storyPeriod = 86400;
         this.backgroundPaint = new Paint(1);
         this.applyWhenDismiss = false;
@@ -2132,8 +2137,8 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).show();
             return;
         }
-        View[] viewPages = this.viewPager.getViewPages();
-        final ButtonWithCounterView buttonWithCounterView = viewPages[0] instanceof Page ? ((Page) viewPages[0]).button : null;
+        View view = this.viewPager.getViewPages()[0];
+        final ButtonWithCounterView buttonWithCounterView = view instanceof Page ? ((Page) view).button : null;
         if (runnable != null && buttonWithCounterView != null) {
             buttonWithCounterView.setLoading(true);
         }
@@ -2208,12 +2213,12 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         protected void dispatchDraw(Canvas canvas) {
             View[] viewPages = StoryPrivacyBottomSheet.this.viewPager.getViewPages();
             this.top = 0.0f;
-            for (int i = 0; i < viewPages.length; i++) {
-                if (viewPages[i] != null) {
-                    Page page = (Page) viewPages[i];
+            for (View view : viewPages) {
+                if (view != null) {
+                    Page page = (Page) view;
                     this.top += page.top() * Utilities.clamp(1.0f - Math.abs(page.getTranslationX() / page.getMeasuredWidth()), 1.0f, 0.0f);
                     if (((BottomSheet) StoryPrivacyBottomSheet.this).keyboardVisible) {
-                        int i2 = page.pageType;
+                        int i = page.pageType;
                     }
                     if (page.getVisibility() == 0) {
                         page.updateTops();
@@ -2328,11 +2333,13 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
     public StoryPrivacyBottomSheet setPeer(TLRPC$InputPeer tLRPC$InputPeer) {
         this.selectedPeer = tLRPC$InputPeer;
         View[] viewPages = this.viewPager.getViewPages();
-        if (viewPages[0] instanceof Page) {
-            ((Page) viewPages[0]).bind(((Page) viewPages[0]).pageType);
+        View view = viewPages[0];
+        if (view instanceof Page) {
+            ((Page) view).bind(((Page) view).pageType);
         }
-        if (viewPages[1] instanceof Page) {
-            ((Page) viewPages[1]).bind(((Page) viewPages[1]).pageType);
+        View view2 = viewPages[1];
+        if (view2 instanceof Page) {
+            ((Page) view2).bind(((Page) view2).pageType);
         }
         return this;
     }
@@ -2367,11 +2374,13 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             this.viewPager.setPosition(1);
         }
         View[] viewPages = this.viewPager.getViewPages();
-        if (viewPages[0] instanceof Page) {
-            ((Page) viewPages[0]).bind(((Page) viewPages[0]).pageType);
+        View view = viewPages[0];
+        if (view instanceof Page) {
+            ((Page) view).bind(((Page) view).pageType);
         }
-        if (viewPages[1] instanceof Page) {
-            ((Page) viewPages[1]).bind(((Page) viewPages[1]).pageType);
+        View view2 = viewPages[1];
+        if (view2 instanceof Page) {
+            ((Page) view2).bind(((Page) view2).pageType);
         }
         return this;
     }
@@ -2490,7 +2499,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             if (this == obj) {
                 return true;
             }
-            if (obj == null || ItemInner.class != obj.getClass()) {
+            if (obj == null || getClass() != obj.getClass()) {
                 return false;
             }
             ItemInner itemInner = (ItemInner) obj;
@@ -2716,7 +2725,6 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             float f;
             float f2;
             float f3;
-            float f4;
             BackupImageView backupImageView = this.imageView;
             int i = (LocaleController.isRTL ? 5 : 3) | 16;
             boolean z = this.needCheck;
@@ -2724,6 +2732,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             SimpleTextView simpleTextView = this.titleTextView;
             boolean z2 = LocaleController.isRTL;
             int i2 = (z2 ? 5 : 3) | 16;
+            float f4 = 20.0f;
             if (z2) {
                 f = 20.0f;
             } else {
@@ -2745,8 +2754,6 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             }
             if (z3) {
                 f4 = this.needCheck ? 105 : 68;
-            } else {
-                f4 = 20.0f;
             }
             simpleTextView2.setLayoutParams(LayoutHelper.createFrame(-1, -2.0f, i3, f3, 0.0f, f4, 0.0f));
             this.checkBox.setLayoutParams(LayoutHelper.createFrame(24, 24.0f, (LocaleController.isRTL ? 5 : 3) | 16, 13.0f, 0.0f, 14.0f, 0.0f));
@@ -3139,7 +3146,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         private final Paint topGradientPaint;
         private Runnable updateHeight;
 
-        public SearchUsersCell(StoryPrivacyBottomSheet storyPrivacyBottomSheet, Context context, Theme.ResourcesProvider resourcesProvider, Runnable runnable) {
+        public SearchUsersCell(Context context, Theme.ResourcesProvider resourcesProvider, Runnable runnable) {
             super(context);
             this.allSpans = new ArrayList<>();
             CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
@@ -3166,7 +3173,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             SpansContainer spansContainer = new SpansContainer(context);
             this.spansContainer = spansContainer;
             addView(spansContainer, LayoutHelper.createFrame(-1, -2.0f));
-            EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context, storyPrivacyBottomSheet) {
+            EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context) {
                 @Override
                 public boolean onTouchEvent(MotionEvent motionEvent) {
                     if (SearchUsersCell.this.currentDeletingSpan != null) {
@@ -3207,7 +3214,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             int i2 = R.string.Search;
             editTextBoldCursor3.setHintText(LocaleController.getString("Search", i2));
             this.hintTextWidth = (int) this.editText.getPaint().measureText(LocaleController.getString("Search", i2));
-            this.editText.addTextChangedListener(new TextWatcher(storyPrivacyBottomSheet) {
+            this.editText.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
                 }
@@ -3320,6 +3327,10 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             private boolean animationStarted;
             private ArrayList<Animator> animators;
             private AnimatorSet currentAnimation;
+            private final int heightDp;
+            private final int padDp;
+            private final int padXDp;
+            private final int padYDp;
             private final ArrayList<View> removingSpans;
 
             public SpansContainer(Context context) {
@@ -3328,6 +3339,10 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                 this.animRemovingSpans = new ArrayList<>();
                 this.animators = new ArrayList<>();
                 this.removingSpans = new ArrayList<>();
+                this.padDp = 7;
+                this.padYDp = 4;
+                this.padXDp = 4;
+                this.heightDp = 28;
             }
 
             @Override
@@ -3440,6 +3455,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                     for (int i4 = 0; i4 < arrayList.size(); i4++) {
                         removeView(arrayList.get(i4));
                     }
+                    this.addingSpan = null;
                     this.removingSpans.clear();
                     this.currentAnimation = null;
                     this.animationStarted = false;
@@ -3961,17 +3977,20 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         int i3 = 0;
         if (i == NotificationCenter.contactsDidLoad) {
             View[] viewPages = viewPagerFixed.getViewPages();
-            if (viewPages[0] instanceof Page) {
-                ((Page) viewPages[0]).updateItems(true);
+            View view = viewPages[0];
+            if (view instanceof Page) {
+                ((Page) view).updateItems(true);
             }
-            if (viewPages[1] instanceof Page) {
-                ((Page) viewPages[1]).updateItems(true);
+            View view2 = viewPages[1];
+            if (view2 instanceof Page) {
+                ((Page) view2).updateItems(true);
             }
         } else if (i == NotificationCenter.storiesBlocklistUpdate) {
             View[] viewPages2 = viewPagerFixed.getViewPages();
             while (i3 < viewPages2.length) {
-                if (viewPages2[i3] instanceof Page) {
-                    Page page = (Page) viewPages2[i3];
+                View view3 = viewPages2[i3];
+                if (view3 instanceof Page) {
+                    Page page = (Page) view3;
                     int i4 = page.pageType;
                     if (i4 == 6) {
                         page.applyBlocklist(true);
@@ -3984,8 +4003,9 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         } else if (i == NotificationCenter.storiesSendAsUpdate) {
             View[] viewPages3 = viewPagerFixed.getViewPages();
             while (i3 < viewPages3.length) {
-                if (viewPages3[i3] instanceof Page) {
-                    Page page2 = (Page) viewPages3[i3];
+                View view4 = viewPages3[i3];
+                if (view4 instanceof Page) {
+                    Page page2 = (Page) view4;
                     if (page2.pageType == 0) {
                         page2.updateItems(true);
                     }

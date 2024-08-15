@@ -355,8 +355,8 @@ public class SessionBottomSheet extends BottomSheet {
 
         @Override
         public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-            int i;
             String str;
+            int i;
             super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
             if (this.switchView != null) {
                 accessibilityNodeInfo.setClassName("android.widget.Switch");
@@ -368,11 +368,11 @@ public class SessionBottomSheet extends BottomSheet {
                 sb.append((Object) this.descriptionText.getText());
                 sb.append("\n");
                 if (this.switchView.isChecked()) {
-                    i = R.string.NotificationsOn;
                     str = "NotificationsOn";
+                    i = R.string.NotificationsOn;
                 } else {
-                    i = R.string.NotificationsOff;
                     str = "NotificationsOff";
+                    i = R.string.NotificationsOff;
                 }
                 sb.append(LocaleController.getString(str, i));
                 accessibilityNodeInfo.setText(sb.toString());

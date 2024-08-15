@@ -26,6 +26,7 @@ public class StoriesViewPager extends ViewPager {
     long daysDialogId;
     PeerStoriesView.Delegate delegate;
     ArrayList<Long> dialogs;
+    public boolean dissallowInterceptCalled;
     Runnable doOnNextIdle;
     int keyboardHeight;
     float lastProgressToDismiss;
@@ -445,6 +446,9 @@ public class StoriesViewPager extends ViewPager {
 
     @Override
     public void requestDisallowInterceptTouchEvent(boolean z) {
+        if (z) {
+            this.dissallowInterceptCalled = true;
+        }
         super.requestDisallowInterceptTouchEvent(z);
     }
 

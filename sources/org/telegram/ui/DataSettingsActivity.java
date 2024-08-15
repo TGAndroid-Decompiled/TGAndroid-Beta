@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,6 +53,7 @@ public class DataSettingsActivity extends BaseFragment {
     private int enableCacheStreamRow;
     private int enableMkvRow;
     private int enableStreamRow;
+    private LinearLayoutManager layoutManager;
     private ListAdapter listAdapter;
     private RecyclerListView listView;
     private int mediaDownloadSection2Row;
@@ -98,38 +98,29 @@ public class DataSettingsActivity extends BaseFragment {
 
     private void updateRows(boolean z) {
         int i;
-        boolean z2 = false;
-        this.rowCount = 0;
         int i2 = 0 + 1;
-        this.rowCount = i2;
+        boolean z2 = false;
         this.usageSectionRow = 0;
         int i3 = i2 + 1;
-        this.rowCount = i3;
         this.storageUsageRow = i2;
         this.rowCount = i3 + 1;
         this.dataUsageRow = i3;
         this.storageNumRow = -1;
-        if (Build.VERSION.SDK_INT >= 19) {
-            ArrayList<File> rootDirs = AndroidUtilities.getRootDirs();
-            this.storageDirs = rootDirs;
-            if (rootDirs.size() > 1) {
-                int i4 = this.rowCount;
-                this.rowCount = i4 + 1;
-                this.storageNumRow = i4;
-            }
+        ArrayList<File> rootDirs = AndroidUtilities.getRootDirs();
+        this.storageDirs = rootDirs;
+        if (rootDirs.size() > 1) {
+            int i4 = this.rowCount;
+            this.rowCount = i4 + 1;
+            this.storageNumRow = i4;
         }
         int i5 = this.rowCount;
         int i6 = i5 + 1;
-        this.rowCount = i6;
         this.usageSection2Row = i5;
         int i7 = i6 + 1;
-        this.rowCount = i7;
         this.mediaDownloadSectionRow = i6;
         int i8 = i7 + 1;
-        this.rowCount = i8;
         this.mobileRow = i7;
         int i9 = i8 + 1;
-        this.rowCount = i9;
         this.wifiRow = i8;
         this.rowCount = i9 + 1;
         this.roamingRow = i9;
@@ -159,32 +150,24 @@ public class DataSettingsActivity extends BaseFragment {
         }
         int i11 = this.rowCount;
         int i12 = i11 + 1;
-        this.rowCount = i12;
         this.mediaDownloadSection2Row = i11;
         int i13 = i12 + 1;
-        this.rowCount = i13;
         this.saveToGallerySectionRow = i12;
         int i14 = i13 + 1;
-        this.rowCount = i14;
         this.saveToGalleryPeerRow = i13;
         int i15 = i14 + 1;
-        this.rowCount = i15;
         this.saveToGalleryGroupsRow = i14;
         int i16 = i15 + 1;
-        this.rowCount = i16;
         this.saveToGalleryChannelsRow = i15;
         int i17 = i16 + 1;
-        this.rowCount = i17;
         this.saveToGalleryDividerRow = i16;
         int i18 = i17 + 1;
-        this.rowCount = i18;
         this.streamSectionRow = i17;
         int i19 = i18 + 1;
         this.rowCount = i19;
         this.enableStreamRow = i18;
         if (BuildVars.DEBUG_VERSION) {
             int i20 = i19 + 1;
-            this.rowCount = i20;
             this.enableMkvRow = i19;
             this.rowCount = i20 + 1;
             this.enableAllStreamRow = i20;
@@ -194,29 +177,21 @@ public class DataSettingsActivity extends BaseFragment {
         }
         int i21 = this.rowCount;
         int i22 = i21 + 1;
-        this.rowCount = i22;
         this.enableAllStreamInfoRow = i21;
         this.enableCacheStreamRow = -1;
         int i23 = i22 + 1;
-        this.rowCount = i23;
         this.callsSectionRow = i22;
         int i24 = i23 + 1;
-        this.rowCount = i24;
         this.useLessDataForCallsRow = i23;
         int i25 = i24 + 1;
-        this.rowCount = i25;
         this.callsSection2Row = i24;
         int i26 = i25 + 1;
-        this.rowCount = i26;
         this.proxySectionRow = i25;
         int i27 = i26 + 1;
-        this.rowCount = i27;
         this.proxyRow = i26;
         int i28 = i27 + 1;
-        this.rowCount = i28;
         this.proxySection2Row = i27;
         int i29 = i28 + 1;
-        this.rowCount = i29;
         this.clearDraftsRow = i28;
         this.rowCount = i29 + 1;
         this.clearDraftsSectionRow = i29;
@@ -328,7 +303,10 @@ public class DataSettingsActivity extends BaseFragment {
         };
         this.listView = recyclerListView;
         recyclerListView.setVerticalScrollBarEnabled(false);
-        this.listView.setLayoutManager(new LinearLayoutManager(context, 1, false));
+        RecyclerListView recyclerListView2 = this.listView;
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, 1, false);
+        this.layoutManager = linearLayoutManager;
+        recyclerListView2.setLayoutManager(linearLayoutManager);
         ((FrameLayout) this.fragmentView).addView(this.listView, LayoutHelper.createFrame(-1, -1, 51));
         this.listView.setAdapter(this.listAdapter);
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListenerExtended() {
@@ -399,11 +377,14 @@ public class DataSettingsActivity extends BaseFragment {
     }
 
     public void lambda$createView$3(SharedPreferences sharedPreferences, int i, DialogInterface dialogInterface, int i2) {
-        int i3 = 3;
-        if (i2 == 0) {
+        int i3;
+        if (i2 != 0) {
+            i3 = 3;
+            if (i2 != 1) {
+                i3 = i2 != 2 ? i2 != 3 ? -1 : 2 : 1;
+            }
+        } else {
             i3 = 0;
-        } else if (i2 != 1) {
-            i3 = i2 != 2 ? i2 != 3 ? -1 : 2 : 1;
         }
         if (i3 != -1) {
             sharedPreferences.edit().putInt("VoipDataSaving", i3).commit();

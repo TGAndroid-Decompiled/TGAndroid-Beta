@@ -54,7 +54,7 @@ public class TextCheckCell2 extends FrameLayout {
             this.collapseViewContainer.setClipChildren(false);
             setClipChildren(false);
             addView(this.collapseViewContainer, LayoutHelper.createFrame(-2, -2, 16));
-            View view = new View(this, getContext()) {
+            View view = new View(getContext()) {
                 @Override
                 protected void onDraw(Canvas canvas) {
                     super.onDraw(canvas);

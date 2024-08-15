@@ -124,6 +124,7 @@ public class RecyclerListView extends RecyclerView {
     private int sectionsCount;
     private int sectionsType;
     private Runnable selectChildRunnable;
+    HashSet<Integer> selectedPositions;
     protected Drawable selectorDrawable;
     protected int selectorPosition;
     private int selectorRadius;
@@ -753,7 +754,7 @@ public class RecyclerListView extends RecyclerView {
         }
 
         public RecyclerListViewItemClickListener(Context context) {
-            RecyclerListView.this.gestureDetector = new GestureDetectorFixDoubleTap(context, new GestureDetectorFixDoubleTap.OnGestureListener(RecyclerListView.this) {
+            RecyclerListView.this.gestureDetector = new GestureDetectorFixDoubleTap(context, new GestureDetectorFixDoubleTap.OnGestureListener() {
                 private View doubleTapView;
 
                 @Override
@@ -1119,7 +1120,7 @@ public class RecyclerListView extends RecyclerView {
         this.lastX = Float.MAX_VALUE;
         this.lastY = Float.MAX_VALUE;
         this.accessibilityEnabled = true;
-        this.accessibilityDelegate = new View.AccessibilityDelegate(this) {
+        this.accessibilityDelegate = new View.AccessibilityDelegate() {
             @Override
             public void onInitializeAccessibilityNodeInfo(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
                 super.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
@@ -2546,7 +2547,7 @@ public class RecyclerListView extends RecyclerView {
     public void startMultiselect(int i, boolean z, onMultiSelectionChanged onmultiselectionchanged) {
         if (!this.multiSelectionGesture) {
             this.listPaddings = new int[2];
-            new HashSet();
+            this.selectedPositions = new HashSet<>();
             requestDisallowInterceptTouchEvent(this, true);
             this.multiSelectionListener = onmultiselectionchanged;
             this.multiSelectionGesture = true;

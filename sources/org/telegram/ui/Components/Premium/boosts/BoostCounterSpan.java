@@ -23,6 +23,7 @@ public class BoostCounterSpan extends ReplacementSpan {
     private int currentCount;
     public boolean isRtl;
     private final TextPaint namePaint;
+    private final View parent;
 
     public static Pair<SpannableString, BoostCounterSpan> create(View view, TextPaint textPaint, int i) {
         SpannableString spannableString = new SpannableString("d");
@@ -33,6 +34,7 @@ public class BoostCounterSpan extends ReplacementSpan {
 
     public BoostCounterSpan(View view, TextPaint textPaint, int i) {
         this.namePaint = textPaint;
+        this.parent = view;
         AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, false, true);
         this.countText = animatedTextDrawable;
         animatedTextDrawable.setAnimationProperties(0.3f, 0L, 250L, CubicBezierInterpolator.EASE_OUT_QUINT);

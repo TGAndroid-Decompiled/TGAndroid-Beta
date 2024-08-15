@@ -33,11 +33,11 @@ void main() {
     vec3 vLightPositionNormal = vec3(100,-200,400);
 
     vec3 vNormalW = normalize(vec3(world * vec4(vNormal, 0.0)));
-    vec3 vTextureNormal = normalize(texture2D(u_NormalMap, vUV + vec2(-f_xOffset, f_xOffset)).xyz * 2.0 - 1.0);
+    vec3 vTextureNormal = normalize(texture2D(u_NormalMap, (vUV + vec2(-f_xOffset, f_xOffset)) * 2.0).xyz * 2.0 - 1.0);
 
     vec3 finalNormal = normalize(vNormalW + vTextureNormal);
 
-    vec3 color = texture2D(u_Texture, vUV ).xyz;
+    vec3 color = texture2D(u_Texture, vUV).xyz;
     vec3 viewDirectionW = normalize(cameraPosition);
 
     vec3 angleW = normalize(viewDirectionW + vLightPosition2);

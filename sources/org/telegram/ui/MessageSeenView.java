@@ -319,7 +319,7 @@ public class MessageSeenView extends FrameLayout {
         if (recyclerListView != null) {
             return recyclerListView;
         }
-        RecyclerListView recyclerListView2 = new RecyclerListView(this, getContext()) {
+        RecyclerListView recyclerListView2 = new RecyclerListView(getContext()) {
             @Override
             public void onMeasure(int i, int i2) {
                 int size = View.MeasureSpec.getSize(i2);

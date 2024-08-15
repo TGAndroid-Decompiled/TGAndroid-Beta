@@ -63,8 +63,9 @@ public class ShareLocationDrawable extends Drawable {
             if (fArr[i] >= 1.0f) {
                 fArr[i] = 0.0f;
             }
-            fArr[i] = fArr[i] + (((float) j) / 1300.0f);
-            if (fArr[i] > 1.0f) {
+            float f = fArr[i] + (((float) j) / 1300.0f);
+            fArr[i] = f;
+            if (f > 1.0f) {
                 fArr[i] = 1.0f;
             }
         }

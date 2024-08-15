@@ -148,6 +148,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
     private StatisticActivity.ChartViewData revenueChart;
     private final Runnable sendCpmUpdateRunnable;
     private Runnable setStarsBalanceButtonText;
+    private int shakeDp;
     private ColoredImageSpan[] starRef;
     private final ButtonWithCounterView starsAdsButton;
     private long starsBalance;
@@ -162,6 +163,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
     private final LinearLayout starsBalanceLayout;
     private final AnimatedTextView starsBalanceSubtitle;
     private final AnimatedTextView starsBalanceTitle;
+    private final RelativeSizeSpan starsBalanceTitleSizeSpan;
     public final boolean starsRevenueAvailable;
     private StatisticActivity.ChartViewData starsRevenueChart;
     private double stars_rate;
@@ -200,6 +202,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         super(context);
         int i2;
         final int i3;
+        this.shakeDp = 4;
         this.starRef = new ColoredImageSpan[1];
         this.starsBalanceEditTextIgnore = false;
         this.starsBalanceEditTextAll = true;
@@ -271,7 +274,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
                 ChannelMonetizationLayout.this.updateList();
             }
         }, resourcesProvider);
-        LinearLayout linearLayout = new LinearLayout(this, context) {
+        LinearLayout linearLayout = new LinearLayout(context) {
             @Override
             protected void onMeasure(int i4, int i5) {
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i4), 1073741824), i5);
@@ -310,7 +313,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
             }
         });
         linearLayout.addView(buttonWithCounterView, LayoutHelper.createFrame(-1, 48.0f, 55, 18.0f, 13.0f, 18.0f, 0.0f));
-        LinearLayout linearLayout2 = new LinearLayout(this, context) {
+        LinearLayout linearLayout2 = new LinearLayout(context) {
             @Override
             protected void onMeasure(int i7, int i8) {
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), i8);
@@ -326,7 +329,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         animatedTextView3.setTextColor(Theme.getColor(i5, resourcesProvider));
         animatedTextView3.setTextSize(AndroidUtilities.dp(32.0f));
         animatedTextView3.setGravity(17);
-        new RelativeSizeSpan(0.6770833f);
+        this.starsBalanceTitleSizeSpan = new RelativeSizeSpan(0.6770833f);
         linearLayout2.addView(animatedTextView3, LayoutHelper.createLinear(-1, 38, 49, 22, 15, 22, 0));
         AnimatedTextView animatedTextView4 = new AnimatedTextView(context, true, true, true);
         this.starsBalanceSubtitle = animatedTextView4;
@@ -354,7 +357,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         outlineTextContainerView.setVisibility(8);
         this.starsBalanceEditTextContainer.setText(LocaleController.getString(R.string.BotStarsWithdrawPlaceholder));
         this.starsBalanceEditTextContainer.setLeftPadding(AndroidUtilities.dp(36.0f));
-        EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(this, context) {
+        EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context) {
             @Override
             public void onDetachedFromWindow() {
                 super.onDetachedFromWindow();
@@ -424,7 +427,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         linearLayout2.addView(this.starsBalanceEditTextContainer, LayoutHelper.createLinear(-1, -2, 1, 18, 14, 18, 2));
         LinearLayout linearLayout4 = new LinearLayout(context);
         linearLayout4.setOrientation(0);
-        ButtonWithCounterView buttonWithCounterView2 = new ButtonWithCounterView(this, context, resourcesProvider) {
+        ButtonWithCounterView buttonWithCounterView2 = new ButtonWithCounterView(context, resourcesProvider) {
             @Override
             protected boolean subTextSplitToWords() {
                 return false;
@@ -1838,9 +1841,9 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         textView.setTextColor(Theme.getColor(i, this.resourcesProvider));
         textView.setText(LocaleController.getString(R.string.MonetizationInfoTitle));
         linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 8.0f, 0.0f, 8.0f, 25.0f));
-        linearLayout.addView(new FeatureCell(this, getContext(), R.drawable.msg_channel, LocaleController.getString(R.string.MonetizationInfoFeature1Name), LocaleController.getString(R.string.MonetizationInfoFeature1Text)), LayoutHelper.createLinear(-1, -2, 49, 0, 0, 0, 16));
-        linearLayout.addView(new FeatureCell(this, getContext(), R.drawable.menu_feature_split, LocaleController.getString(R.string.MonetizationInfoFeature2Name), LocaleController.getString(R.string.MonetizationInfoFeature2Text)), LayoutHelper.createLinear(-1, -2, 49, 0, 0, 0, 16));
-        linearLayout.addView(new FeatureCell(this, getContext(), R.drawable.menu_feature_withdrawals, LocaleController.getString(R.string.MonetizationInfoFeature3Name), LocaleController.getString(R.string.MonetizationInfoFeature3Text)), LayoutHelper.createLinear(-1, -2, 49, 0, 0, 0, 16));
+        linearLayout.addView(new FeatureCell(getContext(), R.drawable.msg_channel, LocaleController.getString(R.string.MonetizationInfoFeature1Name), LocaleController.getString(R.string.MonetizationInfoFeature1Text)), LayoutHelper.createLinear(-1, -2, 49, 0, 0, 0, 16));
+        linearLayout.addView(new FeatureCell(getContext(), R.drawable.menu_feature_split, LocaleController.getString(R.string.MonetizationInfoFeature2Name), LocaleController.getString(R.string.MonetizationInfoFeature2Text)), LayoutHelper.createLinear(-1, -2, 49, 0, 0, 0, 16));
+        linearLayout.addView(new FeatureCell(getContext(), R.drawable.menu_feature_withdrawals, LocaleController.getString(R.string.MonetizationInfoFeature3Name), LocaleController.getString(R.string.MonetizationInfoFeature3Text)), LayoutHelper.createLinear(-1, -2, 49, 0, 0, 0, 16));
         View view = new View(getContext());
         view.setBackgroundColor(Theme.getColor(Theme.key_divider, this.resourcesProvider));
         linearLayout.addView(view, LayoutHelper.createLinear(-1, 1.0f / AndroidUtilities.density, 55, 12, 0, 12, 0));
@@ -1888,12 +1891,12 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
     }
 
     public class FeatureCell extends FrameLayout {
-        public FeatureCell(ChannelMonetizationLayout channelMonetizationLayout, Context context, int i, CharSequence charSequence, CharSequence charSequence2) {
+        public FeatureCell(Context context, int i, CharSequence charSequence, CharSequence charSequence2) {
             super(context);
             ImageView imageView = new ImageView(context);
             imageView.setScaleType(ImageView.ScaleType.CENTER);
             int i2 = Theme.key_windowBackgroundWhiteBlackText;
-            imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2, channelMonetizationLayout.resourcesProvider), PorterDuff.Mode.SRC_IN));
+            imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2, ChannelMonetizationLayout.this.resourcesProvider), PorterDuff.Mode.SRC_IN));
             imageView.setImageResource(i);
             addView(imageView, LayoutHelper.createFrame(24, 24.0f, 51, 0.0f, 5.0f, 18.0f, 0.0f));
             LinearLayout linearLayout = new LinearLayout(context);
@@ -1902,12 +1905,12 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
             TextView textView = new TextView(context);
             textView.setTypeface(AndroidUtilities.bold());
             textView.setTextSize(1, 14.0f);
-            textView.setTextColor(Theme.getColor(i2, channelMonetizationLayout.resourcesProvider));
+            textView.setTextColor(Theme.getColor(i2, ChannelMonetizationLayout.this.resourcesProvider));
             textView.setText(charSequence);
             linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 55, 0, 0, 0, 2));
             TextView textView2 = new TextView(context);
             textView2.setTextSize(1, 14.0f);
-            textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, channelMonetizationLayout.resourcesProvider));
+            textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, ChannelMonetizationLayout.this.resourcesProvider));
             textView2.setText(charSequence2);
             linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 55, 0, 0, 0, 0));
         }
@@ -2186,16 +2189,18 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         }
 
         public class Page extends FrameLayout {
+            private final long bot_id;
             private final int currentAccount;
             private final UniversalRecyclerView listView;
             private final Runnable loadMore;
             private final Theme.ResourcesProvider resourcesProvider;
             private final int type;
 
-            public Page(Context context, long j, int i, int i2, int i3, Runnable runnable, Theme.ResourcesProvider resourcesProvider) {
+            public Page(Context context, long j, int i, int i2, int i3, final Runnable runnable, Theme.ResourcesProvider resourcesProvider) {
                 super(context);
                 this.type = i;
                 this.currentAccount = i2;
+                this.bot_id = j;
                 this.resourcesProvider = resourcesProvider;
                 this.loadMore = runnable;
                 UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(context, i2, i3, true, new Utilities.Callback2() {
@@ -2211,17 +2216,11 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
                 }, null, resourcesProvider);
                 this.listView = universalRecyclerView;
                 addView(universalRecyclerView, LayoutHelper.createFrame(-1, -1.0f));
-                universalRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener(ChannelTransactionsView.this, runnable) {
-                    final Runnable val$loadMore;
-
-                    {
-                        this.val$loadMore = runnable;
-                    }
-
+                universalRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
                     @Override
                     public void onScrolled(RecyclerView recyclerView, int i4, int i5) {
                         if (!Page.this.listView.canScrollVertically(1) || Page.this.isLoadingVisible()) {
-                            this.val$loadMore.run();
+                            runnable.run();
                         }
                     }
                 });
@@ -2342,7 +2341,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
     public void onNestedPreScroll(View view, int i, int i2, int[] iArr, int i3) {
         if (view == this.listView && this.transactionsLayout.isAttachedToWindow()) {
             ((View) this.transactionsLayout.getParent()).getTop();
-            int i4 = AndroidUtilities.statusBarHeight;
+            int i4 = AndroidUtilities.LIGHT_STATUS_BAR_OVERLAY;
             ActionBar.getCurrentActionBarHeight();
             int bottom = ((View) this.transactionsLayout.getParent()).getBottom();
             if (i2 >= 0) {

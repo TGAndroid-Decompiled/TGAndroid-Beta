@@ -20,6 +20,7 @@ public class VoipCoverEmoji {
     private AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable emoji;
     private int fromRandomX;
     private int fromRandomY;
+    private int height;
     private boolean isShown;
     private final View parent;
     private int posX;
@@ -162,6 +163,7 @@ public class VoipCoverEmoji {
 
     public void onLayout(int i, int i2) {
         this.width = i;
+        this.height = i2;
         this.parent.invalidate();
     }
 

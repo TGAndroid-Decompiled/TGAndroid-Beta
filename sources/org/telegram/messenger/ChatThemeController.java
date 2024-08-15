@@ -609,22 +609,14 @@ public class ChatThemeController extends BaseController {
                 tLRPC$TL_wallPaper.stripedThumb = tLRPC$WallPaper.stripedThumb;
             }
             TLRPC$WallPaperSettings tLRPC$WallPaperSettings = tLRPC$TL_wallPaper.settings;
-            int i = tLRPC$WallPaperSettings.flags | 1;
-            tLRPC$WallPaperSettings.flags = i;
-            int i2 = i | 8;
-            tLRPC$WallPaperSettings.flags = i2;
-            int i3 = i2 | 16;
-            tLRPC$WallPaperSettings.flags = i3;
-            int i4 = i3 | 32;
-            tLRPC$WallPaperSettings.flags = i4;
-            tLRPC$WallPaperSettings.flags = i4 | 64;
+            tLRPC$WallPaperSettings.flags = tLRPC$WallPaperSettings.flags | 1 | 8 | 16 | 32 | 64;
             TLRPC$TL_wallPaper tLRPC$TL_wallPaper2 = new TLRPC$TL_wallPaper();
             TLRPC$WallPaper tLRPC$WallPaper3 = tLRPC$TL_messageActionSetChatWallPaper.wallpaper;
             tLRPC$TL_wallPaper2.pattern = tLRPC$WallPaper3.pattern;
             tLRPC$TL_wallPaper2.id = tLRPC$WallPaper3.id;
             tLRPC$TL_wallPaper2.document = tLRPC$WallPaper3.document;
-            int i5 = tLRPC$WallPaper3.flags;
-            tLRPC$TL_wallPaper2.flags = i5;
+            int i = tLRPC$WallPaper3.flags;
+            tLRPC$TL_wallPaper2.flags = i;
             tLRPC$TL_wallPaper2.creator = tLRPC$WallPaper3.creator;
             tLRPC$TL_wallPaper2.dark = tLRPC$WallPaper3.dark;
             tLRPC$TL_wallPaper2.isDefault = tLRPC$WallPaper3.isDefault;
@@ -632,7 +624,7 @@ public class ChatThemeController extends BaseController {
             tLRPC$TL_wallPaper2.access_hash = tLRPC$WallPaper3.access_hash;
             tLRPC$TL_wallPaper2.stripedThumb = tLRPC$WallPaper3.stripedThumb;
             tLRPC$TL_wallPaper2.settings = tLRPC$TL_wallPaper.settings;
-            tLRPC$TL_wallPaper2.flags = i5 | 4;
+            tLRPC$TL_wallPaper2.flags = i | 4;
             if (tLRPC$UserFull != null) {
                 tLRPC$UserFull.wallpaper = tLRPC$TL_wallPaper2;
                 tLRPC$UserFull.flags |= 16777216;
@@ -646,9 +638,9 @@ public class ChatThemeController extends BaseController {
                     chatFull.flags2 |= 128;
                     getMessagesStorage().updateChatInfo(chatFull, false);
                     NotificationCenter notificationCenter = NotificationCenter.getInstance(chatThemeController.currentAccount);
-                    int i6 = NotificationCenter.chatInfoDidLoad;
+                    int i2 = NotificationCenter.chatInfoDidLoad;
                     Boolean bool = Boolean.FALSE;
-                    notificationCenter.lambda$postNotificationNameOnUIThread$1(i6, chatFull, 0, bool, bool);
+                    notificationCenter.lambda$postNotificationNameOnUIThread$1(i2, chatFull, 0, bool, bool);
                 }
             }
             if (runnable != null) {

@@ -39,11 +39,14 @@ public class LocationMarker extends View {
     private TLRPC$Document flagAnimatedDocument;
     private final ImageReceiver flagAnimatedImageReceiver;
     private TLRPC$Document flagDocument;
+    private final float flagIconPadding;
     private final ImageReceiver flagImageReceiver;
     private boolean forceEmoji;
     private float h;
     private boolean hasFlag;
     private final Drawable icon;
+    private final float iconPadding;
+    private final float iconSize;
     private boolean isVideo;
     private StaticLayout layout;
     private float layoutLeft;
@@ -53,10 +56,13 @@ public class LocationMarker extends View {
     private final RectF padding;
     public final int padx;
     public final int pady;
+    private final Path path;
     private boolean relayout;
     private String text;
     private final TextPaint textPaint;
     private float textScale;
+    public final int type;
+    public final int variant;
     private float w;
 
     public int getTypesCount() {
@@ -67,6 +73,9 @@ public class LocationMarker extends View {
         super(context);
         this.text = "";
         this.padding = new RectF(4.0f, 4.33f, 7.66f, 3.0f);
+        this.iconPadding = 3.25f;
+        this.flagIconPadding = 2.25f;
+        this.iconSize = 21.33f;
         TextPaint textPaint = new TextPaint(1);
         this.textPaint = textPaint;
         this.outlinePaint = new Paint(1);
@@ -76,8 +85,9 @@ public class LocationMarker extends View {
         this.flagAnimatedImageReceiver = imageReceiver2;
         this.textScale = 1.0f;
         this.bounds = new RectF();
-        new Path();
+        this.path = new Path();
         this.animatedVideo = new AnimatedFloat(this, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
+        this.variant = i;
         this.density = f;
         imageReceiver.setCrossfadeWithOldImage(true);
         imageReceiver.setInvalidateAll(true);
@@ -88,6 +98,7 @@ public class LocationMarker extends View {
         int i4 = (int) (1.0f * f);
         this.pady = i4;
         setPadding(i3, i4, i3, i4);
+        this.type = i2;
         this.icon = context.getResources().getDrawable(R.drawable.map_pin3).mutate();
         textPaint.setTextSize(f * 24.0f);
         textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
@@ -113,7 +124,7 @@ public class LocationMarker extends View {
         if (emojiBigDrawable == null) {
             return null;
         }
-        return new Drawable(this) {
+        return new Drawable() {
             @Override
             public void draw(Canvas canvas) {
                 canvas.save();

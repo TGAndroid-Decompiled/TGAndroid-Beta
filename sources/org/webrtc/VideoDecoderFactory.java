@@ -16,7 +16,7 @@ public interface VideoDecoderFactory {
         }
 
         @Deprecated
-        public static VideoDecoder $default$createDecoder(VideoDecoderFactory _this, String str) {
+        public static VideoDecoder $default$createDecoder(VideoDecoderFactory videoDecoderFactory, String str) {
             throw new UnsupportedOperationException("Deprecated and not implemented.");
         }
     }
