@@ -370,9 +370,14 @@ public class NetworkMonitorAutoDetect extends BroadcastReceiver implements Netwo
         }
 
         String getWifiSSID() {
+            Intent registerReceiver;
             WifiInfo wifiInfo;
             String ssid;
-            Intent registerReceiver = this.context.registerReceiver(null, new IntentFilter("android.net.wifi.STATE_CHANGE"));
+            if (Build.VERSION.SDK_INT >= 33) {
+                registerReceiver = this.context.registerReceiver(null, new IntentFilter("android.net.wifi.STATE_CHANGE"), 4);
+            } else {
+                registerReceiver = this.context.registerReceiver(null, new IntentFilter("android.net.wifi.STATE_CHANGE"));
+            }
             return (registerReceiver == null || (wifiInfo = (WifiInfo) registerReceiver.getParcelableExtra("wifiInfo")) == null || (ssid = wifiInfo.getSSID()) == null) ? "" : ssid;
         }
     }
@@ -389,8 +394,13 @@ public class NetworkMonitorAutoDetect extends BroadcastReceiver implements Netwo
             IntentFilter intentFilter = new IntentFilter();
             intentFilter.addAction("android.net.wifi.p2p.STATE_CHANGED");
             intentFilter.addAction("android.net.wifi.p2p.CONNECTION_STATE_CHANGE");
-            context.registerReceiver(this, intentFilter);
-            if (Build.VERSION.SDK_INT > 28) {
+            int i = Build.VERSION.SDK_INT;
+            if (i >= 33) {
+                context.registerReceiver(this, intentFilter, 4);
+            } else {
+                context.registerReceiver(this, intentFilter);
+            }
+            if (i > 28) {
                 WifiP2pManager wifiP2pManager = (WifiP2pManager) context.getSystemService("wifip2p");
                 wifiP2pManager.requestGroupInfo(wifiP2pManager.initialize(context, context.getMainLooper(), null), new WifiP2pManager.GroupInfoListener() {
                     @Override
@@ -534,7 +544,11 @@ public class NetworkMonitorAutoDetect extends BroadcastReceiver implements Netwo
             return;
         }
         this.isRegistered = true;
-        this.context.registerReceiver(this, this.intentFilter);
+        if (Build.VERSION.SDK_INT >= 33) {
+            this.context.registerReceiver(this, this.intentFilter, 4);
+        } else {
+            this.context.registerReceiver(this, this.intentFilter);
+        }
     }
 
     private void unregisterReceiver() {

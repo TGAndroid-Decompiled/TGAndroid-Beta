@@ -6317,7 +6317,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
 
                 @Override
                 public void doOnIdle(Runnable runnable) {
-                    ChatAttachAlert.ChatAttachViewDelegate.CC.$default$doOnIdle(this, runnable);
+                    runnable.run();
                 }
 
                 @Override

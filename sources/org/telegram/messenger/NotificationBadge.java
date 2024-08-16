@@ -496,6 +496,7 @@ public class NotificationBadge {
         @Override
         public void executeBadge(int i) {
             Intent intent = new Intent("launcher.action.CHANGE_APPLICATION_NOTIFICATION_NUM");
+            intent.setPackage("com.vivo.launcher");
             intent.putExtra("packageName", ApplicationLoader.applicationContext.getPackageName());
             intent.putExtra("className", NotificationBadge.componentName.getClassName());
             intent.putExtra("notificationNum", i);

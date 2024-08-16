@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="51489" android:versionName="11.0.1" android:installLocation="auto" android:compileSdkVersion="33" android:compileSdkVersionCodename="13" package="org.telegram.messenger.beta" platformBuildVersionCode="33" platformBuildVersionName="13">
-    <uses-sdk android:minSdkVersion="19" android:targetSdkVersion="33"/>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="51519" android:versionName="11.0.1" android:installLocation="auto" android:compileSdkVersion="34" android:compileSdkVersionCodename="14" package="org.telegram.messenger.beta" platformBuildVersionCode="34" platformBuildVersionName="14">
+    <uses-sdk android:minSdkVersion="19" android:targetSdkVersion="34"/>
     <uses-feature android:name="android.hardware.location.gps" android:required="false"/>
     <uses-feature android:name="android.hardware.location.network" android:required="false"/>
     <uses-feature android:name="android.hardware.location" android:required="false"/>
@@ -26,6 +26,13 @@
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_REMOTE_MESSAGING"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CAMERA"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_PHONE_CALL"/>
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
@@ -296,7 +303,7 @@
                 <action android:name="android.app.action.NOTIFICATION_CHANNEL_BLOCK_STATE_CHANGED"/>
             </intent-filter>
         </receiver>
-        <receiver android:name="org.telegram.messenger.AutoMessageReplyReceiver" android:exported="false">
+        <receiver android:name="org.telegram.messenger.AutoMessageReplyReceiver" android:exported="false"> e 
             <intent-filter>
                 <action android:name="org.telegram.messenger.ACTION_MESSAGE_REPLY"/>
             </intent-filter>
@@ -311,35 +318,35 @@
                 <action android:name="android.intent.action.PHONE_STATE"/>
             </intent-filter>
         </receiver>
-        <service android:name="org.telegram.messenger.AuthenticatorService" android:exported="true">
+        <service android:name="org.telegram.messenger.AuthenticatorService" android:exported="true" android:foregroundServiceType="dataSync">
             <intent-filter>
                 <action android:name="android.accounts.AccountAuthenticator"/>
             </intent-filter>
             <meta-data android:name="android.accounts.AccountAuthenticator" android:resource="@xml/auth"/>
         </service>
-        <service android:name="org.telegram.messenger.ContactsSyncAdapterService" android:exported="true">
+        <service android:name="org.telegram.messenger.ContactsSyncAdapterService" android:exported="true" android:foregroundServiceType="dataSync">
             <intent-filter>
                 <action android:name="android.content.SyncAdapter"/>
             </intent-filter>
             <meta-data android:name="android.content.SyncAdapter" android:resource="@xml/sync_contacts"/>
             <meta-data android:name="android.provider.CONTACTS_STRUCTURE" android:resource="@xml/contacts"/>
         </service>
-        <service android:name="org.telegram.messenger.KeepAliveJob" android:permission="android.permission.BIND_JOB_SERVICE" android:exported="false"/>
-        <service android:name="org.telegram.messenger.BringAppForegroundService" android:enabled="true" android:exported="true"/>
-        <service android:name="org.telegram.messenger.NotificationsService" android:enabled="true" android:exported="true"/>
-        <service android:name="org.telegram.messenger.NotificationRepeat" android:exported="false"/>
-        <service android:name="org.telegram.messenger.VideoEncodingService" android:enabled="true" android:exported="true"/>
-        <service android:name="org.telegram.ui.Stories.recorder.StoryUploadingService" android:enabled="true" android:exported="true"/>
-        <service android:name="org.telegram.messenger.ImportingService" android:enabled="true" android:exported="true"/>
-        <service android:name="org.telegram.messenger.LocationSharingService" android:enabled="true" android:exported="true" android:foregroundServiceType="location"/>
+        <service android:name="org.telegram.messenger.KeepAliveJob" android:permission="android.permission.BIND_JOB_SERVICE" android:exported="false" android:foregroundServiceType="dataSync"/>
+        <service android:name="org.telegram.messenger.BringAppForegroundService" android:enabled="true" android:exported="true" android:foregroundServiceType="mediaPlayback"/>
+        <service android:name="org.telegram.messenger.NotificationsService" android:enabled="true" android:exported="true" android:foregroundServiceType="dataSync"/>
+        <service android:name="org.telegram.messenger.NotificationRepeat" android:exported="false" android:foregroundServiceType=""/>
+        <service android:name="org.telegram.messenger.VideoEncodingService" android:enabled="true" android:exported="true" android:foregroundServiceType="dataSync"/>
+        <service android:name="org.telegram.ui.Stories.recorder.StoryUploadingService" android:enabled="true" android:exported="true" android:foregroundServiceType="dataSync"/>
+        <service android:name="org.telegram.messenger.ImportingService" android:enabled="true" android:exported="true" android:foregroundServiceType="dataSync"/>
+        <service android:name="org.telegram.messenger.LocationSharingService" android:enabled="true" android:exported="true" android:foregroundServiceType="location|dataSync"/>
         <service android:name="org.telegram.messenger.voip.VoIPService" android:enabled="true" android:foregroundServiceType="microphone|camera|mediaProjection|mediaPlayback"/>
         <service android:name="org.telegram.messenger.MusicPlayerService" android:enabled="true" android:exported="true" android:foregroundServiceType="mediaPlayback"/>
-        <service android:name="org.telegram.messenger.MusicBrowserService" android:exported="true">
+        <service android:name="org.telegram.messenger.MusicBrowserService" android:exported="true" android:foregroundServiceType="mediaPlayback">
             <intent-filter>
                 <action android:name="android.media.browse.MediaBrowserService"/>
             </intent-filter>
         </service>
-        <service android:name="org.telegram.messenger.voip.TelegramConnectionService" android:permission="android.permission.BIND_TELECOM_CONNECTION_SERVICE" android:exported="true">
+        <service android:name="org.telegram.messenger.voip.TelegramConnectionService" android:permission="android.permission.BIND_TELECOM_CONNECTION_SERVICE" android:exported="true" android:foregroundServiceType="dataSync">
             <intent-filter>
                 <action android:name="android.telecom.ConnectionService"/>
             </intent-filter>
@@ -390,15 +397,15 @@
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
             </intent-filter>
         </receiver>
-        <service android:name="org.telegram.messenger.ChatsWidgetService" android:permission="android.permission.BIND_REMOTEVIEWS" android:exported="false"/>
+        <service android:name="org.telegram.messenger.ChatsWidgetService" android:permission="android.permission.BIND_REMOTEVIEWS" android:exported="false" android:foregroundServiceType="dataSync"/>
         <receiver android:name="org.telegram.messenger.ContactsWidgetProvider" android:exported="false">
             <meta-data android:name="android.appwidget.provider" android:resource="@xml/contacts_widget_info"/>
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
             </intent-filter>
         </receiver>
-        <service android:name="org.telegram.messenger.ContactsWidgetService" android:permission="android.permission.BIND_REMOTEVIEWS" android:exported="false"/>
-        <service android:name="org.telegram.messenger.FilesMigrationService" android:exported="false"/>
+        <service android:name="org.telegram.messenger.ContactsWidgetService" android:permission="android.permission.BIND_REMOTEVIEWS" android:exported="false" android:foregroundServiceType="dataSync"/>
+        <service android:name="org.telegram.messenger.FilesMigrationService" android:exported="false" android:foregroundServiceType="dataSync"/>
         <uses-library android:name="com.sec.android.app.multiwindow" android:required="false"/>
         <meta-data android:name="com.sec.android.support.multiwindow" android:value="true"/>
         <meta-data android:name="com.sec.android.multiwindow.DEFAULT_SIZE_W" android:value="632dp"/>

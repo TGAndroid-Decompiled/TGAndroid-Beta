@@ -2208,10 +2208,17 @@ public class AndroidUtilities {
                 if (z) {
                     if (callReceiver == null) {
                         IntentFilter intentFilter = new IntentFilter("android.intent.action.PHONE_STATE");
-                        Context context = ApplicationLoader.applicationContext;
-                        CallReceiver callReceiver2 = new CallReceiver();
-                        callReceiver = callReceiver2;
-                        context.registerReceiver(callReceiver2, intentFilter);
+                        if (Build.VERSION.SDK_INT >= 33) {
+                            Context context = ApplicationLoader.applicationContext;
+                            CallReceiver callReceiver2 = new CallReceiver();
+                            callReceiver = callReceiver2;
+                            context.registerReceiver(callReceiver2, intentFilter, 4);
+                        } else {
+                            Context context2 = ApplicationLoader.applicationContext;
+                            CallReceiver callReceiver3 = new CallReceiver();
+                            callReceiver = callReceiver3;
+                            context2.registerReceiver(callReceiver3, intentFilter);
+                        }
                     }
                 } else if (callReceiver != null) {
                     ApplicationLoader.applicationContext.unregisterReceiver(callReceiver);

@@ -242,11 +242,17 @@ public class VoIpSwitchLayout extends FrameLayout {
 
         public void setSelectedState(boolean z, boolean z2, Type type) {
             ValueAnimator ofInt;
+            ValueAnimator valueAnimator = this.animator;
+            if (valueAnimator != null && valueAnimator.isRunning()) {
+                this.animator.removeAllUpdateListeners();
+                this.animator.cancel();
+                z2 = false;
+            }
             if (z2) {
                 if (this.singleIcon != null) {
-                    ValueAnimator valueAnimator = this.animator;
-                    if (valueAnimator != null) {
-                        valueAnimator.removeAllUpdateListeners();
+                    ValueAnimator valueAnimator2 = this.animator;
+                    if (valueAnimator2 != null) {
+                        valueAnimator2.removeAllUpdateListeners();
                         this.animator.cancel();
                     }
                     int[] iArr = {100, 20};
@@ -261,8 +267,8 @@ public class VoIpSwitchLayout extends FrameLayout {
                     this.animator = ofInt;
                     ofInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
-                        public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                            VoIpSwitchLayout.VoIpButtonView.this.lambda$setSelectedState$0(valueAnimator2);
+                        public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
+                            VoIpSwitchLayout.VoIpButtonView.this.lambda$setSelectedState$0(valueAnimator3);
                         }
                     });
                     this.animator.setDuration(200L);
@@ -272,9 +278,9 @@ public class VoIpSwitchLayout extends FrameLayout {
                         this.singleIcon.start();
                     }
                 } else {
-                    ValueAnimator valueAnimator2 = this.animator;
-                    if (valueAnimator2 != null) {
-                        valueAnimator2.removeAllUpdateListeners();
+                    ValueAnimator valueAnimator3 = this.animator;
+                    if (valueAnimator3 != null) {
+                        valueAnimator3.removeAllUpdateListeners();
                         this.animator.cancel();
                     }
                     ValueAnimator ofInt2 = ValueAnimator.ofInt(0, this.maxRadius);
@@ -283,8 +289,8 @@ public class VoIpSwitchLayout extends FrameLayout {
                         this.unselectedRadius = this.maxRadius;
                         ofInt2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                             @Override
-                            public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
-                                VoIpSwitchLayout.VoIpButtonView.this.lambda$setSelectedState$1(valueAnimator3);
+                            public final void onAnimationUpdate(ValueAnimator valueAnimator4) {
+                                VoIpSwitchLayout.VoIpButtonView.this.lambda$setSelectedState$1(valueAnimator4);
                             }
                         });
                         this.animator.addListener(new AnimatorListenerAdapter() {
@@ -302,8 +308,8 @@ public class VoIpSwitchLayout extends FrameLayout {
                         this.selectedRadius = this.maxRadius;
                         ofInt2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                             @Override
-                            public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
-                                VoIpSwitchLayout.VoIpButtonView.this.lambda$setSelectedState$2(valueAnimator3);
+                            public final void onAnimationUpdate(ValueAnimator valueAnimator4) {
+                                VoIpSwitchLayout.VoIpButtonView.this.lambda$setSelectedState$2(valueAnimator4);
                             }
                         });
                         this.animator.setDuration(200L);

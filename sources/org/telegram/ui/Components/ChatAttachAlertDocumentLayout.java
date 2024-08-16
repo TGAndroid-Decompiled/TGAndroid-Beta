@@ -239,7 +239,11 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
             intentFilter.addAction("android.intent.action.MEDIA_UNMOUNTABLE");
             intentFilter.addAction("android.intent.action.MEDIA_UNMOUNTED");
             intentFilter.addDataScheme("file");
-            ApplicationLoader.applicationContext.registerReceiver(this.receiver, intentFilter);
+            if (Build.VERSION.SDK_INT >= 33) {
+                ApplicationLoader.applicationContext.registerReceiver(this.receiver, intentFilter, 4);
+            } else {
+                ApplicationLoader.applicationContext.registerReceiver(this.receiver, intentFilter);
+            }
         }
         ActionBarMenu createMenu = this.parentAlert.actionBar.createMenu();
         ActionBarMenuItem actionBarMenuItemSearchListener = createMenu.addItem(0, R.drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {

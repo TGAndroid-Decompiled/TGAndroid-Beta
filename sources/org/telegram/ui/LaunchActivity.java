@@ -240,7 +240,6 @@ import org.telegram.ui.Stories.StoriesController;
 import org.telegram.ui.Stories.StoriesListPlaceProvider;
 import org.telegram.ui.Stories.StoryViewer;
 import org.telegram.ui.Stories.recorder.StoryRecorder;
-import org.telegram.ui.Stories.recorder.Weather;
 import org.telegram.ui.WallpapersListActivity;
 import org.telegram.ui.bots.BotWebViewAttachedSheet;
 import org.telegram.ui.bots.BotWebViewSheet;
@@ -4646,14 +4645,12 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 VoIPFragment.onRequestPermissionsResult(i, strArr, iArr);
                 StoryRecorder.onRequestPermissionsResult(i, strArr, iArr);
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.onRequestPermissionResultReceived, Integer.valueOf(i), strArr, iArr);
-                if (i == Weather.LOCATION_REQUEST) {
-                    Weather.receivePermissionIntent(strArr, iArr);
-                }
                 if (this.requestedPermissions.get(i, -1) >= 0) {
                     int i2 = this.requestedPermissions.get(i, -1);
                     this.requestedPermissions.delete(i);
                     NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.permissionsGranted, Integer.valueOf(i2));
                 }
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.activityPermissionsGranted, Integer.valueOf(i), strArr, iArr);
             }
         }
     }

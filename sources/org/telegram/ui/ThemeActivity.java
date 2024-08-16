@@ -79,6 +79,7 @@ import org.telegram.ui.Cells.ThemesHorizontalListCell;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.PermissionRequest;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SeekBarView;
@@ -1053,7 +1054,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
 
             @Override
             public final void onItemClick(View view, int i3, float f, float f2) {
-                ThemeActivity.this.lambda$createView$10(context, view, i3, f, f2);
+                ThemeActivity.this.lambda$createView$11(context, view, i3, f, f2);
             }
         });
         if (this.currentType == 0) {
@@ -1071,7 +1072,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ThemeActivity.this.lambda$createView$12();
+                    ThemeActivity.this.lambda$createView$13();
                 }
             }, 200L);
         }
@@ -1149,7 +1150,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         }
     }
 
-    public void lambda$createView$10(Context context, final View view, final int i, float f, float f2) {
+    public void lambda$createView$11(Context context, final View view, final int i, float f, float f2) {
         int i2;
         int i3;
         String string;
@@ -1299,7 +1300,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             radioColorCell4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    ThemeActivity.this.lambda$createView$6(atomicReference3, view2);
+                    ThemeActivity.this.lambda$createView$7(atomicReference3, view2);
                 }
             });
             AlertDialog create3 = new AlertDialog.Builder(getParentActivity()).setTitle(LocaleController.getString(R.string.MicrophoneForVoiceMessages)).setView(linearLayout3).setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null).create();
@@ -1315,7 +1316,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                 showDialog(new AlertDialog.Builder(context, this.resourceProvider).setTitle(LocaleController.getString(R.string.ConfirmSensitiveContentTitle)).setMessage(LocaleController.getString(R.string.ConfirmSensitiveContentText)).setPositiveButton(LocaleController.getString(R.string.Confirm), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i10) {
-                        ThemeActivity.this.lambda$createView$7(view, dialogInterface, i10);
+                        ThemeActivity.this.lambda$createView$8(view, dialogInterface, i10);
                     }
                 }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create());
                 return;
@@ -1334,7 +1335,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                 builder.setItems(new CharSequence[]{LocaleController.getString("Default", R.string.Default), LocaleController.getString("SortFirstName", R.string.SortFirstName), LocaleController.getString("SortLastName", R.string.SortLastName)}, new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i10) {
-                        ThemeActivity.this.lambda$createView$8(i, dialogInterface, i10);
+                        ThemeActivity.this.lambda$createView$9(i, dialogInterface, i10);
                     }
                 });
                 builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
@@ -1436,7 +1437,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                 showDialog(new TimePickerDialog(getParentActivity(), new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public final void onTimeSet(TimePicker timePicker, int i12, int i13) {
-                        ThemeActivity.this.lambda$createView$9(i, textSettingsCell, timePicker, i12, i13);
+                        ThemeActivity.this.lambda$createView$10(i, textSettingsCell, timePicker, i12, i13);
                     }
                 }, i3, i11, true));
             } else if (i == this.scheduleUpdateLocationRow) {
@@ -1484,7 +1485,13 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         }
     }
 
-    public void lambda$createView$6(AtomicReference atomicReference, View view) {
+    public void lambda$createView$7(final AtomicReference atomicReference, View view) {
+        PermissionRequest.ensurePermission(R.raw.permission_request_microphone, R.string.PermissionNoBluetoothWithHint, "android.permission.BLUETOOTH_CONNECT", new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                ThemeActivity.this.lambda$createView$6(atomicReference, (Boolean) obj);
+            }
+        });
         SharedConfig.recordViaSco = true;
         SharedConfig.saveConfig();
         this.updateRecordViaSco = true;
@@ -1495,14 +1502,30 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         }
     }
 
-    public void lambda$createView$7(View view, DialogInterface dialogInterface, int i) {
+    public void lambda$createView$6(AtomicReference atomicReference, Boolean bool) {
+        RecyclerView.ViewHolder findViewHolderForAdapterPosition;
+        if (bool.booleanValue()) {
+            return;
+        }
+        SharedConfig.recordViaSco = false;
+        SharedConfig.saveConfig();
+        this.updateRecordViaSco = true;
+        ((Dialog) atomicReference.get()).dismiss();
+        RecyclerListView recyclerListView = this.listView;
+        if (recyclerListView == null || !recyclerListView.isAttachedToWindow() || (findViewHolderForAdapterPosition = this.listView.findViewHolderForAdapterPosition(this.bluetoothScoRow)) == null) {
+            return;
+        }
+        this.listAdapter.onBindViewHolder(findViewHolderForAdapterPosition, this.bluetoothScoRow);
+    }
+
+    public void lambda$createView$8(View view, DialogInterface dialogInterface, int i) {
         getMessagesController().setContentSettings(true);
         if (view instanceof TextCheckCell) {
             ((TextCheckCell) view).setChecked(getMessagesController().showSensitiveContent());
         }
     }
 
-    public void lambda$createView$8(int i, DialogInterface dialogInterface, int i2) {
+    public void lambda$createView$9(int i, DialogInterface dialogInterface, int i2) {
         SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
         edit.putInt("sortContactsBy", i2);
         edit.commit();
@@ -1512,7 +1535,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         }
     }
 
-    public void lambda$createView$9(int i, TextSettingsCell textSettingsCell, TimePicker timePicker, int i2, int i3) {
+    public void lambda$createView$10(int i, TextSettingsCell textSettingsCell, TimePicker timePicker, int i2, int i3) {
         int i4 = (i2 * 60) + i3;
         if (i == this.scheduleFromRow) {
             Theme.autoNightDayStartTime = i4;
@@ -1523,17 +1546,17 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         textSettingsCell.setTextAndValue(LocaleController.getString("AutoNightTo", R.string.AutoNightTo), String.format("%02d:%02d", Integer.valueOf(i2), Integer.valueOf(i3)), true);
     }
 
-    public int lambda$createView$11() {
+    public int lambda$createView$12() {
         return this.sensitiveContentRow;
     }
 
-    public void lambda$createView$12() {
+    public void lambda$createView$13() {
         this.listView.highlightRow(new RecyclerListView.IntReturnCallback() {
             @Override
             public final int run() {
-                int lambda$createView$11;
-                lambda$createView$11 = ThemeActivity.this.lambda$createView$11();
-                return lambda$createView$11;
+                int lambda$createView$12;
+                lambda$createView$12 = ThemeActivity.this.lambda$createView$12();
+                return lambda$createView$12;
             }
         });
     }
@@ -1554,13 +1577,13 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         builder.setPositiveButton(LocaleController.getString("CreateTheme", R.string.CreateTheme), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
-                ThemeActivity.this.lambda$createNewTheme$13(dialogInterface, i);
+                ThemeActivity.this.lambda$createNewTheme$14(dialogInterface, i);
             }
         });
         showDialog(builder.create());
     }
 
-    public void lambda$createNewTheme$13(DialogInterface dialogInterface, int i) {
+    public void lambda$createNewTheme$14(DialogInterface dialogInterface, int i) {
         AlertsCreator.createThemeCreateDialog(this, 0, null, null);
     }
 
@@ -1627,7 +1650,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                     builder.setPositiveButton(LocaleController.getString("ConnectingToProxyEnable", R.string.ConnectingToProxyEnable), new DialogInterface.OnClickListener() {
                         @Override
                         public final void onClick(DialogInterface dialogInterface, int i) {
-                            ThemeActivity.this.lambda$updateSunTime$14(dialogInterface, i);
+                            ThemeActivity.this.lambda$updateSunTime$15(dialogInterface, i);
                         }
                     });
                     builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
@@ -1667,7 +1690,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                ThemeActivity.this.lambda$updateSunTime$16();
+                ThemeActivity.this.lambda$updateSunTime$17();
             }
         });
         RecyclerListView.Holder holder = (RecyclerListView.Holder) this.listView.findViewHolderForAdapterPosition(this.scheduleLocationInfoRow);
@@ -1682,7 +1705,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         }
     }
 
-    public void lambda$updateSunTime$14(DialogInterface dialogInterface, int i) {
+    public void lambda$updateSunTime$15(DialogInterface dialogInterface, int i) {
         if (getParentActivity() == null) {
             return;
         }
@@ -1692,7 +1715,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         }
     }
 
-    public void lambda$updateSunTime$16() {
+    public void lambda$updateSunTime$17() {
         final String str = null;
         try {
             List<Address> fromLocation = new Geocoder(ApplicationLoader.applicationContext, Locale.getDefault()).getFromLocation(Theme.autoNightLocationLatitude, Theme.autoNightLocationLongitude, 1);
@@ -1704,12 +1727,12 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ThemeActivity.this.lambda$updateSunTime$15(str);
+                ThemeActivity.this.lambda$updateSunTime$16(str);
             }
         });
     }
 
-    public void lambda$updateSunTime$15(String str) {
+    public void lambda$updateSunTime$16(String str) {
         RecyclerListView.Holder holder;
         Theme.autoNightCityName = str;
         if (str == null) {
@@ -2866,7 +2889,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         arrayList.addAll(SimpleThemeDescription.createThemeDescriptions(new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                ThemeActivity.this.lambda$getThemeDescriptions$17();
+                ThemeActivity.this.lambda$getThemeDescriptions$18();
             }
 
             @Override
@@ -2877,7 +2900,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         return arrayList;
     }
 
-    public void lambda$getThemeDescriptions$17() {
+    public void lambda$getThemeDescriptions$18() {
         for (int i = 0; i < this.listView.getChildCount(); i++) {
             View childAt = this.listView.getChildAt(i);
             if (childAt instanceof AppIconsSelectorCell) {

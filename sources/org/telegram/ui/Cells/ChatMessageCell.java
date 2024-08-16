@@ -4471,7 +4471,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                 return true;
             } else if (this.pressedLink.getSpan() instanceof URLSpanNoUnderline) {
                 URLSpanNoUnderline uRLSpanNoUnderline2 = (URLSpanNoUnderline) this.pressedLink.getSpan();
-                if (ChatActivity.isClickableLink(uRLSpanNoUnderline2.getURL()) || uRLSpanNoUnderline2.getURL().startsWith("/")) {
+                if (ChatActivity.isClickableLink(uRLSpanNoUnderline2.getURL()) || uRLSpanNoUnderline2.getURL().startsWith("/") || uRLSpanNoUnderline2.getURL().startsWith("tel:")) {
                     this.hadLongPress = true;
                     this.delegate.didPressUrl(this, this.pressedLink.getSpan(), true);
                     return true;

@@ -2041,8 +2041,11 @@ public class StarsController {
         }
 
         public static MessageId from(MessageObject messageObject) {
+            if (messageObject == null) {
+                return null;
+            }
             TLRPC$Message tLRPC$Message = messageObject.messageOwner;
-            if (tLRPC$Message.isThreadMessage && tLRPC$Message.fwd_from != null) {
+            if (tLRPC$Message != null && ((tLRPC$Message.isThreadMessage || messageObject.isForwardedChannelPost()) && messageObject.messageOwner.fwd_from != null)) {
                 return new MessageId(messageObject.getFromChatId(), messageObject.messageOwner.fwd_from.saved_from_msg_id);
             }
             return new MessageId(messageObject.getDialogId(), messageObject.getId());
@@ -2522,7 +2525,7 @@ public class StarsController {
         if (messageObject == null || (tLRPC$Message = messageObject.messageOwner) == null) {
             return 0L;
         }
-        if (tLRPC$Message.isThreadMessage && tLRPC$Message.fwd_from != null) {
+        if ((tLRPC$Message.isThreadMessage || messageObject.isForwardedChannelPost()) && messageObject.messageOwner.fwd_from != null) {
             return getPendingPaidReactions(messageObject.getFromChatId(), messageObject.messageOwner.fwd_from.saved_from_msg_id);
         }
         return getPendingPaidReactions(messageObject.getDialogId(), messageObject.getId());

@@ -488,22 +488,27 @@ public class CodeHighlighting {
     }
 
     private static Match matchPattern(TokenPattern tokenPattern, int i, String str) {
-        Matcher matcher = tokenPattern.pattern.getPattern().matcher(str);
-        matcher.region(i, str.length());
-        if (matcher.find()) {
-            Match match = new Match();
-            match.index = matcher.start();
-            if (tokenPattern.lookbehind && matcher.groupCount() >= 1) {
-                match.index += matcher.end(1) - matcher.start(1);
+        try {
+            Matcher matcher = tokenPattern.pattern.getPattern().matcher(str);
+            matcher.region(i, str.length());
+            if (matcher.find()) {
+                Match match = new Match();
+                match.index = matcher.start();
+                if (tokenPattern.lookbehind && matcher.groupCount() >= 1) {
+                    match.index += matcher.end(1) - matcher.start(1);
+                }
+                int end = matcher.end();
+                int i2 = match.index;
+                int i3 = end - i2;
+                match.length = i3;
+                match.string = str.substring(i2, i3 + i2);
+                return match;
             }
-            int end = matcher.end();
-            int i2 = match.index;
-            int i3 = end - i2;
-            match.length = i3;
-            match.string = str.substring(i2, i3 + i2);
-            return match;
+            return null;
+        } catch (Exception e) {
+            FileLog.e(e);
+            return null;
         }
-        return null;
     }
 
     public static class RematchOptions {

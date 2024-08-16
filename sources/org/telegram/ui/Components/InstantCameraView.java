@@ -3068,6 +3068,10 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
 
         private void setBluetoothScoOn(boolean z) {
             AudioManager audioManager = (AudioManager) ApplicationLoader.applicationContext.getSystemService("audio");
+            if (SharedConfig.recordViaSco && !PermissionRequest.hasPermission("android.permission.BLUETOOTH_CONNECT")) {
+                SharedConfig.recordViaSco = false;
+                SharedConfig.saveConfig();
+            }
             if (!(audioManager.isBluetoothScoAvailableOffCall() && SharedConfig.recordViaSco) && z) {
                 return;
             }
@@ -3087,7 +3091,19 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                     return;
                 } catch (Throwable th) {
                     FileLog.e(th);
-                    return;
+                    if (z) {
+                        return;
+                    }
+                    try {
+                        if (audioManager.isBluetoothScoOn()) {
+                            audioManager.stopBluetoothSco();
+                            return;
+                        }
+                        return;
+                    } catch (Exception e) {
+                        FileLog.e(e);
+                        return;
+                    }
                 }
             }
             if (z) {

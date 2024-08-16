@@ -19,6 +19,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.SystemClock;
 import android.text.TextUtils;
 import android.util.SparseArray;
@@ -1418,7 +1419,11 @@ public class ImageLoader {
         intentFilter.addAction("android.intent.action.MEDIA_UNMOUNTED");
         intentFilter.addDataScheme("file");
         try {
-            ApplicationLoader.applicationContext.registerReceiver(anonymousClass6, intentFilter);
+            if (Build.VERSION.SDK_INT >= 33) {
+                ApplicationLoader.applicationContext.registerReceiver(anonymousClass6, intentFilter, 4);
+            } else {
+                ApplicationLoader.applicationContext.registerReceiver(anonymousClass6, intentFilter);
+            }
         } catch (Throwable unused) {
         }
         checkMediaPaths();

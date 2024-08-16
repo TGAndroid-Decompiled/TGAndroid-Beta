@@ -1068,7 +1068,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
             }
         };
         this.speakerPhoneIcon = imageView2;
-        imageView2.setContentDescription(LocaleController.getString("VoipSpeaker", R.string.VoipSpeaker));
+        imageView2.setContentDescription(LocaleController.getString(R.string.VoipSpeaker));
         this.speakerPhoneIcon.setBackground(Theme.createSelectorDrawable(ColorUtils.setAlphaComponent(-1, 76)));
         this.speakerPhoneIcon.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
         frameLayout.addView(this.speakerPhoneIcon, LayoutHelper.createFrame(56, 56, 53));

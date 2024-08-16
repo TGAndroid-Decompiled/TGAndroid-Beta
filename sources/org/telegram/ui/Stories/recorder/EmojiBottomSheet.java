@@ -124,6 +124,7 @@ import org.telegram.ui.Components.EmojiView;
 import org.telegram.ui.Components.ExtendedGridLayoutManager;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LoadingSpan;
+import org.telegram.ui.Components.PermissionRequest;
 import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.Reactions.ReactionImageHolder;
@@ -3030,7 +3031,7 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
                 if (MessagesController.getInstance(((BottomSheet) EmojiBottomSheet.this).currentAccount).storyWeatherPreload) {
                     spannableStringBuilder = replaceEmoji;
                     spannableStringBuilder = replaceEmoji;
-                    if (Weather.hasLocationPermission() && cached == null) {
+                    if (PermissionRequest.hasPermission("android.permission.ACCESS_COARSE_LOCATION") && cached == null) {
                         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("___");
                         spannableStringBuilder2.setSpan(new LoadingSpan(this, AndroidUtilities.dp(68.0f)), 0, spannableStringBuilder2.length(), 33);
                         buttonArr[0] = new Button(this, 5, spannableStringBuilder2);

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.util.Pair;
 import android.util.SparseArray;
 import androidx.collection.LongSparseArray;
@@ -383,12 +384,18 @@ public class DownloadController extends BaseController implements NotificationCe
                 DownloadController.this.lambda$new$0();
             }
         });
-        ApplicationLoader.applicationContext.registerReceiver(new BroadcastReceiver() {
+        BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
                 DownloadController.this.checkAutodownloadSettings();
             }
-        }, new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE"));
+        };
+        IntentFilter intentFilter = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
+        if (Build.VERSION.SDK_INT >= 33) {
+            ApplicationLoader.applicationContext.registerReceiver(broadcastReceiver, intentFilter, 4);
+        } else {
+            ApplicationLoader.applicationContext.registerReceiver(broadcastReceiver, intentFilter);
+        }
         if (getUserConfig().isClientActivated()) {
             checkAutodownloadSettings();
         }

@@ -21782,6 +21782,10 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             String url = ((URLSpanNoUnderline) characterStyle).getURL();
             if (url != null && url.startsWith("tel:")) {
                 didPressPhoneNumber(chatMessageCell, characterStyle, url.substring(4));
+                if (!z || chatMessageCell == null) {
+                    return;
+                }
+                chatMessageCell.resetPressedLink(-1);
             } else if (messageObject5 != null && url.startsWith("/")) {
                 if (URLSpanBotCommand.enabled) {
                     ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
@@ -28257,18 +28261,20 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         String str2;
         int i;
         TLRPC$WebPage tLRPC$WebPage;
-        ItemOptions makeOptions = ItemOptions.makeOptions((BaseFragment) this, (View) chatMessageCell, true);
-        ScrimOptions scrimOptions = new ScrimOptions(getContext(), this.themeDelegate);
+        ?? makeOptions = ItemOptions.makeOptions((BaseFragment) this, (View) chatMessageCell, true);
+        ?? scrimOptions = new ScrimOptions(getContext(), this.themeDelegate);
         makeOptions.setOnDismiss(new ChatActivity$$ExternalSyntheticLambda111(scrimOptions));
         boolean z = (!SharedConfig.inappBrowser || str.startsWith("video?") || Browser.isInternalUri(Uri.parse(str), null)) ? false : true;
-        final boolean z2 = z;
-        makeOptions.add(R.drawable.msg_openin, LocaleController.getString(z ? R.string.OpenInTelegramBrowser : R.string.Open), new Runnable() {
+        boolean z2 = str.startsWith("#") || str.startsWith("$");
+        final boolean z3 = z;
+        final boolean z4 = z2;
+        makeOptions.add(R.drawable.msg_openin, LocaleController.getString((!z || z2) ? R.string.Open : R.string.OpenInTelegramBrowser), new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$didLongPressLink$350(str, characterStyle, messageObject, chatMessageCell, z2);
+                ChatActivity.this.lambda$didLongPressLink$350(str, characterStyle, messageObject, chatMessageCell, z3, z4);
             }
         });
-        if (z) {
+        if (z && !z2) {
             makeOptions.add(R.drawable.msg_language, LocaleController.getString(R.string.OpenInSystemBrowser), new Runnable() {
                 @Override
                 public final void run() {
@@ -28285,35 +28291,37 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 }
             });
         }
-        makeOptions.add(R.drawable.msg_copy, LocaleController.getString(R.string.CopyLink), new Runnable() {
+        int i2 = R.drawable.msg_copy;
+        String string = LocaleController.getString(R.string.CopyLink);
+        ?? r3 = new Runnable() {
             @Override
             public final void run() {
                 ChatActivity.this.lambda$didLongPressLink$353(str, messageObject);
             }
-        });
+        };
+        makeOptions.add(i2, string, r3);
         scrimOptions.setItemOptions(makeOptions);
         if (characterStyle instanceof URLSpanReplacement) {
             String url = ((URLSpanReplacement) characterStyle).getURL();
             try {
                 try {
                     Uri parse = Uri.parse(url);
-                    url = Browser.replaceHostname(parse, Browser.IDN_toUnicode(parse.getHost()), null);
+                    r3 = Browser.IDN_toUnicode(parse.getHost());
+                    url = Browser.replaceHostname(parse, r3, null);
+                    r3 = 0;
                 } catch (Exception e) {
+                    r3 = 0;
                     FileLog.e((Throwable) e, false);
                 }
                 str2 = URLDecoder.decode(url.replaceAll("\\+", "%2b"), "UTF-8");
+                i = r3;
             } catch (Exception e2) {
                 FileLog.e(e2);
                 str2 = url;
+                i = r3;
             }
             if (str2.length() > 204) {
-                StringBuilder sb = new StringBuilder();
-                i = 0;
-                sb.append(str2.substring(0, 204));
-                sb.append("…");
-                str2 = sb.toString();
-            } else {
-                i = 0;
+                str2 = str2.substring(i, 204) + "…";
             }
             SpannableString spannableString = new SpannableString(str2);
             spannableString.setSpan(characterStyle, i, spannableString.length(), 33);
@@ -28324,10 +28332,10 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         showDialog(scrimOptions);
     }
 
-    public void lambda$didLongPressLink$350(String str, CharacterStyle characterStyle, MessageObject messageObject, ChatMessageCell chatMessageCell, boolean z) {
+    public void lambda$didLongPressLink$350(String str, CharacterStyle characterStyle, MessageObject messageObject, ChatMessageCell chatMessageCell, boolean z, boolean z2) {
         if (str.startsWith("video?")) {
             didPressMessageUrl(characterStyle, false, messageObject, chatMessageCell);
-        } else if (z) {
+        } else if (z && !z2) {
             Browser.openInTelegramBrowser(getParentActivity(), str, null);
         } else {
             logSponsoredClicked(messageObject);
