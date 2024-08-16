@@ -8,6 +8,6 @@ public final class CameraScanActivity$$ExternalSyntheticLambda10 implements Runn
 
     @Override
     public final void run() {
-        CameraScanActivity.m1048$r8$lambda$h8v1QMMoLncbYiduwfSmb6Y5VU(this.f$0);
+        CameraScanActivity.m1050$r8$lambda$h8v1QMMoLncbYiduwfSmb6Y5VU(this.f$0);
     }
 }

@@ -3456,6 +3456,10 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         outlineTextContainerView.attachEditText(editTextBoldCursor);
         outlineTextContainerView.addView(linearLayout2, LayoutHelper.createFrame(-1, -2, 48));
         linearLayout.addView(outlineTextContainerView, LayoutHelper.createLinear(-1, -2));
+        final TextView textView2 = new TextView(context);
+        textView2.setTextSize(1, 16.0f);
+        textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText3));
+        outlineTextContainerView.addView(textView2, LayoutHelper.createFrame(-2, -2.0f, 21, 0.0f, 0.0f, 14.0f, 0.0f));
         LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context);
         linksTextView.setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.PaidContentInfo), new Runnable() {
             @Override
@@ -3492,16 +3496,16 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             }
 
             @Override
-            public void afterTextChanged(android.text.Editable r9) {
+            public void afterTextChanged(android.text.Editable r10) {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stars.StarsIntroActivity.AnonymousClass12.afterTextChanged(android.text.Editable):void");
             }
         });
         final boolean[] zArr = {false};
         editTextBoldCursor.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
-            public final boolean onEditorAction(TextView textView2, int i2, KeyEvent keyEvent) {
+            public final boolean onEditorAction(TextView textView3, int i2, KeyEvent keyEvent) {
                 boolean lambda$showMediaPriceSheet$45;
-                lambda$showMediaPriceSheet$45 = StarsIntroActivity.lambda$showMediaPriceSheet$45(zArr, callback2, buttonWithCounterView2, editTextBoldCursor, bottomSheetArr, textView2, i2, keyEvent);
+                lambda$showMediaPriceSheet$45 = StarsIntroActivity.lambda$showMediaPriceSheet$45(zArr, callback2, buttonWithCounterView2, editTextBoldCursor, bottomSheetArr, textView3, i2, keyEvent);
                 return lambda$showMediaPriceSheet$45;
             }
         });

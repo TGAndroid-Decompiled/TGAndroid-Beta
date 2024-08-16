@@ -15916,7 +15916,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public static boolean BLUR_RENDERNODE() {
-        return Build.VERSION.SDK_INT >= 31 && SharedConfig.useNewBlur && SharedConfig.getDevicePerformanceClass() >= 2;
+        return Build.VERSION.SDK_INT >= 31 && SharedConfig.useNewBlur && SharedConfig.getDevicePerformanceClass() >= 2 && !AndroidUtilities.makingGlobalBlurBitmap;
     }
 
     public void drawCaptionBlur(android.graphics.Canvas r44, org.telegram.ui.Components.BlurringShader.StoryBlurDrawer r45, int r46, int r47, boolean r48, boolean r49, boolean r50) {

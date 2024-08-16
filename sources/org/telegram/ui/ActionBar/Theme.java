@@ -1006,6 +1006,7 @@ public class Theme {
     public static final int key_progressCircle;
     public static final int key_radioBackground;
     public static final int key_radioBackgroundChecked;
+    public static final int key_reactionStarSelector;
     public static final int key_returnToCallBackground;
     public static final int key_returnToCallMutedBackground;
     public static final int key_returnToCallText;

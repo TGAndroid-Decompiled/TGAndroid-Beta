@@ -13630,6 +13630,9 @@ public class MessagesController extends BaseController implements NotificationCe
             }
             if (c == 0) {
                 processUpdates(tLRPC$Updates, true);
+                if (arrayList.size() <= 0) {
+                    break;
+                }
                 arrayList.remove(0);
                 z = true;
             } else if (c == 1) {
@@ -13651,6 +13654,8 @@ public class MessagesController extends BaseController implements NotificationCe
                 this.updatesQueueChannels.remove(j);
                 getChannelDifference(j);
                 return;
+            } else if (arrayList.size() <= 0) {
+                break;
             } else {
                 arrayList.remove(0);
             }

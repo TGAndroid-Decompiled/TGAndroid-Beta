@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.LinearGradient;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
@@ -106,7 +107,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
     private boolean allReactionsAvailable;
     private boolean allReactionsIsDefault;
     public List<ReactionsLayoutInBubble.VisibleReaction> allReactionsList;
-    HashSet<ReactionsLayoutInBubble.VisibleReaction> alwaysSelectedReactions;
+    final HashSet<ReactionsLayoutInBubble.VisibleReaction> alwaysSelectedReactions;
     private boolean animatePopup;
     private final boolean animationEnabled;
     private Paint bgPaint;
@@ -126,6 +127,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
     private float flipVerticalProgress;
     BaseFragment fragment;
     public boolean hasHint;
+    private boolean hasStar;
     private boolean hintMeasured;
     public TextView hintView;
     public int hintViewHeight;
@@ -174,14 +176,18 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
     Theme.ResourcesProvider resourcesProvider;
     private float rightAlpha;
     private Paint rightShadowPaint;
-    private Paint selectedPaint;
-    HashSet<ReactionsLayoutInBubble.VisibleReaction> selectedReactions;
+    private final Paint selectedPaint;
+    final HashSet<ReactionsLayoutInBubble.VisibleReaction> selectedReactions;
     private Drawable shadow;
     private android.graphics.Rect shadowPad;
     private boolean showExpandableReactions;
     boolean skipDraw;
     public boolean skipEnterAnimation;
     private float smallCircleRadius;
+    private LinearGradient starSelectedGradient;
+    private Matrix starSelectedGradientMatrix;
+    private Paint starSelectedGradientPaint;
+    private final Paint starSelectedPaint;
     private float transitionProgress;
     private List<String> triggeredReactions;
     private final int type;
@@ -267,6 +273,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         this.premiumLockedReactions = new ArrayList(10);
         this.allReactionsList = new ArrayList(20);
         this.rectF = new RectF();
+        this.hasStar = false;
         this.selectedReactions = new HashSet<>();
         this.alwaysSelectedReactions = new HashSet<>();
         this.location = new int[2];
@@ -274,14 +281,17 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         this.triggeredReactions = new ArrayList();
         this.lastVisibleViews = new HashSet<>();
         this.lastVisibleViewsTmp = new HashSet<>();
+        Paint paint = new Paint(1);
+        this.selectedPaint = paint;
+        Paint paint2 = new Paint(1);
+        this.starSelectedPaint = paint2;
         this.notificationsLocker = new AnimationNotificationsLocker();
         this.isHiddenNextReaction = true;
         this.paused = false;
         this.type = i;
         this.durationScale = Settings.Global.getFloat(context.getContentResolver(), "animator_duration_scale", 1.0f);
-        Paint paint = new Paint(1);
-        this.selectedPaint = paint;
         paint.setColor(Theme.getColor(Theme.key_listSelector, resourcesProvider));
+        paint2.setColor(Theme.getColor(Theme.key_reactionStarSelector, resourcesProvider));
         this.resourcesProvider = resourcesProvider;
         this.currentAccount = i2;
         this.fragment = baseFragment;
@@ -894,6 +904,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
             setVisibility(4);
             return;
         }
+        this.hasStar = false;
         int i2 = this.type;
         if (i2 == 3) {
             this.allReactionsAvailable = UserConfig.getInstance(this.currentAccount).isPremium();
@@ -904,6 +915,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         } else if (this.hitLimit) {
             this.allReactionsAvailable = false;
             if (tLRPC$ChatFull != null && tLRPC$ChatFull.paid_reactions_available) {
+                this.hasStar = true;
                 arrayList.add(ReactionsLayoutInBubble.VisibleReaction.asStar());
             }
             Iterator<TLRPC$ReactionCount> it2 = this.messageObject.messageOwner.reactions.results.iterator();
@@ -912,6 +924,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
             }
         } else if (tLRPC$ChatFull != null) {
             if (tLRPC$ChatFull.paid_reactions_available) {
+                this.hasStar = true;
                 arrayList.add(ReactionsLayoutInBubble.VisibleReaction.asStar());
             }
             TLRPC$ChatReactions tLRPC$ChatReactions = tLRPC$ChatFull.available_reactions;
@@ -2150,7 +2163,11 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         @Override
         protected void dispatchDraw(Canvas canvas) {
             if (this.selected && this.drawSelected) {
-                canvas.drawCircle(getMeasuredWidth() >> 1, getMeasuredHeight() >> 1, (getMeasuredWidth() >> 1) - AndroidUtilities.dp(1.0f), ReactionsContainerLayout.this.selectedPaint);
+                float measuredWidth = getMeasuredWidth() >> 1;
+                float measuredHeight = getMeasuredHeight() >> 1;
+                float measuredWidth2 = (getMeasuredWidth() >> 1) - AndroidUtilities.dp(1.0f);
+                ReactionsLayoutInBubble.VisibleReaction visibleReaction = this.currentReaction;
+                canvas.drawCircle(measuredWidth, measuredHeight, measuredWidth2, (visibleReaction == null || !visibleReaction.isStar) ? ReactionsContainerLayout.this.selectedPaint : ReactionsContainerLayout.this.starSelectedPaint);
             }
             AnimatedEmojiDrawable animatedEmojiDrawable = this.loopImageView.animatedEmojiDrawable;
             if (animatedEmojiDrawable != null && animatedEmojiDrawable.getImageReceiver() != null) {
@@ -2160,8 +2177,8 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
                     this.loopImageView.animatedEmojiDrawable.getImageReceiver().setRoundRadius(this.selected ? AndroidUtilities.dp(6.0f) : 0);
                 }
             }
-            ReactionsLayoutInBubble.VisibleReaction visibleReaction = this.currentReaction;
-            if (visibleReaction != null && visibleReaction.isStar && this.particles != null && LiteMode.isEnabled(8200)) {
+            ReactionsLayoutInBubble.VisibleReaction visibleReaction2 = this.currentReaction;
+            if (visibleReaction2 != null && visibleReaction2.isStar && this.particles != null && LiteMode.isEnabled(8200)) {
                 RectF rectF = AndroidUtilities.rectTmp;
                 float height = ((int) (getHeight() * 0.7f)) / 2.0f;
                 rectF.set((getWidth() / 2.0f) - height, (getHeight() / 2.0f) - height, (getWidth() / 2.0f) + height, (getHeight() / 2.0f) + height);
@@ -2544,5 +2561,25 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
             return;
         }
         this.reactionsWindow.getSelectAnimatedEmojiDialog().setPaused(this.paused, this.pausedExceptSelected);
+    }
+
+    private Paint getStarGradientPaint(RectF rectF, float f) {
+        if (this.starSelectedGradientPaint == null) {
+            this.starSelectedGradientPaint = new Paint(1);
+        }
+        if (this.starSelectedGradientMatrix == null) {
+            this.starSelectedGradientMatrix = new Matrix();
+        }
+        if (this.starSelectedGradient == null) {
+            int color = Theme.getColor(Theme.key_reactionStarSelector, this.resourcesProvider);
+            LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(64.0f), 0.0f, new int[]{color, Theme.multAlpha(color, 0.0f)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+            this.starSelectedGradient = linearGradient;
+            this.starSelectedGradientPaint.setShader(linearGradient);
+        }
+        this.starSelectedGradientMatrix.reset();
+        this.starSelectedGradientMatrix.postTranslate(rectF.left, rectF.top);
+        this.starSelectedGradient.setLocalMatrix(this.starSelectedGradientMatrix);
+        this.starSelectedGradientPaint.setAlpha((int) (f * 255.0f));
+        return this.starSelectedGradientPaint;
     }
 }

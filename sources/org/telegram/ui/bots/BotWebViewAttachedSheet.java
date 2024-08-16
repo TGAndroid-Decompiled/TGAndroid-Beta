@@ -264,7 +264,7 @@ public class BotWebViewAttachedSheet implements NotificationCenter.NotificationC
     }
 
     @Override
-    public WindowView mo945getWindowView() {
+    public WindowView mo947getWindowView() {
         return this.windowView;
     }
 

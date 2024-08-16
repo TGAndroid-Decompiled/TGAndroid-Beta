@@ -86,7 +86,9 @@ public class HardwareVideoEncoder implements VideoEncoder {
 
     @Override
     public VideoCodecStatus setRates(VideoEncoder.RateControlParameters rateControlParameters) {
-        return VideoEncoder.CC.$default$setRates(this, rateControlParameters);
+        VideoCodecStatus rateAllocation;
+        rateAllocation = setRateAllocation(rateControlParameters.bitrate, (int) Math.ceil(rateControlParameters.framerateFps));
+        return rateAllocation;
     }
 
     public static class BusyCount {

@@ -1642,32 +1642,48 @@ public class ConnectionsManager extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ConnectionsManager.lambda$onPremiumFloodWait$19(i, z, i2);
+                ConnectionsManager.lambda$onPremiumFloodWait$21(i, z, i2);
             }
         });
     }
 
-    public static void lambda$onPremiumFloodWait$19(int i, boolean z, int i2) {
-        boolean z2;
+    public static void lambda$onPremiumFloodWait$21(final int i, final boolean z, final int i2) {
         if (UserConfig.selectedAccount != i) {
             return;
         }
+        FileLoader.getInstance(i).getFileLoaderQueue().postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                ConnectionsManager.lambda$onPremiumFloodWait$20(z, i, i2);
+            }
+        });
+    }
+
+    public static void lambda$onPremiumFloodWait$20(boolean z, final int i, int i2) {
+        final boolean z2 = false;
         if (z) {
             FileUploadOperation findUploadOperationByRequestToken = FileLoader.getInstance(i).findUploadOperationByRequestToken(i2);
             if (findUploadOperationByRequestToken != null) {
-                z2 = !findUploadOperationByRequestToken.caughtPremiumFloodWait;
                 findUploadOperationByRequestToken.caughtPremiumFloodWait = true;
+                z2 = !findUploadOperationByRequestToken.caughtPremiumFloodWait;
             }
-            z2 = false;
         } else {
             FileLoadOperation findLoadOperationByRequestToken = FileLoader.getInstance(i).findLoadOperationByRequestToken(i2);
             if (findLoadOperationByRequestToken != null) {
                 z2 = !findLoadOperationByRequestToken.caughtPremiumFloodWait;
                 findLoadOperationByRequestToken.caughtPremiumFloodWait = true;
             }
-            z2 = false;
         }
-        if (z2) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                ConnectionsManager.lambda$onPremiumFloodWait$19(z2, i);
+            }
+        });
+    }
+
+    public static void lambda$onPremiumFloodWait$19(boolean z, int i) {
+        if (z) {
             NotificationCenter.getInstance(i).lambda$postNotificationNameOnUIThread$1(NotificationCenter.premiumFloodWaitReceived, new Object[0]);
         }
     }
@@ -1676,24 +1692,24 @@ public class ConnectionsManager extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ConnectionsManager.lambda$onIntegrityCheckClassic$22(i, str, str2, i2);
+                ConnectionsManager.lambda$onIntegrityCheckClassic$24(i, str, str2, i2);
             }
         });
     }
 
-    public static void lambda$onIntegrityCheckClassic$22(final int i, String str, final String str2, final int i2) {
+    public static void lambda$onIntegrityCheckClassic$24(final int i, String str, final String str2, final int i2) {
         final long currentTimeMillis = System.currentTimeMillis();
         FileLog.d("account" + i + ": server requests integrity classic check with project = " + str + " nonce = " + str2);
         try {
             IntegrityManagerFactory.create(ApplicationLoader.applicationContext).requestIntegrityToken(IntegrityTokenRequest.builder().setNonce(str2).setCloudProjectNumber(Long.parseLong(str)).build()).addOnSuccessListener(new OnSuccessListener() {
                 @Override
                 public final void onSuccess(Object obj) {
-                    ConnectionsManager.lambda$onIntegrityCheckClassic$20(i, currentTimeMillis, i2, str2, (IntegrityTokenResponse) obj);
+                    ConnectionsManager.lambda$onIntegrityCheckClassic$22(i, currentTimeMillis, i2, str2, (IntegrityTokenResponse) obj);
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public final void onFailure(Exception exc) {
-                    ConnectionsManager.lambda$onIntegrityCheckClassic$21(i, currentTimeMillis, i2, str2, exc);
+                    ConnectionsManager.lambda$onIntegrityCheckClassic$23(i, currentTimeMillis, i2, str2, exc);
                 }
             });
         } catch (Exception unused) {
@@ -1702,7 +1718,7 @@ public class ConnectionsManager extends BaseController {
         }
     }
 
-    public static void lambda$onIntegrityCheckClassic$20(int i, long j, int i2, String str, IntegrityTokenResponse integrityTokenResponse) {
+    public static void lambda$onIntegrityCheckClassic$22(int i, long j, int i2, String str, IntegrityTokenResponse integrityTokenResponse) {
         String str2 = integrityTokenResponse.token();
         if (str2 == null) {
             FileLog.e("account" + i + ": integrity check gave null token in " + (System.currentTimeMillis() - j) + "ms");
@@ -1717,7 +1733,7 @@ public class ConnectionsManager extends BaseController {
         }
     }
 
-    public static void lambda$onIntegrityCheckClassic$21(int i, long j, int i2, String str, Exception exc) {
+    public static void lambda$onIntegrityCheckClassic$23(int i, long j, int i2, String str, Exception exc) {
         FileLog.e("account" + i + ": integrity check failed to give a token in " + (System.currentTimeMillis() - j) + "ms", exc);
         StringBuilder sb = new StringBuilder();
         sb.append("PLAYINTEGRITY_FAILED_EXCEPTION_");

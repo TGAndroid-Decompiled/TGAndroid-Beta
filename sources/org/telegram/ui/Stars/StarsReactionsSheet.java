@@ -552,27 +552,29 @@ public class StarsReactionsSheet extends BottomSheet {
     }
 
     private void animate3dIcon(final Runnable runnable) {
-        MessageObject messageObject;
-        ChatMessageCell chatMessageCell = this.messageCell;
-        if (chatMessageCell == null || !chatMessageCell.isCellAttachedToWindow() || this.messageCell.getPrimaryMessageObject() == null || this.messageCell.getPrimaryMessageObject().getId() != this.messageId) {
+        View view;
+        final ChatMessageCell chatMessageCell;
+        final ReactionsLayoutInBubble.ReactionButton reactionButton;
+        if (this.messageObject == null || (view = this.chatActivity.fragmentView) == null || !view.isAttachedToWindow()) {
             return;
         }
-        final ChatMessageCell chatMessageCell2 = this.messageCell;
-        ReactionsLayoutInBubble.ReactionButton reactionButton = chatMessageCell2.reactionsLayoutInBubble.getReactionButton(ReactionsLayoutInBubble.VisibleReaction.asStar());
-        if (reactionButton == null) {
-            MessageObject.GroupedMessages validGroupedMessage = this.chatActivity.getValidGroupedMessage(this.messageCell.getPrimaryMessageObject());
+        ChatMessageCell chatMessageCell2 = this.messageCell;
+        MessageObject messageObject = null;
+        ReactionsLayoutInBubble.ReactionButton reactionButton2 = chatMessageCell2 != null ? chatMessageCell2.reactionsLayoutInBubble.getReactionButton(ReactionsLayoutInBubble.VisibleReaction.asStar()) : null;
+        if (reactionButton2 == null) {
+            MessageObject.GroupedMessages validGroupedMessage = this.chatActivity.getValidGroupedMessage(this.messageObject);
             if (validGroupedMessage != null && !validGroupedMessage.posArray.isEmpty()) {
                 Iterator<MessageObject> it = validGroupedMessage.messages.iterator();
                 while (true) {
                     if (!it.hasNext()) {
-                        messageObject = null;
                         break;
                     }
-                    messageObject = it.next();
-                    MessageObject.GroupedMessagePosition position = validGroupedMessage.getPosition(messageObject);
+                    MessageObject next = it.next();
+                    MessageObject.GroupedMessagePosition position = validGroupedMessage.getPosition(next);
                     if (position != null) {
                         int i = position.flags;
                         if ((i & 1) != 0 && (i & 8) != 0) {
+                            messageObject = next;
                             break;
                         }
                     }
@@ -584,10 +586,13 @@ public class StarsReactionsSheet extends BottomSheet {
             if (chatMessageCell2 == null) {
                 return;
             }
+            chatMessageCell = chatMessageCell2;
             reactionButton = chatMessageCell2.reactionsLayoutInBubble.getReactionButton(ReactionsLayoutInBubble.VisibleReaction.asStar());
+        } else {
+            chatMessageCell = chatMessageCell2;
+            reactionButton = reactionButton2;
         }
-        final ReactionsLayoutInBubble.ReactionButton reactionButton2 = reactionButton;
-        if (reactionButton2 == null) {
+        if (reactionButton == null) {
             return;
         }
         final int[] iArr = new int[2];
@@ -602,13 +607,13 @@ public class StarsReactionsSheet extends BottomSheet {
                 StarsReactionsSheet.this.lambda$animate3dIcon$9();
             }
         });
-        reactionButton2.drawImage = false;
-        chatMessageCell2.invalidate();
+        reactionButton.drawImage = false;
+        chatMessageCell.invalidate();
         final RectF rectF2 = new RectF();
         final Runnable runnable2 = new Runnable() {
             @Override
             public final void run() {
-                StarsReactionsSheet.lambda$animate3dIcon$10(ChatMessageCell.this, iArr, rectF2, reactionButton2);
+                StarsReactionsSheet.lambda$animate3dIcon$10(ChatMessageCell.this, iArr, rectF2, reactionButton);
             }
         };
         runnable2.run();
@@ -633,13 +638,18 @@ public class StarsReactionsSheet extends BottomSheet {
                 StarsReactionsSheet.this.lambda$animate3dIcon$11(runnable2, rectF, rectF2, rectF3, zArr, runnable, valueAnimator2);
             }
         });
+        final ReactionsLayoutInBubble.ReactionButton reactionButton3 = reactionButton;
+        final ChatMessageCell chatMessageCell3 = chatMessageCell;
         this.iconAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator) {
                 StarsReactionsSheet.this.icon3dView.setVisibility(4);
                 StarsReactionsSheet.this.icon3dView.setPaused(true);
-                reactionButton2.drawImage = true;
-                StarsReactionsSheet.this.messageCell.invalidate();
+                reactionButton3.drawImage = true;
+                ChatMessageCell chatMessageCell4 = chatMessageCell3;
+                if (chatMessageCell4 != null) {
+                    chatMessageCell4.invalidate();
+                }
                 StarsReactionsSheet.super.dismissInternal();
                 boolean[] zArr2 = zArr;
                 if (!zArr2[0]) {

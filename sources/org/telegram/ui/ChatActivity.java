@@ -17316,7 +17316,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
             @Override
             public int getTopOffset(int i) {
-                return (((BaseFragment) ChatActivity.this).actionBar != null ? ((BaseFragment) ChatActivity.this).actionBar.getMeasuredHeight() + ((BaseFragment) ChatActivity.this).actionBar.getTop() : 0) + Math.max(0, ChatActivity.this.contentPaddingTop);
+                return Math.max(AndroidUtilities.statusBarHeight + ActionBar.getCurrentActionBarHeight(), ((BaseFragment) ChatActivity.this).actionBar != null ? ((BaseFragment) ChatActivity.this).actionBar.getMeasuredHeight() + ((BaseFragment) ChatActivity.this).actionBar.getTop() : 0) + Math.max(0, ChatActivity.this.contentPaddingTop);
             }
         };
         this.bulletinDelegate = delegate;
@@ -29037,5 +29037,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
     public float getClipBottom() {
         return (this.fragmentView.getBottom() - this.chatListView.getBottom()) + (((this.fragmentTransition == null || (this.fromPullingDownTransition && !this.toPullingDownTransition)) && !this.isInsideContainer) ? this.blurredViewBottomOffset : 0);
+    }
+
+    private void gotChatInfo() {
+        TLRPC$ChatFull tLRPC$ChatFull = this.chatInfo;
+        if (tLRPC$ChatFull == null || !tLRPC$ChatFull.paid_reactions_available || StarsController.getInstance(this.currentAccount).balanceAvailable()) {
+            return;
+        }
+        StarsController.getInstance(this.currentAccount).getBalance();
     }
 }
