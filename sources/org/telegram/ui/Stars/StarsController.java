@@ -2128,6 +2128,7 @@ public class StarsController {
         public long not_added;
         public StarReactionsOverlay overlay;
         public long random_id;
+        public boolean shownBulletin;
         public Bulletin.TimerView timerView;
         public boolean wasChosen;
         public boolean committed = false;
@@ -2191,6 +2192,7 @@ public class StarsController {
             create.hideAfterBottomSheet = false;
             if (z) {
                 create.show(true);
+                this.shownBulletin = true;
             }
             this.bulletin.setOnHideListener(runnable);
             this.amount = 0L;
@@ -2209,9 +2211,11 @@ public class StarsController {
             this.lastTime = System.currentTimeMillis();
             this.bulletinLayout.subtitleTextView.cancelAnimation();
             this.bulletinLayout.subtitleTextView.setText(AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsSentText", (int) this.amount, new Object[0])), true);
-            this.timerView.timeLeft = 5000L;
-            AndroidUtilities.cancelRunOnUIThread(this.closeRunnable);
-            AndroidUtilities.runOnUIThread(this.closeRunnable, 5000L);
+            if (this.shownBulletin) {
+                this.timerView.timeLeft = 5000L;
+                AndroidUtilities.cancelRunOnUIThread(this.closeRunnable);
+                AndroidUtilities.runOnUIThread(this.closeRunnable, 5000L);
+            }
             if (z) {
                 this.applied = true;
                 this.messageObject.addPaidReactions((int) j, true, isAnonymous());
@@ -2230,19 +2234,22 @@ public class StarsController {
         }
 
         public void apply() {
-            if (this.applied) {
+            if (!this.applied) {
+                this.applied = true;
+                this.messageObject.addPaidReactions((int) this.not_added, true, isAnonymous());
+                StarsController starsController = StarsController.this;
+                starsController.minus += this.not_added;
+                NotificationCenter.getInstance(starsController.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starBalanceUpdated, new Object[0]);
+                this.not_added = 0L;
+                NotificationCenter.getInstance(StarsController.this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didUpdateReactions, Long.valueOf(this.messageObject.getDialogId()), Integer.valueOf(this.messageObject.getId()), this.messageObject.messageOwner.reactions);
+            }
+            if (this.shownBulletin) {
                 return;
             }
-            this.applied = true;
+            this.shownBulletin = true;
             this.timerView.timeLeft = 5000L;
             AndroidUtilities.cancelRunOnUIThread(this.closeRunnable);
             AndroidUtilities.runOnUIThread(this.closeRunnable, 5000L);
-            this.messageObject.addPaidReactions((int) this.not_added, true, isAnonymous());
-            StarsController starsController = StarsController.this;
-            starsController.minus += this.not_added;
-            NotificationCenter.getInstance(starsController.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starBalanceUpdated, new Object[0]);
-            this.not_added = 0L;
-            NotificationCenter.getInstance(StarsController.this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didUpdateReactions, Long.valueOf(this.messageObject.getDialogId()), Integer.valueOf(this.messageObject.getId()), this.messageObject.messageOwner.reactions);
             this.bulletin.show(true);
             this.bulletin.setOnHideListener(this.closeRunnable);
         }
@@ -2410,7 +2417,6 @@ public class StarsController {
     }
 
     public PendingPaidReactions sendPaidReaction(final MessageObject messageObject, final ChatActivity chatActivity, final long j, boolean z, boolean z2, final Boolean bool) {
-        boolean z3;
         String str;
         String str2;
         MessageId from = MessageId.from(messageObject);
@@ -2446,23 +2452,19 @@ public class StarsController {
             }).show();
             return null;
         }
-        boolean z4 = (messageObject == null || messageObject.doesPaidReactionExist()) ? z : true;
         PendingPaidReactions pendingPaidReactions = this.currentPendingReactions;
         if (pendingPaidReactions == null || !pendingPaidReactions.message.equals(from)) {
             PendingPaidReactions pendingPaidReactions2 = this.currentPendingReactions;
             if (pendingPaidReactions2 != null) {
                 pendingPaidReactions2.close();
             }
-            z3 = z4;
-            PendingPaidReactions pendingPaidReactions3 = new PendingPaidReactions(from, messageObject, chatActivity, ConnectionsManager.getInstance(this.currentAccount).getCurrentTime(), z3);
+            PendingPaidReactions pendingPaidReactions3 = new PendingPaidReactions(from, messageObject, chatActivity, ConnectionsManager.getInstance(this.currentAccount).getCurrentTime(), z);
             this.currentPendingReactions = pendingPaidReactions3;
             pendingPaidReactions3.anonymous = bool;
-        } else {
-            z3 = z4;
         }
         if (this.currentPendingReactions.amount + j > MessagesController.getInstance(this.currentAccount).starsPaidReactionAmountMax) {
             this.currentPendingReactions.close();
-            this.currentPendingReactions = new PendingPaidReactions(from, messageObject, chatActivity, ConnectionsManager.getInstance(this.currentAccount).getCurrentTime(), z3);
+            this.currentPendingReactions = new PendingPaidReactions(from, messageObject, chatActivity, ConnectionsManager.getInstance(this.currentAccount).getCurrentTime(), z);
         }
         final long j2 = this.currentPendingReactions.amount + j;
         if (z2 && starsController.balanceAvailable() && starsController.getBalance() < j2) {
@@ -2492,7 +2494,7 @@ public class StarsController {
             }).show();
             return null;
         }
-        this.currentPendingReactions.add(j, z3);
+        this.currentPendingReactions.add(j, !(messageObject == null || messageObject.doesPaidReactionExist()) || z);
         PendingPaidReactions pendingPaidReactions4 = this.currentPendingReactions;
         pendingPaidReactions4.anonymous = bool;
         return pendingPaidReactions4;

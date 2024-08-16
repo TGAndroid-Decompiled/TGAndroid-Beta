@@ -19,10 +19,15 @@ public class CollectionsKt__CollectionsKt extends CollectionsKt__CollectionsJVMK
     }
 
     public static <T> List<T> optimizeReadOnlyList(List<? extends T> list) {
+        List<T> listOf;
         Intrinsics.checkNotNullParameter(list, "<this>");
         int size = list.size();
         if (size != 0) {
-            return size != 1 ? list : CollectionsKt.listOf(list.get(0));
+            if (size != 1) {
+                return list;
+            }
+            listOf = CollectionsKt__CollectionsJVMKt.listOf(list.get(0));
+            return listOf;
         }
         return emptyList();
     }
