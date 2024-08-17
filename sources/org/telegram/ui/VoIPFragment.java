@@ -70,6 +70,7 @@ import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.voip.EncryptionKeyEmojifier;
 import org.telegram.messenger.voip.VideoCapturerDevice;
+import org.telegram.messenger.voip.VoIPPreNotificationService;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.messenger.voip.VoipAudioManager;
 import org.telegram.tgnet.TLRPC$Document;
@@ -287,7 +288,11 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
             return;
         }
         boolean z2 = VoIPPiPView.getInstance() != null;
-        if (VoIPService.getSharedInstance() == null || VoIPService.getSharedInstance().getUser() == null) {
+        if (VoIPService.getSharedInstance() == null) {
+            VoIPPreNotificationService.open(activity);
+            return;
+        }
+        if (VoIPService.getSharedInstance().getUser() == null) {
             return;
         }
         final VoIPFragment voIPFragment3 = new VoIPFragment(i);

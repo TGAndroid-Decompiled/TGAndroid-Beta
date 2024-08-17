@@ -7224,7 +7224,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             if (i == 0) {
                 view = new GroupCallTextCell(this.mContext) {
                     @Override
-                    protected void onMeasure(int i2, int i3) {
+                    public void onMeasure(int i2, int i3) {
                         if (AndroidUtilities.isTablet()) {
                             super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(420.0f), View.MeasureSpec.getSize(i2)), 1073741824), i3);
                         } else {

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import java.util.ArrayList;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.voip.VoIPPreNotificationService;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.TLRPC$PhoneCall;
 import org.telegram.ui.Components.voip.VoIPHelper;
@@ -14,18 +15,23 @@ import org.telegram.ui.Components.voip.VoIPHelper;
 public class VoIPPermissionActivity extends Activity {
     @Override
     protected void onCreate(Bundle bundle) {
+        boolean isVideo;
         int checkSelfPermission;
         int checkSelfPermission2;
-        TLRPC$PhoneCall tLRPC$PhoneCall;
         super.onCreate(bundle);
         VoIPService sharedInstance = VoIPService.getSharedInstance();
-        boolean z = (sharedInstance == null || (tLRPC$PhoneCall = sharedInstance.privateCall) == null || !tLRPC$PhoneCall.video) ? false : true;
+        if (sharedInstance != null) {
+            TLRPC$PhoneCall tLRPC$PhoneCall = sharedInstance.privateCall;
+            isVideo = tLRPC$PhoneCall != null && tLRPC$PhoneCall.video;
+        } else {
+            isVideo = VoIPPreNotificationService.isVideo();
+        }
         ArrayList arrayList = new ArrayList();
         checkSelfPermission = checkSelfPermission("android.permission.RECORD_AUDIO");
         if (checkSelfPermission != 0) {
             arrayList.add("android.permission.RECORD_AUDIO");
         }
-        if (z) {
+        if (isVideo) {
             checkSelfPermission2 = checkSelfPermission("android.permission.CAMERA");
             if (checkSelfPermission2 != 0) {
                 arrayList.add("android.permission.CAMERA");
@@ -35,7 +41,7 @@ public class VoIPPermissionActivity extends Activity {
             return;
         }
         try {
-            requestPermissions((String[]) arrayList.toArray(new String[0]), z ? 102 : 101);
+            requestPermissions((String[]) arrayList.toArray(new String[0]), isVideo ? 102 : 101);
         } catch (Exception e) {
             FileLog.e(e);
         }
@@ -60,6 +66,8 @@ public class VoIPPermissionActivity extends Activity {
             if (iArr.length > 0 && z) {
                 if (VoIPService.getSharedInstance() != null) {
                     VoIPService.getSharedInstance().acceptIncomingCall();
+                } else {
+                    VoIPPreNotificationService.answer(this);
                 }
                 finish();
                 startActivity(new Intent(this, (Class<?>) LaunchActivity.class).setAction("voip"));
@@ -69,6 +77,8 @@ public class VoIPPermissionActivity extends Activity {
             if (!shouldShowRequestPermissionRationale) {
                 if (VoIPService.getSharedInstance() != null) {
                     VoIPService.getSharedInstance().declineIncomingCall();
+                } else {
+                    VoIPPreNotificationService.decline(this, 1);
                 }
                 VoIPHelper.permissionDenied(this, new Runnable() {
                     @Override

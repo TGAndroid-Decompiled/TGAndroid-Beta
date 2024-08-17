@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionCode="51579"
+    android:versionCode="51609"
     android:versionName="11.0.1"
     android:installLocation="auto"
     android:compileSdkVersion="34"
@@ -69,12 +69,11 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC"/>
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_REMOTE_MESSAGING"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CAMERA"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE"/>
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_PHONE_CALL"/>
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
@@ -605,7 +604,7 @@
         <service
             android:name="org.telegram.messenger.NotificationRepeat"
             android:exported="false"
-            android:foregroundServiceType=""/>
+            android:foregroundServiceType="dataSync"/>
         <service
             android:name="org.telegram.messenger.VideoEncodingService"
             android:enabled="true"
@@ -627,8 +626,14 @@
             android:exported="true"
             android:foregroundServiceType="location|dataSync"/>
         <service
+            android:name="org.telegram.messenger.voip.VoIPPreNotificationService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="dataSync"/>
+        <service
             android:name="org.telegram.messenger.voip.VoIPService"
             android:enabled="true"
+            android:exported="false"
             android:foregroundServiceType="microphone|camera|mediaProjection|mediaPlayback"/>
         <service
             android:name="org.telegram.messenger.MusicPlayerService"

@@ -13,6 +13,7 @@ import android.bluetooth.BluetoothProfile;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -49,6 +50,7 @@ import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.LruCache;
 import android.view.KeyEvent;
 import android.widget.Toast;
@@ -182,6 +184,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
     public static final int DISCARD_REASON_LINE_BUSY = 4;
     public static final int DISCARD_REASON_MISSED = 3;
     private static final int ID_INCOMING_CALL_NOTIFICATION = 202;
+    public static final int ID_INCOMING_CALL_PRENOTIFICATION = 203;
     private static final int ID_ONGOING_CALL_NOTIFICATION = 201;
     private static final int PROXIMITY_SCREEN_OFF_WAKE_LOCK = 32;
     public static final int QUALITY_FULL = 2;
@@ -239,6 +242,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
     private TLRPC$InputPeer groupCallPeer;
     private boolean hasAudioFocus;
     public boolean hasFewPeers;
+    private boolean instantAccept;
     private boolean isBtHeadsetConnected;
     private volatile boolean isCallEnded;
     private boolean isHeadsetPlugged;
@@ -300,7 +304,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
     public boolean videoCall;
     private boolean wasConnected;
     private boolean wasEstablished;
-    private static final boolean USE_CONNECTION_SERVICE = isDeviceCompatibleWithConnectionServiceAPI();
+    public static final boolean USE_CONNECTION_SERVICE = isDeviceCompatibleWithConnectionServiceAPI();
     private static final Object sync = new Object();
     private int currentAccount = -1;
     private int currentState = 0;
@@ -629,7 +633,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
         this.updateNotificationRunnable = null;
         TLRPC$Chat tLRPC$Chat = this.chat;
-        showNotification(tLRPC$Chat.title, getRoundAvatarBitmap(tLRPC$Chat));
+        showNotification(tLRPC$Chat.title, getRoundAvatarBitmap(this, this.currentAccount, tLRPC$Chat));
     }
 
     public boolean mutedByAdmin() {
@@ -874,6 +878,8 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         this.videoCall = intent.getBooleanExtra("video_call", false);
         this.isVideoAvailable = intent.getBooleanExtra("can_video_call", false);
         this.notificationsDisabled = intent.getBooleanExtra("notifications_disabled", false);
+        this.instantAccept = intent.getBooleanExtra("accept", false);
+        boolean booleanExtra = intent.getBooleanExtra("openFragment", false);
         if (longExtra != 0) {
             this.user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(longExtra));
         }
@@ -904,6 +910,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         if (this.chat != null && !this.createGroupCall && MessagesController.getInstance(this.currentAccount).getGroupCall(this.chat.id, false) == null) {
             FileLog.w("VoIPService: trying to open group call without call " + this.chat.id);
             stopSelf();
+            Log.i("lolkek", "VOIPService stopSelf 3");
             return 2;
         }
         if (this.videoCall) {
@@ -933,6 +940,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 FileLog.w("VoIPService: user == null AND chat == null");
             }
             stopSelf();
+            Log.i("lolkek", "VOIPService stopSelf 4");
             return 2;
         }
         sharedInstance = this;
@@ -951,7 +959,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             if (this.user != null) {
                 dispatchStateChanged(14);
                 if (USE_CONNECTION_SERVICE) {
-                    TelecomManager m = VoIPService$$ExternalSyntheticApiModelOutline4.m(getSystemService("telecom"));
+                    TelecomManager m = VoIPService$$ExternalSyntheticApiModelOutline5.m(getSystemService("telecom"));
                     Bundle bundle = new Bundle();
                     Bundle bundle2 = new Bundle();
                     bundle.putParcelable("android.telecom.extra.PHONE_ACCOUNT_HANDLE", addAccountToTelecomManager());
@@ -1004,11 +1012,26 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             }
             callIShouldHavePutIntoIntent = null;
             FileLog.e("(3) set VoIPService.callIShouldHavePutIntoIntent = null");
-            if (USE_CONNECTION_SERVICE) {
+            if (this.instantAccept) {
+                this.instantAccept = z;
+                acceptIncomingCall();
+            } else if (USE_CONNECTION_SERVICE) {
                 acknowledgeCall(z);
                 showNotification();
             } else {
                 acknowledgeCall(true);
+            }
+            if (booleanExtra) {
+                Activity findActivity = AndroidUtilities.findActivity(this);
+                if (findActivity == null) {
+                    findActivity = LaunchActivity.instance;
+                }
+                if (findActivity == null) {
+                    findActivity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
+                }
+                if (findActivity != null) {
+                    VoIPFragment.show(findActivity, this.currentAccount);
+                }
             }
         }
         initializeAccountRelatedThings();
@@ -1298,6 +1321,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 FileLog.w("Call is null, wtf");
             }
             stopSelf();
+            Log.i("lolkek", "VOIPService stopSelf 5");
             return;
         }
         if (tLRPC$PhoneCall instanceof TLRPC$TL_phoneCallDiscarded) {
@@ -1305,6 +1329,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 FileLog.w("Call " + this.privateCall.id + " was discarded before the service started, stopping");
             }
             stopSelf();
+            Log.i("lolkek", "VOIPService stopSelf 6");
             return;
         }
         if (XiaomiUtilities.isMIUI() && !XiaomiUtilities.isCustomPermissionGranted(10020) && ((KeyguardManager) getSystemService("keyguard")).inKeyguardRestrictedInputMode()) {
@@ -1312,6 +1337,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 FileLog.e("MIUI: no permission to show when locked but the screen is locked. ¯\\_(ツ)_/¯");
             }
             stopSelf();
+            Log.i("lolkek", "VOIPService stopSelf 7");
             return;
         }
         TLRPC$TL_phone_receivedCall tLRPC$TL_phone_receivedCall = new TLRPC$TL_phone_receivedCall();
@@ -1349,13 +1375,14 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 FileLog.e("error on receivedCall: " + tLRPC$TL_error);
             }
             stopSelf();
+            Log.i("lolkek", "VOIPService stopSelf 8");
             return;
         }
         if (USE_CONNECTION_SERVICE) {
             ContactsController contactsController = ContactsController.getInstance(this.currentAccount);
             TLRPC$User tLRPC$User = this.user;
             contactsController.createOrUpdateConnectionServiceContact(tLRPC$User.id, tLRPC$User.first_name, tLRPC$User.last_name);
-            TelecomManager m = VoIPService$$ExternalSyntheticApiModelOutline4.m(getSystemService("telecom"));
+            TelecomManager m = VoIPService$$ExternalSyntheticApiModelOutline5.m(getSystemService("telecom"));
             Bundle bundle = new Bundle();
             bundle.putInt("call_type", 1);
             m.addNewIncomingCall(addAccountToTelecomManager(), bundle);
@@ -1550,7 +1577,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         });
         NativeInstance nativeInstance = this.tgVoip[1];
         if (nativeInstance != null) {
-            Utilities.globalQueue.postRunnable(new VoIPService$$ExternalSyntheticLambda96(nativeInstance));
+            Utilities.globalQueue.postRunnable(new VoIPService$$ExternalSyntheticLambda87(nativeInstance));
         }
         this.mySource[1] = 0;
         this.tgVoip[1] = null;
@@ -3558,7 +3585,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 NativeInstance nativeInstance = this.tgVoip[0];
                 DispatchQueue dispatchQueue = Utilities.globalQueue;
                 Objects.requireNonNull(nativeInstance);
-                dispatchQueue.postRunnable(new VoIPService$$ExternalSyntheticLambda96(nativeInstance));
+                dispatchQueue.postRunnable(new VoIPService$$ExternalSyntheticLambda87(nativeInstance));
                 Iterator<Map.Entry<String, Integer>> it = this.currentStreamRequestTimestamp.entrySet().iterator();
                 while (it.hasNext()) {
                     AccountInstance.getInstance(this.currentAccount).getConnectionsManager().cancelRequest(it.next().getValue().intValue(), true);
@@ -3576,7 +3603,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
         NativeInstance nativeInstance2 = this.tgVoip[1];
         if (nativeInstance2 != null) {
-            Utilities.globalQueue.postRunnable(new VoIPService$$ExternalSyntheticLambda96(nativeInstance2));
+            Utilities.globalQueue.postRunnable(new VoIPService$$ExternalSyntheticLambda87(nativeInstance2));
             this.tgVoip[1] = null;
         }
         int i = 0;
@@ -4037,10 +4064,10 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
     private void showNotification() {
         TLRPC$User tLRPC$User = this.user;
         if (tLRPC$User != null) {
-            showNotification(ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name), getRoundAvatarBitmap(this.user));
+            showNotification(ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name), getRoundAvatarBitmap(this, this.currentAccount, this.user));
         } else {
             TLRPC$Chat tLRPC$Chat = this.chat;
-            showNotification(tLRPC$Chat.title, getRoundAvatarBitmap(tLRPC$Chat));
+            showNotification(tLRPC$Chat.title, getRoundAvatarBitmap(this, this.currentAccount, tLRPC$Chat));
         }
     }
 
@@ -4637,8 +4664,8 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         callFailed(nativeInstance != null ? nativeInstance.getLastError() : "ERROR_UNKNOWN");
     }
 
-    private android.graphics.Bitmap getRoundAvatarBitmap(org.telegram.tgnet.TLObject r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.voip.VoIPService.getRoundAvatarBitmap(org.telegram.tgnet.TLObject):android.graphics.Bitmap");
+    public static android.graphics.Bitmap getRoundAvatarBitmap(android.content.Context r6, int r7, org.telegram.tgnet.TLObject r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.voip.VoIPService.getRoundAvatarBitmap(android.content.Context, int, org.telegram.tgnet.TLObject):android.graphics.Bitmap");
     }
 
     private void showIncomingNotification(java.lang.String r20, org.telegram.tgnet.TLObject r21, boolean r22, int r23) {
@@ -4646,20 +4673,38 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
     }
 
     private int getCurrentForegroundType() {
+        return getCurrentForegroundType(this, this.gotMediaProjection);
+    }
+
+    private static int getCurrentForegroundType(ContextWrapper contextWrapper, boolean z) {
         int checkSelfPermission;
         int checkSelfPermission2;
+        int checkSelfPermission3;
+        int checkSelfPermission4;
         if (Build.VERSION.SDK_INT < 29) {
             return 226;
         }
-        checkSelfPermission = checkSelfPermission("android.permission.CAMERA");
-        int i = checkSelfPermission == 0 ? 64 : 0;
-        checkSelfPermission2 = checkSelfPermission("android.permission.RECORD_AUDIO");
-        if (checkSelfPermission2 == 0) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("getCurrentForegroundType, CAMERA=");
+        checkSelfPermission = contextWrapper.checkSelfPermission("android.permission.CAMERA");
+        sb.append(checkSelfPermission);
+        Log.i("lolkek", sb.toString());
+        checkSelfPermission2 = contextWrapper.checkSelfPermission("android.permission.CAMERA");
+        int i = checkSelfPermission2 == 0 ? 64 : 0;
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append("getCurrentForegroundType, MICROPHONE=");
+        checkSelfPermission3 = contextWrapper.checkSelfPermission("android.permission.RECORD_AUDIO");
+        sb2.append(checkSelfPermission3);
+        Log.i("lolkek", sb2.toString());
+        checkSelfPermission4 = contextWrapper.checkSelfPermission("android.permission.RECORD_AUDIO");
+        if (checkSelfPermission4 == 0) {
             i |= 128;
         }
-        if (this.gotMediaProjection) {
+        Log.i("lolkek", "getCurrentForegroundType, MEDIA_PROJECTION=" + z);
+        if (z) {
             i |= 32;
         }
+        Log.i("lolkek", "getCurrentForegroundType, MEDIA_PLAYBACK=true");
         return i | 2;
     }
 
@@ -4730,6 +4775,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 this.systemCallConnection = null;
             }
             stopSelf();
+            Log.i("lolkek", "VOIPService stopSelf 1");
         }
     }
 
@@ -4951,6 +4997,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
         endConnectionServiceCall(this.needPlayEndSound ? i : 0L);
         stopSelf();
+        Log.i("lolkek", "VOIPService stopSelf 2");
     }
 
     public void lambda$callEnded$94() {
@@ -5098,7 +5145,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         PhoneAccount.Builder highlightColor;
         PhoneAccount.Builder addSupportedUriScheme;
         PhoneAccount build;
-        TelecomManager m = VoIPService$$ExternalSyntheticApiModelOutline4.m(getSystemService("telecom"));
+        TelecomManager m = VoIPService$$ExternalSyntheticApiModelOutline5.m(getSystemService("telecom"));
         TLRPC$User currentUser = UserConfig.getInstance(this.currentAccount).getCurrentUser();
         PhoneAccountHandle phoneAccountHandle = new PhoneAccountHandle(new ComponentName(this, (Class<?>) TelegramConnectionService.class), "" + currentUser.id);
         capabilities = new PhoneAccount.Builder(phoneAccountHandle, ContactsController.formatName(currentUser.first_name, currentUser.last_name)).setCapabilities(2048);
