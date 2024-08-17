@@ -14,6 +14,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.Utilities;
+
 public class BackgroundGradientDrawable extends GradientDrawable {
     private final Paint bitmapPaint;
     private final ArrayMap<IntSize, Bitmap> bitmaps;
@@ -264,10 +265,11 @@ public class BackgroundGradientDrawable extends GradientDrawable {
                 }
             });
         } catch (Throwable th) {
+            final Bitmap bitmap = null;
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    BackgroundGradientDrawable.this.lambda$startDitheringInternal$1(runnableArr, createDitheredGradientBitmap, intSize, i, listenerArr);
+                    BackgroundGradientDrawable.this.lambda$startDitheringInternal$1(runnableArr, bitmap, intSize, i, listenerArr);
                 }
             });
             throw th;
@@ -408,54 +410,53 @@ public class BackgroundGradientDrawable extends GradientDrawable {
                 rect.top = 0;
                 rect.right = i3;
                 rect.bottom = i2;
-                break;
+                return rect;
             case 2:
                 rect.left = i;
                 rect.top = 0;
                 rect.right = 0;
                 rect.bottom = i2;
-                break;
+                return rect;
             case 3:
                 rect.left = i;
                 int i4 = i2 / 2;
                 rect.top = i4;
                 rect.right = 0;
                 rect.bottom = i4;
-                break;
+                return rect;
             case 4:
                 rect.left = i;
                 rect.top = i2;
                 rect.right = 0;
                 rect.bottom = 0;
-                break;
+                return rect;
             case 5:
                 int i5 = i / 2;
                 rect.left = i5;
                 rect.top = i2;
                 rect.right = i5;
                 rect.bottom = 0;
-                break;
+                return rect;
             case 6:
                 rect.left = 0;
                 rect.top = i2;
                 rect.right = i;
                 rect.bottom = 0;
-                break;
+                return rect;
             case 7:
                 rect.left = 0;
                 int i6 = i2 / 2;
                 rect.top = i6;
                 rect.right = i;
                 rect.bottom = i6;
-                break;
+                return rect;
             default:
                 rect.left = 0;
                 rect.top = 0;
                 rect.right = i;
                 rect.bottom = i2;
-                break;
+                return rect;
         }
-        return rect;
     }
 
     public static android.graphics.Rect getGradientPoints(int i, int i2, int i3) {
@@ -463,28 +464,28 @@ public class BackgroundGradientDrawable extends GradientDrawable {
     }
 
     public static GradientDrawable.Orientation getGradientOrientation(int i) {
-        if (i != 0) {
-            if (i != 90) {
-                if (i != 135) {
-                    if (i != 180) {
-                        if (i != 225) {
-                            if (i != 270) {
-                                if (i == 315) {
-                                    return GradientDrawable.Orientation.BR_TL;
-                                }
-                                return GradientDrawable.Orientation.BL_TR;
-                            }
-                            return GradientDrawable.Orientation.RIGHT_LEFT;
-                        }
-                        return GradientDrawable.Orientation.TR_BL;
-                    }
-                    return GradientDrawable.Orientation.TOP_BOTTOM;
-                }
-                return GradientDrawable.Orientation.TL_BR;
-            }
+        if (i == 0) {
+            return GradientDrawable.Orientation.BOTTOM_TOP;
+        }
+        if (i == 90) {
             return GradientDrawable.Orientation.LEFT_RIGHT;
         }
-        return GradientDrawable.Orientation.BOTTOM_TOP;
+        if (i == 135) {
+            return GradientDrawable.Orientation.TL_BR;
+        }
+        if (i == 180) {
+            return GradientDrawable.Orientation.TOP_BOTTOM;
+        }
+        if (i == 225) {
+            return GradientDrawable.Orientation.TR_BL;
+        }
+        if (i == 270) {
+            return GradientDrawable.Orientation.RIGHT_LEFT;
+        }
+        if (i == 315) {
+            return GradientDrawable.Orientation.BR_TL;
+        }
+        return GradientDrawable.Orientation.BL_TR;
     }
 
     public static BitmapDrawable createDitheredGradientBitmapDrawable(int i, int[] iArr, int i2, int i3) {

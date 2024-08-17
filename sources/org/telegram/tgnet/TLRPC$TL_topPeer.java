@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_topPeer extends TLObject {
     public TLRPC$Peer peer;
     public double rating;

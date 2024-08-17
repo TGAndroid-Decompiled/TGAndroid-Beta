@@ -17,6 +17,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.ProfileGalleryView;
+
 public class AvatarPreviewPagerIndicator extends View implements ProfileGalleryView.Callback {
     private float alpha;
     private float[] alphas;
@@ -168,7 +169,7 @@ public class AvatarPreviewPagerIndicator extends View implements ProfileGalleryV
 
     @Override
     protected void onSizeChanged(int i, int i2, int i3, int i4) {
-        int currentActionBarHeight = ActionBar.getCurrentActionBarHeight() + 0;
+        int currentActionBarHeight = ActionBar.getCurrentActionBarHeight();
         this.topOverlayRect.set(0, 0, i, (int) (currentActionBarHeight * 0.5f));
         this.bottomOverlayRect.set(0, (int) (i2 - (AndroidUtilities.dp(72.0f) * 0.5f)), i, i2);
         this.topOverlayGradient.setBounds(0, this.topOverlayRect.bottom, i, currentActionBarHeight + AndroidUtilities.dp(16.0f));

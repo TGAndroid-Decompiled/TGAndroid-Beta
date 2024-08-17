@@ -14,6 +14,7 @@ import androidx.annotation.Keep;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.GenericProvider;
 import org.telegram.ui.ActionBar.Theme;
+
 public class CheckBoxBase {
     private static Paint eraser;
     private static Paint forbidPaint;
@@ -88,12 +89,14 @@ public class CheckBoxBase {
         Paint paint3 = new Paint(1);
         this.checkPaint = paint3;
         paint3.setStrokeCap(Paint.Cap.ROUND);
-        this.checkPaint.setStyle(Paint.Style.STROKE);
+        Paint paint4 = this.checkPaint;
+        Paint.Style style = Paint.Style.STROKE;
+        paint4.setStyle(style);
         this.checkPaint.setStrokeJoin(Paint.Join.ROUND);
         this.checkPaint.setStrokeWidth(AndroidUtilities.dp(1.9f));
-        Paint paint4 = new Paint(1);
-        this.backgroundPaint = paint4;
-        paint4.setStyle(Paint.Style.STROKE);
+        Paint paint5 = new Paint(1);
+        this.backgroundPaint = paint5;
+        paint5.setStyle(style);
         this.backgroundPaint.setStrokeWidth(AndroidUtilities.dp(1.2f));
     }
 
@@ -170,12 +173,17 @@ public class CheckBoxBase {
         this.backgroundType = i;
         if (i == 12 || i == 13) {
             this.backgroundPaint.setStrokeWidth(AndroidUtilities.dp(1.0f));
-        } else if (i == 4 || i == 5) {
+            return;
+        }
+        if (i == 4 || i == 5) {
             this.backgroundPaint.setStrokeWidth(AndroidUtilities.dp(1.9f));
             if (i == 5) {
                 this.checkPaint.setStrokeWidth(AndroidUtilities.dp(1.5f));
+                return;
             }
-        } else if (i == 3) {
+            return;
+        }
+        if (i == 3) {
             this.backgroundPaint.setStrokeWidth(AndroidUtilities.dp(3.0f));
         } else if (i != 0) {
             this.backgroundPaint.setStrokeWidth(AndroidUtilities.dp(1.5f));
@@ -191,9 +199,7 @@ public class CheckBoxBase {
     }
 
     private void animateToCheckedState(boolean z) {
-        float[] fArr = new float[1];
-        fArr[0] = z ? 1.0f : 0.0f;
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", fArr);
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", z ? 1.0f : 0.0f);
         this.checkAnimator = ofFloat;
         ofFloat.addListener(new AnimatorListenerAdapter() {
             @Override
@@ -260,13 +266,13 @@ public class CheckBoxBase {
         this.isChecked = z;
         if (this.attachedToWindow && z2) {
             animateToCheckedState(z);
-            return;
+        } else {
+            cancelCheckAnimator();
+            setProgress(z ? 1.0f : 0.0f);
         }
-        cancelCheckAnimator();
-        setProgress(z ? 1.0f : 0.0f);
     }
 
-    public void draw(android.graphics.Canvas r25) {
+    public void draw(android.graphics.Canvas r27) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.CheckBoxBase.draw(android.graphics.Canvas):void");
     }
 

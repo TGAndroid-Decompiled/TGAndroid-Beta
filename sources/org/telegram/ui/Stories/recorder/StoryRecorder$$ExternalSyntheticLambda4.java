@@ -1,4 +1,5 @@
 package org.telegram.ui.Stories.recorder;
+
 public final class StoryRecorder$$ExternalSyntheticLambda4 implements Runnable {
     public final StoryRecorder f$0;
 
@@ -8,6 +9,6 @@ public final class StoryRecorder$$ExternalSyntheticLambda4 implements Runnable {
 
     @Override
     public final void run() {
-        StoryRecorder.m3306$r8$lambda$dC8CMzvV5iHUKDO9DsCbuongjM(this.f$0);
+        StoryRecorder.$r8$lambda$HNnDwj2yBBJvfegeG1f6AflEndI(this.f$0);
     }
 }

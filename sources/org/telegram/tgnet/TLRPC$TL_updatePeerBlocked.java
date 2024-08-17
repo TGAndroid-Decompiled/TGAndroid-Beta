@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_updatePeerBlocked extends TLRPC$Update {
     public boolean blocked;
     public boolean blocked_my_stories_from;

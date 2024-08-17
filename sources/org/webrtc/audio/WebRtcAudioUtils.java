@@ -7,40 +7,30 @@ import android.media.AudioManager;
 import android.os.Build;
 import java.util.Arrays;
 import org.webrtc.Logging;
+
 final class WebRtcAudioUtils {
     private static final String TAG = "WebRtcAudioUtilsExternal";
 
-    @TargetApi(24)
-    public static String audioSourceToString(int i) {
-        switch (i) {
-            case 0:
-                return "DEFAULT";
-            case 1:
-                return "MIC";
-            case 2:
-                return "VOICE_UPLINK";
-            case 3:
-                return "VOICE_DOWNLINK";
-            case 4:
-                return "VOICE_CALL";
-            case 5:
-                return "CAMCORDER";
-            case 6:
-                return "VOICE_RECOGNITION";
-            case 7:
-                return "VOICE_COMMUNICATION";
-            case 8:
-            default:
-                return "INVALID";
-            case 9:
-                return "UNPROCESSED";
-            case 10:
-                return "VOICE_PERFORMANCE";
-        }
+    WebRtcAudioUtils() {
     }
 
-    public static String channelMaskToString(int i) {
-        return i != 12 ? i != 16 ? "INVALID" : "IN_MONO" : "IN_STEREO";
+    public static String getThreadInfo() {
+        return "@[name=" + Thread.currentThread().getName() + ", id=" + Thread.currentThread().getId() + "]";
+    }
+
+    public static boolean runningOnEmulator() {
+        return Build.HARDWARE.equals("goldfish") && Build.BRAND.startsWith("generic_");
+    }
+
+    static void logDeviceInfo(String str) {
+        Logging.d(str, "Android SDK: " + Build.VERSION.SDK_INT + ", Release: " + Build.VERSION.RELEASE + ", Brand: " + Build.BRAND + ", Device: " + Build.DEVICE + ", Id: " + Build.ID + ", Hardware: " + Build.HARDWARE + ", Manufacturer: " + Build.MANUFACTURER + ", Model: " + Build.MODEL + ", Product: " + Build.PRODUCT);
+    }
+
+    public static void logAudioState(String str, Context context, AudioManager audioManager) {
+        logDeviceInfo(str);
+        logAudioStateBasic(str, context, audioManager);
+        logAudioStateVolume(str, audioManager);
+        logAudioDeviceInfo(str, audioManager);
     }
 
     public static String deviceTypeToString(int i) {
@@ -94,60 +84,69 @@ final class WebRtcAudioUtils {
         }
     }
 
-    public static String modeToString(int i) {
-        return i != 0 ? i != 1 ? i != 2 ? i != 3 ? "MODE_INVALID" : "MODE_IN_COMMUNICATION" : "MODE_IN_CALL" : "MODE_RINGTONE" : "MODE_NORMAL";
+    @TargetApi(24)
+    public static String audioSourceToString(int i) {
+        switch (i) {
+            case 0:
+                return "DEFAULT";
+            case 1:
+                return "MIC";
+            case 2:
+                return "VOICE_UPLINK";
+            case 3:
+                return "VOICE_DOWNLINK";
+            case 4:
+                return "VOICE_CALL";
+            case 5:
+                return "CAMCORDER";
+            case 6:
+                return "VOICE_RECOGNITION";
+            case 7:
+                return "VOICE_COMMUNICATION";
+            case 8:
+            default:
+                return "INVALID";
+            case 9:
+                return "UNPROCESSED";
+            case 10:
+                return "VOICE_PERFORMANCE";
+        }
     }
 
-    private static String streamTypeToString(int i) {
-        return i != 0 ? i != 1 ? i != 2 ? i != 3 ? i != 4 ? i != 5 ? "STREAM_INVALID" : "STREAM_NOTIFICATION" : "STREAM_ALARM" : "STREAM_MUSIC" : "STREAM_RING" : "STREAM_SYSTEM" : "STREAM_VOICE_CALL";
-    }
-
-    WebRtcAudioUtils() {
-    }
-
-    public static String getThreadInfo() {
-        return "@[name=" + Thread.currentThread().getName() + ", id=" + Thread.currentThread().getId() + "]";
-    }
-
-    public static boolean runningOnEmulator() {
-        return Build.HARDWARE.equals("goldfish") && Build.BRAND.startsWith("generic_");
-    }
-
-    static void logDeviceInfo(String str) {
-        Logging.d(str, "Android SDK: " + Build.VERSION.SDK_INT + ", Release: " + Build.VERSION.RELEASE + ", Brand: " + Build.BRAND + ", Device: " + Build.DEVICE + ", Id: " + Build.ID + ", Hardware: " + Build.HARDWARE + ", Manufacturer: " + Build.MANUFACTURER + ", Model: " + Build.MODEL + ", Product: " + Build.PRODUCT);
-    }
-
-    public static void logAudioState(String str, Context context, AudioManager audioManager) {
-        logDeviceInfo(str);
-        logAudioStateBasic(str, context, audioManager);
-        logAudioStateVolume(str, audioManager);
-        logAudioDeviceInfo(str, audioManager);
+    public static String channelMaskToString(int i) {
+        if (i == 12) {
+            return "IN_STEREO";
+        }
+        if (i == 16) {
+            return "IN_MONO";
+        }
+        return "INVALID";
     }
 
     @TargetApi(24)
     public static String audioEncodingToString(int i) {
-        if (i != 0) {
-            switch (i) {
-                case 2:
-                    return "PCM_16BIT";
-                case 3:
-                    return "PCM_8BIT";
-                case 4:
-                    return "PCM_FLOAT";
-                case 5:
-                case 6:
-                    return "AC3";
-                case 7:
-                    return "DTS";
-                case 8:
-                    return "DTS_HD";
-                case 9:
-                    return "MP3";
-                default:
-                    return "Invalid encoding: " + i;
-            }
+        if (i == 0) {
+            return "INVALID";
         }
-        return "INVALID";
+        switch (i) {
+            case 2:
+                return "PCM_16BIT";
+            case 3:
+                return "PCM_8BIT";
+            case 4:
+                return "PCM_FLOAT";
+            case 5:
+            case 6:
+                return "AC3";
+            case 7:
+                return "DTS";
+            case 8:
+                return "DTS_HD";
+            case 9:
+                return "MP3";
+            default:
+                return "Invalid encoding: " + i;
+        }
     }
 
     private static void logAudioStateBasic(String str, Context context, AudioManager audioManager) {
@@ -245,6 +244,44 @@ final class WebRtcAudioUtils {
             sb.append(id);
             Logging.d(str, sb.toString());
         }
+    }
+
+    public static String modeToString(int i) {
+        if (i == 0) {
+            return "MODE_NORMAL";
+        }
+        if (i == 1) {
+            return "MODE_RINGTONE";
+        }
+        if (i == 2) {
+            return "MODE_IN_CALL";
+        }
+        if (i == 3) {
+            return "MODE_IN_COMMUNICATION";
+        }
+        return "MODE_INVALID";
+    }
+
+    private static String streamTypeToString(int i) {
+        if (i == 0) {
+            return "STREAM_VOICE_CALL";
+        }
+        if (i == 1) {
+            return "STREAM_SYSTEM";
+        }
+        if (i == 2) {
+            return "STREAM_RING";
+        }
+        if (i == 3) {
+            return "STREAM_MUSIC";
+        }
+        if (i == 4) {
+            return "STREAM_ALARM";
+        }
+        if (i == 5) {
+            return "STREAM_NOTIFICATION";
+        }
+        return "STREAM_INVALID";
     }
 
     private static boolean hasMicrophone(Context context) {

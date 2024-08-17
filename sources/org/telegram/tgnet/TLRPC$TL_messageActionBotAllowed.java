@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messageActionBotAllowed extends TLRPC$MessageAction {
     public TLRPC$BotApp app;
     public boolean attach_menu;

@@ -19,6 +19,7 @@ import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.TypefaceSpan;
 import org.telegram.ui.Stories.StoriesUtilities;
+
 public class ExpiredStoryView {
     int height;
     float horizontalPadding;
@@ -65,8 +66,10 @@ public class ExpiredStoryView {
                     str = format;
                 }
                 TextPaint textPaint2 = Theme.chat_replyTextPaint;
-                this.titleLayout = new StaticLayout(createExpiredStoryString, textPaint2, ((int) (textPaint2.measureText(createExpiredStoryString, 0, createExpiredStoryString.length()) + 1.0f)) + AndroidUtilities.dp(10.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-                this.subtitleLayout = new StaticLayout(str, textPaint2, ((int) (textPaint2.measureText((CharSequence) str, 0, str.length()) + 1.0f)) + AndroidUtilities.dp(10.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                int measureText = ((int) (textPaint2.measureText(createExpiredStoryString, 0, createExpiredStoryString.length()) + 1.0f)) + AndroidUtilities.dp(10.0f);
+                Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
+                this.titleLayout = new StaticLayout(createExpiredStoryString, textPaint2, measureText, alignment, 1.0f, 0.0f, false);
+                this.subtitleLayout = new StaticLayout(str, textPaint2, ((int) (textPaint2.measureText((CharSequence) str, 0, str.length()) + 1.0f)) + AndroidUtilities.dp(10.0f), alignment, 1.0f, 0.0f, false);
                 this.height = 0;
                 this.verticalPadding = AndroidUtilities.dp(4.0f);
                 this.horizontalPadding = AndroidUtilities.dp(12.0f);
@@ -94,8 +97,8 @@ public class ExpiredStoryView {
         } else {
             float dp2 = chatMessageCell.isAvatarVisible ? AndroidUtilities.dp(48.0f) : 0.0f;
             this.textX = this.horizontalPadding + dp2 + AndroidUtilities.dp(12.0f);
-            float f = this.horizontalPadding;
-            rectF.set(dp2 + f, this.verticalPadding, dp2 + f + this.width, chatMessageCell.getMeasuredHeight() - this.verticalPadding);
+            float f = dp2 + this.horizontalPadding;
+            rectF.set(f, this.verticalPadding, this.width + f, chatMessageCell.getMeasuredHeight() - this.verticalPadding);
         }
         if (chatMessageCell.getMessageObject().isOutOwner()) {
             Theme.chat_replyTextPaint.setColor(chatMessageCell.getThemedColor(Theme.key_chat_outReplyNameText));

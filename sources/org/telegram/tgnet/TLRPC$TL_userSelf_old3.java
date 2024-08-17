@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_userSelf_old3 extends TLRPC$User {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

@@ -3,6 +3,7 @@ package org.telegram.tgnet.tl;
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$TL_broadcastRevenueBalances;
+
 public class TL_stats$TL_broadcastRevenueStats extends TLObject {
     public TLRPC$TL_broadcastRevenueBalances balances;
     public TL_stats$StatsGraph revenue_graph;

@@ -1,6 +1,7 @@
 package org.telegram.tgnet.tl;
 
 import org.telegram.tgnet.AbstractSerializedData;
+
 public class TL_stories$TL_mediaAreaCoordinates extends TL_stories$MediaAreaCoordinates {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

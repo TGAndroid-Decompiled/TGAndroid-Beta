@@ -58,6 +58,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.StickerEmptyView;
 import org.telegram.ui.InviteContactsActivity;
+
 public class InviteContactsActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate, View.OnClickListener {
     private InviteAdapter adapter;
     private int containerHeight;
@@ -338,7 +339,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    InviteContactsActivity.this.finishFragment();
+                    InviteContactsActivity.this.lambda$onBackPressed$308();
                 }
             }
         });
@@ -384,7 +385,6 @@ public class InviteContactsActivity extends BaseFragment implements Notification
             }
         };
         this.fragmentView = viewGroup;
-        ViewGroup viewGroup2 = viewGroup;
         ScrollView scrollView = new ScrollView(context) {
             @Override
             public boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z) {
@@ -401,7 +401,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         this.scrollView = scrollView;
         scrollView.setVerticalScrollBarEnabled(false);
         AndroidUtilities.setScrollViewEdgeEffectColor(this.scrollView, Theme.getColor(Theme.key_windowBackgroundWhite));
-        viewGroup2.addView(this.scrollView);
+        viewGroup.addView(this.scrollView);
         SpansContainer spansContainer = new SpansContainer(context);
         this.spansContainer = spansContainer;
         this.scrollView.addView(spansContainer, LayoutHelper.createFrame(-1, -2.0f));
@@ -509,7 +509,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         this.emptyView.title.setText(LocaleController.getString("NoContacts", R.string.NoContacts));
         this.emptyView.subtitle.setText("");
         this.emptyView.showProgress(ContactsController.getInstance(this.currentAccount).isLoadingContacts());
-        viewGroup2.addView(this.emptyView);
+        viewGroup.addView(this.emptyView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, 1, false);
         this.adapter = new InviteAdapter(context) {
             @Override
@@ -536,7 +536,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         GroupCreateDividerItemDecoration groupCreateDividerItemDecoration = new GroupCreateDividerItemDecoration();
         this.decoration = groupCreateDividerItemDecoration;
         recyclerListView2.addItemDecoration(groupCreateDividerItemDecoration);
-        viewGroup2.addView(this.listView);
+        viewGroup.addView(this.listView);
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i) {
@@ -563,12 +563,12 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         this.infoTextView.setTextSize(1, 13.0f);
         this.infoTextView.setTypeface(AndroidUtilities.bold());
         this.infoTextView.setPadding(AndroidUtilities.dp(17.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(17.0f), AndroidUtilities.dp(9.0f));
-        viewGroup2.addView(this.infoTextView, LayoutHelper.createFrame(-1, -2, 83));
+        viewGroup.addView(this.infoTextView, LayoutHelper.createFrame(-1, -2, 83));
         FrameLayout frameLayout = new FrameLayout(context);
         this.counterView = frameLayout;
         frameLayout.setBackgroundColor(Theme.getColor(i));
         this.counterView.setVisibility(4);
-        viewGroup2.addView(this.counterView, LayoutHelper.createFrame(-1, 48, 83));
+        viewGroup.addView(this.counterView, LayoutHelper.createFrame(-1, 48, 83));
         this.counterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
@@ -612,10 +612,13 @@ public class InviteContactsActivity extends BaseFragment implements Notification
                 String inviteText = ContactsController.getInstance(this.currentAccount).getInviteText(0);
                 intent.putExtra("android.intent.extra.TEXT", inviteText);
                 getParentActivity().startActivityForResult(Intent.createChooser(intent, inviteText), 500);
+                return;
             } catch (Exception e) {
                 FileLog.e(e);
+                return;
             }
-        } else if ((view instanceof InviteUserCell) && (contact = (inviteUserCell = (InviteUserCell) view).getContact()) != null) {
+        }
+        if ((view instanceof InviteUserCell) && (contact = (inviteUserCell = (InviteUserCell) view).getContact()) != null) {
             boolean containsKey = this.selectedContacts.containsKey(contact.key);
             if (containsKey) {
                 this.spansContainer.removeSpan(this.selectedContacts.get(contact.key));
@@ -656,7 +659,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         } catch (Exception e) {
             FileLog.e(e);
         }
-        finishFragment();
+        lambda$onBackPressed$308();
     }
 
     @Override
@@ -673,8 +676,10 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         StickerEmptyView stickerEmptyView;
         if (i == NotificationCenter.contactsImported) {
             fetchContacts();
-        } else if (i != NotificationCenter.contactsDidLoad || (stickerEmptyView = this.emptyView) == null) {
         } else {
+            if (i != NotificationCenter.contactsDidLoad || (stickerEmptyView = this.emptyView) == null) {
+                return;
+            }
             stickerEmptyView.showProgress(false);
         }
     }
@@ -709,11 +714,11 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         if (this.selectedContacts.isEmpty()) {
             this.infoTextView.setVisibility(0);
             this.counterView.setVisibility(4);
-            return;
+        } else {
+            this.infoTextView.setVisibility(4);
+            this.counterView.setVisibility(0);
+            this.counterTextView.setText(String.format("%d", Integer.valueOf(this.selectedContacts.size())));
         }
-        this.infoTextView.setVisibility(4);
-        this.counterView.setVisibility(0);
-        this.counterTextView.setText(String.format("%d", Integer.valueOf(this.selectedContacts.size())));
     }
 
     public void closeSearch() {
@@ -853,11 +858,11 @@ public class InviteContactsActivity extends BaseFragment implements Notification
                 this.searchResult.clear();
                 this.searchResultNames.clear();
                 notifyDataSetChanged();
-                return;
+            } else {
+                Timer timer2 = new Timer();
+                this.searchTimer = timer2;
+                timer2.schedule(new AnonymousClass1(str), 200L, 300L);
             }
-            Timer timer2 = new Timer();
-            this.searchTimer = timer2;
-            timer2.schedule(new AnonymousClass1(str), 200L, 300L);
         }
 
         public class AnonymousClass1 extends TimerTask {

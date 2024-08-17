@@ -3,6 +3,7 @@ package org.telegram.tgnet.tl;
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Bool;
+
 public class TL_account$setContentSettings extends TLObject {
     public int flags;
     public boolean sensitive_enabled;

@@ -12,6 +12,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.boosts.DiscountSpan;
+
 @SuppressLint({"ViewConstructor"})
 public class DurationWithDiscountCell extends DurationCell {
     protected final CheckBox2 checkBox;

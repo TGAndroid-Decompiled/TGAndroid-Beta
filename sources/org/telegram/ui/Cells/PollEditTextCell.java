@@ -33,6 +33,7 @@ import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.EditTextCaption;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.SuggestEmojiView;
+
 public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.AnchorViewDelegate {
     private boolean alwaysShowText2;
     private CheckBox2 checkBox;
@@ -107,13 +108,13 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
 
             @Override
             public boolean onTouchEvent(MotionEvent motionEvent) {
-                if (isEnabled()) {
-                    if (motionEvent.getAction() == 1) {
-                        PollEditTextCell.this.onFieldTouchUp(this);
-                    }
-                    return super.onTouchEvent(motionEvent);
+                if (!isEnabled()) {
+                    return false;
                 }
-                return false;
+                if (motionEvent.getAction() == 1) {
+                    PollEditTextCell.this.onFieldTouchUp(this);
+                }
+                return super.onTouchEvent(motionEvent);
             }
 
             @Override
@@ -156,24 +157,28 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
             ImageView imageView = new ImageView(context);
             this.moveImageView = imageView;
             imageView.setFocusable(false);
-            this.moveImageView.setScaleType(ImageView.ScaleType.CENTER);
-            this.moveImageView.setImageResource(R.drawable.poll_reorder);
             ImageView imageView2 = this.moveImageView;
+            ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+            imageView2.setScaleType(scaleType);
+            this.moveImageView.setImageResource(R.drawable.poll_reorder);
+            ImageView imageView3 = this.moveImageView;
             int i3 = Theme.key_windowBackgroundWhiteGrayIcon;
-            imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i3), PorterDuff.Mode.MULTIPLY));
+            int color = Theme.getColor(i3);
+            PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+            imageView3.setColorFilter(new PorterDuffColorFilter(color, mode));
             addView(this.moveImageView, LayoutHelper.createFrame(48, 48.0f, (LocaleController.isRTL ? 5 : 3) | 48, 6.0f, 2.0f, 6.0f, 0.0f));
-            ImageView imageView3 = new ImageView(context);
-            this.deleteImageView = imageView3;
-            imageView3.setFocusable(false);
-            this.deleteImageView.setScaleType(ImageView.ScaleType.CENTER);
+            ImageView imageView4 = new ImageView(context);
+            this.deleteImageView = imageView4;
+            imageView4.setFocusable(false);
+            this.deleteImageView.setScaleType(scaleType);
             this.deleteImageView.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor(Theme.key_stickers_menuSelector)));
             this.deleteImageView.setImageResource(R.drawable.poll_remove);
             this.deleteImageView.setOnClickListener(onClickListener);
-            this.deleteImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i3), PorterDuff.Mode.MULTIPLY));
+            this.deleteImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i3), mode));
             this.deleteImageView.setContentDescription(LocaleController.getString("Delete", R.string.Delete));
-            ImageView imageView4 = this.deleteImageView;
+            ImageView imageView5 = this.deleteImageView;
             boolean z3 = LocaleController.isRTL;
-            addView(imageView4, LayoutHelper.createFrame(48, 50.0f, (z3 ? 3 : 5) | 48, z3 ? 3.0f : 0.0f, 0.0f, z3 ? 0.0f : 3.0f, 0.0f));
+            addView(imageView5, LayoutHelper.createFrame(48, 50.0f, (z3 ? 3 : 5) | 48, z3 ? 3.0f : 0.0f, 0.0f, z3 ? 0.0f : 3.0f, 0.0f));
             SimpleTextView simpleTextView = new SimpleTextView(context);
             this.textView2 = simpleTextView;
             simpleTextView.setTextSize(13);
@@ -349,18 +354,9 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
         if (z2) {
             AnimatorSet animatorSet2 = new AnimatorSet();
             this.checkBoxAnimation = animatorSet2;
-            Animator[] animatorArr = new Animator[2];
             CheckBox2 checkBox2 = this.checkBox;
             Property property = View.ALPHA;
-            float[] fArr = new float[1];
-            fArr[0] = z ? 1.0f : 0.0f;
-            animatorArr[0] = ObjectAnimator.ofFloat(checkBox2, property, fArr);
-            ImageView imageView = this.moveImageView;
-            Property property2 = View.ALPHA;
-            float[] fArr2 = new float[1];
-            fArr2[0] = z ? 0.0f : 1.0f;
-            animatorArr[1] = ObjectAnimator.ofFloat(imageView, property2, fArr2);
-            animatorSet2.playTogether(animatorArr);
+            animatorSet2.playTogether(ObjectAnimator.ofFloat(checkBox2, (Property<CheckBox2, Float>) property, z ? 1.0f : 0.0f), ObjectAnimator.ofFloat(this.moveImageView, (Property<ImageView, Float>) property, z ? 0.0f : 1.0f));
             this.checkBoxAnimation.setDuration(180L);
             this.checkBoxAnimation.start();
             return;
@@ -411,10 +407,7 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
             this.emojiButton.setScaleY(0.0f);
             this.emojiButton.setAlpha(0.0f);
         }
-        float[] fArr = new float[2];
-        fArr[0] = z ? 0.0f : 1.0f;
-        fArr[1] = z ? 1.0f : 0.0f;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(z ? 0.0f : 1.0f, z ? 1.0f : 0.0f);
         this.valueAnimator = ofFloat;
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -474,7 +467,7 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
             if (LocaleController.isRTL) {
-                i = AndroidUtilities.dp(this.moveImageView == null ? 20.0f : 63.0f);
+                i = AndroidUtilities.dp(this.moveImageView != null ? 63.0f : 20.0f);
             } else {
                 i = 0;
             }

@@ -36,6 +36,7 @@ import org.telegram.tgnet.tl.TL_bots$BotInfo;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.TypefaceSpan;
+
 public class BotHelpCell extends View {
     private boolean animating;
     private String currentPhotoKey;
@@ -218,7 +219,6 @@ public class BotHelpCell extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        int i;
         int width = (getWidth() - this.width) / 2;
         int dp = this.photoHeight + AndroidUtilities.dp(2.0f);
         Drawable shadowDrawable = Theme.chat_msgInMediaDrawable.getShadowDrawable();
@@ -227,30 +227,30 @@ public class BotHelpCell extends View {
             shadowDrawable.draw(canvas);
         }
         Point point = AndroidUtilities.displaySize;
-        int i2 = point.x;
-        int i3 = point.y;
+        int i = point.x;
+        int i2 = point.y;
         if (getParent() instanceof View) {
             View view = (View) getParent();
-            i2 = view.getMeasuredWidth();
-            i3 = view.getMeasuredHeight();
+            i = view.getMeasuredWidth();
+            i2 = view.getMeasuredHeight();
         }
-        int i4 = i3;
+        int i3 = i2;
         Theme.MessageDrawable messageDrawable = (Theme.MessageDrawable) getThemedDrawable("drawableMsgInMedia");
-        messageDrawable.setTop((int) getY(), i2, i4, false, false);
+        messageDrawable.setTop((int) getY(), i, i3, false, false);
         messageDrawable.setBounds(width, 0, this.width + width, this.height);
         messageDrawable.draw(canvas);
         Drawable drawable = this.selectorDrawable;
         if (drawable != null) {
-            int i5 = this.selectorDrawableRadius;
-            int i6 = SharedConfig.bubbleRadius;
-            if (i5 != i6) {
-                this.selectorDrawableRadius = i6;
-                Theme.setMaskDrawableRad(drawable, i6, i6);
+            int i4 = this.selectorDrawableRadius;
+            int i5 = SharedConfig.bubbleRadius;
+            if (i4 != i5) {
+                this.selectorDrawableRadius = i5;
+                Theme.setMaskDrawableRad(drawable, i5, i5);
             }
             this.selectorDrawable.setBounds(AndroidUtilities.dp(2.0f) + width, AndroidUtilities.dp(2.0f), (this.width + width) - AndroidUtilities.dp(2.0f), this.height - AndroidUtilities.dp(2.0f));
             this.selectorDrawable.draw(canvas);
         }
-        this.imageReceiver.setImageCoords(width + i, this.imagePadding, this.width - (i * 2), this.photoHeight - i);
+        this.imageReceiver.setImageCoords(width + r3, this.imagePadding, this.width - (r3 * 2), this.photoHeight - r3);
         this.imageReceiver.draw(canvas);
         Theme.chat_msgTextPaint.setColor(getThemedColor(Theme.key_chat_messageTextIn));
         Theme.chat_msgTextPaint.linkColor = getThemedColor(Theme.key_chat_messageLinkIn);

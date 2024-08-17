@@ -4,6 +4,7 @@ import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$InputUser;
 import org.telegram.tgnet.TLRPC$TL_dataJSON;
+
 public class TL_bots$invokeWebViewCustomMethod extends TLObject {
     public TLRPC$InputUser bot;
     public String custom_method;

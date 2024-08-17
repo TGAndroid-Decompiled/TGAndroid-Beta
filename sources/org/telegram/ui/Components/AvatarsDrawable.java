@@ -23,6 +23,7 @@ import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.GroupCallUserCell;
 import org.telegram.ui.Stories.StoriesGradientTools;
+
 public class AvatarsDrawable {
     private boolean attached;
     boolean centered;
@@ -69,24 +70,23 @@ public class AvatarsDrawable {
     }
 
     public void commitTransition(boolean z, boolean z2) {
-        boolean z3;
         if (!this.wasDraw || !z) {
             this.transitionProgress = 1.0f;
             swapStates();
             return;
         }
         DrawingState[] drawingStateArr = new DrawingState[3];
-        boolean z4 = false;
+        boolean z3 = false;
         for (int i = 0; i < 3; i++) {
             DrawingState[] drawingStateArr2 = this.currentStates;
             drawingStateArr[i] = drawingStateArr2[i];
             if (drawingStateArr2[i].id != this.animatingStates[i].id) {
-                z4 = true;
+                z3 = true;
             } else {
                 this.currentStates[i].lastSpeakTime = this.animatingStates[i].lastSpeakTime;
             }
         }
-        if (!z4) {
+        if (!z3) {
             this.transitionProgress = 1.0f;
             return;
         }
@@ -94,9 +94,10 @@ public class AvatarsDrawable {
             int i3 = 0;
             while (true) {
                 if (i3 >= 3) {
-                    z3 = false;
+                    this.animatingStates[i2].animationType = 0;
                     break;
-                } else if (this.currentStates[i3].id == this.animatingStates[i2].id) {
+                }
+                if (this.currentStates[i3].id == this.animatingStates[i2].id) {
                     drawingStateArr[i3] = null;
                     if (i2 == i3) {
                         this.animatingStates[i2].animationType = -1;
@@ -107,13 +108,9 @@ public class AvatarsDrawable {
                         this.animatingStates[i2].animationType = 2;
                         this.animatingStates[i2].moveFromIndex = i3;
                     }
-                    z3 = true;
                 } else {
                     i3++;
                 }
-            }
-            if (!z3) {
-                this.animatingStates[i2].animationType = 0;
             }
         }
         for (int i4 = 0; i4 < 3; i4++) {
@@ -319,14 +316,12 @@ public class AvatarsDrawable {
                 chat = MessagesController.getInstance(i2).getChat(Long.valueOf(-peerId));
                 this.animatingStates[i].avatarDrawable.setInfo(i2, chat);
             }
-            if (this.currentStyle == 4) {
-                if (peerId == AccountInstance.getInstance(i2).getUserConfig().getClientUserId()) {
-                    this.animatingStates[i].lastSpeakTime = 0L;
-                } else if (this.isInCall) {
-                    this.animatingStates[i].lastSpeakTime = tLRPC$TL_groupCallParticipant.lastActiveDate;
-                } else {
-                    this.animatingStates[i].lastSpeakTime = tLRPC$TL_groupCallParticipant.active_date;
-                }
+            if (this.currentStyle != 4) {
+                this.animatingStates[i].lastSpeakTime = tLRPC$TL_groupCallParticipant.active_date;
+            } else if (peerId == AccountInstance.getInstance(i2).getUserConfig().getClientUserId()) {
+                this.animatingStates[i].lastSpeakTime = 0L;
+            } else if (this.isInCall) {
+                this.animatingStates[i].lastSpeakTime = tLRPC$TL_groupCallParticipant.lastActiveDate;
             } else {
                 this.animatingStates[i].lastSpeakTime = tLRPC$TL_groupCallParticipant.active_date;
             }
@@ -376,7 +371,7 @@ public class AvatarsDrawable {
             return i;
         }
         int i2 = this.currentStyle;
-        return AndroidUtilities.dp(i2 == 4 || i2 == 10 ? 32.0f : 24.0f);
+        return AndroidUtilities.dp((i2 == 4 || i2 == 10) ? 32.0f : 24.0f);
     }
 
     public void onDetachedFromWindow() {

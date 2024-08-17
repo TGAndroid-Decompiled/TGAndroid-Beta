@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messages_deleteHistory extends TLObject {
     public int flags;
     public boolean just_clear;

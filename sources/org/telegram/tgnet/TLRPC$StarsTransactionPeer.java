@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$StarsTransactionPeer extends TLObject {
     public TLRPC$Peer peer;
 

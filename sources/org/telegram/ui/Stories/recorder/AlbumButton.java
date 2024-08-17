@@ -18,6 +18,7 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CombinedDrawable;
+
 public class AlbumButton extends View {
     private StaticLayout countLayout;
     private float countLayoutLeft;
@@ -62,15 +63,17 @@ public class AlbumButton extends View {
         combinedDrawable.setIconSize(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f));
         if (photoEntry != null && (str = photoEntry.thumbPath) != null) {
             imageReceiver.setImage(ImageLocation.getForPath(str), "30.0_30.0", (ImageLocation) null, (String) null, combinedDrawable, (Object) null, 0);
-        } else if (photoEntry != null && photoEntry.path != null) {
+            return;
+        }
+        if (photoEntry != null && photoEntry.path != null) {
             if (photoEntry.isVideo) {
                 imageReceiver.setImage(ImageLocation.getForPath("vthumb://" + photoEntry.imageId + ":" + photoEntry.path), "30.0_30.0", (ImageLocation) null, (String) null, combinedDrawable, (Object) null, 0);
                 return;
             }
             imageReceiver.setImage(ImageLocation.getForPath("thumb://" + photoEntry.imageId + ":" + photoEntry.path), "30.0_30.0", (ImageLocation) null, (String) null, combinedDrawable, (Object) null, 0);
-        } else {
-            imageReceiver.setImageBitmap(combinedDrawable);
+            return;
         }
+        imageReceiver.setImageBitmap(combinedDrawable);
     }
 
     @Override
@@ -98,13 +101,18 @@ public class AlbumButton extends View {
     private void updateLayouts(int i) {
         StaticLayout staticLayout = this.nameLayout;
         if (staticLayout == null || staticLayout.getWidth() != i) {
-            StaticLayout staticLayout2 = new StaticLayout(TextUtils.ellipsize(this.title, this.namePaintLayout, i, TextUtils.TruncateAt.END), this.namePaintLayout, Math.max(0, i), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+            CharSequence ellipsize = TextUtils.ellipsize(this.title, this.namePaintLayout, i, truncateAt);
+            TextPaint textPaint = this.namePaintLayout;
+            int max = Math.max(0, i);
+            Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
+            StaticLayout staticLayout2 = new StaticLayout(ellipsize, textPaint, max, alignment, 1.0f, 0.0f, false);
             this.nameLayout = staticLayout2;
             this.nameLayoutLeft = staticLayout2.getLineCount() > 0 ? this.nameLayout.getLineLeft(0) : 0.0f;
             float lineWidth = this.nameLayout.getLineCount() > 0 ? this.nameLayout.getLineWidth(0) : 0.0f;
             this.nameLayoutWidth = lineWidth;
             int dp = i - ((int) (lineWidth + AndroidUtilities.dp(8.0f)));
-            StaticLayout staticLayout3 = new StaticLayout(TextUtils.ellipsize(this.subtitle, this.countPaintLayout, dp, TextUtils.TruncateAt.END), this.countPaintLayout, Math.max(0, dp), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            StaticLayout staticLayout3 = new StaticLayout(TextUtils.ellipsize(this.subtitle, this.countPaintLayout, dp, truncateAt), this.countPaintLayout, Math.max(0, dp), alignment, 1.0f, 0.0f, false);
             this.countLayout = staticLayout3;
             this.countLayoutLeft = staticLayout3.getLineCount() > 0 ? this.countLayout.getLineLeft(0) : 0.0f;
             this.countLayoutWidth = this.countLayout.getLineCount() > 0 ? this.countLayout.getLineWidth(0) : 0.0f;

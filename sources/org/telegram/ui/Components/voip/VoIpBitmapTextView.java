@@ -9,6 +9,7 @@ import android.text.TextPaint;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
+
 @SuppressLint({"ViewConstructor"})
 public class VoIpBitmapTextView extends View {
     private volatile Bitmap bitmap;

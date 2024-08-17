@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_secureData extends TLObject {
     public byte[] data;
     public byte[] data_hash;

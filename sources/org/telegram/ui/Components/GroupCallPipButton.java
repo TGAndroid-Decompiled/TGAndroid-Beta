@@ -24,6 +24,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.TLRPC$TL_groupCallParticipant;
 import org.telegram.ui.ActionBar.Theme;
+
 public class GroupCallPipButton extends FrameLayout implements NotificationCenter.NotificationCenterDelegate, VoIPService.StateListener {
     float amplitude;
     float animateAmplitudeDiff;
@@ -167,9 +168,10 @@ public class GroupCallPipButton extends FrameLayout implements NotificationCente
                     this.color2 = color4;
                     this.shader = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{color3, color4}, (float[]) null, Shader.TileMode.CLAMP);
                 }
-            } else if (i != 3) {
-                return;
             } else {
+                if (i != 3) {
+                    return;
+                }
                 int i6 = this.color1;
                 int i7 = Theme.key_voipgroup_mutedByAdminGradient;
                 if (i6 != Theme.getColor(i7) || this.color2 != Theme.getColor(Theme.key_voipgroup_mutedByAdminGradient2) || this.color3 != Theme.getColor(Theme.key_voipgroup_mutedByAdminGradient3)) {
@@ -232,9 +234,9 @@ public class GroupCallPipButton extends FrameLayout implements NotificationCente
             if (this.currentState == 2) {
                 paint.setShader(null);
                 paint.setColor(Theme.getColor(Theme.key_voipgroup_topPanelGray));
-                return;
+            } else {
+                paint.setShader(this.shader);
             }
-            paint.setShader(this.shader);
         }
     }
 
@@ -257,11 +259,15 @@ public class GroupCallPipButton extends FrameLayout implements NotificationCente
             this.previousState = weavingState2;
             WeavingState weavingState3 = this.states[i];
             this.currentState = weavingState3;
+            float f = 0.0f;
             if (weavingState2 != null) {
                 this.progressToState = 0.0f;
             } else {
                 this.progressToState = 1.0f;
-                this.wavesEnter = weavingState3.currentState != 3 && this.currentState.currentState != 2 ? 1.0f : 0.0f;
+                if (weavingState3.currentState != 3 && this.currentState.currentState != 2) {
+                    f = 1.0f;
+                }
+                this.wavesEnter = f;
             }
             VoIPService sharedInstance = VoIPService.getSharedInstance();
             if (sharedInstance != null && ChatObject.isChannelOrGiga(sharedInstance.getChat())) {
@@ -283,18 +289,18 @@ public class GroupCallPipButton extends FrameLayout implements NotificationCente
 
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        String str;
         int i;
+        String str;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         if (Build.VERSION.SDK_INT < 21 || GroupCallPip.getInstance() == null) {
             return;
         }
         if (GroupCallPip.getInstance().showAlert) {
-            str = "AccDescrCloseMenu";
             i = R.string.AccDescrCloseMenu;
+            str = "AccDescrCloseMenu";
         } else {
-            str = "AccDescrOpenMenu2";
             i = R.string.AccDescrOpenMenu2;
+            str = "AccDescrOpenMenu2";
         }
         accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString(str, i)));
     }

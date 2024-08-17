@@ -29,6 +29,7 @@ import org.telegram.tgnet.TLRPC$TL_pollResults;
 import org.telegram.tgnet.TLRPC$WebPage;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.MessagePreviewView;
+
 public class MessagePreviewParams {
     public CharacterStyle currentLink;
     public Messages forwardMessages;
@@ -168,13 +169,14 @@ public class MessagePreviewParams {
             LongSparseArray<MessageObject.GroupedMessages> longSparseArray = this.groupedMessagesMap;
             if (longSparseArray != null && longSparseArray.size() > 0) {
                 this.hasText = this.groupedMessagesMap.valueAt(0).findCaptionMessageObject() != null;
-            } else if (arrayList.size() == 1) {
-                MessageObject messageObject2 = arrayList.get(0);
-                int i7 = messageObject2.type;
+                return;
+            }
+            if (arrayList.size() == 1) {
+                int i7 = arrayList.get(0).type;
                 if (i7 == 0 || i7 == 19) {
-                    this.hasText = !TextUtils.isEmpty(messageObject2.messageText);
+                    this.hasText = !TextUtils.isEmpty(r1.messageText);
                 } else {
-                    this.hasText = !TextUtils.isEmpty(messageObject2.caption);
+                    this.hasText = !TextUtils.isEmpty(r1.caption);
                 }
             }
         }
@@ -418,19 +420,19 @@ public class MessagePreviewParams {
         }
         Uri parse = Uri.parse(str);
         Uri parse2 = Uri.parse(str2);
-        if (parse != parse2) {
-            if (parse != null && parse2 != null && parse.getHost() != null && parse.getHost().equalsIgnoreCase(parse2.getHost()) && parse.getPort() == parse2.getPort() && normalizePath(parse.getPath()).equals(normalizePath(parse2.getPath()))) {
-                if (parse.getQuery() == null) {
-                    if (parse2.getQuery() == null) {
-                        return true;
-                    }
-                } else if (parse.getQuery().equals(parse2.getQuery())) {
+        if (parse == parse2) {
+            return true;
+        }
+        if (parse != null && parse2 != null && parse.getHost() != null && parse.getHost().equalsIgnoreCase(parse2.getHost()) && parse.getPort() == parse2.getPort() && normalizePath(parse.getPath()).equals(normalizePath(parse2.getPath()))) {
+            if (parse.getQuery() == null) {
+                if (parse2.getQuery() == null) {
                     return true;
                 }
+            } else if (parse.getQuery().equals(parse2.getQuery())) {
+                return true;
             }
-            return false;
         }
-        return true;
+        return false;
     }
 
     private static String normalizePath(String str) {

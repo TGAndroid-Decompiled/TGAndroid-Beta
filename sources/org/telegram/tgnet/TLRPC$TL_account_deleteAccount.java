@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_account_deleteAccount extends TLObject {
     public String reason;
 

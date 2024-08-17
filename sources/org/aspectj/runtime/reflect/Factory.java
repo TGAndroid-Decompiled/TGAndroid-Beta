@@ -7,6 +7,7 @@ import org.aspectj.lang.Signature;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.aspectj.lang.reflect.SourceLocation;
 import org.aspectj.runtime.reflect.JoinPointImpl;
+
 public final class Factory {
     private static Object[] NO_ARGS;
     static Class class$java$lang$ClassNotFoundException;
@@ -46,12 +47,12 @@ public final class Factory {
             return Class.forName(str, false, classLoader);
         } catch (ClassNotFoundException unused) {
             Class cls2 = class$java$lang$ClassNotFoundException;
-            if (cls2 == null) {
-                Class class$ = class$("java.lang.ClassNotFoundException");
-                class$java$lang$ClassNotFoundException = class$;
-                return class$;
+            if (cls2 != null) {
+                return cls2;
             }
-            return cls2;
+            Class class$ = class$("java.lang.ClassNotFoundException");
+            class$java$lang$ClassNotFoundException = class$;
+            return class$;
         }
     }
 

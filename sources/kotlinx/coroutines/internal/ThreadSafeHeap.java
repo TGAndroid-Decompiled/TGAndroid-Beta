@@ -4,6 +4,7 @@ import java.lang.Comparable;
 import java.util.Arrays;
 import kotlin.jvm.internal.Intrinsics;
 import kotlinx.coroutines.internal.ThreadSafeHeapNode;
+
 public class ThreadSafeHeap<T extends ThreadSafeHeapNode & Comparable<? super T>> {
     private volatile int _size = 0;
     private T[] a;
@@ -111,34 +112,8 @@ public class ThreadSafeHeap<T extends ThreadSafeHeapNode & Comparable<? super T>
         }
     }
 
-    private final void siftDownFrom(int i) {
-        while (true) {
-            int i2 = (i * 2) + 1;
-            if (i2 >= getSize()) {
-                return;
-            }
-            T[] tArr = this.a;
-            Intrinsics.checkNotNull(tArr);
-            int i3 = i2 + 1;
-            if (i3 < getSize()) {
-                T t = tArr[i3];
-                Intrinsics.checkNotNull(t);
-                T t2 = tArr[i2];
-                Intrinsics.checkNotNull(t2);
-                if (((Comparable) t).compareTo(t2) < 0) {
-                    i2 = i3;
-                }
-            }
-            T t3 = tArr[i];
-            Intrinsics.checkNotNull(t3);
-            T t4 = tArr[i2];
-            Intrinsics.checkNotNull(t4);
-            if (((Comparable) t3).compareTo(t4) <= 0) {
-                return;
-            }
-            swap(i, i2);
-            i = i2;
-        }
+    private final void siftDownFrom(int r6) {
+        throw new UnsupportedOperationException("Method not decompiled: kotlinx.coroutines.internal.ThreadSafeHeap.siftDownFrom(int):void");
     }
 
     private final T[] realloc() {
@@ -147,15 +122,15 @@ public class ThreadSafeHeap<T extends ThreadSafeHeapNode & Comparable<? super T>
             T[] tArr2 = (T[]) new ThreadSafeHeapNode[4];
             this.a = tArr2;
             return tArr2;
-        } else if (getSize() >= tArr.length) {
-            Object[] copyOf = Arrays.copyOf(tArr, getSize() * 2);
-            Intrinsics.checkNotNullExpressionValue(copyOf, "copyOf(this, newSize)");
-            T[] tArr3 = (T[]) ((ThreadSafeHeapNode[]) copyOf);
-            this.a = tArr3;
-            return tArr3;
-        } else {
+        }
+        if (getSize() < tArr.length) {
             return tArr;
         }
+        Object[] copyOf = Arrays.copyOf(tArr, getSize() * 2);
+        Intrinsics.checkNotNullExpressionValue(copyOf, "copyOf(this, newSize)");
+        T[] tArr3 = (T[]) ((ThreadSafeHeapNode[]) copyOf);
+        this.a = tArr3;
+        return tArr3;
     }
 
     private final void swap(int i, int i2) {

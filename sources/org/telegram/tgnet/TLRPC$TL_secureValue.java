@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_secureValue extends TLObject {
     public TLRPC$TL_secureData data;
     public int flags;

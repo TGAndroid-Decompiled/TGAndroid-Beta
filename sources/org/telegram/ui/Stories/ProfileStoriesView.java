@@ -40,6 +40,7 @@ import org.telegram.ui.Stories.ProfileStoriesView;
 import org.telegram.ui.Stories.StoriesController;
 import org.telegram.ui.Stories.StoriesUtilities;
 import org.telegram.ui.Stories.StoryViewer;
+
 public class ProfileStoriesView extends View implements NotificationCenter.NotificationCenterDelegate {
     private float actionBarProgress;
     private boolean attached;
@@ -200,7 +201,8 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
         paint.setColor(1526726655);
         this.readPaintAlpha = paint.getAlpha();
         paint.setStrokeWidth(AndroidUtilities.dpf2(1.5f));
-        paint.setStyle(Paint.Style.STROKE);
+        Paint.Style style = Paint.Style.STROKE;
+        paint.setStyle(style);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint2.setColor(Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider));
         animatedTextDrawable.setTextSize(AndroidUtilities.dp(18.0f));
@@ -211,7 +213,7 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
         animatedTextDrawable.setCallback(this);
         paint3.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
         this.paint.setStrokeWidth(AndroidUtilities.dpf2(2.33f));
-        this.paint.setStyle(Paint.Style.STROKE);
+        this.paint.setStyle(style);
         updateStories(false, false);
     }
 
@@ -378,13 +380,13 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
     }
 
     public StoryCircle nearest(StoryCircle storyCircle, StoryCircle storyCircle2, StoryCircle storyCircle3) {
-        if (storyCircle3 != null) {
-            if (storyCircle == null && storyCircle2 == null) {
-                return null;
-            }
-            return (storyCircle == null || storyCircle2 == null) ? storyCircle != null ? storyCircle : storyCircle2 : Math.min(Math.abs(storyCircle.borderRect.left - storyCircle3.borderRect.right), Math.abs(storyCircle.borderRect.right - storyCircle3.borderRect.left)) > Math.min(Math.abs(storyCircle2.borderRect.left - storyCircle3.borderRect.right), Math.abs(storyCircle2.borderRect.right - storyCircle3.borderRect.left)) ? storyCircle : storyCircle2;
+        if (storyCircle3 == null) {
+            return null;
         }
-        return null;
+        if (storyCircle == null && storyCircle2 == null) {
+            return null;
+        }
+        return (storyCircle == null || storyCircle2 == null) ? storyCircle != null ? storyCircle : storyCircle2 : Math.min(Math.abs(storyCircle.borderRect.left - storyCircle3.borderRect.right), Math.abs(storyCircle.borderRect.right - storyCircle3.borderRect.left)) > Math.min(Math.abs(storyCircle2.borderRect.left - storyCircle3.borderRect.right), Math.abs(storyCircle2.borderRect.right - storyCircle3.borderRect.left)) ? storyCircle : storyCircle2;
     }
 
     private void drawArc(Canvas canvas, RectF rectF, float f, float f2, boolean z, Paint paint) {
@@ -419,7 +421,9 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
         StoryCircle storyCircle4 = storyCircle;
         if (storyCircle4 == null && storyCircle3 == null) {
             drawArc(canvas, storyCircle2.borderRect, 0.0f, 360.0f, false, paint);
-        } else if (storyCircle4 == null || storyCircle3 == null) {
+            return;
+        }
+        if (storyCircle4 == null || storyCircle3 == null) {
             if (storyCircle4 == null && storyCircle3 == null) {
                 return;
             }
@@ -429,50 +433,51 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
             float centerX = storyCircle4.borderRect.centerX();
             float width = storyCircle4.borderRect.width() / 2.0f;
             float centerX2 = storyCircle2.borderRect.centerX();
-            float width2 = storyCircle2.borderRect.width() / 2.0f;
-            if (Math.abs(centerX - centerX2) > width + width2) {
+            if (Math.abs(centerX - centerX2) > width + (storyCircle2.borderRect.width() / 2.0f)) {
                 drawArc(canvas, storyCircle2.borderRect, 0.0f, 360.0f, false, paint);
+                return;
             } else if (centerX > centerX2) {
-                float degrees3 = (float) Math.toDegrees(Math.acos(Math.abs((((centerX - width) + (centerX2 + width2)) / 2.0f) - centerX2) / width2));
+                float degrees3 = (float) Math.toDegrees(Math.acos(Math.abs((((centerX - width) + (centerX2 + r7)) / 2.0f) - centerX2) / r7));
                 drawArc(canvas, storyCircle2.borderRect, degrees3, 360.0f - (2.0f * degrees3), false, paint);
+                return;
             } else {
-                float degrees4 = (float) Math.toDegrees(Math.acos(Math.abs((((centerX + width) + (centerX2 - width2)) / 2.0f) - centerX2) / width2));
+                float degrees4 = (float) Math.toDegrees(Math.acos(Math.abs((((centerX + width) + (centerX2 - r7)) / 2.0f) - centerX2) / r7));
                 drawArc(canvas, storyCircle2.borderRect, degrees4 + 180.0f, 360.0f - (degrees4 * 2.0f), false, paint);
+                return;
             }
+        }
+        float centerX3 = storyCircle4.borderRect.centerX();
+        float width2 = storyCircle4.borderRect.width() / 2.0f;
+        float centerX4 = storyCircle2.borderRect.centerX();
+        float width3 = storyCircle2.borderRect.width() / 2.0f;
+        float centerX5 = storyCircle3.borderRect.centerX();
+        float width4 = storyCircle3.borderRect.width() / 2.0f;
+        boolean z = centerX3 > centerX4;
+        if (z) {
+            degrees = Math.toDegrees(Math.acos(Math.abs((((centerX3 - width2) + (centerX4 + width3)) / 2.0f) - centerX4) / width3));
         } else {
-            float centerX3 = storyCircle4.borderRect.centerX();
-            float width3 = storyCircle4.borderRect.width() / 2.0f;
-            float centerX4 = storyCircle2.borderRect.centerX();
-            float width4 = storyCircle2.borderRect.width() / 2.0f;
-            float centerX5 = storyCircle3.borderRect.centerX();
-            float width5 = storyCircle3.borderRect.width() / 2.0f;
-            boolean z = centerX3 > centerX4;
-            if (z) {
-                degrees = Math.toDegrees(Math.acos(Math.abs((((centerX3 - width3) + (centerX4 + width4)) / 2.0f) - centerX4) / width4));
-            } else {
-                degrees = Math.toDegrees(Math.acos(Math.abs((((centerX3 + width3) + (centerX4 - width4)) / 2.0f) - centerX4) / width4));
-            }
-            float f = (float) degrees;
-            boolean z2 = centerX5 > centerX4;
-            if (z2) {
-                degrees2 = Math.toDegrees(Math.acos(Math.abs((((centerX5 - width5) + (centerX4 + width4)) / 2.0f) - centerX4) / width4));
-            } else {
-                degrees2 = Math.toDegrees(Math.acos(Math.abs((((centerX5 + width5) + (centerX4 - width4)) / 2.0f) - centerX4) / width4));
-            }
-            float f2 = (float) degrees2;
-            if (z && z2) {
-                float max = Math.max(f, f2);
-                drawArc(canvas, storyCircle2.borderRect, max, 360.0f - (2.0f * max), false, paint);
-            } else if (z) {
-                drawArc(canvas, storyCircle2.borderRect, f2 + 180.0f, 180.0f - (f + f2), false, paint);
-                drawArc(canvas, storyCircle2.borderRect, f, (180.0f - f2) - f, false, paint);
-            } else if (z2) {
-                drawArc(canvas, storyCircle2.borderRect, f + 180.0f, 180.0f - (f2 + f), false, paint);
-                drawArc(canvas, storyCircle2.borderRect, f2, (180.0f - f2) - f, false, paint);
-            } else {
-                float max2 = Math.max(f, f2);
-                drawArc(canvas, storyCircle2.borderRect, max2 + 180.0f, 360.0f - (max2 * 2.0f), false, paint);
-            }
+            degrees = Math.toDegrees(Math.acos(Math.abs((((centerX3 + width2) + (centerX4 - width3)) / 2.0f) - centerX4) / width3));
+        }
+        float f = (float) degrees;
+        boolean z2 = centerX5 > centerX4;
+        if (z2) {
+            degrees2 = Math.toDegrees(Math.acos(Math.abs((((centerX5 - width4) + (centerX4 + width3)) / 2.0f) - centerX4) / width3));
+        } else {
+            degrees2 = Math.toDegrees(Math.acos(Math.abs((((centerX5 + width4) + (centerX4 - width3)) / 2.0f) - centerX4) / width3));
+        }
+        float f2 = (float) degrees2;
+        if (z && z2) {
+            float max = Math.max(f, f2);
+            drawArc(canvas, storyCircle2.borderRect, max, 360.0f - (2.0f * max), false, paint);
+        } else if (z) {
+            drawArc(canvas, storyCircle2.borderRect, f2 + 180.0f, 180.0f - (f + f2), false, paint);
+            drawArc(canvas, storyCircle2.borderRect, f, (180.0f - f2) - f, false, paint);
+        } else if (z2) {
+            drawArc(canvas, storyCircle2.borderRect, f + 180.0f, 180.0f - (f2 + f), false, paint);
+            drawArc(canvas, storyCircle2.borderRect, f2, (180.0f - f2) - f, false, paint);
+        } else {
+            float max2 = Math.max(f, f2);
+            drawArc(canvas, storyCircle2.borderRect, max2 + 180.0f, 360.0f - (max2 * 2.0f), false, paint);
         }
     }
 

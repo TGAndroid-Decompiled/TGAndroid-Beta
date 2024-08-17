@@ -27,6 +27,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Loadable;
 import org.telegram.ui.Components.LoadingDrawable;
 import org.telegram.ui.Components.ScaleStateListAnimator;
+
 public class ButtonWithCounterView extends FrameLayout implements Loadable {
     private float countAlpha;
     private final AnimatedFloat countAlphaAnimated;
@@ -306,11 +307,9 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
                 valueAnimator.cancel();
                 this.loadingAnimator = null;
             }
-            float[] fArr = new float[2];
-            fArr[0] = this.loadingT;
+            float f = this.loadingT;
             this.loading = z;
-            fArr[1] = z ? 1.0f : 0.0f;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(f, z ? 1.0f : 0.0f);
             this.loadingAnimator = ofFloat;
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
@@ -397,8 +396,7 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
         }
         this.lastCount = i;
         this.countAlpha = (i != 0 || this.showZero) ? 1.0f : 0.0f;
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.countText;
-        animatedTextDrawable.setText("" + i, z);
+        this.countText.setText("" + i, z);
         invalidate();
     }
 
@@ -410,11 +408,9 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
                 valueAnimator.cancel();
                 this.enabledAnimator = null;
             }
-            float[] fArr = new float[2];
-            fArr[0] = this.enabledT;
+            float f = this.enabledT;
             this.enabled = z;
-            fArr[1] = z ? 1.0f : 0.0f;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(f, z ? 1.0f : 0.0f);
             this.enabledAnimator = ofFloat;
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
@@ -514,7 +510,7 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
                 this.subText.draw(canvas);
                 canvas.restore();
             }
-            rect.set((int) (((getMeasuredWidth() - calculateCounterWidth) / 2.0f) + currentWidth + AndroidUtilities.dp(this.countFilled ? 5.0f : 2.0f)), (int) ((getMeasuredHeight() - AndroidUtilities.dp(18.0f)) / 2.0f), (int) (((getMeasuredWidth() - calculateCounterWidth) / 2.0f) + currentWidth + AndroidUtilities.dp((this.countFilled ? 5 : 2) + 4 + 4) + Math.max(AndroidUtilities.dp(9.0f), this.countText.getCurrentWidth() + dp2)), (int) ((getMeasuredHeight() + AndroidUtilities.dp(18.0f)) / 2.0f));
+            rect.set((int) (((getMeasuredWidth() - calculateCounterWidth) / 2.0f) + currentWidth + AndroidUtilities.dp(this.countFilled ? 5.0f : 2.0f)), (int) ((getMeasuredHeight() - AndroidUtilities.dp(18.0f)) / 2.0f), (int) (((getMeasuredWidth() - calculateCounterWidth) / 2.0f) + currentWidth + AndroidUtilities.dp((this.countFilled ? 5 : 2) + 8) + Math.max(AndroidUtilities.dp(9.0f), this.countText.getCurrentWidth() + dp2)), (int) ((getMeasuredHeight() + AndroidUtilities.dp(18.0f)) / 2.0f));
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(rect);
             if (this.countScale != 1.0f) {

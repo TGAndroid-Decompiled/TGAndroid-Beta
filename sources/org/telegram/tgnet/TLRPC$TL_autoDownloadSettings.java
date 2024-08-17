@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_autoDownloadSettings extends TLObject {
     public boolean audio_preload_next;
     public boolean disabled;

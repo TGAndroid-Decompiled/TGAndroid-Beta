@@ -18,6 +18,7 @@ import org.telegram.ui.Components.BlurringShader;
 import org.telegram.ui.Stories.DarkThemeResourceProvider;
 import org.telegram.ui.Stories.recorder.CaptionContainerView;
 import org.telegram.ui.Stories.recorder.HintView2;
+
 public class CaptionPhotoViewer extends CaptionContainerView {
     private final int SHOW_ONCE;
     private final ImageView addPhotoButton;
@@ -56,7 +57,8 @@ public class CaptionPhotoViewer extends CaptionContainerView {
         ImageView imageView = new ImageView(context);
         this.addPhotoButton = imageView;
         imageView.setImageResource(R.drawable.filled_add_photo);
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+        imageView.setScaleType(scaleType);
         imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
         imageView.setBackground(Theme.createSelectorDrawable(1090519039, 1, AndroidUtilities.dp(18.0f)));
         setAddPhotoVisible(false, false);
@@ -67,7 +69,7 @@ public class CaptionPhotoViewer extends CaptionContainerView {
         this.timerDrawable = periodDrawable;
         imageView2.setImageDrawable(periodDrawable);
         imageView2.setBackground(Theme.createSelectorDrawable(1090519039, 1, AndroidUtilities.dp(18.0f)));
-        imageView2.setScaleType(ImageView.ScaleType.CENTER);
+        imageView2.setScaleType(scaleType);
         setTimerVisible(false, false);
         addView(imageView2, LayoutHelper.createFrame(44, 44.0f, 85, 0.0f, 0.0f, 11.0f, 10.0f));
         HintView2 hintView2 = new HintView2(context, 3);
@@ -86,7 +88,6 @@ public class CaptionPhotoViewer extends CaptionContainerView {
     }
 
     public void lambda$new$1(FrameLayout frameLayout, View view) {
-        int[] iArr;
         String formatPluralString;
         ItemOptions itemOptions = this.timerPopup;
         if (itemOptions != null && itemOptions.isShown()) {
@@ -171,7 +172,7 @@ public class CaptionPhotoViewer extends CaptionContainerView {
     }
 
     @Override
-    public void onTextChange() {
+    public void lambda$new$1() {
         Runnable runnable = this.applyCaption;
         if (runnable != null) {
             runnable.run();
@@ -247,9 +248,10 @@ public class CaptionPhotoViewer extends CaptionContainerView {
             this.hint.setInnerPadding(13, 4, 10, 4);
             this.hint.setIconMargin(0);
             this.hint.setIconTranslate(0.0f, -AndroidUtilities.dp(1.0f));
-        } else if (i <= 0) {
-            return;
         } else {
+            if (i <= 0) {
+                return;
+            }
             replaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString(this.isVideo ? "TimerPeriodVideoSetSeconds" : "TimerPeriodPhotoSetSeconds", i, new Object[0]));
             this.hint.setMultilineText(true);
             HintView2 hintView2 = this.hint;
@@ -317,9 +319,8 @@ public class CaptionPhotoViewer extends CaptionContainerView {
 
     @Override
     protected void afterUpdateShownKeyboard(boolean z) {
-        int i = 0;
         this.timerButton.setVisibility((z || !this.timerVisible) ? 8 : 0);
-        this.addPhotoButton.setVisibility((z || !this.addPhotoVisible) ? 8 : 8);
+        this.addPhotoButton.setVisibility((z || !this.addPhotoVisible) ? 8 : 0);
         if (z) {
             this.timerButton.setVisibility(8);
             this.addPhotoButton.setVisibility(8);

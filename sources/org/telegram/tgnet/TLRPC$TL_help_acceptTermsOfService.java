@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_help_acceptTermsOfService extends TLObject {
     public TLRPC$TL_dataJSON id;
 

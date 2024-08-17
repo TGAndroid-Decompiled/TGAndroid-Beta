@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_updateUserName extends TLRPC$Update {
     public String first_name;
     public String last_name;

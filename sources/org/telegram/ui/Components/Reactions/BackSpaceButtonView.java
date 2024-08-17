@@ -18,6 +18,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Stories.RoundRectOutlineProvider;
+
 @SuppressLint({"ViewConstructor"})
 public class BackSpaceButtonView extends FrameLayout {
     private final ImageView backspaceButton;
@@ -60,7 +61,9 @@ public class BackSpaceButtonView extends FrameLayout {
         this.backspaceButton = imageView;
         imageView.setHapticFeedbackEnabled(true);
         imageView.setImageResource(R.drawable.smiles_tab_clear);
-        imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_chat_emojiPanelBackspace), PorterDuff.Mode.MULTIPLY));
+        int themedColor = getThemedColor(Theme.key_chat_emojiPanelBackspace);
+        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+        imageView.setColorFilter(new PorterDuffColorFilter(themedColor, mode));
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setContentDescription(LocaleController.getString("AccDescrBackspace", R.string.AccDescrBackspace));
         imageView.setFocusable(true);
@@ -79,7 +82,7 @@ public class BackSpaceButtonView extends FrameLayout {
             imageView.setClipToOutline(true);
         } else {
             Drawable mutate = context.getResources().getDrawable(R.drawable.floating_shadow).mutate();
-            mutate.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
+            mutate.setColorFilter(new PorterDuffColorFilter(-16777216, mode));
             CombinedDrawable combinedDrawable = new CombinedDrawable(mutate, createSimpleSelectorCircleDrawable, 0, 0);
             combinedDrawable.setIconSize(AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f));
             imageView.setBackground(combinedDrawable);

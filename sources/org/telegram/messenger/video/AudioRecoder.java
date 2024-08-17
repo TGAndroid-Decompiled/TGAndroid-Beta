@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.video.MediaCodecVideoConvertor;
 import org.telegram.messenger.video.audio_input.AudioInput;
+
 public class AudioRecoder {
     private static final int BYTES_PER_SHORT = 2;
     ArrayList<AudioInput> audioInputs;
@@ -124,9 +125,8 @@ public class AudioRecoder {
             boolean z = false;
             short s = 0;
             for (int i2 = 0; i2 < this.audioInputs.size() && isInputAvailable(); i2++) {
-                AudioInput audioInput = this.audioInputs.get(i2);
-                if (audioInput.hasRemaining()) {
-                    s = (short) (s + (((short) (audioInput.getNext() * audioInput.getVolume())) / this.audioInputs.size()));
+                if (this.audioInputs.get(i2).hasRemaining()) {
+                    s = (short) (s + (((short) (r6.getNext() * r6.getVolume())) / this.audioInputs.size()));
                     z = true;
                 }
             }

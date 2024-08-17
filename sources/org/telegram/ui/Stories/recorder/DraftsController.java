@@ -35,6 +35,7 @@ import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_inputPeerSelf;
 import org.telegram.tgnet.tl.TL_stories$StoryItem;
 import org.telegram.ui.ActionBar.Theme;
+
 public class DraftsController {
     public final int currentAccount;
     public final ArrayList<StoryEntry> drafts = new ArrayList<>();
@@ -550,8 +551,9 @@ public class DraftsController {
             this.muted = storyEntry.muted;
             float f = storyEntry.left;
             long j = storyEntry.duration;
-            this.left = f * ((float) j);
-            this.right = storyEntry.right * ((float) j);
+            float f2 = (float) j;
+            this.left = f * f2;
+            this.right = storyEntry.right * f2;
             this.orientation = storyEntry.orientation;
             this.invert = storyEntry.invert;
             this.width = storyEntry.width;
@@ -622,8 +624,9 @@ public class DraftsController {
             long j = this.duration;
             storyEntry.duration = j;
             if (j > 0) {
-                storyEntry.left = ((float) this.left) / ((float) j);
-                storyEntry.right = ((float) this.right) / ((float) j);
+                float f = (float) j;
+                storyEntry.left = ((float) this.left) / f;
+                storyEntry.right = ((float) this.right) / f;
             } else {
                 storyEntry.left = 0.0f;
                 storyEntry.right = 1.0f;

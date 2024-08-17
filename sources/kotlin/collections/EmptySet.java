@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.Set;
 import kotlin.jvm.internal.CollectionToArray;
 import kotlin.jvm.internal.Intrinsics;
+
 public final class EmptySet implements Set, Serializable {
     public static final EmptySet INSTANCE = new EmptySet();
 
@@ -69,10 +70,6 @@ public final class EmptySet implements Set, Serializable {
         return (T[]) CollectionToArray.toArray(this, array);
     }
 
-    public String toString() {
-        return "[]";
-    }
-
     private EmptySet() {
     }
 
@@ -92,6 +89,10 @@ public final class EmptySet implements Set, Serializable {
     @Override
     public boolean equals(Object obj) {
         return (obj instanceof Set) && ((Set) obj).isEmpty();
+    }
+
+    public String toString() {
+        return "[]";
     }
 
     @Override

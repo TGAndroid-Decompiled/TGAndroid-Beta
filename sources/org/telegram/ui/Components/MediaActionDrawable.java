@@ -13,6 +13,7 @@ import android.text.TextPaint;
 import android.view.animation.DecelerateInterpolator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
+
 public class MediaActionDrawable extends Drawable {
     private float animatedDownloadProgress;
     private boolean animatingTransition;
@@ -142,9 +143,10 @@ public class MediaActionDrawable extends Drawable {
             this.nextIcon = i;
             this.savedTransitionProgress = this.transitionProgress;
             this.transitionProgress = 0.0f;
-        } else if (this.currentIcon == i) {
-            return false;
         } else {
+            if (this.currentIcon == i) {
+                return false;
+            }
             this.animatingTransition = false;
             this.nextIcon = i;
             this.currentIcon = i;
@@ -249,7 +251,7 @@ public class MediaActionDrawable extends Drawable {
     }
 
     @Override
-    public void draw(android.graphics.Canvas r34) {
+    public void draw(android.graphics.Canvas r43) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.MediaActionDrawable.draw(android.graphics.Canvas):void");
     }
 

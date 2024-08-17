@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public abstract class TLRPC$BotApp extends TLObject {
     public long access_hash;
     public String description;

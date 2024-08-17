@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import org.telegram.ui.Charts.data.ChartData;
 import org.telegram.ui.Charts.view_data.LineViewData;
+
 public class LinearBarChartView extends BaseChartView<ChartData, LineViewData> {
     public LinearBarChartView(Context context) {
         super(context);
@@ -16,7 +17,7 @@ public class LinearBarChartView extends BaseChartView<ChartData, LineViewData> {
     }
 
     @Override
-    protected void drawChart(android.graphics.Canvas r23) {
+    protected void drawChart(android.graphics.Canvas r24) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Charts.LinearBarChartView.drawChart(android.graphics.Canvas):void");
     }
 
@@ -77,66 +78,48 @@ public class LinearBarChartView extends BaseChartView<ChartData, LineViewData> {
                                 lineViewData.bottomLinePath.lineTo(f4 + (f3 / 2.0f), f5);
                             } else if (i5 == 0) {
                                 float[] fArr2 = lineViewData.linesPathBottom;
-                                int i6 = i5 + 1;
                                 float f6 = f3 / 2.0f;
                                 fArr2[i5] = f4 - f6;
-                                int i7 = i6 + 1;
-                                fArr2[i6] = f5;
-                                int i8 = i7 + 1;
+                                fArr2[i5 + 1] = f5;
                                 float f7 = f4 + f6;
-                                fArr2[i7] = f7;
-                                int i9 = i8 + 1;
-                                fArr2[i8] = f5;
-                                int i10 = i9 + 1;
-                                fArr2[i9] = f7;
-                                i5 = i10 + 1;
-                                fArr2[i10] = f5;
+                                fArr2[i5 + 2] = f7;
+                                fArr2[i5 + 3] = f5;
+                                int i6 = i5 + 5;
+                                fArr2[i5 + 4] = f7;
+                                i5 += 6;
+                                fArr2[i6] = f5;
                             } else if (i4 == length - 1) {
                                 float[] fArr3 = lineViewData.linesPathBottom;
-                                int i11 = i5 + 1;
                                 float f8 = f3 / 2.0f;
                                 float f9 = f4 - f8;
                                 fArr3[i5] = f9;
-                                int i12 = i11 + 1;
-                                fArr3[i11] = f5;
-                                int i13 = i12 + 1;
-                                fArr3[i12] = f9;
-                                int i14 = i13 + 1;
-                                fArr3[i13] = f5;
-                                int i15 = i14 + 1;
+                                fArr3[i5 + 1] = f5;
+                                fArr3[i5 + 2] = f9;
+                                fArr3[i5 + 3] = f5;
                                 float f10 = f4 + f8;
-                                fArr3[i14] = f10;
-                                int i16 = i15 + 1;
-                                fArr3[i15] = f5;
-                                int i17 = i16 + 1;
-                                fArr3[i16] = f10;
-                                int i18 = i17 + 1;
-                                fArr3[i17] = f5;
-                                int i19 = i18 + 1;
-                                fArr3[i18] = f10;
-                                i5 = i19 + 1;
-                                fArr3[i19] = 0.0f;
+                                fArr3[i5 + 4] = f10;
+                                fArr3[i5 + 5] = f5;
+                                fArr3[i5 + 6] = f10;
+                                fArr3[i5 + 7] = f5;
+                                int i7 = i5 + 9;
+                                fArr3[i5 + 8] = f10;
+                                i5 += 10;
+                                fArr3[i7] = 0.0f;
                             } else {
                                 float[] fArr4 = lineViewData.linesPathBottom;
-                                int i20 = i5 + 1;
                                 float f11 = f3 / 2.0f;
                                 float f12 = f4 - f11;
                                 fArr4[i5] = f12;
-                                int i21 = i20 + 1;
-                                fArr4[i20] = f5;
-                                int i22 = i21 + 1;
-                                fArr4[i21] = f12;
-                                int i23 = i22 + 1;
-                                fArr4[i22] = f5;
-                                int i24 = i23 + 1;
+                                fArr4[i5 + 1] = f5;
+                                fArr4[i5 + 2] = f12;
+                                fArr4[i5 + 3] = f5;
                                 float f13 = f4 + f11;
-                                fArr4[i23] = f13;
-                                int i25 = i24 + 1;
-                                fArr4[i24] = f5;
-                                int i26 = i25 + 1;
-                                fArr4[i25] = f13;
-                                i5 = i26 + 1;
-                                fArr4[i26] = f5;
+                                fArr4[i5 + 4] = f13;
+                                fArr4[i5 + 5] = f5;
+                                int i8 = i5 + 7;
+                                fArr4[i5 + 6] = f13;
+                                i5 += 8;
+                                fArr4[i8] = f5;
                             }
                         }
                         i4++;

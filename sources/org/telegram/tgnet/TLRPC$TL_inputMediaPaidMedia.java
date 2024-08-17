@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_inputMediaPaidMedia extends TLRPC$InputMedia {
     public ArrayList<TLRPC$InputMedia> extended_media = new ArrayList<>();
     public long stars_amount;

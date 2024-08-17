@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public abstract class TLRPC$InputPaymentCredentials extends TLObject {
     public TLRPC$TL_dataJSON data;
     public int flags;

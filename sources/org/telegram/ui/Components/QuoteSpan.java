@@ -36,6 +36,7 @@ import org.telegram.tgnet.TLRPC$MessageEntity;
 import org.telegram.tgnet.TLRPC$TL_messageEntityBlockquote;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedTextView;
+
 public class QuoteSpan implements LeadingMarginSpan {
     public static int COLLAPSE_LINES = 3;
     public boolean adaptLineHeight = true;
@@ -149,19 +150,19 @@ public class QuoteSpan implements LeadingMarginSpan {
             return -1;
         }
         QuoteSpan[] quoteSpanArr = (QuoteSpan[]) spannable.getSpans(i, i2, QuoteSpan.class);
-        if (quoteSpanArr == null || quoteSpanArr.length <= 0) {
-            int clamp = Utilities.clamp(i, spannable.length(), 0);
-            int clamp2 = Utilities.clamp(i2, spannable.length(), 0);
-            QuoteStyleSpan quoteStyleSpan = new QuoteStyleSpan();
-            QuoteSpan quoteSpan = new QuoteSpan(false, z, quoteStyleSpan);
-            quoteStyleSpan.span = quoteSpan;
-            quoteSpan.start = clamp;
-            quoteSpan.end = clamp2;
-            spannable.setSpan(quoteStyleSpan, clamp, clamp2, 33);
-            spannable.setSpan(quoteSpan, clamp, clamp2, 33);
-            return clamp2;
+        if (quoteSpanArr != null && quoteSpanArr.length > 0) {
+            return -1;
         }
-        return -1;
+        int clamp = Utilities.clamp(i, spannable.length(), 0);
+        int clamp2 = Utilities.clamp(i2, spannable.length(), 0);
+        QuoteStyleSpan quoteStyleSpan = new QuoteStyleSpan();
+        QuoteSpan quoteSpan = new QuoteSpan(false, z, quoteStyleSpan);
+        quoteStyleSpan.span = quoteSpan;
+        quoteSpan.start = clamp;
+        quoteSpan.end = clamp2;
+        spannable.setSpan(quoteStyleSpan, clamp, clamp2, 33);
+        spannable.setSpan(quoteSpan, clamp, clamp2, 33);
+        return clamp2;
     }
 
     public static int putQuoteToEditable(Editable editable, int i, int i2, boolean z) {
@@ -196,7 +197,6 @@ public class QuoteSpan implements LeadingMarginSpan {
     }
 
     public static ArrayList<Block> updateQuoteBlocksSpanned(Layout layout, ArrayList<Block> arrayList) {
-        QuoteSpan[] quoteSpanArr;
         if (layout == null) {
             if (arrayList != null) {
                 arrayList.clear();
@@ -304,13 +304,12 @@ public class QuoteSpan implements LeadingMarginSpan {
         }
 
         public void draw(Canvas canvas, float f, int i, int i2, float f2, TextPaint textPaint) {
-            QuoteSpan quoteSpan;
-            int i3;
             this.span.setColor(i2);
             int dp = this.span.edit ? i : this.width + AndroidUtilities.dp(32.0f);
-            double d = i;
-            Double.isNaN(d);
-            if (dp >= d * 0.95d) {
+            double d = dp;
+            double d2 = i;
+            Double.isNaN(d2);
+            if (d >= d2 * 0.95d) {
                 dp = i;
             }
             canvas.save();
@@ -334,14 +333,17 @@ public class QuoteSpan implements LeadingMarginSpan {
             fArr5[3] = dp2;
             fArr4[2] = dp2;
             this.span.backgroundPath.rewind();
-            this.span.backgroundPath.addRoundRect(rectF, this.span.backgroundPathRadii, Path.Direction.CW);
+            Path path = this.span.backgroundPath;
+            float[] fArr8 = this.span.backgroundPathRadii;
+            Path.Direction direction = Path.Direction.CW;
+            path.addRoundRect(rectF, fArr8, direction);
             canvas.drawPath(this.span.backgroundPath, this.span.backgroundPaint);
-            QuoteSpan quoteSpan2 = this.span;
-            if (quoteSpan2.edit && this.view != null) {
-                if (quoteSpan2.isCollapsing != quoteSpan2.expandTextCollapsed) {
+            QuoteSpan quoteSpan = this.span;
+            if (quoteSpan.edit && this.view != null) {
+                if (quoteSpan.isCollapsing != quoteSpan.expandTextCollapsed) {
                     AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.span.expandText;
-                    QuoteSpan quoteSpan3 = this.span;
-                    animatedTextDrawable.setText(LocaleController.getString(quoteSpan3.expandTextCollapsed = quoteSpan3.isCollapsing ? R.string.QuoteExpand : R.string.QuoteCollapse), true);
+                    QuoteSpan quoteSpan2 = this.span;
+                    animatedTextDrawable.setText(LocaleController.getString(quoteSpan2.expandTextCollapsed = quoteSpan2.isCollapsing ? R.string.QuoteExpand : R.string.QuoteCollapse), true);
                 }
                 int dp3 = (int) (AndroidUtilities.dp(23.66f) + this.span.expandText.getCurrentWidth());
                 int dp4 = AndroidUtilities.dp(17.66f);
@@ -349,22 +351,26 @@ public class QuoteSpan implements LeadingMarginSpan {
                 if (this.collapseButtonBounds == null) {
                     this.collapseButtonBounds = new RectF();
                 }
-                int i4 = this.bottom;
                 float f3 = dp - dp5;
-                this.collapseButtonBounds.set(i3 - dp3, (i4 - dp5) - dp4, f3, i4 - dp5);
+                this.collapseButtonBounds.set(r7 - dp3, r9 - dp4, f3, this.bottom - dp5);
                 float scale = this.span.expandScale.set(hasButton()) * this.span.expandBounce.getScale(0.02f);
                 if (scale > 0.0f) {
                     canvas.save();
                     canvas.scale(scale, scale, f3, this.bottom - dp5);
                     float f4 = dp4 / 2.0f;
                     canvas.drawRoundRect(this.collapseButtonBounds, f4, f4, this.span.backgroundPaint);
+                    AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = this.span.expandText;
+                    int dp6 = (int) (this.collapseButtonBounds.left + AndroidUtilities.dp(6.0f));
                     RectF rectF2 = this.collapseButtonBounds;
-                    this.span.expandText.setBounds((int) (this.collapseButtonBounds.left + AndroidUtilities.dp(6.0f)), (int) rectF2.top, (int) (rectF2.right - AndroidUtilities.dp(17.66f)), (int) this.collapseButtonBounds.bottom);
+                    animatedTextDrawable2.setBounds(dp6, (int) rectF2.top, (int) (rectF2.right - AndroidUtilities.dp(17.66f)), (int) this.collapseButtonBounds.bottom);
                     this.span.expandText.setTextColor(i2);
                     this.span.expandText.draw(canvas);
-                    float dp6 = AndroidUtilities.dp(14.0f);
-                    float f5 = dp6 / 2.0f;
-                    this.span.expandDrawable.setBounds((int) ((this.collapseButtonBounds.right - AndroidUtilities.dp(3.33f)) - dp6), (int) ((this.collapseButtonBounds.centerY() - f5) + AndroidUtilities.dp(0.33f)), (int) (this.collapseButtonBounds.right - AndroidUtilities.dp(3.33f)), (int) (this.collapseButtonBounds.centerY() + f5 + AndroidUtilities.dp(0.33f)));
+                    int dp7 = AndroidUtilities.dp(14.0f);
+                    ExpandDrawable expandDrawable = this.span.expandDrawable;
+                    float f5 = dp7;
+                    int dp8 = (int) ((this.collapseButtonBounds.right - AndroidUtilities.dp(3.33f)) - f5);
+                    float f6 = f5 / 2.0f;
+                    expandDrawable.setBounds(dp8, (int) ((this.collapseButtonBounds.centerY() - f6) + AndroidUtilities.dp(0.33f)), (int) (this.collapseButtonBounds.right - AndroidUtilities.dp(3.33f)), (int) (this.collapseButtonBounds.centerY() + f6 + AndroidUtilities.dp(0.33f)));
                     this.span.expandDrawable.setColor(i2);
                     this.span.expandDrawable.setState(!this.span.isCollapsing);
                     this.span.expandDrawable.draw(canvas);
@@ -372,27 +378,27 @@ public class QuoteSpan implements LeadingMarginSpan {
                 }
             }
             rectF.set(-AndroidUtilities.dp(3.0f), this.top, 0.0f, this.bottom);
-            float[] fArr8 = this.span.linePathRadii;
             float[] fArr9 = this.span.linePathRadii;
             float[] fArr10 = this.span.linePathRadii;
             float[] fArr11 = this.span.linePathRadii;
-            float dp7 = AndroidUtilities.dp(4.0f);
-            fArr11[7] = dp7;
-            fArr10[6] = dp7;
-            fArr9[1] = dp7;
-            fArr8[0] = dp7;
             float[] fArr12 = this.span.linePathRadii;
+            float dp9 = AndroidUtilities.dp(4.0f);
+            fArr12[7] = dp9;
+            fArr11[6] = dp9;
+            fArr10[1] = dp9;
+            fArr9[0] = dp9;
             float[] fArr13 = this.span.linePathRadii;
             float[] fArr14 = this.span.linePathRadii;
+            float[] fArr15 = this.span.linePathRadii;
             this.span.linePathRadii[5] = 0.0f;
-            fArr14[4] = 0.0f;
-            fArr13[3] = 0.0f;
-            fArr12[2] = 0.0f;
+            fArr15[4] = 0.0f;
+            fArr14[3] = 0.0f;
+            fArr13[2] = 0.0f;
             this.span.linePath.rewind();
-            this.span.linePath.addRoundRect(rectF, this.span.linePathRadii, Path.Direction.CW);
+            this.span.linePath.addRoundRect(rectF, this.span.linePathRadii, direction);
             canvas.drawPath(this.span.linePath, this.span.linePaint);
             if (!this.span.rtl) {
-                int intrinsicHeight = (int) (((this.top + this.bottom) - quoteSpan.quoteDrawable.getIntrinsicHeight()) / 2.0f);
+                int intrinsicHeight = (int) (((this.top + this.bottom) - r2.quoteDrawable.getIntrinsicHeight()) / 2.0f);
                 if (intrinsicHeight > this.top + AndroidUtilities.dp(8.0f)) {
                     intrinsicHeight = this.top + AndroidUtilities.dp(4.0f);
                 }
@@ -489,8 +495,9 @@ public class QuoteSpan implements LeadingMarginSpan {
         loop1: while (true) {
             z = false;
             while (it.hasNext()) {
-                int intValue = ((Integer) it.next()).intValue();
-                int intValue2 = ((Integer) hashMap.get(Integer.valueOf(intValue))).intValue();
+                Integer num = (Integer) it.next();
+                int intValue = num.intValue();
+                int intValue2 = ((Integer) hashMap.get(num)).intValue();
                 if (i4 != intValue) {
                     int i6 = intValue - 1;
                     int i7 = (i6 < 0 || i6 >= spannableStringBuilder.length() || spannableStringBuilder.charAt(i6) != '\n') ? intValue : intValue - 1;
@@ -507,7 +514,9 @@ public class QuoteSpan implements LeadingMarginSpan {
                 }
                 if ((intValue2 & 1) != 0 || (intValue2 & 16) != 0) {
                     i5++;
-                    z = (intValue2 & 16) != 0 ? true : true;
+                    if ((intValue2 & 16) != 0) {
+                        z = true;
+                    }
                 }
             }
         }
@@ -547,8 +556,9 @@ public class QuoteSpan implements LeadingMarginSpan {
         loop1: while (true) {
             z = false;
             while (it.hasNext()) {
-                int intValue = ((Integer) it.next()).intValue();
-                int intValue2 = ((Integer) hashMap.get(Integer.valueOf(intValue))).intValue();
+                Integer num = (Integer) it.next();
+                int intValue = num.intValue();
+                int intValue2 = ((Integer) hashMap.get(num)).intValue();
                 if (i2 != intValue) {
                     int i4 = intValue - 1;
                     int i5 = (i4 < 0 || i4 >= editable.length() || editable.charAt(i4) != '\n') ? intValue : intValue - 1;
@@ -565,7 +575,9 @@ public class QuoteSpan implements LeadingMarginSpan {
                 }
                 if ((intValue2 & 1) != 0 || (intValue2 & 16) != 0) {
                     i3++;
-                    z = (intValue2 & 16) != 0 ? true : true;
+                    if ((intValue2 & 16) != 0) {
+                        z = true;
+                    }
                 }
             }
         }
@@ -588,19 +600,19 @@ public class QuoteSpan implements LeadingMarginSpan {
         if (charSequence == null) {
             return null;
         }
-        if (charSequence instanceof Spanned) {
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence);
-            QuoteButtonNewLineSpan[] quoteButtonNewLineSpanArr = (QuoteButtonNewLineSpan[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), QuoteButtonNewLineSpan.class);
-            for (int length = quoteButtonNewLineSpanArr.length - 1; length >= 0; length--) {
-                QuoteButtonNewLineSpan quoteButtonNewLineSpan = quoteButtonNewLineSpanArr[length];
-                int spanStart = spannableStringBuilder.getSpanStart(quoteButtonNewLineSpan);
-                int spanEnd = spannableStringBuilder.getSpanEnd(quoteButtonNewLineSpan);
-                spannableStringBuilder.removeSpan(quoteButtonNewLineSpan);
-                spannableStringBuilder.delete(spanStart, spanEnd);
-            }
-            return spannableStringBuilder;
+        if (!(charSequence instanceof Spanned)) {
+            return charSequence;
         }
-        return charSequence;
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence);
+        QuoteButtonNewLineSpan[] quoteButtonNewLineSpanArr = (QuoteButtonNewLineSpan[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), QuoteButtonNewLineSpan.class);
+        for (int length = quoteButtonNewLineSpanArr.length - 1; length >= 0; length--) {
+            QuoteButtonNewLineSpan quoteButtonNewLineSpan = quoteButtonNewLineSpanArr[length];
+            int spanStart = spannableStringBuilder.getSpanStart(quoteButtonNewLineSpan);
+            int spanEnd = spannableStringBuilder.getSpanEnd(quoteButtonNewLineSpan);
+            spannableStringBuilder.removeSpan(quoteButtonNewLineSpan);
+            spannableStringBuilder.delete(spanStart, spanEnd);
+        }
+        return spannableStringBuilder;
     }
 
     public static class QuoteCollapsedPart extends CharacterStyle {

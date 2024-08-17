@@ -4,6 +4,7 @@ import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$InputUser;
 import org.telegram.tgnet.TLRPC$Vector;
+
 public class TL_bots$getPreviewMedias extends TLObject {
     public TLRPC$InputUser bot;
 

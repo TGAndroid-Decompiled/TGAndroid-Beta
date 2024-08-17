@@ -8,6 +8,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
+
 @SuppressLint({"ViewConstructor"})
 public class SubtitleWithCounterCell extends org.telegram.ui.Cells.HeaderCell {
     private final AnimatedTextView counterTextView;

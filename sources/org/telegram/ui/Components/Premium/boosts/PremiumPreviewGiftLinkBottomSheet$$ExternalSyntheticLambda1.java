@@ -1,4 +1,5 @@
 package org.telegram.ui.Components.Premium.boosts;
+
 public final class PremiumPreviewGiftLinkBottomSheet$$ExternalSyntheticLambda1 implements Runnable {
     public final PremiumPreviewGiftLinkBottomSheet f$0;
 
@@ -8,6 +9,6 @@ public final class PremiumPreviewGiftLinkBottomSheet$$ExternalSyntheticLambda1 i
 
     @Override
     public final void run() {
-        PremiumPreviewGiftLinkBottomSheet.m1949$r8$lambda$gPTyfxhyLe9fhVpbRc7LRzrrl4(this.f$0);
+        PremiumPreviewGiftLinkBottomSheet.m2042$r8$lambda$lsqp807DHo7dvScLhqHoq5bFi4(this.f$0);
     }
 }

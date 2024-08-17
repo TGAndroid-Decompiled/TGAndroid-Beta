@@ -1,6 +1,7 @@
 package org.telegram.ui.Stories.recorder;
 
 import org.telegram.ui.Stories.recorder.TimelineView;
+
 public final class TimelineView$VideoThumbsLoader$$ExternalSyntheticLambda0 implements Runnable {
     public final TimelineView.VideoThumbsLoader f$0;
 
@@ -10,6 +11,6 @@ public final class TimelineView$VideoThumbsLoader$$ExternalSyntheticLambda0 impl
 
     @Override
     public final void run() {
-        this.f$0.retrieveFrame();
+        TimelineView.VideoThumbsLoader.m3444$r8$lambda$9K4AYLRuTBZEZczPCTrBTN79SI(this.f$0);
     }
 }

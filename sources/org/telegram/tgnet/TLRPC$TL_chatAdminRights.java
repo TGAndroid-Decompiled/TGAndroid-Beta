@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_chatAdminRights extends TLObject {
     public boolean add_admins;
     public boolean anonymous;

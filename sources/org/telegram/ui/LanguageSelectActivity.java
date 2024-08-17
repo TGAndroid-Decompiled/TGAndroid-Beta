@@ -41,6 +41,7 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.EmptyTextProgressView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
+
 public class LanguageSelectActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private EmptyTextProgressView emptyView;
     private ListAdapter listAdapter;
@@ -79,7 +80,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    LanguageSelectActivity.this.finishFragment();
+                    LanguageSelectActivity.this.lambda$onBackPressed$308();
                 }
             }
         });
@@ -467,7 +468,6 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
 
         @Override
         public int getItemCount() {
-            int i = 0;
             if (this.search) {
                 if (LanguageSelectActivity.this.searchResult == null) {
                     return 0;
@@ -481,7 +481,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
             if (!LanguageSelectActivity.this.unofficialLanguages.isEmpty()) {
                 size += LanguageSelectActivity.this.unofficialLanguages.size() + 1;
             }
-            return (!LanguageSelectActivity.this.getMessagesController().premiumFeaturesBlocked()) + 4 + ((LanguageSelectActivity.this.getChatValue() || LanguageSelectActivity.this.getContextValue()) ? 1 : 1) + 1 + size;
+            return (!LanguageSelectActivity.this.getMessagesController().premiumFeaturesBlocked() ? 1 : 0) + 4 + ((LanguageSelectActivity.this.getChatValue() || LanguageSelectActivity.this.getContextValue()) ? 1 : 0) + 1 + size;
         }
 
         @Override
@@ -529,12 +529,12 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
             if (i == 0) {
                 return 3;
             }
-            int i3 = i2 - 1;
+            int i3 = i - 2;
             if (i2 == 0) {
                 return 2;
             }
             if (!LanguageSelectActivity.this.getMessagesController().premiumFeaturesBlocked()) {
-                int i4 = i3 - 1;
+                int i4 = i - 3;
                 if (i3 == 0) {
                     return 2;
                 }
@@ -551,11 +551,11 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
             if (i3 == 0) {
                 return 5;
             }
-            int i7 = i6 - 1;
+            int i7 = i3 - 2;
             if (i6 == 0) {
                 return 5;
             }
-            int i8 = i7 - 1;
+            int i8 = i3 - 3;
             if (i7 == 0) {
                 return 3;
             }

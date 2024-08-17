@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_help_premiumPromo extends TLObject {
     public String currency;
     public long monthly_amount;

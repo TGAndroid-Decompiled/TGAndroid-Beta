@@ -19,6 +19,7 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.Base64;
+import android.util.Property;
 import android.view.MotionEvent;
 import android.view.TextureView;
 import android.view.View;
@@ -50,6 +51,7 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.VideoPlayer;
 import org.telegram.ui.Components.WebPlayerView;
+
 public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerDelegate, AudioManager.OnAudioFocusChangeListener {
     private static int lastContainerId = 4001;
     private boolean allowInlineAnimation;
@@ -186,7 +188,8 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                 while (true) {
                     if (!matcher.find()) {
                         break;
-                    } else if (matcher.group(0).indexOf(48) == 40) {
+                    }
+                    if (matcher.group(0).indexOf(48) == 40) {
                         i2++;
                     } else {
                         i2--;
@@ -375,8 +378,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                 if (matcher.find()) {
                     String group = matcher.group();
                     if (!this.codeLines.contains(group)) {
-                        ArrayList<String> arrayList = this.codeLines;
-                        arrayList.add(group + ";");
+                        this.codeLines.add(group + ";");
                     }
                     buildFunction(matcher.group(1).split(","), matcher.group(2));
                 }
@@ -437,8 +439,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
             }
             try {
                 String encodeToString = Base64.encodeToString(("<script>" + str + "</script>").getBytes("UTF-8"), 0);
-                WebView webView = WebPlayerView.this.webView;
-                webView.loadUrl("data:text/html;charset=utf-8;base64," + encodeToString);
+                WebPlayerView.this.webView.loadUrl("data:text/html;charset=utf-8;base64," + encodeToString);
             } catch (Exception e) {
                 FileLog.e(e);
             }
@@ -446,17 +447,13 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
 
         public void lambda$doInBackground$0(String str) {
             String[] strArr = this.result;
-            String str2 = strArr[0];
-            String str3 = this.sig;
-            strArr[0] = str2.replace(str3, "/signature/" + str.substring(1, str.length() - 1));
+            strArr[0] = strArr[0].replace(this.sig, "/signature/" + str.substring(1, str.length() - 1));
             this.countDownLatch.countDown();
         }
 
         public void onInterfaceResult(String str) {
             String[] strArr = this.result;
-            String str2 = strArr[0];
-            String str3 = this.sig;
-            strArr[0] = str2.replace(str3, "/signature/" + str);
+            strArr[0] = strArr[0].replace(this.sig, "/signature/" + str);
             this.countDownLatch.countDown();
         }
 
@@ -477,10 +474,12 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                 }
                 WebPlayerView.this.showProgress(false, true);
                 WebPlayerView.this.controlsView.show(true, true);
-            } else if (isCancelled()) {
-            } else {
-                WebPlayerView.this.onInitFailed();
+                return;
             }
+            if (isCancelled()) {
+                return;
+            }
+            WebPlayerView.this.onInitFailed();
         }
     }
 
@@ -533,10 +532,12 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                 }
                 WebPlayerView.this.showProgress(false, true);
                 WebPlayerView.this.controlsView.show(true, true);
-            } else if (isCancelled()) {
-            } else {
-                WebPlayerView.this.onInitFailed();
+                return;
             }
+            if (isCancelled()) {
+                return;
+            }
+            WebPlayerView.this.onInitFailed();
         }
     }
 
@@ -590,10 +591,12 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                 }
                 WebPlayerView.this.showProgress(false, true);
                 WebPlayerView.this.controlsView.show(true, true);
-            } else if (isCancelled()) {
-            } else {
-                WebPlayerView.this.onInitFailed();
+                return;
             }
+            if (isCancelled()) {
+                return;
+            }
+            WebPlayerView.this.onInitFailed();
         }
     }
 
@@ -640,10 +643,12 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                 }
                 WebPlayerView.this.showProgress(false, true);
                 WebPlayerView.this.controlsView.show(true, true);
-            } else if (isCancelled()) {
-            } else {
-                WebPlayerView.this.onInitFailed();
+                return;
             }
+            if (isCancelled()) {
+                return;
+            }
+            WebPlayerView.this.onInitFailed();
         }
     }
 
@@ -702,10 +707,12 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                 }
                 WebPlayerView.this.showProgress(false, true);
                 WebPlayerView.this.controlsView.show(true, true);
-            } else if (isCancelled()) {
-            } else {
-                WebPlayerView.this.onInitFailed();
+                return;
             }
+            if (isCancelled()) {
+                return;
+            }
+            WebPlayerView.this.onInitFailed();
         }
     }
 
@@ -757,10 +764,12 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                 }
                 WebPlayerView.this.showProgress(false, true);
                 WebPlayerView.this.controlsView.show(true, true);
-            } else if (isCancelled()) {
-            } else {
-                WebPlayerView.this.onInitFailed();
+                return;
             }
+            if (isCancelled()) {
+                return;
+            }
+            WebPlayerView.this.onInitFailed();
         }
     }
 
@@ -853,7 +862,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                 if (z2) {
                     AnimatorSet animatorSet2 = new AnimatorSet();
                     this.currentAnimation = animatorSet2;
-                    animatorSet2.playTogether(ObjectAnimator.ofFloat(this, View.ALPHA, 1.0f));
+                    animatorSet2.playTogether(ObjectAnimator.ofFloat(this, (Property<ControlsView, Float>) View.ALPHA, 1.0f));
                     this.currentAnimation.setDuration(150L);
                     this.currentAnimation.addListener(new AnimatorListenerAdapter() {
                         @Override
@@ -868,7 +877,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
             } else if (z2) {
                 AnimatorSet animatorSet3 = new AnimatorSet();
                 this.currentAnimation = animatorSet3;
-                animatorSet3.playTogether(ObjectAnimator.ofFloat(this, View.ALPHA, 0.0f));
+                animatorSet3.playTogether(ObjectAnimator.ofFloat(this, (Property<ControlsView, Float>) View.ALPHA, 0.0f));
                 this.currentAnimation.setDuration(150L);
                 this.currentAnimation.addListener(new AnimatorListenerAdapter() {
                     @Override
@@ -1006,16 +1015,16 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
 
             @Override
             public boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-                if (WebPlayerView.this.changingTextureView) {
-                    if (WebPlayerView.this.switchingInlineMode) {
-                        WebPlayerView.this.waitingForFirstTextureUpload = 2;
-                    }
-                    WebPlayerView.this.textureView.setSurfaceTexture(surfaceTexture);
-                    WebPlayerView.this.textureView.setVisibility(0);
-                    WebPlayerView.this.changingTextureView = false;
-                    return false;
+                if (!WebPlayerView.this.changingTextureView) {
+                    return true;
                 }
-                return true;
+                if (WebPlayerView.this.switchingInlineMode) {
+                    WebPlayerView.this.waitingForFirstTextureUpload = 2;
+                }
+                WebPlayerView.this.textureView.setSurfaceTexture(surfaceTexture);
+                WebPlayerView.this.textureView.setVisibility(0);
+                WebPlayerView.this.changingTextureView = false;
+                return false;
             }
 
             public class AnonymousClass1 implements ViewTreeObserver.OnPreDrawListener {
@@ -1186,7 +1195,8 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         addView(this.progressView, LayoutHelper.createFrame(48, 48, 17));
         ImageView imageView2 = new ImageView(context);
         this.fullscreenButton = imageView2;
-        imageView2.setScaleType(ImageView.ScaleType.CENTER);
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+        imageView2.setScaleType(scaleType);
         this.controlsView.addView(this.fullscreenButton, LayoutHelper.createFrame(56, 56.0f, 85, 0.0f, 0.0f, 0.0f, 5.0f));
         this.fullscreenButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1196,7 +1206,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         });
         ImageView imageView3 = new ImageView(context);
         this.playButton = imageView3;
-        imageView3.setScaleType(ImageView.ScaleType.CENTER);
+        imageView3.setScaleType(scaleType);
         this.controlsView.addView(this.playButton, LayoutHelper.createFrame(48, 48, 17));
         this.playButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1207,7 +1217,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         if (z) {
             ImageView imageView4 = new ImageView(context);
             this.inlineButton = imageView4;
-            imageView4.setScaleType(ImageView.ScaleType.CENTER);
+            imageView4.setScaleType(scaleType);
             this.controlsView.addView(this.inlineButton, LayoutHelper.createFrame(56, 48, 53));
             this.inlineButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -1219,7 +1229,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         if (z2) {
             ImageView imageView5 = new ImageView(context);
             this.shareButton = imageView5;
-            imageView5.setScaleType(ImageView.ScaleType.CENTER);
+            imageView5.setScaleType(scaleType);
             this.shareButton.setImageResource(R.drawable.ic_share_video);
             this.controlsView.addView(this.shareButton, LayoutHelper.createFrame(56, 48, 53));
             this.shareButton.setOnClickListener(new View.OnClickListener() {
@@ -1355,9 +1365,9 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         if (this.currentBitmap != null) {
             this.textureImageView.setVisibility(0);
             this.textureImageView.setImageBitmap(this.currentBitmap);
-            return;
+        } else {
+            this.textureImageView.setImageDrawable(null);
         }
-        this.textureImageView.setImageDrawable(null);
     }
 
     public String getYoutubeId() {
@@ -1380,7 +1390,9 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         }
         if (this.videoPlayer.isPlaying() && i != 4) {
             updatePlayButton();
-        } else if (i == 4) {
+            return;
+        }
+        if (i == 4) {
             this.isCompleted = true;
             this.videoPlayer.pause();
             this.videoPlayer.seekTo(0L);
@@ -1404,14 +1416,14 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
     public void onVideoSizeChanged(int i, int i2, int i3, float f) {
         AspectRatioFrameLayout aspectRatioFrameLayout = this.aspectRatioFrameLayout;
         if (aspectRatioFrameLayout != null) {
-            if (i3 == 90 || i3 == 270) {
+            if (i3 != 90 && i3 != 270) {
                 i2 = i;
                 i = i2;
             }
-            float f2 = i * f;
+            float f2 = i2 * f;
             this.videoWidth = (int) f2;
-            this.videoHeight = i2;
-            float f3 = i2 == 0 ? 1.0f : f2 / i2;
+            this.videoHeight = i;
+            float f3 = i == 0 ? 1.0f : f2 / i;
             aspectRatioFrameLayout.setAspectRatio(f3, i3);
             if (this.inFullscreen) {
                 this.delegate.onVideoSizeChanged(f3, i3);
@@ -1514,8 +1526,9 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         if (this.hasAudioFocus) {
             return;
         }
+        AudioManager audioManager = (AudioManager) ApplicationLoader.applicationContext.getSystemService("audio");
         this.hasAudioFocus = true;
-        if (((AudioManager) ApplicationLoader.applicationContext.getSystemService("audio")).requestAudioFocus(this, 3, 1) == 1) {
+        if (audioManager.requestAudioFocus(this, 3, 1) == 1) {
             this.audioFocus = 2;
         }
     }
@@ -1538,15 +1551,22 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
             }
             this.hasAudioFocus = false;
             this.audioFocus = 0;
-        } else if (i == 1) {
+            return;
+        }
+        if (i == 1) {
             this.audioFocus = 2;
             if (this.resumeAudioOnFocusGain) {
                 this.resumeAudioOnFocusGain = false;
                 this.videoPlayer.play();
+                return;
             }
-        } else if (i == -3) {
+            return;
+        }
+        if (i == -3) {
             this.audioFocus = 1;
-        } else if (i == -2) {
+            return;
+        }
+        if (i == -2) {
             this.audioFocus = 0;
             if (this.videoPlayer.isPlaying()) {
                 this.resumeAudioOnFocusGain = true;
@@ -1565,10 +1585,10 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         if (!this.inFullscreen) {
             this.fullscreenButton.setImageResource(R.drawable.ic_gofullscreen);
             this.fullscreenButton.setLayoutParams(LayoutHelper.createFrame(56, 56.0f, 85, 0.0f, 0.0f, 0.0f, 5.0f));
-            return;
+        } else {
+            this.fullscreenButton.setImageResource(R.drawable.ic_outfullscreen);
+            this.fullscreenButton.setLayoutParams(LayoutHelper.createFrame(56, 56.0f, 85, 0.0f, 0.0f, 0.0f, 1.0f));
         }
-        this.fullscreenButton.setImageResource(R.drawable.ic_outfullscreen);
-        this.fullscreenButton.setLayoutParams(LayoutHelper.createFrame(56, 56.0f, 85, 0.0f, 0.0f, 0.0f, 1.0f));
     }
 
     public void updateShareButton() {
@@ -1606,7 +1626,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         if (str == null) {
             return;
         }
-        if (str != null && this.playAudioUrl != null) {
+        if (this.playAudioUrl != null) {
             this.videoPlayer.preparePlayerLoop(Uri.parse(str), this.playVideoType, Uri.parse(this.playAudioUrl), this.playAudioType);
         } else {
             this.videoPlayer.preparePlayer(Uri.parse(str), this.playVideoType);
@@ -1622,9 +1642,8 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         updateShareButton();
         updateInlineButton();
         this.controlsView.invalidate();
-        int i = this.seekToTime;
-        if (i != -1) {
-            this.videoPlayer.seekTo(i * 1000);
+        if (this.seekToTime != -1) {
+            this.videoPlayer.seekTo(r0 * 1000);
         }
     }
 
@@ -1733,59 +1752,59 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
     }
 
     public boolean canHandleUrl(String str) {
-        if (str != null) {
-            if (str.endsWith(".mp4")) {
+        if (str == null) {
+            return false;
+        }
+        if (str.endsWith(".mp4")) {
+            return true;
+        }
+        try {
+            Matcher matcher = youtubeIdRegex.matcher(str);
+            if ((matcher.find() ? matcher.group(1) : null) != null) {
                 return true;
             }
-            try {
-                Matcher matcher = youtubeIdRegex.matcher(str);
-                if ((matcher.find() ? matcher.group(1) : null) != null) {
-                    return true;
-                }
-            } catch (Exception e) {
-                FileLog.e(e);
-            }
-            try {
-                Matcher matcher2 = vimeoIdRegex.matcher(str);
-                if ((matcher2.find() ? matcher2.group(3) : null) != null) {
-                    return true;
-                }
-            } catch (Exception e2) {
-                FileLog.e(e2);
-            }
-            try {
-                Matcher matcher3 = aparatIdRegex.matcher(str);
-                if ((matcher3.find() ? matcher3.group(1) : null) != null) {
-                    return true;
-                }
-            } catch (Exception e3) {
-                FileLog.e(e3);
-            }
-            try {
-                Matcher matcher4 = twitchClipIdRegex.matcher(str);
-                if ((matcher4.find() ? matcher4.group(1) : null) != null) {
-                    return true;
-                }
-            } catch (Exception e4) {
-                FileLog.e(e4);
-            }
-            try {
-                Matcher matcher5 = twitchStreamIdRegex.matcher(str);
-                if ((matcher5.find() ? matcher5.group(1) : null) != null) {
-                    return true;
-                }
-            } catch (Exception e5) {
-                FileLog.e(e5);
-            }
-            try {
-                Matcher matcher6 = coubIdRegex.matcher(str);
-                return (matcher6.find() ? matcher6.group(1) : null) != null;
-            } catch (Exception e6) {
-                FileLog.e(e6);
-                return false;
-            }
+        } catch (Exception e) {
+            FileLog.e(e);
         }
-        return false;
+        try {
+            Matcher matcher2 = vimeoIdRegex.matcher(str);
+            if ((matcher2.find() ? matcher2.group(3) : null) != null) {
+                return true;
+            }
+        } catch (Exception e2) {
+            FileLog.e(e2);
+        }
+        try {
+            Matcher matcher3 = aparatIdRegex.matcher(str);
+            if ((matcher3.find() ? matcher3.group(1) : null) != null) {
+                return true;
+            }
+        } catch (Exception e3) {
+            FileLog.e(e3);
+        }
+        try {
+            Matcher matcher4 = twitchClipIdRegex.matcher(str);
+            if ((matcher4.find() ? matcher4.group(1) : null) != null) {
+                return true;
+            }
+        } catch (Exception e4) {
+            FileLog.e(e4);
+        }
+        try {
+            Matcher matcher5 = twitchStreamIdRegex.matcher(str);
+            if ((matcher5.find() ? matcher5.group(1) : null) != null) {
+                return true;
+            }
+        } catch (Exception e5) {
+            FileLog.e(e5);
+        }
+        try {
+            Matcher matcher6 = coubIdRegex.matcher(str);
+            return (matcher6.find() ? matcher6.group(1) : null) != null;
+        } catch (Exception e6) {
+            FileLog.e(e6);
+            return false;
+        }
     }
 
     public void willHandle() {
@@ -1849,12 +1868,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
             }
             AnimatorSet animatorSet2 = new AnimatorSet();
             this.progressAnimation = animatorSet2;
-            Animator[] animatorArr = new Animator[1];
-            RadialProgressView radialProgressView = this.progressView;
-            float[] fArr = new float[1];
-            fArr[0] = z ? 1.0f : 0.0f;
-            animatorArr[0] = ObjectAnimator.ofFloat(radialProgressView, "alpha", fArr);
-            animatorSet2.playTogether(animatorArr);
+            animatorSet2.playTogether(ObjectAnimator.ofFloat(this.progressView, "alpha", z ? 1.0f : 0.0f));
             this.progressAnimation.setDuration(150L);
             this.progressAnimation.addListener(new AnimatorListenerAdapter() {
                 @Override

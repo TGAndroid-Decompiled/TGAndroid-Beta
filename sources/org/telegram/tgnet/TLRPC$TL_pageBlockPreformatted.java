@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_pageBlockPreformatted extends TLRPC$PageBlock {
     public String language;
     public TLRPC$RichText text;

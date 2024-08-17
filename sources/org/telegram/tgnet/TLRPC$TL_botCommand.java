@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_botCommand extends TLObject {
     public String command;
     public String description;

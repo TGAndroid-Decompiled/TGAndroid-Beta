@@ -3,6 +3,7 @@ package org.telegram.tgnet.tl;
 import java.util.ArrayList;
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
+
 public class TL_bots$previewInfo extends TLObject {
     public ArrayList<TL_bots$botPreviewMedia> media = new ArrayList<>();
     public ArrayList<String> lang_codes = new ArrayList<>();
@@ -41,11 +42,11 @@ public class TL_bots$previewInfo extends TLObject {
             if (z) {
                 throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt323)));
             }
-            return;
-        }
-        int readInt324 = abstractSerializedData.readInt32(z);
-        for (int i2 = 0; i2 < readInt324; i2++) {
-            this.lang_codes.add(abstractSerializedData.readString(z));
+        } else {
+            int readInt324 = abstractSerializedData.readInt32(z);
+            for (int i2 = 0; i2 < readInt324; i2++) {
+                this.lang_codes.add(abstractSerializedData.readString(z));
+            }
         }
     }
 

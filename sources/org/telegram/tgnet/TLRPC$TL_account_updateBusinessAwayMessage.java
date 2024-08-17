@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_account_updateBusinessAwayMessage extends TLObject {
     public int flags;
     public TLRPC$TL_inputBusinessAwayMessage message;

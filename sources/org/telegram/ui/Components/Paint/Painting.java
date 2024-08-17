@@ -16,6 +16,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.UUID;
 import org.telegram.messenger.BotWebViewVibrationEffect;
@@ -26,6 +27,7 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.Paint.Brush;
 import org.telegram.ui.Components.Paint.Painting;
 import org.telegram.ui.Components.Size;
+
 public class Painting {
     private Path activePath;
     private Shape activeShape;
@@ -192,10 +194,7 @@ public class Painting {
                 valueAnimator.cancel();
                 this.helperAnimator = null;
             }
-            float[] fArr = new float[2];
-            fArr[0] = this.helperAlpha;
-            fArr[1] = this.helperShown ? 1.0f : 0.0f;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.helperAlpha, this.helperShown ? 1.0f : 0.0f);
             this.helperAnimator = ofFloat;
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
@@ -213,8 +212,11 @@ public class Painting {
             }
             if (this.helperShown) {
                 BotWebViewVibrationEffect.SELECTION_CHANGE.vibrate();
+                return;
             }
-        } else if (shape != this.helperShape) {
+            return;
+        }
+        if (shape != this.helperShape) {
             this.helperShape = shape;
             PaintingDelegate paintingDelegate2 = this.delegate;
             if (paintingDelegate2 != null) {
@@ -707,32 +709,32 @@ public class Painting {
     }
 
     private Slice registerUndo(RectF rectF, boolean z) {
-        if (rectF != null && rectF.setIntersect(rectF, getBounds())) {
-            final Slice slice = new Slice(getPaintingData(rectF, true, z, false).data, z ? 1 : 0, rectF, this.delegate.requestDispatchQueue());
-            this.delegate.requestUndoStore().registerUndo(UUID.randomUUID(), new Runnable() {
-                @Override
-                public final void run() {
-                    Painting.this.lambda$registerUndo$11(slice);
-                }
-            });
-            return slice;
+        if (rectF == null || !rectF.setIntersect(rectF, getBounds())) {
+            return null;
         }
-        return null;
+        final Slice slice = new Slice(getPaintingData(rectF, true, z, false).data, z ? 1 : 0, rectF, this.delegate.requestDispatchQueue());
+        this.delegate.requestUndoStore().registerUndo(UUID.randomUUID(), new Runnable() {
+            @Override
+            public final void run() {
+                Painting.this.lambda$registerUndo$11(slice);
+            }
+        });
+        return slice;
     }
 
     private Slice registerDoubleUndo(RectF rectF, final boolean z) {
-        if (rectF != null && rectF.setIntersect(rectF, getBounds())) {
-            final Slice slice = new Slice(getPaintingData(rectF, true, false, false).data, 0, rectF, this.delegate.requestDispatchQueue());
-            final Slice slice2 = new Slice(getPaintingData(rectF, true, true, false).data, 1, rectF, this.delegate.requestDispatchQueue());
-            this.delegate.requestUndoStore().registerUndo(UUID.randomUUID(), new Runnable() {
-                @Override
-                public final void run() {
-                    Painting.this.lambda$registerDoubleUndo$12(slice, slice2, z);
-                }
-            });
-            return slice;
+        if (rectF == null || !rectF.setIntersect(rectF, getBounds())) {
+            return null;
         }
-        return null;
+        final Slice slice = new Slice(getPaintingData(rectF, true, false, false).data, 0, rectF, this.delegate.requestDispatchQueue());
+        final Slice slice2 = new Slice(getPaintingData(rectF, true, true, false).data, 1, rectF, this.delegate.requestDispatchQueue());
+        this.delegate.requestUndoStore().registerUndo(UUID.randomUUID(), new Runnable() {
+            @Override
+            public final void run() {
+                Painting.this.lambda$registerDoubleUndo$12(slice, slice2, z);
+            }
+        });
+        return slice;
     }
 
     public void lambda$registerDoubleUndo$12(Slice slice, Slice slice2, boolean z) {
@@ -854,8 +856,7 @@ public class Painting {
         GLES20.glUniformMatrix4fv(shader.getUniform("mvpMatrix"), 1, false, FloatBuffer.wrap(this.renderProjection));
         GLES20.glUniform1i(shader.getUniform("texture"), 0);
         GLES20.glUniform1i(shader.getUniform("mask"), 1);
-        int currentColor = this.renderView.getCurrentColor();
-        Shader.SetColorUniform(shader.getUniform("color"), ColorUtils.setAlphaComponent(currentColor, (int) (Color.alpha(currentColor) * f)));
+        Shader.SetColorUniform(shader.getUniform("color"), ColorUtils.setAlphaComponent(this.renderView.getCurrentColor(), (int) (Color.alpha(r6) * f)));
         GLES20.glActiveTexture(33984);
         GLES20.glBindTexture(3553, i);
         GLES20.glActiveTexture(33985);
@@ -1147,8 +1148,9 @@ public class Painting {
         }
         Map<String, Shader> map = this.shaders;
         if (map != null) {
-            for (Shader shader : map.values()) {
-                shader.cleanResources();
+            Iterator<Shader> it = map.values().iterator();
+            while (it.hasNext()) {
+                it.next().cleanResources();
             }
             this.shaders = null;
         }

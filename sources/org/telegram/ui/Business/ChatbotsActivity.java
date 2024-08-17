@@ -51,6 +51,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
+
 public class ChatbotsActivity extends BaseFragment {
     public TLRPC$TL_connectedBot currentBot;
     public TLRPC$TL_account_connectedBots currentValue;
@@ -93,7 +94,7 @@ public class ChatbotsActivity extends BaseFragment {
             public void onItemClick(int i) {
                 if (i == -1) {
                     if (ChatbotsActivity.this.onBackPressed()) {
-                        ChatbotsActivity.this.finishFragment();
+                        ChatbotsActivity.this.lambda$onBackPressed$308();
                     }
                 } else if (i == 1) {
                     ChatbotsActivity.this.processDone();
@@ -238,20 +239,20 @@ public class ChatbotsActivity extends BaseFragment {
     }
 
     public boolean lambda$createView$0(TextView textView, int i, KeyEvent keyEvent) {
-        if (i == 6) {
-            this.scheduledLoading = false;
-            AndroidUtilities.cancelRunOnUIThread(this.search);
-            if (TextUtils.isEmpty(this.editText.getText())) {
-                this.lastQuery = null;
-                this.searchHelper.clear();
-                this.listView.adapter.update(true);
-            } else {
-                AndroidUtilities.runOnUIThread(this.search);
-            }
-            updateSearchLoading();
-            return true;
+        if (i != 6) {
+            return false;
         }
-        return false;
+        this.scheduledLoading = false;
+        AndroidUtilities.cancelRunOnUIThread(this.search);
+        if (TextUtils.isEmpty(this.editText.getText())) {
+            this.lastQuery = null;
+            this.searchHelper.clear();
+            this.listView.adapter.update(true);
+        } else {
+            AndroidUtilities.runOnUIThread(this.search);
+        }
+        updateSearchLoading();
+        return true;
     }
 
     public void lambda$createView$1() {
@@ -304,9 +305,11 @@ public class ChatbotsActivity extends BaseFragment {
     }
 
     public void updateSearchLoading() {
-        boolean z = false;
+        boolean z = true;
         if (this.wasLoading != (this.searchHelper.isSearchInProgress() || this.scheduledLoading || this.foundBots.size() > 0)) {
-            z = (this.searchHelper.isSearchInProgress() || this.scheduledLoading || this.foundBots.size() > 0) ? true : true;
+            if (!this.searchHelper.isSearchInProgress() && !this.scheduledLoading && this.foundBots.size() <= 0) {
+                z = false;
+            }
             this.wasLoading = z;
             ViewPropertyAnimator duration = this.emptyViewText.animate().alpha(z ? 0.0f : 1.0f).translationY(z ? -AndroidUtilities.dp(8.0f) : 0.0f).setDuration(320L);
             CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
@@ -338,13 +341,13 @@ public class ChatbotsActivity extends BaseFragment {
                 this.lastQuery = null;
                 this.searchHelper.clear();
                 this.listView.adapter.update(true);
-                return;
+            } else {
+                SearchAdapterHelper searchAdapterHelper = this.searchHelper;
+                this.lastQuery = obj;
+                int i = this.searchId;
+                this.searchId = i + 1;
+                searchAdapterHelper.queryServerSearch(obj, true, false, true, false, false, 0L, false, 0, i, 0L);
             }
-            SearchAdapterHelper searchAdapterHelper = this.searchHelper;
-            this.lastQuery = obj;
-            int i = this.searchId;
-            this.searchId = i + 1;
-            searchAdapterHelper.queryServerSearch(obj, true, false, true, false, false, 0L, false, 0, i, 0L);
         }
     }
 
@@ -417,23 +420,31 @@ public class ChatbotsActivity extends BaseFragment {
             businessRecipientsHelper.setExclude(true);
             this.listView.adapter.update(true);
             checkDone(true);
-        } else if (i2 == -2) {
+            return;
+        }
+        if (i2 == -2) {
             BusinessRecipientsHelper businessRecipientsHelper2 = this.recipientsHelper;
             this.exclude = false;
             businessRecipientsHelper2.setExclude(false);
             this.listView.adapter.update(true);
             checkDone(true);
-        } else if (i2 == -5) {
+            return;
+        }
+        if (i2 == -5) {
             boolean z = !this.allowReply;
             this.allowReply = z;
             ((TextCheckCell) view).setChecked(z);
             checkDone(true);
-        } else if (i2 == -6) {
+            return;
+        }
+        if (i2 == -6) {
             this.selectedBot = null;
             this.listView.adapter.update(true);
             checkDone(true);
-        } else if (uItem.viewType != 13 || (tLRPC$User = this.foundBots.get(uItem.dialogId)) == null) {
         } else {
+            if (uItem.viewType != 13 || (tLRPC$User = this.foundBots.get(uItem.dialogId)) == null) {
+                return;
+            }
             if (!tLRPC$User.bot_business) {
                 showDialog(new AlertDialog.Builder(getContext(), this.resourceProvider).setTitle(LocaleController.getString(R.string.BusinessBotNotSupportedTitle)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(R.string.BusinessBotNotSupportedMessage))).setPositiveButton(LocaleController.getString(R.string.OK), null).create());
                 return;
@@ -457,8 +468,10 @@ public class ChatbotsActivity extends BaseFragment {
             return;
         }
         if (!hasChanges()) {
-            finishFragment();
-        } else if (this.recipientsHelper.validate(this.listView)) {
+            lambda$onBackPressed$308();
+            return;
+        }
+        if (this.recipientsHelper.validate(this.listView)) {
             final ArrayList arrayList = new ArrayList();
             TLRPC$TL_connectedBot tLRPC$TL_connectedBot = this.currentBot;
             if (tLRPC$TL_connectedBot != null && ((tLRPC$User = this.selectedBot) == null || tLRPC$TL_connectedBot.bot_id != tLRPC$User.id)) {
@@ -483,7 +496,7 @@ public class ChatbotsActivity extends BaseFragment {
                 }
             }
             if (arrayList.isEmpty()) {
-                finishFragment();
+                lambda$onBackPressed$308();
                 return;
             }
             final int[] iArr = {0};
@@ -511,17 +524,19 @@ public class ChatbotsActivity extends BaseFragment {
         if (tLRPC$TL_error != null) {
             this.doneButtonDrawable.animateToProgress(0.0f);
             BulletinFactory.showError(tLRPC$TL_error);
-        } else if (tLObject instanceof TLRPC$TL_boolFalse) {
+            return;
+        }
+        if (tLObject instanceof TLRPC$TL_boolFalse) {
             this.doneButtonDrawable.animateToProgress(0.0f);
             BulletinFactory.of(this).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
-        } else {
-            int i = iArr[0] + 1;
-            iArr[0] = i;
-            if (i == arrayList.size()) {
-                BusinessChatbotController.getInstance(this.currentAccount).invalidate(true);
-                getMessagesController().clearFullUsers();
-                finishFragment();
-            }
+            return;
+        }
+        int i = iArr[0] + 1;
+        iArr[0] = i;
+        if (i == arrayList.size()) {
+            BusinessChatbotController.getInstance(this.currentAccount).invalidate(true);
+            getMessagesController().clearFullUsers();
+            lambda$onBackPressed$308();
         }
     }
 
@@ -560,26 +575,26 @@ public class ChatbotsActivity extends BaseFragment {
     }
 
     public boolean hasChanges() {
-        if (this.valueSet) {
-            TLRPC$User tLRPC$User = this.selectedBot;
-            boolean z = tLRPC$User != null;
-            TLRPC$TL_connectedBot tLRPC$TL_connectedBot = this.currentBot;
-            if (z != (tLRPC$TL_connectedBot != null)) {
-                return true;
-            }
-            if ((tLRPC$User == null ? 0L : tLRPC$User.id) != (tLRPC$TL_connectedBot != null ? tLRPC$TL_connectedBot.bot_id : 0L)) {
-                return true;
-            }
-            if (tLRPC$User != null) {
-                if (this.allowReply != tLRPC$TL_connectedBot.can_reply) {
-                    return true;
-                }
-                BusinessRecipientsHelper businessRecipientsHelper = this.recipientsHelper;
-                if (businessRecipientsHelper != null && businessRecipientsHelper.hasChanges()) {
-                    return true;
-                }
-            }
+        if (!this.valueSet) {
             return false;
+        }
+        TLRPC$User tLRPC$User = this.selectedBot;
+        boolean z = tLRPC$User != null;
+        TLRPC$TL_connectedBot tLRPC$TL_connectedBot = this.currentBot;
+        if (z != (tLRPC$TL_connectedBot != null)) {
+            return true;
+        }
+        if ((tLRPC$User == null ? 0L : tLRPC$User.id) != (tLRPC$TL_connectedBot != null ? tLRPC$TL_connectedBot.bot_id : 0L)) {
+            return true;
+        }
+        if (tLRPC$User != null) {
+            if (this.allowReply != tLRPC$TL_connectedBot.can_reply) {
+                return true;
+            }
+            BusinessRecipientsHelper businessRecipientsHelper = this.recipientsHelper;
+            if (businessRecipientsHelper != null && businessRecipientsHelper.hasChanges()) {
+                return true;
+            }
         }
         return false;
     }
@@ -613,7 +628,7 @@ public class ChatbotsActivity extends BaseFragment {
     }
 
     public void lambda$onBackPressed$8(DialogInterface dialogInterface, int i) {
-        finishFragment();
+        lambda$onBackPressed$308();
     }
 
     private void checkDone(boolean z) {

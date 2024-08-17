@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_paymentCharge extends TLObject {
     public String id;
     public String provider_charge_id;

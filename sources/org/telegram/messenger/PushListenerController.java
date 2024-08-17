@@ -15,6 +15,7 @@ import org.telegram.tgnet.TLRPC$TL_help_saveAppLog;
 import org.telegram.tgnet.TLRPC$TL_inputAppEvent;
 import org.telegram.tgnet.TLRPC$TL_jsonNull;
 import org.telegram.tgnet.TLRPC$TL_updates;
+
 public class PushListenerController {
     public static final int NOTIFICATION_ID = 1;
     public static final int PUSH_TYPE_FIREBASE = 2;
@@ -134,7 +135,7 @@ public class PushListenerController {
         });
     }
 
-    public static void lambda$processRemoteMessage$5(java.lang.String r52, java.lang.String r53, long r54) {
+    public static void lambda$processRemoteMessage$5(java.lang.String r69, java.lang.String r70, long r71) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.PushListenerController.lambda$processRemoteMessage$5(java.lang.String, java.lang.String, long):void");
     }
 
@@ -475,16 +476,16 @@ public class PushListenerController {
         private Boolean hasServices;
 
         @Override
-        public String getLogTitle() {
-            return "Google Play Services";
-        }
-
-        @Override
         public int getPushType() {
             return 2;
         }
 
         private GooglePushListenerServiceProvider() {
+        }
+
+        @Override
+        public String getLogTitle() {
+            return "Google Play Services";
         }
 
         @Override

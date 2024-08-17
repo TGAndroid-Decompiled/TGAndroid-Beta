@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_account_getTheme extends TLObject {
     public long document_id;
     public String format;

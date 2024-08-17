@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.TimeZone;
 import java.util.concurrent.ConcurrentMap;
+
 public abstract class FormatCache<F extends Format> {
     static final int NONE = -1;
     private static final ConcurrentMap<MultipartKey, String> cDateTimeInstanceCache = new ConcurrentHashMap(7);
@@ -31,12 +32,12 @@ public abstract class FormatCache<F extends Format> {
         }
         MultipartKey multipartKey = new MultipartKey(str, timeZone, locale);
         F f = this.cInstanceCache.get(multipartKey);
-        if (f == null) {
-            F createInstance = createInstance(str, timeZone, locale);
-            F putIfAbsent = this.cInstanceCache.putIfAbsent(multipartKey, createInstance);
-            return putIfAbsent != null ? putIfAbsent : createInstance;
+        if (f != null) {
+            return f;
         }
-        return f;
+        F createInstance = createInstance(str, timeZone, locale);
+        F putIfAbsent = this.cInstanceCache.putIfAbsent(multipartKey, createInstance);
+        return putIfAbsent != null ? putIfAbsent : createInstance;
     }
 
     private F getDateTimeInstance(Integer num, Integer num2, TimeZone timeZone, Locale locale) {
@@ -63,23 +64,23 @@ public abstract class FormatCache<F extends Format> {
         MultipartKey multipartKey = new MultipartKey(num, num2, locale);
         ConcurrentMap<MultipartKey, String> concurrentMap = cDateTimeInstanceCache;
         String str = concurrentMap.get(multipartKey);
-        if (str == null) {
-            try {
-                if (num == null) {
-                    dateTimeInstance = DateFormat.getTimeInstance(num2.intValue(), locale);
-                } else if (num2 == null) {
-                    dateTimeInstance = DateFormat.getDateInstance(num.intValue(), locale);
-                } else {
-                    dateTimeInstance = DateFormat.getDateTimeInstance(num.intValue(), num2.intValue(), locale);
-                }
-                String pattern = ((SimpleDateFormat) dateTimeInstance).toPattern();
-                String putIfAbsent = concurrentMap.putIfAbsent(multipartKey, pattern);
-                return putIfAbsent != null ? putIfAbsent : pattern;
-            } catch (ClassCastException unused) {
-                throw new IllegalArgumentException("No date time pattern for locale: " + locale);
-            }
+        if (str != null) {
+            return str;
         }
-        return str;
+        try {
+            if (num == null) {
+                dateTimeInstance = DateFormat.getTimeInstance(num2.intValue(), locale);
+            } else if (num2 == null) {
+                dateTimeInstance = DateFormat.getDateInstance(num.intValue(), locale);
+            } else {
+                dateTimeInstance = DateFormat.getDateTimeInstance(num.intValue(), num2.intValue(), locale);
+            }
+            String pattern = ((SimpleDateFormat) dateTimeInstance).toPattern();
+            String putIfAbsent = concurrentMap.putIfAbsent(multipartKey, pattern);
+            return putIfAbsent != null ? putIfAbsent : pattern;
+        } catch (ClassCastException unused) {
+            throw new IllegalArgumentException("No date time pattern for locale: " + locale);
+        }
     }
 
     public static class MultipartKey {
@@ -95,7 +96,6 @@ public abstract class FormatCache<F extends Format> {
         }
 
         public int hashCode() {
-            Object[] objArr;
             if (this.hashCode == 0) {
                 int i = 0;
                 for (Object obj : this.keys) {

@@ -34,6 +34,7 @@ import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.ImageUpdater;
 import org.telegram.ui.ProfileActivity;
+
 public class PhotoUtilities {
     public static void applyPhotoToUser(TLRPC$Photo tLRPC$Photo, TLRPC$User tLRPC$User, boolean z) {
         ArrayList<TLRPC$PhotoSize> arrayList = tLRPC$Photo.sizes;
@@ -110,8 +111,9 @@ public class PhotoUtilities {
         }
         if (tLRPC$InputFile2 != null) {
             tLRPC$TL_photos_uploadProfilePhoto.video = tLRPC$InputFile2;
+            int i2 = tLRPC$TL_photos_uploadProfilePhoto.flags;
             tLRPC$TL_photos_uploadProfilePhoto.video_start_ts = d;
-            tLRPC$TL_photos_uploadProfilePhoto.flags = tLRPC$TL_photos_uploadProfilePhoto.flags | 2 | 4;
+            tLRPC$TL_photos_uploadProfilePhoto.flags = i2 | 6;
         }
         if (tLRPC$VideoSize != null) {
             tLRPC$TL_photos_uploadProfilePhoto.video_emoji_markup = tLRPC$VideoSize;
@@ -311,8 +313,9 @@ public class PhotoUtilities {
             }
             if (tLRPC$InputFile2 != null) {
                 tLRPC$TL_photos_uploadProfilePhoto.video = tLRPC$InputFile2;
+                int i = tLRPC$TL_photos_uploadProfilePhoto.flags;
                 tLRPC$TL_photos_uploadProfilePhoto.video_start_ts = d;
-                tLRPC$TL_photos_uploadProfilePhoto.flags = tLRPC$TL_photos_uploadProfilePhoto.flags | 2 | 4;
+                tLRPC$TL_photos_uploadProfilePhoto.flags = i | 6;
             }
             if (tLRPC$VideoSize != null) {
                 tLRPC$TL_photos_uploadProfilePhoto.video_emoji_markup = tLRPC$VideoSize;

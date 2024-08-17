@@ -3,6 +3,7 @@ package org.telegram.tgnet.tl;
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$InputPeer;
+
 public class TL_stats$TL_getStoryPublicForwards extends TLObject {
     public int id;
     public int limit;

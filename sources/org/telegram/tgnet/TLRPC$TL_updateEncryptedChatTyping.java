@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_updateEncryptedChatTyping extends TLRPC$Update {
     public int chat_id;
 

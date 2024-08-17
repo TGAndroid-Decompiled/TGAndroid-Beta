@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_account_setGlobalPrivacySettings extends TLObject {
     public TLRPC$TL_globalPrivacySettings settings;
 

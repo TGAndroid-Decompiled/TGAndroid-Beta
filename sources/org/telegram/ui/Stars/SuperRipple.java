@@ -12,6 +12,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.RLottieDrawable;
+
 public class SuperRipple extends ISuperRipple {
     public final int MAX_COUNT;
     public final float[] centerX;
@@ -43,6 +44,7 @@ public class SuperRipple extends ISuperRipple {
 
     public SuperRipple(View view) {
         super(view);
+        RenderEffect createRuntimeShaderEffect;
         this.effects = new ArrayList<>();
         this.MAX_COUNT = 7;
         this.t = new float[7];
@@ -52,7 +54,8 @@ public class SuperRipple extends ISuperRipple {
         RuntimeShader runtimeShader = new RuntimeShader(RLottieDrawable.readRes(null, R.raw.superripple_effect));
         this.shader = runtimeShader;
         setupSizeUniforms(true);
-        this.effect = RenderEffect.createRuntimeShaderEffect(runtimeShader, "img");
+        createRuntimeShaderEffect = RenderEffect.createRuntimeShaderEffect(runtimeShader, "img");
+        this.effect = createRuntimeShaderEffect;
     }
 
     private void setupSizeUniforms(boolean r11) {
@@ -64,8 +67,7 @@ public class SuperRipple extends ISuperRipple {
         if (this.effects.size() >= 7) {
             return;
         }
-        float max = (Math.max(Math.max(MathUtils.distance(0.0f, 0.0f, f, f2), MathUtils.distance(this.view.getWidth(), 0.0f, f, f2)), Math.max(MathUtils.distance(0.0f, this.view.getHeight(), f, f2), MathUtils.distance(this.view.getWidth(), this.view.getHeight(), f, f2))) * 2.0f) / (AndroidUtilities.density * 1200.0f);
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, max);
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, (Math.max(Math.max(MathUtils.distance(0.0f, 0.0f, f, f2), MathUtils.distance(this.view.getWidth(), 0.0f, f, f2)), Math.max(MathUtils.distance(0.0f, this.view.getHeight(), f, f2), MathUtils.distance(this.view.getWidth(), this.view.getHeight(), f, f2))) * 2.0f) / (AndroidUtilities.density * 1200.0f));
         final Effect effect = new Effect(f, f2, f3, ofFloat);
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -81,7 +83,7 @@ public class SuperRipple extends ISuperRipple {
             }
         });
         ofFloat.setInterpolator(CubicBezierInterpolator.EASE_OUT);
-        ofFloat.setDuration(max * 1000.0f);
+        ofFloat.setDuration(r2 * 1000.0f);
         this.effects.add(effect);
         updateProperties();
         ofFloat.start();
@@ -93,6 +95,7 @@ public class SuperRipple extends ISuperRipple {
     }
 
     public void updateProperties() {
+        RenderEffect createRuntimeShaderEffect;
         boolean z = false;
         if (!this.effects.isEmpty()) {
             boolean z2 = true;
@@ -119,7 +122,8 @@ public class SuperRipple extends ISuperRipple {
                 this.shader.setFloatUniform("centerY", this.centerY);
                 this.shader.setFloatUniform("intensity", this.intensity);
                 setupSizeUniforms(false);
-                this.effect = RenderEffect.createRuntimeShaderEffect(this.shader, "img");
+                createRuntimeShaderEffect = RenderEffect.createRuntimeShaderEffect(this.shader, "img");
+                this.effect = createRuntimeShaderEffect;
             }
             z = z2;
         }

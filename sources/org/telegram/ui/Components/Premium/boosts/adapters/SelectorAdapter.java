@@ -34,6 +34,7 @@ import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorLetterCe
 import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorUserCell;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.StickerEmptyView;
+
 public class SelectorAdapter extends AdapterWithDiffUtils {
     private HashMap<Long, Integer> chatsParticipantsCount = new HashMap<>();
     private final Context context;
@@ -90,45 +91,45 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        SelectorUserCell selectorUserCell;
+        View view;
         if (i == -1) {
-            selectorUserCell = new View(this.context);
+            view = new View(this.context);
         } else if (i == 3) {
-            selectorUserCell = new SelectorUserCell(this.context, this.needChecks, this.resourcesProvider, this.isGreenSelector);
+            view = new SelectorUserCell(this.context, this.needChecks, this.resourcesProvider, this.isGreenSelector);
         } else if (i == 5) {
             StickerEmptyView stickerEmptyView = new StickerEmptyView(this.context, null, 1, this.resourcesProvider);
             stickerEmptyView.title.setText(LocaleController.getString("NoResult", R.string.NoResult));
             stickerEmptyView.subtitle.setText(LocaleController.getString("SearchEmptyViewFilteredSubtitle2", R.string.SearchEmptyViewFilteredSubtitle2));
             stickerEmptyView.linearLayout.setTranslationY(AndroidUtilities.dp(24.0f));
-            selectorUserCell = stickerEmptyView;
+            view = stickerEmptyView;
         } else if (i == 7) {
-            selectorUserCell = new SelectorLetterCell(this.context, this.resourcesProvider);
+            view = new SelectorLetterCell(this.context, this.resourcesProvider);
         } else if (i == 6) {
-            selectorUserCell = new SelectorCountryCell(this.context, this.resourcesProvider);
+            view = new SelectorCountryCell(this.context, this.resourcesProvider);
         } else if (i == 8) {
-            selectorUserCell = new GraySectionCell(this.context, this.resourcesProvider);
+            view = new GraySectionCell(this.context, this.resourcesProvider);
         } else if (i == 9) {
             TextCell textCell = new TextCell(this.context, this.resourcesProvider);
             textCell.leftPadding = 16;
             textCell.imageLeft = 19;
-            selectorUserCell = textCell;
+            view = textCell;
         } else {
-            selectorUserCell = new View(this.context);
+            view = new View(this.context);
         }
-        return new RecyclerListView.Holder(selectorUserCell);
+        return new RecyclerListView.Holder(view);
     }
 
     public int getParticipantsCount(TLRPC$Chat tLRPC$Chat) {
         Integer num;
         int i;
         TLRPC$ChatFull chatFull = MessagesController.getInstance(UserConfig.selectedAccount).getChatFull(tLRPC$Chat.id);
-        if (chatFull == null || (i = chatFull.participants_count) <= 0) {
-            if (!this.chatsParticipantsCount.isEmpty() && (num = this.chatsParticipantsCount.get(Long.valueOf(tLRPC$Chat.id))) != null) {
-                return num.intValue();
-            }
-            return tLRPC$Chat.participants_count;
+        if (chatFull != null && (i = chatFull.participants_count) > 0) {
+            return i;
         }
-        return i;
+        if (!this.chatsParticipantsCount.isEmpty() && (num = this.chatsParticipantsCount.get(Long.valueOf(tLRPC$Chat.id))) != null) {
+            return num.intValue();
+        }
+        return tLRPC$Chat.participants_count;
     }
 
     @Override
@@ -140,7 +141,6 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
         }
         Item item = list.get(i);
         int itemViewType = viewHolder.getItemViewType();
-        boolean z = true;
         if (itemViewType == 3) {
             SelectorUserCell selectorUserCell = (SelectorUserCell) viewHolder.itemView;
             TLRPC$User tLRPC$User = item.user;
@@ -171,52 +171,64 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
             selectorUserCell.setCheckboxAlpha(1.0f, false);
             int i3 = i + 1;
             if (i3 < this.items.size() && this.items.get(i3).viewType != itemViewType) {
-                z = false;
+                r4 = false;
             }
-            selectorUserCell.setDivider(z);
+            selectorUserCell.setDivider(r4);
             if (i3 < this.items.size() && this.items.get(i3).viewType == 7) {
                 selectorUserCell.setDivider(false);
             }
             selectorUserCell.setOptions(item.options);
-        } else if (itemViewType == 6) {
+            return;
+        }
+        if (itemViewType == 6) {
             SelectorCountryCell selectorCountryCell = (SelectorCountryCell) viewHolder.itemView;
-            selectorCountryCell.setCountry(item.country, (i >= this.items.size() - 1 || (i2 = i + 1) >= this.items.size() - 1 || this.items.get(i2).viewType == 7) ? false : false);
+            selectorCountryCell.setCountry(item.country, i < this.items.size() - 1 && (i2 = i + 1) < this.items.size() - 1 && this.items.get(i2).viewType != 7);
             selectorCountryCell.setChecked(item.checked, false);
-        } else if (itemViewType == -1) {
+            return;
+        }
+        if (itemViewType == -1) {
             int i4 = item.padHeight;
             if (i4 < 0) {
                 i4 = (int) (AndroidUtilities.displaySize.y * 0.3f);
             }
             viewHolder.itemView.setLayoutParams(new RecyclerView.LayoutParams(-1, i4));
-        } else if (itemViewType == 7) {
+            return;
+        }
+        if (itemViewType == 7) {
             ((SelectorLetterCell) viewHolder.itemView).setLetter(item.text);
-        } else if (itemViewType == 5) {
+            return;
+        }
+        if (itemViewType == 5) {
             try {
                 ((StickerEmptyView) viewHolder.itemView).stickerView.getImageReceiver().startAnimation();
+                return;
             } catch (Exception unused) {
+                return;
             }
-        } else if (itemViewType != 8) {
+        }
+        if (itemViewType != 8) {
             if (itemViewType == 9) {
                 TextCell textCell = (TextCell) viewHolder.itemView;
                 textCell.setColors(Theme.key_windowBackgroundWhiteBlueIcon, Theme.key_windowBackgroundWhiteBlueButton);
                 textCell.setTextAndIcon(item.text, item.resId, false);
+                return;
             }
-        } else {
-            GraySectionCell graySectionCell = (GraySectionCell) viewHolder.itemView;
-            if (TextUtils.equals(graySectionCell.getText(), item.text)) {
-                CharSequence charSequence = item.subtext;
-                if (charSequence == null) {
-                    charSequence = "";
-                }
-                graySectionCell.setRightText(charSequence, true, item.callback);
-            } else {
-                graySectionCell.setText(Emoji.replaceWithRestrictedEmoji(item.text, graySectionCell.getTextView(), (Runnable) null));
-                if (!TextUtils.isEmpty(item.subtext)) {
-                    graySectionCell.setRightText(item.subtext, item.callback);
-                }
-            }
-            this.topSectionCell = graySectionCell;
+            return;
         }
+        GraySectionCell graySectionCell = (GraySectionCell) viewHolder.itemView;
+        if (TextUtils.equals(graySectionCell.getText(), item.text)) {
+            CharSequence charSequence = item.subtext;
+            if (charSequence == null) {
+                charSequence = "";
+            }
+            graySectionCell.setRightText(charSequence, true, item.callback);
+        } else {
+            graySectionCell.setText(Emoji.replaceWithRestrictedEmoji(item.text, graySectionCell.getTextView(), (Runnable) null));
+            if (!TextUtils.isEmpty(item.subtext)) {
+                graySectionCell.setRightText(item.subtext, item.callback);
+            }
+        }
+        this.topSectionCell = graySectionCell;
     }
 
     @Override
@@ -359,21 +371,21 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
             if (i != item.viewType) {
                 return false;
             }
-            if (i != -1 || this.padHeight == item.padHeight) {
-                if (i != 3 || (getDialogId() == item.getDialogId() && this.type == item.type)) {
-                    int i2 = this.viewType;
-                    if (i2 != 6 || this.country == item.country) {
-                        if (i2 != 7 || TextUtils.equals(this.text, item.text)) {
-                            if (this.viewType != 8 || TextUtils.equals(this.text, item.text)) {
-                                return this.viewType != 9 || (TextUtils.equals(this.text, item.text) && this.id == item.id && this.resId == item.resId);
-                            }
-                            return false;
-                        }
-                        return false;
-                    }
-                    return false;
-                }
+            if (i == -1 && this.padHeight != item.padHeight) {
                 return false;
+            }
+            if (i == 3 && (getDialogId() != item.getDialogId() || this.type != item.type)) {
+                return false;
+            }
+            int i2 = this.viewType;
+            if (i2 == 6 && this.country != item.country) {
+                return false;
+            }
+            if (i2 == 7 && !TextUtils.equals(this.text, item.text)) {
+                return false;
+            }
+            if (this.viewType != 8 || TextUtils.equals(this.text, item.text)) {
+                return this.viewType != 9 || (TextUtils.equals(this.text, item.text) && this.id == item.id && this.resId == item.resId);
             }
             return false;
         }
@@ -390,15 +402,15 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
             if (this.checked != item2.checked) {
                 return false;
             }
-            if (this.viewType == 8) {
-                if (TextUtils.equals(this.subtext, item2.subtext)) {
-                    if ((this.callback == null) == (item2.callback == null)) {
-                        return true;
-                    }
-                }
-                return false;
+            if (this.viewType != 8) {
+                return true;
             }
-            return true;
+            if (TextUtils.equals(this.subtext, item2.subtext)) {
+                if ((this.callback == null) == (item2.callback == null)) {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

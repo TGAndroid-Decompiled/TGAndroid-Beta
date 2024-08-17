@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import org.telegram.messenger.SecureDocumentKey;
 import org.telegram.messenger.Utilities;
+
 public class EncryptedFileInputStream extends FileInputStream {
     private static final int MODE_CBC = 1;
     private static final int MODE_CTR = 0;
@@ -31,7 +32,7 @@ public class EncryptedFileInputStream extends FileInputStream {
         this.key = bArr;
         this.iv = new byte[16];
         this.currentMode = 1;
-        System.arraycopy(secureDocumentKey.file_key, 0, bArr, 0, bArr.length);
+        System.arraycopy(secureDocumentKey.file_key, 0, bArr, 0, 32);
         byte[] bArr2 = secureDocumentKey.file_iv;
         byte[] bArr3 = this.iv;
         System.arraycopy(bArr2, 0, bArr3, 0, bArr3.length);
@@ -39,12 +40,11 @@ public class EncryptedFileInputStream extends FileInputStream {
 
     @Override
     public int read(byte[] bArr, int i, int i2) throws IOException {
-        byte[] bArr2;
         if (this.currentMode == 1 && this.fileOffset == 0) {
             super.read(new byte[32], 0, 32);
             Utilities.aesCbcEncryptionByteArraySafe(bArr, this.key, this.iv, i, i2, this.fileOffset, 0);
             this.fileOffset += 32;
-            skip((bArr2[0] & 255) - 32);
+            skip((r11[0] & 255) - 32);
         }
         int read = super.read(bArr, i, i2);
         int i3 = this.currentMode;

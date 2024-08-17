@@ -9,20 +9,27 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.TLRPC$PhoneCall;
 import org.telegram.ui.Components.voip.VoIPHelper;
+
 @TargetApi(23)
 public class VoIPPermissionActivity extends Activity {
     @Override
     protected void onCreate(Bundle bundle) {
+        int checkSelfPermission;
+        int checkSelfPermission2;
         TLRPC$PhoneCall tLRPC$PhoneCall;
         super.onCreate(bundle);
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         boolean z = (sharedInstance == null || (tLRPC$PhoneCall = sharedInstance.privateCall) == null || !tLRPC$PhoneCall.video) ? false : true;
         ArrayList arrayList = new ArrayList();
-        if (checkSelfPermission("android.permission.RECORD_AUDIO") != 0) {
+        checkSelfPermission = checkSelfPermission("android.permission.RECORD_AUDIO");
+        if (checkSelfPermission != 0) {
             arrayList.add("android.permission.RECORD_AUDIO");
         }
-        if (z && checkSelfPermission("android.permission.CAMERA") != 0) {
-            arrayList.add("android.permission.CAMERA");
+        if (z) {
+            checkSelfPermission2 = checkSelfPermission("android.permission.CAMERA");
+            if (checkSelfPermission2 != 0) {
+                arrayList.add("android.permission.CAMERA");
+            }
         }
         if (arrayList.isEmpty()) {
             return;
@@ -36,6 +43,7 @@ public class VoIPPermissionActivity extends Activity {
 
     @Override
     public void onRequestPermissionsResult(int i, String[] strArr, int[] iArr) {
+        boolean shouldShowRequestPermissionRationale;
         if (i == 101 || i == 102) {
             boolean z = false;
             int i2 = 0;
@@ -54,8 +62,11 @@ public class VoIPPermissionActivity extends Activity {
                     VoIPService.getSharedInstance().acceptIncomingCall();
                 }
                 finish();
-                startActivity(new Intent(this, LaunchActivity.class).setAction("voip"));
-            } else if (!shouldShowRequestPermissionRationale("android.permission.RECORD_AUDIO")) {
+                startActivity(new Intent(this, (Class<?>) LaunchActivity.class).setAction("voip"));
+                return;
+            }
+            shouldShowRequestPermissionRationale = shouldShowRequestPermissionRationale("android.permission.RECORD_AUDIO");
+            if (!shouldShowRequestPermissionRationale) {
                 if (VoIPService.getSharedInstance() != null) {
                     VoIPService.getSharedInstance().declineIncomingCall();
                 }
@@ -65,9 +76,9 @@ public class VoIPPermissionActivity extends Activity {
                         VoIPPermissionActivity.this.finish();
                     }
                 }, i);
-            } else {
-                finish();
+                return;
             }
+            finish();
         }
     }
 }

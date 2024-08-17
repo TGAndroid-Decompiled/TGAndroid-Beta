@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_inputBusinessAwayMessage extends TLObject {
     public int flags;
     public boolean offline_only;

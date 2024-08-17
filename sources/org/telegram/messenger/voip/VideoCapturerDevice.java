@@ -24,6 +24,7 @@ import org.webrtc.ScreenCapturerAndroid;
 import org.webrtc.SurfaceTextureHelper;
 import org.webrtc.VideoCapturer;
 import org.webrtc.voiceengine.WebRtcAudioRecord;
+
 @TargetApi(18)
 public class VideoCapturerDevice {
     private static final int CAPTURE_FPS = 30;
@@ -396,12 +397,12 @@ public class VideoCapturerDevice {
             VideoCapturerDevice[] videoCapturerDeviceArr = instance;
             if (i >= videoCapturerDeviceArr.length) {
                 break;
-            } else if (videoCapturerDeviceArr[i] == this) {
+            }
+            if (videoCapturerDeviceArr[i] == this) {
                 videoCapturerDeviceArr[i] = null;
                 break;
-            } else {
-                i++;
             }
+            i++;
         }
         this.handler.post(new Runnable() {
             @Override

@@ -72,6 +72,7 @@ import org.telegram.tgnet.TLRPC$TL_webDocument;
 import org.telegram.tgnet.TLRPC$VideoSize;
 import org.telegram.tgnet.TLRPC$WebDocument;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
+import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ContextLinkCell;
@@ -94,7 +95,9 @@ import org.telegram.ui.Components.StickersDialogs;
 import org.telegram.ui.Components.SuggestEmojiView;
 import org.telegram.ui.ContentPreviewViewer;
 import org.telegram.ui.Stories.DarkThemeResourceProvider;
+
 public class ContentPreviewViewer {
+
     @SuppressLint({"StaticFieldLeak"})
     private static volatile ContentPreviewViewer Instance;
     private static TextPaint textPaint;
@@ -352,7 +355,6 @@ public class ContentPreviewViewer {
     public class FrameLayoutDrawer extends FrameLayout {
         public FrameLayoutDrawer(Context context) {
             super(context);
-            ContentPreviewViewer.this = r1;
             setWillNotDraw(false);
         }
 
@@ -372,7 +374,6 @@ public class ContentPreviewViewer {
 
     public class AnonymousClass1 implements Runnable {
         AnonymousClass1() {
-            ContentPreviewViewer.this = r1;
         }
 
         @Override
@@ -434,12 +435,13 @@ public class ContentPreviewViewer {
                     }
                     ContentPreviewViewer.this.dismissPopupWindow();
                     return;
+                } else {
+                    recyclerListView.requestLayout();
+                    linearLayout.requestLayout();
+                    recyclerListView.getAdapter().notifyDataSetChanged();
+                    actionBarPopupWindowLayout.getSwipeBack().openForeground(1);
+                    return;
                 }
-                recyclerListView.requestLayout();
-                linearLayout.requestLayout();
-                recyclerListView.getAdapter().notifyDataSetChanged();
-                actionBarPopupWindowLayout.getSwipeBack().openForeground(1);
-                return;
             }
             if (ContentPreviewViewer.this.delegate != null) {
                 if (((Integer) arrayList.get(intValue)).intValue() == 1) {
@@ -459,12 +461,11 @@ public class ContentPreviewViewer {
             actionBarPopupWindowLayout.getSwipeBack().closeForeground();
         }
 
-        class View$OnClickListenerC00401 implements View.OnClickListener {
+        class ViewOnClickListenerC00401 implements View.OnClickListener {
             final ArrayList val$actions;
             final boolean val$inFavs;
 
-            View$OnClickListenerC00401(ArrayList arrayList, boolean z) {
-                AnonymousClass1.this = r1;
+            ViewOnClickListenerC00401(ArrayList arrayList, boolean z) {
                 this.val$actions = arrayList;
                 this.val$inFavs = z;
             }
@@ -492,13 +493,14 @@ public class ContentPreviewViewer {
                     final ContentPreviewViewerDelegate contentPreviewViewerDelegate = ContentPreviewViewer.this.delegate;
                     if (contentPreviewViewerDelegate == null) {
                         return;
+                    } else {
+                        AlertsCreator.createScheduleDatePickerDialog(ContentPreviewViewer.this.parentActivity, contentPreviewViewerDelegate.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
+                            @Override
+                            public final void didSelectDate(boolean z, int i) {
+                                ContentPreviewViewer.ContentPreviewViewerDelegate.this.sendSticker(tLRPC$Document, str, obj, z, i);
+                            }
+                        });
                     }
-                    AlertsCreator.createScheduleDatePickerDialog(ContentPreviewViewer.this.parentActivity, contentPreviewViewerDelegate.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
-                        @Override
-                        public final void didSelectDate(boolean z, int i) {
-                            ContentPreviewViewer.ContentPreviewViewerDelegate.this.sendSticker(tLRPC$Document, str, obj, z, i);
-                        }
-                    });
                 } else if (((Integer) this.val$actions.get(intValue)).intValue() == 4) {
                     MediaDataController.getInstance(ContentPreviewViewer.this.currentAccount).addRecentSticker(0, ContentPreviewViewer.this.parentObject, ContentPreviewViewer.this.currentDocument, (int) (System.currentTimeMillis() / 1000), true);
                 } else if (((Integer) this.val$actions.get(intValue)).intValue() == 5) {
@@ -509,6 +511,33 @@ public class ContentPreviewViewer {
                     ContentPreviewViewer.this.delegate.deleteSticker(ContentPreviewViewer.this.currentDocument);
                 }
                 ContentPreviewViewer.this.dismissPopupWindow();
+            }
+        }
+
+        class AnonymousClass2 extends ActionBarPopupWindow {
+            AnonymousClass2(View view, int i, int i2) {
+                super(view, i, i2);
+            }
+
+            @Override
+            public void dismiss() {
+                super.dismiss();
+                ContentPreviewViewer contentPreviewViewer = ContentPreviewViewer.this;
+                contentPreviewViewer.popupWindow = null;
+                contentPreviewViewer.menuVisible = false;
+                if (ContentPreviewViewer.this.closeOnDismiss) {
+                    ContentPreviewViewer.this.close();
+                }
+                if (ContentPreviewViewer.this.currentPreviewCell != null) {
+                    if (ContentPreviewViewer.this.currentPreviewCell instanceof StickerEmojiCell) {
+                        ((StickerEmojiCell) ContentPreviewViewer.this.currentPreviewCell).setScaled(false);
+                    } else if (ContentPreviewViewer.this.currentPreviewCell instanceof StickerCell) {
+                        ((StickerCell) ContentPreviewViewer.this.currentPreviewCell).setScaled(false);
+                    } else if (ContentPreviewViewer.this.currentPreviewCell instanceof ContextLinkCell) {
+                        ((ContextLinkCell) ContentPreviewViewer.this.currentPreviewCell).setScaled(false);
+                    }
+                    ContentPreviewViewer.this.currentPreviewCell = null;
+                }
             }
         }
 
@@ -531,6 +560,23 @@ public class ContentPreviewViewer {
                 MediaDataController.getInstance(ContentPreviewViewer.this.currentAccount).addRecentSticker(2, ContentPreviewViewer.this.parentObject, ContentPreviewViewer.this.currentDocument, (int) (System.currentTimeMillis() / 1000), z);
             }
             ContentPreviewViewer.this.dismissPopupWindow();
+        }
+
+        class AnonymousClass3 extends ActionBarPopupWindow {
+            AnonymousClass3(View view, int i, int i2) {
+                super(view, i, i2);
+            }
+
+            @Override
+            public void dismiss() {
+                super.dismiss();
+                ContentPreviewViewer contentPreviewViewer = ContentPreviewViewer.this;
+                contentPreviewViewer.popupWindow = null;
+                contentPreviewViewer.menuVisible = false;
+                if (ContentPreviewViewer.this.closeOnDismiss) {
+                    ContentPreviewViewer.this.close();
+                }
+            }
         }
 
         public void lambda$run$6(ValueAnimator valueAnimator) {
@@ -578,6 +624,23 @@ public class ContentPreviewViewer {
             contentPreviewViewerDelegate.sendGif(tLRPC$Document, obj, z, i);
         }
 
+        class AnonymousClass4 extends ActionBarPopupWindow {
+            AnonymousClass4(View view, int i, int i2) {
+                super(view, i, i2);
+            }
+
+            @Override
+            public void dismiss() {
+                super.dismiss();
+                ContentPreviewViewer contentPreviewViewer = ContentPreviewViewer.this;
+                contentPreviewViewer.popupWindow = null;
+                contentPreviewViewer.menuVisible = false;
+                if (ContentPreviewViewer.this.closeOnDismiss) {
+                    ContentPreviewViewer.this.close();
+                }
+            }
+        }
+
         public void lambda$run$9(ValueAnimator valueAnimator) {
             ContentPreviewViewer.this.currentMoveYProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             ContentPreviewViewer contentPreviewViewer = ContentPreviewViewer.this;
@@ -590,11 +653,23 @@ public class ContentPreviewViewer {
         this.stickerSetForCustomSticker = tLRPC$TL_messages_stickerSet;
     }
 
+    public class AnonymousClass2 extends ReactionsContainerLayout {
+        AnonymousClass2(int i, BaseFragment baseFragment, Context context, int i2, Theme.ResourcesProvider resourcesProvider) {
+            super(i, baseFragment, context, i2, resourcesProvider);
+        }
+
+        @Override
+        public void invalidateLoopViews() {
+            super.invalidateLoopViews();
+            ContentPreviewViewer.this.setFocusable(getReactionsWindow() != null);
+        }
+    }
+
     public void showEmojiSelectorForStickers() {
         if (this.reactionsLayout == null) {
-            ReactionsContainerLayout reactionsContainerLayout = new ReactionsContainerLayout(4, null, this.containerView.getContext(), UserConfig.selectedAccount, this.resourcesProvider) {
-                {
-                    ContentPreviewViewer.this = this;
+            AnonymousClass2 anonymousClass2 = new ReactionsContainerLayout(4, null, this.containerView.getContext(), UserConfig.selectedAccount, this.resourcesProvider) {
+                AnonymousClass2(int i, BaseFragment baseFragment, Context context, int i2, Theme.ResourcesProvider resourcesProvider) {
+                    super(i, baseFragment, context, i2, resourcesProvider);
                 }
 
                 @Override
@@ -603,9 +678,9 @@ public class ContentPreviewViewer {
                     ContentPreviewViewer.this.setFocusable(getReactionsWindow() != null);
                 }
             };
-            this.reactionsLayout = reactionsContainerLayout;
-            reactionsContainerLayout.skipEnterAnimation = true;
-            reactionsContainerLayout.setPadding(0, AndroidUtilities.dp(22.0f), 0, AndroidUtilities.dp(22.0f));
+            this.reactionsLayout = anonymousClass2;
+            anonymousClass2.skipEnterAnimation = true;
+            anonymousClass2.setPadding(0, AndroidUtilities.dp(22.0f), 0, AndroidUtilities.dp(22.0f));
             this.reactionsLayout.setClipChildren(false);
             this.reactionsLayout.setClipToPadding(false);
             this.reactionsLayout.setVisibility(0);
@@ -664,8 +739,9 @@ public class ContentPreviewViewer {
         if (this.selectedEmojis.contains(visibleReaction.emojicon)) {
             if (this.selectedEmojis.size() <= 1) {
                 return;
+            } else {
+                this.selectedEmojis.remove(visibleReaction.emojicon);
             }
-            this.selectedEmojis.remove(visibleReaction.emojicon);
         } else {
             this.selectedEmojis.add(visibleReaction.emojicon);
             if (this.selectedEmojis.size() > 7) {
@@ -734,10 +810,13 @@ public class ContentPreviewViewer {
         ContentPreviewViewer contentPreviewViewer = Instance;
         if (contentPreviewViewer == null) {
             synchronized (PhotoViewer.class) {
-                contentPreviewViewer = Instance;
-                if (contentPreviewViewer == null) {
-                    contentPreviewViewer = new ContentPreviewViewer();
-                    Instance = contentPreviewViewer;
+                try {
+                    contentPreviewViewer = Instance;
+                    if (contentPreviewViewer == null) {
+                        contentPreviewViewer = new ContentPreviewViewer();
+                        Instance = contentPreviewViewer;
+                    }
+                } finally {
                 }
             }
         }
@@ -837,6 +916,7 @@ public class ContentPreviewViewer {
                         }
                         i2 = -1;
                     } else {
+                        i2 = 2;
                         if (childAt instanceof EmojiPacksAlert.EmojiImageView) {
                             this.centerImage.setRoundRadius(0);
                         } else if ((childAt instanceof EmojiView.ImageViewEmoji) && ((EmojiView.ImageViewEmoji) childAt).getSpan() != null) {
@@ -847,7 +927,6 @@ public class ContentPreviewViewer {
                             }
                             i2 = -1;
                         }
-                        i2 = 2;
                     }
                     if (i2 == -1) {
                         return false;
@@ -876,7 +955,6 @@ public class ContentPreviewViewer {
             return;
         }
         recyclerListView.setOnItemClickListener((RecyclerListView.OnItemClickListener) null);
-        boolean z = true;
         recyclerListView.requestDisallowInterceptTouchEvent(true);
         this.openPreviewRunnable = null;
         setParentActivity(AndroidUtilities.findActivity(recyclerListView.getContext()));
@@ -907,10 +985,11 @@ public class ContentPreviewViewer {
             }
         } else if (view instanceof EmojiPacksAlert.EmojiImageView) {
             TLRPC$Document document2 = ((EmojiPacksAlert.EmojiImageView) view).getDocument();
-            if (document2 != null) {
+            if (document2 == null) {
+                return;
+            } else {
                 open(document2, null, MessageObject.findAnimatedEmojiEmoticon(document2, null, Integer.valueOf(this.currentAccount)), null, null, i, false, null, resourcesProvider);
             }
-            z = false;
         } else if (view instanceof EmojiView.ImageViewEmoji) {
             AnimatedEmojiSpan span = ((EmojiView.ImageViewEmoji) view).getSpan();
             if (span != null) {
@@ -921,26 +1000,27 @@ public class ContentPreviewViewer {
             } else {
                 tLRPC$Document = null;
             }
-            if (tLRPC$Document != null) {
+            if (tLRPC$Document == null) {
+                return;
+            } else {
                 open(tLRPC$Document, null, MessageObject.findAnimatedEmojiEmoticon(tLRPC$Document, null, Integer.valueOf(this.currentAccount)), null, null, i, false, null, resourcesProvider);
             }
-            z = false;
         } else {
-            if (view instanceof SuggestEmojiView.EmojiImageView) {
-                Drawable drawable = ((SuggestEmojiView.EmojiImageView) view).drawable;
-                TLRPC$Document document3 = drawable instanceof AnimatedEmojiDrawable ? ((AnimatedEmojiDrawable) drawable).getDocument() : null;
-                if (document3 != null) {
-                    open(document3, null, MessageObject.findAnimatedEmojiEmoticon(document3, null, Integer.valueOf(this.currentAccount)), null, null, i, false, null, resourcesProvider);
-                }
+            if (!(view instanceof SuggestEmojiView.EmojiImageView)) {
+                return;
             }
-            z = false;
+            Drawable drawable = ((SuggestEmojiView.EmojiImageView) view).drawable;
+            TLRPC$Document document3 = drawable instanceof AnimatedEmojiDrawable ? ((AnimatedEmojiDrawable) drawable).getDocument() : null;
+            if (document3 == null) {
+                return;
+            } else {
+                open(document3, null, MessageObject.findAnimatedEmojiEmoticon(document3, null, Integer.valueOf(this.currentAccount)), null, null, i, false, null, resourcesProvider);
+            }
         }
-        if (z) {
-            this.currentPreviewCell.performHapticFeedback(0, 2);
-            ContentPreviewViewerDelegate contentPreviewViewerDelegate4 = this.delegate;
-            if (contentPreviewViewerDelegate4 != null) {
-                contentPreviewViewerDelegate4.resetTouch();
-            }
+        this.currentPreviewCell.performHapticFeedback(0, 2);
+        ContentPreviewViewerDelegate contentPreviewViewerDelegate4 = this.delegate;
+        if (contentPreviewViewerDelegate4 != null) {
+            contentPreviewViewerDelegate4.resetTouch();
         }
     }
 
@@ -964,9 +1044,9 @@ public class ContentPreviewViewer {
         }
         this.parentActivity = activity;
         this.slideUpDrawable = activity.getResources().getDrawable(R.drawable.preview_arrow);
-        FrameLayout frameLayout = new FrameLayout(activity) {
-            {
-                ContentPreviewViewer.this = this;
+        AnonymousClass3 anonymousClass3 = new FrameLayout(activity) {
+            AnonymousClass3(Context activity2) {
+                super(activity2);
             }
 
             @Override
@@ -982,8 +1062,8 @@ public class ContentPreviewViewer {
                 return super.dispatchKeyEvent(keyEvent);
             }
         };
-        this.windowView = frameLayout;
-        frameLayout.setFocusable(true);
+        this.windowView = anonymousClass3;
+        anonymousClass3.setFocusable(true);
         this.windowView.setFocusableInTouchMode(true);
         int i2 = Build.VERSION.SDK_INT;
         if (i2 >= 21) {
@@ -997,9 +1077,9 @@ public class ContentPreviewViewer {
                 }
             });
         }
-        FrameLayoutDrawer frameLayoutDrawer = new FrameLayoutDrawer(activity) {
-            {
-                ContentPreviewViewer.this = this;
+        AnonymousClass4 anonymousClass4 = new FrameLayoutDrawer(activity2) {
+            AnonymousClass4(Context activity2) {
+                super(activity2);
             }
 
             @Override
@@ -1016,8 +1096,8 @@ public class ContentPreviewViewer {
                 ContentPreviewViewer.this.effectImage.onDetachedFromWindow();
             }
         };
-        this.containerView = frameLayoutDrawer;
-        frameLayoutDrawer.setFocusable(false);
+        this.containerView = anonymousClass4;
+        anonymousClass4.setFocusable(false);
         this.windowView.addView(this.containerView, LayoutHelper.createFrame(-1, -1, 51));
         this.containerView.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -1047,9 +1127,48 @@ public class ContentPreviewViewer {
         this.effectImage.setParentView(this.containerView);
     }
 
+    public class AnonymousClass3 extends FrameLayout {
+        AnonymousClass3(Context activity2) {
+            super(activity2);
+        }
+
+        @Override
+        public boolean dispatchKeyEvent(KeyEvent keyEvent) {
+            if (keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1) {
+                if (ContentPreviewViewer.this.isStickerEditor || ContentPreviewViewer.this.menuVisible) {
+                    ContentPreviewViewer.this.closeWithMenu();
+                } else {
+                    ContentPreviewViewer.this.close();
+                }
+                return true;
+            }
+            return super.dispatchKeyEvent(keyEvent);
+        }
+    }
+
     public WindowInsets lambda$setParentActivity$6(View view, WindowInsets windowInsets) {
         this.lastInsets = windowInsets;
         return windowInsets;
+    }
+
+    public class AnonymousClass4 extends FrameLayoutDrawer {
+        AnonymousClass4(Context activity2) {
+            super(activity2);
+        }
+
+        @Override
+        protected void onAttachedToWindow() {
+            super.onAttachedToWindow();
+            ContentPreviewViewer.this.centerImage.onAttachedToWindow();
+            ContentPreviewViewer.this.effectImage.onAttachedToWindow();
+        }
+
+        @Override
+        protected void onDetachedFromWindow() {
+            super.onDetachedFromWindow();
+            ContentPreviewViewer.this.centerImage.onDetachedFromWindow();
+            ContentPreviewViewer.this.effectImage.onDetachedFromWindow();
+        }
     }
 
     public boolean lambda$setParentActivity$7(View view, MotionEvent motionEvent) {
@@ -1103,9 +1222,10 @@ public class ContentPreviewViewer {
                 } else {
                     this.centerImage.setImage(forDocument, null, ImageLocation.getForDocument(closestPhotoSizeWithSize, tLRPC$Document), "90_90_b", tLRPC$Document.size, null, "gif" + tLRPC$Document, 0);
                 }
-            } else if (tLRPC$BotInlineResult == null || tLRPC$BotInlineResult.content == null) {
-                return;
             } else {
+                if (tLRPC$BotInlineResult == null || tLRPC$BotInlineResult.content == null) {
+                    return;
+                }
                 TLRPC$WebDocument tLRPC$WebDocument = tLRPC$BotInlineResult.thumb;
                 if ((tLRPC$WebDocument instanceof TLRPC$TL_webDocument) && "video/mp4".equals(tLRPC$WebDocument.mime_type)) {
                     this.centerImage.setImage(ImageLocation.getForWebFile(WebFile.createWithWebDocument(tLRPC$BotInlineResult.content)), null, ImageLocation.getForWebFile(WebFile.createWithWebDocument(tLRPC$BotInlineResult.thumb)), null, ImageLocation.getForWebFile(WebFile.createWithWebDocument(tLRPC$BotInlineResult.thumb)), "90_90_b", null, tLRPC$BotInlineResult.content.size, null, "gif" + tLRPC$BotInlineResult, 1);
@@ -1115,9 +1235,10 @@ public class ContentPreviewViewer {
             }
             AndroidUtilities.cancelRunOnUIThread(this.showSheetRunnable);
             AndroidUtilities.runOnUIThread(this.showSheetRunnable, 2000L);
-        } else if (tLRPC$Document == null && importingSticker == null) {
-            return;
         } else {
+            if (tLRPC$Document == null && importingSticker == null) {
+                return;
+            }
             if (textPaint == null) {
                 TextPaint textPaint2 = new TextPaint(1);
                 textPaint = textPaint2;
@@ -1135,8 +1256,9 @@ public class ContentPreviewViewer {
                     TLRPC$DocumentAttribute tLRPC$DocumentAttribute = tLRPC$Document.attributes.get(i3);
                     if ((tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeSticker) && (tLRPC$InputStickerSet = tLRPC$DocumentAttribute.stickerset) != null) {
                         break;
+                    } else {
+                        i3++;
                     }
-                    i3++;
                 }
                 if (str != null) {
                     this.stickerEmojiLayout = new StaticLayout(AndroidUtilities.replaceCharSequence("…", TextUtils.ellipsize(Emoji.replaceEmoji((CharSequence) str, textPaint.getFontMetricsInt(), AndroidUtilities.dp(24.0f), false), textPaint, AndroidUtilities.dp(200.0f), TextUtils.TruncateAt.END), ""), textPaint, AndroidUtilities.dp(200.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
@@ -1146,10 +1268,7 @@ public class ContentPreviewViewer {
                     AndroidUtilities.runOnUIThread(this.showSheetRunnable, 1300L);
                 }
                 TLRPC$TL_messages_stickerSet stickerSet = MediaDataController.getInstance(this.currentAccount).getStickerSet(tLRPC$InputStickerSet, true);
-                if (stickerSet != null && stickerSet.documents.isEmpty()) {
-                    tLRPC$InputStickerSet = null;
-                }
-                this.currentStickerSet = tLRPC$InputStickerSet;
+                this.currentStickerSet = (stickerSet == null || !stickerSet.documents.isEmpty()) ? tLRPC$InputStickerSet : null;
                 TLRPC$PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 90);
                 if (MessageObject.isVideoStickerDocument(tLRPC$Document)) {
                     this.centerImage.setImage(ImageLocation.getForDocument(tLRPC$Document), null, ImageLocation.getForDocument(closestPhotoSizeWithSize2, tLRPC$Document), null, null, 0L, "webp", this.currentStickerSet, 1);
@@ -1338,7 +1457,6 @@ public class ContentPreviewViewer {
         int i2;
         float min;
         int i3;
-        StaticLayout staticLayout;
         Drawable drawable;
         WindowInsets windowInsets;
         int stableInsetBottom;
@@ -1473,9 +1591,9 @@ public class ContentPreviewViewer {
         }
         if (this.stickerEmojiLayout != null) {
             if (this.drawEffect) {
-                canvas.translate((-staticLayout.getWidth()) / 2.0f, ((-this.effectImage.getImageHeight()) / 2.0f) - AndroidUtilities.dp(30.0f));
+                canvas.translate((-r0.getWidth()) / 2.0f, ((-this.effectImage.getImageHeight()) / 2.0f) - AndroidUtilities.dp(30.0f));
             } else {
-                canvas.translate((-staticLayout.getWidth()) / 2.0f, ((-this.centerImage.getImageHeight()) / 2.0f) - AndroidUtilities.dp(30.0f));
+                canvas.translate((-r0.getWidth()) / 2.0f, ((-this.centerImage.getImageHeight()) / 2.0f) - AndroidUtilities.dp(30.0f));
             }
             textPaint.setAlpha((int) (this.showProgress * 255.0f));
             this.stickerEmojiLayout.draw(canvas);
@@ -1484,17 +1602,23 @@ public class ContentPreviewViewer {
         if (this.isVisible) {
             if (this.showProgress != 1.0f) {
                 long currentTimeMillis = System.currentTimeMillis();
+                long j = currentTimeMillis - this.lastUpdateTime;
                 this.lastUpdateTime = currentTimeMillis;
-                this.showProgress += ((float) (currentTimeMillis - this.lastUpdateTime)) / 120.0f;
+                this.showProgress += ((float) j) / 120.0f;
                 this.containerView.invalidate();
                 if (this.showProgress > 1.0f) {
                     this.showProgress = 1.0f;
+                    return;
                 }
+                return;
             }
-        } else if (this.showProgress != 0.0f) {
+            return;
+        }
+        if (this.showProgress != 0.0f) {
             long currentTimeMillis2 = System.currentTimeMillis();
+            long j2 = currentTimeMillis2 - this.lastUpdateTime;
             this.lastUpdateTime = currentTimeMillis2;
-            this.showProgress -= ((float) (currentTimeMillis2 - this.lastUpdateTime)) / 120.0f;
+            this.showProgress -= ((float) j2) / 120.0f;
             this.containerView.invalidate();
             if (this.showProgress < 0.0f) {
                 this.showProgress = 0.0f;
@@ -1563,33 +1687,33 @@ public class ContentPreviewViewer {
     }
 
     public boolean showMenuFor(View view) {
-        if (view instanceof StickerEmojiCell) {
-            Activity findActivity = AndroidUtilities.findActivity(view.getContext());
-            if (findActivity == null) {
-                return true;
-            }
-            setParentActivity(findActivity);
-            StickerEmojiCell stickerEmojiCell = (StickerEmojiCell) view;
-            View view2 = this.currentPreviewCell;
-            if (view2 instanceof StickerEmojiCell) {
-                ((StickerEmojiCell) view2).setScaled(false);
-            } else if (view2 instanceof StickerCell) {
-                ((StickerCell) view2).setScaled(false);
-            } else if (view2 instanceof ContextLinkCell) {
-                ((ContextLinkCell) view2).setScaled(false);
-            }
-            this.currentPreviewCell = stickerEmojiCell;
-            TLRPC$Document sticker = stickerEmojiCell.getSticker();
-            SendMessagesHelper.ImportingSticker stickerPath = stickerEmojiCell.getStickerPath();
-            String findAnimatedEmojiEmoticon = MessageObject.findAnimatedEmojiEmoticon(stickerEmojiCell.getSticker(), null, Integer.valueOf(this.currentAccount));
-            ContentPreviewViewerDelegate contentPreviewViewerDelegate = this.delegate;
-            open(sticker, stickerPath, findAnimatedEmojiEmoticon, contentPreviewViewerDelegate != null ? contentPreviewViewerDelegate.getQuery(false) : null, null, 0, stickerEmojiCell.isRecent(), stickerEmojiCell.getParentObject(), this.resourcesProvider);
-            AndroidUtilities.cancelRunOnUIThread(this.showSheetRunnable);
-            AndroidUtilities.runOnUIThread(this.showSheetRunnable, 16L);
-            stickerEmojiCell.setScaled(true);
+        if (!(view instanceof StickerEmojiCell)) {
+            return false;
+        }
+        Activity findActivity = AndroidUtilities.findActivity(view.getContext());
+        if (findActivity == null) {
             return true;
         }
-        return false;
+        setParentActivity(findActivity);
+        StickerEmojiCell stickerEmojiCell = (StickerEmojiCell) view;
+        View view2 = this.currentPreviewCell;
+        if (view2 instanceof StickerEmojiCell) {
+            ((StickerEmojiCell) view2).setScaled(false);
+        } else if (view2 instanceof StickerCell) {
+            ((StickerCell) view2).setScaled(false);
+        } else if (view2 instanceof ContextLinkCell) {
+            ((ContextLinkCell) view2).setScaled(false);
+        }
+        this.currentPreviewCell = stickerEmojiCell;
+        TLRPC$Document sticker = stickerEmojiCell.getSticker();
+        SendMessagesHelper.ImportingSticker stickerPath = stickerEmojiCell.getStickerPath();
+        String findAnimatedEmojiEmoticon = MessageObject.findAnimatedEmojiEmoticon(stickerEmojiCell.getSticker(), null, Integer.valueOf(this.currentAccount));
+        ContentPreviewViewerDelegate contentPreviewViewerDelegate = this.delegate;
+        open(sticker, stickerPath, findAnimatedEmojiEmoticon, contentPreviewViewerDelegate != null ? contentPreviewViewerDelegate.getQuery(false) : null, null, 0, stickerEmojiCell.isRecent(), stickerEmojiCell.getParentObject(), this.resourcesProvider);
+        AndroidUtilities.cancelRunOnUIThread(this.showSheetRunnable);
+        AndroidUtilities.runOnUIThread(this.showSheetRunnable, 16L);
+        stickerEmojiCell.setScaled(true);
+        return true;
     }
 
     public void showCustomStickerActions(String str, VideoEditedInfo videoEditedInfo, View view, ArrayList<String> arrayList, ContentPreviewViewerDelegate contentPreviewViewerDelegate) {
@@ -1654,14 +1778,14 @@ public class ContentPreviewViewer {
         if (this.parentActivity == null) {
             return null;
         }
-        final ArrayList arrayList = new ArrayList();
+        ArrayList arrayList = new ArrayList();
         arrayList.add(new TLRPC$TL_stickerSetNoCovered());
         TLRPC$TL_messages_getMyStickers tLRPC$TL_messages_getMyStickers = new TLRPC$TL_messages_getMyStickers();
         tLRPC$TL_messages_getMyStickers.limit = 100;
         getMyStickersRemote(tLRPC$TL_messages_getMyStickers, arrayList);
-        RecyclerListView recyclerListView = new RecyclerListView(this.parentActivity) {
-            {
-                ContentPreviewViewer.this = this;
+        AnonymousClass5 anonymousClass5 = new RecyclerListView(this.parentActivity) {
+            AnonymousClass5(Context context) {
+                super(context);
             }
 
             @Override
@@ -1674,27 +1798,31 @@ public class ContentPreviewViewer {
                 super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
             }
         };
-        recyclerListView.setLayoutManager(new LinearLayoutManager(this.parentActivity));
-        recyclerListView.addItemDecoration(new RecyclerView.ItemDecoration() {
-            {
-                ContentPreviewViewer.this = this;
+        anonymousClass5.setLayoutManager(new LinearLayoutManager(this.parentActivity));
+        anonymousClass5.addItemDecoration(new RecyclerView.ItemDecoration() {
+            final List val$stickerSetCoveredList;
+
+            AnonymousClass6(List arrayList2) {
+                r2 = arrayList2;
             }
 
             @Override
             public void getItemOffsets(Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
-                if (recyclerView.getChildAdapterPosition(view) == arrayList.size() - 1) {
+                if (recyclerView.getChildAdapterPosition(view) == r2.size() - 1) {
                     rect.bottom = AndroidUtilities.dp(4.0f);
                 }
             }
         });
-        recyclerListView.setAdapter(new RecyclerListView.SelectionAdapter() {
+        anonymousClass5.setAdapter(new RecyclerListView.SelectionAdapter() {
+            final List val$stickerSetCoveredList;
+
             @Override
             public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
                 return true;
             }
 
-            {
-                ContentPreviewViewer.this = this;
+            AnonymousClass7(List arrayList2) {
+                r2 = arrayList2;
             }
 
             @Override
@@ -1706,15 +1834,76 @@ public class ContentPreviewViewer {
 
             @Override
             public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-                ((StickerPackNameView) viewHolder.itemView).bind((TLRPC$StickerSetCovered) arrayList.get(i));
+                ((StickerPackNameView) viewHolder.itemView).bind((TLRPC$StickerSetCovered) r2.get(i));
             }
 
             @Override
             public int getItemCount() {
-                return arrayList.size();
+                return r2.size();
             }
         });
-        return recyclerListView;
+        return anonymousClass5;
+    }
+
+    public class AnonymousClass5 extends RecyclerListView {
+        AnonymousClass5(Context context) {
+            super(context);
+        }
+
+        @Override
+        public void onMeasure(int i, int i2) {
+            int size = View.MeasureSpec.getSize(i2);
+            int dp = AndroidUtilities.dp(4.0f) + (AndroidUtilities.dp(50.0f) * getAdapter().getItemCount());
+            if (dp <= size) {
+                size = dp;
+            }
+            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
+        }
+    }
+
+    public class AnonymousClass6 extends RecyclerView.ItemDecoration {
+        final List val$stickerSetCoveredList;
+
+        AnonymousClass6(List arrayList2) {
+            r2 = arrayList2;
+        }
+
+        @Override
+        public void getItemOffsets(Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
+            if (recyclerView.getChildAdapterPosition(view) == r2.size() - 1) {
+                rect.bottom = AndroidUtilities.dp(4.0f);
+            }
+        }
+    }
+
+    public class AnonymousClass7 extends RecyclerListView.SelectionAdapter {
+        final List val$stickerSetCoveredList;
+
+        @Override
+        public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+            return true;
+        }
+
+        AnonymousClass7(List arrayList2) {
+            r2 = arrayList2;
+        }
+
+        @Override
+        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            StickerPackNameView stickerPackNameView = new StickerPackNameView(viewGroup.getContext(), ContentPreviewViewer.this.resourcesProvider);
+            stickerPackNameView.setLayoutParams(new RecyclerView.LayoutParams(-2, AndroidUtilities.dp(48.0f)));
+            return new RecyclerListView.Holder(stickerPackNameView);
+        }
+
+        @Override
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+            ((StickerPackNameView) viewHolder.itemView).bind((TLRPC$StickerSetCovered) r2.get(i));
+        }
+
+        @Override
+        public int getItemCount() {
+            return r2.size();
+        }
     }
 
     public static class StickerPackNameView extends LinearLayout {

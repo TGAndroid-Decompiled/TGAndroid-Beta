@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_channelAdminLogEventsFilter extends TLObject {
     public boolean ban;
     public boolean delete;

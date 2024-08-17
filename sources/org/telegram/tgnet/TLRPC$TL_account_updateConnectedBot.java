@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_account_updateConnectedBot extends TLObject {
     public static int constructor = 1138250269;
     public TLRPC$InputUser bot;

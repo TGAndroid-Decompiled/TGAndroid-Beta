@@ -3,8 +3,10 @@ package org.webrtc;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.hardware.camera2.CameraManager;
+import org.telegram.messenger.camera.Camera2Session$$ExternalSyntheticApiModelOutline9;
 import org.webrtc.CameraSession;
 import org.webrtc.CameraVideoCapturer;
+
 @TargetApi(21)
 public class Camera2Capturer extends CameraCapturer {
     private final CameraManager cameraManager;
@@ -58,7 +60,7 @@ public class Camera2Capturer extends CameraCapturer {
     public Camera2Capturer(Context context, String str, CameraVideoCapturer.CameraEventsHandler cameraEventsHandler) {
         super(str, cameraEventsHandler, new Camera2Enumerator(context));
         this.context = context;
-        this.cameraManager = (CameraManager) context.getSystemService("camera");
+        this.cameraManager = Camera2Session$$ExternalSyntheticApiModelOutline9.m(context.getSystemService("camera"));
     }
 
     @Override

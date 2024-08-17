@@ -2,6 +2,7 @@ package org.telegram.tgnet.tl;
 
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
+
 public class TL_account$contentSettings extends TLObject {
     public int flags;
     public boolean sensitive_can_change;

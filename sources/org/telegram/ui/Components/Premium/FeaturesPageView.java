@@ -33,13 +33,14 @@ import org.telegram.ui.Components.Premium.GLIcon.GLIconRenderer;
 import org.telegram.ui.Components.Premium.GLIcon.GLIconTextureView;
 import org.telegram.ui.Components.Premium.StarParticlesView;
 import org.telegram.ui.Components.RecyclerListView;
+
 public class FeaturesPageView extends BaseListPageView {
     RecyclerListView.SelectionAdapter adapter;
     Bitmap bitmap;
     ArrayList<Item> items;
     public final int type;
 
-    public FeaturesPageView(android.content.Context r25, int r26, org.telegram.ui.ActionBar.Theme.ResourcesProvider r27) {
+    public FeaturesPageView(android.content.Context r17, int r18, org.telegram.ui.ActionBar.Theme.ResourcesProvider r19) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.FeaturesPageView.<init>(android.content.Context, int, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
     }
 
@@ -150,7 +151,9 @@ public class FeaturesPageView extends BaseListPageView {
                 this.gradientTools.paint.setStyle(Paint.Style.STROKE);
                 this.gradientTools.paint.setStrokeCap(Paint.Cap.ROUND);
                 this.gradientTools.paint.setStrokeWidth(AndroidUtilities.dpf2(3.3f));
-            } else if (i == 1) {
+                return;
+            }
+            if (i == 1) {
                 StarParticlesView starParticlesView = new StarParticlesView(context) {
                     @Override
                     public void onMeasure(int i2, int i3) {

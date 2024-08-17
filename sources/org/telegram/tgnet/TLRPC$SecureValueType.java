@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public abstract class TLRPC$SecureValueType extends TLObject {
     public static TLRPC$SecureValueType TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$SecureValueType tLRPC$SecureValueType;

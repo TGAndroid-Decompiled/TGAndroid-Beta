@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messageActionGiftStars extends TLRPC$MessageAction {
     public long stars;
     public String transaction_id;

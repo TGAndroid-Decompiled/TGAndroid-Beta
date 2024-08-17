@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import org.telegram.ui.Charts.data.ChartData;
 import org.telegram.ui.Charts.view_data.BarViewData;
+
 public class BarChartView extends BaseChartView<ChartData, BarViewData> {
     @Override
     public void drawSelection(Canvas canvas) {
@@ -69,16 +70,13 @@ public class BarChartView extends BaseChartView<ChartData, BarViewData> {
                                 jArr = jArr2;
                                 f = (float) t.maxValue;
                             }
-                            float f5 = (1.0f - ((((float) j) / f) * f3)) * (i5 - measuredHeight2);
                             float[] fArr2 = barViewData.linesPath;
-                            int i9 = i8 + 1;
                             fArr2[i8] = f4;
-                            int i10 = i9 + 1;
-                            fArr2[i9] = f5;
-                            int i11 = i10 + 1;
-                            fArr2[i10] = f4;
-                            i8 = i11 + 1;
-                            fArr2[i11] = getMeasuredHeight() - this.chartBottom;
+                            fArr2[i8 + 1] = (1.0f - ((((float) j) / f) * f3)) * (i5 - measuredHeight2);
+                            int i9 = i8 + 3;
+                            fArr2[i8 + 2] = f4;
+                            i8 += 4;
+                            fArr2[i9] = getMeasuredHeight() - this.chartBottom;
                         }
                         i7++;
                         length = i3;

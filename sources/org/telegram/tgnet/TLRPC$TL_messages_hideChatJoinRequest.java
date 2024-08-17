@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messages_hideChatJoinRequest extends TLObject {
     public boolean approved;
     public int flags;

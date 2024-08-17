@@ -17,6 +17,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.text.TextUtils;
+import android.util.Property;
 import android.util.Size;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -42,6 +43,7 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.Space;
 import android.widget.TextView;
+import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat$$ExternalSyntheticApiModelOutline0;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -61,6 +63,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.FloatingToolbar;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
+
 @TargetApi(23)
 public final class FloatingToolbar {
     private static final MenuItem.OnMenuItemClickListener NO_OP_MENUITEM_CLICK_LISTENER = new MenuItem.OnMenuItemClickListener() {
@@ -329,13 +332,13 @@ public final class FloatingToolbar {
             this.mOverflow = mutate2;
             mutate2.setAutoMirrored(true);
             drawable3 = context.getDrawable(R.drawable.ft_avd_toarrow_animation);
-            AnimatedVectorDrawable animatedVectorDrawable = (AnimatedVectorDrawable) drawable3.mutate();
-            this.mToArrow = animatedVectorDrawable;
-            animatedVectorDrawable.setAutoMirrored(true);
+            AnimatedVectorDrawable m = AnimatedVectorDrawableCompat$$ExternalSyntheticApiModelOutline0.m(drawable3.mutate());
+            this.mToArrow = m;
+            m.setAutoMirrored(true);
             drawable4 = context.getDrawable(R.drawable.ft_avd_tooverflow_animation);
-            AnimatedVectorDrawable animatedVectorDrawable2 = (AnimatedVectorDrawable) drawable4.mutate();
-            this.mToOverflow = animatedVectorDrawable2;
-            animatedVectorDrawable2.setAutoMirrored(true);
+            AnimatedVectorDrawable m2 = AnimatedVectorDrawableCompat$$ExternalSyntheticApiModelOutline0.m(drawable4.mutate());
+            this.mToOverflow = m2;
+            m2.setAutoMirrored(true);
             FrameLayout frameLayout = new FrameLayout(context);
             this.mOverflowButton = frameLayout;
             ImageButton imageButton = new ImageButton(context) {
@@ -385,8 +388,8 @@ public final class FloatingToolbar {
             }
             mutate2.setTint(themedColor);
             mutate.setTint(themedColor);
-            animatedVectorDrawable.setTint(themedColor);
-            animatedVectorDrawable2.setTint(themedColor);
+            m.setTint(themedColor);
+            m2.setTint(themedColor);
             textView.setTextColor(themedColor);
             imageButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -468,11 +471,11 @@ public final class FloatingToolbar {
                 this.mOverflowButtonIcon.setImageDrawable(this.mToOverflow);
                 this.mToOverflow.start();
                 closeOverflow();
-                return;
+            } else {
+                this.mOverflowButtonIcon.setImageDrawable(this.mToArrow);
+                this.mToArrow.start();
+                openOverflow();
             }
-            this.mOverflowButtonIcon.setImageDrawable(this.mToArrow);
-            this.mToArrow.start();
-            openOverflow();
         }
 
         private void updateOverflowButtonClickListener() {
@@ -668,11 +671,11 @@ public final class FloatingToolbar {
                         FloatingToolbarPopup.this.mContentContainer.setX(x);
                         FloatingToolbarPopup.this.mMainPanel.setX(0.0f);
                         FloatingToolbarPopup.this.mOverflowPanel.setX(0.0f);
-                        return;
+                    } else {
+                        FloatingToolbarPopup.this.mContentContainer.setX(width3 - FloatingToolbarPopup.this.mContentContainer.getWidth());
+                        FloatingToolbarPopup.this.mMainPanel.setX(FloatingToolbarPopup.this.mContentContainer.getWidth() - width2);
+                        FloatingToolbarPopup.this.mOverflowPanel.setX(FloatingToolbarPopup.this.mContentContainer.getWidth() - width);
                     }
-                    FloatingToolbarPopup.this.mContentContainer.setX(width3 - FloatingToolbarPopup.this.mContentContainer.getWidth());
-                    FloatingToolbarPopup.this.mMainPanel.setX(FloatingToolbarPopup.this.mContentContainer.getWidth() - width2);
-                    FloatingToolbarPopup.this.mOverflowPanel.setX(FloatingToolbarPopup.this.mContentContainer.getWidth() - width);
                 }
             };
             Animation animation2 = new Animation() {
@@ -734,11 +737,11 @@ public final class FloatingToolbar {
                         FloatingToolbarPopup.this.mContentContainer.setX(x);
                         FloatingToolbarPopup.this.mMainPanel.setX(0.0f);
                         FloatingToolbarPopup.this.mOverflowPanel.setX(0.0f);
-                        return;
+                    } else {
+                        FloatingToolbarPopup.this.mContentContainer.setX(width3 - FloatingToolbarPopup.this.mContentContainer.getWidth());
+                        FloatingToolbarPopup.this.mMainPanel.setX(FloatingToolbarPopup.this.mContentContainer.getWidth() - width);
+                        FloatingToolbarPopup.this.mOverflowPanel.setX(FloatingToolbarPopup.this.mContentContainer.getWidth() - width2);
                     }
-                    FloatingToolbarPopup.this.mContentContainer.setX(width3 - FloatingToolbarPopup.this.mContentContainer.getWidth());
-                    FloatingToolbarPopup.this.mMainPanel.setX(FloatingToolbarPopup.this.mContentContainer.getWidth() - width);
-                    FloatingToolbarPopup.this.mOverflowPanel.setX(FloatingToolbarPopup.this.mContentContainer.getWidth() - width2);
                 }
             };
             height = this.mMainPanelSize.getHeight();
@@ -950,22 +953,21 @@ public final class FloatingToolbar {
             int i2 = 0;
             if (size != null) {
                 width2 = size.getWidth();
-                int max = Math.max(0, width2);
+                i = Math.max(0, width2);
                 height2 = this.mMainPanelSize.getHeight();
-                i2 = max;
-                i = Math.max(0, height2);
+                i2 = Math.max(0, height2);
             } else {
                 i = 0;
             }
             Size size2 = this.mOverflowPanelSize;
             if (size2 != null) {
                 width = size2.getWidth();
-                i2 = Math.max(i2, width);
+                i = Math.max(i, width);
                 height = this.mOverflowPanelSize.getHeight();
-                i = Math.max(i, height);
+                i2 = Math.max(i2, height);
             }
-            this.mPopupWindow.setWidth(i2 + (this.mMarginHorizontal * 2));
-            this.mPopupWindow.setHeight(i + (this.mMarginVertical * 2));
+            this.mPopupWindow.setWidth(i + (this.mMarginHorizontal * 2));
+            this.mPopupWindow.setHeight(i2 + (this.mMarginVertical * 2));
             maybeComputeTransitionDurationScale();
         }
 
@@ -1228,8 +1230,10 @@ public final class FloatingToolbar {
                 @Override
                 public View getView(int i, View view, ViewGroup viewGroup) {
                     int width;
+                    OverflowPanelViewHelper overflowPanelViewHelper = FloatingToolbarPopup.this.mOverflowPanelViewHelper;
+                    MenuItem menuItem = (MenuItem) getItem(i);
                     width = FloatingToolbarPopup.this.mOverflowPanelSize.getWidth();
-                    return FloatingToolbarPopup.this.mOverflowPanelViewHelper.getView((MenuItem) getItem(i), width, view);
+                    return overflowPanelViewHelper.getView(menuItem, width, view);
                 }
             });
             overflowPanel.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -1339,7 +1343,7 @@ public final class FloatingToolbar {
                 setOutlineProvider(new ViewOutlineProvider() {
                     @Override
                     public void getOutline(View view, Outline outline) {
-                        outline.setRoundRect(0, 0, view.getMeasuredWidth(), AndroidUtilities.dp(6.0f) + view.getMeasuredHeight(), AndroidUtilities.dp(6.0f));
+                        outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight() + AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f));
                     }
                 });
                 setClipToOutline(true);
@@ -1544,13 +1548,13 @@ public final class FloatingToolbar {
 
     public static AnimatorSet createEnterAnimation(View view) {
         AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.playTogether(ObjectAnimator.ofFloat(view, View.ALPHA, 0.0f, 1.0f).setDuration(150L));
+        animatorSet.playTogether(ObjectAnimator.ofFloat(view, (Property<View, Float>) View.ALPHA, 0.0f, 1.0f).setDuration(150L));
         return animatorSet;
     }
 
     public static AnimatorSet createExitAnimation(View view, int i, Animator.AnimatorListener animatorListener) {
         AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.playTogether(ObjectAnimator.ofFloat(view, View.ALPHA, 1.0f, 0.0f).setDuration(100L));
+        animatorSet.playTogether(ObjectAnimator.ofFloat(view, (Property<View, Float>) View.ALPHA, 1.0f, 0.0f).setDuration(100L));
         animatorSet.setStartDelay(i);
         animatorSet.addListener(animatorListener);
         return animatorSet;

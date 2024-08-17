@@ -40,7 +40,6 @@ import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$TL_account_updateBirthday;
 import org.telegram.tgnet.TLRPC$TL_birthday;
 import org.telegram.tgnet.TLRPC$TL_boolTrue;
@@ -72,6 +71,7 @@ import org.telegram.ui.PrivacyControlActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.Stars.StarsIntroActivity;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
+
 public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView implements NotificationCenter.NotificationCenterDelegate {
     private static UserSelectorBottomSheet instance;
     private final ButtonWithCounterView actionButton;
@@ -140,21 +140,21 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
         }
         if (scheme.equals("http") || scheme.equals("https")) {
             String lowerCase = data.getHost().toLowerCase();
-            if ((lowerCase.equals("telegram.me") || lowerCase.equals("t.me") || lowerCase.equals("telegram.dog")) && (path = data.getPath()) != null && path.startsWith("/premium_multigift")) {
-                open();
-                return true;
+            if ((!lowerCase.equals("telegram.me") && !lowerCase.equals("t.me") && !lowerCase.equals("telegram.dog")) || (path = data.getPath()) == null || !path.startsWith("/premium_multigift")) {
+                return false;
             }
-            return false;
-        } else if (scheme.equals("tg")) {
-            String uri = data.toString();
-            if (uri.startsWith("tg:premium_multigift") || uri.startsWith("tg://premium_multigift")) {
-                open();
-                return true;
-            }
-            return false;
-        } else {
+            open();
+            return true;
+        }
+        if (!scheme.equals("tg")) {
             return false;
         }
+        String uri = data.toString();
+        if (!uri.startsWith("tg:premium_multigift") && !uri.startsWith("tg://premium_multigift")) {
+            return false;
+        }
+        open();
+        return true;
     }
 
     public void loadData(String str) {
@@ -184,7 +184,9 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
                     UserSelectorBottomSheet.this.lambda$checkEditTextHint$1();
                 }
             }, 10L);
-        } else if (this.isHintSearchText) {
+            return;
+        }
+        if (this.isHintSearchText) {
             this.isHintSearchText = false;
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -265,7 +267,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
             }
         };
         this.headerView = selectorHeaderCell;
-        selectorHeaderCell.setOnCloseClickListener(new UserSelectorBottomSheet$$ExternalSyntheticLambda0(this));
+        selectorHeaderCell.setOnCloseClickListener(new UserSelectorBottomSheet$$ExternalSyntheticLambda3(this));
         selectorHeaderCell.setText(getTitle());
         selectorHeaderCell.setCloseImageVisible(false);
         selectorHeaderCell.backDrawable.setRotation(0.0f, false);
@@ -423,14 +425,16 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
     public void lambda$new$5(int i, View view, int i2, float f, float f2) {
         if (view instanceof TextCell) {
             openBirthdaySetup();
-        } else if (view instanceof SelectorUserCell) {
+            return;
+        }
+        if (view instanceof SelectorUserCell) {
             TLRPC$User user = ((SelectorUserCell) view).getUser();
             if (i == 1) {
                 SelectorSearchCell selectorSearchCell = this.searchField;
                 if (selectorSearchCell != null) {
                     AndroidUtilities.hideKeyboard(selectorSearchCell.getEditText());
                 }
-                StarsIntroActivity.GiftStarsSheet giftStarsSheet = new StarsIntroActivity.GiftStarsSheet(getContext(), this.resourcesProvider, user, new UserSelectorBottomSheet$$ExternalSyntheticLambda0(this));
+                StarsIntroActivity.GiftStarsSheet giftStarsSheet = new StarsIntroActivity.GiftStarsSheet(getContext(), this.resourcesProvider, user, new UserSelectorBottomSheet$$ExternalSyntheticLambda3(this));
                 if (!AndroidUtilities.isTablet()) {
                     giftStarsSheet.makeAttached(this.attachedFragment);
                 }
@@ -447,17 +451,17 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
             if (this.selectedIds.size() == 11) {
                 this.selectedIds.remove(Long.valueOf(j));
                 showMaximumUsersToast();
-                return;
+            } else {
+                checkEditTextHint();
+                this.searchField.updateSpans(true, this.selectedIds, new Runnable() {
+                    @Override
+                    public final void run() {
+                        UserSelectorBottomSheet.this.lambda$new$4();
+                    }
+                }, null);
+                updateList(true, true);
+                clearSearchAfterSelect();
             }
-            checkEditTextHint();
-            this.searchField.updateSpans(true, this.selectedIds, new Runnable() {
-                @Override
-                public final void run() {
-                    UserSelectorBottomSheet.this.lambda$new$4();
-                }
-            }, null);
-            updateList(true, true);
-            clearSearchAfterSelect();
         }
     }
 
@@ -571,34 +575,8 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
         updateActionButton(z);
     }
 
-    private void updateCheckboxes(boolean z) {
-        int childAdapterPosition;
-        int childAdapterPosition2;
-        int i = -1;
-        int i2 = 0;
-        for (int i3 = 0; i3 < this.recyclerListView.getChildCount(); i3++) {
-            View childAt = this.recyclerListView.getChildAt(i3);
-            if ((childAt instanceof SelectorUserCell) && (childAdapterPosition = this.recyclerListView.getChildAdapterPosition(childAt)) - 1 >= 0 && childAdapterPosition2 < this.items.size()) {
-                if (i == -1) {
-                    i = childAdapterPosition;
-                }
-                SelectorAdapter.Item item = this.items.get(childAdapterPosition2);
-                SelectorUserCell selectorUserCell = (SelectorUserCell) childAt;
-                selectorUserCell.setChecked(item.checked, z);
-                TLRPC$Chat tLRPC$Chat = item.chat;
-                if (tLRPC$Chat != null) {
-                    selectorUserCell.setCheckboxAlpha(this.selectorAdapter.getParticipantsCount(tLRPC$Chat) > 200 ? 0.3f : 1.0f, z);
-                } else {
-                    selectorUserCell.setCheckboxAlpha(1.0f, z);
-                }
-                i2 = childAdapterPosition;
-            }
-        }
-        if (z) {
-            this.selectorAdapter.notifyItemRangeChanged(0, i);
-            SelectorAdapter selectorAdapter = this.selectorAdapter;
-            selectorAdapter.notifyItemRangeChanged(i2, selectorAdapter.getItemCount() - i2);
-        }
+    private void updateCheckboxes(boolean r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.boosts.UserSelectorBottomSheet.updateCheckboxes(boolean):void");
     }
 
     public void updateActionButton(boolean z) {
@@ -740,7 +718,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
             if (userFull == null || userFull.birthday != null) {
                 i = 0;
             } else {
-                i = AndroidUtilities.dp(50.0f) + 0;
+                i = AndroidUtilities.dp(50.0f);
                 this.items.add(SelectorAdapter.Item.asButton(1, R.drawable.menu_birthday, LocaleController.getString(R.string.GiftsBirthdaySetup)));
             }
             if (this.userId >= 0) {
@@ -753,8 +731,9 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
             SelectorAdapter.Item item = null;
             if (!this.hints.isEmpty()) {
                 ArrayList arrayList2 = new ArrayList();
-                for (TLRPC$TL_topPeer tLRPC$TL_topPeer : this.hints) {
-                    TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(tLRPC$TL_topPeer.peer.user_id));
+                Iterator<TLRPC$TL_topPeer> it = this.hints.iterator();
+                while (it.hasNext()) {
+                    TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(it.next().peer.user_id));
                     if (user != null) {
                         long j = user.id;
                         if (j != this.userId && !user.self && !user.bot && !UserObject.isService(j) && !UserObject.isDeleted(user) && ((birthdayState2 = this.birthdays) == null || !birthdayState2.contains(user.id))) {
@@ -823,9 +802,10 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
     public void lambda$updateItems$11(ArrayList arrayList, View view) {
         Iterator it = arrayList.iterator();
         while (it.hasNext()) {
-            long longValue = ((Long) it.next()).longValue();
-            this.selectedIds.remove(Long.valueOf(longValue));
-            this.allSelectedObjects.remove(Long.valueOf(longValue));
+            Long l = (Long) it.next();
+            l.longValue();
+            this.selectedIds.remove(l);
+            this.allSelectedObjects.remove(l);
         }
         checkEditTextHint();
         this.searchField.updateSpans(true, this.selectedIds, new Runnable() {
@@ -918,7 +898,9 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.giftsToUserSent) {
             dismiss();
-        } else if (i == NotificationCenter.contactsDidLoad) {
+            return;
+        }
+        if (i == NotificationCenter.contactsDidLoad) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {

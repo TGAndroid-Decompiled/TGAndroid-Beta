@@ -5,6 +5,7 @@ import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$User;
+
 public class TL_stats$TL_publicForwards extends TLObject {
     public int count;
     public int flags;

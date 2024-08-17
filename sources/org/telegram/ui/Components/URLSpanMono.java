@@ -7,6 +7,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.TextStyleSpan;
+
 public class URLSpanMono extends MetricAffectingSpan {
     private int currentEnd;
     private CharSequence currentMessage;
@@ -52,9 +53,9 @@ public class URLSpanMono extends MetricAffectingSpan {
         TextStyleSpan.TextStyleRun textStyleRun = this.style;
         if (textStyleRun != null) {
             textStyleRun.applyStyle(textPaint);
-            return;
+        } else {
+            textPaint.setTypeface(Typeface.MONOSPACE);
+            textPaint.setUnderlineText(false);
         }
-        textPaint.setTypeface(Typeface.MONOSPACE);
-        textPaint.setUnderlineText(false);
     }
 }

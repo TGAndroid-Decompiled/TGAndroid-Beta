@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_updateChannelAvailableMessages extends TLRPC$Update {
     public int available_min_id;
     public long channel_id;

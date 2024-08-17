@@ -15,6 +15,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.LaunchActivity;
+
 public class PermissionRequest {
     private static int lastId = 1500;
 
@@ -23,8 +24,6 @@ public class PermissionRequest {
     }
 
     public static void ensureEitherPermission(int i, int i2, String[] strArr, final String[] strArr2, final Utilities.Callback<Boolean> callback) {
-        boolean z;
-        boolean z2;
         boolean shouldShowRequestPermissionRationale;
         int checkSelfPermission;
         final Activity activity = LaunchActivity.instance;
@@ -41,53 +40,31 @@ public class PermissionRequest {
             }
             return;
         }
-        int length = strArr.length;
-        int i3 = 0;
-        while (true) {
-            z = true;
-            if (i3 >= length) {
-                z2 = false;
-                break;
-            }
-            checkSelfPermission = activity.checkSelfPermission(strArr[i3]);
+        for (String str : strArr) {
+            checkSelfPermission = activity.checkSelfPermission(str);
             if (checkSelfPermission == 0) {
-                z2 = true;
-                break;
-            }
-            i3++;
-        }
-        if (z2) {
-            if (callback != null) {
-                callback.run(Boolean.TRUE);
-                return;
-            }
-            return;
-        }
-        int length2 = strArr.length;
-        int i4 = 0;
-        while (true) {
-            if (i4 >= length2) {
-                z = false;
-                break;
-            }
-            shouldShowRequestPermissionRationale = activity.shouldShowRequestPermissionRationale(strArr[i4]);
-            if (shouldShowRequestPermissionRationale) {
-                break;
-            }
-            i4++;
-        }
-        if (z) {
-            new AlertDialog.Builder(activity, null).setTopAnimation(i, 72, false, Theme.getColor(Theme.key_dialogTopBackground)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(i2))).setPositiveButton(LocaleController.getString("PermissionOpenSettings", R.string.PermissionOpenSettings), new DialogInterface.OnClickListener() {
-                @Override
-                public final void onClick(DialogInterface dialogInterface, int i5) {
-                    PermissionRequest.lambda$ensureEitherPermission$0(activity, dialogInterface, i5);
+                if (callback != null) {
+                    callback.run(Boolean.TRUE);
+                    return;
                 }
-            }).setNegativeButton(LocaleController.getString("ContactsPermissionAlertNotNow", R.string.ContactsPermissionAlertNotNow), null).create().show();
-            if (callback != null) {
-                callback.run(Boolean.FALSE);
                 return;
             }
-            return;
+        }
+        for (String str2 : strArr) {
+            shouldShowRequestPermissionRationale = activity.shouldShowRequestPermissionRationale(str2);
+            if (shouldShowRequestPermissionRationale) {
+                new AlertDialog.Builder(activity, null).setTopAnimation(i, 72, false, Theme.getColor(Theme.key_dialogTopBackground)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(i2))).setPositiveButton(LocaleController.getString("PermissionOpenSettings", R.string.PermissionOpenSettings), new DialogInterface.OnClickListener() {
+                    @Override
+                    public final void onClick(DialogInterface dialogInterface, int i3) {
+                        PermissionRequest.lambda$ensureEitherPermission$0(activity, dialogInterface, i3);
+                    }
+                }).setNegativeButton(LocaleController.getString("ContactsPermissionAlertNotNow", R.string.ContactsPermissionAlertNotNow), null).create().show();
+                if (callback != null) {
+                    callback.run(Boolean.FALSE);
+                    return;
+                }
+                return;
+            }
         }
         requestPermissions(strArr2, new Utilities.Callback() {
             @Override
@@ -144,7 +121,6 @@ public class PermissionRequest {
                 int i4 = NotificationCenter.activityPermissionsGranted;
                 if (i2 == i4) {
                     int intValue = ((Integer) objArr[0]).intValue();
-                    String[] strArr2 = (String[]) objArr[1];
                     int[] iArr = (int[]) objArr[2];
                     if (intValue == i) {
                         Utilities.Callback callback2 = callback;
@@ -169,10 +145,10 @@ public class PermissionRequest {
         if (activity == null) {
             return false;
         }
-        if (Build.VERSION.SDK_INT >= 23) {
-            checkSelfPermission = activity.checkSelfPermission(str);
-            return checkSelfPermission == 0;
+        if (Build.VERSION.SDK_INT < 23) {
+            return true;
         }
-        return true;
+        checkSelfPermission = activity.checkSelfPermission(str);
+        return checkSelfPermission == 0;
     }
 }

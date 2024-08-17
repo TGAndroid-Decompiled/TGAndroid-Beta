@@ -18,6 +18,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
+
 public class OpeningHoursDayActivity extends BaseFragment {
     public boolean enabled;
     private UniversalRecyclerView listView;
@@ -66,7 +67,7 @@ public class OpeningHoursDayActivity extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    OpeningHoursDayActivity.this.finishFragment();
+                    OpeningHoursDayActivity.this.lambda$onBackPressed$308();
                 }
             }
         });
@@ -149,8 +150,11 @@ public class OpeningHoursDayActivity extends BaseFragment {
             Runnable runnable = this.whenApplied;
             if (runnable != null) {
                 runnable.run();
+                return;
             }
-        } else if (i3 == -2) {
+            return;
+        }
+        if (i3 == -2) {
             if (this.periods.isEmpty() || is24()) {
                 if (is24()) {
                     this.periods.clear();
@@ -168,38 +172,44 @@ public class OpeningHoursDayActivity extends BaseFragment {
                 runnable2.run();
             }
             this.listView.adapter.update(true);
-        } else if (uItem.viewType != 3 || (i2 = i3 / 3) < 0 || i2 >= this.periods.size()) {
-        } else {
-            int i5 = i2 - 1;
-            OpeningHoursActivity.Period period = i5 >= 0 ? this.periods.get(i5) : null;
-            final OpeningHoursActivity.Period period2 = this.periods.get(i2);
-            int i6 = i2 + 1;
-            OpeningHoursActivity.Period period3 = i6 < this.periods.size() ? this.periods.get(i6) : null;
-            int i7 = uItem.id;
-            if (i7 % 3 == 0) {
-                AlertsCreator.createTimePickerDialog(getContext(), LocaleController.getString(R.string.BusinessHoursDayOpenHourPicker), period2.start, period == null ? this.min : period.end + 1, period2.end - 1, new Utilities.Callback() {
-                    @Override
-                    public final void run(Object obj) {
-                        OpeningHoursDayActivity.this.lambda$onClick$0(view, period2, (Integer) obj);
-                    }
-                });
-            } else if (i7 % 3 == 1) {
-                AlertsCreator.createTimePickerDialog(getContext(), LocaleController.getString(R.string.BusinessHoursDayCloseHourPicker), period2.end, period2.start + 1, period3 == null ? this.max : period3.start - 1, new Utilities.Callback() {
-                    @Override
-                    public final void run(Object obj) {
-                        OpeningHoursDayActivity.this.lambda$onClick$1(view, period2, (Integer) obj);
-                    }
-                });
-            } else if (i7 % 3 == 2) {
-                this.periods.remove(i2);
-                if (this.periods.isEmpty()) {
-                    this.periods.add(new OpeningHoursActivity.Period(0, 1439));
+            return;
+        }
+        if (uItem.viewType != 3 || (i2 = i3 / 3) < 0 || i2 >= this.periods.size()) {
+            return;
+        }
+        int i5 = i2 - 1;
+        OpeningHoursActivity.Period period = i5 >= 0 ? this.periods.get(i5) : null;
+        final OpeningHoursActivity.Period period2 = this.periods.get(i2);
+        int i6 = i2 + 1;
+        OpeningHoursActivity.Period period3 = i6 < this.periods.size() ? this.periods.get(i6) : null;
+        int i7 = uItem.id % 3;
+        if (i7 == 0) {
+            AlertsCreator.createTimePickerDialog(getContext(), LocaleController.getString(R.string.BusinessHoursDayOpenHourPicker), period2.start, period == null ? this.min : period.end + 1, period2.end - 1, new Utilities.Callback() {
+                @Override
+                public final void run(Object obj) {
+                    OpeningHoursDayActivity.this.lambda$onClick$0(view, period2, (Integer) obj);
                 }
-                this.listView.adapter.update(true);
-                Runnable runnable3 = this.whenApplied;
-                if (runnable3 != null) {
-                    runnable3.run();
+            });
+            return;
+        }
+        if (i7 == 1) {
+            AlertsCreator.createTimePickerDialog(getContext(), LocaleController.getString(R.string.BusinessHoursDayCloseHourPicker), period2.end, period2.start + 1, period3 == null ? this.max : period3.start - 1, new Utilities.Callback() {
+                @Override
+                public final void run(Object obj) {
+                    OpeningHoursDayActivity.this.lambda$onClick$1(view, period2, (Integer) obj);
                 }
+            });
+            return;
+        }
+        if (i7 == 2) {
+            this.periods.remove(i2);
+            if (this.periods.isEmpty()) {
+                this.periods.add(new OpeningHoursActivity.Period(0, 1439));
+            }
+            this.listView.adapter.update(true);
+            Runnable runnable3 = this.whenApplied;
+            if (runnable3 != null) {
+                runnable3.run();
             }
         }
     }

@@ -1,4 +1,5 @@
 package kotlin;
+
 public final class UninitializedPropertyAccessException extends RuntimeException {
     public UninitializedPropertyAccessException() {
     }

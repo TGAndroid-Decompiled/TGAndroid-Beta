@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messageMediaUnsupported_old extends TLRPC$TL_messageMediaUnsupported {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

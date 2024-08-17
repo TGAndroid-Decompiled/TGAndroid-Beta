@@ -58,7 +58,10 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.StickerCategoriesListView;
+
 public class StickerCategoriesListView extends RecyclerListView {
+    private static EmojiGroupFetcher fetcher;
+    public static CacheFetcher<String, TLRPC$TL_emojiList> search;
     private Adapter adapter;
     private Paint backgroundPaint;
     private EmojiCategory[] categories;
@@ -88,13 +91,16 @@ public class StickerCategoriesListView extends RecyclerListView {
     private AnimatedFloat selectedIndex;
     private Paint selectedPaint;
     private float shownButtonsAtStart;
-    private static EmojiGroupFetcher fetcher = new EmojiGroupFetcher();
-    public static CacheFetcher<String, TLRPC$TL_emojiList> search = new EmojiSearch();
     private static Set<Integer> loadedIconsType = new HashSet();
     static int loadedCategoryIcons = 0;
 
     protected EmojiCategory[] preprocessCategories(EmojiCategory[] emojiCategoryArr) {
         return emojiCategoryArr;
+    }
+
+    static {
+        fetcher = new EmojiGroupFetcher();
+        search = new EmojiSearch();
     }
 
     public static void preload(final int i, int i2) {
@@ -219,14 +225,14 @@ public class StickerCategoriesListView extends RecyclerListView {
     }
 
     private int getScrollToStartWidth() {
-        if (getChildCount() > 0) {
-            View childAt = getChildAt(0);
-            if (childAt instanceof CategoryButton) {
-                return this.paddingWidth + Math.max(0, (getChildAdapterPosition(childAt) - 1) * getHeight()) + (-childAt.getLeft());
-            }
-            return -childAt.getLeft();
+        if (getChildCount() <= 0) {
+            return 0;
         }
-        return 0;
+        View childAt = getChildAt(0);
+        if (childAt instanceof CategoryButton) {
+            return this.paddingWidth + Math.max(0, (getChildAdapterPosition(childAt) - 1) * getHeight()) + (-childAt.getLeft());
+        }
+        return -childAt.getLeft();
     }
 
     public void scrollToStart() {
@@ -325,10 +331,7 @@ public class StickerCategoriesListView extends RecyclerListView {
             this.categoriesShownAnimator = null;
         }
         if (z2) {
-            float[] fArr = new float[2];
-            fArr[0] = this.categoriesShownT;
-            fArr[1] = r5 == 0 ? 0.0f : 1.0f;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.categoriesShownT, r5 != 0 ? 1.0f : 0.0f);
             this.categoriesShownAnimator = ofFloat;
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
@@ -345,13 +348,11 @@ public class StickerCategoriesListView extends RecyclerListView {
                 }
             });
             this.categoriesShownAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-            ValueAnimator valueAnimator2 = this.categoriesShownAnimator;
-            EmojiCategory[] emojiCategoryArr = this.categories;
-            valueAnimator2.setDuration((emojiCategoryArr == null ? 5 : emojiCategoryArr.length) * 120);
+            this.categoriesShownAnimator.setDuration((this.categories == null ? 5 : r6.length) * 120);
             this.categoriesShownAnimator.start();
             return;
         }
-        setCategoriesShownT(r5 == 0 ? 0.0f : 1.0f);
+        setCategoriesShownT(r5 != 0 ? 1.0f : 0.0f);
     }
 
     public void lambda$updateCategoriesShown$5(ValueAnimator valueAnimator) {
@@ -380,42 +381,8 @@ public class StickerCategoriesListView extends RecyclerListView {
     }
 
     @Override
-    public void onScrolled(int i, int i2) {
-        boolean z;
-        boolean z2;
-        Utilities.Callback<Integer> callback;
-        super.onScrolled(i, i2);
-        if (getChildCount() > 0) {
-            View childAt = getChildAt(0);
-            if (childAt instanceof CategoryButton) {
-                z = true;
-            } else {
-                z2 = childAt.getRight() <= this.dontOccupyWidth;
-                z = false;
-            }
-        } else {
-            z = false;
-            z2 = false;
-        }
-        boolean z3 = this.scrolledIntoOccupiedWidth;
-        if (z3 != z2) {
-            this.scrolledIntoOccupiedWidth = z2;
-            Utilities.Callback<Integer> callback2 = this.onScrollIntoOccupiedWidth;
-            if (callback2 != null) {
-                callback2.run(Integer.valueOf(z2 ? Math.max(0, getScrollToStartWidth() - (this.paddingWidth - this.dontOccupyWidth)) : 0));
-            }
-            invalidate();
-        } else if (z3 && (callback = this.onScrollIntoOccupiedWidth) != null) {
-            callback.run(Integer.valueOf(Math.max(0, getScrollToStartWidth() - (this.paddingWidth - this.dontOccupyWidth))));
-        }
-        if (this.scrolledFully != z) {
-            this.scrolledFully = z;
-            Utilities.Callback<Boolean> callback3 = this.onScrollFully;
-            if (callback3 != null) {
-                callback3.run(Boolean.valueOf(z));
-            }
-            invalidate();
-        }
+    public void onScrolled(int r5, int r6) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.StickerCategoriesListView.onScrolled(int, int):void");
     }
 
     public void setDontOccupyWidth(int i) {
@@ -446,16 +413,16 @@ public class StickerCategoriesListView extends RecyclerListView {
         this.backgroundPaint.setColor(i);
         Drawable mutate = getContext().getResources().getDrawable(R.drawable.gradient_right).mutate();
         this.leftBoundDrawable = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
+        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+        mutate.setColorFilter(new PorterDuffColorFilter(i, mode));
         Drawable mutate2 = getContext().getResources().getDrawable(R.drawable.gradient_left).mutate();
         this.rightBoundDrawable = mutate2;
-        mutate2.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
+        mutate2.setColorFilter(new PorterDuffColorFilter(i, mode));
     }
 
     @Override
     public void draw(Canvas canvas) {
         Drawable drawable;
-        float f = 1.0f;
         if (this.backgroundPaint != null) {
             int i = Integer.MAX_VALUE;
             int i2 = Integer.MIN_VALUE;
@@ -467,12 +434,13 @@ public class StickerCategoriesListView extends RecyclerListView {
                 }
             }
             if (i < i2) {
-                int width = (int) (i2 + ((getWidth() + AndroidUtilities.dp(32.0f)) * (1.0f - this.categoriesShownT)));
-                canvas.drawRect((int) (i + ((getWidth() + AndroidUtilities.dp(32.0f)) * (1.0f - this.categoriesShownT))), 0.0f, width, getHeight(), this.backgroundPaint);
-                if (width < getWidth() && (drawable = this.leftBoundDrawable) != null) {
+                int width = (int) (i + ((getWidth() + AndroidUtilities.dp(32.0f)) * (1.0f - this.categoriesShownT)));
+                int width2 = (int) (i2 + ((getWidth() + AndroidUtilities.dp(32.0f)) * (1.0f - this.categoriesShownT)));
+                canvas.drawRect(width, 0.0f, width2, getHeight(), this.backgroundPaint);
+                if (width2 < getWidth() && (drawable = this.leftBoundDrawable) != null) {
                     drawable.setAlpha(255);
                     Drawable drawable2 = this.leftBoundDrawable;
-                    drawable2.setBounds(width, 0, drawable2.getIntrinsicWidth() + width, getHeight());
+                    drawable2.setBounds(width2, 0, drawable2.getIntrinsicWidth() + width2, getHeight());
                     this.leftBoundDrawable.draw(canvas);
                 }
             }
@@ -481,7 +449,7 @@ public class StickerCategoriesListView extends RecyclerListView {
         super.draw(canvas);
         Drawable drawable3 = this.leftBoundDrawable;
         if (drawable3 != null) {
-            drawable3.setAlpha((int) (255.0f * this.leftBoundAlpha.set((canScrollHorizontally(-1) && this.scrolledFully) ? 0.0f : 0.0f) * this.categoriesShownT));
+            drawable3.setAlpha((int) (255.0f * this.leftBoundAlpha.set((canScrollHorizontally(-1) && this.scrolledFully) ? 1.0f : 0.0f) * this.categoriesShownT));
             if (this.leftBoundDrawable.getAlpha() > 0) {
                 Drawable drawable4 = this.leftBoundDrawable;
                 drawable4.setBounds(0, 0, drawable4.getIntrinsicWidth(), getHeight());
@@ -744,10 +712,7 @@ public class StickerCategoriesListView extends RecyclerListView {
                     this.selectedAnimator = null;
                 }
                 if (z2) {
-                    float[] fArr = new float[2];
-                    fArr[0] = this.selectedT;
-                    fArr[1] = z ? 1.0f : 0.0f;
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+                    ValueAnimator ofFloat = ValueAnimator.ofFloat(this.selectedT, z ? 1.0f : 0.0f);
                     this.selectedAnimator = ofFloat;
                     ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
@@ -951,8 +916,7 @@ public class StickerCategoriesListView extends RecyclerListView {
             } else if (!(tLObject instanceof TLRPC$TL_messages_emojiGroups)) {
                 callback4.run(Boolean.FALSE, null, 0L, Boolean.TRUE);
             } else {
-                TLRPC$TL_messages_emojiGroups tLRPC$TL_messages_emojiGroups = (TLRPC$TL_messages_emojiGroups) tLObject;
-                callback4.run(Boolean.FALSE, tLRPC$TL_messages_emojiGroups, Long.valueOf(tLRPC$TL_messages_emojiGroups.hash), Boolean.TRUE);
+                callback4.run(Boolean.FALSE, (TLRPC$TL_messages_emojiGroups) tLObject, Long.valueOf(r4.hash), Boolean.TRUE);
             }
         }
 

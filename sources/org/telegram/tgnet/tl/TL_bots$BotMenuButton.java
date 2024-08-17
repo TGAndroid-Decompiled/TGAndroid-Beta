@@ -2,6 +2,7 @@ package org.telegram.tgnet.tl;
 
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
+
 public abstract class TL_bots$BotMenuButton extends TLObject {
     public static TL_bots$BotMenuButton TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TL_bots$BotMenuButton tL_bots$TL_botMenuButton;

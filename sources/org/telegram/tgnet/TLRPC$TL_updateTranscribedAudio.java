@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_updateTranscribedAudio extends TLRPC$Update {
     public int flags;
     public int msg_id;

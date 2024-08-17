@@ -2,6 +2,7 @@ package kotlinx.coroutines;
 
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 import kotlin.jvm.internal.DefaultConstructorMarker;
+
 public class CompletedExceptionally {
     private static final AtomicIntegerFieldUpdater _handled$FU = AtomicIntegerFieldUpdater.newUpdater(CompletedExceptionally.class, "_handled");
     private volatile int _handled;

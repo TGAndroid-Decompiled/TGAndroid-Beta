@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$MessageReactor extends TLObject {
     public boolean anonymous;
     public int count;

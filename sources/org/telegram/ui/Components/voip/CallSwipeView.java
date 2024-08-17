@@ -11,6 +11,7 @@ import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityManager;
 import androidx.annotation.Keep;
 import org.telegram.messenger.AndroidUtilities;
+
 public class CallSwipeView extends View {
     private Path arrow;
     private int[] arrowAlphas;
@@ -67,7 +68,10 @@ public class CallSwipeView extends View {
             this.viewToDrag.setTranslationX(Math.max(this.dragFromRight ? -(getWidth() - getDraggedViewWidth()) : 0.0f, Math.min(motionEvent.getX() - this.dragStartX, this.dragFromRight ? 0.0f : getWidth() - getDraggedViewWidth())));
             invalidate();
         } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-            if (Math.abs(this.viewToDrag.getTranslationX()) >= getWidth() - getDraggedViewWidth() && motionEvent.getAction() == 1) {
+            if (Math.abs(this.viewToDrag.getTranslationX()) < getWidth() - getDraggedViewWidth()) {
+                throw null;
+            }
+            if (motionEvent.getAction() == 1) {
                 throw null;
             }
             throw null;

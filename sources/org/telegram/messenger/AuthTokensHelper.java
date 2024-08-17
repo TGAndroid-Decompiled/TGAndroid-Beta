@@ -7,6 +7,7 @@ import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC$TL_auth_authorization;
 import org.telegram.tgnet.TLRPC$TL_auth_loggedOut;
 import org.telegram.tgnet.TLRPC$auth_Authorization;
+
 public class AuthTokensHelper {
     public static ArrayList<TLRPC$TL_auth_loggedOut> getSavedLogOutTokens() {
         SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("saved_tokens", 0);
@@ -29,7 +30,7 @@ public class AuthTokensHelper {
         SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("saved_tokens", 0);
         ArrayList arrayList2 = new ArrayList();
         sharedPreferences.edit().clear().apply();
-        long currentTimeMillis = System.currentTimeMillis() / 1000;
+        System.currentTimeMillis();
         for (int i = 0; i < Math.min(20, arrayList.size()); i++) {
             arrayList2.add(arrayList.get(i));
         }
@@ -103,8 +104,7 @@ public class AuthTokensHelper {
         int i = sharedPreferences.getInt("count", 0);
         SerializedData serializedData = new SerializedData(tLRPC$TL_auth_loggedOut.getObjectSize());
         tLRPC$TL_auth_loggedOut.serializeToStream(serializedData);
-        SharedPreferences.Editor edit = sharedPreferences.edit();
-        edit.putString("log_out_token_" + i, Utilities.bytesToHex(serializedData.toByteArray())).putInt("count", i + 1).apply();
+        sharedPreferences.edit().putString("log_out_token_" + i, Utilities.bytesToHex(serializedData.toByteArray())).putInt("count", i + 1).apply();
         BackupAgent.requestBackup(ApplicationLoader.applicationContext);
     }
 

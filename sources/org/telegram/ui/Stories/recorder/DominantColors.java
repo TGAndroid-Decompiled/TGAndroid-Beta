@@ -3,6 +3,7 @@ package org.telegram.ui.Stories.recorder;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import org.telegram.messenger.Utilities;
+
 public class DominantColors {
     private static float[] tempHsv;
 

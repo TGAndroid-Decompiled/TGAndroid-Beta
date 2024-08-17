@@ -5,6 +5,7 @@ import android.view.View;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
+
 public class Shaker {
     private final Runnable invalidate;
     private final float r;
@@ -33,9 +34,10 @@ public class Shaker {
         canvas.rotate(((float) Math.sin(d * 3.141592653589793d)) * 1.0f * f);
         double d2 = this.sx * currentTimeMillis;
         Double.isNaN(d2);
+        float cos = ((float) Math.cos(d2 * 3.141592653589793d)) * AndroidUtilities.dp(0.5f) * f;
         double d3 = currentTimeMillis * this.sy;
         Double.isNaN(d3);
-        canvas.translate(((float) Math.cos(d2 * 3.141592653589793d)) * AndroidUtilities.dp(0.5f) * f, ((float) Math.sin(d3 * 3.141592653589793d)) * AndroidUtilities.dp(0.5f) * f);
+        canvas.translate(cos, ((float) Math.sin(d3 * 3.141592653589793d)) * AndroidUtilities.dp(0.5f) * f);
         if (f <= 0.0f || (runnable = this.invalidate) == null) {
             return;
         }

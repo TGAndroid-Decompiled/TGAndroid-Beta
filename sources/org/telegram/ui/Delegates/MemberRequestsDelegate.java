@@ -80,6 +80,7 @@ import org.telegram.ui.Components.spoilers.SpoilersTextView;
 import org.telegram.ui.Delegates.MemberRequestsDelegate;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
+
 public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener {
     private final long chatId;
     private final MemberRequestsController controller;
@@ -197,29 +198,29 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
     }
 
     public StickerEmptyView getEmptyView() {
-        String str;
         int i;
-        String str2;
+        String str;
         int i2;
+        String str2;
         if (this.emptyView == null) {
             StickerEmptyView stickerEmptyView = new StickerEmptyView(this.fragment.getParentActivity(), null, 16, this.fragment.getResourceProvider());
             this.emptyView = stickerEmptyView;
             SpoilersTextView spoilersTextView = stickerEmptyView.title;
             if (this.isChannel) {
-                str = "NoSubscribeRequests";
                 i = R.string.NoSubscribeRequests;
+                str = "NoSubscribeRequests";
             } else {
-                str = "NoMemberRequests";
                 i = R.string.NoMemberRequests;
+                str = "NoMemberRequests";
             }
             spoilersTextView.setText(LocaleController.getString(str, i));
             LinkSpanDrawable.LinksTextView linksTextView = this.emptyView.subtitle;
             if (this.isChannel) {
-                str2 = "NoSubscribeRequestsDescription";
                 i2 = R.string.NoSubscribeRequestsDescription;
+                str2 = "NoSubscribeRequestsDescription";
             } else {
-                str2 = "NoMemberRequestsDescription";
                 i2 = R.string.NoMemberRequestsDescription;
+                str2 = "NoMemberRequestsDescription";
             }
             linksTextView.setText(LocaleController.getString(str2, i2));
             this.emptyView.setAnimateLayoutChange(true);
@@ -292,7 +293,8 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
         }
         this.fragment.getMessagesController().putUser(tLRPC$User, false);
         Point point = AndroidUtilities.displaySize;
-        if (tLRPC$User.photo == null || (point.x > point.y)) {
+        boolean z = point.x > point.y;
+        if (tLRPC$User.photo == null || z) {
             this.isNeedRestoreList = true;
             this.fragment.dismissCurrentDialog();
             Bundle bundle = new Bundle();
@@ -300,7 +302,9 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
             bundle.putLong("user_id", tLRPC$User.id);
             bundle.putBoolean("removeFragmentOnChatOpen", false);
             this.fragment.presentFragment(profileActivity);
-        } else if (this.previewDialog == null) {
+            return;
+        }
+        if (this.previewDialog == null) {
             PreviewDialog previewDialog = new PreviewDialog(this.fragment.getParentActivity(), (RecyclerListView) memberRequestCell.getParent(), this.fragment.getResourceProvider(), this.isChannel);
             this.previewDialog = previewDialog;
             previewDialog.setImporter(this.importer, memberRequestCell.getAvatarImageView());
@@ -320,11 +324,11 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
 
     public boolean onBackPressed() {
         PreviewDialog previewDialog = this.previewDialog;
-        if (previewDialog != null) {
-            previewDialog.dismiss();
-            return false;
+        if (previewDialog == null) {
+            return true;
         }
-        return true;
+        previewDialog.dismiss();
+        return false;
     }
 
     public void setSearchExpanded(boolean z) {
@@ -491,10 +495,10 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
             if (this.hasMore) {
                 Adapter adapter = this.adapter;
                 adapter.notifyItemInserted(adapter.getItemCount() - 1);
-                return;
+            } else {
+                Adapter adapter2 = this.adapter;
+                adapter2.notifyItemRemoved(adapter2.getItemCount());
             }
-            Adapter adapter2 = this.adapter;
-            adapter2.notifyItemRemoved(adapter2.getItemCount());
         }
     }
 
@@ -604,12 +608,12 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
             while (true) {
                 if (i >= this.allImporters.size()) {
                     break;
-                } else if (this.allImporters.get(i).user_id == tLRPC$TL_chatInviteImporter.user_id) {
+                }
+                if (this.allImporters.get(i).user_id == tLRPC$TL_chatInviteImporter.user_id) {
                     this.allImporters.remove(i);
                     break;
-                } else {
-                    i++;
                 }
+                i++;
             }
             this.adapter.removeItem(tLRPC$TL_chatInviteImporter);
             onImportersChanged(this.query, false, true);
@@ -674,26 +678,26 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
 
         @Override
         public RecyclerListView.Holder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            MemberRequestCell memberRequestCell;
+            View view;
             if (i == 1) {
-                View view = new View(viewGroup.getContext());
-                view.setBackground(Theme.getThemedDrawableByKey(viewGroup.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
-                memberRequestCell = view;
+                View view2 = new View(viewGroup.getContext());
+                view2.setBackground(Theme.getThemedDrawableByKey(viewGroup.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+                view = view2;
             } else if (i == 2) {
-                memberRequestCell = new View(viewGroup.getContext()) {
+                view = new View(viewGroup.getContext()) {
                     @Override
                     protected void onMeasure(int i2, int i3) {
                         super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(52.0f), 1073741824));
                     }
                 };
             } else if (i == 3) {
-                memberRequestCell = new View(viewGroup.getContext());
+                view = new View(viewGroup.getContext());
             } else if (i != 4) {
                 Context context = viewGroup.getContext();
                 MemberRequestsDelegate memberRequestsDelegate = MemberRequestsDelegate.this;
-                MemberRequestCell memberRequestCell2 = new MemberRequestCell(context, memberRequestsDelegate, memberRequestsDelegate.isChannel);
-                memberRequestCell2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, MemberRequestsDelegate.this.fragment.getResourceProvider()));
-                memberRequestCell = memberRequestCell2;
+                MemberRequestCell memberRequestCell = new MemberRequestCell(context, memberRequestsDelegate, memberRequestsDelegate.isChannel);
+                memberRequestCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, MemberRequestsDelegate.this.fragment.getResourceProvider()));
+                view = memberRequestCell;
             } else {
                 FlickerLoadingView flickerLoadingView = new FlickerLoadingView(MemberRequestsDelegate.this.fragment.getParentActivity(), MemberRequestsDelegate.this.fragment.getResourceProvider()) {
                     @Override
@@ -709,9 +713,9 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
                 flickerLoadingView.setMemberRequestButton(MemberRequestsDelegate.this.isChannel);
                 flickerLoadingView.setIsSingleCell(true);
                 flickerLoadingView.setItemsCount(1);
-                memberRequestCell = flickerLoadingView;
+                view = flickerLoadingView;
             }
-            return new RecyclerListView.Holder(memberRequestCell);
+            return new RecyclerListView.Holder(view);
         }
 
         @Override
@@ -726,7 +730,9 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
                     z = false;
                 }
                 memberRequestCell.setData(longSparseArray, tLRPC$TL_chatInviteImporter, z);
-            } else if (viewHolder.getItemViewType() == 2) {
+                return;
+            }
+            if (viewHolder.getItemViewType() == 2) {
                 viewHolder.itemView.requestLayout();
             }
         }
@@ -759,13 +765,13 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
                 while (true) {
                     if (i2 >= list.size()) {
                         break;
-                    } else if (list.get(i2).user_id == j) {
+                    }
+                    if (list.get(i2).user_id == j) {
                         list.remove(i);
                         i--;
                         break;
-                    } else {
-                        i2++;
                     }
+                    i2++;
                 }
                 i++;
             }
@@ -786,13 +792,13 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
                 while (true) {
                     if (i2 >= MemberRequestsDelegate.this.currentImporters.size()) {
                         break;
-                    } else if (((TLRPC$TL_chatInviteImporter) MemberRequestsDelegate.this.currentImporters.get(i2)).user_id == j) {
+                    }
+                    if (((TLRPC$TL_chatInviteImporter) MemberRequestsDelegate.this.currentImporters.get(i2)).user_id == j) {
                         list.remove(i);
                         i--;
                         break;
-                    } else {
-                        i2++;
                     }
+                    i2++;
                 }
                 i++;
             }
@@ -848,8 +854,8 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
 
         public PreviewDialog(Context context, RecyclerListView recyclerListView, Theme.ResourcesProvider resourcesProvider, boolean z) {
             super(context, R.style.TransparentDialog2);
-            String str;
             int i;
+            String str;
             Drawable mutate = getContext().getResources().getDrawable(R.drawable.popup_fixed_alert2).mutate();
             this.pagerShadowDrawable = mutate;
             TextView textView = new TextView(getContext());
@@ -865,7 +871,7 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
 
                     @Override
                     public boolean onSingleTapUp(MotionEvent motionEvent) {
-                        if (!(PreviewDialog.this.pagerShadowDrawable.getBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY()) || (((float) PreviewDialog.this.popupLayout.getLeft()) < motionEvent.getX() && motionEvent.getX() < ((float) PreviewDialog.this.popupLayout.getRight()) && ((float) PreviewDialog.this.popupLayout.getTop()) < motionEvent.getY() && motionEvent.getY() < ((float) PreviewDialog.this.popupLayout.getBottom())))) {
+                        if (!PreviewDialog.this.pagerShadowDrawable.getBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY()) && (PreviewDialog.this.popupLayout.getLeft() >= motionEvent.getX() || motionEvent.getX() >= PreviewDialog.this.popupLayout.getRight() || PreviewDialog.this.popupLayout.getTop() >= motionEvent.getY() || motionEvent.getY() >= PreviewDialog.this.popupLayout.getBottom())) {
                             PreviewDialog.this.dismiss();
                         }
                         return super.onSingleTapUp(motionEvent);
@@ -919,10 +925,13 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
                     int dp3 = AndroidUtilities.dp(6.0f);
                     this.rectF.set(PreviewDialog.this.viewPager.getLeft(), PreviewDialog.this.viewPager.getTop(), PreviewDialog.this.viewPager.getRight(), PreviewDialog.this.viewPager.getTop() + (dp3 * 2));
                     this.clipPath.reset();
+                    Path path = this.clipPath;
+                    RectF rectF = this.rectF;
                     float f = dp3;
-                    this.clipPath.addRoundRect(this.rectF, f, f, Path.Direction.CW);
+                    Path.Direction direction = Path.Direction.CW;
+                    path.addRoundRect(rectF, f, f, direction);
                     this.rectF.set(i2, PreviewDialog.this.viewPager.getTop() + dp3, i4, i5);
-                    this.clipPath.addRect(this.rectF, Path.Direction.CW);
+                    this.clipPath.addRect(this.rectF, direction);
                 }
 
                 @Override
@@ -1005,11 +1014,11 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
             int i4 = Theme.key_dialogButtonSelector;
             actionBarMenuSubItem.setSelectorColor(Theme.getColor(i4, resourcesProvider));
             if (z) {
-                str = "AddToChannel";
                 i = R.string.AddToChannel;
+                str = "AddToChannel";
             } else {
-                str = "AddToGroup";
                 i = R.string.AddToGroup;
+                str = "AddToGroup";
             }
             actionBarMenuSubItem.setTextAndIcon(LocaleController.getString(str, i), R.drawable.msg_requests);
             actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
@@ -1144,10 +1153,7 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
             final float left = iArr[0] - (this.viewPager.getLeft() + ((int) ((getContentWidth() * f) / 2.0f)));
             final float top = iArr[1] - (this.viewPager.getTop() + ((int) ((getContentHeight() * f) / 2.0f)));
             final int i = (-this.popupLayout.getTop()) / 2;
-            float[] fArr = new float[2];
-            fArr[0] = z ? 0.0f : 1.0f;
-            fArr[1] = z ? 1.0f : 0.0f;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(z ? 0.0f : 1.0f, z ? 1.0f : 0.0f);
             this.animator = ofFloat;
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override

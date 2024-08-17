@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_inputWallPaperNoFile extends TLRPC$InputWallPaper {
     public long id;
 

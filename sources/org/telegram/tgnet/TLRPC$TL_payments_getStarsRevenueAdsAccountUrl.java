@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_payments_getStarsRevenueAdsAccountUrl extends TLObject {
     public TLRPC$InputPeer peer;
 

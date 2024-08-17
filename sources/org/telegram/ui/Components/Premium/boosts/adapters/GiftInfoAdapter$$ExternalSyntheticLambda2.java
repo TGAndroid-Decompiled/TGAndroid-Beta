@@ -1,4 +1,5 @@
 package org.telegram.ui.Components.Premium.boosts.adapters;
+
 public final class GiftInfoAdapter$$ExternalSyntheticLambda2 implements Runnable {
     public final GiftInfoAdapter f$0;
 
@@ -8,6 +9,6 @@ public final class GiftInfoAdapter$$ExternalSyntheticLambda2 implements Runnable
 
     @Override
     public final void run() {
-        GiftInfoAdapter.m1973$r8$lambda$8zwq8tHRswrqJTqJ8_Z2NxcnGQ(this.f$0);
+        GiftInfoAdapter.$r8$lambda$dE2HXMwgZgPVa0eVZfBLONxI0BQ(this.f$0);
     }
 }

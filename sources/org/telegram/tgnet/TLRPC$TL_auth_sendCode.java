@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_auth_sendCode extends TLObject {
     public String api_hash;
     public int api_id;

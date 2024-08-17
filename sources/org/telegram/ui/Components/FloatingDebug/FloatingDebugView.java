@@ -56,6 +56,7 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SeekBarView;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
+
 public class FloatingDebugView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private LinearLayout bigLayout;
     private List<FloatingDebugController.DebugItem> debugItems;
@@ -269,8 +270,10 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
                     HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
                     headerCell.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueHeader));
                     headerCell.setText(debugItem.title);
-                } else if (i2 != 3) {
                 } else {
+                    if (i2 != 3) {
+                        return;
+                    }
                     SeekBarCell seekBarCell = (SeekBarCell) viewHolder.itemView;
                     seekBarCell.title = debugItem.title.toString();
                     seekBarCell.value = debugItem.floatProperty.get(null).floatValue();
@@ -343,11 +346,11 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
     }
 
     public boolean onBackPressed() {
-        if (this.isBigMenuShown) {
-            showBigMenu(false);
-            return true;
+        if (!this.isBigMenuShown) {
+            return false;
         }
-        return false;
+        showBigMenu(false);
+        return true;
     }
 
     @SuppressLint({"ApplySharedPref"})
@@ -358,12 +361,13 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
     private void updateDrawables() {
         Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(56.0f), Theme.getColor(Theme.key_chats_actionBackground), Theme.getColor(Theme.key_chats_actionPressedBackground));
         Drawable mutate = getResources().getDrawable(R.drawable.floating_shadow).mutate();
-        mutate.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
+        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+        mutate.setColorFilter(new PorterDuffColorFilter(-16777216, mode));
         CombinedDrawable combinedDrawable = new CombinedDrawable(mutate, createSimpleSelectorCircleDrawable, 0, 0);
         combinedDrawable.setIconSize(AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f));
         this.floatingButtonBackground = combinedDrawable;
         Drawable drawable = getResources().getDrawable(R.drawable.popup_fixed_alert3);
-        drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogBackground), PorterDuff.Mode.MULTIPLY));
+        drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogBackground), mode));
         this.bigLayout.setBackground(drawable);
         this.titleView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
         invalidate();
@@ -538,7 +542,7 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
     public static void lambda$getBuiltInDebugItems$4() {
         SharedConfig.drawActionBarShadow = !SharedConfig.drawActionBarShadow;
         SharedConfig.saveDebugConfig();
-        AndroidUtilities.forEachViews(LaunchActivity.instance.drawerLayoutContainer.getRootView(), new FloatingDebugView$$ExternalSyntheticLambda8());
+        AndroidUtilities.forEachViews(LaunchActivity.instance.drawerLayoutContainer.getRootView(), new FloatingDebugView$$ExternalSyntheticLambda7());
     }
 
     public void lambda$getBuiltInDebugItems$5() {

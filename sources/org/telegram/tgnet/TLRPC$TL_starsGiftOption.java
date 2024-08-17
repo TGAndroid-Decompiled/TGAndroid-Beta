@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_starsGiftOption extends TLObject {
     public long amount;
     public String currency;

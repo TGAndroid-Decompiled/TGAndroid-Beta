@@ -33,6 +33,7 @@ import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Components.AnimatedColor;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AvatarDrawable;
+
 public class MessageTopicButton {
     private AvatarDrawable avatarDrawable;
     private int avatarSize;
@@ -280,7 +281,8 @@ public class MessageTopicButton {
                 this.topicPressed = false;
             }
             return this.topicPressed;
-        } else if (motionEvent.getAction() == 2) {
+        }
+        if (motionEvent.getAction() == 2) {
             boolean z = this.topicPressed;
             if (z != contains) {
                 if (z && (drawable = this.topicSelectorDrawable) != null) {
@@ -289,20 +291,19 @@ public class MessageTopicButton {
                 this.topicPressed = contains;
             }
             return this.topicPressed;
-        } else {
-            if ((motionEvent.getAction() == 1 || motionEvent.getAction() == 3) && this.topicPressed) {
-                this.topicPressed = false;
-                Drawable drawable3 = this.topicSelectorDrawable;
-                if (drawable3 != null) {
-                    drawable3.setState(idleState);
-                }
-                if (motionEvent.getAction() == 1) {
-                    onClick();
-                    return true;
-                }
-            }
-            return false;
         }
+        if ((motionEvent.getAction() == 1 || motionEvent.getAction() == 3) && this.topicPressed) {
+            this.topicPressed = false;
+            Drawable drawable3 = this.topicSelectorDrawable;
+            if (drawable3 != null) {
+                drawable3.setState(idleState);
+            }
+            if (motionEvent.getAction() == 1) {
+                onClick();
+                return true;
+            }
+        }
+        return false;
     }
 
     public int width() {
@@ -394,8 +395,7 @@ public class MessageTopicButton {
                 textPaint2.setColor(i4);
                 i3 = i4;
             }
-            TextPaint textPaint3 = Theme.chat_topicTextPaint;
-            textPaint3.setAlpha((int) (textPaint3.getAlpha() * f3 * (this.topicClosed ? 0.7f : 1.0f)));
+            Theme.chat_topicTextPaint.setAlpha((int) (r10.getAlpha() * f3 * (this.topicClosed ? 0.7f : 1.0f)));
             this.topicNameLayout.draw(canvas);
             canvas.restore();
         }
@@ -433,8 +433,8 @@ public class MessageTopicButton {
             } else {
                 ImageReceiver imageReceiver = this.imageReceiver;
                 if (imageReceiver != null) {
-                    int i = this.avatarSize;
-                    imageReceiver.setImageCoords(0.0f, 0.0f, i, i);
+                    float f2 = this.avatarSize;
+                    imageReceiver.setImageCoords(0.0f, 0.0f, f2, f2);
                     this.imageReceiver.draw(canvas);
                 }
             }

@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messageActionPaymentRefunded extends TLRPC$MessageAction {
     public TLRPC$TL_paymentCharge charge;
 

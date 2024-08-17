@@ -19,6 +19,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.NumberPicker;
+
 public class SwipeGestureSettingsView extends FrameLayout {
     int[] backgroundKeys;
     float colorProgress;
@@ -66,13 +67,17 @@ public class SwipeGestureSettingsView extends FrameLayout {
         iArr[3] = i2;
         iArr[4] = Theme.key_dialogSwipeRemove;
         iArr[5] = Theme.key_chats_archivePinBackground;
-        this.outlinePaint.setStyle(Paint.Style.STROKE);
+        Paint paint = this.outlinePaint;
+        Paint.Style style = Paint.Style.STROKE;
+        paint.setStyle(style);
         this.outlinePaint.setStrokeWidth(AndroidUtilities.dp(1.0f));
-        this.linePaint.setStyle(Paint.Style.STROKE);
-        this.linePaint.setStrokeCap(Paint.Cap.ROUND);
+        this.linePaint.setStyle(style);
+        Paint paint2 = this.linePaint;
+        Paint.Cap cap = Paint.Cap.ROUND;
+        paint2.setStrokeCap(cap);
         this.linePaint.setStrokeWidth(AndroidUtilities.dp(5.0f));
-        this.pickerDividersPaint.setStyle(Paint.Style.STROKE);
-        this.pickerDividersPaint.setStrokeCap(Paint.Cap.ROUND);
+        this.pickerDividersPaint.setStyle(style);
+        this.pickerDividersPaint.setStrokeCap(cap);
         this.pickerDividersPaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
         NumberPicker numberPicker = new NumberPicker(context, 13) {
             @Override
@@ -249,7 +254,10 @@ public class SwipeGestureSettingsView extends FrameLayout {
         super.onInitializeAccessibilityEvent(accessibilityEvent);
         if (accessibilityEvent.getEventType() == 1) {
             int value = this.picker.getValue() + 1;
-            setContentDescription(this.strings[(value > this.picker.getMaxValue() || value < 0) ? 0 : 0]);
+            if (value > this.picker.getMaxValue() || value < 0) {
+                value = 0;
+            }
+            setContentDescription(this.strings[value]);
             this.picker.changeValueByOne(true);
         }
     }

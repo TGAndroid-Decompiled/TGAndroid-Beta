@@ -34,6 +34,7 @@ import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Stories.recorder.PreviewButtons;
+
 public class PreviewButtons extends FrameLayout {
     private ValueAnimator appearAnimator;
     private float appearT;
@@ -169,10 +170,7 @@ public class PreviewButtons extends FrameLayout {
         }
         this.appearing = z;
         if (z2) {
-            float[] fArr = new float[2];
-            fArr[0] = this.appearT;
-            fArr[1] = z ? 1.0f : 0.0f;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.appearT, z ? 1.0f : 0.0f);
             this.appearAnimator = ofFloat;
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override

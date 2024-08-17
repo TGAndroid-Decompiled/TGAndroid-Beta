@@ -2,6 +2,7 @@ package kotlin.coroutines.jvm.internal;
 
 import java.lang.reflect.Method;
 import kotlin.jvm.internal.Intrinsics;
+
 public final class ModuleNameRetriever {
     private static Cache cache;
     public static final ModuleNameRetriever INSTANCE = new ModuleNameRetriever();
@@ -32,17 +33,17 @@ public final class ModuleNameRetriever {
             return null;
         }
         Method method = cache2.getModuleMethod;
-        Object invoke = method != null ? method.invoke(continuation.getClass(), new Object[0]) : null;
+        Object invoke = method != null ? method.invoke(continuation.getClass(), null) : null;
         if (invoke == null) {
             return null;
         }
         Method method2 = cache2.getDescriptorMethod;
-        Object invoke2 = method2 != null ? method2.invoke(invoke, new Object[0]) : null;
+        Object invoke2 = method2 != null ? method2.invoke(invoke, null) : null;
         if (invoke2 == null) {
             return null;
         }
         Method method3 = cache2.nameMethod;
-        Object invoke3 = method3 != null ? method3.invoke(invoke2, new Object[0]) : null;
+        Object invoke3 = method3 != null ? method3.invoke(invoke2, null) : null;
         if (invoke3 instanceof String) {
             return (String) invoke3;
         }
@@ -51,7 +52,7 @@ public final class ModuleNameRetriever {
 
     private final Cache buildCache(BaseContinuationImpl baseContinuationImpl) {
         try {
-            Cache cache2 = new Cache(Class.class.getDeclaredMethod("getModule", new Class[0]), baseContinuationImpl.getClass().getClassLoader().loadClass("java.lang.Module").getDeclaredMethod("getDescriptor", new Class[0]), baseContinuationImpl.getClass().getClassLoader().loadClass("java.lang.module.ModuleDescriptor").getDeclaredMethod("name", new Class[0]));
+            Cache cache2 = new Cache(Class.class.getDeclaredMethod("getModule", null), baseContinuationImpl.getClass().getClassLoader().loadClass("java.lang.Module").getDeclaredMethod("getDescriptor", null), baseContinuationImpl.getClass().getClassLoader().loadClass("java.lang.module.ModuleDescriptor").getDeclaredMethod("name", null));
             cache = cache2;
             return cache2;
         } catch (Exception unused) {

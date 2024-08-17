@@ -26,6 +26,7 @@ import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.GroupColorActivity;
+
 public class GroupColorActivity extends ChannelColorActivity {
     private boolean isLoading;
     private ChannelColorActivity.ProfilePreview profilePreview;
@@ -75,61 +76,50 @@ public class GroupColorActivity extends ChannelColorActivity {
     protected void updateRows() {
         ChannelColorActivity.Adapter adapter;
         ChannelColorActivity.Adapter adapter2;
-        int i = 0 + 1;
         this.profilePreviewRow = 0;
-        int i2 = i + 1;
-        this.profileColorGridRow = i;
-        int i3 = i2 + 1;
-        this.rowsCount = i3;
-        this.profileEmojiRow = i2;
+        this.profileColorGridRow = 1;
+        this.rowsCount = 3;
+        this.profileEmojiRow = 2;
         if (this.selectedProfileEmoji != 0 || this.selectedProfileColor >= 0) {
             boolean z = this.removeProfileColorRow >= 0;
-            this.rowsCount = i3 + 1;
-            this.removeProfileColorRow = i3;
+            this.rowsCount = 4;
+            this.removeProfileColorRow = 3;
             if (!z && (adapter = this.adapter) != null) {
-                adapter.notifyItemInserted(i3);
+                adapter.notifyItemInserted(3);
                 this.adapter.notifyItemChanged(this.profileEmojiRow);
                 this.listView.scrollToPosition(0);
             }
         } else {
-            int i4 = this.removeProfileColorRow;
+            int i = this.removeProfileColorRow;
             this.removeProfileColorRow = -1;
-            if (i4 >= 0 && (adapter2 = this.adapter) != null) {
-                adapter2.notifyItemRemoved(i4);
+            if (i >= 0 && (adapter2 = this.adapter) != null) {
+                adapter2.notifyItemRemoved(i);
                 this.adapter.notifyItemChanged(this.profileEmojiRow);
             }
         }
-        int i5 = this.rowsCount;
-        int i6 = i5 + 1;
-        this.profileHintRow = i5;
-        int i7 = i6 + 1;
-        this.packEmojiRow = i6;
-        int i8 = i7 + 1;
-        this.packEmojiHintRow = i7;
-        int i9 = i8 + 1;
-        this.statusEmojiRow = i8;
-        this.rowsCount = i9 + 1;
-        this.statusHintRow = i9;
+        int i2 = this.rowsCount;
+        this.profileHintRow = i2;
+        this.packEmojiRow = i2 + 1;
+        this.packEmojiHintRow = i2 + 2;
+        this.statusEmojiRow = i2 + 3;
+        this.rowsCount = i2 + 5;
+        this.statusHintRow = i2 + 4;
         TLRPC$ChatFull chatFull = getMessagesController().getChatFull(-this.dialogId);
         if (chatFull != null && chatFull.can_set_stickers) {
-            int i10 = this.rowsCount;
-            int i11 = i10 + 1;
-            this.packStickerRow = i10;
-            this.rowsCount = i11 + 1;
-            this.packStickerHintRow = i11;
+            int i3 = this.rowsCount;
+            this.packStickerRow = i3;
+            this.rowsCount = i3 + 2;
+            this.packStickerHintRow = i3 + 1;
         } else {
             this.packStickerRow = -1;
             this.packStickerHintRow = -1;
         }
-        int i12 = this.rowsCount;
-        int i13 = i12 + 1;
-        this.messagesPreviewRow = i12;
-        int i14 = i13 + 1;
-        this.wallpaperThemesRow = i13;
-        int i15 = i14 + 1;
-        this.wallpaperRow = i14;
-        this.rowsCount = i15 + 1;
-        this.wallpaperHintRow = i15;
+        int i4 = this.rowsCount;
+        this.messagesPreviewRow = i4;
+        this.wallpaperThemesRow = i4 + 1;
+        this.wallpaperRow = i4 + 2;
+        this.rowsCount = i4 + 4;
+        this.wallpaperHintRow = i4 + 3;
     }
 
     @Override
@@ -270,23 +260,22 @@ public class GroupColorActivity extends ChannelColorActivity {
                 View findViewByPosition;
                 super.onScrollStateChanged(recyclerView, i);
                 if (i == 0) {
-                    if (GroupColorActivity.this.profilePreviewPercent < 0.5f || GroupColorActivity.this.profilePreviewPercent >= 1.0f) {
-                        if (GroupColorActivity.this.profilePreviewPercent < 0.5f) {
-                            View findViewByPosition2 = GroupColorActivity.this.listView.getLayoutManager() != null ? GroupColorActivity.this.listView.getLayoutManager().findViewByPosition(0) : null;
-                            if (findViewByPosition2 == null || findViewByPosition2.getTop() >= 0) {
-                                return;
-                            }
-                            GroupColorActivity.this.listView.smoothScrollBy(0, findViewByPosition2.getTop());
+                    if (GroupColorActivity.this.profilePreviewPercent >= 0.5f && GroupColorActivity.this.profilePreviewPercent < 1.0f) {
+                        int bottom = ((BaseFragment) GroupColorActivity.this).actionBar.getBottom();
+                        RecyclerView.LayoutManager layoutManager = GroupColorActivity.this.listView.getLayoutManager();
+                        if (layoutManager == null || (findViewByPosition = layoutManager.findViewByPosition(0)) == null) {
                             return;
                         }
+                        GroupColorActivity.this.listView.smoothScrollBy(0, findViewByPosition.getBottom() - bottom);
                         return;
                     }
-                    int bottom = ((BaseFragment) GroupColorActivity.this).actionBar.getBottom();
-                    RecyclerView.LayoutManager layoutManager = GroupColorActivity.this.listView.getLayoutManager();
-                    if (layoutManager == null || (findViewByPosition = layoutManager.findViewByPosition(0)) == null) {
-                        return;
+                    if (GroupColorActivity.this.profilePreviewPercent < 0.5f) {
+                        View findViewByPosition2 = GroupColorActivity.this.listView.getLayoutManager() != null ? GroupColorActivity.this.listView.getLayoutManager().findViewByPosition(0) : null;
+                        if (findViewByPosition2 == null || findViewByPosition2.getTop() >= 0) {
+                            return;
+                        }
+                        GroupColorActivity.this.listView.smoothScrollBy(0, findViewByPosition2.getTop());
                     }
-                    GroupColorActivity.this.listView.smoothScrollBy(0, findViewByPosition.getBottom() - bottom);
                 }
             }
         });

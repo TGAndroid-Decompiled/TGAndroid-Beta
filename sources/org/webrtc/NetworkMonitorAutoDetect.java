@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
-import android.net.LinkAddress;
 import android.net.LinkProperties;
 import android.net.Network;
 import android.net.NetworkCapabilities;
@@ -21,9 +20,12 @@ import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+import org.telegram.messenger.voip.JNIUtilities$$ExternalSyntheticApiModelOutline3;
 import org.webrtc.NetworkChangeDetector;
 import org.webrtc.NetworkMonitorAutoDetect;
+
 public class NetworkMonitorAutoDetect extends BroadcastReceiver implements NetworkChangeDetector {
     private static final long INVALID_NET_ID = -1;
     private static final String TAG = "NetworkMonitorAutoDetect";
@@ -181,7 +183,8 @@ public class NetworkMonitorAutoDetect extends BroadcastReceiver implements Netwo
                 sb.append(network2);
                 Logging.w("NetworkMonitorAutoDetect", sb.toString());
                 return new NetworkState(false, -1, -1, -1, -1);
-            } else if (networkInfo.getType() != 17) {
+            }
+            if (networkInfo.getType() != 17) {
                 networkCapabilities = this.connectivityManager.getNetworkCapabilities(network);
                 if (networkCapabilities != null) {
                     hasTransport = networkCapabilities.hasTransport(4);
@@ -190,7 +193,8 @@ public class NetworkMonitorAutoDetect extends BroadcastReceiver implements Netwo
                     }
                 }
                 return getNetworkState(networkInfo);
-            } else if (networkInfo.getType() == 17) {
+            }
+            if (networkInfo.getType() == 17) {
                 if (Build.VERSION.SDK_INT >= 23) {
                     activeNetwork = this.connectivityManager.getActiveNetwork();
                     equals = network.equals(activeNetwork);
@@ -199,9 +203,8 @@ public class NetworkMonitorAutoDetect extends BroadcastReceiver implements Netwo
                     }
                 }
                 return new NetworkState(networkInfo.isConnected(), 17, -1, -1, -1);
-            } else {
-                return getNetworkState(networkInfo);
             }
+            return getNetworkState(networkInfo);
         }
 
         private NetworkState getNetworkState(NetworkInfo networkInfo) {
@@ -223,17 +226,17 @@ public class NetworkMonitorAutoDetect extends BroadcastReceiver implements Netwo
         }
 
         List<NetworkChangeDetector.NetworkInformation> getActiveNetworkList() {
-            if (supportNetworkCallback()) {
-                ArrayList arrayList = new ArrayList();
-                for (Network network : getAllNetworks()) {
-                    NetworkChangeDetector.NetworkInformation networkToInfo = networkToInfo(network);
-                    if (networkToInfo != null) {
-                        arrayList.add(networkToInfo);
-                    }
-                }
-                return arrayList;
+            if (!supportNetworkCallback()) {
+                return null;
             }
-            return null;
+            ArrayList arrayList = new ArrayList();
+            for (Network network : getAllNetworks()) {
+                NetworkChangeDetector.NetworkInformation networkToInfo = networkToInfo(network);
+                if (networkToInfo != null) {
+                    arrayList.add(networkToInfo);
+                }
+            }
+            return arrayList;
         }
 
         @android.annotation.SuppressLint({"NewApi"})
@@ -331,14 +334,15 @@ public class NetworkMonitorAutoDetect extends BroadcastReceiver implements Netwo
         @SuppressLint({"NewApi"})
         NetworkChangeDetector.IPAddress[] getIPAddresses(LinkProperties linkProperties) {
             List linkAddresses;
-            List<LinkAddress> linkAddresses2;
+            List linkAddresses2;
             InetAddress address;
             linkAddresses = linkProperties.getLinkAddresses();
             NetworkChangeDetector.IPAddress[] iPAddressArr = new NetworkChangeDetector.IPAddress[linkAddresses.size()];
             linkAddresses2 = linkProperties.getLinkAddresses();
+            Iterator it = linkAddresses2.iterator();
             int i = 0;
-            for (LinkAddress linkAddress : linkAddresses2) {
-                address = linkAddress.getAddress();
+            while (it.hasNext()) {
+                address = JNIUtilities$$ExternalSyntheticApiModelOutline3.m(it.next()).getAddress();
                 iPAddressArr[i] = new NetworkChangeDetector.IPAddress(address.getAddress());
                 i++;
             }
@@ -567,55 +571,55 @@ public class NetworkMonitorAutoDetect extends BroadcastReceiver implements Netwo
     }
 
     private static NetworkChangeDetector.ConnectionType getConnectionType(boolean z, int i, int i2) {
-        if (z) {
-            if (i == 0) {
-                switch (i2) {
-                    case 1:
-                    case 2:
-                    case 4:
-                    case 7:
-                    case 11:
-                    case 16:
-                        return NetworkChangeDetector.ConnectionType.CONNECTION_2G;
-                    case 3:
-                    case 5:
-                    case 6:
-                    case 8:
-                    case 9:
-                    case 10:
-                    case 12:
-                    case 14:
-                    case 15:
-                    case 17:
-                        return NetworkChangeDetector.ConnectionType.CONNECTION_3G;
-                    case 13:
-                    case 18:
-                        return NetworkChangeDetector.ConnectionType.CONNECTION_4G;
-                    case 19:
-                    default:
-                        return NetworkChangeDetector.ConnectionType.CONNECTION_UNKNOWN_CELLULAR;
-                    case 20:
-                        return NetworkChangeDetector.ConnectionType.CONNECTION_5G;
-                }
-            } else if (i != 1) {
-                if (i != 6) {
-                    if (i != 7) {
-                        if (i != 9) {
-                            if (i == 17) {
-                                return NetworkChangeDetector.ConnectionType.CONNECTION_VPN;
-                            }
-                            return NetworkChangeDetector.ConnectionType.CONNECTION_UNKNOWN;
-                        }
-                        return NetworkChangeDetector.ConnectionType.CONNECTION_ETHERNET;
-                    }
-                    return NetworkChangeDetector.ConnectionType.CONNECTION_BLUETOOTH;
-                }
-                return NetworkChangeDetector.ConnectionType.CONNECTION_4G;
-            } else {
-                return NetworkChangeDetector.ConnectionType.CONNECTION_WIFI;
+        if (!z) {
+            return NetworkChangeDetector.ConnectionType.CONNECTION_NONE;
+        }
+        if (i == 0) {
+            switch (i2) {
+                case 1:
+                case 2:
+                case 4:
+                case 7:
+                case 11:
+                case 16:
+                    return NetworkChangeDetector.ConnectionType.CONNECTION_2G;
+                case 3:
+                case 5:
+                case 6:
+                case 8:
+                case 9:
+                case 10:
+                case 12:
+                case 14:
+                case 15:
+                case 17:
+                    return NetworkChangeDetector.ConnectionType.CONNECTION_3G;
+                case 13:
+                case 18:
+                    return NetworkChangeDetector.ConnectionType.CONNECTION_4G;
+                case 19:
+                default:
+                    return NetworkChangeDetector.ConnectionType.CONNECTION_UNKNOWN_CELLULAR;
+                case 20:
+                    return NetworkChangeDetector.ConnectionType.CONNECTION_5G;
             }
         }
-        return NetworkChangeDetector.ConnectionType.CONNECTION_NONE;
+        if (i == 1) {
+            return NetworkChangeDetector.ConnectionType.CONNECTION_WIFI;
+        }
+        if (i == 6) {
+            return NetworkChangeDetector.ConnectionType.CONNECTION_4G;
+        }
+        if (i == 7) {
+            return NetworkChangeDetector.ConnectionType.CONNECTION_BLUETOOTH;
+        }
+        if (i == 9) {
+            return NetworkChangeDetector.ConnectionType.CONNECTION_ETHERNET;
+        }
+        if (i == 17) {
+            return NetworkChangeDetector.ConnectionType.CONNECTION_VPN;
+        }
+        return NetworkChangeDetector.ConnectionType.CONNECTION_UNKNOWN;
     }
 
     public static NetworkChangeDetector.ConnectionType getConnectionType(NetworkState networkState) {
@@ -635,7 +639,10 @@ public class NetworkMonitorAutoDetect extends BroadcastReceiver implements Netwo
     }
 
     private String getWifiSSID(NetworkState networkState) {
-        return getConnectionType(networkState) != NetworkChangeDetector.ConnectionType.CONNECTION_WIFI ? "" : this.wifiManagerDelegate.getWifiSSID();
+        if (getConnectionType(networkState) != NetworkChangeDetector.ConnectionType.CONNECTION_WIFI) {
+            return "";
+        }
+        return this.wifiManagerDelegate.getWifiSSID();
     }
 
     @Override

@@ -15,6 +15,7 @@ import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageReceiver;
+
 public class ClippingImageView extends View {
     private static float[] radii = new float[8];
     private float additionalTranslationX;
@@ -192,9 +193,9 @@ public class ClippingImageView extends View {
                 }
                 float[] fArr = radii;
                 int i2 = i * 2;
-                int i3 = iArr[i];
-                fArr[i2] = i3;
-                fArr[i2 + 1] = i3;
+                float f = iArr[i];
+                fArr[i2] = f;
+                fArr[i2 + 1] = f;
                 i++;
             }
             this.roundPath.reset();
@@ -202,9 +203,20 @@ public class ClippingImageView extends View {
             this.roundPath.close();
             canvas.drawPath(this.roundPath, this.roundPaint);
         } else {
-            int i4 = this.orientation;
-            if (i4 == 90 || i4 == 270) {
+            int i3 = this.orientation;
+            if (i3 == 90 || i3 == 270) {
                 this.drawRect.set((-getHeight()) / 2, (-getWidth()) / 2, getHeight() / 2, getWidth() / 2);
+                this.matrix.setRectToRect(this.bitmapRect, this.drawRect, Matrix.ScaleToFit.FILL);
+                int i4 = this.invert;
+                if (i4 == 1) {
+                    this.matrix.postScale(-1.0f, 1.0f);
+                } else if (i4 == 2) {
+                    this.matrix.postScale(1.0f, -1.0f);
+                }
+                this.matrix.postRotate(this.orientation, 0.0f, 0.0f);
+                this.matrix.postTranslate(getWidth() / 2, getHeight() / 2);
+            } else if (i3 == 180) {
+                this.drawRect.set((-getWidth()) / 2, (-getHeight()) / 2, getWidth() / 2, getHeight() / 2);
                 this.matrix.setRectToRect(this.bitmapRect, this.drawRect, Matrix.ScaleToFit.FILL);
                 int i5 = this.invert;
                 if (i5 == 1) {
@@ -214,23 +226,12 @@ public class ClippingImageView extends View {
                 }
                 this.matrix.postRotate(this.orientation, 0.0f, 0.0f);
                 this.matrix.postTranslate(getWidth() / 2, getHeight() / 2);
-            } else if (i4 == 180) {
-                this.drawRect.set((-getWidth()) / 2, (-getHeight()) / 2, getWidth() / 2, getHeight() / 2);
-                this.matrix.setRectToRect(this.bitmapRect, this.drawRect, Matrix.ScaleToFit.FILL);
-                int i6 = this.invert;
-                if (i6 == 1) {
-                    this.matrix.postScale(-1.0f, 1.0f);
-                } else if (i6 == 2) {
-                    this.matrix.postScale(1.0f, -1.0f);
-                }
-                this.matrix.postRotate(this.orientation, 0.0f, 0.0f);
-                this.matrix.postTranslate(getWidth() / 2, getHeight() / 2);
             } else {
                 this.drawRect.set(0.0f, 0.0f, getWidth(), getHeight());
-                int i7 = this.invert;
-                if (i7 == 1) {
+                int i6 = this.invert;
+                if (i6 == 1) {
                     this.matrix.postScale(-1.0f, 1.0f, getWidth() / 2, getHeight() / 2);
-                } else if (i7 == 2) {
+                } else if (i6 == 2) {
                     this.matrix.postScale(1.0f, -1.0f, getWidth() / 2, getHeight() / 2);
                 }
                 this.matrix.setRectToRect(this.bitmapRect, this.drawRect, Matrix.ScaleToFit.FILL);

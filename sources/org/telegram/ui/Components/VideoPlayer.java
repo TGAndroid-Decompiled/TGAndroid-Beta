@@ -66,6 +66,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.secretmedia.ExtendedDefaultDataSourceFactory;
 import org.telegram.ui.Components.VideoPlayer;
 import org.telegram.ui.Stories.recorder.StoryEntry;
+
 @SuppressLint({"NewApi"})
 public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsListener, NotificationCenter.NotificationCenterDelegate {
     static int playerCounter;
@@ -847,8 +848,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
                     Player.Listener.CC.$default$onVolumeChanged(this, f);
                 }
 
-                {
-                    VideoPlayer.this = this;
+                AnonymousClass1() {
                 }
 
                 @Override
@@ -861,6 +861,170 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
                 }
             });
             this.audioPlayer.setPlayWhenReady(this.autoplay);
+        }
+    }
+
+    public class AnonymousClass1 implements Player.Listener {
+        @Override
+        public void onAudioAttributesChanged(AudioAttributes audioAttributes) {
+            Player.Listener.CC.$default$onAudioAttributesChanged(this, audioAttributes);
+        }
+
+        @Override
+        public void onAvailableCommandsChanged(Player.Commands commands) {
+            Player.Listener.CC.$default$onAvailableCommandsChanged(this, commands);
+        }
+
+        @Override
+        public void onCues(CueGroup cueGroup) {
+            Player.Listener.CC.$default$onCues(this, cueGroup);
+        }
+
+        @Override
+        public void onCues(List list) {
+            Player.Listener.CC.$default$onCues(this, list);
+        }
+
+        @Override
+        public void onDeviceInfoChanged(DeviceInfo deviceInfo) {
+            Player.Listener.CC.$default$onDeviceInfoChanged(this, deviceInfo);
+        }
+
+        @Override
+        public void onDeviceVolumeChanged(int i, boolean z) {
+            Player.Listener.CC.$default$onDeviceVolumeChanged(this, i, z);
+        }
+
+        @Override
+        public void onEvents(Player player, Player.Events events) {
+            Player.Listener.CC.$default$onEvents(this, player, events);
+        }
+
+        @Override
+        public void onIsLoadingChanged(boolean z) {
+            Player.Listener.CC.$default$onIsLoadingChanged(this, z);
+        }
+
+        @Override
+        public void onIsPlayingChanged(boolean z) {
+            Player.Listener.CC.$default$onIsPlayingChanged(this, z);
+        }
+
+        @Override
+        public void onLoadingChanged(boolean z) {
+            Player.Listener.CC.$default$onLoadingChanged(this, z);
+        }
+
+        @Override
+        public void onMediaItemTransition(MediaItem mediaItem, int i) {
+            Player.Listener.CC.$default$onMediaItemTransition(this, mediaItem, i);
+        }
+
+        @Override
+        public void onMediaMetadataChanged(MediaMetadata mediaMetadata) {
+            Player.Listener.CC.$default$onMediaMetadataChanged(this, mediaMetadata);
+        }
+
+        @Override
+        public void onMetadata(Metadata metadata) {
+            Player.Listener.CC.$default$onMetadata(this, metadata);
+        }
+
+        @Override
+        public void onPlayWhenReadyChanged(boolean z, int i) {
+            Player.Listener.CC.$default$onPlayWhenReadyChanged(this, z, i);
+        }
+
+        @Override
+        public void onPlaybackParametersChanged(PlaybackParameters playbackParameters) {
+            Player.Listener.CC.$default$onPlaybackParametersChanged(this, playbackParameters);
+        }
+
+        @Override
+        public void onPlaybackStateChanged(int i) {
+            Player.Listener.CC.$default$onPlaybackStateChanged(this, i);
+        }
+
+        @Override
+        public void onPlaybackSuppressionReasonChanged(int i) {
+            Player.Listener.CC.$default$onPlaybackSuppressionReasonChanged(this, i);
+        }
+
+        @Override
+        public void onPlayerError(PlaybackException playbackException) {
+            Player.Listener.CC.$default$onPlayerError(this, playbackException);
+        }
+
+        @Override
+        public void onPlayerErrorChanged(PlaybackException playbackException) {
+            Player.Listener.CC.$default$onPlayerErrorChanged(this, playbackException);
+        }
+
+        @Override
+        public void onPositionDiscontinuity(int i) {
+            Player.Listener.CC.$default$onPositionDiscontinuity(this, i);
+        }
+
+        @Override
+        public void onPositionDiscontinuity(Player.PositionInfo positionInfo, Player.PositionInfo positionInfo2, int i) {
+            Player.Listener.CC.$default$onPositionDiscontinuity(this, positionInfo, positionInfo2, i);
+        }
+
+        @Override
+        public void onRenderedFirstFrame() {
+            Player.Listener.CC.$default$onRenderedFirstFrame(this);
+        }
+
+        @Override
+        public void onRepeatModeChanged(int i) {
+            Player.Listener.CC.$default$onRepeatModeChanged(this, i);
+        }
+
+        @Override
+        public void onSeekProcessed() {
+            Player.Listener.CC.$default$onSeekProcessed(this);
+        }
+
+        @Override
+        public void onSkipSilenceEnabledChanged(boolean z) {
+            Player.Listener.CC.$default$onSkipSilenceEnabledChanged(this, z);
+        }
+
+        @Override
+        public void onSurfaceSizeChanged(int i, int i2) {
+            Player.Listener.CC.$default$onSurfaceSizeChanged(this, i, i2);
+        }
+
+        @Override
+        public void onTimelineChanged(Timeline timeline, int i) {
+            Player.Listener.CC.$default$onTimelineChanged(this, timeline, i);
+        }
+
+        @Override
+        public void onTracksChanged(Tracks tracks) {
+            Player.Listener.CC.$default$onTracksChanged(this, tracks);
+        }
+
+        @Override
+        public void onVideoSizeChanged(VideoSize videoSize) {
+            Player.Listener.CC.$default$onVideoSizeChanged(this, videoSize);
+        }
+
+        @Override
+        public void onVolumeChanged(float f) {
+            Player.Listener.CC.$default$onVolumeChanged(this, f);
+        }
+
+        AnonymousClass1() {
+        }
+
+        @Override
+        public void onPlayerStateChanged(boolean z, int i) {
+            if (VideoPlayer.this.audioPlayerReady || i != 3) {
+                return;
+            }
+            VideoPlayer.this.audioPlayerReady = true;
+            VideoPlayer.this.checkPlayersReady();
         }
     }
 
@@ -1373,7 +1537,6 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
     public class AudioVisualizerRenderersFactory extends DefaultRenderersFactory {
         public AudioVisualizerRenderersFactory(Context context) {
             super(context);
-            VideoPlayer.this = r1;
         }
 
         @Override
@@ -1396,7 +1559,6 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         }
 
         public VisualizerBufferSink() {
-            VideoPlayer.this = r4;
             ByteBuffer allocateDirect = ByteBuffer.allocateDirect(8192);
             this.byteBuffer = allocateDirect;
             allocateDirect.position(0);

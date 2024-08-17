@@ -11,6 +11,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RadioButton;
+
 public class LanguageCell extends FrameLayout {
     private LocaleController.LocaleInfo currentLocale;
     private int marginEndDp;
@@ -40,21 +41,23 @@ public class LanguageCell extends FrameLayout {
         textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
         this.textView.setTextSize(1, 16.0f);
         this.textView.setSingleLine(true);
-        this.textView.setEllipsize(TextUtils.TruncateAt.END);
-        this.textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         TextView textView2 = this.textView;
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        textView2.setEllipsize(truncateAt);
+        this.textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
+        TextView textView3 = this.textView;
         boolean z2 = LocaleController.isRTL;
-        addView(textView2, LayoutHelper.createFrame(-1, -1.0f, (z2 ? 5 : 3) | 48, z2 ? this.marginEndDp : this.marginStartDp, 0.0f, z2 ? this.marginStartDp : this.marginEndDp, 17.0f));
-        TextView textView3 = new TextView(context);
-        this.textView2 = textView3;
-        textView3.setTextColor(Theme.getColor(Theme.key_dialogTextGray3));
+        addView(textView3, LayoutHelper.createFrame(-1, -1.0f, (z2 ? 5 : 3) | 48, z2 ? this.marginEndDp : this.marginStartDp, 0.0f, z2 ? this.marginStartDp : this.marginEndDp, 17.0f));
+        TextView textView4 = new TextView(context);
+        this.textView2 = textView4;
+        textView4.setTextColor(Theme.getColor(Theme.key_dialogTextGray3));
         this.textView2.setTextSize(1, 13.0f);
         this.textView2.setSingleLine(true);
-        this.textView2.setEllipsize(TextUtils.TruncateAt.END);
+        this.textView2.setEllipsize(truncateAt);
         this.textView2.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
-        TextView textView4 = this.textView2;
+        TextView textView5 = this.textView2;
         boolean z3 = LocaleController.isRTL;
-        addView(textView4, LayoutHelper.createFrame(-1, -1.0f, (z3 ? 5 : 3) | 48, z3 ? this.marginEndDp : this.marginStartDp, 20.0f, z3 ? this.marginStartDp : this.marginEndDp, 0.0f));
+        addView(textView5, LayoutHelper.createFrame(-1, -1.0f, (z3 ? 5 : 3) | 48, z3 ? this.marginEndDp : this.marginStartDp, 20.0f, z3 ? this.marginStartDp : this.marginEndDp, 0.0f));
     }
 
     @Override

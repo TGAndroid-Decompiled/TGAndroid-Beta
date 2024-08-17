@@ -4,6 +4,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.ui.Components.RecyclerListView;
+
 public class PaddedListAdapter extends RecyclerListView.SelectionAdapter {
     private int lastPadding;
     private RecyclerView.AdapterDataObserver mDataObserver;

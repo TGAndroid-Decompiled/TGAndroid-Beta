@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
 import android.view.View;
 import android.view.ViewGroup;
+
 public class MessageBackgroundDrawable extends Drawable {
     private boolean animationInProgress;
     private float currentAnimationProgress;
@@ -71,10 +72,9 @@ public class MessageBackgroundDrawable extends Drawable {
     private void calcRadius() {
         android.graphics.Rect bounds = getBounds();
         float centerX = bounds.centerX();
-        float centerY = bounds.centerY();
-        int i = bounds.left;
-        int i2 = bounds.top;
-        this.finalRadius = (float) Math.ceil(Math.sqrt(((i - centerX) * (i - centerX)) + ((i2 - centerY) * (i2 - centerY))));
+        float f = bounds.left - centerX;
+        float centerY = bounds.top - bounds.centerY();
+        this.finalRadius = (float) Math.ceil(Math.sqrt((f * f) + (centerY * centerY)));
     }
 
     public void setTouchCoords(float f, float f2) {

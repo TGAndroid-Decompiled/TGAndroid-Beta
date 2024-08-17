@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messages_getBotCallbackAnswer extends TLObject {
     public byte[] data;
     public int flags;

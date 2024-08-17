@@ -14,6 +14,7 @@ import android.os.Build;
 import android.text.SpannableStringBuilder;
 import android.text.TextPaint;
 import android.text.TextUtils;
+import android.util.Property;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
@@ -92,6 +93,7 @@ import org.telegram.ui.Components.SearchViewPager;
 import org.telegram.ui.Components.StickerEmptyView;
 import org.telegram.ui.FilteredSearchView;
 import org.telegram.ui.PhotoViewer;
+
 public class FilteredSearchView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private static SpannableStringBuilder[] arrowSpan = new SpannableStringBuilder[3];
     RecyclerView.Adapter adapter;
@@ -234,9 +236,8 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                         SharedDocumentCell sharedDocumentCell = (SharedDocumentCell) childAt;
                         if (sharedDocumentCell.getMessage().getId() == messageObject.getId()) {
                             BackupImageView imageView2 = sharedDocumentCell.getImageView();
-                            ImageReceiver imageReceiver2 = imageView2.getImageReceiver();
+                            photoImage = imageView2.getImageReceiver();
                             imageView2.getLocationInWindow(iArr);
-                            photoImage = imageReceiver2;
                         }
                         photoImage = null;
                     } else {
@@ -264,7 +265,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                         placeProviderObject.parentView.getLocationInWindow(iArr);
                         placeProviderObject.clipTopAddition = 0;
                         if (PhotoViewer.isShowingImage(messageObject) && (pinnedHeader = recyclerListView.getPinnedHeader()) != null) {
-                            int dp = (childAt instanceof SharedDocumentCell ? AndroidUtilities.dp(8.0f) + 0 : 0) - placeProviderObject.viewY;
+                            int dp = (childAt instanceof SharedDocumentCell ? AndroidUtilities.dp(8.0f) : 0) - placeProviderObject.viewY;
                             if (dp > childAt.getHeight()) {
                                 recyclerListView.scrollBy(0, -(dp + pinnedHeader.getHeight()));
                             } else {
@@ -399,9 +400,13 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
     public void lambda$new$1(View view, int i) {
         if (view instanceof SharedDocumentCell) {
             onItemClick(i, view, ((SharedDocumentCell) view).getMessage(), 0);
-        } else if (view instanceof SharedLinkCell) {
+            return;
+        }
+        if (view instanceof SharedLinkCell) {
             onItemClick(i, view, ((SharedLinkCell) view).getMessage(), 0);
-        } else if (view instanceof SharedAudioCell) {
+            return;
+        }
+        if (view instanceof SharedAudioCell) {
             onItemClick(i, view, ((SharedAudioCell) view).getMessage(), 0);
         } else if (view instanceof ContextLinkCell) {
             onItemClick(i, view, ((ContextLinkCell) view).getMessageObject(), 0);
@@ -486,7 +491,8 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         if (messageObject.isQuickReply()) {
             QuickRepliesController.QuickReply findReply = QuickRepliesController.getInstance(messageObject.currentAccount).findReply(messageObject.getQuickReplyId());
             return findReply == null ? "" : findReply.name;
-        } else if (messageObject.isSponsored()) {
+        }
+        if (messageObject.isSponsored()) {
             if (messageObject.sponsoredCanReport) {
                 return LocaleController.getString(R.string.SponsoredMessageAd);
             }
@@ -494,90 +500,82 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                 return LocaleController.getString(R.string.SponsoredMessage2Recommended);
             }
             return LocaleController.getString(R.string.SponsoredMessage2);
-        } else {
-            SpannableStringBuilder[] spannableStringBuilderArr = arrowSpan;
-            if (spannableStringBuilderArr[i] == null) {
-                spannableStringBuilderArr[i] = new SpannableStringBuilder(">");
-                if (i == 0) {
-                    i2 = R.drawable.attach_arrow_right;
-                } else if (i == 1) {
-                    i2 = R.drawable.msg_mini_arrow_mediathin;
-                } else if (i != 2) {
-                    return "";
-                } else {
-                    i2 = R.drawable.msg_mini_arrow_mediabold;
-                }
-                ColoredImageSpan coloredImageSpan = new ColoredImageSpan(ContextCompat.getDrawable(ApplicationLoader.applicationContext, i2).mutate(), i == 0 ? 2 : 1);
-                if (i == 1 || i == 2) {
-                    coloredImageSpan.setScale(0.85f);
-                }
-                SpannableStringBuilder spannableStringBuilder = arrowSpan[i];
-                spannableStringBuilder.setSpan(coloredImageSpan, 0, spannableStringBuilder.length(), 0);
-            }
-            TLRPC$Message tLRPC$Message = messageObject.messageOwner;
-            CharSequence charSequence = null;
-            if (tLRPC$Message.saved_peer_id != null) {
-                if (messageObject.getSavedDialogId() >= 0) {
-                    tLRPC$User = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(messageObject.getSavedDialogId()));
-                    chat = null;
-                } else if (messageObject.getSavedDialogId() < 0) {
-                    chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-messageObject.getSavedDialogId()));
-                    tLRPC$User = null;
-                    chat2 = null;
-                } else {
-                    tLRPC$User = null;
-                    chat = null;
-                }
-                chat2 = chat;
-            } else {
-                TLRPC$User user = tLRPC$Message.from_id.user_id != 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(messageObject.messageOwner.from_id.user_id)) : null;
-                chat = messageObject.messageOwner.from_id.chat_id != 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(messageObject.messageOwner.peer_id.chat_id)) : null;
-                if (chat == null) {
-                    chat = messageObject.messageOwner.from_id.channel_id != 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(messageObject.messageOwner.peer_id.channel_id)) : null;
-                }
-                chat2 = messageObject.messageOwner.peer_id.channel_id != 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(messageObject.messageOwner.peer_id.channel_id)) : null;
-                if (chat2 == null) {
-                    chat2 = messageObject.messageOwner.peer_id.chat_id != 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(messageObject.messageOwner.peer_id.chat_id)) : null;
-                }
-                if (ChatObject.isChannelAndNotMegaGroup(chat2) || z) {
-                    tLRPC$User = user;
-                } else {
-                    tLRPC$User = user;
-                    chat2 = null;
-                }
-            }
-            if (tLRPC$User != null && chat2 != null) {
-                CharSequence charSequence2 = chat2.title;
-                if (ChatObject.isForum(chat2) && (findTopic2 = MessagesController.getInstance(UserConfig.selectedAccount).getTopicsController().findTopic(chat2.id, MessageObject.getTopicId(messageObject.currentAccount, messageObject.messageOwner, true))) != null) {
-                    charSequence2 = ForumUtilities.getTopicSpannedName(findTopic2, null, false);
-                }
-                CharSequence replaceEmoji = Emoji.replaceEmoji(charSequence2, textPaint == null ? null : textPaint.getFontMetricsInt(), false);
-                SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
-                spannableStringBuilder2.append(Emoji.replaceEmoji(UserObject.getFirstName(tLRPC$User), textPaint != null ? textPaint.getFontMetricsInt() : null, false)).append((char) 8202).append((CharSequence) arrowSpan[i]).append((char) 8202).append(replaceEmoji);
-                charSequence = spannableStringBuilder2;
-            } else if (tLRPC$User != null) {
-                charSequence = Emoji.replaceEmoji(UserObject.getUserName(tLRPC$User), textPaint != null ? textPaint.getFontMetricsInt() : null, false);
-            } else if (chat != null) {
-                CharSequence charSequence3 = chat.title;
-                if (ChatObject.isForum(chat) && (findTopic = MessagesController.getInstance(UserConfig.selectedAccount).getTopicsController().findTopic(chat.id, MessageObject.getTopicId(messageObject.currentAccount, messageObject.messageOwner, true))) != null) {
-                    charSequence3 = ForumUtilities.getTopicSpannedName(findTopic, null, false);
-                }
-                charSequence = Emoji.replaceEmoji(charSequence3, textPaint != null ? textPaint.getFontMetricsInt() : null, false);
-            }
-            return charSequence == null ? "" : charSequence;
         }
+        SpannableStringBuilder[] spannableStringBuilderArr = arrowSpan;
+        if (spannableStringBuilderArr[i] == null) {
+            spannableStringBuilderArr[i] = new SpannableStringBuilder(">");
+            if (i == 0) {
+                i2 = R.drawable.attach_arrow_right;
+            } else if (i == 1) {
+                i2 = R.drawable.msg_mini_arrow_mediathin;
+            } else {
+                if (i != 2) {
+                    return "";
+                }
+                i2 = R.drawable.msg_mini_arrow_mediabold;
+            }
+            ColoredImageSpan coloredImageSpan = new ColoredImageSpan(ContextCompat.getDrawable(ApplicationLoader.applicationContext, i2).mutate(), i == 0 ? 2 : 1);
+            if (i == 1 || i == 2) {
+                coloredImageSpan.setScale(0.85f);
+            }
+            SpannableStringBuilder spannableStringBuilder = arrowSpan[i];
+            spannableStringBuilder.setSpan(coloredImageSpan, 0, spannableStringBuilder.length(), 0);
+        }
+        TLRPC$Message tLRPC$Message = messageObject.messageOwner;
+        CharSequence charSequence = null;
+        if (tLRPC$Message.saved_peer_id != null) {
+            if (messageObject.getSavedDialogId() >= 0) {
+                tLRPC$User = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(messageObject.getSavedDialogId()));
+                chat = null;
+            } else if (messageObject.getSavedDialogId() < 0) {
+                chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-messageObject.getSavedDialogId()));
+                tLRPC$User = null;
+                chat2 = null;
+            } else {
+                tLRPC$User = null;
+                chat = null;
+            }
+            chat2 = chat;
+        } else {
+            TLRPC$User user = tLRPC$Message.from_id.user_id != 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(messageObject.messageOwner.from_id.user_id)) : null;
+            chat = messageObject.messageOwner.from_id.chat_id != 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(messageObject.messageOwner.peer_id.chat_id)) : null;
+            if (chat == null) {
+                chat = messageObject.messageOwner.from_id.channel_id != 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(messageObject.messageOwner.peer_id.channel_id)) : null;
+            }
+            chat2 = messageObject.messageOwner.peer_id.channel_id != 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(messageObject.messageOwner.peer_id.channel_id)) : null;
+            if (chat2 == null) {
+                chat2 = messageObject.messageOwner.peer_id.chat_id != 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(messageObject.messageOwner.peer_id.chat_id)) : null;
+            }
+            if (ChatObject.isChannelAndNotMegaGroup(chat2) || z) {
+                tLRPC$User = user;
+            } else {
+                tLRPC$User = user;
+                chat2 = null;
+            }
+        }
+        if (tLRPC$User != null && chat2 != null) {
+            CharSequence charSequence2 = chat2.title;
+            if (ChatObject.isForum(chat2) && (findTopic2 = MessagesController.getInstance(UserConfig.selectedAccount).getTopicsController().findTopic(chat2.id, MessageObject.getTopicId(messageObject.currentAccount, messageObject.messageOwner, true))) != null) {
+                charSequence2 = ForumUtilities.getTopicSpannedName(findTopic2, null, false);
+            }
+            CharSequence replaceEmoji = Emoji.replaceEmoji(charSequence2, textPaint == null ? null : textPaint.getFontMetricsInt(), false);
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
+            spannableStringBuilder2.append(Emoji.replaceEmoji(UserObject.getFirstName(tLRPC$User), textPaint != null ? textPaint.getFontMetricsInt() : null, false)).append((char) 8202).append((CharSequence) arrowSpan[i]).append((char) 8202).append(replaceEmoji);
+            charSequence = spannableStringBuilder2;
+        } else if (tLRPC$User != null) {
+            charSequence = Emoji.replaceEmoji(UserObject.getUserName(tLRPC$User), textPaint != null ? textPaint.getFontMetricsInt() : null, false);
+        } else if (chat != null) {
+            CharSequence charSequence3 = chat.title;
+            if (ChatObject.isForum(chat) && (findTopic = MessagesController.getInstance(UserConfig.selectedAccount).getTopicsController().findTopic(chat.id, MessageObject.getTopicId(messageObject.currentAccount, messageObject.messageOwner, true))) != null) {
+                charSequence3 = ForumUtilities.getTopicSpannedName(findTopic, null, false);
+            }
+            charSequence = Emoji.replaceEmoji(charSequence3, textPaint != null ? textPaint.getFontMetricsInt() : null, false);
+        }
+        return charSequence == null ? "" : charSequence;
     }
 
     public void search(final long j, final long j2, final long j3, final FiltersView.MediaFilterData mediaFilterData, final boolean z, final String str, boolean z2) {
-        Locale locale = Locale.ENGLISH;
-        Object[] objArr = new Object[6];
-        objArr[0] = Long.valueOf(j);
-        objArr[1] = Long.valueOf(j2);
-        objArr[2] = Long.valueOf(j3);
-        objArr[3] = Integer.valueOf(mediaFilterData == null ? -1 : mediaFilterData.filterType);
-        objArr[4] = str;
-        objArr[5] = Boolean.valueOf(z);
-        final String format = String.format(locale, "%d%d%d%d%s%s", objArr);
+        final String format = String.format(Locale.ENGLISH, "%d%d%d%d%s%s", Long.valueOf(j), Long.valueOf(j2), Long.valueOf(j3), Integer.valueOf(mediaFilterData == null ? -1 : mediaFilterData.filterType), str, Boolean.valueOf(z));
         String str2 = this.lastSearchFilterQueryString;
         boolean z3 = str2 != null && str2.equals(format);
         boolean z4 = !z3 && z2;
@@ -595,7 +593,6 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         if (z3 && z2) {
             return;
         }
-        long j4 = 0;
         if (z4 || (mediaFilterData == null && j == 0 && j2 == 0 && j3 == 0)) {
             this.messages.clear();
             this.sections.clear();
@@ -647,7 +644,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
             }
         };
         this.searchRunnable = runnable2;
-        AndroidUtilities.runOnUIThread(runnable2, (!z3 || this.messages.isEmpty()) ? 350L : 350L);
+        AndroidUtilities.runOnUIThread(runnable2, (!z3 || this.messages.isEmpty()) ? 350L : 0L);
         if (mediaFilterData == null) {
             this.loadingView.setViewType(1);
             return;
@@ -656,12 +653,17 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         if (i3 == 0) {
             if (!TextUtils.isEmpty(this.currentSearchString)) {
                 this.loadingView.setViewType(1);
+                return;
             } else {
                 this.loadingView.setViewType(2);
+                return;
             }
-        } else if (i3 == 1) {
+        }
+        if (i3 == 1) {
             this.loadingView.setViewType(3);
-        } else if (i3 == 3 || i3 == 5) {
+            return;
+        }
+        if (i3 == 3 || i3 == 5) {
             this.loadingView.setViewType(4);
         } else if (i3 == 2) {
             this.loadingView.setViewType(5);
@@ -669,10 +671,8 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
     }
 
     public void lambda$search$4(final long j, final String str, final FiltersView.MediaFilterData mediaFilterData, final int i, final long j2, long j3, final boolean z, boolean z2, String str2, final int i2) {
-        ArrayList<MessageObject> arrayList;
         TLRPC$TL_messages_searchGlobal tLRPC$TL_messages_searchGlobal;
-        ArrayList<MessageObject> arrayList2;
-        ArrayList<Object> arrayList3 = null;
+        ArrayList<Object> arrayList = null;
         if (j != 0) {
             TLRPC$TL_messages_search tLRPC$TL_messages_search = new TLRPC$TL_messages_search();
             tLRPC$TL_messages_search.q = str;
@@ -686,7 +686,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                 tLRPC$TL_messages_search.max_date = (int) (j3 / 1000);
             }
             if (z && str.equals(this.lastMessagesSearchString) && !this.messages.isEmpty()) {
-                tLRPC$TL_messages_search.offset_id = this.messages.get(arrayList2.size() - 1).getId();
+                tLRPC$TL_messages_search.offset_id = this.messages.get(r0.size() - 1).getId();
                 tLRPC$TL_messages_searchGlobal = tLRPC$TL_messages_search;
             } else {
                 tLRPC$TL_messages_search.offset_id = 0;
@@ -694,8 +694,8 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
             }
         } else {
             if (!TextUtils.isEmpty(str)) {
-                arrayList3 = new ArrayList<>();
-                MessagesStorage.getInstance(i).localSearch(0, str, arrayList3, new ArrayList<>(), new ArrayList<>(), null, z2 ? 1 : 0);
+                arrayList = new ArrayList<>();
+                MessagesStorage.getInstance(i).localSearch(0, str, arrayList, new ArrayList<>(), new ArrayList<>(), null, z2 ? 1 : 0);
             }
             TLRPC$TL_messages_searchGlobal tLRPC$TL_messages_searchGlobal2 = new TLRPC$TL_messages_searchGlobal();
             tLRPC$TL_messages_searchGlobal2.limit = 20;
@@ -708,7 +708,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                 tLRPC$TL_messages_searchGlobal2.max_date = (int) (j3 / 1000);
             }
             if (z && str.equals(this.lastMessagesSearchString) && !this.messages.isEmpty()) {
-                MessageObject messageObject = this.messages.get(arrayList.size() - 1);
+                MessageObject messageObject = this.messages.get(r0.size() - 1);
                 tLRPC$TL_messages_searchGlobal2.offset_id = messageObject.getId();
                 tLRPC$TL_messages_searchGlobal2.offset_rate = this.nextSearchRate;
                 tLRPC$TL_messages_searchGlobal2.offset_peer = MessagesController.getInstance(i).getInputPeer(MessageObject.getPeerId(messageObject.messageOwner.peer_id));
@@ -722,15 +722,15 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
             tLRPC$TL_messages_searchGlobal = tLRPC$TL_messages_searchGlobal2;
         }
         TLRPC$TL_messages_searchGlobal tLRPC$TL_messages_searchGlobal3 = tLRPC$TL_messages_searchGlobal;
-        final ArrayList<Object> arrayList4 = arrayList3;
+        final ArrayList<Object> arrayList2 = arrayList;
         this.lastMessagesSearchString = str;
         this.lastSearchFilterQueryString = str2;
-        final ArrayList arrayList5 = new ArrayList();
-        FiltersView.fillTipDates(this.lastMessagesSearchString, arrayList5);
+        final ArrayList arrayList3 = new ArrayList();
+        FiltersView.fillTipDates(this.lastMessagesSearchString, arrayList3);
         ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_messages_searchGlobal3, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                FilteredSearchView.this.lambda$search$3(i, str, i2, z, mediaFilterData, j, j2, arrayList4, arrayList5, tLObject, tLRPC$TL_error);
+                FilteredSearchView.this.lambda$search$3(i, str, i2, z, mediaFilterData, j, j2, arrayList2, arrayList3, tLObject, tLRPC$TL_error);
             }
         });
     }
@@ -755,7 +755,6 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
     }
 
     public void lambda$search$2(int i, TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, int i2, boolean z, String str, ArrayList arrayList, FiltersView.MediaFilterData mediaFilterData, long j, long j2, ArrayList arrayList2, ArrayList arrayList3) {
-        boolean z2;
         String string;
         if (i != this.requestIndex) {
             return;
@@ -863,18 +862,16 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
             if (str != null && str.length() >= 3 && (LocaleController.getString("SavedMessages", R.string.SavedMessages).toLowerCase().startsWith(str) || "saved messages".startsWith(str))) {
                 int i6 = 0;
                 while (true) {
-                    if (i6 >= this.localTipChats.size()) {
-                        z2 = false;
-                        break;
-                    } else if ((this.localTipChats.get(i6) instanceof TLRPC$User) && UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().id == ((TLRPC$User) this.localTipChats.get(i6)).id) {
-                        z2 = true;
-                        break;
+                    if (i6 < this.localTipChats.size()) {
+                        if ((this.localTipChats.get(i6) instanceof TLRPC$User) && UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().id == ((TLRPC$User) this.localTipChats.get(i6)).id) {
+                            break;
+                        } else {
+                            i6++;
+                        }
                     } else {
-                        i6++;
+                        this.localTipChats.add(0, UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser());
+                        break;
                     }
-                }
-                if (!z2) {
-                    this.localTipChats.add(0, UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser());
                 }
             }
             this.localTipDates.clear();
@@ -912,8 +909,9 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                         View childAt2 = FilteredSearchView.this.recyclerListView.getChildAt(i9);
                         if (view == null || FilteredSearchView.this.recyclerListView.getChildAdapterPosition(childAt2) >= i7) {
                             childAt2.setAlpha(0.0f);
-                            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(childAt2, View.ALPHA, 0.0f, 1.0f);
-                            ofFloat.setStartDelay((int) ((Math.min(FilteredSearchView.this.recyclerListView.getMeasuredHeight(), Math.max(0, childAt2.getTop())) / FilteredSearchView.this.recyclerListView.getMeasuredHeight()) * 100.0f));
+                            int min = (int) ((Math.min(FilteredSearchView.this.recyclerListView.getMeasuredHeight(), Math.max(0, childAt2.getTop())) / FilteredSearchView.this.recyclerListView.getMeasuredHeight()) * 100.0f);
+                            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(childAt2, (Property<View, Float>) View.ALPHA, 0.0f, 1.0f);
+                            ofFloat.setStartDelay(min);
                             ofFloat.setDuration(200L);
                             animatorSet.playTogether(ofFloat);
                         }
@@ -933,7 +931,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                         if (layoutManager != null) {
                             layoutManager.ignoreView(view);
                             View view3 = view;
-                            ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(view3, View.ALPHA, view3.getAlpha(), 0.0f);
+                            ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(view3, (Property<View, Float>) View.ALPHA, view3.getAlpha(), 0.0f);
                             ofFloat2.addListener(new AnimatorListenerAdapter() {
                                 @Override
                                 public void onAnimationEnd(Animator animator) {
@@ -1030,7 +1028,6 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-            boolean z = true;
             if (viewHolder.getItemViewType() == 0) {
                 FilteredSearchView filteredSearchView = FilteredSearchView.this;
                 ArrayList<MessageObject> arrayList = filteredSearchView.messages;
@@ -1053,20 +1050,25 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                     }
                 }
                 sharedPhotoVideoCell.requestLayout();
-            } else if (viewHolder.getItemViewType() == 3) {
+                return;
+            }
+            if (viewHolder.getItemViewType() == 3) {
                 DialogCell dialogCell = (DialogCell) viewHolder.itemView;
                 dialogCell.useSeparator = i != getItemCount() - 1;
                 MessageObject messageObject2 = FilteredSearchView.this.messages.get(i);
-                z = (dialogCell.getMessage() == null || dialogCell.getMessage().getId() != messageObject2.getId()) ? false : false;
+                boolean z = dialogCell.getMessage() != null && dialogCell.getMessage().getId() == messageObject2.getId();
                 dialogCell.useFromUserAsAvatar = FilteredSearchView.this.useFromUserAsAvatar;
                 dialogCell.setDialog(messageObject2.getDialogId(), messageObject2, messageObject2.messageOwner.date, false, false);
                 if (FilteredSearchView.this.uiCallback.actionModeShowing()) {
                     FilteredSearchView.this.messageHashIdTmp.set(messageObject2.getId(), messageObject2.getDialogId());
                     dialogCell.setChecked(FilteredSearchView.this.uiCallback.isSelected(FilteredSearchView.this.messageHashIdTmp), z);
                     return;
+                } else {
+                    dialogCell.setChecked(false, z);
+                    return;
                 }
-                dialogCell.setChecked(false, z);
-            } else if (viewHolder.getItemViewType() == 1) {
+            }
+            if (viewHolder.getItemViewType() == 1) {
                 ((FlickerLoadingView) viewHolder.itemView).skipDrawItemsCount(FilteredSearchView.this.columnsCount - ((FilteredSearchView.this.columnsCount * ((int) Math.ceil(FilteredSearchView.this.messages.size() / FilteredSearchView.this.columnsCount))) - FilteredSearchView.this.messages.size()));
             }
         }
@@ -1087,80 +1089,92 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         }
         if (this.uiCallback.actionModeShowing()) {
             this.uiCallback.toggleItemSelection(messageObject, view, i2);
-        } else if (view instanceof DialogCell) {
+            return;
+        }
+        if (view instanceof DialogCell) {
             this.uiCallback.goToMessage(messageObject);
-        } else {
-            int i3 = this.currentSearchFilter.filterType;
-            if (i3 == 0) {
-                PhotoViewer.getInstance().setParentActivity(this.parentFragment);
-                PhotoViewer.getInstance().openPhoto(this.messages, i, 0L, 0L, 0L, this.provider);
-                this.photoViewerClassGuid = PhotoViewer.getInstance().getClassGuid();
-            } else if (i3 == 3 || i3 == 5) {
-                if (view instanceof SharedAudioCell) {
-                    ((SharedAudioCell) view).didPressedButton();
-                }
-            } else if (i3 == 1) {
-                if (view instanceof SharedDocumentCell) {
-                    SharedDocumentCell sharedDocumentCell = (SharedDocumentCell) view;
-                    TLRPC$Document document = messageObject.getDocument();
-                    if (sharedDocumentCell.isLoaded()) {
-                        if (messageObject.canPreviewDocument()) {
+            return;
+        }
+        int i3 = this.currentSearchFilter.filterType;
+        if (i3 == 0) {
+            PhotoViewer.getInstance().setParentActivity(this.parentFragment);
+            PhotoViewer.getInstance().openPhoto(this.messages, i, 0L, 0L, 0L, this.provider);
+            this.photoViewerClassGuid = PhotoViewer.getInstance().getClassGuid();
+            return;
+        }
+        if (i3 == 3 || i3 == 5) {
+            if (view instanceof SharedAudioCell) {
+                ((SharedAudioCell) view).didPressedButton();
+                return;
+            }
+            return;
+        }
+        if (i3 == 1) {
+            if (view instanceof SharedDocumentCell) {
+                SharedDocumentCell sharedDocumentCell = (SharedDocumentCell) view;
+                TLRPC$Document document = messageObject.getDocument();
+                if (sharedDocumentCell.isLoaded()) {
+                    if (messageObject.canPreviewDocument()) {
+                        PhotoViewer.getInstance().setParentActivity(this.parentFragment);
+                        int indexOf = this.messages.indexOf(messageObject);
+                        if (indexOf < 0) {
+                            ArrayList<MessageObject> arrayList = new ArrayList<>();
+                            arrayList.add(messageObject);
                             PhotoViewer.getInstance().setParentActivity(this.parentFragment);
-                            int indexOf = this.messages.indexOf(messageObject);
-                            if (indexOf < 0) {
-                                ArrayList<MessageObject> arrayList = new ArrayList<>();
-                                arrayList.add(messageObject);
-                                PhotoViewer.getInstance().setParentActivity(this.parentFragment);
-                                PhotoViewer.getInstance().openPhoto(arrayList, 0, 0L, 0L, 0L, this.provider);
-                                this.photoViewerClassGuid = PhotoViewer.getInstance().getClassGuid();
-                                return;
-                            }
-                            PhotoViewer.getInstance().setParentActivity(this.parentFragment);
-                            PhotoViewer.getInstance().openPhoto(this.messages, indexOf, 0L, 0L, 0L, this.provider);
+                            PhotoViewer.getInstance().openPhoto(arrayList, 0, 0L, 0L, 0L, this.provider);
                             this.photoViewerClassGuid = PhotoViewer.getInstance().getClassGuid();
                             return;
                         }
-                        AndroidUtilities.openDocument(messageObject, this.parentActivity, this.parentFragment);
-                    } else if (!sharedDocumentCell.isLoading()) {
-                        MessageObject message = sharedDocumentCell.getMessage();
-                        message.putInDownloadsStore = true;
-                        AccountInstance.getInstance(UserConfig.selectedAccount).getFileLoader().loadFile(document, message, 0, 0);
-                        sharedDocumentCell.updateFileExistIcon(true);
-                    } else {
-                        AccountInstance.getInstance(UserConfig.selectedAccount).getFileLoader().cancelLoadFile(document);
-                        sharedDocumentCell.updateFileExistIcon(true);
+                        PhotoViewer.getInstance().setParentActivity(this.parentFragment);
+                        PhotoViewer.getInstance().openPhoto(this.messages, indexOf, 0L, 0L, 0L, this.provider);
+                        this.photoViewerClassGuid = PhotoViewer.getInstance().getClassGuid();
+                        return;
                     }
+                    AndroidUtilities.openDocument(messageObject, this.parentActivity, this.parentFragment);
+                    return;
                 }
-            } else if (i3 == 2) {
-                try {
-                    TLRPC$MessageMedia tLRPC$MessageMedia = messageObject.messageOwner.media;
-                    String str = null;
-                    TLRPC$WebPage tLRPC$WebPage = tLRPC$MessageMedia != null ? tLRPC$MessageMedia.webpage : null;
-                    if (tLRPC$WebPage != null && !(tLRPC$WebPage instanceof TLRPC$TL_webPageEmpty)) {
-                        if (tLRPC$WebPage.cached_page != null) {
-                            LaunchActivity launchActivity = LaunchActivity.instance;
-                            if (launchActivity == null || launchActivity.getBottomSheetTabs() == null || LaunchActivity.instance.getBottomSheetTabs().tryReopenTab(messageObject) == null) {
-                                this.parentFragment.createArticleViewer(false).open(messageObject);
-                                return;
-                            }
+                if (!sharedDocumentCell.isLoading()) {
+                    MessageObject message = sharedDocumentCell.getMessage();
+                    message.putInDownloadsStore = true;
+                    AccountInstance.getInstance(UserConfig.selectedAccount).getFileLoader().loadFile(document, message, 0, 0);
+                    sharedDocumentCell.updateFileExistIcon(true);
+                    return;
+                }
+                AccountInstance.getInstance(UserConfig.selectedAccount).getFileLoader().cancelLoadFile(document);
+                sharedDocumentCell.updateFileExistIcon(true);
+                return;
+            }
+            return;
+        }
+        if (i3 == 2) {
+            try {
+                TLRPC$MessageMedia tLRPC$MessageMedia = messageObject.messageOwner.media;
+                String str = null;
+                TLRPC$WebPage tLRPC$WebPage = tLRPC$MessageMedia != null ? tLRPC$MessageMedia.webpage : null;
+                if (tLRPC$WebPage != null && !(tLRPC$WebPage instanceof TLRPC$TL_webPageEmpty)) {
+                    if (tLRPC$WebPage.cached_page != null) {
+                        LaunchActivity launchActivity = LaunchActivity.instance;
+                        if (launchActivity == null || launchActivity.getBottomSheetTabs() == null || LaunchActivity.instance.getBottomSheetTabs().tryReopenTab(messageObject) == null) {
+                            this.parentFragment.createArticleViewer(false).open(messageObject);
                             return;
                         }
-                        String str2 = tLRPC$WebPage.embed_url;
-                        if (str2 != null && str2.length() != 0) {
-                            openWebView(tLRPC$WebPage, messageObject);
-                            return;
-                        }
-                        str = tLRPC$WebPage.url;
+                        return;
                     }
-                    if (str == null) {
-                        str = ((SharedLinkCell) view).getLink(0);
+                    String str2 = tLRPC$WebPage.embed_url;
+                    if (str2 != null && str2.length() != 0) {
+                        openWebView(tLRPC$WebPage, messageObject);
+                        return;
                     }
-                    if (str != null) {
-                        openUrl(str);
-                    }
-                } catch (Exception e) {
-                    FileLog.e(e);
+                    str = tLRPC$WebPage.url;
                 }
+                if (str == null) {
+                    str = ((SharedLinkCell) view).getLink(0);
+                }
+                if (str != null) {
+                    openUrl(str);
+                }
+            } catch (Exception e) {
+                FileLog.e(e);
             }
         }
     }
@@ -1218,7 +1232,9 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
             public void lambda$onLinkPress$0(String str, DialogInterface dialogInterface, int i) {
                 if (i == 0) {
                     FilteredSearchView.this.openUrl(str);
-                } else if (i == 1) {
+                    return;
+                }
+                if (i == 1) {
                     if (str.startsWith("mailto:")) {
                         str = str.substring(7);
                     } else if (str.startsWith("tel:")) {
@@ -1251,11 +1267,11 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
 
         @Override
         public int getCountForSection(int i) {
-            if (i < FilteredSearchView.this.sections.size()) {
-                FilteredSearchView filteredSearchView = FilteredSearchView.this;
-                return filteredSearchView.sectionArrays.get(filteredSearchView.sections.get(i)).size() + (i == 0 ? 0 : 1);
+            if (i >= FilteredSearchView.this.sections.size()) {
+                return 1;
             }
-            return 1;
+            FilteredSearchView filteredSearchView = FilteredSearchView.this;
+            return filteredSearchView.sectionArrays.get(filteredSearchView.sections.get(i)).size() + (i == 0 ? 0 : 1);
         }
 
         @Override
@@ -1302,32 +1318,34 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                 boolean z = false;
                 if (itemViewType == 0) {
                     ((GraySectionCell) viewHolder.itemView).setText(LocaleController.formatSectionDate(arrayList.get(0).messageOwner.date));
-                } else if (itemViewType != 1) {
-                } else {
-                    if (i != 0) {
-                        i2--;
-                    }
-                    final SharedLinkCell sharedLinkCell = (SharedLinkCell) viewHolder.itemView;
-                    final MessageObject messageObject = arrayList.get(i2);
-                    final boolean z2 = sharedLinkCell.getMessage() != null && sharedLinkCell.getMessage().getId() == messageObject.getId();
-                    if (i2 != arrayList.size() - 1 || (i == FilteredSearchView.this.sections.size() - 1 && FilteredSearchView.this.isLoading)) {
-                        z = true;
-                    }
-                    sharedLinkCell.setLink(messageObject, z);
-                    sharedLinkCell.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-                        @Override
-                        public boolean onPreDraw() {
-                            sharedLinkCell.getViewTreeObserver().removeOnPreDrawListener(this);
-                            if (FilteredSearchView.this.uiCallback.actionModeShowing()) {
-                                FilteredSearchView.this.messageHashIdTmp.set(messageObject.getId(), messageObject.getDialogId());
-                                sharedLinkCell.setChecked(FilteredSearchView.this.uiCallback.isSelected(FilteredSearchView.this.messageHashIdTmp), z2);
-                                return true;
-                            }
-                            sharedLinkCell.setChecked(false, z2);
+                    return;
+                }
+                if (itemViewType != 1) {
+                    return;
+                }
+                if (i != 0) {
+                    i2--;
+                }
+                final SharedLinkCell sharedLinkCell = (SharedLinkCell) viewHolder.itemView;
+                final MessageObject messageObject = arrayList.get(i2);
+                final boolean z2 = sharedLinkCell.getMessage() != null && sharedLinkCell.getMessage().getId() == messageObject.getId();
+                if (i2 != arrayList.size() - 1 || (i == FilteredSearchView.this.sections.size() - 1 && FilteredSearchView.this.isLoading)) {
+                    z = true;
+                }
+                sharedLinkCell.setLink(messageObject, z);
+                sharedLinkCell.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+                    @Override
+                    public boolean onPreDraw() {
+                        sharedLinkCell.getViewTreeObserver().removeOnPreDrawListener(this);
+                        if (FilteredSearchView.this.uiCallback.actionModeShowing()) {
+                            FilteredSearchView.this.messageHashIdTmp.set(messageObject.getId(), messageObject.getDialogId());
+                            sharedLinkCell.setChecked(FilteredSearchView.this.uiCallback.isSelected(FilteredSearchView.this.messageHashIdTmp), z2);
                             return true;
                         }
-                    });
-                }
+                        sharedLinkCell.setChecked(false, z2);
+                        return true;
+                    }
+                });
             }
         }
 
@@ -1385,11 +1403,11 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
 
         @Override
         public int getCountForSection(int i) {
-            if (i < FilteredSearchView.this.sections.size()) {
-                FilteredSearchView filteredSearchView = FilteredSearchView.this;
-                return filteredSearchView.sectionArrays.get(filteredSearchView.sections.get(i)).size() + (i == 0 ? 0 : 1);
+            if (i >= FilteredSearchView.this.sections.size()) {
+                return 1;
             }
-            return 1;
+            FilteredSearchView filteredSearchView = FilteredSearchView.this;
+            return filteredSearchView.sectionArrays.get(filteredSearchView.sections.get(i)).size() + (i == 0 ? 0 : 1);
         }
 
         @Override
@@ -1414,12 +1432,13 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
             View graySectionCell;
             SharedDocumentCell sharedDocumentCell;
             if (i != 0) {
+                int i2 = 1;
                 if (i == 1) {
                     sharedDocumentCell = new SharedDocumentCell(this.mContext, 2);
                 } else if (i == 2) {
                     FlickerLoadingView flickerLoadingView = new FlickerLoadingView(this.mContext);
-                    int i2 = this.currentType;
-                    if (i2 == 2 || i2 == 4) {
+                    int i3 = this.currentType;
+                    if (i3 == 2 || i3 == 4) {
                         flickerLoadingView.setViewType(4);
                     } else {
                         flickerLoadingView.setViewType(3);
@@ -1427,27 +1446,27 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                     flickerLoadingView.setIsSingleCell(true);
                     sharedDocumentCell = flickerLoadingView;
                 } else {
-                    graySectionCell = new SharedAudioCell(this.mContext, 1, null) {
+                    graySectionCell = new SharedAudioCell(this.mContext, i2, null) {
                         @Override
                         public boolean needPlayMessage(MessageObject messageObject) {
                             if (messageObject.isVoice() || messageObject.isRoundVideo()) {
                                 boolean playMessage = MediaController.getInstance().playMessage(messageObject);
                                 MediaController.getInstance().setVoiceMessagesPlaylist(playMessage ? FilteredSearchView.this.messages : null, false);
                                 return playMessage;
-                            } else if (messageObject.isMusic()) {
-                                String str = FilteredSearchView.this.currentDataQuery;
-                                FilteredSearchView filteredSearchView = FilteredSearchView.this;
-                                long j = filteredSearchView.currentSearchDialogId;
-                                long j2 = filteredSearchView.currentSearchMinDate;
-                                MediaController.PlaylistGlobalSearchParams playlistGlobalSearchParams = new MediaController.PlaylistGlobalSearchParams(str, j, j2, j2, filteredSearchView.currentSearchFilter);
-                                playlistGlobalSearchParams.endReached = FilteredSearchView.this.endReached;
-                                playlistGlobalSearchParams.nextSearchRate = FilteredSearchView.this.nextSearchRate;
-                                playlistGlobalSearchParams.totalCount = FilteredSearchView.this.totalCount;
-                                playlistGlobalSearchParams.folderId = FilteredSearchView.this.currentIncludeFolder ? 1 : 0;
-                                return MediaController.getInstance().setPlaylist(FilteredSearchView.this.messages, messageObject, 0L, playlistGlobalSearchParams);
-                            } else {
+                            }
+                            if (!messageObject.isMusic()) {
                                 return false;
                             }
+                            String str = FilteredSearchView.this.currentDataQuery;
+                            FilteredSearchView filteredSearchView = FilteredSearchView.this;
+                            long j = filteredSearchView.currentSearchDialogId;
+                            long j2 = filteredSearchView.currentSearchMinDate;
+                            MediaController.PlaylistGlobalSearchParams playlistGlobalSearchParams = new MediaController.PlaylistGlobalSearchParams(str, j, j2, j2, filteredSearchView.currentSearchFilter);
+                            playlistGlobalSearchParams.endReached = FilteredSearchView.this.endReached;
+                            playlistGlobalSearchParams.nextSearchRate = FilteredSearchView.this.nextSearchRate;
+                            playlistGlobalSearchParams.totalCount = FilteredSearchView.this.totalCount;
+                            playlistGlobalSearchParams.folderId = FilteredSearchView.this.currentIncludeFolder ? 1 : 0;
+                            return MediaController.getInstance().setPlaylist(FilteredSearchView.this.messages, messageObject, 0L, playlistGlobalSearchParams);
                         }
                     };
                 }
@@ -1467,7 +1486,9 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                 boolean z = false;
                 if (itemViewType == 0) {
                     ((GraySectionCell) viewHolder.itemView).setText(LocaleController.formatSectionDate(arrayList.get(0).messageOwner.date));
-                } else if (itemViewType == 1) {
+                    return;
+                }
+                if (itemViewType == 1) {
                     if (i != 0) {
                         i2--;
                     }
@@ -1491,45 +1512,47 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                             return true;
                         }
                     });
-                } else if (itemViewType != 3) {
-                } else {
-                    if (i != 0) {
-                        i2--;
-                    }
-                    final SharedAudioCell sharedAudioCell = (SharedAudioCell) viewHolder.itemView;
-                    final MessageObject messageObject2 = arrayList.get(i2);
-                    final boolean z3 = sharedAudioCell.getMessage() != null && sharedAudioCell.getMessage().getId() == messageObject2.getId();
-                    if (i2 != arrayList.size() - 1 || (i == FilteredSearchView.this.sections.size() - 1 && FilteredSearchView.this.isLoading)) {
-                        z = true;
-                    }
-                    sharedAudioCell.setMessageObject(messageObject2, z);
-                    sharedAudioCell.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-                        @Override
-                        public boolean onPreDraw() {
-                            sharedAudioCell.getViewTreeObserver().removeOnPreDrawListener(this);
-                            if (FilteredSearchView.this.uiCallback.actionModeShowing()) {
-                                FilteredSearchView.this.messageHashIdTmp.set(messageObject2.getId(), messageObject2.getDialogId());
-                                sharedAudioCell.setChecked(FilteredSearchView.this.uiCallback.isSelected(FilteredSearchView.this.messageHashIdTmp), z3);
-                                return true;
-                            }
-                            sharedAudioCell.setChecked(false, z3);
+                    return;
+                }
+                if (itemViewType != 3) {
+                    return;
+                }
+                if (i != 0) {
+                    i2--;
+                }
+                final SharedAudioCell sharedAudioCell = (SharedAudioCell) viewHolder.itemView;
+                final MessageObject messageObject2 = arrayList.get(i2);
+                final boolean z3 = sharedAudioCell.getMessage() != null && sharedAudioCell.getMessage().getId() == messageObject2.getId();
+                if (i2 != arrayList.size() - 1 || (i == FilteredSearchView.this.sections.size() - 1 && FilteredSearchView.this.isLoading)) {
+                    z = true;
+                }
+                sharedAudioCell.setMessageObject(messageObject2, z);
+                sharedAudioCell.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+                    @Override
+                    public boolean onPreDraw() {
+                        sharedAudioCell.getViewTreeObserver().removeOnPreDrawListener(this);
+                        if (FilteredSearchView.this.uiCallback.actionModeShowing()) {
+                            FilteredSearchView.this.messageHashIdTmp.set(messageObject2.getId(), messageObject2.getDialogId());
+                            sharedAudioCell.setChecked(FilteredSearchView.this.uiCallback.isSelected(FilteredSearchView.this.messageHashIdTmp), z3);
                             return true;
                         }
-                    });
-                }
+                        sharedAudioCell.setChecked(false, z3);
+                        return true;
+                    }
+                });
             }
         }
 
         @Override
         public int getItemViewType(int i, int i2) {
-            if (i < FilteredSearchView.this.sections.size()) {
-                if (i == 0 || i2 != 0) {
-                    int i3 = this.currentType;
-                    return (i3 == 2 || i3 == 4) ? 3 : 1;
-                }
+            if (i >= FilteredSearchView.this.sections.size()) {
+                return 2;
+            }
+            if (i != 0 && i2 == 0) {
                 return 0;
             }
-            return 2;
+            int i3 = this.currentType;
+            return (i3 == 2 || i3 == 4) ? 3 : 1;
         }
 
         @Override
@@ -1582,10 +1605,10 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         if (!this.uiCallback.actionModeShowing()) {
             this.uiCallback.showActionMode();
         }
-        if (this.uiCallback.actionModeShowing()) {
-            this.uiCallback.toggleItemSelection(messageObject, view, i);
+        if (!this.uiCallback.actionModeShowing()) {
             return true;
         }
+        this.uiCallback.toggleItemSelection(messageObject, view, i);
         return true;
     }
 
@@ -1659,9 +1682,8 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                 final MessageObject messageObject = FilteredSearchView.this.messages.get(i);
                 dialogCell.useFromUserAsAvatar = FilteredSearchView.this.useFromUserAsAvatar;
                 dialogCell.setDialog(messageObject.getDialogId(), messageObject, messageObject.messageOwner.date, false, false);
-                final boolean z = true;
                 dialogCell.useSeparator = i != getItemCount() - 1;
-                z = (dialogCell.getMessage() == null || dialogCell.getMessage().getId() != messageObject.getId()) ? false : false;
+                final boolean z = dialogCell.getMessage() != null && dialogCell.getMessage().getId() == messageObject.getId();
                 dialogCell.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
                     @Override
                     public boolean onPreDraw() {
@@ -1745,7 +1767,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         AnimatorSet animatorSet2 = new AnimatorSet();
         this.floatingDateAnimation = animatorSet2;
         animatorSet2.setDuration(180L);
-        this.floatingDateAnimation.playTogether(ObjectAnimator.ofFloat(this.floatingDateView, View.ALPHA, 1.0f), ObjectAnimator.ofFloat(this.floatingDateView, View.TRANSLATION_Y, 0.0f));
+        this.floatingDateAnimation.playTogether(ObjectAnimator.ofFloat(this.floatingDateView, (Property<ChatActionCell, Float>) View.ALPHA, 1.0f), ObjectAnimator.ofFloat(this.floatingDateView, (Property<ChatActionCell, Float>) View.TRANSLATION_Y, 0.0f));
         this.floatingDateAnimation.setInterpolator(CubicBezierInterpolator.EASE_OUT);
         this.floatingDateAnimation.addListener(new AnimatorListenerAdapter() {
             @Override
@@ -1771,7 +1793,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
             AnimatorSet animatorSet2 = new AnimatorSet();
             this.floatingDateAnimation = animatorSet2;
             animatorSet2.setDuration(180L);
-            this.floatingDateAnimation.playTogether(ObjectAnimator.ofFloat(this.floatingDateView, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.floatingDateView, View.TRANSLATION_Y, -AndroidUtilities.dp(48.0f)));
+            this.floatingDateAnimation.playTogether(ObjectAnimator.ofFloat(this.floatingDateView, (Property<ChatActionCell, Float>) View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.floatingDateView, (Property<ChatActionCell, Float>) View.TRANSLATION_Y, -AndroidUtilities.dp(48.0f)));
             this.floatingDateAnimation.setInterpolator(CubicBezierInterpolator.EASE_OUT);
             this.floatingDateAnimation.addListener(new AnimatorListenerAdapter() {
                 @Override

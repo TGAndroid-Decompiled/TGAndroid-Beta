@@ -13,6 +13,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.NotificationsController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
+
 public class StoryUploadingService extends Service implements NotificationCenter.NotificationCenterDelegate {
     private NotificationCompat.Builder builder;
     private int currentAccount = -1;
@@ -56,10 +57,13 @@ public class StoryUploadingService extends Service implements NotificationCenter
             this.builder.setProgress(100, Math.round(floatValue * 100.0f), this.currentProgress <= 0.0f);
             try {
                 NotificationManagerCompat.from(ApplicationLoader.applicationContext).notify(33, this.builder.build());
+                return;
             } catch (Throwable th) {
                 FileLog.e(th);
+                return;
             }
-        } else if (i == NotificationCenter.uploadStoryEnd && (str = this.path) != null && str.equals((String) objArr[0])) {
+        }
+        if (i == NotificationCenter.uploadStoryEnd && (str = this.path) != null && str.equals((String) objArr[0])) {
             stopSelf();
         }
     }
@@ -104,7 +108,7 @@ public class StoryUploadingService extends Service implements NotificationCenter
             this.builder.setContentText(LocaleController.getString("StoryUploading", i5));
         }
         this.currentProgress = 0.0f;
-        this.builder.setProgress(100, Math.round(0.0f * 100.0f), false);
+        this.builder.setProgress(100, Math.round(0.0f), false);
         startForeground(33, this.builder.build());
         try {
             NotificationManagerCompat.from(ApplicationLoader.applicationContext).notify(33, this.builder.build());

@@ -23,6 +23,7 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Stories.recorder.HintView2;
 import org.telegram.ui.TopicsFragment;
+
 public class PullForegroundDrawable {
     private ValueAnimator accentRevalAnimatorIn;
     private ValueAnimator accentRevalAnimatorOut;
@@ -446,14 +447,18 @@ public class PullForegroundDrawable {
             return;
         }
         canvas.save();
-        float intrinsicWidth2 = Theme.dialogs_archiveAvatarDrawable.getIntrinsicWidth();
-        float dp5 = AndroidUtilities.dp(24.0f) / intrinsicWidth2;
-        float f37 = this.outProgress;
-        float f38 = dp5 + ((1.0f - dp5) * f37) + f2;
-        float f39 = f5;
-        canvas.translate((i7 - f39) * (1.0f - f37), (((this.cell.getHeight() - i6) - i5) - f4) * (1.0f - f37));
-        float f40 = f4;
-        canvas.scale(f38, f38, f39, f40);
+        int intrinsicWidth2 = Theme.dialogs_archiveAvatarDrawable.getIntrinsicWidth();
+        int height3 = (this.cell.getHeight() - i6) - i5;
+        float f37 = intrinsicWidth2;
+        float dp5 = AndroidUtilities.dp(24.0f) / f37;
+        float f38 = this.outProgress;
+        float f39 = dp5 + ((1.0f - dp5) * f38) + f2;
+        float f40 = f5;
+        float f41 = i7 - f40;
+        float f42 = 1.0f - f38;
+        canvas.translate(f41 * f42, (height3 - f4) * f42);
+        float f43 = f4;
+        canvas.scale(f39, f39, f40, f43);
         Theme.dialogs_archiveAvatarDrawable.setProgress(0.0f);
         if (!Theme.dialogs_archiveAvatarDrawableRecolored) {
             Theme.dialogs_archiveAvatarDrawable.beginApplyLayerColors();
@@ -462,8 +467,8 @@ public class PullForegroundDrawable {
             Theme.dialogs_archiveAvatarDrawable.commitApplyLayerColors();
             Theme.dialogs_archiveAvatarDrawableRecolored = true;
         }
-        float f41 = intrinsicWidth2 / 2.0f;
-        Theme.dialogs_archiveAvatarDrawable.setBounds((int) (f39 - f41), (int) (f40 - f41), (int) (f39 + f41), (int) (f40 + f41));
+        float f44 = f37 / 2.0f;
+        Theme.dialogs_archiveAvatarDrawable.setBounds((int) (f40 - f44), (int) (f43 - f44), (int) (f40 + f44), (int) (f43 + f44));
         Theme.dialogs_archiveAvatarDrawable.draw(canvas);
         canvas.restore();
     }
@@ -483,10 +488,7 @@ public class PullForegroundDrawable {
                 if (valueAnimator2 != null) {
                     valueAnimator2.cancel();
                 }
-                float[] fArr = new float[2];
-                fArr[0] = this.textSwappingProgress;
-                fArr[1] = z ? 0.0f : 1.0f;
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(this.textSwappingProgress, z ? 0.0f : 1.0f);
                 this.textSwipingAnimator = ofFloat;
                 ofFloat.addUpdateListener(this.textSwappingUpdateListener);
                 this.textSwipingAnimator.setInterpolator(new LinearInterpolator());
@@ -500,10 +502,7 @@ public class PullForegroundDrawable {
             if (valueAnimator3 != null) {
                 valueAnimator3.cancel();
             }
-            float[] fArr2 = new float[2];
-            fArr2[0] = this.arrowRotateProgress;
-            fArr2[1] = this.arrowAnimateTo ? 0.0f : 1.0f;
-            ValueAnimator ofFloat2 = ValueAnimator.ofFloat(fArr2);
+            ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.arrowRotateProgress, this.arrowAnimateTo ? 0.0f : 1.0f);
             this.arrowRotateAnimator = ofFloat2;
             ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override

@@ -8,14 +8,11 @@ import kotlinx.coroutines.CoroutineDispatcher;
 import kotlinx.coroutines.ExecutorCoroutineDispatcher;
 import kotlinx.coroutines.internal.SystemPropsKt;
 import kotlinx.coroutines.internal.SystemPropsKt__SystemProps_commonKt;
+
 public final class DefaultIoScheduler extends ExecutorCoroutineDispatcher implements Executor {
     public static final DefaultIoScheduler INSTANCE = new DefaultIoScheduler();
-    private static final CoroutineDispatcher f0default;
 
-    @Override
-    public String toString() {
-        return "Dispatchers.IO";
-    }
+    private static final CoroutineDispatcher f0default;
 
     private DefaultIoScheduler() {
     }
@@ -31,16 +28,21 @@ public final class DefaultIoScheduler extends ExecutorCoroutineDispatcher implem
 
     @Override
     public void execute(Runnable runnable) {
-        mo157dispatch(EmptyCoroutineContext.INSTANCE, runnable);
+        dispatch(EmptyCoroutineContext.INSTANCE, runnable);
     }
 
     @Override
-    public void mo157dispatch(CoroutineContext coroutineContext, Runnable runnable) {
-        f0default.mo157dispatch(coroutineContext, runnable);
+    public void dispatch(CoroutineContext coroutineContext, Runnable runnable) {
+        f0default.dispatch(coroutineContext, runnable);
     }
 
     @Override
     public void close() {
         throw new IllegalStateException("Cannot be invoked on Dispatchers.IO".toString());
+    }
+
+    @Override
+    public String toString() {
+        return "Dispatchers.IO";
     }
 }

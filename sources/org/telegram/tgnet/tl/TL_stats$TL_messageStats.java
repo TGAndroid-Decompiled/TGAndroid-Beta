@@ -2,6 +2,7 @@ package org.telegram.tgnet.tl;
 
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
+
 public class TL_stats$TL_messageStats extends TLObject {
     public TL_stats$StatsGraph reactions_by_emotion_graph;
     public TL_stats$StatsGraph views_graph;

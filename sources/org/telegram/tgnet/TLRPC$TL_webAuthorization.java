@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_webAuthorization extends TLObject {
     public long bot_id;
     public String browser;

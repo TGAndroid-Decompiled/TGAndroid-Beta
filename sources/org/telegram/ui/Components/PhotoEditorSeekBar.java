@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
+
 public class PhotoEditorSeekBar extends View {
     private PhotoEditorSeekBarDelegate delegate;
     private Paint innerPaint;
@@ -103,8 +104,7 @@ public class PhotoEditorSeekBar extends View {
     }
 
     public int getProgress() {
-        int i = this.minValue;
-        return (int) (i + (this.progress * (this.maxValue - i)));
+        return (int) (this.minValue + (this.progress * (this.maxValue - r0)));
     }
 
     public void setMinMax(int i, int i2) {
@@ -128,7 +128,6 @@ public class PhotoEditorSeekBar extends View {
             canvas.drawRect(getMeasuredWidth() / 2, (getMeasuredHeight() - this.thumbSize) / 2, (getMeasuredWidth() / 2) + AndroidUtilities.dp(1.0f), (getMeasuredHeight() + this.thumbSize) / 2, this.outerPaint);
             canvas.drawRect(i2, (getMeasuredHeight() / 2) - AndroidUtilities.dp(1.0f), getMeasuredWidth() / 2, (getMeasuredHeight() / 2) + AndroidUtilities.dp(1.0f), this.outerPaint);
         }
-        int i3 = this.thumbSize;
-        canvas.drawCircle(i2 + (i3 / 2), measuredHeight + (i3 / 2), i3 / 2, this.outerPaint);
+        canvas.drawCircle(i2 + r3, measuredHeight + r3, this.thumbSize / 2, this.outerPaint);
     }
 }

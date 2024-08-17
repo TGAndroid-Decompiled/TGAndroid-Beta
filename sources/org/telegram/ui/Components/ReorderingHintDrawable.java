@@ -7,6 +7,7 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.view.animation.Interpolator;
 import org.telegram.messenger.AndroidUtilities;
+
 public class ReorderingHintDrawable extends Drawable {
     private final RectDrawable primaryRectDrawable;
     private float scaleX;
@@ -55,26 +56,27 @@ public class ReorderingHintDrawable extends Drawable {
     @Override
     public void draw(Canvas canvas) {
         if (this.startedTime > 0) {
-            int currentTimeMillis = ((int) (System.currentTimeMillis() - this.startedTime)) - 300;
-            if (currentTimeMillis < 0) {
+            int currentTimeMillis = (int) (System.currentTimeMillis() - this.startedTime);
+            int i = currentTimeMillis - 300;
+            if (i < 0) {
                 drawStage1(canvas, 0.0f);
-            } else if (currentTimeMillis < 150) {
-                drawStage1(canvas, currentTimeMillis / 150.0f);
+            } else if (i < 150) {
+                drawStage1(canvas, i / 150.0f);
             } else {
-                int i = currentTimeMillis - 450;
-                if (i < 0) {
+                int i2 = currentTimeMillis - 750;
+                if (i2 < 0) {
                     drawStage1(canvas, 1.0f);
-                } else if (i < 200) {
-                    drawStage2(canvas, i / 200.0f);
+                } else if (i2 < 200) {
+                    drawStage2(canvas, i2 / 200.0f);
                 } else {
-                    int i2 = i - 500;
-                    if (i2 < 0) {
+                    int i3 = currentTimeMillis - 1250;
+                    if (i3 < 0) {
                         drawStage2(canvas, 1.0f);
-                    } else if (i2 < 150) {
-                        drawStage3(canvas, i2 / 150.0f);
+                    } else if (i3 < 150) {
+                        drawStage3(canvas, i3 / 150.0f);
                     } else {
                         drawStage3(canvas, 1.0f);
-                        if (i2 - 150 >= 100) {
+                        if (currentTimeMillis - 1400 >= 100) {
                             this.startedTime = System.currentTimeMillis();
                         }
                     }

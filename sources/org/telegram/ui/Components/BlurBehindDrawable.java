@@ -12,6 +12,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.BlurBehindDrawable;
+
 public class BlurBehindDrawable {
     private Bitmap[] backgroundBitmap;
     private Canvas[] backgroundBitmapCanvas;
@@ -313,8 +314,10 @@ public class BlurBehindDrawable {
                 if (dispatchQueue != null) {
                     dispatchQueue.cleanupQueue();
                 }
+                Bitmap[] bitmapArr2 = this.blurredBitmapTmp;
                 int i2 = (int) (measuredWidth / 6.0f);
-                this.blurredBitmapTmp[i] = Bitmap.createBitmap(i2, (int) (dp / 6.0f), Bitmap.Config.ARGB_8888);
+                Bitmap.Config config = Bitmap.Config.ARGB_8888;
+                bitmapArr2[i] = Bitmap.createBitmap(i2, (int) (dp / 6.0f), config);
                 if (i == 1) {
                     this.blurredBitmapTmp[i].eraseColor(getThemedColor(Theme.key_windowBackgroundWhite));
                 }
@@ -322,7 +325,7 @@ public class BlurBehindDrawable {
                 if (i == 0) {
                     measuredHeight = this.toolbarH;
                 }
-                this.renderingBitmap[i] = Bitmap.createBitmap(i2, (int) (measuredHeight / 6.0f), Bitmap.Config.ARGB_8888);
+                this.renderingBitmap[i] = Bitmap.createBitmap(i2, (int) (measuredHeight / 6.0f), config);
                 this.renderingBitmapCanvas[i] = new Canvas(this.renderingBitmap[i]);
                 this.renderingBitmapCanvas[i].scale(this.renderingBitmap[i].getWidth() / this.blurredBitmapTmp[i].getWidth(), this.renderingBitmap[i].getHeight() / this.blurredBitmapTmp[i].getHeight());
                 this.blurCanvas[i].save();
@@ -412,8 +415,9 @@ public class BlurBehindDrawable {
                 }
                 if (this.canceled) {
                     return;
+                } else {
+                    i2++;
                 }
-                i2++;
             }
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override

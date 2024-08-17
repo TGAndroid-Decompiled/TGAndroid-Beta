@@ -26,6 +26,7 @@ import org.telegram.ui.Components.NestedSizeNotifierLayout;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.StorageDiagramView;
 import org.telegram.ui.Storage.CacheModel;
+
 public class DilogCacheBottomSheet extends BottomSheetWithRecyclerListView {
     private CacheControlActivity.ClearCacheButton button;
     private final Delegate cacheDelegate;
@@ -241,15 +242,11 @@ public class DilogCacheBottomSheet extends BottomSheetWithRecyclerListView {
             StorageDiagramView.ClearViewData[] clearViewDataArr = this.clearViewData;
             if (i < clearViewDataArr.length) {
                 StorageDiagramView.ClearViewData clearViewData = clearViewDataArr[i];
-                if (clearViewData != null) {
-                    boolean z = clearViewData.clear;
-                }
                 i++;
             } else {
                 CheckBoxCell checkBoxCell = (CheckBoxCell) view;
                 int intValue = ((Integer) checkBoxCell.getTag()).intValue();
-                StorageDiagramView.ClearViewData clearViewData2 = this.clearViewData[intValue];
-                clearViewData2.setClear(!clearViewData2.clear);
+                this.clearViewData[intValue].setClear(!r1.clear);
                 checkBoxCell.setChecked(this.clearViewData[intValue].clear, true);
                 cacheModel.allFilesSelcetedByType(intValue, this.clearViewData[intValue].clear);
                 this.cachedMediaLayout.update();
@@ -306,9 +303,8 @@ public class DilogCacheBottomSheet extends BottomSheetWithRecyclerListView {
             public void onScrolled(RecyclerView recyclerView, int i, int i2) {
                 super.onScrolled(recyclerView, i, i2);
                 DilogCacheBottomSheet dilogCacheBottomSheet = DilogCacheBottomSheet.this;
-                NestedSizeNotifierLayout nestedSizeNotifierLayout = dilogCacheBottomSheet.nestedSizeNotifierLayout;
-                if (nestedSizeNotifierLayout != null) {
-                    dilogCacheBottomSheet.setShowShadow(!nestedSizeNotifierLayout.isPinnedToTop());
+                if (dilogCacheBottomSheet.nestedSizeNotifierLayout != null) {
+                    dilogCacheBottomSheet.setShowShadow(!r2.isPinnedToTop());
                 }
             }
         });

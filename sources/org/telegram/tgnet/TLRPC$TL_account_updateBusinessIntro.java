@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_account_updateBusinessIntro extends TLObject {
     public int flags;
     public TLRPC$TL_inputBusinessIntro intro;

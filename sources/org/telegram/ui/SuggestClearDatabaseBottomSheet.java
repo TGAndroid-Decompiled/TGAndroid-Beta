@@ -18,7 +18,9 @@ import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.StickerImageView;
+
 public class SuggestClearDatabaseBottomSheet extends BottomSheet {
+
     @SuppressLint({"StaticFieldLeak"})
     private static SuggestClearDatabaseBottomSheet dialog;
     BaseFragment fragment;

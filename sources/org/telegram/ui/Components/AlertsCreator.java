@@ -33,6 +33,7 @@ import android.util.SparseArray;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
 import android.widget.Button;
 import android.widget.EditText;
@@ -42,9 +43,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.core.util.Consumer;
 import j$.time.YearMonth;
+import j$.util.Collection$EL;
+import j$.util.function.LongFunction;
+import j$.util.function.Predicate;
+import j$.util.function.ToLongFunction;
+import j$.util.stream.Collectors;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -86,35 +93,21 @@ import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$ChatFull;
 import org.telegram.tgnet.TLRPC$EncryptedChat;
 import org.telegram.tgnet.TLRPC$InputPeer;
+import org.telegram.tgnet.TLRPC$Message;
+import org.telegram.tgnet.TLRPC$MessageAction;
 import org.telegram.tgnet.TLRPC$Peer;
 import org.telegram.tgnet.TLRPC$PrivacyRule;
 import org.telegram.tgnet.TLRPC$ReportReason;
-import org.telegram.tgnet.TLRPC$TL_account_changePhone;
-import org.telegram.tgnet.TLRPC$TL_account_confirmPhone;
-import org.telegram.tgnet.TLRPC$TL_account_getAuthorizationForm;
-import org.telegram.tgnet.TLRPC$TL_account_getPassword;
-import org.telegram.tgnet.TLRPC$TL_account_getTmpPassword;
 import org.telegram.tgnet.TLRPC$TL_account_reportPeer;
-import org.telegram.tgnet.TLRPC$TL_account_saveSecureValue;
-import org.telegram.tgnet.TLRPC$TL_account_sendChangePhoneCode;
-import org.telegram.tgnet.TLRPC$TL_account_sendConfirmPhoneCode;
 import org.telegram.tgnet.TLRPC$TL_account_updateProfile;
-import org.telegram.tgnet.TLRPC$TL_account_updateUsername;
-import org.telegram.tgnet.TLRPC$TL_account_verifyEmail;
-import org.telegram.tgnet.TLRPC$TL_account_verifyPhone;
-import org.telegram.tgnet.TLRPC$TL_auth_resendCode;
 import org.telegram.tgnet.TLRPC$TL_birthday;
 import org.telegram.tgnet.TLRPC$TL_channels_channelParticipant;
 import org.telegram.tgnet.TLRPC$TL_channels_createChannel;
-import org.telegram.tgnet.TLRPC$TL_channels_editAdmin;
-import org.telegram.tgnet.TLRPC$TL_channels_editBanned;
+import org.telegram.tgnet.TLRPC$TL_channels_getParticipant;
 import org.telegram.tgnet.TLRPC$TL_channels_inviteToChannel;
-import org.telegram.tgnet.TLRPC$TL_channels_joinChannel;
 import org.telegram.tgnet.TLRPC$TL_contacts_blockFromReplies;
-import org.telegram.tgnet.TLRPC$TL_contacts_importContacts;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_help_support;
-import org.telegram.tgnet.TLRPC$TL_inputPeerUser;
 import org.telegram.tgnet.TLRPC$TL_inputReportReasonChildAbuse;
 import org.telegram.tgnet.TLRPC$TL_inputReportReasonFake;
 import org.telegram.tgnet.TLRPC$TL_inputReportReasonIllegalDrugs;
@@ -123,32 +116,18 @@ import org.telegram.tgnet.TLRPC$TL_inputReportReasonPornography;
 import org.telegram.tgnet.TLRPC$TL_inputReportReasonSpam;
 import org.telegram.tgnet.TLRPC$TL_inputReportReasonViolence;
 import org.telegram.tgnet.TLRPC$TL_langPackLanguage;
-import org.telegram.tgnet.TLRPC$TL_messages_addChatUser;
-import org.telegram.tgnet.TLRPC$TL_messages_checkHistoryImport;
-import org.telegram.tgnet.TLRPC$TL_messages_checkHistoryImportPeer;
-import org.telegram.tgnet.TLRPC$TL_messages_createChat;
-import org.telegram.tgnet.TLRPC$TL_messages_editChatAdmin;
-import org.telegram.tgnet.TLRPC$TL_messages_editChatDefaultBannedRights;
-import org.telegram.tgnet.TLRPC$TL_messages_editMessage;
-import org.telegram.tgnet.TLRPC$TL_messages_forwardMessages;
-import org.telegram.tgnet.TLRPC$TL_messages_getAttachedStickers;
-import org.telegram.tgnet.TLRPC$TL_messages_importChatInvite;
-import org.telegram.tgnet.TLRPC$TL_messages_initHistoryImport;
+import org.telegram.tgnet.TLRPC$TL_messageActionChatAddUser;
+import org.telegram.tgnet.TLRPC$TL_messageActionChatDeleteUser;
+import org.telegram.tgnet.TLRPC$TL_messageActionChatJoinedByLink;
+import org.telegram.tgnet.TLRPC$TL_messageActionEmpty;
+import org.telegram.tgnet.TLRPC$TL_messageActionGeoProximityReached;
+import org.telegram.tgnet.TLRPC$TL_messageActionPhoneCall;
+import org.telegram.tgnet.TLRPC$TL_messageActionPinMessage;
+import org.telegram.tgnet.TLRPC$TL_messageActionSetChatTheme;
+import org.telegram.tgnet.TLRPC$TL_messageMediaGiveaway;
 import org.telegram.tgnet.TLRPC$TL_messages_invitedUsers;
-import org.telegram.tgnet.TLRPC$TL_messages_migrateChat;
 import org.telegram.tgnet.TLRPC$TL_messages_report;
-import org.telegram.tgnet.TLRPC$TL_messages_sendInlineBotResult;
-import org.telegram.tgnet.TLRPC$TL_messages_sendMedia;
-import org.telegram.tgnet.TLRPC$TL_messages_sendMessage;
-import org.telegram.tgnet.TLRPC$TL_messages_sendMultiMedia;
-import org.telegram.tgnet.TLRPC$TL_messages_sendScheduledMessages;
-import org.telegram.tgnet.TLRPC$TL_messages_startBot;
-import org.telegram.tgnet.TLRPC$TL_messages_startHistoryImport;
 import org.telegram.tgnet.TLRPC$TL_missingInvitee;
-import org.telegram.tgnet.TLRPC$TL_payments_assignPlayMarketTransaction;
-import org.telegram.tgnet.TLRPC$TL_payments_sendPaymentForm;
-import org.telegram.tgnet.TLRPC$TL_payments_validateRequestedInfo;
-import org.telegram.tgnet.TLRPC$TL_phone_inviteToGroupCall;
 import org.telegram.tgnet.TLRPC$TL_privacyValueAllowAll;
 import org.telegram.tgnet.TLRPC$TL_privacyValueAllowContacts;
 import org.telegram.tgnet.TLRPC$TL_privacyValueDisallowAll;
@@ -169,6 +148,7 @@ import org.telegram.ui.Cells.CheckBoxCell;
 import org.telegram.ui.Cells.RadioColorCell;
 import org.telegram.ui.Cells.TextColorCell;
 import org.telegram.ui.ChatActivity;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda226;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.NumberPicker;
@@ -176,13 +156,12 @@ import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
 import org.telegram.ui.Components.voip.VoIPHelper;
 import org.telegram.ui.LanguageSelectActivity;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.LoginActivity;
 import org.telegram.ui.NotificationsCustomSettingsActivity;
 import org.telegram.ui.NotificationsSettingsActivity;
 import org.telegram.ui.PrivacyControlActivity;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 import org.telegram.ui.ThemePreviewActivity;
-import org.telegram.ui.TooManyCommunitiesActivity;
+
 public class AlertsCreator {
 
     public interface AccountSelectDelegate {
@@ -416,406 +395,8 @@ public class AlertsCreator {
         }
     }
 
-    public static Dialog processError(int i, TLRPC$TL_error tLRPC$TL_error, BaseFragment baseFragment, TLObject tLObject, Object... objArr) {
-        String str;
-        TLRPC$InputPeer tLRPC$InputPeer;
-        long peerDialogId;
-        String str2;
-        if (tLRPC$TL_error == null || tLRPC$TL_error.code == 406 || (str = tLRPC$TL_error.text) == null) {
-            return null;
-        }
-        boolean z = tLObject instanceof TLRPC$TL_messages_sendMessage;
-        if (z && str.contains("PRIVACY_PREMIUM_REQUIRED")) {
-            long peerDialogId2 = DialogObject.getPeerDialogId(((TLRPC$TL_messages_sendMessage) tLObject).peer);
-            if (peerDialogId2 >= 0) {
-                str2 = UserObject.getFirstName(MessagesController.getInstance(i).getUser(Long.valueOf(peerDialogId2)));
-            } else {
-                TLRPC$Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-peerDialogId2));
-                str2 = chat != null ? chat.title : "";
-            }
-            showSimpleAlert(baseFragment == null ? LaunchActivity.getLastFragment() : baseFragment, LocaleController.getString(R.string.MessagePremiumErrorTitle), LocaleController.formatString(R.string.MessagePremiumErrorMessage, str2));
-            MessagesController.getInstance(i).invalidateUserPremiumBlocked(peerDialogId2, 0);
-        } else {
-            boolean z2 = tLObject instanceof TLRPC$TL_messages_initHistoryImport;
-            if (z2 || (tLObject instanceof TLRPC$TL_messages_checkHistoryImportPeer) || (tLObject instanceof TLRPC$TL_messages_checkHistoryImport) || (tLObject instanceof TLRPC$TL_messages_startHistoryImport)) {
-                if (z2) {
-                    tLRPC$InputPeer = ((TLRPC$TL_messages_initHistoryImport) tLObject).peer;
-                } else {
-                    tLRPC$InputPeer = tLObject instanceof TLRPC$TL_messages_startHistoryImport ? ((TLRPC$TL_messages_startHistoryImport) tLObject).peer : null;
-                }
-                if (tLRPC$TL_error.text.contains("USER_IS_BLOCKED")) {
-                    showSimpleAlert(baseFragment, LocaleController.getString("ImportErrorTitle", R.string.ImportErrorTitle), LocaleController.getString("ImportErrorUserBlocked", R.string.ImportErrorUserBlocked));
-                } else if (tLRPC$TL_error.text.contains("USER_NOT_MUTUAL_CONTACT")) {
-                    showSimpleAlert(baseFragment, LocaleController.getString("ImportErrorTitle", R.string.ImportErrorTitle), LocaleController.getString("ImportMutualError", R.string.ImportMutualError));
-                } else if (tLRPC$TL_error.text.contains("IMPORT_PEER_TYPE_INVALID")) {
-                    if (tLRPC$InputPeer instanceof TLRPC$TL_inputPeerUser) {
-                        showSimpleAlert(baseFragment, LocaleController.getString("ImportErrorTitle", R.string.ImportErrorTitle), LocaleController.getString("ImportErrorChatInvalidUser", R.string.ImportErrorChatInvalidUser));
-                    } else {
-                        showSimpleAlert(baseFragment, LocaleController.getString("ImportErrorTitle", R.string.ImportErrorTitle), LocaleController.getString("ImportErrorChatInvalidGroup", R.string.ImportErrorChatInvalidGroup));
-                    }
-                } else if (tLRPC$TL_error.text.contains("CHAT_ADMIN_REQUIRED")) {
-                    showSimpleAlert(baseFragment, LocaleController.getString("ImportErrorTitle", R.string.ImportErrorTitle), LocaleController.getString("ImportErrorNotAdmin", R.string.ImportErrorNotAdmin));
-                } else if (tLRPC$TL_error.text.startsWith("IMPORT_FORMAT")) {
-                    showSimpleAlert(baseFragment, LocaleController.getString("ImportErrorTitle", R.string.ImportErrorTitle), LocaleController.getString("ImportErrorFileFormatInvalid", R.string.ImportErrorFileFormatInvalid));
-                } else if (tLRPC$TL_error.text.startsWith("PEER_ID_INVALID")) {
-                    showSimpleAlert(baseFragment, LocaleController.getString("ImportErrorTitle", R.string.ImportErrorTitle), LocaleController.getString("ImportErrorPeerInvalid", R.string.ImportErrorPeerInvalid));
-                } else if (tLRPC$TL_error.text.contains("IMPORT_LANG_NOT_FOUND")) {
-                    showSimpleAlert(baseFragment, LocaleController.getString("ImportErrorTitle", R.string.ImportErrorTitle), LocaleController.getString("ImportErrorFileLang", R.string.ImportErrorFileLang));
-                } else if (tLRPC$TL_error.text.contains("IMPORT_UPLOAD_FAILED")) {
-                    showSimpleAlert(baseFragment, LocaleController.getString("ImportErrorTitle", R.string.ImportErrorTitle), LocaleController.getString("ImportFailedToUpload", R.string.ImportFailedToUpload));
-                } else if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
-                    showFloodWaitAlert(tLRPC$TL_error.text, baseFragment);
-                } else {
-                    String string = LocaleController.getString("ImportErrorTitle", R.string.ImportErrorTitle);
-                    showSimpleAlert(baseFragment, string, LocaleController.getString("ErrorOccurred", R.string.ErrorOccurred) + "\n" + tLRPC$TL_error.text);
-                }
-            } else if ((tLObject instanceof TLRPC$TL_account_saveSecureValue) || (tLObject instanceof TLRPC$TL_account_getAuthorizationForm)) {
-                if (tLRPC$TL_error.text.contains("PHONE_NUMBER_INVALID")) {
-                    showSimpleAlert(baseFragment, LocaleController.getString("InvalidPhoneNumber", R.string.InvalidPhoneNumber));
-                } else if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
-                    showSimpleAlert(baseFragment, LocaleController.getString("FloodWait", R.string.FloodWait));
-                } else if ("APP_VERSION_OUTDATED".equals(tLRPC$TL_error.text)) {
-                    showUpdateAppAlert(baseFragment.getParentActivity(), LocaleController.getString("UpdateAppAlert", R.string.UpdateAppAlert), true);
-                } else {
-                    showSimpleAlert(baseFragment, LocaleController.getString("ErrorOccurred", R.string.ErrorOccurred) + "\n" + tLRPC$TL_error.text);
-                }
-            } else {
-                boolean z3 = tLObject instanceof TLRPC$TL_channels_joinChannel;
-                if (z3 || (tLObject instanceof TLRPC$TL_channels_editAdmin) || (tLObject instanceof TLRPC$TL_channels_inviteToChannel) || (tLObject instanceof TLRPC$TL_messages_addChatUser) || (tLObject instanceof TLRPC$TL_messages_startBot) || (tLObject instanceof TLRPC$TL_channels_editBanned) || (tLObject instanceof TLRPC$TL_messages_editChatDefaultBannedRights) || (tLObject instanceof TLRPC$TL_messages_editChatAdmin) || (tLObject instanceof TLRPC$TL_messages_migrateChat) || (tLObject instanceof TLRPC$TL_phone_inviteToGroupCall)) {
-                    if (baseFragment != null && tLRPC$TL_error.text.equals("CHANNELS_TOO_MUCH")) {
-                        if (baseFragment.getParentActivity() != null) {
-                            baseFragment.showDialog(new LimitReachedBottomSheet(baseFragment, baseFragment.getParentActivity(), 5, i, null));
-                            return null;
-                        } else if (z3 || (tLObject instanceof TLRPC$TL_channels_inviteToChannel)) {
-                            baseFragment.presentFragment(new TooManyCommunitiesActivity(0));
-                            return null;
-                        } else {
-                            baseFragment.presentFragment(new TooManyCommunitiesActivity(1));
-                            return null;
-                        }
-                    } else if (baseFragment != null) {
-                        showAddUserAlert(tLRPC$TL_error.text, baseFragment, (objArr == null || objArr.length <= 0) ? false : ((Boolean) objArr[0]).booleanValue(), tLObject);
-                    } else if (tLRPC$TL_error.text.equals("PEER_FLOOD")) {
-                        NotificationCenter.getInstance(i).lambda$postNotificationNameOnUIThread$1(NotificationCenter.needShowAlert, 1);
-                    }
-                } else if (tLObject instanceof TLRPC$TL_messages_createChat) {
-                    if (tLRPC$TL_error.text.equals("CHANNELS_TOO_MUCH")) {
-                        if (baseFragment.getParentActivity() != null) {
-                            baseFragment.showDialog(new LimitReachedBottomSheet(baseFragment, baseFragment.getParentActivity(), 5, i, null));
-                        } else {
-                            baseFragment.presentFragment(new TooManyCommunitiesActivity(2));
-                        }
-                        return null;
-                    } else if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
-                        showFloodWaitAlert(tLRPC$TL_error.text, baseFragment);
-                    } else {
-                        showAddUserAlert(tLRPC$TL_error.text, baseFragment, false, tLObject);
-                    }
-                } else if (tLObject instanceof TLRPC$TL_channels_createChannel) {
-                    if (tLRPC$TL_error.text.equals("CHANNELS_TOO_MUCH")) {
-                        if (baseFragment.getParentActivity() != null) {
-                            baseFragment.showDialog(new LimitReachedBottomSheet(baseFragment, baseFragment.getParentActivity(), 5, i, null));
-                        } else {
-                            baseFragment.presentFragment(new TooManyCommunitiesActivity(2));
-                        }
-                        return null;
-                    } else if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
-                        showFloodWaitAlert(tLRPC$TL_error.text, baseFragment);
-                    } else {
-                        showAddUserAlert(tLRPC$TL_error.text, baseFragment, false, tLObject);
-                    }
-                } else if (tLObject instanceof TLRPC$TL_messages_editMessage) {
-                    if (!tLRPC$TL_error.text.equals("MESSAGE_NOT_MODIFIED")) {
-                        if (baseFragment != null) {
-                            showSimpleAlert(baseFragment, LocaleController.getString("EditMessageError", R.string.EditMessageError));
-                        } else {
-                            showSimpleToast(null, LocaleController.getString("EditMessageError", R.string.EditMessageError));
-                        }
-                    }
-                } else if (z || (tLObject instanceof TLRPC$TL_messages_sendMedia) || (tLObject instanceof TLRPC$TL_messages_sendInlineBotResult) || (tLObject instanceof TLRPC$TL_messages_forwardMessages) || (tLObject instanceof TLRPC$TL_messages_sendMultiMedia) || (tLObject instanceof TLRPC$TL_messages_sendScheduledMessages)) {
-                    if (z) {
-                        peerDialogId = DialogObject.getPeerDialogId(((TLRPC$TL_messages_sendMessage) tLObject).peer);
-                    } else if (tLObject instanceof TLRPC$TL_messages_sendMedia) {
-                        peerDialogId = DialogObject.getPeerDialogId(((TLRPC$TL_messages_sendMedia) tLObject).peer);
-                    } else if (tLObject instanceof TLRPC$TL_messages_sendInlineBotResult) {
-                        peerDialogId = DialogObject.getPeerDialogId(((TLRPC$TL_messages_sendInlineBotResult) tLObject).peer);
-                    } else if (tLObject instanceof TLRPC$TL_messages_forwardMessages) {
-                        peerDialogId = DialogObject.getPeerDialogId(((TLRPC$TL_messages_forwardMessages) tLObject).to_peer);
-                    } else if (tLObject instanceof TLRPC$TL_messages_sendMultiMedia) {
-                        peerDialogId = DialogObject.getPeerDialogId(((TLRPC$TL_messages_sendMultiMedia) tLObject).peer);
-                    } else {
-                        peerDialogId = tLObject instanceof TLRPC$TL_messages_sendScheduledMessages ? DialogObject.getPeerDialogId(((TLRPC$TL_messages_sendScheduledMessages) tLObject).peer) : 0L;
-                    }
-                    String str3 = tLRPC$TL_error.text;
-                    char c = 65535;
-                    if (str3 != null && str3.startsWith("CHAT_SEND_") && tLRPC$TL_error.text.endsWith("FORBIDDEN")) {
-                        String str4 = tLRPC$TL_error.text;
-                        TLRPC$Chat chat2 = peerDialogId < 0 ? MessagesController.getInstance(i).getChat(Long.valueOf(-peerDialogId)) : null;
-                        String str5 = tLRPC$TL_error.text;
-                        str5.hashCode();
-                        switch (str5.hashCode()) {
-                            case -1813346101:
-                                if (str5.equals("CHAT_SEND_VOICES_FORBIDDEN")) {
-                                    c = 0;
-                                    break;
-                                }
-                                break;
-                            case -1755013292:
-                                if (str5.equals("CHAT_SEND_PLAIN_FORBIDDEN")) {
-                                    c = 1;
-                                    break;
-                                }
-                                break;
-                            case -1463451737:
-                                if (str5.equals("CHAT_SEND_AUDIOS_FORBIDDEN")) {
-                                    c = 2;
-                                    break;
-                                }
-                                break;
-                            case -446466679:
-                                if (str5.equals("CHAT_SEND_POLL_FORBIDDEN")) {
-                                    c = 3;
-                                    break;
-                                }
-                                break;
-                            case 469767429:
-                                if (str5.equals("CHAT_SEND_DOCS_FORBIDDEN")) {
-                                    c = 4;
-                                    break;
-                                }
-                                break;
-                            case 788688112:
-                                if (str5.equals("CHAT_SEND_ROUNDVIDEOS_FORBIDDEN")) {
-                                    c = 5;
-                                    break;
-                                }
-                                break;
-                            case 963091938:
-                                if (str5.equals("CHAT_SEND_VIDEOS_FORBIDDEN")) {
-                                    c = 6;
-                                    break;
-                                }
-                                break;
-                            case 1100757753:
-                                if (str5.equals("CHAT_SEND_GIFS_FORBIDDEN")) {
-                                    c = 7;
-                                    break;
-                                }
-                                break;
-                            case 1146489803:
-                                if (str5.equals("CHAT_SEND_PHOTOS_FORBIDDEN")) {
-                                    c = '\b';
-                                    break;
-                                }
-                                break;
-                            case 1701620704:
-                                if (str5.equals("CHAT_SEND_STICKERS_FORBIDDEN")) {
-                                    c = '\t';
-                                    break;
-                                }
-                                break;
-                        }
-                        switch (c) {
-                            case 0:
-                                str4 = ChatObject.getRestrictedErrorText(chat2, 20);
-                                break;
-                            case 1:
-                                str4 = ChatObject.getRestrictedErrorText(chat2, 22);
-                                break;
-                            case 2:
-                                str4 = ChatObject.getRestrictedErrorText(chat2, 18);
-                                break;
-                            case 3:
-                                str4 = ChatObject.getRestrictedErrorText(chat2, 10);
-                                break;
-                            case 4:
-                                str4 = ChatObject.getRestrictedErrorText(chat2, 19);
-                                break;
-                            case 5:
-                                str4 = ChatObject.getRestrictedErrorText(chat2, 21);
-                                break;
-                            case 6:
-                                str4 = ChatObject.getRestrictedErrorText(chat2, 17);
-                                break;
-                            case 7:
-                                str4 = ChatObject.getRestrictedErrorText(chat2, 23);
-                                break;
-                            case '\b':
-                                str4 = ChatObject.getRestrictedErrorText(chat2, 16);
-                                break;
-                            case '\t':
-                                str4 = ChatObject.getRestrictedErrorText(chat2, 8);
-                                break;
-                        }
-                        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.showBulletin, 1, str4);
-                    } else {
-                        String str6 = tLRPC$TL_error.text;
-                        str6.hashCode();
-                        switch (str6.hashCode()) {
-                            case -1809401834:
-                                if (str6.equals("USER_BANNED_IN_CHANNEL")) {
-                                    c = 0;
-                                    break;
-                                }
-                                break;
-                            case -454039871:
-                                if (str6.equals("PEER_FLOOD")) {
-                                    c = 1;
-                                    break;
-                                }
-                                break;
-                            case 1169786080:
-                                if (str6.equals("SCHEDULE_TOO_MUCH")) {
-                                    c = 2;
-                                    break;
-                                }
-                                break;
-                        }
-                        switch (c) {
-                            case 0:
-                                NotificationCenter.getInstance(i).lambda$postNotificationNameOnUIThread$1(NotificationCenter.needShowAlert, 5);
-                                break;
-                            case 1:
-                                NotificationCenter.getInstance(i).lambda$postNotificationNameOnUIThread$1(NotificationCenter.needShowAlert, 0);
-                                break;
-                            case 2:
-                                showSimpleToast(baseFragment, LocaleController.getString("MessageScheduledLimitReached", R.string.MessageScheduledLimitReached));
-                                break;
-                        }
-                    }
-                } else if (tLObject instanceof TLRPC$TL_messages_importChatInvite) {
-                    if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
-                        showSimpleAlert(baseFragment, LocaleController.getString("FloodWait", R.string.FloodWait));
-                    } else if (tLRPC$TL_error.text.equals("USERS_TOO_MUCH")) {
-                        showSimpleAlert(baseFragment, LocaleController.getString("JoinToGroupErrorFull", R.string.JoinToGroupErrorFull));
-                    } else if (tLRPC$TL_error.text.equals("CHANNELS_TOO_MUCH")) {
-                        if (baseFragment.getParentActivity() != null) {
-                            baseFragment.showDialog(new LimitReachedBottomSheet(baseFragment, baseFragment.getParentActivity(), 5, i, null));
-                        } else {
-                            baseFragment.presentFragment(new TooManyCommunitiesActivity(0));
-                        }
-                    } else if (tLRPC$TL_error.text.equals("INVITE_HASH_EXPIRED")) {
-                        showSimpleAlert(baseFragment, LocaleController.getString("ExpiredLink", R.string.ExpiredLink), LocaleController.getString("InviteExpired", R.string.InviteExpired));
-                    } else {
-                        showSimpleAlert(baseFragment, LocaleController.getString("JoinToGroupErrorNotExist", R.string.JoinToGroupErrorNotExist));
-                    }
-                } else if (tLObject instanceof TLRPC$TL_messages_getAttachedStickers) {
-                    if (baseFragment != null && baseFragment.getParentActivity() != null) {
-                        Activity parentActivity = baseFragment.getParentActivity();
-                        Toast.makeText(parentActivity, LocaleController.getString("ErrorOccurred", R.string.ErrorOccurred) + "\n" + tLRPC$TL_error.text, 0).show();
-                    }
-                } else if ((tLObject instanceof TLRPC$TL_account_confirmPhone) || (tLObject instanceof TLRPC$TL_account_verifyPhone) || (tLObject instanceof TLRPC$TL_account_verifyEmail)) {
-                    if (tLRPC$TL_error.text.contains("PHONE_CODE_EMPTY") || tLRPC$TL_error.text.contains("PHONE_CODE_INVALID") || tLRPC$TL_error.text.contains("CODE_INVALID") || tLRPC$TL_error.text.contains("CODE_EMPTY")) {
-                        return showSimpleAlert(baseFragment, LocaleController.getString("InvalidCode", R.string.InvalidCode));
-                    }
-                    if (tLRPC$TL_error.text.contains("PHONE_CODE_EXPIRED") || tLRPC$TL_error.text.contains("EMAIL_VERIFY_EXPIRED")) {
-                        return showSimpleAlert(baseFragment, LocaleController.getString("CodeExpired", R.string.CodeExpired));
-                    }
-                    if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
-                        return showSimpleAlert(baseFragment, LocaleController.getString("FloodWait", R.string.FloodWait));
-                    }
-                    return showSimpleAlert(baseFragment, tLRPC$TL_error.text);
-                } else if (tLObject instanceof TLRPC$TL_auth_resendCode) {
-                    if (tLRPC$TL_error.text.contains("PHONE_NUMBER_INVALID")) {
-                        return showSimpleAlert(baseFragment, LocaleController.getString("InvalidPhoneNumber", R.string.InvalidPhoneNumber));
-                    }
-                    if (tLRPC$TL_error.text.contains("PHONE_CODE_EMPTY") || tLRPC$TL_error.text.contains("PHONE_CODE_INVALID")) {
-                        return showSimpleAlert(baseFragment, LocaleController.getString("InvalidCode", R.string.InvalidCode));
-                    }
-                    if (tLRPC$TL_error.text.contains("PHONE_CODE_EXPIRED")) {
-                        return showSimpleAlert(baseFragment, LocaleController.getString("CodeExpired", R.string.CodeExpired));
-                    }
-                    if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
-                        return showSimpleAlert(baseFragment, LocaleController.getString("FloodWait", R.string.FloodWait));
-                    }
-                    if (tLRPC$TL_error.code != -1000) {
-                        return showSimpleAlert(baseFragment, LocaleController.getString("ErrorOccurred", R.string.ErrorOccurred) + "\n" + tLRPC$TL_error.text);
-                    }
-                } else if (tLObject instanceof TLRPC$TL_account_sendConfirmPhoneCode) {
-                    if (tLRPC$TL_error.code == 400) {
-                        return showSimpleAlert(baseFragment, LocaleController.getString("CancelLinkExpired", R.string.CancelLinkExpired));
-                    }
-                    if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
-                        return showSimpleAlert(baseFragment, LocaleController.getString("FloodWait", R.string.FloodWait));
-                    }
-                    return showSimpleAlert(baseFragment, LocaleController.getString("ErrorOccurred", R.string.ErrorOccurred));
-                } else if (tLObject instanceof TLRPC$TL_account_changePhone) {
-                    if (tLRPC$TL_error.text.contains("PHONE_NUMBER_INVALID")) {
-                        showSimpleAlert(baseFragment, LocaleController.getString("InvalidPhoneNumber", R.string.InvalidPhoneNumber));
-                    } else if (tLRPC$TL_error.text.contains("PHONE_CODE_EMPTY") || tLRPC$TL_error.text.contains("PHONE_CODE_INVALID")) {
-                        showSimpleAlert(baseFragment, LocaleController.getString("InvalidCode", R.string.InvalidCode));
-                    } else if (tLRPC$TL_error.text.contains("PHONE_CODE_EXPIRED")) {
-                        showSimpleAlert(baseFragment, LocaleController.getString("CodeExpired", R.string.CodeExpired));
-                    } else if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
-                        showSimpleAlert(baseFragment, LocaleController.getString("FloodWait", R.string.FloodWait));
-                    } else if (tLRPC$TL_error.text.contains("FRESH_CHANGE_PHONE_FORBIDDEN")) {
-                        showSimpleAlert(baseFragment, LocaleController.getString(R.string.FreshChangePhoneForbiddenTitle), LocaleController.getString("FreshChangePhoneForbidden", R.string.FreshChangePhoneForbidden));
-                    } else {
-                        showSimpleAlert(baseFragment, tLRPC$TL_error.text);
-                    }
-                } else if (tLObject instanceof TLRPC$TL_account_sendChangePhoneCode) {
-                    if (tLRPC$TL_error.text.contains("PHONE_NUMBER_INVALID")) {
-                        LoginActivity.needShowInvalidAlert(baseFragment, (String) objArr[0], false);
-                    } else if (tLRPC$TL_error.text.contains("PHONE_CODE_EMPTY") || tLRPC$TL_error.text.contains("PHONE_CODE_INVALID")) {
-                        showSimpleAlert(baseFragment, LocaleController.getString("InvalidCode", R.string.InvalidCode));
-                    } else if (tLRPC$TL_error.text.contains("PHONE_CODE_EXPIRED")) {
-                        showSimpleAlert(baseFragment, LocaleController.getString("CodeExpired", R.string.CodeExpired));
-                    } else if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
-                        showSimpleAlert(baseFragment, LocaleController.getString("FloodWait", R.string.FloodWait));
-                    } else if (tLRPC$TL_error.text.startsWith("PHONE_NUMBER_OCCUPIED")) {
-                        showSimpleAlert(baseFragment, LocaleController.formatString("ChangePhoneNumberOccupied", R.string.ChangePhoneNumberOccupied, objArr[0]));
-                    } else if (tLRPC$TL_error.text.startsWith("PHONE_NUMBER_BANNED")) {
-                        LoginActivity.needShowInvalidAlert(baseFragment, (String) objArr[0], true);
-                    } else {
-                        showSimpleAlert(baseFragment, LocaleController.getString("ErrorOccurred", R.string.ErrorOccurred));
-                    }
-                } else if (tLObject instanceof TLRPC$TL_account_updateUsername) {
-                    String str7 = tLRPC$TL_error.text;
-                    str7.hashCode();
-                    if (str7.equals("USERNAME_INVALID")) {
-                        showSimpleAlert(baseFragment, LocaleController.getString("UsernameInvalid", R.string.UsernameInvalid));
-                    } else if (str7.equals("USERNAME_OCCUPIED")) {
-                        showSimpleAlert(baseFragment, LocaleController.getString("UsernameInUse", R.string.UsernameInUse));
-                    } else {
-                        showSimpleAlert(baseFragment, LocaleController.getString("ErrorOccurred", R.string.ErrorOccurred));
-                    }
-                } else if (tLObject instanceof TLRPC$TL_contacts_importContacts) {
-                    if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
-                        showSimpleAlert(baseFragment, LocaleController.getString("FloodWait", R.string.FloodWait));
-                    } else {
-                        showSimpleAlert(baseFragment, LocaleController.getString("ErrorOccurred", R.string.ErrorOccurred) + "\n" + tLRPC$TL_error.text);
-                    }
-                } else if ((tLObject instanceof TLRPC$TL_account_getPassword) || (tLObject instanceof TLRPC$TL_account_getTmpPassword)) {
-                    if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
-                        showSimpleToast(baseFragment, getFloodWaitString(tLRPC$TL_error.text));
-                    } else {
-                        showSimpleToast(baseFragment, tLRPC$TL_error.text);
-                    }
-                } else if (tLObject instanceof TLRPC$TL_payments_sendPaymentForm) {
-                    String str8 = tLRPC$TL_error.text;
-                    str8.hashCode();
-                    if (str8.equals("BOT_PRECHECKOUT_FAILED")) {
-                        showSimpleToast(baseFragment, LocaleController.getString("PaymentPrecheckoutFailed", R.string.PaymentPrecheckoutFailed));
-                    } else if (str8.equals("PAYMENT_FAILED")) {
-                        showSimpleToast(baseFragment, LocaleController.getString("PaymentFailed", R.string.PaymentFailed));
-                    } else {
-                        showSimpleToast(baseFragment, tLRPC$TL_error.text);
-                    }
-                } else if (tLObject instanceof TLRPC$TL_payments_validateRequestedInfo) {
-                    String str9 = tLRPC$TL_error.text;
-                    str9.hashCode();
-                    if (str9.equals("SHIPPING_NOT_AVAILABLE")) {
-                        showSimpleToast(baseFragment, LocaleController.getString("PaymentNoShippingMethod", R.string.PaymentNoShippingMethod));
-                    } else {
-                        showSimpleToast(baseFragment, tLRPC$TL_error.text);
-                    }
-                } else if (tLObject instanceof TLRPC$TL_payments_assignPlayMarketTransaction) {
-                    showSimpleAlert(baseFragment, LocaleController.getString("PaymentConfirmationError", R.string.PaymentConfirmationError) + "\n" + tLRPC$TL_error.text);
-                }
-            }
-            return null;
-        }
-        return null;
+    public static android.app.Dialog processError(int r16, org.telegram.tgnet.TLRPC$TL_error r17, org.telegram.ui.ActionBar.BaseFragment r18, org.telegram.tgnet.TLObject r19, java.lang.Object... r20) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AlertsCreator.processError(int, org.telegram.tgnet.TLRPC$TL_error, org.telegram.ui.ActionBar.BaseFragment, org.telegram.tgnet.TLObject, java.lang.Object[]):android.app.Dialog");
     }
 
     public static Toast showSimpleToast(BaseFragment baseFragment, String str) {
@@ -975,11 +556,11 @@ public class AlertsCreator {
                 z = true;
             }
         }
-        if (z) {
-            createSimpleAlert(context, chat.title, LocaleController.getString(R.string.SlowmodeSendError)).show();
-            return true;
+        if (!z) {
+            return false;
         }
-        return false;
+        createSimpleAlert(context, chat.title, LocaleController.getString(R.string.SlowmodeSendError)).show();
+        return true;
     }
 
     public static AlertDialog.Builder createNoAccessAlert(Context context, String str, String str2, Theme.ResourcesProvider resourcesProvider) {
@@ -1062,7 +643,7 @@ public class AlertsCreator {
         }
         final AccountInstance accountInstance = chatActivity.getAccountInstance();
         TLRPC$User user = j > 0 ? accountInstance.getMessagesController().getUser(Long.valueOf(j)) : null;
-        final TLRPC$Chat chat = j < 0 ? accountInstance.getMessagesController().getChat(Long.valueOf(-j)) : null;
+        TLRPC$Chat chat = j < 0 ? accountInstance.getMessagesController().getChat(Long.valueOf(-j)) : null;
         if (user == null && chat == null) {
             return;
         }
@@ -1082,9 +663,8 @@ public class AlertsCreator {
         }
         LinearLayout linearLayout = new LinearLayout(chatActivity.getParentActivity());
         linearLayout.setOrientation(1);
-        CheckBoxCell checkBoxCell = new CheckBoxCell(chatActivity.getParentActivity(), 1, resourcesProvider);
-        final CheckBoxCell[] checkBoxCellArr = {checkBoxCell};
-        checkBoxCell.setBackgroundDrawable(Theme.getSelectorDrawable(false));
+        final CheckBoxCell[] checkBoxCellArr = {new CheckBoxCell(chatActivity.getParentActivity(), 1, resourcesProvider)};
+        checkBoxCellArr[0].setBackgroundDrawable(Theme.getSelectorDrawable(false));
         checkBoxCellArr[0].setTag(0);
         checkBoxCellArr[0].setText(LocaleController.getString("DeleteReportSpam", R.string.DeleteReportSpam), "", true, false);
         checkBoxCellArr[0].setPadding(LocaleController.isRTL ? AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(8.0f), 0, LocaleController.isRTL ? AndroidUtilities.dp(8.0f) : AndroidUtilities.dp(16.0f), 0);
@@ -1097,10 +677,11 @@ public class AlertsCreator {
         });
         builder.setView(linearLayout);
         final TLRPC$User tLRPC$User = user;
+        final TLRPC$Chat tLRPC$Chat = chat;
         builder.setPositiveButton(LocaleController.getString("BlockAndDeleteReplies", R.string.BlockAndDeleteReplies), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
-                AlertsCreator.lambda$showBlockReportSpamReplyAlert$14(TLRPC$User.this, accountInstance, chatActivity, chat, messageObject, checkBoxCellArr, resourcesProvider, dialogInterface, i);
+                AlertsCreator.lambda$showBlockReportSpamReplyAlert$14(TLRPC$User.this, accountInstance, chatActivity, tLRPC$Chat, messageObject, checkBoxCellArr, resourcesProvider, dialogInterface, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
@@ -1119,8 +700,7 @@ public class AlertsCreator {
     }
 
     public static void lambda$showBlockReportSpamReplyAlert$12(CheckBoxCell[] checkBoxCellArr, View view) {
-        Integer num = (Integer) view.getTag();
-        checkBoxCellArr[num.intValue()].setChecked(!checkBoxCellArr[num.intValue()].isChecked(), true);
+        checkBoxCellArr[((Integer) view.getTag()).intValue()].setChecked(!checkBoxCellArr[r2.intValue()].isChecked(), true);
     }
 
     public static void lambda$showBlockReportSpamReplyAlert$14(TLRPC$User tLRPC$User, final AccountInstance accountInstance, ChatActivity chatActivity, TLRPC$Chat tLRPC$Chat, MessageObject messageObject, CheckBoxCell[] checkBoxCellArr, Theme.ResourcesProvider resourcesProvider, DialogInterface dialogInterface, int i) {
@@ -1159,8 +739,7 @@ public class AlertsCreator {
     }
 
     public static void lambda$showBlockReportSpamAlert$15(CheckBoxCell[] checkBoxCellArr, View view) {
-        Integer num = (Integer) view.getTag();
-        checkBoxCellArr[num.intValue()].setChecked(!checkBoxCellArr[num.intValue()].isChecked(), true);
+        checkBoxCellArr[((Integer) view.getTag()).intValue()].setChecked(!checkBoxCellArr[r2.intValue()].isChecked(), true);
     }
 
     public static void lambda$showBlockReportSpamAlert$16(TLRPC$User tLRPC$User, AccountInstance accountInstance, CheckBoxCell[] checkBoxCellArr, long j, TLRPC$Chat tLRPC$Chat, TLRPC$EncryptedChat tLRPC$EncryptedChat, boolean z, MessagesStorage.IntCallback intCallback, DialogInterface dialogInterface, int i) {
@@ -1194,89 +773,73 @@ public class AlertsCreator {
     public static void showCustomNotificationsDialog(final BaseFragment baseFragment, final long j, final int i, final int i2, final ArrayList<NotificationsSettingsActivity.NotificationException> arrayList, final ArrayList<NotificationsSettingsActivity.NotificationException> arrayList2, final int i3, final MessagesStorage.IntCallback intCallback, final MessagesStorage.IntCallback intCallback2) {
         int i4;
         final AlertDialog.Builder builder;
-        LinearLayout linearLayout;
-        int[] iArr;
+        Object obj;
         Drawable drawable;
-        String[] strArr;
+        ?? r12 = 0;
+        ?? r11 = 1;
         if (baseFragment == null || baseFragment.getParentActivity() == null) {
             return;
         }
-        ?? r12 = 0;
         final boolean isGlobalNotificationsEnabled = NotificationsController.getInstance(i3).isGlobalNotificationsEnabled(j, false, false);
-        int i5 = 5;
-        String[] strArr2 = new String[5];
-        strArr2[0] = LocaleController.getString("NotificationsTurnOn", R.string.NotificationsTurnOn);
-        int i6 = R.string.MuteFor;
-        ?? r9 = 1;
-        strArr2[1] = LocaleController.formatString("MuteFor", i6, LocaleController.formatPluralString("Hours", 1, new Object[0]));
-        strArr2[2] = LocaleController.formatString("MuteFor", i6, LocaleController.formatPluralString("Days", 2, new Object[0]));
+        String string = LocaleController.getString("NotificationsTurnOn", R.string.NotificationsTurnOn);
+        int i5 = R.string.MuteFor;
         Drawable drawable2 = null;
-        strArr2[3] = (j == 0 && (baseFragment instanceof NotificationsCustomSettingsActivity)) ? null : LocaleController.getString("NotificationsCustomize", R.string.NotificationsCustomize);
-        int i7 = 4;
-        strArr2[4] = LocaleController.getString("NotificationsTurnOff", R.string.NotificationsTurnOff);
-        int[] iArr2 = {R.drawable.notifications_on, R.drawable.notifications_mute1h, R.drawable.notifications_mute2d, R.drawable.notifications_settings, R.drawable.notifications_off};
-        LinearLayout linearLayout2 = new LinearLayout(baseFragment.getParentActivity());
-        linearLayout2.setOrientation(1);
+        String[] strArr = {string, LocaleController.formatString("MuteFor", i5, LocaleController.formatPluralString("Hours", 1, new Object[0])), LocaleController.formatString("MuteFor", i5, LocaleController.formatPluralString("Days", 2, new Object[0])), (j == 0 && (baseFragment instanceof NotificationsCustomSettingsActivity)) ? null : LocaleController.getString("NotificationsCustomize", R.string.NotificationsCustomize), LocaleController.getString("NotificationsTurnOff", R.string.NotificationsTurnOff)};
+        int[] iArr = {R.drawable.notifications_on, R.drawable.notifications_mute1h, R.drawable.notifications_mute2d, R.drawable.notifications_settings, R.drawable.notifications_off};
+        LinearLayout linearLayout = new LinearLayout(baseFragment.getParentActivity());
+        linearLayout.setOrientation(1);
         AlertDialog.Builder builder2 = new AlertDialog.Builder(baseFragment.getParentActivity());
-        int i8 = 0;
-        LinearLayout linearLayout3 = linearLayout2;
-        while (i8 < i5) {
-            if (strArr2[i8] == null) {
-                i4 = i8;
+        int i6 = 0;
+        View view = linearLayout;
+        while (i6 < 5) {
+            if (strArr[i6] == null) {
+                i4 = i6;
                 builder = builder2;
-                linearLayout = linearLayout3;
-                iArr = iArr2;
+                obj = view;
                 drawable = drawable2;
-                strArr = strArr2;
             } else {
-                TextView textView = new TextView(baseFragment.getParentActivity());
-                Drawable drawable3 = baseFragment.getParentActivity().getResources().getDrawable(iArr2[i8]);
-                if (i8 == i7) {
+                ?? textView = new TextView(baseFragment.getParentActivity());
+                Drawable drawable3 = baseFragment.getParentActivity().getResources().getDrawable(iArr[i6]);
+                if (i6 == 4) {
                     textView.setTextColor(Theme.getColor(Theme.key_text_RedBold));
                     drawable3.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_text_RedRegular), PorterDuff.Mode.MULTIPLY));
                 } else {
                     textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
                     drawable3.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogIcon), PorterDuff.Mode.MULTIPLY));
                 }
-                textView.setTextSize(r9, 16.0f);
-                textView.setLines(r9);
-                textView.setMaxLines(r9);
+                textView.setTextSize(r11, 16.0f);
+                textView.setLines(r11);
+                textView.setMaxLines(r11);
                 textView.setCompoundDrawablesWithIntrinsicBounds(drawable3, drawable2, drawable2, drawable2);
-                textView.setTag(Integer.valueOf(i8));
+                textView.setTag(Integer.valueOf(i6));
                 textView.setBackgroundDrawable(Theme.getSelectorDrawable(r12));
                 textView.setPadding(AndroidUtilities.dp(24.0f), r12, AndroidUtilities.dp(24.0f), r12);
-                textView.setSingleLine(r9);
+                textView.setSingleLine(r11);
                 textView.setGravity(19);
                 textView.setCompoundDrawablePadding(AndroidUtilities.dp(26.0f));
-                textView.setText(strArr2[i8]);
-                linearLayout3.addView(textView, LayoutHelper.createLinear(-1, 48, 51));
-                i4 = i8;
+                textView.setText(strArr[i6]);
+                view.addView(textView, LayoutHelper.createLinear(-1, 48, 51));
+                i4 = i6;
                 builder = builder2;
-                linearLayout = linearLayout3;
-                iArr = iArr2;
+                obj = view;
                 drawable = drawable2;
-                strArr = strArr2;
                 textView.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public final void onClick(View view) {
-                        AlertsCreator.lambda$showCustomNotificationsDialog$17(j, i3, isGlobalNotificationsEnabled, i, intCallback2, i2, baseFragment, arrayList, arrayList2, intCallback, builder, view);
+                    public final void onClick(View view2) {
+                        AlertsCreator.lambda$showCustomNotificationsDialog$17(j, i3, isGlobalNotificationsEnabled, i, intCallback2, i2, baseFragment, arrayList, arrayList2, intCallback, builder, view2);
                     }
                 });
             }
-            i8 = i4 + 1;
-            linearLayout3 = linearLayout;
+            i6 = i4 + 1;
+            view = obj;
             builder2 = builder;
-            iArr2 = iArr;
             drawable2 = drawable;
-            strArr2 = strArr;
-            i7 = 4;
-            r9 = 1;
-            i5 = 5;
+            r11 = 1;
             r12 = 0;
         }
         AlertDialog.Builder builder3 = builder2;
         builder3.setTitle(LocaleController.getString("Notifications", R.string.Notifications));
-        builder3.setView(linearLayout3);
+        builder3.setView(view);
         baseFragment.showDialog(builder3.create());
     }
 
@@ -1390,7 +953,6 @@ public class AlertsCreator {
     }
 
     public static AlertDialog createSupportAlert(final BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider) {
-        URLSpan[] uRLSpanArr;
         if (baseFragment == null || baseFragment.getParentActivity() == null) {
             return null;
         }
@@ -1491,14 +1053,14 @@ public class AlertsCreator {
                     AlertsCreator.lambda$performAskAQuestion$22(sharedPreferences, tLRPC$TL_help_support, alertDialog, i, baseFragment);
                 }
             });
-            return;
+        } else {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    AlertsCreator.lambda$performAskAQuestion$23(AlertDialog.this);
+                }
+            });
         }
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                AlertsCreator.lambda$performAskAQuestion$23(AlertDialog.this);
-            }
-        });
     }
 
     public static void lambda$performAskAQuestion$22(SharedPreferences sharedPreferences, TLRPC$TL_help_support tLRPC$TL_help_support, AlertDialog alertDialog, int i, BaseFragment baseFragment) {
@@ -1730,7 +1292,8 @@ public class AlertsCreator {
         textView.setMaxLines(1);
         textView.setSingleLine(true);
         textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        textView.setEllipsize(truncateAt);
         textView.setText(tLRPC$User.first_name);
         TextView textView2 = new TextView(context);
         textView2.setTextColor(Theme.getColor(Theme.key_dialogTextBlue));
@@ -1739,7 +1302,7 @@ public class AlertsCreator {
         textView2.setMaxLines(1);
         textView2.setSingleLine(true);
         textView2.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
-        textView2.setEllipsize(TextUtils.TruncateAt.END);
+        textView2.setEllipsize(truncateAt);
         textView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
@@ -1837,7 +1400,7 @@ public class AlertsCreator {
         createClearOrDeleteDialogAlert(baseFragment, z, tLRPC$Chat != null && tLRPC$Chat.creator, false, tLRPC$Chat, tLRPC$User, z2, z3, z4, booleanCallback, resourcesProvider);
     }
 
-    public static void createClearOrDeleteDialogAlert(final org.telegram.ui.ActionBar.BaseFragment r31, final boolean r32, final boolean r33, final boolean r34, final org.telegram.tgnet.TLRPC$Chat r35, final org.telegram.tgnet.TLRPC$User r36, final boolean r37, final boolean r38, final boolean r39, final org.telegram.messenger.MessagesStorage.BooleanCallback r40, final org.telegram.ui.ActionBar.Theme.ResourcesProvider r41) {
+    public static void createClearOrDeleteDialogAlert(final org.telegram.ui.ActionBar.BaseFragment r33, final boolean r34, final boolean r35, final boolean r36, final org.telegram.tgnet.TLRPC$Chat r37, final org.telegram.tgnet.TLRPC$User r38, final boolean r39, final boolean r40, final boolean r41, final org.telegram.messenger.MessagesStorage.BooleanCallback r42, final org.telegram.ui.ActionBar.Theme.ResourcesProvider r43) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AlertsCreator.createClearOrDeleteDialogAlert(org.telegram.ui.ActionBar.BaseFragment, boolean, boolean, boolean, org.telegram.tgnet.TLRPC$Chat, org.telegram.tgnet.TLRPC$User, boolean, boolean, boolean, org.telegram.messenger.MessagesStorage$BooleanCallback, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
     }
 
@@ -1854,7 +1417,6 @@ public class AlertsCreator {
     }
 
     public static void lambda$createClearOrDeleteDialogAlert$36(boolean z, boolean z2, boolean z3, final TLRPC$User tLRPC$User, final BaseFragment baseFragment, final boolean z4, final boolean z5, final TLRPC$Chat tLRPC$Chat, final boolean z6, final boolean z7, final MessagesStorage.BooleanCallback booleanCallback, final Theme.ResourcesProvider resourcesProvider, final boolean[] zArr, DialogInterface dialogInterface, int i) {
-        boolean z8 = false;
         if (!z && !z2 && !z3) {
             if (UserObject.isUserSelf(tLRPC$User)) {
                 createClearOrDeleteDialogAlert(baseFragment, z4, z5, true, tLRPC$Chat, tLRPC$User, false, z6, z7, booleanCallback, resourcesProvider);
@@ -1870,7 +1432,7 @@ public class AlertsCreator {
             }
         }
         if (booleanCallback != null) {
-            booleanCallback.run((z2 || zArr[0]) ? true : true);
+            booleanCallback.run(z2 || zArr[0]);
         }
     }
 
@@ -1882,8 +1444,118 @@ public class AlertsCreator {
         }
     }
 
-    public static void createClearDaysDialogAlert(org.telegram.ui.ActionBar.BaseFragment r25, int r26, org.telegram.tgnet.TLRPC$User r27, org.telegram.tgnet.TLRPC$Chat r28, boolean r29, final org.telegram.messenger.MessagesStorage.BooleanCallback r30, org.telegram.ui.ActionBar.Theme.ResourcesProvider r31) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AlertsCreator.createClearDaysDialogAlert(org.telegram.ui.ActionBar.BaseFragment, int, org.telegram.tgnet.TLRPC$User, org.telegram.tgnet.TLRPC$Chat, boolean, org.telegram.messenger.MessagesStorage$BooleanCallback, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
+    public static void createClearDaysDialogAlert(BaseFragment baseFragment, int i, TLRPC$User tLRPC$User, TLRPC$Chat tLRPC$Chat, boolean z, final MessagesStorage.BooleanCallback booleanCallback, Theme.ResourcesProvider resourcesProvider) {
+        float f;
+        int dp;
+        if (baseFragment == null || baseFragment.getParentActivity() == null) {
+            return;
+        }
+        if (tLRPC$User == null && tLRPC$Chat == null) {
+            return;
+        }
+        int currentAccount = baseFragment.getCurrentAccount();
+        Activity parentActivity = baseFragment.getParentActivity();
+        AlertDialog.Builder builder = new AlertDialog.Builder(parentActivity, resourcesProvider);
+        long clientUserId = UserConfig.getInstance(currentAccount).getClientUserId();
+        final CheckBoxCell[] checkBoxCellArr = new CheckBoxCell[1];
+        TextView textView = new TextView(parentActivity) {
+            @Override
+            public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
+                super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
+            }
+        };
+        NotificationCenter.listenEmojiLoading(textView);
+        textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
+        textView.setTextSize(1, 16.0f);
+        textView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
+        FrameLayout frameLayout = new FrameLayout(parentActivity) {
+            @Override
+            protected void onMeasure(int i2, int i3) {
+                super.onMeasure(i2, i3);
+                if (checkBoxCellArr[0] != null) {
+                    setMeasuredDimension(getMeasuredWidth(), getMeasuredHeight() + checkBoxCellArr[0].getMeasuredHeight());
+                }
+            }
+        };
+        builder.setView(frameLayout);
+        TextView textView2 = new TextView(parentActivity);
+        textView2.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem));
+        textView2.setTextSize(1, 20.0f);
+        textView2.setTypeface(AndroidUtilities.bold());
+        textView2.setLines(1);
+        textView2.setMaxLines(1);
+        textView2.setSingleLine(true);
+        textView2.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
+        textView2.setEllipsize(TextUtils.TruncateAt.END);
+        frameLayout.addView(textView2, LayoutHelper.createFrame(-1, -2.0f, (LocaleController.isRTL ? 5 : 3) | 48, 24.0f, 11.0f, 24.0f, 0.0f));
+        frameLayout.addView(textView, LayoutHelper.createFrame(-2, -2.0f, (LocaleController.isRTL ? 5 : 3) | 48, 24.0f, 48.0f, 24.0f, 18.0f));
+        if (i == -1) {
+            textView2.setText(LocaleController.formatString("ClearHistory", R.string.ClearHistory, new Object[0]));
+            if (tLRPC$User != null) {
+                textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("AreYouSureClearHistoryWithUser", R.string.AreYouSureClearHistoryWithUser, UserObject.getUserName(tLRPC$User))));
+            } else if (z) {
+                if (ChatObject.isChannelAndNotMegaGroup(tLRPC$Chat)) {
+                    textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("AreYouSureClearHistoryWithChannel", R.string.AreYouSureClearHistoryWithChannel, tLRPC$Chat.title)));
+                } else {
+                    textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("AreYouSureClearHistoryWithChat", R.string.AreYouSureClearHistoryWithChat, tLRPC$Chat.title)));
+                }
+            } else if (tLRPC$Chat.megagroup) {
+                textView.setText(LocaleController.getString("AreYouSureClearHistoryGroup", R.string.AreYouSureClearHistoryGroup));
+            } else {
+                textView.setText(LocaleController.getString("AreYouSureClearHistoryChannel", R.string.AreYouSureClearHistoryChannel));
+            }
+        } else {
+            textView2.setText(LocaleController.formatPluralString("DeleteDays", i, new Object[0]));
+            textView.setText(LocaleController.getString("DeleteHistoryByDaysMessage", R.string.DeleteHistoryByDaysMessage));
+        }
+        final boolean[] zArr = {false};
+        if (tLRPC$Chat != null && z && ChatObject.isPublic(tLRPC$Chat)) {
+            zArr[0] = true;
+        }
+        if ((tLRPC$User != null && tLRPC$User.id != clientUserId) || (tLRPC$Chat != null && z && !ChatObject.isPublic(tLRPC$Chat) && !ChatObject.isChannelAndNotMegaGroup(tLRPC$Chat))) {
+            CheckBoxCell checkBoxCell = new CheckBoxCell(parentActivity, 1, resourcesProvider);
+            checkBoxCellArr[0] = checkBoxCell;
+            checkBoxCell.setBackgroundDrawable(Theme.getSelectorDrawable(false));
+            if (tLRPC$Chat != null) {
+                checkBoxCellArr[0].setText(LocaleController.getString("DeleteMessagesOptionAlsoChat", R.string.DeleteMessagesOptionAlsoChat), "", false, false);
+            } else {
+                checkBoxCellArr[0].setText(LocaleController.formatString("DeleteMessagesOptionAlso", R.string.DeleteMessagesOptionAlso, UserObject.getFirstName(tLRPC$User)), "", false, false);
+            }
+            CheckBoxCell checkBoxCell2 = checkBoxCellArr[0];
+            if (LocaleController.isRTL) {
+                f = 16.0f;
+                dp = AndroidUtilities.dp(16.0f);
+            } else {
+                f = 16.0f;
+                dp = AndroidUtilities.dp(8.0f);
+            }
+            checkBoxCell2.setPadding(dp, 0, LocaleController.isRTL ? AndroidUtilities.dp(8.0f) : AndroidUtilities.dp(f), 0);
+            frameLayout.addView(checkBoxCellArr[0], LayoutHelper.createFrame(-1, 48.0f, 83, 0.0f, 0.0f, 0.0f, 0.0f));
+            checkBoxCellArr[0].setChecked(false, false);
+            checkBoxCellArr[0].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    AlertsCreator.lambda$createClearDaysDialogAlert$37(zArr, view);
+                }
+            });
+        }
+        CharSequence string = LocaleController.getString("Delete", R.string.Delete);
+        if (tLRPC$Chat != null && z && ChatObject.isPublic(tLRPC$Chat) && !ChatObject.isChannelAndNotMegaGroup(tLRPC$Chat)) {
+            string = LocaleController.getString("ClearForAll", R.string.ClearForAll);
+        }
+        builder.setPositiveButton(string, new DialogInterface.OnClickListener() {
+            @Override
+            public final void onClick(DialogInterface dialogInterface, int i2) {
+                AlertsCreator.lambda$createClearDaysDialogAlert$38(MessagesStorage.BooleanCallback.this, zArr, dialogInterface, i2);
+            }
+        });
+        builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
+        AlertDialog create = builder.create();
+        baseFragment.showDialog(create);
+        TextView textView3 = (TextView) create.getButton(-1);
+        if (textView3 != null) {
+            textView3.setTextColor(Theme.getColor(Theme.key_text_RedBold));
+        }
     }
 
     public static void lambda$createClearDaysDialogAlert$37(boolean[] zArr, View view) {
@@ -1958,16 +1630,16 @@ public class AlertsCreator {
     }
 
     public static void createChangeBioAlert(String str, final long j, final Context context, final int i) {
-        String str2;
         int i2;
+        String str2;
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(j > 0 ? LocaleController.getString("UserBio", R.string.UserBio) : LocaleController.getString("DescriptionPlaceholder", R.string.DescriptionPlaceholder));
         if (j > 0) {
-            str2 = "VoipGroupBioEditAlertText";
             i2 = R.string.VoipGroupBioEditAlertText;
+            str2 = "VoipGroupBioEditAlertText";
         } else {
-            str2 = "DescriptionInfo";
             i2 = R.string.DescriptionInfo;
+            str2 = "DescriptionInfo";
         }
         builder.setMessage(LocaleController.getString(str2, i2));
         FrameLayout frameLayout = new FrameLayout(context);
@@ -1988,9 +1660,8 @@ public class AlertsCreator {
         editText.setMaxLines(4);
         editText.setRawInputType(147457);
         editText.setImeOptions(6);
-        InputFilter[] inputFilterArr = new InputFilter[1];
         final int i4 = j > 0 ? 70 : 255;
-        inputFilterArr[0] = new CodepointsLengthInputFilter(i4) {
+        editText.setFilters(new InputFilter[]{new CodepointsLengthInputFilter(i4) {
             @Override
             public CharSequence filter(CharSequence charSequence, int i5, int i6, Spanned spanned, int i7, int i8) {
                 CharSequence filter = super.filter(charSequence, i5, i6, spanned, i7, i8);
@@ -2003,8 +1674,7 @@ public class AlertsCreator {
                 }
                 return filter;
             }
-        };
-        editText.setFilters(inputFilterArr);
+        }});
         numberTextView.setCenterAlign(true);
         numberTextView.setTextSize(15);
         numberTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText4));
@@ -2077,13 +1747,14 @@ public class AlertsCreator {
                     AndroidUtilities.hideKeyboard(editText);
                     dialogInterface.dismiss();
                     return;
+                } else {
+                    userFull.about = trim;
+                    NotificationCenter.getInstance(i).lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(j), userFull);
                 }
-                userFull.about = trim;
-                NotificationCenter.getInstance(i).lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(j), userFull);
             }
             TLRPC$TL_account_updateProfile tLRPC$TL_account_updateProfile = new TLRPC$TL_account_updateProfile();
             tLRPC$TL_account_updateProfile.about = trim;
-            tLRPC$TL_account_updateProfile.flags |= 4;
+            tLRPC$TL_account_updateProfile.flags = 4 | tLRPC$TL_account_updateProfile.flags;
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.showBulletin, 2, Long.valueOf(j));
             ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_account_updateProfile, new RequestDelegate() {
                 @Override
@@ -2101,12 +1772,13 @@ public class AlertsCreator {
                     AndroidUtilities.hideKeyboard(editText);
                     dialogInterface.dismiss();
                     return;
+                } else {
+                    chatFull.about = obj;
+                    NotificationCenter notificationCenter = NotificationCenter.getInstance(i);
+                    int i3 = NotificationCenter.chatInfoDidLoad;
+                    Boolean bool = Boolean.FALSE;
+                    notificationCenter.lambda$postNotificationNameOnUIThread$1(i3, chatFull, 0, bool, bool);
                 }
-                chatFull.about = obj;
-                NotificationCenter notificationCenter = NotificationCenter.getInstance(i);
-                int i3 = NotificationCenter.chatInfoDidLoad;
-                Boolean bool = Boolean.FALSE;
-                notificationCenter.lambda$postNotificationNameOnUIThread$1(i3, chatFull, 0, bool, bool);
             }
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.showBulletin, 2, Long.valueOf(j));
             MessagesController.getInstance(i).updateChatAbout(j2, obj, chatFull);
@@ -2115,20 +1787,20 @@ public class AlertsCreator {
     }
 
     public static boolean lambda$createChangeBioAlert$43(long j, AlertDialog alertDialog, DialogInterface.OnClickListener onClickListener, TextView textView, int i, KeyEvent keyEvent) {
-        if ((i == 6 || (j > 0 && keyEvent.getKeyCode() == 66)) && alertDialog.isShowing()) {
-            onClickListener.onClick(alertDialog, 0);
-            return true;
+        if ((i != 6 && (j <= 0 || keyEvent.getKeyCode() != 66)) || !alertDialog.isShowing()) {
+            return false;
         }
-        return false;
+        onClickListener.onClick(alertDialog, 0);
+        return true;
     }
 
     public static void createChangeNameAlert(final long j, Context context, final int i) {
         String str;
         String str2;
-        String str3;
         int i2;
-        String str4;
+        String str3;
         int i3;
+        String str4;
         final EditText editText;
         if (DialogObject.isUserDialog(j)) {
             TLRPC$User user = MessagesController.getInstance(i).getUser(Long.valueOf(j));
@@ -2140,11 +1812,11 @@ public class AlertsCreator {
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         if (j > 0) {
-            str3 = "VoipEditName";
             i2 = R.string.VoipEditName;
+            str3 = "VoipEditName";
         } else {
-            str3 = "VoipEditTitle";
             i2 = R.string.VoipEditTitle;
+            str3 = "VoipEditTitle";
         }
         builder.setTitle(LocaleController.getString(str3, i2));
         LinearLayout linearLayout = new LinearLayout(context);
@@ -2160,11 +1832,11 @@ public class AlertsCreator {
         editText2.setInputType(49152);
         editText2.setImeOptions(j > 0 ? 5 : 6);
         if (j > 0) {
-            str4 = "FirstName";
             i3 = R.string.FirstName;
+            str4 = "FirstName";
         } else {
-            str4 = "VoipEditTitleHint";
             i3 = R.string.VoipEditTitleHint;
+            str4 = "VoipEditTitleHint";
         }
         editText2.setHint(LocaleController.getString(str4, i3));
         editText2.setBackground(Theme.createEditTextDrawable(context, true));
@@ -2296,26 +1968,26 @@ public class AlertsCreator {
     }
 
     public static boolean lambda$createChangeNameAlert$47(AlertDialog alertDialog, DialogInterface.OnClickListener onClickListener, TextView textView, int i, KeyEvent keyEvent) {
-        if ((i == 6 || keyEvent.getKeyCode() == 66) && alertDialog.isShowing()) {
-            onClickListener.onClick(alertDialog, 0);
-            return true;
+        if ((i != 6 && keyEvent.getKeyCode() != 66) || !alertDialog.isShowing()) {
+            return false;
         }
-        return false;
+        onClickListener.onClick(alertDialog, 0);
+        return true;
     }
 
     public static void showChatWithAdmin(BaseFragment baseFragment, TLRPC$User tLRPC$User, String str, boolean z, int i) {
-        String str2;
         int i2;
+        String str2;
         if (baseFragment.getParentActivity() == null) {
             return;
         }
         BottomSheet.Builder builder = new BottomSheet.Builder(baseFragment.getParentActivity());
         if (z) {
-            str2 = "ChatWithAdminChannelTitle";
             i2 = R.string.ChatWithAdminChannelTitle;
+            str2 = "ChatWithAdminChannelTitle";
         } else {
-            str2 = "ChatWithAdminGroupTitle";
             i2 = R.string.ChatWithAdminGroupTitle;
+            str2 = "ChatWithAdminGroupTitle";
         }
         builder.setTitle(LocaleController.getString(str2, i2), true);
         LinearLayout linearLayout = new LinearLayout(baseFragment.getParentActivity());
@@ -2386,14 +2058,14 @@ public class AlertsCreator {
         View view3 = view2;
         float f4 = 0.0f;
         while (view3 != view2.getRootView()) {
-            f3 += view3.getX();
-            f4 += view3.getY();
+            f4 += view3.getX();
+            f3 += view3.getY();
             view3 = (View) view3.getParent();
             if (view3 == null) {
                 break;
             }
         }
-        actionBarPopupWindow.showAtLocation(view2.getRootView(), 0, (int) ((f3 + f) - (view.getMeasuredWidth() / 2.0f)), (int) ((f4 + f2) - (view.getMeasuredHeight() / 2.0f)));
+        actionBarPopupWindow.showAtLocation(view2.getRootView(), 0, (int) ((f4 + f) - (view.getMeasuredWidth() / 2.0f)), (int) ((f3 + f2) - (view.getMeasuredHeight() / 2.0f)));
         actionBarPopupWindow.dimBehind();
         return actionBarPopupWindow;
     }
@@ -2454,8 +2126,8 @@ public class AlertsCreator {
 
     public static void createBlockDialogAlert(BaseFragment baseFragment, int i, boolean z, TLRPC$User tLRPC$User, final BlockDialogCallback blockDialogCallback) {
         String string;
-        String str;
         int i2;
+        String str;
         if (baseFragment == null || baseFragment.getParentActivity() == null) {
             return;
         }
@@ -2490,11 +2162,11 @@ public class AlertsCreator {
                 } else {
                     CheckBoxCell checkBoxCell2 = checkBoxCellArr[i3];
                     if (i == 1) {
-                        str = "DeleteThisChatBothSides";
                         i2 = R.string.DeleteThisChatBothSides;
+                        str = "DeleteThisChatBothSides";
                     } else {
-                        str = "DeleteTheseChatsBothSides";
                         i2 = R.string.DeleteTheseChatsBothSides;
+                        str = "DeleteTheseChatsBothSides";
                     }
                     checkBoxCell2.setText(LocaleController.getString(str, i2), "", true, false);
                 }
@@ -2752,12 +2424,7 @@ public class AlertsCreator {
 
     public static String lambda$createTimePickerDialog$59(int i) {
         boolean z = LocaleController.is24HourFormat;
-        int i2 = 12;
-        int i3 = i % (z ? 24 : 12);
-        if (i % 12 != 0 || z) {
-            i2 = i3;
-        }
-        String format = String.format("%02d", Integer.valueOf(i2));
+        String format = String.format("%02d", Integer.valueOf((i % 12 != 0 || z) ? i % (z ? 24 : 12) : 12));
         return i >= 24 ? LocaleController.formatString(R.string.BusinessHoursNextDayPicker, format) : format;
     }
 
@@ -2899,42 +2566,48 @@ public class AlertsCreator {
     }
 
     public static boolean checkScheduleDate(TextView textView, TextView textView2, long j, int i, NumberPicker numberPicker, NumberPicker numberPicker2, NumberPicker numberPicker3) {
-        long j2;
         int i2;
+        long j2;
         int i3;
         int i4;
-        char c;
-        String formatPluralString;
         int i5;
         int i6;
+        char c;
+        String formatPluralString;
+        int i7;
+        int i8;
         int value = numberPicker.getValue();
         int value2 = numberPicker2.getValue();
         int value3 = numberPicker3.getValue();
         Calendar calendar = Calendar.getInstance();
         long currentTimeMillis = System.currentTimeMillis();
         calendar.setTimeInMillis(currentTimeMillis);
-        int i7 = calendar.get(1);
+        int i9 = calendar.get(1);
         calendar.get(6);
         if (j > 0) {
+            i2 = i9;
             calendar.setTimeInMillis(currentTimeMillis + (j * 1000));
             calendar.set(11, 23);
             calendar.set(12, 59);
             calendar.set(13, 59);
-            i3 = 7;
+            i4 = 7;
             j2 = calendar.getTimeInMillis();
-            i2 = 23;
-            i4 = 59;
+            i3 = 23;
+            i5 = 59;
         } else {
+            i2 = i9;
             j2 = j;
-            i2 = 0;
             i3 = 0;
             i4 = 0;
+            i5 = 0;
         }
+        int i10 = i4;
         long j3 = currentTimeMillis + 60000;
         calendar.setTimeInMillis(j3);
-        int i8 = calendar.get(11);
-        int i9 = calendar.get(12);
-        calendar.setTimeInMillis(System.currentTimeMillis() + (value * 24 * 3600 * 1000));
+        int i11 = calendar.get(11);
+        int i12 = calendar.get(12);
+        int i13 = i3;
+        calendar.setTimeInMillis(System.currentTimeMillis() + (value * 86400000));
         calendar.set(11, value2);
         calendar.set(12, value3);
         long timeInMillis = calendar.getTimeInMillis();
@@ -2942,17 +2615,20 @@ public class AlertsCreator {
         numberPicker.setMinValue(0);
         long j4 = j2;
         if (j4 > 0) {
-            numberPicker.setMaxValue(i3);
+            i6 = i10;
+            numberPicker.setMaxValue(i6);
+        } else {
+            i6 = i10;
         }
         int value4 = numberPicker.getValue();
-        numberPicker2.setMinValue(value4 == 0 ? i8 : 0);
+        numberPicker2.setMinValue(value4 == 0 ? i11 : 0);
         if (j4 > 0) {
-            numberPicker2.setMaxValue(value4 == i3 ? i2 : 23);
+            numberPicker2.setMaxValue(value4 == i6 ? i13 : 23);
         }
         int value5 = numberPicker2.getValue();
-        numberPicker3.setMinValue((value4 == 0 && value5 == i8) ? i9 : 0);
+        numberPicker3.setMinValue((value4 == 0 && value5 == i11) ? i12 : 0);
         if (j4 > 0) {
-            numberPicker3.setMaxValue((value4 == i3 && value5 == i2) ? i4 : 59);
+            numberPicker3.setMaxValue((value4 == i6 && value5 == i13) ? i5 : 59);
         }
         int value6 = numberPicker3.getValue();
         if (timeInMillis <= j3) {
@@ -2960,56 +2636,56 @@ public class AlertsCreator {
         } else if (j4 > 0 && timeInMillis > j4) {
             calendar.setTimeInMillis(j4);
         }
-        int i10 = calendar.get(1);
-        calendar.setTimeInMillis(System.currentTimeMillis() + (value4 * 24 * 3600 * 1000));
+        int i14 = calendar.get(1);
+        calendar.setTimeInMillis(System.currentTimeMillis() + (value4 * 86400000));
         calendar.set(11, value5);
         calendar.set(12, value6);
         long timeInMillis2 = calendar.getTimeInMillis();
         if (textView != null) {
             if (value4 == 0) {
-                i5 = i;
-                i6 = 0;
-            } else if (i7 == i10) {
-                i5 = i;
-                i6 = 1;
+                i7 = 1;
+                i8 = 0;
+            } else if (i2 == i14) {
+                i7 = 1;
+                i8 = 1;
             } else {
-                i5 = i;
-                i6 = 2;
+                i7 = 1;
+                i8 = 2;
             }
-            if (i5 == 1) {
-                i6 += 3;
-            } else if (i5 == 2) {
-                i6 += 6;
-            } else if (i5 == 3) {
-                i6 += 9;
+            if (i == i7) {
+                i8 += 3;
+            } else if (i == 2) {
+                i8 += 6;
+            } else if (i == 3) {
+                i8 += 9;
             }
-            textView.setText(LocaleController.getInstance().getFormatterScheduleSend(i6).format(timeInMillis2));
+            textView.setText(LocaleController.getInstance().getFormatterScheduleSend(i8).format(timeInMillis2));
         }
         if (textView2 != null) {
-            int i11 = (int) ((timeInMillis2 - currentTimeMillis) / 1000);
-            if (i11 > 86400) {
+            int i15 = (int) ((timeInMillis2 - currentTimeMillis) / 1000);
+            if (i15 > 86400) {
                 c = 0;
-                formatPluralString = LocaleController.formatPluralString("DaysSchedule", Math.round(i11 / 86400.0f), new Object[0]);
+                formatPluralString = LocaleController.formatPluralString("DaysSchedule", Math.round(i15 / 86400.0f), new Object[0]);
             } else {
                 c = 0;
-                if (i11 >= 3600) {
-                    formatPluralString = LocaleController.formatPluralString("HoursSchedule", Math.round(i11 / 3600.0f), new Object[0]);
-                } else if (i11 >= 60) {
-                    formatPluralString = LocaleController.formatPluralString("MinutesSchedule", Math.round(i11 / 60.0f), new Object[0]);
+                if (i15 >= 3600) {
+                    formatPluralString = LocaleController.formatPluralString("HoursSchedule", Math.round(i15 / 3600.0f), new Object[0]);
+                } else if (i15 >= 60) {
+                    formatPluralString = LocaleController.formatPluralString("MinutesSchedule", Math.round(i15 / 60.0f), new Object[0]);
                 } else {
-                    formatPluralString = LocaleController.formatPluralString("SecondsSchedule", i11, new Object[0]);
+                    formatPluralString = LocaleController.formatPluralString("SecondsSchedule", i15, new Object[0]);
                 }
             }
             if (textView2.getTag() != null) {
-                int i12 = R.string.VoipChannelScheduleInfo;
+                int i16 = R.string.VoipChannelScheduleInfo;
                 Object[] objArr = new Object[1];
                 objArr[c] = formatPluralString;
-                textView2.setText(LocaleController.formatString("VoipChannelScheduleInfo", i12, objArr));
+                textView2.setText(LocaleController.formatString("VoipChannelScheduleInfo", i16, objArr));
             } else {
-                int i13 = R.string.VoipGroupScheduleInfo;
+                int i17 = R.string.VoipGroupScheduleInfo;
                 Object[] objArr2 = new Object[1];
                 objArr2[c] = formatPluralString;
-                textView2.setText(LocaleController.formatString("VoipGroupScheduleInfo", i13, objArr2));
+                textView2.setText(LocaleController.formatString("VoipGroupScheduleInfo", i17, objArr2));
             }
         }
         return timeInMillis - currentTimeMillis > 60000;
@@ -3031,8 +2707,8 @@ public class AlertsCreator {
             this((Theme.ResourcesProvider) null);
         }
 
-        public ScheduleDatePickerColors(org.telegram.ui.ActionBar.Theme.ResourcesProvider r13) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AlertsCreator.ScheduleDatePickerColors.<init>(org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
+        public ScheduleDatePickerColors(Theme.ResourcesProvider resourcesProvider) {
+            this(resourcesProvider != null ? resourcesProvider.getColorOrDefault(Theme.key_dialogTextBlack) : Theme.getColor(Theme.key_dialogTextBlack), resourcesProvider != null ? resourcesProvider.getColorOrDefault(Theme.key_dialogBackground) : Theme.getColor(Theme.key_dialogBackground), resourcesProvider != null ? resourcesProvider.getColorOrDefault(Theme.key_sheet_other) : Theme.getColor(Theme.key_sheet_other), resourcesProvider != null ? resourcesProvider.getColorOrDefault(Theme.key_player_actionBarSelector) : Theme.getColor(Theme.key_player_actionBarSelector), resourcesProvider != null ? resourcesProvider.getColorOrDefault(Theme.key_actionBarDefaultSubmenuItem) : Theme.getColor(Theme.key_actionBarDefaultSubmenuItem), resourcesProvider != null ? resourcesProvider.getColorOrDefault(Theme.key_actionBarDefaultSubmenuBackground) : Theme.getColor(Theme.key_actionBarDefaultSubmenuBackground), resourcesProvider != null ? resourcesProvider.getColorOrDefault(Theme.key_listSelector) : Theme.getColor(Theme.key_listSelector), resourcesProvider != null ? resourcesProvider.getColorOrDefault(Theme.key_featuredStickers_buttonText) : Theme.getColor(Theme.key_featuredStickers_buttonText), resourcesProvider != null ? resourcesProvider.getColorOrDefault(Theme.key_featuredStickers_addButton) : Theme.getColor(Theme.key_featuredStickers_addButton), resourcesProvider != null ? resourcesProvider.getColorOrDefault(Theme.key_featuredStickers_addButtonPressed) : Theme.getColor(Theme.key_featuredStickers_addButtonPressed));
         }
 
         public ScheduleDatePickerColors(int i, int i2, int i3, int i4, int i5, int i6, int i7) {
@@ -3080,7 +2756,7 @@ public class AlertsCreator {
     public static BottomSheet.Builder createScheduleDatePickerDialog(Context context, final long j, long j2, final ScheduleDatePickerDelegate scheduleDatePickerDelegate, final Runnable runnable, final ScheduleDatePickerColors scheduleDatePickerColors, Theme.ResourcesProvider resourcesProvider) {
         LinearLayout linearLayout;
         NumberPicker numberPicker;
-        Calendar calendar;
+        final Calendar calendar;
         TLRPC$User user;
         TLRPC$UserStatus tLRPC$UserStatus;
         if (context == null) {
@@ -3280,11 +2956,10 @@ public class AlertsCreator {
         textView2.setTypeface(AndroidUtilities.bold());
         textView2.setBackground(Theme.AdaptiveRipple.filledRect(scheduleDatePickerColors.buttonBackgroundColor, 8.0f));
         linearLayout4.addView(textView2, LayoutHelper.createLinear(-1, 48, 83, 16, 15, 16, 16));
-        final Calendar calendar3 = calendar;
         textView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                AlertsCreator.lambda$createScheduleDatePickerDialog$80(zArr, clientUserId, j, numberPicker2, numberPicker3, numberPicker5, calendar3, scheduleDatePickerDelegate, builder, view);
+                AlertsCreator.lambda$createScheduleDatePickerDialog$80(zArr, clientUserId, j, numberPicker2, numberPicker3, numberPicker5, calendar, scheduleDatePickerDelegate, builder, view);
             }
         });
         builder.setCustomView(linearLayout4);
@@ -3341,7 +3016,7 @@ public class AlertsCreator {
     public static void lambda$createScheduleDatePickerDialog$80(boolean[] zArr, long j, long j2, NumberPicker numberPicker, NumberPicker numberPicker2, NumberPicker numberPicker3, Calendar calendar, ScheduleDatePickerDelegate scheduleDatePickerDelegate, BottomSheet.Builder builder, View view) {
         zArr[0] = false;
         boolean checkScheduleDate = checkScheduleDate(null, null, j == j2 ? 1 : 0, numberPicker, numberPicker2, numberPicker3);
-        calendar.setTimeInMillis(System.currentTimeMillis() + (numberPicker.getValue() * 24 * 3600 * 1000));
+        calendar.setTimeInMillis(System.currentTimeMillis() + (numberPicker.getValue() * 86400000));
         calendar.set(11, numberPicker2.getValue());
         calendar.set(12, numberPicker3.getValue());
         if (checkScheduleDate) {
@@ -3552,7 +3227,7 @@ public class AlertsCreator {
 
     public static void lambda$createDatePickerDialog$87(NumberPicker numberPicker, NumberPicker numberPicker2, NumberPicker numberPicker3, Calendar calendar, ScheduleDatePickerDelegate scheduleDatePickerDelegate, BottomSheet.Builder builder, View view) {
         boolean checkScheduleDate = checkScheduleDate(null, null, 0, numberPicker, numberPicker2, numberPicker3);
-        calendar.setTimeInMillis(System.currentTimeMillis() + (numberPicker.getValue() * 24 * 3600 * 1000));
+        calendar.setTimeInMillis(System.currentTimeMillis() + (numberPicker.getValue() * 86400000));
         calendar.set(11, numberPicker2.getValue());
         calendar.set(12, numberPicker3.getValue());
         if (checkScheduleDate) {
@@ -3729,7 +3404,6 @@ public class AlertsCreator {
             NotificationCenter.getInstance(i7).listen(frameLayout2, NotificationCenter.privacyRulesUpdated, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    Object[] objArr = (Object[]) obj;
                     runnable3.run();
                 }
             });
@@ -3767,32 +3441,35 @@ public class AlertsCreator {
             }
             numberPicker3.setMinValue(0);
             numberPicker3.setMaxValue(11);
-        } else if (numberPicker.getValue() == i2) {
+            return;
+        }
+        if (numberPicker.getValue() == i2) {
             numberPicker3.setMinValue(0);
             numberPicker3.setMaxValue(i3);
             if (numberPicker3.getValue() == i3) {
                 numberPicker2.setMinValue(1);
-                numberPicker2.setMaxValue((i4 + 1) - 1);
+                numberPicker2.setMaxValue(i4);
                 return;
             }
             numberPicker2.setMinValue(1);
             try {
                 numberPicker2.setMaxValue(YearMonth.of(numberPicker.getValue(), numberPicker3.getValue() + 1).lengthOfMonth());
+                return;
             } catch (Exception e2) {
                 FileLog.e(e2);
                 numberPicker2.setMaxValue(31);
+                return;
             }
-        } else {
-            numberPicker2.setMinValue(1);
-            try {
-                numberPicker2.setMaxValue(YearMonth.of(numberPicker.getValue(), numberPicker3.getValue() + 1).lengthOfMonth());
-            } catch (Exception e3) {
-                FileLog.e(e3);
-                numberPicker2.setMaxValue(31);
-            }
-            numberPicker3.setMinValue(0);
-            numberPicker3.setMaxValue(11);
         }
+        numberPicker2.setMinValue(1);
+        try {
+            numberPicker2.setMaxValue(YearMonth.of(numberPicker.getValue(), numberPicker3.getValue() + 1).lengthOfMonth());
+        } catch (Exception e3) {
+            FileLog.e(e3);
+            numberPicker2.setMaxValue(31);
+        }
+        numberPicker3.setMinValue(0);
+        numberPicker3.setMaxValue(11);
     }
 
     public static String lambda$createBirthdayPickerDialog$90(int i) {
@@ -3846,15 +3523,15 @@ public class AlertsCreator {
             while (true) {
                 if (i2 >= privacyRules.size()) {
                     break;
-                } else if (privacyRules.get(i2) instanceof TLRPC$TL_privacyValueAllowContacts) {
+                }
+                if (privacyRules.get(i2) instanceof TLRPC$TL_privacyValueAllowContacts) {
                     string = LocaleController.getString(R.string.EditProfileBirthdayInfoContacts);
                     break;
-                } else {
-                    if ((privacyRules.get(i2) instanceof TLRPC$TL_privacyValueAllowAll) || (privacyRules.get(i2) instanceof TLRPC$TL_privacyValueDisallowAll)) {
-                        string = LocaleController.getString(R.string.EditProfileBirthdayInfo);
-                    }
-                    i2++;
                 }
+                if ((privacyRules.get(i2) instanceof TLRPC$TL_privacyValueAllowAll) || (privacyRules.get(i2) instanceof TLRPC$TL_privacyValueDisallowAll)) {
+                    string = LocaleController.getString(R.string.EditProfileBirthdayInfo);
+                }
+                i2++;
             }
         }
         linksTextView.setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(string, new Runnable() {
@@ -4088,7 +3765,7 @@ public class AlertsCreator {
 
     public static void lambda$createStatusUntilDatePickerDialog$103(NumberPicker numberPicker, NumberPicker numberPicker2, NumberPicker numberPicker3, Calendar calendar, StatusUntilDatePickerDelegate statusUntilDatePickerDelegate, BottomSheet.Builder builder, View view) {
         boolean checkScheduleDate = checkScheduleDate(null, null, 0, numberPicker, numberPicker2, numberPicker3);
-        calendar.setTimeInMillis(System.currentTimeMillis() + (numberPicker.getValue() * 24 * 3600 * 1000));
+        calendar.setTimeInMillis(System.currentTimeMillis() + (numberPicker.getValue() * 86400000));
         calendar.set(11, numberPicker2.getValue());
         calendar.set(12, numberPicker3.getValue());
         if (checkScheduleDate) {
@@ -4099,6 +3776,7 @@ public class AlertsCreator {
     }
 
     public static BottomSheet.Builder createAutoDeleteDatePickerDialog(Context context, int i, Theme.ResourcesProvider resourcesProvider, final ScheduleDatePickerDelegate scheduleDatePickerDelegate) {
+        boolean z = false;
         if (context == null) {
             return null;
         }
@@ -4122,7 +3800,7 @@ public class AlertsCreator {
                 if (i3 < 525600) {
                     return LocaleController.formatPluralString("Months", i3 / 10080, new Object[0]);
                 }
-                return LocaleController.formatPluralString("Years", ((i3 * 5) / 31) * 60 * 24, new Object[0]);
+                return LocaleController.formatPluralString("Years", ((i3 * 5) / 31) * 1440, new Object[0]);
             }
         };
         numberPicker.setMinValue(0);
@@ -4159,6 +3837,7 @@ public class AlertsCreator {
                 super.requestLayout();
             }
         };
+        boolean z2 = true;
         linearLayout.setOrientation(1);
         FrameLayout frameLayout = new FrameLayout(context);
         linearLayout.addView(frameLayout, LayoutHelper.createLinear(-1, -2, 51, 22, 0, 0, 4));
@@ -4180,7 +3859,7 @@ public class AlertsCreator {
         linearLayout2.setOrientation(0);
         linearLayout2.setWeightSum(1.0f);
         linearLayout.addView(linearLayout2, LayoutHelper.createLinear(-1, -2, 1.0f, 0, 0, 12, 0, 12));
-        final AnimatedTextView animatedTextView = new AnimatedTextView(context, true, true, false) {
+        final AnimatedTextView animatedTextView = new AnimatedTextView(context, z2, z2, z) {
             @Override
             public CharSequence getAccessibilityClassName() {
                 return Button.class.getName();
@@ -4909,7 +4588,7 @@ public class AlertsCreator {
     public static void createReportAlert(final Context context, final long j, final int i, final int i2, final BaseFragment baseFragment, final Theme.ResourcesProvider resourcesProvider, final Runnable runnable) {
         CharSequence[] charSequenceArr;
         int[] iArr;
-        int[] iArr2;
+        final int[] iArr2;
         if (context == null || baseFragment == null) {
             return;
         }
@@ -4923,19 +4602,19 @@ public class AlertsCreator {
         });
         builder.setTitle(LocaleController.getString("ReportChat", R.string.ReportChat), true);
         if (i != 0) {
-            charSequenceArr = new CharSequence[]{LocaleController.getString("ReportChatSpam", R.string.ReportChatSpam), LocaleController.getString("ReportChatViolence", R.string.ReportChatViolence), LocaleController.getString("ReportChatChild", R.string.ReportChatChild), LocaleController.getString("ReportChatIllegalDrugs", R.string.ReportChatIllegalDrugs), LocaleController.getString("ReportChatPersonalDetails", R.string.ReportChatPersonalDetails), LocaleController.getString("ReportChatPornography", R.string.ReportChatPornography), LocaleController.getString("ReportChatOther", R.string.ReportChatOther)};
+            CharSequence[] charSequenceArr2 = {LocaleController.getString("ReportChatSpam", R.string.ReportChatSpam), LocaleController.getString("ReportChatViolence", R.string.ReportChatViolence), LocaleController.getString("ReportChatChild", R.string.ReportChatChild), LocaleController.getString("ReportChatIllegalDrugs", R.string.ReportChatIllegalDrugs), LocaleController.getString("ReportChatPersonalDetails", R.string.ReportChatPersonalDetails), LocaleController.getString("ReportChatPornography", R.string.ReportChatPornography), LocaleController.getString("ReportChatOther", R.string.ReportChatOther)};
             iArr = new int[]{R.drawable.msg_clearcache, R.drawable.msg_report_violence, R.drawable.msg_block2, R.drawable.msg_report_drugs, R.drawable.msg_report_personal, R.drawable.msg_report_xxx, R.drawable.msg_report_other};
+            charSequenceArr = charSequenceArr2;
             iArr2 = new int[]{0, 1, 2, 3, 4, 5, 100};
         } else {
             charSequenceArr = new CharSequence[]{LocaleController.getString("ReportChatSpam", R.string.ReportChatSpam), LocaleController.getString("ReportChatFakeAccount", R.string.ReportChatFakeAccount), LocaleController.getString("ReportChatViolence", R.string.ReportChatViolence), LocaleController.getString("ReportChatChild", R.string.ReportChatChild), LocaleController.getString("ReportChatIllegalDrugs", R.string.ReportChatIllegalDrugs), LocaleController.getString("ReportChatPersonalDetails", R.string.ReportChatPersonalDetails), LocaleController.getString("ReportChatPornography", R.string.ReportChatPornography), LocaleController.getString("ReportChatOther", R.string.ReportChatOther)};
             iArr = new int[]{R.drawable.msg_clearcache, R.drawable.msg_report_fake, R.drawable.msg_report_violence, R.drawable.msg_block2, R.drawable.msg_report_drugs, R.drawable.msg_report_personal, R.drawable.msg_report_xxx, R.drawable.msg_report_other};
             iArr2 = new int[]{0, 6, 1, 2, 3, 4, 5, 100};
         }
-        final int[] iArr3 = iArr2;
         builder.setItems(charSequenceArr, iArr, new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i3) {
-                AlertsCreator.lambda$createReportAlert$130(iArr3, i, baseFragment, context, resourcesProvider, j, i2, dialogInterface, i3);
+                AlertsCreator.lambda$createReportAlert$130(iArr2, i, baseFragment, context, resourcesProvider, j, i2, dialogInterface, i3);
             }
         });
         baseFragment.showDialog(builder.create());
@@ -4953,105 +4632,107 @@ public class AlertsCreator {
         int i4 = iArr[i3];
         if (i == 0 && ((i4 == 0 || i4 == 1 || i4 == 2 || i4 == 5 || i4 == 3 || i4 == 4) && (baseFragment instanceof ChatActivity))) {
             ((ChatActivity) baseFragment).openReportChat(i4);
-        } else if ((i == 0 && (i4 == 100 || i4 == 6)) || (i != 0 && i4 == 100)) {
+            return;
+        }
+        if ((i == 0 && (i4 == 100 || i4 == 6)) || (i != 0 && i4 == 100)) {
             if (baseFragment instanceof ChatActivity) {
                 AndroidUtilities.requestAdjustNothing(baseFragment.getParentActivity(), baseFragment.getClassGuid());
             }
             baseFragment.showDialog(new AnonymousClass48(context, i4, resourcesProvider, baseFragment, i, j, i2));
+            return;
+        }
+        TLRPC$InputPeer inputPeer = MessagesController.getInstance(UserConfig.selectedAccount).getInputPeer(j);
+        if (i2 != 0) {
+            r8 = new TL_stories$TL_stories_report();
+            r8.id.add(Integer.valueOf(i2));
+            r8.peer = MessagesController.getInstance(UserConfig.selectedAccount).getInputPeer(j);
+            r8.message = "";
+            if (i4 == 0) {
+                r8.reason = new TLRPC$TL_inputReportReasonSpam();
+            } else if (i4 == 6) {
+                r8.reason = new TLRPC$TL_inputReportReasonFake();
+            } else if (i4 == 1) {
+                r8.reason = new TLRPC$TL_inputReportReasonViolence();
+            } else if (i4 == 2) {
+                r8.reason = new TLRPC$TL_inputReportReasonChildAbuse();
+            } else if (i4 == 5) {
+                r8.reason = new TLRPC$TL_inputReportReasonPornography();
+            } else if (i4 == 3) {
+                r8.reason = new TLRPC$TL_inputReportReasonIllegalDrugs();
+            } else if (i4 == 4) {
+                r8.reason = new TLRPC$TL_inputReportReasonPersonalDetails();
+            }
         } else {
-            TLRPC$InputPeer inputPeer = MessagesController.getInstance(UserConfig.selectedAccount).getInputPeer(j);
-            if (i2 != 0) {
-                r8 = new TL_stories$TL_stories_report();
-                r8.id.add(Integer.valueOf(i2));
-                r8.peer = MessagesController.getInstance(UserConfig.selectedAccount).getInputPeer(j);
-                r8.message = "";
+            if (i != 0) {
+                ?? tLRPC$TL_messages_report = new TLRPC$TL_messages_report();
+                tLRPC$TL_messages_report.peer = inputPeer;
+                tLRPC$TL_messages_report.id.add(Integer.valueOf(i));
+                tLRPC$TL_messages_report.message = "";
+                tLRPC$TL_account_reportPeer = tLRPC$TL_messages_report;
                 if (i4 == 0) {
-                    r8.reason = new TLRPC$TL_inputReportReasonSpam();
-                } else if (i4 == 6) {
-                    r8.reason = new TLRPC$TL_inputReportReasonFake();
+                    tLRPC$TL_messages_report.reason = new TLRPC$TL_inputReportReasonSpam();
+                    tLRPC$TL_account_reportPeer = tLRPC$TL_messages_report;
                 } else if (i4 == 1) {
-                    r8.reason = new TLRPC$TL_inputReportReasonViolence();
+                    tLRPC$TL_messages_report.reason = new TLRPC$TL_inputReportReasonViolence();
+                    tLRPC$TL_account_reportPeer = tLRPC$TL_messages_report;
                 } else if (i4 == 2) {
-                    r8.reason = new TLRPC$TL_inputReportReasonChildAbuse();
+                    tLRPC$TL_messages_report.reason = new TLRPC$TL_inputReportReasonChildAbuse();
+                    tLRPC$TL_account_reportPeer = tLRPC$TL_messages_report;
                 } else if (i4 == 5) {
-                    r8.reason = new TLRPC$TL_inputReportReasonPornography();
+                    tLRPC$TL_messages_report.reason = new TLRPC$TL_inputReportReasonPornography();
+                    tLRPC$TL_account_reportPeer = tLRPC$TL_messages_report;
                 } else if (i4 == 3) {
-                    r8.reason = new TLRPC$TL_inputReportReasonIllegalDrugs();
+                    tLRPC$TL_messages_report.reason = new TLRPC$TL_inputReportReasonIllegalDrugs();
+                    tLRPC$TL_account_reportPeer = tLRPC$TL_messages_report;
                 } else if (i4 == 4) {
-                    r8.reason = new TLRPC$TL_inputReportReasonPersonalDetails();
+                    tLRPC$TL_messages_report.reason = new TLRPC$TL_inputReportReasonPersonalDetails();
+                    tLRPC$TL_account_reportPeer = tLRPC$TL_messages_report;
                 }
             } else {
-                if (i != 0) {
-                    ?? tLRPC$TL_messages_report = new TLRPC$TL_messages_report();
-                    tLRPC$TL_messages_report.peer = inputPeer;
-                    tLRPC$TL_messages_report.id.add(Integer.valueOf(i));
-                    tLRPC$TL_messages_report.message = "";
-                    tLRPC$TL_account_reportPeer = tLRPC$TL_messages_report;
-                    if (i4 == 0) {
-                        tLRPC$TL_messages_report.reason = new TLRPC$TL_inputReportReasonSpam();
-                        tLRPC$TL_account_reportPeer = tLRPC$TL_messages_report;
-                    } else if (i4 == 1) {
-                        tLRPC$TL_messages_report.reason = new TLRPC$TL_inputReportReasonViolence();
-                        tLRPC$TL_account_reportPeer = tLRPC$TL_messages_report;
-                    } else if (i4 == 2) {
-                        tLRPC$TL_messages_report.reason = new TLRPC$TL_inputReportReasonChildAbuse();
-                        tLRPC$TL_account_reportPeer = tLRPC$TL_messages_report;
-                    } else if (i4 == 5) {
-                        tLRPC$TL_messages_report.reason = new TLRPC$TL_inputReportReasonPornography();
-                        tLRPC$TL_account_reportPeer = tLRPC$TL_messages_report;
-                    } else if (i4 == 3) {
-                        tLRPC$TL_messages_report.reason = new TLRPC$TL_inputReportReasonIllegalDrugs();
-                        tLRPC$TL_account_reportPeer = tLRPC$TL_messages_report;
-                    } else if (i4 == 4) {
-                        tLRPC$TL_messages_report.reason = new TLRPC$TL_inputReportReasonPersonalDetails();
-                        tLRPC$TL_account_reportPeer = tLRPC$TL_messages_report;
-                    }
-                } else {
-                    TLRPC$TL_account_reportPeer tLRPC$TL_account_reportPeer2 = new TLRPC$TL_account_reportPeer();
-                    tLRPC$TL_account_reportPeer2.peer = inputPeer;
-                    tLRPC$TL_account_reportPeer2.message = "";
+                TLRPC$TL_account_reportPeer tLRPC$TL_account_reportPeer2 = new TLRPC$TL_account_reportPeer();
+                tLRPC$TL_account_reportPeer2.peer = inputPeer;
+                tLRPC$TL_account_reportPeer2.message = "";
+                tLRPC$TL_account_reportPeer = tLRPC$TL_account_reportPeer2;
+                if (i4 == 0) {
+                    tLRPC$TL_account_reportPeer2.reason = new TLRPC$TL_inputReportReasonSpam();
                     tLRPC$TL_account_reportPeer = tLRPC$TL_account_reportPeer2;
-                    if (i4 == 0) {
-                        tLRPC$TL_account_reportPeer2.reason = new TLRPC$TL_inputReportReasonSpam();
-                        tLRPC$TL_account_reportPeer = tLRPC$TL_account_reportPeer2;
-                    } else if (i4 == 6) {
-                        tLRPC$TL_account_reportPeer2.reason = new TLRPC$TL_inputReportReasonFake();
-                        tLRPC$TL_account_reportPeer = tLRPC$TL_account_reportPeer2;
-                    } else if (i4 == 1) {
-                        tLRPC$TL_account_reportPeer2.reason = new TLRPC$TL_inputReportReasonViolence();
-                        tLRPC$TL_account_reportPeer = tLRPC$TL_account_reportPeer2;
-                    } else if (i4 == 2) {
-                        tLRPC$TL_account_reportPeer2.reason = new TLRPC$TL_inputReportReasonChildAbuse();
-                        tLRPC$TL_account_reportPeer = tLRPC$TL_account_reportPeer2;
-                    } else if (i4 == 5) {
-                        tLRPC$TL_account_reportPeer2.reason = new TLRPC$TL_inputReportReasonPornography();
-                        tLRPC$TL_account_reportPeer = tLRPC$TL_account_reportPeer2;
-                    } else if (i4 == 3) {
-                        tLRPC$TL_account_reportPeer2.reason = new TLRPC$TL_inputReportReasonIllegalDrugs();
-                        tLRPC$TL_account_reportPeer = tLRPC$TL_account_reportPeer2;
-                    } else if (i4 == 4) {
-                        tLRPC$TL_account_reportPeer2.reason = new TLRPC$TL_inputReportReasonPersonalDetails();
-                        tLRPC$TL_account_reportPeer = tLRPC$TL_account_reportPeer2;
-                    }
+                } else if (i4 == 6) {
+                    tLRPC$TL_account_reportPeer2.reason = new TLRPC$TL_inputReportReasonFake();
+                    tLRPC$TL_account_reportPeer = tLRPC$TL_account_reportPeer2;
+                } else if (i4 == 1) {
+                    tLRPC$TL_account_reportPeer2.reason = new TLRPC$TL_inputReportReasonViolence();
+                    tLRPC$TL_account_reportPeer = tLRPC$TL_account_reportPeer2;
+                } else if (i4 == 2) {
+                    tLRPC$TL_account_reportPeer2.reason = new TLRPC$TL_inputReportReasonChildAbuse();
+                    tLRPC$TL_account_reportPeer = tLRPC$TL_account_reportPeer2;
+                } else if (i4 == 5) {
+                    tLRPC$TL_account_reportPeer2.reason = new TLRPC$TL_inputReportReasonPornography();
+                    tLRPC$TL_account_reportPeer = tLRPC$TL_account_reportPeer2;
+                } else if (i4 == 3) {
+                    tLRPC$TL_account_reportPeer2.reason = new TLRPC$TL_inputReportReasonIllegalDrugs();
+                    tLRPC$TL_account_reportPeer = tLRPC$TL_account_reportPeer2;
+                } else if (i4 == 4) {
+                    tLRPC$TL_account_reportPeer2.reason = new TLRPC$TL_inputReportReasonPersonalDetails();
+                    tLRPC$TL_account_reportPeer = tLRPC$TL_account_reportPeer2;
                 }
-                r8 = tLRPC$TL_account_reportPeer;
             }
-            ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(r8, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    AlertsCreator.lambda$createReportAlert$129(tLObject, tLRPC$TL_error);
-                }
-            });
-            if (baseFragment instanceof ChatActivity) {
-                UndoView undoView = ((ChatActivity) baseFragment).getUndoView();
-                if (undoView != null) {
-                    undoView.showWithAction(0L, 74, (Runnable) null);
-                    return;
-                }
+            r8 = tLRPC$TL_account_reportPeer;
+        }
+        ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(r8, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                AlertsCreator.lambda$createReportAlert$129(tLObject, tLRPC$TL_error);
+            }
+        });
+        if (baseFragment instanceof ChatActivity) {
+            UndoView undoView = ((ChatActivity) baseFragment).getUndoView();
+            if (undoView != null) {
+                undoView.showWithAction(0L, 74, (Runnable) null);
                 return;
             }
-            BulletinFactory.of(baseFragment).createReportSent(resourcesProvider).show();
+            return;
         }
+        BulletinFactory.of(baseFragment).createReportSent(resourcesProvider).show();
     }
 
     public class AnonymousClass48 extends ReportAlert {
@@ -5475,13 +5156,12 @@ public class AlertsCreator {
         linearLayout.setOrientation(1);
         String[] strArr = {LocaleController.getString("ColorRed", R.string.ColorRed), LocaleController.getString("ColorOrange", R.string.ColorOrange), LocaleController.getString("ColorYellow", R.string.ColorYellow), LocaleController.getString("ColorGreen", R.string.ColorGreen), LocaleController.getString("ColorCyan", R.string.ColorCyan), LocaleController.getString("ColorBlue", R.string.ColorBlue), LocaleController.getString("ColorViolet", R.string.ColorViolet), LocaleController.getString("ColorPink", R.string.ColorPink), LocaleController.getString("ColorWhite", R.string.ColorWhite)};
         final int[] iArr = {i2};
-        int i3 = 0;
-        for (int i4 = 9; i3 < i4; i4 = 9) {
+        for (int i3 = 0; i3 < 9; i3++) {
             RadioColorCell radioColorCell = new RadioColorCell(activity, resourcesProvider);
             radioColorCell.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
             radioColorCell.setTag(Integer.valueOf(i3));
-            int i5 = TextColorCell.colors[i3];
-            radioColorCell.setCheckColor(i5, i5);
+            int i4 = TextColorCell.colors[i3];
+            radioColorCell.setCheckColor(i4, i4);
             radioColorCell.setTextAndValue(strArr[i3], i2 == TextColorCell.colorsToSave[i3]);
             linearLayout.addView(radioColorCell);
             radioColorCell.setOnClickListener(new View.OnClickListener() {
@@ -5490,28 +5170,27 @@ public class AlertsCreator {
                     AlertsCreator.lambda$createColorSelectDialog$132(linearLayout, iArr, view);
                 }
             });
-            i3++;
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(activity, resourcesProvider);
         builder.setTitle(LocaleController.getString("LedColor", R.string.LedColor));
         builder.setView(linearLayout);
         builder.setPositiveButton(LocaleController.getString("Set", R.string.Set), new DialogInterface.OnClickListener() {
             @Override
-            public final void onClick(DialogInterface dialogInterface, int i6) {
-                AlertsCreator.lambda$createColorSelectDialog$133(j, sharedPrefKey, iArr, j2, i, runnable, dialogInterface, i6);
+            public final void onClick(DialogInterface dialogInterface, int i5) {
+                AlertsCreator.lambda$createColorSelectDialog$133(j, sharedPrefKey, iArr, j2, i, runnable, dialogInterface, i5);
             }
         });
         builder.setNeutralButton(LocaleController.getString("LedDisabled", R.string.LedDisabled), new DialogInterface.OnClickListener() {
             @Override
-            public final void onClick(DialogInterface dialogInterface, int i6) {
-                AlertsCreator.lambda$createColorSelectDialog$134(j, i, runnable, dialogInterface, i6);
+            public final void onClick(DialogInterface dialogInterface, int i5) {
+                AlertsCreator.lambda$createColorSelectDialog$134(j, i, runnable, dialogInterface, i5);
             }
         });
         if (j != 0) {
             builder.setNegativeButton(LocaleController.getString("Default", R.string.Default), new DialogInterface.OnClickListener() {
                 @Override
-                public final void onClick(DialogInterface dialogInterface, int i6) {
-                    AlertsCreator.lambda$createColorSelectDialog$135(sharedPrefKey, runnable, dialogInterface, i6);
+                public final void onClick(DialogInterface dialogInterface, int i5) {
+                    AlertsCreator.lambda$createColorSelectDialog$135(sharedPrefKey, runnable, dialogInterface, i5);
                 }
             });
         }
@@ -5711,22 +5390,18 @@ public class AlertsCreator {
         } else {
             textView.setText(LocaleController.getString(R.string.LiveLocationAlertGroup));
         }
-        int i = Theme.key_dialogTextBlack;
-        textView.setTextColor(resourcesProvider != null ? resourcesProvider.getColorOrDefault(i) : Theme.getColor(i));
+        textView.setTextColor(resourcesProvider != null ? resourcesProvider.getColorOrDefault(Theme.key_dialogTextBlack) : Theme.getColor(Theme.key_dialogTextBlack));
         textView.setTextSize(1, 16.0f);
         textView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
         linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2, (LocaleController.isRTL ? 5 : 3) | 48, 24, z ? 4 : 0, 24, 8));
-        int i2 = 0;
-        while (i2 < 4) {
+        int i = 0;
+        while (i < 4) {
             RadioColorCell radioColorCell = new RadioColorCell(activity, resourcesProvider);
             radioColorCell.heightDp = 42;
             radioColorCell.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
-            radioColorCell.setTag(Integer.valueOf(i2));
-            int i3 = Theme.key_radioBackground;
-            int colorOrDefault = resourcesProvider != null ? resourcesProvider.getColorOrDefault(i3) : Theme.getColor(i3);
-            int i4 = Theme.key_dialogRadioBackgroundChecked;
-            radioColorCell.setCheckColor(colorOrDefault, resourcesProvider != null ? resourcesProvider.getColorOrDefault(i4) : Theme.getColor(i4));
-            radioColorCell.setTextAndValue(strArr[i2], iArr[0] == i2);
+            radioColorCell.setTag(Integer.valueOf(i));
+            radioColorCell.setCheckColor(resourcesProvider != null ? resourcesProvider.getColorOrDefault(Theme.key_radioBackground) : Theme.getColor(Theme.key_radioBackground), resourcesProvider != null ? resourcesProvider.getColorOrDefault(Theme.key_dialogRadioBackgroundChecked) : Theme.getColor(Theme.key_dialogRadioBackgroundChecked));
+            radioColorCell.setTextAndValue(strArr[i], iArr[0] == i);
             linearLayout.addView(radioColorCell);
             radioColorCell.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -5734,7 +5409,7 @@ public class AlertsCreator {
                     AlertsCreator.lambda$createLocationUpdateDialog$137(iArr, linearLayout, view);
                 }
             });
-            i2++;
+            i++;
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(activity, resourcesProvider);
         if (z) {
@@ -5745,8 +5420,8 @@ public class AlertsCreator {
         builder.setView(linearLayout);
         builder.setPositiveButton(LocaleController.getString("ShareFile", R.string.ShareFile), new DialogInterface.OnClickListener() {
             @Override
-            public final void onClick(DialogInterface dialogInterface, int i5) {
-                AlertsCreator.lambda$createLocationUpdateDialog$138(iArr, intCallback, dialogInterface, i5);
+            public final void onClick(DialogInterface dialogInterface, int i2) {
+                AlertsCreator.lambda$createLocationUpdateDialog$138(iArr, intCallback, dialogInterface, i2);
             }
         });
         builder.setNeutralButton(LocaleController.getString("Cancel", R.string.Cancel), null);
@@ -5781,7 +5456,7 @@ public class AlertsCreator {
         frameLayout.setOutlineProvider(new ViewOutlineProvider() {
             @Override
             public void getOutline(View view, Outline outline) {
-                outline.setRoundRect(0, 0, view.getMeasuredWidth(), AndroidUtilities.dp(6.0f) + view.getMeasuredHeight(), AndroidUtilities.dp(6.0f));
+                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight() + AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f));
             }
         });
         View view = new View(activity);
@@ -5829,7 +5504,7 @@ public class AlertsCreator {
             frameLayout.setOutlineProvider(new ViewOutlineProvider() {
                 @Override
                 public void getOutline(View view, Outline outline) {
-                    outline.setRoundRect(0, 0, view.getMeasuredWidth(), AndroidUtilities.dp(6.0f) + view.getMeasuredHeight(), AndroidUtilities.dp(6.0f));
+                    outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight() + AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f));
                 }
             });
         }
@@ -5854,7 +5529,7 @@ public class AlertsCreator {
         frameLayout.setOutlineProvider(new ViewOutlineProvider() {
             @Override
             public void getOutline(View view, Outline outline) {
-                outline.setRoundRect(0, 0, view.getMeasuredWidth(), AndroidUtilities.dp(6.0f) + view.getMeasuredHeight(), AndroidUtilities.dpf2(6.0f));
+                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight() + AndroidUtilities.dp(6.0f), AndroidUtilities.dpf2(6.0f));
             }
         });
         View view = new View(activity);
@@ -5904,7 +5579,7 @@ public class AlertsCreator {
         frameLayout.setOutlineProvider(new ViewOutlineProvider() {
             @Override
             public void getOutline(View view, Outline outline) {
-                outline.setRoundRect(0, 0, view.getMeasuredWidth(), AndroidUtilities.dp(6.0f) + view.getMeasuredHeight(), AndroidUtilities.dpf2(6.0f));
+                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight() + AndroidUtilities.dp(6.0f), AndroidUtilities.dpf2(6.0f));
             }
         });
         View view = new View(context);
@@ -6163,22 +5838,25 @@ public class AlertsCreator {
         if (i == 0) {
             return LocaleController.getString("ShortMessageLifetimeForever", R.string.ShortMessageLifetimeForever);
         }
-        if (i < 1 || i >= 16) {
-            if (i == 16) {
-                return LocaleController.formatTTLString(30);
-            }
-            if (i == 17) {
-                return LocaleController.formatTTLString(60);
-            }
-            if (i == 18) {
-                return LocaleController.formatTTLString(3600);
-            }
-            if (i == 19) {
-                return LocaleController.formatTTLString(86400);
-            }
-            return i == 20 ? LocaleController.formatTTLString(604800) : "";
+        if (i >= 1 && i < 16) {
+            return LocaleController.formatTTLString(i);
         }
-        return LocaleController.formatTTLString(i);
+        if (i == 16) {
+            return LocaleController.formatTTLString(30);
+        }
+        if (i == 17) {
+            return LocaleController.formatTTLString(60);
+        }
+        if (i == 18) {
+            return LocaleController.formatTTLString(3600);
+        }
+        if (i == 19) {
+            return LocaleController.formatTTLString(86400);
+        }
+        if (i == 20) {
+            return LocaleController.formatTTLString(604800);
+        }
+        return "";
     }
 
     public static void lambda$createTTLAlert$150(TLRPC$EncryptedChat tLRPC$EncryptedChat, NumberPicker numberPicker, DialogInterface dialogInterface, int i) {
@@ -6244,8 +5922,529 @@ public class AlertsCreator {
         accountSelectDelegate.didSelectAccount(((AccountSelectCell) view).getAccountNumber());
     }
 
-    public static void createDeleteMessagesAlert(final org.telegram.ui.ActionBar.BaseFragment r47, final org.telegram.tgnet.TLRPC$User r48, final org.telegram.tgnet.TLRPC$Chat r49, final org.telegram.tgnet.TLRPC$EncryptedChat r50, final org.telegram.tgnet.TLRPC$ChatFull r51, final long r52, final org.telegram.messenger.MessageObject r54, final android.util.SparseArray<org.telegram.messenger.MessageObject>[] r55, final org.telegram.messenger.MessageObject.GroupedMessages r56, final int r57, final int r58, org.telegram.tgnet.TLRPC$ChannelParticipant[] r59, final java.lang.Runnable r60, final java.lang.Runnable r61, final org.telegram.ui.ActionBar.Theme.ResourcesProvider r62) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AlertsCreator.createDeleteMessagesAlert(org.telegram.ui.ActionBar.BaseFragment, org.telegram.tgnet.TLRPC$User, org.telegram.tgnet.TLRPC$Chat, org.telegram.tgnet.TLRPC$EncryptedChat, org.telegram.tgnet.TLRPC$ChatFull, long, org.telegram.messenger.MessageObject, android.util.SparseArray[], org.telegram.messenger.MessageObject$GroupedMessages, int, int, org.telegram.tgnet.TLRPC$ChannelParticipant[], java.lang.Runnable, java.lang.Runnable, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
+    public static void createDeleteMessagesAlert(final BaseFragment baseFragment, final TLRPC$User tLRPC$User, final TLRPC$Chat tLRPC$Chat, final TLRPC$EncryptedChat tLRPC$EncryptedChat, final TLRPC$ChatFull tLRPC$ChatFull, final long j, final MessageObject messageObject, final SparseArray<MessageObject>[] sparseArrayArr, final MessageObject.GroupedMessages groupedMessages, final int i, final int i2, TLRPC$ChannelParticipant[] tLRPC$ChannelParticipantArr, final Runnable runnable, final Runnable runnable2, final Theme.ResourcesProvider resourcesProvider) {
+        Activity parentActivity;
+        int size;
+        long j2;
+        boolean z;
+        int i3;
+        int i4;
+        int i5;
+        int i6;
+        long j3;
+        TLRPC$Chat tLRPC$Chat2;
+        AlertDialog.Builder builder;
+        int i7;
+        boolean z2;
+        boolean z3;
+        AlertDialog.Builder builder2;
+        int i8;
+        float f;
+        int dp;
+        int i9;
+        TLRPC$MessageAction tLRPC$MessageAction;
+        AlertDialog.Builder builder3;
+        int i10;
+        int i11;
+        String str;
+        boolean z4;
+        int i12;
+        long j4;
+        int i13;
+        float f2;
+        int dp2;
+        TLRPC$MessageAction tLRPC$MessageAction2;
+        boolean z5 = i2 == 1;
+        boolean z6 = i2 == 3;
+        if (baseFragment != null) {
+            if ((tLRPC$User == null && tLRPC$Chat == null && tLRPC$EncryptedChat == null) || (parentActivity = baseFragment.getParentActivity()) == null) {
+                return;
+            }
+            final int currentAccount = baseFragment.getCurrentAccount();
+            AlertDialog.Builder builder4 = new AlertDialog.Builder(parentActivity, resourcesProvider);
+            builder4.setDimAlpha(runnable2 != null ? 0.5f : 0.6f);
+            if (groupedMessages != null) {
+                size = groupedMessages.messages.size();
+            } else {
+                size = messageObject != null ? 1 : sparseArrayArr[0].size() + sparseArrayArr[1].size();
+            }
+            if (tLRPC$EncryptedChat != null) {
+                j2 = DialogObject.makeEncryptedDialogId(tLRPC$EncryptedChat.id);
+            } else if (tLRPC$User != null) {
+                j2 = tLRPC$User.id;
+            } else {
+                j2 = -tLRPC$Chat.id;
+            }
+            int currentTime = ConnectionsManager.getInstance(currentAccount).getCurrentTime();
+            if (messageObject == null) {
+                int i14 = 0;
+                z = false;
+                for (int i15 = 2; i14 < i15; i15 = 2) {
+                    for (int i16 = 0; i16 < sparseArrayArr[i14].size(); i16++) {
+                        MessageObject valueAt = sparseArrayArr[i14].valueAt(i16);
+                        if (!valueAt.isDice()) {
+                            i4 = 1;
+                        } else if (Math.abs(currentTime - valueAt.messageOwner.date) > 86400) {
+                            i4 = 1;
+                        }
+                        z = true;
+                    }
+                    i4 = 1;
+                    i14 += i4;
+                }
+                i3 = 1;
+            } else if (!messageObject.isDice() || Math.abs(currentTime - messageObject.messageOwner.date) > 86400) {
+                i3 = 1;
+                z = true;
+            } else {
+                i3 = 1;
+                z = false;
+            }
+            final boolean[] zArr = new boolean[i3];
+            boolean z7 = tLRPC$User != null && MessagesController.getInstance(currentAccount).canRevokePmInbox;
+            if (tLRPC$User != null) {
+                i5 = MessagesController.getInstance(currentAccount).revokeTimePmLimit;
+            } else {
+                i5 = MessagesController.getInstance(currentAccount).revokeTimeLimit;
+            }
+            boolean z8 = tLRPC$EncryptedChat == null && tLRPC$User != null && z7 && i5 == Integer.MAX_VALUE;
+            if (tLRPC$Chat != null && tLRPC$Chat.megagroup && !z5 && !z6) {
+                ArrayList arrayList = new ArrayList();
+                if (messageObject != null) {
+                    TLRPC$MessageAction tLRPC$MessageAction3 = messageObject.messageOwner.action;
+                    if (tLRPC$MessageAction3 == null || (tLRPC$MessageAction3 instanceof TLRPC$TL_messageActionEmpty) || (tLRPC$MessageAction3 instanceof TLRPC$TL_messageActionChatDeleteUser) || (tLRPC$MessageAction3 instanceof TLRPC$TL_messageActionChatJoinedByLink) || (tLRPC$MessageAction3 instanceof TLRPC$TL_messageActionChatAddUser)) {
+                        if (groupedMessages != null) {
+                            arrayList.addAll(groupedMessages.messages);
+                        } else {
+                            arrayList.add(messageObject);
+                        }
+                    }
+                    if (!messageObject.isSendError() && messageObject.getDialogId() == j && (((tLRPC$MessageAction2 = messageObject.messageOwner.action) == null || (tLRPC$MessageAction2 instanceof TLRPC$TL_messageActionEmpty)) && messageObject.isOut() && currentTime - messageObject.messageOwner.date <= i5)) {
+                        j3 = j2;
+                        i12 = 1;
+                    } else {
+                        j3 = j2;
+                        i12 = 0;
+                    }
+                } else {
+                    int i17 = 1;
+                    i12 = 0;
+                    while (i17 >= 0) {
+                        int i18 = 0;
+                        while (i18 < sparseArrayArr[i17].size()) {
+                            MessageObject valueAt2 = sparseArrayArr[i17].valueAt(i18);
+                            if (i17 == 1 && valueAt2.isOut()) {
+                                TLRPC$Message tLRPC$Message = valueAt2.messageOwner;
+                                j4 = j2;
+                                if (tLRPC$Message.action == null && currentTime - tLRPC$Message.date <= i5) {
+                                    i13 = 1;
+                                    i12++;
+                                    arrayList.add(valueAt2);
+                                    i18 += i13;
+                                    j2 = j4;
+                                }
+                            } else {
+                                j4 = j2;
+                            }
+                            i13 = 1;
+                            arrayList.add(valueAt2);
+                            i18 += i13;
+                            j2 = j4;
+                        }
+                        i17--;
+                        j2 = j2;
+                    }
+                    j3 = j2;
+                }
+                final long clientUserId = UserConfig.getInstance(currentAccount).getClientUserId();
+                ArrayList arrayList2 = (ArrayList) Collection$EL.stream(arrayList).mapToLong(new ToLongFunction() {
+                    @Override
+                    public final long applyAsLong(Object obj) {
+                        return ((MessageObject) obj).getFromChatId();
+                    }
+                }).distinct().mapToObj(new LongFunction() {
+                    @Override
+                    public final Object apply(long j5) {
+                        TLObject lambda$createDeleteMessagesAlert$152;
+                        lambda$createDeleteMessagesAlert$152 = AlertsCreator.lambda$createDeleteMessagesAlert$152(currentAccount, j5);
+                        return lambda$createDeleteMessagesAlert$152;
+                    }
+                }).filter(new Predicate() {
+                    @Override
+                    public Predicate and(Predicate predicate) {
+                        return Predicate.CC.$default$and(this, predicate);
+                    }
+
+                    @Override
+                    public Predicate negate() {
+                        return Predicate.CC.$default$negate(this);
+                    }
+
+                    @Override
+                    public Predicate or(Predicate predicate) {
+                        return Predicate.CC.$default$or(this, predicate);
+                    }
+
+                    @Override
+                    public final boolean test(Object obj) {
+                        return AlertsCreator$$ExternalSyntheticBackport1.m((TLObject) obj);
+                    }
+                }).filter(new Predicate() {
+                    @Override
+                    public Predicate and(Predicate predicate) {
+                        return Predicate.CC.$default$and(this, predicate);
+                    }
+
+                    @Override
+                    public Predicate negate() {
+                        return Predicate.CC.$default$negate(this);
+                    }
+
+                    @Override
+                    public Predicate or(Predicate predicate) {
+                        return Predicate.CC.$default$or(this, predicate);
+                    }
+
+                    @Override
+                    public final boolean test(Object obj) {
+                        boolean lambda$createDeleteMessagesAlert$153;
+                        lambda$createDeleteMessagesAlert$153 = AlertsCreator.lambda$createDeleteMessagesAlert$153(clientUserId, (TLObject) obj);
+                        return lambda$createDeleteMessagesAlert$153;
+                    }
+                }).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda226()));
+                if (!arrayList2.isEmpty()) {
+                    if (tLRPC$ChannelParticipantArr == null) {
+                        AlertDialog[] alertDialogArr = {new AlertDialog(parentActivity, 3)};
+                        int size2 = arrayList2.size();
+                        TLRPC$ChannelParticipant[] tLRPC$ChannelParticipantArr2 = new TLRPC$ChannelParticipant[size2];
+                        int[] iArr = new int[size2];
+                        int[] iArr2 = new int[1];
+                        int i19 = 0;
+                        while (i19 < size2) {
+                            TLRPC$TL_channels_getParticipant tLRPC$TL_channels_getParticipant = new TLRPC$TL_channels_getParticipant();
+                            tLRPC$TL_channels_getParticipant.channel = MessagesController.getInputChannel(tLRPC$Chat);
+                            tLRPC$TL_channels_getParticipant.participant = MessagesController.getInputPeer((TLObject) arrayList2.get(i19));
+                            ConnectionsManager connectionsManager = ConnectionsManager.getInstance(currentAccount);
+                            final int[] iArr3 = iArr2;
+                            int i20 = currentAccount;
+                            final int[] iArr4 = iArr;
+                            final int i21 = i19;
+                            final TLRPC$ChannelParticipant[] tLRPC$ChannelParticipantArr3 = tLRPC$ChannelParticipantArr2;
+                            final int i22 = size2;
+                            final AlertDialog[] alertDialogArr2 = alertDialogArr;
+                            int i23 = i19;
+                            int[] iArr5 = iArr;
+                            iArr5[i23] = connectionsManager.sendRequest(tLRPC$TL_channels_getParticipant, new RequestDelegate() {
+                                @Override
+                                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                                    AlertsCreator.lambda$createDeleteMessagesAlert$155(iArr3, iArr4, i21, tLRPC$ChannelParticipantArr3, i22, alertDialogArr2, baseFragment, tLRPC$User, tLRPC$Chat, tLRPC$EncryptedChat, tLRPC$ChatFull, j, messageObject, sparseArrayArr, groupedMessages, i, i2, runnable, runnable2, resourcesProvider, tLObject, tLRPC$TL_error);
+                                }
+                            });
+                            i19 = i23 + 1;
+                            iArr2 = iArr2;
+                            iArr = iArr5;
+                            arrayList2 = arrayList2;
+                            tLRPC$ChannelParticipantArr2 = tLRPC$ChannelParticipantArr2;
+                            size2 = size2;
+                            alertDialogArr = alertDialogArr;
+                            currentAccount = i20;
+                        }
+                        final int i24 = currentAccount;
+                        final int[] iArr6 = iArr;
+                        final AlertDialog[] alertDialogArr3 = alertDialogArr;
+                        AndroidUtilities.runOnUIThread(new Runnable() {
+                            @Override
+                            public final void run() {
+                                AlertsCreator.lambda$createDeleteMessagesAlert$157(alertDialogArr3, iArr6, i24, runnable2, baseFragment);
+                            }
+                        }, 1000L);
+                        return;
+                    }
+                    DeleteMessagesBottomSheet deleteMessagesBottomSheet = new DeleteMessagesBottomSheet(baseFragment, tLRPC$Chat, arrayList, arrayList2, tLRPC$ChannelParticipantArr, j, i, i2, runnable);
+                    if (runnable2 != null) {
+                        deleteMessagesBottomSheet.setOnHideListener(new DialogInterface.OnDismissListener() {
+                            @Override
+                            public final void onDismiss(DialogInterface dialogInterface) {
+                                runnable2.run();
+                            }
+                        });
+                    }
+                    deleteMessagesBottomSheet.show();
+                    return;
+                }
+                i6 = currentAccount;
+                if (i12 <= 0 || !z) {
+                    tLRPC$Chat2 = tLRPC$Chat;
+                    builder = builder4;
+                    i7 = i12;
+                    z2 = false;
+                    z3 = false;
+                } else {
+                    FrameLayout frameLayout = new FrameLayout(parentActivity);
+                    CheckBoxCell checkBoxCell = new CheckBoxCell(parentActivity, 1, resourcesProvider);
+                    checkBoxCell.setBackgroundDrawable(Theme.getSelectorDrawable(false));
+                    checkBoxCell.setText(LocaleController.getString("DeleteMessagesOption", R.string.DeleteMessagesOption), "", false, false);
+                    if (LocaleController.isRTL) {
+                        dp2 = AndroidUtilities.dp(16.0f);
+                        f2 = 8.0f;
+                    } else {
+                        f2 = 8.0f;
+                        dp2 = AndroidUtilities.dp(8.0f);
+                    }
+                    checkBoxCell.setPadding(dp2, 0, LocaleController.isRTL ? AndroidUtilities.dp(f2) : AndroidUtilities.dp(16.0f), 0);
+                    frameLayout.addView(checkBoxCell, LayoutHelper.createFrame(-1, 48.0f, 51, 0.0f, 0.0f, 0.0f, 0.0f));
+                    checkBoxCell.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view) {
+                            AlertsCreator.lambda$createDeleteMessagesAlert$159(zArr, view);
+                        }
+                    });
+                    builder4.setView(frameLayout);
+                    builder4.setCustomViewOffset(9);
+                    tLRPC$Chat2 = tLRPC$Chat;
+                    builder = builder4;
+                    i7 = i12;
+                    z2 = false;
+                    z3 = true;
+                }
+            } else {
+                i6 = currentAccount;
+                j3 = j2;
+                if (z5 || z6 || ChatObject.isChannel(tLRPC$Chat) || tLRPC$EncryptedChat != null) {
+                    tLRPC$Chat2 = tLRPC$Chat;
+                    builder = builder4;
+                    i7 = 0;
+                    z2 = false;
+                } else {
+                    if (tLRPC$User == null || tLRPC$User.id == UserConfig.getInstance(i6).getClientUserId() || (tLRPC$User.bot && !tLRPC$User.support)) {
+                        tLRPC$Chat2 = tLRPC$Chat;
+                        if (tLRPC$Chat2 == null) {
+                            builder2 = builder4;
+                            i8 = 0;
+                            z2 = false;
+                            if (i8 > 0 || !z || (tLRPC$User != null && UserObject.isDeleted(tLRPC$User))) {
+                                builder = builder2;
+                                i7 = i8;
+                            } else {
+                                FrameLayout frameLayout2 = new FrameLayout(parentActivity);
+                                CheckBoxCell checkBoxCell2 = new CheckBoxCell(parentActivity, 1, resourcesProvider);
+                                checkBoxCell2.setBackgroundDrawable(Theme.getSelectorDrawable(false));
+                                if (z8) {
+                                    checkBoxCell2.setText(LocaleController.formatString("DeleteMessagesOptionAlso", R.string.DeleteMessagesOptionAlso, UserObject.getFirstName(tLRPC$User)), "", false, false);
+                                } else if (tLRPC$Chat2 != null && (z2 || i8 == size)) {
+                                    checkBoxCell2.setText(LocaleController.getString("DeleteForAll", R.string.DeleteForAll), "", false, false);
+                                } else {
+                                    checkBoxCell2.setText(LocaleController.getString("DeleteMessagesOption", R.string.DeleteMessagesOption), "", false, false);
+                                }
+                                if (LocaleController.isRTL) {
+                                    dp = AndroidUtilities.dp(16.0f);
+                                    f = 8.0f;
+                                } else {
+                                    f = 8.0f;
+                                    dp = AndroidUtilities.dp(8.0f);
+                                }
+                                checkBoxCell2.setPadding(dp, 0, LocaleController.isRTL ? AndroidUtilities.dp(f) : AndroidUtilities.dp(16.0f), 0);
+                                frameLayout2.addView(checkBoxCell2, LayoutHelper.createFrame(-1, 48.0f, 51, 0.0f, 0.0f, 0.0f, 0.0f));
+                                checkBoxCell2.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public final void onClick(View view) {
+                                        AlertsCreator.lambda$createDeleteMessagesAlert$160(zArr, view);
+                                    }
+                                });
+                                builder = builder2;
+                                builder.setView(frameLayout2);
+                                builder.setCustomViewOffset(9);
+                                i7 = i8;
+                                z3 = true;
+                            }
+                        }
+                    } else {
+                        tLRPC$Chat2 = tLRPC$Chat;
+                    }
+                    if (messageObject != null) {
+                        i8 = (messageObject.isSendError() || !((tLRPC$MessageAction = messageObject.messageOwner.action) == null || (tLRPC$MessageAction instanceof TLRPC$TL_messageActionEmpty) || (tLRPC$MessageAction instanceof TLRPC$TL_messageActionPhoneCall) || (tLRPC$MessageAction instanceof TLRPC$TL_messageActionPinMessage) || (tLRPC$MessageAction instanceof TLRPC$TL_messageActionGeoProximityReached) || (tLRPC$MessageAction instanceof TLRPC$TL_messageActionSetChatTheme)) || (!(messageObject.isOut() || z7 || ChatObject.hasAdminRights(tLRPC$Chat)) || currentTime - messageObject.messageOwner.date > i5)) ? 0 : 1;
+                        builder2 = builder4;
+                        z2 = !messageObject.isOut();
+                    } else {
+                        int i25 = 1;
+                        int i26 = 0;
+                        z2 = false;
+                        AlertDialog.Builder builder5 = builder4;
+                        while (i25 >= 0) {
+                            int i27 = 0;
+                            AlertDialog.Builder builder6 = builder5;
+                            while (i27 < sparseArrayArr[i25].size()) {
+                                MessageObject valueAt3 = sparseArrayArr[i25].valueAt(i27);
+                                TLRPC$MessageAction tLRPC$MessageAction4 = valueAt3.messageOwner.action;
+                                AlertDialog.Builder builder7 = builder6;
+                                if ((tLRPC$MessageAction4 == null || (tLRPC$MessageAction4 instanceof TLRPC$TL_messageActionEmpty) || (tLRPC$MessageAction4 instanceof TLRPC$TL_messageActionPhoneCall) || (tLRPC$MessageAction4 instanceof TLRPC$TL_messageActionPinMessage) || (tLRPC$MessageAction4 instanceof TLRPC$TL_messageActionGeoProximityReached)) && ((valueAt3.isOut() || z7 || (tLRPC$Chat2 != null && ChatObject.canBlockUsers(tLRPC$Chat))) && currentTime - valueAt3.messageOwner.date <= i5)) {
+                                    i9 = 1;
+                                    i26++;
+                                    if (!z2 && !valueAt3.isOut()) {
+                                        z2 = true;
+                                    }
+                                } else {
+                                    i9 = 1;
+                                }
+                                i27 += i9;
+                                builder6 = builder7;
+                            }
+                            i25--;
+                            builder5 = builder6;
+                        }
+                        builder2 = builder5;
+                        i8 = i26;
+                    }
+                    if (i8 > 0) {
+                    }
+                    builder = builder2;
+                    i7 = i8;
+                }
+                z3 = false;
+            }
+            AlertDialog.Builder builder8 = builder;
+            final long j5 = j3;
+            final boolean z9 = z6;
+            final int i28 = i6;
+            int i29 = size;
+            int i30 = i7;
+            DialogInterface.OnClickListener onClickListener = new DialogInterface.OnClickListener() {
+                @Override
+                public final void onClick(DialogInterface dialogInterface, int i31) {
+                    AlertsCreator.lambda$createDeleteMessagesAlert$161(j5, z9, i28, messageObject, groupedMessages, tLRPC$EncryptedChat, j, i, zArr, i2, sparseArrayArr, runnable, dialogInterface, i31);
+                }
+            };
+            if (z6) {
+                i10 = 1;
+                if (i29 == 1) {
+                    builder3 = builder8;
+                    builder3.setTitle(LocaleController.getString(R.string.UnsaveSingleMessagesTitle));
+                    i11 = 0;
+                } else {
+                    builder3 = builder8;
+                    i11 = 0;
+                    builder3.setTitle(LocaleController.formatString(R.string.UnsaveMessagesTitle, LocaleController.formatPluralString("messages", i29, new Object[0])));
+                }
+            } else {
+                builder3 = builder8;
+                i10 = 1;
+                i11 = 0;
+                if (i29 == 1) {
+                    builder3.setTitle(LocaleController.getString(R.string.DeleteSingleMessagesTitle));
+                } else {
+                    builder3.setTitle(LocaleController.formatString(R.string.DeleteMessagesTitle, LocaleController.formatPluralString("messages", i29, new Object[0])));
+                }
+            }
+            if (z6) {
+                if (i29 == i10) {
+                    builder3.setMessage(LocaleController.getString(R.string.AreYouSureUnsaveSingleMessage));
+                } else {
+                    builder3.setMessage(LocaleController.getString(R.string.AreYouSureUnsaveFewMessages));
+                }
+            } else if (tLRPC$Chat == null || !z2) {
+                if (!z3 || z8 || i30 == i29) {
+                    if (tLRPC$Chat == null || !tLRPC$Chat.megagroup || z5) {
+                        if (i29 == i10) {
+                            builder3.setMessage(LocaleController.getString("AreYouSureDeleteSingleMessage", R.string.AreYouSureDeleteSingleMessage));
+                        } else {
+                            builder3.setMessage(LocaleController.getString("AreYouSureDeleteFewMessages", R.string.AreYouSureDeleteFewMessages));
+                        }
+                    } else if (i29 == i10) {
+                        builder3.setMessage(LocaleController.getString("AreYouSureDeleteSingleMessageMega", R.string.AreYouSureDeleteSingleMessageMega));
+                    } else {
+                        builder3.setMessage(LocaleController.getString("AreYouSureDeleteFewMessagesMega", R.string.AreYouSureDeleteFewMessagesMega));
+                    }
+                } else if (tLRPC$Chat != null) {
+                    int i31 = R.string.DeleteMessagesTextGroup;
+                    Object[] objArr = new Object[i10];
+                    objArr[i11] = LocaleController.formatPluralString("messages", i30, new Object[i11]);
+                    builder3.setMessage(LocaleController.formatString("DeleteMessagesTextGroup", i31, objArr));
+                } else {
+                    int i32 = R.string.DeleteMessagesText;
+                    String formatPluralString = LocaleController.formatPluralString("messages", i30, new Object[i11]);
+                    String firstName = UserObject.getFirstName(tLRPC$User);
+                    Object[] objArr2 = new Object[2];
+                    objArr2[i11] = formatPluralString;
+                    objArr2[i10] = firstName;
+                    builder3.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("DeleteMessagesText", i32, objArr2)));
+                }
+            } else if (z3 && i30 != i29) {
+                int i33 = R.string.DeleteMessagesTextGroupPart;
+                Object[] objArr3 = new Object[i10];
+                objArr3[i11] = LocaleController.formatPluralString("messages", i30, new Object[i11]);
+                builder3.setMessage(LocaleController.formatString(i33, objArr3));
+            } else if (i29 == i10) {
+                builder3.setMessage(LocaleController.getString(R.string.AreYouSureDeleteSingleMessage));
+            } else {
+                builder3.setMessage(LocaleController.getString(R.string.AreYouSureDeleteFewMessages));
+            }
+            if (messageObject != null) {
+                z4 = messageObject.isGiveaway() && !messageObject.isForwarded();
+                if (z4) {
+                    long j6 = ((TLRPC$TL_messageMediaGiveaway) messageObject.messageOwner.media).until_date * 1000;
+                    str = LocaleController.getInstance().getFormatterGiveawayMonthDayYear().format(new Date(j6));
+                    if (System.currentTimeMillis() < j6) {
+                        z4 = true;
+                    }
+                    z4 = false;
+                } else {
+                    str = null;
+                }
+            } else {
+                str = null;
+                if (i29 == i10) {
+                    int i34 = 1;
+                    boolean z10 = false;
+                    while (i34 >= 0) {
+                        boolean z11 = z10;
+                        for (int i35 = 0; i35 < sparseArrayArr[i34].size(); i35 += i10) {
+                            MessageObject valueAt4 = sparseArrayArr[i34].valueAt(i35);
+                            boolean z12 = valueAt4.isGiveaway() && !valueAt4.isForwarded();
+                            if (z12) {
+                                long j7 = ((TLRPC$TL_messageMediaGiveaway) valueAt4.messageOwner.media).until_date * 1000;
+                                str = LocaleController.getInstance().getFormatterGiveawayMonthDayYear().format(new Date(j7));
+                                z11 = System.currentTimeMillis() < j7;
+                            } else {
+                                z11 = z12;
+                            }
+                        }
+                        i34--;
+                        z10 = z11;
+                    }
+                    z4 = z10;
+                }
+                z4 = false;
+            }
+            if (!z4 || z6) {
+                builder3.setPositiveButton(LocaleController.getString(z6 ? R.string.Remove : R.string.Delete), onClickListener);
+            } else {
+                builder3.setTitle(LocaleController.getString("BoostingGiveawayDeleteMsgTitle", R.string.BoostingGiveawayDeleteMsgTitle));
+                int i36 = R.string.BoostingGiveawayDeleteMsgText;
+                Object[] objArr4 = new Object[i10];
+                objArr4[i11] = str;
+                builder3.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("BoostingGiveawayDeleteMsgText", i36, objArr4)));
+                builder3.setNeutralButton(LocaleController.getString("Delete", R.string.Delete), onClickListener);
+            }
+            builder3.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
+            builder3.setOnPreDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public final void onDismiss(DialogInterface dialogInterface) {
+                    AlertsCreator.lambda$createDeleteMessagesAlert$162(runnable2, dialogInterface);
+                }
+            });
+            AlertDialog create = builder3.create();
+            baseFragment.showDialog(create);
+            TextView textView = (TextView) create.getButton(-1);
+            if (textView != null) {
+                textView.setTextColor(Theme.getColor(Theme.key_text_RedBold));
+            }
+            TextView textView2 = (TextView) create.getButton(-3);
+            if (textView2 != null) {
+                create.getButtonsLayout().setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(0.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(12.0f));
+                ((ViewGroup.MarginLayoutParams) create.getButtonsLayout().getLayoutParams()).topMargin = AndroidUtilities.dp(-8.0f);
+                textView2.setTextColor(Theme.getColor(Theme.key_text_RedBold));
+            }
+        }
     }
 
     public static TLObject lambda$createDeleteMessagesAlert$152(int i, long j) {
@@ -6258,11 +6457,11 @@ public class AlertsCreator {
     public static boolean lambda$createDeleteMessagesAlert$153(long j, TLObject tLObject) {
         if (tLObject instanceof TLRPC$User) {
             return ((TLRPC$User) tLObject).id != j;
-        } else if (tLObject instanceof TLRPC$Chat) {
-            return !ChatObject.hasAdminRights((TLRPC$Chat) tLObject);
-        } else {
-            return false;
         }
+        if (tLObject instanceof TLRPC$Chat) {
+            return !ChatObject.hasAdminRights((TLRPC$Chat) tLObject);
+        }
+        return false;
     }
 
     public static void lambda$createDeleteMessagesAlert$155(final int[] iArr, final int[] iArr2, final int i, final TLRPC$ChannelParticipant[] tLRPC$ChannelParticipantArr, final int i2, final AlertDialog[] alertDialogArr, final BaseFragment baseFragment, final TLRPC$User tLRPC$User, final TLRPC$Chat tLRPC$Chat, final TLRPC$EncryptedChat tLRPC$EncryptedChat, final TLRPC$ChatFull tLRPC$ChatFull, final long j, final MessageObject messageObject, final SparseArray[] sparseArrayArr, final MessageObject.GroupedMessages groupedMessages, final int i3, final int i4, final Runnable runnable, final Runnable runnable2, final Theme.ResourcesProvider resourcesProvider, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -6328,7 +6527,7 @@ public class AlertsCreator {
     }
 
     public static void lambda$createDeleteMessagesAlert$161(long j, boolean z, int i, MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, TLRPC$EncryptedChat tLRPC$EncryptedChat, long j2, int i2, boolean[] zArr, int i3, SparseArray[] sparseArrayArr, Runnable runnable, DialogInterface dialogInterface, int i4) {
-        ArrayList arrayList;
+        ArrayList<Long> arrayList;
         TLRPC$Peer tLRPC$Peer;
         long clientUserId = z ? UserConfig.getInstance(i).getClientUserId() : j;
         ArrayList<Long> arrayList2 = null;
@@ -6358,12 +6557,12 @@ public class AlertsCreator {
             int i6 = 1;
             int i7 = 1;
             while (i7 >= 0) {
-                ArrayList arrayList5 = new ArrayList();
+                ArrayList<Integer> arrayList5 = new ArrayList<>();
                 for (int i8 = 0; i8 < sparseArrayArr[i7].size(); i8++) {
                     arrayList5.add(Integer.valueOf(sparseArrayArr[i7].keyAt(i8)));
                 }
                 if (tLRPC$EncryptedChat != null) {
-                    ArrayList arrayList6 = new ArrayList();
+                    ArrayList<Long> arrayList6 = new ArrayList<>();
                     for (int i9 = 0; i9 < sparseArrayArr[i7].size(); i9++) {
                         MessageObject messageObject3 = (MessageObject) sparseArrayArr[i7].valueAt(i9);
                         long j3 = messageObject3.messageOwner.random_id;
@@ -6497,7 +6696,7 @@ public class AlertsCreator {
         }
         if (baseFragment instanceof ThemePreviewActivity) {
             Theme.applyPreviousTheme();
-            baseFragment.finishFragment();
+            baseFragment.lambda$onBackPressed$308();
         }
         if (themeAccent != null) {
             themeInfo.setCurrentAccentId(themeAccent.id);
@@ -6663,7 +6862,7 @@ public class AlertsCreator {
             int i4 = red - red2;
             int green2 = green - Color.green(num.intValue());
             int blue2 = blue - Color.blue(num.intValue());
-            int i5 = ((((i3 + 512) * i4) * i4) >> 8) + (green2 * 4 * green2) + ((((767 - i3) * blue2) * blue2) >> 8);
+            int i5 = ((((767 - i3) * blue2) * blue2) >> 8) + ((((i3 + 512) * i4) * i4) >> 8) + (green2 * 4 * green2);
             if (i5 < i2) {
                 str = (String) entry.getValue();
                 i2 = i5;
@@ -6711,22 +6910,22 @@ public class AlertsCreator {
     }
 
     public static boolean lambda$showPopupMenu$170(ActionBarPopupWindow actionBarPopupWindow, View view, int i, KeyEvent keyEvent) {
-        if (i == 82 && keyEvent.getRepeatCount() == 0 && keyEvent.getAction() == 1 && actionBarPopupWindow.isShowing()) {
-            actionBarPopupWindow.dismiss();
-            return true;
+        if (i != 82 || keyEvent.getRepeatCount() != 0 || keyEvent.getAction() != 1 || !actionBarPopupWindow.isShowing()) {
+            return false;
         }
-        return false;
+        actionBarPopupWindow.dismiss();
+        return true;
     }
 
     public static boolean lambda$showPopupMenu$171(ActionBarPopupWindow actionBarPopupWindow, android.graphics.Rect rect, View view, MotionEvent motionEvent) {
-        if (motionEvent.getActionMasked() == 0 && actionBarPopupWindow != null && actionBarPopupWindow.isShowing()) {
-            view.getHitRect(rect);
-            if (rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                return false;
-            }
-            actionBarPopupWindow.dismiss();
+        if (motionEvent.getActionMasked() != 0 || actionBarPopupWindow == null || !actionBarPopupWindow.isShowing()) {
             return false;
         }
+        view.getHitRect(rect);
+        if (rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+            return false;
+        }
+        actionBarPopupWindow.dismiss();
         return false;
     }
 }

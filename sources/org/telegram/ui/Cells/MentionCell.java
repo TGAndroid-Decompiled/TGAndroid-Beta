@@ -22,6 +22,7 @@ import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
+
 public class MentionCell extends LinearLayout {
     private boolean attached;
     private final AvatarDrawable avatarDrawable;
@@ -55,7 +56,8 @@ public class MentionCell extends LinearLayout {
         textView.setTextSize(1, 15.0f);
         textView.setSingleLine(true);
         textView.setGravity(3);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        textView.setEllipsize(truncateAt);
         addView(textView, LayoutHelper.createLinear(-2, -2, 16, 12, 0, 0, 0));
         TextView textView2 = new TextView(context);
         this.usernameTextView = textView2;
@@ -63,7 +65,7 @@ public class MentionCell extends LinearLayout {
         textView2.setTextSize(1, 15.0f);
         textView2.setSingleLine(true);
         textView2.setGravity(3);
-        textView2.setEllipsize(TextUtils.TruncateAt.END);
+        textView2.setEllipsize(truncateAt);
         addView(textView2, LayoutHelper.createLinear(-2, -2, 16, 12, 0, 8, 0));
     }
 
@@ -94,8 +96,7 @@ public class MentionCell extends LinearLayout {
         }
         this.nameTextView.setText(UserObject.getUserName(tLRPC$User));
         if (UserObject.getPublicUsername(tLRPC$User) != null) {
-            TextView textView = this.usernameTextView;
-            textView.setText("@" + UserObject.getPublicUsername(tLRPC$User));
+            this.usernameTextView.setText("@" + UserObject.getPublicUsername(tLRPC$User));
         } else {
             this.usernameTextView.setText("");
         }
@@ -137,8 +138,7 @@ public class MentionCell extends LinearLayout {
         this.nameTextView.setText(tLRPC$Chat.title);
         String publicUsername = ChatObject.getPublicUsername(tLRPC$Chat);
         if (publicUsername != null) {
-            TextView textView = this.usernameTextView;
-            textView.setText("@" + publicUsername);
+            this.usernameTextView.setText("@" + publicUsername);
         } else {
             this.usernameTextView.setText("");
         }
@@ -251,10 +251,10 @@ public class MentionCell extends LinearLayout {
         if (z) {
             this.nameTextView.setTextColor(-1);
             this.usernameTextView.setTextColor(-4473925);
-            return;
+        } else {
+            this.nameTextView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
+            this.usernameTextView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteGrayText3));
         }
-        this.nameTextView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
-        this.usernameTextView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteGrayText3));
     }
 
     private int getThemedColor(int i) {

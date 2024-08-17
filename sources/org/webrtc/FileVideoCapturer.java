@@ -10,6 +10,7 @@ import java.nio.charset.Charset;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
+
 public class FileVideoCapturer implements VideoCapturer {
     private static final String TAG = "FileVideoCapturer";
     private CapturerObserver capturerObserver;
@@ -48,7 +49,6 @@ public class FileVideoCapturer implements VideoCapturer {
         private final long videoStart;
 
         public VideoReaderY4M(String str) throws IOException {
-            String[] split;
             RandomAccessFile randomAccessFile = new RandomAccessFile(str, "r");
             this.mediaFile = randomAccessFile;
             this.mediaFileChannel = randomAccessFile.getChannel();
@@ -57,7 +57,8 @@ public class FileVideoCapturer implements VideoCapturer {
                 int read = this.mediaFile.read();
                 if (read == -1) {
                     throw new RuntimeException("Found end of file before end of header for file: " + str);
-                } else if (read != 10) {
+                }
+                if (read != 10) {
                     sb.append((char) read);
                 } else {
                     this.videoStart = this.mediaFileChannel.position();
@@ -96,16 +97,15 @@ public class FileVideoCapturer implements VideoCapturer {
             ByteBuffer dataY = allocate.getDataY();
             ByteBuffer dataU = allocate.getDataU();
             ByteBuffer dataV = allocate.getDataV();
-            int i = (this.frameHeight + 1) / 2;
             allocate.getStrideY();
             allocate.getStrideU();
             allocate.getStrideV();
             try {
-                int i2 = FRAME_DELIMETER_LENGTH;
-                ByteBuffer allocate2 = ByteBuffer.allocate(i2);
-                if (this.mediaFileChannel.read(allocate2) < i2) {
+                int i = FRAME_DELIMETER_LENGTH;
+                ByteBuffer allocate2 = ByteBuffer.allocate(i);
+                if (this.mediaFileChannel.read(allocate2) < i) {
                     this.mediaFileChannel.position(this.videoStart);
-                    if (this.mediaFileChannel.read(allocate2) < i2) {
+                    if (this.mediaFileChannel.read(allocate2) < i) {
                         throw new RuntimeException("Error looping video");
                     }
                 }

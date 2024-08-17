@@ -43,6 +43,7 @@ import org.telegram.ui.Components.Premium.boosts.BoostDialogs;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.StaticLayoutEx;
 import org.telegram.ui.LaunchActivity;
+
 public class GiveawayResultsMessageCell {
     private AvatarDrawable[] avatarDrawables;
     private ImageReceiver[] avatarImageReceivers;
@@ -122,21 +123,26 @@ public class GiveawayResultsMessageCell {
         ImageReceiver imageReceiver = new ImageReceiver(this.parentView);
         this.giftReceiver = imageReceiver;
         imageReceiver.setAllowLoadingOnAttachedOnly(true);
-        this.clipRectPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+        Paint paint = this.clipRectPaint;
+        PorterDuff.Mode mode = PorterDuff.Mode.DST_OUT;
+        paint.setXfermode(new PorterDuffXfermode(mode));
         this.counterTextPaint.setTypeface(AndroidUtilities.bold());
-        this.counterTextPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+        this.counterTextPaint.setXfermode(new PorterDuffXfermode(mode));
         this.counterTextPaint.setTextSize(AndroidUtilities.dp(12.0f));
-        this.counterTextPaint.setTextAlign(Paint.Align.CENTER);
+        TextPaint textPaint = this.counterTextPaint;
+        Paint.Align align = Paint.Align.CENTER;
+        textPaint.setTextAlign(align);
         this.chatTextPaint.setTypeface(AndroidUtilities.bold());
         this.chatTextPaint.setTextSize(AndroidUtilities.dp(13.0f));
         this.countriesTextPaint.setTextSize(AndroidUtilities.dp(13.0f));
         this.textPaint.setTextSize(AndroidUtilities.dp(14.0f));
         this.textDividerPaint.setTextSize(AndroidUtilities.dp(14.0f));
-        this.textDividerPaint.setTextAlign(Paint.Align.CENTER);
+        this.textDividerPaint.setTextAlign(align);
     }
 
     public boolean checkMotionEvent(MotionEvent motionEvent) {
         StaticLayout staticLayout;
+        int i;
         MessageObject messageObject = this.messageObject;
         if (messageObject != null && messageObject.isGiveawayResults()) {
             if (this.links == null) {
@@ -145,32 +151,29 @@ public class GiveawayResultsMessageCell {
             int action = motionEvent.getAction();
             int x = (int) motionEvent.getX();
             int y = (int) motionEvent.getY();
-            if ((action == 1 || action == 0) && this.topStringBuilder != null && (staticLayout = this.topLayout) != null) {
-                int i = this.subTitleMarginTop;
-                if (y - i > 0) {
-                    int offsetForHorizontal = this.topLayout.getOffsetForHorizontal(staticLayout.getLineForVertical((y - i) - AndroidUtilities.dp(10.0f)), x - this.subTitleMarginLeft);
-                    ClickableSpan[] clickableSpanArr = (ClickableSpan[]) this.topStringBuilder.getSpans(offsetForHorizontal, offsetForHorizontal, ClickableSpan.class);
-                    if (clickableSpanArr.length != 0) {
-                        if (action == 1) {
-                            this.links.clear();
-                            clickableSpanArr[0].onClick(this.parentView);
-                        } else {
-                            LinkSpanDrawable linkSpanDrawable = new LinkSpanDrawable(clickableSpanArr[0], null, x, y);
-                            this.links.addLink(linkSpanDrawable);
-                            try {
-                                int spanStart = this.topStringBuilder.getSpanStart(clickableSpanArr[0]);
-                                LinkPath obtainNewPath = linkSpanDrawable.obtainNewPath();
-                                obtainNewPath.setCurrentLayout(this.topLayout, spanStart, this.subTitleMarginLeft, this.subTitleMarginTop);
-                                this.topLayout.getSelectionPath(spanStart, this.topStringBuilder.getSpanEnd(clickableSpanArr[0]), obtainNewPath);
-                            } catch (Exception e) {
-                                FileLog.e(e);
-                            }
+            if ((action == 1 || action == 0) && this.topStringBuilder != null && (staticLayout = this.topLayout) != null && (i = y - this.subTitleMarginTop) > 0) {
+                int offsetForHorizontal = this.topLayout.getOffsetForHorizontal(staticLayout.getLineForVertical(i - AndroidUtilities.dp(10.0f)), x - this.subTitleMarginLeft);
+                ClickableSpan[] clickableSpanArr = (ClickableSpan[]) this.topStringBuilder.getSpans(offsetForHorizontal, offsetForHorizontal, ClickableSpan.class);
+                if (clickableSpanArr.length != 0) {
+                    if (action == 1) {
+                        this.links.clear();
+                        clickableSpanArr[0].onClick(this.parentView);
+                    } else {
+                        LinkSpanDrawable linkSpanDrawable = new LinkSpanDrawable(clickableSpanArr[0], null, x, y);
+                        this.links.addLink(linkSpanDrawable);
+                        try {
+                            int spanStart = this.topStringBuilder.getSpanStart(clickableSpanArr[0]);
+                            LinkPath obtainNewPath = linkSpanDrawable.obtainNewPath();
+                            obtainNewPath.setCurrentLayout(this.topLayout, spanStart, this.subTitleMarginLeft, this.subTitleMarginTop);
+                            this.topLayout.getSelectionPath(spanStart, this.topStringBuilder.getSpanEnd(clickableSpanArr[0]), obtainNewPath);
+                        } catch (Exception e) {
+                            FileLog.e(e);
                         }
-                        return true;
                     }
-                    this.links.clear();
-                    this.parentView.invalidate();
+                    return true;
                 }
+                this.links.clear();
+                this.parentView.invalidate();
             }
             if (action == 0) {
                 int i2 = 0;
@@ -245,16 +248,13 @@ public class GiveawayResultsMessageCell {
             });
             this.selectorDrawable.setState(this.pressedState);
             this.parentView.invalidate();
-            return;
+        } else {
+            this.selectorDrawable.setState(StateSet.NOTHING);
+            this.parentView.invalidate();
         }
-        this.selectorDrawable.setState(StateSet.NOTHING);
-        this.parentView.invalidate();
     }
 
     public void setMessageContent(final MessageObject messageObject, int i, int i2) {
-        StaticLayout staticLayout;
-        StaticLayout staticLayout2;
-        StaticLayout staticLayout3;
         this.messageObject = null;
         this.titleLayout = null;
         this.topLayout = null;
@@ -294,21 +294,25 @@ public class GiveawayResultsMessageCell {
                 spannableStringBuilder2.append((CharSequence) "\n");
             }
             spannableStringBuilder2.append((CharSequence) LocaleController.getString("BoostingGiveawayResultsMsgAllWinnersReceivedLinks", R.string.BoostingGiveawayResultsMsgAllWinnersReceivedLinks));
-            this.titleLayout = StaticLayoutEx.createStaticLayout(spannableStringBuilder, this.textPaint, dp2, Layout.Alignment.ALIGN_CENTER, 1.0f, AndroidUtilities.dp(2.0f), false, TextUtils.TruncateAt.END, dp2, 10);
-            this.topLayout = StaticLayoutEx.createStaticLayout(this.topStringBuilder, this.textPaint, dp2, Layout.Alignment.ALIGN_CENTER, 1.0f, AndroidUtilities.dp(2.0f), false, TextUtils.TruncateAt.END, dp2, 10);
-            this.bottomLayout = StaticLayoutEx.createStaticLayout(spannableStringBuilder2, this.textPaint, dp2, Layout.Alignment.ALIGN_CENTER, 1.0f, AndroidUtilities.dp(3.0f), false, TextUtils.TruncateAt.END, dp2, 10);
+            TextPaint textPaint = this.textPaint;
+            Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
+            float dp3 = AndroidUtilities.dp(2.0f);
+            TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+            this.titleLayout = StaticLayoutEx.createStaticLayout(spannableStringBuilder, textPaint, dp2, alignment, 1.0f, dp3, false, truncateAt, dp2, 10);
+            this.topLayout = StaticLayoutEx.createStaticLayout(this.topStringBuilder, this.textPaint, dp2, alignment, 1.0f, AndroidUtilities.dp(2.0f), false, truncateAt, dp2, 10);
+            this.bottomLayout = StaticLayoutEx.createStaticLayout(spannableStringBuilder2, this.textPaint, dp2, alignment, 1.0f, AndroidUtilities.dp(3.0f), false, truncateAt, dp2, 10);
             int max = Math.max(i2, dp2);
             this.diffTextWidth = max - dp2;
             float f = max;
             float f2 = dp;
             float f3 = f2 / 2.0f;
             this.giftReceiver.setImageCoords((f / 2.0f) - f3, AndroidUtilities.dp(70.0f) - f3, f2, f2);
-            int lineBottom = this.titleLayout.getLineBottom(staticLayout.getLineCount() - 1) + AndroidUtilities.dp(5.0f);
+            int lineBottom = this.titleLayout.getLineBottom(r5.getLineCount() - 1) + AndroidUtilities.dp(5.0f);
             this.titleHeight = lineBottom;
-            this.topHeight = lineBottom + this.topLayout.getLineBottom(staticLayout2.getLineCount() - 1);
-            this.bottomHeight = this.bottomLayout.getLineBottom(staticLayout3.getLineCount() - 1);
-            StaticLayout staticLayout4 = this.countriesLayout;
-            int lineBottom2 = staticLayout4 != null ? staticLayout4.getLineBottom(staticLayout4.getLineCount() - 1) + AndroidUtilities.dp(12.0f) : 0;
+            this.topHeight = lineBottom + this.topLayout.getLineBottom(r6.getLineCount() - 1);
+            this.bottomHeight = this.bottomLayout.getLineBottom(r5.getLineCount() - 1);
+            StaticLayout staticLayout = this.countriesLayout;
+            int lineBottom2 = staticLayout != null ? staticLayout.getLineBottom(staticLayout.getLineCount() - 1) + AndroidUtilities.dp(12.0f) : 0;
             this.countriesHeight = lineBottom2;
             int i3 = this.measuredHeight + this.topHeight + lineBottom2 + this.bottomHeight;
             this.measuredHeight = i3;
@@ -329,25 +333,26 @@ public class GiveawayResultsMessageCell {
             }
             float f4 = 0.0f;
             for (int i4 = 0; i4 < arrayList.size(); i4++) {
-                long longValue = ((Long) arrayList.get(i4)).longValue();
-                TLRPC$User user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(longValue));
+                Long l = (Long) arrayList.get(i4);
+                long longValue = l.longValue();
+                TLRPC$User user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(l);
                 if (user != null) {
                     this.avatarVisible[i4] = true;
                     this.users[i4] = user;
                     this.userTitles[i4] = TextUtils.ellipsize(Emoji.replaceEmoji(UserObject.getUserName(user), this.chatTextPaint.getFontMetricsInt(), false), this.chatTextPaint, 0.8f * f, TextUtils.TruncateAt.END);
                     float[] fArr = this.userTitleWidths;
-                    TextPaint textPaint = this.chatTextPaint;
+                    TextPaint textPaint2 = this.chatTextPaint;
                     CharSequence charSequence = this.userTitles[i4];
-                    fArr[i4] = textPaint.measureText(charSequence, 0, charSequence.length());
-                    float dp3 = this.userTitleWidths[i4] + AndroidUtilities.dp(40.0f);
-                    f4 += dp3;
+                    fArr[i4] = textPaint2.measureText(charSequence, 0, charSequence.length());
+                    float dp4 = this.userTitleWidths[i4] + AndroidUtilities.dp(40.0f);
+                    f4 += dp4;
                     if (i4 > 0) {
                         boolean[] zArr = this.needNewRow;
                         boolean z = f4 > 0.9f * f;
                         zArr[i4] = z;
                         if (z) {
                             this.measuredHeight += AndroidUtilities.dp(30.0f);
-                            f4 = dp3;
+                            f4 = dp4;
                         }
                     } else {
                         this.needNewRow[i4] = false;
@@ -510,8 +515,9 @@ public class GiveawayResultsMessageCell {
                     boolean[] zArr3 = this.avatarVisible;
                     if (i9 >= zArr3.length || this.needNewRow[i9] || !zArr3[i9]) {
                         break;
+                    } else {
+                        i7 = i3;
                     }
-                    i7 = i3;
                 }
                 canvas.restore();
                 canvas.translate(0.0f, AndroidUtilities.dp(30.0f));

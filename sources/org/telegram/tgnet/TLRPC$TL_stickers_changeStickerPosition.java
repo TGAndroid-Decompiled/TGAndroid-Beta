@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_stickers_changeStickerPosition extends TLObject {
     public static int constructor = -4795190;
     public int position;

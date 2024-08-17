@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_updateSentStoryReaction extends TLRPC$Update {
     public TLRPC$Peer peer;
     public TLRPC$Reaction reaction;

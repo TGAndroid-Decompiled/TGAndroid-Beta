@@ -41,6 +41,7 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.web.AddressBarList;
 import org.telegram.ui.web.BookmarksFragment;
 import org.telegram.ui.web.WebMetadataCache;
+
 public class BookmarksFragment extends UniversalFragment {
     private final Runnable closeToTabs;
     private ActionBarMenuItem gotoItem;
@@ -149,7 +150,7 @@ public class BookmarksFragment extends UniversalFragment {
         }
         final long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
         final int intValue = this.selected.iterator().next().intValue();
-        finishFragment();
+        lambda$onBackPressed$308();
         Runnable runnable = this.closeToTabs;
         if (runnable != null) {
             runnable.run();
@@ -263,8 +264,10 @@ public class BookmarksFragment extends UniversalFragment {
                     });
                     return;
                 }
-                BookmarksFragment.this.finishFragment();
-            } else if (i == R.id.menu_delete) {
+                BookmarksFragment.this.lambda$onBackPressed$308();
+                return;
+            }
+            if (i == R.id.menu_delete) {
                 BookmarksFragment.this.deleteSelectedMessages();
             } else if (i == R.id.menu_link) {
                 BookmarksFragment.this.gotoMessage();
@@ -458,10 +461,10 @@ public class BookmarksFragment extends UniversalFragment {
         if (uItem.instanceOf(AddressBarList.BookmarkView.Factory.class)) {
             if (this.actionBar.isActionModeShowed()) {
                 clickSelect(uItem, view);
-                return;
+            } else {
+                lambda$onBackPressed$308();
+                this.whenClicked.run(AddressBarList.getLink((MessageObject) uItem.object2));
             }
-            finishFragment();
-            this.whenClicked.run(AddressBarList.getLink((MessageObject) uItem.object2));
         }
     }
 
@@ -486,11 +489,11 @@ public class BookmarksFragment extends UniversalFragment {
 
     @Override
     public boolean onLongClick(UItem uItem, View view, int i, float f, float f2) {
-        if (uItem.instanceOf(AddressBarList.BookmarkView.Factory.class)) {
-            clickSelect(uItem, view);
-            return true;
+        if (!uItem.instanceOf(AddressBarList.BookmarkView.Factory.class)) {
+            return false;
         }
-        return false;
+        clickSelect(uItem, view);
+        return true;
     }
 
     @Override
@@ -513,9 +516,10 @@ public class BookmarksFragment extends UniversalFragment {
                 i = childAt.getTop();
                 i2 = childAdapterPosition;
                 break;
+            } else {
+                i3++;
+                i2 = childAdapterPosition;
             }
-            i3++;
-            i2 = childAdapterPosition;
         }
         this.listView.adapter.update(true);
         if (i2 >= 0) {

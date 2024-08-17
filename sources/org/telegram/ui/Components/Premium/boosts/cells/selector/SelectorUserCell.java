@@ -23,6 +23,7 @@ import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.boosts.cells.BaseCell;
 import org.telegram.ui.Components.StatusBadgeComponent;
+
 @SuppressLint({"ViewConstructor"})
 public class SelectorUserCell extends BaseCell {
     private TL_stories$TL_myBoost boost;
@@ -68,9 +69,9 @@ public class SelectorUserCell extends BaseCell {
         if (onClickListener != null) {
             this.optionsView.setVisibility(0);
             this.optionsView.setOnClickListener(onClickListener);
-            return;
+        } else {
+            this.optionsView.setVisibility(8);
         }
-        this.optionsView.setVisibility(8);
     }
 
     @Override
@@ -110,16 +111,13 @@ public class SelectorUserCell extends BaseCell {
         if (checkBox2 == null) {
             return;
         }
-        if (z) {
-            if (Math.abs(checkBox2.getAlpha() - f) > 0.1d) {
-                this.checkBox.animate().cancel();
-                this.checkBox.animate().alpha(f).start();
-                return;
-            }
-            return;
+        if (!z) {
+            checkBox2.animate().cancel();
+            this.checkBox.setAlpha(f);
+        } else if (Math.abs(checkBox2.getAlpha() - f) > 0.1d) {
+            this.checkBox.animate().cancel();
+            this.checkBox.animate().alpha(f).start();
         }
-        checkBox2.animate().cancel();
-        this.checkBox.setAlpha(f);
     }
 
     public void setUser(TLRPC$User tLRPC$User) {
@@ -202,11 +200,11 @@ public class SelectorUserCell extends BaseCell {
             this.titleTextView.animate().alpha(1.0f).start();
             this.subtitleTextView.animate().alpha(1.0f).start();
             setCheckboxAlpha(1.0f, true);
-            return;
+        } else {
+            this.titleTextView.setAlpha(1.0f);
+            this.subtitleTextView.setAlpha(1.0f);
+            setCheckboxAlpha(1.0f, false);
         }
-        this.titleTextView.setAlpha(1.0f);
-        this.subtitleTextView.setAlpha(1.0f);
-        setCheckboxAlpha(1.0f, false);
     }
 
     private String buildCountDownTime(long j) {

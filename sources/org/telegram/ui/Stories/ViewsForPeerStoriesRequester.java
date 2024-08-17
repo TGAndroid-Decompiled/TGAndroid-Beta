@@ -11,6 +11,7 @@ import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.tl.TL_stories$PeerStories;
 import org.telegram.tgnet.tl.TL_stories$TL_stories_getStoriesViews;
 import org.telegram.tgnet.tl.TL_stories$TL_stories_storyViews;
+
 public class ViewsForPeerStoriesRequester {
     private static long lastRequestTime;
     final int currentAccount;
@@ -38,12 +39,12 @@ public class ViewsForPeerStoriesRequester {
         if (z) {
             this.isRunning = true;
             lambda$new$0();
-            return;
+        } else {
+            this.isRunning = false;
+            AndroidUtilities.cancelRunOnUIThread(this.scheduleRequestRunnable);
+            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.currentReqId, false);
+            this.currentReqId = 0;
         }
-        this.isRunning = false;
-        AndroidUtilities.cancelRunOnUIThread(this.scheduleRequestRunnable);
-        ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.currentReqId, false);
-        this.currentReqId = 0;
     }
 
     protected void getStoryIds(ArrayList<Integer> arrayList) {
@@ -78,8 +79,10 @@ public class ViewsForPeerStoriesRequester {
             if (currentTimeMillis > 0) {
                 AndroidUtilities.cancelRunOnUIThread(this.scheduleRequestRunnable);
                 AndroidUtilities.runOnUIThread(this.scheduleRequestRunnable, currentTimeMillis);
-            } else if (requestInternal()) {
             } else {
+                if (requestInternal()) {
+                    return;
+                }
                 this.currentReqId = 0;
                 this.isRunning = false;
             }

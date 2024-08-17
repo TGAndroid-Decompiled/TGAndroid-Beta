@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_updatePhoneCall extends TLRPC$Update {
     public TLRPC$PhoneCall phone_call;
 

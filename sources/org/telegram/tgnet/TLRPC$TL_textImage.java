@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_textImage extends TLRPC$RichText {
     public long document_id;
     public int h;

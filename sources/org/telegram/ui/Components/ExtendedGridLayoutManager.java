@@ -5,6 +5,7 @@ import android.util.SparseIntArray;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
+
 public class ExtendedGridLayoutManager extends GridLayoutManager {
     private int calculatedWidth;
     private final boolean firstRowFullWidth;
@@ -41,7 +42,6 @@ public class ExtendedGridLayoutManager extends GridLayoutManager {
     }
 
     private void prepareLayout(float f) {
-        Size sizeForItem;
         int i;
         boolean z;
         float f2 = f == 0.0f ? 100.0f : f;
@@ -73,7 +73,7 @@ public class ExtendedGridLayoutManager extends GridLayoutManager {
                     z = i6 != 0;
                     i = spanCount;
                 } else {
-                    int min = Math.min(spanCount, (int) Math.floor(spanCount * (((sizeForItem.width / sizeForItem.height) * dp) / f2)));
+                    int min = Math.min(spanCount, (int) Math.floor(spanCount * (((r11.width / r11.height) * dp) / f2)));
                     i = min;
                     z = i4 < min || (min > 33 && i4 < min + (-15));
                 }

@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public abstract class TLRPC$PageBlock extends TLObject {
     public boolean bottom;
     public int cachedHeight;

@@ -19,6 +19,7 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.TextSettingsCell;
 import org.telegram.ui.Components.voip.CellFlickerDrawable;
+
 public class StorageUsageView extends FrameLayout {
     private Paint bgPaint;
     private boolean calculating;
@@ -62,10 +63,12 @@ public class StorageUsageView extends FrameLayout {
         this.paintCalculcating.setStrokeWidth(AndroidUtilities.dp(6.0f));
         this.paintProgress.setStrokeWidth(AndroidUtilities.dp(6.0f));
         this.paintProgress2.setStrokeWidth(AndroidUtilities.dp(6.0f));
-        this.paintFill.setStrokeCap(Paint.Cap.ROUND);
-        this.paintCalculcating.setStrokeCap(Paint.Cap.ROUND);
-        this.paintProgress.setStrokeCap(Paint.Cap.ROUND);
-        this.paintProgress2.setStrokeCap(Paint.Cap.ROUND);
+        Paint paint = this.paintFill;
+        Paint.Cap cap = Paint.Cap.ROUND;
+        paint.setStrokeCap(cap);
+        this.paintCalculcating.setStrokeCap(cap);
+        this.paintProgress.setStrokeCap(cap);
+        this.paintProgress2.setStrokeCap(cap);
         ProgressView progressView = new ProgressView(context);
         this.progressView = progressView;
         addView(progressView, LayoutHelper.createFrame(-1, -2.0f));
@@ -336,20 +339,19 @@ public class StorageUsageView extends FrameLayout {
             }
             int dp = AndroidUtilities.dp(24.0f);
             if (!StorageUsageView.this.calculating) {
-                int measuredWidth = (int) ((getMeasuredWidth() - (AndroidUtilities.dp(24.0f) * 2)) * StorageUsageView.this.progress2);
-                int dp2 = AndroidUtilities.dp(24.0f) + measuredWidth;
-                canvas.drawLine(dp, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(24.0f) + measuredWidth, AndroidUtilities.dp(20.0f), StorageUsageView.this.paintProgress2);
+                int dp2 = AndroidUtilities.dp(24.0f) + ((int) ((getMeasuredWidth() - (AndroidUtilities.dp(24.0f) * 2)) * StorageUsageView.this.progress2));
+                canvas.drawLine(dp, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(24.0f) + r5, AndroidUtilities.dp(20.0f), StorageUsageView.this.paintProgress2);
                 canvas.drawRect(dp2, AndroidUtilities.dp(20.0f) - AndroidUtilities.dp(3.0f), dp2 + AndroidUtilities.dp(3.0f), AndroidUtilities.dp(20.0f) + AndroidUtilities.dp(3.0f), StorageUsageView.this.bgPaint);
             }
             if (StorageUsageView.this.calculating) {
                 return;
             }
-            int measuredWidth2 = (int) ((getMeasuredWidth() - (AndroidUtilities.dp(24.0f) * 2)) * StorageUsageView.this.progress);
-            if (measuredWidth2 < AndroidUtilities.dp(1.0f)) {
-                measuredWidth2 = AndroidUtilities.dp(1.0f);
+            int measuredWidth = (int) ((getMeasuredWidth() - (AndroidUtilities.dp(24.0f) * 2)) * StorageUsageView.this.progress);
+            if (measuredWidth < AndroidUtilities.dp(1.0f)) {
+                measuredWidth = AndroidUtilities.dp(1.0f);
             }
-            int dp3 = AndroidUtilities.dp(24.0f) + measuredWidth2;
-            canvas.drawLine(dp, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(24.0f) + measuredWidth2, AndroidUtilities.dp(20.0f), StorageUsageView.this.paintProgress);
+            int dp3 = AndroidUtilities.dp(24.0f) + measuredWidth;
+            canvas.drawLine(dp, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(24.0f) + measuredWidth, AndroidUtilities.dp(20.0f), StorageUsageView.this.paintProgress);
             canvas.drawRect(dp3, AndroidUtilities.dp(20.0f) - AndroidUtilities.dp(3.0f), dp3 + AndroidUtilities.dp(3.0f), AndroidUtilities.dp(20.0f) + AndroidUtilities.dp(3.0f), StorageUsageView.this.bgPaint);
         }
     }

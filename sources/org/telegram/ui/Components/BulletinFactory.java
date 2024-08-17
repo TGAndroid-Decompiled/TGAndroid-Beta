@@ -22,9 +22,11 @@ import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
@@ -45,6 +47,7 @@ import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.Stories.recorder.HintView2;
+
 public final class BulletinFactory {
     private final FrameLayout containerLayout;
     private final BaseFragment fragment;
@@ -172,7 +175,7 @@ public final class BulletinFactory {
             SAVED_TO_GALLERY(R.raw.ic_save_to_gallery, 0, "Box", "Arrow", "Mask", "Arrow 2", "Splash"),
             SAVED_TO_MUSIC(R.raw.ic_save_to_music, 2, "Box", "Arrow"),
             SAVED_TO_GIFS(R.raw.ic_save_to_gifs, 0, "gif");
-            
+
             private final String[] layers;
             private final int paddingBottom;
             private final int resId;
@@ -190,11 +193,11 @@ public final class BulletinFactory {
             this.fragment = null;
             this.containerLayout = baseFragment.getLastStoryViewer().getContainerForBulletin();
             this.resourcesProvider = baseFragment.getLastStoryViewer().getResourceProvider();
-            return;
+        } else {
+            this.fragment = baseFragment;
+            this.containerLayout = null;
+            this.resourcesProvider = baseFragment != null ? baseFragment.getResourceProvider() : null;
         }
-        this.fragment = baseFragment;
-        this.containerLayout = null;
-        this.resourcesProvider = baseFragment != null ? baseFragment.getResourceProvider() : null;
     }
 
     private BulletinFactory(FrameLayout frameLayout, Theme.ResourcesProvider resourcesProvider) {
@@ -402,9 +405,10 @@ public final class BulletinFactory {
             for (int i3 = 3; i2 < list.size() && i < i3; i3 = 3) {
                 TLObject tLObject = list.get(i2);
                 if (tLObject != null) {
-                    i++;
-                    usersLayout.avatarsImageView.setCount(i);
-                    usersLayout.avatarsImageView.setObject(i - 1, UserConfig.selectedAccount, tLObject);
+                    int i4 = i + 1;
+                    usersLayout.avatarsImageView.setCount(i4);
+                    usersLayout.avatarsImageView.setObject(i, UserConfig.selectedAccount, tLObject);
+                    i = i4;
                 }
                 i2++;
             }
@@ -469,9 +473,10 @@ public final class BulletinFactory {
             for (int i2 = 0; i2 < list.size() && i < 3; i2++) {
                 TLObject tLObject = list.get(i2);
                 if (tLObject != null) {
-                    i++;
-                    usersLayout.avatarsImageView.setCount(i);
-                    usersLayout.avatarsImageView.setObject(i - 1, UserConfig.selectedAccount, tLObject);
+                    int i3 = i + 1;
+                    usersLayout.avatarsImageView.setCount(i3);
+                    usersLayout.avatarsImageView.setObject(i, UserConfig.selectedAccount, tLObject);
+                    i = i3;
                 }
             }
             if (list.size() == 1) {
@@ -526,11 +531,9 @@ public final class BulletinFactory {
             spannableStringBuilder = null;
         } else if (arrayList.size() == 1) {
             if (ChatObject.isChannelAndNotMegaGroup(tLRPC$Chat)) {
-                int i = R.string.HasBeenAddedToChannel;
-                spannableStringBuilder = AndroidUtilities.replaceTags(LocaleController.formatString("HasBeenAddedToChannel", i, "**" + UserObject.getFirstName(arrayList.get(0)) + "**"));
+                spannableStringBuilder = AndroidUtilities.replaceTags(LocaleController.formatString("HasBeenAddedToChannel", R.string.HasBeenAddedToChannel, "**" + UserObject.getFirstName(arrayList.get(0)) + "**"));
             } else {
-                int i2 = R.string.HasBeenAddedToGroup;
-                spannableStringBuilder = AndroidUtilities.replaceTags(LocaleController.formatString("HasBeenAddedToGroup", i2, "**" + UserObject.getFirstName(arrayList.get(0)) + "**"));
+                spannableStringBuilder = AndroidUtilities.replaceTags(LocaleController.formatString("HasBeenAddedToGroup", R.string.HasBeenAddedToGroup, "**" + UserObject.getFirstName(arrayList.get(0)) + "**"));
             }
         } else if (ChatObject.isChannelAndNotMegaGroup(tLRPC$Chat)) {
             spannableStringBuilder = AndroidUtilities.replaceTags(LocaleController.formatPluralString("AddedMembersToChannel", arrayList.size(), new Object[0]));
@@ -830,20 +833,20 @@ public final class BulletinFactory {
     }
 
     public Bulletin createCopyLinkBulletin(boolean z, Theme.ResourcesProvider resourcesProvider) {
-        if (AndroidUtilities.shouldShowClipboardToast()) {
-            if (z) {
-                Bulletin.TwoLineLottieLayout twoLineLottieLayout = new Bulletin.TwoLineLottieLayout(getContext(), resourcesProvider);
-                twoLineLottieLayout.setAnimation(R.raw.voip_invite, 36, 36, "Wibe", "Circle");
-                twoLineLottieLayout.titleTextView.setText(LocaleController.getString("LinkCopied", R.string.LinkCopied));
-                twoLineLottieLayout.subtitleTextView.setText(LocaleController.getString("LinkCopiedPrivateInfo", R.string.LinkCopiedPrivateInfo));
-                return create(twoLineLottieLayout, 2750);
-            }
-            Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(getContext(), resourcesProvider);
-            lottieLayout.setAnimation(R.raw.voip_invite, 36, 36, "Wibe", "Circle");
-            lottieLayout.textView.setText(LocaleController.getString("LinkCopied", R.string.LinkCopied));
-            return create(lottieLayout, 1500);
+        if (!AndroidUtilities.shouldShowClipboardToast()) {
+            return new Bulletin.EmptyBulletin();
         }
-        return new Bulletin.EmptyBulletin();
+        if (z) {
+            Bulletin.TwoLineLottieLayout twoLineLottieLayout = new Bulletin.TwoLineLottieLayout(getContext(), resourcesProvider);
+            twoLineLottieLayout.setAnimation(R.raw.voip_invite, 36, 36, "Wibe", "Circle");
+            twoLineLottieLayout.titleTextView.setText(LocaleController.getString("LinkCopied", R.string.LinkCopied));
+            twoLineLottieLayout.subtitleTextView.setText(LocaleController.getString("LinkCopiedPrivateInfo", R.string.LinkCopiedPrivateInfo));
+            return create(twoLineLottieLayout, 2750);
+        }
+        Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(getContext(), resourcesProvider);
+        lottieLayout.setAnimation(R.raw.voip_invite, 36, 36, "Wibe", "Circle");
+        lottieLayout.textView.setText(LocaleController.getString("LinkCopied", R.string.LinkCopied));
+        return create(lottieLayout, 1500);
     }
 
     public Bulletin createCopyLinkBulletin(String str, Theme.ResourcesProvider resourcesProvider) {
@@ -883,7 +886,7 @@ public final class BulletinFactory {
         return createMuteBulletin(baseFragment, i, 0, (Theme.ResourcesProvider) null);
     }
 
-    public static org.telegram.ui.Components.Bulletin createMuteBulletin(org.telegram.ui.ActionBar.BaseFragment r6, int r7, int r8, org.telegram.ui.ActionBar.Theme.ResourcesProvider r9) {
+    public static org.telegram.ui.Components.Bulletin createMuteBulletin(org.telegram.ui.ActionBar.BaseFragment r5, int r6, int r7, org.telegram.ui.ActionBar.Theme.ResourcesProvider r8) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.BulletinFactory.createMuteBulletin(org.telegram.ui.ActionBar.BaseFragment, int, int, org.telegram.ui.ActionBar.Theme$ResourcesProvider):org.telegram.ui.Components.Bulletin");
     }
 
@@ -912,10 +915,10 @@ public final class BulletinFactory {
     public static Bulletin createUnpinAllMessagesBulletin(BaseFragment baseFragment, int i, boolean z, Runnable runnable, Runnable runnable2, Theme.ResourcesProvider resourcesProvider) {
         Bulletin.LottieLayout lottieLayout;
         if (baseFragment.getParentActivity() == null) {
-            if (runnable2 != null) {
-                runnable2.run();
+            if (runnable2 == null) {
                 return null;
             }
+            runnable2.run();
             return null;
         }
         if (z) {
@@ -964,8 +967,35 @@ public final class BulletinFactory {
         return Bulletin.make(baseFragment, lottieLayout, 1500);
     }
 
-    public static org.telegram.ui.Components.Bulletin createInviteSentBulletin(android.content.Context r3, android.widget.FrameLayout r4, int r5, long r6, int r8, int r9, int r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.BulletinFactory.createInviteSentBulletin(android.content.Context, android.widget.FrameLayout, int, long, int, int, int):org.telegram.ui.Components.Bulletin");
+    public static Bulletin createInviteSentBulletin(Context context, FrameLayout frameLayout, int i, long j, int i2, int i3, int i4) {
+        SpannableStringBuilder replaceTags;
+        final Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(context, null, i3, i4);
+        int i5 = 300;
+        if (i > 1) {
+            replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("InvLinkToChats", R.string.InvLinkToChats, LocaleController.formatPluralString("Chats", i, new Object[0])));
+            lottieLayout.setAnimation(R.raw.forward, 30, 30, new String[0]);
+        } else if (j == UserConfig.getInstance(UserConfig.selectedAccount).clientUserId) {
+            replaceTags = AndroidUtilities.replaceTags(LocaleController.getString("InvLinkToSavedMessages", R.string.InvLinkToSavedMessages));
+            lottieLayout.setAnimation(R.raw.saved_messages, 30, 30, new String[0]);
+            i5 = -1;
+        } else {
+            if (DialogObject.isChatDialog(j)) {
+                replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("InvLinkToGroup", R.string.InvLinkToGroup, MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-j)).title));
+            } else {
+                replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("InvLinkToUser", R.string.InvLinkToUser, UserObject.getFirstName(MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(j)))));
+            }
+            lottieLayout.setAnimation(R.raw.forward, 30, 30, new String[0]);
+        }
+        lottieLayout.textView.setText(replaceTags);
+        if (i5 > 0) {
+            lottieLayout.postDelayed(new Runnable() {
+                @Override
+                public final void run() {
+                    Bulletin.LottieLayout.this.performHapticFeedback(3, 2);
+                }
+            }, i5);
+        }
+        return Bulletin.make(frameLayout, lottieLayout, 1500);
     }
 
     public Bulletin createAdReportedBulletin(CharSequence charSequence) {
@@ -982,31 +1012,70 @@ public final class BulletinFactory {
 
     public boolean showForwardedBulletinWithTag(long j, int i) {
         SpannableStringBuilder replaceSingleTag;
-        if (UserConfig.getInstance(UserConfig.selectedAccount).isPremium()) {
-            Bulletin.LottieLayoutWithReactions lottieLayoutWithReactions = new Bulletin.LottieLayoutWithReactions(this.fragment, i);
-            if (j == UserConfig.getInstance(UserConfig.selectedAccount).clientUserId) {
-                if (i <= 1) {
-                    replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.FwdMessageToSavedMessages), -1, 2, new BulletinFactory$$ExternalSyntheticLambda0());
-                } else {
-                    replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.FwdMessagesToSavedMessages), -1, 2, new BulletinFactory$$ExternalSyntheticLambda0());
-                }
-                lottieLayoutWithReactions.setAnimation(R.raw.saved_messages, 36, 36, new String[0]);
-                lottieLayoutWithReactions.textView.setText(replaceSingleTag);
-                lottieLayoutWithReactions.textView.setSingleLine(false);
-                lottieLayoutWithReactions.textView.setMaxLines(2);
-                Bulletin create = create(lottieLayoutWithReactions, 3500);
-                lottieLayoutWithReactions.setBulletin(create);
-                create.hideAfterBottomSheet(false);
-                create.show(true);
-                return true;
-            }
+        if (!UserConfig.getInstance(UserConfig.selectedAccount).isPremium()) {
             return false;
         }
-        return false;
+        Bulletin.LottieLayoutWithReactions lottieLayoutWithReactions = new Bulletin.LottieLayoutWithReactions(this.fragment, i);
+        if (j != UserConfig.getInstance(UserConfig.selectedAccount).clientUserId) {
+            return false;
+        }
+        if (i <= 1) {
+            replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.FwdMessageToSavedMessages), -1, 2, new BulletinFactory$$ExternalSyntheticLambda0());
+        } else {
+            replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.FwdMessagesToSavedMessages), -1, 2, new BulletinFactory$$ExternalSyntheticLambda0());
+        }
+        lottieLayoutWithReactions.setAnimation(R.raw.saved_messages, 36, 36, new String[0]);
+        lottieLayoutWithReactions.textView.setText(replaceSingleTag);
+        lottieLayoutWithReactions.textView.setSingleLine(false);
+        lottieLayoutWithReactions.textView.setMaxLines(2);
+        Bulletin create = create(lottieLayoutWithReactions, 3500);
+        lottieLayoutWithReactions.setBulletin(create);
+        create.hideAfterBottomSheet(false);
+        create.show(true);
+        return true;
     }
 
-    public static org.telegram.ui.Components.Bulletin createForwardedBulletin(android.content.Context r4, android.widget.FrameLayout r5, int r6, long r7, int r9, int r10, int r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.BulletinFactory.createForwardedBulletin(android.content.Context, android.widget.FrameLayout, int, long, int, int, int):org.telegram.ui.Components.Bulletin");
+    public static Bulletin createForwardedBulletin(Context context, FrameLayout frameLayout, int i, long j, int i2, int i3, int i4) {
+        SpannableStringBuilder replaceTags;
+        SpannableStringBuilder replaceSingleTag;
+        final Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(context, null, i3, i4);
+        int i5 = 300;
+        if (i > 1) {
+            if (i2 <= 1) {
+                replaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString("FwdMessageToManyChats", i, new Object[0]));
+            } else {
+                replaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString("FwdMessagesToManyChats", i, new Object[0]));
+            }
+            lottieLayout.setAnimation(R.raw.forward, 30, 30, new String[0]);
+        } else if (j == UserConfig.getInstance(UserConfig.selectedAccount).clientUserId) {
+            if (i2 <= 1) {
+                replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.FwdMessageToSavedMessages), new BulletinFactory$$ExternalSyntheticLambda0());
+            } else {
+                replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.FwdMessagesToSavedMessages), new BulletinFactory$$ExternalSyntheticLambda0());
+            }
+            lottieLayout.setAnimation(R.raw.saved_messages, 30, 30, new String[0]);
+            replaceTags = replaceSingleTag;
+            i5 = -1;
+        } else {
+            if (DialogObject.isChatDialog(j)) {
+                TLRPC$Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-j));
+                replaceTags = i2 <= 1 ? AndroidUtilities.replaceTags(LocaleController.formatString("FwdMessageToGroup", R.string.FwdMessageToGroup, chat.title)) : AndroidUtilities.replaceTags(LocaleController.formatString("FwdMessagesToGroup", R.string.FwdMessagesToGroup, chat.title));
+            } else {
+                TLRPC$User user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(j));
+                replaceTags = i2 <= 1 ? AndroidUtilities.replaceTags(LocaleController.formatString("FwdMessageToUser", R.string.FwdMessageToUser, UserObject.getFirstName(user))) : AndroidUtilities.replaceTags(LocaleController.formatString("FwdMessagesToUser", R.string.FwdMessagesToUser, UserObject.getFirstName(user)));
+            }
+            lottieLayout.setAnimation(R.raw.forward, 30, 30, new String[0]);
+        }
+        lottieLayout.textView.setText(replaceTags);
+        if (i5 > 0) {
+            lottieLayout.postDelayed(new Runnable() {
+                @Override
+                public final void run() {
+                    Bulletin.LottieLayout.this.performHapticFeedback(3, 2);
+                }
+            }, i5);
+        }
+        return Bulletin.make(frameLayout, lottieLayout, 1500);
     }
 
     public static Bulletin createRemoveFromChatBulletin(BaseFragment baseFragment, TLRPC$User tLRPC$User, String str) {

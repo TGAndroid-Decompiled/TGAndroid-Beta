@@ -33,6 +33,7 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.NotificationPermissionDialog;
+
 public class NotificationPermissionDialog extends BottomSheet implements NotificationCenter.NotificationCenterDelegate {
     private CounterView counterView;
     private boolean mayBeAccidentalDismiss;
@@ -268,8 +269,8 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
         protected void onDraw(Canvas canvas) {
             float f = this.alpha.set(this.lastCount > 0 ? 1.0f : 0.0f);
             canvas.save();
-            float f2 = this.countScale;
-            canvas.scale(f2 * f, f2 * f, getWidth() / 2.0f, getHeight() / 2.0f);
+            float f2 = this.countScale * f;
+            canvas.scale(f2, f2, getWidth() / 2.0f, getHeight() / 2.0f);
             float currentWidth = this.textDrawable.getCurrentWidth() + AndroidUtilities.dpf2(12.66f);
             float dpf2 = AndroidUtilities.dpf2(20.3f);
             RectF rectF = AndroidUtilities.rectTmp;

@@ -33,6 +33,7 @@ import org.telegram.tgnet.TLRPC$TL_groupCallParticipant;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticApiModelOutline0;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
@@ -42,6 +43,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.RadialProgressView;
+
 public class GroupCallUserCell extends FrameLayout {
     private AccountInstance accountInstance;
     private AnimatorSet animatorSet;
@@ -147,7 +149,6 @@ public class GroupCallUserCell extends FrameLayout {
     public void setProgressToAvatarPreview(float f) {
         this.progressToAvatarPreview = f;
         this.nameTextView.setTranslationX((LocaleController.isRTL ? AndroidUtilities.dp(53.0f) : -AndroidUtilities.dp(53.0f)) * f);
-        boolean z = true;
         if (isSelfUser() && f > 0.0f) {
             float f2 = 1.0f - f;
             this.fullAboutTextView.setTranslationX((LocaleController.isRTL ? -AndroidUtilities.dp(53.0f) : AndroidUtilities.dp(53.0f)) * f2);
@@ -155,9 +156,9 @@ public class GroupCallUserCell extends FrameLayout {
             this.fullAboutTextView.setAlpha(f);
             this.statusTextView[4].setAlpha(f2);
             SimpleTextView simpleTextView = this.statusTextView[4];
-            boolean z2 = LocaleController.isRTL;
+            boolean z = LocaleController.isRTL;
             int dp = AndroidUtilities.dp(53.0f);
-            if (!z2) {
+            if (!z) {
                 dp = -dp;
             }
             simpleTextView.setTranslationX(dp * f);
@@ -182,7 +183,7 @@ public class GroupCallUserCell extends FrameLayout {
             }
         }
         this.avatarImageView.setAlpha(f == 0.0f ? 1.0f : 0.0f);
-        this.avatarWavesDrawable.setShowWaves((this.isSpeaking && f == 0.0f) ? false : false, this);
+        this.avatarWavesDrawable.setShowWaves(this.isSpeaking && f == 0.0f, this);
         float f3 = 1.0f - f;
         this.muteButton.setAlpha(f3);
         float f4 = (f3 * 0.4f) + 0.6f;
@@ -448,9 +449,9 @@ public class GroupCallUserCell extends FrameLayout {
         rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
         this.muteButton.setAnimation(this.muteDrawable);
         if (Build.VERSION.SDK_INT >= 21) {
-            RippleDrawable rippleDrawable = (RippleDrawable) Theme.createSelectorDrawable(Theme.getColor(this.grayIconColor) & 620756991);
-            Theme.setRippleDrawableForceSoftware(rippleDrawable);
-            this.muteButton.setBackground(rippleDrawable);
+            RippleDrawable m = Theme$$ExternalSyntheticApiModelOutline0.m(Theme.createSelectorDrawable(Theme.getColor(this.grayIconColor) & 620756991));
+            Theme.setRippleDrawableForceSoftware(m);
+            this.muteButton.setBackground(m);
         }
         this.muteButton.setImportantForAccessibility(2);
         addView(this.muteButton, LayoutHelper.createFrame(48, -1.0f, (LocaleController.isRTL ? 3 : 5) | 16, 6.0f, 0.0f, 6.0f, 0.0f));
@@ -590,7 +591,7 @@ public class GroupCallUserCell extends FrameLayout {
                     }
                     this.verifiedDrawable = drawable2;
                     swapAnimatedEmojiDrawable2.set(drawable2, z);
-                } else if (tLRPC$Chat2 != null && DialogObject.getEmojiStatusDocumentId(tLRPC$Chat2.emoji_status) != 0) {
+                } else if (DialogObject.getEmojiStatusDocumentId(tLRPC$Chat2.emoji_status) != 0) {
                     this.rightDrawable.set(DialogObject.getEmojiStatusDocumentId(this.currentChat.emoji_status), z);
                 } else {
                     this.rightDrawable.set((Drawable) null, z);
@@ -646,11 +647,11 @@ public class GroupCallUserCell extends FrameLayout {
     }
 
     public boolean clickMuteButton() {
-        if (this.muteButton.isEnabled()) {
-            this.muteButton.callOnClick();
-            return true;
+        if (!this.muteButton.isEnabled()) {
+            return false;
         }
-        return false;
+        this.muteButton.callOnClick();
+        return true;
     }
 
     @Override
@@ -693,7 +694,7 @@ public class GroupCallUserCell extends FrameLayout {
         invalidate();
     }
 
-    private void applyParticipantChanges(boolean r19, boolean r20) {
+    private void applyParticipantChanges(boolean r20, boolean r21) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.GroupCallUserCell.applyParticipantChanges(boolean, boolean):void");
     }
 
@@ -836,8 +837,9 @@ public class GroupCallUserCell extends FrameLayout {
         }
 
         public float getAvatarScale() {
+            float f = (this.amplitude * 0.2f) + 0.9f;
             float interpolation = CubicBezierInterpolator.EASE_OUT.getInterpolation(this.wavesEnter);
-            return (((this.amplitude * 0.2f) + 0.9f) * interpolation) + ((1.0f - interpolation) * 1.0f);
+            return (f * interpolation) + ((1.0f - interpolation) * 1.0f);
         }
 
         public void setShowWaves(boolean z, View view) {
@@ -882,19 +884,19 @@ public class GroupCallUserCell extends FrameLayout {
 
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        String str;
         int i;
+        String str;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         if (!accessibilityNodeInfo.isEnabled() || Build.VERSION.SDK_INT < 21) {
             return;
         }
         TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant = this.participant;
         if (!tLRPC$TL_groupCallParticipant.muted || tLRPC$TL_groupCallParticipant.can_self_unmute) {
-            str = "VoipMute";
             i = R.string.VoipMute;
+            str = "VoipMute";
         } else {
-            str = "VoipUnmute";
             i = R.string.VoipUnmute;
+            str = "VoipUnmute";
         }
         accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString(str, i)));
     }

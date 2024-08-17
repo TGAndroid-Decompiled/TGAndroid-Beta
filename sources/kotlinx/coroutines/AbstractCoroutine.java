@@ -3,7 +3,8 @@ package kotlinx.coroutines;
 import kotlin.coroutines.Continuation;
 import kotlin.coroutines.CoroutineContext;
 import kotlin.jvm.internal.Intrinsics;
-public abstract class AbstractCoroutine<T> extends JobSupport implements Continuation<T> {
+
+public abstract class AbstractCoroutine<T> extends JobSupport implements Job, Continuation<T> {
     private final CoroutineContext context;
 
     protected void onCancelled(Throwable th, boolean z) {
@@ -32,9 +33,9 @@ public abstract class AbstractCoroutine<T> extends JobSupport implements Continu
         if (obj instanceof CompletedExceptionally) {
             CompletedExceptionally completedExceptionally = (CompletedExceptionally) obj;
             onCancelled(completedExceptionally.cause, completedExceptionally.getHandled());
-            return;
+        } else {
+            onCompleted(obj);
         }
-        onCompleted(obj);
     }
 
     @Override

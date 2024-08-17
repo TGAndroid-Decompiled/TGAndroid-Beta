@@ -8,6 +8,7 @@ import java.lang.reflect.Modifier;
 import kotlin.coroutines.AbstractCoroutineContextElement;
 import kotlin.coroutines.CoroutineContext;
 import kotlinx.coroutines.CoroutineExceptionHandler;
+
 @Keep
 public final class AndroidExceptionPreHandler extends AbstractCoroutineContextElement implements CoroutineExceptionHandler {
     private volatile Object _preHandler;
@@ -24,15 +25,11 @@ public final class AndroidExceptionPreHandler extends AbstractCoroutineContextEl
         }
         Method method = null;
         try {
-            boolean z = false;
-            Method declaredMethod = Thread.class.getDeclaredMethod("getUncaughtExceptionPreHandler", new Class[0]);
+            Method declaredMethod = Thread.class.getDeclaredMethod("getUncaughtExceptionPreHandler", null);
             if (Modifier.isPublic(declaredMethod.getModifiers())) {
                 if (Modifier.isStatic(declaredMethod.getModifiers())) {
-                    z = true;
+                    method = declaredMethod;
                 }
-            }
-            if (z) {
-                method = declaredMethod;
             }
         } catch (Throwable unused) {
         }
@@ -43,14 +40,15 @@ public final class AndroidExceptionPreHandler extends AbstractCoroutineContextEl
     @Override
     public void handleException(CoroutineContext coroutineContext, Throwable th) {
         int i = Build.VERSION.SDK_INT;
-        if (26 <= i && i < 28) {
-            Method preHandler = preHandler();
-            Object invoke = preHandler == null ? null : preHandler.invoke(null, new Object[0]);
-            Thread.UncaughtExceptionHandler uncaughtExceptionHandler = invoke instanceof Thread.UncaughtExceptionHandler ? (Thread.UncaughtExceptionHandler) invoke : null;
-            if (uncaughtExceptionHandler == null) {
-                return;
-            }
-            uncaughtExceptionHandler.uncaughtException(Thread.currentThread(), th);
+        if (26 > i || i >= 28) {
+            return;
         }
+        Method preHandler = preHandler();
+        Object invoke = preHandler == null ? null : preHandler.invoke(null, null);
+        Thread.UncaughtExceptionHandler uncaughtExceptionHandler = invoke instanceof Thread.UncaughtExceptionHandler ? (Thread.UncaughtExceptionHandler) invoke : null;
+        if (uncaughtExceptionHandler == null) {
+            return;
+        }
+        uncaughtExceptionHandler.uncaughtException(Thread.currentThread(), th);
     }
 }

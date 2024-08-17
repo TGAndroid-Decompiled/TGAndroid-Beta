@@ -20,6 +20,7 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.text.style.CharacterStyle;
+import android.util.Property;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
@@ -45,6 +46,7 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.PaymentFormActivity;
+
 @Deprecated
 public class UndoView extends FrameLayout {
     public static int ACTION_RINGTONE_ADDED = 83;
@@ -112,18 +114,18 @@ public class UndoView extends FrameLayout {
         public boolean onTouchEvent(TextView textView, Spannable spannable, MotionEvent motionEvent) {
             CharacterStyle[] characterStyleArr;
             try {
-                if (motionEvent.getAction() == 0 && ((characterStyleArr = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class)) == null || characterStyleArr.length == 0)) {
-                    return false;
-                }
-                if (motionEvent.getAction() == 1) {
-                    CharacterStyle[] characterStyleArr2 = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class);
-                    if (characterStyleArr2 != null && characterStyleArr2.length > 0) {
-                        UndoView.this.didPressUrl(characterStyleArr2[0]);
+                if (motionEvent.getAction() != 0 || ((characterStyleArr = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class)) != null && characterStyleArr.length != 0)) {
+                    if (motionEvent.getAction() == 1) {
+                        CharacterStyle[] characterStyleArr2 = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class);
+                        if (characterStyleArr2 != null && characterStyleArr2.length > 0) {
+                            UndoView.this.didPressUrl(characterStyleArr2[0]);
+                        }
+                        Selection.removeSelection(spannable);
+                        return true;
                     }
-                    Selection.removeSelection(spannable);
-                    return true;
+                    return super.onTouchEvent(textView, spannable, motionEvent);
                 }
-                return super.onTouchEvent(textView, spannable, motionEvent);
+                return false;
             } catch (Exception e) {
                 FileLog.e(e);
                 return false;
@@ -318,14 +320,10 @@ public class UndoView extends FrameLayout {
             if (i != 0) {
                 AnimatorSet animatorSet = new AnimatorSet();
                 if (i == 1) {
-                    Animator[] animatorArr = new Animator[1];
-                    float[] fArr = new float[1];
-                    fArr[0] = (this.fromTop ? -1.0f : 1.0f) * (this.enterOffsetMargin + this.undoViewHeight);
-                    animatorArr[0] = ObjectAnimator.ofFloat(this, "enterOffset", fArr);
-                    animatorSet.playTogether(animatorArr);
+                    animatorSet.playTogether(ObjectAnimator.ofFloat(this, "enterOffset", (this.fromTop ? -1.0f : 1.0f) * (this.enterOffsetMargin + this.undoViewHeight)));
                     animatorSet.setDuration(250L);
                 } else {
-                    animatorSet.playTogether(ObjectAnimator.ofFloat(this, View.SCALE_X, 0.8f), ObjectAnimator.ofFloat(this, View.SCALE_Y, 0.8f), ObjectAnimator.ofFloat(this, View.ALPHA, 0.0f));
+                    animatorSet.playTogether(ObjectAnimator.ofFloat(this, (Property<UndoView, Float>) View.SCALE_X, 0.8f), ObjectAnimator.ofFloat(this, (Property<UndoView, Float>) View.SCALE_Y, 0.8f), ObjectAnimator.ofFloat(this, (Property<UndoView, Float>) View.ALPHA, 0.0f));
                     animatorSet.setDuration(180L);
                 }
                 animatorSet.setInterpolator(new DecelerateInterpolator());
@@ -368,7 +366,7 @@ public class UndoView extends FrameLayout {
         showWithAction(arrayList, i, obj, obj2, runnable, runnable2);
     }
 
-    public void showWithAction(java.util.ArrayList<java.lang.Long> r19, int r20, java.lang.Object r21, java.lang.Object r22, java.lang.Runnable r23, java.lang.Runnable r24) {
+    public void showWithAction(java.util.ArrayList<java.lang.Long> r28, int r29, java.lang.Object r30, java.lang.Object r31, java.lang.Runnable r32, java.lang.Runnable r33) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.UndoView.showWithAction(java.util.ArrayList, int, java.lang.Object, java.lang.Object, java.lang.Runnable, java.lang.Runnable):void");
     }
 
@@ -449,19 +447,17 @@ public class UndoView extends FrameLayout {
         }
         int i = this.currentAction;
         if (i == 1 || i == 0 || i == 27 || i == 26 || i == 81 || i == 88) {
-            long j = this.timeLeft;
-            int ceil = j > 0 ? (int) Math.ceil(((float) j) / 1000.0f) : 0;
+            int ceil = this.timeLeft > 0 ? (int) Math.ceil(((float) r10) / 1000.0f) : 0;
             if (this.prevSeconds != ceil) {
                 this.prevSeconds = ceil;
-                String format = String.format("%d", Integer.valueOf(Math.max(1, ceil)));
-                this.timeLeftString = format;
+                this.timeLeftString = String.format("%d", Integer.valueOf(Math.max(1, ceil)));
                 StaticLayout staticLayout = this.timeLayout;
                 if (staticLayout != null) {
                     this.timeLayoutOut = staticLayout;
                     this.timeReplaceProgress = 0.0f;
                     this.textWidthOut = this.textWidth;
                 }
-                this.textWidth = (int) Math.ceil(this.textPaint.measureText(format));
+                this.textWidth = (int) Math.ceil(this.textPaint.measureText(r2));
                 this.timeLayout = new StaticLayout(this.timeLeftString, this.textPaint, Integer.MAX_VALUE, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             }
             float f = this.timeReplaceProgress;
@@ -499,13 +495,13 @@ public class UndoView extends FrameLayout {
                 }
                 canvas.restore();
             }
-            canvas.drawArc(this.rect, -90.0f, (((float) this.timeLeft) / 5000.0f) * (-360.0f), false, this.progressPaint);
+            canvas.drawArc(this.rect, -90.0f, (-360.0f) * (((float) this.timeLeft) / 5000.0f), false, this.progressPaint);
         }
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        long j2 = this.timeLeft - (elapsedRealtime - this.lastUpdateTime);
-        this.timeLeft = j2;
+        long j = this.timeLeft - (elapsedRealtime - this.lastUpdateTime);
+        this.timeLeft = j;
         this.lastUpdateTime = elapsedRealtime;
-        if (j2 <= 0) {
+        if (j <= 0) {
             hide(true, this.hideAnimationType);
         }
         if (this.currentAction != 82) {

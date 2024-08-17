@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_updateNewStickerSet extends TLRPC$Update {
     public TLRPC$TL_messages_stickerSet stickerset;
 

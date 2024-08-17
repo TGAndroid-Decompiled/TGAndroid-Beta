@@ -16,6 +16,7 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.util.Range;
 import android.view.Surface;
+import androidx.core.os.BundleKt$$ExternalSyntheticApiModelOutline1;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,6 +27,7 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.camera.Camera2Session;
+
 @TargetApi(21)
 public class Camera2Session {
     private CameraCharacteristics cameraCharacteristics;
@@ -63,8 +65,8 @@ public class Camera2Session {
     }
 
     public static Camera2Session create(boolean z, int i, int i2) {
-        android.util.Size size;
         String str;
+        android.util.Size size;
         String[] cameraIdList;
         CameraCharacteristics cameraCharacteristics;
         CameraCharacteristics.Key key;
@@ -79,41 +81,47 @@ public class Camera2Session {
         CameraManager cameraManager;
         android.util.Size[] outputSizes;
         Context context = ApplicationLoader.applicationContext;
-        CameraManager cameraManager2 = (CameraManager) context.getSystemService("camera");
+        CameraManager m = Camera2Session$$ExternalSyntheticApiModelOutline9.m(context.getSystemService("camera"));
         try {
-            cameraIdList = cameraManager2.getCameraIdList();
+            cameraIdList = m.getCameraIdList();
             int i3 = 0;
-            size = null;
             str = null;
+            size = null;
             float f2 = 0.0f;
             while (i3 < cameraIdList.length) {
                 try {
                     String str2 = cameraIdList[i3];
-                    cameraCharacteristics = cameraManager2.getCameraCharacteristics(str2);
+                    cameraCharacteristics = m.getCameraCharacteristics(str2);
                     if (cameraCharacteristics != null) {
                         key = CameraCharacteristics.LENS_FACING;
                         obj = cameraCharacteristics.get(key);
                         if (((Integer) obj).intValue() == (!z)) {
                             key2 = CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP;
                             obj2 = cameraCharacteristics.get(key2);
-                            StreamConfigurationMap streamConfigurationMap = (StreamConfigurationMap) obj2;
+                            StreamConfigurationMap m2 = Camera2Session$$ExternalSyntheticApiModelOutline19.m(obj2);
                             key3 = CameraCharacteristics.SENSOR_INFO_PIXEL_ARRAY_SIZE;
                             obj3 = cameraCharacteristics.get(key3);
-                            android.util.Size size2 = (android.util.Size) obj3;
-                            if (size2 == null) {
+                            android.util.Size m3 = BundleKt$$ExternalSyntheticApiModelOutline1.m(obj3);
+                            if (m3 == null) {
                                 f = 0.0f;
                             } else {
-                                width = size2.getWidth();
-                                height = size2.getHeight();
+                                width = m3.getWidth();
+                                height = m3.getHeight();
                                 f = width / height;
                             }
                             float f3 = i / i2;
-                            cameraManager = cameraManager2;
+                            cameraManager = m;
                             if ((f3 >= 1.0f) != (f >= 1.0f)) {
                                 f = 1.0f / f;
                             }
-                            if ((f2 <= 0.0f || Math.abs(f3 - f2) > Math.abs(f3 - f)) && streamConfigurationMap != null && Build.VERSION.SDK_INT >= 23) {
-                                outputSizes = streamConfigurationMap.getOutputSizes(SurfaceTexture.class);
+                            if (f2 > 0.0f) {
+                                if (Math.abs(f3 - f2) > Math.abs(f3 - f)) {
+                                }
+                                i3++;
+                                m = cameraManager;
+                            }
+                            if (m2 != null && Build.VERSION.SDK_INT >= 23) {
+                                outputSizes = m2.getOutputSizes(SurfaceTexture.class);
                                 android.util.Size chooseOptimalSize = chooseOptimalSize(outputSizes, i, i2, false);
                                 if (chooseOptimalSize != null) {
                                     size = chooseOptimalSize;
@@ -121,15 +129,15 @@ public class Camera2Session {
                                     f2 = f;
                                 }
                                 i3++;
-                                cameraManager2 = cameraManager;
+                                m = cameraManager;
                             }
                             i3++;
-                            cameraManager2 = cameraManager;
+                            m = cameraManager;
                         }
                     }
-                    cameraManager = cameraManager2;
+                    cameraManager = m;
                     i3++;
-                    cameraManager2 = cameraManager;
+                    m = cameraManager;
                 } catch (Exception e) {
                     e = e;
                     FileLog.e(e);
@@ -138,8 +146,8 @@ public class Camera2Session {
             }
         } catch (Exception e2) {
             e = e2;
-            size = null;
             str = null;
+            size = null;
         }
         if (str == null && size != null) {
             return new Camera2Session(context, z, str, size);
@@ -170,10 +178,10 @@ public class Camera2Session {
         width = size.getWidth();
         height = size.getHeight();
         this.imageReader = ImageReader.newInstance(width, height, 256, 1);
-        CameraManager cameraManager = (CameraManager) context.getSystemService("camera");
-        this.cameraManager = cameraManager;
+        CameraManager m = Camera2Session$$ExternalSyntheticApiModelOutline9.m(context.getSystemService("camera"));
+        this.cameraManager = m;
         try {
-            cameraCharacteristics = cameraManager.getCameraCharacteristics(str);
+            cameraCharacteristics = m.getCameraCharacteristics(str);
             this.cameraCharacteristics = cameraCharacteristics;
             key = CameraCharacteristics.SENSOR_INFO_ACTIVE_ARRAY_SIZE;
             obj = cameraCharacteristics.get(key);
@@ -186,7 +194,7 @@ public class Camera2Session {
                 f = f2.floatValue();
             }
             this.maxZoom = f;
-            cameraManager.openCamera(str, anonymousClass1, this.handler);
+            m.openCamera(str, anonymousClass1, this.handler);
         } catch (Exception e) {
             FileLog.e(e);
             AndroidUtilities.runOnUIThread(new Runnable() {
@@ -294,9 +302,9 @@ public class Camera2Session {
         if (isInitiated()) {
             runnable.run();
             this.doneCallback = null;
-            return;
+        } else {
+            this.doneCallback = runnable;
         }
-        this.doneCallback = runnable;
     }
 
     public void open(final SurfaceTexture surfaceTexture) {
@@ -672,12 +680,12 @@ public class Camera2Session {
             }
         }
         if (arrayList.size() > 0) {
-            return (android.util.Size) Collections.min(arrayList, new CompareSizesByArea());
+            return BundleKt$$ExternalSyntheticApiModelOutline1.m(Collections.min(arrayList, new CompareSizesByArea()));
         }
         if (arrayList2.size() > 0) {
-            return (android.util.Size) Collections.min(arrayList2, new CompareSizesByArea());
+            return BundleKt$$ExternalSyntheticApiModelOutline1.m(Collections.min(arrayList2, new CompareSizesByArea()));
         }
-        return (android.util.Size) Collections.max(Arrays.asList(sizeArr), new CompareSizesByArea());
+        return BundleKt$$ExternalSyntheticApiModelOutline1.m(Collections.max(Arrays.asList(sizeArr), new CompareSizesByArea()));
     }
 
     public static class CompareSizesByArea implements Comparator<android.util.Size> {
@@ -686,6 +694,10 @@ public class Camera2Session {
 
         @Override
         public int compare(android.util.Size size, android.util.Size size2) {
+            return compare2(BundleKt$$ExternalSyntheticApiModelOutline1.m(size), BundleKt$$ExternalSyntheticApiModelOutline1.m(size2));
+        }
+
+        public int compare2(android.util.Size size, android.util.Size size2) {
             int width;
             int height;
             int width2;

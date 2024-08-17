@@ -32,6 +32,7 @@ import org.telegram.ui.Stories.SelfStoryViewsPage;
 import org.telegram.ui.Stories.SelfStoryViewsView;
 import org.telegram.ui.Stories.StoriesController;
 import org.telegram.ui.Stories.StoryViewer;
+
 public class SelfStoryViewsView extends FrameLayout {
     public float bottomPadding;
     private int currentState;
@@ -240,10 +241,7 @@ public class SelfStoryViewsView extends FrameLayout {
         boolean z = this.keyboardHeight >= AndroidUtilities.dp(20.0f);
         boolean z2 = i >= AndroidUtilities.dp(20.0f);
         if (z2 != z) {
-            float[] fArr = new float[2];
-            fArr[0] = this.progressToKeyboard;
-            fArr[1] = z2 ? 1.0f : 0.0f;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.progressToKeyboard, z2 ? 1.0f : 0.0f);
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
@@ -268,7 +266,7 @@ public class SelfStoryViewsView extends FrameLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        int i3 = this.storyViewer.ATTACH_TO_FRAGMENT ? AndroidUtilities.statusBarHeight + 0 : 0;
+        int i3 = this.storyViewer.ATTACH_TO_FRAGMENT ? AndroidUtilities.statusBarHeight : 0;
         int size = View.MeasureSpec.getSize(i2);
         ((FrameLayout.LayoutParams) this.selfStoriesPreviewView.getLayoutParams()).topMargin = i3;
         this.toHeight = this.selfStoriesPreviewView.getFinalHeight();

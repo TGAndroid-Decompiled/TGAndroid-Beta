@@ -28,6 +28,7 @@ import org.telegram.tgnet.TLRPC$TL_messages_getInlineBotResults;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$messages_BotResults;
 import org.telegram.ui.Components.ListView.AdapterWithDiffUtils;
+
 public abstract class BaseLocationAdapter extends AdapterWithDiffUtils {
     public final boolean biz;
     private int currentRequestNum;

@@ -2,6 +2,7 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 import org.telegram.messenger.FileLog;
+
 public abstract class TLRPC$User extends TLObject {
     public long access_hash;
     public boolean apply_min_photo;

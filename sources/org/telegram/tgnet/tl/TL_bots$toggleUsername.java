@@ -4,6 +4,7 @@ import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Bool;
 import org.telegram.tgnet.TLRPC$InputUser;
+
 public class TL_bots$toggleUsername extends TLObject {
     public boolean active;
     public TLRPC$InputUser bot;

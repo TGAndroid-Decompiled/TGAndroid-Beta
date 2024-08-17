@@ -2,9 +2,10 @@ package org.webrtc;
 
 import android.view.SurfaceHolder;
 import java.util.concurrent.CountDownLatch;
-import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticLambda6;
+import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticLambda14;
 import org.webrtc.EglBase;
 import org.webrtc.RendererCommon;
+
 public class SurfaceEglRenderer extends EglRenderer implements SurfaceHolder.Callback {
     private static final String TAG = "SurfaceEglRenderer";
     private int frameRotation;
@@ -77,7 +78,7 @@ public class SurfaceEglRenderer extends EglRenderer implements SurfaceHolder.Cal
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
         ThreadUtils.checkIsOnMainThread();
         CountDownLatch countDownLatch = new CountDownLatch(1);
-        releaseEglSurface(new Theme$$ExternalSyntheticLambda6(countDownLatch), false);
+        releaseEglSurface(new Theme$$ExternalSyntheticLambda14(countDownLatch), false);
         ThreadUtils.awaitUninterruptibly(countDownLatch);
     }
 
@@ -89,26 +90,30 @@ public class SurfaceEglRenderer extends EglRenderer implements SurfaceHolder.Cal
 
     private void updateFrameDimensionsAndReportEvents(VideoFrame videoFrame) {
         synchronized (this.layoutLock) {
-            if (this.isRenderingPaused) {
-                return;
-            }
-            if (!this.isFirstFrameRendered) {
-                this.isFirstFrameRendered = true;
-                logD("Reporting first rendered frame.");
-                RendererCommon.RendererEvents rendererEvents = this.rendererEvents;
-                if (rendererEvents != null) {
-                    rendererEvents.onFirstFrameRendered();
+            try {
+                if (this.isRenderingPaused) {
+                    return;
                 }
-            }
-            if (this.rotatedFrameWidth != videoFrame.getRotatedWidth() || this.rotatedFrameHeight != videoFrame.getRotatedHeight() || this.frameRotation != videoFrame.getRotation()) {
-                logD("Reporting frame resolution changed to " + videoFrame.getBuffer().getWidth() + "x" + videoFrame.getBuffer().getHeight() + " with rotation " + videoFrame.getRotation());
-                RendererCommon.RendererEvents rendererEvents2 = this.rendererEvents;
-                if (rendererEvents2 != null) {
-                    rendererEvents2.onFrameResolutionChanged(videoFrame.getBuffer().getWidth(), videoFrame.getBuffer().getHeight(), videoFrame.getRotation());
+                if (!this.isFirstFrameRendered) {
+                    this.isFirstFrameRendered = true;
+                    logD("Reporting first rendered frame.");
+                    RendererCommon.RendererEvents rendererEvents = this.rendererEvents;
+                    if (rendererEvents != null) {
+                        rendererEvents.onFirstFrameRendered();
+                    }
                 }
-                this.rotatedFrameWidth = videoFrame.getRotatedWidth();
-                this.rotatedFrameHeight = videoFrame.getRotatedHeight();
-                this.frameRotation = videoFrame.getRotation();
+                if (this.rotatedFrameWidth != videoFrame.getRotatedWidth() || this.rotatedFrameHeight != videoFrame.getRotatedHeight() || this.frameRotation != videoFrame.getRotation()) {
+                    logD("Reporting frame resolution changed to " + videoFrame.getBuffer().getWidth() + "x" + videoFrame.getBuffer().getHeight() + " with rotation " + videoFrame.getRotation());
+                    RendererCommon.RendererEvents rendererEvents2 = this.rendererEvents;
+                    if (rendererEvents2 != null) {
+                        rendererEvents2.onFrameResolutionChanged(videoFrame.getBuffer().getWidth(), videoFrame.getBuffer().getHeight(), videoFrame.getRotation());
+                    }
+                    this.rotatedFrameWidth = videoFrame.getRotatedWidth();
+                    this.rotatedFrameHeight = videoFrame.getRotatedHeight();
+                    this.frameRotation = videoFrame.getRotation();
+                }
+            } catch (Throwable th) {
+                throw th;
             }
         }
     }

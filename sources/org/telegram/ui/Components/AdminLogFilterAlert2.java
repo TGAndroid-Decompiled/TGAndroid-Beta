@@ -21,6 +21,7 @@ import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
 import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorBtnCell;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
+
 public class AdminLogFilterAlert2 extends BottomSheetWithRecyclerListView {
     private final ButtonWithCounterView actionButton;
     private UniversalAdapter adapter;
@@ -171,27 +172,26 @@ public class AdminLogFilterAlert2 extends BottomSheetWithRecyclerListView {
     }
 
     private String getGroupCount(int i) {
-        int i2 = 0;
         if (i == 0) {
             StringBuilder sb = new StringBuilder();
             TLRPC$TL_channelAdminLogEventsFilter tLRPC$TL_channelAdminLogEventsFilter = this.currentFilter;
-            sb.append(((tLRPC$TL_channelAdminLogEventsFilter.promote || tLRPC$TL_channelAdminLogEventsFilter.demote) ? 1 : 0) + ((this.isMegagroup && (tLRPC$TL_channelAdminLogEventsFilter.kick || tLRPC$TL_channelAdminLogEventsFilter.ban || tLRPC$TL_channelAdminLogEventsFilter.unkick || tLRPC$TL_channelAdminLogEventsFilter.unban)) ? 1 : 0) + ((tLRPC$TL_channelAdminLogEventsFilter.invite || tLRPC$TL_channelAdminLogEventsFilter.join) ? 1 : 1) + (tLRPC$TL_channelAdminLogEventsFilter.leave ? 1 : 0));
+            sb.append(((tLRPC$TL_channelAdminLogEventsFilter.promote || tLRPC$TL_channelAdminLogEventsFilter.demote) ? 1 : 0) + ((this.isMegagroup && (tLRPC$TL_channelAdminLogEventsFilter.kick || tLRPC$TL_channelAdminLogEventsFilter.ban || tLRPC$TL_channelAdminLogEventsFilter.unkick || tLRPC$TL_channelAdminLogEventsFilter.unban)) ? 1 : 0) + ((tLRPC$TL_channelAdminLogEventsFilter.invite || tLRPC$TL_channelAdminLogEventsFilter.join) ? 1 : 0) + (tLRPC$TL_channelAdminLogEventsFilter.leave ? 1 : 0));
             sb.append("/");
             sb.append(this.isMegagroup ? 4 : 3);
             return sb.toString();
-        } else if (i == 1) {
+        }
+        if (i == 1) {
             StringBuilder sb2 = new StringBuilder();
             TLRPC$TL_channelAdminLogEventsFilter tLRPC$TL_channelAdminLogEventsFilter2 = this.currentFilter;
-            sb2.append(((tLRPC$TL_channelAdminLogEventsFilter2.info || tLRPC$TL_channelAdminLogEventsFilter2.settings) ? 1 : 1) + (tLRPC$TL_channelAdminLogEventsFilter2.invites ? 1 : 0) + (tLRPC$TL_channelAdminLogEventsFilter2.group_call ? 1 : 0));
+            sb2.append(((tLRPC$TL_channelAdminLogEventsFilter2.info || tLRPC$TL_channelAdminLogEventsFilter2.settings) ? 1 : 0) + (tLRPC$TL_channelAdminLogEventsFilter2.invites ? 1 : 0) + (tLRPC$TL_channelAdminLogEventsFilter2.group_call ? 1 : 0));
             sb2.append("/3");
             return sb2.toString();
-        } else {
-            StringBuilder sb3 = new StringBuilder();
-            TLRPC$TL_channelAdminLogEventsFilter tLRPC$TL_channelAdminLogEventsFilter3 = this.currentFilter;
-            sb3.append((tLRPC$TL_channelAdminLogEventsFilter3.delete ? 1 : 0) + (tLRPC$TL_channelAdminLogEventsFilter3.edit ? 1 : 0) + (tLRPC$TL_channelAdminLogEventsFilter3.pinned ? 1 : 0));
-            sb3.append("/3");
-            return sb3.toString();
         }
+        StringBuilder sb3 = new StringBuilder();
+        TLRPC$TL_channelAdminLogEventsFilter tLRPC$TL_channelAdminLogEventsFilter3 = this.currentFilter;
+        sb3.append((tLRPC$TL_channelAdminLogEventsFilter3.delete ? 1 : 0) + (tLRPC$TL_channelAdminLogEventsFilter3.edit ? 1 : 0) + (tLRPC$TL_channelAdminLogEventsFilter3.pinned ? 1 : 0));
+        sb3.append("/3");
+        return sb3.toString();
     }
 
     private View.OnClickListener getGroupClick(final int i) {

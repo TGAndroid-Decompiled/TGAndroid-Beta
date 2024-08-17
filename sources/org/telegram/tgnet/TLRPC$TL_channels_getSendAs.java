@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_channels_getSendAs extends TLObject {
     public TLRPC$InputPeer peer;
 

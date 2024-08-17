@@ -40,6 +40,7 @@ import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.EmptyTextProgressView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
+
 public class GroupInviteActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private long chatId;
     private int copyLinkRow;
@@ -65,18 +66,13 @@ public class GroupInviteActivity extends BaseFragment implements NotificationCen
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.chatInfoDidLoad);
         getMessagesController().loadFullChat(this.chatId, this.classGuid, true);
         this.loading = true;
-        int i = 0 + 1;
         this.linkRow = 0;
-        int i2 = i + 1;
-        this.linkInfoRow = i;
-        int i3 = i2 + 1;
-        this.copyLinkRow = i2;
-        int i4 = i3 + 1;
-        this.revokeLinkRow = i3;
-        int i5 = i4 + 1;
-        this.shareLinkRow = i4;
-        this.rowCount = i5 + 1;
-        this.shadowRow = i5;
+        this.linkInfoRow = 1;
+        this.copyLinkRow = 2;
+        this.revokeLinkRow = 3;
+        this.shareLinkRow = 4;
+        this.rowCount = 6;
+        this.shadowRow = 5;
         return true;
     }
 
@@ -95,7 +91,7 @@ public class GroupInviteActivity extends BaseFragment implements NotificationCen
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    GroupInviteActivity.this.finishFragment();
+                    GroupInviteActivity.this.lambda$onBackPressed$308();
                 }
             }
         });
@@ -134,10 +130,13 @@ public class GroupInviteActivity extends BaseFragment implements NotificationCen
             try {
                 ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", this.invite.link));
                 BulletinFactory.createCopyLinkBulletin(this).show();
+                return;
             } catch (Exception e) {
                 FileLog.e(e);
+                return;
             }
-        } else if (i == this.shareLinkRow) {
+        }
+        if (i == this.shareLinkRow) {
             if (this.invite == null) {
                 return;
             }
@@ -146,10 +145,13 @@ public class GroupInviteActivity extends BaseFragment implements NotificationCen
                 intent.setType("text/plain");
                 intent.putExtra("android.intent.extra.TEXT", this.invite.link);
                 getParentActivity().startActivityForResult(Intent.createChooser(intent, LocaleController.getString("InviteToGroupByLink", R.string.InviteToGroupByLink)), 500);
+                return;
             } catch (Exception e2) {
                 FileLog.e(e2);
+                return;
             }
-        } else if (i == this.revokeLinkRow) {
+        }
+        if (i == this.revokeLinkRow) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
             builder.setMessage(LocaleController.getString("RevokeAlert", R.string.RevokeAlert));
             builder.setTitle(LocaleController.getString("RevokeLink", R.string.RevokeLink));
@@ -171,8 +173,9 @@ public class GroupInviteActivity extends BaseFragment implements NotificationCen
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.chatInfoDidLoad) {
+            TLRPC$ChatFull tLRPC$ChatFull = (TLRPC$ChatFull) objArr[0];
             int intValue = ((Integer) objArr[1]).intValue();
-            if (((TLRPC$ChatFull) objArr[0]).id == this.chatId && intValue == this.classGuid) {
+            if (tLRPC$ChatFull.id == this.chatId && intValue == this.classGuid) {
                 TLRPC$TL_chatInviteExported exportedInvite = getMessagesController().getExportedInvite(this.chatId);
                 this.invite = exportedInvite;
                 if (exportedInvite == null) {
@@ -293,29 +296,31 @@ public class GroupInviteActivity extends BaseFragment implements NotificationCen
                     return;
                 }
                 textSettingsCell.setText(LocaleController.getString("CopyLink", R.string.CopyLink), true);
-            } else if (itemViewType != 1) {
+                return;
+            }
+            if (itemViewType != 1) {
                 if (itemViewType != 2) {
                     return;
                 }
                 ((TextBlockCell) viewHolder.itemView).setText(GroupInviteActivity.this.invite != null ? GroupInviteActivity.this.invite.link : "error", false);
-            } else {
-                TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
-                if (i != GroupInviteActivity.this.shadowRow) {
-                    if (i == GroupInviteActivity.this.linkInfoRow) {
-                        TLRPC$Chat chat = GroupInviteActivity.this.getMessagesController().getChat(Long.valueOf(GroupInviteActivity.this.chatId));
-                        if (ChatObject.isChannel(chat) && !chat.megagroup) {
-                            textInfoPrivacyCell.setText(LocaleController.getString("ChannelLinkInfo", R.string.ChannelLinkInfo));
-                        } else {
-                            textInfoPrivacyCell.setText(LocaleController.getString("LinkInfo", R.string.LinkInfo));
-                        }
-                        textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
-                        return;
+                return;
+            }
+            TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
+            if (i != GroupInviteActivity.this.shadowRow) {
+                if (i == GroupInviteActivity.this.linkInfoRow) {
+                    TLRPC$Chat chat = GroupInviteActivity.this.getMessagesController().getChat(Long.valueOf(GroupInviteActivity.this.chatId));
+                    if (ChatObject.isChannel(chat) && !chat.megagroup) {
+                        textInfoPrivacyCell.setText(LocaleController.getString("ChannelLinkInfo", R.string.ChannelLinkInfo));
+                    } else {
+                        textInfoPrivacyCell.setText(LocaleController.getString("LinkInfo", R.string.LinkInfo));
                     }
+                    textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
                     return;
                 }
-                textInfoPrivacyCell.setText("");
-                textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+                return;
             }
+            textInfoPrivacyCell.setText("");
+            textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
         }
 
         @Override

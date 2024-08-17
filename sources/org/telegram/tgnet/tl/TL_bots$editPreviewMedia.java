@@ -4,6 +4,7 @@ import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$InputMedia;
 import org.telegram.tgnet.TLRPC$InputUser;
+
 public class TL_bots$editPreviewMedia extends TLObject {
     public TLRPC$InputUser bot;
     public String lang_code = "";

@@ -2,6 +2,7 @@ package org.webrtc;
 
 import java.util.Arrays;
 import org.webrtc.PeerConnection;
+
 public class IceCandidate {
     public final PeerConnection.AdapterType adapterType;
     public final String sdp;
@@ -41,11 +42,11 @@ public class IceCandidate {
     }
 
     public boolean equals(Object obj) {
-        if (obj instanceof IceCandidate) {
-            IceCandidate iceCandidate = (IceCandidate) obj;
-            return objectEquals(this.sdpMid, iceCandidate.sdpMid) && this.sdpMLineIndex == iceCandidate.sdpMLineIndex && objectEquals(this.sdp, iceCandidate.sdp);
+        if (!(obj instanceof IceCandidate)) {
+            return false;
         }
-        return false;
+        IceCandidate iceCandidate = (IceCandidate) obj;
+        return objectEquals(this.sdpMid, iceCandidate.sdpMid) && this.sdpMLineIndex == iceCandidate.sdpMLineIndex && objectEquals(this.sdp, iceCandidate.sdp);
     }
 
     public int hashCode() {

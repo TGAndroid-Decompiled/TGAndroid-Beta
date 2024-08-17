@@ -1,6 +1,7 @@
 package org.telegram.tgnet.tl;
 
 import org.telegram.tgnet.AbstractSerializedData;
+
 public class TL_stories$TL_inputMediaAreaVenue extends TL_stories$MediaArea {
     public long query_id;
     public String result_id;

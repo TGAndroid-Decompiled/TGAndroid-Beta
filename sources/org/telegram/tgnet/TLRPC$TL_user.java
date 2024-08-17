@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import org.telegram.messenger.FileLog;
+
 public class TLRPC$TL_user extends TLRPC$User {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

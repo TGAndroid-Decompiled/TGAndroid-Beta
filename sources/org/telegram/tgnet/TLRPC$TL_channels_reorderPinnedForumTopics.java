@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_channels_reorderPinnedForumTopics extends TLObject {
     public TLRPC$InputChannel channel;
     public int flags;

@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_stickers_renameStickerSet extends TLObject {
     public TLRPC$InputStickerSet stickerset;
     public String title;

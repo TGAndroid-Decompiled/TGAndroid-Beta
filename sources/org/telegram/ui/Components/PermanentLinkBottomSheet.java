@@ -32,6 +32,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Components.LinkActionView;
 import org.telegram.ui.ManageLinksActivity;
+
 public class PermanentLinkBottomSheet extends BottomSheet {
     private final long chatId;
     private BaseFragment fragment;
@@ -46,8 +47,8 @@ public class PermanentLinkBottomSheet extends BottomSheet {
 
     public PermanentLinkBottomSheet(Context context, boolean z, final BaseFragment baseFragment, final TLRPC$ChatFull tLRPC$ChatFull, long j, boolean z2) {
         super(context, z);
-        String str;
         int i;
+        String str;
         TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported;
         this.chatId = j;
         setAllowNestedScroll(true);
@@ -114,11 +115,11 @@ public class PermanentLinkBottomSheet extends BottomSheet {
         TextView textView2 = new TextView(context);
         this.subtitle = textView2;
         if (z2) {
-            str = "LinkInfoChannel";
             i = R.string.LinkInfoChannel;
+            str = "LinkInfoChannel";
         } else {
-            str = "LinkInfo";
             i = R.string.LinkInfo;
+            str = "LinkInfo";
         }
         textView2.setText(LocaleController.getString(str, i));
         textView2.setTextSize(1, 14.0f);

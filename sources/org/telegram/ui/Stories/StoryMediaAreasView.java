@@ -43,6 +43,7 @@ import org.telegram.ui.Stories.StoryMediaAreasView;
 import org.telegram.ui.Stories.recorder.HintView2;
 import org.telegram.ui.Stories.recorder.StoryEntry;
 import org.telegram.ui.Stories.recorder.Weather;
+
 public class StoryMediaAreasView extends FrameLayout implements View.OnClickListener {
     private final Path clipPath;
     private final Paint cutPaint;
@@ -122,7 +123,7 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
     }
 
     public void set(TL_stories$StoryItem tL_stories$StoryItem, ArrayList<TL_stories$MediaArea> arrayList, EmojiAnimationsOverlay emojiAnimationsOverlay) {
-        StoryReactionWidgetView storyReactionWidgetView;
+        View view;
         ArrayList<TL_stories$MediaArea> arrayList2 = this.lastMediaAreas;
         if (arrayList == arrayList2 && (arrayList == null || arrayList2 == null || arrayList.size() == this.lastMediaAreas.size())) {
             return;
@@ -155,12 +156,12 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
             TL_stories$MediaArea tL_stories$MediaArea = arrayList.get(i2);
             if (tL_stories$MediaArea != null && tL_stories$MediaArea.coordinates != null) {
                 if (tL_stories$MediaArea instanceof TL_stories$TL_mediaAreaSuggestedReaction) {
-                    StoryReactionWidgetView storyReactionWidgetView2 = new StoryReactionWidgetView(getContext(), this, (TL_stories$TL_mediaAreaSuggestedReaction) tL_stories$MediaArea, emojiAnimationsOverlay);
+                    StoryReactionWidgetView storyReactionWidgetView = new StoryReactionWidgetView(getContext(), this, (TL_stories$TL_mediaAreaSuggestedReaction) tL_stories$MediaArea, emojiAnimationsOverlay);
                     if (tL_stories$StoryItem != null) {
-                        storyReactionWidgetView2.setViews(tL_stories$StoryItem.views, false);
+                        storyReactionWidgetView.setViews(tL_stories$StoryItem.views, false);
                     }
-                    ScaleStateListAnimator.apply(storyReactionWidgetView2);
-                    storyReactionWidgetView = storyReactionWidgetView2;
+                    ScaleStateListAnimator.apply(storyReactionWidgetView);
+                    view = storyReactionWidgetView;
                 } else if (tL_stories$MediaArea instanceof TL_stories$TL_mediaAreaWeather) {
                     TL_stories$TL_mediaAreaWeather tL_stories$TL_mediaAreaWeather = (TL_stories$TL_mediaAreaWeather) tL_stories$MediaArea;
                     Weather.State state = new Weather.State();
@@ -172,15 +173,13 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
                     locationMarker.setCodeEmoji(UserConfig.selectedAccount, state.getEmoji());
                     locationMarker.setText(state.getTemperature());
                     locationMarker.setType(3, tL_stories$TL_mediaAreaWeather.color);
-                    storyReactionWidgetView = new FitViewWidget(getContext(), locationMarker, tL_stories$MediaArea);
+                    view = new FitViewWidget(getContext(), locationMarker, tL_stories$MediaArea);
                 } else {
-                    storyReactionWidgetView = new AreaView(getContext(), this.parentView, tL_stories$MediaArea);
+                    view = new AreaView(getContext(), this.parentView, tL_stories$MediaArea);
                 }
-                storyReactionWidgetView.setOnClickListener(this);
-                addView(storyReactionWidgetView);
-                TL_stories$MediaAreaCoordinates tL_stories$MediaAreaCoordinates = tL_stories$MediaArea.coordinates;
-                double d = tL_stories$MediaAreaCoordinates.w;
-                double d2 = tL_stories$MediaAreaCoordinates.h;
+                view.setOnClickListener(this);
+                addView(view);
+                double d = tL_stories$MediaArea.coordinates.w;
             }
         }
         this.malicious = false;
@@ -198,20 +197,24 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
                 frameLayout.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
             } else if (childAt instanceof AreaView) {
                 AreaView areaView = (AreaView) getChildAt(i3);
-                double d = size;
-                Double.isNaN(d);
-                int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec((int) Math.ceil((areaView.mediaArea.coordinates.w / 100.0d) * d), 1073741824);
-                double d2 = size2;
+                double d = areaView.mediaArea.coordinates.w / 100.0d;
+                double d2 = size;
                 Double.isNaN(d2);
-                areaView.measure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec((int) Math.ceil((areaView.mediaArea.coordinates.h / 100.0d) * d2), 1073741824));
-            } else if (childAt instanceof FitViewWidget) {
-                FitViewWidget fitViewWidget = (FitViewWidget) getChildAt(i3);
-                double d3 = size;
-                Double.isNaN(d3);
-                int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec((int) Math.ceil((fitViewWidget.mediaArea.coordinates.w / 100.0d) * d3), 1073741824);
+                int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec((int) Math.ceil(d * d2), 1073741824);
+                double d3 = areaView.mediaArea.coordinates.h / 100.0d;
                 double d4 = size2;
                 Double.isNaN(d4);
-                fitViewWidget.measure(makeMeasureSpec2, View.MeasureSpec.makeMeasureSpec((int) Math.ceil((fitViewWidget.mediaArea.coordinates.h / 100.0d) * d4), 1073741824));
+                areaView.measure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec((int) Math.ceil(d3 * d4), 1073741824));
+            } else if (childAt instanceof FitViewWidget) {
+                FitViewWidget fitViewWidget = (FitViewWidget) getChildAt(i3);
+                double d5 = fitViewWidget.mediaArea.coordinates.w / 100.0d;
+                double d6 = size;
+                Double.isNaN(d6);
+                int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec((int) Math.ceil(d5 * d6), 1073741824);
+                double d7 = fitViewWidget.mediaArea.coordinates.h / 100.0d;
+                double d8 = size2;
+                Double.isNaN(d8);
+                fitViewWidget.measure(makeMeasureSpec2, View.MeasureSpec.makeMeasureSpec((int) Math.ceil(d7 * d8), 1073741824));
             }
         }
         setMeasuredDimension(size, size2);
@@ -298,24 +301,28 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
                 int measuredWidth = areaView.getMeasuredWidth();
                 int measuredHeight = areaView.getMeasuredHeight();
                 areaView.layout((-measuredWidth) / 2, (-measuredHeight) / 2, measuredWidth / 2, measuredHeight / 2);
+                double d = areaView.mediaArea.coordinates.x / 100.0d;
                 double measuredWidth2 = getMeasuredWidth();
                 Double.isNaN(measuredWidth2);
-                areaView.setTranslationX((float) ((areaView.mediaArea.coordinates.x / 100.0d) * measuredWidth2));
+                areaView.setTranslationX((float) (d * measuredWidth2));
+                double d2 = areaView.mediaArea.coordinates.y / 100.0d;
                 double measuredHeight2 = getMeasuredHeight();
                 Double.isNaN(measuredHeight2);
-                areaView.setTranslationY((float) ((areaView.mediaArea.coordinates.y / 100.0d) * measuredHeight2));
+                areaView.setTranslationY((float) (d2 * measuredHeight2));
                 areaView.setRotation((float) areaView.mediaArea.coordinates.rotation);
             } else if (childAt instanceof FitViewWidget) {
                 FitViewWidget fitViewWidget = (FitViewWidget) childAt;
                 int measuredWidth3 = fitViewWidget.getMeasuredWidth();
                 int measuredHeight3 = fitViewWidget.getMeasuredHeight();
                 fitViewWidget.layout((-measuredWidth3) / 2, (-measuredHeight3) / 2, measuredWidth3 / 2, measuredHeight3 / 2);
+                double d3 = fitViewWidget.mediaArea.coordinates.x / 100.0d;
                 double measuredWidth4 = getMeasuredWidth();
                 Double.isNaN(measuredWidth4);
-                fitViewWidget.setTranslationX((float) ((fitViewWidget.mediaArea.coordinates.x / 100.0d) * measuredWidth4));
+                fitViewWidget.setTranslationX((float) (d3 * measuredWidth4));
+                double d4 = fitViewWidget.mediaArea.coordinates.y / 100.0d;
                 double measuredHeight4 = getMeasuredHeight();
                 Double.isNaN(measuredHeight4);
-                fitViewWidget.setTranslationY((float) ((fitViewWidget.mediaArea.coordinates.y / 100.0d) * measuredHeight4));
+                fitViewWidget.setTranslationY((float) (d4 * measuredHeight4));
                 fitViewWidget.setRotation((float) fitViewWidget.mediaArea.coordinates.rotation);
             }
         }
@@ -336,13 +343,12 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
     }
 
     private void drawHighlight(Canvas canvas) {
-        AreaView areaView;
         float measuredHeight;
         AnimatedFloat animatedFloat = this.parentHighlightAlpha;
+        AreaView areaView = this.selectedArea;
+        float f = animatedFloat.set((areaView == null || !areaView.supportsBounds || this.selectedArea.scaleOnTap) ? false : true);
         AreaView areaView2 = this.selectedArea;
-        float f = animatedFloat.set((areaView2 == null || !areaView2.supportsBounds || this.selectedArea.scaleOnTap) ? false : true);
-        AreaView areaView3 = this.selectedArea;
-        boolean z = areaView3 != null && areaView3.scaleOnTap;
+        boolean z = areaView2 != null && areaView2.scaleOnTap;
         float f2 = this.parentHighlightScaleAlpha.set(z);
         if (f > 0.0f) {
             canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), 255, 31);
@@ -351,8 +357,8 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
                 View childAt = getChildAt(i);
                 if (childAt != this.hintsContainer) {
                     AnimatedFloat animatedFloat2 = ((AreaView) childAt).highlightAlpha;
-                    AreaView areaView4 = this.selectedArea;
-                    float f3 = animatedFloat2.set(childAt == areaView4 && areaView4.supportsBounds);
+                    AreaView areaView3 = this.selectedArea;
+                    float f3 = animatedFloat2.set(childAt == areaView3 && areaView3.supportsBounds);
                     if (f3 > 0.0f) {
                         canvas.save();
                         this.rectF.set(childAt.getX(), childAt.getY(), childAt.getX() + childAt.getMeasuredWidth(), childAt.getY() + childAt.getMeasuredHeight());
@@ -380,11 +386,12 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
                 canvas.rotate(this.lastSelectedArea.getRotation(), this.rectF.centerX(), this.rectF.centerY());
                 TL_stories$MediaAreaCoordinates tL_stories$MediaAreaCoordinates = this.lastSelectedArea.mediaArea.coordinates;
                 if ((tL_stories$MediaAreaCoordinates.flags & 1) != 0) {
+                    double d = tL_stories$MediaAreaCoordinates.radius / 100.0d;
                     double width = getWidth();
                     Double.isNaN(width);
-                    measuredHeight = (float) ((tL_stories$MediaAreaCoordinates.radius / 100.0d) * width);
+                    measuredHeight = (float) (d * width);
                 } else {
-                    measuredHeight = areaView.getMeasuredHeight() * 0.2f;
+                    measuredHeight = r3.getMeasuredHeight() * 0.2f;
                 }
                 this.clipPath.addRoundRect(this.rectF, measuredHeight, measuredHeight, Path.Direction.CW);
                 canvas.clipPath(this.clipPath);
@@ -604,12 +611,13 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
             TL_stories$MediaAreaCoordinates tL_stories$MediaAreaCoordinates;
             if ((getParent() instanceof View) && (tL_stories$MediaArea = this.mediaArea) != null && (tL_stories$MediaAreaCoordinates = tL_stories$MediaArea.coordinates) != null) {
                 if ((tL_stories$MediaAreaCoordinates.flags & 1) != 0) {
+                    double d = tL_stories$MediaAreaCoordinates.radius / 100.0d;
                     double width = ((View) getParent()).getWidth();
                     Double.isNaN(width);
-                    double d = (tL_stories$MediaAreaCoordinates.radius / 100.0d) * width;
+                    double d2 = d * width;
                     double scaleX = getScaleX();
                     Double.isNaN(scaleX);
-                    return (float) (d / scaleX);
+                    return (float) (d2 / scaleX);
                 }
                 return getMeasuredHeight() * 0.2f;
             }
@@ -660,8 +668,9 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
             if (this.supportsShining) {
                 this.shining = true;
                 this.startTime = System.currentTimeMillis();
-                this.gradient = new LinearGradient(0.0f, 0.0f, 40.0f, 0.0f, new int[]{16777215, 771751935, 771751935, 16777215}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, Shader.TileMode.CLAMP);
-                this.strokeGradient = new LinearGradient(0.0f, 0.0f, 40.0f, 0.0f, new int[]{16777215, 553648127, 553648127, 16777215}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, Shader.TileMode.CLAMP);
+                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+                this.gradient = new LinearGradient(0.0f, 0.0f, 40.0f, 0.0f, new int[]{16777215, 771751935, 771751935, 16777215}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, tileMode);
+                this.strokeGradient = new LinearGradient(0.0f, 0.0f, 40.0f, 0.0f, new int[]{16777215, 553648127, 553648127, 16777215}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, tileMode);
                 invalidate();
             }
         }
@@ -680,27 +689,23 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
 
         @Override
         protected void onMeasure(int i, int i2) {
-            View view;
-            View view2;
-            View view3;
-            View view4;
             this.child.measure(i, i2);
             int measuredWidth = (this.child.getMeasuredWidth() - this.child.getPaddingLeft()) - this.child.getPaddingRight();
             int measuredHeight = (this.child.getMeasuredHeight() - this.child.getPaddingTop()) - this.child.getPaddingBottom();
             float f = measuredWidth;
             float f2 = f / 2.0f;
-            this.child.setPivotX(view.getPaddingLeft() + f2);
+            this.child.setPivotX(r2.getPaddingLeft() + f2);
             float f3 = measuredHeight;
             float f4 = f3 / 2.0f;
-            this.child.setPivotY(view2.getPaddingTop() + f4);
+            this.child.setPivotY(r2.getPaddingTop() + f4);
             int size = View.MeasureSpec.getSize(i);
             int size2 = View.MeasureSpec.getSize(i2);
             setMeasuredDimension(size, size2);
             float f5 = size;
             float f6 = size2;
             float min = Math.min(f5 / f, f6 / f3);
-            this.child.setTranslationX((f5 / 2.0f) - (f2 + view3.getPaddingLeft()));
-            this.child.setTranslationY((f6 / 2.0f) - (f4 + view4.getPaddingTop()));
+            this.child.setTranslationX((f5 / 2.0f) - (f2 + r1.getPaddingLeft()));
+            this.child.setTranslationY((f6 / 2.0f) - (f4 + r8.getPaddingTop()));
             this.child.setScaleX(min);
             this.child.setScaleY(min);
         }

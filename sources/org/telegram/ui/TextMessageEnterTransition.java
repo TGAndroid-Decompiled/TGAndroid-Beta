@@ -38,6 +38,7 @@ import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.Components.EmptyStubSpan;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.MessageEnterTransitionContainer;
+
 public class TextMessageEnterTransition implements MessageEnterTransitionContainer.Transition {
     private AnimatedEmojiSpan.EmojiGroupedSpans animatedEmojiStack;
     private ValueAnimator animator;
@@ -111,12 +112,15 @@ public class TextMessageEnterTransition implements MessageEnterTransitionContain
         StaticLayout.Builder hyphenationFrequency2;
         StaticLayout.Builder alignment2;
         StaticLayout build2;
+        int i4;
+        ?? r15;
         StaticLayout.Builder obtain3;
         StaticLayout.Builder breakStrategy3;
         StaticLayout.Builder hyphenationFrequency3;
         StaticLayout.Builder alignment3;
         StaticLayout build3;
         Object[] spans;
+        TextPaint textPaint;
         this.drawBitmaps = false;
         this.resourcesProvider = resourcesProvider;
         if (chatMessageCell.getMessageObject().textLayoutBlocks == null || chatMessageCell.getMessageObject().textLayoutBlocks.size() > 1 || chatMessageCell.getMessageObject().textLayoutBlocks.isEmpty() || chatMessageCell.getMessageObject().textLayoutBlocks.get(0).textLayout.getLineCount() > 10) {
@@ -143,7 +147,7 @@ public class TextMessageEnterTransition implements MessageEnterTransitionContain
         CharSequence charSequence = chatMessageCell.getMessageObject().messageText;
         this.crossfade = false;
         int height = chatActivityEnterView.getEditField().getLayout().getHeight();
-        TextPaint textPaint = Theme.chat_msgTextPaint;
+        TextPaint textPaint2 = Theme.chat_msgTextPaint;
         int dp = AndroidUtilities.dp(20.0f);
         if (chatMessageCell.getMessageObject().getEmojiOnlyCount() != 0) {
             boolean z = chatMessageCell.getMessageObject().emojiOnlyCount == chatMessageCell.getMessageObject().animatedEmojiCount;
@@ -194,8 +198,9 @@ public class TextMessageEnterTransition implements MessageEnterTransitionContain
                     textPaint = Theme.chat_msgTextPaintEmoji[5];
                     break;
             }
-            if (textPaint != null) {
-                dp = (int) (textPaint.getTextSize() + AndroidUtilities.dp(4.0f));
+            textPaint2 = textPaint;
+            if (textPaint2 != null) {
+                dp = (int) (textPaint2.getTextSize() + AndroidUtilities.dp(4.0f));
             }
         }
         boolean z2 = (charSequence instanceof Spannable) && (spans = ((Spannable) charSequence).getSpans(0, charSequence.length(), Object.class)) != null && spans.length > 0;
@@ -210,22 +215,22 @@ public class TextMessageEnterTransition implements MessageEnterTransitionContain
                 i = 0;
             }
             AnimatedEmojiSpan.cloneSpans(charSequence);
-            charSequence = Emoji.replaceEmoji((CharSequence) editText, textPaint.getFontMetricsInt(), dp, false);
+            charSequence = Emoji.replaceEmoji((CharSequence) editText, textPaint2.getFontMetricsInt(), dp, false);
         } else {
             i = 0;
         }
-        this.scaleFrom = chatActivityEnterView.getEditField().getTextSize() / textPaint.getTextSize();
+        this.scaleFrom = chatActivityEnterView.getEditField().getTextSize() / textPaint2.getTextSize();
         int lineCount = chatActivityEnterView.getEditField().getLayout().getLineCount();
         int width = (int) (chatActivityEnterView.getEditField().getLayout().getWidth() / this.scaleFrom);
         if (Build.VERSION.SDK_INT >= 24) {
-            obtain3 = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, width);
+            obtain3 = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint2, width);
             breakStrategy3 = obtain3.setBreakStrategy(1);
             hyphenationFrequency3 = breakStrategy3.setHyphenationFrequency(0);
             alignment3 = hyphenationFrequency3.setAlignment(Layout.Alignment.ALIGN_NORMAL);
             build3 = alignment3.build();
             this.layout = build3;
         } else {
-            this.layout = new StaticLayout(charSequence, textPaint, width, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.layout = new StaticLayout(charSequence, textPaint2, width, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         }
         this.animatedEmojiStack = AnimatedEmojiSpan.update(2, (View) null, this.animatedEmojiStack, this.layout);
         float y = chatActivityEnterView.getY() + chatActivityEnterView.getEditField().getY() + ((View) chatActivityEnterView.getEditField().getParent()).getY() + ((View) chatActivityEnterView.getEditField().getParent().getParent()).getY();
@@ -233,8 +238,8 @@ public class TextMessageEnterTransition implements MessageEnterTransitionContain
         this.fromStartY = ((AndroidUtilities.dp(10.0f) + y) - chatActivityEnterView.getEditField().getScrollY()) + i;
         this.toXOffset = 0.0f;
         float f = Float.MAX_VALUE;
-        for (int i4 = 0; i4 < this.layout.getLineCount(); i4++) {
-            float lineLeft = this.layout.getLineLeft(i4);
+        for (int i5 = 0; i5 < this.layout.getLineCount(); i5++) {
+            float lineLeft = this.layout.getLineLeft(i5);
             if (lineLeft < f) {
                 f = lineLeft;
             }
@@ -251,31 +256,33 @@ public class TextMessageEnterTransition implements MessageEnterTransitionContain
         MessageObject.TextLayoutBlock textLayoutBlock = chatMessageCell.getMessageObject().textLayoutBlocks.get(0);
         this.textLayoutBlock = textLayoutBlock;
         StaticLayout staticLayout = textLayoutBlock.textLayout;
-        int i5 = Theme.key_chat_messageTextOut;
-        double calculateLuminance = ColorUtils.calculateLuminance(getThemedColor(i5));
-        int i6 = Theme.key_chat_messagePanelText;
-        if (Math.abs(calculateLuminance - ColorUtils.calculateLuminance(getThemedColor(i6))) > 0.20000000298023224d) {
+        int i6 = Theme.key_chat_messageTextOut;
+        double calculateLuminance = ColorUtils.calculateLuminance(getThemedColor(i6));
+        int i7 = Theme.key_chat_messagePanelText;
+        if (Math.abs(calculateLuminance - ColorUtils.calculateLuminance(getThemedColor(i7))) > 0.20000000298023224d) {
             this.crossfade = true;
             this.changeColor = true;
         }
-        this.fromColor = getThemedColor(i6);
-        this.toColor = getThemedColor(i5);
+        this.fromColor = getThemedColor(i7);
+        this.toColor = getThemedColor(i6);
         if (staticLayout.getLineCount() == this.layout.getLineCount()) {
             lineCount = staticLayout.getLineCount();
-            int i7 = 0;
+            int i8 = 0;
             i2 = 0;
             i3 = 0;
             while (true) {
-                if (i7 < lineCount) {
-                    if (isRtlLine(this.layout, i7)) {
+                if (i8 < lineCount) {
+                    if (isRtlLine(this.layout, i8)) {
+                        r15 = 1;
                         i3++;
                     } else {
+                        r15 = 1;
                         i2++;
                     }
-                    if (staticLayout.getLineEnd(i7) != this.layout.getLineEnd(i7)) {
-                        this.crossfade = true;
+                    if (staticLayout.getLineEnd(i8) != this.layout.getLineEnd(i8)) {
+                        this.crossfade = r15;
                     } else {
-                        i7++;
+                        i8 += r15;
                     }
                 }
             }
@@ -288,51 +295,63 @@ public class TextMessageEnterTransition implements MessageEnterTransitionContain
             SpannableString spannableString = new SpannableString(charSequence);
             SpannableString spannableString2 = new SpannableString(charSequence);
             float f2 = Float.MAX_VALUE;
-            for (int i8 = 0; i8 < lineCount; i8++) {
-                if (isRtlLine(this.layout, i8)) {
-                    spannableString.setSpan(new EmptyStubSpan(), this.layout.getLineStart(i8), this.layout.getLineEnd(i8), 0);
-                    float lineLeft2 = this.layout.getLineLeft(i8);
-                    f2 = lineLeft2 < f2 ? lineLeft2 : f2;
+            int i9 = 0;
+            while (i9 < lineCount) {
+                if (isRtlLine(this.layout, i9)) {
+                    spannableString.setSpan(new EmptyStubSpan(), this.layout.getLineStart(i9), this.layout.getLineEnd(i9), 0);
+                    float lineLeft2 = this.layout.getLineLeft(i9);
+                    if (lineLeft2 < f2) {
+                        f2 = lineLeft2;
+                        i4 = 1;
+                        i9 += i4;
+                    }
                 } else {
-                    spannableString2.setSpan(new EmptyStubSpan(), this.layout.getLineStart(i8), this.layout.getLineEnd(i8), 0);
+                    spannableString2.setSpan(new EmptyStubSpan(), this.layout.getLineStart(i9), this.layout.getLineEnd(i9), 0);
                 }
+                i4 = 1;
+                i9 += i4;
             }
             if (Build.VERSION.SDK_INT >= 24) {
-                obtain = StaticLayout.Builder.obtain(spannableString, 0, spannableString.length(), textPaint, width);
+                obtain = StaticLayout.Builder.obtain(spannableString, 0, spannableString.length(), textPaint2, width);
                 breakStrategy = obtain.setBreakStrategy(1);
                 hyphenationFrequency = breakStrategy.setHyphenationFrequency(0);
-                alignment = hyphenationFrequency.setAlignment(Layout.Alignment.ALIGN_NORMAL);
+                Layout.Alignment alignment4 = Layout.Alignment.ALIGN_NORMAL;
+                alignment = hyphenationFrequency.setAlignment(alignment4);
                 build = alignment.build();
                 this.layout = build;
-                obtain2 = StaticLayout.Builder.obtain(spannableString2, 0, spannableString2.length(), textPaint, width);
+                obtain2 = StaticLayout.Builder.obtain(spannableString2, 0, spannableString2.length(), textPaint2, width);
                 breakStrategy2 = obtain2.setBreakStrategy(1);
                 hyphenationFrequency2 = breakStrategy2.setHyphenationFrequency(0);
-                alignment2 = hyphenationFrequency2.setAlignment(Layout.Alignment.ALIGN_NORMAL);
+                alignment2 = hyphenationFrequency2.setAlignment(alignment4);
                 build2 = alignment2.build();
                 this.rtlLayout = build2;
             } else {
-                TextPaint textPaint2 = textPaint;
-                this.layout = new StaticLayout(spannableString, textPaint2, width, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-                this.rtlLayout = new StaticLayout(spannableString2, textPaint2, width, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                Layout.Alignment alignment5 = Layout.Alignment.ALIGN_NORMAL;
+                TextPaint textPaint3 = textPaint2;
+                this.layout = new StaticLayout(spannableString, textPaint3, width, alignment5, 1.0f, 0.0f, false);
+                this.rtlLayout = new StaticLayout(spannableString2, textPaint3, width, alignment5, 1.0f, 0.0f, false);
             }
         }
         this.toXOffsetRtl = this.layout.getWidth() - chatMessageCell.getMessageObject().textLayoutBlocks.get(0).textLayout.getWidth();
         try {
             if (this.drawBitmaps) {
-                this.textLayoutBitmap = Bitmap.createBitmap(this.layout.getWidth(), this.layout.getHeight(), Bitmap.Config.ARGB_8888);
+                int width2 = this.layout.getWidth();
+                int height2 = this.layout.getHeight();
+                Bitmap.Config config = Bitmap.Config.ARGB_8888;
+                this.textLayoutBitmap = Bitmap.createBitmap(width2, height2, config);
                 this.layout.draw(new Canvas(this.textLayoutBitmap));
                 StaticLayout staticLayout2 = this.rtlLayout;
                 if (staticLayout2 != null) {
-                    this.textLayoutBitmapRtl = Bitmap.createBitmap(staticLayout2.getWidth(), this.rtlLayout.getHeight(), Bitmap.Config.ARGB_8888);
+                    this.textLayoutBitmapRtl = Bitmap.createBitmap(staticLayout2.getWidth(), this.rtlLayout.getHeight(), config);
                     this.rtlLayout.draw(new Canvas(this.textLayoutBitmapRtl));
                 }
                 if (this.crossfade) {
                     if (chatMessageCell.getMeasuredHeight() < recyclerListView.getMeasuredHeight()) {
                         this.crossfadeTextOffset = 0.0f;
-                        this.crossfadeTextBitmap = Bitmap.createBitmap(chatMessageCell.getMeasuredWidth(), chatMessageCell.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+                        this.crossfadeTextBitmap = Bitmap.createBitmap(chatMessageCell.getMeasuredWidth(), chatMessageCell.getMeasuredHeight(), config);
                     } else {
                         this.crossfadeTextOffset = chatMessageCell.getTop();
-                        this.crossfadeTextBitmap = Bitmap.createBitmap(chatMessageCell.getMeasuredWidth(), recyclerListView.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+                        this.crossfadeTextBitmap = Bitmap.createBitmap(chatMessageCell.getMeasuredWidth(), recyclerListView.getMeasuredHeight(), config);
                     }
                 }
             }

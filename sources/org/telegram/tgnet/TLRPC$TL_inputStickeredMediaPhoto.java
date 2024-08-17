@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_inputStickeredMediaPhoto extends TLRPC$InputStickeredMedia {
     public TLRPC$InputPhoto id;
 

@@ -27,6 +27,7 @@ import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Stories.PeerStoriesView;
 import org.telegram.ui.Stories.StoryCaptionView;
+
 public class PreviewHighlightView extends FrameLayout {
     private final FrameLayout bottom;
     private int currentAccount;
@@ -95,7 +96,8 @@ public class PreviewHighlightView extends FrameLayout {
         frameLayout2.addView(storyCaptionView, LayoutHelper.createFrame(-1, -1.0f, 87, 0.0f, 0.0f, 0.0f, 64.0f));
         ImageView imageView2 = new ImageView(context);
         imageView2.setImageResource(R.drawable.msg_share);
-        imageView2.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
+        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+        imageView2.setColorFilter(new PorterDuffColorFilter(-1, mode));
         frameLayout2.addView(imageView2, LayoutHelper.createFrame(28, 28.0f, 85, 0.0f, 0.0f, 12.0f, 16.0f));
         FrameLayout frameLayout3 = new FrameLayout(context);
         frameLayout3.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(22.0f), ColorUtils.setAlphaComponent(-16777216, 122)));
@@ -106,7 +108,7 @@ public class PreviewHighlightView extends FrameLayout {
         frameLayout3.addView(textView, LayoutHelper.createFrame(-2, -2.0f, 19, 24.0f, 0.0f, 24.0f, 0.0f));
         ImageView imageView3 = new ImageView(context);
         imageView3.setImageResource(R.drawable.input_attach);
-        imageView3.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
+        imageView3.setColorFilter(new PorterDuffColorFilter(-1, mode));
         frameLayout3.addView(imageView3, LayoutHelper.createFrame(28, 28.0f, 21, 0.0f, 0.0f, 9.0f, 0.0f));
         frameLayout2.addView(frameLayout3, LayoutHelper.createFrame(-1, 44.0f, 87, 9.0f, 8.0f, 55.0f, 8.0f));
         addView(frameLayout2, LayoutHelper.createFrame(-1, -1.0f));
@@ -127,8 +129,9 @@ public class PreviewHighlightView extends FrameLayout {
         if (z) {
             if (this.shownTop == z2) {
                 return;
+            } else {
+                this.shownTop = z2;
             }
-            this.shownTop = z2;
         } else if (this.shownBottom == z2) {
             return;
         } else {

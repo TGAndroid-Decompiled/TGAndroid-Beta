@@ -12,6 +12,7 @@ import java.util.List;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
+
 public class CameraSession {
     public static final int ORIENTATION_HYSTERESIS = 5;
     public CameraInfo cameraInfo;
@@ -80,10 +81,10 @@ public class CameraSession {
         this.orientationEventListener = orientationEventListener;
         if (orientationEventListener.canDetectOrientation()) {
             this.orientationEventListener.enable();
-            return;
+        } else {
+            this.orientationEventListener.disable();
+            this.orientationEventListener = null;
         }
-        this.orientationEventListener.disable();
-        this.orientationEventListener = null;
     }
 
     private void updateCameraInfo() {
@@ -95,14 +96,13 @@ public class CameraSession {
     }
 
     public int roundOrientation(int i, int i2) {
-        boolean z = true;
         if (i2 != -1) {
             int abs = Math.abs(i - i2);
             if (Math.min(abs, 360 - abs) < 50) {
-                z = false;
+                return i2;
             }
         }
-        return z ? (((i + 45) / 90) * 90) % 360 : i2;
+        return (((i + 45) / 90) * 90) % 360;
     }
 
     public void setOptimizeForBarcode(boolean z) {
@@ -117,20 +117,20 @@ public class CameraSession {
         this.currentFlashMode = str;
         if (this.isRound) {
             configureRoundCamera(false);
-            return;
+        } else {
+            configurePhotoCamera();
+            ApplicationLoader.applicationContext.getSharedPreferences("camera", 0).edit().putString(this.cameraInfo.frontCamera != 0 ? "flashMode_front" : "flashMode", str).commit();
         }
-        configurePhotoCamera();
-        ApplicationLoader.applicationContext.getSharedPreferences("camera", 0).edit().putString(this.cameraInfo.frontCamera != 0 ? "flashMode_front" : "flashMode", str).commit();
     }
 
     public void setCurrentFlashMode(String str) {
         this.currentFlashMode = str;
         if (this.isRound) {
             configureRoundCamera(false);
-            return;
+        } else {
+            configurePhotoCamera();
+            ApplicationLoader.applicationContext.getSharedPreferences("camera", 0).edit().putString(this.cameraInfo.frontCamera != 0 ? "flashMode_front" : "flashMode", str).commit();
         }
-        configurePhotoCamera();
-        ApplicationLoader.applicationContext.getSharedPreferences("camera", 0).edit().putString(this.cameraInfo.frontCamera != 0 ? "flashMode_front" : "flashMode", str).commit();
     }
 
     public void setTorchEnabled(boolean z) {

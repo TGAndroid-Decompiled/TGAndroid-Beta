@@ -9,6 +9,7 @@ import android.os.Bundle;
 import androidx.core.app.BundleCompat;
 import androidx.core.content.ContextCompat;
 import java.util.ArrayList;
+
 public final class CustomTabsIntent {
     public final Intent intent;
     public final Bundle startAnimationBundle;

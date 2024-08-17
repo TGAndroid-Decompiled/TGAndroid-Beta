@@ -18,6 +18,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.RLottieDrawable;
+
 public class DownloadProgressIcon extends View implements NotificationCenter.NotificationCenterDelegate {
     private int currentAccount;
     int currentColor;
@@ -48,10 +49,12 @@ public class DownloadProgressIcon extends View implements NotificationCenter.Not
         RLottieDrawable rLottieDrawable = new RLottieDrawable(R.raw.download_progress, "download_progress", AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
         this.downloadDrawable = rLottieDrawable;
         int i2 = Theme.key_actionBarDefaultIcon;
-        rLottieDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), PorterDuff.Mode.MULTIPLY));
+        int color = Theme.getColor(i2);
+        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+        rLottieDrawable.setColorFilter(new PorterDuffColorFilter(color, mode));
         RLottieDrawable rLottieDrawable2 = new RLottieDrawable(R.raw.download_finish, "download_finish", AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
         this.downloadCompleteDrawable = rLottieDrawable2;
-        rLottieDrawable2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), PorterDuff.Mode.MULTIPLY));
+        rLottieDrawable2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), mode));
         this.downloadImageReceiver.setImageBitmap(this.downloadDrawable);
         this.downloadCompleteImageReceiver.setImageBitmap(this.downloadCompleteDrawable);
         this.downloadImageReceiver.setAutoRepeat(1);
@@ -81,8 +84,11 @@ public class DownloadProgressIcon extends View implements NotificationCenter.Not
             this.currentColor = Theme.getColor(i2);
             this.paint.setColor(Theme.getColor(i2));
             this.paint2.setColor(Theme.getColor(i2));
-            this.downloadImageReceiver.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), PorterDuff.Mode.MULTIPLY));
-            this.downloadCompleteImageReceiver.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), PorterDuff.Mode.MULTIPLY));
+            ImageReceiver imageReceiver = this.downloadImageReceiver;
+            int color = Theme.getColor(i2);
+            PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+            imageReceiver.setColorFilter(new PorterDuffColorFilter(color, mode));
+            this.downloadCompleteImageReceiver.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), mode));
             this.paint2.setAlpha(100);
         }
         float f = this.currentProgress;
@@ -99,18 +105,19 @@ public class DownloadProgressIcon extends View implements NotificationCenter.Not
                 invalidate();
             }
         }
+        int measuredHeight = (getMeasuredHeight() / 2) + AndroidUtilities.dp(8.0f);
         float dp = AndroidUtilities.dp(1.0f);
         float dp2 = AndroidUtilities.dp(16.0f);
         RectF rectF = AndroidUtilities.rectTmp;
-        float measuredHeight = (getMeasuredHeight() / 2) + AndroidUtilities.dp(8.0f);
-        float f5 = measuredHeight - dp;
-        float f6 = measuredHeight + dp;
-        rectF.set(dp2, f5, getMeasuredWidth() - dp2, f6);
+        float f5 = measuredHeight;
+        float f6 = f5 - dp;
+        float f7 = f5 + dp;
+        rectF.set(dp2, f6, getMeasuredWidth() - dp2, f7);
         canvas.drawRoundRect(rectF, dp, dp, this.paint2);
-        rectF.set(dp2, f5, ((getMeasuredWidth() - (2.0f * dp2)) * this.currentProgress) + dp2, f6);
+        rectF.set(dp2, f6, ((getMeasuredWidth() - (2.0f * dp2)) * this.currentProgress) + dp2, f7);
         canvas.drawRoundRect(rectF, dp, dp, this.paint);
         canvas.save();
-        canvas.clipRect(0.0f, 0.0f, getMeasuredWidth(), f5);
+        canvas.clipRect(0.0f, 0.0f, getMeasuredWidth(), f6);
         if (this.progress != 1.0f) {
             this.showCompletedIcon = false;
         }
@@ -174,11 +181,11 @@ public class DownloadProgressIcon extends View implements NotificationCenter.Not
             this.progress = 1.0f;
             this.currentProgress = 1.0f;
             this.showCompletedIcon = true;
-            return;
+        } else {
+            this.progress = 0.0f;
+            this.currentProgress = 0.0f;
+            this.showCompletedIcon = false;
         }
-        this.progress = 0.0f;
-        this.currentProgress = 0.0f;
-        this.showCompletedIcon = false;
     }
 
     public void updateProgress() {

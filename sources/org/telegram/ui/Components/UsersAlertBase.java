@@ -39,6 +39,7 @@ import org.telegram.ui.Cells.GroupCallUserCell;
 import org.telegram.ui.Components.AnimationProperties;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.UsersAlertBase;
+
 public class UsersAlertBase extends BottomSheet {
     public static final Property<UsersAlertBase, Float> COLOR_PROGRESS = new AnimationProperties.FloatProperty<UsersAlertBase>("colorProgress") {
         @Override
@@ -235,13 +236,14 @@ public class UsersAlertBase extends BottomSheet {
             addView(view, LayoutHelper.createFrame(-1, 36.0f, 51, 14.0f, 11.0f, 14.0f, 0.0f));
             ImageView imageView = new ImageView(context);
             this.searchIconImageView = imageView;
-            imageView.setScaleType(ImageView.ScaleType.CENTER);
+            ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+            imageView.setScaleType(scaleType);
             imageView.setImageResource(R.drawable.smiles_inputsearch);
             imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(UsersAlertBase.this.keySearchPlaceholder, ((BottomSheet) UsersAlertBase.this).resourcesProvider), PorterDuff.Mode.MULTIPLY));
             addView(imageView, LayoutHelper.createFrame(36, 36.0f, 51, 16.0f, 11.0f, 0.0f, 0.0f));
             ImageView imageView2 = new ImageView(context);
             this.clearSearchImageView = imageView2;
-            imageView2.setScaleType(ImageView.ScaleType.CENTER);
+            imageView2.setScaleType(scaleType);
             CloseProgressDrawable2 closeProgressDrawable2 = new CloseProgressDrawable2() {
                 @Override
                 protected int getCurrentColor() {
@@ -340,13 +342,13 @@ public class UsersAlertBase extends BottomSheet {
         }
 
         public boolean lambda$new$1(TextView textView, int i, KeyEvent keyEvent) {
-            if (keyEvent != null) {
-                if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
-                    AndroidUtilities.hideKeyboard(this.searchEditText);
-                    return false;
-                }
+            if (keyEvent == null) {
                 return false;
             }
+            if ((keyEvent.getAction() != 1 || keyEvent.getKeyCode() != 84) && (keyEvent.getAction() != 0 || keyEvent.getKeyCode() != 66)) {
+                return false;
+            }
+            AndroidUtilities.hideKeyboard(this.searchEditText);
             return false;
         }
 
@@ -439,13 +441,7 @@ public class UsersAlertBase extends BottomSheet {
         }
         AnimatorSet animatorSet2 = new AnimatorSet();
         this.shadowAnimation = animatorSet2;
-        Animator[] animatorArr = new Animator[1];
-        View view = this.shadow;
-        Property property = View.ALPHA;
-        float[] fArr = new float[1];
-        fArr[0] = z ? 1.0f : 0.0f;
-        animatorArr[0] = ObjectAnimator.ofFloat(view, property, fArr);
-        animatorSet2.playTogether(animatorArr);
+        animatorSet2.playTogether(ObjectAnimator.ofFloat(this.shadow, (Property<View, Float>) View.ALPHA, z ? 1.0f : 0.0f));
         this.shadowAnimation.setDuration(150L);
         this.shadowAnimation.addListener(new AnimatorListenerAdapter() {
             @Override
@@ -488,8 +484,9 @@ public class UsersAlertBase extends BottomSheet {
                                 childAt = ((GraySectionCell) childAt).getTextView();
                             }
                             childAt.setAlpha(0.0f);
-                            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(childAt, View.ALPHA, 0.0f, 1.0f);
-                            ofFloat.setStartDelay((int) ((Math.min(UsersAlertBase.this.listView.getMeasuredHeight(), Math.max(0, childAt.getTop())) / UsersAlertBase.this.listView.getMeasuredHeight()) * 100.0f));
+                            int min = (int) ((Math.min(UsersAlertBase.this.listView.getMeasuredHeight(), Math.max(0, childAt.getTop())) / UsersAlertBase.this.listView.getMeasuredHeight()) * 100.0f);
+                            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(childAt, (Property<View, Float>) View.ALPHA, 0.0f, 1.0f);
+                            ofFloat.setStartDelay(min);
                             ofFloat.setDuration(200L);
                             animatorSet.playTogether(ofFloat);
                         }
@@ -625,9 +622,8 @@ public class UsersAlertBase extends BottomSheet {
             if (bool == null || bool.booleanValue() != z) {
                 boolean z2 = AndroidUtilities.computePerceivedBrightness(UsersAlertBase.this.getThemedColor(Theme.key_dialogBackground)) > 0.721f;
                 boolean z3 = AndroidUtilities.computePerceivedBrightness(Theme.blendOver(UsersAlertBase.this.getThemedColor(Theme.key_actionBarDefault), 855638016)) > 0.721f;
-                Boolean valueOf = Boolean.valueOf(z);
-                this.statusBarOpen = valueOf;
-                if (!valueOf.booleanValue()) {
+                this.statusBarOpen = Boolean.valueOf(z);
+                if (!z) {
                     z2 = z3;
                 }
                 AndroidUtilities.setLightStatusBar(UsersAlertBase.this.getWindow(), z2);

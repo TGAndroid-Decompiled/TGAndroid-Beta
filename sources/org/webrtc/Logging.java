@@ -5,6 +5,7 @@ import java.io.StringWriter;
 import java.util.EnumSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 public class Logging {
     private static final Logger fallbackLogger = createFallbackLogger();
     private static Loggable loggable;
@@ -65,7 +66,7 @@ public class Logging {
         TRACE_INFO(4096),
         TRACE_TERSEINFO(8192),
         TRACE_ALL(65535);
-        
+
         public final int level;
 
         TraceLevel(int i) {
@@ -101,22 +102,23 @@ public class Logging {
                 return;
             }
             loggable.onLogMessage(str2, severity, str);
-        } else if (loggingEnabled) {
-            nativeLog(severity.ordinal(), str, str2);
-        } else {
-            int i = AnonymousClass1.$SwitchMap$org$webrtc$Logging$Severity[severity.ordinal()];
-            if (i == 1) {
-                level = Level.SEVERE;
-            } else if (i == 2) {
-                level = Level.WARNING;
-            } else if (i == 3) {
-                level = Level.INFO;
-            } else {
-                level = Level.FINE;
-            }
-            Logger logger = fallbackLogger;
-            logger.log(level, str + ": " + str2);
+            return;
         }
+        if (loggingEnabled) {
+            nativeLog(severity.ordinal(), str, str2);
+            return;
+        }
+        int i = AnonymousClass1.$SwitchMap$org$webrtc$Logging$Severity[severity.ordinal()];
+        if (i == 1) {
+            level = Level.SEVERE;
+        } else if (i == 2) {
+            level = Level.WARNING;
+        } else if (i == 3) {
+            level = Level.INFO;
+        } else {
+            level = Level.FINE;
+        }
+        fallbackLogger.log(level, str + ": " + str2);
     }
 
     public static class AnonymousClass1 {

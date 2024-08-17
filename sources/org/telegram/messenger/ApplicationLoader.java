@@ -35,7 +35,9 @@ import org.telegram.ui.Adapters.DrawerLayoutAdapter;
 import org.telegram.ui.Components.ForegroundDetector;
 import org.telegram.ui.IUpdateLayout;
 import org.telegram.ui.LauncherIconController;
+
 public class ApplicationLoader extends Application {
+
     @SuppressLint({"StaticFieldLeak"})
     public static volatile Context applicationContext = null;
     public static volatile Handler applicationHandler = null;
@@ -344,13 +346,12 @@ public class ApplicationLoader extends Application {
         }
         if (z) {
             try {
-                applicationContext.startService(new Intent(applicationContext, NotificationsService.class));
-                return;
+                applicationContext.startService(new Intent(applicationContext, (Class<?>) NotificationsService.class));
             } catch (Throwable unused) {
-                return;
             }
+        } else {
+            applicationContext.stopService(new Intent(applicationContext, (Class<?>) NotificationsService.class));
         }
-        applicationContext.stopService(new Intent(applicationContext, NotificationsService.class));
     }
 
     @Override
@@ -445,7 +446,11 @@ public class ApplicationLoader extends Application {
     public static boolean isConnectedOrConnectingToWiFi() {
         try {
             ensureCurrentNetworkGet(false);
-            if (currentNetworkInfo != null && (currentNetworkInfo.getType() == 1 || currentNetworkInfo.getType() == 9)) {
+            if (currentNetworkInfo != null) {
+                if (currentNetworkInfo.getType() != 1) {
+                    if (currentNetworkInfo.getType() == 9) {
+                    }
+                }
                 NetworkInfo.State state = currentNetworkInfo.getState();
                 if (state != NetworkInfo.State.CONNECTED && state != NetworkInfo.State.CONNECTING) {
                     if (state == NetworkInfo.State.SUSPENDED) {
@@ -462,7 +467,11 @@ public class ApplicationLoader extends Application {
     public static boolean isConnectedToWiFi() {
         try {
             ensureCurrentNetworkGet(false);
-            if (currentNetworkInfo != null && (currentNetworkInfo.getType() == 1 || currentNetworkInfo.getType() == 9)) {
+            if (currentNetworkInfo != null) {
+                if (currentNetworkInfo.getType() != 1) {
+                    if (currentNetworkInfo.getType() == 9) {
+                    }
+                }
                 if (currentNetworkInfo.getState() == NetworkInfo.State.CONNECTED) {
                     return true;
                 }
@@ -524,16 +533,16 @@ public class ApplicationLoader extends Application {
             ensureCurrentNetworkGet(false);
             if (currentNetworkInfo != null && !currentNetworkInfo.isConnectedOrConnecting() && !currentNetworkInfo.isAvailable()) {
                 NetworkInfo networkInfo = connectivityManager.getNetworkInfo(0);
-                if (networkInfo == null || !networkInfo.isConnectedOrConnecting()) {
-                    NetworkInfo networkInfo2 = connectivityManager.getNetworkInfo(1);
-                    if (networkInfo2 != null) {
-                        if (networkInfo2.isConnectedOrConnecting()) {
-                            return true;
-                        }
-                    }
-                    return false;
+                if (networkInfo != null && networkInfo.isConnectedOrConnecting()) {
+                    return true;
                 }
-                return true;
+                NetworkInfo networkInfo2 = connectivityManager.getNetworkInfo(1);
+                if (networkInfo2 != null) {
+                    if (networkInfo2.isConnectedOrConnecting()) {
+                        return true;
+                    }
+                }
+                return false;
             }
             return true;
         } catch (Exception e) {
@@ -546,18 +555,18 @@ public class ApplicationLoader extends Application {
         try {
             ConnectivityManager connectivityManager2 = (ConnectivityManager) applicationContext.getSystemService("connectivity");
             NetworkInfo activeNetworkInfo = connectivityManager2.getActiveNetworkInfo();
-            if (activeNetworkInfo == null || !(activeNetworkInfo.isConnectedOrConnecting() || activeNetworkInfo.isAvailable())) {
+            if (activeNetworkInfo == null || (!activeNetworkInfo.isConnectedOrConnecting() && !activeNetworkInfo.isAvailable())) {
                 NetworkInfo networkInfo = connectivityManager2.getNetworkInfo(0);
-                if (networkInfo == null || !networkInfo.isConnectedOrConnecting()) {
-                    NetworkInfo networkInfo2 = connectivityManager2.getNetworkInfo(1);
-                    if (networkInfo2 != null) {
-                        if (networkInfo2.isConnectedOrConnecting()) {
-                            return true;
-                        }
-                    }
-                    return false;
+                if (networkInfo != null && networkInfo.isConnectedOrConnecting()) {
+                    return true;
                 }
-                return true;
+                NetworkInfo networkInfo2 = connectivityManager2.getNetworkInfo(1);
+                if (networkInfo2 != null) {
+                    if (networkInfo2.isConnectedOrConnecting()) {
+                        return true;
+                    }
+                }
+                return false;
             }
             return true;
         } catch (Exception e) {

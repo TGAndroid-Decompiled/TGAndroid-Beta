@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_channelAdminLogEventActionExportedInviteEdit extends TLRPC$ChannelAdminLogEventAction {
     public TLRPC$TL_chatInviteExported new_invite;
     public TLRPC$TL_chatInviteExported prev_invite;

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.SharedConfig;
+
 public class SpoilerEffectBitmapFactory {
     private static SpoilerEffectBitmapFactory factory;
     Bitmap backgroundBitmap;
@@ -54,26 +55,26 @@ public class SpoilerEffectBitmapFactory {
             Bitmap bitmap = this.shaderBitmap;
             Shader.TileMode tileMode = Shader.TileMode.REPEAT;
             paint.setShader(new BitmapShader(bitmap, tileMode, tileMode));
-            int i2 = this.size;
-            int i3 = (int) (i2 / 10.0f);
-            int dp = (int) ((i2 / AndroidUtilities.dp(200.0f)) * 60.0f);
-            for (int i4 = 0; i4 < 10; i4++) {
-                for (int i5 = 0; i5 < 10; i5++) {
+            float f = this.size;
+            int i2 = (int) (f / 10.0f);
+            int dp = (int) ((f / AndroidUtilities.dp(200.0f)) * 60.0f);
+            for (int i3 = 0; i3 < 10; i3++) {
+                for (int i4 = 0; i4 < 10; i4++) {
                     SpoilerEffect spoilerEffect = new SpoilerEffect();
                     spoilerEffect.setSize(this.size);
-                    int i6 = i3 * i4;
-                    int i7 = i3 * i5;
-                    spoilerEffect.setBounds(i6, i7 - AndroidUtilities.dp(5.0f), i6 + i3 + AndroidUtilities.dp(3.0f), i7 + i3 + AndroidUtilities.dp(5.0f));
+                    int i5 = i2 * i3;
+                    int i6 = i2 * i4;
+                    spoilerEffect.setBounds(i5, i6 - AndroidUtilities.dp(5.0f), i5 + i2 + AndroidUtilities.dp(3.0f), i6 + i2 + AndroidUtilities.dp(5.0f));
                     spoilerEffect.drawPoints = true;
-                    spoilerEffect.particlePoints = (float[][]) Array.newInstance(Float.TYPE, SpoilerEffect.ALPHAS.length, dp * 2);
+                    spoilerEffect.particlePoints = (float[][]) Array.newInstance((Class<?>) Float.TYPE, SpoilerEffect.ALPHAS.length, dp * 2);
                     spoilerEffect.setMaxParticlesCount(dp);
                     spoilerEffect.setColor(-1);
                     this.shaderSpoilerEffects.add(spoilerEffect);
                 }
             }
-            for (int i8 = 0; i8 < 10; i8++) {
-                for (int i9 = 0; i9 < 10; i9++) {
-                    this.shaderSpoilerEffects.get((i8 * 10) + i9).draw(this.shaderCanvas);
+            for (int i7 = 0; i7 < 10; i7++) {
+                for (int i8 = 0; i8 < 10; i8++) {
+                    this.shaderSpoilerEffects.get((i7 * 10) + i8).draw(this.shaderCanvas);
                 }
             }
             Paint paint2 = this.shaderPaint;

@@ -4,6 +4,7 @@ import android.os.SystemClock;
 import android.util.SparseIntArray;
 import java.util.ArrayList;
 import org.telegram.ui.Components.Reactions.HwEmojis;
+
 public class DispatchQueuePoolBackground {
     public static final String THREAD_PREFIX = "DispatchQueuePoolThreadSafety_";
     private static DispatchQueuePoolBackground backgroundQueue;
@@ -41,10 +42,10 @@ public class DispatchQueuePoolBackground {
             }
             if (DispatchQueuePoolBackground.this.queues.isEmpty() && DispatchQueuePoolBackground.this.busyQueues.isEmpty()) {
                 DispatchQueuePoolBackground.this.cleanupScheduled = false;
-                return;
+            } else {
+                Utilities.globalQueue.postRunnable(this, 30000L);
+                DispatchQueuePoolBackground.this.cleanupScheduled = true;
             }
-            Utilities.globalQueue.postRunnable(this, 30000L);
-            DispatchQueuePoolBackground.this.cleanupScheduled = true;
         }
     };
     private int guid = Utilities.random.nextInt();
@@ -168,7 +169,7 @@ public class DispatchQueuePoolBackground {
     }
 
     public static void lambda$finishCollectUpdateRunnables$3(final ArrayList arrayList) {
-        backgroundQueue.execute(arrayList);
+        backgroundQueue.execute((ArrayList<Runnable>) arrayList);
         arrayList.clear();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override

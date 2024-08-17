@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.ui.ActionBar.Theme;
+
 public class ColoredImageSpan extends ReplacementSpan {
     private float alpha;
     private Runnable checkColorDelegate;
@@ -167,11 +168,10 @@ public class ColoredImageSpan extends ReplacementSpan {
             }
         }
         canvas.translate(f + this.translateX, i7 + this.translateY);
-        Drawable drawable3 = this.drawable;
-        if (drawable3 != null) {
+        if (this.drawable != null) {
             float f2 = this.scaleX;
             if (f2 != 1.0f || this.scaleY != 1.0f) {
-                canvas.scale(f2, this.scaleY, 0.0f, drawable3.getBounds().centerY());
+                canvas.scale(f2, this.scaleY, 0.0f, r2.getBounds().centerY());
             }
             float f3 = this.rotate;
             if (f3 != 1.0f) {

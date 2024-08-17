@@ -3,6 +3,7 @@ package org.telegram.messenger.video;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.PhotoViewerWebView;
 import org.telegram.ui.Components.VideoPlayer;
+
 public class VideoPlayerRewinder {
     private long rewindBackSeekPlayerPosition;
     public boolean rewindByBackSeek;
@@ -163,9 +164,8 @@ public class VideoPlayerRewinder {
     }
 
     private long getCurrentPosition() {
-        PhotoViewerWebView photoViewerWebView = this.webView;
-        if (photoViewerWebView != null) {
-            return photoViewerWebView.getCurrentPosition();
+        if (this.webView != null) {
+            return r0.getCurrentPosition();
         }
         VideoPlayer videoPlayer = this.videoPlayer;
         if (videoPlayer == null) {
@@ -175,9 +175,8 @@ public class VideoPlayerRewinder {
     }
 
     public long getDuration() {
-        PhotoViewerWebView photoViewerWebView = this.webView;
-        if (photoViewerWebView != null) {
-            return photoViewerWebView.getVideoDuration();
+        if (this.webView != null) {
+            return r0.getVideoDuration();
         }
         VideoPlayer videoPlayer = this.videoPlayer;
         if (videoPlayer == null) {

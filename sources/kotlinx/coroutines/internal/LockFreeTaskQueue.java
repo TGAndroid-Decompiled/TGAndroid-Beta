@@ -2,6 +2,7 @@ package kotlinx.coroutines.internal;
 
 import androidx.concurrent.futures.AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
+
 public class LockFreeTaskQueue<E> {
     private static final AtomicReferenceFieldUpdater _cur$FU = AtomicReferenceFieldUpdater.newUpdater(LockFreeTaskQueue.class, Object.class, "_cur");
     private volatile Object _cur;
@@ -19,8 +20,9 @@ public class LockFreeTaskQueue<E> {
             LockFreeTaskQueueCore lockFreeTaskQueueCore = (LockFreeTaskQueueCore) this._cur;
             if (lockFreeTaskQueueCore.close()) {
                 return;
+            } else {
+                AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_cur$FU, this, lockFreeTaskQueueCore, lockFreeTaskQueueCore.next());
             }
-            AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_cur$FU, this, lockFreeTaskQueueCore, lockFreeTaskQueueCore.next());
         }
     }
 

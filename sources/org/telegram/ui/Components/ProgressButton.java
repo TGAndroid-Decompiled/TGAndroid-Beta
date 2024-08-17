@@ -8,6 +8,7 @@ import android.os.Build;
 import android.widget.Button;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
+
 public class ProgressButton extends Button {
     private int angle;
     private boolean drawProgress;
@@ -40,15 +41,13 @@ public class ProgressButton extends Button {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (this.drawProgress || this.progressAlpha != 0.0f) {
-            int measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(11.0f);
-            this.progressRect.set(measuredWidth, AndroidUtilities.dp(3.0f), measuredWidth + AndroidUtilities.dp(8.0f), AndroidUtilities.dp(11.0f));
+            this.progressRect.set(getMeasuredWidth() - AndroidUtilities.dp(11.0f), AndroidUtilities.dp(3.0f), r0 + AndroidUtilities.dp(8.0f), AndroidUtilities.dp(11.0f));
             this.progressPaint.setAlpha(Math.min(255, (int) (this.progressAlpha * 255.0f)));
             canvas.drawArc(this.progressRect, this.angle, 220.0f, false, this.progressPaint);
             long currentTimeMillis = System.currentTimeMillis();
             if (Math.abs(this.lastUpdateTime - System.currentTimeMillis()) < 1000) {
                 long j = currentTimeMillis - this.lastUpdateTime;
                 int i = (int) (this.angle + (((float) (360 * j)) / 2000.0f));
-                this.angle = i;
                 this.angle = i - ((i / 360) * 360);
                 if (this.drawProgress) {
                     float f = this.progressAlpha;

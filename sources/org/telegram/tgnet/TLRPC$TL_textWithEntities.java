@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_textWithEntities extends TLObject {
     public ArrayList<TLRPC$MessageEntity> entities = new ArrayList<>();
     public String text;

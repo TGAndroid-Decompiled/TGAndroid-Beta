@@ -66,6 +66,7 @@ import org.telegram.ui.WrappedResourceProvider;
 import org.telegram.ui.web.AddressBarList;
 import org.telegram.ui.web.BrowserHistory;
 import org.telegram.ui.web.WebMetadataCache;
+
 public class AddressBarList extends FrameLayout {
     private int backgroundColor;
     private final BookmarksList bookmarksList;
@@ -309,14 +310,17 @@ public class AddressBarList extends FrameLayout {
             Utilities.Callback<String> callback2 = this.onQueryClick;
             if (callback2 != null) {
                 callback2.run(charSequence);
+                return;
             }
-        } else if (!uItem.instanceOf(BookmarkView.Factory.class) || (callback = this.onURLClick) == null) {
-        } else {
-            try {
-                callback.run(getLink((MessageObject) uItem.object2));
-            } catch (Exception e) {
-                FileLog.e(e);
-            }
+            return;
+        }
+        if (!uItem.instanceOf(BookmarkView.Factory.class) || (callback = this.onURLClick) == null) {
+            return;
+        }
+        try {
+            callback.run(getLink((MessageObject) uItem.object2));
+        } catch (Exception e) {
+            FileLog.e(e);
         }
     }
 
@@ -432,20 +436,21 @@ public class AddressBarList extends FrameLayout {
             this.lastTask = null;
         }
         final boolean z = !this.suggestions.isEmpty();
-        if (!TextUtils.isEmpty(str)) {
-            this.lastTask = new HttpGetTask(new Utilities.Callback() {
-                @Override
-                public final void run(Object obj) {
-                    AddressBarList.this.lambda$setInput$6(z, (String) obj);
-                }
-            }).execute(SearchEngine.getCurrent().getAutocompleteURL(str));
+        if (TextUtils.isEmpty(str)) {
+            this.suggestions.clear();
+            this.listView.adapter.update(true);
+            if (z != (!this.suggestions.isEmpty())) {
+                this.listView.layoutManager.scrollToPositionWithOffset(0, 0);
+                return;
+            }
             return;
         }
-        this.suggestions.clear();
-        this.listView.adapter.update(true);
-        if (z != (!this.suggestions.isEmpty())) {
-            this.listView.layoutManager.scrollToPositionWithOffset(0, 0);
-        }
+        this.lastTask = new HttpGetTask(new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                AddressBarList.this.lambda$setInput$6(z, (String) obj);
+            }
+        }).execute(SearchEngine.getCurrent().getAutocompleteURL(str));
     }
 
     public void lambda$setInput$6(final boolean z, final String str) {
@@ -489,7 +494,8 @@ public class AddressBarList extends FrameLayout {
             this.dividerPaint = new Paint(1);
             ImageView imageView = new ImageView(context);
             this.iconView = imageView;
-            imageView.setScaleType(ImageView.ScaleType.CENTER);
+            ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+            imageView.setScaleType(scaleType);
             imageView.setImageResource(R.drawable.menu_clear_recent);
             addView(imageView, LayoutHelper.createFrame(32, 32.0f, 19, 10.0f, 8.0f, 8.0f, 8.0f));
             TextView textView = new TextView(context);
@@ -498,15 +504,18 @@ public class AddressBarList extends FrameLayout {
             addView(textView, LayoutHelper.createFrame(-1, -2.0f, 19, 64.0f, 8.0f, 64.0f, 8.0f));
             ImageView imageView2 = new ImageView(context);
             this.insertView = imageView2;
-            imageView2.setScaleType(ImageView.ScaleType.CENTER);
+            imageView2.setScaleType(scaleType);
             imageView2.setImageResource(R.drawable.menu_browser_arrowup);
             addView(imageView2, LayoutHelper.createFrame(32, 32.0f, 21, 8.0f, 8.0f, 10.0f, 8.0f));
         }
 
         public void setColors(int i, int i2) {
             this.textView.setTextColor(i2);
-            this.iconView.setColorFilter(new PorterDuffColorFilter(Theme.multAlpha(i2, 0.6f), PorterDuff.Mode.SRC_IN));
-            this.insertView.setColorFilter(new PorterDuffColorFilter(Theme.multAlpha(i2, 0.6f), PorterDuff.Mode.SRC_IN));
+            ImageView imageView = this.iconView;
+            int multAlpha = Theme.multAlpha(i2, 0.6f);
+            PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+            imageView.setColorFilter(new PorterDuffColorFilter(multAlpha, mode));
+            this.insertView.setColorFilter(new PorterDuffColorFilter(Theme.multAlpha(i2, 0.6f), mode));
             this.insertView.setBackground(Theme.createRadSelectorDrawable(0, Theme.multAlpha(i2, 0.15f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f)));
         }
 
@@ -600,13 +609,14 @@ public class AddressBarList extends FrameLayout {
             this.textView = textView;
             textView.setTextSize(1, 16.0f);
             textView.setMaxLines(1);
-            textView.setEllipsize(TextUtils.TruncateAt.END);
+            TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+            textView.setEllipsize(truncateAt);
             linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 51));
             TextView textView2 = new TextView(context);
             this.subtextView = textView2;
             textView2.setTextSize(1, 13.0f);
             textView2.setMaxLines(1);
-            textView2.setEllipsize(TextUtils.TruncateAt.END);
+            textView2.setEllipsize(truncateAt);
             linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 51, 0, 3, 0, 0));
             FrameLayout.LayoutParams createFrame = LayoutHelper.createFrame(-1, -2.0f, 19, 64.0f, 0.0f, 70.0f, 0.0f);
             this.textLayoutParams = createFrame;
@@ -615,7 +625,7 @@ public class AddressBarList extends FrameLayout {
             this.timeView = textView3;
             textView3.setTextSize(1, 13.0f);
             textView3.setMaxLines(1);
-            textView3.setEllipsize(TextUtils.TruncateAt.END);
+            textView3.setEllipsize(truncateAt);
             textView3.setGravity(5);
             textView3.setTextAlignment(6);
             addView(textView3, LayoutHelper.createFrame(-2, -2.0f, 21, 64.0f, -10.0f, 12.0f, 0.0f));
@@ -656,7 +666,6 @@ public class AddressBarList extends FrameLayout {
         }
 
         public void set(MessageObject messageObject, boolean z, String str, boolean z2, boolean z3) {
-            String[] split;
             String str2;
             TLRPC$Photo tLRPC$Photo;
             String str3;
@@ -676,7 +685,7 @@ public class AddressBarList extends FrameLayout {
                 this.textView.setText(webMetadata.sitename);
             } else {
                 try {
-                    String str5 = Uri.parse(link).getHost().split("\\.")[split.length - 2];
+                    String str5 = Uri.parse(link).getHost().split("\\.")[r5.length - 2];
                     this.textView.setText(str5.substring(0, 1).toUpperCase() + str5.substring(1));
                 } catch (Exception unused) {
                     this.textView.setText("");
@@ -769,10 +778,8 @@ public class AddressBarList extends FrameLayout {
                 this.textView.setText(webMetadata.sitename);
             } else {
                 try {
-                    String[] split = Uri.parse(str2).getHost().split("\\.");
-                    String str3 = split[split.length - 2];
-                    TextView textView = this.textView;
-                    textView.setText(str3.substring(0, 1).toUpperCase() + str3.substring(1));
+                    String str3 = Uri.parse(str2).getHost().split("\\.")[r5.length - 2];
+                    this.textView.setText(str3.substring(0, 1).toUpperCase() + str3.substring(1));
                 } catch (Exception unused) {
                     this.textView.setText("");
                 }
@@ -827,15 +834,15 @@ public class AddressBarList extends FrameLayout {
             }
             this.subtextView.setText(str2);
             if (!TextUtils.isEmpty(str)) {
-                TextView textView2 = this.textView;
+                TextView textView = this.textView;
+                textView.setText(AndroidUtilities.highlightText(textView.getText(), str, this.resourcesProvider));
+                TextView textView2 = this.subtextView;
                 textView2.setText(AndroidUtilities.highlightText(textView2.getText(), str, this.resourcesProvider));
-                TextView textView3 = this.subtextView;
-                textView3.setText(AndroidUtilities.highlightText(textView3.getText(), str, this.resourcesProvider));
             }
-            TextView textView4 = this.textView;
-            textView4.setText(Emoji.replaceEmoji(textView4.getText(), this.textView.getPaint().getFontMetricsInt(), false));
-            TextView textView5 = this.subtextView;
-            textView5.setText(Emoji.replaceEmoji(textView5.getText(), this.subtextView.getPaint().getFontMetricsInt(), false));
+            TextView textView3 = this.textView;
+            textView3.setText(Emoji.replaceEmoji(textView3.getText(), this.textView.getPaint().getFontMetricsInt(), false));
+            TextView textView4 = this.subtextView;
+            textView4.setText(Emoji.replaceEmoji(textView4.getText(), this.subtextView.getPaint().getFontMetricsInt(), false));
             this.timeView.setText(LocaleController.getInstance().getFormatterDay().format(entry.time));
             this.checkBox.setChecked(false, false);
             this.textLayoutParams.rightMargin = AndroidUtilities.dp(70.0f);
@@ -876,7 +883,9 @@ public class AddressBarList extends FrameLayout {
                     boolean z2 = uItem.accent;
                     CharSequence charSequence = uItem.subtext;
                     bookmarkView.set(messageObject, z2, charSequence != null ? charSequence.toString() : null, uItem.checked, z);
-                } else if (obj instanceof BrowserHistory.Entry) {
+                    return;
+                }
+                if (obj instanceof BrowserHistory.Entry) {
                     BrowserHistory.Entry entry = (BrowserHistory.Entry) obj;
                     CharSequence charSequence2 = uItem.subtext;
                     bookmarkView.set(entry, charSequence2 != null ? charSequence2.toString() : null, z);
@@ -1124,11 +1133,15 @@ public class AddressBarList extends FrameLayout {
             if (i == NotificationCenter.mediaDidLoad) {
                 if (((Integer) objArr[3]).intValue() == this.guid) {
                     this.loading = false;
+                    ArrayList arrayList = (ArrayList) objArr[2];
                     this.endReached = ((Boolean) objArr[5]).booleanValue();
-                    this.links.addAll((ArrayList) objArr[2]);
+                    this.links.addAll(arrayList);
                     this.whenUpdated.run();
+                    return;
                 }
-            } else if (i == NotificationCenter.bookmarkAdded) {
+                return;
+            }
+            if (i == NotificationCenter.bookmarkAdded) {
                 this.links.add(0, (MessageObject) objArr[0]);
             }
         }

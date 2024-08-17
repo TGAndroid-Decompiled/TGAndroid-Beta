@@ -11,7 +11,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.BitmapDrawable;
@@ -28,19 +27,12 @@ import j$.util.concurrent.ConcurrentHashMap;
 import j$.util.function.Consumer;
 import j$.util.stream.Stream;
 import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.RandomAccessFile;
 import java.net.HttpURLConnection;
-import java.net.SocketException;
-import java.net.SocketTimeoutException;
-import java.net.URL;
-import java.net.UnknownHostException;
 import java.nio.file.CopyOption;
 import java.nio.file.Files;
 import java.nio.file.LinkOption;
@@ -52,8 +44,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.zip.GZIPInputStream;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.telegram.DispatchQueuePriority;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FilePathDatabase;
@@ -89,7 +79,9 @@ import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Components.AnimatedFileDrawable;
 import org.telegram.ui.Components.BackgroundGradientDrawable;
 import org.telegram.ui.Components.MotionBackgroundDrawable;
+import org.telegram.ui.Components.Point;
 import org.telegram.ui.Components.RLottieDrawable;
+
 public class ImageLoader {
     public static final String AUTOPLAY_FILTER = "g";
     public static final int CACHE_TYPE_CACHE = 1;
@@ -277,168 +269,8 @@ public class ImageLoader {
         }
 
         @Override
-        public String doInBackground(Void... voidArr) {
-            InputStream inputStream;
-            ByteArrayOutputStream byteArrayOutputStream;
-            int read;
-            int responseCode;
-            try {
-                try {
-                    HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(this.cacheImage.imageLocation.path.replace("athumb://", "https://")).openConnection();
-                    this.httpConnection = httpURLConnection;
-                    httpURLConnection.setConnectTimeout(5000);
-                    this.httpConnection.setReadTimeout(5000);
-                    this.httpConnection.connect();
-                    try {
-                        HttpURLConnection httpURLConnection2 = this.httpConnection;
-                        if (httpURLConnection2 != null && (responseCode = httpURLConnection2.getResponseCode()) != 200 && responseCode != 202 && responseCode != 304) {
-                            this.canRetry = false;
-                        }
-                    } catch (Exception e) {
-                        FileLog.e((Throwable) e, false);
-                    }
-                    InputStream inputStream2 = this.httpConnection.getInputStream();
-                    try {
-                        ByteArrayOutputStream byteArrayOutputStream2 = new ByteArrayOutputStream();
-                        try {
-                            byte[] bArr = new byte[32768];
-                            while (!isCancelled() && (read = inputStream2.read(bArr)) > 0) {
-                                byteArrayOutputStream2.write(bArr, 0, read);
-                            }
-                            this.canRetry = false;
-                            JSONArray jSONArray = new JSONObject(new String(byteArrayOutputStream2.toByteArray())).getJSONArray("results");
-                            if (jSONArray.length() <= 0) {
-                                try {
-                                    HttpURLConnection httpURLConnection3 = this.httpConnection;
-                                    if (httpURLConnection3 != null) {
-                                        httpURLConnection3.disconnect();
-                                    }
-                                } catch (Throwable unused) {
-                                }
-                                if (inputStream2 != null) {
-                                    try {
-                                        inputStream2.close();
-                                    } catch (Throwable th) {
-                                        FileLog.e(th);
-                                    }
-                                }
-                                byteArrayOutputStream2.close();
-                            }
-                            String string = jSONArray.getJSONObject(0).getString("artworkUrl100");
-                            if (this.small) {
-                                try {
-                                    HttpURLConnection httpURLConnection4 = this.httpConnection;
-                                    if (httpURLConnection4 != null) {
-                                        httpURLConnection4.disconnect();
-                                    }
-                                } catch (Throwable unused2) {
-                                }
-                                if (inputStream2 != null) {
-                                    try {
-                                        inputStream2.close();
-                                    } catch (Throwable th2) {
-                                        FileLog.e(th2);
-                                    }
-                                }
-                                try {
-                                    byteArrayOutputStream2.close();
-                                } catch (Exception unused3) {
-                                }
-                                return string;
-                            }
-                            String replace = string.replace("100x100", "600x600");
-                            try {
-                                HttpURLConnection httpURLConnection5 = this.httpConnection;
-                                if (httpURLConnection5 != null) {
-                                    httpURLConnection5.disconnect();
-                                }
-                            } catch (Throwable unused4) {
-                            }
-                            if (inputStream2 != null) {
-                                try {
-                                    inputStream2.close();
-                                } catch (Throwable th3) {
-                                    FileLog.e(th3);
-                                }
-                            }
-                            try {
-                                byteArrayOutputStream2.close();
-                            } catch (Exception unused5) {
-                            }
-                            return replace;
-                        } catch (Throwable th4) {
-                            inputStream = inputStream2;
-                            th = th4;
-                            byteArrayOutputStream = byteArrayOutputStream2;
-                            try {
-                                if (th instanceof SocketTimeoutException) {
-                                    if (ApplicationLoader.isNetworkOnline()) {
-                                        this.canRetry = false;
-                                    }
-                                } else if (th instanceof UnknownHostException) {
-                                    this.canRetry = false;
-                                } else if (th instanceof SocketException) {
-                                    if (th.getMessage() != null && th.getMessage().contains("ECONNRESET")) {
-                                        this.canRetry = false;
-                                    }
-                                } else if (th instanceof FileNotFoundException) {
-                                    this.canRetry = false;
-                                }
-                                FileLog.e(th, false);
-                                try {
-                                    HttpURLConnection httpURLConnection6 = this.httpConnection;
-                                    if (httpURLConnection6 != null) {
-                                        httpURLConnection6.disconnect();
-                                    }
-                                } catch (Throwable unused6) {
-                                }
-                                if (inputStream != null) {
-                                    try {
-                                        inputStream.close();
-                                    } catch (Throwable th5) {
-                                        FileLog.e(th5);
-                                    }
-                                }
-                                if (byteArrayOutputStream != null) {
-                                    byteArrayOutputStream.close();
-                                }
-                                return null;
-                            } catch (Throwable th6) {
-                                try {
-                                    HttpURLConnection httpURLConnection7 = this.httpConnection;
-                                    if (httpURLConnection7 != null) {
-                                        httpURLConnection7.disconnect();
-                                    }
-                                } catch (Throwable unused7) {
-                                }
-                                if (inputStream != null) {
-                                    try {
-                                        inputStream.close();
-                                    } catch (Throwable th7) {
-                                        FileLog.e(th7);
-                                    }
-                                }
-                                if (byteArrayOutputStream != null) {
-                                    try {
-                                        byteArrayOutputStream.close();
-                                    } catch (Exception unused8) {
-                                    }
-                                }
-                                throw th6;
-                            }
-                        }
-                    } catch (Throwable th8) {
-                        byteArrayOutputStream = null;
-                        inputStream = inputStream2;
-                        th = th8;
-                    }
-                } catch (Throwable th9) {
-                    th = th9;
-                    inputStream = null;
-                    byteArrayOutputStream = null;
-                }
-            } catch (Exception unused9) {
-            }
+        public java.lang.String doInBackground(java.lang.Void... r8) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ImageLoader.ArtworkLoadTask.doInBackground(java.lang.Void[]):java.lang.String");
         }
 
         @Override
@@ -660,91 +492,7 @@ public class ImageLoader {
 
         @Override
         public void run() {
-            int min;
-            Bitmap createScaledBitmap;
-            try {
-                if (this.info == null) {
-                    removeTask();
-                    return;
-                }
-                final String str = "q_" + this.info.parentDocument.dc_id + "_" + this.info.parentDocument.id;
-                File file = new File(FileLoader.getDirectory(4), str + ".jpg");
-                if (!file.exists() && this.originalPath.exists()) {
-                    if (this.info.big) {
-                        Point point = AndroidUtilities.displaySize;
-                        min = Math.max(point.x, point.y);
-                    } else {
-                        Point point2 = AndroidUtilities.displaySize;
-                        min = Math.min(180, Math.min(point2.x, point2.y) / 4);
-                    }
-                    int i = this.mediaType;
-                    Bitmap bitmap = null;
-                    if (i == 0) {
-                        float f = min;
-                        bitmap = ImageLoader.loadBitmap(this.originalPath.toString(), null, f, f, false);
-                    } else {
-                        int i2 = 2;
-                        if (i == 2) {
-                            String file2 = this.originalPath.toString();
-                            if (!this.info.big) {
-                                i2 = 1;
-                            }
-                            bitmap = SendMessagesHelper.createVideoThumbnail(file2, i2);
-                        } else if (i == 3) {
-                            String lowerCase = this.originalPath.toString().toLowerCase();
-                            if (lowerCase.endsWith("mp4")) {
-                                String file3 = this.originalPath.toString();
-                                if (!this.info.big) {
-                                    i2 = 1;
-                                }
-                                bitmap = SendMessagesHelper.createVideoThumbnail(file3, i2);
-                            } else if (lowerCase.endsWith(".jpg") || lowerCase.endsWith(".jpeg") || lowerCase.endsWith(".png") || lowerCase.endsWith(".gif")) {
-                                float f2 = min;
-                                bitmap = ImageLoader.loadBitmap(lowerCase, null, f2, f2, false);
-                            }
-                        }
-                    }
-                    if (bitmap == null) {
-                        removeTask();
-                        return;
-                    }
-                    int width = bitmap.getWidth();
-                    int height = bitmap.getHeight();
-                    if (width != 0 && height != 0) {
-                        float f3 = width;
-                        float f4 = min;
-                        float f5 = height;
-                        float min2 = Math.min(f3 / f4, f5 / f4);
-                        if (min2 > 1.0f && (createScaledBitmap = Bitmaps.createScaledBitmap(bitmap, (int) (f3 / min2), (int) (f5 / min2), true)) != bitmap) {
-                            bitmap.recycle();
-                            bitmap = createScaledBitmap;
-                        }
-                        FileOutputStream fileOutputStream = new FileOutputStream(file);
-                        bitmap.compress(Bitmap.CompressFormat.JPEG, this.info.big ? 83 : 60, fileOutputStream);
-                        try {
-                            fileOutputStream.close();
-                        } catch (Exception e) {
-                            FileLog.e(e);
-                        }
-                        final BitmapDrawable bitmapDrawable = new BitmapDrawable(bitmap);
-                        final ArrayList arrayList = new ArrayList(this.info.imageReceiverArray);
-                        final ArrayList arrayList2 = new ArrayList(this.info.imageReceiverGuidsArray);
-                        AndroidUtilities.runOnUIThread(new Runnable() {
-                            @Override
-                            public final void run() {
-                                ImageLoader.ThumbGenerateTask.this.lambda$run$1(str, arrayList, bitmapDrawable, arrayList2);
-                            }
-                        });
-                        return;
-                    }
-                    removeTask();
-                    return;
-                }
-                removeTask();
-            } catch (Throwable th) {
-                FileLog.e(th);
-                removeTask();
-            }
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ImageLoader.ThumbGenerateTask.run():void");
         }
 
         public void lambda$run$1(String str, ArrayList arrayList, BitmapDrawable bitmapDrawable, ArrayList arrayList2) {
@@ -766,26 +514,29 @@ public class ImageLoader {
         }
         try {
             GZIPInputStream gZIPInputStream = new GZIPInputStream(new FileInputStream(file));
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(gZIPInputStream, "UTF-8"));
-            while (true) {
-                try {
-                    String readLine = bufferedReader.readLine();
-                    if (readLine != null) {
-                        sb.append(readLine);
-                    } else {
-                        String sb2 = sb.toString();
-                        bufferedReader.close();
-                        gZIPInputStream.close();
-                        return sb2;
-                    }
-                } catch (Throwable th) {
+            try {
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(gZIPInputStream, "UTF-8"));
+                while (true) {
                     try {
-                        bufferedReader.close();
-                    } catch (Throwable th2) {
-                        th.addSuppressed(th2);
+                        String readLine = bufferedReader.readLine();
+                        if (readLine != null) {
+                            sb.append(readLine);
+                        } else {
+                            String sb2 = sb.toString();
+                            bufferedReader.close();
+                            gZIPInputStream.close();
+                            return sb2;
+                        }
+                    } finally {
                     }
-                    throw th;
                 }
+            } catch (Throwable th) {
+                try {
+                    gZIPInputStream.close();
+                } catch (Throwable th2) {
+                    th.addSuppressed(th2);
+                }
+                throw th;
             }
         } catch (Exception unused) {
             return "";
@@ -898,27 +649,22 @@ public class ImageLoader {
             });
         }
 
-        public void lambda$onPostExecute$1(Drawable drawable) {
-            final String str;
+        public void lambda$onPostExecute$1(final Drawable drawable) {
             boolean z = false;
-            final Drawable drawable2 = null;
-            r2 = null;
-            r2 = null;
-            r2 = null;
-            String str2 = null;
+            final String str = null;
             if (drawable instanceof RLottieDrawable) {
                 RLottieDrawable rLottieDrawable = (RLottieDrawable) drawable;
-                Drawable drawable3 = (Drawable) ImageLoader.this.lottieMemCache.get(this.cacheImage.key);
-                if (drawable3 == null) {
+                Drawable drawable2 = (Drawable) ImageLoader.this.lottieMemCache.get(this.cacheImage.key);
+                if (drawable2 == null) {
                     ImageLoader.this.lottieMemCache.put(this.cacheImage.key, rLottieDrawable);
                     drawable = rLottieDrawable;
                 } else {
                     rLottieDrawable.recycle(false);
-                    drawable = drawable3;
+                    drawable = drawable2;
                 }
                 if (drawable != null) {
                     ImageLoader.this.incrementUseCount(this.cacheImage.key);
-                    str2 = this.cacheImage.key;
+                    str = this.cacheImage.key;
                 }
             } else if (drawable instanceof AnimatedFileDrawable) {
                 AnimatedFileDrawable animatedFileDrawable = (AnimatedFileDrawable) drawable;
@@ -932,17 +678,9 @@ public class ImageLoader {
                         drawable = fromLottieCache;
                     }
                     ImageLoader.this.incrementUseCount(this.cacheImage.key);
-                    str2 = this.cacheImage.key;
+                    str = this.cacheImage.key;
                 }
-            } else if (!(drawable instanceof BitmapDrawable)) {
-                str = null;
-                ImageLoader.this.imageLoadQueue.postRunnable(new Runnable() {
-                    @Override
-                    public final void run() {
-                        ImageLoader.CacheOutTask.this.lambda$onPostExecute$0(drawable2, str);
-                    }
-                }, this.cacheImage.priority);
-            } else {
+            } else if (drawable instanceof BitmapDrawable) {
                 BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
                 BitmapDrawable fromMemCache = ImageLoader.this.getFromMemCache(this.cacheImage.key);
                 boolean z2 = true;
@@ -965,16 +703,15 @@ public class ImageLoader {
                 }
                 if (drawable != null && z2) {
                     ImageLoader.this.incrementUseCount(this.cacheImage.key);
-                    str2 = this.cacheImage.key;
+                    str = this.cacheImage.key;
                 }
+            } else {
+                drawable = null;
             }
-            String str3 = str2;
-            drawable2 = drawable;
-            str = str3;
             ImageLoader.this.imageLoadQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    ImageLoader.CacheOutTask.this.lambda$onPostExecute$0(drawable2, str);
+                    ImageLoader.CacheOutTask.this.lambda$onPostExecute$0(drawable, str);
                 }
             }, this.cacheImage.priority);
         }
@@ -1030,11 +767,10 @@ public class ImageLoader {
         System.arraycopy(bArr3, 0, bArr2, 0, bArr3.length);
         System.arraycopy(bArr, 3, bArr2, Bitmaps.header.length, bArr.length - 3);
         System.arraycopy(Bitmaps.footer, 0, bArr2, (Bitmaps.header.length + bArr.length) - 3, Bitmaps.footer.length);
-        boolean z = true;
         bArr2[164] = bArr[1];
         bArr2[166] = bArr[2];
         BitmapFactory.Options options = new BitmapFactory.Options();
-        z = (TextUtils.isEmpty(str) || !str.contains("r")) ? false : false;
+        boolean z = !TextUtils.isEmpty(str) && str.contains("r");
         options.inPreferredConfig = (SharedConfig.deviceIsHigh() || z) ? Bitmap.Config.ARGB_8888 : Bitmap.Config.RGB_565;
         Bitmap decodeByteArray = BitmapFactory.decodeByteArray(bArr2, 0, length, options);
         if (z) {
@@ -1200,58 +936,58 @@ public class ImageLoader {
 
         void changePriority(int i) {
             TLRPC$Document tLRPC$Document;
-            SecureDocument secureDocument;
-            WebFile webFile;
-            TLRPC$FileLocation tLRPC$FileLocation;
-            SecureDocument secureDocument2;
-            String str;
-            WebFile webFile2;
+            ?? r6;
+            TLObject tLObject;
+            TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated;
+            TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated2;
+            ?? r9;
+            ?? r7;
             ImageLocation imageLocation = this.imageLocation;
             if (imageLocation != null) {
-                TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated = imageLocation.location;
-                if (tLRPC$TL_fileLocationToBeDeprecated != null) {
-                    str = this.ext;
-                    tLRPC$FileLocation = tLRPC$TL_fileLocationToBeDeprecated;
+                TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated3 = imageLocation.location;
+                if (tLRPC$TL_fileLocationToBeDeprecated3 != null) {
+                    r9 = this.ext;
+                    tLRPC$TL_fileLocationToBeDeprecated = tLRPC$TL_fileLocationToBeDeprecated3;
                     tLRPC$Document = null;
-                    secureDocument = null;
-                    webFile2 = null;
+                    r6 = null;
+                    r7 = 0;
                 } else {
                     TLRPC$Document tLRPC$Document2 = imageLocation.document;
                     if (tLRPC$Document2 != null) {
                         tLRPC$Document = tLRPC$Document2;
-                        secureDocument = null;
+                        r6 = null;
                     } else {
-                        SecureDocument secureDocument3 = imageLocation.secureDocument;
-                        if (secureDocument3 != null) {
-                            secureDocument = secureDocument3;
+                        SecureDocument secureDocument = imageLocation.secureDocument;
+                        if (secureDocument != null) {
+                            r6 = secureDocument;
                             tLRPC$Document = null;
-                            secureDocument2 = null;
-                            tLRPC$FileLocation = secureDocument2;
-                            webFile = secureDocument2;
-                            str = tLRPC$FileLocation;
-                            webFile2 = webFile;
+                            tLRPC$TL_fileLocationToBeDeprecated2 = null;
+                            tLRPC$TL_fileLocationToBeDeprecated = tLRPC$TL_fileLocationToBeDeprecated2;
+                            tLObject = tLRPC$TL_fileLocationToBeDeprecated2;
+                            r9 = tLRPC$TL_fileLocationToBeDeprecated;
+                            r7 = tLObject;
                         } else {
-                            WebFile webFile3 = imageLocation.webFile;
-                            if (webFile3 != null) {
-                                webFile = webFile3;
+                            TLObject tLObject2 = imageLocation.webFile;
+                            if (tLObject2 != null) {
+                                tLObject = tLObject2;
                                 tLRPC$Document = null;
-                                secureDocument = null;
-                                tLRPC$FileLocation = null;
-                                str = tLRPC$FileLocation;
-                                webFile2 = webFile;
+                                r6 = null;
+                                tLRPC$TL_fileLocationToBeDeprecated = null;
+                                r9 = tLRPC$TL_fileLocationToBeDeprecated;
+                                r7 = tLObject;
                             } else {
                                 tLRPC$Document = null;
-                                secureDocument = null;
+                                r6 = null;
                             }
                         }
                     }
-                    secureDocument2 = secureDocument;
-                    tLRPC$FileLocation = secureDocument2;
-                    webFile = secureDocument2;
-                    str = tLRPC$FileLocation;
-                    webFile2 = webFile;
+                    tLRPC$TL_fileLocationToBeDeprecated2 = r6;
+                    tLRPC$TL_fileLocationToBeDeprecated = tLRPC$TL_fileLocationToBeDeprecated2;
+                    tLObject = tLRPC$TL_fileLocationToBeDeprecated2;
+                    r9 = tLRPC$TL_fileLocationToBeDeprecated;
+                    r7 = tLObject;
                 }
-                FileLoader.getInstance(this.currentAccount).changePriority(i, tLRPC$Document, secureDocument, webFile2, tLRPC$FileLocation, str, null);
+                FileLoader.getInstance(this.currentAccount).changePriority(i, tLRPC$Document, r6, r7, tLRPC$TL_fileLocationToBeDeprecated, r9, null);
             }
         }
 
@@ -1293,10 +1029,13 @@ public class ImageLoader {
         ImageLoader imageLoader = Instance;
         if (imageLoader == null) {
             synchronized (ImageLoader.class) {
-                imageLoader = Instance;
-                if (imageLoader == null) {
-                    imageLoader = new ImageLoader();
-                    Instance = imageLoader;
+                try {
+                    imageLoader = Instance;
+                    if (imageLoader == null) {
+                        imageLoader = new ImageLoader();
+                        Instance = imageLoader;
+                    }
+                } finally {
                 }
             }
         }
@@ -1308,7 +1047,7 @@ public class ImageLoader {
         int memoryClass = ((ActivityManager) ApplicationLoader.applicationContext.getSystemService("activity")).getMemoryClass();
         boolean z = memoryClass >= 192;
         this.canForce8888 = z;
-        int min = Math.min(z ? 30 : 15, memoryClass / 7) * 1024 * 1024;
+        int min = Math.min(z ? 30 : 15, memoryClass / 7) * 1048576;
         float f = min;
         this.memCache = new LruCache<BitmapDrawable>((int) (0.8f * f)) {
             @Override
@@ -1664,12 +1403,12 @@ public class ImageLoader {
     public int sizeOfBitmapDrawable(BitmapDrawable bitmapDrawable) {
         if (bitmapDrawable instanceof AnimatedFileDrawable) {
             AnimatedFileDrawable animatedFileDrawable = (AnimatedFileDrawable) bitmapDrawable;
-            return Math.max(animatedFileDrawable.getIntrinsicHeight() * bitmapDrawable.getIntrinsicWidth() * 4 * 3, animatedFileDrawable.getRenderingHeight() * animatedFileDrawable.getRenderingWidth() * 4 * 3);
-        } else if (bitmapDrawable instanceof RLottieDrawable) {
-            return bitmapDrawable.getIntrinsicWidth() * bitmapDrawable.getIntrinsicHeight() * 4 * 2;
-        } else {
-            return bitmapDrawable.getBitmap().getByteCount();
+            return Math.max(animatedFileDrawable.getIntrinsicHeight() * bitmapDrawable.getIntrinsicWidth() * 12, animatedFileDrawable.getRenderingHeight() * animatedFileDrawable.getRenderingWidth() * 12);
         }
+        if (bitmapDrawable instanceof RLottieDrawable) {
+            return bitmapDrawable.getIntrinsicWidth() * bitmapDrawable.getIntrinsicHeight() * 8;
+        }
+        return bitmapDrawable.getBitmap().getByteCount();
     }
 
     public void checkMediaPaths() {
@@ -1724,18 +1463,21 @@ public class ImageLoader {
                 try {
                     path = file.toPath();
                     Stream m = FilesMigrationService$$ExternalSyntheticAPIConversion0.m(path);
-                    m.forEach(new Consumer() {
-                        @Override
-                        public final void accept(Object obj) {
-                            ImageLoader.lambda$moveDirectory$2(file2, (java.nio.file.Path) obj);
-                        }
+                    try {
+                        m.forEach(new Consumer() {
+                            @Override
+                            public final void r(Object obj) {
+                                ImageLoader.lambda$moveDirectory$2(file2, (java.nio.file.Path) obj);
+                            }
 
-                        @Override
-                        public Consumer andThen(Consumer consumer) {
-                            return Consumer.CC.$default$andThen(this, consumer);
-                        }
-                    });
-                    m.close();
+                            @Override
+                            public Consumer andThen(Consumer consumer) {
+                                return Consumer.CC.$default$andThen(this, consumer);
+                            }
+                        });
+                        m.close();
+                    } finally {
+                    }
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
@@ -1775,10 +1517,10 @@ public class ImageLoader {
     }
 
     private boolean canMoveFiles(File file, File file2, int i) {
+        RandomAccessFile randomAccessFile;
         File file3;
         File file4;
         byte[] bArr;
-        RandomAccessFile randomAccessFile;
         RandomAccessFile randomAccessFile2 = null;
         try {
             try {
@@ -1806,6 +1548,7 @@ public class ImageLoader {
                 randomAccessFile = new RandomAccessFile(file3, "rws");
             } catch (Throwable th) {
                 th = th;
+                randomAccessFile = null;
             }
         } catch (Exception e) {
             e = e;
@@ -1821,22 +1564,21 @@ public class ImageLoader {
             e = e2;
             randomAccessFile2 = randomAccessFile;
             FileLog.e(e);
-            if (randomAccessFile2 != null) {
-                try {
-                    randomAccessFile2.close();
-                    return false;
-                } catch (Exception e3) {
-                    FileLog.e(e3);
-                    return false;
-                }
+            if (randomAccessFile2 == null) {
+                return false;
             }
-            return false;
+            try {
+                randomAccessFile2.close();
+                return false;
+            } catch (Exception e3) {
+                FileLog.e(e3);
+                return false;
+            }
         } catch (Throwable th2) {
             th = th2;
-            randomAccessFile2 = randomAccessFile;
-            if (randomAccessFile2 != null) {
+            if (randomAccessFile != null) {
                 try {
-                    randomAccessFile2.close();
+                    randomAccessFile.close();
                 } catch (Exception e4) {
                     FileLog.e(e4);
                 }
@@ -1871,8 +1613,33 @@ public class ImageLoader {
         return this.replacedBitmaps.get(str);
     }
 
-    private void performReplace(java.lang.String r7, java.lang.String r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ImageLoader.performReplace(java.lang.String, java.lang.String):void");
+    private void performReplace(String str, String str2) {
+        LruCache<BitmapDrawable> lruCache = this.memCache;
+        BitmapDrawable bitmapDrawable = lruCache.get(str);
+        if (bitmapDrawable == null) {
+            lruCache = this.smallImagesMemCache;
+            bitmapDrawable = lruCache.get(str);
+        }
+        this.replacedBitmaps.put(str, str2);
+        if (bitmapDrawable != null) {
+            BitmapDrawable bitmapDrawable2 = lruCache.get(str2);
+            if (bitmapDrawable2 != null && bitmapDrawable2.getBitmap() != null && bitmapDrawable.getBitmap() != null) {
+                Bitmap bitmap = bitmapDrawable2.getBitmap();
+                Bitmap bitmap2 = bitmapDrawable.getBitmap();
+                if (bitmap.getWidth() > bitmap2.getWidth() || bitmap.getHeight() > bitmap2.getHeight()) {
+                    lruCache.remove(str);
+                }
+            }
+            this.ignoreRemoval = str;
+            lruCache.remove(str);
+            lruCache.put(str2, bitmapDrawable);
+            this.ignoreRemoval = null;
+        }
+        Integer num = this.bitmapUseCounts.get(str);
+        if (num != null) {
+            this.bitmapUseCounts.put(str2, num);
+            this.bitmapUseCounts.remove(str);
+        }
     }
 
     public void incrementUseCount(String str) {
@@ -2148,7 +1915,7 @@ public class ImageLoader {
         imageReceiver.addLoadingImageRunnable(runnable);
     }
 
-    public void lambda$createLoadOperationForImageReceiver$7(int r25, java.lang.String r26, java.lang.String r27, int r28, org.telegram.messenger.ImageReceiver r29, int r30, java.lang.String r31, int r32, org.telegram.messenger.ImageLocation r33, boolean r34, java.lang.Object r35, int r36, org.telegram.tgnet.TLRPC$Document r37, boolean r38, boolean r39, java.lang.String r40, int r41, long r42) {
+    public void lambda$createLoadOperationForImageReceiver$7(int r27, java.lang.String r28, java.lang.String r29, int r30, org.telegram.messenger.ImageReceiver r31, int r32, java.lang.String r33, int r34, org.telegram.messenger.ImageLocation r35, boolean r36, java.lang.Object r37, int r38, org.telegram.tgnet.TLRPC$Document r39, boolean r40, boolean r41, java.lang.String r42, int r43, long r44) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ImageLoader.lambda$createLoadOperationForImageReceiver$7(int, java.lang.String, java.lang.String, int, org.telegram.messenger.ImageReceiver, int, java.lang.String, int, org.telegram.messenger.ImageLocation, boolean, java.lang.Object, int, org.telegram.tgnet.TLRPC$Document, boolean, boolean, java.lang.String, int, long):void");
     }
 
@@ -2195,7 +1962,7 @@ public class ImageLoader {
         loadImageForImageReceiver(imageReceiver, null);
     }
 
-    public void loadImageForImageReceiver(org.telegram.messenger.ImageReceiver r37, java.util.List<org.telegram.messenger.ImageReceiver> r38) {
+    public void loadImageForImageReceiver(org.telegram.messenger.ImageReceiver r38, java.util.List<org.telegram.messenger.ImageReceiver> r39) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ImageLoader.loadImageForImageReceiver(org.telegram.messenger.ImageReceiver, java.util.List):void");
     }
 
@@ -2217,11 +1984,11 @@ public class ImageLoader {
 
     public BitmapDrawable getFromLottieCache(String str) {
         BitmapDrawable bitmapDrawable = this.lottieMemCache.get(str);
-        if ((bitmapDrawable instanceof AnimatedFileDrawable) && ((AnimatedFileDrawable) bitmapDrawable).isRecycled()) {
-            this.lottieMemCache.remove(str);
-            return null;
+        if (!(bitmapDrawable instanceof AnimatedFileDrawable) || !((AnimatedFileDrawable) bitmapDrawable).isRecycled()) {
+            return bitmapDrawable;
         }
-        return bitmapDrawable;
+        this.lottieMemCache.remove(str);
+        return null;
     }
 
     private boolean useLottieMemCache(ImageLocation imageLocation, String str) {
@@ -2400,8 +2167,7 @@ public class ImageLoader {
 
     public static File getHttpFilePath(String str, String str2) {
         String httpUrlExtension = getHttpUrlExtension(str, str2);
-        File directory = FileLoader.getDirectory(4);
-        return new File(directory, Utilities.MD5(str) + "." + httpUrlExtension);
+        return new File(FileLoader.getDirectory(4), Utilities.MD5(str) + "." + httpUrlExtension);
     }
 
     public void loadHttpFile(String str, String str2, int i) {
@@ -2409,8 +2175,7 @@ public class ImageLoader {
             return;
         }
         String httpUrlExtension = getHttpUrlExtension(str, str2);
-        File directory = FileLoader.getDirectory(4);
-        File file = new File(directory, Utilities.MD5(str) + "_temp." + httpUrlExtension);
+        File file = new File(FileLoader.getDirectory(4), Utilities.MD5(str) + "_temp." + httpUrlExtension);
         file.delete();
         HttpFileTask httpFileTask = new HttpFileTask(str, file, httpUrlExtension, i);
         this.httpFileLoadTasks.add(httpFileTask);
@@ -2523,9 +2288,10 @@ public class ImageLoader {
                 try {
                     RandomAccessFile randomAccessFile = new RandomAccessFile(FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tLRPC$PhotoSize, true), "r");
                     if (((int) randomAccessFile.length()) < 20000) {
-                        byte[] bArr2 = new byte[(int) randomAccessFile.length()];
+                        int length = (int) randomAccessFile.length();
+                        byte[] bArr2 = new byte[length];
                         tLRPC$PhotoSize.bytes = bArr2;
-                        randomAccessFile.readFully(bArr2, 0, bArr2.length);
+                        randomAccessFile.readFully(bArr2, 0, length);
                     }
                 } catch (Throwable th) {
                     FileLog.e(th);
@@ -2700,8 +2466,7 @@ public class ImageLoader {
             if (!pathToAttach.exists()) {
                 if (z) {
                     try {
-                        File internalCacheDir = FileLoader.getInternalCacheDir();
-                        RandomAccessFile randomAccessFile = new RandomAccessFile(new File(internalCacheDir, pathToAttach.getName() + ".key"), "rws");
+                        RandomAccessFile randomAccessFile = new RandomAccessFile(new File(FileLoader.getInternalCacheDir(), pathToAttach.getName() + ".key"), "rws");
                         long length = randomAccessFile.length();
                         byte[] bArr2 = new byte[32];
                         byte[] bArr3 = new byte[16];
@@ -2715,8 +2480,7 @@ public class ImageLoader {
                             randomAccessFile.write(bArr3);
                         }
                         randomAccessFile.close();
-                        byte[] bArr4 = findPhotoCachedSize.bytes;
-                        Utilities.aesCtrDecryptionByteArray(bArr4, bArr2, bArr3, 0, bArr4.length, 0);
+                        Utilities.aesCtrDecryptionByteArray(findPhotoCachedSize.bytes, bArr2, bArr3, 0, r8.length, 0);
                     } catch (Exception e) {
                         FileLog.e(e);
                     }
@@ -2742,7 +2506,9 @@ public class ImageLoader {
                 }
                 i++;
             }
-        } else if (tLRPC$MessageMedia2 instanceof TLRPC$TL_messageMediaDocument) {
+            return;
+        }
+        if (tLRPC$MessageMedia2 instanceof TLRPC$TL_messageMediaDocument) {
             int size2 = tLRPC$MessageMedia2.document.thumbs.size();
             while (i < size2) {
                 if (tLRPC$Message.media.document.thumbs.get(i) instanceof TLRPC$TL_photoCachedSize) {
@@ -2751,7 +2517,9 @@ public class ImageLoader {
                 }
                 i++;
             }
-        } else if (tLRPC$MessageMedia2 instanceof TLRPC$TL_messageMediaWebPage) {
+            return;
+        }
+        if (tLRPC$MessageMedia2 instanceof TLRPC$TL_messageMediaWebPage) {
             int size3 = tLRPC$MessageMedia2.webpage.photo.sizes.size();
             while (i < size3) {
                 if (tLRPC$Message.media.webpage.photo.sizes.get(i) instanceof TLRPC$TL_photoCachedSize) {
@@ -2795,8 +2563,7 @@ public class ImageLoader {
             if (!pathToAttach.exists()) {
                 if (z) {
                     try {
-                        File internalCacheDir = FileLoader.getInternalCacheDir();
-                        RandomAccessFile randomAccessFile = new RandomAccessFile(new File(internalCacheDir, pathToAttach.getName() + ".key"), "rws");
+                        RandomAccessFile randomAccessFile = new RandomAccessFile(new File(FileLoader.getInternalCacheDir(), pathToAttach.getName() + ".key"), "rws");
                         long length = randomAccessFile.length();
                         byte[] bArr2 = new byte[32];
                         byte[] bArr3 = new byte[16];
@@ -2810,8 +2577,7 @@ public class ImageLoader {
                             randomAccessFile.write(bArr3);
                         }
                         randomAccessFile.close();
-                        byte[] bArr4 = findPhotoCachedSize.bytes;
-                        Utilities.aesCtrDecryptionByteArray(bArr4, bArr2, bArr3, 0, bArr4.length, 0);
+                        Utilities.aesCtrDecryptionByteArray(findPhotoCachedSize.bytes, bArr2, bArr3, 0, r7.length, 0);
                     } catch (Exception e) {
                         FileLog.e(e);
                     }
@@ -2836,7 +2602,9 @@ public class ImageLoader {
                 }
                 i++;
             }
-        } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaDocument) {
+            return;
+        }
+        if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaDocument) {
             int size2 = tLRPC$MessageMedia.document.thumbs.size();
             while (i < size2) {
                 if (tLRPC$MessageMedia.document.thumbs.get(i) instanceof TLRPC$TL_photoCachedSize) {
@@ -2845,7 +2613,9 @@ public class ImageLoader {
                 }
                 i++;
             }
-        } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaWebPage) {
+            return;
+        }
+        if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaWebPage) {
             int size3 = tLRPC$MessageMedia.webpage.photo.sizes.size();
             while (i < size3) {
                 if (tLRPC$MessageMedia.webpage.photo.sizes.get(i) instanceof TLRPC$TL_photoCachedSize) {
@@ -2858,96 +2628,86 @@ public class ImageLoader {
     }
 
     private static TLRPC$PhotoSize findPhotoCachedSize(TLRPC$Message tLRPC$Message) {
-        TLRPC$PhotoSize tLRPC$PhotoSize;
         TLRPC$MessageMedia tLRPC$MessageMedia = tLRPC$Message.media;
         int i = 0;
         if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaPhoto) {
             int size = tLRPC$MessageMedia.photo.sizes.size();
             while (i < size) {
-                tLRPC$PhotoSize = tLRPC$Message.media.photo.sizes.get(i);
-                if (!(tLRPC$PhotoSize instanceof TLRPC$TL_photoCachedSize)) {
-                    i++;
+                TLRPC$PhotoSize tLRPC$PhotoSize = tLRPC$Message.media.photo.sizes.get(i);
+                if (tLRPC$PhotoSize instanceof TLRPC$TL_photoCachedSize) {
+                    return tLRPC$PhotoSize;
                 }
+                i++;
             }
-            return null;
         } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaDocument) {
             TLRPC$Document tLRPC$Document = tLRPC$MessageMedia.document;
             if (tLRPC$Document != null) {
                 int size2 = tLRPC$Document.thumbs.size();
                 while (i < size2) {
-                    tLRPC$PhotoSize = tLRPC$Message.media.document.thumbs.get(i);
-                    if (!(tLRPC$PhotoSize instanceof TLRPC$TL_photoCachedSize)) {
-                        i++;
+                    TLRPC$PhotoSize tLRPC$PhotoSize2 = tLRPC$Message.media.document.thumbs.get(i);
+                    if (tLRPC$PhotoSize2 instanceof TLRPC$TL_photoCachedSize) {
+                        return tLRPC$PhotoSize2;
                     }
+                    i++;
                 }
-                return null;
             }
-            return null;
         } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaWebPage) {
             TLRPC$Photo tLRPC$Photo = tLRPC$MessageMedia.webpage.photo;
             if (tLRPC$Photo != null) {
                 int size3 = tLRPC$Photo.sizes.size();
                 while (i < size3) {
-                    tLRPC$PhotoSize = tLRPC$Message.media.webpage.photo.sizes.get(i);
-                    if (!(tLRPC$PhotoSize instanceof TLRPC$TL_photoCachedSize)) {
-                        i++;
+                    TLRPC$PhotoSize tLRPC$PhotoSize3 = tLRPC$Message.media.webpage.photo.sizes.get(i);
+                    if (tLRPC$PhotoSize3 instanceof TLRPC$TL_photoCachedSize) {
+                        return tLRPC$PhotoSize3;
                     }
+                    i++;
                 }
-                return null;
             }
-            return null;
         } else if ((tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaInvoice) && !tLRPC$MessageMedia.extended_media.isEmpty() && (tLRPC$Message.media.extended_media.get(0) instanceof TLRPC$TL_messageExtendedMediaPreview)) {
             return ((TLRPC$TL_messageExtendedMediaPreview) tLRPC$Message.media.extended_media.get(0)).thumb;
-        } else {
-            return null;
         }
-        return tLRPC$PhotoSize;
+        return null;
     }
 
     private static TLRPC$PhotoSize findPhotoCachedSize(TLRPC$MessageMedia tLRPC$MessageMedia) {
-        TLRPC$PhotoSize tLRPC$PhotoSize;
         int i = 0;
         if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaPhoto) {
             int size = tLRPC$MessageMedia.photo.sizes.size();
             while (i < size) {
-                tLRPC$PhotoSize = tLRPC$MessageMedia.photo.sizes.get(i);
-                if (!(tLRPC$PhotoSize instanceof TLRPC$TL_photoCachedSize)) {
-                    i++;
+                TLRPC$PhotoSize tLRPC$PhotoSize = tLRPC$MessageMedia.photo.sizes.get(i);
+                if (tLRPC$PhotoSize instanceof TLRPC$TL_photoCachedSize) {
+                    return tLRPC$PhotoSize;
                 }
+                i++;
             }
-            return null;
         } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaDocument) {
             TLRPC$Document tLRPC$Document = tLRPC$MessageMedia.document;
             if (tLRPC$Document != null) {
                 int size2 = tLRPC$Document.thumbs.size();
                 while (i < size2) {
-                    tLRPC$PhotoSize = tLRPC$MessageMedia.document.thumbs.get(i);
-                    if (!(tLRPC$PhotoSize instanceof TLRPC$TL_photoCachedSize)) {
-                        i++;
+                    TLRPC$PhotoSize tLRPC$PhotoSize2 = tLRPC$MessageMedia.document.thumbs.get(i);
+                    if (tLRPC$PhotoSize2 instanceof TLRPC$TL_photoCachedSize) {
+                        return tLRPC$PhotoSize2;
                     }
+                    i++;
                 }
-                return null;
             }
-            return null;
         } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaWebPage) {
             TLRPC$Photo tLRPC$Photo = tLRPC$MessageMedia.webpage.photo;
             if (tLRPC$Photo != null) {
                 int size3 = tLRPC$Photo.sizes.size();
                 while (i < size3) {
-                    tLRPC$PhotoSize = tLRPC$MessageMedia.webpage.photo.sizes.get(i);
-                    if (!(tLRPC$PhotoSize instanceof TLRPC$TL_photoCachedSize)) {
-                        i++;
+                    TLRPC$PhotoSize tLRPC$PhotoSize3 = tLRPC$MessageMedia.webpage.photo.sizes.get(i);
+                    if (tLRPC$PhotoSize3 instanceof TLRPC$TL_photoCachedSize) {
+                        return tLRPC$PhotoSize3;
                     }
+                    i++;
                 }
-                return null;
             }
-            return null;
         } else if ((tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaInvoice) && !tLRPC$MessageMedia.extended_media.isEmpty() && (tLRPC$MessageMedia.extended_media.get(0) instanceof TLRPC$TL_messageExtendedMediaPreview)) {
             return ((TLRPC$TL_messageExtendedMediaPreview) tLRPC$MessageMedia.extended_media.get(0)).thumb;
-        } else {
-            return null;
         }
-        return tLRPC$PhotoSize;
+        return null;
     }
 
     public static void saveMessagesThumbs(ArrayList<TLRPC$Message> arrayList) {
@@ -2974,7 +2734,7 @@ public class ImageLoader {
             tLRPC$TL_photoSize_layer127.size = findPhotoCachedSize.size;
             tLRPC$TL_photoSize_layer127.type = findPhotoCachedSize.type;
             if (pathToAttach.exists() && tLRPC$Message.grouped_id == 0) {
-                org.telegram.ui.Components.Point messageSize = ChatMessageCell.getMessageSize(findPhotoCachedSize.w, findPhotoCachedSize.h);
+                Point messageSize = ChatMessageCell.getMessageSize(findPhotoCachedSize.w, findPhotoCachedSize.h);
                 String format = String.format(Locale.US, "%d_%d@%d_%d_b", Long.valueOf(findPhotoCachedSize.location.volume_id), Integer.valueOf(findPhotoCachedSize.location.local_id), Integer.valueOf((int) (messageSize.x / AndroidUtilities.density)), Integer.valueOf((int) (messageSize.y / AndroidUtilities.density)));
                 if (!getInstance().isInMemCache(format, false)) {
                     String path = pathToAttach.getPath();
@@ -3009,20 +2769,20 @@ public class ImageLoader {
                                     i = 0;
                                     i2 = 0;
                                     break;
-                                } else if (tLRPC$Message.media.document.attributes.get(i4) instanceof TLRPC$TL_documentAttributeVideo) {
+                                }
+                                if (tLRPC$Message.media.document.attributes.get(i4) instanceof TLRPC$TL_documentAttributeVideo) {
                                     TLRPC$TL_documentAttributeVideo tLRPC$TL_documentAttributeVideo = (TLRPC$TL_documentAttributeVideo) tLRPC$Message.media.document.attributes.get(i4);
                                     i2 = tLRPC$TL_documentAttributeVideo.h;
                                     i = tLRPC$TL_documentAttributeVideo.w;
                                     break;
-                                } else {
-                                    i4++;
                                 }
+                                i4++;
                             }
                         } else {
                             i2 = closestPhotoSizeWithSize.h;
                             i = closestPhotoSizeWithSize.w;
                         }
-                        org.telegram.ui.Components.Point messageSize2 = ChatMessageCell.getMessageSize(i, i2);
+                        Point messageSize2 = ChatMessageCell.getMessageSize(i, i2);
                         String format2 = String.format(Locale.US, "%s_false@%d_%d_b", ImageLocation.getStrippedKey(tLRPC$Message, tLRPC$Message, tLRPC$PhotoSize), Integer.valueOf((int) (messageSize2.x / AndroidUtilities.density)), Integer.valueOf((int) (messageSize2.y / AndroidUtilities.density)));
                         if (!getInstance().isInMemCache(format2, false) && (strippedPhotoBitmap = getStrippedPhotoBitmap(tLRPC$PhotoSize.bytes, null)) != null) {
                             Utilities.blurBitmap(strippedPhotoBitmap, 3, 1, strippedPhotoBitmap.getWidth(), strippedPhotoBitmap.getHeight(), strippedPhotoBitmap.getRowBytes());

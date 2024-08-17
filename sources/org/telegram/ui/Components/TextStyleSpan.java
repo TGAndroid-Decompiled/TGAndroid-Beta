@@ -6,6 +6,7 @@ import android.text.style.MetricAffectingSpan;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC$MessageEntity;
 import org.telegram.ui.ActionBar.Theme;
+
 public class TextStyleSpan extends MetricAffectingSpan {
     private int color;
     private TextStyleRun style;
@@ -63,19 +64,20 @@ public class TextStyleSpan extends MetricAffectingSpan {
 
         public Typeface getTypeface() {
             int i = this.flags;
-            if ((i & 4) == 0 && (i & 2048) == 0) {
-                if ((i & 1) == 0 || (i & 2) == 0) {
-                    if ((i & 1) != 0) {
-                        return AndroidUtilities.bold();
-                    }
-                    if ((i & 2) != 0) {
-                        return AndroidUtilities.getTypeface("fonts/ritalic.ttf");
-                    }
-                    return null;
-                }
+            if ((i & 4) != 0 || (i & 2048) != 0) {
+                return Typeface.MONOSPACE;
+            }
+            int i2 = i & 1;
+            if (i2 != 0 && (i & 2) != 0) {
                 return AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf");
             }
-            return Typeface.MONOSPACE;
+            if (i2 != 0) {
+                return AndroidUtilities.bold();
+            }
+            if ((i & 2) != 0) {
+                return AndroidUtilities.getTypeface("fonts/ritalic.ttf");
+            }
+            return null;
         }
     }
 
@@ -106,9 +108,9 @@ public class TextStyleSpan extends MetricAffectingSpan {
     public void setSpoilerRevealed(boolean z) {
         if (z) {
             this.style.flags |= 512;
-            return;
+        } else {
+            this.style.flags &= -513;
         }
-        this.style.flags &= -513;
     }
 
     @Override

@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_labeledPrice extends TLObject {
     public long amount;
     public String label;

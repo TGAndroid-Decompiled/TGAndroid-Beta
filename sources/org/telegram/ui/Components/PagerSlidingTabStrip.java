@@ -19,6 +19,8 @@ import androidx.core.graphics.ColorUtils;
 import androidx.viewpager.widget.ViewPager;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticApiModelOutline0;
+
 public class PagerSlidingTabStrip extends HorizontalScrollView {
     private int currentPosition;
     private float currentPositionOffset;
@@ -155,9 +157,9 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         };
         imageView.setFocusable(true);
         if (Build.VERSION.SDK_INT >= 21) {
-            RippleDrawable rippleDrawable = (RippleDrawable) Theme.createSelectorDrawable(getThemedColor(Theme.key_chat_emojiBottomPanelIcon), 1, AndroidUtilities.dp(18.0f));
-            Theme.setRippleDrawableForceSoftware(rippleDrawable);
-            imageView.setBackground(rippleDrawable);
+            RippleDrawable m = Theme$$ExternalSyntheticApiModelOutline0.m(Theme.createSelectorDrawable(getThemedColor(Theme.key_chat_emojiBottomPanelIcon), 1, AndroidUtilities.dp(18.0f)));
+            Theme.setRippleDrawableForceSoftware(m);
+            imageView.setBackground(m);
         }
         imageView.setImageDrawable(drawable);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -258,8 +260,8 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
             this.rectPaint.setColor(this.underlineColor);
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(0.0f, height - this.underlineHeight, this.tabsContainer.getWidth(), height);
-            int i2 = this.underlineHeight;
-            canvas.drawRoundRect(rectF, i2 / 2.0f, i2 / 2.0f, this.rectPaint);
+            float f3 = this.underlineHeight / 2.0f;
+            canvas.drawRoundRect(rectF, f3, f3, this.rectPaint);
         }
         View childAt = this.tabsContainer.getChildAt(this.currentPosition);
         if (childAt != null) {
@@ -267,9 +269,12 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
             float right = childAt.getRight() - childAt.getPaddingRight();
             if (this.currentPositionOffset > 0.0f && (i = this.currentPosition) < this.tabCount - 1) {
                 View childAt2 = this.tabsContainer.getChildAt(i + 1);
-                float f3 = this.currentPositionOffset;
-                f = ((childAt2.getLeft() + childAt2.getPaddingLeft()) * f3) + ((1.0f - f3) * left);
-                f2 = ((childAt2.getRight() - childAt2.getPaddingRight()) * f3) + ((1.0f - f3) * right);
+                float left2 = childAt2.getLeft() + childAt2.getPaddingLeft();
+                float right2 = childAt2.getRight() - childAt2.getPaddingRight();
+                float f4 = this.currentPositionOffset;
+                float f5 = 1.0f - f4;
+                f = (left2 * f4) + (left * f5);
+                f2 = (f4 * right2) + (f5 * right);
                 this.lineLeftAnimated.set(f, true);
                 this.lineRightAnimated.set(f2, true);
                 if (childAt instanceof TextTab) {
@@ -301,8 +306,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
             PagerSlidingTabStrip.this.currentPosition = i;
             PagerSlidingTabStrip.this.currentPositionOffset = f;
             if (PagerSlidingTabStrip.this.tabsContainer.getChildAt(i) != null) {
-                PagerSlidingTabStrip pagerSlidingTabStrip = PagerSlidingTabStrip.this;
-                pagerSlidingTabStrip.scrollToChild(i, (int) (pagerSlidingTabStrip.tabsContainer.getChildAt(i).getWidth() * f));
+                PagerSlidingTabStrip.this.scrollToChild(i, (int) (r0.tabsContainer.getChildAt(i).getWidth() * f));
                 PagerSlidingTabStrip.this.invalidate();
                 ViewPager.OnPageChangeListener onPageChangeListener = PagerSlidingTabStrip.this.delegatePageListener;
                 if (onPageChangeListener != null) {

@@ -15,7 +15,6 @@ import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$DocumentAttribute;
 import org.telegram.tgnet.TLRPC$TL_documentAttributeSticker;
 import org.telegram.tgnet.TLRPC$TL_maskCoords;
-import org.telegram.ui.Components.AnimatedFileDrawable;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
@@ -24,6 +23,7 @@ import org.telegram.ui.Components.Point;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.Rect;
 import org.telegram.ui.Components.Size;
+
 public class StickerView extends EntityView {
     private int anchor;
     private Size baseSize;
@@ -152,8 +152,10 @@ public class StickerView extends EntityView {
     @Override
     public void updatePosition() {
         Size size = this.baseSize;
-        setX(getPositionX() - (size.width / 2.0f));
-        setY(getPositionY() - (size.height / 2.0f));
+        float f = size.width / 2.0f;
+        float f2 = size.height / 2.0f;
+        setX(getPositionX() - f);
+        setY(getPositionY() - f2);
         updateSelectionView();
     }
 
@@ -177,9 +179,8 @@ public class StickerView extends EntityView {
         if (lottieAnimation != null) {
             return lottieAnimation.getDuration();
         }
-        AnimatedFileDrawable animation = this.centerImage.getAnimation();
-        if (animation != null) {
-            return animation.getDurationMs();
+        if (this.centerImage.getAnimation() != null) {
+            return r0.getDurationMs();
         }
         return 0L;
     }
@@ -229,18 +230,19 @@ public class StickerView extends EntityView {
 
         @Override
         protected int pointInsideHandle(float f, float f2) {
-            float dp = AndroidUtilities.dp(19.5f);
-            float dp2 = AndroidUtilities.dp(1.0f) + dp;
-            float f3 = dp2 * 2.0f;
-            float measuredHeight = ((getMeasuredHeight() - f3) / 2.0f) + dp2;
-            if (f <= dp2 - dp || f2 <= measuredHeight - dp || f >= dp2 + dp || f2 >= measuredHeight + dp) {
-                if (f <= ((getMeasuredWidth() - f3) + dp2) - dp || f2 <= measuredHeight - dp || f >= dp2 + (getMeasuredWidth() - f3) + dp || f2 >= measuredHeight + dp) {
-                    float measuredWidth = getMeasuredWidth() / 2.0f;
-                    return Math.pow((double) (f - measuredWidth), 2.0d) + Math.pow((double) (f2 - measuredWidth), 2.0d) < Math.pow((double) measuredWidth, 2.0d) ? 3 : 0;
-                }
+            float dp = AndroidUtilities.dp(1.0f);
+            float dp2 = AndroidUtilities.dp(19.5f);
+            float f3 = dp + dp2;
+            float f4 = f3 * 2.0f;
+            float measuredHeight = ((getMeasuredHeight() - f4) / 2.0f) + f3;
+            if (f > f3 - dp2 && f2 > measuredHeight - dp2 && f < f3 + dp2 && f2 < measuredHeight + dp2) {
+                return 1;
+            }
+            if (f > ((getMeasuredWidth() - f4) + f3) - dp2 && f2 > measuredHeight - dp2 && f < f3 + (getMeasuredWidth() - f4) + dp2 && f2 < measuredHeight + dp2) {
                 return 2;
             }
-            return 1;
+            float measuredWidth = getMeasuredWidth() / 2.0f;
+            return Math.pow((double) (f - measuredWidth), 2.0d) + Math.pow((double) (f2 - measuredWidth), 2.0d) < Math.pow((double) measuredWidth, 2.0d) ? 3 : 0;
         }
 
         @Override
@@ -254,16 +256,17 @@ public class StickerView extends EntityView {
             if (showAlpha < 1.0f) {
                 canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (showAlpha * 255.0f), 31);
             }
+            float dp = AndroidUtilities.dp(1.0f);
             float dpf2 = AndroidUtilities.dpf2(5.66f);
-            float dp = AndroidUtilities.dp(1.0f) + dpf2 + AndroidUtilities.dp(15.0f);
-            float measuredWidth = (getMeasuredWidth() / 2) - dp;
-            float f = dp + (2.0f * measuredWidth);
-            this.arcRect.set(dp, dp, f, f);
+            float dp2 = dp + dpf2 + AndroidUtilities.dp(15.0f);
+            float measuredWidth = (getMeasuredWidth() / 2) - dp2;
+            float f = dp2 + (2.0f * measuredWidth);
+            this.arcRect.set(dp2, dp2, f, f);
             canvas.drawArc(this.arcRect, 0.0f, 180.0f, false, this.paint);
             canvas.drawArc(this.arcRect, 180.0f, 180.0f, false, this.paint);
-            float f2 = measuredWidth + dp;
-            canvas.drawCircle(dp, f2, dpf2, this.dotStrokePaint);
-            canvas.drawCircle(dp, f2, dpf2 - AndroidUtilities.dp(1.0f), this.dotPaint);
+            float f2 = measuredWidth + dp2;
+            canvas.drawCircle(dp2, f2, dpf2, this.dotStrokePaint);
+            canvas.drawCircle(dp2, f2, dpf2 - AndroidUtilities.dp(1.0f), this.dotPaint);
             canvas.drawCircle(f, f2, dpf2, this.dotStrokePaint);
             canvas.drawCircle(f, f2, dpf2 - AndroidUtilities.dp(1.0f), this.dotPaint);
             canvas.restoreToCount(saveCount);

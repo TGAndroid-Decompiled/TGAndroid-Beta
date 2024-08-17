@@ -22,6 +22,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.LayoutHelper;
+
 public class PhotoPickerPhotoCell extends FrameLayout {
     private Paint backgroundPaint;
     public CheckBox2 checkBox;
@@ -123,23 +124,23 @@ public class PhotoPickerPhotoCell extends FrameLayout {
         String str = photoEntry.thumbPath;
         if (str != null) {
             this.imageView.setImage(str, null, drawable);
-        } else if (photoEntry.path != null) {
+            return;
+        }
+        if (photoEntry.path != null) {
             this.imageView.setOrientation(photoEntry.orientation, photoEntry.invert, true);
             if (photoEntry.isVideo) {
                 this.videoInfoContainer.setVisibility(0);
                 this.videoTextView.setText(AndroidUtilities.formatShortDuration(photoEntry.duration));
                 setContentDescription(LocaleController.getString("AttachVideo", R.string.AttachVideo) + ", " + LocaleController.formatDuration(photoEntry.duration));
-                BackupImageView backupImageView = this.imageView;
-                backupImageView.setImage("vthumb://" + photoEntry.imageId + ":" + photoEntry.path, null, drawable);
+                this.imageView.setImage("vthumb://" + photoEntry.imageId + ":" + photoEntry.path, null, drawable);
                 return;
             }
             this.videoInfoContainer.setVisibility(4);
             setContentDescription(LocaleController.getString("AttachPhoto", R.string.AttachPhoto));
-            BackupImageView backupImageView2 = this.imageView;
-            backupImageView2.setImage("thumb://" + photoEntry.imageId + ":" + photoEntry.path, null, drawable);
-        } else {
-            this.imageView.setImageDrawable(drawable);
+            this.imageView.setImage("thumb://" + photoEntry.imageId + ":" + photoEntry.path, null, drawable);
+            return;
         }
+        this.imageView.setImageDrawable(drawable);
     }
 
     public void setImage(MediaController.SearchImage searchImage) {

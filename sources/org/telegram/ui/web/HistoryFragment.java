@@ -33,6 +33,7 @@ import org.telegram.ui.web.AddressBarList;
 import org.telegram.ui.web.BrowserHistory;
 import org.telegram.ui.web.HistoryFragment;
 import org.telegram.ui.web.WebMetadataCache;
+
 public class HistoryFragment extends UniversalFragment {
     private final Runnable closeToTabs;
     private StickerEmptyView emptyView;
@@ -152,7 +153,7 @@ public class HistoryFragment extends UniversalFragment {
                     });
                     return;
                 }
-                HistoryFragment.this.finishFragment();
+                HistoryFragment.this.lambda$onBackPressed$308();
             }
         }
 
@@ -331,10 +332,10 @@ public class HistoryFragment extends UniversalFragment {
         if (uItem.instanceOf(AddressBarList.BookmarkView.Factory.class)) {
             if (this.actionBar.isActionModeShowed()) {
                 clickSelect(uItem, view);
-                return;
+            } else {
+                lambda$onBackPressed$308();
+                this.whenClicked.run((BrowserHistory.Entry) uItem.object2);
             }
-            finishFragment();
-            this.whenClicked.run((BrowserHistory.Entry) uItem.object2);
         }
     }
 

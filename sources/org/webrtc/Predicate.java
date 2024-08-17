@@ -1,4 +1,5 @@
 package org.webrtc;
+
 public interface Predicate<T> {
     Predicate<T> and(Predicate<? super T> predicate);
 
@@ -8,9 +9,9 @@ public interface Predicate<T> {
 
     boolean test(T t);
 
-    public final class CC<T> {
+    public final class CC {
         public static Predicate $default$or(final Predicate predicate, final Predicate predicate2) {
-            return new Predicate<T>() {
+            return new Predicate() {
                 @Override
                 public Predicate and(Predicate predicate3) {
                     return CC.$default$and(this, predicate3);
@@ -27,14 +28,14 @@ public interface Predicate<T> {
                 }
 
                 @Override
-                public boolean test(T t) {
-                    return Predicate.this.test(t) || predicate2.test(t);
+                public boolean test(Object obj) {
+                    return Predicate.this.test(obj) || predicate2.test(obj);
                 }
             };
         }
 
         public static Predicate $default$and(final Predicate predicate, final Predicate predicate2) {
-            return new Predicate<T>() {
+            return new Predicate() {
                 @Override
                 public Predicate and(Predicate predicate3) {
                     return CC.$default$and(this, predicate3);
@@ -51,14 +52,14 @@ public interface Predicate<T> {
                 }
 
                 @Override
-                public boolean test(T t) {
-                    return Predicate.this.test(t) && predicate2.test(t);
+                public boolean test(Object obj) {
+                    return Predicate.this.test(obj) && predicate2.test(obj);
                 }
             };
         }
 
         public static Predicate $default$negate(final Predicate predicate) {
-            return new Predicate<T>() {
+            return new Predicate() {
                 @Override
                 public Predicate and(Predicate predicate2) {
                     return CC.$default$and(this, predicate2);
@@ -75,8 +76,8 @@ public interface Predicate<T> {
                 }
 
                 @Override
-                public boolean test(T t) {
-                    return !Predicate.this.test(t);
+                public boolean test(Object obj) {
+                    return !Predicate.this.test(obj);
                 }
             };
         }

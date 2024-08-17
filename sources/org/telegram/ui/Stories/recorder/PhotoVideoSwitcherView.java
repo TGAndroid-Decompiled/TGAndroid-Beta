@@ -17,6 +17,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Stories.recorder.FlashViews;
+
 public class PhotoVideoSwitcherView extends View implements FlashViews.Invertable {
     private ValueAnimator animator;
     private boolean mIsScrolling;
@@ -58,13 +59,17 @@ public class PhotoVideoSwitcherView extends View implements FlashViews.Invertabl
         this.textPaint.setTextSize(AndroidUtilities.dpf2(14.0f));
         this.textPaint.setShadowLayer(AndroidUtilities.dpf2(1.0f), 0.0f, AndroidUtilities.dpf2(0.4f), 855638016);
         String string = LocaleController.getString("StoryPhoto");
-        StaticLayout staticLayout = new StaticLayout(string == null ? "Photo" : string, this.textPaint, AndroidUtilities.displaySize.x / 2, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        string = string == null ? "Photo" : string;
+        TextPaint textPaint = this.textPaint;
+        int i = AndroidUtilities.displaySize.x / 2;
+        Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
+        StaticLayout staticLayout = new StaticLayout(string, textPaint, i, alignment, 1.0f, 0.0f, false);
         this.photoText = staticLayout;
         this.photoTextLeft = staticLayout.getLineCount() > 0 ? this.photoText.getLineLeft(0) : 0.0f;
         this.photoTextWidth = this.photoText.getLineCount() > 0 ? this.photoText.getLineWidth(0) : 0.0f;
         this.photoTextHeight = this.photoText.getHeight();
         String string2 = LocaleController.getString("StoryVideo");
-        StaticLayout staticLayout2 = new StaticLayout(string2 == null ? "Video" : string2, this.textPaint, AndroidUtilities.displaySize.x / 2, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        StaticLayout staticLayout2 = new StaticLayout(string2 == null ? "Video" : string2, this.textPaint, AndroidUtilities.displaySize.x / 2, alignment, 1.0f, 0.0f, false);
         this.videoText = staticLayout2;
         this.videoTextLeft = staticLayout2.getLineCount() > 0 ? this.videoText.getLineLeft(0) : 0.0f;
         this.videoTextWidth = this.videoText.getLineCount() > 0 ? this.videoText.getLineWidth(0) : 0.0f;
@@ -86,10 +91,7 @@ public class PhotoVideoSwitcherView extends View implements FlashViews.Invertabl
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        float[] fArr = new float[2];
-        fArr[0] = this.mode;
-        fArr[1] = z ? 1.0f : 0.0f;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.mode, z ? 1.0f : 0.0f);
         this.animator = ofFloat;
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -159,23 +161,21 @@ public class PhotoVideoSwitcherView extends View implements FlashViews.Invertabl
         super.draw(canvas);
         float height = getHeight() / 2.0f;
         float scrollCx = getScrollCx();
-        int dp = AndroidUtilities.dp(26.0f);
-        RectF rectF = this.photoRect;
-        float dp2 = (scrollCx - AndroidUtilities.dp(28.0f)) - this.photoTextWidth;
-        float f = dp / 2.0f;
-        float f2 = -AndroidUtilities.dp(1.0f);
-        float f3 = (height - f) + f2;
-        float f4 = height + f + f2;
-        rectF.set(dp2, f3, scrollCx - AndroidUtilities.dp(4.0f), f4);
-        this.videoRect.set(AndroidUtilities.dp(4.0f) + scrollCx, f3, AndroidUtilities.dp(28.0f) + scrollCx + this.videoTextWidth, f4);
+        int i = -AndroidUtilities.dp(1.0f);
+        float dp = AndroidUtilities.dp(26.0f) / 2.0f;
+        float f = i;
+        float f2 = (height - dp) + f;
+        float f3 = height + dp + f;
+        this.photoRect.set((scrollCx - AndroidUtilities.dp(28.0f)) - this.photoTextWidth, f2, scrollCx - AndroidUtilities.dp(4.0f), f3);
+        this.videoRect.set(AndroidUtilities.dp(4.0f) + scrollCx, f2, AndroidUtilities.dp(28.0f) + scrollCx + this.videoTextWidth, f3);
         AndroidUtilities.lerp(this.photoRect, this.videoRect, Utilities.clamp(this.mode, 1.025f, -0.025f), this.selectorRect);
-        canvas.drawRoundRect(this.selectorRect, f, f, this.selectorPaint);
+        canvas.drawRoundRect(this.selectorRect, dp, dp, this.selectorPaint);
         canvas.save();
-        canvas.translate(((scrollCx - AndroidUtilities.dp(16.0f)) - this.photoTextWidth) - this.photoTextLeft, (height - (this.photoTextHeight / 2.0f)) + f2);
+        canvas.translate(((scrollCx - AndroidUtilities.dp(16.0f)) - this.photoTextWidth) - this.photoTextLeft, (height - (this.photoTextHeight / 2.0f)) + f);
         this.photoText.draw(canvas);
         canvas.restore();
         canvas.save();
-        canvas.translate((scrollCx + AndroidUtilities.dp(16.0f)) - this.videoTextLeft, (height - (this.videoTextHeight / 2.0f)) + f2);
+        canvas.translate((scrollCx + AndroidUtilities.dp(16.0f)) - this.videoTextLeft, (height - (this.videoTextHeight / 2.0f)) + f);
         this.videoText.draw(canvas);
         canvas.restore();
     }

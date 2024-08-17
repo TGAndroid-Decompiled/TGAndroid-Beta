@@ -20,6 +20,7 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.UsersSelectActivity;
+
 public class BusinessRecipientsHelper {
     public boolean bot;
     private TLRPC$TL_businessBotRecipients currentValue;
@@ -46,29 +47,29 @@ public class BusinessRecipientsHelper {
 
     public boolean hasChanges() {
         TLRPC$TL_businessBotRecipients tLRPC$TL_businessBotRecipients = this.currentValue;
-        if (tLRPC$TL_businessBotRecipients != null && tLRPC$TL_businessBotRecipients.exclude_selected == this.exclude && (tLRPC$TL_businessBotRecipients.flags & (-49)) == getFlags()) {
-            ArrayList<Long> arrayList = this.exclude ? this.neverShow : this.alwaysShow;
-            if (arrayList.size() != this.currentValue.users.size()) {
+        if (tLRPC$TL_businessBotRecipients == null || tLRPC$TL_businessBotRecipients.exclude_selected != this.exclude || (tLRPC$TL_businessBotRecipients.flags & (-49)) != getFlags()) {
+            return true;
+        }
+        ArrayList<Long> arrayList = this.exclude ? this.neverShow : this.alwaysShow;
+        if (arrayList.size() != this.currentValue.users.size()) {
+            return true;
+        }
+        for (int i = 0; i < arrayList.size(); i++) {
+            if (!this.currentValue.users.contains(arrayList.get(i))) {
                 return true;
             }
-            for (int i = 0; i < arrayList.size(); i++) {
-                if (!this.currentValue.users.contains(arrayList.get(i))) {
-                    return true;
-                }
-            }
-            if (this.bot && !this.exclude) {
-                if (this.neverShow.size() != this.currentValue.users.size()) {
-                    return true;
-                }
-                for (int i2 = 0; i2 < this.neverShow.size(); i2++) {
-                    if (!this.currentValue.users.contains(this.neverShow.get(i2))) {
-                        return true;
-                    }
-                }
-            }
-            return false;
         }
-        return true;
+        if (this.bot && !this.exclude) {
+            if (this.neverShow.size() != this.currentValue.users.size()) {
+                return true;
+            }
+            for (int i2 = 0; i2 < this.neverShow.size(); i2++) {
+                if (!this.currentValue.users.contains(this.neverShow.get(i2))) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public void setValue(TLRPC$TL_businessRecipients tLRPC$TL_businessRecipients) {
@@ -268,16 +269,16 @@ public class BusinessRecipientsHelper {
     }
 
     public boolean validate(UniversalRecyclerView universalRecyclerView) {
-        if (!this.exclude && this.alwaysShow.isEmpty() && this.includeFlags == 0) {
-            BotWebViewVibrationEffect.APP_ERROR.vibrate();
-            View findViewByItemId = universalRecyclerView.findViewByItemId(101);
-            int i = -this.shiftDp;
-            this.shiftDp = i;
-            AndroidUtilities.shakeViewSpring(findViewByItemId, i);
-            universalRecyclerView.smoothScrollToPosition(universalRecyclerView.findPositionByItemId(101));
-            return false;
+        if (this.exclude || !this.alwaysShow.isEmpty() || this.includeFlags != 0) {
+            return true;
         }
-        return true;
+        BotWebViewVibrationEffect.APP_ERROR.vibrate();
+        View findViewByItemId = universalRecyclerView.findViewByItemId(101);
+        int i = -this.shiftDp;
+        this.shiftDp = i;
+        AndroidUtilities.shakeViewSpring(findViewByItemId, i);
+        universalRecyclerView.smoothScrollToPosition(universalRecyclerView.findPositionByItemId(101));
+        return false;
     }
 
     public void setExclude(boolean z) {
@@ -354,30 +355,32 @@ public class BusinessRecipientsHelper {
         if (i == 101 || i == 103) {
             selectChatsFor(i == 101);
             return true;
-        } else if (i == 102) {
+        }
+        if (i == 102) {
             this.includeExpanded = true;
             this.update.run();
             return true;
-        } else if (i == 104) {
+        }
+        if (i == 104) {
             this.excludeExpanded = true;
             this.update.run();
             return true;
-        } else if (uItem.viewType != 11 || this.fragment == null) {
-            return false;
-        } else {
-            final boolean z = uItem.include;
-            String str = uItem.chatType;
-            final int flag = str == null ? 0 : getFlag(str);
-            String peerName = flag == 0 ? this.fragment.getMessagesController().getPeerName(uItem.dialogId) : getFlagName(flag);
-            BaseFragment baseFragment = this.fragment;
-            baseFragment.showDialog(new AlertDialog.Builder(baseFragment.getContext(), this.fragment.getResourceProvider()).setTitle(LocaleController.getString(!z ? R.string.BusinessRecipientsRemoveExcludeTitle : R.string.BusinessRecipientsRemoveIncludeTitle)).setMessage(LocaleController.formatString(!z ? R.string.BusinessRecipientsRemoveExcludeMessage : R.string.BusinessRecipientsRemoveIncludeMessage, peerName)).setPositiveButton(LocaleController.getString(R.string.Remove), new DialogInterface.OnClickListener() {
-                @Override
-                public final void onClick(DialogInterface dialogInterface, int i2) {
-                    BusinessRecipientsHelper.this.lambda$onClick$0(flag, z, uItem, dialogInterface, i2);
-                }
-            }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create());
-            return true;
         }
+        if (uItem.viewType != 11 || this.fragment == null) {
+            return false;
+        }
+        final boolean z = uItem.include;
+        String str = uItem.chatType;
+        final int flag = str == null ? 0 : getFlag(str);
+        String peerName = flag == 0 ? this.fragment.getMessagesController().getPeerName(uItem.dialogId) : getFlagName(flag);
+        BaseFragment baseFragment = this.fragment;
+        baseFragment.showDialog(new AlertDialog.Builder(baseFragment.getContext(), this.fragment.getResourceProvider()).setTitle(LocaleController.getString(!z ? R.string.BusinessRecipientsRemoveExcludeTitle : R.string.BusinessRecipientsRemoveIncludeTitle)).setMessage(LocaleController.formatString(!z ? R.string.BusinessRecipientsRemoveExcludeMessage : R.string.BusinessRecipientsRemoveIncludeMessage, peerName)).setPositiveButton(LocaleController.getString(R.string.Remove), new DialogInterface.OnClickListener() {
+            @Override
+            public final void onClick(DialogInterface dialogInterface, int i2) {
+                BusinessRecipientsHelper.this.lambda$onClick$0(flag, z, uItem, dialogInterface, i2);
+            }
+        }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create());
+        return true;
     }
 
     public void lambda$onClick$0(int i, boolean z, UItem uItem, DialogInterface dialogInterface, int i2) {
@@ -435,16 +438,16 @@ public class BusinessRecipientsHelper {
     }
 
     private String getFlagName(int i) {
-        if (i != 1) {
-            if (i != 2) {
-                if (i == 4) {
-                    return LocaleController.getString(R.string.FilterContacts);
-                }
-                return LocaleController.getString(R.string.FilterNonContacts);
-            }
+        if (i == 1) {
+            return LocaleController.getString(R.string.FilterExistingChats);
+        }
+        if (i == 2) {
             return LocaleController.getString(R.string.FilterNewChats);
         }
-        return LocaleController.getString(R.string.FilterExistingChats);
+        if (i == 4) {
+            return LocaleController.getString(R.string.FilterContacts);
+        }
+        return LocaleController.getString(R.string.FilterNonContacts);
     }
 
     public void doNotExcludeNewChats() {
@@ -453,10 +456,9 @@ public class BusinessRecipientsHelper {
 
     private void selectChatsFor(final boolean z) {
         UsersSelectActivity asPrivateChats = new UsersSelectActivity(z, z ? this.alwaysShow : this.neverShow, getFlags()).asPrivateChats();
-        boolean z2 = true;
         asPrivateChats.noChatTypes = (!this.bot || this.exclude || z) ? false : true;
         asPrivateChats.allowSelf = false;
-        asPrivateChats.doNotNewChats = (z || !this.doNotExcludeNewChats) ? false : false;
+        asPrivateChats.doNotNewChats = !z && this.doNotExcludeNewChats;
         asPrivateChats.setDelegate(new UsersSelectActivity.FilterUsersActivityDelegate() {
             @Override
             public final void didSelectChats(ArrayList arrayList, int i) {

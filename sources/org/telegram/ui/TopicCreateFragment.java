@@ -60,6 +60,7 @@ import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
 import org.telegram.ui.Components.ReplaceableIconDrawable;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.TopicCreateFragment;
+
 public class TopicCreateFragment extends BaseFragment {
     BackupImageView[] backupImageView;
     long chatId;
@@ -303,7 +304,7 @@ public class TopicCreateFragment extends BaseFragment {
         }
 
         @Override
-        public void onItemClick(int r13) {
+        public void onItemClick(int r12) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.TopicCreateFragment.AnonymousClass1.onItemClick(int):void");
         }
 
@@ -447,8 +448,7 @@ public class TopicCreateFragment extends BaseFragment {
     }
 
     public void lambda$createView$1(View view) {
-        TextCheckCell2 textCheckCell2 = this.checkBoxCell;
-        textCheckCell2.setChecked(!textCheckCell2.isChecked());
+        this.checkBoxCell.setChecked(!r2.isChecked());
     }
 
     public void selectEmoji(Long l, boolean z) {

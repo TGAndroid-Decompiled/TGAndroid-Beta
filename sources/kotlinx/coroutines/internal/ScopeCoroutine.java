@@ -5,6 +5,7 @@ import kotlin.coroutines.intrinsics.IntrinsicsKt__IntrinsicsJvmKt;
 import kotlin.coroutines.jvm.internal.CoroutineStackFrame;
 import kotlinx.coroutines.AbstractCoroutine;
 import kotlinx.coroutines.CompletionStateKt;
+
 public class ScopeCoroutine<T> extends AbstractCoroutine<T> implements CoroutineStackFrame {
     public final Continuation<T> uCont;
 

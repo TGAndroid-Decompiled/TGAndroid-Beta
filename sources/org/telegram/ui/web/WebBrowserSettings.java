@@ -50,6 +50,7 @@ import org.telegram.ui.Components.UniversalFragment;
 import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.web.BrowserHistory;
 import org.telegram.ui.web.WebMetadataCache;
+
 public class WebBrowserSettings extends UniversalFragment implements NotificationCenter.NotificationCenterDelegate {
     private Drawable addIcon;
     private long cacheSize;
@@ -89,14 +90,13 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
     }
 
     private void loadSizes() {
-        ArrayList<BrowserHistory.Entry> history = BrowserHistory.getHistory(new Utilities.Callback() {
+        if (BrowserHistory.getHistory(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
                 WebBrowserSettings.this.lambda$loadSizes$0((ArrayList) obj);
             }
-        });
-        if (history != null) {
-            this.historySize = history.size();
+        }) != null) {
+            this.historySize = r0.size();
             UniversalRecyclerView universalRecyclerView = this.listView;
             if (universalRecyclerView != null && universalRecyclerView.adapter != null && universalRecyclerView.isAttachedToWindow()) {
                 this.listView.adapter.update(true);
@@ -121,7 +121,7 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
 
     public void lambda$loadSizes$2() {
         File databasePath = ApplicationLoader.applicationContext.getDatabasePath("webview.db");
-        long length = (databasePath == null || !databasePath.exists()) ? 0L : databasePath.length() + 0;
+        long length = (databasePath == null || !databasePath.exists()) ? 0L : databasePath.length();
         File databasePath2 = ApplicationLoader.applicationContext.getDatabasePath("webviewCache.db");
         if (databasePath2 != null && databasePath2.exists()) {
             length += databasePath2.length();
@@ -136,7 +136,7 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
         }
         final long j = length;
         File file3 = new File(ApplicationLoader.applicationContext.getApplicationInfo().dataDir, "app_webview");
-        final long directorySize = file3.exists() ? 0 + getDirectorySize(file3, Boolean.TRUE) : 0L;
+        final long directorySize = file3.exists() ? getDirectorySize(file3, Boolean.TRUE) : 0L;
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -159,8 +159,10 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
     public View createView(Context context) {
         Drawable mutate = context.getResources().getDrawable(R.drawable.poll_add_circle).mutate();
         Drawable mutate2 = context.getResources().getDrawable(R.drawable.poll_add_plus).mutate();
-        mutate.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_switchTrackChecked), PorterDuff.Mode.MULTIPLY));
-        mutate2.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_checkboxCheck), PorterDuff.Mode.MULTIPLY));
+        int themedColor = getThemedColor(Theme.key_switchTrackChecked);
+        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+        mutate.setColorFilter(new PorterDuffColorFilter(themedColor, mode));
+        mutate2.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_checkboxCheck), mode));
         this.addIcon = new CombinedDrawable(mutate, mutate2) {
             @Override
             public void setColorFilter(ColorFilter colorFilter) {
@@ -194,194 +196,208 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
         if (i2 == 12) {
             SharedConfig.toggleBrowserAdaptableColors();
             ((TextCheckCell) view).setChecked(SharedConfig.adaptableColorInBrowser);
-        } else if (i2 == 1) {
+            return;
+        }
+        if (i2 == 1) {
             SharedConfig.toggleInappBrowser();
             TextCheckCell textCheckCell = (TextCheckCell) view;
             textCheckCell.setChecked(SharedConfig.inappBrowser);
             boolean z = SharedConfig.inappBrowser;
             textCheckCell.setBackgroundColorAnimated(z, Theme.getColor(z ? Theme.key_windowBackgroundChecked : Theme.key_windowBackgroundUnchecked));
             this.listView.adapter.update(true);
-        } else if (i2 == 10) {
+            return;
+        }
+        if (i2 == 10) {
             SharedConfig.toggleCustomTabs(true);
             this.listView.adapter.update(true);
-        } else if (i2 == 11) {
+            return;
+        }
+        if (i2 == 11) {
             SharedConfig.toggleCustomTabs(false);
             this.listView.adapter.update(true);
-        } else {
-            String str = "";
-            if (i2 == 2) {
-                AlertDialog.Builder title = new AlertDialog.Builder(getContext(), getResourceProvider()).setTitle(LocaleController.getString(R.string.BrowserSettingsCacheClear));
-                int i3 = R.string.BrowserSettingsCacheClearText;
-                Object[] objArr = new Object[1];
-                if (this.cacheSize != 0) {
-                    str = " (" + AndroidUtilities.formatFileSize(this.cacheSize) + ")";
+            return;
+        }
+        String str = "";
+        if (i2 == 2) {
+            AlertDialog.Builder title = new AlertDialog.Builder(getContext(), getResourceProvider()).setTitle(LocaleController.getString(R.string.BrowserSettingsCacheClear));
+            int i3 = R.string.BrowserSettingsCacheClearText;
+            if (this.cacheSize != 0) {
+                str = " (" + AndroidUtilities.formatFileSize(this.cacheSize) + ")";
+            }
+            title.setMessage(LocaleController.formatString(i3, str)).setPositiveButton(LocaleController.getString(R.string.Clear), new DialogInterface.OnClickListener() {
+                @Override
+                public final void onClick(DialogInterface dialogInterface, int i4) {
+                    WebBrowserSettings.this.lambda$onClick$3(dialogInterface, i4);
                 }
-                objArr[0] = str;
-                title.setMessage(LocaleController.formatString(i3, objArr)).setPositiveButton(LocaleController.getString(R.string.Clear), new DialogInterface.OnClickListener() {
-                    @Override
-                    public final void onClick(DialogInterface dialogInterface, int i4) {
-                        WebBrowserSettings.this.lambda$onClick$3(dialogInterface, i4);
-                    }
-                }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).makeRed(-1).show();
-            } else if (i2 == 3) {
-                AlertDialog.Builder title2 = new AlertDialog.Builder(getContext(), getResourceProvider()).setTitle(LocaleController.getString(R.string.BrowserSettingsCookiesClear));
-                int i4 = R.string.BrowserSettingsCookiesClearText;
-                Object[] objArr2 = new Object[1];
-                if (this.cookiesSize != 0) {
-                    str = " (" + AndroidUtilities.formatFileSize(this.cookiesSize) + ")";
+            }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).makeRed(-1).show();
+            return;
+        }
+        if (i2 == 3) {
+            AlertDialog.Builder title2 = new AlertDialog.Builder(getContext(), getResourceProvider()).setTitle(LocaleController.getString(R.string.BrowserSettingsCookiesClear));
+            int i4 = R.string.BrowserSettingsCookiesClearText;
+            if (this.cookiesSize != 0) {
+                str = " (" + AndroidUtilities.formatFileSize(this.cookiesSize) + ")";
+            }
+            title2.setMessage(LocaleController.formatString(i4, str)).setPositiveButton(LocaleController.getString(R.string.Clear), new DialogInterface.OnClickListener() {
+                @Override
+                public final void onClick(DialogInterface dialogInterface, int i5) {
+                    WebBrowserSettings.this.lambda$onClick$4(dialogInterface, i5);
                 }
-                objArr2[0] = str;
-                title2.setMessage(LocaleController.formatString(i4, objArr2)).setPositiveButton(LocaleController.getString(R.string.Clear), new DialogInterface.OnClickListener() {
-                    @Override
-                    public final void onClick(DialogInterface dialogInterface, int i5) {
-                        WebBrowserSettings.this.lambda$onClick$4(dialogInterface, i5);
-                    }
-                }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).makeRed(-1).show();
-            } else if (i2 == 7) {
-                Iterator<BrowserHistory.Entry> it = BrowserHistory.getHistory().iterator();
-                long j = Long.MAX_VALUE;
-                while (it.hasNext()) {
-                    j = Math.min(j, it.next().time);
+            }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).makeRed(-1).show();
+            return;
+        }
+        if (i2 == 7) {
+            Iterator<BrowserHistory.Entry> it = BrowserHistory.getHistory().iterator();
+            long j = Long.MAX_VALUE;
+            while (it.hasNext()) {
+                j = Math.min(j, it.next().time);
+            }
+            new AlertDialog.Builder(getContext(), getResourceProvider()).setTitle(LocaleController.getString(R.string.BrowserSettingsHistoryClear)).setMessage(LocaleController.formatString(R.string.BrowserSettingsHistoryClearText, LocaleController.formatDateChat(j / 1000))).setPositiveButton(LocaleController.getString(R.string.Clear), new DialogInterface.OnClickListener() {
+                @Override
+                public final void onClick(DialogInterface dialogInterface, int i5) {
+                    WebBrowserSettings.this.lambda$onClick$5(dialogInterface, i5);
                 }
-                new AlertDialog.Builder(getContext(), getResourceProvider()).setTitle(LocaleController.getString(R.string.BrowserSettingsHistoryClear)).setMessage(LocaleController.formatString(R.string.BrowserSettingsHistoryClearText, LocaleController.formatDateChat(j / 1000))).setPositiveButton(LocaleController.getString(R.string.Clear), new DialogInterface.OnClickListener() {
+            }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).makeRed(-1).show();
+            return;
+        }
+        if (i2 == 9) {
+            final HistoryFragment[] historyFragmentArr = {null};
+            HistoryFragment historyFragment = new HistoryFragment(null, new Utilities.Callback() {
+                @Override
+                public final void run(Object obj) {
+                    WebBrowserSettings.this.lambda$onClick$6(historyFragmentArr, (BrowserHistory.Entry) obj);
+                }
+            });
+            historyFragmentArr[0] = historyFragment;
+            presentFragment(historyFragment);
+            return;
+        }
+        if (i2 == 5) {
+            RestrictedDomainsList.getInstance().restrictedDomains.clear();
+            RestrictedDomainsList.getInstance().scheduleSave();
+            this.listView.adapter.update(true);
+            return;
+        }
+        if (uItem.instanceOf(WebsiteView.Factory.class)) {
+            WebsiteView websiteView = (WebsiteView) view;
+            final ArrayList arrayList = websiteView.domains;
+            ItemOptions.makeOptions((ViewGroup) this.fragmentView, websiteView).add(R.drawable.menu_delete_old, LocaleController.getString(R.string.Remove), new Runnable() {
+                @Override
+                public final void run() {
+                    WebBrowserSettings.this.lambda$onClick$7(arrayList);
+                }
+            }).show();
+            return;
+        }
+        int i5 = uItem.id;
+        if (i5 == 6) {
+            if (getParentActivity() == null) {
+                return;
+            }
+            final AtomicReference atomicReference = new AtomicReference();
+            LinearLayout linearLayout = new LinearLayout(getContext());
+            linearLayout.setOrientation(1);
+            ArrayList<SearchEngine> searchEngines = SearchEngine.getSearchEngines();
+            int size = searchEngines.size();
+            CharSequence[] charSequenceArr = new CharSequence[size];
+            final int i6 = 0;
+            while (i6 < size) {
+                charSequenceArr[i6] = searchEngines.get(i6).name;
+                RadioColorCell radioColorCell = new RadioColorCell(getParentActivity());
+                radioColorCell.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
+                radioColorCell.setCheckColor(Theme.getColor(Theme.key_radioBackground), Theme.getColor(Theme.key_dialogRadioBackgroundChecked));
+                radioColorCell.setTextAndValue(charSequenceArr[i6], i6 == SharedConfig.searchEngineType);
+                radioColorCell.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_listSelector), 2));
+                linearLayout.addView(radioColorCell);
+                radioColorCell.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public final void onClick(DialogInterface dialogInterface, int i5) {
-                        WebBrowserSettings.this.lambda$onClick$5(dialogInterface, i5);
-                    }
-                }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).makeRed(-1).show();
-            } else if (i2 == 9) {
-                final HistoryFragment[] historyFragmentArr = {null};
-                HistoryFragment historyFragment = new HistoryFragment(null, new Utilities.Callback() {
-                    @Override
-                    public final void run(Object obj) {
-                        WebBrowserSettings.this.lambda$onClick$6(historyFragmentArr, (BrowserHistory.Entry) obj);
+                    public final void onClick(View view2) {
+                        WebBrowserSettings.lambda$onClick$8(i6, view, atomicReference, view2);
                     }
                 });
-                historyFragmentArr[0] = historyFragment;
-                presentFragment(historyFragment);
-            } else if (i2 == 5) {
-                RestrictedDomainsList.getInstance().restrictedDomains.clear();
-                RestrictedDomainsList.getInstance().scheduleSave();
-                this.listView.adapter.update(true);
-            } else if (uItem.instanceOf(WebsiteView.Factory.class)) {
-                WebsiteView websiteView = (WebsiteView) view;
-                final ArrayList arrayList = websiteView.domains;
-                ItemOptions.makeOptions((ViewGroup) this.fragmentView, websiteView).add(R.drawable.menu_delete_old, LocaleController.getString(R.string.Remove), new Runnable() {
-                    @Override
-                    public final void run() {
-                        WebBrowserSettings.this.lambda$onClick$7(arrayList);
-                    }
-                }).show();
-            } else {
-                int i5 = uItem.id;
-                if (i5 == 6) {
-                    if (getParentActivity() == null) {
-                        return;
-                    }
-                    final AtomicReference atomicReference = new AtomicReference();
-                    LinearLayout linearLayout = new LinearLayout(getContext());
-                    linearLayout.setOrientation(1);
-                    ArrayList<SearchEngine> searchEngines = SearchEngine.getSearchEngines();
-                    int size = searchEngines.size();
-                    CharSequence[] charSequenceArr = new CharSequence[size];
-                    final int i6 = 0;
-                    while (i6 < size) {
-                        charSequenceArr[i6] = searchEngines.get(i6).name;
-                        RadioColorCell radioColorCell = new RadioColorCell(getParentActivity());
-                        radioColorCell.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
-                        radioColorCell.setCheckColor(Theme.getColor(Theme.key_radioBackground), Theme.getColor(Theme.key_dialogRadioBackgroundChecked));
-                        radioColorCell.setTextAndValue(charSequenceArr[i6], i6 == SharedConfig.searchEngineType);
-                        radioColorCell.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_listSelector), 2));
-                        linearLayout.addView(radioColorCell);
-                        radioColorCell.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public final void onClick(View view2) {
-                                WebBrowserSettings.lambda$onClick$8(i6, view, atomicReference, view2);
-                            }
-                        });
-                        i6++;
-                    }
-                    AlertDialog create = new AlertDialog.Builder(getParentActivity()).setTitle(LocaleController.getString(R.string.SearchEngine)).setView(linearLayout).setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null).create();
-                    atomicReference.set(create);
-                    showDialog(create);
-                } else if (i5 == 4) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), getResourceProvider());
-                    builder.setTitle(LocaleController.getString(R.string.BrowserSettingsAddTitle));
-                    LinearLayout linearLayout2 = new LinearLayout(getContext());
-                    linearLayout2.setOrientation(1);
-                    TextView textView = new TextView(getContext());
-                    int i7 = Theme.key_dialogTextBlack;
-                    textView.setTextColor(Theme.getColor(i7, getResourceProvider()));
-                    textView.setTextSize(1, 16.0f);
-                    textView.setText(LocaleController.getString(R.string.BrowserSettingsAddText));
-                    linearLayout2.addView(textView, LayoutHelper.createLinear(-1, -2, 24.0f, 5.0f, 24.0f, 12.0f));
-                    final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(getContext()) {
-                        @Override
-                        public void onMeasure(int i8, int i9) {
-                            super.onMeasure(i8, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(36.0f), 1073741824));
-                        }
-                    };
-                    final Runnable runnable = new Runnable() {
-                        @Override
-                        public final void run() {
-                            WebBrowserSettings.this.lambda$onClick$11(editTextBoldCursor, r3);
-                        }
-                    };
-                    editTextBoldCursor.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-                        @Override
-                        public boolean onEditorAction(TextView textView2, int i8, KeyEvent keyEvent) {
-                            if (i8 == 6) {
-                                runnable.run();
-                                return true;
-                            }
-                            return false;
-                        }
-                    });
-                    editTextBoldCursor.setTextSize(1, 18.0f);
-                    editTextBoldCursor.setText("");
-                    editTextBoldCursor.setTextColor(Theme.getColor(i7, getResourceProvider()));
-                    editTextBoldCursor.setHintColor(Theme.getColor(Theme.key_groupcreate_hintText, getResourceProvider()));
-                    editTextBoldCursor.setHintText(LocaleController.getString(R.string.BrowserSettingsAddHint));
-                    editTextBoldCursor.setSingleLine(true);
-                    editTextBoldCursor.setFocusable(true);
-                    editTextBoldCursor.setInputType(16384);
-                    editTextBoldCursor.setLineColors(Theme.getColor(Theme.key_windowBackgroundWhiteInputField, getResourceProvider()), Theme.getColor(Theme.key_windowBackgroundWhiteInputFieldActivated, getResourceProvider()), Theme.getColor(Theme.key_text_RedRegular, getResourceProvider()));
-                    editTextBoldCursor.setImeOptions(6);
-                    editTextBoldCursor.setBackgroundDrawable(null);
-                    editTextBoldCursor.setPadding(0, 0, AndroidUtilities.dp(42.0f), 0);
-                    linearLayout2.addView(editTextBoldCursor, LayoutHelper.createLinear(-1, -2, 24.0f, 0.0f, 24.0f, 10.0f));
-                    builder.setView(linearLayout2);
-                    builder.setWidth(AndroidUtilities.dp(292.0f));
-                    builder.setPositiveButton(LocaleController.getString(R.string.Done), new DialogInterface.OnClickListener() {
-                        @Override
-                        public final void onClick(DialogInterface dialogInterface, int i8) {
-                            runnable.run();
-                        }
-                    });
-                    builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), new DialogInterface.OnClickListener() {
-                        @Override
-                        public final void onClick(DialogInterface dialogInterface, int i8) {
-                            dialogInterface.dismiss();
-                        }
-                    });
-                    AlertDialog create2 = builder.create();
-                    final AlertDialog[] alertDialogArr = {create2};
-                    create2.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                        @Override
-                        public final void onDismiss(DialogInterface dialogInterface) {
-                            AndroidUtilities.hideKeyboard(EditTextBoldCursor.this);
-                        }
-                    });
-                    alertDialogArr[0].setOnShowListener(new DialogInterface.OnShowListener() {
-                        @Override
-                        public final void onShow(DialogInterface dialogInterface) {
-                            WebBrowserSettings.lambda$onClick$15(EditTextBoldCursor.this, dialogInterface);
-                        }
-                    });
-                    alertDialogArr[0].setDismissDialogByButtons(false);
-                    alertDialogArr[0].show();
-                }
+                i6++;
             }
+            AlertDialog create = new AlertDialog.Builder(getParentActivity()).setTitle(LocaleController.getString(R.string.SearchEngine)).setView(linearLayout).setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null).create();
+            atomicReference.set(create);
+            showDialog(create);
+            return;
+        }
+        if (i5 == 4) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), getResourceProvider());
+            builder.setTitle(LocaleController.getString(R.string.BrowserSettingsAddTitle));
+            LinearLayout linearLayout2 = new LinearLayout(getContext());
+            linearLayout2.setOrientation(1);
+            TextView textView = new TextView(getContext());
+            int i7 = Theme.key_dialogTextBlack;
+            textView.setTextColor(Theme.getColor(i7, getResourceProvider()));
+            textView.setTextSize(1, 16.0f);
+            textView.setText(LocaleController.getString(R.string.BrowserSettingsAddText));
+            linearLayout2.addView(textView, LayoutHelper.createLinear(-1, -2, 24.0f, 5.0f, 24.0f, 12.0f));
+            final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(getContext()) {
+                @Override
+                public void onMeasure(int i8, int i9) {
+                    super.onMeasure(i8, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(36.0f), 1073741824));
+                }
+            };
+            final Runnable runnable = new Runnable() {
+                @Override
+                public final void run() {
+                    WebBrowserSettings.this.lambda$onClick$11(editTextBoldCursor, r3);
+                }
+            };
+            editTextBoldCursor.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                @Override
+                public boolean onEditorAction(TextView textView2, int i8, KeyEvent keyEvent) {
+                    if (i8 != 6) {
+                        return false;
+                    }
+                    runnable.run();
+                    return true;
+                }
+            });
+            editTextBoldCursor.setTextSize(1, 18.0f);
+            editTextBoldCursor.setText("");
+            editTextBoldCursor.setTextColor(Theme.getColor(i7, getResourceProvider()));
+            editTextBoldCursor.setHintColor(Theme.getColor(Theme.key_groupcreate_hintText, getResourceProvider()));
+            editTextBoldCursor.setHintText(LocaleController.getString(R.string.BrowserSettingsAddHint));
+            editTextBoldCursor.setSingleLine(true);
+            editTextBoldCursor.setFocusable(true);
+            editTextBoldCursor.setInputType(16384);
+            editTextBoldCursor.setLineColors(Theme.getColor(Theme.key_windowBackgroundWhiteInputField, getResourceProvider()), Theme.getColor(Theme.key_windowBackgroundWhiteInputFieldActivated, getResourceProvider()), Theme.getColor(Theme.key_text_RedRegular, getResourceProvider()));
+            editTextBoldCursor.setImeOptions(6);
+            editTextBoldCursor.setBackgroundDrawable(null);
+            editTextBoldCursor.setPadding(0, 0, AndroidUtilities.dp(42.0f), 0);
+            linearLayout2.addView(editTextBoldCursor, LayoutHelper.createLinear(-1, -2, 24.0f, 0.0f, 24.0f, 10.0f));
+            builder.setView(linearLayout2);
+            builder.setWidth(AndroidUtilities.dp(292.0f));
+            builder.setPositiveButton(LocaleController.getString(R.string.Done), new DialogInterface.OnClickListener() {
+                @Override
+                public final void onClick(DialogInterface dialogInterface, int i8) {
+                    runnable.run();
+                }
+            });
+            builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), new DialogInterface.OnClickListener() {
+                @Override
+                public final void onClick(DialogInterface dialogInterface, int i8) {
+                    dialogInterface.dismiss();
+                }
+            });
+            AlertDialog create2 = builder.create();
+            final AlertDialog[] alertDialogArr = {create2};
+            create2.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public final void onDismiss(DialogInterface dialogInterface) {
+                    AndroidUtilities.hideKeyboard(EditTextBoldCursor.this);
+                }
+            });
+            alertDialogArr[0].setOnShowListener(new DialogInterface.OnShowListener() {
+                @Override
+                public final void onShow(DialogInterface dialogInterface) {
+                    WebBrowserSettings.lambda$onClick$15(EditTextBoldCursor.this, dialogInterface);
+                }
+            });
+            alertDialogArr[0].setDismissDialogByButtons(false);
+            alertDialogArr[0].show();
         }
     }
 
@@ -440,13 +456,13 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
     }
 
     public void lambda$onClick$6(HistoryFragment[] historyFragmentArr, BrowserHistory.Entry entry) {
-        historyFragmentArr[0].finishFragment();
+        historyFragmentArr[0].lambda$onBackPressed$308();
         if (this.whenHistoryClicked != null) {
-            finishFragment();
+            lambda$onBackPressed$308();
             this.whenHistoryClicked.run(entry);
-            return;
+        } else {
+            Browser.openUrl(getContext(), entry.url);
         }
-        Browser.openUrl(getContext(), entry.url);
     }
 
     public void lambda$onClick$7(ArrayList arrayList) {
@@ -539,7 +555,8 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
             textView.setTextSize(1, 16.0f);
             textView.setTypeface(AndroidUtilities.bold());
             textView.setMaxLines(1);
-            textView.setEllipsize(TextUtils.TruncateAt.END);
+            TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+            textView.setEllipsize(truncateAt);
             addView(textView, LayoutHelper.createFrame(-1, -2.0f, 55, 68.0f, 7.0f, 54.0f, 0.0f));
             TextView textView2 = new TextView(context) {
                 @Override
@@ -552,7 +569,7 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
             textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText));
             textView2.setTextSize(1, 13.0f);
             textView2.setMaxLines(1);
-            textView2.setEllipsize(TextUtils.TruncateAt.END);
+            textView2.setEllipsize(truncateAt);
             textView2.setPivotX(0.0f);
             addView(textView2, LayoutHelper.createFrame(-1, -2.0f, 55, 68.0f, 30.0f, 54.0f, 0.0f));
             ImageView imageView2 = new ImageView(context);
@@ -611,7 +628,7 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
 
                     {
                         this.val$s = charSequence2;
-                        this.text = new Text(charSequence2.substring(0, !charSequence2.isEmpty()), 14.0f, AndroidUtilities.bold());
+                        this.text = new Text(charSequence2.substring(0, !charSequence2.isEmpty() ? 1 : 0), 14.0f, AndroidUtilities.bold());
                     }
 
                     @Override
@@ -672,18 +689,18 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
         }
         if (file.isDirectory()) {
             File[] listFiles = file.listFiles();
-            if (listFiles != null) {
-                for (File file2 : listFiles) {
-                    j += getDirectorySize(file2, bool);
-                }
-                return j;
+            if (listFiles == null) {
+                return 0L;
             }
-            return 0L;
-        } else if (bool == null || bool.booleanValue() == file.getName().startsWith("Cookies")) {
-            return 0 + file.length();
-        } else {
-            return 0L;
+            for (File file2 : listFiles) {
+                j += getDirectorySize(file2, bool);
+            }
+            return j;
         }
+        if (bool == null || bool.booleanValue() == file.getName().startsWith("Cookies")) {
+            return file.length();
+        }
+        return 0L;
     }
 
     private static boolean deleteDirectory(File file, Boolean bool) {
@@ -706,9 +723,10 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
             if (z) {
                 file.delete();
             }
-        } else if (bool != null && bool.booleanValue() != file.getName().startsWith("Cookies")) {
-            return false;
         } else {
+            if (bool != null && bool.booleanValue() != file.getName().startsWith("Cookies")) {
+                return false;
+            }
             file.delete();
         }
         return true;

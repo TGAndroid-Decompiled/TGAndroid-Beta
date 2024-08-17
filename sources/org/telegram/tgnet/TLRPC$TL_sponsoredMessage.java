@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_sponsoredMessage extends TLObject {
     public String additional_info;
     public String button_text;

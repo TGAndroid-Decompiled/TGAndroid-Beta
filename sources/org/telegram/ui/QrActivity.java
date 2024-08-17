@@ -9,6 +9,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
@@ -33,6 +34,7 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.Pair;
 import android.util.SparseIntArray;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -53,23 +55,29 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ChatThemeController;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.Emoji;
+import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ResultCallback;
+import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$PrivacyRule;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_exportedContactToken;
 import org.telegram.tgnet.TLRPC$TL_privacyValueAllowAll;
 import org.telegram.tgnet.TLRPC$TL_privacyValueAllowContacts;
 import org.telegram.tgnet.TLRPC$TL_privacyValueDisallowAll;
+import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$WallPaper;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.EmojiThemes;
@@ -78,6 +86,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
+import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.ChatThemeBottomSheet;
 import org.telegram.ui.Components.CubicBezierInterpolator;
@@ -92,6 +101,7 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.StaticLayoutEx;
 import org.telegram.ui.Components.ThemeSmallPreviewView;
 import org.telegram.ui.QrActivity;
+
 public class QrActivity extends BaseFragment {
     private static List<EmojiThemes> cachedThemes;
     private static boolean firstOpen;
@@ -170,8 +180,249 @@ public class QrActivity extends BaseFragment {
     }
 
     @Override
-    public android.view.View createView(android.content.Context r25) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.QrActivity.createView(android.content.Context):android.view.View");
+    public View createView(Context context) {
+        TLRPC$Chat chat;
+        String publicUsername;
+        String str;
+        AvatarDrawable avatarDrawable;
+        ImageLocation forChat;
+        boolean z;
+        ImageLocation forChat2;
+        String str2;
+        boolean z2;
+        this.isCurrentThemeDark = Theme.getActiveTheme().isDark();
+        boolean z3 = false;
+        this.actionBar.setAddToContainer(false);
+        this.actionBar.setBackground(null);
+        this.actionBar.setItemsColor(-1, false);
+        FrameLayout frameLayout = new FrameLayout(context) {
+            private boolean prevIsPortrait;
+
+            @Override
+            public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+                super.dispatchTouchEvent(motionEvent);
+                return true;
+            }
+
+            @Override
+            protected void onMeasure(int i, int i2) {
+                int size = View.MeasureSpec.getSize(i);
+                int size2 = View.MeasureSpec.getSize(i2);
+                boolean z4 = size < size2;
+                QrActivity.this.avatarImageView.setVisibility(z4 ? 0 : 8);
+                super.onMeasure(i, i2);
+                if (z4) {
+                    QrActivity.this.themeLayout.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
+                    QrActivity.this.qrView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(260.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(330.0f), 1073741824));
+                } else {
+                    QrActivity.this.themeLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(256.0f), 1073741824), i2);
+                    QrActivity.this.qrView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(260.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(310.0f), 1073741824));
+                }
+                if (this.prevIsPortrait != z4) {
+                    QrActivity.this.qrView.onSizeChanged(QrActivity.this.qrView.getMeasuredWidth(), QrActivity.this.qrView.getMeasuredHeight(), 0, 0);
+                }
+                this.prevIsPortrait = z4;
+            }
+
+            @Override
+            protected void onLayout(boolean z4, int i, int i2, int i3, int i4) {
+                boolean z5 = getWidth() < getHeight();
+                QrActivity.this.backgroundView.layout(0, 0, getWidth(), getHeight());
+                int measuredHeight = QrActivity.this.themeLayout.getVisibility() == 0 ? QrActivity.this.themeLayout.getMeasuredHeight() : 0;
+                int width = z5 ? (getWidth() - QrActivity.this.qrView.getMeasuredWidth()) / 2 : ((getWidth() - QrActivity.this.themeLayout.getMeasuredWidth()) - QrActivity.this.qrView.getMeasuredWidth()) / 2;
+                int height = z5 ? ((((getHeight() - measuredHeight) - QrActivity.this.qrView.getMeasuredHeight()) - AndroidUtilities.dp(48.0f)) / 2) + AndroidUtilities.dp(52.0f) : (getHeight() - QrActivity.this.qrView.getMeasuredHeight()) / 2;
+                QrActivity.this.qrView.layout(width, height, QrActivity.this.qrView.getMeasuredWidth() + width, QrActivity.this.qrView.getMeasuredHeight() + height);
+                if (z5) {
+                    int width2 = (getWidth() - QrActivity.this.avatarImageView.getMeasuredWidth()) / 2;
+                    int dp = height - AndroidUtilities.dp(48.0f);
+                    QrActivity.this.avatarImageView.layout(width2, dp, QrActivity.this.avatarImageView.getMeasuredWidth() + width2, QrActivity.this.avatarImageView.getMeasuredHeight() + dp);
+                }
+                if (QrActivity.this.themeLayout.getVisibility() == 0) {
+                    if (z5) {
+                        int width3 = (getWidth() - QrActivity.this.themeLayout.getMeasuredWidth()) / 2;
+                        QrActivity.this.themeLayout.layout(width3, i4 - measuredHeight, QrActivity.this.themeLayout.getMeasuredWidth() + width3, i4);
+                    } else {
+                        int height2 = (getHeight() - QrActivity.this.themeLayout.getMeasuredHeight()) / 2;
+                        QrActivity.this.themeLayout.layout(i3 - QrActivity.this.themeLayout.getMeasuredWidth(), height2, i3, QrActivity.this.themeLayout.getMeasuredHeight() + height2);
+                    }
+                }
+                QrActivity.this.logoImageView.layout(QrActivity.this.logoRect.left + width, QrActivity.this.logoRect.top + height, width + QrActivity.this.logoRect.right, height + QrActivity.this.logoRect.bottom);
+                int dp2 = AndroidUtilities.dp(z5 ? 14.0f : 17.0f);
+                int dp3 = AndroidUtilities.statusBarHeight + AndroidUtilities.dp(z5 ? 10.0f : 5.0f);
+                QrActivity.this.closeImageView.layout(dp2, dp3, QrActivity.this.closeImageView.getMeasuredWidth() + dp2, QrActivity.this.closeImageView.getMeasuredHeight() + dp3);
+            }
+        };
+        View view = new View(context) {
+            @Override
+            protected void onDraw(Canvas canvas) {
+                canvas.drawColor(QrActivity.this.isCurrentThemeDark ? -15590870 : -6569073);
+                if (QrActivity.this.prevMotionDrawable != null) {
+                    QrActivity.this.prevMotionDrawable.setBounds(0, 0, getWidth(), getHeight());
+                }
+                QrActivity.this.currMotionDrawable.setBounds(0, 0, getWidth(), getHeight());
+                if (QrActivity.this.prevMotionDrawable != null) {
+                    QrActivity.this.prevMotionDrawable.drawBackground(canvas);
+                }
+                QrActivity.this.currMotionDrawable.drawBackground(canvas);
+                if (QrActivity.this.prevMotionDrawable != null) {
+                    QrActivity.this.prevMotionDrawable.drawPattern(canvas);
+                }
+                QrActivity.this.currMotionDrawable.drawPattern(canvas);
+                super.onDraw(canvas);
+            }
+        };
+        this.backgroundView = view;
+        frameLayout.addView(view);
+        if (this.userId != 0) {
+            TLRPC$User user = getMessagesController().getUser(Long.valueOf(this.userId));
+            if (user != null) {
+                publicUsername = UserObject.getPublicUsername(user);
+                if (publicUsername == null) {
+                    str = UserObject.getUserName(user);
+                    if (phoneIsPublic()) {
+                        publicUsername = user.phone;
+                        if (publicUsername != null && !publicUsername.startsWith("+")) {
+                            publicUsername = "+" + publicUsername;
+                        }
+                        z2 = true;
+                    } else {
+                        z2 = false;
+                        z = true;
+                        avatarDrawable = new AvatarDrawable(user);
+                        forChat = ImageLocation.getForUser(user, 1);
+                        forChat2 = ImageLocation.getForUser(user, 0);
+                        z3 = z2;
+                    }
+                } else {
+                    str = null;
+                    z2 = false;
+                }
+                z = false;
+                avatarDrawable = new AvatarDrawable(user);
+                forChat = ImageLocation.getForUser(user, 1);
+                forChat2 = ImageLocation.getForUser(user, 0);
+                z3 = z2;
+            }
+            publicUsername = null;
+            str = null;
+            forChat2 = null;
+            forChat = null;
+            avatarDrawable = null;
+            z = false;
+        } else {
+            if (this.chatId != 0 && (chat = getMessagesController().getChat(Long.valueOf(this.chatId))) != null) {
+                publicUsername = ChatObject.getPublicUsername(chat);
+                str = null;
+                avatarDrawable = new AvatarDrawable(chat);
+                forChat = ImageLocation.getForChat(chat, 1);
+                z = false;
+                forChat2 = ImageLocation.getForChat(chat, 0);
+            }
+            publicUsername = null;
+            str = null;
+            forChat2 = null;
+            forChat = null;
+            avatarDrawable = null;
+            z = false;
+        }
+        QrView qrView = new QrView(context);
+        this.qrView = qrView;
+        qrView.setColors(-9324972, -13856649, -6636738, -9915042);
+        if (publicUsername != null) {
+            str2 = "https://" + MessagesController.getInstance(this.currentAccount).linkPrefix + "/" + publicUsername;
+        } else {
+            str2 = null;
+        }
+        QrView qrView2 = this.qrView;
+        if (str != null) {
+            publicUsername = str;
+        }
+        qrView2.setData(str2, publicUsername, z3, z);
+        this.qrView.setCenterChangedListener(new QrView.QrCenterChangedListener() {
+            @Override
+            public final void onCenterChanged(int i, int i2, int i3, int i4) {
+                QrActivity.this.lambda$createView$0(i, i2, i3, i4);
+            }
+        });
+        frameLayout.addView(this.qrView);
+        RLottieImageView rLottieImageView = new RLottieImageView(context);
+        this.logoImageView = rLottieImageView;
+        rLottieImageView.setAutoRepeat(true);
+        this.logoImageView.setAnimation(R.raw.qr_code_logo_2, 60, 60);
+        this.logoImageView.playAnimation();
+        frameLayout.addView(this.logoImageView);
+        BackupImageView backupImageView = new BackupImageView(context);
+        this.avatarImageView = backupImageView;
+        backupImageView.setRoundRadius(AndroidUtilities.dp(42.0f));
+        this.avatarImageView.setSize(AndroidUtilities.dp(84.0f), AndroidUtilities.dp(84.0f));
+        frameLayout.addView(this.avatarImageView, LayoutHelper.createFrame(84, 84, 51));
+        this.avatarImageView.setImage(forChat2, "84_84", forChat, "50_50", avatarDrawable, (Bitmap) null, (String) null, 0, (Object) null);
+        ImageView imageView = new ImageView(context);
+        this.closeImageView = imageView;
+        imageView.setBackground(Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(34.0f), 671088640, 687865855));
+        this.closeImageView.setImageResource(R.drawable.ic_ab_back);
+        this.closeImageView.setScaleType(ImageView.ScaleType.CENTER);
+        this.closeImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view2) {
+                QrActivity.this.lambda$createView$1(view2);
+            }
+        });
+        frameLayout.addView(this.closeImageView, LayoutHelper.createFrame(34, 34.0f));
+        this.emojiThemeIcon = Bitmap.createBitmap(AndroidUtilities.dp(32.0f), AndroidUtilities.dp(32.0f), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(this.emojiThemeIcon);
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(0.0f, 0.0f, this.emojiThemeIcon.getWidth(), this.emojiThemeIcon.getHeight());
+        Paint paint = new Paint(1);
+        paint.setColor(-1);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f), paint);
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+        canvas.drawBitmap(BitmapFactory.decodeResource(ApplicationLoader.applicationContext.getResources(), R.drawable.msg_qr_mini), (this.emojiThemeIcon.getWidth() - r3.getWidth()) * 0.5f, (this.emojiThemeIcon.getHeight() - r3.getHeight()) * 0.5f, paint);
+        canvas.setBitmap(null);
+        ThemeListViewController themeListViewController = new ThemeListViewController(this, getParentActivity().getWindow()) {
+            @Override
+            protected void setDarkTheme(boolean z4) {
+                super.setDarkTheme(z4);
+                QrActivity.this.isCurrentThemeDark = z4;
+                QrActivity qrActivity = QrActivity.this;
+                qrActivity.onItemSelected(qrActivity.currentTheme, QrActivity.this.selectedPosition, false);
+            }
+        };
+        this.themesViewController = themeListViewController;
+        this.themeLayout = themeListViewController.rootLayout;
+        themeListViewController.onCreate();
+        this.themesViewController.setItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public final void onItemSelected(EmojiThemes emojiThemes, int i) {
+                QrActivity.this.lambda$createView$2(emojiThemes, i);
+            }
+        });
+        this.themesViewController.titleView.setText(LocaleController.getString("QrCode", R.string.QrCode));
+        this.themesViewController.progressView.setViewType(17);
+        this.themesViewController.shareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view2) {
+                QrActivity.this.lambda$createView$3(view2);
+            }
+        });
+        frameLayout.addView(this.themeLayout, LayoutHelper.createFrame(-1, -2, 80));
+        this.currMotionDrawable.setIndeterminateAnimation(true);
+        this.fragmentView = frameLayout;
+        Utilities.themeQueue.postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                QrActivity.this.lambda$createView$5();
+            }
+        }, 25L);
+        this.fragmentView.postDelayed(new Runnable() {
+            @Override
+            public final void run() {
+                QrActivity.this.lambda$createView$6();
+            }
+        }, firstOpen ? 250L : 0L);
+        this.prevSystemUiVisibility = getParentActivity().getWindow().getDecorView().getSystemUiVisibility();
+        applyScreenSettings();
+        return this.fragmentView;
     }
 
     public void lambda$createView$0(int i, int i2, int i3, int i4) {
@@ -180,7 +431,7 @@ public class QrActivity extends BaseFragment {
     }
 
     public void lambda$createView$1(View view) {
-        finishFragment();
+        lambda$onBackPressed$308();
     }
 
     public void lambda$createView$2(EmojiThemes emojiThemes, int i) {
@@ -243,9 +494,11 @@ public class QrActivity extends BaseFragment {
             if (tLRPC$PrivacyRule instanceof TLRPC$TL_privacyValueAllowAll) {
                 c = 0;
                 break;
-            } else if (tLRPC$PrivacyRule instanceof TLRPC$TL_privacyValueDisallowAll) {
+            }
+            if (tLRPC$PrivacyRule instanceof TLRPC$TL_privacyValueDisallowAll) {
                 break;
-            } else if (tLRPC$PrivacyRule instanceof TLRPC$TL_privacyValueAllowContacts) {
+            }
+            if (tLRPC$PrivacyRule instanceof TLRPC$TL_privacyValueAllowContacts) {
                 c = 1;
                 break;
             }
@@ -301,7 +554,7 @@ public class QrActivity extends BaseFragment {
 
     private void applyScreenSettings() {
         if (getParentActivity() != null) {
-            getParentActivity().getWindow().getDecorView().setSystemUiVisibility(this.prevSystemUiVisibility | 1024 | 4);
+            getParentActivity().getWindow().getDecorView().setSystemUiVisibility(this.prevSystemUiVisibility | 1028);
         }
     }
 
@@ -337,10 +590,11 @@ public class QrActivity extends BaseFragment {
             if (i == arrayList.size()) {
                 i = -1;
                 break;
-            } else if (((ChatThemeBottomSheet.ChatThemeItem) arrayList.get(i)).chatTheme.getEmoticon().equals(this.currentTheme.getEmoticon())) {
-                this.themesViewController.selectedItem = (ChatThemeBottomSheet.ChatThemeItem) arrayList.get(i);
-                break;
             } else {
+                if (((ChatThemeBottomSheet.ChatThemeItem) arrayList.get(i)).chatTheme.getEmoticon().equals(this.currentTheme.getEmoticon())) {
+                    this.themesViewController.selectedItem = (ChatThemeBottomSheet.ChatThemeItem) arrayList.get(i);
+                    break;
+                }
                 i++;
             }
         }
@@ -356,8 +610,7 @@ public class QrActivity extends BaseFragment {
             if (bitmap == null) {
                 bitmap = Bitmap.createBitmap(this.emojiThemeIcon.getWidth(), this.emojiThemeIcon.getHeight(), Bitmap.Config.ARGB_8888);
                 Canvas canvas = new Canvas(bitmap);
-                ArrayMap<String, int[]> arrayMap = qrColorsMap;
-                int[] iArr = arrayMap.get(emojiThemes.emoji + "n");
+                int[] iArr = qrColorsMap.get(emojiThemes.emoji + "n");
                 if (iArr != null) {
                     if (this.tempMotionDrawable == null) {
                         this.tempMotionDrawable = new MotionBackgroundDrawable(0, 0, 0, 0, true);
@@ -805,12 +1058,11 @@ public class QrActivity extends BaseFragment {
             Shader.TileMode tileMode = Shader.TileMode.MIRROR;
             BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
             this.gradientShader = bitmapShader;
-            Bitmap bitmap2 = motionBackgroundDrawable.getBitmap();
-            Shader.TileMode tileMode2 = Shader.TileMode.MIRROR;
-            BitmapShader bitmapShader2 = new BitmapShader(bitmap2, tileMode2, tileMode2);
+            BitmapShader bitmapShader2 = new BitmapShader(motionBackgroundDrawable.getBitmap(), tileMode, tileMode);
             this.gradientTextShader = bitmapShader2;
             paint.setShader(bitmapShader);
-            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, false) {
+            boolean z = false;
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(z, true, z) {
                 @Override
                 public void invalidateSelf() {
                     QrView.this.invalidate();
@@ -824,10 +1076,14 @@ public class QrActivity extends BaseFragment {
             this.timerTextDrawable.setGravity(17);
             this.timerTextDrawable.setTextSize(AndroidUtilities.dp(35.0f));
             this.timerTextDrawable.setText("");
-            this.crossfadeFromPaint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(120.0f), new int[]{-1, 0}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
-            this.crossfadeFromPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-            this.crossfadeToPaint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(120.0f), new int[]{0, -1}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
-            this.crossfadeToPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+            Paint paint2 = this.crossfadeFromPaint;
+            Shader.TileMode tileMode2 = Shader.TileMode.CLAMP;
+            paint2.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(120.0f), new int[]{-1, 0}, new float[]{0.0f, 1.0f}, tileMode2));
+            Paint paint3 = this.crossfadeFromPaint;
+            PorterDuff.Mode mode = PorterDuff.Mode.DST_OUT;
+            paint3.setXfermode(new PorterDuffXfermode(mode));
+            this.crossfadeToPaint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(120.0f), new int[]{0, -1}, new float[]{0.0f, 1.0f}, tileMode2));
+            this.crossfadeToPaint.setXfermode(new PorterDuffXfermode(mode));
         }
 
         public void setForShare(boolean z) {
@@ -863,8 +1119,9 @@ public class QrActivity extends BaseFragment {
             }
             Paint paint = new Paint(1);
             paint.setColor(-1);
+            float dp = AndroidUtilities.dp(4.0f);
             float f = SHADOW_SIZE;
-            paint.setShadowLayer(AndroidUtilities.dp(4.0f), 0.0f, f, 251658240);
+            paint.setShadowLayer(dp, 0.0f, f, 251658240);
             this.backgroundBitmap = Bitmap.createBitmap(i, i2, Bitmap.Config.ARGB_8888);
             Canvas canvas = new Canvas(this.backgroundBitmap);
             float f2 = i;
@@ -890,7 +1147,6 @@ public class QrActivity extends BaseFragment {
         }
 
         private void drawLoading(Canvas canvas) {
-            float f;
             QrCenterChangedListener qrCenterChangedListener;
             if (this.loadingMatrix != null) {
                 int width = (getWidth() - AndroidUtilities.dp(60.0f)) / 33;
@@ -914,12 +1170,12 @@ public class QrActivity extends BaseFragment {
                 canvas.restore();
                 canvas.restore();
                 float width3 = getWidth() / 2.0f;
-                float f2 = i2;
-                float f3 = width2;
-                float width4 = ((getWidth() / 2.0f) + f2) - f3;
-                float round = ((Math.round(((i - 32) / 4.65f) / f) * width) / 2) * 0.75f;
+                float f = i2;
+                float f2 = width2;
+                float width4 = ((getWidth() / 2.0f) + f) - f2;
+                float round = ((Math.round((r9 / 4.65f) / r6) * width) / 2) * 0.75f;
                 canvas.drawCircle(width3, width4, round, this.bitmapGradientPaint);
-                QRCodeWriter.drawSideQuads(canvas, f3, f2, this.bitmapGradientPaint, 7.0f, width, 16, i, 0.75f, this.radii, true);
+                QRCodeWriter.drawSideQuads(canvas, f2, f, this.bitmapGradientPaint, 7.0f, width, 16, i, 0.75f, this.radii, true);
                 if (this.logoCenterSet || (qrCenterChangedListener = this.centerChangedListener) == null) {
                     return;
                 }
@@ -929,7 +1185,7 @@ public class QrActivity extends BaseFragment {
         }
 
         @Override
-        protected void onDraw(android.graphics.Canvas r18) {
+        protected void onDraw(android.graphics.Canvas r19) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.QrActivity.QrView.onDraw(android.graphics.Canvas):void");
         }
 
@@ -1057,7 +1313,7 @@ public class QrActivity extends BaseFragment {
             this.gradientDrawable.posAnimationProgress = f;
         }
 
-        public void lambda$setData$1(int r37, int r38) {
+        public void lambda$setData$1(int r29, int r30) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.QrActivity.QrView.lambda$setData$1(int, int):void");
         }
 
@@ -1157,7 +1413,9 @@ public class QrActivity extends BaseFragment {
             };
             Drawable mutate = parentActivity.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
             this.backgroundDrawable = mutate;
-            mutate.setColorFilter(new PorterDuffColorFilter(baseFragment.getThemedColor(Theme.key_dialogBackground), PorterDuff.Mode.MULTIPLY));
+            int themedColor = baseFragment.getThemedColor(Theme.key_dialogBackground);
+            PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+            mutate.setColorFilter(new PorterDuffColorFilter(themedColor, mode));
             FrameLayout frameLayout = new FrameLayout(parentActivity, QrActivity.this, baseFragment) {
                 private final Rect backgroundPadding;
                 final BaseFragment val$fragment;
@@ -1241,7 +1499,7 @@ public class QrActivity extends BaseFragment {
             textView.setPadding(AndroidUtilities.dp(21.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(21.0f), AndroidUtilities.dp(8.0f));
             frameLayout.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 8388659, 0.0f, 0.0f, 62.0f, 0.0f));
             int i = Theme.key_featuredStickers_addButton;
-            int themedColor = baseFragment.getThemedColor(i);
+            int themedColor2 = baseFragment.getThemedColor(i);
             int dp = AndroidUtilities.dp(28.0f);
             int i2 = R.raw.sun_outline;
             RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, "" + i2, dp, dp, false, null);
@@ -1249,7 +1507,7 @@ public class QrActivity extends BaseFragment {
             this.forceDark = Theme.getActiveTheme().isDark() ^ true;
             setForceDark(Theme.getActiveTheme().isDark(), false);
             rLottieDrawable.setPlayInDirectionOfCustomEndFrame(true);
-            rLottieDrawable.setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.MULTIPLY));
+            rLottieDrawable.setColorFilter(new PorterDuffColorFilter(themedColor2, mode));
             RLottieImageView rLottieImageView = new RLottieImageView(parentActivity) {
                 @Override
                 public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
@@ -1432,12 +1690,13 @@ public class QrActivity extends BaseFragment {
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
-            FrameLayout frameLayout = (FrameLayout) this.window.getDecorView();
-            final Bitmap createBitmap = Bitmap.createBitmap(frameLayout.getWidth(), frameLayout.getHeight(), Bitmap.Config.ARGB_8888);
+            FrameLayout frameLayout = (FrameLayout) this.fragment.getParentActivity().getWindow().getDecorView();
+            FrameLayout frameLayout2 = (FrameLayout) this.window.getDecorView();
+            final Bitmap createBitmap = Bitmap.createBitmap(frameLayout2.getWidth(), frameLayout2.getHeight(), Bitmap.Config.ARGB_8888);
             final Canvas canvas = new Canvas(createBitmap);
             this.darkThemeView.setAlpha(0.0f);
-            ((FrameLayout) this.fragment.getParentActivity().getWindow().getDecorView()).draw(canvas);
             frameLayout.draw(canvas);
+            frameLayout2.draw(canvas);
             this.darkThemeView.setAlpha(1.0f);
             final Paint paint = new Paint(1);
             paint.setColor(-16777216);
@@ -1457,13 +1716,13 @@ public class QrActivity extends BaseFragment {
                 @Override
                 protected void onDraw(Canvas canvas2) {
                     super.onDraw(canvas2);
-                    if (z) {
+                    if (!z) {
+                        canvas2.drawCircle(measuredWidth, measuredHeight, max * (1.0f - ThemeListViewController.this.changeDayNightViewProgress), paint2);
+                    } else {
                         if (ThemeListViewController.this.changeDayNightViewProgress > 0.0f) {
                             canvas.drawCircle(measuredWidth, measuredHeight, max * ThemeListViewController.this.changeDayNightViewProgress, paint);
                         }
                         canvas2.drawBitmap(createBitmap, 0.0f, 0.0f, paint2);
-                    } else {
-                        canvas2.drawCircle(measuredWidth, measuredHeight, max * (1.0f - ThemeListViewController.this.changeDayNightViewProgress), paint2);
                     }
                     canvas2.save();
                     canvas2.translate(f, f2);
@@ -1496,7 +1755,7 @@ public class QrActivity extends BaseFragment {
             this.changeDayNightViewAnimator.setDuration(400L);
             this.changeDayNightViewAnimator.setInterpolator(Easings.easeInOutQuad);
             this.changeDayNightViewAnimator.start();
-            frameLayout.addView(this.changeDayNightView, new ViewGroup.LayoutParams(-1, -1));
+            frameLayout2.addView(this.changeDayNightView, new ViewGroup.LayoutParams(-1, -1));
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
@@ -1564,8 +1823,9 @@ public class QrActivity extends BaseFragment {
             List<ChatThemeBottomSheet.ChatThemeItem> list;
             ChatThemeBottomSheet.Adapter adapter = this.adapter;
             if (adapter != null && (list = adapter.items) != null) {
-                for (ChatThemeBottomSheet.ChatThemeItem chatThemeItem : list) {
-                    chatThemeItem.themeIndex = this.forceDark ? 1 : 0;
+                Iterator<ChatThemeBottomSheet.ChatThemeItem> it = list.iterator();
+                while (it.hasNext()) {
+                    it.next().themeIndex = this.forceDark ? 1 : 0;
                 }
             }
             if (this.isLightDarkChangeAnimation) {

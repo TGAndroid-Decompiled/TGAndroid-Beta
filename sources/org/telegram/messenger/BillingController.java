@@ -46,6 +46,7 @@ import org.telegram.tgnet.TLRPC$TL_payments_assignPlayMarketTransaction;
 import org.telegram.tgnet.TLRPC$Updates;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.PremiumPreviewFragment;
+
 public class BillingController implements PurchasesUpdatedListener, BillingClientStateListener {
     public static final QueryProductDetailsParams.Product PREMIUM_PRODUCT = QueryProductDetailsParams.Product.newBuilder().setProductType("subs").setProductId("telegram_premium").build();
     public static ProductDetails PREMIUM_PRODUCT_DETAILS = null;
@@ -63,40 +64,6 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
     private final Map<String, Integer> currencyExpMap = new HashMap();
     private ArrayList<Runnable> setupListeners = new ArrayList<>();
     private int triesLeft = 0;
-
-    public static String getResponseCodeString(int i) {
-        if (i != 12) {
-            switch (i) {
-                case -3:
-                    return "SERVICE_TIMEOUT";
-                case -2:
-                    return "FEATURE_NOT_SUPPORTED";
-                case -1:
-                    return "SERVICE_DISCONNECTED";
-                case 0:
-                    return "OK";
-                case 1:
-                    return "USER_CANCELED";
-                case 2:
-                    return "SERVICE_UNAVAILABLE";
-                case 3:
-                    return "BILLING_UNAVAILABLE";
-                case 4:
-                    return "ITEM_UNAVAILABLE";
-                case 5:
-                    return "DEVELOPER_ERROR";
-                case 6:
-                    return "ERROR";
-                case 7:
-                    return "ITEM_ALREADY_OWNED";
-                case 8:
-                    return "ITEM_NOT_OWNED";
-                default:
-                    return null;
-            }
-        }
-        return "NETWORK_ERROR";
-    }
 
     public static void lambda$consumeGiftPurchase$5(BillingResult billingResult, String str) {
     }
@@ -321,39 +288,43 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
             if (runnable != null) {
                 runnable.run();
                 this.onCanceled = null;
+                return;
             }
-        } else if (list != null && !list.isEmpty()) {
-            this.lastPremiumTransaction = null;
-            for (final Purchase purchase : list) {
-                if (purchase.getProducts().contains("telegram_premium")) {
-                    this.lastPremiumTransaction = purchase.getOrderId();
-                    this.lastPremiumToken = purchase.getPurchaseToken();
-                }
-                if (!this.requestingTokens.contains(purchase.getPurchaseToken()) && purchase.getPurchaseState() == 1 && (extractDeveloperPayload = BillingUtilities.extractDeveloperPayload(purchase)) != null && extractDeveloperPayload.first != null) {
-                    if (!purchase.isAcknowledged()) {
-                        this.requestingTokens.add(purchase.getPurchaseToken());
-                        final TLRPC$TL_payments_assignPlayMarketTransaction tLRPC$TL_payments_assignPlayMarketTransaction = new TLRPC$TL_payments_assignPlayMarketTransaction();
-                        TLRPC$TL_dataJSON tLRPC$TL_dataJSON = new TLRPC$TL_dataJSON();
-                        tLRPC$TL_payments_assignPlayMarketTransaction.receipt = tLRPC$TL_dataJSON;
-                        tLRPC$TL_dataJSON.data = purchase.getOriginalJson();
-                        tLRPC$TL_payments_assignPlayMarketTransaction.purpose = extractDeveloperPayload.second;
-                        final AlertDialog alertDialog = new AlertDialog(ApplicationLoader.applicationContext, 3);
-                        AndroidUtilities.runOnUIThread(new Runnable() {
-                            @Override
-                            public final void run() {
-                                AlertDialog.this.showDelayed(500L);
-                            }
-                        });
-                        final AccountInstance accountInstance = extractDeveloperPayload.first;
-                        accountInstance.getConnectionsManager().sendRequest(tLRPC$TL_payments_assignPlayMarketTransaction, new RequestDelegate() {
-                            @Override
-                            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                                BillingController.this.lambda$onPurchasesUpdated$4(alertDialog, purchase, accountInstance, billingResult, tLRPC$TL_payments_assignPlayMarketTransaction, tLObject, tLRPC$TL_error);
-                            }
-                        }, 65602);
-                    } else {
-                        consumeGiftPurchase(purchase, extractDeveloperPayload.second);
-                    }
+            return;
+        }
+        if (list == null || list.isEmpty()) {
+            return;
+        }
+        this.lastPremiumTransaction = null;
+        for (final Purchase purchase : list) {
+            if (purchase.getProducts().contains("telegram_premium")) {
+                this.lastPremiumTransaction = purchase.getOrderId();
+                this.lastPremiumToken = purchase.getPurchaseToken();
+            }
+            if (!this.requestingTokens.contains(purchase.getPurchaseToken()) && purchase.getPurchaseState() == 1 && (extractDeveloperPayload = BillingUtilities.extractDeveloperPayload(purchase)) != null && extractDeveloperPayload.first != null) {
+                if (!purchase.isAcknowledged()) {
+                    this.requestingTokens.add(purchase.getPurchaseToken());
+                    final TLRPC$TL_payments_assignPlayMarketTransaction tLRPC$TL_payments_assignPlayMarketTransaction = new TLRPC$TL_payments_assignPlayMarketTransaction();
+                    TLRPC$TL_dataJSON tLRPC$TL_dataJSON = new TLRPC$TL_dataJSON();
+                    tLRPC$TL_payments_assignPlayMarketTransaction.receipt = tLRPC$TL_dataJSON;
+                    tLRPC$TL_dataJSON.data = purchase.getOriginalJson();
+                    tLRPC$TL_payments_assignPlayMarketTransaction.purpose = extractDeveloperPayload.second;
+                    final AlertDialog alertDialog = new AlertDialog(ApplicationLoader.applicationContext, 3);
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            AlertDialog.this.showDelayed(500L);
+                        }
+                    });
+                    final AccountInstance accountInstance = extractDeveloperPayload.first;
+                    accountInstance.getConnectionsManager().sendRequest(tLRPC$TL_payments_assignPlayMarketTransaction, new RequestDelegate() {
+                        @Override
+                        public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                            BillingController.this.lambda$onPurchasesUpdated$4(alertDialog, purchase, accountInstance, billingResult, tLRPC$TL_payments_assignPlayMarketTransaction, tLObject, tLRPC$TL_error);
+                        }
+                    }, 65602);
+                } else {
+                    consumeGiftPurchase(purchase, extractDeveloperPayload.second);
                 }
             }
         }
@@ -361,7 +332,7 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
 
     public void lambda$onPurchasesUpdated$4(AlertDialog alertDialog, Purchase purchase, AccountInstance accountInstance, BillingResult billingResult, TLRPC$TL_payments_assignPlayMarketTransaction tLRPC$TL_payments_assignPlayMarketTransaction, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         Objects.requireNonNull(alertDialog);
-        AndroidUtilities.runOnUIThread(new BillingController$$ExternalSyntheticLambda6(alertDialog));
+        AndroidUtilities.runOnUIThread(new BillingController$$ExternalSyntheticLambda10(alertDialog));
         this.requestingTokens.remove(purchase.getPurchaseToken());
         if (!(tLObject instanceof TLRPC$Updates)) {
             if (tLRPC$TL_error != null) {
@@ -376,8 +347,9 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
             return;
         }
         accountInstance.getMessagesController().processUpdates((TLRPC$Updates) tLObject, false);
-        for (String str : purchase.getProducts()) {
-            Consumer<BillingResult> remove = this.resultListeners.remove(str);
+        Iterator<String> it = purchase.getProducts().iterator();
+        while (it.hasNext()) {
+            Consumer<BillingResult> remove = this.resultListeners.remove(it.next());
             if (remove != null) {
                 remove.accept(billingResult);
             }
@@ -421,7 +393,7 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
             this.isDisconnected = false;
             this.triesLeft = 3;
             try {
-                queryProductDetails(Collections.singletonList(PREMIUM_PRODUCT), new BillingController$$ExternalSyntheticLambda8(this));
+                queryProductDetails(Collections.singletonList(PREMIUM_PRODUCT), new BillingController$$ExternalSyntheticLambda3(this));
             } catch (Exception e) {
                 FileLog.e(e);
             }
@@ -444,9 +416,12 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
                 AndroidUtilities.runOnUIThread(this.setupListeners.get(i));
             }
             this.setupListeners.clear();
-        } else if (!this.isDisconnected) {
-            switchToInvoice();
+            return;
         }
+        if (this.isDisconnected) {
+            return;
+        }
+        switchToInvoice();
     }
 
     public void onQueriedPremiumProductDetails(BillingResult billingResult, List<ProductDetails> list) {
@@ -460,10 +435,11 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
             if (PREMIUM_PRODUCT_DETAILS == null) {
                 switchToInvoice();
                 return;
+            } else {
+                switchBackFromInvoice();
+                NotificationCenter.getGlobalInstance().postNotificationNameOnUIThread(NotificationCenter.billingProductDetailsUpdated, new Object[0]);
+                return;
             }
-            switchBackFromInvoice();
-            NotificationCenter.getGlobalInstance().postNotificationNameOnUIThread(NotificationCenter.billingProductDetailsUpdated, new Object[0]);
-            return;
         }
         switchToInvoice();
         int i = this.triesLeft - 1;
@@ -480,9 +456,43 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
 
     public void lambda$onQueriedPremiumProductDetails$7() {
         try {
-            queryProductDetails(Collections.singletonList(PREMIUM_PRODUCT), new BillingController$$ExternalSyntheticLambda8(this));
+            queryProductDetails(Collections.singletonList(PREMIUM_PRODUCT), new BillingController$$ExternalSyntheticLambda3(this));
         } catch (Exception e) {
             FileLog.e(e);
         }
+    }
+
+    public static String getResponseCodeString(int i) {
+        if (i != 12) {
+            switch (i) {
+                case -3:
+                    return "SERVICE_TIMEOUT";
+                case -2:
+                    return "FEATURE_NOT_SUPPORTED";
+                case -1:
+                    return "SERVICE_DISCONNECTED";
+                case 0:
+                    return "OK";
+                case 1:
+                    return "USER_CANCELED";
+                case 2:
+                    return "SERVICE_UNAVAILABLE";
+                case 3:
+                    return "BILLING_UNAVAILABLE";
+                case 4:
+                    return "ITEM_UNAVAILABLE";
+                case 5:
+                    return "DEVELOPER_ERROR";
+                case 6:
+                    return "ERROR";
+                case 7:
+                    return "ITEM_ALREADY_OWNED";
+                case 8:
+                    return "ITEM_NOT_OWNED";
+                default:
+                    return null;
+            }
+        }
+        return "NETWORK_ERROR";
     }
 }

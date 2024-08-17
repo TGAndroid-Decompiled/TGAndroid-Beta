@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_upload_cdnFile extends TLRPC$upload_CdnFile {
     @Override
     public void freeResources() {

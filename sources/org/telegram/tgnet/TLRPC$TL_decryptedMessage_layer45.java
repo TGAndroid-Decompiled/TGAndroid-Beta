@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_decryptedMessage_layer45 extends TLRPC$TL_decryptedMessage {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

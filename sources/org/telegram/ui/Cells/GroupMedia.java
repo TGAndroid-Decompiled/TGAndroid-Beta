@@ -44,6 +44,7 @@ import org.telegram.ui.Components.RadialProgress2;
 import org.telegram.ui.Components.Text;
 import org.telegram.ui.Components.spoilers.SpoilerEffect2;
 import org.telegram.ui.Stars.StarsIntroActivity;
+
 public class GroupMedia {
     private final AnimatedFloat animatedHidden;
     public boolean attached;
@@ -89,7 +90,6 @@ public class GroupMedia {
 
     public void setMessageObject(MessageObject messageObject, boolean z, boolean z2) {
         TLRPC$Message tLRPC$Message;
-        MessageObject.GroupedMessagePosition position;
         if (messageObject == null || (tLRPC$Message = messageObject.messageOwner) == null) {
             return;
         }
@@ -123,7 +123,7 @@ public class GroupMedia {
                 TLRPC$MessageExtendedMedia tLRPC$MessageExtendedMedia = tLRPC$TL_messageMediaPaidMedia.extended_media.get(i2);
                 MediaHolder mediaHolder = i2 >= this.holders.size() ? null : this.holders.get(i2);
                 if (mediaHolder == null) {
-                    MediaHolder mediaHolder2 = new MediaHolder(this.cell, messageObject, tLRPC$MessageExtendedMedia, tLRPC$TL_messageMediaPaidMedia.extended_media.size() != 1, (int) ((position.pw / 1000.0f) * this.maxWidth), (int) (this.layout.getPosition(tLRPC$MessageExtendedMedia).ph * this.layout.maxSizeHeight));
+                    MediaHolder mediaHolder2 = new MediaHolder(this.cell, messageObject, tLRPC$MessageExtendedMedia, tLRPC$TL_messageMediaPaidMedia.extended_media.size() != 1, (int) ((r5.pw / 1000.0f) * this.maxWidth), (int) (this.layout.getPosition(tLRPC$MessageExtendedMedia).ph * this.layout.maxSizeHeight));
                     String str = tLRPC$MessageExtendedMedia.attachPath;
                     if (str != null) {
                         mediaHolder2.attachPath = str;
@@ -257,14 +257,14 @@ public class GroupMedia {
             float dp = AndroidUtilities.dp(28.0f) + this.buttonText.getCurrentWidth();
             float dp2 = AndroidUtilities.dp(32.0f);
             RectF rectF = this.clipRect;
-            int i = this.x;
-            int i2 = this.width;
-            int i3 = this.y;
-            int i4 = this.height;
-            rectF.set(i + ((i2 - dp) / 2.0f), i3 + ((i4 - dp2) / 2.0f), i + ((i2 + dp) / 2.0f), i3 + ((i4 + dp2) / 2.0f));
+            float f2 = this.x;
+            float f3 = this.width;
+            float f4 = this.y;
+            float f5 = this.height;
+            rectF.set(((f3 - dp) / 2.0f) + f2, ((f5 - dp2) / 2.0f) + f4, f2 + ((f3 + dp) / 2.0f), f4 + ((f5 + dp2) / 2.0f));
             this.clipPath.rewind();
-            float f2 = dp2 / 2.0f;
-            this.clipPath.addRoundRect(this.clipRect, f2, f2, Path.Direction.CW);
+            float f6 = dp2 / 2.0f;
+            this.clipPath.addRoundRect(this.clipRect, f6, f6, Path.Direction.CW);
             canvas.save();
             canvas.scale(scale, scale, this.x + (this.width / 2.0f), this.y + (this.height / 2.0f));
             canvas.save();
@@ -295,7 +295,7 @@ public class GroupMedia {
             LoadingDrawable loadingDrawable4 = this.loadingDrawable;
             if (loadingDrawable4 != null) {
                 loadingDrawable4.setBounds(this.clipRect);
-                this.loadingDrawable.setRadiiDp(f2);
+                this.loadingDrawable.setRadiiDp(f6);
                 this.loadingDrawable.setAlpha((int) (255.0f * f));
                 this.loadingDrawable.draw(canvas);
             }
@@ -309,17 +309,16 @@ public class GroupMedia {
         float dp4 = AndroidUtilities.dp(17.0f);
         float dp5 = AndroidUtilities.dp(5.0f);
         RectF rectF2 = this.clipRect;
-        int i5 = this.x;
-        int i6 = this.width;
-        int i7 = this.y;
-        rectF2.set(((i5 + i6) - dp3) - dp5, i7 + dp5, (i5 + i6) - dp5, i7 + dp5 + dp4);
+        float f7 = this.x + this.width;
+        float f8 = this.y + dp5;
+        rectF2.set((f7 - dp3) - dp5, f8, f7 - dp5, f8 + dp4);
         this.clipPath.rewind();
-        float f3 = dp4 / 2.0f;
-        this.clipPath.addRoundRect(this.clipRect, f3, f3, Path.Direction.CW);
+        float f9 = dp4 / 2.0f;
+        this.clipPath.addRoundRect(this.clipRect, f9, f9, Path.Direction.CW);
         canvas.save();
         canvas.clipPath(this.clipPath);
         canvas.drawColor(Theme.multAlpha(1073741824, timeAlpha));
-        this.priceText.draw(canvas, (((this.x + this.width) - dp3) - dp5) + AndroidUtilities.dp(5.66f), this.y + dp5 + f3, -1, timeAlpha);
+        this.priceText.draw(canvas, (((this.x + this.width) - dp3) - dp5) + AndroidUtilities.dp(5.66f), this.y + dp5 + f9, -1, timeAlpha);
         canvas.restore();
     }
 
@@ -337,27 +336,25 @@ public class GroupMedia {
     }
 
     public void checkBlurBitmap() {
-        int i;
-        int i2;
         int id = this.cell.getMessageObject() != null ? this.cell.getMessageObject().getId() : 0;
-        int i3 = this.width;
-        int i4 = this.height;
-        int max = (int) Math.max(1.0f, i3 > i4 ? 100.0f : (i3 / i4) * 100.0f);
-        int i5 = this.height;
-        int i6 = this.width;
-        int max2 = (int) Math.max(1.0f, i5 <= i6 ? 100.0f * (i5 / i6) : 100.0f);
-        int i7 = 0;
-        for (int i8 = 0; i8 < this.holders.size(); i8++) {
-            MediaHolder mediaHolder = this.holders.get(i8);
+        int i = this.width;
+        int i2 = this.height;
+        int max = (int) Math.max(1.0f, i > i2 ? 100.0f : (i / i2) * 100.0f);
+        int i3 = this.height;
+        int i4 = this.width;
+        int max2 = (int) Math.max(1.0f, i3 <= i4 ? 100.0f * (i3 / i4) : 100.0f);
+        int i5 = 0;
+        for (int i6 = 0; i6 < this.holders.size(); i6++) {
+            MediaHolder mediaHolder = this.holders.get(i6);
             if (mediaHolder.imageReceiver.hasImageSet() && mediaHolder.imageReceiver.getBitmap() != null) {
-                i7 |= 1 << i8;
+                i5 |= 1 << i6;
             }
         }
         Bitmap bitmap = this.blurBitmap;
-        if (bitmap != null && this.blurBitmapMessageId == id && this.blurBitmapState == i7 && this.blurBitmapWidth == max && this.blurBitmapHeight == max2) {
+        if (bitmap != null && this.blurBitmapMessageId == id && this.blurBitmapState == i5 && this.blurBitmapWidth == max && this.blurBitmapHeight == max2) {
             return;
         }
-        this.blurBitmapState = i7;
+        this.blurBitmapState = i5;
         this.blurBitmapMessageId = id;
         this.blurBitmapWidth = max;
         this.blurBitmapHeight = max2;
@@ -366,12 +363,11 @@ public class GroupMedia {
         }
         this.blurBitmap = Bitmap.createBitmap(max, max2, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(this.blurBitmap);
-        float f = max;
-        int i9 = this.width;
-        canvas.scale(f / i9, f / i9);
-        for (int i10 = 0; i10 < this.holders.size(); i10++) {
-            MediaHolder mediaHolder2 = this.holders.get(i10);
-            mediaHolder2.imageReceiver.setImageCoords(mediaHolder2.l, mediaHolder2.t, mediaHolder2.r - i, mediaHolder2.b - i2);
+        float f = max / this.width;
+        canvas.scale(f, f);
+        for (int i7 = 0; i7 < this.holders.size(); i7++) {
+            MediaHolder mediaHolder2 = this.holders.get(i7);
+            mediaHolder2.imageReceiver.setImageCoords(mediaHolder2.l, mediaHolder2.t, mediaHolder2.r - r4, mediaHolder2.b - r6);
             mediaHolder2.imageReceiver.draw(canvas);
         }
         Utilities.stackBlurBitmap(this.blurBitmap, 12);
@@ -420,18 +416,18 @@ public class GroupMedia {
                 mediaHolder.setTime(Math.round(((float) mediaHolder.imageReceiver.getAnimation().currentTime) / 1000.0f));
             }
             if (f > 0.0f) {
-                f2 = Math.min(this.x + mediaHolder.l, f2);
-                f3 = Math.min(this.y + mediaHolder.t, f3);
-                f4 = Math.max(this.x + mediaHolder.r, f4);
-                f5 = Math.max(this.y + mediaHolder.b, f5);
+                f3 = Math.min(this.x + mediaHolder.l, f3);
+                f2 = Math.min(this.y + mediaHolder.t, f2);
+                f5 = Math.max(this.x + mediaHolder.r, f5);
+                f4 = Math.max(this.y + mediaHolder.b, f4);
                 RectF rectF = AndroidUtilities.rectTmp;
-                int i6 = this.x;
-                int i7 = this.y;
-                rectF.set(mediaHolder.l + i6, mediaHolder.t + i7, i6 + mediaHolder.r, i7 + mediaHolder.b);
+                float f6 = mediaHolder.l + this.x;
+                int i6 = this.y;
+                rectF.set(f6, mediaHolder.t + i6, r11 + mediaHolder.r, i6 + mediaHolder.b);
                 this.clipPath2.addRoundRect(rectF, mediaHolder.radii, Path.Direction.CW);
             }
             mediaHolder.radialProgress.setColorKeys(Theme.key_chat_mediaLoaderPhoto, Theme.key_chat_mediaLoaderPhotoSelected, Theme.key_chat_mediaLoaderPhotoIcon, Theme.key_chat_mediaLoaderPhotoIconSelected);
-            float f6 = f2;
+            float f7 = f2;
             mediaHolder.radialProgress.setProgressRect(mediaHolder.imageReceiver.getImageX() + ((mediaHolder.imageReceiver.getImageWidth() / 2.0f) - mediaHolder.radialProgress.getRadius()), mediaHolder.imageReceiver.getImageY() + ((mediaHolder.imageReceiver.getImageHeight() / 2.0f) - mediaHolder.radialProgress.getRadius()), mediaHolder.imageReceiver.getImageX() + (mediaHolder.imageReceiver.getImageWidth() / 2.0f) + mediaHolder.radialProgress.getRadius(), mediaHolder.imageReceiver.getImageY() + (mediaHolder.imageReceiver.getImageHeight() / 2.0f) + mediaHolder.radialProgress.getRadius());
             if (messageObject.isSending()) {
                 SendMessagesHelper sendMessagesHelper = SendMessagesHelper.getInstance(messageObject.currentAccount);
@@ -450,43 +446,40 @@ public class GroupMedia {
             mediaHolder.radialProgress.draw(canvas);
             canvas.restore();
             i++;
-            f2 = f6;
+            f2 = f7;
         }
         if (f > 0.0f && z) {
             canvas.save();
             canvas.clipPath(this.clipPath2);
-            canvas.translate(f2, f3);
+            canvas.translate(f3, f2);
+            int i7 = (int) (f5 - f3);
             int i8 = (int) (f4 - f2);
-            int i9 = (int) (f5 - f3);
-            canvas.saveLayerAlpha(0.0f, 0.0f, i8, i9, (int) (255.0f * f), 31);
+            canvas.saveLayerAlpha(0.0f, 0.0f, i7, i8, (int) (255.0f * f), 31);
             SpoilerEffect2 spoilerEffect2 = this.spoilerEffect;
             ChatMessageCell chatMessageCell = this.cell;
-            spoilerEffect2.draw(canvas, chatMessageCell, i8, i9, 1.0f, chatMessageCell.drawingToBitmap);
+            spoilerEffect2.draw(canvas, chatMessageCell, i7, i8, 1.0f, chatMessageCell.drawingToBitmap);
             canvas.restore();
             canvas.restore();
             this.cell.invalidate();
         }
-        for (int i10 = 0; i10 < this.holders.size(); i10++) {
-            MediaHolder mediaHolder2 = this.holders.get(i10);
+        for (int i9 = 0; i9 < this.holders.size(); i9++) {
+            MediaHolder mediaHolder2 = this.holders.get(i9);
             if (mediaHolder2.durationText != null) {
                 float dp = AndroidUtilities.dp(11.4f) + mediaHolder2.durationText.getCurrentWidth();
                 float dp2 = AndroidUtilities.dp(17.0f);
                 float dp3 = AndroidUtilities.dp(5.0f);
-                RectF rectF2 = this.clipRect;
-                int i11 = this.x;
-                int i12 = mediaHolder2.l;
-                int i13 = this.y;
-                int i14 = mediaHolder2.t;
-                rectF2.set(i11 + i12 + dp3, i13 + i14 + dp3, i11 + i12 + dp3 + dp, i13 + i14 + dp3 + dp2);
+                float f8 = this.x + mediaHolder2.l + dp3;
+                float f9 = this.y + mediaHolder2.t + dp3;
+                this.clipRect.set(f8, f9, dp + f8, f9 + dp2);
                 if (this.priceText == null || this.clipRect.right <= ((this.x + this.width) - (AndroidUtilities.dp(11.32f) + this.priceText.getCurrentWidth())) - dp3 || this.clipRect.top > this.y + dp3) {
                     this.clipPath.rewind();
-                    float f7 = dp2 / 2.0f;
-                    this.clipPath.addRoundRect(this.clipRect, f7, f7, Path.Direction.CW);
+                    float f10 = dp2 / 2.0f;
+                    this.clipPath.addRoundRect(this.clipRect, f10, f10, Path.Direction.CW);
                     canvas.save();
                     canvas.clipPath(this.clipPath);
                     drawBlurred(canvas, f);
                     canvas.drawColor(Theme.multAlpha(1073741824, 1.0f));
-                    mediaHolder2.durationText.draw(canvas, this.x + mediaHolder2.l + dp3 + AndroidUtilities.dp(5.66f), this.y + mediaHolder2.t + dp3 + f7, -1, 1.0f);
+                    mediaHolder2.durationText.draw(canvas, this.x + mediaHolder2.l + dp3 + AndroidUtilities.dp(5.66f), this.y + mediaHolder2.t + dp3 + f10, -1, 1.0f);
                     canvas.restore();
                 }
             }
@@ -554,7 +547,7 @@ public class GroupMedia {
             this.video = false;
             if (tLRPC$MessageExtendedMedia instanceof TLRPC$TL_messageExtendedMedia) {
                 TLRPC$MessageMedia tLRPC$MessageMedia = ((TLRPC$TL_messageExtendedMedia) tLRPC$MessageExtendedMedia).media;
-                this.video = ((tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaDocument) && MessageObject.isVideoDocument(tLRPC$MessageMedia.document)) ? false : false;
+                this.video = (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaDocument) && MessageObject.isVideoDocument(tLRPC$MessageMedia.document);
                 this.duration = (int) Math.max(1L, Math.round(MessageObject.getDocumentDuration(tLRPC$MessageMedia.document)));
             } else if (tLRPC$MessageExtendedMedia instanceof TLRPC$TL_messageExtendedMediaPreview) {
                 TLRPC$TL_messageExtendedMediaPreview tLRPC$TL_messageExtendedMediaPreview = (TLRPC$TL_messageExtendedMediaPreview) tLRPC$MessageExtendedMedia;
@@ -596,7 +589,9 @@ public class GroupMedia {
                 colorMatrix.setSaturation(1.4f);
                 AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, -0.1f);
                 this.imageReceiver.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
-            } else if (tLRPC$MessageExtendedMedia instanceof TLRPC$TL_messageExtendedMedia) {
+                return;
+            }
+            if (tLRPC$MessageExtendedMedia instanceof TLRPC$TL_messageExtendedMedia) {
                 boolean z = messageObject.isRepostPreview;
                 this.hidden = z;
                 if (z) {
@@ -610,7 +605,9 @@ public class GroupMedia {
                     TLRPC$TL_messageMediaPhoto tLRPC$TL_messageMediaPhoto = (TLRPC$TL_messageMediaPhoto) tLRPC$MessageMedia;
                     TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$TL_messageMediaPhoto.photo.sizes, AndroidUtilities.getPhotoSize(), true, null, true);
                     this.imageReceiver.setImage(ImageLocation.getForPhoto(closestPhotoSizeWithSize, tLRPC$TL_messageMediaPhoto.photo), str2, ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(tLRPC$TL_messageMediaPhoto.photo.sizes, Math.min(this.w, this.h) / 100, false, closestPhotoSizeWithSize, false), tLRPC$TL_messageMediaPhoto.photo), str2, 0L, null, messageObject, 0);
-                } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaDocument) {
+                    return;
+                }
+                if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaDocument) {
                     TLRPC$TL_messageMediaDocument tLRPC$TL_messageMediaDocument = (TLRPC$TL_messageMediaDocument) tLRPC$MessageMedia;
                     this.autoplay = !this.hidden && !this.album && this.video && SharedConfig.isAutoplayVideo();
                     if (!this.album && this.video && (tLRPC$Document = tLRPC$TL_messageMediaDocument.document) != null) {

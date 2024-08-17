@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_updatePinnedSavedDialogs extends TLRPC$Update {
     public int flags;
     public ArrayList<TLRPC$DialogPeer> order = new ArrayList<>();
@@ -15,11 +16,11 @@ public class TLRPC$TL_updatePinnedSavedDialogs extends TLRPC$Update {
                 if (z) {
                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
                 }
-                return;
-            }
-            int readInt323 = abstractSerializedData.readInt32(z);
-            for (int i = 0; i < readInt323; i++) {
-                this.order.add(TLRPC$DialogPeer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z));
+            } else {
+                int readInt323 = abstractSerializedData.readInt32(z);
+                for (int i = 0; i < readInt323; i++) {
+                    this.order.add(TLRPC$DialogPeer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z));
+                }
             }
         }
     }

@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import org.telegram.messenger.AndroidUtilities;
+
 public class CircularProgressDrawable extends Drawable {
     private static final FastOutSlowInInterpolator interpolator = new FastOutSlowInInterpolator();
     private float angleOffset;
@@ -68,9 +69,8 @@ public class CircularProgressDrawable extends Drawable {
         for (int i = 0; i < 4; i++) {
             float f3 = fArr[1];
             FastOutSlowInInterpolator fastOutSlowInInterpolator = interpolator;
-            int i2 = i * 1350;
-            fArr[1] = f3 + (fastOutSlowInInterpolator.getInterpolation((f - i2) / 667.0f) * 250.0f);
-            fArr[0] = fArr[0] + (fastOutSlowInInterpolator.getInterpolation((f - (i2 + 667)) / 667.0f) * 250.0f);
+            fArr[1] = f3 + (fastOutSlowInInterpolator.getInterpolation((f - (i * 1350)) / 667.0f) * 250.0f);
+            fArr[0] = fArr[0] + (fastOutSlowInInterpolator.getInterpolation((f - (r5 + 667)) / 667.0f) * 250.0f);
         }
     }
 
@@ -101,11 +101,11 @@ public class CircularProgressDrawable extends Drawable {
         RectF rectF = this.bounds;
         float f = i;
         float f2 = i3 - i;
-        float f3 = this.thickness;
+        float f3 = this.thickness / 2.0f;
         float f4 = this.size;
         float f5 = i2;
         float f6 = i4 - i2;
-        rectF.set((((f2 - (f3 / 2.0f)) - f4) / 2.0f) + f, (((f6 - (f3 / 2.0f)) - f4) / 2.0f) + f5, f + (((f2 + (f3 / 2.0f)) + f4) / 2.0f), f5 + (((f6 + (f3 / 2.0f)) + f4) / 2.0f));
+        rectF.set((((f2 - f3) - f4) / 2.0f) + f, (((f6 - f3) - f4) / 2.0f) + f5, f + (((f2 + f3) + f4) / 2.0f), f5 + (((f6 + f3) + f4) / 2.0f));
         super.setBounds(i, i2, i3, i4);
         this.paint.setStrokeWidth(this.thickness);
     }

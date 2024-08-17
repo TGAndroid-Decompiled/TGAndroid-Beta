@@ -2,6 +2,7 @@ package kotlinx.coroutines.internal;
 
 import androidx.concurrent.futures.AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
+
 public abstract class AtomicOp<T> extends OpDescriptor {
     private static final AtomicReferenceFieldUpdater _consensus$FU = AtomicReferenceFieldUpdater.newUpdater(AtomicOp.class, Object.class, "_consensus");
     private volatile Object _consensus = AtomicKt.NO_DECISION;

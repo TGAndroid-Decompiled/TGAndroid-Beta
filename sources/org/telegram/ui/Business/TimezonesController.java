@@ -20,6 +20,7 @@ import org.telegram.tgnet.TLRPC$TL_help_getTimezonesList;
 import org.telegram.tgnet.TLRPC$TL_help_timezonesList;
 import org.telegram.tgnet.TLRPC$TL_timezone;
 import org.telegram.tgnet.TLRPC$help_timezonesList;
+
 public class TimezonesController {
     private static volatile TimezonesController[] Instance = new TimezonesController[4];
     private static final Object[] lockObjects = new Object[4];
@@ -38,12 +39,15 @@ public class TimezonesController {
         TimezonesController timezonesController = Instance[i];
         if (timezonesController == null) {
             synchronized (lockObjects[i]) {
-                timezonesController = Instance[i];
-                if (timezonesController == null) {
-                    TimezonesController[] timezonesControllerArr = Instance;
-                    TimezonesController timezonesController2 = new TimezonesController(i);
-                    timezonesControllerArr[i] = timezonesController2;
-                    timezonesController = timezonesController2;
+                try {
+                    timezonesController = Instance[i];
+                    if (timezonesController == null) {
+                        TimezonesController[] timezonesControllerArr = Instance;
+                        TimezonesController timezonesController2 = new TimezonesController(i);
+                        timezonesControllerArr[i] = timezonesController2;
+                        timezonesController = timezonesController2;
+                    }
+                } finally {
                 }
             }
         }
@@ -155,25 +159,26 @@ public class TimezonesController {
     }
 
     public String getTimezoneOffsetName(TLRPC$TL_timezone tLRPC$TL_timezone) {
-        if (tLRPC$TL_timezone.utc_offset != 0) {
-            StringBuilder sb = new StringBuilder();
-            sb.append("GMT");
-            sb.append(tLRPC$TL_timezone.utc_offset < 0 ? "-" : "+");
-            String sb2 = sb.toString();
-            int abs = Math.abs(tLRPC$TL_timezone.utc_offset) / 60;
-            int i = abs / 60;
-            int i2 = abs % 60;
-            StringBuilder sb3 = new StringBuilder();
-            sb3.append(sb2);
-            sb3.append(i < 10 ? "0" : "");
-            sb3.append(i);
-            StringBuilder sb4 = new StringBuilder();
-            sb4.append(sb3.toString() + ":");
-            sb4.append(i2 >= 10 ? "" : "0");
-            sb4.append(i2);
-            return sb4.toString();
+        if (tLRPC$TL_timezone.utc_offset == 0) {
+            return "GMT";
         }
-        return "GMT";
+        StringBuilder sb = new StringBuilder();
+        sb.append("GMT");
+        sb.append(tLRPC$TL_timezone.utc_offset < 0 ? "-" : "+");
+        String sb2 = sb.toString();
+        int abs = Math.abs(tLRPC$TL_timezone.utc_offset) / 60;
+        int i = abs / 60;
+        int i2 = abs % 60;
+        StringBuilder sb3 = new StringBuilder();
+        sb3.append(sb2);
+        sb3.append(i < 10 ? "0" : "");
+        sb3.append(i);
+        String str = sb3.toString() + ":";
+        StringBuilder sb4 = new StringBuilder();
+        sb4.append(str);
+        sb4.append(i2 < 10 ? "0" : "");
+        sb4.append(i2);
+        return sb4.toString();
     }
 
     public String getTimezoneName(String str, boolean z) {

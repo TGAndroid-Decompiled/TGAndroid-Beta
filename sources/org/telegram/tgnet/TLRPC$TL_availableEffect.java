@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_availableEffect extends TLObject {
     public long effect_animation_id;
     public long effect_sticker_id;

@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public abstract class TLRPC$StickerSet extends TLObject {
     public long access_hash;
     public boolean archived;

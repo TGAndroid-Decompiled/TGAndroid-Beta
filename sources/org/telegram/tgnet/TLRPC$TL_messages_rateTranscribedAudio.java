@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messages_rateTranscribedAudio extends TLObject {
     public boolean good;
     public int msg_id;

@@ -3,6 +3,7 @@ package org.telegram.ui.Components;
 import android.text.TextPaint;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.TextStyleSpan;
+
 public class URLSpanBotCommand extends URLSpanNoUnderline {
     public static boolean enabled = true;
     public int currentType;

@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_langpack_getStrings extends TLObject {
     public ArrayList<String> keys = new ArrayList<>();
     public String lang_code;

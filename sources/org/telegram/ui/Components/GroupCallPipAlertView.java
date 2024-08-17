@@ -29,6 +29,7 @@ import org.telegram.ui.Components.voip.VoIPButtonsLayout;
 import org.telegram.ui.Components.voip.VoIPToggleButton;
 import org.telegram.ui.GroupCallActivity;
 import org.telegram.ui.LaunchActivity;
+
 public class GroupCallPipAlertView extends LinearLayout implements VoIPService.StateListener, NotificationCenter.NotificationCenterDelegate {
     BackupImageView avatarImageView;
     int currentAccount;
@@ -173,7 +174,7 @@ public class GroupCallPipAlertView extends LinearLayout implements VoIPService.S
 
     public void lambda$new$0(View view) {
         if (VoIPService.getSharedInstance() != null) {
-            Intent action = new Intent(getContext(), LaunchActivity.class).setAction("voip_chat");
+            Intent action = new Intent(getContext(), (Class<?>) LaunchActivity.class).setAction("voip_chat");
             action.putExtra("currentAccount", VoIPService.getSharedInstance().getAccount());
             getContext().startActivity(action);
         }
@@ -241,7 +242,7 @@ public class GroupCallPipAlertView extends LinearLayout implements VoIPService.S
 
     @Override
     @android.annotation.SuppressLint({"DrawAllocation"})
-    protected void onDraw(android.graphics.Canvas r28) {
+    protected void onDraw(android.graphics.Canvas r27) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.GroupCallPipAlertView.onDraw(android.graphics.Canvas):void");
     }
 
@@ -275,7 +276,7 @@ public class GroupCallPipAlertView extends LinearLayout implements VoIPService.S
                 this.mutedByAdmin = VoIPService.getSharedInstance().mutedByAdmin();
             }
             this.mutedByAdminProgress = this.mutedByAdmin ? 1.0f : 0.0f;
-            this.muteProgress = VoIPService.getSharedInstance() == null || VoIPService.getSharedInstance().isMicMute() || this.mutedByAdmin ? 1.0f : 0.0f;
+            this.muteProgress = (VoIPService.getSharedInstance() == null || VoIPService.getSharedInstance().isMicMute() || this.mutedByAdmin) ? 1.0f : 0.0f;
         }
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.groupCallUpdated);
         updateButtons(false);
@@ -308,8 +309,8 @@ public class GroupCallPipAlertView extends LinearLayout implements VoIPService.S
 
     private void updateButtons(boolean z) {
         VoIPService sharedInstance;
-        String str;
         int i;
+        String str;
         if (this.soundButton == null || this.muteButton == null || (sharedInstance = VoIPService.getSharedInstance()) == null) {
             return;
         }
@@ -332,11 +333,11 @@ public class GroupCallPipAlertView extends LinearLayout implements VoIPService.S
             int i2 = R.drawable.calls_unmute;
             int alphaComponent = ColorUtils.setAlphaComponent(-1, (int) ((sharedInstance.isMicMute() ? 0.3f : 0.15f) * 255.0f));
             if (sharedInstance.isMicMute()) {
-                str = "VoipUnmute";
                 i = R.string.VoipUnmute;
+                str = "VoipUnmute";
             } else {
-                str = "VoipMute";
                 i = R.string.VoipMute;
+                str = "VoipMute";
             }
             voIPToggleButton.setData(i2, -1, alphaComponent, 0.1f, true, LocaleController.getString(str, i), sharedInstance.isMicMute(), z);
         }

@@ -9,6 +9,7 @@ import android.view.animation.DecelerateInterpolator;
 import androidx.viewpager.widget.ViewPager;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
+
 public class BottomPagesView extends View {
     private int colorKey;
     private int currentPage;
@@ -60,8 +61,7 @@ public class BottomPagesView extends View {
         this.currentPage = this.viewPager.getCurrentItem();
         for (int i2 = 0; i2 < this.pagesCount; i2++) {
             if (i2 != this.currentPage) {
-                int dp = AndroidUtilities.dp(11.0f) * i2;
-                this.rect.set(dp, 0.0f, dp + AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f));
+                this.rect.set(AndroidUtilities.dp(11.0f) * i2, 0.0f, r2 + AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f));
                 canvas.drawRoundRect(this.rect, AndroidUtilities.dp(2.5f), AndroidUtilities.dp(2.5f), this.paint);
             }
         }
@@ -71,15 +71,15 @@ public class BottomPagesView extends View {
         } else {
             this.paint.setColor(-13851168);
         }
-        int dp2 = this.currentPage * AndroidUtilities.dp(11.0f);
+        int dp = this.currentPage * AndroidUtilities.dp(11.0f);
         if (this.progress != 0.0f) {
             if (this.scrollPosition >= this.currentPage) {
-                this.rect.set(dp2, 0.0f, dp2 + AndroidUtilities.dp(5.0f) + (AndroidUtilities.dp(11.0f) * this.progress), AndroidUtilities.dp(5.0f));
+                this.rect.set(dp, 0.0f, dp + AndroidUtilities.dp(5.0f) + (AndroidUtilities.dp(11.0f) * this.progress), AndroidUtilities.dp(5.0f));
             } else {
-                this.rect.set(dp2 - (AndroidUtilities.dp(11.0f) * (1.0f - this.progress)), 0.0f, dp2 + AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f));
+                this.rect.set(dp - (AndroidUtilities.dp(11.0f) * (1.0f - this.progress)), 0.0f, dp + AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f));
             }
         } else {
-            this.rect.set(dp2, 0.0f, dp2 + AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f));
+            this.rect.set(dp, 0.0f, dp + AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f));
         }
         canvas.drawRoundRect(this.rect, AndroidUtilities.dp(2.5f), AndroidUtilities.dp(2.5f), this.paint);
     }

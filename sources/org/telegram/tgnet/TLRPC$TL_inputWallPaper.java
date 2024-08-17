@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_inputWallPaper extends TLRPC$InputWallPaper {
     public long access_hash;
     public long id;

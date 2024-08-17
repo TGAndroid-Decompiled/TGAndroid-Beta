@@ -24,6 +24,7 @@ import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.Cells.TextSettingsCell;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
+
 public class QuickRepliesSettingsActivity extends BaseFragment {
     private int explanationRow;
     private ListAdapter listAdapter;
@@ -38,16 +39,12 @@ public class QuickRepliesSettingsActivity extends BaseFragment {
     @Override
     public boolean onFragmentCreate() {
         super.onFragmentCreate();
-        int i = 0 + 1;
         this.reply1Row = 0;
-        int i2 = i + 1;
-        this.reply2Row = i;
-        int i3 = i2 + 1;
-        this.reply3Row = i2;
-        int i4 = i3 + 1;
-        this.reply4Row = i3;
-        this.rowCount = i4 + 1;
-        this.explanationRow = i4;
+        this.reply2Row = 1;
+        this.reply3Row = 2;
+        this.reply4Row = 3;
+        this.rowCount = 5;
+        this.explanationRow = 4;
         return true;
     }
 
@@ -63,7 +60,7 @@ public class QuickRepliesSettingsActivity extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    QuickRepliesSettingsActivity.this.finishFragment();
+                    QuickRepliesSettingsActivity.this.lambda$onBackPressed$308();
                 }
             }
         });
@@ -71,11 +68,12 @@ public class QuickRepliesSettingsActivity extends BaseFragment {
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
         frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
+        FrameLayout frameLayout2 = (FrameLayout) this.fragmentView;
         RecyclerListView recyclerListView = new RecyclerListView(context);
         this.listView = recyclerListView;
         recyclerListView.setVerticalScrollBarEnabled(false);
         this.listView.setLayoutManager(new LinearLayoutManager(context, 1, false));
-        ((FrameLayout) this.fragmentView).addView(this.listView, LayoutHelper.createFrame(-1, -1, 51));
+        frameLayout2.addView(this.listView, LayoutHelper.createFrame(-1, -1, 51));
         this.listView.setAdapter(this.listAdapter);
         return this.fragmentView;
     }
@@ -138,8 +136,9 @@ public class QuickRepliesSettingsActivity extends BaseFragment {
                 return;
             }
             if (itemViewType == 1) {
-                TextSettingsCell textSettingsCell = (TextSettingsCell) viewHolder.itemView;
-            } else if (itemViewType != 4) {
+                return;
+            }
+            if (itemViewType != 4) {
                 switch (itemViewType) {
                     case 9:
                     case 10:
@@ -173,9 +172,8 @@ public class QuickRepliesSettingsActivity extends BaseFragment {
                     default:
                         return;
                 }
-            } else {
-                ((TextCheckCell) viewHolder.itemView).setTextAndCheck(LocaleController.getString("AllowCustomQuickReply", R.string.AllowCustomQuickReply), QuickRepliesSettingsActivity.this.getParentActivity().getSharedPreferences("mainconfig", 0).getBoolean("quick_reply_allow_custom", true), false);
             }
+            ((TextCheckCell) viewHolder.itemView).setTextAndCheck(LocaleController.getString("AllowCustomQuickReply", R.string.AllowCustomQuickReply), QuickRepliesSettingsActivity.this.getParentActivity().getSharedPreferences("mainconfig", 0).getBoolean("quick_reply_allow_custom", true), false);
         }
 
         @Override

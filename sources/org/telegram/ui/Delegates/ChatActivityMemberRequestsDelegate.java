@@ -27,6 +27,7 @@ import org.telegram.ui.Components.BlurredFrameLayout;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.MemberRequestsBottomSheet;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
+
 public class ChatActivityMemberRequestsDelegate {
     private AvatarsImageView avatarsView;
     private MemberRequestsBottomSheet bottomSheet;
@@ -78,8 +79,7 @@ public class ChatActivityMemberRequestsDelegate {
             AvatarsImageView avatarsImageView = new AvatarsImageView(this.fragment.getParentActivity(), false) {
                 @Override
                 public void onMeasure(int i, int i2) {
-                    int i3 = this.avatarsDrawable.count;
-                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(i3 == 0 ? 0 : ((i3 - 1) * 20) + 24), 1073741824), i2);
+                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.avatarsDrawable.count == 0 ? 0 : ((r2 - 1) * 20) + 24), 1073741824), i2);
                 }
             };
             this.avatarsView = avatarsImageView;
@@ -178,7 +178,9 @@ public class ChatActivityMemberRequestsDelegate {
             }
             animatePendingRequests(false, z);
             this.pendingRequestsCount = 0;
-        } else if (this.pendingRequestsCount != i) {
+            return;
+        }
+        if (this.pendingRequestsCount != i) {
             this.pendingRequestsCount = i;
             this.requestsCountTextView.setText(LocaleController.formatPluralString("JoinUsersRequests", i, new Object[0]));
             animatePendingRequests(true, z);
@@ -219,10 +221,7 @@ public class ChatActivityMemberRequestsDelegate {
             valueAnimator.cancel();
         }
         if (z2) {
-            float[] fArr = new float[2];
-            fArr[0] = z ? 0.0f : 1.0f;
-            fArr[1] = z ? 1.0f : 0.0f;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(z ? 0.0f : 1.0f, z ? 1.0f : 0.0f);
             this.pendingRequestsAnimator = ofFloat;
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override

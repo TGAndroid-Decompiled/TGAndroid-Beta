@@ -11,6 +11,7 @@ import android.view.animation.DecelerateInterpolator;
 import androidx.annotation.Keep;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
+
 public class RadialProgressView extends View {
     private AccelerateInterpolator accelerateInterpolator;
     private float animatedProgress;
@@ -141,11 +142,7 @@ public class RadialProgressView extends View {
 
     @Override
     public void onDraw(Canvas canvas) {
-        int measuredWidth = (getMeasuredWidth() - this.size) / 2;
-        int measuredHeight = getMeasuredHeight();
-        int i = this.size;
-        int i2 = (measuredHeight - i) / 2;
-        this.cicleRect.set(measuredWidth, i2, measuredWidth + i, i2 + i);
+        this.cicleRect.set((getMeasuredWidth() - this.size) / 2, (getMeasuredHeight() - this.size) / 2, r0 + r2, r1 + r2);
         RectF rectF = this.cicleRect;
         float f = this.radOffset;
         float f2 = this.currentCircleLength;
@@ -155,14 +152,13 @@ public class RadialProgressView extends View {
     }
 
     public void draw(Canvas canvas, float f, float f2) {
+        float f3 = this.size / 2.0f;
+        this.cicleRect.set(f - f3, f2 - f3, f + f3, f2 + f3);
         RectF rectF = this.cicleRect;
-        int i = this.size;
-        rectF.set(f - (i / 2.0f), f2 - (i / 2.0f), f + (i / 2.0f), f2 + (i / 2.0f));
-        RectF rectF2 = this.cicleRect;
-        float f3 = this.radOffset;
-        float f4 = this.currentCircleLength;
-        this.drawingCircleLenght = f4;
-        canvas.drawArc(rectF2, f3, f4, false, this.progressPaint);
+        float f4 = this.radOffset;
+        float f5 = this.currentCircleLength;
+        this.drawingCircleLenght = f5;
+        canvas.drawArc(rectF, f4, f5, false, this.progressPaint);
         updateAnimation();
     }
 

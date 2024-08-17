@@ -47,6 +47,7 @@ import org.telegram.ui.Components.MessagePreviewView;
 import org.telegram.ui.Components.Paint.Views.LinkPreview;
 import org.telegram.ui.Stories.DarkThemeResourceProvider;
 import org.telegram.ui.Stories.recorder.PreviewView;
+
 public class StoryLinkPreviewDialog extends Dialog {
     private final FrameLayout actionBarContainer;
     private final ImageView backgroundView;
@@ -283,17 +284,17 @@ public class StoryLinkPreviewDialog extends Dialog {
 
     public void lambda$new$1(int i, View view) {
         LinkPreview.WebPagePreview webPagePreview = this.link;
-        boolean z = !webPagePreview.captionAbove;
-        webPagePreview.captionAbove = z;
-        this.captionButton.setState(!z, true);
+        boolean z = webPagePreview.captionAbove;
+        webPagePreview.captionAbove = !z;
+        this.captionButton.setState(z, true);
         this.linkView.set(i, this.link, true);
     }
 
     public void lambda$new$2(int i, View view) {
         LinkPreview.WebPagePreview webPagePreview = this.link;
-        boolean z = !webPagePreview.largePhoto;
-        webPagePreview.largePhoto = z;
-        this.photoButton.setState(!z, true);
+        boolean z = webPagePreview.largePhoto;
+        webPagePreview.largePhoto = !z;
+        this.photoButton.setState(z, true);
         this.linkView.set(i, this.link, true);
     }
 
@@ -317,14 +318,14 @@ public class StoryLinkPreviewDialog extends Dialog {
         attributes.height = -1;
         attributes.gravity = 119;
         attributes.dimAmount = 0.0f;
+        int i = attributes.flags & (-3);
         attributes.softInputMode = 16;
-        int i = (attributes.flags & (-3)) | 131072;
-        attributes.flags = i;
+        attributes.flags = 131072 | i;
         int i2 = Build.VERSION.SDK_INT;
         if (i2 >= 21) {
-            attributes.flags = i | (-1946091264);
+            attributes.flags = i | (-1945960192);
         }
-        attributes.flags = attributes.flags | 1024 | 128;
+        attributes.flags |= 1152;
         if (i2 >= 28) {
             attributes.layoutInDisplayCutoutMode = 1;
         }
@@ -338,10 +339,7 @@ public class StoryLinkPreviewDialog extends Dialog {
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        float[] fArr = new float[2];
-        fArr[0] = this.openProgress;
-        fArr[1] = z ? 1.0f : 0.0f;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.openProgress, z ? 1.0f : 0.0f);
         this.openAnimator = ofFloat;
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override

@@ -7,7 +7,6 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
-import android.graphics.drawable.RippleDrawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
@@ -19,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import androidx.appcompat.widget.AppCompatImageHelper$$ExternalSyntheticApiModelOutline0;
 import androidx.viewpager.widget.ViewPager;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -52,6 +52,7 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ScamDrawable;
 import org.telegram.ui.Components.SeekBarView;
 import org.telegram.ui.Components.TypefaceSpan;
+
 public class ThemeDescription {
     public static int FLAG_AB_AM_BACKGROUND = 1048576;
     public static int FLAG_AB_AM_ITEMSCOLOR = 512;
@@ -310,7 +311,7 @@ public class ThemeDescription {
                         }
                     }
                     if (background2 != null) {
-                        if ((background2 instanceof StateListDrawable) || (Build.VERSION.SDK_INT >= 21 && (background2 instanceof RippleDrawable))) {
+                        if ((background2 instanceof StateListDrawable) || (Build.VERSION.SDK_INT >= 21 && AppCompatImageHelper$$ExternalSyntheticApiModelOutline0.m(background2))) {
                             Theme.setSelectorDrawableColor(background2, i, (this.changeFlags & FLAG_DRAWABLESELECTEDSTATE) != 0);
                         } else if (background2 instanceof ShapeDrawable) {
                             ((ShapeDrawable) background2).getPaint().setColor(i);
@@ -423,7 +424,7 @@ public class ThemeDescription {
             if (view10 instanceof ImageView) {
                 if ((this.changeFlags & FLAG_USEBACKGROUNDDRAWABLE) != 0) {
                     Drawable drawable2 = ((ImageView) view10).getDrawable();
-                    if ((drawable2 instanceof StateListDrawable) || (Build.VERSION.SDK_INT >= 21 && (drawable2 instanceof RippleDrawable))) {
+                    if ((drawable2 instanceof StateListDrawable) || (Build.VERSION.SDK_INT >= 21 && AppCompatImageHelper$$ExternalSyntheticApiModelOutline0.m(drawable2))) {
                         Theme.setSelectorDrawableColor(drawable2, i, (this.changeFlags & FLAG_DRAWABLESELECTEDSTATE) != 0);
                     }
                 } else {
@@ -556,7 +557,7 @@ public class ThemeDescription {
                             } else {
                                 if (background instanceof CombinedDrawable) {
                                     background = ((CombinedDrawable) background).getIcon();
-                                } else if ((background instanceof StateListDrawable) || (Build.VERSION.SDK_INT >= 21 && (background instanceof RippleDrawable))) {
+                                } else if ((background instanceof StateListDrawable) || (Build.VERSION.SDK_INT >= 21 && AppCompatImageHelper$$ExternalSyntheticApiModelOutline0.m(background))) {
                                     Theme.setSelectorDrawableColor(background, i, (i3 & FLAG_DRAWABLESELECTEDSTATE) != 0);
                                 }
                                 background.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
@@ -572,8 +573,7 @@ public class ThemeDescription {
                             } else if (view instanceof AudioPlayerAlert.ClippingTextViewSwitcher) {
                                 int i5 = 0;
                                 while (i5 < 2) {
-                                    AudioPlayerAlert.ClippingTextViewSwitcher clippingTextViewSwitcher = (AudioPlayerAlert.ClippingTextViewSwitcher) view;
-                                    TextView textView = i5 == 0 ? clippingTextViewSwitcher.getTextView() : clippingTextViewSwitcher.getNextTextView();
+                                    TextView textView = i5 == 0 ? ((AudioPlayerAlert.ClippingTextViewSwitcher) view).getTextView() : ((AudioPlayerAlert.ClippingTextViewSwitcher) view).getNextTextView();
                                     if (textView != null) {
                                         textView.setTextColor(i);
                                     }
@@ -698,7 +698,7 @@ public class ThemeDescription {
                                             ((CombinedDrawable) obj).getIcon().setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
                                         }
                                     } else {
-                                        if (!(obj instanceof StateListDrawable) && (Build.VERSION.SDK_INT < 21 || !(obj instanceof RippleDrawable))) {
+                                        if (!(obj instanceof StateListDrawable) && (Build.VERSION.SDK_INT < 21 || !AppCompatImageHelper$$ExternalSyntheticApiModelOutline0.m(obj))) {
                                             if (obj instanceof GradientDrawable) {
                                                 ((GradientDrawable) obj).setColor(i);
                                             } else {
@@ -767,7 +767,7 @@ public class ThemeDescription {
                                             }
                                             i7++;
                                         }
-                                    } else if ((FLAG_TEXTCOLOR & i6) != 0 && ((i6 & FLAG_CHECKTAG) == 0 || checkTag(this.currentKey, obj))) {
+                                    } else if ((FLAG_TEXTCOLOR & i6) != 0 && ((i6 & FLAG_CHECKTAG) == 0 || checkTag(this.currentKey, (View) obj))) {
                                         int i8 = 0;
                                         while (i8 < 2) {
                                             TextView textView4 = i8 == 0 ? ((AudioPlayerAlert.ClippingTextViewSwitcher) obj).getTextView() : ((AudioPlayerAlert.ClippingTextViewSwitcher) obj).getNextTextView();

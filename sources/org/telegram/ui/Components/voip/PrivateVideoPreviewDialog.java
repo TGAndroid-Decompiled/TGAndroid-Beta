@@ -41,6 +41,7 @@ import org.telegram.ui.Components.MotionBackgroundDrawable;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RLottieImageView;
 import org.webrtc.RendererCommon;
+
 @TargetApi(21)
 public abstract class PrivateVideoPreviewDialog extends FrameLayout implements VoIPService.StateListener {
     private boolean cameraReady;
@@ -130,7 +131,9 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
                         PrivateVideoPreviewDialog.this.currentTexturePage = 2;
                     }
                     PrivateVideoPreviewDialog.this.onFinishMoveCameraPage();
-                } else if (i <= PrivateVideoPreviewDialog.this.needScreencast) {
+                    return;
+                }
+                if (i <= PrivateVideoPreviewDialog.this.needScreencast) {
                     this.willSetPage = 1;
                 } else {
                     this.willSetPage = 2;
@@ -187,7 +190,7 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
             }
 
             @Override
-            protected void onSizeChanged(int r26, int r27, int r28, int r29) {
+            protected void onSizeChanged(int r24, int r25, int r26, int r27) {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.voip.PrivateVideoPreviewDialog.AnonymousClass3.onSizeChanged(int, int, int, int):void");
             }
 
@@ -307,8 +310,10 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
             return;
         }
         if (this.currentPage == 0 && this.needScreencast) {
-            createScreenCaptureIntent = ((MediaProjectionManager) getContext().getSystemService("media_projection")).createScreenCaptureIntent();
-            ((Activity) getContext()).startActivityForResult(createScreenCaptureIntent, 520);
+            MediaProjectionManager m = PrivateVideoPreviewDialog$$ExternalSyntheticApiModelOutline0.m(getContext().getSystemService("media_projection"));
+            Activity activity = (Activity) getContext();
+            createScreenCaptureIntent = m.createScreenCaptureIntent();
+            activity.startActivityForResult(createScreenCaptureIntent, 520);
             return;
         }
         dismiss(false, true);
@@ -341,11 +346,11 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
         int i = this.currentPage;
         TextView textView = textViewArr[i];
         TextView textView2 = i < textViewArr.length + (-1) ? textViewArr[i + 1] : null;
-        int measuredWidth = getMeasuredWidth() / 2;
+        getMeasuredWidth();
         float left = textView.getLeft() + (textView.getMeasuredWidth() / 2);
-        float measuredWidth2 = (getMeasuredWidth() / 2) - left;
+        float measuredWidth = (getMeasuredWidth() / 2) - left;
         if (textView2 != null) {
-            measuredWidth2 -= ((textView2.getLeft() + (textView2.getMeasuredWidth() / 2)) - left) * this.pageOffset;
+            measuredWidth -= ((textView2.getLeft() + (textView2.getMeasuredWidth() / 2)) - left) * this.pageOffset;
         }
         int i2 = 0;
         while (true) {
@@ -372,7 +377,7 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
             this.titles[i2].setScaleY(f);
             i2++;
         }
-        this.titlesLayout.setTranslationX(measuredWidth2);
+        this.titlesLayout.setTranslationX(measuredWidth);
         this.positiveButton.invalidate();
         if (this.needScreencast && this.currentPage == 0 && this.pageOffset <= 0.0f) {
             this.textureView.setVisibility(4);
@@ -433,9 +438,8 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
                             createBitmap.recycle();
                         }
                         Utilities.blurBitmap(createScaledBitmap, 7, 1, createScaledBitmap.getWidth(), createScaledBitmap.getHeight(), createScaledBitmap.getRowBytes());
-                        File filesDirFixed = ApplicationLoader.getFilesDirFixed();
-                        createScaledBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(new File(filesDirFixed, "cthumb" + this.visibleCameraPage + ".jpg")));
-                        View findViewWithTag = this.viewPager.findViewWithTag(Integer.valueOf(this.visibleCameraPage - (this.needScreencast ? 0 : 1)));
+                        createScaledBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(new File(ApplicationLoader.getFilesDirFixed(), "cthumb" + this.visibleCameraPage + ".jpg")));
+                        View findViewWithTag = this.viewPager.findViewWithTag(Integer.valueOf(this.visibleCameraPage - (1 ^ (this.needScreencast ? 1 : 0))));
                         if (findViewWithTag instanceof ImageView) {
                             ((ImageView) findViewWithTag).setImageBitmap(createScaledBitmap);
                         }

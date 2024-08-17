@@ -10,6 +10,7 @@ import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.Delegates.MemberRequestsDelegate;
+
 public class MemberRequestsActivity extends BaseFragment {
     private final MemberRequestsDelegate delegate;
 
@@ -28,25 +29,25 @@ public class MemberRequestsActivity extends BaseFragment {
 
     @Override
     public View createView(Context context) {
-        String str;
         int i;
+        String str;
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i2) {
                 if (i2 == -1) {
-                    MemberRequestsActivity.this.finishFragment();
+                    MemberRequestsActivity.this.lambda$onBackPressed$308();
                 }
             }
         });
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         ActionBar actionBar = this.actionBar;
         if (this.delegate.isChannel) {
-            str = "SubscribeRequests";
             i = R.string.SubscribeRequests;
+            str = "SubscribeRequests";
         } else {
-            str = "MemberRequests";
             i = R.string.MemberRequests;
+            str = "MemberRequests";
         }
         actionBar.setTitle(LocaleController.getString(str, i));
         ActionBarMenuItem actionBarMenuItemSearchListener = this.actionBar.createMenu().addItem(0, R.drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {

@@ -1,6 +1,7 @@
 package org.telegram.ui.Components;
 
 import android.view.View;
+
 public interface IPhotoPaintView {
 
     public final class CC {

@@ -1,4 +1,5 @@
 package org.telegram.ui.Stories.recorder;
+
 public final class StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda13 implements Runnable {
     public final StoryPrivacyBottomSheet f$0;
 

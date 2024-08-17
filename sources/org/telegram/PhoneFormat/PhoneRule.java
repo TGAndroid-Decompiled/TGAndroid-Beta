@@ -1,4 +1,5 @@
 package org.telegram.PhoneFormat;
+
 public class PhoneRule {
     public int byte8;
     public int flag12;

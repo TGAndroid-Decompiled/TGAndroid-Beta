@@ -1,25 +1,14 @@
 package kotlin.collections;
 
-import j$.util.Iterator;
-import j$.util.function.Consumer;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
-public final class EmptyIterator implements ListIterator, Iterator {
+
+public final class EmptyIterator implements ListIterator {
     public static final EmptyIterator INSTANCE = new EmptyIterator();
 
     @Override
     public void add(Object obj) {
         throw new UnsupportedOperationException("Operation is not supported for read-only collection");
-    }
-
-    @Override
-    public void forEachRemaining(Consumer consumer) {
-        Iterator.CC.$default$forEachRemaining(this, consumer);
-    }
-
-    @Override
-    public void forEachRemaining(java.util.function.Consumer consumer) {
-        forEachRemaining(Consumer.VivifiedWrapper.convert(consumer));
     }
 
     @Override

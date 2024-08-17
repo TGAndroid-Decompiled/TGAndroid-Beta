@@ -16,6 +16,7 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.BottomSheetTabsOverlay;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.LaunchActivity;
+
 public class BottomSheetTabDialog extends Dialog {
     private boolean attached;
     public final BottomSheetTabsOverlay.Sheet sheet;
@@ -37,11 +38,11 @@ public class BottomSheetTabDialog extends Dialog {
     }
 
     public BottomSheetTabDialog(BottomSheetTabsOverlay.Sheet sheet) {
-        super(sheet.mo947getWindowView().getContext(), R.style.TransparentDialog);
+        super(sheet.mo988getWindowView().getContext(), R.style.TransparentDialog);
         this.sheet = sheet;
-        BottomSheetTabsOverlay.SheetView mo947getWindowView = sheet.mo947getWindowView();
-        this.sheetView = mo947getWindowView;
-        WindowView windowView = new WindowView(mo947getWindowView);
+        BottomSheetTabsOverlay.SheetView mo988getWindowView = sheet.mo988getWindowView();
+        this.sheetView = mo988getWindowView;
+        WindowView windowView = new WindowView(mo988getWindowView);
         this.windowView = windowView;
         setContentView(windowView, new ViewGroup.LayoutParams(-1, -1));
     }

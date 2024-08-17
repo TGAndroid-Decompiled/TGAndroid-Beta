@@ -7,6 +7,7 @@ import android.os.SystemClock;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
+
 public class TimerParticles {
     public boolean big;
     private ArrayList<Particle> freeParticles;

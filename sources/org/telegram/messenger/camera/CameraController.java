@@ -27,6 +27,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.SerializedData;
+
 public class CameraController implements MediaRecorder.OnInfoListener {
     private static final int CORE_POOL_SIZE = 1;
     private static volatile CameraController Instance = null;
@@ -68,10 +69,13 @@ public class CameraController implements MediaRecorder.OnInfoListener {
         CameraController cameraController = Instance;
         if (cameraController == null) {
             synchronized (CameraController.class) {
-                cameraController = Instance;
-                if (cameraController == null) {
-                    cameraController = new CameraController();
-                    Instance = cameraController;
+                try {
+                    cameraController = Instance;
+                    if (cameraController == null) {
+                        cameraController = new CameraController();
+                        Instance = cameraController;
+                    }
+                } finally {
                 }
             }
         }
@@ -110,8 +114,8 @@ public class CameraController implements MediaRecorder.OnInfoListener {
         Camera.CameraInfo cameraInfo;
         String str2;
         final CameraController cameraController = this;
-        String str3 = "cameraCache";
-        String str4 = "APP_PAUSED";
+        String str3 = "APP_PAUSED";
+        String str4 = "cameraCache";
         try {
             if (cameraController.cameraInfos == null) {
                 SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
@@ -154,7 +158,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
                             Camera.getCameraInfo(i5, cameraInfo3);
                             CameraInfo cameraInfo4 = new CameraInfo(i5, cameraInfo3.facing);
                             if (ApplicationLoader.mainInterfacePaused && ApplicationLoader.externalInterfacePaused) {
-                                throw new RuntimeException(str4);
+                                throw new RuntimeException(str3);
                             }
                             Camera open = Camera.open(cameraInfo4.getCameraId());
                             Camera.Parameters parameters = open.getParameters();
@@ -168,12 +172,12 @@ public class CameraController implements MediaRecorder.OnInfoListener {
                                 Camera.Size size = supportedPreviewSizes.get(i6);
                                 List<Camera.Size> list = supportedPreviewSizes;
                                 int i7 = size.height;
-                                str = str4;
+                                str = str3;
                                 if (i7 < 2160) {
                                     try {
                                         int i8 = size.width;
                                         if (i8 < 2160) {
-                                            str2 = str3;
+                                            str2 = str4;
                                             cameraInfo4.previewSizes.add(new Size(i8, i7));
                                             if (BuildVars.LOGS_ENABLED) {
                                                 FileLog.d("preview size = " + size.width + " " + size.height);
@@ -181,8 +185,8 @@ public class CameraController implements MediaRecorder.OnInfoListener {
                                             i6++;
                                             cameraInfo3 = cameraInfo;
                                             supportedPreviewSizes = list;
-                                            str4 = str;
-                                            str3 = str2;
+                                            str3 = str;
+                                            str4 = str2;
                                         }
                                     } catch (Exception e) {
                                         e = e;
@@ -197,15 +201,15 @@ public class CameraController implements MediaRecorder.OnInfoListener {
                                         return;
                                     }
                                 }
-                                str2 = str3;
+                                str2 = str4;
                                 i6++;
                                 cameraInfo3 = cameraInfo;
                                 supportedPreviewSizes = list;
-                                str4 = str;
-                                str3 = str2;
+                                str3 = str;
+                                str4 = str2;
                             }
-                            String str5 = str3;
-                            String str6 = str4;
+                            String str5 = str4;
+                            String str6 = str3;
                             List<Camera.Size> supportedPictureSizes = parameters.getSupportedPictureSizes();
                             for (int i9 = 0; i9 < supportedPictureSizes.size(); i9++) {
                                 Camera.Size size2 = supportedPictureSizes.get(i9);
@@ -223,11 +227,11 @@ public class CameraController implements MediaRecorder.OnInfoListener {
                             i4 += ((cameraInfo4.previewSizes.size() + cameraInfo4.pictureSizes.size()) * 8) + 8;
                             i5++;
                             cameraInfo3 = cameraInfo;
-                            str4 = str6;
-                            str3 = str5;
+                            str3 = str6;
+                            str4 = str5;
                         } catch (Exception e2) {
                             e = e2;
-                            str = str4;
+                            str = str3;
                             cameraController = this;
                             FileLog.e(e, !str.equals(e.getMessage()));
                             AndroidUtilities.runOnUIThread(new Runnable() {
@@ -239,8 +243,8 @@ public class CameraController implements MediaRecorder.OnInfoListener {
                             return;
                         }
                     }
-                    String str7 = str3;
-                    str = str4;
+                    String str7 = str4;
+                    str = str3;
                     SerializedData serializedData2 = new SerializedData(i4);
                     serializedData2.writeInt32(arrayList.size());
                     for (int i10 = 0; i10 < numberOfCameras; i10++) {
@@ -401,68 +405,66 @@ public class CameraController implements MediaRecorder.OnInfoListener {
     private static int getOrientation(byte[] bArr) {
         int i;
         int pack;
-        int i2;
         if (bArr == null) {
             return -1;
         }
-        int i3 = 0;
-        while (i3 + 3 < bArr.length) {
-            int i4 = i3 + 1;
-            if ((bArr[i3] & 255) == 255) {
-                int i5 = bArr[i4] & 255;
-                if (i5 != 255) {
-                    i4++;
-                    if (i5 != 216 && i5 != 1) {
-                        if (i5 != 217 && i5 != 218) {
-                            int pack2 = pack(bArr, i4, 2, false);
-                            if (pack2 >= 2 && (i2 = i4 + pack2) <= bArr.length) {
-                                if (i5 == 225 && pack2 >= 8 && pack(bArr, i4 + 2, 4, false) == 1165519206 && pack(bArr, i4 + 6, 2, false) == 0) {
-                                    i3 = i4 + 8;
+        int i2 = 0;
+        while (i2 + 3 < bArr.length) {
+            int i3 = i2 + 1;
+            if ((bArr[i2] & 255) == 255) {
+                int i4 = bArr[i3] & 255;
+                if (i4 != 255) {
+                    i3 = i2 + 2;
+                    if (i4 != 216 && i4 != 1) {
+                        if (i4 != 217 && i4 != 218) {
+                            int pack2 = pack(bArr, i3, 2, false);
+                            if (pack2 >= 2 && (i3 = i3 + pack2) <= bArr.length) {
+                                if (i4 == 225 && pack2 >= 8 && pack(bArr, i2 + 4, 4, false) == 1165519206 && pack(bArr, i2 + 8, 2, false) == 0) {
+                                    i2 += 10;
                                     i = pack2 - 8;
                                     break;
                                 }
-                                i3 = i2;
                             } else {
                                 return -1;
                             }
                         }
                     }
                 }
-                i3 = i4;
+                i2 = i3;
             }
-            i3 = i4;
+            i2 = i3;
         }
         i = 0;
-        if (i <= 8 || !((pack = pack(bArr, i3, 4, false)) == 1229531648 || pack == 1296891946)) {
+        if (i <= 8 || !((pack = pack(bArr, i2, 4, false)) == 1229531648 || pack == 1296891946)) {
             return -1;
         }
         boolean z = pack == 1229531648;
-        int pack3 = pack(bArr, i3 + 4, 4, z) + 2;
+        int pack3 = pack(bArr, i2 + 4, 4, z) + 2;
         if (pack3 >= 10 && pack3 <= i) {
-            int i6 = i3 + pack3;
-            int i7 = i - pack3;
-            int pack4 = pack(bArr, i6 - 2, 2, z);
+            int i5 = i2 + pack3;
+            int i6 = i - pack3;
+            int pack4 = pack(bArr, i5 - 2, 2, z);
             while (true) {
-                int i8 = pack4 - 1;
-                if (pack4 <= 0 || i7 < 12) {
+                int i7 = pack4 - 1;
+                if (pack4 <= 0 || i6 < 12) {
                     break;
-                } else if (pack(bArr, i6, 2, z) == 274) {
-                    int pack5 = pack(bArr, i6 + 8, 2, z);
-                    if (pack5 != 1) {
-                        if (pack5 != 3) {
-                            if (pack5 != 6) {
-                                return pack5 != 8 ? -1 : 270;
-                            }
-                            return 90;
-                        }
+                }
+                if (pack(bArr, i5, 2, z) == 274) {
+                    int pack5 = pack(bArr, i5 + 8, 2, z);
+                    if (pack5 == 1) {
+                        return 0;
+                    }
+                    if (pack5 == 3) {
                         return 180;
                     }
-                    return 0;
-                } else {
-                    i6 += 12;
-                    i7 -= 12;
-                    pack4 = i8;
+                    if (pack5 != 6) {
+                        return pack5 != 8 ? -1 : 270;
+                    }
+                    return 90;
                 }
+                i5 += 12;
+                i6 -= 12;
+                pack4 = i7;
             }
         }
         return -1;
@@ -508,14 +510,14 @@ public class CameraController implements MediaRecorder.OnInfoListener {
                 FileLog.e(e);
                 return false;
             }
-        } else if (obj instanceof Camera2Session) {
-            return ((Camera2Session) obj).takePicture(file, callback);
-        } else {
-            return false;
         }
+        if (obj instanceof Camera2Session) {
+            return ((Camera2Session) obj).takePicture(file, callback);
+        }
+        return false;
     }
 
-    public static void lambda$takePicture$6(java.io.File r15, org.telegram.messenger.camera.CameraInfo r16, boolean r17, boolean r18, org.telegram.messenger.Utilities.Callback r19, byte[] r20, android.hardware.Camera r21) {
+    public static void lambda$takePicture$6(java.io.File r16, org.telegram.messenger.camera.CameraInfo r17, boolean r18, boolean r19, org.telegram.messenger.Utilities.Callback r20, byte[] r21, android.hardware.Camera r22) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.camera.CameraController.lambda$takePicture$6(java.io.File, org.telegram.messenger.camera.CameraInfo, boolean, boolean, org.telegram.messenger.Utilities$Callback, byte[], android.hardware.Camera):void");
     }
 
@@ -542,16 +544,16 @@ public class CameraController implements MediaRecorder.OnInfoListener {
                 cameraInfo.camera = open;
             } catch (Exception e) {
                 e = e;
+                open = camera;
             }
             try {
                 open.setErrorCallback(getErrorListener(cameraSession));
                 camera = open;
             } catch (Exception e2) {
                 e = e2;
-                camera = open;
                 cameraSession.cameraInfo.camera = null;
-                if (camera != null) {
-                    camera.release();
+                if (open != null) {
+                    open.release();
                 }
                 FileLog.e(e);
                 return;
@@ -583,16 +585,16 @@ public class CameraController implements MediaRecorder.OnInfoListener {
                 cameraInfo.camera = open;
             } catch (Exception e) {
                 e = e;
+                open = camera;
             }
             try {
                 open.setErrorCallback(getErrorListener(cameraSession));
                 camera = open;
             } catch (Exception e2) {
                 e = e2;
-                camera = open;
                 cameraSession.cameraInfo.camera = null;
-                if (camera != null) {
-                    camera.release();
+                if (open != null) {
+                    open.release();
                 }
                 FileLog.e(e);
                 return;
@@ -739,7 +741,9 @@ public class CameraController implements MediaRecorder.OnInfoListener {
                     CameraController.this.lambda$recordVideo$13(obj, iCameraView, file, z2, runnable);
                 }
             });
-        } else if (obj instanceof CameraSession) {
+            return;
+        }
+        if (obj instanceof CameraSession) {
             final CameraSession cameraSession = (CameraSession) obj;
             final CameraInfo cameraInfo = cameraSession.cameraInfo;
             final Camera camera = cameraInfo.camera;
@@ -882,14 +886,14 @@ public class CameraController implements MediaRecorder.OnInfoListener {
         if (iCameraView != null) {
             iCameraView.stopRecording();
             this.recordingCurrentCameraView = null;
-            return;
+        } else {
+            this.threadPool.execute(new Runnable() {
+                @Override
+                public final void run() {
+                    CameraController.this.lambda$stopVideoRecording$17(obj, z, z2);
+                }
+            });
         }
-        this.threadPool.execute(new Runnable() {
-            @Override
-            public final void run() {
-                CameraController.this.lambda$stopVideoRecording$17(obj, z, z2);
-            }
-        });
     }
 
     public void lambda$stopVideoRecording$17(Object obj, boolean z, boolean z2) {

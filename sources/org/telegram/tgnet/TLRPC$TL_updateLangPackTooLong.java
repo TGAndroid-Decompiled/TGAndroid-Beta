@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_updateLangPackTooLong extends TLRPC$Update {
     public String lang_code;
 

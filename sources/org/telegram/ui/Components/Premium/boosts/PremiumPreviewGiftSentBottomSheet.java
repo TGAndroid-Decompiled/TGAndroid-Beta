@@ -22,6 +22,7 @@ import org.telegram.ui.Components.Premium.boosts.PremiumPreviewGiftToUsersBottom
 import org.telegram.ui.Components.Premium.boosts.cells.ActionBtnCell;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.LaunchActivity;
+
 public class PremiumPreviewGiftSentBottomSheet extends PremiumPreviewBottomSheet {
     private final List<TLRPC$User> selectedUsers;
 
@@ -51,14 +52,14 @@ public class PremiumPreviewGiftSentBottomSheet extends PremiumPreviewBottomSheet
 
     @Override
     protected void updateRows() {
-        int i = 0 + 1;
-        this.rowCount = i;
+        this.rowCount = 1;
         this.paddingRow = 0;
-        this.featuresStartRow = i;
-        int size = i + this.premiumFeatures.size();
-        this.featuresEndRow = size;
-        this.rowCount = size + 1;
-        this.termsRow = size;
+        this.featuresStartRow = 1;
+        int size = this.premiumFeatures.size();
+        int i = size + 1;
+        this.featuresEndRow = i;
+        this.rowCount = size + 2;
+        this.termsRow = i;
     }
 
     @Override

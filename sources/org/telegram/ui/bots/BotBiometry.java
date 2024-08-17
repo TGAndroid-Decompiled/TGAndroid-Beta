@@ -32,6 +32,7 @@ import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.LaunchActivity;
+
 public class BotBiometry {
     private static KeyStore keyStore;
     public boolean access_granted;
@@ -53,8 +54,7 @@ public class BotBiometry {
     }
 
     public void load() {
-        Context context = this.context;
-        SharedPreferences sharedPreferences = context.getSharedPreferences("2botbiometry_" + this.currentAccount, 0);
+        SharedPreferences sharedPreferences = this.context.getSharedPreferences("2botbiometry_" + this.currentAccount, 0);
         this.encrypted_token = sharedPreferences.getString(String.valueOf(this.botId), null);
         this.iv = sharedPreferences.getString(String.valueOf(this.botId) + "_iv", null);
         boolean z = true;
@@ -207,17 +207,17 @@ public class BotBiometry {
 
     private BiometricPrompt.CryptoObject makeCryptoObject(boolean z) {
         try {
-            if (Build.VERSION.SDK_INT >= 23) {
-                Cipher cipher = getCipher();
-                SecretKey secretKey = getSecretKey();
-                if (z) {
-                    cipher.init(2, secretKey, new IvParameterSpec(Utilities.hexToBytes(this.iv)));
-                } else {
-                    cipher.init(1, secretKey);
-                }
-                return new BiometricPrompt.CryptoObject(cipher);
+            if (Build.VERSION.SDK_INT < 23) {
+                return null;
             }
-            return null;
+            Cipher cipher = getCipher();
+            SecretKey secretKey = getSecretKey();
+            if (z) {
+                cipher.init(2, secretKey, new IvParameterSpec(Utilities.hexToBytes(this.iv)));
+            } else {
+                cipher.init(1, secretKey);
+            }
+            return new BiometricPrompt.CryptoObject(cipher);
         } catch (Exception e) {
             FileLog.e(e);
             return null;
@@ -272,10 +272,8 @@ public class BotBiometry {
             keyStore = keyStore2;
             keyStore2.load(null);
         }
-        KeyStore keyStore3 = keyStore;
-        if (keyStore3.containsAlias("9bot_" + this.botId)) {
-            KeyStore keyStore4 = keyStore;
-            return (SecretKey) keyStore4.getKey("9bot_" + this.botId, null);
+        if (keyStore.containsAlias("9bot_" + this.botId)) {
+            return (SecretKey) keyStore.getKey("9bot_" + this.botId, null);
         }
         KeyGenParameterSpec.Builder builder = new KeyGenParameterSpec.Builder("9bot_" + this.botId, 3);
         builder.setBlockModes("CBC");
@@ -321,14 +319,14 @@ public class BotBiometry {
     public static String getDeviceId(Context context, int i, long j) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("2botbiometry_" + i, 0);
         String string = sharedPreferences.getString("device_id" + j, null);
-        if (string == null) {
-            byte[] bArr = new byte[32];
-            new SecureRandom().nextBytes(bArr);
-            String bytesToHex = Utilities.bytesToHex(bArr);
-            sharedPreferences.edit().putString("device_id" + j, bytesToHex).apply();
-            return bytesToHex;
+        if (string != null) {
+            return string;
         }
-        return string;
+        byte[] bArr = new byte[32];
+        new SecureRandom().nextBytes(bArr);
+        String bytesToHex = Utilities.bytesToHex(bArr);
+        sharedPreferences.edit().putString("device_id" + j, bytesToHex).apply();
+        return bytesToHex;
     }
 
     public void save() {
@@ -376,8 +374,9 @@ public class BotBiometry {
         }
         SharedPreferences sharedPreferences = context.getSharedPreferences("2botbiometry_" + i, 0);
         final ArrayList arrayList = new ArrayList();
-        for (Map.Entry<String, ?> entry : sharedPreferences.getAll().entrySet()) {
-            String key = entry.getKey();
+        Iterator<Map.Entry<String, ?>> it = sharedPreferences.getAll().entrySet().iterator();
+        while (it.hasNext()) {
+            String key = it.next().getKey();
             if (key.endsWith("_requested")) {
                 try {
                     arrayList.add(Long.valueOf(Long.parseLong(key.substring(0, key.length() - 10))));
@@ -387,12 +386,12 @@ public class BotBiometry {
             }
         }
         final HashMap hashMap = new HashMap();
-        Iterator it = arrayList.iterator();
-        while (it.hasNext()) {
-            long longValue = ((Long) it.next()).longValue();
-            BotBiometry botBiometry = new BotBiometry(context, i, longValue);
+        Iterator it2 = arrayList.iterator();
+        while (it2.hasNext()) {
+            Long l = (Long) it2.next();
+            BotBiometry botBiometry = new BotBiometry(context, i, l.longValue());
             if (botBiometry.access_granted && botBiometry.access_requested) {
-                hashMap.put(Long.valueOf(longValue), Boolean.valueOf(!botBiometry.disabled));
+                hashMap.put(l, Boolean.valueOf(!botBiometry.disabled));
             }
         }
         if (arrayList.isEmpty()) {

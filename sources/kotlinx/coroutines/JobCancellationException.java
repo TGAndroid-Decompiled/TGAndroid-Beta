@@ -2,8 +2,15 @@ package kotlinx.coroutines;
 
 import java.util.concurrent.CancellationException;
 import kotlin.jvm.internal.Intrinsics;
+
 public final class JobCancellationException extends CancellationException {
     public final Job job;
+
+    @Override
+    public Throwable fillInStackTrace() {
+        setStackTrace(new StackTraceElement[0]);
+        return this;
+    }
 
     public JobCancellationException(String str, Throwable th, Job job) {
         super(str);
@@ -11,12 +18,6 @@ public final class JobCancellationException extends CancellationException {
         if (th != null) {
             initCause(th);
         }
-    }
-
-    @Override
-    public Throwable fillInStackTrace() {
-        setStackTrace(new StackTraceElement[0]);
-        return this;
     }
 
     @Override

@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$StarsSubscription extends TLObject {
     public boolean can_refulfill;
     public boolean canceled;

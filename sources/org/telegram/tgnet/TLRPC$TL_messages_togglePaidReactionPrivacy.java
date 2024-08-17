@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messages_togglePaidReactionPrivacy extends TLObject {
     public boolean isPrivate;
     public int msg_id;

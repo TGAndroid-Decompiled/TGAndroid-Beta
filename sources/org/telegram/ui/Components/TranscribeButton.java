@@ -9,13 +9,13 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.RippleDrawable;
 import android.os.Build;
 import android.os.SystemClock;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.style.ImageSpan;
 import android.util.StateSet;
+import androidx.appcompat.widget.AppCompatImageHelper$$ExternalSyntheticApiModelOutline0;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.math.MathUtils;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
@@ -45,6 +45,7 @@ import org.telegram.tgnet.TLRPC$TL_messages_transcribeAudio;
 import org.telegram.tgnet.TLRPC$TL_messages_transcribedAudio;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatMessageCell;
+
 public class TranscribeButton {
     private static final int[] pressedState = {16842910, 16842919};
     private static HashMap<Integer, MessageObject> transcribeOperationsByDialogPosition;
@@ -220,22 +221,22 @@ public class TranscribeButton {
             }
             this.pressed = false;
             return false;
-        } else if (this.pressBounds.contains((int) f, (int) f2)) {
-            if (i == 0) {
-                this.pressed = true;
-            }
-            if (this.pressed && Build.VERSION.SDK_INT >= 21) {
-                Drawable drawable = this.selectorDrawable;
-                if (drawable instanceof RippleDrawable) {
-                    drawable.setHotspot(f, f2);
-                    this.selectorDrawable.setState(pressedState);
-                    this.parent.invalidate();
-                }
-            }
-            return true;
-        } else {
+        }
+        if (!this.pressBounds.contains((int) f, (int) f2)) {
             return false;
         }
+        if (i == 0) {
+            this.pressed = true;
+        }
+        if (this.pressed && Build.VERSION.SDK_INT >= 21) {
+            Drawable drawable = this.selectorDrawable;
+            if (AppCompatImageHelper$$ExternalSyntheticApiModelOutline0.m(drawable)) {
+                drawable.setHotspot(f, f2);
+                this.selectorDrawable.setState(pressedState);
+                this.parent.invalidate();
+            }
+        }
+        return true;
     }
 
     public void onTap() {
@@ -259,7 +260,7 @@ public class TranscribeButton {
         }
         if (Build.VERSION.SDK_INT >= 21) {
             Drawable drawable = this.selectorDrawable;
-            if (drawable instanceof RippleDrawable) {
+            if (AppCompatImageHelper$$ExternalSyntheticApiModelOutline0.m(drawable)) {
                 drawable.setState(StateSet.NOTHING);
                 this.parent.invalidate();
             }
@@ -270,15 +271,16 @@ public class TranscribeButton {
                 if (canTranscribeTrial(this.parent.getMessageObject()) || (this.parent.getMessageObject() != null && this.parent.getMessageObject().messageOwner != null && !TextUtils.isEmpty(this.parent.getMessageObject().messageOwner.voiceTranscription))) {
                     transcribePressed(this.parent.getMessageObject(), z3, this.parent.getDelegate());
                     return;
-                } else if (this.parent.getDelegate() != null) {
-                    if (MessagesController.getInstance(this.parent.currentAccount).transcribeAudioTrialWeeklyNumber > 0) {
-                        this.parent.getDelegate().needShowPremiumBulletin(3);
-                        return;
-                    } else {
-                        this.parent.getDelegate().needShowPremiumBulletin(0);
-                        return;
-                    }
                 } else {
+                    if (this.parent.getDelegate() != null) {
+                        if (MessagesController.getInstance(this.parent.currentAccount).transcribeAudioTrialWeeklyNumber > 0) {
+                            this.parent.getDelegate().needShowPremiumBulletin(3);
+                            return;
+                        } else {
+                            this.parent.getDelegate().needShowPremiumBulletin(0);
+                            return;
+                        }
+                    }
                     return;
                 }
             }
@@ -301,8 +303,7 @@ public class TranscribeButton {
             this.backgroundPaint = new Paint();
         }
         this.backgroundPaint.setColor(this.backgroundColor);
-        Paint paint = this.backgroundPaint;
-        paint.setAlpha((int) (paint.getAlpha() * (1.0f - f)));
+        this.backgroundPaint.setAlpha((int) (r1.getAlpha() * (1.0f - f)));
         if (z2 || this.selectorDrawable == null) {
             Drawable createSimpleSelectorRoundRectDrawable = Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), 0, this.rippleColor);
             this.selectorDrawable = createSimpleSelectorRoundRectDrawable;
@@ -329,9 +330,9 @@ public class TranscribeButton {
             rLottieDrawable2.setAlpha(alpha2);
         }
         if (this.strokePaint == null) {
-            Paint paint2 = new Paint(1);
-            this.strokePaint = paint2;
-            paint2.setStyle(Paint.Style.STROKE);
+            Paint paint = new Paint(1);
+            this.strokePaint = paint;
+            paint.setStyle(Paint.Style.STROKE);
             this.strokePaint.setStrokeCap(Paint.Cap.ROUND);
         }
         this.strokePaint.setColor(i);
@@ -370,13 +371,13 @@ public class TranscribeButton {
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(this.bounds);
         Path path2 = this.boundsPath;
-        int i = this.radius;
-        path2.addRoundRect(rectF, i, i, Path.Direction.CW);
+        float f2 = this.radius;
+        path2.addRoundRect(rectF, f2, f2, Path.Direction.CW);
         canvas.save();
         canvas.clipPath(this.boundsPath);
-        float f2 = this.backgroundBack;
-        if (f2 * f > 0.0f) {
-            drawGradientBackground(canvas, this.bounds, f2 * f);
+        float f3 = this.backgroundBack * f;
+        if (f3 > 0.0f) {
+            drawGradientBackground(canvas, this.bounds, f3);
         }
         Paint paint = this.backgroundPaint;
         if (paint != null) {
@@ -391,8 +392,8 @@ public class TranscribeButton {
             this.selectorDrawable.draw(canvas);
         }
         canvas.restore();
-        float f3 = this.loadingFloat.set(this.loading ? 1.0f : 0.0f);
-        if (f3 > 0.0f) {
+        float f4 = this.loadingFloat.set(this.loading ? 1.0f : 0.0f);
+        if (f4 > 0.0f) {
             float[] segments = getSegments(((float) (SystemClock.elapsedRealtime() - this.start)) * 0.75f);
             Path path3 = this.progressClipPath;
             if (path3 == null) {
@@ -400,62 +401,63 @@ public class TranscribeButton {
             } else {
                 path3.rewind();
             }
-            float max = Math.max(40.0f * f3, segments[1] - segments[0]);
-            float f4 = segments[0] + ((1.0f - f3) * max * (this.loading ? 0.0f : 1.0f));
-            float f5 = (max * f3) + f4;
-            float f6 = f4 % 360.0f;
+            float max = Math.max(40.0f * f4, segments[1] - segments[0]);
+            float f5 = segments[0] + ((1.0f - f4) * max * (this.loading ? 0.0f : 1.0f));
+            float f6 = (max * f4) + f5;
             float f7 = f5 % 360.0f;
-            if (f6 < 0.0f) {
-                f6 += 360.0f;
-            }
-            float f8 = f6;
+            float f8 = f6 % 360.0f;
             if (f7 < 0.0f) {
                 f7 += 360.0f;
             }
             float f9 = f7;
+            if (f8 < 0.0f) {
+                f8 += 360.0f;
+            }
+            float f10 = f8;
             Path path4 = this.progressClipPath;
             int centerX = this.bounds.centerX();
             android.graphics.Rect rect = this.bounds;
-            int i2 = rect.top;
-            addLine(path4, centerX, i2, rect.right - this.radius, i2, f8, f9, 0.0f, this.a);
+            int i = rect.top;
+            addLine(path4, centerX, i, rect.right - this.radius, i, f9, f10, 0.0f, this.a);
             Path path5 = this.progressClipPath;
             android.graphics.Rect rect2 = this.bounds;
-            addCorner(path5, rect2.right, rect2.top, this.diameter, 1, f8, f9, this.a, this.b);
+            addCorner(path5, rect2.right, rect2.top, this.diameter, 1, f9, f10, this.a, this.b);
             Path path6 = this.progressClipPath;
             android.graphics.Rect rect3 = this.bounds;
-            int i3 = rect3.right;
-            int i4 = rect3.top;
-            int i5 = this.radius;
-            float f10 = this.b;
-            addLine(path6, i3, i4 + i5, i3, rect3.bottom - i5, f8, f9, f10, 180.0f - f10);
+            int i2 = rect3.right;
+            int i3 = rect3.top;
+            int i4 = this.radius;
+            int i5 = rect3.bottom - i4;
+            float f11 = this.b;
+            addLine(path6, i2, i3 + i4, i2, i5, f9, f10, f11, 180.0f - f11);
             Path path7 = this.progressClipPath;
             android.graphics.Rect rect4 = this.bounds;
-            addCorner(path7, rect4.right, rect4.bottom, this.diameter, 2, f8, f9, 180.0f - this.b, 180.0f - this.a);
+            addCorner(path7, rect4.right, rect4.bottom, this.diameter, 2, f9, f10, 180.0f - this.b, 180.0f - this.a);
             Path path8 = this.progressClipPath;
             android.graphics.Rect rect5 = this.bounds;
             int i6 = rect5.right;
             int i7 = this.radius;
             int i8 = rect5.bottom;
             int i9 = rect5.left + i7;
-            float f11 = this.a;
-            addLine(path8, i6 - i7, i8, i9, i8, f8, f9, 180.0f - f11, f11 + 180.0f);
+            float f12 = this.a;
+            addLine(path8, i6 - i7, i8, i9, i8, f9, f10, 180.0f - f12, f12 + 180.0f);
             Path path9 = this.progressClipPath;
             android.graphics.Rect rect6 = this.bounds;
-            addCorner(path9, rect6.left, rect6.bottom, this.diameter, 3, f8, f9, this.a + 180.0f, this.b + 180.0f);
+            addCorner(path9, rect6.left, rect6.bottom, this.diameter, 3, f9, f10, this.a + 180.0f, this.b + 180.0f);
             Path path10 = this.progressClipPath;
             android.graphics.Rect rect7 = this.bounds;
             int i10 = rect7.left;
             int i11 = rect7.bottom;
             int i12 = this.radius;
             int i13 = rect7.top + i12;
-            float f12 = this.b;
-            addLine(path10, i10, i11 - i12, i10, i13, f8, f9, f12 + 180.0f, 360.0f - f12);
+            float f13 = this.b;
+            addLine(path10, i10, i11 - i12, i10, i13, f9, f10, f13 + 180.0f, 360.0f - f13);
             Path path11 = this.progressClipPath;
             android.graphics.Rect rect8 = this.bounds;
-            addCorner(path11, rect8.left, rect8.top, this.diameter, 4, f8, f9, 360.0f - this.b, 360.0f - this.a);
+            addCorner(path11, rect8.left, rect8.top, this.diameter, 4, f9, f10, 360.0f - this.b, 360.0f - this.a);
             Path path12 = this.progressClipPath;
             android.graphics.Rect rect9 = this.bounds;
-            addLine(path12, rect9.left + this.radius, rect9.top, rect9.centerX(), this.bounds.top, f8, f9, 360.0f - this.a, 360.0f);
+            addLine(path12, rect9.left + this.radius, rect9.top, rect9.centerX(), this.bounds.top, f9, f10, 360.0f - this.a, 360.0f);
             this.strokePaint.setStrokeWidth(AndroidUtilities.dp(1.5f));
             int alpha2 = this.strokePaint.getAlpha();
             this.strokePaint.setAlpha((int) (alpha2 * f));
@@ -535,10 +537,9 @@ public class TranscribeButton {
         fArr[1] = f;
         for (int i = 0; i < 4; i++) {
             float[] fArr2 = this.segments;
-            int i2 = i * 1350;
-            fArr2[1] = fArr2[1] + (this.interpolator.getInterpolation(((float) (j2 - i2)) / 667.0f) * 250.0f);
+            fArr2[1] = fArr2[1] + (this.interpolator.getInterpolation(((float) (j2 - (i * 1350))) / 667.0f) * 250.0f);
             float[] fArr3 = this.segments;
-            fArr3[0] = fArr3[0] + (this.interpolator.getInterpolation(((float) (j2 - (i2 + 667))) / 667.0f) * 250.0f);
+            fArr3[0] = fArr3[0] + (this.interpolator.getInterpolation(((float) (j2 - (r6 + 667))) / 667.0f) * 250.0f);
         }
         return this.segments;
     }
@@ -551,10 +552,10 @@ public class TranscribeButton {
             float f5 = f4 - f3;
             addLine(path, i, i2, i3, i4, (f - f3) / f5, 1.0f);
             addLine(path, i, i2, i3, i4, 0.0f, (f2 - f3) / f5);
-            return;
+        } else {
+            float f6 = f4 - f3;
+            addLine(path, i, i2, i3, i4, Math.max(0.0f, f - f3) / f6, (Math.min(f2, f4) - f3) / f6);
         }
-        float f6 = f4 - f3;
-        addLine(path, i, i2, i3, i4, Math.max(0.0f, f - f3) / f6, (Math.min(f2, f4) - f3) / f6);
     }
 
     private void addLine(Path path, int i, int i2, int i3, int i4, float f, float f2) {
@@ -562,12 +563,11 @@ public class TranscribeButton {
             return;
         }
         float clamp = MathUtils.clamp(f, 0.0f, 1.0f);
-        float clamp2 = MathUtils.clamp(f2, 0.0f, 1.0f);
-        if (clamp2 - clamp <= 0.0f) {
+        if (MathUtils.clamp(f2, 0.0f, 1.0f) - clamp <= 0.0f) {
             return;
         }
         path.moveTo(AndroidUtilities.lerp(i, i3, clamp), AndroidUtilities.lerp(i2, i4, clamp));
-        path.lineTo(AndroidUtilities.lerp(i, i3, clamp2), AndroidUtilities.lerp(i2, i4, clamp2));
+        path.lineTo(AndroidUtilities.lerp(i, i3, r9), AndroidUtilities.lerp(i2, i4, r9));
     }
 
     private void addCorner(Path path, int i, int i2, int i3, int i4, float f, float f2, float f3, float f4) {
@@ -575,10 +575,10 @@ public class TranscribeButton {
             float f5 = f4 - f3;
             addCorner(path, i, i2, i3, i4, (f - f3) / f5, 1.0f);
             addCorner(path, i, i2, i3, i4, 0.0f, (f2 - f3) / f5);
-            return;
+        } else {
+            float f6 = f4 - f3;
+            addCorner(path, i, i2, i3, i4, Math.max(0.0f, f - f3) / f6, (Math.min(f2, f4) - f3) / f6);
         }
-        float f6 = f4 - f3;
-        addCorner(path, i, i2, i3, i4, Math.max(0.0f, f - f3) / f6, (Math.min(f2, f4) - f3) / f6);
     }
 
     private void addCorner(Path path, int i, int i2, int i3, int i4, float f, float f2) {
@@ -796,17 +796,18 @@ public class TranscribeButton {
             transcribeOperationsById.put(Long.valueOf(j4), messageObject);
             messageObject.messageOwner.voiceTranscriptionId = j4;
             j3 = j4;
-        } else if (tLRPC$TL_error != null && (str = tLRPC$TL_error.text) != null && str.startsWith("FLOOD_WAIT_")) {
-            MessagesController.getInstance(i).updateTranscribeAudioTrialCurrentNumber(0);
-            MessagesController.getInstance(i).updateTranscribeAudioTrialCooldownUntil(ConnectionsManager.getInstance(i).getCurrentTime() + Utilities.parseInt((CharSequence) tLRPC$TL_error.text).intValue());
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    TranscribeButton.lambda$transcribePressed$4(MessageObject.this, chatMessageCellDelegate, i);
-                }
-            });
-            return;
         } else {
+            if (tLRPC$TL_error != null && (str = tLRPC$TL_error.text) != null && str.startsWith("FLOOD_WAIT_")) {
+                MessagesController.getInstance(i).updateTranscribeAudioTrialCurrentNumber(0);
+                MessagesController.getInstance(i).updateTranscribeAudioTrialCooldownUntil(ConnectionsManager.getInstance(i).getCurrentTime() + Utilities.parseInt((CharSequence) tLRPC$TL_error.text).intValue());
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        TranscribeButton.lambda$transcribePressed$4(MessageObject.this, chatMessageCellDelegate, i);
+                    }
+                });
+                return;
+            }
             j3 = 0;
             z = true;
         }
@@ -882,8 +883,9 @@ public class TranscribeButton {
     public static void lambda$finishTranscription$8(MessageObject messageObject, long j, String str) {
         NotificationCenter notificationCenter = NotificationCenter.getInstance(messageObject.currentAccount);
         int i = NotificationCenter.voiceTranscriptionUpdate;
+        Long valueOf = Long.valueOf(j);
         Boolean bool = Boolean.TRUE;
-        notificationCenter.lambda$postNotificationNameOnUIThread$1(i, messageObject, Long.valueOf(j), str, bool, bool);
+        notificationCenter.lambda$postNotificationNameOnUIThread$1(i, messageObject, valueOf, str, bool, bool);
     }
 
     public static void showOffTranscribe(MessageObject messageObject) {

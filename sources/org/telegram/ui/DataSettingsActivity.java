@@ -42,6 +42,7 @@ import org.telegram.ui.Cells.TextSettingsCell;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
+
 public class DataSettingsActivity extends BaseFragment {
     private int callsSection2Row;
     private int callsSectionRow;
@@ -98,37 +99,31 @@ public class DataSettingsActivity extends BaseFragment {
 
     private void updateRows(boolean z) {
         int i;
-        int i2 = 0 + 1;
         boolean z2 = false;
         this.usageSectionRow = 0;
-        int i3 = i2 + 1;
-        this.storageUsageRow = i2;
-        this.rowCount = i3 + 1;
-        this.dataUsageRow = i3;
+        this.storageUsageRow = 1;
+        this.rowCount = 3;
+        this.dataUsageRow = 2;
         this.storageNumRow = -1;
         ArrayList<File> rootDirs = AndroidUtilities.getRootDirs();
         this.storageDirs = rootDirs;
         if (rootDirs.size() > 1) {
-            int i4 = this.rowCount;
-            this.rowCount = i4 + 1;
-            this.storageNumRow = i4;
+            int i2 = this.rowCount;
+            this.rowCount = i2 + 1;
+            this.storageNumRow = i2;
         }
-        int i5 = this.rowCount;
-        int i6 = i5 + 1;
-        this.usageSection2Row = i5;
-        int i7 = i6 + 1;
-        this.mediaDownloadSectionRow = i6;
-        int i8 = i7 + 1;
-        this.mobileRow = i7;
-        int i9 = i8 + 1;
-        this.wifiRow = i8;
-        this.rowCount = i9 + 1;
-        this.roamingRow = i9;
+        int i3 = this.rowCount;
+        this.usageSection2Row = i3;
+        this.mediaDownloadSectionRow = i3 + 1;
+        this.mobileRow = i3 + 2;
+        this.wifiRow = i3 + 3;
+        this.rowCount = i3 + 5;
+        this.roamingRow = i3 + 4;
         DownloadController downloadController = getDownloadController();
         if (downloadController.lowPreset.equals(downloadController.getCurrentRoamingPreset()) && downloadController.lowPreset.isEnabled() == downloadController.roamingPreset.enabled && downloadController.mediumPreset.equals(downloadController.getCurrentMobilePreset()) && downloadController.mediumPreset.isEnabled() == downloadController.mobilePreset.enabled && downloadController.highPreset.equals(downloadController.getCurrentWiFiPreset()) && downloadController.highPreset.isEnabled() == downloadController.wifiPreset.enabled) {
             z2 = true;
         }
-        int i10 = this.resetDownloadRow;
+        int i4 = this.resetDownloadRow;
         if (z2) {
             i = -1;
         } else {
@@ -138,63 +133,47 @@ public class DataSettingsActivity extends BaseFragment {
         this.resetDownloadRow = i;
         ListAdapter listAdapter = this.listAdapter;
         if (listAdapter != null && !z) {
-            if (i10 < 0 && i >= 0) {
+            if (i4 < 0 && i >= 0) {
                 listAdapter.notifyItemChanged(this.roamingRow);
                 this.listAdapter.notifyItemInserted(this.resetDownloadRow);
-            } else if (i10 < 0 || i >= 0) {
+            } else if (i4 < 0 || i >= 0) {
                 z = true;
             } else {
                 listAdapter.notifyItemChanged(this.roamingRow);
-                this.listAdapter.notifyItemRemoved(i10);
+                this.listAdapter.notifyItemRemoved(i4);
             }
         }
-        int i11 = this.rowCount;
-        int i12 = i11 + 1;
-        this.mediaDownloadSection2Row = i11;
-        int i13 = i12 + 1;
-        this.saveToGallerySectionRow = i12;
-        int i14 = i13 + 1;
-        this.saveToGalleryPeerRow = i13;
-        int i15 = i14 + 1;
-        this.saveToGalleryGroupsRow = i14;
-        int i16 = i15 + 1;
-        this.saveToGalleryChannelsRow = i15;
-        int i17 = i16 + 1;
-        this.saveToGalleryDividerRow = i16;
-        int i18 = i17 + 1;
-        this.streamSectionRow = i17;
-        int i19 = i18 + 1;
-        this.rowCount = i19;
-        this.enableStreamRow = i18;
+        int i5 = this.rowCount;
+        this.mediaDownloadSection2Row = i5;
+        this.saveToGallerySectionRow = i5 + 1;
+        this.saveToGalleryPeerRow = i5 + 2;
+        this.saveToGalleryGroupsRow = i5 + 3;
+        this.saveToGalleryChannelsRow = i5 + 4;
+        this.saveToGalleryDividerRow = i5 + 5;
+        this.streamSectionRow = i5 + 6;
+        int i6 = i5 + 8;
+        this.rowCount = i6;
+        this.enableStreamRow = i5 + 7;
         if (BuildVars.DEBUG_VERSION) {
-            int i20 = i19 + 1;
-            this.enableMkvRow = i19;
-            this.rowCount = i20 + 1;
-            this.enableAllStreamRow = i20;
+            this.enableMkvRow = i6;
+            this.rowCount = i5 + 10;
+            this.enableAllStreamRow = i5 + 9;
         } else {
             this.enableAllStreamRow = -1;
             this.enableMkvRow = -1;
         }
-        int i21 = this.rowCount;
-        int i22 = i21 + 1;
-        this.enableAllStreamInfoRow = i21;
+        int i7 = this.rowCount;
+        this.enableAllStreamInfoRow = i7;
         this.enableCacheStreamRow = -1;
-        int i23 = i22 + 1;
-        this.callsSectionRow = i22;
-        int i24 = i23 + 1;
-        this.useLessDataForCallsRow = i23;
-        int i25 = i24 + 1;
-        this.callsSection2Row = i24;
-        int i26 = i25 + 1;
-        this.proxySectionRow = i25;
-        int i27 = i26 + 1;
-        this.proxyRow = i26;
-        int i28 = i27 + 1;
-        this.proxySection2Row = i27;
-        int i29 = i28 + 1;
-        this.clearDraftsRow = i28;
-        this.rowCount = i29 + 1;
-        this.clearDraftsSectionRow = i29;
+        this.callsSectionRow = i7 + 1;
+        this.useLessDataForCallsRow = i7 + 2;
+        this.callsSection2Row = i7 + 3;
+        this.proxySectionRow = i7 + 4;
+        this.proxyRow = i7 + 5;
+        this.proxySection2Row = i7 + 6;
+        this.clearDraftsRow = i7 + 7;
+        this.rowCount = i7 + 9;
+        this.clearDraftsSectionRow = i7 + 8;
         ListAdapter listAdapter2 = this.listAdapter;
         if (listAdapter2 == null || !z) {
             return;
@@ -284,7 +263,7 @@ public class DataSettingsActivity extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    DataSettingsActivity.this.finishFragment();
+                    DataSettingsActivity.this.lambda$onBackPressed$308();
                 }
             }
         });
@@ -292,6 +271,7 @@ public class DataSettingsActivity extends BaseFragment {
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
         frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
+        FrameLayout frameLayout2 = (FrameLayout) this.fragmentView;
         RecyclerListView recyclerListView = new RecyclerListView(context) {
             @Override
             public Integer getSelectorColor(int i) {
@@ -307,7 +287,7 @@ public class DataSettingsActivity extends BaseFragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, 1, false);
         this.layoutManager = linearLayoutManager;
         recyclerListView2.setLayoutManager(linearLayoutManager);
-        ((FrameLayout) this.fragmentView).addView(this.listView, LayoutHelper.createFrame(-1, -1, 51));
+        frameLayout2.addView(this.listView, LayoutHelper.createFrame(-1, -1, 51));
         this.listView.setAdapter(this.listAdapter);
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListenerExtended() {
             @Override
@@ -334,7 +314,7 @@ public class DataSettingsActivity extends BaseFragment {
         return this.fragmentView;
     }
 
-    public void lambda$createView$8(android.content.Context r21, android.view.View r22, final int r23, float r24, float r25) {
+    public void lambda$createView$8(android.content.Context r20, android.view.View r21, final int r22, float r23, float r24) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DataSettingsActivity.lambda$createView$8(android.content.Context, android.view.View, int, float, float):void");
     }
 

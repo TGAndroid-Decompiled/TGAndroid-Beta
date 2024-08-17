@@ -7,19 +7,12 @@ import android.util.Property;
 import android.view.animation.OvershootInterpolator;
 import org.telegram.ui.Cells.DialogCell;
 import org.telegram.ui.PhotoViewer;
-public class AnimationProperties {
-    public static OvershootInterpolator overshootInterpolator = new OvershootInterpolator(1.9f);
-    public static final Property<Paint, Integer> PAINT_ALPHA = new IntProperty<Paint>("alpha") {
-        @Override
-        public void setValue(Paint paint, int i) {
-            paint.setAlpha(i);
-        }
 
-        @Override
-        public Integer get(Paint paint) {
-            return Integer.valueOf(paint.getAlpha());
-        }
-    };
+public class AnimationProperties {
+    public static final Property<ColorDrawable, Integer> COLOR_DRAWABLE_ALPHA;
+    public static final Property<Paint, Integer> PAINT_ALPHA;
+    public static final Property<ShapeDrawable, Integer> SHAPE_DRAWABLE_ALPHA;
+    public static OvershootInterpolator overshootInterpolator = new OvershootInterpolator(1.9f);
     public static final Property<Paint, Integer> PAINT_COLOR = new IntProperty<Paint>("color") {
         @Override
         public void setValue(Paint paint, int i) {
@@ -29,28 +22,6 @@ public class AnimationProperties {
         @Override
         public Integer get(Paint paint) {
             return Integer.valueOf(paint.getColor());
-        }
-    };
-    public static final Property<ColorDrawable, Integer> COLOR_DRAWABLE_ALPHA = new IntProperty<ColorDrawable>("alpha") {
-        @Override
-        public void setValue(ColorDrawable colorDrawable, int i) {
-            colorDrawable.setAlpha(i);
-        }
-
-        @Override
-        public Integer get(ColorDrawable colorDrawable) {
-            return Integer.valueOf(colorDrawable.getAlpha());
-        }
-    };
-    public static final Property<ShapeDrawable, Integer> SHAPE_DRAWABLE_ALPHA = new IntProperty<ShapeDrawable>("alpha") {
-        @Override
-        public void setValue(ShapeDrawable shapeDrawable, int i) {
-            shapeDrawable.getPaint().setAlpha(i);
-        }
-
-        @Override
-        public Integer get(ShapeDrawable shapeDrawable) {
-            return Integer.valueOf(shapeDrawable.getPaint().getAlpha());
         }
     };
     public static final Property<ClippingImageView, Float> CLIPPING_IMAGE_VIEW_PROGRESS = new FloatProperty<ClippingImageView>("animationProgress") {
@@ -86,6 +57,43 @@ public class AnimationProperties {
             return Float.valueOf(dialogCell.getClipProgress());
         }
     };
+
+    static {
+        String str = "alpha";
+        PAINT_ALPHA = new IntProperty<Paint>(str) {
+            @Override
+            public void setValue(Paint paint, int i) {
+                paint.setAlpha(i);
+            }
+
+            @Override
+            public Integer get(Paint paint) {
+                return Integer.valueOf(paint.getAlpha());
+            }
+        };
+        COLOR_DRAWABLE_ALPHA = new IntProperty<ColorDrawable>(str) {
+            @Override
+            public void setValue(ColorDrawable colorDrawable, int i) {
+                colorDrawable.setAlpha(i);
+            }
+
+            @Override
+            public Integer get(ColorDrawable colorDrawable) {
+                return Integer.valueOf(colorDrawable.getAlpha());
+            }
+        };
+        SHAPE_DRAWABLE_ALPHA = new IntProperty<ShapeDrawable>(str) {
+            @Override
+            public void setValue(ShapeDrawable shapeDrawable, int i) {
+                shapeDrawable.getPaint().setAlpha(i);
+            }
+
+            @Override
+            public Integer get(ShapeDrawable shapeDrawable) {
+                return Integer.valueOf(shapeDrawable.getPaint().getAlpha());
+            }
+        };
+    }
 
     public static abstract class FloatProperty<T> extends Property<T, Float> {
         public abstract void setValue(T t, float f);

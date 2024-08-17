@@ -37,6 +37,7 @@ import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.LaunchActivity;
+
 @TargetApi(21)
 public class MusicBrowserService extends MediaBrowserService implements NotificationCenter.NotificationCenterDelegate {
     public static final String ACTION_CMD = "com.example.android.mediabrowserservice.ACTION_CMD";
@@ -90,7 +91,7 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
         this.mediaSession.setCallback(new MediaSessionCallback());
         this.mediaSession.setFlags(3);
         Context applicationContext = getApplicationContext();
-        this.mediaSession.setSessionActivity(PendingIntent.getActivity(applicationContext, 99, new Intent(applicationContext, LaunchActivity.class), 167772160));
+        this.mediaSession.setSessionActivity(PendingIntent.getActivity(applicationContext, 99, new Intent(applicationContext, (Class<?>) LaunchActivity.class), 167772160));
         Bundle bundle = new Bundle();
         bundle.putBoolean("com.google.android.gms.car.media.ALWAYS_RESERVE_SPACE_FOR.ACTION_QUEUE", true);
         bundle.putBoolean("com.google.android.gms.car.media.ALWAYS_RESERVE_SPACE_FOR.ACTION_SKIP_TO_PREVIOUS", true);
@@ -123,20 +124,22 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
             Toast.makeText(getApplicationContext(), LocaleController.getString(R.string.EnterYourTelegramPasscode), 1).show();
             stopSelf();
             result.detach();
-        } else if (!this.chatsLoaded) {
-            result.detach();
-            if (this.loadingChats) {
+        } else {
+            if (!this.chatsLoaded) {
+                result.detach();
+                if (this.loadingChats) {
+                    return;
+                }
+                this.loadingChats = true;
+                final MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
+                messagesStorage.getStorageQueue().postRunnable(new Runnable() {
+                    @Override
+                    public final void run() {
+                        MusicBrowserService.this.lambda$onLoadChildren$1(messagesStorage, str, result);
+                    }
+                });
                 return;
             }
-            this.loadingChats = true;
-            final MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
-            messagesStorage.getStorageQueue().postRunnable(new Runnable() {
-                @Override
-                public final void run() {
-                    MusicBrowserService.this.lambda$onLoadChildren$1(messagesStorage, str, result);
-                }
-            });
-        } else {
             loadChildrenImpl(str, result);
         }
     }
@@ -182,8 +185,7 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
                             }
                             MessageObject messageObject = new MessageObject(this.currentAccount, TLdeserialize, false, true);
                             arrayList3.add(0, messageObject);
-                            MediaDescription.Builder builder = new MediaDescription.Builder();
-                            mediaId = builder.setMediaId(longValue2 + "_" + arrayList3.size());
+                            mediaId = new MediaDescription.Builder().setMediaId(longValue2 + "_" + arrayList3.size());
                             mediaId.setTitle(messageObject.getMusicTitle());
                             mediaId.setSubtitle(messageObject.getMusicAuthor());
                             build = mediaId.build();
@@ -279,22 +281,22 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inSampleSize = 2;
             Bitmap decodeFile = BitmapFactory.decodeFile(file.toString(), options);
-            if (decodeFile != null) {
-                Bitmap createBitmap = Bitmap.createBitmap(decodeFile.getWidth(), decodeFile.getHeight(), Bitmap.Config.ARGB_8888);
-                createBitmap.eraseColor(0);
-                Canvas canvas = new Canvas(createBitmap);
-                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                BitmapShader bitmapShader = new BitmapShader(decodeFile, tileMode, tileMode);
-                if (this.roundPaint == null) {
-                    this.roundPaint = new Paint(1);
-                    this.bitmapRect = new RectF();
-                }
-                this.roundPaint.setShader(bitmapShader);
-                this.bitmapRect.set(0.0f, 0.0f, decodeFile.getWidth(), decodeFile.getHeight());
-                canvas.drawRoundRect(this.bitmapRect, decodeFile.getWidth(), decodeFile.getHeight(), this.roundPaint);
-                return createBitmap;
+            if (decodeFile == null) {
+                return null;
             }
-            return null;
+            Bitmap createBitmap = Bitmap.createBitmap(decodeFile.getWidth(), decodeFile.getHeight(), Bitmap.Config.ARGB_8888);
+            createBitmap.eraseColor(0);
+            Canvas canvas = new Canvas(createBitmap);
+            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+            BitmapShader bitmapShader = new BitmapShader(decodeFile, tileMode, tileMode);
+            if (this.roundPaint == null) {
+                this.roundPaint = new Paint(1);
+                this.bitmapRect = new RectF();
+            }
+            this.roundPaint.setShader(bitmapShader);
+            this.bitmapRect.set(0.0f, 0.0f, decodeFile.getWidth(), decodeFile.getHeight());
+            canvas.drawRoundRect(this.bitmapRect, decodeFile.getWidth(), decodeFile.getHeight(), this.roundPaint);
+            return createBitmap;
         } catch (Throwable th) {
             FileLog.e(th);
             return null;
@@ -456,7 +458,7 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
 
     private long getAvailableActions() {
         if (MediaController.getInstance().getPlayingMessageObject() != null) {
-            return (MediaController.getInstance().isMessagePaused() ? 3076L : 3078L) | 16 | 32;
+            return (MediaController.getInstance().isMessagePaused() ? 3076L : 3078L) | 48;
         }
         return 3076L;
     }

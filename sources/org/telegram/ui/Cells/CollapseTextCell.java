@@ -14,6 +14,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
+
 @SuppressLint({"ViewConstructor"})
 public class CollapseTextCell extends FrameLayout {
     private View collapsedArrow;

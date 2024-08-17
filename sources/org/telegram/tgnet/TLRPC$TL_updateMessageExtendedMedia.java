@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_updateMessageExtendedMedia extends TLRPC$Update {
     public ArrayList<TLRPC$MessageExtendedMedia> extended_media = new ArrayList<>();
     public int msg_id;

@@ -13,6 +13,7 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.TextUtils;
+import android.util.Property;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -45,6 +46,7 @@ import org.telegram.ui.Components.Premium.StarParticlesView;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.Stories.recorder.HintView2;
+
 public class ChatGreetingsView extends LinearLayout {
     private int backgroundHeight;
     private final int currentAccount;
@@ -123,6 +125,7 @@ public class ChatGreetingsView extends LinearLayout {
     }
 
     public void setPremiumLock(boolean z, long j) {
+        String str;
         String formatString;
         TLRPC$User user;
         if (this.premiumLock == z) {
@@ -152,11 +155,15 @@ public class ChatGreetingsView extends LinearLayout {
                 this.premiumTextView.setGravity(17);
                 this.premiumTextView.setTextSize(1, 13.0f);
             }
-            String userName = (j < 0 || (user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j))) == null) ? "" : UserObject.getUserName(user);
-            if (MessagesController.getInstance(this.currentAccount).premiumFeaturesBlocked()) {
-                formatString = LocaleController.formatString(R.string.MessageLockedPremiumLocked, userName);
+            if (j >= 0 && (user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j))) != null) {
+                str = UserObject.getUserName(user);
             } else {
-                formatString = LocaleController.formatString(R.string.MessageLockedPremium, userName);
+                str = "";
+            }
+            if (MessagesController.getInstance(this.currentAccount).premiumFeaturesBlocked()) {
+                formatString = LocaleController.formatString(R.string.MessageLockedPremiumLocked, str);
+            } else {
+                formatString = LocaleController.formatString(R.string.MessageLockedPremium, str);
             }
             this.premiumTextView.setText(AndroidUtilities.replaceTags(formatString));
             TextView textView2 = this.premiumTextView;
@@ -414,7 +421,19 @@ public class ChatGreetingsView extends LinearLayout {
                 this.cancelled = true;
             }
         });
-        this.togglingStickersAnimator.playTogether(ObjectAnimator.ofFloat(this.nextStickerToSendView, View.ALPHA, 0.0f, 1.0f), ObjectAnimator.ofFloat(this.nextStickerToSendView, View.SCALE_X, 0.7f, 1.0f), ObjectAnimator.ofFloat(this.nextStickerToSendView, View.SCALE_Y, 0.7f, 1.0f), ObjectAnimator.ofFloat(this.nextStickerToSendView, View.TRANSLATION_Y, -AndroidUtilities.dp(24.0f), 0.0f), ObjectAnimator.ofFloat(this.stickerToSendView, View.ALPHA, 1.0f, 0.0f), ObjectAnimator.ofFloat(this.stickerToSendView, View.SCALE_X, 1.0f, 0.7f), ObjectAnimator.ofFloat(this.stickerToSendView, View.SCALE_Y, 1.0f, 0.7f), ObjectAnimator.ofFloat(this.stickerToSendView, View.TRANSLATION_Y, 0.0f, AndroidUtilities.dp(24.0f)));
+        AnimatorSet animatorSet3 = this.togglingStickersAnimator;
+        BackupImageView backupImageView = this.nextStickerToSendView;
+        Property property = View.ALPHA;
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(backupImageView, (Property<BackupImageView, Float>) property, 0.0f, 1.0f);
+        BackupImageView backupImageView2 = this.nextStickerToSendView;
+        Property property2 = View.SCALE_X;
+        ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(backupImageView2, (Property<BackupImageView, Float>) property2, 0.7f, 1.0f);
+        BackupImageView backupImageView3 = this.nextStickerToSendView;
+        Property property3 = View.SCALE_Y;
+        ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(backupImageView3, (Property<BackupImageView, Float>) property3, 0.7f, 1.0f);
+        BackupImageView backupImageView4 = this.nextStickerToSendView;
+        Property property4 = View.TRANSLATION_Y;
+        animatorSet3.playTogether(ofFloat, ofFloat2, ofFloat3, ObjectAnimator.ofFloat(backupImageView4, (Property<BackupImageView, Float>) property4, -AndroidUtilities.dp(24.0f), 0.0f), ObjectAnimator.ofFloat(this.stickerToSendView, (Property<BackupImageView, Float>) property, 1.0f, 0.0f), ObjectAnimator.ofFloat(this.stickerToSendView, (Property<BackupImageView, Float>) property2, 1.0f, 0.7f), ObjectAnimator.ofFloat(this.stickerToSendView, (Property<BackupImageView, Float>) property3, 1.0f, 0.7f), ObjectAnimator.ofFloat(this.stickerToSendView, (Property<BackupImageView, Float>) property4, 0.0f, AndroidUtilities.dp(24.0f)));
         this.togglingStickersAnimator.start();
     }
 
@@ -588,6 +607,7 @@ public class ChatGreetingsView extends LinearLayout {
     }
 
     public static void showPremiumSheet(Context context, int i, long j, Theme.ResourcesProvider resourcesProvider) {
+        String str;
         final BottomSheet bottomSheet = new BottomSheet(context, false, resourcesProvider);
         bottomSheet.fixNavigationBar(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
         LinearLayout linearLayout = new LinearLayout(context);
@@ -613,8 +633,12 @@ public class ChatGreetingsView extends LinearLayout {
         textView2.setGravity(17);
         textView2.setTextColor(Theme.getColor(i2, resourcesProvider));
         textView2.setTextSize(1, 14.0f);
-        String firstName = j > 0 ? UserObject.getFirstName(MessagesController.getInstance(i).getUser(Long.valueOf(j))) : "";
-        textView2.setText(AndroidUtilities.replaceTags(LocaleController.formatString(premiumFeaturesBlocked ? R.string.PremiumMessageTextLocked : R.string.PremiumMessageText, firstName, firstName)));
+        if (j <= 0) {
+            str = "";
+        } else {
+            str = UserObject.getFirstName(MessagesController.getInstance(i).getUser(Long.valueOf(j)));
+        }
+        textView2.setText(AndroidUtilities.replaceTags(LocaleController.formatString(premiumFeaturesBlocked ? R.string.PremiumMessageTextLocked : R.string.PremiumMessageText, str, str)));
         linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 1, 12, 9, 12, 19));
         if (!premiumFeaturesBlocked) {
             PremiumButtonView premiumButtonView = new PremiumButtonView(context, true, resourcesProvider);

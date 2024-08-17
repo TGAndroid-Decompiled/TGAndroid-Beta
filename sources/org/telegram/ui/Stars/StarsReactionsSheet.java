@@ -78,6 +78,7 @@ import org.telegram.ui.Stars.StarsController;
 import org.telegram.ui.Stars.StarsIntroActivity;
 import org.telegram.ui.Stars.StarsReactionsSheet;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
+
 public class StarsReactionsSheet extends BottomSheet {
     public boolean anonymous;
     private final StarsIntroActivity.StarsBalanceView balanceView;
@@ -110,6 +111,7 @@ public class StarsReactionsSheet extends BottomSheet {
         super(context, false, resourcesProvider);
         TLRPC$MessageReactor tLRPC$MessageReactor;
         String formatString;
+        int i2 = 9;
         this.starRef = new ColoredImageSpan[1];
         this.checkedVisiblity = false;
         this.resourcesProvider = resourcesProvider;
@@ -145,15 +147,14 @@ public class StarsReactionsSheet extends BottomSheet {
         linearLayout.addView(frameLayout, LayoutHelper.createLinear(-1, -2));
         this.slider = new StarsSlider(context) {
             @Override
-            public void onValueChanged(int i2) {
-                long j2 = i2;
+            public void onValueChanged(int i3) {
+                long j2 = i3;
                 StarsReactionsSheet.this.updateSenders(j2);
                 if (StarsReactionsSheet.this.buttonView != null) {
                     StarsReactionsSheet.this.buttonView.setText(StarsIntroActivity.replaceStars(LocaleController.formatString(R.string.StarsReactionSend, LocaleController.formatNumber(j2, ',')), StarsReactionsSheet.this.starRef), true);
                 }
             }
         };
-        int i2 = 9;
         int[] iArr = {1, 50, 100, 500, 1000, 2000, 5000, 7500, 10000};
         long j2 = MessagesController.getInstance(i).starsPaidReactionAmountMax;
         ArrayList arrayList2 = new ArrayList();
@@ -221,10 +222,7 @@ public class StarsReactionsSheet extends BottomSheet {
         if (tLRPC$MessageReactor != null) {
             formatString = LocaleController.formatPluralStringComma("StarsReactionTextSent", tLRPC$MessageReactor.count);
         } else {
-            int i8 = R.string.StarsReactionText;
-            Object[] objArr = new Object[1];
-            objArr[0] = chat == null ? "" : chat.title;
-            formatString = LocaleController.formatString(i8, objArr);
+            formatString = LocaleController.formatString(R.string.StarsReactionText, chat == null ? "" : chat.title);
         }
         textView2.setText(AndroidUtilities.replaceTags(formatString));
         if (z) {
@@ -354,8 +352,8 @@ public class StarsReactionsSheet extends BottomSheet {
         this.slider.setValue(50);
         if (arrayList != null) {
             long j3 = 0;
-            for (int i9 = 0; i9 < arrayList.size(); i9++) {
-                long j4 = arrayList.get(i9).count;
+            for (int i8 = 0; i8 < arrayList.size(); i8++) {
+                long j4 = arrayList.get(i8).count;
                 if (j4 > j3) {
                     j3 = j4;
                 }
@@ -397,8 +395,7 @@ public class StarsReactionsSheet extends BottomSheet {
     }
 
     public void lambda$new$2(View view) {
-        CheckBox2 checkBox2;
-        this.checkBox.setChecked(!checkBox2.isChecked(), true);
+        this.checkBox.setChecked(!r3.isChecked(), true);
         boolean z = !this.checkBox.isChecked();
         this.anonymous = z;
         TopSendersView topSendersView = this.topSendersView;
@@ -862,15 +859,12 @@ public class StarsReactionsSheet extends BottomSheet {
                 return this.stops[0];
             }
             if (f >= 1.0f) {
-                int[] iArr = this.stops;
-                return iArr[iArr.length - 1];
+                return this.stops[r5.length - 1];
             }
-            int[] iArr2 = this.stops;
-            float length = f * (iArr2.length - 1);
+            float length = f * (r0.length - 1);
             int i = (int) length;
             float f2 = length - i;
-            int i2 = iArr2[i];
-            return Math.round(i2 + (f2 * (iArr2[i + 1] - i2)));
+            return Math.round(this.stops[i] + (f2 * (r0[i + 1] - r2)));
         }
 
         public float getProgress(int i) {
@@ -880,11 +874,10 @@ public class StarsReactionsSheet extends BottomSheet {
                 if (i2 >= iArr.length) {
                     return 1.0f;
                 }
-                int i3 = iArr[i2];
-                if (i <= i3) {
-                    int i4 = i2 - 1;
-                    int i5 = iArr[i4];
-                    return (i4 + ((i - i5) / (i3 - i5))) / (iArr.length - 1);
+                if (i <= iArr[i2]) {
+                    int i3 = i2 - 1;
+                    int i4 = iArr[i3];
+                    return (i3 + ((i - i4) / (r3 - i4))) / (iArr.length - 1);
                 }
                 i2++;
             }
@@ -900,9 +893,7 @@ public class StarsReactionsSheet extends BottomSheet {
             setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.dp(220.0f));
             int measuredWidth = getMeasuredWidth();
             getMeasuredHeight();
-            int dp = AndroidUtilities.dp(14.0f);
-            int dp2 = AndroidUtilities.dp(135.0f);
-            this.sliderInnerRect.set(dp, dp2, measuredWidth - dp, dp2 + AndroidUtilities.dp(24.0f));
+            this.sliderInnerRect.set(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(135.0f), measuredWidth - r6, r0 + AndroidUtilities.dp(24.0f));
             this.sliderInnerPaint.setColor(653241613);
             this.sliderPaint.setColor(-1069811);
             this.sliderCirclePaint.setColor(-1);
@@ -918,14 +909,19 @@ public class StarsReactionsSheet extends BottomSheet {
             this.gradient.setLocalMatrix(this.gradientMatrix);
             this.sliderPaint.setShader(this.gradient);
             this.sliderInnerPath.rewind();
-            this.sliderInnerPath.addRoundRect(this.sliderInnerRect, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), Path.Direction.CW);
+            Path path = this.sliderInnerPath;
+            RectF rectF = this.sliderInnerRect;
+            float dp = AndroidUtilities.dp(12.0f);
+            float dp2 = AndroidUtilities.dp(12.0f);
+            Path.Direction direction = Path.Direction.CW;
+            path.addRoundRect(rectF, dp, dp2, direction);
             canvas.drawPath(this.sliderInnerPath, this.sliderInnerPaint);
             this.sliderRect.set(this.sliderInnerRect);
             float progress = getProgress(getValue());
-            RectF rectF = this.sliderRect;
-            rectF.right = AndroidUtilities.lerp(rectF.left + AndroidUtilities.dp(24.0f), this.sliderRect.right, progress);
+            RectF rectF2 = this.sliderRect;
+            rectF2.right = AndroidUtilities.lerp(rectF2.left + AndroidUtilities.dp(24.0f), this.sliderRect.right, progress);
             this.sliderPath.rewind();
-            this.sliderPath.addRoundRect(this.sliderRect, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), Path.Direction.CW);
+            this.sliderPath.addRoundRect(this.sliderRect, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), direction);
             this.sliderParticles.setBounds(this.sliderInnerRect);
             this.sliderParticles.setSpeed((this.progress * 15.0f) + 1.0f);
             this.sliderParticles.setVisible((this.progress * 0.85f) + 0.15f);
@@ -935,16 +931,16 @@ public class StarsReactionsSheet extends BottomSheet {
             this.sliderParticles.draw(canvas, -673522);
             long j = this.currentTop;
             if (j != -1 && getProgress((int) j) < 1.0f && getProgress((int) this.currentTop) > 0.0f) {
-                float dp = this.sliderInnerRect.left + AndroidUtilities.dp(12.0f) + ((this.sliderInnerRect.width() - AndroidUtilities.dp(24.0f)) * Utilities.clamp01(getProgress((int) this.currentTop)));
-                float f2 = this.overTop.set(Math.abs((this.sliderRect.right - ((float) AndroidUtilities.dp(10.0f))) - dp) < ((float) AndroidUtilities.dp(14.0f)));
-                float lerp = AndroidUtilities.lerp(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(16.0f), this.overTopText.set(Math.abs((this.sliderRect.right - ((float) AndroidUtilities.dp(10.0f))) - dp) < ((float) AndroidUtilities.dp(12.0f))));
-                float currentWidth = (this.topText.getCurrentWidth() + dp) + ((float) (AndroidUtilities.dp(16.0f) * 2)) > this.sliderInnerRect.right ? (dp - lerp) - this.topText.getCurrentWidth() : lerp + dp;
+                float dp3 = this.sliderInnerRect.left + AndroidUtilities.dp(12.0f) + ((this.sliderInnerRect.width() - AndroidUtilities.dp(24.0f)) * Utilities.clamp01(getProgress((int) this.currentTop)));
+                float f2 = this.overTop.set(Math.abs((this.sliderRect.right - ((float) AndroidUtilities.dp(10.0f))) - dp3) < ((float) AndroidUtilities.dp(14.0f)));
+                float lerp = AndroidUtilities.lerp(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(16.0f), this.overTopText.set(Math.abs((this.sliderRect.right - ((float) AndroidUtilities.dp(10.0f))) - dp3) < ((float) AndroidUtilities.dp(12.0f))));
+                float currentWidth = (this.topText.getCurrentWidth() + dp3) + ((float) (AndroidUtilities.dp(16.0f) * 2)) > this.sliderInnerRect.right ? (dp3 - lerp) - this.topText.getCurrentWidth() : lerp + dp3;
                 this.topPaint.setStrokeWidth(AndroidUtilities.dp(1.0f));
                 this.topPaint.setColor(Theme.multAlpha(-673522, 0.6f));
-                RectF rectF2 = this.sliderInnerRect;
-                float lerp2 = AndroidUtilities.lerp(rectF2.top, rectF2.centerY(), f2);
                 RectF rectF3 = this.sliderInnerRect;
-                canvas.drawLine(dp, lerp2, dp, AndroidUtilities.lerp(rectF3.bottom, rectF3.centerY(), f2), this.topPaint);
+                float lerp2 = AndroidUtilities.lerp(rectF3.top, rectF3.centerY(), f2);
+                RectF rectF4 = this.sliderInnerRect;
+                canvas.drawLine(dp3, lerp2, dp3, AndroidUtilities.lerp(rectF4.bottom, rectF4.centerY(), f2), this.topPaint);
                 this.topText.draw(canvas, currentWidth, this.sliderInnerRect.centerY(), -673522, 0.6f);
             }
             canvas.drawPath(this.sliderPath, this.sliderPaint);
@@ -952,94 +948,95 @@ public class StarsReactionsSheet extends BottomSheet {
             this.sliderParticles.draw(canvas, -1);
             long j2 = this.currentTop;
             if (j2 != -1 && getProgress((int) j2) < 1.0f && getProgress((int) this.currentTop) > 0.0f) {
-                float dp2 = this.sliderInnerRect.left + AndroidUtilities.dp(12.0f) + ((this.sliderInnerRect.width() - AndroidUtilities.dp(24.0f)) * Utilities.clamp01(getProgress((int) this.currentTop)));
-                float f3 = this.overTop.set(Math.abs((this.sliderRect.right - ((float) AndroidUtilities.dp(10.0f))) - dp2) < ((float) AndroidUtilities.dp(14.0f)));
-                float lerp3 = AndroidUtilities.lerp(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(16.0f), this.overTopText.set(Math.abs((this.sliderRect.right - ((float) AndroidUtilities.dp(10.0f))) - dp2) < ((float) AndroidUtilities.dp(12.0f))));
-                float currentWidth2 = (this.topText.getCurrentWidth() + dp2) + ((float) (AndroidUtilities.dp(16.0f) * 2)) > this.sliderInnerRect.right ? (dp2 - lerp3) - this.topText.getCurrentWidth() : lerp3 + dp2;
+                float dp4 = this.sliderInnerRect.left + AndroidUtilities.dp(12.0f) + ((this.sliderInnerRect.width() - AndroidUtilities.dp(24.0f)) * Utilities.clamp01(getProgress((int) this.currentTop)));
+                float f3 = this.overTop.set(Math.abs((this.sliderRect.right - ((float) AndroidUtilities.dp(10.0f))) - dp4) < ((float) AndroidUtilities.dp(14.0f)));
+                float lerp3 = AndroidUtilities.lerp(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(16.0f), this.overTopText.set(Math.abs((this.sliderRect.right - ((float) AndroidUtilities.dp(10.0f))) - dp4) < ((float) AndroidUtilities.dp(12.0f))));
+                float currentWidth2 = (this.topText.getCurrentWidth() + dp4) + ((float) (AndroidUtilities.dp(16.0f) * 2)) > this.sliderInnerRect.right ? (dp4 - lerp3) - this.topText.getCurrentWidth() : lerp3 + dp4;
                 this.topPaint.setStrokeWidth(AndroidUtilities.dp(1.0f));
                 this.topPaint.setColor(Theme.multAlpha(Theme.getColor(Theme.key_dialogBackground), 0.4f));
-                RectF rectF4 = this.sliderInnerRect;
-                float lerp4 = AndroidUtilities.lerp(rectF4.top, rectF4.centerY(), f3);
                 RectF rectF5 = this.sliderInnerRect;
-                canvas.drawLine(dp2, lerp4, dp2, AndroidUtilities.lerp(rectF5.bottom, rectF5.centerY(), f3), this.topPaint);
+                float lerp4 = AndroidUtilities.lerp(rectF5.top, rectF5.centerY(), f3);
+                RectF rectF6 = this.sliderInnerRect;
+                canvas.drawLine(dp4, lerp4, dp4, AndroidUtilities.lerp(rectF6.bottom, rectF6.centerY(), f3), this.topPaint);
                 this.topText.draw(canvas, currentWidth2, this.sliderInnerRect.centerY(), -1, 0.75f);
             }
             canvas.restore();
             invalidate();
             this.sliderCircleRect.set((this.sliderRect.right - AndroidUtilities.dp(16.0f)) - AndroidUtilities.dp(4.0f), this.sliderRect.centerY() - (AndroidUtilities.dp(16.0f) / 2.0f), this.sliderRect.right - AndroidUtilities.dp(4.0f), this.sliderRect.centerY() + (AndroidUtilities.dp(16.0f) / 2.0f));
             canvas.drawRoundRect(this.sliderCircleRect, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), this.sliderCirclePaint);
-            float dp3 = AndroidUtilities.dp(9.0f) / this.sliderInnerRect.width();
-            RectF rectF6 = this.sliderCircleRect;
-            float lerp5 = AndroidUtilities.lerp(AndroidUtilities.lerp(rectF6.left, rectF6.right, progress), AndroidUtilities.lerp(this.sliderCircleRect.left + AndroidUtilities.dp(9.0f), this.sliderCircleRect.right - AndroidUtilities.dp(9.0f), progress), Math.min(Utilities.clamp01(progress / dp3), Utilities.clamp01((1.0f - progress) / dp3)));
+            float dp5 = AndroidUtilities.dp(9.0f) / this.sliderInnerRect.width();
+            RectF rectF7 = this.sliderCircleRect;
+            float lerp5 = AndroidUtilities.lerp(AndroidUtilities.lerp(rectF7.left, rectF7.right, progress), AndroidUtilities.lerp(this.sliderCircleRect.left + AndroidUtilities.dp(9.0f), this.sliderCircleRect.right - AndroidUtilities.dp(9.0f), progress), Math.min(Utilities.clamp01(progress / dp5), Utilities.clamp01((1.0f - progress) / dp5)));
             float currentWidth3 = this.counterText.getCurrentWidth() + AndroidUtilities.dp(50.0f);
+            float dp6 = AndroidUtilities.dp(44.0f);
             float clamp = Utilities.clamp(lerp5 - (currentWidth3 / 2.0f), (this.sliderInnerRect.right - currentWidth3) - AndroidUtilities.dp(4.0f), this.sliderInnerRect.left + AndroidUtilities.dp(4.0f));
-            this.textRect.set(clamp, (this.sliderInnerRect.top - AndroidUtilities.dp(21.0f)) - AndroidUtilities.dp(44.0f), currentWidth3 + clamp, this.sliderInnerRect.top - AndroidUtilities.dp(21.0f));
+            this.textRect.set(clamp, (this.sliderInnerRect.top - AndroidUtilities.dp(21.0f)) - dp6, currentWidth3 + clamp, this.sliderInnerRect.top - AndroidUtilities.dp(21.0f));
             float height = this.textRect.height();
             float f4 = height / 2.0f;
-            RectF rectF7 = this.textRect;
-            float clamp2 = Utilities.clamp(lerp5, rectF7.right, rectF7.left);
             RectF rectF8 = this.textRect;
-            float clamp3 = Utilities.clamp(clamp2 - AndroidUtilities.dp(9.0f), rectF8.right, rectF8.left);
+            float clamp2 = Utilities.clamp(lerp5, rectF8.right, rectF8.left);
             RectF rectF9 = this.textRect;
-            float clamp4 = Utilities.clamp(AndroidUtilities.dp(9.0f) + clamp2, rectF9.right, rectF9.left);
+            float clamp3 = Utilities.clamp(clamp2 - AndroidUtilities.dp(9.0f), rectF9.right, rectF9.left);
+            RectF rectF10 = this.textRect;
+            float clamp4 = Utilities.clamp(AndroidUtilities.dp(9.0f) + clamp2, rectF10.right, rectF10.left);
             float clamp5 = Utilities.clamp(this.progress - this.aprogress, 1.0f, -1.0f) * 60.0f;
-            float dp4 = this.textRect.bottom + AndroidUtilities.dp(8.0f);
+            float dp7 = this.textRect.bottom + AndroidUtilities.dp(8.0f);
             this.textPath.rewind();
-            RectF rectF10 = this.arc;
-            RectF rectF11 = this.textRect;
-            float f5 = rectF11.left;
-            float f6 = rectF11.top;
-            rectF10.set(f5, f6, f5 + height, f6 + height);
+            RectF rectF11 = this.arc;
+            RectF rectF12 = this.textRect;
+            float f5 = rectF12.left;
+            float f6 = rectF12.top;
+            rectF11.set(f5, f6, f5 + height, f6 + height);
             this.textPath.arcTo(this.arc, -180.0f, 90.0f);
-            RectF rectF12 = this.arc;
-            RectF rectF13 = this.textRect;
-            float f7 = rectF13.right;
-            float f8 = rectF13.top;
-            rectF12.set(f7 - height, f8, f7, f8 + height);
+            RectF rectF13 = this.arc;
+            RectF rectF14 = this.textRect;
+            float f7 = rectF14.right;
+            float f8 = rectF14.top;
+            rectF13.set(f7 - height, f8, f7, f8 + height);
             this.textPath.arcTo(this.arc, -90.0f, 90.0f);
-            RectF rectF14 = this.arc;
-            RectF rectF15 = this.textRect;
-            float f9 = rectF15.right;
-            float f10 = rectF15.bottom;
-            rectF14.set(f9 - height, f10 - height, f9, f10);
-            this.textPath.arcTo(this.arc, 0.0f, (float) Utilities.clamp(((Math.acos(Utilities.clamp01((clamp4 - this.arc.centerX()) / f4)) * 0.8500000238418579d) / 3.141592653589793d) * 180.0d, 90.0d, 0.0d));
+            RectF rectF15 = this.arc;
             RectF rectF16 = this.textRect;
+            float f9 = rectF16.right;
+            float f10 = rectF16.bottom;
+            rectF15.set(f9 - height, f10 - height, f9, f10);
+            this.textPath.arcTo(this.arc, 0.0f, (float) Utilities.clamp(((Math.acos(Utilities.clamp01((clamp4 - this.arc.centerX()) / f4)) * 0.8500000238418579d) / 3.141592653589793d) * 180.0d, 90.0d, 0.0d));
+            RectF rectF17 = this.textRect;
             float f11 = 0.7f * height;
-            if (clamp3 < rectF16.right - f11) {
-                this.textPath.lineTo(clamp4, rectF16.bottom);
+            if (clamp3 < rectF17.right - f11) {
+                this.textPath.lineTo(clamp4, rectF17.bottom);
                 f = 8.0f;
                 this.textPath.lineTo(clamp2 + 2.0f, this.textRect.bottom + AndroidUtilities.dp(8.0f));
             } else {
                 f = 8.0f;
             }
             this.textPath.lineTo(clamp2, this.textRect.bottom + AndroidUtilities.dp(f) + 1.0f);
-            RectF rectF17 = this.textRect;
-            if (clamp4 > rectF17.left + f11) {
-                this.textPath.lineTo(clamp2 - 2.0f, rectF17.bottom + AndroidUtilities.dp(8.0f));
+            RectF rectF18 = this.textRect;
+            if (clamp4 > rectF18.left + f11) {
+                this.textPath.lineTo(clamp2 - 2.0f, rectF18.bottom + AndroidUtilities.dp(8.0f));
                 this.textPath.lineTo(clamp3, this.textRect.bottom);
             }
-            RectF rectF18 = this.arc;
-            RectF rectF19 = this.textRect;
-            float f12 = rectF19.left;
-            float f13 = rectF19.bottom;
-            rectF18.set(f12, f13 - height, height + f12, f13);
+            RectF rectF19 = this.arc;
+            RectF rectF20 = this.textRect;
+            float f12 = rectF20.left;
+            float f13 = rectF20.bottom;
+            rectF19.set(f12, f13 - height, height + f12, f13);
             float clamp6 = ((float) Utilities.clamp(((Math.acos(Utilities.clamp01((clamp3 - this.arc.left) / f4)) * 0.8500000238418579d) / 3.141592653589793d) * 180.0d, 90.0d, 0.0d)) + 90.0f;
             this.textPath.arcTo(this.arc, clamp6, 180.0f - clamp6);
-            Path path = this.textPath;
-            RectF rectF20 = this.textRect;
-            path.lineTo(rectF20.left, rectF20.bottom);
+            Path path2 = this.textPath;
+            RectF rectF21 = this.textRect;
+            path2.lineTo(rectF21.left, rectF21.bottom);
             this.textPath.close();
-            RectF rectF21 = AndroidUtilities.rectTmp;
-            rectF21.set(this.textRect);
-            rectF21.inset(-AndroidUtilities.dp(12.0f), -AndroidUtilities.dp(12.0f));
-            this.textParticles.setBounds(rectF21);
+            RectF rectF22 = AndroidUtilities.rectTmp;
+            rectF22.set(this.textRect);
+            rectF22.inset(-AndroidUtilities.dp(12.0f), -AndroidUtilities.dp(12.0f));
+            this.textParticles.setBounds(rectF22);
             this.textParticles.setSpeed((this.progress * 15.0f) + 1.0f);
             this.textParticles.process();
             canvas.save();
             this.textParticles.draw(canvas, -673522);
             canvas.restore();
             canvas.save();
-            canvas.rotate(clamp5, clamp2, dp4);
+            canvas.rotate(clamp5, clamp2, dp7);
             if (Math.abs(this.progress - this.aprogress) > 0.001f) {
                 this.aprogress = AndroidUtilities.lerp(this.aprogress, this.progress, 0.1f);
                 invalidate();
@@ -1048,7 +1045,7 @@ public class StarsReactionsSheet extends BottomSheet {
             canvas.drawPath(this.textPath, this.textBackgroundPaint);
             canvas.save();
             canvas.clipPath(this.textPath);
-            canvas.rotate(-clamp5, clamp2, dp4);
+            canvas.rotate(-clamp5, clamp2, dp7);
             this.textParticles.draw(canvas, -1);
             canvas.restore();
             this.counterImage.setBounds((int) (this.textRect.left + AndroidUtilities.dp(13.0f)), (int) (this.textRect.centerY() - AndroidUtilities.dp(10.0f)), (int) (this.textRect.left + AndroidUtilities.dp(33.0f)), (int) (this.textRect.centerY() + AndroidUtilities.dp(10.0f)));
@@ -1056,9 +1053,9 @@ public class StarsReactionsSheet extends BottomSheet {
                 this.counterImage.draw(canvas);
             }
             AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.counterText;
-            float dp5 = this.textRect.left + AndroidUtilities.dp(24.0f);
-            RectF rectF22 = this.textRect;
-            animatedTextDrawable.setBounds(dp5, rectF22.top, rectF22.right, rectF22.bottom);
+            float dp8 = this.textRect.left + AndroidUtilities.dp(24.0f);
+            RectF rectF23 = this.textRect;
+            animatedTextDrawable.setBounds(dp8, rectF23.top, rectF23.right, rectF23.bottom);
             this.counterText.draw(canvas);
             canvas.restore();
         }
@@ -1248,11 +1245,10 @@ public class StarsReactionsSheet extends BottomSheet {
         }
 
         public void gen(Particle particle, long j, boolean z) {
-            long j2;
             particle.start = j;
             particle.lifetime = AndroidUtilities.lerp(500, 2500, Utilities.fastRandom.nextFloat());
             if (z) {
-                particle.start -= ((float) j2) * Utilities.clamp01(Utilities.fastRandom.nextFloat());
+                particle.start -= ((float) r4) * Utilities.clamp01(Utilities.fastRandom.nextFloat());
             }
             RectF rectF = this.bounds;
             particle.x = AndroidUtilities.lerp(rectF.left, rectF.right, Utilities.fastRandom.nextFloat());
@@ -1264,11 +1260,12 @@ public class StarsReactionsSheet extends BottomSheet {
             } else {
                 particle.vx = this.bounds.centerX() - particle.x;
                 particle.vy = this.bounds.centerY() - particle.y;
+                float dp = AndroidUtilities.dp(AndroidUtilities.lerp(1.0f, 4.0f, Utilities.fastRandom.nextFloat()));
                 float f = particle.vx;
                 float f2 = particle.vy;
-                float dp = AndroidUtilities.dp(AndroidUtilities.lerp(1.0f, 4.0f, Utilities.fastRandom.nextFloat())) / ((float) Math.sqrt((f * f) + (f2 * f2)));
-                particle.vx *= dp;
-                particle.vy *= dp;
+                float sqrt = dp / ((float) Math.sqrt((f * f) + (f2 * f2)));
+                particle.vx *= sqrt;
+                particle.vy *= sqrt;
             }
             particle.a = AndroidUtilities.lerp(0.4f, 1.0f, Utilities.fastRandom.nextFloat());
             particle.s = AndroidUtilities.lerp(0.8f, 1.2f, Utilities.fastRandom.nextFloat()) * 0.7f;
@@ -1290,10 +1287,9 @@ public class StarsReactionsSheet extends BottomSheet {
 
             public void draw(Canvas canvas, int i, float f) {
                 Particles.this.bPaint.setAlpha((int) (255.0f * f));
+                Particles.this.rect.set((int) (this.x - ((((r8.b.getWidth() / 2.0f) * this.a) * this.s) * f)), (int) (this.y - ((((Particles.this.b.getHeight() / 2.0f) * this.a) * this.s) * f)), (int) (this.x + ((Particles.this.b.getWidth() / 2.0f) * this.a * this.s * f)), (int) (this.y + ((Particles.this.b.getHeight() / 2.0f) * this.a * this.s * f)));
                 Particles particles = Particles.this;
-                particles.rect.set((int) (this.x - ((((particles.b.getWidth() / 2.0f) * this.a) * this.s) * f)), (int) (this.y - ((((Particles.this.b.getHeight() / 2.0f) * this.a) * this.s) * f)), (int) (this.x + ((Particles.this.b.getWidth() / 2.0f) * this.a * this.s * f)), (int) (this.y + ((Particles.this.b.getHeight() / 2.0f) * this.a * this.s * f)));
-                Particles particles2 = Particles.this;
-                canvas.drawBitmap(particles2.b, (Rect) null, particles2.rect, particles2.bPaint);
+                canvas.drawBitmap(particles.b, (Rect) null, particles.rect, particles.bPaint);
             }
         }
     }
@@ -1378,12 +1374,12 @@ public class StarsReactionsSheet extends BottomSheet {
                 while (true) {
                     if (i >= this.senders.size()) {
                         break;
-                    } else if (this.senders.get(i).clickBounds.contains(motionEvent.getX(), motionEvent.getY())) {
+                    }
+                    if (this.senders.get(i).clickBounds.contains(motionEvent.getX(), motionEvent.getY())) {
                         this.pressedSender = this.senders.get(i);
                         break;
-                    } else {
-                        i++;
                     }
+                    i++;
                 }
                 Sender sender3 = this.pressedSender;
                 if (sender3 != null) {
@@ -1426,12 +1422,12 @@ public class StarsReactionsSheet extends BottomSheet {
                 while (true) {
                     if (i2 >= arrayList.size()) {
                         break;
-                    } else if (arrayList.get(i2).did == sender2.did) {
+                    }
+                    if (arrayList.get(i2).did == sender2.did) {
                         senderData = arrayList.get(i2);
                         break;
-                    } else {
-                        i2++;
                     }
+                    i2++;
                 }
                 if (senderData == null) {
                     sender2.imageReceiver.onDetachedFromWindow();
@@ -1449,10 +1445,11 @@ public class StarsReactionsSheet extends BottomSheet {
                     if (i4 >= this.senders.size()) {
                         sender = null;
                         break;
-                    } else if (this.senders.get(i4).did == senderData2.did) {
-                        sender = this.senders.get(i4);
-                        break;
                     } else {
+                        if (this.senders.get(i4).did == senderData2.did) {
+                            sender = this.senders.get(i4);
+                            break;
+                        }
                         i4++;
                     }
                 }
@@ -1461,12 +1458,12 @@ public class StarsReactionsSheet extends BottomSheet {
                     while (true) {
                         if (i5 >= this.oldSenders.size()) {
                             break;
-                        } else if (this.oldSenders.get(i5).did == senderData2.did) {
+                        }
+                        if (this.oldSenders.get(i5).did == senderData2.did) {
                             sender = this.oldSenders.get(i5);
                             break;
-                        } else {
-                            i5++;
                         }
+                        i5++;
                     }
                     if (sender != null) {
                         this.oldSenders.remove(sender);

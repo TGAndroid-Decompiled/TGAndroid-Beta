@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public abstract class TLRPC$messages_AllStickers extends TLObject {
     public ArrayList<TLRPC$StickerSet> sets = new ArrayList<>();
     public ArrayList<TLRPC$TL_stickerPack> packs = new ArrayList<>();

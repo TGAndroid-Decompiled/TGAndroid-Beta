@@ -1,6 +1,7 @@
 package kotlinx.coroutines.internal;
 
 import kotlin.text.StringsKt__StringNumberConversionsKt;
+
 public final class SystemPropsKt__SystemProps_commonKt {
     public static final boolean systemProp(String str, boolean z) {
         String systemProp = SystemPropsKt.systemProp(str);
@@ -43,11 +44,7 @@ public final class SystemPropsKt__SystemProps_commonKt {
             throw new IllegalStateException(("System property '" + str + "' has unrecognized value '" + systemProp + '\'').toString());
         }
         long longValue = longOrNull.longValue();
-        boolean z = false;
         if (j2 <= longValue && longValue <= j3) {
-            z = true;
-        }
-        if (z) {
             return longValue;
         }
         throw new IllegalStateException(("System property '" + str + "' should be in range " + j2 + ".." + j3 + ", but is '" + longValue + '\'').toString());

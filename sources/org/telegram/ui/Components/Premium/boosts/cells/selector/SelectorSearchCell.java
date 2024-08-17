@@ -18,6 +18,7 @@ import android.graphics.Shader;
 import android.os.Build;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Property;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -40,6 +41,7 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.GroupCreateSpan;
 import org.telegram.ui.Components.LayoutHelper;
+
 @SuppressLint({"ViewConstructor"})
 public class SelectorSearchCell extends ScrollView {
     public ArrayList<GroupCreateSpan> allSpans;
@@ -75,21 +77,23 @@ public class SelectorSearchCell extends ScrollView {
         this.allSpans = new ArrayList<>();
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         this.topGradientAlpha = new AnimatedFloat(this, 0L, 300L, cubicBezierInterpolator);
-        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{-16777216, 0}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{-16777216, 0}, new float[]{0.0f, 1.0f}, tileMode);
         this.topGradient = linearGradient;
         Paint paint = new Paint(1);
         this.topGradientPaint = paint;
         this.topGradientMatrix = new Matrix();
         this.bottomGradientAlpha = new AnimatedFloat(this, 0L, 300L, cubicBezierInterpolator);
-        LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{0, -16777216}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+        LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{0, -16777216}, new float[]{0.0f, 1.0f}, tileMode);
         this.bottomGradient = linearGradient2;
         Paint paint2 = new Paint(1);
         this.bottomGradientPaint = paint2;
         this.bottomGradientMatrix = new Matrix();
         paint.setShader(linearGradient);
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+        PorterDuff.Mode mode = PorterDuff.Mode.DST_OUT;
+        paint.setXfermode(new PorterDuffXfermode(mode));
         paint2.setShader(linearGradient2);
-        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+        paint2.setXfermode(new PorterDuffXfermode(mode));
         this.resourcesProvider = resourcesProvider;
         this.updateHeight = runnable;
         setVerticalScrollBarEnabled(false);
@@ -162,9 +166,8 @@ public class SelectorSearchCell extends ScrollView {
     }
 
     public void updateSpans(boolean z, final HashSet<Long> hashSet, final Runnable runnable, List<TLRPC$TL_help_country> list) {
-        boolean z2;
         Object chat;
-        TLRPC$TL_help_country tLRPC$TL_help_country;
+        Object obj;
         MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
         ArrayList<GroupCreateSpan> arrayList = new ArrayList<>();
         ArrayList<GroupCreateSpan> arrayList2 = new ArrayList<>();
@@ -176,43 +179,39 @@ public class SelectorSearchCell extends ScrollView {
         }
         Iterator<Long> it = hashSet.iterator();
         while (it.hasNext()) {
-            long longValue = it.next().longValue();
+            Long next = it.next();
+            long longValue = next.longValue();
             int i2 = 0;
             while (true) {
                 if (i2 >= this.allSpans.size()) {
-                    z2 = false;
-                    break;
+                    if (longValue >= 0) {
+                        chat = messagesController.getUser(next);
+                    } else {
+                        chat = messagesController.getChat(Long.valueOf(-longValue));
+                    }
+                    if (list != null) {
+                        for (TLRPC$TL_help_country tLRPC$TL_help_country : list) {
+                            if (tLRPC$TL_help_country.default_name.hashCode() == longValue) {
+                                obj = tLRPC$TL_help_country;
+                                break;
+                            }
+                        }
+                    }
+                    obj = chat;
+                    if (obj != null) {
+                        GroupCreateSpan groupCreateSpan2 = new GroupCreateSpan(getContext(), obj, null, true, this.resourcesProvider);
+                        groupCreateSpan2.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view) {
+                                SelectorSearchCell.this.lambda$updateSpans$0(hashSet, runnable, view);
+                            }
+                        });
+                        arrayList2.add(groupCreateSpan2);
+                    }
                 } else if (this.allSpans.get(i2).getUid() == longValue) {
-                    z2 = true;
                     break;
                 } else {
                     i2++;
-                }
-            }
-            if (!z2) {
-                if (longValue >= 0) {
-                    chat = messagesController.getUser(Long.valueOf(longValue));
-                } else {
-                    chat = messagesController.getChat(Long.valueOf(-longValue));
-                }
-                if (list != null) {
-                    for (TLRPC$TL_help_country tLRPC$TL_help_country2 : list) {
-                        if (tLRPC$TL_help_country2.default_name.hashCode() == longValue) {
-                            tLRPC$TL_help_country = tLRPC$TL_help_country2;
-                            break;
-                        }
-                    }
-                }
-                tLRPC$TL_help_country = chat;
-                if (tLRPC$TL_help_country != null) {
-                    GroupCreateSpan groupCreateSpan2 = new GroupCreateSpan(getContext(), tLRPC$TL_help_country, null, true, this.resourcesProvider);
-                    groupCreateSpan2.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public final void onClick(View view) {
-                            SelectorSearchCell.this.lambda$updateSpans$0(hashSet, runnable, view);
-                        }
-                    });
-                    arrayList2.add(groupCreateSpan2);
                 }
             }
         }
@@ -260,23 +259,22 @@ public class SelectorSearchCell extends ScrollView {
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
-        int scrollY;
-        float scrollY2 = getScrollY();
-        canvas.saveLayerAlpha(0.0f, scrollY2, getWidth(), getHeight() + scrollY, 255, 31);
+        float scrollY = getScrollY();
+        canvas.saveLayerAlpha(0.0f, scrollY, getWidth(), getHeight() + r0, 255, 31);
         super.dispatchDraw(canvas);
         canvas.save();
         float f = this.topGradientAlpha.set(canScrollVertically(-1));
         this.topGradientMatrix.reset();
-        this.topGradientMatrix.postTranslate(0.0f, scrollY2);
+        this.topGradientMatrix.postTranslate(0.0f, scrollY);
         this.topGradient.setLocalMatrix(this.topGradientMatrix);
         this.topGradientPaint.setAlpha((int) (f * 255.0f));
-        canvas.drawRect(0.0f, scrollY2, getWidth(), AndroidUtilities.dp(8.0f) + scrollY, this.topGradientPaint);
+        canvas.drawRect(0.0f, scrollY, getWidth(), AndroidUtilities.dp(8.0f) + r0, this.topGradientPaint);
         float f2 = this.bottomGradientAlpha.set(canScrollVertically(1));
         this.bottomGradientMatrix.reset();
-        this.bottomGradientMatrix.postTranslate(0.0f, (getHeight() + scrollY) - AndroidUtilities.dp(8.0f));
+        this.bottomGradientMatrix.postTranslate(0.0f, (getHeight() + r0) - AndroidUtilities.dp(8.0f));
         this.bottomGradient.setLocalMatrix(this.bottomGradientMatrix);
         this.bottomGradientPaint.setAlpha((int) (f2 * 255.0f));
-        canvas.drawRect(0.0f, (getHeight() + scrollY) - AndroidUtilities.dp(8.0f), getWidth(), scrollY + getHeight(), this.bottomGradientPaint);
+        canvas.drawRect(0.0f, (getHeight() + r0) - AndroidUtilities.dp(8.0f), getWidth(), r0 + getHeight(), this.bottomGradientPaint);
         canvas.restore();
         canvas.restore();
     }
@@ -410,9 +408,9 @@ public class SelectorSearchCell extends ScrollView {
             this.animRemovingSpans.clear();
             this.animAddingSpans.add(groupCreateSpan);
             this.animators.clear();
-            this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan, View.SCALE_X, 1.0f, 0.01f));
-            this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan, View.SCALE_Y, 1.0f, 0.01f));
-            this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan, View.ALPHA, 1.0f, 0.0f));
+            this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan, (Property<GroupCreateSpan, Float>) View.SCALE_X, 1.0f, 0.01f));
+            this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan, (Property<GroupCreateSpan, Float>) View.SCALE_Y, 1.0f, 0.01f));
+            this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan, (Property<GroupCreateSpan, Float>) View.ALPHA, 1.0f, 0.0f));
             requestLayout();
         }
 
@@ -456,16 +454,16 @@ public class SelectorSearchCell extends ScrollView {
                 for (int i2 = 0; i2 < arrayList.size(); i2++) {
                     GroupCreateSpan groupCreateSpan = arrayList.get(i2);
                     this.animRemovingSpans.add(groupCreateSpan);
-                    this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan, View.SCALE_X, 1.0f, 0.01f));
-                    this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan, View.SCALE_Y, 1.0f, 0.01f));
-                    this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan, View.ALPHA, 1.0f, 0.0f));
+                    this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan, (Property<GroupCreateSpan, Float>) View.SCALE_X, 1.0f, 0.01f));
+                    this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan, (Property<GroupCreateSpan, Float>) View.SCALE_Y, 1.0f, 0.01f));
+                    this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan, (Property<GroupCreateSpan, Float>) View.ALPHA, 1.0f, 0.0f));
                 }
                 for (int i3 = 0; i3 < arrayList2.size(); i3++) {
                     GroupCreateSpan groupCreateSpan2 = arrayList2.get(i3);
                     this.animAddingSpans.add(groupCreateSpan2);
-                    this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan2, View.SCALE_X, 0.01f, 1.0f));
-                    this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan2, View.SCALE_Y, 0.01f, 1.0f));
-                    this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan2, View.ALPHA, 0.0f, 1.0f));
+                    this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan2, (Property<GroupCreateSpan, Float>) View.SCALE_X, 0.01f, 1.0f));
+                    this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan2, (Property<GroupCreateSpan, Float>) View.SCALE_Y, 0.01f, 1.0f));
+                    this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan2, (Property<GroupCreateSpan, Float>) View.ALPHA, 0.0f, 1.0f));
                 }
             } else {
                 for (int i4 = 0; i4 < arrayList.size(); i4++) {
@@ -522,9 +520,9 @@ public class SelectorSearchCell extends ScrollView {
                 for (int i2 = 0; i2 < arrayList.size(); i2++) {
                     GroupCreateSpan groupCreateSpan = (GroupCreateSpan) arrayList.get(i2);
                     this.animAddingSpans.add(groupCreateSpan);
-                    this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan, View.SCALE_X, 1.0f, 0.01f));
-                    this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan, View.SCALE_Y, 1.0f, 0.01f));
-                    this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan, View.ALPHA, 1.0f, 0.0f));
+                    this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan, (Property<GroupCreateSpan, Float>) View.SCALE_X, 1.0f, 0.01f));
+                    this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan, (Property<GroupCreateSpan, Float>) View.SCALE_Y, 1.0f, 0.01f));
+                    this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan, (Property<GroupCreateSpan, Float>) View.ALPHA, 1.0f, 0.0f));
                 }
             } else {
                 for (int i3 = 0; i3 < arrayList.size(); i3++) {

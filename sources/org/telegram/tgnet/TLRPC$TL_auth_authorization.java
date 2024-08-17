@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_auth_authorization extends TLRPC$auth_Authorization {
     public int flags;
     public byte[] future_auth_token;
@@ -11,8 +12,9 @@ public class TLRPC$TL_auth_authorization extends TLRPC$auth_Authorization {
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
-        this.setup_password_required = (readInt32 & 2) != 0;
-        if ((readInt32 & 2) != 0) {
+        int i = readInt32 & 2;
+        this.setup_password_required = i != 0;
+        if (i != 0) {
             this.otherwise_relogin_days = abstractSerializedData.readInt32(z);
         }
         if ((this.flags & 1) != 0) {

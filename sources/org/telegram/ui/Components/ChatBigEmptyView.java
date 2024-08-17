@@ -13,6 +13,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
+
 public class ChatBigEmptyView extends LinearLayout {
     private ArrayList<ImageView> imageViews;
     private final Theme.ResourcesProvider resourcesProvider;
@@ -74,14 +75,17 @@ public class ChatBigEmptyView extends LinearLayout {
         } else {
             i2 = 1;
         }
-        addView(textView3, LayoutHelper.createLinear(-2, -2, i2 | 48, 0, 8, 0, i != 2 ? 0 : 8));
-        for (int i3 = 0; i3 < 4; i3++) {
+        int i3 = i2 | 48;
+        int i4 = 0;
+        addView(textView3, LayoutHelper.createLinear(-2, -2, i3, 0, 8, 0, i != 2 ? 0 : 8));
+        int i5 = 0;
+        while (i5 < 4) {
             LinearLayout linearLayout = new LinearLayout(context);
-            linearLayout.setOrientation(0);
+            linearLayout.setOrientation(i4);
             addView(linearLayout, LayoutHelper.createLinear(-2, -2, LocaleController.isRTL ? 5 : 3, 0, 8, 0, 0));
             ImageView imageView = new ImageView(context);
-            int i4 = Theme.key_chat_serviceText;
-            imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(i4), PorterDuff.Mode.MULTIPLY));
+            int i6 = Theme.key_chat_serviceText;
+            imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(i6), PorterDuff.Mode.MULTIPLY));
             if (i == 0) {
                 imageView.setImageResource(R.drawable.ic_lock_white);
             } else if (i == 2) {
@@ -92,14 +96,14 @@ public class ChatBigEmptyView extends LinearLayout {
             this.imageViews.add(imageView);
             TextView textView4 = new TextView(context);
             textView4.setTextSize(1, 15.0f);
-            textView4.setTextColor(getThemedColor(i4));
+            textView4.setTextColor(getThemedColor(i6));
             this.textViews.add(textView4);
             textView4.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
             textView4.setMaxWidth(AndroidUtilities.dp(260.0f));
-            if (i3 != 0) {
-                if (i3 != 1) {
-                    if (i3 != 2) {
-                        if (i3 == 3) {
+            if (i5 != 0) {
+                if (i5 != 1) {
+                    if (i5 != 2) {
+                        if (i5 == 3) {
                             if (i == 0) {
                                 textView4.setText(LocaleController.getString("EncryptedDescription4", R.string.EncryptedDescription4));
                             } else if (i == 2) {
@@ -148,6 +152,8 @@ public class ChatBigEmptyView extends LinearLayout {
                 }
                 linearLayout.addView(textView4, LayoutHelper.createLinear(-2, -2));
             }
+            i5++;
+            i4 = 0;
         }
     }
 

@@ -36,6 +36,7 @@ import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.Text;
+
 public class LinkPreview extends View {
     private boolean animated;
     public int backgroundColor;
@@ -144,7 +145,6 @@ public class LinkPreview extends View {
     }
 
     public void setupLayout() {
-        double d;
         int color1;
         int i;
         int i2;
@@ -227,7 +227,7 @@ public class LinkPreview extends View {
                 float f4 = this.density;
                 this.w = Math.max(f3, Math.min(currentWidth + (f4 * 40.0f) + ((this.hasPhoto && this.smallPhoto) ? f4 * 60.0f : 0.0f), f));
                 this.previewHeight = this.previewHeight + this.siteNameText.getHeight() + (this.density * 2.66f);
-                i3 = this.siteNameText.getLineCount() + 0;
+                i3 = this.siteNameText.getLineCount();
             } else {
                 i3 = 0;
             }
@@ -279,10 +279,11 @@ public class LinkPreview extends View {
             String upperCase = TextUtils.isEmpty(this.webpage.name) ? fromUrlWithoutSchema(this.webpage.url).toUpperCase() : this.webpage.name;
             int i9 = this.maxWidth;
             int i10 = this.padx;
+            float f11 = (i9 - i10) - i10;
             RectF rectF = this.padding;
-            float f11 = ((i9 - i10) - i10) - ((((rectF.left + 30.0f) + 3.25f) + rectF.right) * this.density);
+            float f12 = f11 - ((((rectF.left + 30.0f) + 3.25f) + rectF.right) * this.density);
             this.textScale = 1.0f;
-            this.layout = new StaticLayout(TextUtils.ellipsize(upperCase, this.layoutPaint, (int) Math.ceil(d), TextUtils.TruncateAt.END), this.layoutPaint, (int) Math.ceil(f11), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.layout = new StaticLayout(TextUtils.ellipsize(upperCase, this.layoutPaint, (int) Math.ceil(r10), TextUtils.TruncateAt.END), this.layoutPaint, (int) Math.ceil(f12), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.layoutWidth = 0.0f;
             this.layoutLeft = Float.MAX_VALUE;
             for (int i11 = 0; i11 < this.layout.getLineCount(); i11++) {
@@ -292,13 +293,13 @@ public class LinkPreview extends View {
             if (this.layout.getLineCount() > 2) {
                 this.textScale = 0.3f;
             } else {
-                this.textScale = Math.min(1.0f, f11 / this.layoutWidth);
+                this.textScale = Math.min(1.0f, f12 / this.layoutWidth);
             }
             RectF rectF2 = this.padding;
-            float f12 = rectF2.left + 30.0f + 3.25f + rectF2.right;
-            float f13 = this.density;
-            this.w = (f12 * f13) + (this.layoutWidth * this.textScale);
-            this.h = ((rectF2.top + rectF2.bottom) * f13) + Math.max(f13 * 30.0f, this.layout.getHeight() * this.textScale);
+            float f13 = rectF2.left + 30.0f + 3.25f + rectF2.right;
+            float f14 = this.density;
+            this.w = (f13 * f14) + (this.layoutWidth * this.textScale);
+            this.h = ((rectF2.top + rectF2.bottom) * f14) + Math.max(f14 * 30.0f, this.layout.getHeight() * this.textScale);
         }
         if (!this.animated) {
             this.captionAbove.set(this.messageAbove, true);
@@ -386,13 +387,13 @@ public class LinkPreview extends View {
         float f;
         float f2;
         if (withPreview()) {
-            f = 16.66f;
-            f2 = this.density;
+            f = this.density;
+            f2 = 16.66f;
         } else {
-            f = 0.2f;
-            f2 = this.h;
+            f = this.h;
+            f2 = 0.2f;
         }
-        return f2 * f;
+        return f * f2;
     }
 
     public void drawInternal(Canvas canvas) {
@@ -404,106 +405,116 @@ public class LinkPreview extends View {
         float f3 = this.previewProgress.set(withPreview());
         float lerp = AndroidUtilities.lerp(0.2f * f2, this.density * 16.66f, f3);
         RectF rectF = this.bounds;
-        int i = this.padx;
-        int i2 = this.pady;
-        rectF.set(i, i2, i + f, i2 + f2);
+        float f4 = this.padx;
+        float f5 = this.pady;
+        rectF.set(f4, f5, f4 + f, f5 + f2);
         this.outlinePaint.setColor(ColorUtils.blendARGB(this.backgroundColor, -14670807, f3));
         this.path2.rewind();
-        this.path2.addRoundRect(this.bounds, lerp, lerp, Path.Direction.CW);
+        Path path = this.path2;
+        RectF rectF2 = this.bounds;
+        Path.Direction direction = Path.Direction.CW;
+        path.addRoundRect(rectF2, lerp, lerp, direction);
         canvas.drawPath(this.path2, this.outlinePaint);
         if (f3 > 0.0f) {
             canvas.save();
             canvas.clipPath(this.path2);
             canvas.translate(this.padx, this.pady);
-            float f4 = this.captionAbove.set(this.messageAbove);
-            float f5 = this.density;
-            float f6 = (7.33f * f5) + 0.0f;
+            float f6 = this.captionAbove.set(this.messageAbove);
+            float f7 = this.density;
+            float f8 = (7.33f * f7) + 0.0f;
             Text text3 = this.messageText;
-            if (text3 != null && f4 > 0.0f) {
-                text3.draw(canvas, f5 * 10.0f, (f6 + (text3.getHeight() / 2.0f)) - ((this.messageText.getHeight() + (this.density * 15.0f)) * (1.0f - f4)), -15033089, f3);
-                f6 += (this.messageText.getHeight() + (this.density * 7.0f)) * f4;
+            if (text3 != null && f6 > 0.0f) {
+                text3.draw(canvas, f7 * 10.0f, (f8 + (text3.getHeight() / 2.0f)) - ((this.messageText.getHeight() + (this.density * 15.0f)) * (1.0f - f6)), -15033089, f3);
+                f8 += (this.messageText.getHeight() + (this.density * 7.0f)) * f6;
             }
-            float f7 = f6;
-            float f8 = this.previewHeightProgress.set(this.previewHeight);
+            float f9 = f8;
+            float f10 = this.previewHeightProgress.set(this.previewHeight);
             this.previewPaint.setAlpha(25);
-            RectF rectF2 = this.rect;
-            float f9 = this.density;
-            float f10 = f7 + f8;
-            rectF2.set(f9 * 10.0f, f7, f - (f9 * 10.0f), f10);
-            this.path.rewind();
-            Path path = this.path;
             RectF rectF3 = this.rect;
-            float f11 = this.density;
-            path.addRoundRect(rectF3, f11 * 5.0f, f11 * 5.0f, Path.Direction.CW);
+            float f11 = this.density * 10.0f;
+            float f12 = f9 + f10;
+            rectF3.set(f11, f9, f - f11, f12);
+            this.path.rewind();
+            Path path2 = this.path;
+            RectF rectF4 = this.rect;
+            float f13 = this.density * 5.0f;
+            path2.addRoundRect(rectF4, f13, f13, direction);
             canvas.drawPath(this.path, this.previewPaint);
             canvas.save();
             canvas.clipPath(this.path);
             this.previewPaint.setAlpha(255);
-            float f12 = this.density;
-            canvas.drawRect(f12 * 10.0f, f7, f12 * 13.0f, f10, this.previewPaint);
+            float f14 = this.density;
+            canvas.drawRect(f14 * 10.0f, f9, f14 * 13.0f, f12, this.previewPaint);
             canvas.restore();
-            float f13 = this.density;
-            float f14 = f7 + (5.66f * f13);
+            float f15 = this.density;
+            float f16 = f9 + (5.66f * f15);
             if (this.hasSiteName && (text2 = this.siteNameText) != null) {
-                text2.draw(canvas, f13 * 20.0f, f14 + (text2.getHeight() / 2.0f), this.previewPaint.getColor(), f3);
-                f14 += this.siteNameText.getHeight() + (this.density * 2.66f);
+                text2.draw(canvas, f15 * 20.0f, f16 + (text2.getHeight() / 2.0f), this.previewPaint.getColor(), f3);
+                f16 += this.siteNameText.getHeight() + (this.density * 2.66f);
             }
             if (this.hasTitle && (text = this.titleText) != null) {
-                text.draw(canvas, this.density * 20.0f, f14 + (text.getHeight() / 2.0f), -1, f3);
-                f14 += this.titleText.getHeight() + (this.density * 2.66f);
+                text.draw(canvas, this.density * 20.0f, f16 + (text.getHeight() / 2.0f), -1, f3);
+                f16 += this.titleText.getHeight() + (this.density * 2.66f);
             }
             if (this.hasDescription && this.descriptionLayout != null) {
                 canvas.save();
-                canvas.translate((this.density * 20.0f) - this.descriptionLayoutLeft, f14);
+                canvas.translate((this.density * 20.0f) - this.descriptionLayoutLeft, f16);
                 this.descriptionPaint.setColor(-1);
                 this.descriptionPaint.setAlpha((int) (f3 * 255.0f));
                 this.descriptionLayout.draw(canvas);
                 canvas.restore();
-                f14 += this.descriptionLayout.getHeight() + (this.density * 2.66f);
+                f16 += this.descriptionLayout.getHeight() + (this.density * 2.66f);
             }
-            float f15 = this.photoAlphaProgress.set(this.hasPhoto);
-            if (f15 > 0.0f) {
-                float f16 = this.photoSmallProgress.set(this.smallPhoto);
-                RectF rectF4 = this.rect1;
-                float f17 = this.density;
-                rectF4.set(f17 * 20.0f, (f17 * 2.66f) + f14, f - (20.0f * f17), (f17 * 2.66f) + f14 + this.photoHeight);
-                RectF rectF5 = this.rect2;
-                float f18 = this.density;
-                rectF5.set(((f - (f18 * 10.0f)) - (f18 * 6.0f)) - (f18 * 48.0f), f7 + (f18 * 6.0f), (f - (f18 * 10.0f)) - (f18 * 6.0f), f7 + (6.0f * f18) + (f18 * 48.0f));
-                AndroidUtilities.lerp(this.rect1, this.rect2, f16, this.rect);
+            float f17 = this.photoAlphaProgress.set(this.hasPhoto);
+            if (f17 > 0.0f) {
+                float f18 = this.photoSmallProgress.set(this.smallPhoto);
+                RectF rectF5 = this.rect1;
+                float f19 = this.density;
+                float f20 = f19 * 20.0f;
+                float f21 = (f19 * 2.66f) + f16;
+                rectF5.set(f20, f21, f - f20, this.photoHeight + f21);
+                RectF rectF6 = this.rect2;
+                float f22 = this.density;
+                float f23 = 6.0f * f22;
+                float f24 = (f - (f22 * 10.0f)) - f23;
+                float f25 = f22 * 48.0f;
+                float f26 = f9 + f23;
+                rectF6.set(f24 - f25, f26, f24, f25 + f26);
+                AndroidUtilities.lerp(this.rect1, this.rect2, f18, this.rect);
                 ImageReceiver imageReceiver = this.photoImage;
-                RectF rectF6 = this.rect;
-                imageReceiver.setImageCoords(rectF6.left, rectF6.top, rectF6.width(), this.rect.height());
-                this.photoImage.setAlpha(f15 * f3);
+                RectF rectF7 = this.rect;
+                imageReceiver.setImageCoords(rectF7.left, rectF7.top, rectF7.width(), this.rect.height());
+                this.photoImage.setAlpha(f17 * f3);
                 this.photoImage.draw(canvas);
-                f14 += (1.0f - f16) * ((this.density * 2.66f) + this.photoHeight);
+                f16 += (1.0f - f18) * ((this.density * 2.66f) + this.photoHeight);
             }
-            float f19 = this.density;
-            float f20 = f14 + (7.0f * f19) + (5.0f * f19);
+            float f27 = this.density;
+            float f28 = f16 + (7.0f * f27) + (5.0f * f27);
             Text text4 = this.messageText;
-            if (text4 != null && 1.0f - f4 > 0.0f) {
-                text4.draw(canvas, f19 * 10.0f, f20 + (text4.getHeight() / 2.0f) + ((this.messageText.getHeight() + (this.density * 15.0f)) * f4), -15033089, f3);
+            if (text4 != null && 1.0f - f6 > 0.0f) {
+                text4.draw(canvas, f27 * 10.0f, f28 + (text4.getHeight() / 2.0f) + ((this.messageText.getHeight() + (this.density * 15.0f)) * f6), -15033089, f3);
                 this.messageText.getHeight();
             }
             canvas.restore();
         }
         if (f3 < 1.0f) {
             Drawable drawable = this.icon;
-            int i3 = this.padx;
-            float f21 = this.padding.left;
-            float f22 = this.density;
-            int i4 = this.pady;
-            drawable.setBounds(((int) (f21 * f22)) + i3, ((int) ((f2 - (f22 * 30.0f)) / 2.0f)) + i4, i3 + ((int) ((f21 + 30.0f) * f22)), i4 + ((int) (((f22 * 30.0f) + f2) / 2.0f)));
-            int i5 = (int) ((1.0f - f3) * 255.0f);
-            this.icon.setAlpha(i5);
+            int i = this.padx;
+            float f29 = this.padding.left;
+            float f30 = this.density;
+            int i2 = this.pady;
+            float f31 = f30 * 30.0f;
+            drawable.setBounds(((int) (f29 * f30)) + i, ((int) ((f2 - f31) / 2.0f)) + i2, i + ((int) ((f29 + 30.0f) * f30)), i2 + ((int) ((f31 + f2) / 2.0f)));
+            int i3 = (int) ((1.0f - f3) * 255.0f);
+            this.icon.setAlpha(i3);
             this.icon.draw(canvas);
             if (this.layout != null) {
                 canvas.save();
                 canvas.translate(this.padx + ((this.padding.left + 30.0f + 3.25f) * this.density), this.pady + (f2 / 2.0f));
-                float f23 = this.textScale;
-                canvas.scale(f23, f23);
+                float f32 = this.textScale;
+                canvas.scale(f32, f32);
                 canvas.translate(-this.layoutLeft, (-this.layout.getHeight()) / 2.0f);
-                this.layoutPaint.setAlpha(i5);
+                this.layoutPaint.setAlpha(i3);
                 this.layout.draw(canvas);
                 canvas.restore();
             }

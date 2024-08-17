@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_account_updateBusinessLocation extends TLObject {
     public String address;
     public int flags;

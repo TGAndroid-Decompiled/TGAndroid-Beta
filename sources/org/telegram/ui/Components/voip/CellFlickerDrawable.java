@@ -13,6 +13,7 @@ import android.view.View;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SvgHelper;
+
 public class CellFlickerDrawable {
     public float animationSpeedScale;
     public boolean drawFrame;
@@ -49,8 +50,11 @@ public class CellFlickerDrawable {
         this.repeatProgress = 1.2f;
         this.animationSpeedScale = 1.0f;
         this.size = AndroidUtilities.dp(i3);
-        this.gradientShader = new LinearGradient(0.0f, 0.0f, this.size, 0.0f, new int[]{0, ColorUtils.setAlphaComponent(-1, i), 0}, (float[]) null, Shader.TileMode.CLAMP);
-        this.gradientShader2 = new LinearGradient(0.0f, 0.0f, this.size, 0.0f, new int[]{0, ColorUtils.setAlphaComponent(-1, i2), 0}, (float[]) null, Shader.TileMode.CLAMP);
+        float f = this.size;
+        int[] iArr = {0, ColorUtils.setAlphaComponent(-1, i), 0};
+        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+        this.gradientShader = new LinearGradient(0.0f, 0.0f, f, 0.0f, iArr, (float[]) null, tileMode);
+        this.gradientShader2 = new LinearGradient(0.0f, 0.0f, this.size, 0.0f, new int[]{0, ColorUtils.setAlphaComponent(-1, i2), 0}, (float[]) null, tileMode);
         this.paint.setShader(this.gradientShader);
         this.paintOutline.setShader(this.gradientShader2);
         this.paintOutline.setStyle(Paint.Style.STROKE);
@@ -58,8 +62,11 @@ public class CellFlickerDrawable {
     }
 
     public void setColors(int i, int i2, int i3) {
-        this.gradientShader = new LinearGradient(0.0f, 0.0f, this.size, 0.0f, new int[]{0, ColorUtils.setAlphaComponent(i, i2), 0}, (float[]) null, Shader.TileMode.CLAMP);
-        this.gradientShader2 = new LinearGradient(0.0f, 0.0f, this.size, 0.0f, new int[]{0, ColorUtils.setAlphaComponent(i, i3), 0}, (float[]) null, Shader.TileMode.CLAMP);
+        float f = this.size;
+        int[] iArr = {0, ColorUtils.setAlphaComponent(i, i2), 0};
+        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+        this.gradientShader = new LinearGradient(0.0f, 0.0f, f, 0.0f, iArr, (float[]) null, tileMode);
+        this.gradientShader2 = new LinearGradient(0.0f, 0.0f, this.size, 0.0f, new int[]{0, ColorUtils.setAlphaComponent(i, i3), 0}, (float[]) null, tileMode);
         this.paint.setShader(this.gradientShader);
         this.paintOutline.setShader(this.gradientShader2);
     }
@@ -117,8 +124,7 @@ public class CellFlickerDrawable {
             }
         }
         int i = this.parentWidth;
-        int i2 = this.size;
-        float f2 = ((i + (i2 * 2)) * this.progress) - i2;
+        float f2 = ((i + (r0 * 2)) * this.progress) - this.size;
         this.matrix.reset();
         this.matrix.setTranslate(f2, 0.0f);
         this.gradientShader.setLocalMatrix(this.matrix);
@@ -150,23 +156,19 @@ public class CellFlickerDrawable {
             return;
         }
         int i = this.parentWidth;
-        int i2 = this.size;
-        this.matrix.setTranslate((((i + (i2 * 2)) * f2) - i2) - groupCallMiniTextureView.getX(), 0.0f);
+        this.matrix.setTranslate((((i + (r2 * 2)) * f2) - this.size) - groupCallMiniTextureView.getX(), 0.0f);
         this.gradientShader.setLocalMatrix(this.matrix);
         this.gradientShader2.setLocalMatrix(this.matrix);
         RectF rectF = AndroidUtilities.rectTmp;
         VoIPTextureView voIPTextureView = groupCallMiniTextureView.textureView;
-        float f3 = voIPTextureView.currentClipHorizontal;
-        float f4 = voIPTextureView.currentClipVertical;
-        VoIPTextureView voIPTextureView2 = groupCallMiniTextureView.textureView;
-        rectF.set(f3, f4, voIPTextureView.getMeasuredWidth() - voIPTextureView2.currentClipHorizontal, voIPTextureView2.getMeasuredHeight() - groupCallMiniTextureView.textureView.currentClipVertical);
+        rectF.set(voIPTextureView.currentClipHorizontal, voIPTextureView.currentClipVertical, voIPTextureView.getMeasuredWidth() - groupCallMiniTextureView.textureView.currentClipHorizontal, r4.getMeasuredHeight() - groupCallMiniTextureView.textureView.currentClipVertical);
         canvas.drawRect(rectF, this.paint);
         if (this.drawFrame) {
             if (this.frameInside) {
                 rectF.inset(this.paintOutline.getStrokeWidth() / 2.0f, this.paintOutline.getStrokeWidth() / 2.0f);
             }
-            float f5 = groupCallMiniTextureView.textureView.roundRadius;
-            canvas.drawRoundRect(rectF, f5, f5, this.paintOutline);
+            float f3 = groupCallMiniTextureView.textureView.roundRadius;
+            canvas.drawRoundRect(rectF, f3, f3, this.paintOutline);
         }
     }
 
@@ -216,15 +218,14 @@ public class CellFlickerDrawable {
                 svgDrawable.setPaint(CellFlickerDrawable.this.paint);
                 CellFlickerDrawable cellFlickerDrawable = CellFlickerDrawable.this;
                 int i = cellFlickerDrawable.parentWidth;
-                int i2 = cellFlickerDrawable.size;
-                float f = (((i2 * 2) + i) * cellFlickerDrawable.progress) - i2;
+                float f = (((r2 * 2) + i) * cellFlickerDrawable.progress) - cellFlickerDrawable.size;
+                int i2 = (int) (i * 0.5f);
                 float scale = this.svgDrawable.getScale(getBounds().width(), getBounds().height());
                 CellFlickerDrawable.this.matrix.reset();
-                CellFlickerDrawable cellFlickerDrawable2 = CellFlickerDrawable.this;
-                cellFlickerDrawable2.matrix.setScale(1.0f / scale, 0.0f, cellFlickerDrawable2.size / 2.0f, 0.0f);
+                CellFlickerDrawable.this.matrix.setScale(1.0f / scale, 0.0f, r2.size / 2.0f, 0.0f);
                 CellFlickerDrawable.this.matrix.setTranslate((f - this.svgDrawable.getBounds().left) - (CellFlickerDrawable.this.size / scale), 0.0f);
                 CellFlickerDrawable.this.gradientShader.setLocalMatrix(CellFlickerDrawable.this.matrix);
-                int i3 = ((int) (i * 0.5f)) / 2;
+                int i3 = i2 / 2;
                 this.svgDrawable.setBounds(getBounds().centerX() - i3, getBounds().centerY() - i3, getBounds().centerX() + i3, getBounds().centerY() + i3);
                 this.svgDrawable.draw(canvas);
             }

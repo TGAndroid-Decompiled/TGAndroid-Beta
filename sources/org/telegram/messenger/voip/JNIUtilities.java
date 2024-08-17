@@ -7,13 +7,10 @@ import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import org.telegram.messenger.ApplicationLoader;
+
 public class JNIUtilities {
     public static int getMaxVideoResolution() {
         return 320;
-    }
-
-    public static String getSupportedVideoCodecs() {
-        return "";
     }
 
     @android.annotation.TargetApi(23)
@@ -38,12 +35,12 @@ public class JNIUtilities {
             return null;
         }
         String networkOperator = telephonyManager.getNetworkOperator();
-        if (networkOperator == null || networkOperator.length() <= 3) {
-            str = "";
-            str2 = "";
-        } else {
+        if (networkOperator != null && networkOperator.length() > 3) {
             str = networkOperator.substring(0, 3);
             str2 = networkOperator.substring(3);
+        } else {
+            str = "";
+            str2 = "";
         }
         return new String[]{telephonyManager.getNetworkOperatorName(), telephonyManager.getNetworkCountryIso().toUpperCase(), str, str2};
     }
@@ -55,5 +52,9 @@ public class JNIUtilities {
         } catch (Exception unused) {
             return null;
         }
+    }
+
+    public static String getSupportedVideoCodecs() {
+        return "";
     }
 }

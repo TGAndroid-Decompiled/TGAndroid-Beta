@@ -1,4 +1,5 @@
 package org.telegram.ui.Components;
+
 public class Point {
     public float x;
     public float y;

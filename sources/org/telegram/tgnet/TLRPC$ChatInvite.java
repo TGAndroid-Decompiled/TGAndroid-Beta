@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public abstract class TLRPC$ChatInvite extends TLObject {
     public String about;
     public boolean broadcast;

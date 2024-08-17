@@ -13,6 +13,7 @@ import org.telegram.tgnet.TLRPC$TL_inputWebFileGeoPointLocation;
 import org.telegram.tgnet.TLRPC$TL_inputWebFileLocation;
 import org.telegram.tgnet.TLRPC$TL_webDocument;
 import org.telegram.tgnet.TLRPC$WebDocument;
+
 public class WebFile extends TLObject {
     public ArrayList<TLRPC$DocumentAttribute> attributes;
     public TLRPC$InputGeoPoint geo_point;
@@ -56,20 +57,20 @@ public class WebFile extends TLObject {
     }
 
     public static WebFile createWithWebDocument(TLRPC$WebDocument tLRPC$WebDocument) {
-        if (tLRPC$WebDocument instanceof TLRPC$TL_webDocument) {
-            WebFile webFile = new WebFile();
-            TLRPC$TL_webDocument tLRPC$TL_webDocument = (TLRPC$TL_webDocument) tLRPC$WebDocument;
-            TLRPC$TL_inputWebFileLocation tLRPC$TL_inputWebFileLocation = new TLRPC$TL_inputWebFileLocation();
-            webFile.location = tLRPC$TL_inputWebFileLocation;
-            String str = tLRPC$WebDocument.url;
-            webFile.url = str;
-            tLRPC$TL_inputWebFileLocation.url = str;
-            tLRPC$TL_inputWebFileLocation.access_hash = tLRPC$TL_webDocument.access_hash;
-            webFile.size = tLRPC$TL_webDocument.size;
-            webFile.mime_type = tLRPC$TL_webDocument.mime_type;
-            webFile.attributes = tLRPC$TL_webDocument.attributes;
-            return webFile;
+        if (!(tLRPC$WebDocument instanceof TLRPC$TL_webDocument)) {
+            return null;
         }
-        return null;
+        WebFile webFile = new WebFile();
+        TLRPC$TL_webDocument tLRPC$TL_webDocument = (TLRPC$TL_webDocument) tLRPC$WebDocument;
+        TLRPC$TL_inputWebFileLocation tLRPC$TL_inputWebFileLocation = new TLRPC$TL_inputWebFileLocation();
+        webFile.location = tLRPC$TL_inputWebFileLocation;
+        String str = tLRPC$WebDocument.url;
+        webFile.url = str;
+        tLRPC$TL_inputWebFileLocation.url = str;
+        tLRPC$TL_inputWebFileLocation.access_hash = tLRPC$TL_webDocument.access_hash;
+        webFile.size = tLRPC$TL_webDocument.size;
+        webFile.mime_type = tLRPC$TL_webDocument.mime_type;
+        webFile.attributes = tLRPC$TL_webDocument.attributes;
+        return webFile;
     }
 }

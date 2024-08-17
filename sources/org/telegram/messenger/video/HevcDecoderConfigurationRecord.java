@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+
 public class HevcDecoderConfigurationRecord {
     int avgFrameRate;
     int bitDepthChromaMinus8;
@@ -58,10 +59,11 @@ public class HevcDecoderConfigurationRecord {
         this.general_profile_compatibility_flags = IsoTypeReader.readUInt32(byteBuffer);
         long readUInt48 = IsoTypeReader.readUInt48(byteBuffer);
         this.general_constraint_indicator_flags = readUInt48;
-        this.frame_only_constraint_flag = ((readUInt48 >> 44) & 8) > 0;
-        this.non_packed_constraint_flag = ((readUInt48 >> 44) & 4) > 0;
-        this.interlaced_source_flag = ((readUInt48 >> 44) & 2) > 0;
-        this.progressive_source_flag = ((readUInt48 >> 44) & 1) > 0;
+        long j = readUInt48 >> 44;
+        this.frame_only_constraint_flag = (8 & j) > 0;
+        this.non_packed_constraint_flag = (4 & j) > 0;
+        this.interlaced_source_flag = (2 & j) > 0;
+        this.progressive_source_flag = (j & 1) > 0;
         this.general_constraint_indicator_flags = readUInt48 & 140737488355327L;
         this.general_level_idc = IsoTypeReader.readUInt8(byteBuffer);
         int readUInt16 = IsoTypeReader.readUInt16(byteBuffer);
@@ -142,11 +144,13 @@ public class HevcDecoderConfigurationRecord {
     }
 
     public int getSize() {
+        Iterator<Array> it = this.arrays.iterator();
         int i = 23;
-        for (Array array : this.arrays) {
+        while (it.hasNext()) {
             i += 3;
-            for (byte[] bArr : array.nalUnits) {
-                i = i + 2 + bArr.length;
+            Iterator<byte[]> it2 = it.next().nalUnits.iterator();
+            while (it2.hasNext()) {
+                i = i + 2 + it2.next().length;
             }
         }
         return i;
@@ -160,20 +164,22 @@ public class HevcDecoderConfigurationRecord {
             return false;
         }
         HevcDecoderConfigurationRecord hevcDecoderConfigurationRecord = (HevcDecoderConfigurationRecord) obj;
-        if (this.avgFrameRate == hevcDecoderConfigurationRecord.avgFrameRate && this.bitDepthChromaMinus8 == hevcDecoderConfigurationRecord.bitDepthChromaMinus8 && this.bitDepthLumaMinus8 == hevcDecoderConfigurationRecord.bitDepthLumaMinus8 && this.chromaFormat == hevcDecoderConfigurationRecord.chromaFormat && this.configurationVersion == hevcDecoderConfigurationRecord.configurationVersion && this.constantFrameRate == hevcDecoderConfigurationRecord.constantFrameRate && this.general_constraint_indicator_flags == hevcDecoderConfigurationRecord.general_constraint_indicator_flags && this.general_level_idc == hevcDecoderConfigurationRecord.general_level_idc && this.general_profile_compatibility_flags == hevcDecoderConfigurationRecord.general_profile_compatibility_flags && this.general_profile_idc == hevcDecoderConfigurationRecord.general_profile_idc && this.general_profile_space == hevcDecoderConfigurationRecord.general_profile_space && this.general_tier_flag == hevcDecoderConfigurationRecord.general_tier_flag && this.lengthSizeMinusOne == hevcDecoderConfigurationRecord.lengthSizeMinusOne && this.min_spatial_segmentation_idc == hevcDecoderConfigurationRecord.min_spatial_segmentation_idc && this.numTemporalLayers == hevcDecoderConfigurationRecord.numTemporalLayers && this.parallelismType == hevcDecoderConfigurationRecord.parallelismType && this.reserved1 == hevcDecoderConfigurationRecord.reserved1 && this.reserved2 == hevcDecoderConfigurationRecord.reserved2 && this.reserved3 == hevcDecoderConfigurationRecord.reserved3 && this.reserved4 == hevcDecoderConfigurationRecord.reserved4 && this.reserved5 == hevcDecoderConfigurationRecord.reserved5 && this.temporalIdNested == hevcDecoderConfigurationRecord.temporalIdNested) {
-            List<Array> list = this.arrays;
-            List<Array> list2 = hevcDecoderConfigurationRecord.arrays;
-            return list == null ? list2 == null : list.equals(list2);
+        if (this.avgFrameRate != hevcDecoderConfigurationRecord.avgFrameRate || this.bitDepthChromaMinus8 != hevcDecoderConfigurationRecord.bitDepthChromaMinus8 || this.bitDepthLumaMinus8 != hevcDecoderConfigurationRecord.bitDepthLumaMinus8 || this.chromaFormat != hevcDecoderConfigurationRecord.chromaFormat || this.configurationVersion != hevcDecoderConfigurationRecord.configurationVersion || this.constantFrameRate != hevcDecoderConfigurationRecord.constantFrameRate || this.general_constraint_indicator_flags != hevcDecoderConfigurationRecord.general_constraint_indicator_flags || this.general_level_idc != hevcDecoderConfigurationRecord.general_level_idc || this.general_profile_compatibility_flags != hevcDecoderConfigurationRecord.general_profile_compatibility_flags || this.general_profile_idc != hevcDecoderConfigurationRecord.general_profile_idc || this.general_profile_space != hevcDecoderConfigurationRecord.general_profile_space || this.general_tier_flag != hevcDecoderConfigurationRecord.general_tier_flag || this.lengthSizeMinusOne != hevcDecoderConfigurationRecord.lengthSizeMinusOne || this.min_spatial_segmentation_idc != hevcDecoderConfigurationRecord.min_spatial_segmentation_idc || this.numTemporalLayers != hevcDecoderConfigurationRecord.numTemporalLayers || this.parallelismType != hevcDecoderConfigurationRecord.parallelismType || this.reserved1 != hevcDecoderConfigurationRecord.reserved1 || this.reserved2 != hevcDecoderConfigurationRecord.reserved2 || this.reserved3 != hevcDecoderConfigurationRecord.reserved3 || this.reserved4 != hevcDecoderConfigurationRecord.reserved4 || this.reserved5 != hevcDecoderConfigurationRecord.reserved5 || this.temporalIdNested != hevcDecoderConfigurationRecord.temporalIdNested) {
+            return false;
         }
-        return false;
+        List<Array> list = this.arrays;
+        List<Array> list2 = hevcDecoderConfigurationRecord.arrays;
+        return list == null ? list2 == null : list.equals(list2);
     }
 
     public int hashCode() {
+        int i = ((((((this.configurationVersion * 31) + this.general_profile_space) * 31) + (this.general_tier_flag ? 1 : 0)) * 31) + this.general_profile_idc) * 31;
         long j = this.general_profile_compatibility_flags;
+        int i2 = (i + ((int) (j ^ (j >>> 32)))) * 31;
         long j2 = this.general_constraint_indicator_flags;
-        int i = ((((((((((((((((((((((((((((((((((((((((((this.configurationVersion * 31) + this.general_profile_space) * 31) + (this.general_tier_flag ? 1 : 0)) * 31) + this.general_profile_idc) * 31) + ((int) (j ^ (j >>> 32)))) * 31) + ((int) (j2 ^ (j2 >>> 32)))) * 31) + this.general_level_idc) * 31) + this.reserved1) * 31) + this.min_spatial_segmentation_idc) * 31) + this.reserved2) * 31) + this.parallelismType) * 31) + this.reserved3) * 31) + this.chromaFormat) * 31) + this.reserved4) * 31) + this.bitDepthLumaMinus8) * 31) + this.reserved5) * 31) + this.bitDepthChromaMinus8) * 31) + this.avgFrameRate) * 31) + this.constantFrameRate) * 31) + this.numTemporalLayers) * 31) + (this.temporalIdNested ? 1 : 0)) * 31) + this.lengthSizeMinusOne) * 31;
+        int i3 = (((((((((((((((((((((((((((((((((i2 + ((int) (j2 ^ (j2 >>> 32)))) * 31) + this.general_level_idc) * 31) + this.reserved1) * 31) + this.min_spatial_segmentation_idc) * 31) + this.reserved2) * 31) + this.parallelismType) * 31) + this.reserved3) * 31) + this.chromaFormat) * 31) + this.reserved4) * 31) + this.bitDepthLumaMinus8) * 31) + this.reserved5) * 31) + this.bitDepthChromaMinus8) * 31) + this.avgFrameRate) * 31) + this.constantFrameRate) * 31) + this.numTemporalLayers) * 31) + (this.temporalIdNested ? 1 : 0)) * 31) + this.lengthSizeMinusOne) * 31;
         List<Array> list = this.arrays;
-        return i + (list != null ? list.hashCode() : 0);
+        return i3 + (list != null ? list.hashCode() : 0);
     }
 
     public String toString() {
@@ -441,23 +447,23 @@ public class HevcDecoderConfigurationRecord {
                 return false;
             }
             Array array = (Array) obj;
-            if (this.array_completeness == array.array_completeness && this.nal_unit_type == array.nal_unit_type && this.reserved == array.reserved) {
-                ListIterator<byte[]> listIterator = this.nalUnits.listIterator();
-                ListIterator<byte[]> listIterator2 = array.nalUnits.listIterator();
-                while (listIterator.hasNext() && listIterator2.hasNext()) {
-                    byte[] next = listIterator.next();
-                    byte[] next2 = listIterator2.next();
-                    if (next == null) {
-                        if (next2 != null) {
-                            return false;
-                        }
-                    } else if (!Arrays.equals(next, next2)) {
+            if (this.array_completeness != array.array_completeness || this.nal_unit_type != array.nal_unit_type || this.reserved != array.reserved) {
+                return false;
+            }
+            ListIterator<byte[]> listIterator = this.nalUnits.listIterator();
+            ListIterator<byte[]> listIterator2 = array.nalUnits.listIterator();
+            while (listIterator.hasNext() && listIterator2.hasNext()) {
+                byte[] next = listIterator.next();
+                byte[] next2 = listIterator2.next();
+                if (next == null) {
+                    if (next2 != null) {
                         return false;
                     }
+                } else if (!Arrays.equals(next, next2)) {
+                    return false;
                 }
-                return (listIterator.hasNext() || listIterator2.hasNext()) ? false : true;
             }
-            return false;
+            return (listIterator.hasNext() || listIterator2.hasNext()) ? false : true;
         }
 
         public int hashCode() {

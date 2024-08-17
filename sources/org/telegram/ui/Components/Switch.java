@@ -23,6 +23,7 @@ import androidx.annotation.Keep;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.BaseCell;
+
 public class Switch extends View {
     private boolean attachedToWindow;
     private boolean bitmapsCreated;
@@ -202,9 +203,7 @@ public class Switch extends View {
     }
 
     private void animateToCheckedState(boolean z) {
-        float[] fArr = new float[1];
-        fArr[0] = z ? 1.0f : 0.0f;
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", fArr);
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", z ? 1.0f : 0.0f);
         this.checkAnimator = ofFloat;
         ofFloat.setDuration(200L);
         this.checkAnimator.addListener(new AnimatorListenerAdapter() {
@@ -217,9 +216,7 @@ public class Switch extends View {
     }
 
     private void animateIcon(boolean z) {
-        float[] fArr = new float[1];
-        fArr[0] = z ? 1.0f : 0.0f;
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "iconProgress", fArr);
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "iconProgress", z ? 1.0f : 0.0f);
         this.iconAnimator = ofFloat;
         ofFloat.setDuration(200L);
         this.iconAnimator.addListener(new AnimatorListenerAdapter() {
@@ -280,10 +277,10 @@ public class Switch extends View {
             this.drawIconType = i;
             if (this.attachedToWindow && z) {
                 animateIcon(i == 0);
-                return;
+            } else {
+                cancelIconAnimator();
+                setIconProgress(i == 0 ? 1.0f : 0.0f);
             }
-            cancelIconAnimator();
-            setIconProgress(i == 0 ? 1.0f : 0.0f);
         }
     }
 

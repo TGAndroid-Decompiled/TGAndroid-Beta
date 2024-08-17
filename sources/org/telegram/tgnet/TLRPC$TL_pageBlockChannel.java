@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_pageBlockChannel extends TLRPC$PageBlock {
     public TLRPC$Chat channel;
 

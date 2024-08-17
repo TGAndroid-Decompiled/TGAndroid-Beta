@@ -26,6 +26,7 @@ import org.telegram.tgnet.TLRPC$TL_help_acceptTermsOfService;
 import org.telegram.tgnet.TLRPC$TL_help_termsOfService;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.Theme;
+
 public class TermsOfServiceView extends FrameLayout {
     private int currentAccount;
     private TLRPC$TL_help_termsOfService currentTos;
@@ -177,7 +178,9 @@ public class TermsOfServiceView extends FrameLayout {
         }
         if (tLObject instanceof TLRPC$TL_boolTrue) {
             MessagesController.getInstance(this.currentAccount).performLogout(0);
-        } else if (tLRPC$TL_error == null || tLRPC$TL_error.code != -1000) {
+            return;
+        }
+        if (tLRPC$TL_error == null || tLRPC$TL_error.code != -1000) {
             String string = LocaleController.getString("ErrorOccurred", R.string.ErrorOccurred);
             if (tLRPC$TL_error != null) {
                 string = string + "\n" + tLRPC$TL_error.text;

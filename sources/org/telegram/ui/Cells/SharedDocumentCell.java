@@ -53,6 +53,7 @@ import org.telegram.ui.Components.LineProgressView;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.FilteredSearchView;
+
 public class SharedDocumentCell extends FrameLayout implements DownloadController.FileDownloadProgressListener {
     private int TAG;
     private CharSequence caption;
@@ -118,7 +119,9 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
         this.extTextView.setMaxLines(1);
         this.extTextView.setSingleLine(true);
         this.extTextView.setGravity(17);
-        this.extTextView.setEllipsize(TextUtils.TruncateAt.END);
+        TextView textView2 = this.extTextView;
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        textView2.setEllipsize(truncateAt);
         this.extTextView.setImportantForAccessibility(2);
         if (i == 1) {
             View view = this.extTextView;
@@ -149,13 +152,13 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
             boolean z6 = LocaleController.isRTL;
             addView(view4, LayoutHelper.createFrame(40, 40.0f, (z6 ? 5 : 3) | 48, z6 ? 0.0f : 12.0f, 8.0f, z6 ? 12.0f : 0.0f, 0.0f));
         }
-        TextView textView2 = new TextView(context);
-        this.nameTextView = textView2;
+        TextView textView3 = new TextView(context);
+        this.nameTextView = textView3;
         int i3 = Theme.key_windowBackgroundWhiteBlackText;
-        textView2.setTextColor(getThemedColor(i3));
+        textView3.setTextColor(getThemedColor(i3));
         this.nameTextView.setTextSize(1, 16.0f);
         this.nameTextView.setTypeface(AndroidUtilities.bold());
-        this.nameTextView.setEllipsize(TextUtils.TruncateAt.END);
+        this.nameTextView.setEllipsize(truncateAt);
         this.nameTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         if (i == 1) {
             this.nameTextView.setLines(1);
@@ -169,9 +172,9 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
             linearLayout.setOrientation(0);
             boolean z8 = LocaleController.isRTL;
             addView(linearLayout, LayoutHelper.createFrame(-1, -2.0f, (z8 ? 5 : 3) | 48, z8 ? 16.0f : 72.0f, 5.0f, z8 ? 72.0f : 16.0f, 0.0f));
-            TextView textView3 = new TextView(context);
-            this.rightDateTextView = textView3;
-            textView3.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteGrayText3));
+            TextView textView4 = new TextView(context);
+            this.rightDateTextView = textView4;
+            textView4.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteGrayText3));
             this.rightDateTextView.setTextSize(1, 14.0f);
             if (!LocaleController.isRTL) {
                 linearLayout.addView(this.nameTextView, LayoutHelper.createLinear(-2, -2, 1.0f));
@@ -181,13 +184,13 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
                 linearLayout.addView(this.nameTextView, LayoutHelper.createLinear(-2, -2, 1.0f, 0, 0, 4, 0));
             }
             this.nameTextView.setMaxLines(2);
-            TextView textView4 = new TextView(context);
-            this.captionTextView = textView4;
-            textView4.setTextColor(getThemedColor(i3));
+            TextView textView5 = new TextView(context);
+            this.captionTextView = textView5;
+            textView5.setTextColor(getThemedColor(i3));
             this.captionTextView.setLines(1);
             this.captionTextView.setMaxLines(1);
             this.captionTextView.setSingleLine(true);
-            this.captionTextView.setEllipsize(TextUtils.TruncateAt.END);
+            this.captionTextView.setEllipsize(truncateAt);
             this.captionTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
             this.captionTextView.setTextSize(1, 13.0f);
             View view6 = this.captionTextView;
@@ -223,7 +226,7 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
         this.dateTextView.setLines(1);
         this.dateTextView.setMaxLines(1);
         this.dateTextView.setSingleLine(true);
-        this.dateTextView.setEllipsize(TextUtils.TruncateAt.END);
+        this.dateTextView.setEllipsize(truncateAt);
         this.dateTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         NotificationCenter.listenEmojiLoading(this.dateTextView);
         if (i == 1) {
@@ -335,12 +338,10 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
         } else if (photoEntry.path != null) {
             if (photoEntry.isVideo) {
                 this.thumbImageView.setOrientation(0, true);
-                BackupImageView backupImageView = this.thumbImageView;
-                backupImageView.setImage("vthumb://" + photoEntry.imageId + ":" + photoEntry.path, null, Theme.chat_attachEmptyDrawable);
+                this.thumbImageView.setImage("vthumb://" + photoEntry.imageId + ":" + photoEntry.path, null, Theme.chat_attachEmptyDrawable);
             } else {
                 this.thumbImageView.setOrientation(photoEntry.orientation, photoEntry.invert, true);
-                BackupImageView backupImageView2 = this.thumbImageView;
-                backupImageView2.setImage("thumb://" + photoEntry.imageId + ":" + photoEntry.path, null, Theme.chat_attachEmptyDrawable);
+                this.thumbImageView.setImage("thumb://" + photoEntry.imageId + ":" + photoEntry.path, null, Theme.chat_attachEmptyDrawable);
             }
             str = photoEntry.path;
         } else {
@@ -522,9 +523,9 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
         if (this.viewType == 2) {
             this.dateTextView.setText(new SpannableStringBuilder().append((CharSequence) format).append(' ').append((CharSequence) this.dotSpan).append(' ').append(FilteredSearchView.createFromInfoString(this.message, true, 2, this.dateTextView.getPaint())));
             this.rightDateTextView.setText(LocaleController.stringForMessageListDate(this.message.messageOwner.date));
-            return;
+        } else {
+            this.dateTextView.setText(String.format("%s, %s", format, LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterYear().format(new Date(j)), LocaleController.getInstance().getFormatterDay().format(new Date(j)))));
         }
-        this.dateTextView.setText(String.format("%s, %s", format, LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterYear().format(new Date(j)), LocaleController.getInstance().getFormatterDay().format(new Date(j)))));
     }
 
     public void updateFileExistIcon(boolean z) {
@@ -619,19 +620,21 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
         int i3 = this.viewType;
         if (i3 == 1) {
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f) + (this.needDivider ? 1 : 0), 1073741824));
-        } else if (i3 == 0) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
-        } else {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
-            int dp = AndroidUtilities.dp(34.0f) + this.nameTextView.getMeasuredHeight() + (this.needDivider ? 1 : 0);
-            if (this.caption != null && this.captionTextView != null && this.message.hasHighlightedWords()) {
-                this.ignoreRequestLayout = true;
-                this.captionTextView.setText(AndroidUtilities.ellipsizeCenterEnd(this.caption, this.message.highlightedWords.get(0), this.captionTextView.getMeasuredWidth(), this.captionTextView.getPaint(), 130));
-                this.ignoreRequestLayout = false;
-                dp += this.captionTextView.getMeasuredHeight() + AndroidUtilities.dp(3.0f);
-            }
-            setMeasuredDimension(getMeasuredWidth(), dp);
+            return;
         }
+        if (i3 == 0) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
+            return;
+        }
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
+        int dp = AndroidUtilities.dp(34.0f) + this.nameTextView.getMeasuredHeight() + (this.needDivider ? 1 : 0);
+        if (this.caption != null && this.captionTextView != null && this.message.hasHighlightedWords()) {
+            this.ignoreRequestLayout = true;
+            this.captionTextView.setText(AndroidUtilities.ellipsizeCenterEnd(this.caption, this.message.highlightedWords.get(0), this.captionTextView.getMeasuredWidth(), this.captionTextView.getPaint(), 130));
+            this.ignoreRequestLayout = false;
+            dp += this.captionTextView.getMeasuredHeight() + AndroidUtilities.dp(3.0f);
+        }
+        setMeasuredDimension(getMeasuredWidth(), dp);
     }
 
     @Override
@@ -794,15 +797,15 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
 
     public void setPhoto(String str) {
         if (str.endsWith("mp4")) {
-            BackupImageView backupImageView = this.thumbImageView;
-            backupImageView.setImage("vthumb://0:" + str, null, null);
+            this.thumbImageView.setImage("vthumb://0:" + str, null, null);
             this.thumbImageView.setVisibility(0);
-        } else if (str.endsWith(".jpg") || str.endsWith(".jpeg") || str.endsWith(".png") || str.endsWith(".gif")) {
-            BackupImageView backupImageView2 = this.thumbImageView;
-            backupImageView2.setImage("thumb://0:" + str, null, null);
-            this.thumbImageView.setVisibility(0);
-        } else {
-            this.thumbImageView.setVisibility(8);
+            return;
         }
+        if (str.endsWith(".jpg") || str.endsWith(".jpeg") || str.endsWith(".png") || str.endsWith(".gif")) {
+            this.thumbImageView.setImage("thumb://0:" + str, null, null);
+            this.thumbImageView.setVisibility(0);
+            return;
+        }
+        this.thumbImageView.setVisibility(8);
     }
 }

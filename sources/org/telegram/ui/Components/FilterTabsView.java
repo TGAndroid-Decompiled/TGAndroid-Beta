@@ -46,6 +46,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimationProperties;
 import org.telegram.ui.Components.FilterTabsView;
 import org.telegram.ui.Components.RecyclerListView;
+
 public class FilterTabsView extends FrameLayout {
     private final Property<FilterTabsView, Float> COLORS;
     private int aActiveTextColorKey;
@@ -319,12 +320,17 @@ public class FilterTabsView extends FrameLayout {
                             }
                         }
                         int ceil = (int) Math.ceil(Theme.dialogs_countTextPaint.measureText(valueOf));
-                        this.outCounter = new StaticLayout(spannableStringBuilder, FilterTabsView.this.textCounterPaint, ceil, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
-                        this.stableCounter = new StaticLayout(spannableStringBuilder3, FilterTabsView.this.textCounterPaint, ceil, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
-                        this.inCounter = new StaticLayout(spannableStringBuilder2, FilterTabsView.this.textCounterPaint, ceil, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+                        TextPaint textPaint = FilterTabsView.this.textCounterPaint;
+                        Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
+                        this.outCounter = new StaticLayout(spannableStringBuilder, textPaint, ceil, alignment, 1.0f, 0.0f, false);
+                        this.stableCounter = new StaticLayout(spannableStringBuilder3, FilterTabsView.this.textCounterPaint, ceil, alignment, 1.0f, 0.0f, false);
+                        this.inCounter = new StaticLayout(spannableStringBuilder2, FilterTabsView.this.textCounterPaint, ceil, alignment, 1.0f, 0.0f, false);
                     } else {
-                        this.outCounter = new StaticLayout(valueOf, FilterTabsView.this.textCounterPaint, (int) Math.ceil(Theme.dialogs_countTextPaint.measureText(valueOf)), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
-                        this.inCounter = new StaticLayout(valueOf2, FilterTabsView.this.textCounterPaint, (int) Math.ceil(Theme.dialogs_countTextPaint.measureText(valueOf2)), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+                        int ceil2 = (int) Math.ceil(Theme.dialogs_countTextPaint.measureText(valueOf));
+                        TextPaint textPaint2 = FilterTabsView.this.textCounterPaint;
+                        Layout.Alignment alignment2 = Layout.Alignment.ALIGN_CENTER;
+                        this.outCounter = new StaticLayout(valueOf, textPaint2, ceil2, alignment2, 1.0f, 0.0f, false);
+                        this.inCounter = new StaticLayout(valueOf2, FilterTabsView.this.textCounterPaint, (int) Math.ceil(Theme.dialogs_countTextPaint.measureText(valueOf2)), alignment2, 1.0f, 0.0f, false);
                     }
                 }
                 z = true;
@@ -340,8 +346,9 @@ public class FilterTabsView extends FrameLayout {
                 i = 0;
             }
             int dp = this.currentTab.titleWidth + (i != 0 ? i + AndroidUtilities.dp((str != null ? 1.0f : FilterTabsView.this.editingStartAnimationProgress) * 6.0f) : 0);
+            float measuredWidth = (getMeasuredWidth() - dp) / 2;
             float f = this.lastTextX;
-            if ((getMeasuredWidth() - dp) / 2 != f) {
+            if (measuredWidth != f) {
                 this.animateTextX = true;
                 this.animateFromTextX = f;
                 z = true;
@@ -369,8 +376,11 @@ public class FilterTabsView extends FrameLayout {
                         spannableStringBuilder5.setSpan(new EmptyStubSpan(), str3.length() + indexOf, str2.length(), 0);
                     }
                     spannableStringBuilder4.setSpan(new EmptyStubSpan(), indexOf, str3.length() + indexOf, 0);
-                    this.titleAnimateInLayout = new StaticLayout(spannableStringBuilder4, FilterTabsView.this.textPaint, AndroidUtilities.dp(400.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-                    StaticLayout staticLayout = new StaticLayout(spannableStringBuilder5, FilterTabsView.this.textPaint, AndroidUtilities.dp(400.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                    TextPaint textPaint3 = FilterTabsView.this.textPaint;
+                    int dp2 = AndroidUtilities.dp(400.0f);
+                    Layout.Alignment alignment3 = Layout.Alignment.ALIGN_NORMAL;
+                    this.titleAnimateInLayout = new StaticLayout(spannableStringBuilder4, textPaint3, dp2, alignment3, 1.0f, 0.0f, false);
+                    StaticLayout staticLayout = new StaticLayout(spannableStringBuilder5, FilterTabsView.this.textPaint, AndroidUtilities.dp(400.0f), alignment3, 1.0f, 0.0f, false);
                     this.titleAnimateStableLayout = staticLayout;
                     this.animateTextChange = true;
                     this.animateTextChangeOut = z2;
@@ -378,8 +388,12 @@ public class FilterTabsView extends FrameLayout {
                     this.animateFromTitleWidth = this.lastTitleWidth;
                     this.titleAnimateOutLayout = null;
                 } else {
-                    this.titleAnimateInLayout = new StaticLayout(this.currentTab.title, FilterTabsView.this.textPaint, AndroidUtilities.dp(400.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-                    this.titleAnimateOutLayout = new StaticLayout(this.lastTitle, FilterTabsView.this.textPaint, AndroidUtilities.dp(400.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                    String str5 = this.currentTab.title;
+                    TextPaint textPaint4 = FilterTabsView.this.textPaint;
+                    int dp3 = AndroidUtilities.dp(400.0f);
+                    Layout.Alignment alignment4 = Layout.Alignment.ALIGN_NORMAL;
+                    this.titleAnimateInLayout = new StaticLayout(str5, textPaint4, dp3, alignment4, 1.0f, 0.0f, false);
+                    this.titleAnimateOutLayout = new StaticLayout(this.lastTitle, FilterTabsView.this.textPaint, AndroidUtilities.dp(400.0f), alignment4, 1.0f, 0.0f, false);
                     this.titleAnimateStableLayout = null;
                     this.animateTextChange = true;
                     this.titleXOffset = 0.0f;
@@ -577,7 +591,7 @@ public class FilterTabsView extends FrameLayout {
         this.listView.setSelectorRadius(6);
         this.listView.setSelectorDrawableColor(Theme.getColor(this.selectorColorKey));
         RecyclerListView recyclerListView2 = this.listView;
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, 0, false) {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, 0, 0 == true ? 1 : 0) {
             @Override
             public boolean supportsPredictiveItemAnimations() {
                 return true;
@@ -783,10 +797,13 @@ public class FilterTabsView extends FrameLayout {
             if (!this.isEditing) {
                 if (i != this.currentPosition || (filterTabsViewDelegate = this.delegate) == null) {
                     scrollToTab(tabView.currentTab, i);
+                    return;
                 } else {
                     filterTabsViewDelegate.onSamePageSelected();
+                    return;
                 }
-            } else if (i != 0) {
+            }
+            if (i != 0) {
                 float dp = AndroidUtilities.dp(6.0f);
                 if (tabView.rect.left - dp >= f || tabView.rect.right + dp <= f) {
                     return;
@@ -865,8 +882,7 @@ public class FilterTabsView extends FrameLayout {
         if (this.tabs.isEmpty()) {
             return;
         }
-        ArrayList<Tab> arrayList = this.tabs;
-        scrollToTab(arrayList.get(arrayList.size() - 1), this.tabs.size() - 1);
+        scrollToTab(this.tabs.get(r0.size() - 1), this.tabs.size() - 1);
     }
 
     public void setAnimationIdicatorProgress(float f) {
@@ -1006,6 +1022,7 @@ public class FilterTabsView extends FrameLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
+        String str;
         if (!this.tabs.isEmpty()) {
             int size = (View.MeasureSpec.getSize(i) - AndroidUtilities.dp(7.0f)) - AndroidUtilities.dp(7.0f);
             Tab findDefaultTab = findDefaultTab();
@@ -1013,7 +1030,13 @@ public class FilterTabsView extends FrameLayout {
                 int i3 = R.string.FilterAllChats;
                 findDefaultTab.setTitle(LocaleController.getString(i3));
                 int width = findDefaultTab.getWidth(false);
-                findDefaultTab.setTitle(this.allTabsWidth > size ? LocaleController.getString("FilterAllChatsShort", R.string.FilterAllChatsShort) : LocaleController.getString("FilterAllChats", i3));
+                if (this.allTabsWidth > size) {
+                    i3 = R.string.FilterAllChatsShort;
+                    str = "FilterAllChatsShort";
+                } else {
+                    str = "FilterAllChats";
+                }
+                findDefaultTab.setTitle(LocaleController.getString(str, i3));
                 int width2 = (this.allTabsWidth - width) + findDefaultTab.getWidth(false);
                 int i4 = this.additionalTabWidth;
                 int size2 = width2 < size ? (size - width2) / this.tabs.size() : 0;
@@ -1325,11 +1348,11 @@ public class FilterTabsView extends FrameLayout {
 
         @Override
         public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder viewHolder2) {
-            if (!MessagesController.getInstance(UserConfig.selectedAccount).premiumFeaturesBlocked() || (!(viewHolder.getAdapterPosition() == 0 || viewHolder2.getAdapterPosition() == 0) || UserConfig.getInstance(UserConfig.selectedAccount).isPremium())) {
-                FilterTabsView.this.adapter.swapElements(viewHolder.getAdapterPosition(), viewHolder2.getAdapterPosition());
-                return true;
+            if (MessagesController.getInstance(UserConfig.selectedAccount).premiumFeaturesBlocked() && ((viewHolder.getAdapterPosition() == 0 || viewHolder2.getAdapterPosition() == 0) && !UserConfig.getInstance(UserConfig.selectedAccount).isPremium())) {
+                return false;
             }
-            return false;
+            FilterTabsView.this.adapter.swapElements(viewHolder.getAdapterPosition(), viewHolder2.getAdapterPosition());
+            return true;
         }
 
         public void lambda$new$0() {

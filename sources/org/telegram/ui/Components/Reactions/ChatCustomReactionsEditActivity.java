@@ -57,6 +57,7 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Reactions.ChatCustomReactionsEditActivity;
 import org.telegram.ui.SelectAnimatedEmojiDialog;
+
 public class ChatCustomReactionsEditActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private UpdateReactionsButton actionButton;
     private BackSpaceButtonView backSpaceButtonView;
@@ -200,7 +201,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         }, new Runnable() {
             @Override
             public final void run() {
-                ChatCustomReactionsEditActivity.this.finishFragment();
+                ChatCustomReactionsEditActivity.this.lambda$onBackPressed$308();
             }
         });
     }
@@ -211,7 +212,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         }
         this.actionButton.setLoading(false);
         if (tLRPC$TL_error.text.equals("CHAT_NOT_MODIFIED")) {
-            finishFragment();
+            lambda$onBackPressed$308();
         } else {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -253,8 +254,9 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
             }
         });
         this.bottomDialogLayout.addView(this.backSpaceButtonView, LayoutHelper.createFrame(-1, -2.0f, 85, 0.0f, 0.0f, 8.0f, 8.0f));
-        for (Long l : this.selectedEmojisIds) {
-            this.selectAnimatedEmojiDialog.setMultiSelected(l, false);
+        Iterator<Long> it = this.selectedEmojisIds.iterator();
+        while (it.hasNext()) {
+            this.selectAnimatedEmojiDialog.setMultiSelected(it.next(), false);
         }
     }
 
@@ -290,31 +292,32 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
                 ChatCustomReactionsEditActivity.this.animateChangesInNextRows(animatedEmojiSpan);
                 ChatCustomReactionsEditActivity.this.selectAnimatedEmojiDialog.setMultiSelected(l, true);
                 ChatCustomReactionsEditActivity.this.checkMaxCustomReactions(false);
-            } else if (ChatCustomReactionsEditActivity.this.selectedEmojisMap.size() - (ChatCustomReactionsEditActivity.this.selectedEmojisMap.containsKey(-1L) ? 1 : 0) >= ChatCustomReactionsEditActivity.this.maxReactionsCount) {
+                return;
+            }
+            if (ChatCustomReactionsEditActivity.this.selectedEmojisMap.size() - (ChatCustomReactionsEditActivity.this.selectedEmojisMap.containsKey(-1L) ? 1 : 0) >= ChatCustomReactionsEditActivity.this.maxReactionsCount) {
                 BulletinFactory.of(ChatCustomReactionsEditActivity.this).createErrorBulletin(LocaleController.formatPluralString("ReactionMaxCountError", ChatCustomReactionsEditActivity.this.maxReactionsCount, new Object[0])).show();
-            } else {
-                try {
-                    int editTextSelectionEnd = ChatCustomReactionsEditActivity.this.editText.getEditTextSelectionEnd();
-                    SpannableString spannableString = new SpannableString("b");
-                    AnimatedEmojiSpan createAnimatedEmojiSpan = ReactionsUtils.createAnimatedEmojiSpan(tLRPC$Document, l, ChatCustomReactionsEditActivity.this.editText.getFontMetricsInt());
-                    createAnimatedEmojiSpan.cacheType = AnimatedEmojiDrawable.getCacheTypeForEnterView();
-                    createAnimatedEmojiSpan.setAdded();
-                    ChatCustomReactionsEditActivity.this.selectedEmojisIds.add(editTextSelectionEnd, l);
-                    ChatCustomReactionsEditActivity.this.selectedEmojisMap.put(l, createAnimatedEmojiSpan);
-                    spannableString.setSpan(createAnimatedEmojiSpan, 0, spannableString.length(), 33);
-                    ChatCustomReactionsEditActivity.this.editText.getText().insert(editTextSelectionEnd, spannableString);
-                    ChatCustomReactionsEditActivity.this.editText.setSelection(editTextSelectionEnd + spannableString.length());
-                    ChatCustomReactionsEditActivity.this.selectAnimatedEmojiDialog.setMultiSelected(l, true);
-                    ChatCustomReactionsEditActivity.this.checkMaxCustomReactions(true);
-                    ChatCustomReactionsEditActivity.this.animateChangesInNextRows(createAnimatedEmojiSpan);
-                } catch (Exception e) {
-                    FileLog.e(e);
-                }
+                return;
+            }
+            try {
+                int editTextSelectionEnd = ChatCustomReactionsEditActivity.this.editText.getEditTextSelectionEnd();
+                SpannableString spannableString = new SpannableString("b");
+                AnimatedEmojiSpan createAnimatedEmojiSpan = ReactionsUtils.createAnimatedEmojiSpan(tLRPC$Document, l, ChatCustomReactionsEditActivity.this.editText.getFontMetricsInt());
+                createAnimatedEmojiSpan.cacheType = AnimatedEmojiDrawable.getCacheTypeForEnterView();
+                createAnimatedEmojiSpan.setAdded();
+                ChatCustomReactionsEditActivity.this.selectedEmojisIds.add(editTextSelectionEnd, l);
+                ChatCustomReactionsEditActivity.this.selectedEmojisMap.put(l, createAnimatedEmojiSpan);
+                spannableString.setSpan(createAnimatedEmojiSpan, 0, spannableString.length(), 33);
+                ChatCustomReactionsEditActivity.this.editText.getText().insert(editTextSelectionEnd, spannableString);
+                ChatCustomReactionsEditActivity.this.editText.setSelection(editTextSelectionEnd + spannableString.length());
+                ChatCustomReactionsEditActivity.this.selectAnimatedEmojiDialog.setMultiSelected(l, true);
+                ChatCustomReactionsEditActivity.this.checkMaxCustomReactions(true);
+                ChatCustomReactionsEditActivity.this.animateChangesInNextRows(createAnimatedEmojiSpan);
+            } catch (Exception e) {
+                FileLog.e(e);
             }
         }
 
         public void lambda$onEmojiSelected$0(AnimatedEmojiSpan animatedEmojiSpan) {
-            AnimatedEmojiSpan[] animatedEmojiSpanArr;
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(ChatCustomReactionsEditActivity.this.editText.getText());
             for (AnimatedEmojiSpan animatedEmojiSpan2 : (AnimatedEmojiSpan[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), AnimatedEmojiSpan.class)) {
                 if (animatedEmojiSpan2 == animatedEmojiSpan) {
@@ -335,7 +338,6 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
     }
 
     public void lambda$initSelectAnimatedEmojiDialog$11(Boolean bool) {
-        AnimatedEmojiSpan[] animatedEmojiSpanArr;
         TextCheckCell textCheckCell;
         if (deleteSelectedEmojis()) {
             return;
@@ -356,16 +358,17 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
                     AndroidUtilities.cancelRunOnUIThread(this.checkAfterFastDeleteRunnable);
                     AndroidUtilities.runOnUIThread(this.checkAfterFastDeleteRunnable, 350L);
                     return;
+                } else {
+                    animatedEmojiSpan.setRemoved(new Runnable() {
+                        @Override
+                        public final void run() {
+                            ChatCustomReactionsEditActivity.this.lambda$initSelectAnimatedEmojiDialog$10(animatedEmojiSpan, editTextSelectionEnd);
+                        }
+                    });
+                    animateChangesInNextRows(animatedEmojiSpan);
+                    checkMaxCustomReactions(false);
+                    return;
                 }
-                animatedEmojiSpan.setRemoved(new Runnable() {
-                    @Override
-                    public final void run() {
-                        ChatCustomReactionsEditActivity.this.lambda$initSelectAnimatedEmojiDialog$10(animatedEmojiSpan, editTextSelectionEnd);
-                    }
-                });
-                animateChangesInNextRows(animatedEmojiSpan);
-                checkMaxCustomReactions(false);
-                return;
             }
         }
     }
@@ -399,18 +402,18 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         int editTextSelectionEnd = this.editText.getEditTextSelectionEnd();
         int editTextSelectionStart = this.editText.getEditTextSelectionStart();
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.editText.getText());
-        if (this.editText.hasSelection()) {
-            AnimatedEmojiSpan[] animatedEmojiSpanArr = (AnimatedEmojiSpan[]) spannableStringBuilder.getSpans(editTextSelectionStart, editTextSelectionEnd, AnimatedEmojiSpan.class);
-            for (AnimatedEmojiSpan animatedEmojiSpan : animatedEmojiSpanArr) {
-                this.selectedEmojisMap.remove(Long.valueOf(animatedEmojiSpan.documentId));
-                this.selectedEmojisIds.remove(Long.valueOf(animatedEmojiSpan.documentId));
-                this.selectAnimatedEmojiDialog.unselect(Long.valueOf(animatedEmojiSpan.documentId));
-            }
-            this.editText.dispatchKeyEvent(new KeyEvent(0, 67));
-            checkMaxCustomReactions(false);
-            return true;
+        if (!this.editText.hasSelection()) {
+            return false;
         }
-        return false;
+        AnimatedEmojiSpan[] animatedEmojiSpanArr = (AnimatedEmojiSpan[]) spannableStringBuilder.getSpans(editTextSelectionStart, editTextSelectionEnd, AnimatedEmojiSpan.class);
+        for (AnimatedEmojiSpan animatedEmojiSpan : animatedEmojiSpanArr) {
+            this.selectedEmojisMap.remove(Long.valueOf(animatedEmojiSpan.documentId));
+            this.selectedEmojisIds.remove(Long.valueOf(animatedEmojiSpan.documentId));
+            this.selectAnimatedEmojiDialog.unselect(Long.valueOf(animatedEmojiSpan.documentId));
+        }
+        this.editText.dispatchKeyEvent(new KeyEvent(0, 67));
+        checkMaxCustomReactions(false);
+        return true;
     }
 
     @Override
@@ -503,9 +506,10 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
                 this.selectAnimatedEmojiDialog.clearSelectedDocuments();
                 this.editText.setText("");
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+                Iterator<TLRPC$TL_availableReaction> it = this.allAvailableReactions.iterator();
                 int i2 = 0;
-                for (TLRPC$TL_availableReaction tLRPC$TL_availableReaction : this.allAvailableReactions) {
-                    ReactionsUtils.addReactionToEditText(tLRPC$TL_availableReaction, this.selectedEmojisMap, this.selectedEmojisIds, spannableStringBuilder, this.selectAnimatedEmojiDialog, this.editText.getFontMetricsInt());
+                while (it.hasNext()) {
+                    ReactionsUtils.addReactionToEditText(it.next(), this.selectedEmojisMap, this.selectedEmojisIds, spannableStringBuilder, this.selectAnimatedEmojiDialog, this.editText.getFontMetricsInt());
                     i2++;
                     if (i2 >= this.maxReactionsCount) {
                         break;
@@ -600,7 +604,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
     }
 
     public void lambda$checkChangesBeforeExit$15(DialogInterface dialogInterface, int i) {
-        finishFragment();
+        lambda$onBackPressed$308();
     }
 
     public void checkMaxCustomReactions(boolean z) {
@@ -623,7 +627,6 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
     }
 
     private List<TLRPC$Reaction> grabReactions(boolean z) {
-        boolean z2;
         ArrayList arrayList = new ArrayList();
         ArrayList arrayList2 = new ArrayList();
         for (Long l : this.selectedEmojisIds) {
@@ -631,7 +634,10 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
                 Iterator<TLRPC$TL_availableReaction> it = this.allAvailableReactions.iterator();
                 while (true) {
                     if (!it.hasNext()) {
-                        z2 = false;
+                        TLRPC$TL_reactionCustomEmoji tLRPC$TL_reactionCustomEmoji = new TLRPC$TL_reactionCustomEmoji();
+                        tLRPC$TL_reactionCustomEmoji.document_id = l.longValue();
+                        arrayList.add(tLRPC$TL_reactionCustomEmoji);
+                        arrayList2.add(tLRPC$TL_reactionCustomEmoji);
                         break;
                     }
                     TLRPC$TL_availableReaction next = it.next();
@@ -639,15 +645,8 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
                         TLRPC$TL_reactionEmoji tLRPC$TL_reactionEmoji = new TLRPC$TL_reactionEmoji();
                         tLRPC$TL_reactionEmoji.emoticon = next.reaction;
                         arrayList.add(tLRPC$TL_reactionEmoji);
-                        z2 = true;
                         break;
                     }
-                }
-                if (!z2) {
-                    TLRPC$TL_reactionCustomEmoji tLRPC$TL_reactionCustomEmoji = new TLRPC$TL_reactionCustomEmoji();
-                    tLRPC$TL_reactionCustomEmoji.document_id = l.longValue();
-                    arrayList.add(tLRPC$TL_reactionCustomEmoji);
-                    arrayList2.add(tLRPC$TL_reactionCustomEmoji);
                 }
             }
         }
@@ -662,8 +661,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
         updateScrollViewMarginBottom(this.bottomDialogLayout.getMeasuredHeight());
         this.bottomDialogLayout.setVisibility(0);
-        FrameLayout frameLayout = this.bottomDialogLayout;
-        frameLayout.setTranslationY(frameLayout.getMeasuredHeight());
+        this.bottomDialogLayout.setTranslationY(r0.getMeasuredHeight());
         this.bottomDialogLayout.animate().setListener(null).cancel();
         this.bottomDialogLayout.animate().translationY(0.0f).withLayer().setDuration(350L).setInterpolator(CubicBezierInterpolator.DEFAULT).setUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -684,35 +682,35 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
     }
 
     private boolean closeKeyboard() {
-        if (this.emojiKeyboardVisible) {
-            this.emojiKeyboardVisible = false;
-            if (isClearFocusNotWorking()) {
-                this.switchLayout.setFocusableInTouchMode(true);
-                this.switchLayout.requestFocus();
-            } else {
-                this.editText.clearFocus();
-            }
-            updateScrollViewMarginBottom(0);
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
-            this.bottomDialogLayout.animate().setListener(null).cancel();
-            this.bottomDialogLayout.animate().translationY(this.bottomDialogLayout.getMeasuredHeight()).setDuration(350L).withLayer().setInterpolator(CubicBezierInterpolator.DEFAULT).setUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    ChatCustomReactionsEditActivity.this.lambda$closeKeyboard$17(valueAnimator);
-                }
-            }).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
-                    ChatCustomReactionsEditActivity.this.bottomDialogLayout.setVisibility(4);
-                    if (ChatCustomReactionsEditActivity.this.isClearFocusNotWorking()) {
-                        ChatCustomReactionsEditActivity.this.switchLayout.setFocusableInTouchMode(false);
-                    }
-                }
-            }).start();
-            return true;
+        if (!this.emojiKeyboardVisible) {
+            return false;
         }
-        return false;
+        this.emojiKeyboardVisible = false;
+        if (isClearFocusNotWorking()) {
+            this.switchLayout.setFocusableInTouchMode(true);
+            this.switchLayout.requestFocus();
+        } else {
+            this.editText.clearFocus();
+        }
+        updateScrollViewMarginBottom(0);
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
+        this.bottomDialogLayout.animate().setListener(null).cancel();
+        this.bottomDialogLayout.animate().translationY(this.bottomDialogLayout.getMeasuredHeight()).setDuration(350L).withLayer().setInterpolator(CubicBezierInterpolator.DEFAULT).setUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                ChatCustomReactionsEditActivity.this.lambda$closeKeyboard$17(valueAnimator);
+            }
+        }).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
+                ChatCustomReactionsEditActivity.this.bottomDialogLayout.setVisibility(4);
+                if (ChatCustomReactionsEditActivity.this.isClearFocusNotWorking()) {
+                    ChatCustomReactionsEditActivity.this.switchLayout.setFocusableInTouchMode(false);
+                }
+            }
+        }).start();
+        return true;
     }
 
     public void lambda$closeKeyboard$17(ValueAnimator valueAnimator) {
@@ -730,6 +728,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
     }
 
     public void toggleStarsEnabled() {
+        long j = -1;
         if (this.paidCheckCell.isChecked()) {
             this.paidCheckCell.setChecked(false);
             this.selectedEmojisIds.remove((Object) (-1L));
@@ -752,7 +751,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
             try {
                 this.editText.setMaxLength(this.maxReactionsCount + 1);
                 SpannableString spannableString = new SpannableString("b");
-                AnimatedEmojiSpan animatedEmojiSpan = new AnimatedEmojiSpan(-1L, null) {
+                AnimatedEmojiSpan animatedEmojiSpan = new AnimatedEmojiSpan(j, null) {
                     private final Bitmap bitmap;
 
                     {
@@ -797,7 +796,6 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
     }
 
     public void lambda$toggleStarsEnabled$18(AnimatedEmojiSpan animatedEmojiSpan) {
-        AnimatedEmojiSpan[] animatedEmojiSpanArr;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.editText.getText());
         for (AnimatedEmojiSpan animatedEmojiSpan2 : (AnimatedEmojiSpan[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), AnimatedEmojiSpan.class)) {
             if (animatedEmojiSpan2 == animatedEmojiSpan) {

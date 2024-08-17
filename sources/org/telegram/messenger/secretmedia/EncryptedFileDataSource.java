@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
 import org.telegram.messenger.FileLoader;
+
 public final class EncryptedFileDataSource extends BaseDataSource {
     private int bytesRemaining;
     EncryptedFileInputStream fileInputStream;

@@ -77,6 +77,7 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.NotificationsCustomSettingsActivity;
 import org.telegram.ui.NotificationsSettingsActivity;
 import org.telegram.ui.ProfileNotificationsActivity;
+
 public class NotificationsCustomSettingsActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private ListAdapter adapter;
     private AnimatorSet animatorSet;
@@ -122,9 +123,10 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
         this.topicId = 0;
         this.vibrateLabels = new int[]{R.string.VibrationDefault, R.string.Short, R.string.VibrationDisabled, R.string.Long, R.string.OnlyIfSilent};
         this.popupOptions = new int[]{R.string.NoPopup, R.string.OnlyWhenScreenOn, R.string.OnlyWhenScreenOff, R.string.AlwaysShowPopup};
-        int i2 = R.string.NotificationsPriorityUrgent;
-        int i3 = R.string.NotificationsPriorityMedium;
-        this.priorityOptions = new int[]{R.string.NotificationsPriorityHigh, i2, i2, i3, R.string.NotificationsPriorityLow, i3};
+        int i2 = R.string.NotificationsPriorityHigh;
+        int i3 = R.string.NotificationsPriorityUrgent;
+        int i4 = R.string.NotificationsPriorityMedium;
+        this.priorityOptions = new int[]{i2, i3, i3, i4, R.string.NotificationsPriorityLow, i4};
         this.oldItems = new ArrayList<>();
         this.items = new ArrayList<>();
         this.currentType = i;
@@ -132,16 +134,16 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
         this.exceptions = arrayList;
         if (arrayList != null) {
             int size = arrayList.size();
-            for (int i4 = 0; i4 < size; i4++) {
-                NotificationsSettingsActivity.NotificationException notificationException = this.exceptions.get(i4);
+            for (int i5 = 0; i5 < size; i5++) {
+                NotificationsSettingsActivity.NotificationException notificationException = this.exceptions.get(i5);
                 this.exceptionsDict.put(Long.valueOf(notificationException.did), notificationException);
             }
         }
         ArrayList<NotificationsSettingsActivity.NotificationException> arrayList3 = this.autoExceptions;
         if (arrayList3 != null) {
             int size2 = arrayList3.size();
-            for (int i5 = 0; i5 < size2; i5++) {
-                NotificationsSettingsActivity.NotificationException notificationException2 = this.autoExceptions.get(i5);
+            for (int i6 = 0; i6 < size2; i6++) {
+                NotificationsSettingsActivity.NotificationException notificationException2 = this.autoExceptions.get(i6);
                 this.exceptionsDict.put(Long.valueOf(notificationException2.did), notificationException2);
             }
         }
@@ -190,17 +192,16 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
         SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(i);
         if (notificationsSettings.contains("stories_" + j)) {
             return notificationsSettings.getBoolean("stories_" + j, true);
-        } else if (notificationsSettings.contains("EnableAllStories")) {
-            return notificationsSettings.getBoolean("EnableAllStories", true);
-        } else {
-            return isTop5Peer(i, j);
         }
+        if (notificationsSettings.contains("EnableAllStories")) {
+            return notificationsSettings.getBoolean("EnableAllStories", true);
+        }
+        return isTop5Peer(i, j);
     }
 
     public void lambda$createView$6(NotificationsSettingsActivity.NotificationException notificationException, View view, int i) {
         String sharedPrefKey = NotificationsController.getSharedPrefKey(notificationException.did, 0L);
-        SharedPreferences.Editor edit = getNotificationsSettings().edit();
-        edit.remove("stories_" + sharedPrefKey).commit();
+        getNotificationsSettings().edit().remove("stories_" + sharedPrefKey).commit();
         ArrayList<NotificationsSettingsActivity.NotificationException> arrayList = this.autoExceptions;
         if (arrayList != null) {
             arrayList.remove(notificationException);
@@ -223,6 +224,8 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
     }
 
     private void updateMute(NotificationsSettingsActivity.NotificationException notificationException, View view, int i, boolean z, boolean z2) {
+        Boolean bool;
+        Boolean bool2;
         String sharedPrefKey = NotificationsController.getSharedPrefKey(notificationException.did, 0L);
         SharedPreferences.Editor edit = getNotificationsSettings().edit();
         boolean isTop5Peer = isTop5Peer(this.currentAccount, notificationException.did);
@@ -241,8 +244,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
         } else if (isTop5Peer) {
             edit.putBoolean("stories_" + sharedPrefKey, !z2).commit();
         } else {
-            Boolean bool = this.storiesEnabled;
-            if (!z2 ? !(bool == null || !bool.booleanValue()) : !(bool != null && bool.booleanValue())) {
+            if (!z2 ? !((bool = this.storiesEnabled) == null || !bool.booleanValue()) : !((bool2 = this.storiesEnabled) != null && bool2.booleanValue())) {
                 lambda$createView$6(notificationException, view, i);
                 return;
             }
@@ -321,11 +323,11 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
                 return LocaleController.getString("CustomSound", R.string.CustomSound);
             }
             return NotificationsSoundActivity.trimTitle(document, FileLoader.getDocumentFileName(document));
-        } else if (string.equals("NoSound")) {
-            return LocaleController.getString("NoSound", R.string.NoSound);
-        } else {
-            return string.equals("Default") ? LocaleController.getString("SoundDefault", i) : string;
         }
+        if (string.equals("NoSound")) {
+            return LocaleController.getString("NoSound", R.string.NoSound);
+        }
+        return string.equals("Default") ? LocaleController.getString("SoundDefault", i) : string;
     }
 
     private String getPriorityOption() {
@@ -361,7 +363,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    NotificationsCustomSettingsActivity.this.finishFragment();
+                    NotificationsCustomSettingsActivity.this.lambda$onBackPressed$308();
                 }
             }
         });
@@ -579,8 +581,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
             if (this.currentType == 3) {
                 edit.remove("stories_" + notificationException.did);
             } else {
-                SharedPreferences.Editor remove = edit.remove("notify2_" + notificationException.did);
-                remove.remove("custom_" + notificationException.did);
+                edit.remove("notify2_" + notificationException.did).remove("custom_" + notificationException.did);
             }
             getMessagesStorage().setDialogFlags(notificationException.did, 0L);
             TLRPC$Dialog tLRPC$Dialog = getMessagesController().dialogs_dict.get(notificationException.did);
@@ -993,8 +994,11 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
             ListAdapter listAdapter = this.adapter;
             if (listAdapter != null) {
                 listAdapter.notifyDataSetChanged();
+                return;
             }
-        } else if (i == NotificationCenter.reloadHints) {
+            return;
+        }
+        if (i == NotificationCenter.reloadHints) {
             loadExceptions();
         }
     }
@@ -1084,8 +1088,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
         }
 
         public void lambda$processSearch$3(final String str) {
-            boolean z = true;
-            this.searchAdapterHelper.queryServerSearch(str, true, (NotificationsCustomSettingsActivity.this.currentType == 1 || NotificationsCustomSettingsActivity.this.currentType == 3) ? false : false, true, false, false, 0L, false, 0, 0);
+            this.searchAdapterHelper.queryServerSearch(str, true, (NotificationsCustomSettingsActivity.this.currentType == 1 || NotificationsCustomSettingsActivity.this.currentType == 3) ? false : true, true, false, false, 0L, false, 0, 0);
             final ArrayList arrayList = new ArrayList(NotificationsCustomSettingsActivity.this.exceptions);
             Utilities.searchQueue.postRunnable(new Runnable() {
                 @Override
@@ -1166,12 +1169,12 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
             if (i < this.searchResult.size()) {
                 userCell.setException(this.searchResult.get(i), this.searchResultNames.get(i), i != this.searchResult.size() - 1);
                 userCell.setAddButtonVisible(false);
-                return;
+            } else {
+                int size = i - (this.searchResult.size() + 1);
+                ArrayList<TLObject> globalSearch = this.searchAdapterHelper.getGlobalSearch();
+                userCell.setData(globalSearch.get(size), null, LocaleController.getString("NotificationsOn", R.string.NotificationsOn), 0, size != globalSearch.size() - 1);
+                userCell.setAddButtonVisible(true);
             }
-            int size = i - (this.searchResult.size() + 1);
-            ArrayList<TLObject> globalSearch = this.searchAdapterHelper.getGlobalSearch();
-            userCell.setData(globalSearch.get(size), null, LocaleController.getString("NotificationsOn", R.string.NotificationsOn), 0, size != globalSearch.size() - 1);
-            userCell.setAddButtonVisible(true);
         }
 
         @Override
@@ -1422,12 +1425,16 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
                     int itemViewType = viewHolder.getItemViewType();
                     if (itemViewType == 0) {
                         ((HeaderCell) viewHolder.itemView).setEnabled(isGlobalNotificationsEnabled, null);
-                    } else if (itemViewType == 1) {
+                        return;
+                    }
+                    if (itemViewType == 1) {
                         ((TextCheckCell) viewHolder.itemView).setEnabled(isGlobalNotificationsEnabled, null);
                     } else if (itemViewType == 3) {
                         ((TextColorCell) viewHolder.itemView).setEnabled(isGlobalNotificationsEnabled, null);
-                    } else if (itemViewType != 5) {
                     } else {
+                        if (itemViewType != 5) {
+                            return;
+                        }
                         ((TextSettingsCell) viewHolder.itemView).setEnabled(isGlobalNotificationsEnabled, null);
                     }
                 }

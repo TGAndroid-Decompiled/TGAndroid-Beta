@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessagesController;
+
 public class RestrictedDomainsList {
     private static RestrictedDomainsList instance;
     private boolean loaded;
@@ -64,10 +65,10 @@ public class RestrictedDomainsList {
         if (num == null) {
             num = 0;
         }
-        Integer valueOf = Integer.valueOf(num.intValue() + 1);
-        this.openedDomains.put(str, valueOf);
+        int intValue = num.intValue() + 1;
+        this.openedDomains.put(str, Integer.valueOf(intValue));
         scheduleSave();
-        return valueOf.intValue();
+        return intValue;
     }
 
     public boolean isRestricted(String... strArr) {
@@ -151,8 +152,9 @@ public class RestrictedDomainsList {
             JSONArray jSONArray = new JSONArray();
             Iterator<ArrayList<String>> it = this.restrictedDomains.iterator();
             while (it.hasNext()) {
+                ArrayList<String> next = it.next();
                 JSONArray jSONArray2 = new JSONArray();
-                Iterator<String> it2 = it.next().iterator();
+                Iterator<String> it2 = next.iterator();
                 while (it2.hasNext()) {
                     jSONArray2.put(it2.next());
                 }

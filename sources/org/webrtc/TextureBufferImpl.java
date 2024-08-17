@@ -6,6 +6,7 @@ import java.nio.ByteBuffer;
 import java.util.concurrent.Callable;
 import org.telegram.messenger.FileLog;
 import org.webrtc.VideoFrame;
+
 public class TextureBufferImpl implements VideoFrame.TextureBuffer {
     private final int height;
     private final int id;
@@ -125,19 +126,18 @@ public class TextureBufferImpl implements VideoFrame.TextureBuffer {
             while (nativeAllocateByteBuffer.hasRemaining()) {
                 nativeAllocateByteBuffer.put((byte) 0);
             }
-            int i3 = i / 4;
-            int i4 = (i * height) + 0;
-            int i5 = i / 2;
-            int i6 = i4 + i5;
+            int i3 = i * height;
+            int i4 = i / 2;
+            int i5 = i3 + i4;
             nativeAllocateByteBuffer.position(0);
-            nativeAllocateByteBuffer.limit(i4);
+            nativeAllocateByteBuffer.limit(i3);
             ByteBuffer slice = nativeAllocateByteBuffer.slice();
-            nativeAllocateByteBuffer.position(i4);
-            int i7 = ((i2 - 1) * i) + i5;
-            nativeAllocateByteBuffer.limit(i4 + i7);
+            nativeAllocateByteBuffer.position(i3);
+            int i6 = ((i2 - 1) * i) + i4;
+            nativeAllocateByteBuffer.limit(i3 + i6);
             ByteBuffer slice2 = nativeAllocateByteBuffer.slice();
-            nativeAllocateByteBuffer.position(i6);
-            nativeAllocateByteBuffer.limit(i6 + i7);
+            nativeAllocateByteBuffer.position(i5);
+            nativeAllocateByteBuffer.limit(i5 + i6);
             return JavaI420Buffer.wrap(width, height, slice, i, slice2, i, nativeAllocateByteBuffer.slice(), i, new Runnable() {
                 @Override
                 public final void run() {
@@ -166,8 +166,7 @@ public class TextureBufferImpl implements VideoFrame.TextureBuffer {
     @Override
     public VideoFrame.Buffer cropAndScale(int i, int i2, int i3, int i4, int i5, int i6) {
         Matrix matrix = new Matrix();
-        int i7 = this.height;
-        matrix.preTranslate(i / this.width, (i7 - (i2 + i4)) / i7);
+        matrix.preTranslate(i / this.width, (r0 - (i2 + i4)) / this.height);
         matrix.preScale(i3 / this.width, i4 / this.height);
         return applyTransformMatrix(matrix, Math.round((this.unscaledWidth * i3) / this.width), Math.round((this.unscaledHeight * i4) / this.height), i5, i6);
     }

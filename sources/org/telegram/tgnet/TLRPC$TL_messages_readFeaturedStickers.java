@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_messages_readFeaturedStickers extends TLObject {
     public ArrayList<Long> id = new ArrayList<>();
 

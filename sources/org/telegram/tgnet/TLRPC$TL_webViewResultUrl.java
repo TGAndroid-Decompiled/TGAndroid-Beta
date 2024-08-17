@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_webViewResultUrl extends TLObject {
     public int flags;
     public boolean fullsize;

@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_inputReplyToStory extends TLRPC$InputReplyTo {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

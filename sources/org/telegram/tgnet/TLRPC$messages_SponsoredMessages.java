@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public abstract class TLRPC$messages_SponsoredMessages extends TLObject {
     public int flags;
     public int posts_between;

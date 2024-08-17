@@ -33,6 +33,7 @@ import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.DotDividerSpan;
 import org.telegram.ui.Components.FlickerLoadingView;
+
 public class SessionCell extends FrameLayout {
     private AvatarDrawable avatarDrawable;
     private int currentAccount;
@@ -49,7 +50,7 @@ public class SessionCell extends FrameLayout {
     private boolean showStub;
     private AnimatedFloat showStubValue;
 
-    public SessionCell(android.content.Context r22, int r23) {
+    public SessionCell(android.content.Context r24, int r25) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.SessionCell.<init>(android.content.Context, int):void");
     }
 

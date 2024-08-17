@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
+
 public class SerializedData extends AbstractSerializedData {
     private DataInputStream in;
     private ByteArrayInputStream inbuf;
@@ -409,11 +410,11 @@ public class SerializedData extends AbstractSerializedData {
             if (z) {
                 throw new RuntimeException("read byte error", e);
             }
-            if (BuildVars.LOGS_ENABLED) {
-                FileLog.e("read byte error");
-                FileLog.e(e);
+            if (!BuildVars.LOGS_ENABLED) {
                 return (byte) 0;
             }
+            FileLog.e("read byte error");
+            FileLog.e(e);
             return (byte) 0;
         }
     }
@@ -467,11 +468,11 @@ public class SerializedData extends AbstractSerializedData {
             if (z) {
                 throw new RuntimeException("read string error", e);
             }
-            if (BuildVars.LOGS_ENABLED) {
-                FileLog.e("read string error");
-                FileLog.e(e);
+            if (!BuildVars.LOGS_ENABLED) {
                 return null;
             }
+            FileLog.e("read string error");
+            FileLog.e(e);
             return null;
         }
     }
@@ -502,11 +503,11 @@ public class SerializedData extends AbstractSerializedData {
             if (z) {
                 throw new RuntimeException("read byte array error", e);
             }
-            if (BuildVars.LOGS_ENABLED) {
-                FileLog.e("read byte array error");
-                FileLog.e(e);
+            if (!BuildVars.LOGS_ENABLED) {
                 return null;
             }
+            FileLog.e("read byte array error");
+            FileLog.e(e);
             return null;
         }
     }
@@ -519,11 +520,11 @@ public class SerializedData extends AbstractSerializedData {
             if (z) {
                 throw new RuntimeException("read double error", e);
             }
-            if (BuildVars.LOGS_ENABLED) {
-                FileLog.e("read double error");
-                FileLog.e(e);
+            if (!BuildVars.LOGS_ENABLED) {
                 return 0.0d;
             }
+            FileLog.e("read double error");
+            FileLog.e(e);
             return 0.0d;
         }
     }
@@ -536,11 +537,11 @@ public class SerializedData extends AbstractSerializedData {
             if (z) {
                 throw new RuntimeException("read float error", e);
             }
-            if (BuildVars.LOGS_ENABLED) {
-                FileLog.e("read float error");
-                FileLog.e(e);
+            if (!BuildVars.LOGS_ENABLED) {
                 return 0.0f;
             }
+            FileLog.e("read float error");
+            FileLog.e(e);
             return 0.0f;
         }
     }

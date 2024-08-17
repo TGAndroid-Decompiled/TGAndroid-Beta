@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_inputFileStoryDocument extends TLRPC$InputFile {
     public TLRPC$InputDocument doc;
 

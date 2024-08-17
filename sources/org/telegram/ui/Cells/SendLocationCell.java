@@ -15,13 +15,13 @@ import org.telegram.messenger.LocationController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
+
 public class SendLocationCell extends FrameLayout {
     private SimpleTextView accurateTextView;
     private int currentAccount;
@@ -46,8 +46,7 @@ public class SendLocationCell extends FrameLayout {
             @Override
             public void run() {
                 SendLocationCell.this.checkText();
-                SendLocationCell sendLocationCell = SendLocationCell.this;
-                sendLocationCell.invalidate(((int) sendLocationCell.rect.left) - 5, ((int) SendLocationCell.this.rect.top) - 5, ((int) SendLocationCell.this.rect.right) + 5, ((int) SendLocationCell.this.rect.bottom) + 5);
+                SendLocationCell.this.invalidate(((int) r0.rect.left) - 5, ((int) SendLocationCell.this.rect.top) - 5, ((int) SendLocationCell.this.rect.right) + 5, ((int) SendLocationCell.this.rect.bottom) + 5);
                 AndroidUtilities.runOnUIThread(SendLocationCell.this.invalidateRunnable, 1000L);
             }
         };
@@ -145,9 +144,8 @@ public class SendLocationCell extends FrameLayout {
         if (sharingLocationInfo != null) {
             if (this.liveDisable) {
                 String string = LocaleController.getString(R.string.StopLiveLocation);
-                TLRPC$Message tLRPC$Message = sharingLocationInfo.messageObject.messageOwner;
-                int i = tLRPC$Message.edit_date;
-                setText(string, LocaleController.formatLocationUpdateDate(i != 0 ? i : tLRPC$Message.date));
+                int i = sharingLocationInfo.messageObject.messageOwner.edit_date;
+                setText(string, LocaleController.formatLocationUpdateDate(i != 0 ? i : r0.date));
                 return;
             }
             setText(LocaleController.getString(R.string.SharingLiveLocation), LocaleController.getString(R.string.SharingLiveLocationAdd));
@@ -202,7 +200,7 @@ public class SendLocationCell extends FrameLayout {
         Theme.chat_radialProgress2Paint.setAlpha((int) (0.2f * f6 * f4));
         canvas.drawArc(this.rect, -90.0f, 360.0f, false, Theme.chat_radialProgress2Paint);
         Theme.chat_radialProgress2Paint.setAlpha((int) (f6 * f4));
-        canvas.drawArc(this.rect, -90.0f, (-360.0f) * this.progress.set(f3), false, Theme.chat_radialProgress2Paint);
+        canvas.drawArc(this.rect, -90.0f, this.progress.set(f3) * (-360.0f), false, Theme.chat_radialProgress2Paint);
         Theme.chat_radialProgress2Paint.setAlpha(alpha);
         if (sharingLocationInfo != null) {
             this.textDrawable.setText(LocaleController.formatLocationLeftTime(Math.abs(sharingLocationInfo.stopTime - currentTime)));
@@ -220,8 +218,10 @@ public class SendLocationCell extends FrameLayout {
         this.textDrawable.setAlpha((int) (f4 * 255.0f));
         AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.textDrawable;
         RectF rectF = this.rect;
+        int i2 = (int) rectF.left;
+        int centerY = (int) (rectF.centerY() - AndroidUtilities.dp(13.0f));
         RectF rectF2 = this.rect;
-        animatedTextDrawable.setBounds((int) rectF.left, (int) (rectF.centerY() - AndroidUtilities.dp(13.0f)), (int) rectF2.right, (int) (rectF2.centerY() + AndroidUtilities.dp(12.0f)));
+        animatedTextDrawable.setBounds(i2, centerY, (int) rectF2.right, (int) (rectF2.centerY() + AndroidUtilities.dp(12.0f)));
         this.textDrawable.draw(canvas);
         canvas.restore();
     }

@@ -25,6 +25,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC$TL_document;
 import org.telegram.tgnet.TLRPC$TL_documentAttributeFilename;
 import org.telegram.tgnet.TLRPC$TL_documentAttributeVideo;
+
 public class VideoSeekPreviewImage extends View {
     private Paint bitmapPaint;
     private RectF bitmapRect;
@@ -149,12 +150,12 @@ public class VideoSeekPreviewImage extends View {
             int i2 = ((int) (i * f)) / 5;
             if (this.currentPixel == i2) {
                 return;
+            } else {
+                this.currentPixel = i2;
             }
-            this.currentPixel = i2;
         }
-        String formatShortDuration = AndroidUtilities.formatShortDuration((int) ((photoViewerWebView.getVideoDuration() * f) / 1000));
-        this.frameTime = formatShortDuration;
-        this.timeWidth = (int) Math.ceil(this.textPaint.measureText(formatShortDuration));
+        this.frameTime = AndroidUtilities.formatShortDuration((int) ((photoViewerWebView.getVideoDuration() * f) / 1000));
+        this.timeWidth = (int) Math.ceil(this.textPaint.measureText(r10));
         invalidate();
         if (this.progressRunnable != null) {
             Utilities.globalQueue.cancelRunnable(this.progressRunnable);
@@ -168,7 +169,6 @@ public class VideoSeekPreviewImage extends View {
     }
 
     public void setProgress(final float f, int i) {
-        String formatShortDuration;
         this.webView = null;
         this.isYoutube = false;
         this.youtubeBoardsReceiver.setImageBitmap((Drawable) null);
@@ -177,12 +177,13 @@ public class VideoSeekPreviewImage extends View {
             int i2 = ((int) (i * f)) / 5;
             if (this.currentPixel == i2) {
                 return;
+            } else {
+                this.currentPixel = i2;
             }
-            this.currentPixel = i2;
         }
         final long j = ((float) this.duration) * f;
         this.frameTime = AndroidUtilities.formatShortDuration((int) (j / 1000));
-        this.timeWidth = (int) Math.ceil(this.textPaint.measureText(formatShortDuration));
+        this.timeWidth = (int) Math.ceil(this.textPaint.measureText(r8));
         invalidate();
         if (this.progressRunnable != null) {
             Utilities.globalQueue.cancelRunnable(this.progressRunnable);
@@ -309,8 +310,7 @@ public class VideoSeekPreviewImage extends View {
             tLRPC$TL_document.attributes.add(tLRPC$TL_documentAttributeFilename);
             tLRPC$TL_document.attributes.add(new TLRPC$TL_documentAttributeVideo());
             if (FileLoader.getInstance(intValue).isLoadingFile(FileLoader.getAttachFileName(tLRPC$TL_document))) {
-                File directory = FileLoader.getDirectory(4);
-                absolutePath = new File(directory, tLRPC$TL_document.dc_id + "_" + tLRPC$TL_document.id + ".temp").getAbsolutePath();
+                absolutePath = new File(FileLoader.getDirectory(4), tLRPC$TL_document.dc_id + "_" + tLRPC$TL_document.id + ".temp").getAbsolutePath();
             } else {
                 absolutePath = FileLoader.getInstance(intValue).getPathToAttach(tLRPC$TL_document, false).getAbsolutePath();
             }
@@ -366,7 +366,9 @@ public class VideoSeekPreviewImage extends View {
             this.frameDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
             this.frameDrawable.draw(canvas);
             canvas.drawText(this.frameTime, (getMeasuredWidth() - this.timeWidth) / 2.0f, getMeasuredHeight() - AndroidUtilities.dp(9.0f), this.textPaint);
-        } else if (this.isYoutube) {
+            return;
+        }
+        if (this.isYoutube) {
             canvas.save();
             this.ytPath.rewind();
             RectF rectF = AndroidUtilities.rectTmp;
@@ -375,8 +377,7 @@ public class VideoSeekPreviewImage extends View {
             canvas.clipPath(this.ytPath);
             canvas.scale(getWidth() / this.ytImageWidth, getHeight() / this.ytImageHeight);
             canvas.translate(-this.ytImageX, -this.ytImageY);
-            ImageReceiver imageReceiver = this.youtubeBoardsReceiver;
-            imageReceiver.setImageCoords(0.0f, 0.0f, imageReceiver.getBitmapWidth(), this.youtubeBoardsReceiver.getBitmapHeight());
+            this.youtubeBoardsReceiver.setImageCoords(0.0f, 0.0f, r0.getBitmapWidth(), this.youtubeBoardsReceiver.getBitmapHeight());
             this.youtubeBoardsReceiver.draw(canvas);
             canvas.restore();
             this.frameDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());

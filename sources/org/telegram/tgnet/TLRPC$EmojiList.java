@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public abstract class TLRPC$EmojiList extends TLObject {
     public static TLRPC$EmojiList TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$EmojiList tLRPC$TL_emojiList = i != 1209970170 ? i != 2048790993 ? null : new TLRPC$TL_emojiList() : new TLRPC$EmojiList() {

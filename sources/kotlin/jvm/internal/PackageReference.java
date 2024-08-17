@@ -1,4 +1,5 @@
 package kotlin.jvm.internal;
+
 public final class PackageReference implements ClassBasedDeclarationContainer {
     private final Class<?> jClass;
     private final String moduleName;

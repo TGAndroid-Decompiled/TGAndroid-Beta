@@ -19,6 +19,7 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.CacheControlActivity;
+
 public class DownloadsInfoBottomSheet extends BottomSheet {
     public static void show(Activity activity, BaseFragment baseFragment) {
         if (baseFragment == null || activity == null) {
@@ -70,7 +71,8 @@ public class DownloadsInfoBottomSheet extends BottomSheet {
         linearLayout.addView(textView2, LayoutHelper.createFrame(-1, -2.0f, 0, 28.0f, 7.0f, 28.0f, 0.0f));
         TextView textView3 = new TextView(context);
         textView3.setGravity(17);
-        textView3.setEllipsize(TextUtils.TruncateAt.END);
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        textView3.setEllipsize(truncateAt);
         textView3.setSingleLine(true);
         textView3.setTextSize(1, 14.0f);
         textView3.setTypeface(AndroidUtilities.bold());
@@ -82,7 +84,7 @@ public class DownloadsInfoBottomSheet extends BottomSheet {
         linearLayout.addView(textView3, LayoutHelper.createFrame(-1, 48.0f, 0, 14.0f, 28.0f, 14.0f, 6.0f));
         TextView textView4 = new TextView(context);
         textView4.setGravity(17);
-        textView4.setEllipsize(TextUtils.TruncateAt.END);
+        textView4.setEllipsize(truncateAt);
         textView4.setSingleLine(true);
         textView4.setTextSize(1, 14.0f);
         textView4.setTypeface(AndroidUtilities.bold());

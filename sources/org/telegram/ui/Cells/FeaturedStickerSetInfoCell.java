@@ -30,6 +30,7 @@ import org.telegram.ui.Components.ColorSpanUnderline;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.ProgressButton;
 import org.telegram.ui.Components.RecyclerListView;
+
 public class FeaturedStickerSetInfoCell extends FrameLayout {
     private ProgressButton addButton;
     private AnimatorSet animatorSet;
@@ -66,7 +67,9 @@ public class FeaturedStickerSetInfoCell extends FrameLayout {
         textView.setTextColor(getThemedColor(Theme.key_chat_emojiPanelTrendingTitle));
         this.nameTextView.setTextSize(1, 17.0f);
         this.nameTextView.setTypeface(AndroidUtilities.bold());
-        this.nameTextView.setEllipsize(TextUtils.TruncateAt.END);
+        TextView textView2 = this.nameTextView;
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        textView2.setEllipsize(truncateAt);
         this.nameTextView.setSingleLine(true);
         if (z) {
             createFrame = LayoutHelper.createFrameRelatively(-2.0f, -2.0f, 8388659, i, 8.0f, 40.0f, 0.0f);
@@ -74,11 +77,11 @@ public class FeaturedStickerSetInfoCell extends FrameLayout {
             createFrame = LayoutHelper.createFrame(-2, -2.0f, 51, i, 8.0f, 40.0f, 0.0f);
         }
         addView(this.nameTextView, createFrame);
-        TextView textView2 = new TextView(context);
-        this.infoTextView = textView2;
-        textView2.setTextColor(getThemedColor(Theme.key_chat_emojiPanelTrendingDescription));
+        TextView textView3 = new TextView(context);
+        this.infoTextView = textView3;
+        textView3.setTextColor(getThemedColor(Theme.key_chat_emojiPanelTrendingDescription));
         this.infoTextView.setTextSize(1, 13.0f);
-        this.infoTextView.setEllipsize(TextUtils.TruncateAt.END);
+        this.infoTextView.setEllipsize(truncateAt);
         this.infoTextView.setSingleLine(true);
         if (z) {
             createFrame2 = LayoutHelper.createFrameRelatively(-2.0f, -2.0f, 8388659, i, 30.0f, 100.0f, 0.0f);
@@ -97,9 +100,9 @@ public class FeaturedStickerSetInfoCell extends FrameLayout {
                 createFrame3 = LayoutHelper.createFrame(-2, 28.0f, 53, 0.0f, 16.0f, 14.0f, 0.0f);
             }
             addView(this.addButton, createFrame3);
-            TextView textView3 = new TextView(context);
-            this.delButton = textView3;
-            textView3.setGravity(17);
+            TextView textView4 = new TextView(context);
+            this.delButton = textView4;
+            textView4.setGravity(17);
             this.delButton.setTextColor(getThemedColor(Theme.key_featuredStickers_removeButtonText));
             this.delButton.setTextSize(1, 14.0f);
             this.delButton.setTypeface(AndroidUtilities.bold());
@@ -214,38 +217,15 @@ public class FeaturedStickerSetInfoCell extends FrameLayout {
                 this.animatorSet = animatorSet2;
                 animatorSet2.setDuration(250L);
                 AnimatorSet animatorSet3 = this.animatorSet;
-                Animator[] animatorArr = new Animator[6];
                 TextView textView = this.delButton;
                 Property property = View.ALPHA;
-                float[] fArr = new float[1];
-                fArr[0] = this.isInstalled ? 1.0f : 0.0f;
-                animatorArr[0] = ObjectAnimator.ofFloat(textView, property, fArr);
+                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property, this.isInstalled ? 1.0f : 0.0f);
                 TextView textView2 = this.delButton;
                 Property property2 = View.SCALE_X;
-                float[] fArr2 = new float[1];
-                fArr2[0] = this.isInstalled ? 1.0f : 0.0f;
-                animatorArr[1] = ObjectAnimator.ofFloat(textView2, property2, fArr2);
+                ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(textView2, (Property<TextView, Float>) property2, this.isInstalled ? 1.0f : 0.0f);
                 TextView textView3 = this.delButton;
                 Property property3 = View.SCALE_Y;
-                float[] fArr3 = new float[1];
-                fArr3[0] = this.isInstalled ? 1.0f : 0.0f;
-                animatorArr[2] = ObjectAnimator.ofFloat(textView3, property3, fArr3);
-                ProgressButton progressButton = this.addButton;
-                Property property4 = View.ALPHA;
-                float[] fArr4 = new float[1];
-                fArr4[0] = this.isInstalled ? 0.0f : 1.0f;
-                animatorArr[3] = ObjectAnimator.ofFloat(progressButton, property4, fArr4);
-                ProgressButton progressButton2 = this.addButton;
-                Property property5 = View.SCALE_X;
-                float[] fArr5 = new float[1];
-                fArr5[0] = this.isInstalled ? 0.0f : 1.0f;
-                animatorArr[4] = ObjectAnimator.ofFloat(progressButton2, property5, fArr5);
-                ProgressButton progressButton3 = this.addButton;
-                Property property6 = View.SCALE_Y;
-                float[] fArr6 = new float[1];
-                fArr6[0] = this.isInstalled ? 0.0f : 1.0f;
-                animatorArr[5] = ObjectAnimator.ofFloat(progressButton3, property6, fArr6);
-                animatorSet3.playTogether(animatorArr);
+                animatorSet3.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(textView3, (Property<TextView, Float>) property3, this.isInstalled ? 1.0f : 0.0f), ObjectAnimator.ofFloat(this.addButton, (Property<ProgressButton, Float>) property, this.isInstalled ? 0.0f : 1.0f), ObjectAnimator.ofFloat(this.addButton, (Property<ProgressButton, Float>) property2, this.isInstalled ? 0.0f : 1.0f), ObjectAnimator.ofFloat(this.addButton, (Property<ProgressButton, Float>) property3, this.isInstalled ? 0.0f : 1.0f));
                 this.animatorSet.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animator) {

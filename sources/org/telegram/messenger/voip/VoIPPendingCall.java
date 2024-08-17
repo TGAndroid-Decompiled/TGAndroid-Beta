@@ -11,6 +11,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$UserFull;
 import org.telegram.ui.Components.voip.VoIPHelper;
+
 public final class VoIPPendingCall {
     private AccountInstance accountInstance;
     private final Activity activity;

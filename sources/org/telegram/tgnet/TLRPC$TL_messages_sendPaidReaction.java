@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messages_sendPaidReaction extends TLObject {
     public int count;
     public int flags;

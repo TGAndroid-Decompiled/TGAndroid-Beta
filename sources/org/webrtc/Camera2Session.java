@@ -2,7 +2,6 @@ package org.webrtc;
 
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCaptureSession;
 import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CameraDevice;
@@ -19,6 +18,7 @@ import org.webrtc.Camera2Session;
 import org.webrtc.CameraEnumerationAndroid;
 import org.webrtc.CameraSession;
 import org.webrtc.VideoSink;
+
 @TargetApi(21)
 public class Camera2Session implements CameraSession {
     private static final String TAG = "Camera2Session";
@@ -58,22 +58,22 @@ public class Camera2Session implements CameraSession {
         }
 
         private String getErrorDescription(int i) {
-            if (i != 1) {
-                if (i != 2) {
-                    if (i != 3) {
-                        if (i != 4) {
-                            if (i != 5) {
-                                return "Unknown camera error: " + i;
-                            }
-                            return "Camera service has encountered a fatal error.";
-                        }
-                        return "Camera device has encountered a fatal error.";
-                    }
-                    return "Camera device could not be opened due to a device policy.";
-                }
+            if (i == 1) {
+                return "Camera device is in use already.";
+            }
+            if (i == 2) {
                 return "Camera device could not be opened because there are too many other open camera devices.";
             }
-            return "Camera device is in use already.";
+            if (i == 3) {
+                return "Camera device could not be opened due to a device policy.";
+            }
+            if (i == 4) {
+                return "Camera device has encountered a fatal error.";
+            }
+            if (i == 5) {
+                return "Camera service has encountered a fatal error.";
+            }
+            return "Unknown camera error: " + i;
         }
 
         @Override
@@ -102,12 +102,7 @@ public class Camera2Session implements CameraSession {
             Camera2Session.this.cameraDevice = cameraDevice;
             Camera2Session.this.surfaceTextureHelper.setTextureSize(Camera2Session.this.captureFormat.width, Camera2Session.this.captureFormat.height);
             Camera2Session.this.surface = new Surface(Camera2Session.this.surfaceTextureHelper.getSurfaceTexture());
-            try {
-                cameraDevice.createCaptureSession(Arrays.asList(Camera2Session.this.surface), new CaptureSessionCallback(), Camera2Session.this.cameraThreadHandler);
-            } catch (CameraAccessException e) {
-                Camera2Session camera2Session = Camera2Session.this;
-                camera2Session.reportError("Failed to create capture session. " + e);
-            }
+            cameraDevice.createCaptureSession(Arrays.asList(Camera2Session.this.surface), new CaptureSessionCallback(), Camera2Session.this.cameraThreadHandler);
         }
 
         @Override
@@ -139,36 +134,31 @@ public class Camera2Session implements CameraSession {
             Camera2Session.this.checkIsOnCameraThread();
             Logging.d("Camera2Session", "Camera capture session configured.");
             Camera2Session.this.captureSession = cameraCaptureSession;
-            try {
-                createCaptureRequest = Camera2Session.this.cameraDevice.createCaptureRequest(3);
-                key = CaptureRequest.CONTROL_AE_TARGET_FPS_RANGE;
-                createCaptureRequest.set(key, new Range(Integer.valueOf(Camera2Session.this.captureFormat.framerate.min / Camera2Session.this.fpsUnitFactor), Integer.valueOf(Camera2Session.this.captureFormat.framerate.max / Camera2Session.this.fpsUnitFactor)));
-                key2 = CaptureRequest.CONTROL_AE_MODE;
-                createCaptureRequest.set(key2, 1);
-                key3 = CaptureRequest.CONTROL_AE_LOCK;
-                createCaptureRequest.set(key3, Boolean.FALSE);
-                chooseStabilizationMode(createCaptureRequest);
-                chooseFocusMode(createCaptureRequest);
-                createCaptureRequest.addTarget(Camera2Session.this.surface);
-                build = createCaptureRequest.build();
-                cameraCaptureSession.setRepeatingRequest(build, new CameraCaptureCallback(), Camera2Session.this.cameraThreadHandler);
-                Camera2Session.this.surfaceTextureHelper.startListening(new VideoSink() {
-                    @Override
-                    public final void onFrame(VideoFrame videoFrame) {
-                        Camera2Session.CaptureSessionCallback.this.lambda$onConfigured$0(videoFrame);
-                    }
+            createCaptureRequest = Camera2Session.this.cameraDevice.createCaptureRequest(3);
+            key = CaptureRequest.CONTROL_AE_TARGET_FPS_RANGE;
+            createCaptureRequest.set(key, new Range(Integer.valueOf(Camera2Session.this.captureFormat.framerate.min / Camera2Session.this.fpsUnitFactor), Integer.valueOf(Camera2Session.this.captureFormat.framerate.max / Camera2Session.this.fpsUnitFactor)));
+            key2 = CaptureRequest.CONTROL_AE_MODE;
+            createCaptureRequest.set(key2, 1);
+            key3 = CaptureRequest.CONTROL_AE_LOCK;
+            createCaptureRequest.set(key3, Boolean.FALSE);
+            chooseStabilizationMode(createCaptureRequest);
+            chooseFocusMode(createCaptureRequest);
+            createCaptureRequest.addTarget(Camera2Session.this.surface);
+            build = createCaptureRequest.build();
+            cameraCaptureSession.setRepeatingRequest(build, new CameraCaptureCallback(), Camera2Session.this.cameraThreadHandler);
+            Camera2Session.this.surfaceTextureHelper.startListening(new VideoSink() {
+                @Override
+                public final void onFrame(VideoFrame videoFrame) {
+                    Camera2Session.CaptureSessionCallback.this.lambda$onConfigured$0(videoFrame);
+                }
 
-                    @Override
-                    public void setParentSink(VideoSink videoSink) {
-                        VideoSink.CC.$default$setParentSink(this, videoSink);
-                    }
-                });
-                Logging.d("Camera2Session", "Camera device successfully started.");
-                Camera2Session.this.callback.onDone(Camera2Session.this);
-            } catch (CameraAccessException e) {
-                Camera2Session camera2Session = Camera2Session.this;
-                camera2Session.reportError("Failed to start capture request. " + e);
-            }
+                @Override
+                public void setParentSink(VideoSink videoSink) {
+                    VideoSink.CC.$default$setParentSink(this, videoSink);
+                }
+            });
+            Logging.d("Camera2Session", "Camera device successfully started.");
+            Camera2Session.this.callback.onDone(Camera2Session.this);
         }
 
         public void lambda$onConfigured$0(VideoFrame videoFrame) {

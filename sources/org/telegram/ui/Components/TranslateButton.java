@@ -29,6 +29,7 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.RestrictedLanguagesSelectActivity;
+
 public class TranslateButton extends FrameLayout {
     private boolean[] accusative;
     private final int currentAccount;
@@ -114,8 +115,11 @@ public class TranslateButton extends FrameLayout {
         animatedTextView.setTextColor(Theme.getColor(i, this.resourcesProvider));
         this.textView.setBackground(Theme.createSelectorDrawable(Theme.getColor(i, this.resourcesProvider) & 436207615, 3));
         this.menuView.setBackground(Theme.createSelectorDrawable(Theme.getColor(i, this.resourcesProvider) & 436207615, 7));
-        this.menuView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
-        this.translateDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
+        ImageView imageView = this.menuView;
+        int color = Theme.getColor(i, this.resourcesProvider);
+        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+        imageView.setColorFilter(new PorterDuffColorFilter(color, mode));
+        this.translateDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, this.resourcesProvider), mode));
     }
 
     protected void onMenuClick() {
@@ -201,7 +205,7 @@ public class TranslateButton extends FrameLayout {
             final String str = next.code;
             if (!TextUtils.equals(str, dialogDetectedLanguage)) {
                 ActionBarMenuSubItem actionBarMenuSubItem4 = new ActionBarMenuSubItem(getContext(), 2, false, false, this.resourcesProvider);
-                boolean z = dialogTranslateTo != 0 && dialogTranslateTo.equals(str);
+                boolean z = dialogTranslateTo != null && dialogTranslateTo.equals(str);
                 actionBarMenuSubItem4.setChecked(z);
                 actionBarMenuSubItem4.setText(next.displayName);
                 if (!z) {
@@ -319,10 +323,9 @@ public class TranslateButton extends FrameLayout {
 
     public void lambda$onMenuClick$9(final TranslateController translateController, ActionBarPopupWindow actionBarPopupWindow, View view) {
         String string;
-        boolean z = true;
         translateController.setHideTranslateDialog(this.dialogId, true);
         TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId));
-        if ((chat == null || !ChatObject.isChannelAndNotMegaGroup(chat)) ? false : false) {
+        if (chat != null && ChatObject.isChannelAndNotMegaGroup(chat)) {
             string = LocaleController.getString("TranslationBarHiddenForChannel", R.string.TranslationBarHiddenForChannel);
         } else if (chat != null) {
             string = LocaleController.getString("TranslationBarHiddenForGroup", R.string.TranslationBarHiddenForGroup);

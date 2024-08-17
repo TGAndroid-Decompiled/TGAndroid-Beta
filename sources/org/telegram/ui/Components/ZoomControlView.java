@@ -12,6 +12,7 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.AnimationProperties;
+
 public class ZoomControlView extends View {
     public final Property<ZoomControlView, Float> ZOOM_PROPERTY;
     private float animatingToZoom;
@@ -97,7 +98,7 @@ public class ZoomControlView extends View {
     }
 
     @Override
-    public boolean onTouchEvent(android.view.MotionEvent r15) {
+    public boolean onTouchEvent(android.view.MotionEvent r14) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ZoomControlView.onTouchEvent(android.view.MotionEvent):boolean");
     }
 

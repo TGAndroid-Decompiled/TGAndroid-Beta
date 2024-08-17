@@ -5,6 +5,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.mlkit.common.sdkinternal.MlKitContext;
 import com.google.mlkit.nl.languageid.LanguageIdentification;
 import org.telegram.messenger.LanguageDetector;
+
 public class LanguageDetector {
 
     public interface ExceptionCallback {

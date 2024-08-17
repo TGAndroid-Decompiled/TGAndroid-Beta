@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_inputThemeSlug extends TLRPC$InputTheme {
     public String slug;
 

@@ -50,6 +50,7 @@ import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.LoadingDrawable;
 import org.telegram.ui.Components.StaticLayoutEx;
 import org.telegram.ui.Components.URLSpanNoUnderline;
+
 public class AboutLinkCell extends FrameLayout {
     private static final int COLLAPSED_HEIGHT;
     private static final int MAX_OPEN_HEIGHT;
@@ -203,8 +204,7 @@ public class AboutLinkCell extends FrameLayout {
         FrameLayout frameLayout2 = this.showMoreTextBackgroundView;
         frameLayout2.setPadding(frameLayout2.getPaddingLeft() + AndroidUtilities.dp(4.0f), AndroidUtilities.dp(1.0f), 0, AndroidUtilities.dp(3.0f));
         this.showMoreTextBackgroundView.addView(this.showMoreTextView, LayoutHelper.createFrame(-2, -2.0f));
-        FrameLayout frameLayout3 = this.showMoreTextBackgroundView;
-        addView(frameLayout3, LayoutHelper.createFrame(-2, -2.0f, 85, 22.0f - (frameLayout3.getPaddingLeft() / AndroidUtilities.density), 0.0f, 22.0f - (this.showMoreTextBackgroundView.getPaddingRight() / AndroidUtilities.density), 6.0f));
+        addView(this.showMoreTextBackgroundView, LayoutHelper.createFrame(-2, -2.0f, 85, 22.0f - (r1.getPaddingLeft() / AndroidUtilities.density), 0.0f, 22.0f - (this.showMoreTextBackgroundView.getPaddingRight() / AndroidUtilities.density), 6.0f));
         this.backgroundPaint.setColor(Theme.getColor(i, resourcesProvider));
         setWillNotDraw(false);
     }
@@ -219,7 +219,6 @@ public class AboutLinkCell extends FrameLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean z;
         int x = (int) motionEvent.getX();
         int y = (int) motionEvent.getY();
         if (this.showMoreTextView.getVisibility() == 0 && x >= this.showMoreTextBackgroundView.getLeft() && x <= this.showMoreTextBackgroundView.getRight() && y >= this.showMoreTextBackgroundView.getTop() && y <= this.showMoreTextBackgroundView.getBottom()) {
@@ -236,7 +235,6 @@ public class AboutLinkCell extends FrameLayout {
                         this.pressedLink = hitLink;
                         linkCollector.addLink(hitLink);
                         AndroidUtilities.runOnUIThread(this.longPressedRunnable, ViewConfiguration.getLongPressTimeout());
-                        z = true;
                     }
                 } else {
                     LinkSpanDrawable linkSpanDrawable = this.pressedLink;
@@ -247,17 +245,13 @@ public class AboutLinkCell extends FrameLayout {
                             FileLog.e(e);
                         }
                         resetPressedLink();
-                        z = true;
                     }
                 }
-                return !z || super.onTouchEvent(motionEvent);
             } else if (motionEvent.getAction() == 3) {
                 resetPressedLink();
             }
         }
-        z = false;
-        if (z) {
-        }
+        return super.onTouchEvent(motionEvent);
     }
 
     private void setShowMoreMarginBottom(int i) {
@@ -271,8 +265,7 @@ public class AboutLinkCell extends FrameLayout {
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
-        View view = (View) getParent();
-        float pow = view == null ? 1.0f : (float) Math.pow(view.getAlpha(), 2.0d);
+        float pow = ((View) getParent()) == null ? 1.0f : (float) Math.pow(r0.getAlpha(), 2.0d);
         drawText(canvas);
         float alpha = this.showMoreTextBackgroundView.getAlpha();
         if (alpha > 0.0f) {
@@ -353,11 +346,10 @@ public class AboutLinkCell extends FrameLayout {
                             i = i3;
                             canvas.translate(f2 * easeInOutCubic, ((1.0f - easeInOutCubic) * lineBottom) + lineTop);
                         }
-                        StaticLayout staticLayout4 = staticLayout2;
-                        staticLayout4.draw(canvas);
+                        staticLayout2.draw(canvas);
                         canvas.restoreToCount(i2);
-                        f2 += staticLayout4.getLineRight(0) + this.SPACE;
-                        lineBottom += (staticLayout4.getLineBottom(0) + staticLayout4.getTopPadding()) - 1;
+                        f2 += staticLayout2.getLineRight(0) + this.SPACE;
+                        lineBottom += (staticLayout2.getLineBottom(0) + staticLayout2.getTopPadding()) - 1;
                     } else {
                         i = i3;
                     }
@@ -367,9 +359,9 @@ public class AboutLinkCell extends FrameLayout {
             }
             canvas.restore();
         }
-        StaticLayout staticLayout5 = this.textLayout;
-        if (staticLayout5 != null) {
-            staticLayout5.draw(canvas);
+        StaticLayout staticLayout4 = this.textLayout;
+        if (staticLayout4 != null) {
+            staticLayout4.draw(canvas);
         }
         canvas.restore();
     }
@@ -453,7 +445,9 @@ public class AboutLinkCell extends FrameLayout {
         public void lambda$run$0(ClickableSpan clickableSpan, Layout layout, float f, String str, DialogInterface dialogInterface, int i) {
             if (i == 0) {
                 AboutLinkCell.this.onLinkClick(clickableSpan, layout, f);
-            } else if (i == 1) {
+                return;
+            }
+            if (i == 1) {
                 AndroidUtilities.addToClipboard(str);
                 if (AndroidUtilities.shouldShowClipboardToast()) {
                     if (str.startsWith("@")) {
@@ -473,38 +467,38 @@ public class AboutLinkCell extends FrameLayout {
     }
 
     private LinkSpanDrawable hitLink(int i, int i2) {
-        if (i < this.showMoreTextView.getLeft() || i > this.showMoreTextView.getRight() || i2 < this.showMoreTextView.getTop() || i2 > this.showMoreTextView.getBottom()) {
-            if (getMeasuredWidth() <= 0 || i <= getMeasuredWidth() - AndroidUtilities.dp(23.0f)) {
-                StaticLayout staticLayout = this.firstThreeLinesLayout;
-                if (staticLayout != null && this.expandT < 1.0f && this.shouldExpand) {
-                    LinkSpanDrawable checkTouchTextLayout = checkTouchTextLayout(staticLayout, this.textX, this.textY, i, i2);
-                    if (checkTouchTextLayout != null) {
-                        return checkTouchTextLayout;
-                    }
-                    if (this.nextLinesLayouts != null) {
-                        int i3 = 0;
-                        while (true) {
-                            StaticLayout[] staticLayoutArr = this.nextLinesLayouts;
-                            if (i3 >= staticLayoutArr.length) {
-                                break;
-                            }
-                            StaticLayout staticLayout2 = staticLayoutArr[i3];
-                            Point point = this.nextLinesLayoutsPositions[i3];
-                            LinkSpanDrawable checkTouchTextLayout2 = checkTouchTextLayout(staticLayout2, point.x, point.y, i, i2);
-                            if (checkTouchTextLayout2 != null) {
-                                return checkTouchTextLayout2;
-                            }
-                            i3++;
-                        }
-                    }
-                }
-                LinkSpanDrawable checkTouchTextLayout3 = checkTouchTextLayout(this.textLayout, this.textX, this.textY, i, i2);
-                if (checkTouchTextLayout3 != null) {
-                    return checkTouchTextLayout3;
-                }
-                return null;
-            }
+        if (i >= this.showMoreTextView.getLeft() && i <= this.showMoreTextView.getRight() && i2 >= this.showMoreTextView.getTop() && i2 <= this.showMoreTextView.getBottom()) {
             return null;
+        }
+        if (getMeasuredWidth() > 0 && i > getMeasuredWidth() - AndroidUtilities.dp(23.0f)) {
+            return null;
+        }
+        StaticLayout staticLayout = this.firstThreeLinesLayout;
+        if (staticLayout != null && this.expandT < 1.0f && this.shouldExpand) {
+            LinkSpanDrawable checkTouchTextLayout = checkTouchTextLayout(staticLayout, this.textX, this.textY, i, i2);
+            if (checkTouchTextLayout != null) {
+                return checkTouchTextLayout;
+            }
+            if (this.nextLinesLayouts != null) {
+                int i3 = 0;
+                while (true) {
+                    StaticLayout[] staticLayoutArr = this.nextLinesLayouts;
+                    if (i3 >= staticLayoutArr.length) {
+                        break;
+                    }
+                    StaticLayout staticLayout2 = staticLayoutArr[i3];
+                    Point point = this.nextLinesLayoutsPositions[i3];
+                    LinkSpanDrawable checkTouchTextLayout2 = checkTouchTextLayout(staticLayout2, point.x, point.y, i, i2);
+                    if (checkTouchTextLayout2 != null) {
+                        return checkTouchTextLayout2;
+                    }
+                    i3++;
+                }
+            }
+        }
+        LinkSpanDrawable checkTouchTextLayout3 = checkTouchTextLayout(this.textLayout, this.textX, this.textY, i, i2);
+        if (checkTouchTextLayout3 != null) {
+            return checkTouchTextLayout3;
         }
         return null;
     }
@@ -556,17 +550,21 @@ public class AboutLinkCell extends FrameLayout {
             String url = ((URLSpanNoUnderline) clickableSpan).getURL();
             if (url.startsWith("@") || url.startsWith("#") || url.startsWith("/")) {
                 didPressUrl(url, this.currentProgress);
+                return;
             }
-        } else if (clickableSpan instanceof URLSpan) {
+            return;
+        }
+        if (clickableSpan instanceof URLSpan) {
             String url2 = ((URLSpan) clickableSpan).getURL();
             if (AndroidUtilities.shouldShowUrlInAlert(url2)) {
                 AlertsCreator.showOpenUrlAlert(this.parentFragment, url2, true, true, true, this.currentProgress, null);
+                return;
             } else {
                 Browser.openUrl(getContext(), Uri.parse(url2), true, true, this.currentProgress);
+                return;
             }
-        } else {
-            clickableSpan.onClick(this);
         }
+        clickableSpan.onClick(this);
     }
 
     public class AnonymousClass3 extends Browser.Progress {
@@ -644,11 +642,13 @@ public class AboutLinkCell extends FrameLayout {
         }
 
         private void step(float f) {
-            float f2 = this.position;
-            float f3 = this.velocity;
-            float f4 = f3 + ((((((-this.tension) * 1.0E-6f) * (f2 - 1.0f)) + (((-this.friction) * 0.001f) * f3)) / 1.0f) * f);
-            this.velocity = f4;
-            this.position = f2 + (f4 * f);
+            float f2 = (-this.tension) * 1.0E-6f;
+            float f3 = this.position;
+            float f4 = (-this.friction) * 0.001f;
+            float f5 = this.velocity;
+            float f6 = f5 + ((((f2 * (f3 - 1.0f)) + (f4 * f5)) / 1.0f) * f);
+            this.velocity = f6;
+            this.position = f3 + (f6 * f);
         }
     }
 
@@ -668,6 +668,7 @@ public class AboutLinkCell extends FrameLayout {
             float min = Math.min(COLLAPSED_HEIGHT, textHeight);
             Math.abs(AndroidUtilities.lerp(min, textHeight, f2) - AndroidUtilities.lerp(min, textHeight, f));
             this.collapseAnimator = ValueAnimator.ofFloat(0.0f, 1.0f);
+            float abs = Math.abs(f - f2) * 1250.0f * 2.0f;
             final SpringInterpolator springInterpolator = new SpringInterpolator(380.0f, 20.17f);
             final AtomicReference atomicReference = new AtomicReference(Float.valueOf(f));
             this.collapseAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -691,7 +692,7 @@ public class AboutLinkCell extends FrameLayout {
                     AboutLinkCell.this.didResizeStart();
                 }
             });
-            this.collapseAnimator.setDuration(Math.abs(f - f2) * 1250.0f * 2.0f);
+            this.collapseAnimator.setDuration(abs);
             this.collapseAnimator.start();
             return;
         }
@@ -700,9 +701,10 @@ public class AboutLinkCell extends FrameLayout {
     }
 
     public void lambda$updateCollapse$1(AtomicReference atomicReference, float f, float f2, SpringInterpolator springInterpolator, ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        Float f3 = (Float) valueAnimator.getAnimatedValue();
+        float floatValue = (f3.floatValue() - ((Float) atomicReference.getAndSet(f3)).floatValue()) * 1000.0f * 8.0f;
         this.rawCollapseT = AndroidUtilities.lerp(f, f2, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-        float lerp = AndroidUtilities.lerp(f, f2, springInterpolator.getValue((floatValue - ((Float) atomicReference.getAndSet(Float.valueOf(floatValue))).floatValue()) * 1000.0f * 8.0f));
+        float lerp = AndroidUtilities.lerp(f, f2, springInterpolator.getValue(floatValue));
         this.expandT = lerp;
         if (lerp > 0.8f && this.container.getBackground() == null) {
             this.container.setBackground(this.rippleBackground);

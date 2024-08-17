@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messages_editChatPhoto extends TLObject {
     public long chat_id;
     public TLRPC$InputChatPhoto photo;

@@ -34,6 +34,7 @@ import org.telegram.tgnet.TLRPC$messages_Messages;
 import org.telegram.tgnet.tl.TL_bots$getPopularAppBots;
 import org.telegram.tgnet.tl.TL_bots$popularAppBots;
 import org.telegram.ui.ActionBar.Theme;
+
 public class DialogsBotsAdapter extends UniversalAdapter {
     private int allCount;
     private final Context context;
@@ -176,8 +177,11 @@ public class DialogsBotsAdapter extends UniversalAdapter {
                 arrayList.add(UItem.asFlicker(29));
                 arrayList.add(UItem.asFlicker(29));
                 arrayList.add(UItem.asFlicker(29));
+                return;
             }
-        } else if (this.popularBotsNextOffset != null || this.popularBotsLoading) {
+            return;
+        }
+        if (this.popularBotsNextOffset != null || this.popularBotsLoading) {
             if (!this.showOnlyPopular) {
                 arrayList.add(UItem.asFlicker(30));
             }
@@ -410,11 +414,14 @@ public class DialogsBotsAdapter extends UniversalAdapter {
         if (!TextUtils.isEmpty(this.query)) {
             if (this.hasMore && !this.loadingMessages && seesLoading()) {
                 searchMore();
+                return;
             }
-        } else if (this.popularBotsLoading || TextUtils.isEmpty(this.popularBotsNextOffset) || !seesLoading()) {
-        } else {
-            loadPopularBots();
+            return;
         }
+        if (this.popularBotsLoading || TextUtils.isEmpty(this.popularBotsNextOffset) || !seesLoading()) {
+            return;
+        }
+        loadPopularBots();
     }
 
     public boolean seesLoading() {

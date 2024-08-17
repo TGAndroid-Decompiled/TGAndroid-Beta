@@ -3,6 +3,7 @@ package org.telegram.ui.Components;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import org.telegram.messenger.AndroidUtilities;
+
 public class ProgressView {
     public int height;
     public int width;
@@ -26,11 +27,11 @@ public class ProgressView {
     }
 
     public void draw(Canvas canvas) {
-        int i = this.height;
-        float f = this.progressHeight;
-        canvas.drawRect(0.0f, (i / 2) - (f / 2.0f), this.width, (i / 2) + (f / 2.0f), this.innerPaint);
-        int i2 = this.height;
-        float f2 = this.progressHeight;
-        canvas.drawRect(0.0f, (i2 / 2) - (f2 / 2.0f), this.width * this.currentProgress, (i2 / 2) + (f2 / 2.0f), this.outerPaint);
+        float f = this.height / 2;
+        float f2 = this.progressHeight / 2.0f;
+        canvas.drawRect(0.0f, f - f2, this.width, f + f2, this.innerPaint);
+        float f3 = this.height / 2;
+        float f4 = this.progressHeight / 2.0f;
+        canvas.drawRect(0.0f, f3 - f4, this.width * this.currentProgress, f3 + f4, this.outerPaint);
     }
 }

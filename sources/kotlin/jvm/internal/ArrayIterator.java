@@ -1,22 +1,11 @@
 package kotlin.jvm.internal;
 
-import j$.util.Iterator;
-import j$.util.function.Consumer;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-final class ArrayIterator<T> implements Iterator<T>, j$.util.Iterator {
+
+final class ArrayIterator<T> implements Iterator<T> {
     private final T[] array;
     private int index;
-
-    @Override
-    public void forEachRemaining(Consumer consumer) {
-        Iterator.CC.$default$forEachRemaining(this, consumer);
-    }
-
-    @Override
-    public void forEachRemaining(java.util.function.Consumer consumer) {
-        forEachRemaining(Consumer.VivifiedWrapper.convert(consumer));
-    }
 
     @Override
     public void remove() {

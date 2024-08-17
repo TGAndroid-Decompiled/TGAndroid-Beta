@@ -49,6 +49,7 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.DialogCell;
+
 public class LinkActionView extends LinearLayout {
     private ActionBarPopupWindow actionBarPopupWindow;
     private final AvatarsContainer avatarsContainer;
@@ -432,25 +433,22 @@ public class LinkActionView extends LinearLayout {
     public void getPointOnScreen(FrameLayout frameLayout, FrameLayout frameLayout2, float[] fArr) {
         float f = 0.0f;
         float f2 = 0.0f;
-        FrameLayout frameLayout3 = frameLayout;
-        while (frameLayout3 != frameLayout2) {
-            f += frameLayout3.getY();
-            f2 += frameLayout3.getX();
-            if (frameLayout3 instanceof ScrollView) {
-                f -= frameLayout3.getScrollY();
+        while (frameLayout != frameLayout2) {
+            f2 += frameLayout.getY();
+            f += frameLayout.getX();
+            if (frameLayout instanceof ScrollView) {
+                f2 -= frameLayout.getScrollY();
             }
-            if (!(frameLayout3.getParent() instanceof View)) {
+            if (!(frameLayout.getParent() instanceof View)) {
                 break;
             }
-            ?? r4 = (View) frameLayout3.getParent();
-            boolean z = r4 instanceof ViewGroup;
-            frameLayout3 = r4;
-            if (!z) {
+            frameLayout = (View) frameLayout.getParent();
+            if (!(frameLayout instanceof ViewGroup)) {
                 return;
             }
         }
-        fArr[0] = f2 - frameLayout2.getPaddingLeft();
-        fArr[1] = f - frameLayout2.getPaddingTop();
+        fArr[0] = f - frameLayout2.getPaddingLeft();
+        fArr[1] = f2 - frameLayout2.getPaddingTop();
     }
 
     public void setQrText(String str) {
@@ -458,19 +456,19 @@ public class LinkActionView extends LinearLayout {
     }
 
     private void showQrCode() {
-        String str;
         int i;
+        String str;
         Context context = getContext();
         String string = LocaleController.getString("InviteByQRCode", R.string.InviteByQRCode);
         String str2 = this.link;
         String str3 = this.qrText;
         if (str3 == null) {
             if (this.isChannel) {
-                str = "QRCodeLinkHelpChannel";
                 i = R.string.QRCodeLinkHelpChannel;
+                str = "QRCodeLinkHelpChannel";
             } else {
-                str = "QRCodeLinkHelpGroup";
                 i = R.string.QRCodeLinkHelpGroup;
+                str = "QRCodeLinkHelpGroup";
             }
             str3 = LocaleController.getString(str, i);
         }
@@ -568,8 +566,7 @@ public class LinkActionView extends LinearLayout {
             this.avatarsImageView = new AvatarsImageView(context, false) {
                 @Override
                 public void onMeasure(int i, int i2) {
-                    int min = Math.min(3, LinkActionView.this.usersCount);
-                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(min == 0 ? 0 : ((min - 1) * 20) + 24 + 8), 1073741824), i2);
+                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(Math.min(3, LinkActionView.this.usersCount) == 0 ? 0 : ((r2 - 1) * 20) + 32), 1073741824), i2);
                 }
             };
             LinearLayout linearLayout = new LinearLayout(context);
@@ -651,29 +648,31 @@ public class LinkActionView extends LinearLayout {
     public void loadUsers(final TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported, long j) {
         if (tLRPC$TL_chatInviteExported == null) {
             setUsers(0, null, false);
-        } else if (TextUtils.equals(this.loadedInviteLink, tLRPC$TL_chatInviteExported.link)) {
-        } else {
-            setUsers(tLRPC$TL_chatInviteExported.usage, tLRPC$TL_chatInviteExported.importers, false);
-            if (tLRPC$TL_chatInviteExported.usage <= 0 || tLRPC$TL_chatInviteExported.importers != null || this.loadingImporters) {
-                return;
-            }
-            TLRPC$TL_messages_getChatInviteImporters tLRPC$TL_messages_getChatInviteImporters = new TLRPC$TL_messages_getChatInviteImporters();
-            String str = tLRPC$TL_chatInviteExported.link;
-            if (str != null) {
-                tLRPC$TL_messages_getChatInviteImporters.flags |= 2;
-                tLRPC$TL_messages_getChatInviteImporters.link = str;
-            }
-            tLRPC$TL_messages_getChatInviteImporters.peer = MessagesController.getInstance(UserConfig.selectedAccount).getInputPeer(-j);
-            tLRPC$TL_messages_getChatInviteImporters.offset_user = new TLRPC$TL_inputUserEmpty();
-            tLRPC$TL_messages_getChatInviteImporters.limit = Math.min(tLRPC$TL_chatInviteExported.usage, 3);
-            this.loadingImporters = true;
-            ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tLRPC$TL_messages_getChatInviteImporters, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    LinkActionView.this.lambda$loadUsers$12(tLRPC$TL_chatInviteExported, tLObject, tLRPC$TL_error);
-                }
-            });
+            return;
         }
+        if (TextUtils.equals(this.loadedInviteLink, tLRPC$TL_chatInviteExported.link)) {
+            return;
+        }
+        setUsers(tLRPC$TL_chatInviteExported.usage, tLRPC$TL_chatInviteExported.importers, false);
+        if (tLRPC$TL_chatInviteExported.usage <= 0 || tLRPC$TL_chatInviteExported.importers != null || this.loadingImporters) {
+            return;
+        }
+        TLRPC$TL_messages_getChatInviteImporters tLRPC$TL_messages_getChatInviteImporters = new TLRPC$TL_messages_getChatInviteImporters();
+        String str = tLRPC$TL_chatInviteExported.link;
+        if (str != null) {
+            tLRPC$TL_messages_getChatInviteImporters.flags |= 2;
+            tLRPC$TL_messages_getChatInviteImporters.link = str;
+        }
+        tLRPC$TL_messages_getChatInviteImporters.peer = MessagesController.getInstance(UserConfig.selectedAccount).getInputPeer(-j);
+        tLRPC$TL_messages_getChatInviteImporters.offset_user = new TLRPC$TL_inputUserEmpty();
+        tLRPC$TL_messages_getChatInviteImporters.limit = Math.min(tLRPC$TL_chatInviteExported.usage, 3);
+        this.loadingImporters = true;
+        ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tLRPC$TL_messages_getChatInviteImporters, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                LinkActionView.this.lambda$loadUsers$12(tLRPC$TL_chatInviteExported, tLObject, tLRPC$TL_error);
+            }
+        });
     }
 
     public void lambda$loadUsers$12(final TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {

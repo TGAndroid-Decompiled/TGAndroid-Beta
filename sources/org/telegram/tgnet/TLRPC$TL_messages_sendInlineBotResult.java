@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messages_sendInlineBotResult extends TLObject {
     public boolean background;
     public boolean clear_draft;

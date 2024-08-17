@@ -10,6 +10,7 @@ import java.util.concurrent.Callable;
 import org.webrtc.EglBase;
 import org.webrtc.TextureBufferImpl;
 import org.webrtc.VideoFrame;
+
 public class SurfaceTextureHelper {
     private static final String TAG = "SurfaceTextureHelper";
     private final EglBase eglBase;
@@ -179,17 +180,17 @@ public class SurfaceTextureHelper {
     public void setTextureSize(final int i, final int i2) {
         if (i <= 0) {
             throw new IllegalArgumentException("Texture width must be positive, but was " + i);
-        } else if (i2 <= 0) {
-            throw new IllegalArgumentException("Texture height must be positive, but was " + i2);
-        } else {
-            this.surfaceTexture.setDefaultBufferSize(i, i2);
-            this.handler.post(new Runnable() {
-                @Override
-                public final void run() {
-                    SurfaceTextureHelper.this.lambda$setTextureSize$2(i, i2);
-                }
-            });
         }
+        if (i2 <= 0) {
+            throw new IllegalArgumentException("Texture height must be positive, but was " + i2);
+        }
+        this.surfaceTexture.setDefaultBufferSize(i, i2);
+        this.handler.post(new Runnable() {
+            @Override
+            public final void run() {
+                SurfaceTextureHelper.this.lambda$setTextureSize$2(i, i2);
+            }
+        });
     }
 
     public void lambda$setTextureSize$2(int i, int i2) {

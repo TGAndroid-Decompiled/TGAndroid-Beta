@@ -8,6 +8,7 @@ import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 import org.telegram.messenger.FileLog;
 import org.telegram.ui.Components.Size;
+
 public class Texture {
     private Bitmap bitmap;
     private int texture;

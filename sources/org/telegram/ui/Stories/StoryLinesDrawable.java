@@ -15,6 +15,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Stories.PeerStoriesView;
+
 public class StoryLinesDrawable {
     float bufferingProgress;
     boolean incrementBuffering;

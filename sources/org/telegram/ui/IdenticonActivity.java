@@ -40,6 +40,7 @@ import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Components.IdenticonDrawable;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.URLSpanReplacement;
+
 public class IdenticonActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private AnimatorSet animatorSet;
     private int chat_id;
@@ -97,7 +98,7 @@ public class IdenticonActivity extends BaseFragment implements NotificationCente
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    IdenticonActivity.this.finishFragment();
+                    IdenticonActivity.this.lambda$onBackPressed$308();
                 }
             }
         });
@@ -192,8 +193,8 @@ public class IdenticonActivity extends BaseFragment implements NotificationCente
                 spannableStringBuilder.append((CharSequence) "\n");
                 for (int i4 = 0; i4 < 5; i4++) {
                     byte[] bArr2 = encryptedChat.key_hash;
-                    int i5 = (i4 * 4) + 16;
-                    int i6 = (bArr2[i5 + 3] & 255) | ((bArr2[i5] & Byte.MAX_VALUE) << 24) | ((bArr2[i5 + 1] & 255) << 16) | ((bArr2[i5 + 2] & 255) << 8);
+                    int i5 = i4 * 4;
+                    int i6 = (bArr2[i5 + 19] & 255) | ((bArr2[i5 + 16] & Byte.MAX_VALUE) << 24) | ((bArr2[i5 + 17] & 255) << 16) | ((bArr2[i5 + 18] & 255) << 8);
                     if (i4 != 0) {
                         sb.append(" ");
                     }
@@ -247,32 +248,7 @@ public class IdenticonActivity extends BaseFragment implements NotificationCente
         if (z) {
             AnimatorSet animatorSet2 = new AnimatorSet();
             this.animatorSet = animatorSet2;
-            Animator[] animatorArr = new Animator[6];
-            TextView textView = this.emojiTextView;
-            float[] fArr = new float[1];
-            fArr[0] = this.emojiSelected ? 1.0f : 0.0f;
-            animatorArr[0] = ObjectAnimator.ofFloat(textView, "alpha", fArr);
-            TextView textView2 = this.codeTextView;
-            float[] fArr2 = new float[1];
-            fArr2[0] = this.emojiSelected ? 0.0f : 1.0f;
-            animatorArr[1] = ObjectAnimator.ofFloat(textView2, "alpha", fArr2);
-            TextView textView3 = this.emojiTextView;
-            float[] fArr3 = new float[1];
-            fArr3[0] = this.emojiSelected ? 1.0f : 0.0f;
-            animatorArr[2] = ObjectAnimator.ofFloat(textView3, "scaleX", fArr3);
-            TextView textView4 = this.emojiTextView;
-            float[] fArr4 = new float[1];
-            fArr4[0] = this.emojiSelected ? 1.0f : 0.0f;
-            animatorArr[3] = ObjectAnimator.ofFloat(textView4, "scaleY", fArr4);
-            TextView textView5 = this.codeTextView;
-            float[] fArr5 = new float[1];
-            fArr5[0] = this.emojiSelected ? 0.0f : 1.0f;
-            animatorArr[4] = ObjectAnimator.ofFloat(textView5, "scaleX", fArr5);
-            TextView textView6 = this.codeTextView;
-            float[] fArr6 = new float[1];
-            fArr6[0] = this.emojiSelected ? 0.0f : 1.0f;
-            animatorArr[5] = ObjectAnimator.ofFloat(textView6, "scaleY", fArr6);
-            animatorSet2.playTogether(animatorArr);
+            animatorSet2.playTogether(ObjectAnimator.ofFloat(this.emojiTextView, "alpha", this.emojiSelected ? 1.0f : 0.0f), ObjectAnimator.ofFloat(this.codeTextView, "alpha", this.emojiSelected ? 0.0f : 1.0f), ObjectAnimator.ofFloat(this.emojiTextView, "scaleX", this.emojiSelected ? 1.0f : 0.0f), ObjectAnimator.ofFloat(this.emojiTextView, "scaleY", this.emojiSelected ? 1.0f : 0.0f), ObjectAnimator.ofFloat(this.codeTextView, "scaleX", this.emojiSelected ? 0.0f : 1.0f), ObjectAnimator.ofFloat(this.codeTextView, "scaleY", this.emojiSelected ? 0.0f : 1.0f));
             this.animatorSet.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {

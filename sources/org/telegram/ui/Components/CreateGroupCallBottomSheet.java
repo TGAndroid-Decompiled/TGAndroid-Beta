@@ -30,6 +30,7 @@ import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.ShadowSectionCell;
 import org.telegram.ui.Components.JoinCallAlert;
 import org.telegram.ui.Components.RecyclerListView;
+
 public class CreateGroupCallBottomSheet extends BottomSheetWithRecyclerListView {
     private final List<TLRPC$Peer> chats;
     private final boolean isChannelOrGiga;
@@ -75,7 +76,8 @@ public class CreateGroupCallBottomSheet extends BottomSheetWithRecyclerListView 
         }, LayoutHelper.createFrame(-1, 120.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
         textView.setGravity(17);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        textView.setEllipsize(truncateAt);
         textView.setSingleLine(true);
         textView.setTextSize(1, 14.0f);
         textView.setTypeface(AndroidUtilities.bold());
@@ -92,7 +94,7 @@ public class CreateGroupCallBottomSheet extends BottomSheetWithRecyclerListView 
         this.containerView.addView(textView, LayoutHelper.createFrame(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, 60.0f));
         TextView textView2 = new TextView(context);
         textView2.setGravity(17);
-        textView2.setEllipsize(TextUtils.TruncateAt.END);
+        textView2.setEllipsize(truncateAt);
         textView2.setSingleLine(true);
         textView2.setTextSize(1, 14.0f);
         textView2.setTypeface(AndroidUtilities.bold());
@@ -148,7 +150,7 @@ public class CreateGroupCallBottomSheet extends BottomSheetWithRecyclerListView 
         if (i <= 3) {
             return;
         }
-        this.selectedPeer = this.chats.get((i - 3) - 1);
+        this.selectedPeer = this.chats.get(i - 4);
         if (view instanceof GroupCreateUserCell) {
             ((GroupCreateUserCell) view).setChecked(true, true);
         }
@@ -182,17 +184,17 @@ public class CreateGroupCallBottomSheet extends BottomSheetWithRecyclerListView 
         return new RecyclerListView.SelectionAdapter() {
             @Override
             public int getItemViewType(int i) {
-                if (i != 0) {
-                    int i2 = 1;
-                    if (i != 1) {
-                        i2 = 2;
-                        if (i != 2) {
-                            return 3;
-                        }
-                    }
-                    return i2;
+                if (i == 0) {
+                    return 0;
                 }
-                return 0;
+                int i2 = 1;
+                if (i != 1) {
+                    i2 = 2;
+                    if (i != 2) {
+                        return 3;
+                    }
+                }
+                return i2;
             }
 
             @Override
@@ -234,7 +236,9 @@ public class CreateGroupCallBottomSheet extends BottomSheetWithRecyclerListView 
                     GroupCreateUserCell groupCreateUserCell = (GroupCreateUserCell) viewHolder.itemView;
                     groupCreateUserCell.setObject(chat, null, str, i != getItemCount() - 1);
                     groupCreateUserCell.setChecked(tLRPC$Peer == CreateGroupCallBottomSheet.this.selectedPeer, false);
-                } else if (viewHolder.getItemViewType() == 2) {
+                    return;
+                }
+                if (viewHolder.getItemViewType() == 2) {
                     HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
                     headerCell.setTextSize(15.0f);
                     headerCell.setPadding(0, 0, 0, AndroidUtilities.dp(2.0f));

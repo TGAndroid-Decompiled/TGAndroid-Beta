@@ -16,6 +16,7 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.DrawerLayoutContainer;
 import org.telegram.ui.LaunchActivity;
+
 public class PasscodeViewDialog extends Dialog {
     public final Context context;
     public final PasscodeView passcodeView;
@@ -91,7 +92,7 @@ public class PasscodeViewDialog extends Dialog {
         if (i2 >= 21) {
             attributes.flags |= -2013200128;
         }
-        attributes.flags = attributes.flags | 1024 | 128;
+        attributes.flags |= 1152;
         if (i2 >= 28) {
             attributes.layoutInDisplayCutoutMode = 1;
         }

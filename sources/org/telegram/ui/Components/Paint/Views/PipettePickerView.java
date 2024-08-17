@@ -18,6 +18,7 @@ import androidx.core.util.Consumer;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+
 public class PipettePickerView extends View {
     private float appearProgress;
     private Bitmap bitmap;
@@ -50,13 +51,15 @@ public class PipettePickerView extends View {
         this.srcRect = new Rect();
         this.dstRect = new RectF();
         this.bitmap = bitmap;
-        this.outlinePaint.setStyle(Paint.Style.STROKE);
+        Paint paint = this.outlinePaint;
+        Paint.Style style = Paint.Style.STROKE;
+        paint.setStyle(style);
         this.outlinePaint.setStrokeWidth(AndroidUtilities.dp(4.0f));
         this.outlinePaint.setColor(-1);
-        this.linePaint.setStyle(Paint.Style.STROKE);
+        this.linePaint.setStyle(style);
         this.linePaint.setStrokeWidth(AndroidUtilities.dp(1.0f));
         this.linePaint.setColor(-1711276033);
-        this.colorPaint.setStyle(Paint.Style.STROKE);
+        this.colorPaint.setStyle(style);
         this.colorPaint.setStrokeWidth(AndroidUtilities.dp(12.0f));
     }
 
@@ -179,7 +182,9 @@ public class PipettePickerView extends View {
         float f2 = (this.appearProgress * 0.5f) + 0.5f;
         canvas.scale(f2, f2, width, height);
         this.path.rewind();
-        this.path.addCircle(width, height, min, Path.Direction.CW);
+        Path path = this.path;
+        Path.Direction direction = Path.Direction.CW;
+        path.addCircle(width, height, min, direction);
         canvas.clipPath(this.path);
         int round3 = Math.round(3.5f);
         this.srcRect.set(round - round3, round2 - round3, round + round3, round2 + round3);
@@ -191,7 +196,7 @@ public class PipettePickerView extends View {
         canvas.drawCircle(width, height, strokeWidth2, this.outlinePaint);
         float strokeWidth3 = strokeWidth2 - (this.outlinePaint.getStrokeWidth() / 2.0f);
         this.path.rewind();
-        this.path.addCircle(width, height, strokeWidth3, Path.Direction.CW);
+        this.path.addCircle(width, height, strokeWidth3, direction);
         canvas.clipPath(this.path);
         float f3 = (strokeWidth3 * 2.0f) / 8.0f;
         this.path.rewind();

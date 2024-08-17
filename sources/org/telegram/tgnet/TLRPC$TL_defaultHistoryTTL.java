@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_defaultHistoryTTL extends TLObject {
     public int period;
 

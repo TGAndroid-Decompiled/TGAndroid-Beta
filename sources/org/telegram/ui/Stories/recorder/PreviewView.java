@@ -63,6 +63,7 @@ import org.telegram.ui.Components.VideoPlayer;
 import org.telegram.ui.Stories.recorder.PreviewView;
 import org.telegram.ui.Stories.recorder.StoryEntry;
 import org.telegram.ui.Stories.recorder.TimelineView;
+
 public class PreviewView extends FrameLayout {
     private boolean allowCropping;
     private boolean allowRotation;
@@ -237,7 +238,7 @@ public class PreviewView extends FrameLayout {
             if (storyEntry.gradientTopColor != 0 || storyEntry.gradientBottomColor != 0) {
                 setupGradient();
             } else {
-                storyEntry.setupGradient(new PreviewView$$ExternalSyntheticLambda1(this));
+                storyEntry.setupGradient(new PreviewView$$ExternalSyntheticLambda2(this));
             }
         } else {
             setupVideoPlayer(null, runnable, 0L);
@@ -265,7 +266,7 @@ public class PreviewView extends FrameLayout {
             if (storyEntry.gradientTopColor != 0 || storyEntry.gradientBottomColor != 0) {
                 setupGradient();
             } else {
-                storyEntry.setupGradient(new PreviewView$$ExternalSyntheticLambda1(this));
+                storyEntry.setupGradient(new PreviewView$$ExternalSyntheticLambda2(this));
             }
         } else {
             setupImage(storyEntry);
@@ -328,8 +329,7 @@ public class PreviewView extends FrameLayout {
                 public void onVideoSizeChanged(int i, int i2, int i3, float f) {
                 }
 
-                {
-                    PreviewView.this = this;
+                AnonymousClass1() {
                 }
 
                 @Override
@@ -356,6 +356,57 @@ public class PreviewView extends FrameLayout {
             updateAudioPlayer(true);
         }
         onAudioChanged();
+    }
+
+    public class AnonymousClass1 implements VideoPlayer.VideoPlayerDelegate {
+        @Override
+        public void onError(VideoPlayer videoPlayer3, Exception exc) {
+        }
+
+        @Override
+        public void onRenderedFirstFrame() {
+        }
+
+        @Override
+        public void onRenderedFirstFrame(AnalyticsListener.EventTime eventTime) {
+            VideoPlayer.VideoPlayerDelegate.CC.$default$onRenderedFirstFrame(this, eventTime);
+        }
+
+        @Override
+        public void onSeekFinished(AnalyticsListener.EventTime eventTime) {
+            VideoPlayer.VideoPlayerDelegate.CC.$default$onSeekFinished(this, eventTime);
+        }
+
+        @Override
+        public void onSeekStarted(AnalyticsListener.EventTime eventTime) {
+            VideoPlayer.VideoPlayerDelegate.CC.$default$onSeekStarted(this, eventTime);
+        }
+
+        @Override
+        public boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
+            return false;
+        }
+
+        @Override
+        public void onVideoSizeChanged(int i, int i2, int i3, float f) {
+        }
+
+        AnonymousClass1() {
+        }
+
+        @Override
+        public void onStateChanged(boolean z2, int i) {
+            AndroidUtilities.cancelRunOnUIThread(PreviewView.this.updateAudioProgressRunnable);
+            if (PreviewView.this.audioPlayer == null || !PreviewView.this.audioPlayer.isPlaying()) {
+                return;
+            }
+            AndroidUtilities.runOnUIThread(PreviewView.this.updateAudioProgressRunnable);
+        }
+
+        @Override
+        public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+            PreviewView.this.invalidateTextureViewHolder();
+        }
     }
 
     public void setupAudio(MessageObject messageObject, boolean z) {
@@ -401,7 +452,7 @@ public class PreviewView extends FrameLayout {
                 }
                 StoryEntry storyEntry3 = this.entry;
                 storyEntry3.audioLeft = 0.0f;
-                long min = Math.min((storyEntry3 == null || !storyEntry3.isVideo) ? storyEntry3.audioDuration : getDuration(), 120000L);
+                long min = Math.min(storyEntry3.isVideo ? getDuration() : storyEntry3.audioDuration, 120000L);
                 StoryEntry storyEntry4 = this.entry;
                 storyEntry4.audioRight = storyEntry4.audioDuration != 0 ? Math.min(1.0f, ((float) Math.min(min, 59000L)) / ((float) this.entry.audioDuration)) : 1.0f;
             }
@@ -536,8 +587,7 @@ public class PreviewView extends FrameLayout {
         this.timelineView = timelineView;
         if (timelineView != null) {
             timelineView.setDelegate(new TimelineView.TimelineDelegate() {
-                {
-                    PreviewView.this = this;
+                AnonymousClass2() {
                 }
 
                 @Override
@@ -575,8 +625,7 @@ public class PreviewView extends FrameLayout {
                     if (PreviewView.this.videoPlayer == null || PreviewView.this.videoPlayer.getDuration() == -9223372036854775807L) {
                         return;
                     }
-                    PreviewView previewView = PreviewView.this;
-                    previewView.seekTo(f * ((float) previewView.videoPlayer.getDuration()));
+                    PreviewView.this.seekTo(f * ((float) r0.videoPlayer.getDuration()));
                 }
 
                 @Override
@@ -687,6 +736,154 @@ public class PreviewView extends FrameLayout {
         }
     }
 
+    public class AnonymousClass2 implements TimelineView.TimelineDelegate {
+        AnonymousClass2() {
+        }
+
+        @Override
+        public void onProgressDragChange(boolean z) {
+            PreviewView.this.updatePauseReason(-4, z);
+        }
+
+        @Override
+        public void onProgressChange(long j, boolean z) {
+            if (!z) {
+                PreviewView.this.seekTo(j);
+            } else if (PreviewView.this.videoPlayer != null) {
+                PreviewView.this.videoPlayer.seekTo(j, true);
+            } else if (PreviewView.this.audioPlayer != null) {
+                PreviewView.this.audioPlayer.seekTo(j, false);
+            }
+        }
+
+        @Override
+        public void onVideoVolumeChange(float f) {
+            if (PreviewView.this.entry == null) {
+                return;
+            }
+            PreviewView.this.entry.videoVolume = f;
+            PreviewView.this.checkVolumes();
+        }
+
+        @Override
+        public void onVideoLeftChange(float f) {
+            if (PreviewView.this.entry == null) {
+                return;
+            }
+            PreviewView.this.entry.left = f;
+            PreviewView.this.entry.editedMedia = true;
+            if (PreviewView.this.videoPlayer == null || PreviewView.this.videoPlayer.getDuration() == -9223372036854775807L) {
+                return;
+            }
+            PreviewView.this.seekTo(f * ((float) r0.videoPlayer.getDuration()));
+        }
+
+        @Override
+        public void onVideoRightChange(float f) {
+            if (PreviewView.this.entry == null) {
+                return;
+            }
+            PreviewView.this.entry.right = f;
+            PreviewView.this.entry.editedMedia = true;
+        }
+
+        @Override
+        public void onAudioLeftChange(float f) {
+            if (PreviewView.this.entry == null) {
+                return;
+            }
+            PreviewView.this.entry.audioLeft = f;
+            PreviewView.this.entry.editedMedia = true;
+            PreviewView.this.updateAudioPlayer(true);
+        }
+
+        @Override
+        public void onAudioRightChange(float f) {
+            if (PreviewView.this.entry == null) {
+                return;
+            }
+            PreviewView.this.entry.audioRight = f;
+            PreviewView.this.entry.editedMedia = true;
+            PreviewView.this.updateAudioPlayer(true);
+        }
+
+        @Override
+        public void onAudioOffsetChange(long j) {
+            if (PreviewView.this.entry == null) {
+                return;
+            }
+            PreviewView.this.entry.audioOffset = j;
+            PreviewView.this.entry.editedMedia = true;
+            PreviewView.this.updateAudioPlayer(true);
+        }
+
+        @Override
+        public void onAudioRemove() {
+            PreviewView.this.setupAudio((MessageObject) null, true);
+        }
+
+        @Override
+        public void onAudioVolumeChange(float f) {
+            if (PreviewView.this.entry == null) {
+                return;
+            }
+            PreviewView.this.entry.audioVolume = f;
+            PreviewView.this.entry.editedMedia = true;
+            PreviewView.this.checkVolumes();
+        }
+
+        @Override
+        public void onRoundLeftChange(float f) {
+            if (PreviewView.this.entry == null) {
+                return;
+            }
+            PreviewView.this.entry.roundLeft = f;
+            PreviewView.this.entry.editedMedia = true;
+            PreviewView.this.updateRoundPlayer(true);
+        }
+
+        @Override
+        public void onRoundRightChange(float f) {
+            if (PreviewView.this.entry == null) {
+                return;
+            }
+            PreviewView.this.entry.roundRight = f;
+            PreviewView.this.entry.editedMedia = true;
+            PreviewView.this.updateRoundPlayer(true);
+        }
+
+        @Override
+        public void onRoundOffsetChange(long j) {
+            if (PreviewView.this.entry == null) {
+                return;
+            }
+            PreviewView.this.entry.roundOffset = j;
+            PreviewView.this.entry.editedMedia = true;
+            PreviewView.this.updateRoundPlayer(true);
+        }
+
+        @Override
+        public void onRoundRemove() {
+            PreviewView.this.setupRound(null, null, true);
+            PreviewView.this.onRoundRemove();
+        }
+
+        @Override
+        public void onRoundVolumeChange(float f) {
+            if (PreviewView.this.entry == null) {
+                return;
+            }
+            PreviewView.this.entry.roundVolume = f;
+            PreviewView.this.entry.editedMedia = true;
+            PreviewView.this.checkVolumes();
+        }
+
+        @Override
+        public void onRoundSelectChange(boolean z) {
+            PreviewView.this.onRoundSelectChange(z);
+        }
+    }
+
     private void setupImage(final org.telegram.ui.Stories.recorder.StoryEntry r14) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.PreviewView.setupImage(org.telegram.ui.Stories.recorder.StoryEntry):void");
     }
@@ -734,12 +931,13 @@ public class PreviewView extends FrameLayout {
             }
         } else {
             Paint paint = this.gradientPaint;
+            float f = measuredHeight;
             StoryEntry storyEntry2 = this.entry;
             int i = storyEntry2.gradientTopColor;
             this.gradientTop = i;
             int i2 = storyEntry2.gradientBottomColor;
             this.gradientBottom = i2;
-            paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, measuredHeight, new int[]{i, i2}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
+            paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, f, new int[]{i, i2}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
             VideoEditTextureView videoEditTextureView = this.textureView;
             if (videoEditTextureView != null) {
                 videoEditTextureView.updateUiBlurGradient(this.gradientTop, this.gradientBottom);
@@ -916,7 +1114,6 @@ public class PreviewView extends FrameLayout {
         }
 
         AnonymousClass3(StoryEntry storyEntry, Runnable[] runnableArr) {
-            PreviewView.this = r1;
             this.val$entry = storyEntry;
             this.val$whenReadyFinal = runnableArr;
         }
@@ -1142,8 +1339,7 @@ public class PreviewView extends FrameLayout {
             public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
             }
 
-            {
-                PreviewView.this = this;
+            AnonymousClass4() {
             }
 
             @Override
@@ -1174,6 +1370,64 @@ public class PreviewView extends FrameLayout {
         updateRoundPlayer(true);
     }
 
+    public class AnonymousClass4 implements VideoPlayer.VideoPlayerDelegate {
+        @Override
+        public void onError(VideoPlayer videoPlayer4, Exception exc) {
+        }
+
+        @Override
+        public void onRenderedFirstFrame() {
+        }
+
+        @Override
+        public void onRenderedFirstFrame(AnalyticsListener.EventTime eventTime) {
+            VideoPlayer.VideoPlayerDelegate.CC.$default$onRenderedFirstFrame(this, eventTime);
+        }
+
+        @Override
+        public void onSeekFinished(AnalyticsListener.EventTime eventTime) {
+            VideoPlayer.VideoPlayerDelegate.CC.$default$onSeekFinished(this, eventTime);
+        }
+
+        @Override
+        public void onSeekStarted(AnalyticsListener.EventTime eventTime) {
+            VideoPlayer.VideoPlayerDelegate.CC.$default$onSeekStarted(this, eventTime);
+        }
+
+        @Override
+        public boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
+            return false;
+        }
+
+        @Override
+        public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+        }
+
+        AnonymousClass4() {
+        }
+
+        @Override
+        public void onStateChanged(boolean z2, int i) {
+            if (PreviewView.this.roundPlayer == null) {
+                return;
+            }
+            if (PreviewView.this.roundPlayer == null || !PreviewView.this.roundPlayer.isPlaying()) {
+                AndroidUtilities.cancelRunOnUIThread(PreviewView.this.updateRoundProgressRunnable);
+            } else {
+                AndroidUtilities.runOnUIThread(PreviewView.this.updateRoundProgressRunnable);
+            }
+        }
+
+        @Override
+        public void onVideoSizeChanged(int i, int i2, int i3, float f) {
+            PreviewView.this.roundPlayerWidth = i;
+            PreviewView.this.roundPlayerHeight = i2;
+            if (PreviewView.this.roundView != null) {
+                PreviewView.this.roundView.resizeTextureView(i, i2);
+            }
+        }
+    }
+
     public void attachRoundView(RoundView roundView) {
         VideoPlayer videoPlayer;
         this.roundView = roundView;
@@ -1201,14 +1455,14 @@ public class PreviewView extends FrameLayout {
             j = 0;
         }
         VideoPlayer videoPlayer3 = this.videoPlayer;
-        if (videoPlayer3 != null) {
-            long currentPosition = videoPlayer3.getCurrentPosition();
-            this.videoPlayer.pause();
-            this.videoPlayer.releasePlayer(true);
-            this.videoPlayer = null;
-            return currentPosition;
+        if (videoPlayer3 == null) {
+            return j;
         }
-        return j;
+        long currentPosition = videoPlayer3.getCurrentPosition();
+        this.videoPlayer.pause();
+        this.videoPlayer.releasePlayer(true);
+        this.videoPlayer = null;
+        return currentPosition;
     }
 
     public void setFilterTextureView(TextureView textureView, PhotoFilterView photoFilterView) {
@@ -1272,14 +1526,14 @@ public class PreviewView extends FrameLayout {
         if (storyEntry != null) {
             float f = (float) currentPosition;
             float f2 = storyEntry.audioLeft;
-            long j = storyEntry.audioDuration;
-            if ((f < f2 * ((float) j) || f > storyEntry.audioRight * ((float) j)) && System.currentTimeMillis() - this.seekedLastTime > 500) {
+            float f3 = (float) storyEntry.audioDuration;
+            if ((f < f2 * f3 || f > storyEntry.audioRight * f3) && System.currentTimeMillis() - this.seekedLastTime > 500) {
                 this.seekedLastTime = System.currentTimeMillis();
                 VideoPlayer videoPlayer2 = this.audioPlayer;
                 StoryEntry storyEntry2 = this.entry;
-                long j2 = storyEntry2.audioLeft * ((float) storyEntry2.audioDuration);
-                videoPlayer2.seekTo(j2);
-                currentPosition = j2;
+                long j = storyEntry2.audioLeft * ((float) storyEntry2.audioDuration);
+                videoPlayer2.seekTo(j);
+                currentPosition = j;
             }
         }
         this.timelineView.setProgress(currentPosition);
@@ -1299,15 +1553,15 @@ public class PreviewView extends FrameLayout {
         if (storyEntry != null) {
             float f = (float) currentPosition;
             float f2 = storyEntry.roundLeft;
-            long j = storyEntry.roundDuration;
-            if ((f < f2 * ((float) j) || f > storyEntry.roundRight * ((float) j)) && System.currentTimeMillis() - this.seekedLastTime > 500) {
+            float f3 = (float) storyEntry.roundDuration;
+            if ((f < f2 * f3 || f > storyEntry.roundRight * f3) && System.currentTimeMillis() - this.seekedLastTime > 500) {
                 this.seekedLastTime = System.currentTimeMillis();
                 VideoPlayer videoPlayer2 = this.roundPlayer;
                 StoryEntry storyEntry2 = this.entry;
-                long j2 = storyEntry2.roundLeft * ((float) storyEntry2.roundDuration);
-                videoPlayer2.seekTo(j2);
+                long j = storyEntry2.roundLeft * ((float) storyEntry2.roundDuration);
+                videoPlayer2.seekTo(j);
                 updateAudioPlayer(true);
-                currentPosition = j2;
+                currentPosition = j;
             }
         }
         this.timelineView.setProgress(currentPosition);
@@ -1322,7 +1576,6 @@ public class PreviewView extends FrameLayout {
     }
 
     public void updateRoundPlayer(boolean z) {
-        StoryEntry storyEntry;
         VideoPlayer videoPlayer = this.roundPlayer;
         if (videoPlayer == null || this.entry == null) {
             return;
@@ -1341,8 +1594,8 @@ public class PreviewView extends FrameLayout {
                 return;
             }
             float duration = ((float) currentPosition) / ((float) this.roundPlayer.getDuration());
-            StoryEntry storyEntry2 = this.entry;
-            if ((duration < storyEntry2.roundLeft || duration > storyEntry2.roundRight) && System.currentTimeMillis() - this.seekedLastTime > 500) {
+            StoryEntry storyEntry = this.entry;
+            if ((duration < storyEntry.roundLeft || duration > storyEntry.roundRight) && System.currentTimeMillis() - this.seekedLastTime > 500) {
                 this.seekedLastTime = System.currentTimeMillis();
                 this.roundPlayer.seekTo(-this.entry.roundOffset);
                 return;
@@ -1350,14 +1603,14 @@ public class PreviewView extends FrameLayout {
             return;
         }
         long currentPosition2 = videoPlayer2.getCurrentPosition();
-        StoryEntry storyEntry3 = this.entry;
-        long j = (storyEntry3.roundRight - storyEntry3.roundLeft) * ((float) storyEntry3.roundDuration);
-        long j2 = storyEntry3.roundOffset;
+        StoryEntry storyEntry2 = this.entry;
+        long j = (storyEntry2.roundRight - storyEntry2.roundLeft) * ((float) storyEntry2.roundDuration);
+        long j2 = storyEntry2.roundOffset;
         boolean z3 = currentPosition2 >= j2 && currentPosition2 <= j2 + j;
         if (this.videoPlayer.isPlaying() && z3) {
             z2 = true;
         }
-        long j3 = (currentPosition2 - this.entry.roundOffset) + (storyEntry.roundLeft * ((float) storyEntry.roundDuration));
+        long j3 = (currentPosition2 - this.entry.roundOffset) + (r5.roundLeft * ((float) r5.roundDuration));
         RoundView roundView2 = this.roundView;
         if (roundView2 != null) {
             roundView2.setShown(z3, true);
@@ -1365,8 +1618,10 @@ public class PreviewView extends FrameLayout {
         if (this.roundPlayer.isPlaying() != z2) {
             this.roundPlayer.setPlayWhenReady(z2);
             this.roundPlayer.seekTo(j3);
-        } else if (!z || Math.abs(this.roundPlayer.getCurrentPosition() - j3) <= 120) {
         } else {
+            if (!z || Math.abs(this.roundPlayer.getCurrentPosition() - j3) <= 120) {
+                return;
+            }
             this.roundPlayer.seekTo(j3);
         }
     }
@@ -1384,7 +1639,7 @@ public class PreviewView extends FrameLayout {
         float f;
         StoryEntry storyEntry;
         VideoPlayer videoPlayer = this.videoPlayer;
-        float f2 = 1.0f;
+        float f2 = 0.0f;
         if (videoPlayer != null) {
             videoPlayer.setVolume((this.isMuted || ((storyEntry = this.entry) != null && storyEntry.muted)) ? 0.0f : storyEntry != null ? storyEntry.videoVolume : 1.0f);
         }
@@ -1400,33 +1655,28 @@ public class PreviewView extends FrameLayout {
         }
         VideoPlayer videoPlayer3 = this.audioPlayer;
         if (videoPlayer3 != null) {
-            if (this.isMuted) {
-                f2 = 0.0f;
-            } else {
+            if (!this.isMuted) {
                 StoryEntry storyEntry3 = this.entry;
-                if (storyEntry3 != null) {
-                    f2 = storyEntry3.audioVolume;
-                }
+                f2 = storyEntry3 != null ? storyEntry3.audioVolume : 1.0f;
             }
             videoPlayer3.setVolume(f2);
         }
     }
 
     private void extractPointsData(Matrix matrix) {
-        StoryEntry storyEntry = this.entry;
-        if (storyEntry == null) {
+        if (this.entry == null) {
             return;
         }
         float[] fArr = this.vertices;
-        fArr[0] = storyEntry.width / 2.0f;
-        fArr[1] = storyEntry.height / 2.0f;
+        fArr[0] = r0.width / 2.0f;
+        fArr[1] = r0.height / 2.0f;
         matrix.mapPoints(fArr);
         float[] fArr2 = this.vertices;
         this.cx = fArr2[0];
         this.cy = fArr2[1];
-        StoryEntry storyEntry2 = this.entry;
-        fArr2[0] = storyEntry2.width;
-        fArr2[1] = storyEntry2.height / 2.0f;
+        StoryEntry storyEntry = this.entry;
+        fArr2[0] = storyEntry.width;
+        fArr2[1] = storyEntry.height / 2.0f;
         matrix.mapPoints(fArr2);
         float[] fArr3 = this.vertices;
         this.angle = (float) Math.toDegrees(Math.atan2(fArr3[1] - this.cy, fArr3[0] - this.cx));
@@ -1435,9 +1685,9 @@ public class PreviewView extends FrameLayout {
         float[] fArr4 = this.vertices;
         this.w = MathUtils.distance(f, f2, fArr4[0], fArr4[1]) * 2.0f;
         float[] fArr5 = this.vertices;
-        StoryEntry storyEntry3 = this.entry;
-        fArr5[0] = storyEntry3.width / 2.0f;
-        fArr5[1] = storyEntry3.height;
+        StoryEntry storyEntry2 = this.entry;
+        fArr5[0] = storyEntry2.width / 2.0f;
+        fArr5[1] = storyEntry2.height;
         matrix.mapPoints(fArr5);
         float f3 = this.cx;
         float f4 = this.cy;
@@ -1462,7 +1712,7 @@ public class PreviewView extends FrameLayout {
                 canvas.clipPath(path);
             }
             Drawable drawable = this.wallpaperDrawable;
-            float f = !(!(drawable instanceof MotionBackgroundDrawable) || ((MotionBackgroundDrawable) drawable).getPatternBitmap() != null) ? 0.0f : this.wallpaperDrawableCrossfade.set(1.0f);
+            float f = ((drawable instanceof MotionBackgroundDrawable) && ((MotionBackgroundDrawable) drawable).getPatternBitmap() == null) ? 0.0f : this.wallpaperDrawableCrossfade.set(1.0f);
             Drawable drawable2 = this.lastWallpaperDrawable;
             if (drawable2 != null && f < 1.0f) {
                 drawable2.setAlpha((int) ((1.0f - f) * 255.0f));
@@ -1561,120 +1811,119 @@ public class PreviewView extends FrameLayout {
     private boolean touchEvent(MotionEvent motionEvent) {
         double d;
         float f;
-        if (this.allowCropping) {
-            boolean z = motionEvent.getPointerCount() > 1;
-            if (z) {
-                this.touch.x = (motionEvent.getX(0) + motionEvent.getX(1)) / 2.0f;
-                this.touch.y = (motionEvent.getY(0) + motionEvent.getY(1)) / 2.0f;
-                f = MathUtils.distance(motionEvent.getX(0), motionEvent.getY(0), motionEvent.getX(1), motionEvent.getY(1));
-                d = Math.atan2(motionEvent.getY(1) - motionEvent.getY(0), motionEvent.getX(1) - motionEvent.getX(0));
-            } else {
-                this.touch.x = motionEvent.getX(0);
-                this.touch.y = motionEvent.getY(0);
-                d = 0.0d;
-                f = 0.0f;
-            }
-            if (this.multitouch != z) {
-                PointF pointF = this.lastTouch;
-                PointF pointF2 = this.touch;
-                pointF.x = pointF2.x;
-                pointF.y = pointF2.y;
-                this.lastTouchDistance = f;
-                this.lastTouchRotation = d;
-                this.multitouch = z;
-            }
-            StoryEntry storyEntry = this.entry;
-            if (storyEntry == null) {
-                return false;
-            }
-            float width = storyEntry.resultWidth / getWidth();
-            if (motionEvent.getActionMasked() == 0) {
-                this.rotationDiff = 0.0f;
-                this.snappedRotation = false;
-                this.snappedToCenterAndScaled = false;
-                this.doNotSpanRotation = false;
-                invalidate();
-                this.moving = true;
-                this.touchMatrix.set(this.entry.matrix);
-            }
-            if (motionEvent.getActionMasked() == 2 && this.moving && this.entry != null) {
-                PointF pointF3 = this.touch;
-                float f2 = pointF3.x * width;
-                float f3 = pointF3.y * width;
-                PointF pointF4 = this.lastTouch;
-                float f4 = pointF4.x * width;
-                float f5 = pointF4.y * width;
-                if (motionEvent.getPointerCount() > 1) {
-                    float f6 = this.lastTouchDistance;
-                    if (f6 != 0.0f) {
-                        float f7 = f / f6;
-                        this.touchMatrix.postScale(f7, f7, f2, f3);
-                    }
-                    float degrees = (float) Math.toDegrees(d - this.lastTouchRotation);
-                    float f8 = this.rotationDiff + degrees;
-                    this.rotationDiff = f8;
-                    if (!this.allowRotation) {
-                        boolean z2 = Math.abs(f8) > 20.0f;
-                        this.allowRotation = z2;
-                        if (!z2) {
-                            extractPointsData(this.touchMatrix);
-                            this.allowRotation = (((float) Math.round(this.angle / 90.0f)) * 90.0f) - this.angle > 20.0f;
-                        }
-                        if (!this.snappedRotation) {
-                            AndroidUtilities.vibrateCursor(this);
-                            this.snappedRotation = true;
-                        }
-                    }
-                    if (this.allowRotation) {
-                        this.touchMatrix.postRotate(degrees, f2, f3);
-                    }
-                    this.allowWithSingleTouch = true;
-                }
-                if (motionEvent.getPointerCount() > 1 || this.allowWithSingleTouch) {
-                    this.touchMatrix.postTranslate(f2 - f4, f3 - f5);
-                }
-                this.finalMatrix.set(this.touchMatrix);
-                this.matrix.set(this.touchMatrix);
-                extractPointsData(this.matrix);
-                float round = (Math.round(this.angle / 90.0f) * 90.0f) - this.angle;
-                if (this.allowRotation && !this.doNotSpanRotation) {
-                    if (Math.abs(round) < 3.5f) {
-                        this.finalMatrix.postRotate(round, this.cx, this.cy);
-                        if (!this.snappedRotation) {
-                            AndroidUtilities.vibrateCursor(this);
-                            this.snappedRotation = true;
-                        }
-                    } else {
-                        this.snappedRotation = false;
-                    }
-                }
-                this.entry.matrix.set(this.finalMatrix);
-                this.entry.editedMedia = true;
-                applyMatrix();
-                invalidate();
-            }
-            if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                if (motionEvent.getPointerCount() <= 1) {
-                    this.allowWithSingleTouch = false;
-                    onEntityDraggedTop(false);
-                    onEntityDraggedBottom(false);
-                }
-                this.moving = false;
-                this.allowRotation = false;
-                this.rotationDiff = 0.0f;
-                this.snappedToCenterAndScaled = false;
-                this.snappedRotation = false;
-                invalidate();
-            }
-            PointF pointF5 = this.lastTouch;
-            PointF pointF6 = this.touch;
-            pointF5.x = pointF6.x;
-            pointF5.y = pointF6.y;
+        if (!this.allowCropping) {
+            return false;
+        }
+        boolean z = motionEvent.getPointerCount() > 1;
+        if (z) {
+            this.touch.x = (motionEvent.getX(0) + motionEvent.getX(1)) / 2.0f;
+            this.touch.y = (motionEvent.getY(0) + motionEvent.getY(1)) / 2.0f;
+            f = MathUtils.distance(motionEvent.getX(0), motionEvent.getY(0), motionEvent.getX(1), motionEvent.getY(1));
+            d = Math.atan2(motionEvent.getY(1) - motionEvent.getY(0), motionEvent.getX(1) - motionEvent.getX(0));
+        } else {
+            this.touch.x = motionEvent.getX(0);
+            this.touch.y = motionEvent.getY(0);
+            d = 0.0d;
+            f = 0.0f;
+        }
+        if (this.multitouch != z) {
+            PointF pointF = this.lastTouch;
+            PointF pointF2 = this.touch;
+            pointF.x = pointF2.x;
+            pointF.y = pointF2.y;
             this.lastTouchDistance = f;
             this.lastTouchRotation = d;
-            return true;
+            this.multitouch = z;
         }
-        return false;
+        if (this.entry == null) {
+            return false;
+        }
+        float width = r2.resultWidth / getWidth();
+        if (motionEvent.getActionMasked() == 0) {
+            this.rotationDiff = 0.0f;
+            this.snappedRotation = false;
+            this.snappedToCenterAndScaled = false;
+            this.doNotSpanRotation = false;
+            invalidate();
+            this.moving = true;
+            this.touchMatrix.set(this.entry.matrix);
+        }
+        if (motionEvent.getActionMasked() == 2 && this.moving && this.entry != null) {
+            PointF pointF3 = this.touch;
+            float f2 = pointF3.x * width;
+            float f3 = pointF3.y * width;
+            PointF pointF4 = this.lastTouch;
+            float f4 = pointF4.x * width;
+            float f5 = pointF4.y * width;
+            if (motionEvent.getPointerCount() > 1) {
+                float f6 = this.lastTouchDistance;
+                if (f6 != 0.0f) {
+                    float f7 = f / f6;
+                    this.touchMatrix.postScale(f7, f7, f2, f3);
+                }
+                float degrees = (float) Math.toDegrees(d - this.lastTouchRotation);
+                float f8 = this.rotationDiff + degrees;
+                this.rotationDiff = f8;
+                if (!this.allowRotation) {
+                    boolean z2 = Math.abs(f8) > 20.0f;
+                    this.allowRotation = z2;
+                    if (!z2) {
+                        extractPointsData(this.touchMatrix);
+                        this.allowRotation = (((float) Math.round(this.angle / 90.0f)) * 90.0f) - this.angle > 20.0f;
+                    }
+                    if (!this.snappedRotation) {
+                        AndroidUtilities.vibrateCursor(this);
+                        this.snappedRotation = true;
+                    }
+                }
+                if (this.allowRotation) {
+                    this.touchMatrix.postRotate(degrees, f2, f3);
+                }
+                this.allowWithSingleTouch = true;
+            }
+            if (motionEvent.getPointerCount() > 1 || this.allowWithSingleTouch) {
+                this.touchMatrix.postTranslate(f2 - f4, f3 - f5);
+            }
+            this.finalMatrix.set(this.touchMatrix);
+            this.matrix.set(this.touchMatrix);
+            extractPointsData(this.matrix);
+            float round = (Math.round(this.angle / 90.0f) * 90.0f) - this.angle;
+            if (this.allowRotation && !this.doNotSpanRotation) {
+                if (Math.abs(round) < 3.5f) {
+                    this.finalMatrix.postRotate(round, this.cx, this.cy);
+                    if (!this.snappedRotation) {
+                        AndroidUtilities.vibrateCursor(this);
+                        this.snappedRotation = true;
+                    }
+                } else {
+                    this.snappedRotation = false;
+                }
+            }
+            this.entry.matrix.set(this.finalMatrix);
+            this.entry.editedMedia = true;
+            applyMatrix();
+            invalidate();
+        }
+        if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+            if (motionEvent.getPointerCount() <= 1) {
+                this.allowWithSingleTouch = false;
+                onEntityDraggedTop(false);
+                onEntityDraggedBottom(false);
+            }
+            this.moving = false;
+            this.allowRotation = false;
+            this.rotationDiff = 0.0f;
+            this.snappedToCenterAndScaled = false;
+            this.snappedRotation = false;
+            invalidate();
+        }
+        PointF pointF5 = this.lastTouch;
+        PointF pointF6 = this.touch;
+        pointF5.x = pointF6.x;
+        pointF5.y = pointF6.y;
+        this.lastTouchDistance = f;
+        this.lastTouchRotation = d;
+        return true;
     }
 
     private boolean tapTouchEvent(MotionEvent motionEvent) {
@@ -1682,18 +1931,19 @@ public class PreviewView extends FrameLayout {
         if (motionEvent.getAction() == 0) {
             this.tapTime = System.currentTimeMillis();
             return true;
-        } else if (motionEvent.getAction() == 1) {
+        }
+        if (motionEvent.getAction() == 1) {
             if (System.currentTimeMillis() - this.tapTime <= ViewConfiguration.getTapTimeout() && (runnable = this.onTap) != null) {
                 runnable.run();
             }
             this.tapTime = 0L;
             return true;
-        } else if (motionEvent.getAction() == 3) {
-            this.tapTime = 0L;
-            return false;
-        } else {
+        }
+        if (motionEvent.getAction() != 3) {
             return false;
         }
+        this.tapTime = 0L;
+        return false;
     }
 
     public void setOnTapListener(Runnable runnable) {

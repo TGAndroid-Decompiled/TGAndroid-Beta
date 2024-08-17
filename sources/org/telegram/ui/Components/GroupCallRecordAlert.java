@@ -28,6 +28,7 @@ import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.GroupCallRecordAlert;
+
 public class GroupCallRecordAlert extends BottomSheet {
     private int currentPage;
     private float pageOffset;
@@ -131,10 +132,11 @@ public class GroupCallRecordAlert extends BottomSheet {
             }
         });
         View view = new View(getContext());
-        view.setBackground(new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, new int[]{color, 0}));
+        GradientDrawable.Orientation orientation = GradientDrawable.Orientation.LEFT_RIGHT;
+        view.setBackground(new GradientDrawable(orientation, new int[]{color, 0}));
         this.containerView.addView(view, LayoutHelper.createFrame(120, -1.0f, 51, 0.0f, 100.0f, 0.0f, 130.0f));
         View view2 = new View(getContext());
-        view2.setBackground(new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, new int[]{0, color}));
+        view2.setBackground(new GradientDrawable(orientation, new int[]{0, color}));
         this.containerView.addView(view2, LayoutHelper.createFrame(120, -1.0f, 53, 0.0f, 100.0f, 0.0f, 130.0f));
         TextView textView3 = new TextView(getContext()) {
             private Paint[] gradientPaint;
@@ -153,7 +155,7 @@ public class GroupCallRecordAlert extends BottomSheet {
             }
 
             @Override
-            protected void onSizeChanged(int r26, int r27, int r28, int r29) {
+            protected void onSizeChanged(int r24, int r25, int r26, int r27) {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.GroupCallRecordAlert.AnonymousClass3.onSizeChanged(int, int, int, int):void");
             }
 
@@ -246,11 +248,11 @@ public class GroupCallRecordAlert extends BottomSheet {
         int i = this.currentPage;
         TextView textView = textViewArr[i];
         TextView textView2 = i < textViewArr.length + (-1) ? textViewArr[i + 1] : null;
-        int measuredWidth = this.containerView.getMeasuredWidth() / 2;
+        this.containerView.getMeasuredWidth();
         float left = textView.getLeft() + (textView.getMeasuredWidth() / 2);
-        float measuredWidth2 = (this.containerView.getMeasuredWidth() / 2) - left;
+        float measuredWidth = (this.containerView.getMeasuredWidth() / 2) - left;
         if (textView2 != null) {
-            measuredWidth2 -= ((textView2.getLeft() + (textView2.getMeasuredWidth() / 2)) - left) * this.pageOffset;
+            measuredWidth -= ((textView2.getLeft() + (textView2.getMeasuredWidth() / 2)) - left) * this.pageOffset;
         }
         int i2 = 0;
         while (true) {
@@ -275,7 +277,7 @@ public class GroupCallRecordAlert extends BottomSheet {
                 this.titles[i2].setScaleY(f);
                 i2++;
             } else {
-                this.titlesLayout.setTranslationX(measuredWidth2);
+                this.titlesLayout.setTranslationX(measuredWidth);
                 this.positiveButton.invalidate();
                 return;
             }

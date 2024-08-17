@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_starsSubscription extends TLRPC$StarsSubscription {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

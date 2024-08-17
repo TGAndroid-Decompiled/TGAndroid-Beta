@@ -2,6 +2,7 @@ package org.telegram.tgnet.tl;
 
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLRPC$Update;
+
 public class TL_bots$TL_updateBotMenuButton extends TLRPC$Update {
     public long bot_id;
     public TL_bots$BotMenuButton button;

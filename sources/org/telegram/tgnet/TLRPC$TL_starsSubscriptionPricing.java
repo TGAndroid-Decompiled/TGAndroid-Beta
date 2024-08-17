@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_starsSubscriptionPricing extends TLObject {
     public long amount;
     public int period;

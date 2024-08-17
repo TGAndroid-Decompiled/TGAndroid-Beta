@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+
 public class SuperRippleFallback extends ISuperRipple {
     public final int MAX_COUNT;
     public final ArrayList<Effect> effects;
@@ -155,23 +156,24 @@ public class SuperRippleFallback extends ISuperRipple {
             Effect next = it.next();
             double d = next.t / next.duration;
             Double.isNaN(d);
-            float f6 = next.intensity;
-            f5 *= (1.0f - (f6 * 0.04f)) + (f6 * 0.04f * (1.0f - ((float) Math.sin(d * 3.141592653589793d))));
-            f3 += next.cx * 1.0f;
-            f4 += next.cy * 1.0f;
+            float sin = 1.0f - ((float) Math.sin(d * 3.141592653589793d));
+            float f6 = next.intensity * 0.04f;
+            f5 *= (1.0f - f6) + (f6 * sin);
+            f4 += next.cx * 1.0f;
+            f3 += next.cy * 1.0f;
             f2 += 1.0f;
         }
         if (f2 < 1.0f) {
             float f7 = 1.0f - f2;
-            f3 += (this.view.getWidth() / 2.0f) * f7;
-            f4 += (this.view.getHeight() / 2.0f) * f7;
+            f4 += (this.view.getWidth() / 2.0f) * f7;
+            f3 += (this.view.getHeight() / 2.0f) * f7;
         } else {
             f = f2;
         }
         this.view.setScaleX(f5);
         this.view.setScaleY(f5);
-        this.view.setPivotX(f3 / f);
-        this.view.setPivotY(f4 / f);
+        this.view.setPivotX(f4 / f);
+        this.view.setPivotY(f3 / f);
         outlineProvider = this.view.getOutlineProvider();
         if (outlineProvider != (this.effects.isEmpty() ? null : this.outlineProvider)) {
             this.view.setOutlineProvider(this.effects.isEmpty() ? null : this.outlineProvider);

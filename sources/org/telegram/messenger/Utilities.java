@@ -20,6 +20,7 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.telegram.tgnet.ConnectionsManager;
+
 public class Utilities {
     private static final String RANDOM_STRING_CHARS = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     public static volatile DispatchQueue videoPlayerQueue;
@@ -115,10 +116,6 @@ public class Utilities {
 
     public static native long getLastUsageFileTime(String str);
 
-    public static byte[] intToBytes(int i) {
-        return new byte[]{(byte) (i >>> 24), (byte) (i >>> 16), (byte) (i >>> 8), (byte) i};
-    }
-
     public static native int needInvert(Object obj, int i, int i2, int i3, int i4);
 
     private static native int pbkdf2(byte[] bArr, byte[] bArr2, byte[] bArr3, int i);
@@ -192,8 +189,7 @@ public class Utilities {
         } else {
             createBitmap = Bitmap.createBitmap(450, Math.round((bitmap.getHeight() * 450.0f) / bitmap.getWidth()), Bitmap.Config.ARGB_8888);
         }
-        Paint paint = new Paint(2);
-        new Canvas(createBitmap).drawBitmap(bitmap, (Rect) null, new Rect(0, 0, createBitmap.getWidth(), createBitmap.getHeight()), paint);
+        new Canvas(createBitmap).drawBitmap(bitmap, (Rect) null, new Rect(0, 0, createBitmap.getWidth(), createBitmap.getHeight()), new Paint(2));
         stackBlurBitmap(createBitmap, 12);
         return createBitmap;
     }
@@ -304,11 +300,11 @@ public class Utilities {
         }
         char[] cArr = new char[bArr.length * 2];
         for (int i = 0; i < bArr.length; i++) {
-            int i2 = bArr[i] & 255;
-            int i3 = i * 2;
+            byte b = bArr[i];
+            int i2 = i * 2;
             char[] cArr2 = hexArray;
-            cArr[i3] = cArr2[i2 >>> 4];
-            cArr[i3 + 1] = cArr2[i2 & 15];
+            cArr[i2] = cArr2[(b & 255) >>> 4];
+            cArr[i2 + 1] = cArr2[b & 15];
         }
         return new String(cArr);
     }
@@ -488,6 +484,10 @@ public class Utilities {
         return ((bArr[3] & 255) << 24) + ((bArr[2] & 255) << 16) + ((bArr[1] & 255) << 8) + (bArr[0] & 255);
     }
 
+    public static byte[] intToBytes(int i) {
+        return new byte[]{(byte) (i >>> 24), (byte) (i >>> 16), (byte) (i >>> 8), (byte) i};
+    }
+
     public static String MD5(String str) {
         if (str == null) {
             return null;
@@ -592,19 +592,18 @@ public class Utilities {
         if (callbackArr == null || callbackArr.length == 0) {
             if (runnable != null) {
                 runnable.run();
-                return;
             }
-            return;
-        }
-        final int[] iArr = {0};
-        Runnable runnable2 = new Runnable() {
-            @Override
-            public final void run() {
-                Utilities.lambda$raceCallbacks$1(iArr, callbackArr, runnable);
+        } else {
+            final int[] iArr = {0};
+            Runnable runnable2 = new Runnable() {
+                @Override
+                public final void run() {
+                    Utilities.lambda$raceCallbacks$1(iArr, callbackArr, runnable);
+                }
+            };
+            for (Callback<Runnable> callback : callbackArr) {
+                callback.run(runnable2);
             }
-        };
-        for (Callback<Runnable> callback : callbackArr) {
-            callback.run(runnable2);
         }
     }
 

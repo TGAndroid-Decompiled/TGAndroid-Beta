@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_inputMediaPoll extends TLRPC$InputMedia {
     public TLRPC$Poll poll;
     public String solution;
@@ -18,10 +19,11 @@ public class TLRPC$TL_inputMediaPoll extends TLRPC$InputMedia {
                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
                 }
                 return;
-            }
-            int readInt322 = abstractSerializedData.readInt32(z);
-            for (int i = 0; i < readInt322; i++) {
-                this.correct_answers.add(abstractSerializedData.readByteArray(z));
+            } else {
+                int readInt322 = abstractSerializedData.readInt32(z);
+                for (int i = 0; i < readInt322; i++) {
+                    this.correct_answers.add(abstractSerializedData.readByteArray(z));
+                }
             }
         }
         if ((this.flags & 2) != 0) {

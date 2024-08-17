@@ -25,6 +25,7 @@ import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.GroupCreateCheckBox;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.PremiumGradient;
+
 public class DrawerUserCell extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private int accountNumber;
     private AvatarDrawable avatarDrawable;
@@ -107,11 +108,16 @@ public class DrawerUserCell extends FrameLayout implements NotificationCenter.No
             int i3 = this.accountNumber;
             if (i2 == i3) {
                 setAccount(i3);
+                return;
             }
-        } else if (i == NotificationCenter.emojiLoaded) {
+            return;
+        }
+        if (i == NotificationCenter.emojiLoaded) {
             this.textView.invalidate();
-        } else if (i != NotificationCenter.updateInterfaces || (((Integer) objArr[0]).intValue() & MessagesController.UPDATE_MASK_EMOJI_STATUS) <= 0) {
         } else {
+            if (i != NotificationCenter.updateInterfaces || (((Integer) objArr[0]).intValue() & MessagesController.UPDATE_MASK_EMOJI_STATUS) <= 0) {
+                return;
+            }
             setAccount(this.accountNumber);
         }
     }
@@ -167,11 +173,10 @@ public class DrawerUserCell extends FrameLayout implements NotificationCenter.No
         int dp = AndroidUtilities.dp(12.5f);
         int ceil = (int) Math.ceil(Theme.dialogs_countTextPaint.measureText(format));
         int max = Math.max(AndroidUtilities.dp(10.0f), ceil);
-        int measuredWidth = ((getMeasuredWidth() - max) - AndroidUtilities.dp(25.0f)) - AndroidUtilities.dp(5.5f);
-        this.rect.set(measuredWidth, dp, measuredWidth + max + AndroidUtilities.dp(14.0f), AndroidUtilities.dp(23.0f) + dp);
+        this.rect.set(((getMeasuredWidth() - max) - AndroidUtilities.dp(25.0f)) - AndroidUtilities.dp(5.5f), dp, r4 + max + AndroidUtilities.dp(14.0f), AndroidUtilities.dp(23.0f) + dp);
         RectF rectF = this.rect;
-        float f = AndroidUtilities.density;
-        canvas.drawRoundRect(rectF, f * 11.5f, f * 11.5f, Theme.dialogs_countPaint);
+        float f = AndroidUtilities.density * 11.5f;
+        canvas.drawRoundRect(rectF, f, f, Theme.dialogs_countPaint);
         RectF rectF2 = this.rect;
         canvas.drawText(format, rectF2.left + ((rectF2.width() - ceil) / 2.0f), dp + AndroidUtilities.dp(16.0f), Theme.dialogs_countTextPaint);
         this.textView.setRightPadding(max + AndroidUtilities.dp(26.0f));

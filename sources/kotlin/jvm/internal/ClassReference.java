@@ -38,6 +38,7 @@ import kotlin.jvm.functions.Function8;
 import kotlin.jvm.functions.Function9;
 import kotlin.reflect.KClass;
 import kotlin.text.StringsKt__StringsKt;
+
 public final class ClassReference implements KClass<Object>, ClassBasedDeclarationContainer {
     public static final Companion Companion = new Companion(null);
     private static final Map<Class<Object>, Integer> FUNCTION_CLASSES;
@@ -155,8 +156,7 @@ public final class ClassReference implements KClass<Object>, ClassBasedDeclarati
             hashMap3.put(pair.getFirst(), pair.getSecond());
         }
         for (Map.Entry<Class<Object>, Integer> entry : FUNCTION_CLASSES.entrySet()) {
-            int intValue = entry.getValue().intValue();
-            hashMap3.put(entry.getKey().getName(), "kotlin.Function" + intValue);
+            hashMap3.put(entry.getKey().getName(), "kotlin.Function" + entry.getValue().intValue());
         }
         classFqNames = hashMap3;
         mapCapacity = MapsKt__MapsJVMKt.mapCapacity(hashMap3.size());

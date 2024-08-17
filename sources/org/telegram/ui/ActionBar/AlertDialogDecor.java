@@ -23,6 +23,7 @@ import androidx.core.view.WindowInsetsCompat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.Theme;
+
 public class AlertDialogDecor extends AlertDialog {
     private static final int[] ATTRS = {16842932, 16842933};
     private View contentView;

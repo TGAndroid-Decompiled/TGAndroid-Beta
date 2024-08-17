@@ -2,6 +2,7 @@ package org.telegram.tgnet;
 
 import org.telegram.tgnet.tl.TL_bots$BotInfo;
 import org.telegram.tgnet.tl.TL_stories$PeerStories;
+
 public class TLRPC$TL_channelFull extends TLRPC$ChatFull {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -115,10 +116,11 @@ public class TLRPC$TL_channelFull extends TLRPC$ChatFull {
                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt325)));
                 }
                 return;
-            }
-            int readInt326 = abstractSerializedData.readInt32(z);
-            for (int i2 = 0; i2 < readInt326; i2++) {
-                this.pending_suggestions.add(abstractSerializedData.readString(z));
+            } else {
+                int readInt326 = abstractSerializedData.readInt32(z);
+                for (int i2 = 0; i2 < readInt326; i2++) {
+                    this.pending_suggestions.add(abstractSerializedData.readString(z));
+                }
             }
         }
         if ((this.flags & 67108864) != 0) {
@@ -137,10 +139,11 @@ public class TLRPC$TL_channelFull extends TLRPC$ChatFull {
                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt327)));
                 }
                 return;
-            }
-            int readInt328 = abstractSerializedData.readInt32(z);
-            for (int i3 = 0; i3 < readInt328; i3++) {
-                this.recent_requesters.add(Long.valueOf(abstractSerializedData.readInt64(z)));
+            } else {
+                int readInt328 = abstractSerializedData.readInt32(z);
+                for (int i3 = 0; i3 < readInt328; i3++) {
+                    this.recent_requesters.add(Long.valueOf(abstractSerializedData.readInt64(z)));
+                }
             }
         }
         if ((this.flags & 536870912) != 0) {

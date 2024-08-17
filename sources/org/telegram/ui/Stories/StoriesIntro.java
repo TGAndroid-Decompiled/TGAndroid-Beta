@@ -28,6 +28,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieDrawable;
+
 @SuppressLint({"ViewConstructor"})
 public class StoriesIntro extends FrameLayout {
     private int current;
@@ -256,22 +257,24 @@ public class StoriesIntro extends FrameLayout {
         protected void onMeasure(int i, int i2) {
             super.onMeasure(i, i2);
             int dp = AndroidUtilities.dp(40.0f);
+            int measuredHeight = getMeasuredHeight() / 2;
             int dp2 = AndroidUtilities.dp(36.0f);
             int i3 = dp2 / 2;
             int i4 = dp - i3;
-            int measuredHeight = (getMeasuredHeight() / 2) - i3;
-            this.lottieDrawable.setBounds(i4, measuredHeight, i4 + dp2, dp2 + measuredHeight);
+            int i5 = measuredHeight - i3;
+            this.lottieDrawable.setBounds(i4, i5, i4 + dp2, dp2 + i5);
         }
 
         @Override
         protected void onDraw(Canvas canvas) {
             super.onDraw(canvas);
             int dp = AndroidUtilities.dp(40.0f);
+            int measuredHeight = getMeasuredHeight() / 2;
             int dp2 = (int) (AndroidUtilities.dp(36.0f) + (AndroidUtilities.dp(8.0f) * this.progress));
             int i = dp2 / 2;
             int i2 = dp - i;
-            int measuredHeight = (getMeasuredHeight() / 2) - i;
-            this.lottieDrawable.setBounds(i2, measuredHeight, i2 + dp2, dp2 + measuredHeight);
+            int i3 = measuredHeight - i;
+            this.lottieDrawable.setBounds(i2, i3, i2 + dp2, dp2 + i3);
             this.lottieDrawable.draw(canvas);
             if (this.progress > 0.0f) {
                 float dpf2 = AndroidUtilities.dpf2(4.0f) * (1.0f - this.progress);
@@ -280,8 +283,8 @@ public class StoriesIntro extends FrameLayout {
                 this.backgroundPaint.setAlpha((int) (this.progress * 30.0f));
                 canvas.drawRoundRect(this.rectF, AndroidUtilities.dpf2(12.0f), AndroidUtilities.dpf2(12.0f), this.backgroundPaint);
                 canvas.save();
-                float f2 = this.progress;
-                canvas.scale((f2 * 0.05f) + 1.0f, (f2 * 0.05f) + 1.0f, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
+                float f2 = (this.progress * 0.05f) + 1.0f;
+                canvas.scale(f2, f2, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
             }
             canvas.drawText(this.header, AndroidUtilities.dpf2(80.0f), (getMeasuredHeight() / 2.0f) - AndroidUtilities.dpf2(4.0f), this.headerTextPaint);
             canvas.drawText(this.subHeader, AndroidUtilities.dpf2(80.0f), (getMeasuredHeight() / 2.0f) + AndroidUtilities.dpf2(18.0f), this.subHeaderTextPaint);

@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messageActionSetChatWallPaper extends TLRPC$MessageAction {
     public boolean for_both;
     public boolean same;

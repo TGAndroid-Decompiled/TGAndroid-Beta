@@ -9,6 +9,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.Premium.PremiumGradient;
+
 public class AvatarsImageView extends View {
     public final AvatarsDrawable avatarsDrawable;
     private Paint plusBgPaint;

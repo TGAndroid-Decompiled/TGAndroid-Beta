@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.StateSet;
 import android.view.MotionEvent;
+
 public class ClickableAnimatedTextView extends AnimatedTextView {
     private Drawable backgroundDrawable;
     private final android.graphics.Rect bounds;

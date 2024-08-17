@@ -4,6 +4,7 @@ import android.os.SystemClock;
 import android.util.SparseIntArray;
 import java.util.LinkedList;
 import org.telegram.ui.Components.Reactions.HwEmojis;
+
 public class DispatchQueuePool {
     private boolean cleanupScheduled;
     private int createdCount;
@@ -33,10 +34,10 @@ public class DispatchQueuePool {
             }
             if (DispatchQueuePool.this.queues.isEmpty() && DispatchQueuePool.this.busyQueues.isEmpty()) {
                 DispatchQueuePool.this.cleanupScheduled = false;
-                return;
+            } else {
+                AndroidUtilities.runOnUIThread(this, 30000L);
+                DispatchQueuePool.this.cleanupScheduled = true;
             }
-            AndroidUtilities.runOnUIThread(this, 30000L);
-            DispatchQueuePool.this.cleanupScheduled = true;
         }
     };
     private int guid = Utilities.random.nextInt();

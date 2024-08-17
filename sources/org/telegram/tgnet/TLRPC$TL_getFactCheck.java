@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_getFactCheck extends TLObject {
     public ArrayList<Integer> msg_id = new ArrayList<>();
     public TLRPC$InputPeer peer;

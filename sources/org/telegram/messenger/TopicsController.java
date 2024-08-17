@@ -39,6 +39,7 @@ import org.telegram.tgnet.TLRPC$messages_Messages;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.Components.Forum.ForumUtilities;
+
 public class TopicsController extends BaseController {
     public static final int LOAD_TYPE_LOAD_NEXT = 1;
     public static final int LOAD_TYPE_LOAD_UNKNOWN = 2;
@@ -108,7 +109,7 @@ public class TopicsController extends BaseController {
         if (z) {
             getMessagesStorage().loadTopics(-j, new Consumer() {
                 @Override
-                public final void accept(Object obj) {
+                public final void r(Object obj) {
                     TopicsController.this.lambda$loadTopics$1(j, z, i, (ArrayList) obj);
                 }
 
@@ -202,7 +203,9 @@ public class TopicsController extends BaseController {
             TLRPC$TL_forumTopic tLRPC$TL_forumTopic = arrayList.get(arrayList.size() - 1);
             TLRPC$Message tLRPC$Message = (TLRPC$Message) sparseArray.get(tLRPC$TL_forumTopic.top_message);
             saveLoadOffset(j, tLRPC$TL_forumTopic.top_message, tLRPC$Message == null ? 0 : tLRPC$Message.date, tLRPC$TL_forumTopic.id);
-        } else if (getTopics(j) == null || getTopics(j).size() < tLRPC$TL_messages_forumTopics.count) {
+            return;
+        }
+        if (getTopics(j) == null || getTopics(j).size() < tLRPC$TL_messages_forumTopics.count) {
             clearLoadingOffset(j);
             loadTopics(j);
         }
@@ -213,7 +216,7 @@ public class TopicsController extends BaseController {
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.topicsDidLoaded, Long.valueOf(j), Boolean.FALSE);
     }
 
-    public void processTopics(final long r18, java.util.ArrayList<org.telegram.tgnet.TLRPC$TL_forumTopic> r20, android.util.SparseArray<org.telegram.tgnet.TLRPC$Message> r21, boolean r22, int r23, int r24) {
+    public void processTopics(final long r20, java.util.ArrayList<org.telegram.tgnet.TLRPC$TL_forumTopic> r22, android.util.SparseArray<org.telegram.tgnet.TLRPC$Message> r23, boolean r24, int r25, int r26) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.TopicsController.processTopics(long, java.util.ArrayList, android.util.SparseArray, boolean, int, int):void");
     }
 
@@ -257,14 +260,14 @@ public class TopicsController extends BaseController {
         boolean z3 = tLRPC$TL_forumTopic2.pinned;
         if (z2 != z3) {
             return z2 ? -1 : 1;
-        } else if (z2 && z3) {
-            return tLRPC$TL_forumTopic.pinnedOrder - tLRPC$TL_forumTopic2.pinnedOrder;
-        } else {
-            TLRPC$Message tLRPC$Message = tLRPC$TL_forumTopic2.topMessage;
-            int i = tLRPC$Message != null ? tLRPC$Message.date : 0;
-            TLRPC$Message tLRPC$Message2 = tLRPC$TL_forumTopic.topMessage;
-            return i - (tLRPC$Message2 != null ? tLRPC$Message2.date : 0);
         }
+        if (z2 && z3) {
+            return tLRPC$TL_forumTopic.pinnedOrder - tLRPC$TL_forumTopic2.pinnedOrder;
+        }
+        TLRPC$Message tLRPC$Message = tLRPC$TL_forumTopic2.topMessage;
+        int i = tLRPC$Message != null ? tLRPC$Message.date : 0;
+        TLRPC$Message tLRPC$Message2 = tLRPC$TL_forumTopic.topMessage;
+        return i - (tLRPC$Message2 != null ? tLRPC$Message2.date : 0);
     }
 
     public void updateTopicsWithDeletedMessages(final long j, final ArrayList<Integer> arrayList) {
@@ -289,7 +292,7 @@ public class TopicsController extends BaseController {
         });
     }
 
-    public void lambda$updateTopicsWithDeletedMessages$8(long r16, java.util.ArrayList r18, final long r19) {
+    public void lambda$updateTopicsWithDeletedMessages$8(long r17, java.util.ArrayList r19, final long r20) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.TopicsController.lambda$updateTopicsWithDeletedMessages$8(long, java.util.ArrayList, long):void");
     }
 
@@ -407,7 +410,10 @@ public class TopicsController extends BaseController {
         if (i == 0) {
             i = tLRPC$MessageReplyHeader.reply_to_msg_id;
         }
-        return (i == 0 || (findTopic = findTopic(tLRPC$Chat.id, (long) i)) == null) ? "" : findTopic.title;
+        if (i != 0 && (findTopic = findTopic(tLRPC$Chat.id, i)) != null) {
+            return findTopic.title;
+        }
+        return "";
     }
 
     public CharSequence getTopicIconName(TLRPC$Chat tLRPC$Chat, MessageObject messageObject, TextPaint textPaint) {
@@ -656,8 +662,10 @@ public class TopicsController extends BaseController {
                 if ("PINNED_TOPIC_NOT_MODIFIED".equals(tLRPC$TL_error.text)) {
                     reloadTopics(j, false);
                 }
-            } else if (baseFragment == null) {
             } else {
+                if (baseFragment == null) {
+                    return;
+                }
                 applyPinnedOrder(j, arrayList);
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
@@ -705,21 +713,21 @@ public class TopicsController extends BaseController {
     public int updateReactionsUnread(long j, long j2, int i, boolean z) {
         long j3 = -j;
         TLRPC$TL_forumTopic findTopic = findTopic(j3, j2);
-        if (findTopic != null) {
-            if (z) {
-                int i2 = findTopic.unread_reactions_count + i;
-                findTopic.unread_reactions_count = i2;
-                if (i2 < 0) {
-                    findTopic.unread_reactions_count = 0;
-                }
-            } else {
-                findTopic.unread_reactions_count = i;
-            }
-            int i3 = findTopic.unread_reactions_count;
-            sortTopics(j3, true);
-            return i3;
+        if (findTopic == null) {
+            return -1;
         }
-        return -1;
+        if (z) {
+            int i2 = findTopic.unread_reactions_count + i;
+            findTopic.unread_reactions_count = i2;
+            if (i2 < 0) {
+                findTopic.unread_reactions_count = 0;
+            }
+        } else {
+            findTopic.unread_reactions_count = i;
+        }
+        int i3 = findTopic.unread_reactions_count;
+        sortTopics(j3, true);
+        return i3;
     }
 
     public void markAllReactionsAsRead(long j, long j2) {
@@ -850,14 +858,14 @@ public class TopicsController extends BaseController {
                 while (true) {
                     if (i2 >= arrayList2.size()) {
                         break;
-                    } else if (arrayList2.get(i2).id == topicKey.topicId) {
+                    }
+                    if (arrayList2.get(i2).id == topicKey.topicId) {
                         arrayList2.remove(i2);
                         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogDeleted, Long.valueOf(-j), Long.valueOf(topicKey.topicId));
                         hashSet.add(Long.valueOf(j));
                         break;
-                    } else {
-                        i2++;
                     }
+                    i2++;
                 }
             }
         }
@@ -881,8 +889,7 @@ public class TopicsController extends BaseController {
     }
 
     public void lambda$reloadTopics$20(long j, boolean z) {
-        SharedPreferences.Editor edit = getUserConfig().getPreferences().edit();
-        edit.remove("topics_end_reached_" + j).apply();
+        getUserConfig().getPreferences().edit().remove("topics_end_reached_" + j).apply();
         this.topicsByChatId.remove(j);
         this.topicsMapByChatId.remove(j);
         this.endIsReached.delete(j);
@@ -1006,7 +1013,7 @@ public class TopicsController extends BaseController {
     public void loadTopic(final long j, final long j2, final Runnable runnable) {
         getMessagesStorage().loadTopics(-j, new Consumer() {
             @Override
-            public final void accept(Object obj) {
+            public final void r(Object obj) {
                 TopicsController.this.lambda$loadTopic$24(j, j2, runnable, (ArrayList) obj);
             }
 

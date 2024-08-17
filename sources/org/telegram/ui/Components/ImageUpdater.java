@@ -1,6 +1,5 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -38,7 +37,6 @@ import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$BotInlineResult;
 import org.telegram.tgnet.TLRPC$InputFile;
-import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$Photo;
 import org.telegram.tgnet.TLRPC$PhotoSize;
 import org.telegram.tgnet.TLRPC$TL_message;
@@ -51,9 +49,11 @@ import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.ChatAttachAlert;
 import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.PhotoAlbumPickerActivity;
 import org.telegram.ui.PhotoCropActivity;
 import org.telegram.ui.PhotoPickerActivity;
 import org.telegram.ui.PhotoViewer;
+
 public class ImageUpdater implements NotificationCenter.NotificationCenterDelegate, PhotoCropActivity.PhotoEditActivityDelegate {
     private TLRPC$PhotoSize bigPhoto;
     private boolean canSelectVideo;
@@ -139,9 +139,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
             tLRPC$TL_message.action = new TLRPC$TL_messageActionEmpty();
             tLRPC$TL_message.dialog_id = 0L;
             MessageObject messageObject2 = new MessageObject(UserConfig.selectedAccount, tLRPC$TL_message, false, false);
-            TLRPC$Message tLRPC$Message = messageObject2.messageOwner;
-            File directory = FileLoader.getDirectory(4);
-            tLRPC$Message.attachPath = new File(directory, SharedConfig.getLastLocalId() + "_avatar.mp4").getAbsolutePath();
+            messageObject2.messageOwner.attachPath = new File(FileLoader.getDirectory(4), SharedConfig.getLastLocalId() + "_avatar.mp4").getAbsolutePath();
             messageObject2.videoEditedInfo = photoEntry.editedInfo;
             messageObject2.emojiMarkup = photoEntry.emojiMarkup;
             loadBitmap = ImageLoader.loadBitmap(photoEntry.thumbPath, null, 800.0f, 800.0f, true);
@@ -274,14 +272,20 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         int intValue = ((Integer) arrayList.get(i)).intValue();
         if (intValue == 0) {
             openCamera();
-        } else if (intValue == 1) {
+            return;
+        }
+        if (intValue == 1) {
             openGallery();
-        } else if (intValue == 2) {
+            return;
+        }
+        if (intValue == 2) {
             openSearch();
         } else if (intValue == 3) {
             runnable.run();
-        } else if (intValue != 4) {
         } else {
+            if (intValue != 4) {
+                return;
+            }
             openVideoCamera();
         }
     }
@@ -333,11 +337,13 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         if (this.parentFragment == null) {
             return;
         }
-        final HashMap hashMap = new HashMap();
-        final ArrayList arrayList = new ArrayList();
+        HashMap hashMap = new HashMap();
+        ArrayList arrayList = new ArrayList();
         PhotoPickerActivity photoPickerActivity = new PhotoPickerActivity(0, null, hashMap, arrayList, 1, false, null, this.forceDarkTheme);
         photoPickerActivity.setDelegate(new PhotoPickerActivity.PhotoPickerActivityDelegate() {
             private boolean sendPressed;
+            final ArrayList val$order;
+            final HashMap val$photos;
 
             @Override
             public void onCaptionChanged(CharSequence charSequence) {
@@ -352,19 +358,20 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
             public void selectedPhotosChanged() {
             }
 
-            {
-                ImageUpdater.this = this;
+            AnonymousClass1(HashMap hashMap2, ArrayList arrayList2) {
+                r2 = hashMap2;
+                r3 = arrayList2;
             }
 
             @Override
             public void actionButtonPressed(boolean z, boolean z2, int i) {
-                if (hashMap.isEmpty() || ImageUpdater.this.delegate == null || this.sendPressed || z) {
+                if (r2.isEmpty() || ImageUpdater.this.delegate == null || this.sendPressed || z) {
                     return;
                 }
                 this.sendPressed = true;
                 ArrayList arrayList2 = new ArrayList();
-                for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                    Object obj = hashMap.get(arrayList.get(i2));
+                for (int i2 = 0; i2 < r3.size(); i2++) {
+                    Object obj = r2.get(r3.get(i2));
                     SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
                     arrayList2.add(sendingMediaInfo);
                     if (obj instanceof MediaController.SearchImage) {
@@ -398,6 +405,66 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
             this.parentFragment.showAsSheet(photoPickerActivity);
         } else {
             this.parentFragment.presentFragment(photoPickerActivity);
+        }
+    }
+
+    public class AnonymousClass1 implements PhotoPickerActivity.PhotoPickerActivityDelegate {
+        private boolean sendPressed;
+        final ArrayList val$order;
+        final HashMap val$photos;
+
+        @Override
+        public void onCaptionChanged(CharSequence charSequence) {
+        }
+
+        @Override
+        public void onOpenInPressed() {
+            PhotoPickerActivity.PhotoPickerActivityDelegate.CC.$default$onOpenInPressed(this);
+        }
+
+        @Override
+        public void selectedPhotosChanged() {
+        }
+
+        AnonymousClass1(HashMap hashMap2, ArrayList arrayList2) {
+            r2 = hashMap2;
+            r3 = arrayList2;
+        }
+
+        @Override
+        public void actionButtonPressed(boolean z, boolean z2, int i) {
+            if (r2.isEmpty() || ImageUpdater.this.delegate == null || this.sendPressed || z) {
+                return;
+            }
+            this.sendPressed = true;
+            ArrayList arrayList2 = new ArrayList();
+            for (int i2 = 0; i2 < r3.size(); i2++) {
+                Object obj = r2.get(r3.get(i2));
+                SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
+                arrayList2.add(sendingMediaInfo);
+                if (obj instanceof MediaController.SearchImage) {
+                    MediaController.SearchImage searchImage = (MediaController.SearchImage) obj;
+                    String str = searchImage.imagePath;
+                    if (str != null) {
+                        sendingMediaInfo.path = str;
+                    } else {
+                        sendingMediaInfo.searchImage = searchImage;
+                    }
+                    sendingMediaInfo.videoEditedInfo = searchImage.editedInfo;
+                    sendingMediaInfo.thumbPath = searchImage.thumbPath;
+                    CharSequence charSequence = searchImage.caption;
+                    sendingMediaInfo.caption = charSequence != null ? charSequence.toString() : null;
+                    sendingMediaInfo.entities = searchImage.entities;
+                    sendingMediaInfo.masks = searchImage.stickers;
+                    sendingMediaInfo.ttl = searchImage.ttl;
+                }
+            }
+            ImageUpdater.this.didSelectPhotos(arrayList2);
+        }
+
+        @Override
+        public boolean canFinishFragment() {
+            return ImageUpdater.this.delegate.canFinishFragment();
         }
     }
 
@@ -459,8 +526,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
                     ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z, i, j, z2);
                 }
 
-                {
-                    ImageUpdater.this = this;
+                AnonymousClass2() {
                 }
 
                 @Override
@@ -559,6 +625,121 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         }
     }
 
+    public class AnonymousClass2 implements ChatAttachAlert.ChatAttachViewDelegate {
+        @Override
+        public void didSelectBot(TLRPC$User tLRPC$User) {
+        }
+
+        @Override
+        public boolean needEnterComment() {
+            return false;
+        }
+
+        @Override
+        public void onWallpaperSelected(Object obj) {
+            ChatAttachAlert.ChatAttachViewDelegate.CC.$default$onWallpaperSelected(this, obj);
+        }
+
+        @Override
+        public boolean selectItemOnClicking() {
+            return ChatAttachAlert.ChatAttachViewDelegate.CC.$default$selectItemOnClicking(this);
+        }
+
+        @Override
+        public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i, long j, boolean z2) {
+            ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z, i, j, z2);
+        }
+
+        AnonymousClass2() {
+        }
+
+        @Override
+        public void didPressedButton(int i, boolean z, boolean z2, int i2, long j, boolean z3, boolean z4) {
+            BaseFragment baseFragment2 = ImageUpdater.this.parentFragment;
+            if (baseFragment2 == null || baseFragment2.getParentActivity() == null || ImageUpdater.this.chatAttachAlert == null) {
+                return;
+            }
+            if (i == 8 || i == 7) {
+                HashMap<Object, Object> selectedPhotos = ImageUpdater.this.chatAttachAlert.getPhotoLayout().getSelectedPhotos();
+                ArrayList<Object> selectedPhotosOrder = ImageUpdater.this.chatAttachAlert.getPhotoLayout().getSelectedPhotosOrder();
+                ArrayList arrayList = new ArrayList();
+                for (int i3 = 0; i3 < selectedPhotosOrder.size(); i3++) {
+                    Object obj = selectedPhotos.get(selectedPhotosOrder.get(i3));
+                    SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
+                    arrayList.add(sendingMediaInfo);
+                    if (obj instanceof MediaController.PhotoEntry) {
+                        MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) obj;
+                        String str = photoEntry.imagePath;
+                        if (str != null) {
+                            sendingMediaInfo.path = str;
+                        } else {
+                            sendingMediaInfo.path = photoEntry.path;
+                        }
+                        sendingMediaInfo.thumbPath = photoEntry.thumbPath;
+                        sendingMediaInfo.videoEditedInfo = photoEntry.editedInfo;
+                        sendingMediaInfo.isVideo = photoEntry.isVideo;
+                        CharSequence charSequence = photoEntry.caption;
+                        sendingMediaInfo.caption = charSequence != null ? charSequence.toString() : null;
+                        sendingMediaInfo.entities = photoEntry.entities;
+                        sendingMediaInfo.masks = photoEntry.stickers;
+                        sendingMediaInfo.ttl = photoEntry.ttl;
+                        sendingMediaInfo.emojiMarkup = photoEntry.emojiMarkup;
+                    } else if (obj instanceof MediaController.SearchImage) {
+                        MediaController.SearchImage searchImage = (MediaController.SearchImage) obj;
+                        String str2 = searchImage.imagePath;
+                        if (str2 != null) {
+                            sendingMediaInfo.path = str2;
+                        } else {
+                            sendingMediaInfo.searchImage = searchImage;
+                        }
+                        sendingMediaInfo.thumbPath = searchImage.thumbPath;
+                        sendingMediaInfo.videoEditedInfo = searchImage.editedInfo;
+                        CharSequence charSequence2 = searchImage.caption;
+                        sendingMediaInfo.caption = charSequence2 != null ? charSequence2.toString() : null;
+                        sendingMediaInfo.entities = searchImage.entities;
+                        sendingMediaInfo.masks = searchImage.stickers;
+                        sendingMediaInfo.ttl = searchImage.ttl;
+                        TLRPC$BotInlineResult tLRPC$BotInlineResult = searchImage.inlineResult;
+                        if (tLRPC$BotInlineResult != null && searchImage.type == 1) {
+                            sendingMediaInfo.inlineResult = tLRPC$BotInlineResult;
+                            sendingMediaInfo.params = searchImage.params;
+                        }
+                        searchImage.date = (int) (System.currentTimeMillis() / 1000);
+                    }
+                }
+                ImageUpdater.this.didSelectPhotos(arrayList);
+                if (i != 8) {
+                    ImageUpdater.this.chatAttachAlert.dismiss(true);
+                    return;
+                }
+                return;
+            }
+            ImageUpdater.this.chatAttachAlert.dismissWithButtonClick(i);
+            processSelectedAttach(i);
+        }
+
+        @Override
+        public void onCameraOpened() {
+            AndroidUtilities.hideKeyboard(ImageUpdater.this.parentFragment.getFragmentView().findFocus());
+        }
+
+        @Override
+        public void doOnIdle(Runnable runnable) {
+            runnable.run();
+        }
+
+        private void processSelectedAttach(int i) {
+            if (i == 0) {
+                ImageUpdater.this.openCamera();
+            }
+        }
+
+        @Override
+        public void openAvatarsSearch() {
+            ImageUpdater.this.openSearch();
+        }
+    }
+
     public void didSelectPhotos(ArrayList<SendMessagesHelper.SendingMediaInfo> arrayList) {
         MessageObject messageObject;
         Bitmap loadBitmap;
@@ -607,7 +788,6 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
                                 this.imageReceiver.setImage(ImageLocation.getForPhoto(closestPhotoSizeWithSize, sendingMediaInfo.searchImage.photo), null, null, "jpg", null, 1);
                             }
                         }
-                        loadBitmap = null;
                     } else if (searchImage.imageUrl != null) {
                         File file = new File(FileLoader.getDirectory(4), Utilities.MD5(sendingMediaInfo.searchImage.imageUrl) + "." + ImageLoader.getHttpUrlExtension(sendingMediaInfo.searchImage.imageUrl, "jpg"));
                         this.finalPath = file.getAbsolutePath();
@@ -648,8 +828,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
             File generatePicturePath = AndroidUtilities.generatePicturePath();
             if (generatePicturePath != null) {
                 if (i >= 24) {
-                    Activity parentActivity = this.parentFragment.getParentActivity();
-                    intent.putExtra("output", FileProvider.getUriForFile(parentActivity, ApplicationLoader.getApplicationId() + ".provider", generatePicturePath));
+                    intent.putExtra("output", FileProvider.getUriForFile(this.parentFragment.getParentActivity(), ApplicationLoader.getApplicationId() + ".provider", generatePicturePath));
                     intent.addFlags(2);
                     intent.addFlags(1);
                 } else {
@@ -682,8 +861,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
             File generateVideoPath = AndroidUtilities.generateVideoPath();
             if (generateVideoPath != null) {
                 if (i >= 24) {
-                    Activity parentActivity = this.parentFragment.getParentActivity();
-                    intent.putExtra("output", FileProvider.getUriForFile(parentActivity, ApplicationLoader.getApplicationId() + ".provider", generateVideoPath));
+                    intent.putExtra("output", FileProvider.getUriForFile(this.parentFragment.getParentActivity(), ApplicationLoader.getApplicationId() + ".provider", generateVideoPath));
                     intent.addFlags(2);
                     intent.addFlags(1);
                 } else {
@@ -715,6 +893,27 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
 
     public void openGallery() {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ImageUpdater.openGallery():void");
+    }
+
+    public class AnonymousClass3 implements PhotoAlbumPickerActivity.PhotoAlbumPickerActivityDelegate {
+        AnonymousClass3() {
+        }
+
+        @Override
+        public void didSelectPhotos(ArrayList<SendMessagesHelper.SendingMediaInfo> arrayList, boolean z, int i) {
+            ImageUpdater.this.didSelectPhotos(arrayList);
+        }
+
+        @Override
+        public void startPhotoSelectActivity() {
+            try {
+                Intent intent = new Intent("android.intent.action.GET_CONTENT");
+                intent.setType("image/*");
+                ImageUpdater.this.parentFragment.startActivityForResult(intent, 14);
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+        }
     }
 
     private void startCrop(final String str, final Uri uri) {
@@ -752,13 +951,15 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
     }
 
     public void openPhotoForEdit(String str, String str2, Pair<Integer, Integer> pair, boolean z) {
-        final ArrayList<Object> arrayList = new ArrayList<>();
+        ArrayList<Object> arrayList = new ArrayList<>();
         MediaController.PhotoEntry orientation = new MediaController.PhotoEntry(0, 0, 0L, str, ((Integer) pair.first).intValue(), false, 0, 0, 0L).setOrientation(pair);
         orientation.isVideo = z;
         orientation.thumbPath = str2;
         arrayList.add(orientation);
         PhotoViewer.getInstance().setParentActivity(this.parentFragment);
         PhotoViewer.getInstance().openPhotoForSelect(arrayList, 0, 1, false, new PhotoViewer.EmptyPhotoViewerProvider() {
+            final ArrayList val$arrayList;
+
             @Override
             public boolean allowCaption() {
                 return false;
@@ -769,15 +970,38 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
                 return false;
             }
 
-            {
-                ImageUpdater.this = this;
+            AnonymousClass4(ArrayList arrayList2) {
+                r2 = arrayList2;
             }
 
             @Override
             public void sendButtonPressed(int i, VideoEditedInfo videoEditedInfo, boolean z2, int i2, boolean z3) {
-                ImageUpdater.this.processEntry((MediaController.PhotoEntry) arrayList.get(0));
+                ImageUpdater.this.processEntry((MediaController.PhotoEntry) r2.get(0));
             }
         }, null);
+    }
+
+    public class AnonymousClass4 extends PhotoViewer.EmptyPhotoViewerProvider {
+        final ArrayList val$arrayList;
+
+        @Override
+        public boolean allowCaption() {
+            return false;
+        }
+
+        @Override
+        public boolean canScrollAway() {
+            return false;
+        }
+
+        AnonymousClass4(ArrayList arrayList2) {
+            r2 = arrayList2;
+        }
+
+        @Override
+        public void sendButtonPressed(int i, VideoEditedInfo videoEditedInfo, boolean z2, int i2, boolean z3) {
+            ImageUpdater.this.processEntry((MediaController.PhotoEntry) r2.get(0));
+        }
     }
 
     public void onActivityResult(int i, int i2, Intent intent) {
@@ -789,18 +1013,24 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
                     chatAttachAlert.onActivityResultFragment(i, intent, this.currentPicturePath);
                 }
                 this.currentPicturePath = null;
-            } else if (i == 13) {
+                return;
+            }
+            if (i == 13) {
                 this.parentFragment.getParentActivity().overridePendingTransition(R.anim.alpha_in, R.anim.alpha_out);
                 PhotoViewer.getInstance().setParentActivity(this.parentFragment);
                 openPhotoForEdit(this.currentPicturePath, (String) null, AndroidUtilities.getImageOrientation(this.currentPicturePath), false);
                 AndroidUtilities.addMediaToGallery(this.currentPicturePath);
                 this.currentPicturePath = null;
-            } else if (i == 14) {
+                return;
+            }
+            if (i == 14) {
                 if (intent == null || intent.getData() == null) {
                     return;
                 }
                 startCrop(null, intent.getData());
-            } else if (i == 15) {
+                return;
+            }
+            if (i == 15) {
                 openPhotoForEdit(this.currentPicturePath, (String) null, 0, true);
                 AndroidUtilities.addMediaToGallery(this.currentPicturePath);
                 this.currentPicturePath = null;
@@ -916,9 +1146,10 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
                 if (i == i3) {
                     this.uploadedPhoto = (TLRPC$InputFile) objArr[1];
                 }
-            } else if (!str.equals(this.uploadingVideo)) {
-                return;
             } else {
+                if (!str.equals(this.uploadingVideo)) {
+                    return;
+                }
                 this.uploadingVideo = null;
                 if (i == i3) {
                     this.uploadedVideo = (TLRPC$InputFile) objArr[1];
@@ -932,8 +1163,11 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
                     imageUpdaterDelegate.didUploadPhoto(this.uploadedPhoto, this.uploadedVideo, this.videoTimestamp, this.videoPath, this.bigPhoto, this.smallPhoto, this.isVideo, this.vectorMarkup);
                 }
                 cleanup();
+                return;
             }
-        } else if (i == NotificationCenter.fileUploadProgressChanged) {
+            return;
+        }
+        if (i == NotificationCenter.fileUploadProgressChanged) {
             String str2 = (String) objArr[0];
             String str3 = this.convertingVideo != null ? this.uploadingVideo : this.uploadingImage;
             if (this.delegate == null || !str2.equals(str3)) {
@@ -943,93 +1177,99 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
             ImageUpdaterDelegate imageUpdaterDelegate2 = this.delegate;
             this.currentImageProgress = min;
             imageUpdaterDelegate2.onUploadProgressChanged(min);
-        } else {
-            int i4 = NotificationCenter.fileLoaded;
-            if (i == i4 || i == NotificationCenter.fileLoadFailed || i == NotificationCenter.httpFileDidLoad || i == NotificationCenter.httpFileDidFailedLoad) {
-                this.currentImageProgress = 1.0f;
-                if (((String) objArr[0]).equals(this.uploadingImage)) {
-                    NotificationCenter.getInstance(this.currentAccount).removeObserver(this, i4);
-                    NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.fileLoadFailed);
-                    NotificationCenter notificationCenter = NotificationCenter.getInstance(this.currentAccount);
-                    int i5 = NotificationCenter.httpFileDidLoad;
-                    notificationCenter.removeObserver(this, i5);
-                    NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.httpFileDidFailedLoad);
-                    this.uploadingImage = null;
-                    if (i == i4 || i == i5) {
-                        processBitmap(ImageLoader.loadBitmap(this.finalPath, null, 800.0f, 800.0f, true), null);
-                        return;
-                    }
-                    this.imageReceiver.setImageBitmap((Drawable) null);
-                    ImageUpdaterDelegate imageUpdaterDelegate3 = this.delegate;
-                    if (imageUpdaterDelegate3 != null) {
-                        imageUpdaterDelegate3.didUploadFailed();
-                        return;
-                    }
+            return;
+        }
+        int i4 = NotificationCenter.fileLoaded;
+        if (i == i4 || i == NotificationCenter.fileLoadFailed || i == NotificationCenter.httpFileDidLoad || i == NotificationCenter.httpFileDidFailedLoad) {
+            String str4 = (String) objArr[0];
+            this.currentImageProgress = 1.0f;
+            if (str4.equals(this.uploadingImage)) {
+                NotificationCenter.getInstance(this.currentAccount).removeObserver(this, i4);
+                NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.fileLoadFailed);
+                NotificationCenter notificationCenter = NotificationCenter.getInstance(this.currentAccount);
+                int i5 = NotificationCenter.httpFileDidLoad;
+                notificationCenter.removeObserver(this, i5);
+                NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.httpFileDidFailedLoad);
+                this.uploadingImage = null;
+                if (i == i4 || i == i5) {
+                    processBitmap(ImageLoader.loadBitmap(this.finalPath, null, 800.0f, 800.0f, true), null);
+                    return;
+                }
+                this.imageReceiver.setImageBitmap((Drawable) null);
+                ImageUpdaterDelegate imageUpdaterDelegate3 = this.delegate;
+                if (imageUpdaterDelegate3 != null) {
+                    imageUpdaterDelegate3.didUploadFailed();
                     return;
                 }
                 return;
             }
-            int i6 = NotificationCenter.filePreparingFailed;
-            if (i == i6) {
-                if (((MessageObject) objArr[0]) != this.convertingVideo || this.parentFragment == null) {
-                    return;
+            return;
+        }
+        int i6 = NotificationCenter.filePreparingFailed;
+        if (i == i6) {
+            if (((MessageObject) objArr[0]) != this.convertingVideo || this.parentFragment == null) {
+                return;
+            }
+            NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.filePreparingStarted);
+            NotificationCenter.getInstance(this.currentAccount).removeObserver(this, i6);
+            NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.fileNewChunkAvailable);
+            cleanup();
+            return;
+        }
+        if (i == NotificationCenter.fileNewChunkAvailable) {
+            if (((MessageObject) objArr[0]) != this.convertingVideo || this.parentFragment == null) {
+                return;
+            }
+            String str5 = (String) objArr[1];
+            long longValue = ((Long) objArr[2]).longValue();
+            long longValue2 = ((Long) objArr[3]).longValue();
+            this.parentFragment.getFileLoader().checkUploadNewDataAvailable(str5, false, longValue, longValue2);
+            if (longValue2 != 0) {
+                double longValue3 = ((Long) objArr[5]).longValue();
+                Double.isNaN(longValue3);
+                double d = longValue3 / 1000000.0d;
+                if (this.videoTimestamp > d) {
+                    this.videoTimestamp = d;
+                }
+                Bitmap createVideoThumbnailAtTime = SendMessagesHelper.createVideoThumbnailAtTime(str5, (long) (this.videoTimestamp * 1000.0d), null, true);
+                if (createVideoThumbnailAtTime != null) {
+                    File pathToAttach = FileLoader.getInstance(this.currentAccount).getPathToAttach(this.smallPhoto, true);
+                    if (pathToAttach != null) {
+                        if (BuildVars.LOGS_ENABLED) {
+                            FileLog.e("delete file " + pathToAttach);
+                        }
+                        pathToAttach.delete();
+                    }
+                    File pathToAttach2 = FileLoader.getInstance(this.currentAccount).getPathToAttach(this.bigPhoto, true);
+                    if (pathToAttach2 != null) {
+                        if (BuildVars.LOGS_ENABLED) {
+                            FileLog.e("delete file " + pathToAttach2);
+                        }
+                        pathToAttach2.delete();
+                    }
+                    this.bigPhoto = ImageLoader.scaleAndSaveImage(createVideoThumbnailAtTime, 800.0f, 800.0f, 80, false, 320, 320);
+                    TLRPC$PhotoSize scaleAndSaveImage = ImageLoader.scaleAndSaveImage(createVideoThumbnailAtTime, 150.0f, 150.0f, 80, false, 150, 150);
+                    this.smallPhoto = scaleAndSaveImage;
+                    if (scaleAndSaveImage != null) {
+                        try {
+                            ImageLoader.getInstance().putImageToCache(new BitmapDrawable(BitmapFactory.decodeFile(FileLoader.getInstance(this.currentAccount).getPathToAttach(this.smallPhoto, true).getAbsolutePath())), this.smallPhoto.location.volume_id + "_" + this.smallPhoto.location.local_id + "@50_50", true);
+                        } catch (Throwable unused) {
+                        }
+                    }
                 }
                 NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.filePreparingStarted);
-                NotificationCenter.getInstance(this.currentAccount).removeObserver(this, i6);
+                NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.filePreparingFailed);
                 NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.fileNewChunkAvailable);
-                cleanup();
-            } else if (i == NotificationCenter.fileNewChunkAvailable) {
-                if (((MessageObject) objArr[0]) != this.convertingVideo || this.parentFragment == null) {
-                    return;
-                }
-                String str4 = (String) objArr[1];
-                long longValue = ((Long) objArr[2]).longValue();
-                long longValue2 = ((Long) objArr[3]).longValue();
-                this.parentFragment.getFileLoader().checkUploadNewDataAvailable(str4, false, longValue, longValue2);
-                if (longValue2 != 0) {
-                    double longValue3 = ((Long) objArr[5]).longValue();
-                    Double.isNaN(longValue3);
-                    double d = longValue3 / 1000000.0d;
-                    if (this.videoTimestamp > d) {
-                        this.videoTimestamp = d;
-                    }
-                    Bitmap createVideoThumbnailAtTime = SendMessagesHelper.createVideoThumbnailAtTime(str4, (long) (this.videoTimestamp * 1000.0d), null, true);
-                    if (createVideoThumbnailAtTime != null) {
-                        File pathToAttach = FileLoader.getInstance(this.currentAccount).getPathToAttach(this.smallPhoto, true);
-                        if (pathToAttach != null) {
-                            if (BuildVars.LOGS_ENABLED) {
-                                FileLog.e("delete file " + pathToAttach);
-                            }
-                            pathToAttach.delete();
-                        }
-                        File pathToAttach2 = FileLoader.getInstance(this.currentAccount).getPathToAttach(this.bigPhoto, true);
-                        if (pathToAttach2 != null) {
-                            if (BuildVars.LOGS_ENABLED) {
-                                FileLog.e("delete file " + pathToAttach2);
-                            }
-                            pathToAttach2.delete();
-                        }
-                        this.bigPhoto = ImageLoader.scaleAndSaveImage(createVideoThumbnailAtTime, 800.0f, 800.0f, 80, false, 320, 320);
-                        TLRPC$PhotoSize scaleAndSaveImage = ImageLoader.scaleAndSaveImage(createVideoThumbnailAtTime, 150.0f, 150.0f, 80, false, 150, 150);
-                        this.smallPhoto = scaleAndSaveImage;
-                        if (scaleAndSaveImage != null) {
-                            try {
-                                ImageLoader.getInstance().putImageToCache(new BitmapDrawable(BitmapFactory.decodeFile(FileLoader.getInstance(this.currentAccount).getPathToAttach(this.smallPhoto, true).getAbsolutePath())), this.smallPhoto.location.volume_id + "_" + this.smallPhoto.location.local_id + "@50_50", true);
-                            } catch (Throwable unused) {
-                            }
-                        }
-                    }
-                    NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.filePreparingStarted);
-                    NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.filePreparingFailed);
-                    NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.fileNewChunkAvailable);
-                    this.videoPath = str4;
-                    this.uploadingVideo = str4;
-                    this.convertingVideo = null;
-                }
-            } else if (i == NotificationCenter.filePreparingStarted && ((MessageObject) objArr[0]) == this.convertingVideo && (baseFragment = this.parentFragment) != null) {
-                this.uploadingVideo = (String) objArr[1];
-                baseFragment.getFileLoader().uploadFile(this.uploadingVideo, false, false, (int) this.convertingVideo.videoEditedInfo.estimatedSize, 33554432, false);
+                this.videoPath = str5;
+                this.uploadingVideo = str5;
+                this.convertingVideo = null;
+                return;
             }
+            return;
+        }
+        if (i == NotificationCenter.filePreparingStarted && ((MessageObject) objArr[0]) == this.convertingVideo && (baseFragment = this.parentFragment) != null) {
+            this.uploadingVideo = (String) objArr[1];
+            baseFragment.getFileLoader().uploadFile(this.uploadingVideo, false, false, (int) this.convertingVideo.videoEditedInfo.estimatedSize, 33554432, false);
         }
     }
 

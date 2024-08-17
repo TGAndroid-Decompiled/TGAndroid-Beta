@@ -15,6 +15,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Components.RecyclerAnimationScrollHelper;
 import org.telegram.ui.Components.RecyclerListView;
+
 public class RecyclerAnimationScrollHelper {
     private AnimationCallback animationCallback;
     private ValueAnimator animator;
@@ -209,7 +210,6 @@ public class RecyclerAnimationScrollHelper {
                 }
                 height = (this.val$scrollDown ? -i9 : i10 - RecyclerAnimationScrollHelper.this.recyclerView.getHeight()) + i14;
             }
-            final int i16 = height;
             if (RecyclerAnimationScrollHelper.this.animator != null) {
                 RecyclerAnimationScrollHelper.this.animator.removeAllListeners();
                 RecyclerAnimationScrollHelper.this.animator.cancel();
@@ -218,6 +218,7 @@ public class RecyclerAnimationScrollHelper {
             ValueAnimator valueAnimator = RecyclerAnimationScrollHelper.this.animator;
             final ArrayList arrayList2 = this.val$oldViews;
             final boolean z2 = this.val$scrollDown;
+            final int i16 = height;
             valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
@@ -288,7 +289,7 @@ public class RecyclerAnimationScrollHelper {
                 if (z) {
                     min = 600;
                 } else {
-                    long measuredHeight = ((i16 / recyclerAnimationScrollHelper.recyclerView.getMeasuredHeight()) + 1.0f) * 200.0f;
+                    long measuredHeight = ((height / recyclerAnimationScrollHelper.recyclerView.getMeasuredHeight()) + 1.0f) * 200.0f;
                     min = Math.min(measuredHeight >= 300 ? measuredHeight : 300L, 1300L);
                 }
                 RecyclerAnimationScrollHelper.this.animator.setDuration(min);
@@ -297,7 +298,7 @@ public class RecyclerAnimationScrollHelper {
                 recyclerAnimationScrollHelper.animator.setDuration(150L);
                 RecyclerAnimationScrollHelper.this.animator.setInterpolator(CubicBezierInterpolator.EASE_OUT);
             } else {
-                long measuredHeight2 = ((i16 / recyclerAnimationScrollHelper.recyclerView.getMeasuredHeight()) + 1.0f) * 200.0f;
+                long measuredHeight2 = ((height / recyclerAnimationScrollHelper.recyclerView.getMeasuredHeight()) + 1.0f) * 200.0f;
                 RecyclerAnimationScrollHelper.this.animator.setDuration(Math.min(measuredHeight2 >= 300 ? measuredHeight2 : 300L, 1300L));
                 RecyclerAnimationScrollHelper.this.animator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
             }
@@ -392,40 +393,40 @@ public class RecyclerAnimationScrollHelper {
         public void notifyItemInserted(int i) {
             if (!this.animationRunning) {
                 super.notifyItemInserted(i);
-                return;
+            } else {
+                this.rangeInserted.add(Integer.valueOf(i));
+                this.rangeInserted.add(1);
             }
-            this.rangeInserted.add(Integer.valueOf(i));
-            this.rangeInserted.add(1);
         }
 
         @Override
         public void notifyItemRangeInserted(int i, int i2) {
             if (!this.animationRunning) {
                 super.notifyItemRangeInserted(i, i2);
-                return;
+            } else {
+                this.rangeInserted.add(Integer.valueOf(i));
+                this.rangeInserted.add(Integer.valueOf(i2));
             }
-            this.rangeInserted.add(Integer.valueOf(i));
-            this.rangeInserted.add(Integer.valueOf(i2));
         }
 
         @Override
         public void notifyItemRemoved(int i) {
             if (!this.animationRunning) {
                 super.notifyItemRemoved(i);
-                return;
+            } else {
+                this.rangeRemoved.add(Integer.valueOf(i));
+                this.rangeRemoved.add(1);
             }
-            this.rangeRemoved.add(Integer.valueOf(i));
-            this.rangeRemoved.add(1);
         }
 
         @Override
         public void notifyItemRangeRemoved(int i, int i2) {
             if (!this.animationRunning) {
                 super.notifyItemRangeRemoved(i, i2);
-                return;
+            } else {
+                this.rangeRemoved.add(Integer.valueOf(i));
+                this.rangeRemoved.add(Integer.valueOf(i2));
             }
-            this.rangeRemoved.add(Integer.valueOf(i));
-            this.rangeRemoved.add(Integer.valueOf(i2));
         }
 
         @Override

@@ -1,4 +1,5 @@
 package org.telegram.messenger;
+
 public class SegmentTree {
     private long[] array;
     private Node[] heap;
@@ -54,10 +55,10 @@ public class SegmentTree {
             if (i < 0) {
                 i = 0;
             }
+            long j = Long.MIN_VALUE;
             if (i2 > jArr.length - 1) {
                 i2 = jArr.length - 1;
             }
-            long j = Long.MIN_VALUE;
             while (i <= i2) {
                 long j2 = this.array[i];
                 if (j2 > j) {
@@ -78,12 +79,12 @@ public class SegmentTree {
         if (contains(i2, i3, node.from, node.to)) {
             return this.heap[i].max;
         }
-        if (intersects(i2, i3, node.from, node.to)) {
-            propagate(i);
-            int i4 = i * 2;
-            return Math.max(rMaxQ(i4, i2, i3), rMaxQ(i4 + 1, i2, i3));
+        if (!intersects(i2, i3, node.from, node.to)) {
+            return 0L;
         }
-        return 0L;
+        propagate(i);
+        int i4 = i * 2;
+        return Math.max(rMaxQ(i4, i2, i3), rMaxQ(i4 + 1, i2, i3));
     }
 
     public long rMinQ(int i, int i2) {
@@ -92,10 +93,10 @@ public class SegmentTree {
             if (i < 0) {
                 i = 0;
             }
+            long j = Long.MAX_VALUE;
             if (i2 > jArr.length - 1) {
                 i2 = jArr.length - 1;
             }
-            long j = Long.MAX_VALUE;
             while (i <= i2) {
                 long j2 = this.array[i];
                 if (j2 < j) {
@@ -116,12 +117,12 @@ public class SegmentTree {
         if (contains(i2, i3, node.from, node.to)) {
             return this.heap[i].min;
         }
-        if (intersects(i2, i3, node.from, node.to)) {
-            propagate(i);
-            int i4 = i * 2;
-            return Math.min(rMinQ(i4, i2, i3), rMinQ(i4 + 1, i2, i3));
+        if (!intersects(i2, i3, node.from, node.to)) {
+            return 2147483647L;
         }
-        return 2147483647L;
+        propagate(i);
+        int i4 = i * 2;
+        return Math.min(rMinQ(i4, i2, i3), rMinQ(i4 + 1, i2, i3));
     }
 
     private void propagate(int i) {

@@ -11,6 +11,7 @@ import org.webrtc.EglBase;
 import org.webrtc.EglRenderer;
 import org.webrtc.RendererCommon;
 import org.webrtc.VideoSink;
+
 public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder.Callback, VideoSink, RendererCommon.RendererEvents {
     private static final String TAG = "SurfaceViewRenderer";
     private final SurfaceEglRenderer eglRenderer;
@@ -145,11 +146,13 @@ public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder.Ca
         if (this.enableFixedSize && this.rotatedFrameWidth != 0 && this.rotatedFrameHeight != 0 && getWidth() != 0 && getHeight() != 0) {
             float width = getWidth() / getHeight();
             int i = this.rotatedFrameWidth;
+            float f = i;
             int i2 = this.rotatedFrameHeight;
-            if (i / i2 > width) {
-                i = (int) (i2 * width);
+            float f2 = i2;
+            if (f / f2 > width) {
+                i = (int) (f2 * width);
             } else {
-                i2 = (int) (i / width);
+                i2 = (int) (f / width);
             }
             int min = Math.min(getWidth(), i);
             int min2 = Math.min(getHeight(), i2);

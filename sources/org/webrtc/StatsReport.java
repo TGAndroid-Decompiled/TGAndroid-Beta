@@ -1,4 +1,5 @@
 package org.webrtc;
+
 public class StatsReport {
     public final String id;
     public final double timestamp;

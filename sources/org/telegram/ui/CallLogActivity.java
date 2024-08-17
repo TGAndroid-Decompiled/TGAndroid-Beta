@@ -20,6 +20,7 @@ import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.TextPaint;
 import android.text.style.ImageSpan;
+import android.util.Property;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -88,6 +89,7 @@ import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.voip.VoIPHelper;
 import org.telegram.ui.ContactsActivity;
+
 public class CallLogActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private ArrayList<Long> activeGroupCalls;
     private EmptyTextProgressView emptyView;
@@ -254,9 +256,13 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                 ActionBarMenuItem actionBarMenuItem = this.otherItem;
                 if (actionBarMenuItem != null) {
                     actionBarMenuItem.setVisibility(this.calls.isEmpty() ? 8 : 0);
+                    return;
                 }
+                return;
             }
-        } else if (i == NotificationCenter.messagesDeleted) {
+            return;
+        }
+        if (i == NotificationCenter.messagesDeleted) {
             if (this.firstLoaded && !((Boolean) objArr[2]).booleanValue()) {
                 ArrayList arrayList2 = (ArrayList) objArr[0];
                 Iterator<CallLogRow> it2 = this.calls.iterator();
@@ -277,21 +283,29 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                     return;
                 }
                 listAdapter.notifyDataSetChanged();
+                return;
             }
-        } else if (i == NotificationCenter.activeGroupCallsUpdated) {
+            return;
+        }
+        if (i == NotificationCenter.activeGroupCallsUpdated) {
             this.activeGroupCalls = getMessagesController().getActiveGroupCalls();
             ListAdapter listAdapter2 = this.listViewAdapter;
             if (listAdapter2 != null) {
                 listAdapter2.notifyDataSetChanged();
+                return;
             }
-        } else if (i == NotificationCenter.chatInfoDidLoad) {
+            return;
+        }
+        if (i == NotificationCenter.chatInfoDidLoad) {
             Long l2 = this.waitingForCallChatId;
             if (l2 == null || ((TLRPC$ChatFull) objArr[0]).id != l2.longValue() || getMessagesController().getGroupCall(this.waitingForCallChatId.longValue(), true) == null) {
                 return;
             }
             VoIPHelper.startCall(this.lastCallChat, null, null, false, getParentActivity(), this, getAccountInstance());
             this.waitingForCallChatId = null;
-        } else if (i == NotificationCenter.groupCallUpdated && (l = this.waitingForCallChatId) != null && l.equals((Long) objArr[0])) {
+            return;
+        }
+        if (i == NotificationCenter.groupCallUpdated && (l = this.waitingForCallChatId) != null && l.equals((Long) objArr[0])) {
             VoIPHelper.startCall(this.lastCallChat, null, null, false, getParentActivity(), this, getAccountInstance());
             this.waitingForCallChatId = null;
         }
@@ -359,9 +373,8 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
             super(context);
             setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             String string = LocaleController.getString("VoipChatJoin", R.string.VoipChatJoin);
-            ProgressButton progressButton = new ProgressButton(context);
-            this.button = progressButton;
-            int ceil = (int) Math.ceil(progressButton.getPaint().measureText(string));
+            this.button = new ProgressButton(context);
+            int ceil = (int) Math.ceil(r0.getPaint().measureText(string));
             ProfileSearchCell profileSearchCell = new ProfileSearchCell(context);
             this.profileSearchCell = profileSearchCell;
             profileSearchCell.setPadding(LocaleController.isRTL ? AndroidUtilities.dp(44.0f) + ceil : 0, 0, LocaleController.isRTL ? 0 : AndroidUtilities.dp(44.0f) + ceil, 0);
@@ -433,19 +446,21 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         mutate.setBounds(0, 0, mutate.getIntrinsicWidth(), this.greenDrawable.getIntrinsicHeight());
         Drawable drawable = this.greenDrawable;
         int i = Theme.key_calls_callReceivedGreenIcon;
-        drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
+        int color = Theme.getColor(i);
+        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+        drawable.setColorFilter(new PorterDuffColorFilter(color, mode));
         this.iconOut = new ImageSpan(this.greenDrawable, 0);
         Resources resources = getParentActivity().getResources();
         int i2 = R.drawable.ic_call_received_green_18dp;
         Drawable mutate2 = resources.getDrawable(i2).mutate();
         this.greenDrawable2 = mutate2;
         mutate2.setBounds(0, 0, mutate2.getIntrinsicWidth(), this.greenDrawable2.getIntrinsicHeight());
-        this.greenDrawable2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
+        this.greenDrawable2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), mode));
         this.iconIn = new ImageSpan(this.greenDrawable2, 0);
         Drawable mutate3 = getParentActivity().getResources().getDrawable(i2).mutate();
         this.redDrawable = mutate3;
         mutate3.setBounds(0, 0, mutate3.getIntrinsicWidth(), this.redDrawable.getIntrinsicHeight());
-        this.redDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_fill_RedNormal), PorterDuff.Mode.MULTIPLY));
+        this.redDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_fill_RedNormal), mode));
         this.iconMissed = new ImageSpan(this.redDrawable, 0);
         this.actionBar.setBackButtonDrawable(new BackDrawable(false));
         this.actionBar.setAllowOverlayTitle(true);
@@ -456,10 +471,13 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                 if (i3 == -1) {
                     if (((BaseFragment) CallLogActivity.this).actionBar.isActionModeShowed()) {
                         CallLogActivity.this.hideActionMode(true);
+                        return;
                     } else {
-                        CallLogActivity.this.finishFragment();
+                        CallLogActivity.this.lambda$onBackPressed$308();
+                        return;
                     }
-                } else if (i3 == 1) {
+                }
+                if (i3 == 1) {
                     CallLogActivity.this.showDeleteAlert(true);
                 } else if (i3 == 2) {
                     CallLogActivity.this.showDeleteAlert(false);
@@ -523,13 +541,13 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         int i3 = Build.VERSION.SDK_INT;
         if (i3 < 21) {
             Drawable mutate4 = context.getResources().getDrawable(R.drawable.floating_shadow).mutate();
-            mutate4.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
+            mutate4.setColorFilter(new PorterDuffColorFilter(-16777216, mode));
             CombinedDrawable combinedDrawable = new CombinedDrawable(mutate4, createSimpleSelectorCircleDrawable, 0, 0);
             combinedDrawable.setIconSize(AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f));
             createSimpleSelectorCircleDrawable = combinedDrawable;
         }
         this.floatingButton.setBackgroundDrawable(createSimpleSelectorCircleDrawable);
-        this.floatingButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_chats_actionIcon), PorterDuff.Mode.MULTIPLY));
+        this.floatingButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_chats_actionIcon), mode));
         this.floatingButton.setImageResource(R.drawable.ic_call);
         this.floatingButton.setContentDescription(LocaleController.getString("Call", R.string.Call));
         if (i3 >= 21) {
@@ -583,11 +601,11 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
     }
 
     public boolean lambda$createView$1(View view, int i) {
-        if (view instanceof CallCell) {
-            addOrRemoveSelectedDialog(this.calls.get(i - this.listViewAdapter.callsStartRow).calls, (CallCell) view);
-            return true;
+        if (!(view instanceof CallCell)) {
+            return false;
         }
-        return false;
+        addOrRemoveSelectedDialog(this.calls.get(i - this.listViewAdapter.callsStartRow).calls, (CallCell) view);
+        return true;
     }
 
     public class AnonymousClass2 extends RecyclerView.OnScrollListener {
@@ -595,14 +613,47 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        public void onScrolled(androidx.recyclerview.widget.RecyclerView r5, int r6, int r7) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.CallLogActivity.AnonymousClass2.onScrolled(androidx.recyclerview.widget.RecyclerView, int, int):void");
+        public void onScrolled(RecyclerView recyclerView, int i, int i2) {
+            boolean z;
+            int findFirstVisibleItemPosition = CallLogActivity.this.layoutManager.findFirstVisibleItemPosition();
+            boolean z2 = false;
+            int abs = findFirstVisibleItemPosition == -1 ? 0 : Math.abs(CallLogActivity.this.layoutManager.findLastVisibleItemPosition() - findFirstVisibleItemPosition) + 1;
+            if (abs > 0) {
+                int itemCount = CallLogActivity.this.listViewAdapter.getItemCount();
+                if (!CallLogActivity.this.endReached && !CallLogActivity.this.loading && !CallLogActivity.this.calls.isEmpty() && abs + findFirstVisibleItemPosition >= itemCount - 5) {
+                    final CallLogRow callLogRow = (CallLogRow) CallLogActivity.this.calls.get(CallLogActivity.this.calls.size() - 1);
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            CallLogActivity.AnonymousClass2.this.lambda$onScrolled$0(callLogRow);
+                        }
+                    });
+                }
+            }
+            if (CallLogActivity.this.floatingButton.getVisibility() != 8) {
+                View childAt = recyclerView.getChildAt(0);
+                int top = childAt != null ? childAt.getTop() : 0;
+                if (CallLogActivity.this.prevPosition == findFirstVisibleItemPosition) {
+                    int i3 = CallLogActivity.this.prevTop - top;
+                    z = top < CallLogActivity.this.prevTop;
+                    if (Math.abs(i3) > 1) {
+                        z2 = true;
+                    }
+                } else {
+                    z2 = true;
+                    z = findFirstVisibleItemPosition > CallLogActivity.this.prevPosition;
+                }
+                if (z2 && CallLogActivity.this.scrollUpdated) {
+                    CallLogActivity.this.hideFloatingButton(z);
+                }
+                CallLogActivity.this.prevPosition = findFirstVisibleItemPosition;
+                CallLogActivity.this.prevTop = top;
+                CallLogActivity.this.scrollUpdated = true;
+            }
         }
 
         public void lambda$onScrolled$0(CallLogRow callLogRow) {
-            CallLogActivity callLogActivity = CallLogActivity.this;
-            ArrayList<TLRPC$Message> arrayList = callLogRow.calls;
-            callLogActivity.getCalls(arrayList.get(arrayList.size() - 1).id, 100);
+            CallLogActivity.this.getCalls(callLogRow.calls.get(r3.size() - 1).id, 100);
         }
     }
 
@@ -783,9 +834,8 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
     }
 
     private void showOrUpdateActionMode() {
-        boolean z;
+        boolean z = true;
         if (this.actionBar.isActionModeShowed()) {
-            z = true;
             if (this.selectedIds.isEmpty()) {
                 hideActionMode(true);
                 return;
@@ -799,7 +849,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                 View view = this.actionModeViews.get(i);
                 view.setPivotY(ActionBar.getCurrentActionBarHeight() / 2);
                 AndroidUtilities.clearDrawableAnimation(view);
-                arrayList.add(ObjectAnimator.ofFloat(view, View.SCALE_Y, 0.1f, 1.0f));
+                arrayList.add(ObjectAnimator.ofFloat(view, (Property<View, Float>) View.SCALE_Y, 0.1f, 1.0f));
             }
             animatorSet.playTogether(arrayList);
             animatorSet.setDuration(200L);
@@ -814,10 +864,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
             return;
         }
         this.floatingHidden = z;
-        ImageView imageView = this.floatingButton;
-        float[] fArr = new float[1];
-        fArr[0] = z ? AndroidUtilities.dp(100.0f) : 0.0f;
-        ObjectAnimator duration = ObjectAnimator.ofFloat(imageView, "translationY", fArr).setDuration(300L);
+        ObjectAnimator duration = ObjectAnimator.ofFloat(this.floatingButton, "translationY", z ? AndroidUtilities.dp(100.0f) : 0.0f).setDuration(300L);
         duration.setInterpolator(this.floatingInterpolator);
         this.floatingButton.setClickable(!z);
         duration.start();
@@ -944,10 +991,11 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                 if (i2 >= iArr.length) {
                     z = true;
                     break;
-                } else if (iArr[i2] != 0) {
-                    z = false;
-                    break;
                 } else {
+                    if (iArr[i2] != 0) {
+                        z = false;
+                        break;
+                    }
                     i2++;
                 }
             }
@@ -1003,22 +1051,21 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
             }
             if (this.activeHeaderRow != -1) {
                 int i3 = this.rowsCount;
-                int i4 = i3 + 1;
                 this.sectionRow = i3;
-                this.rowsCount = i4 + 1;
-                this.callsHeaderRow = i4;
+                this.rowsCount = i3 + 2;
+                this.callsHeaderRow = i3 + 1;
             }
-            int i5 = this.rowsCount;
-            this.callsStartRow = i5;
-            int size2 = i5 + CallLogActivity.this.calls.size();
+            int i4 = this.rowsCount;
+            this.callsStartRow = i4;
+            int size2 = i4 + CallLogActivity.this.calls.size();
             this.rowsCount = size2;
             this.callsEndRow = size2;
             if (CallLogActivity.this.endReached) {
                 return;
             }
-            int i6 = this.rowsCount;
-            this.rowsCount = i6 + 1;
-            this.loadingCallsRow = i6;
+            int i5 = this.rowsCount;
+            this.rowsCount = i5 + 1;
+            this.loadingCallsRow = i5;
         }
 
         @Override
@@ -1124,7 +1171,6 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
             SpannableString spannableString;
             String lowerCase;
             int itemViewType = viewHolder.getItemViewType();
-            boolean z = false;
             if (itemViewType == 0) {
                 int i2 = i - this.callsStartRow;
                 CallLogRow callLogRow = (CallLogRow) CallLogActivity.this.calls.get(i2);
@@ -1147,43 +1193,51 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                     spannableString2.setSpan(CallLogActivity.this.iconMissed, str.length(), str.length() + 1, 0);
                 }
                 callCell.profileSearchCell.setData(callLogRow.user, null, null, spannableString2, false, false);
-                callCell.profileSearchCell.useSeparator = (i2 == CallLogActivity.this.calls.size() - 1 && CallLogActivity.this.endReached) ? true : true;
+                callCell.profileSearchCell.useSeparator = (i2 == CallLogActivity.this.calls.size() - 1 && CallLogActivity.this.endReached) ? false : true;
                 callCell.imageView.setTag(callLogRow);
-            } else if (itemViewType == 3) {
+                return;
+            }
+            if (itemViewType == 3) {
                 HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
                 if (i == this.activeHeaderRow) {
                     headerCell.setText(LocaleController.getString("VoipChatActiveChats", R.string.VoipChatActiveChats));
-                } else if (i == this.callsHeaderRow) {
-                    headerCell.setText(LocaleController.getString("VoipChatRecentCalls", R.string.VoipChatRecentCalls));
-                }
-            } else if (itemViewType != 4) {
-            } else {
-                int i4 = i - this.activeStartRow;
-                TLRPC$Chat chat = CallLogActivity.this.getMessagesController().getChat((Long) CallLogActivity.this.activeGroupCalls.get(i4));
-                GroupCallCell groupCallCell = (GroupCallCell) viewHolder.itemView;
-                groupCallCell.setChat(chat);
-                groupCallCell.button.setTag(Long.valueOf(chat.id));
-                if (ChatObject.isChannel(chat) && !chat.megagroup) {
-                    if (!ChatObject.isPublic(chat)) {
-                        lowerCase = LocaleController.getString("ChannelPrivate", R.string.ChannelPrivate).toLowerCase();
-                    } else {
-                        lowerCase = LocaleController.getString("ChannelPublic", R.string.ChannelPublic).toLowerCase();
-                    }
-                } else if (chat.has_geo) {
-                    lowerCase = LocaleController.getString("MegaLocation", R.string.MegaLocation);
-                } else if (!ChatObject.isPublic(chat)) {
-                    lowerCase = LocaleController.getString("MegaPrivate", R.string.MegaPrivate).toLowerCase();
+                    return;
                 } else {
-                    lowerCase = LocaleController.getString("MegaPublic", R.string.MegaPublic).toLowerCase();
+                    if (i == this.callsHeaderRow) {
+                        headerCell.setText(LocaleController.getString("VoipChatRecentCalls", R.string.VoipChatRecentCalls));
+                        return;
+                    }
+                    return;
                 }
-                String str2 = lowerCase;
-                ProfileSearchCell profileSearchCell = groupCallCell.profileSearchCell;
-                if (i4 != CallLogActivity.this.activeGroupCalls.size() - 1 && !CallLogActivity.this.endReached) {
-                    z = true;
-                }
-                profileSearchCell.useSeparator = z;
-                groupCallCell.profileSearchCell.setData(chat, null, null, str2, false, false);
             }
+            if (itemViewType != 4) {
+                return;
+            }
+            int i4 = i - this.activeStartRow;
+            TLRPC$Chat chat = CallLogActivity.this.getMessagesController().getChat((Long) CallLogActivity.this.activeGroupCalls.get(i4));
+            GroupCallCell groupCallCell = (GroupCallCell) viewHolder.itemView;
+            groupCallCell.setChat(chat);
+            groupCallCell.button.setTag(Long.valueOf(chat.id));
+            if (ChatObject.isChannel(chat) && !chat.megagroup) {
+                if (!ChatObject.isPublic(chat)) {
+                    lowerCase = LocaleController.getString("ChannelPrivate", R.string.ChannelPrivate).toLowerCase();
+                } else {
+                    lowerCase = LocaleController.getString("ChannelPublic", R.string.ChannelPublic).toLowerCase();
+                }
+            } else if (chat.has_geo) {
+                lowerCase = LocaleController.getString("MegaLocation", R.string.MegaLocation);
+            } else if (!ChatObject.isPublic(chat)) {
+                lowerCase = LocaleController.getString("MegaPrivate", R.string.MegaPrivate).toLowerCase();
+            } else {
+                lowerCase = LocaleController.getString("MegaPublic", R.string.MegaPublic).toLowerCase();
+            }
+            String str2 = lowerCase;
+            ProfileSearchCell profileSearchCell = groupCallCell.profileSearchCell;
+            if (i4 != CallLogActivity.this.activeGroupCalls.size() - 1 && !CallLogActivity.this.endReached) {
+                r5 = true;
+            }
+            profileSearchCell.useSeparator = r5;
+            groupCallCell.profileSearchCell.setData(chat, null, null, str2, false, false);
         }
 
         @Override
@@ -1191,16 +1245,16 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
             if (i == this.activeHeaderRow || i == this.callsHeaderRow) {
                 return 3;
             }
-            if (i < this.callsStartRow || i >= this.callsEndRow) {
-                if (i < this.activeStartRow || i >= this.activeEndRow) {
-                    if (i == this.loadingCallsRow) {
-                        return 1;
-                    }
-                    return i == this.sectionRow ? 5 : 2;
-                }
+            if (i >= this.callsStartRow && i < this.callsEndRow) {
+                return 0;
+            }
+            if (i >= this.activeStartRow && i < this.activeEndRow) {
                 return 4;
             }
-            return 0;
+            if (i == this.loadingCallsRow) {
+                return 1;
+            }
+            return i == this.sectionRow ? 5 : 2;
         }
     }
 
@@ -1247,8 +1301,9 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                     RecyclerView.ViewHolder childViewHolder = CallLogActivity.this.listView.getChildViewHolder(childAt2);
                     if (childAt2 != view && CallLogActivity.this.listView.getChildAdapterPosition(childAt2) >= i && !(childAt2 instanceof GroupCallCell) && (!(childAt2 instanceof HeaderCell) || childViewHolder.getAdapterPosition() != CallLogActivity.this.listViewAdapter.activeHeaderRow)) {
                         childAt2.setAlpha(0.0f);
-                        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(childAt2, View.ALPHA, 0.0f, 1.0f);
-                        ofFloat.setStartDelay((int) ((Math.min(CallLogActivity.this.listView.getMeasuredHeight(), Math.max(0, childAt2.getTop())) / CallLogActivity.this.listView.getMeasuredHeight()) * 100.0f));
+                        int min = (int) ((Math.min(CallLogActivity.this.listView.getMeasuredHeight(), Math.max(0, childAt2.getTop())) / CallLogActivity.this.listView.getMeasuredHeight()) * 100.0f);
+                        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(childAt2, (Property<View, Float>) View.ALPHA, 0.0f, 1.0f);
+                        ofFloat.setStartDelay(min);
                         ofFloat.setDuration(200L);
                         animatorSet.playTogether(ofFloat);
                     }
@@ -1260,7 +1315,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                     if (layoutManager != null) {
                         layoutManager.ignoreView(view);
                         View view3 = view;
-                        ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(view3, View.ALPHA, view3.getAlpha(), 0.0f);
+                        ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(view3, (Property<View, Float>) View.ALPHA, view3.getAlpha(), 0.0f);
                         ofFloat2.addListener(new AnimatorListenerAdapter() {
                             @Override
                             public void onAnimationEnd(Animator animator) {

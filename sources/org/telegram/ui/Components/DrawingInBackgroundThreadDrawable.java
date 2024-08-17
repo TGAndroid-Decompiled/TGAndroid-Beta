@@ -7,9 +7,11 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.DispatchQueue;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.ActionBar.Theme;
+
 public class DrawingInBackgroundThreadDrawable implements NotificationCenter.NotificationCenterDelegate {
     public static DispatchQueuePool queuePool;
     boolean attachedToWindow;
@@ -35,7 +37,47 @@ public class DrawingInBackgroundThreadDrawable implements NotificationCenter.Not
     private final Runnable bitmapCreateTask = new Runnable() {
         @Override
         public void run() {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.DrawingInBackgroundThreadDrawable.AnonymousClass1.run():void");
+            int i;
+            Bitmap bitmap;
+            try {
+                DrawingInBackgroundThreadDrawable drawingInBackgroundThreadDrawable = DrawingInBackgroundThreadDrawable.this;
+                i = drawingInBackgroundThreadDrawable.height + drawingInBackgroundThreadDrawable.padding;
+                bitmap = drawingInBackgroundThreadDrawable.backgroundBitmap;
+            } catch (Exception e) {
+                FileLog.e(e);
+                DrawingInBackgroundThreadDrawable.this.error = true;
+            }
+            if (bitmap != null) {
+                int width = bitmap.getWidth();
+                DrawingInBackgroundThreadDrawable drawingInBackgroundThreadDrawable2 = DrawingInBackgroundThreadDrawable.this;
+                if (width == drawingInBackgroundThreadDrawable2.width) {
+                    if (drawingInBackgroundThreadDrawable2.backgroundBitmap.getHeight() != i) {
+                    }
+                    DrawingInBackgroundThreadDrawable.this.backgroundBitmap.eraseColor(0);
+                    DrawingInBackgroundThreadDrawable.this.backgroundCanvas.save();
+                    DrawingInBackgroundThreadDrawable.this.backgroundCanvas.translate(0.0f, r0.padding);
+                    DrawingInBackgroundThreadDrawable drawingInBackgroundThreadDrawable3 = DrawingInBackgroundThreadDrawable.this;
+                    drawingInBackgroundThreadDrawable3.drawInBackground(drawingInBackgroundThreadDrawable3.backgroundCanvas);
+                    DrawingInBackgroundThreadDrawable.this.backgroundCanvas.restore();
+                    DrawingInBackgroundThreadDrawable.this.backgroundBitmap.prepareToDraw();
+                    AndroidUtilities.runOnUIThread(DrawingInBackgroundThreadDrawable.this.uiFrameRunnable);
+                }
+            }
+            Bitmap bitmap2 = DrawingInBackgroundThreadDrawable.this.backgroundBitmap;
+            if (bitmap2 != null) {
+                bitmap2.recycle();
+            }
+            DrawingInBackgroundThreadDrawable drawingInBackgroundThreadDrawable4 = DrawingInBackgroundThreadDrawable.this;
+            drawingInBackgroundThreadDrawable4.backgroundBitmap = Bitmap.createBitmap(drawingInBackgroundThreadDrawable4.width, i, Bitmap.Config.ARGB_8888);
+            DrawingInBackgroundThreadDrawable.this.backgroundCanvas = new Canvas(DrawingInBackgroundThreadDrawable.this.backgroundBitmap);
+            DrawingInBackgroundThreadDrawable.this.backgroundBitmap.eraseColor(0);
+            DrawingInBackgroundThreadDrawable.this.backgroundCanvas.save();
+            DrawingInBackgroundThreadDrawable.this.backgroundCanvas.translate(0.0f, r0.padding);
+            DrawingInBackgroundThreadDrawable drawingInBackgroundThreadDrawable32 = DrawingInBackgroundThreadDrawable.this;
+            drawingInBackgroundThreadDrawable32.drawInBackground(drawingInBackgroundThreadDrawable32.backgroundCanvas);
+            DrawingInBackgroundThreadDrawable.this.backgroundCanvas.restore();
+            DrawingInBackgroundThreadDrawable.this.backgroundBitmap.prepareToDraw();
+            AndroidUtilities.runOnUIThread(DrawingInBackgroundThreadDrawable.this.uiFrameRunnable);
         }
     };
     Runnable uiFrameRunnable = new Runnable() {
@@ -46,8 +88,10 @@ public class DrawingInBackgroundThreadDrawable implements NotificationCenter.Not
             DrawingInBackgroundThreadDrawable drawingInBackgroundThreadDrawable = DrawingInBackgroundThreadDrawable.this;
             if (!drawingInBackgroundThreadDrawable.attachedToWindow) {
                 drawingInBackgroundThreadDrawable.recycleBitmaps();
-            } else if (drawingInBackgroundThreadDrawable.frameGuid != drawingInBackgroundThreadDrawable.lastFrameId) {
             } else {
+                if (drawingInBackgroundThreadDrawable.frameGuid != drawingInBackgroundThreadDrawable.lastFrameId) {
+                    return;
+                }
                 DrawingInBackgroundThreadDrawable.this.needSwapBitmaps = true;
             }
         }
@@ -201,9 +245,13 @@ public class DrawingInBackgroundThreadDrawable implements NotificationCenter.Not
                     }
                     this.paused = true;
                     onPaused();
+                    return;
                 }
+                return;
             }
-        } else if (i == NotificationCenter.startAllHeavyOperations) {
+            return;
+        }
+        if (i == NotificationCenter.startAllHeavyOperations) {
             Integer num2 = (Integer) objArr[0];
             if (this.currentLayerNum >= num2.intValue() || (i3 = this.currentOpenedLayerFlags) == 0) {
                 return;
@@ -247,12 +295,12 @@ public class DrawingInBackgroundThreadDrawable implements NotificationCenter.Not
             DispatchQueue[] dispatchQueueArr = this.pool;
             int i2 = this.pointer;
             DispatchQueue dispatchQueue = dispatchQueueArr[i2];
-            if (dispatchQueue == null) {
-                DispatchQueue dispatchQueue2 = new DispatchQueue("draw_background_queue_" + this.pointer);
-                dispatchQueueArr[i2] = dispatchQueue2;
-                return dispatchQueue2;
+            if (dispatchQueue != null) {
+                return dispatchQueue;
             }
-            return dispatchQueue;
+            DispatchQueue dispatchQueue2 = new DispatchQueue("draw_background_queue_" + this.pointer);
+            dispatchQueueArr[i2] = dispatchQueue2;
+            return dispatchQueue2;
         }
     }
 

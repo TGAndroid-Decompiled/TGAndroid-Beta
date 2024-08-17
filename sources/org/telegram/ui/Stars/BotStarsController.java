@@ -23,6 +23,7 @@ import org.telegram.tgnet.tl.TL_stats$TL_broadcastRevenueStats;
 import org.telegram.tgnet.tl.TL_stats$TL_getBroadcastRevenueStats;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ChannelMonetizationLayout;
+
 public class BotStarsController {
     private static volatile BotStarsController[] Instance = new BotStarsController[4];
     private static final Object[] lockObjects = new Object[4];
@@ -43,12 +44,15 @@ public class BotStarsController {
         BotStarsController botStarsController = Instance[i];
         if (botStarsController == null) {
             synchronized (lockObjects[i]) {
-                botStarsController = Instance[i];
-                if (botStarsController == null) {
-                    BotStarsController[] botStarsControllerArr = Instance;
-                    BotStarsController botStarsController2 = new BotStarsController(i);
-                    botStarsControllerArr[i] = botStarsController2;
-                    botStarsController = botStarsController2;
+                try {
+                    botStarsController = Instance[i];
+                    if (botStarsController == null) {
+                        BotStarsController[] botStarsControllerArr = Instance;
+                        BotStarsController botStarsController2 = new BotStarsController(i);
+                        botStarsControllerArr[i] = botStarsController2;
+                        botStarsController = botStarsController2;
+                    }
+                } finally {
                 }
             }
         }
@@ -221,14 +225,14 @@ public class BotStarsController {
 
     private TransactionsState getTransactionsState(long j) {
         TransactionsState transactionsState = this.transactions.get(Long.valueOf(j));
-        if (transactionsState == null) {
-            HashMap<Long, TransactionsState> hashMap = this.transactions;
-            Long valueOf = Long.valueOf(j);
-            TransactionsState transactionsState2 = new TransactionsState();
-            hashMap.put(valueOf, transactionsState2);
-            return transactionsState2;
+        if (transactionsState != null) {
+            return transactionsState;
         }
-        return transactionsState;
+        HashMap<Long, TransactionsState> hashMap = this.transactions;
+        Long valueOf = Long.valueOf(j);
+        TransactionsState transactionsState2 = new TransactionsState();
+        hashMap.put(valueOf, transactionsState2);
+        return transactionsState2;
     }
 
     public ArrayList<TLRPC$StarsTransaction> getTransactions(long j, int i) {

@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public abstract class TLRPC$photos_Photos extends TLObject {
     public int count;
     public ArrayList<TLRPC$Photo> photos = new ArrayList<>();

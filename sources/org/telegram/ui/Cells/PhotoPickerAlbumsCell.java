@@ -16,6 +16,7 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
+
 public class PhotoPickerAlbumsCell extends FrameLayout {
     private MediaController.AlbumEntry[] albumEntries;
     private AlbumView[] albumViews;
@@ -47,16 +48,18 @@ public class PhotoPickerAlbumsCell extends FrameLayout {
             textView.setTextSize(1, 13.0f);
             this.nameTextView.setTextColor(-1);
             this.nameTextView.setSingleLine(true);
-            this.nameTextView.setEllipsize(TextUtils.TruncateAt.END);
+            TextView textView2 = this.nameTextView;
+            TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+            textView2.setEllipsize(truncateAt);
             this.nameTextView.setMaxLines(1);
             this.nameTextView.setGravity(80);
             linearLayout.addView(this.nameTextView, LayoutHelper.createLinear(0, -1, 1.0f, 8, 0, 0, 5));
-            TextView textView2 = new TextView(context);
-            this.countTextView = textView2;
-            textView2.setTextSize(1, 13.0f);
+            TextView textView3 = new TextView(context);
+            this.countTextView = textView3;
+            textView3.setTextSize(1, 13.0f);
             this.countTextView.setTextColor(-1);
             this.countTextView.setSingleLine(true);
-            this.countTextView.setEllipsize(TextUtils.TruncateAt.END);
+            this.countTextView.setEllipsize(truncateAt);
             this.countTextView.setMaxLines(1);
             this.countTextView.setGravity(80);
             linearLayout.addView(this.countTextView, LayoutHelper.createLinear(-2, -1, 4.0f, 0.0f, 7.0f, 5.0f));
@@ -141,11 +144,9 @@ public class PhotoPickerAlbumsCell extends FrameLayout {
                 MediaController.PhotoEntry photoEntry2 = albumEntry.coverPhoto;
                 backupImageView.setOrientation(photoEntry2.orientation, photoEntry2.invert, true);
                 if (albumEntry.coverPhoto.isVideo) {
-                    BackupImageView backupImageView2 = albumView.imageView;
-                    backupImageView2.setImage("vthumb://" + albumEntry.coverPhoto.imageId + ":" + albumEntry.coverPhoto.path, null, Theme.chat_attachEmptyDrawable);
+                    albumView.imageView.setImage("vthumb://" + albumEntry.coverPhoto.imageId + ":" + albumEntry.coverPhoto.path, null, Theme.chat_attachEmptyDrawable);
                 } else {
-                    BackupImageView backupImageView3 = albumView.imageView;
-                    backupImageView3.setImage("thumb://" + albumEntry.coverPhoto.imageId + ":" + albumEntry.coverPhoto.path, null, Theme.chat_attachEmptyDrawable);
+                    albumView.imageView.setImage("thumb://" + albumEntry.coverPhoto.imageId + ":" + albumEntry.coverPhoto.path, null, Theme.chat_attachEmptyDrawable);
                 }
             }
             albumView.nameTextView.setText(albumEntry.bucketName);

@@ -8,6 +8,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.Theme;
+
 public class PlayingGameDrawable extends StatusDrawable {
     private final boolean isDialogScreen;
     private float progress;
@@ -90,8 +91,10 @@ public class PlayingGameDrawable extends StatusDrawable {
         float f = this.progress;
         int i2 = (int) (f < 0.5f ? (1.0f - (f / 0.5f)) * 35.0f : ((f - 0.5f) * 35.0f) / 0.5f);
         for (int i3 = 0; i3 < 3; i3++) {
+            float dp2 = (AndroidUtilities.dp(5.0f) * i3) + AndroidUtilities.dp(9.2f);
+            float dp3 = AndroidUtilities.dp(5.0f);
             float f2 = this.progress;
-            float dp2 = ((AndroidUtilities.dp(5.0f) * i3) + AndroidUtilities.dp(9.2f)) - (AndroidUtilities.dp(5.0f) * f2);
+            float f3 = dp2 - (dp3 * f2);
             if (i3 == 2) {
                 this.paint.setAlpha(Math.min(255, (int) ((f2 * 255.0f) / 0.5f)));
             } else if (i3 != 0) {
@@ -101,7 +104,7 @@ public class PlayingGameDrawable extends StatusDrawable {
             } else {
                 this.paint.setAlpha(255);
             }
-            canvas.drawCircle(dp2, (dp / 2) + i, AndroidUtilities.dp(1.2f), this.paint);
+            canvas.drawCircle(f3, (dp / 2) + i, AndroidUtilities.dp(1.2f), this.paint);
         }
         this.paint.setAlpha(255);
         canvas.drawArc(this.rect, i2, 360 - (i2 * 2), true, this.paint);

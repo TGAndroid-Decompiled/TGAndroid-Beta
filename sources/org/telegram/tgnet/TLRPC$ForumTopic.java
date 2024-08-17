@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public abstract class TLRPC$ForumTopic extends TLObject {
     public static TLRPC$ForumTopic TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$ForumTopic tLRPC$TL_forumTopic = i != 37687451 ? i != 1495324380 ? i != 1903173033 ? null : new TLRPC$TL_forumTopic() : new TLRPC$TL_forumTopic_layer147() : new TLRPC$TL_forumTopicDeleted();

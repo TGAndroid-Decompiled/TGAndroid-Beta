@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_updateChannelUserTyping extends TLRPC$Update {
     public TLRPC$SendMessageAction action;
     public long channel_id;

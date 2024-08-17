@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$User;
+
 public class TL_bots$popularAppBots extends TLObject {
     public int flags;
     public String next_offset;

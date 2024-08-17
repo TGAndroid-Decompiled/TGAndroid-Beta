@@ -17,6 +17,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.Premium.StarParticlesView;
 import org.telegram.ui.Components.voip.CellFlickerDrawable;
+
 public class PremiumLockIconView extends ImageView {
     public static int TYPE_REACTIONS = 0;
     public static int TYPE_REACTIONS_LOCK = 2;
@@ -72,7 +73,9 @@ public class PremiumLockIconView extends ImageView {
             drawable2.size1 = 2;
             drawable2.speedScale = 0.1f;
             drawable2.init();
-        } else if (i == TYPE_REACTIONS_LOCK) {
+            return;
+        }
+        if (i == TYPE_REACTIONS_LOCK) {
             this.iconScale = 0.8f;
             this.paint.setColor(Theme.getColor(Theme.key_windowBackgroundGray));
         }
@@ -85,9 +88,14 @@ public class PremiumLockIconView extends ImageView {
             this.path.rewind();
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            this.path.addCircle(rectF.width() / 2.0f, rectF.centerY(), rectF.width() / 2.0f, Path.Direction.CW);
+            Path path = this.path;
+            float width = rectF.width() / 2.0f;
+            float centerY = rectF.centerY();
+            float width2 = rectF.width() / 2.0f;
+            Path.Direction direction = Path.Direction.CW;
+            path.addCircle(width, centerY, width2, direction);
             rectF.set((getMeasuredWidth() / 2.0f) + AndroidUtilities.dp(2.5f), (getMeasuredHeight() / 2.0f) + AndroidUtilities.dpf2(5.7f), getMeasuredWidth() - AndroidUtilities.dpf2(0.2f), getMeasuredHeight());
-            this.path.addRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), Path.Direction.CW);
+            this.path.addRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), direction);
             this.path.close();
             this.starParticles.rect.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
             this.starParticles.rect.inset(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f));
@@ -251,9 +259,10 @@ public class PremiumLockIconView extends ImageView {
             this.shaderCrossfadeProgress = 0.0f;
         }
         this.paint = new Paint(1);
+        float measuredHeight = getMeasuredHeight();
         this.color1 = blendARGB2;
         this.color2 = blendARGB;
-        LinearGradient linearGradient = new LinearGradient(0.0f, getMeasuredHeight(), 0.0f, 0.0f, new int[]{blendARGB2, blendARGB}, (float[]) null, Shader.TileMode.CLAMP);
+        LinearGradient linearGradient = new LinearGradient(0.0f, measuredHeight, 0.0f, 0.0f, new int[]{blendARGB2, blendARGB}, (float[]) null, Shader.TileMode.CLAMP);
         this.shader = linearGradient;
         this.paint.setShader(linearGradient);
         invalidate();

@@ -19,6 +19,7 @@ import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Switch;
+
 public class TextCheckCell2 extends FrameLayout {
     private AnimatedTextView animatedTextView;
     private Switch checkBox;
@@ -90,23 +91,25 @@ public class TextCheckCell2 extends FrameLayout {
         this.textView.setMaxLines(1);
         this.textView.setSingleLine(true);
         this.textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
-        this.textView.setEllipsize(TextUtils.TruncateAt.END);
         TextView textView2 = this.textView;
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        textView2.setEllipsize(truncateAt);
+        TextView textView3 = this.textView;
         boolean z = LocaleController.isRTL;
-        addView(textView2, LayoutHelper.createFrame(-2, -1.0f, (z ? 5 : 3) | 48, z ? 64.0f : 21.0f, 0.0f, z ? 21.0f : 64.0f, 0.0f));
-        TextView textView3 = new TextView(context);
-        this.valueTextView = textView3;
-        textView3.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
+        addView(textView3, LayoutHelper.createFrame(-2, -1.0f, (z ? 5 : 3) | 48, z ? 64.0f : 21.0f, 0.0f, z ? 21.0f : 64.0f, 0.0f));
+        TextView textView4 = new TextView(context);
+        this.valueTextView = textView4;
+        textView4.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
         this.valueTextView.setTextSize(1, 13.0f);
         this.valueTextView.setGravity(LocaleController.isRTL ? 5 : 3);
         this.valueTextView.setLines(1);
         this.valueTextView.setMaxLines(1);
         this.valueTextView.setSingleLine(true);
         this.valueTextView.setPadding(0, 0, 0, 0);
-        this.valueTextView.setEllipsize(TextUtils.TruncateAt.END);
-        TextView textView4 = this.valueTextView;
+        this.valueTextView.setEllipsize(truncateAt);
+        TextView textView5 = this.valueTextView;
         boolean z2 = LocaleController.isRTL;
-        addView(textView4, LayoutHelper.createFrame(-2, -2.0f, (z2 ? 5 : 3) | 48, z2 ? 64.0f : 21.0f, 35.0f, z2 ? 21.0f : 64.0f, 0.0f));
+        addView(textView5, LayoutHelper.createFrame(-2, -2.0f, (z2 ? 5 : 3) | 48, z2 ? 64.0f : 21.0f, 35.0f, z2 ? 21.0f : 64.0f, 0.0f));
         Switch r2 = new Switch(context);
         this.checkBox = r2;
         r2.setDrawIconType(1);
@@ -195,7 +198,9 @@ public class TextCheckCell2 extends FrameLayout {
             this.textView.animate().alpha(z ? 1.0f : 0.5f).start();
             this.valueTextView.animate().alpha(z ? 1.0f : 0.5f).start();
             this.checkBox.animate().alpha(z ? 1.0f : 0.5f).start();
-        } else if (z) {
+            return;
+        }
+        if (z) {
             this.textView.setAlpha(1.0f);
             this.valueTextView.setAlpha(1.0f);
             this.checkBox.setAlpha(1.0f);

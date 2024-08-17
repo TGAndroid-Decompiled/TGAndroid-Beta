@@ -13,6 +13,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.BackDrawable;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
+
 @SuppressLint({"ViewConstructor"})
 public class SelectorHeaderCell extends FrameLayout {
     public BackDrawable backDrawable;
@@ -74,12 +75,7 @@ public class SelectorHeaderCell extends FrameLayout {
         this.closeView.setVisibility(z ? 0 : 8);
         TextView textView = this.textView;
         boolean z2 = LocaleController.isRTL;
-        float f = 22.0f;
-        float f2 = (z2 || !z) ? 22.0f : 53.0f;
-        if (z2 && z) {
-            f = 53.0f;
-        }
-        textView.setLayoutParams(LayoutHelper.createFrame(-1, -2.0f, 23, f2, 0.0f, f, 0.0f));
+        textView.setLayoutParams(LayoutHelper.createFrame(-1, -2.0f, 23, (z2 || !z) ? 22.0f : 53.0f, 0.0f, (z2 && z) ? 53.0f : 22.0f, 0.0f));
     }
 
     public void setBackImage(int i) {

@@ -1,4 +1,5 @@
 package kotlinx.coroutines;
+
 final class IncompleteStateBox {
     public final Incomplete state;
 

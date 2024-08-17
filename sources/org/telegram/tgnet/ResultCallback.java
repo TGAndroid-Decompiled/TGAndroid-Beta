@@ -1,7 +1,8 @@
 package org.telegram.tgnet;
+
 public interface ResultCallback<T> {
 
-    public final class CC<T> {
+    public final class CC {
         public static void $default$onError(ResultCallback resultCallback, Throwable th) {
         }
 

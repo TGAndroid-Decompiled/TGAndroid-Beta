@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
+
 public class VideoForwardDrawable extends Drawable {
     private static final int[] playPath = {10, 7, 26, 16, 10, 25};
     private boolean animating;
@@ -56,17 +57,16 @@ public class VideoForwardDrawable extends Drawable {
         this.path1.reset();
         int i = 0;
         while (true) {
-            int[] iArr = playPath;
-            if (i >= iArr.length / 2) {
+            if (i >= playPath.length / 2) {
                 this.path1.close();
                 return;
             }
             if (i == 0) {
                 int i2 = i * 2;
-                this.path1.moveTo(AndroidUtilities.dp(iArr[i2]), AndroidUtilities.dp(iArr[i2 + 1]));
+                this.path1.moveTo(AndroidUtilities.dp(r0[i2]), AndroidUtilities.dp(r0[i2 + 1]));
             } else {
                 int i3 = i * 2;
-                this.path1.lineTo(AndroidUtilities.dp(iArr[i3]), AndroidUtilities.dp(iArr[i3 + 1]));
+                this.path1.lineTo(AndroidUtilities.dp(r0[i3]), AndroidUtilities.dp(r0[i3 + 1]));
             }
             i++;
         }

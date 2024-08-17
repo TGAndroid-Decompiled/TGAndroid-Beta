@@ -1,6 +1,7 @@
 package org.webrtc;
 
 import android.content.Context;
+
 public class ContextUtils {
     private static final String TAG = "ContextUtils";
     private static Context applicationContext;

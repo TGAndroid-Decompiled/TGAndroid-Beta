@@ -77,6 +77,7 @@ import org.telegram.ui.StatisticActivity;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.TwoStepVerificationSetupActivity;
+
 public class BotStarsActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private ButtonWithCounterView adsButton;
     private ChatAvatarContainer avatarContainer;
@@ -154,7 +155,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    BotStarsActivity.this.finishFragment();
+                    BotStarsActivity.this.lambda$onBackPressed$308();
                 }
             }
         });
@@ -351,11 +352,11 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
     }
 
     public boolean lambda$createView$2(TextView textView, int i, KeyEvent keyEvent) {
-        if (i == 5) {
-            withdraw();
-            return true;
+        if (i != 5) {
+            return false;
         }
-        return false;
+        withdraw();
+        return true;
     }
 
     public void lambda$createView$3(View view) {
@@ -409,30 +410,32 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         int currentTime = getConnectionsManager().getCurrentTime();
         if (this.balanceBlockedUntil > currentTime) {
             this.withdrawalBulletin = BulletinFactory.of(this).createSimpleBulletin(R.raw.timer_3, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotStarsWithdrawalToast, untilString(this.balanceBlockedUntil - currentTime)))).show();
-        } else if (this.balanceEditTextValue < getMessagesController().starsRevenueWithdrawalMin) {
+            return;
+        }
+        if (this.balanceEditTextValue < getMessagesController().starsRevenueWithdrawalMin) {
             BulletinFactory.of(this).createSimpleBulletin(getContext().getResources().getDrawable(R.drawable.star_small_inner).mutate(), AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("BotStarsWithdrawMinLimit", (int) getMessagesController().starsRevenueWithdrawalMin, new Object[0]), new Runnable() {
                 @Override
                 public final void run() {
                     BotStarsActivity.this.lambda$withdraw$8();
                 }
             })).show();
-        } else {
-            final long j = this.balanceEditTextValue;
-            final TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
-            twoStepVerificationActivity.setDelegate(1, new TwoStepVerificationActivity.TwoStepVerificationActivityDelegate() {
-                @Override
-                public final void didEnterPassword(TLRPC$InputCheckPasswordSRP tLRPC$InputCheckPasswordSRP) {
-                    BotStarsActivity.this.lambda$withdraw$9(j, twoStepVerificationActivity, tLRPC$InputCheckPasswordSRP);
-                }
-            });
-            this.balanceButton.setLoading(true);
-            twoStepVerificationActivity.preload(new Runnable() {
-                @Override
-                public final void run() {
-                    BotStarsActivity.this.lambda$withdraw$10(twoStepVerificationActivity);
-                }
-            });
+            return;
         }
+        final long j = this.balanceEditTextValue;
+        final TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
+        twoStepVerificationActivity.setDelegate(1, new TwoStepVerificationActivity.TwoStepVerificationActivityDelegate() {
+            @Override
+            public final void didEnterPassword(TLRPC$InputCheckPasswordSRP tLRPC$InputCheckPasswordSRP) {
+                BotStarsActivity.this.lambda$withdraw$9(j, twoStepVerificationActivity, tLRPC$InputCheckPasswordSRP);
+            }
+        });
+        this.balanceButton.setLoading(true);
+        twoStepVerificationActivity.preload(new Runnable() {
+            @Override
+            public final void run() {
+                BotStarsActivity.this.lambda$withdraw$10(twoStepVerificationActivity);
+            }
+        });
     }
 
     public void lambda$withdraw$8() {
@@ -719,7 +722,8 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
                         }
                         currentListView.scrollBy(0, i4);
                         return;
-                    } else if (i2 > 0) {
+                    }
+                    if (i2 > 0) {
                         RecyclerListView currentListView2 = BotStarsActivity.this.transactionsLayout.getCurrentListView();
                         if (BotStarsActivity.this.listView.getHeight() - bottom < 0 || currentListView2 == null || currentListView2.canScrollVertically(1)) {
                             return;
@@ -727,9 +731,8 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
                         iArr[1] = i2;
                         BotStarsActivity.this.listView.stopScroll();
                         return;
-                    } else {
-                        return;
                     }
+                    return;
                 }
                 ((BaseFragment) BotStarsActivity.this).actionBar.setCastShadows(BotStarsActivity.this.listView.getHeight() - bottom < 0);
                 if (BotStarsActivity.this.listView.getHeight() - bottom >= 0) {
@@ -824,7 +827,9 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
                 int i3 = R.drawable.list_circle;
                 imageView.setImageResource(i3);
                 imageView.setPadding(LocaleController.isRTL ? AndroidUtilities.dp(11.0f) : 0, AndroidUtilities.dp(9.0f), LocaleController.isRTL ? 0 : AndroidUtilities.dp(11.0f), 0);
-                imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), PorterDuff.Mode.MULTIPLY));
+                int color = Theme.getColor(i2);
+                PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+                imageView.setColorFilter(new PorterDuffColorFilter(color, mode));
                 TextView textView2 = new TextView(activity);
                 textView2.setTextColor(Theme.getColor(i2));
                 textView2.setTextSize(1, 16.0f);
@@ -843,7 +848,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
                 ImageView imageView2 = new ImageView(activity);
                 imageView2.setImageResource(i3);
                 imageView2.setPadding(LocaleController.isRTL ? AndroidUtilities.dp(11.0f) : 0, AndroidUtilities.dp(9.0f), LocaleController.isRTL ? 0 : AndroidUtilities.dp(11.0f), 0);
-                imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), PorterDuff.Mode.MULTIPLY));
+                imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), mode));
                 TextView textView3 = new TextView(activity);
                 textView3.setTextColor(Theme.getColor(i2));
                 textView3.setTextSize(1, 16.0f);
@@ -885,7 +890,8 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
                     showDialog(builder.create());
                     return;
                 }
-            } else if ("SRP_ID_INVALID".equals(tLRPC$TL_error.text)) {
+            }
+            if ("SRP_ID_INVALID".equals(tLRPC$TL_error.text)) {
                 ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TLRPC$TL_account_getPassword(), new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject2, TLRPC$TL_error tLRPC$TL_error2) {
@@ -893,17 +899,16 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
                     }
                 }, 8);
                 return;
-            } else {
-                if (twoStepVerificationActivity != null) {
-                    twoStepVerificationActivity.needHideProgress();
-                    twoStepVerificationActivity.finishFragment();
-                }
-                BulletinFactory.showError(tLRPC$TL_error);
-                return;
             }
+            if (twoStepVerificationActivity != null) {
+                twoStepVerificationActivity.needHideProgress();
+                twoStepVerificationActivity.lambda$onBackPressed$308();
+            }
+            BulletinFactory.showError(tLRPC$TL_error);
+            return;
         }
         twoStepVerificationActivity.needHideProgress();
-        twoStepVerificationActivity.finishFragment();
+        twoStepVerificationActivity.lambda$onBackPressed$308();
         if (tLObject instanceof TLRPC$TL_payments_starsRevenueWithdrawalUrl) {
             this.balanceEditTextAll = true;
             Browser.openUrl(getContext(), ((TLRPC$TL_payments_starsRevenueWithdrawalUrl) tLObject).url);

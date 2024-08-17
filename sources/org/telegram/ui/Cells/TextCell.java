@@ -28,6 +28,7 @@ import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.Switch;
 import org.telegram.ui.FilterCreateActivity;
 import org.telegram.ui.PeerColorActivity;
+
 public class TextCell extends FrameLayout {
     private boolean attached;
     private int changeProgressStartDelay;
@@ -118,12 +119,13 @@ public class TextCell extends FrameLayout {
         addView(simpleTextView3);
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.imageView = rLottieImageView;
-        rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+        rLottieImageView.setScaleType(scaleType);
         rLottieImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(z ? Theme.key_dialogIcon : Theme.key_windowBackgroundWhiteGrayIcon, resourcesProvider), PorterDuff.Mode.MULTIPLY));
         addView(rLottieImageView);
         ImageView imageView = new ImageView(context);
         this.valueImageView = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setScaleType(scaleType);
         addView(this.valueImageView);
         if (z2) {
             Switch r3 = new Switch(context, resourcesProvider);
@@ -339,10 +341,10 @@ public class TextCell extends FrameLayout {
     public void setLockLevel(boolean z, int i) {
         if (i <= 0) {
             this.textView.setRightDrawable((Drawable) null);
-            return;
+        } else {
+            this.textView.setRightDrawable(new PeerColorActivity.LevelLock(getContext(), z, i, this.resourcesProvider));
+            this.textView.setDrawablePadding(AndroidUtilities.dp(6.0f));
         }
-        this.textView.setRightDrawable(new PeerColorActivity.LevelLock(getContext(), z, i, this.resourcesProvider));
-        this.textView.setDrawablePadding(AndroidUtilities.dp(6.0f));
     }
 
     public void setTextAndIcon(CharSequence charSequence, int i, boolean z) {
@@ -951,8 +953,8 @@ public class TextCell extends FrameLayout {
         if (!TextUtils.isEmpty(charSequence)) {
             this.subtitleView.setVisibility(0);
             this.subtitleView.setText(charSequence);
-            return;
+        } else {
+            this.subtitleView.setVisibility(8);
         }
-        this.subtitleView.setVisibility(8);
     }
 }

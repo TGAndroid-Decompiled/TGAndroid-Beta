@@ -1,6 +1,7 @@
 package org.telegram.ui.Stars;
 
 import android.view.View;
+
 public abstract class ISuperRipple {
     public final View view;
 

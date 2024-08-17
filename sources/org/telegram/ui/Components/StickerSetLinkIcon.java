@@ -10,6 +10,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.ui.ActionBar.Theme;
+
 public class StickerSetLinkIcon extends Drawable {
     private final int N;
     private final int count;
@@ -47,21 +48,21 @@ public class StickerSetLinkIcon extends Drawable {
     public boolean equals(ArrayList<TLRPC$Document> arrayList) {
         if (arrayList == null) {
             return this.drawables.length == 0;
-        } else if (this.drawables.length != arrayList.size()) {
+        }
+        if (this.drawables.length != arrayList.size()) {
             return false;
-        } else {
-            int i = 0;
-            while (true) {
-                AnimatedEmojiDrawable[] animatedEmojiDrawableArr = this.drawables;
-                if (i >= animatedEmojiDrawableArr.length) {
-                    return true;
-                }
-                TLRPC$Document document = animatedEmojiDrawableArr[i].getDocument();
-                if ((document == null ? 0L : document.id) != arrayList.get(i).id) {
-                    return false;
-                }
-                i++;
+        }
+        int i = 0;
+        while (true) {
+            AnimatedEmojiDrawable[] animatedEmojiDrawableArr = this.drawables;
+            if (i >= animatedEmojiDrawableArr.length) {
+                return true;
             }
+            TLRPC$Document document = animatedEmojiDrawableArr[i].getDocument();
+            if ((document == null ? 0L : document.id) != arrayList.get(i).id) {
+                return false;
+            }
+            i++;
         }
     }
 

@@ -3,6 +3,7 @@ package org.telegram.tgnet.tl;
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Peer;
+
 public class TL_stories$TL_foundStory extends TLObject {
     public TLRPC$Peer peer;
     public TL_stories$StoryItem storyItem;

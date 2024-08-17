@@ -3,6 +3,7 @@ package org.telegram.tgnet.tl;
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$MessageMedia;
+
 public class TL_bots$botPreviewMedia extends TLObject {
     public int date;
     public TLRPC$MessageMedia media;

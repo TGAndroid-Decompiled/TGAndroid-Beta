@@ -2,6 +2,7 @@ package org.webrtc;
 
 import java.util.HashMap;
 import java.util.Map;
+
 public class Metrics {
     private static final String TAG = "Metrics";
     public final Map<String, HistogramInfo> map = new HashMap();

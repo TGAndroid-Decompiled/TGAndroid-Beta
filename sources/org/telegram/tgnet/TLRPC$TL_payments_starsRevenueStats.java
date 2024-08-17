@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import org.telegram.tgnet.tl.TL_stats$StatsGraph;
+
 public class TLRPC$TL_payments_starsRevenueStats extends TLObject {
     public TL_stats$StatsGraph revenue_graph;
     public TLRPC$TL_starsRevenueStatus status;

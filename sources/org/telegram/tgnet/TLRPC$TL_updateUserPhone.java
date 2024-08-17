@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_updateUserPhone extends TLRPC$Update {
     public String phone;
     public long user_id;

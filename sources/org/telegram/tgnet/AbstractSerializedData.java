@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public abstract class AbstractSerializedData {
     public abstract int getPosition();
 

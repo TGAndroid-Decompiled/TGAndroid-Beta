@@ -1,5 +1,6 @@
 package kotlinx.coroutines;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ServiceLoader;
 import kotlin.ExceptionsKt__ExceptionsKt;
@@ -10,6 +11,7 @@ import kotlin.coroutines.CoroutineContext;
 import kotlin.sequences.Sequence;
 import kotlin.sequences.SequencesKt__SequencesKt;
 import kotlin.sequences.SequencesKt___SequencesKt;
+
 public final class CoroutineExceptionHandlerImplKt {
     private static final List<CoroutineExceptionHandler> handlers;
 
@@ -22,9 +24,10 @@ public final class CoroutineExceptionHandlerImplKt {
     }
 
     public static final void handleCoroutineExceptionImpl(CoroutineContext coroutineContext, Throwable th) {
-        for (CoroutineExceptionHandler coroutineExceptionHandler : handlers) {
+        Iterator<CoroutineExceptionHandler> it = handlers.iterator();
+        while (it.hasNext()) {
             try {
-                coroutineExceptionHandler.handleException(coroutineContext, th);
+                it.next().handleException(coroutineContext, th);
             } catch (Throwable th2) {
                 Thread currentThread = Thread.currentThread();
                 currentThread.getUncaughtExceptionHandler().uncaughtException(currentThread, CoroutineExceptionHandlerKt.handlerException(th, th2));
@@ -34,10 +37,10 @@ public final class CoroutineExceptionHandlerImplKt {
         try {
             Result.Companion companion = Result.Companion;
             ExceptionsKt__ExceptionsKt.addSuppressed(th, new DiagnosticCoroutineContextException(coroutineContext));
-            Result.m153constructorimpl(Unit.INSTANCE);
+            Result.m157constructorimpl(Unit.INSTANCE);
         } catch (Throwable th3) {
             Result.Companion companion2 = Result.Companion;
-            Result.m153constructorimpl(ResultKt.createFailure(th3));
+            Result.m157constructorimpl(ResultKt.createFailure(th3));
         }
         currentThread2.getUncaughtExceptionHandler().uncaughtException(currentThread2, th);
     }

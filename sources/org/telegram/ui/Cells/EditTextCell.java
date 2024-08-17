@@ -19,6 +19,7 @@ import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.LayoutHelper;
+
 public class EditTextCell extends FrameLayout {
     public boolean autofocused;
     public final EditTextBoldCursor editText;
@@ -63,11 +64,11 @@ public class EditTextCell extends FrameLayout {
         this.editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                if (i == 6) {
-                    runnable.run();
-                    return true;
+                if (i != 6) {
+                    return false;
                 }
-                return false;
+                runnable.run();
+                return true;
             }
         });
     }
@@ -148,7 +149,7 @@ public class EditTextCell extends FrameLayout {
         }
         editTextBoldCursor.setPadding(AndroidUtilities.dp(21.0f), AndroidUtilities.dp(15.0f), AndroidUtilities.dp((i > 0 ? 42 : 0) + 21), AndroidUtilities.dp(15.0f));
         editTextBoldCursor.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
-        editTextBoldCursor.setInputType((z ? 131072 : 0) | 16385 | 32768 | 524288);
+        editTextBoldCursor.setInputType((z ? 131072 : 0) | 573441);
         editTextBoldCursor.setRawInputType(573441);
         editTextBoldCursor.setHint(str);
         editTextBoldCursor.setCursorColor(Theme.getColor(i2, resourcesProvider));
@@ -186,8 +187,9 @@ public class EditTextCell extends FrameLayout {
                     int indexOf = editable.toString().indexOf("\n");
                     if (indexOf < 0) {
                         return;
+                    } else {
+                        editable.delete(indexOf, indexOf + 1);
                     }
-                    editable.delete(indexOf, indexOf + 1);
                 }
             }
         });

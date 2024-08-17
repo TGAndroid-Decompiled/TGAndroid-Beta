@@ -1,6 +1,7 @@
 package kotlinx.coroutines;
 
 import kotlinx.coroutines.internal.LockFreeLinkedListHead;
+
 public final class NodeList extends LockFreeLinkedListHead implements Incomplete {
     @Override
     public NodeList getList() {

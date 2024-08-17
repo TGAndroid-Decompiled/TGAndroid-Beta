@@ -19,6 +19,7 @@ import org.telegram.messenger.video.audio_input.AudioInput;
 import org.telegram.messenger.video.audio_input.GeneralAudioInput;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Stories.recorder.StoryEntry;
+
 public class MediaCodecVideoConvertor {
     private static final int MEDIACODEC_TIMEOUT_DEFAULT = 2500;
     private static final int MEDIACODEC_TIMEOUT_INCREASED = 22000;
@@ -47,7 +48,7 @@ public class MediaCodecVideoConvertor {
     }
 
     @android.annotation.TargetApi(18)
-    private boolean convertVideoInternal(org.telegram.messenger.video.MediaCodecVideoConvertor.ConvertVideoParams r91, boolean r92, int r93) {
+    private boolean convertVideoInternal(org.telegram.messenger.video.MediaCodecVideoConvertor.ConvertVideoParams r94, boolean r95, int r96) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.video.MediaCodecVideoConvertor.convertVideoInternal(org.telegram.messenger.video.MediaCodecVideoConvertor$ConvertVideoParams, boolean, int):boolean");
     }
 
@@ -85,11 +86,11 @@ public class MediaCodecVideoConvertor {
             }
             createEncoderByType = MediaCodec.createEncoderByType(this.outputMimeType);
         }
-        if (createEncoderByType == null && this.outputMimeType.equals("video/hevc")) {
-            this.outputMimeType = "video/avc";
-            return MediaCodec.createEncoderByType("video/avc");
+        if (createEncoderByType != null || !this.outputMimeType.equals("video/hevc")) {
+            return createEncoderByType;
         }
-        return createEncoderByType;
+        this.outputMimeType = "video/avc";
+        return MediaCodec.createEncoderByType("video/avc");
     }
 
     public static void cutOfNalData(String str, ByteBuffer byteBuffer, MediaCodec.BufferInfo bufferInfo) {
@@ -182,11 +183,11 @@ public class MediaCodecVideoConvertor {
             if (mediaMuxer != null) {
                 mediaMuxer.stop();
                 this.mediaMuxer.release();
-                return;
-            }
-            MP4Builder mP4Builder = this.mp4Builder;
-            if (mP4Builder != null) {
-                mP4Builder.finishMovie();
+            } else {
+                MP4Builder mP4Builder = this.mp4Builder;
+                if (mP4Builder != null) {
+                    mP4Builder.finishMovie();
+                }
             }
         }
     }
@@ -210,9 +211,7 @@ public class MediaCodecVideoConvertor {
             } else {
                 readRes = RLottieDrawable.readRes(null, R.raw.hdr2sdr_pq);
             }
-            String replace = readRes.replace("$dstWidth", i3 + ".0");
-            String replace2 = replace.replace("$dstHeight", i4 + ".0");
-            return replace2 + "\nvarying vec2 vTextureCoord;\nvoid main() {\n    gl_FragColor = TEX(vTextureCoord);\n}";
+            return readRes.replace("$dstWidth", i3 + ".0").replace("$dstHeight", i4 + ".0") + "\nvarying vec2 vTextureCoord;\nvoid main() {\n    gl_FragColor = TEX(vTextureCoord);\n}";
         }
         return "precision mediump float;\nvarying vec2 vTextureCoord;\nuniform sampler2D sTexture;\nvoid main() {\n    gl_FragColor = texture2D(sTexture, vTextureCoord);\n}\n";
     }

@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messages_getMessageReadParticipants extends TLObject {
     public int msg_id;
     public TLRPC$InputPeer peer;

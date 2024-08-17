@@ -682,7 +682,7 @@
     <string name="CallAlert">%1$s에게 전화를 겁니까?</string>
     <string name="CallAlertTitle">음성 통화</string>
     <string name="CallBack">답신 전화</string>
-    <string name="CallEmojiKeyTooltip">화면 속 이모지가 %1$s 님 것과 같다면, 이 통화는 100% 안전합니다.</string>
+    <string name="CallEmojiKeyTooltip" formatted="false">화면 속 이모지가 %1$s 님 것과 같다면, 이 통화는 100% 안전합니다.</string>
     <string name="CallMessageIncoming">수신 전화</string>
     <string name="CallMessageIncomingDeclined">거부한 전화</string>
     <string name="CallMessageIncomingMissed">부재중 전화</string>

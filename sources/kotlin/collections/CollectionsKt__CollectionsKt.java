@@ -3,6 +3,7 @@ package kotlin.collections;
 import java.util.Collection;
 import java.util.List;
 import kotlin.jvm.internal.Intrinsics;
+
 public class CollectionsKt__CollectionsKt extends CollectionsKt__CollectionsJVMKt {
     public static final <T> Collection<T> asCollection(T[] tArr) {
         Intrinsics.checkNotNullParameter(tArr, "<this>");
@@ -19,15 +20,10 @@ public class CollectionsKt__CollectionsKt extends CollectionsKt__CollectionsJVMK
     }
 
     public static <T> List<T> optimizeReadOnlyList(List<? extends T> list) {
-        List<T> listOf;
         Intrinsics.checkNotNullParameter(list, "<this>");
         int size = list.size();
         if (size != 0) {
-            if (size != 1) {
-                return list;
-            }
-            listOf = CollectionsKt__CollectionsJVMKt.listOf(list.get(0));
-            return listOf;
+            return size != 1 ? list : CollectionsKt.listOf(list.get(0));
         }
         return emptyList();
     }

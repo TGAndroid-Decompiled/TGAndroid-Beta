@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.view.View;
 import android.widget.LinearLayout;
 import org.telegram.messenger.SharedConfig;
+
 @SuppressLint({"ViewConstructor"})
 public class BlurredLinearLayout extends LinearLayout {
     public int backgroundColor;

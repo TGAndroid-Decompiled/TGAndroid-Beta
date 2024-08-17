@@ -1,4 +1,5 @@
 package org.telegram.messenger;
+
 public final class BuildConfig {
     public static final String APP_CENTER_HASH = "f9726602-67c9-48d2-b5d0-4761f1c1a8f3";
     public static final boolean BUILD_HOST_IS_WINDOWS = false;

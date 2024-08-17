@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public abstract class TLRPC$payments_PaymentResult extends TLObject {
     public static TLRPC$payments_PaymentResult TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$payments_PaymentResult tLRPC$TL_payments_paymentVerificationNeeded;

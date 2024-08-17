@@ -14,6 +14,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.SegmentTree;
 import org.telegram.ui.ActionBar.ThemeColors;
+
 public class ChartData {
     public String[] daysLookup;
     public ArrayList<Line> lines;
@@ -170,17 +171,18 @@ public class ChartData {
         int i3 = 0;
         while (true) {
             String[] strArr = this.daysLookup;
-            if (i3 < strArr.length) {
+            if (i3 >= strArr.length) {
+                float f = (float) this.timeStep;
+                long[] jArr2 = this.x;
+                this.oneDayPercentage = f / ((float) (jArr2[jArr2.length - 1] - jArr2[0]));
+                return;
+            } else {
                 if (this.timeStep == 1) {
                     strArr[i3] = String.format(Locale.ENGLISH, "%02d:00", Integer.valueOf(i3));
                 } else {
                     strArr[i3] = simpleDateFormat.format(new Date((i3 * this.timeStep) + j));
                 }
                 i3++;
-            } else {
-                long[] jArr2 = this.x;
-                this.oneDayPercentage = ((float) this.timeStep) / ((float) (jArr2[jArr2.length - 1] - jArr2[0]));
-                return;
             }
         }
     }
@@ -194,47 +196,46 @@ public class ChartData {
     public int findStartIndex(float f) {
         int length;
         int i = 0;
-        if (f != 0.0f && (length = this.xPercentage.length) >= 2) {
-            int i2 = length - 1;
-            while (i <= i2) {
-                int i3 = (i2 + i) >> 1;
-                float[] fArr = this.xPercentage;
-                float f2 = fArr[i3];
-                if ((f < f2 && (i3 == 0 || f > fArr[i3 - 1])) || f == f2) {
-                    return i3;
-                }
-                if (f < f2) {
-                    i2 = i3 - 1;
-                } else if (f > f2) {
-                    i = i3 + 1;
-                }
-            }
-            return i;
+        if (f == 0.0f || (length = this.xPercentage.length) < 2) {
+            return 0;
         }
-        return 0;
+        int i2 = length - 1;
+        while (i <= i2) {
+            int i3 = (i2 + i) >> 1;
+            float[] fArr = this.xPercentage;
+            float f2 = fArr[i3];
+            if ((f < f2 && (i3 == 0 || f > fArr[i3 - 1])) || f == f2) {
+                return i3;
+            }
+            if (f < f2) {
+                i2 = i3 - 1;
+            } else if (f > f2) {
+                i = i3 + 1;
+            }
+        }
+        return i;
     }
 
     public int findEndIndex(int i, float f) {
-        int length = this.xPercentage.length;
+        int length = this.xPercentage.length - 1;
         if (f == 1.0f) {
-            return length - 1;
+            return length;
         }
-        int i2 = length - 1;
-        int i3 = i2;
-        while (i <= i3) {
-            int i4 = (i3 + i) >> 1;
+        int i2 = length;
+        while (i <= i2) {
+            int i3 = (i2 + i) >> 1;
             float[] fArr = this.xPercentage;
-            float f2 = fArr[i4];
-            if ((f > f2 && (i4 == i2 || f < fArr[i4 + 1])) || f == f2) {
-                return i4;
+            float f2 = fArr[i3];
+            if ((f > f2 && (i3 == length || f < fArr[i3 + 1])) || f == f2) {
+                return i3;
             }
             if (f < f2) {
-                i3 = i4 - 1;
+                i2 = i3 - 1;
             } else if (f > f2) {
-                i = i4 + 1;
+                i = i3 + 1;
             }
         }
-        return i3;
+        return i2;
     }
 
     public int findIndex(int i, int i2, float f) {

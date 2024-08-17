@@ -31,6 +31,7 @@ import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.DotDividerSpan;
 import org.telegram.ui.Components.RadialProgress2;
 import org.telegram.ui.FilteredSearchView;
+
 public class AudioPlayerCell extends View implements DownloadController.FileDownloadProgressListener {
     private int TAG;
     private boolean buttonPressed;
@@ -83,8 +84,7 @@ public class AudioPlayerCell extends View implements DownloadController.FileDown
         this.titleLayout = null;
         int size = (View.MeasureSpec.getSize(i) - AndroidUtilities.dp(AndroidUtilities.leftBaseline)) - AndroidUtilities.dp(28.0f);
         try {
-            String musicTitle = this.currentMessageObject.getMusicTitle();
-            StaticLayout staticLayout = new StaticLayout(TextUtils.ellipsize(musicTitle.replace('\n', ' '), Theme.chat_contextResult_titleTextPaint, Math.min((int) Math.ceil(Theme.chat_contextResult_titleTextPaint.measureText(musicTitle)), size), TextUtils.TruncateAt.END), Theme.chat_contextResult_titleTextPaint, size + AndroidUtilities.dp(4.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            StaticLayout staticLayout = new StaticLayout(TextUtils.ellipsize(this.currentMessageObject.getMusicTitle().replace('\n', ' '), Theme.chat_contextResult_titleTextPaint, Math.min((int) Math.ceil(Theme.chat_contextResult_titleTextPaint.measureText(r0)), size), TextUtils.TruncateAt.END), Theme.chat_contextResult_titleTextPaint, size + AndroidUtilities.dp(4.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.titleLayout = staticLayout;
             this.titleLayoutEmojis = AnimatedEmojiSpan.update(0, this, this.titleLayoutEmojis, staticLayout);
         } catch (Exception e) {
@@ -150,8 +150,37 @@ public class AudioPlayerCell extends View implements DownloadController.FileDown
         return this.currentMessageObject;
     }
 
-    private boolean checkAudioMotionEvent(android.view.MotionEvent r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.AudioPlayerCell.checkAudioMotionEvent(android.view.MotionEvent):boolean");
+    private boolean checkAudioMotionEvent(MotionEvent motionEvent) {
+        int dp;
+        int dp2;
+        int i;
+        int x = (int) motionEvent.getX();
+        int y = (int) motionEvent.getY();
+        int dp3 = AndroidUtilities.dp(36.0f);
+        boolean z = this.miniButtonState >= 0 && x >= (dp2 = this.buttonX + (dp = AndroidUtilities.dp(27.0f))) && x <= dp2 + dp3 && y >= (i = this.buttonY + dp) && y <= i + dp3;
+        if (motionEvent.getAction() == 0) {
+            if (z) {
+                this.miniButtonPressed = true;
+                this.radialProgress.setPressed(true, true);
+                invalidate();
+                return true;
+            }
+        } else if (this.miniButtonPressed) {
+            if (motionEvent.getAction() == 1) {
+                this.miniButtonPressed = false;
+                playSoundEffect(0);
+                didPressedMiniButton(true);
+                invalidate();
+            } else if (motionEvent.getAction() == 3) {
+                this.miniButtonPressed = false;
+                invalidate();
+            } else if (motionEvent.getAction() == 2 && !z) {
+                this.miniButtonPressed = false;
+                invalidate();
+            }
+            this.radialProgress.setPressed(this.miniButtonPressed, true);
+        }
+        return false;
     }
 
     @Override
@@ -160,12 +189,12 @@ public class AudioPlayerCell extends View implements DownloadController.FileDown
             return super.onTouchEvent(motionEvent);
         }
         boolean checkAudioMotionEvent = checkAudioMotionEvent(motionEvent);
-        if (motionEvent.getAction() == 3) {
-            this.miniButtonPressed = false;
-            this.buttonPressed = false;
-            return false;
+        if (motionEvent.getAction() != 3) {
+            return checkAudioMotionEvent;
         }
-        return checkAudioMotionEvent;
+        this.miniButtonPressed = false;
+        this.buttonPressed = false;
+        return false;
     }
 
     private void didPressedMiniButton(boolean z) {
@@ -176,7 +205,9 @@ public class AudioPlayerCell extends View implements DownloadController.FileDown
             FileLoader.getInstance(this.currentAccount).loadFile(this.currentMessageObject.getDocument(), this.currentMessageObject, 3, 0);
             this.radialProgress.setMiniIcon(getMiniIconForCurrentState(), false, true);
             invalidate();
-        } else if (i == 1) {
+            return;
+        }
+        if (i == 1) {
             if (MediaController.getInstance().isPlayingMessage(this.currentMessageObject)) {
                 MediaController.getInstance().cleanupPlayer(true, true);
             }
@@ -202,20 +233,28 @@ public class AudioPlayerCell extends View implements DownloadController.FileDown
                 this.buttonState = 1;
                 this.radialProgress.setIcon(getIconForCurrentState(), false, true);
                 invalidate();
+                return;
             }
-        } else if (i == 1) {
+            return;
+        }
+        if (i == 1) {
             if (MediaController.getInstance().lambda$startAudioAgain$7(this.currentMessageObject)) {
                 this.buttonState = 0;
                 this.radialProgress.setIcon(getIconForCurrentState(), false, true);
                 invalidate();
+                return;
             }
-        } else if (i == 2) {
+            return;
+        }
+        if (i == 2) {
             this.radialProgress.setProgress(0.0f, false);
             FileLoader.getInstance(this.currentAccount).loadFile(this.currentMessageObject.getDocument(), this.currentMessageObject, 1, 0);
             this.buttonState = 4;
             this.radialProgress.setIcon(getIconForCurrentState(), false, true);
             invalidate();
-        } else if (i == 4) {
+            return;
+        }
+        if (i == 4) {
             FileLoader.getInstance(this.currentAccount).cancelLoadFile(this.currentMessageObject.getDocument());
             this.buttonState = 2;
             this.radialProgress.setIcon(getIconForCurrentState(), false, true);

@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_payments_launchPrepaidGiveaway extends TLObject {
     public static int constructor = 1609928480;
     public long giveaway_id;

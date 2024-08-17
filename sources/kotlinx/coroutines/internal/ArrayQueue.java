@@ -1,6 +1,7 @@
 package kotlinx.coroutines.internal;
 
 import kotlin.collections.ArraysKt___ArraysJvmKt;
+
 public class ArrayQueue<T> {
     private Object[] elements = new Object[16];
     private int head;

@@ -75,6 +75,7 @@ import org.telegram.ui.Components.Premium.boosts.cells.statistics.GiveawayCell;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ScrollSlidingTextTabStrip;
 import org.telegram.ui.StatisticActivity;
+
 public class BoostsActivity extends GradientHeaderActivity implements NotificationCenter.NotificationCenterDelegate {
     private TL_stories$TL_premium_boostsStatus boostsStatus;
     private ScrollSlidingTextTabStrip boostsTabs;
@@ -104,42 +105,49 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             View shadowSectionCell;
-            FrameLayout frameLayout;
+            View view;
             switch (i) {
                 case 0:
-                    frameLayout = new StatisticActivity.OverviewCell(BoostsActivity.this.getContext());
-                    break;
+                    view = new StatisticActivity.OverviewCell(BoostsActivity.this.getContext());
+                    view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                    return new RecyclerListView.Holder(view);
                 case 1:
                 case 16:
                     View chartHeaderView = new ChartHeaderView(BoostsActivity.this.getContext());
                     chartHeaderView.setPadding(chartHeaderView.getPaddingLeft(), AndroidUtilities.dp(16.0f), chartHeaderView.getRight(), AndroidUtilities.dp(16.0f));
-                    frameLayout = chartHeaderView;
-                    break;
+                    view = chartHeaderView;
+                    view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                    return new RecyclerListView.Holder(view);
                 case 2:
                     shadowSectionCell = new ShadowSectionCell(viewGroup.getContext(), 12, Theme.getColor(Theme.key_windowBackgroundGray));
-                    frameLayout = shadowSectionCell;
-                    break;
+                    view = shadowSectionCell;
+                    view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                    return new RecyclerListView.Holder(view);
                 case 3:
                     LinkActionView linkActionView = new LinkActionView(BoostsActivity.this.getContext(), BoostsActivity.this, null, 0L, false, false);
                     linkActionView.hideOptions();
                     linkActionView.setPadding(AndroidUtilities.dp(11.0f), 0, AndroidUtilities.dp(11.0f), AndroidUtilities.dp(24.0f));
-                    frameLayout = linkActionView;
-                    break;
+                    view = linkActionView;
+                    view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                    return new RecyclerListView.Holder(view);
                 case 4:
                 default:
                     throw new UnsupportedOperationException();
                 case 5:
-                    frameLayout = new GiftedUserCell(BoostsActivity.this.getContext(), 0, 0, false);
-                    break;
+                    view = new GiftedUserCell(BoostsActivity.this.getContext(), 0, 0, false);
+                    view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                    return new RecyclerListView.Holder(view);
                 case 6:
                     shadowSectionCell = new TextInfoPrivacyCell(viewGroup.getContext(), 20, ((BaseFragment) BoostsActivity.this).resourceProvider);
-                    frameLayout = shadowSectionCell;
-                    break;
+                    view = shadowSectionCell;
+                    view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                    return new RecyclerListView.Holder(view);
                 case 7:
-                    frameLayout = new FixedHeightEmptyCell(BoostsActivity.this.getContext(), 8);
-                    break;
+                    view = new FixedHeightEmptyCell(BoostsActivity.this.getContext(), 8);
+                    view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                    return new RecyclerListView.Holder(view);
                 case 8:
-                    FrameLayout frameLayout2 = new FrameLayout(BoostsActivity.this.getContext()) {
+                    FrameLayout frameLayout = new FrameLayout(BoostsActivity.this.getContext()) {
                         @Override
                         protected void onMeasure(int i2, int i3) {
                             super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
@@ -150,9 +158,10 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
                     textView.setTextSize(1, 14.0f);
                     textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText));
                     textView.setGravity(17);
-                    frameLayout2.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 0, 0.0f, 16.0f, 0.0f, 0.0f));
-                    frameLayout = frameLayout2;
-                    break;
+                    frameLayout.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 0, 0.0f, 16.0f, 0.0f, 0.0f));
+                    view = frameLayout;
+                    view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                    return new RecyclerListView.Holder(view);
                 case 9:
                     ManageChatTextCell manageChatTextCell = new ManageChatTextCell(BoostsActivity.this.getContext()) {
                         @Override
@@ -161,28 +170,32 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
                         }
                     };
                     manageChatTextCell.setColors(Theme.key_windowBackgroundWhiteBlueIcon, Theme.key_windowBackgroundWhiteBlueButton);
-                    frameLayout = manageChatTextCell;
-                    break;
+                    view = manageChatTextCell;
+                    view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                    return new RecyclerListView.Holder(view);
                 case 10:
                     TextCell textCell = new TextCell(BoostsActivity.this.getContext());
                     textCell.setTextAndIcon((CharSequence) LocaleController.formatString("BoostingGetBoostsViaGifts", R.string.BoostingGetBoostsViaGifts, new Object[0]), R.drawable.msg_gift_premium, false);
                     textCell.offsetFromImage = 64;
                     int i2 = Theme.key_windowBackgroundWhiteBlueText4;
                     textCell.setColors(i2, i2);
-                    frameLayout = textCell;
-                    break;
+                    view = textCell;
+                    view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                    return new RecyclerListView.Holder(view);
                 case 11:
-                    frameLayout = new GiveawayCell(BoostsActivity.this.getContext(), 0, 0, false);
-                    break;
+                    view = new GiveawayCell(BoostsActivity.this.getContext(), 0, 0, false);
+                    view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                    return new RecyclerListView.Holder(view);
                 case 12:
                     View chartHeaderView2 = new ChartHeaderView(BoostsActivity.this.getContext());
                     chartHeaderView2.setPadding(chartHeaderView2.getPaddingLeft(), AndroidUtilities.dp(16.0f), chartHeaderView2.getRight(), AndroidUtilities.dp(8.0f));
-                    frameLayout = chartHeaderView2;
-                    break;
+                    view = chartHeaderView2;
+                    view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                    return new RecyclerListView.Holder(view);
                 case 13:
                     BoostsActivity.this.boostsTabs = new ScrollSlidingTextTabStrip(BoostsActivity.this.getContext(), ((BaseFragment) BoostsActivity.this).resourceProvider);
                     BoostsActivity.this.boostsTabs.setColors(Theme.key_profile_tabSelectedLine, Theme.key_profile_tabSelectedText, Theme.key_profile_tabText, Theme.key_profile_tabSelector);
-                    FrameLayout frameLayout3 = new FrameLayout(BoostsActivity.this.getContext()) {
+                    FrameLayout frameLayout2 = new FrameLayout(BoostsActivity.this.getContext()) {
                         private final Paint dividerPaint = new Paint(1);
 
                         @Override
@@ -207,32 +220,32 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
                             BoostsActivity.this.updateRows(true);
                         }
                     });
-                    frameLayout3.addView(BoostsActivity.this.boostsTabs, LayoutHelper.createFrame(-2, 48.0f));
-                    frameLayout = frameLayout3;
-                    break;
+                    frameLayout2.addView(BoostsActivity.this.boostsTabs, LayoutHelper.createFrame(-2, 48.0f));
+                    view = frameLayout2;
+                    view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                    return new RecyclerListView.Holder(view);
                 case 14:
                     BoostsActivity boostsActivity = BoostsActivity.this;
-                    frameLayout = boostsActivity.getHeader(boostsActivity.getContext());
-                    break;
+                    view = boostsActivity.getHeader(boostsActivity.getContext());
+                    view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                    return new RecyclerListView.Holder(view);
                 case 15:
-                    View view = new View(BoostsActivity.this.getContext()) {
+                    View view2 = new View(BoostsActivity.this.getContext()) {
                         @Override
                         protected void onMeasure(int i3, int i4) {
                             LinearLayoutManager linearLayoutManager = BoostsActivity.this.layoutManager;
                             super.onMeasure(i3, View.MeasureSpec.makeMeasureSpec(Math.max(0, linearLayoutManager instanceof FillLastLinearLayoutManager ? ((FillLastLinearLayoutManager) linearLayoutManager).getLastItemHeight() : 0), 1073741824));
                         }
                     };
-                    view.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
-                    frameLayout = view;
-                    break;
+                    view2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
+                    view = view2;
+                    view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                    return new RecyclerListView.Holder(view);
             }
-            frameLayout.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-            return new RecyclerListView.Holder(frameLayout);
         }
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-            ItemInternal itemInternal;
             String formatString;
             if (viewHolder.getItemViewType() == 4 || viewHolder.getItemViewType() == 14 || viewHolder.getItemViewType() == 15) {
                 return;
@@ -246,19 +259,25 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
                 }
                 if (viewHolder.getItemViewType() == 16) {
                     chartHeaderView.setPadding(AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f), chartHeaderView.getPaddingBottom());
+                    return;
                 }
-            } else if (viewHolder.getItemViewType() == 0) {
+                return;
+            }
+            if (viewHolder.getItemViewType() == 0) {
                 StatisticActivity.OverviewCell overviewCell = (StatisticActivity.OverviewCell) viewHolder.itemView;
                 overviewCell.setData(0, Integer.toString(BoostsActivity.this.boostsStatus.level), null, LocaleController.getString("BoostsLevel2", R.string.BoostsLevel2));
                 if (BoostsActivity.this.boostsStatus.premium_audience == null || BoostsActivity.this.boostsStatus.premium_audience.total == 0.0d) {
                     overviewCell.setData(1, "~0", "0%", LocaleController.getString(BoostsActivity.this.isChannel() ? R.string.PremiumSubscribers : R.string.PremiumMembers));
                 } else {
-                    overviewCell.setData(1, "≈" + ((int) BoostsActivity.this.boostsStatus.premium_audience.part), String.format(Locale.US, "%.1f", Float.valueOf((((float) BoostsActivity.this.boostsStatus.premium_audience.part) / ((float) BoostsActivity.this.boostsStatus.premium_audience.total)) * 100.0f)) + "%", LocaleController.getString(BoostsActivity.this.isChannel() ? R.string.PremiumSubscribers : R.string.PremiumMembers));
+                    float f = (((float) BoostsActivity.this.boostsStatus.premium_audience.part) / ((float) BoostsActivity.this.boostsStatus.premium_audience.total)) * 100.0f;
+                    overviewCell.setData(1, "≈" + ((int) BoostsActivity.this.boostsStatus.premium_audience.part), String.format(Locale.US, "%.1f", Float.valueOf(f)) + "%", LocaleController.getString(BoostsActivity.this.isChannel() ? R.string.PremiumSubscribers : R.string.PremiumMembers));
                 }
                 overviewCell.setData(2, String.valueOf(BoostsActivity.this.boostsStatus.boosts), null, LocaleController.getString("BoostsExisting", R.string.BoostsExisting));
                 overviewCell.setData(3, String.valueOf(Math.max(0, BoostsActivity.this.boostsStatus.next_level_boosts - BoostsActivity.this.boostsStatus.boosts)), null, LocaleController.getString("BoostsToLevel", R.string.BoostsToLevel));
                 overviewCell.setPadding(AndroidUtilities.dp(23.0f), overviewCell.getPaddingTop(), AndroidUtilities.dp(23.0f), overviewCell.getPaddingBottom());
-            } else if (viewHolder.getItemViewType() == 5) {
+                return;
+            }
+            if (viewHolder.getItemViewType() == 5) {
                 TL_stories$TL_boost tL_stories$TL_boost = ((ItemInternal) BoostsActivity.this.items.get(i)).booster;
                 TLRPC$User user = MessagesController.getInstance(BoostsActivity.this.currentAccount).getUser(Long.valueOf(tL_stories$TL_boost.user_id));
                 GiftedUserCell giftedUserCell = (GiftedUserCell) viewHolder.itemView;
@@ -270,28 +289,39 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
                 giftedUserCell.setData(user, ContactsController.formatName(user), formatString, 0, !((ItemInternal) BoostsActivity.this.items.get(i)).isLast);
                 giftedUserCell.setStatus(tL_stories$TL_boost);
                 giftedUserCell.setAvatarPadding(5);
-            } else if (viewHolder.getItemViewType() == 6) {
+                return;
+            }
+            if (viewHolder.getItemViewType() == 6) {
                 TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
                 textInfoPrivacyCell.setText(((ItemInternal) BoostsActivity.this.items.get(i)).title);
                 CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawable(BoostsActivity.this.getContext(), i == BoostsActivity.this.items.size() - 2 ? R.drawable.greydivider_bottom : R.drawable.greydivider, Theme.getColor(Theme.key_windowBackgroundGrayShadow, ((BaseFragment) BoostsActivity.this).resourceProvider)), 0, 0);
                 combinedDrawable.setFullsize(true);
                 textInfoPrivacyCell.setBackground(combinedDrawable);
-            } else if (viewHolder.getItemViewType() == 9) {
+                return;
+            }
+            if (viewHolder.getItemViewType() == 9) {
                 ManageChatTextCell manageChatTextCell = (ManageChatTextCell) viewHolder.itemView;
                 if (BoostsActivity.this.selectedTab == 0) {
                     manageChatTextCell.setText(LocaleController.formatPluralString("BoostingShowMoreBoosts", BoostsActivity.this.nextBoostRemaining, new Object[0]), null, R.drawable.arrow_more, false);
+                    return;
                 } else {
                     manageChatTextCell.setText(LocaleController.formatPluralString("BoostingShowMoreGifts", BoostsActivity.this.nextGiftsRemaining, new Object[0]), null, R.drawable.arrow_more, false);
+                    return;
                 }
-            } else if (viewHolder.getItemViewType() == 3) {
+            }
+            if (viewHolder.getItemViewType() == 3) {
                 ((LinkActionView) viewHolder.itemView).setLink(((ItemInternal) BoostsActivity.this.items.get(i)).title);
-            } else if (viewHolder.getItemViewType() == 11) {
+                return;
+            }
+            if (viewHolder.getItemViewType() == 11) {
                 TL_stories$TL_prepaidGiveaway tL_stories$TL_prepaidGiveaway = ((ItemInternal) BoostsActivity.this.items.get(i)).prepaidGiveaway;
                 GiveawayCell giveawayCell = (GiveawayCell) viewHolder.itemView;
-                giveawayCell.setData(tL_stories$TL_prepaidGiveaway, LocaleController.formatPluralString("BoostingTelegramPremiumCountPlural", tL_stories$TL_prepaidGiveaway.quantity, new Object[0]), LocaleController.formatPluralString("BoostingSubscriptionsCountPlural", tL_stories$TL_prepaidGiveaway.quantity, LocaleController.formatPluralString("PrepaidGiveawayMonths", tL_stories$TL_prepaidGiveaway.months, new Object[0])), 0, !itemInternal.isLast);
+                giveawayCell.setData(tL_stories$TL_prepaidGiveaway, LocaleController.formatPluralString("BoostingTelegramPremiumCountPlural", tL_stories$TL_prepaidGiveaway.quantity, new Object[0]), LocaleController.formatPluralString("BoostingSubscriptionsCountPlural", tL_stories$TL_prepaidGiveaway.quantity, LocaleController.formatPluralString("PrepaidGiveawayMonths", tL_stories$TL_prepaidGiveaway.months, new Object[0])), 0, !r15.isLast);
                 giveawayCell.setImage(tL_stories$TL_prepaidGiveaway);
                 giveawayCell.setAvatarPadding(5);
-            } else if (viewHolder.getItemViewType() == 13) {
+                return;
+            }
+            if (viewHolder.getItemViewType() == 13) {
                 if (BoostsActivity.this.boostsTabs.getTag() == null || ((Integer) BoostsActivity.this.boostsTabs.getTag()).intValue() != Objects.hash(Integer.valueOf(BoostsActivity.this.totalBoosts), Integer.valueOf(BoostsActivity.this.totalGifts))) {
                     BoostsActivity.this.boostsTabs.setTag(Integer.valueOf(Objects.hash(Integer.valueOf(BoostsActivity.this.totalBoosts), Integer.valueOf(BoostsActivity.this.totalGifts))));
                     BoostsActivity.this.boostsTabs.removeTabs();
@@ -413,10 +443,10 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
                     BoostsActivity.this.lambda$loadStatistic$1((TL_stories$TL_premium_boostsStatus) obj);
                 }
             });
-            return;
+        } else {
+            this.progressLayout.setVisibility(8);
+            loadUsers(null);
         }
-        this.progressLayout.setVisibility(8);
-        loadUsers(null);
     }
 
     public void lambda$loadStatistic$1(final TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus) {
@@ -662,7 +692,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
                 if (baseFragment2 instanceof ProfileActivity) {
                     getParentLayout().removeFragmentFromStack(baseFragment2);
                 }
-                finishFragment();
+                lambda$onBackPressed$308();
                 if (baseFragment3 instanceof ChatActivity) {
                     BoostDialogs.showBulletin(baseFragment3, tLRPC$Chat, true);
                 }
@@ -672,11 +702,14 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
                 }
                 return;
             }
-            finishFragment();
+            lambda$onBackPressed$308();
             if ((baseFragment2 instanceof ProfileActivity) || (baseFragment2 instanceof ChatActivity)) {
                 BoostDialogs.showBulletin(baseFragment2, tLRPC$Chat, false);
+                return;
             }
-        } else if (i == NotificationCenter.chatWasBoostedByUser && this.dialogId == ((Long) objArr[2]).longValue()) {
+            return;
+        }
+        if (i == NotificationCenter.chatWasBoostedByUser && this.dialogId == ((Long) objArr[2]).longValue()) {
             this.boostsStatus = (TL_stories$TL_premium_boostsStatus) objArr[0];
             this.canApplyBoost = (ChannelBoostsController.CanApplyBoost) objArr[1];
         }

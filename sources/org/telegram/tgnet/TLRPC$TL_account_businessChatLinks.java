@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_account_businessChatLinks extends TLObject {
     public ArrayList<TLRPC$TL_businessChatLink> links = new ArrayList<>();
     public ArrayList<TLRPC$Chat> chats = new ArrayList<>();

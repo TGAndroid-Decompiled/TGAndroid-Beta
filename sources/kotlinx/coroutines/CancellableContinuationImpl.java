@@ -11,6 +11,7 @@ import kotlin.coroutines.jvm.internal.CoroutineStackFrame;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.Intrinsics;
 import kotlinx.coroutines.internal.DispatchedContinuation;
+
 public class CancellableContinuationImpl<T> extends DispatchedTask<T> implements CancellableContinuation<T>, CoroutineStackFrame {
     private static final AtomicIntegerFieldUpdater _decision$FU = AtomicIntegerFieldUpdater.newUpdater(CancellableContinuationImpl.class, "_decision");
     private static final AtomicReferenceFieldUpdater _state$FU = AtomicReferenceFieldUpdater.newUpdater(CancellableContinuationImpl.class, Object.class, "_state");
@@ -19,10 +20,6 @@ public class CancellableContinuationImpl<T> extends DispatchedTask<T> implements
     private final CoroutineContext context;
     private final Continuation<T> delegate;
     private DisposableHandle parentHandle;
-
-    protected String nameString() {
-        return "CancellableContinuation";
-    }
 
     @Override
     public final Continuation<T> getDelegate$kotlinx_coroutines_core() {
@@ -93,13 +90,13 @@ public class CancellableContinuationImpl<T> extends DispatchedTask<T> implements
         if (obj instanceof CompletedExceptionally) {
             return obj;
         }
-        if (DispatchedTaskKt.isCancellableMode(i) || obj2 != null) {
-            if (function1 == null && !(notCompleted instanceof CancelHandler) && obj2 == null) {
-                return obj;
-            }
-            return new CompletedContinuation(obj, notCompleted instanceof CancelHandler ? (CancelHandler) notCompleted : null, function1, obj2, null, 16, null);
+        if (!DispatchedTaskKt.isCancellableMode(i) && obj2 == null) {
+            return obj;
         }
-        return obj;
+        if (function1 == null && !(notCompleted instanceof CancelHandler) && obj2 == null) {
+            return obj;
+        }
+        return new CompletedContinuation(obj, notCompleted instanceof CancelHandler ? (CancelHandler) notCompleted : null, function1, obj2, null, 16, null);
     }
 
     static void resumeImpl$default(CancellableContinuationImpl cancellableContinuationImpl, Object obj, int i, Function1 function1, int i2, Object obj2) {
@@ -149,6 +146,10 @@ public class CancellableContinuationImpl<T> extends DispatchedTask<T> implements
 
     public String toString() {
         return nameString() + '(' + DebugStringsKt.toDebugString(this.delegate) + "){" + getStateDebugRepresentation() + "}@" + DebugStringsKt.getHexAddress(this);
+    }
+
+    protected String nameString() {
+        return "CancellableContinuation";
     }
 
     @Override

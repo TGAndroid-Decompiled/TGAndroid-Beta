@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,6 +47,7 @@ import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorSearchCe
 import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorUserCell;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
+
 public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerListView {
     private static MultiContactsSelectorBottomSheet instance;
     private final ButtonWithCounterView actionButton;
@@ -312,16 +314,16 @@ public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerLis
             if (this.selectedIds.size() == i + 1) {
                 this.selectedIds.remove(Long.valueOf(j));
                 showMaximumUsersToast();
-                return;
+            } else {
+                this.searchField.updateSpans(true, this.selectedIds, new Runnable() {
+                    @Override
+                    public final void run() {
+                        MultiContactsSelectorBottomSheet.this.lambda$new$2();
+                    }
+                }, null);
+                updateList(true, false);
+                clearSearchAfterSelect();
             }
-            this.searchField.updateSpans(true, this.selectedIds, new Runnable() {
-                @Override
-                public final void run() {
-                    MultiContactsSelectorBottomSheet.this.lambda$new$2();
-                }
-            }, null);
-            updateList(true, false);
-            clearSearchAfterSelect();
         }
     }
 
@@ -494,9 +496,10 @@ public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerLis
                 i = 0;
             } else {
                 ArrayList arrayList = new ArrayList();
+                Iterator<TLRPC$TL_topPeer> it = this.hints.iterator();
                 i = 0;
-                for (TLRPC$TL_topPeer tLRPC$TL_topPeer : this.hints) {
-                    TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(tLRPC$TL_topPeer.peer.user_id));
+                while (it.hasNext()) {
+                    TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(it.next().peer.user_id));
                     if (!user.self && !user.bot && !UserObject.isService(user.id) && !UserObject.isDeleted(user)) {
                         i += AndroidUtilities.dp(56.0f);
                         arrayList.add(SelectorAdapter.Item.asUser(user, this.selectedIds.contains(Long.valueOf(user.id))));

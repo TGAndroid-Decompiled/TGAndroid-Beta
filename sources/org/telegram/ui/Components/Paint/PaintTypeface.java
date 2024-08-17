@@ -13,12 +13,14 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
+
 public class PaintTypeface {
     public static final List<PaintTypeface> BUILT_IN_FONTS;
     public static final PaintTypeface COURIER_NEW_BOLD;
@@ -216,16 +218,18 @@ public class PaintTypeface {
     }
 
     public static void lambda$load$9() {
-        Set<Font> availableFonts;
+        Set availableFonts;
         File file;
         FontData parseFont;
         final ArrayList arrayList = new ArrayList(BUILT_IN_FONTS);
         if (Build.VERSION.SDK_INT >= 29) {
             availableFonts = SystemFonts.getAvailableFonts();
+            Iterator it = availableFonts.iterator();
             HashMap hashMap = new HashMap();
-            for (Font font : availableFonts) {
-                file = font.getFile();
-                if (!file.getName().contains("Noto") && (parseFont = parseFont(font)) != null) {
+            while (it.hasNext()) {
+                Font m = PaintTypeface$$ExternalSyntheticApiModelOutline1.m(it.next());
+                file = m.getFile();
+                if (!file.getName().contains("Noto") && (parseFont = parseFont(m)) != null) {
                     Family family = (Family) hashMap.get(parseFont.family);
                     if (family == null) {
                         family = new Family();
@@ -236,8 +240,9 @@ public class PaintTypeface {
                     family.fonts.add(parseFont);
                 }
             }
-            for (String str2 : preferable) {
-                Family family2 = (Family) hashMap.get(str2);
+            Iterator<String> it2 = preferable.iterator();
+            while (it2.hasNext()) {
+                Family family2 = (Family) hashMap.get(it2.next());
                 if (family2 != null) {
                     FontData bold = family2.getBold();
                     if (bold == null) {
@@ -265,11 +270,11 @@ public class PaintTypeface {
 
     public static List<PaintTypeface> get() {
         List<PaintTypeface> list = typefaces;
-        if (list == null) {
-            load();
-            return BUILT_IN_FONTS;
+        if (list != null) {
+            return list;
         }
-        return list;
+        load();
+        return BUILT_IN_FONTS;
     }
 
     public static PaintTypeface find(String str) {
@@ -299,12 +304,12 @@ public class PaintTypeface {
                 if (i >= this.fonts.size()) {
                     fontData = null;
                     break;
-                } else if ("Regular".equalsIgnoreCase(this.fonts.get(i).subfamily)) {
+                }
+                if ("Regular".equalsIgnoreCase(this.fonts.get(i).subfamily)) {
                     fontData = this.fonts.get(i);
                     break;
-                } else {
-                    i++;
                 }
+                i++;
             }
             return (fontData != null || this.fonts.isEmpty()) ? fontData : this.fonts.get(0);
         }

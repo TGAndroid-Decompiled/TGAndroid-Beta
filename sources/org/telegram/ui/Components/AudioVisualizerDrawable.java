@@ -7,6 +7,7 @@ import java.util.Random;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
 import org.telegram.ui.ActionBar.Theme;
+
 public class AudioVisualizerDrawable {
     private float idleScale;
     private boolean idleScaleInc;
@@ -73,10 +74,7 @@ public class AudioVisualizerDrawable {
                     fArr[i4] = (this.random.nextInt() % 500) / 1000.0f;
                 }
             }
-            float f2 = this.ANIMATION_DURATION;
-            if (z3) {
-                f2 *= 2.0f;
-            }
+            float f2 = z3 ? this.ANIMATION_DURATION * 2.0f : this.ANIMATION_DURATION;
             if (this.lastAmplitudeCount > 6) {
                 float f3 = 0.0f;
                 for (int i5 = 0; i5 < 6; i5++) {

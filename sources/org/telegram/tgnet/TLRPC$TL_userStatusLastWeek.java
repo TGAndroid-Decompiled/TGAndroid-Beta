@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_userStatusLastWeek extends TLRPC$UserStatus {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

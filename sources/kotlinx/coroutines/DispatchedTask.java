@@ -12,6 +12,7 @@ import kotlinx.coroutines.internal.DispatchedContinuation;
 import kotlinx.coroutines.internal.ThreadContextKt;
 import kotlinx.coroutines.scheduling.Task;
 import kotlinx.coroutines.scheduling.TaskContext;
+
 public abstract class DispatchedTask<T> extends Task {
     public int resumeMode;
 
@@ -54,8 +55,8 @@ public abstract class DispatchedTask<T> extends Task {
 
     @Override
     public final void run() {
-        Object m153constructorimpl;
-        Object m153constructorimpl2;
+        Object m157constructorimpl;
+        Object m157constructorimpl2;
         TaskContext taskContext = this.taskContext;
         try {
             DispatchedContinuation dispatchedContinuation = (DispatchedContinuation) getDelegate$kotlinx_coroutines_core();
@@ -64,43 +65,50 @@ public abstract class DispatchedTask<T> extends Task {
             CoroutineContext context = continuation.getContext();
             Object updateThreadContext = ThreadContextKt.updateThreadContext(context, obj);
             UndispatchedCoroutine<?> updateUndispatchedCompletion = updateThreadContext != ThreadContextKt.NO_THREAD_ELEMENTS ? CoroutineContextKt.updateUndispatchedCompletion(continuation, context, updateThreadContext) : null;
-            CoroutineContext context2 = continuation.getContext();
-            Object takeState$kotlinx_coroutines_core = takeState$kotlinx_coroutines_core();
-            Throwable exceptionalResult$kotlinx_coroutines_core = getExceptionalResult$kotlinx_coroutines_core(takeState$kotlinx_coroutines_core);
-            Job job = (exceptionalResult$kotlinx_coroutines_core == null && DispatchedTaskKt.isCancellableMode(this.resumeMode)) ? (Job) context2.get(Job.Key) : null;
-            if (job != null && !job.isActive()) {
-                CancellationException cancellationException = job.getCancellationException();
-                cancelCompletedResult$kotlinx_coroutines_core(takeState$kotlinx_coroutines_core, cancellationException);
-                Result.Companion companion = Result.Companion;
-                continuation.resumeWith(Result.m153constructorimpl(ResultKt.createFailure(cancellationException)));
-            } else if (exceptionalResult$kotlinx_coroutines_core != null) {
-                Result.Companion companion2 = Result.Companion;
-                continuation.resumeWith(Result.m153constructorimpl(ResultKt.createFailure(exceptionalResult$kotlinx_coroutines_core)));
-            } else {
-                continuation.resumeWith(Result.m153constructorimpl(getSuccessfulResult$kotlinx_coroutines_core(takeState$kotlinx_coroutines_core)));
-            }
-            Unit unit = Unit.INSTANCE;
-            if (updateUndispatchedCompletion == null || updateUndispatchedCompletion.clearThreadContext()) {
-                ThreadContextKt.restoreThreadContext(context, updateThreadContext);
-            }
             try {
-                taskContext.afterTask();
-                m153constructorimpl2 = Result.m153constructorimpl(Unit.INSTANCE);
-            } catch (Throwable th) {
-                Result.Companion companion3 = Result.Companion;
-                m153constructorimpl2 = Result.m153constructorimpl(ResultKt.createFailure(th));
+                CoroutineContext context2 = continuation.getContext();
+                Object takeState$kotlinx_coroutines_core = takeState$kotlinx_coroutines_core();
+                Throwable exceptionalResult$kotlinx_coroutines_core = getExceptionalResult$kotlinx_coroutines_core(takeState$kotlinx_coroutines_core);
+                Job job = (exceptionalResult$kotlinx_coroutines_core == null && DispatchedTaskKt.isCancellableMode(this.resumeMode)) ? (Job) context2.get(Job.Key) : null;
+                if (job != null && !job.isActive()) {
+                    CancellationException cancellationException = job.getCancellationException();
+                    cancelCompletedResult$kotlinx_coroutines_core(takeState$kotlinx_coroutines_core, cancellationException);
+                    Result.Companion companion = Result.Companion;
+                    continuation.resumeWith(Result.m157constructorimpl(ResultKt.createFailure(cancellationException)));
+                } else if (exceptionalResult$kotlinx_coroutines_core != null) {
+                    Result.Companion companion2 = Result.Companion;
+                    continuation.resumeWith(Result.m157constructorimpl(ResultKt.createFailure(exceptionalResult$kotlinx_coroutines_core)));
+                } else {
+                    continuation.resumeWith(Result.m157constructorimpl(getSuccessfulResult$kotlinx_coroutines_core(takeState$kotlinx_coroutines_core)));
+                }
+                Unit unit = Unit.INSTANCE;
+                if (updateUndispatchedCompletion == null || updateUndispatchedCompletion.clearThreadContext()) {
+                    ThreadContextKt.restoreThreadContext(context, updateThreadContext);
+                }
+                try {
+                    taskContext.afterTask();
+                    m157constructorimpl2 = Result.m157constructorimpl(Unit.INSTANCE);
+                } catch (Throwable th) {
+                    Result.Companion companion3 = Result.Companion;
+                    m157constructorimpl2 = Result.m157constructorimpl(ResultKt.createFailure(th));
+                }
+                handleFatalException(null, Result.m158exceptionOrNullimpl(m157constructorimpl2));
+            } catch (Throwable th2) {
+                if (updateUndispatchedCompletion == null || updateUndispatchedCompletion.clearThreadContext()) {
+                    ThreadContextKt.restoreThreadContext(context, updateThreadContext);
+                }
+                throw th2;
             }
-            handleFatalException(null, Result.m154exceptionOrNullimpl(m153constructorimpl2));
-        } catch (Throwable th2) {
+        } catch (Throwable th3) {
             try {
                 Result.Companion companion4 = Result.Companion;
                 taskContext.afterTask();
-                m153constructorimpl = Result.m153constructorimpl(Unit.INSTANCE);
-            } catch (Throwable th3) {
+                m157constructorimpl = Result.m157constructorimpl(Unit.INSTANCE);
+            } catch (Throwable th4) {
                 Result.Companion companion5 = Result.Companion;
-                m153constructorimpl = Result.m153constructorimpl(ResultKt.createFailure(th3));
+                m157constructorimpl = Result.m157constructorimpl(ResultKt.createFailure(th4));
             }
-            handleFatalException(th2, Result.m154exceptionOrNullimpl(m153constructorimpl));
+            handleFatalException(th3, Result.m158exceptionOrNullimpl(m157constructorimpl));
         }
     }
 }

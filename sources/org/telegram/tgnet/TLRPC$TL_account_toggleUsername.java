@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_account_toggleUsername extends TLObject {
     public boolean active;
     public String username;

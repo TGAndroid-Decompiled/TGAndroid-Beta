@@ -4,6 +4,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLoader;
+
 public class TLRPC$TL_userProfilePhoto extends TLRPC$UserProfilePhoto {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

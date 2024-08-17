@@ -2,6 +2,7 @@ package org.telegram.tgnet.tl;
 
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
+
 public class TL_fragment$TL_collectibleInfo extends TLObject {
     public long amount;
     public long crypto_amount;

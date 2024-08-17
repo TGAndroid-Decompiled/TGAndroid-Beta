@@ -13,6 +13,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.SystemClock;
 import android.text.TextUtils;
+import android.util.Property;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,6 +53,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.GroupCreateUserCell;
 import org.telegram.ui.Cells.ShareDialogCell;
 import org.telegram.ui.Components.RecyclerListView;
+
 public class JoinCallAlert extends BottomSheet {
     private static ArrayList<TLRPC$Peer> cachedChats;
     private static long lastCacheDid;
@@ -97,12 +99,12 @@ public class JoinCallAlert extends BottomSheet {
         while (true) {
             if (i2 >= size) {
                 break;
-            } else if (MessageObject.getPeerId(cachedChats.get(i2)) == j) {
+            }
+            if (MessageObject.getPeerId(cachedChats.get(i2)) == j) {
                 cachedChats.remove(i2);
                 break;
-            } else {
-                i2++;
             }
+            i2++;
         }
         if (cachedChats.isEmpty()) {
             cachedChats = null;
@@ -166,14 +168,19 @@ public class JoinCallAlert extends BottomSheet {
             AnimatorSet animatorSet = new AnimatorSet();
             animatorSet.setDuration(180L);
             animatorSet.setInterpolator(CubicBezierInterpolator.EASE_OUT);
-            animatorSet.playTogether(ObjectAnimator.ofFloat(this.textView[0], View.ALPHA, 1.0f, 0.0f), ObjectAnimator.ofFloat(this.textView[0], View.TRANSLATION_Y, 0.0f, -AndroidUtilities.dp(10.0f)), ObjectAnimator.ofFloat(this.textView[1], View.ALPHA, 0.0f, 1.0f), ObjectAnimator.ofFloat(this.textView[1], View.TRANSLATION_Y, AndroidUtilities.dp(10.0f), 0.0f));
+            TextView textView = this.textView[0];
+            Property property = View.ALPHA;
+            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property, 1.0f, 0.0f);
+            TextView textView2 = this.textView[0];
+            Property property2 = View.TRANSLATION_Y;
+            animatorSet.playTogether(ofFloat, ObjectAnimator.ofFloat(textView2, (Property<TextView, Float>) property2, 0.0f, -AndroidUtilities.dp(10.0f)), ObjectAnimator.ofFloat(this.textView[1], (Property<TextView, Float>) property, 0.0f, 1.0f), ObjectAnimator.ofFloat(this.textView[1], (Property<TextView, Float>) property2, AndroidUtilities.dp(10.0f), 0.0f));
             animatorSet.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {
                     JoinCallAlert.this.animationInProgress = false;
-                    TextView textView = BottomSheetCell.this.textView[0];
+                    TextView textView3 = BottomSheetCell.this.textView[0];
                     BottomSheetCell.this.textView[0] = BottomSheetCell.this.textView[1];
-                    BottomSheetCell.this.textView[1] = textView;
+                    BottomSheetCell.this.textView[1] = textView3;
                 }
             });
             animatorSet.start();
@@ -332,7 +339,7 @@ public class JoinCallAlert extends BottomSheet {
     private JoinCallAlert(Context context, long j, ArrayList<TLRPC$Peer> arrayList, int i, TLRPC$Peer tLRPC$Peer, final JoinCallAlertDelegate joinCallAlertDelegate) {
         super(context, false);
         int color;
-        FrameLayout frameLayout;
+        ViewGroup viewGroup;
         boolean z;
         this.location = new int[2];
         setApplyBottomPadding(false);
@@ -426,9 +433,9 @@ public class JoinCallAlert extends BottomSheet {
             NestedScrollView nestedScrollView = new NestedScrollView(context);
             nestedScrollView.addView(linearLayout);
             setCustomView(nestedScrollView);
-            frameLayout = linearLayout;
+            viewGroup = linearLayout;
         } else {
-            FrameLayout frameLayout2 = new FrameLayout(context) {
+            FrameLayout frameLayout = new FrameLayout(context) {
                 @Override
                 public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
                     if (motionEvent.getAction() == 0 && JoinCallAlert.this.scrollOffsetY != 0 && motionEvent.getY() < JoinCallAlert.this.scrollOffsetY) {
@@ -484,12 +491,12 @@ public class JoinCallAlert extends BottomSheet {
                     JoinCallAlert.this.shadowDrawable.draw(canvas);
                 }
             };
-            this.containerView = frameLayout2;
-            frameLayout2.setWillNotDraw(false);
-            ViewGroup viewGroup = this.containerView;
+            this.containerView = frameLayout;
+            frameLayout.setWillNotDraw(false);
+            ViewGroup viewGroup2 = this.containerView;
             int i4 = this.backgroundPaddingLeft;
-            viewGroup.setPadding(i4, 0, i4, 0);
-            frameLayout = frameLayout2;
+            viewGroup2.setPadding(i4, 0, i4, 0);
+            viewGroup = frameLayout;
         }
         final TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j));
         RecyclerListView recyclerListView = new RecyclerListView(context) {
@@ -522,7 +529,7 @@ public class JoinCallAlert extends BottomSheet {
             }
         });
         if (i != 0) {
-            frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, 100.0f, 0.0f, 80.0f));
+            viewGroup.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, 100.0f, 0.0f, 80.0f));
         } else {
             this.listView.setSelectorDrawableColor(0);
             this.listView.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), 0);
@@ -532,7 +539,7 @@ public class JoinCallAlert extends BottomSheet {
             rLottieImageView.setAutoRepeat(true);
             rLottieImageView.setAnimation(R.raw.utyan_schedule, 120, 120);
             rLottieImageView.playAnimation();
-            frameLayout.addView(rLottieImageView, LayoutHelper.createLinear(160, 160, 49, 17, 8, 17, 0));
+            viewGroup.addView(rLottieImageView, LayoutHelper.createLinear(160, 160, 49, 17, 8, 17, 0));
         }
         TextView textView = new TextView(context);
         this.textView = textView;
@@ -551,7 +558,7 @@ public class JoinCallAlert extends BottomSheet {
             } else {
                 this.textView.setText(LocaleController.getString("StartVoipChatTitle", R.string.StartVoipChatTitle));
             }
-            frameLayout.addView(this.textView, LayoutHelper.createLinear(-2, -2, 49, 23, 16, 23, 0));
+            viewGroup.addView(this.textView, LayoutHelper.createLinear(-2, -2, 49, 23, 16, 23, 0));
         } else {
             if (i == 2) {
                 this.textView.setText(LocaleController.getString("VoipGroupDisplayAs", R.string.VoipGroupDisplayAs));
@@ -560,7 +567,7 @@ public class JoinCallAlert extends BottomSheet {
             } else {
                 this.textView.setText(LocaleController.getString("VoipGroupJoinAs", R.string.VoipGroupJoinAs));
             }
-            frameLayout.addView(this.textView, LayoutHelper.createFrame(-2, -2.0f, 51, 23.0f, 8.0f, 23.0f, 0.0f));
+            viewGroup.addView(this.textView, LayoutHelper.createFrame(-2, -2.0f, 51, 23.0f, 8.0f, 23.0f, 0.0f));
         }
         TextView textView2 = new TextView(getContext());
         this.messageTextView = textView2;
@@ -599,7 +606,7 @@ public class JoinCallAlert extends BottomSheet {
             }
             this.messageTextView.setText(sb);
             this.messageTextView.setGravity(49);
-            frameLayout.addView(this.messageTextView, LayoutHelper.createLinear(-2, -2, 49, 23, 0, 23, 5));
+            viewGroup.addView(this.messageTextView, LayoutHelper.createLinear(-2, -2, 49, 23, 0, 23, 5));
         } else {
             if (z) {
                 this.messageTextView.setText(LocaleController.getString("VoipGroupStartAsInfoGroup", R.string.VoipGroupStartAsInfoGroup));
@@ -607,10 +614,10 @@ public class JoinCallAlert extends BottomSheet {
                 this.messageTextView.setText(LocaleController.getString("VoipGroupStartAsInfo", R.string.VoipGroupStartAsInfo));
             }
             this.messageTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
-            frameLayout.addView(this.messageTextView, LayoutHelper.createFrame(-2, -2.0f, 51, 23.0f, 0.0f, 23.0f, 5.0f));
+            viewGroup.addView(this.messageTextView, LayoutHelper.createFrame(-2, -2.0f, 51, 23.0f, 0.0f, 23.0f, 5.0f));
         }
         if (i == 0) {
-            frameLayout.addView(this.listView, LayoutHelper.createLinear(this.chats.size() < 5 ? -2 : -1, 95, 49, 0, 6, 0, 0));
+            viewGroup.addView(this.listView, LayoutHelper.createLinear(this.chats.size() < 5 ? -2 : -1, 95, 49, 0, 6, 0, 0));
         }
         BottomSheetCell bottomSheetCell = new BottomSheetCell(context, false);
         this.doneButton = bottomSheetCell;
@@ -621,7 +628,7 @@ public class JoinCallAlert extends BottomSheet {
             }
         });
         if (this.currentType == 0) {
-            frameLayout.addView(this.doneButton, LayoutHelper.createLinear(-1, 50, 51, 0, 0, 0, 0));
+            viewGroup.addView(this.doneButton, LayoutHelper.createLinear(-1, 50, 51, 0, 0, 0, 0));
             BottomSheetCell bottomSheetCell2 = new BottomSheetCell(context, true);
             if (ChatObject.isChannelOrGiga(chat)) {
                 bottomSheetCell2.setText(LocaleController.getString("VoipChannelScheduleVoiceChat", R.string.VoipChannelScheduleVoiceChat), false);
@@ -634,9 +641,9 @@ public class JoinCallAlert extends BottomSheet {
                     JoinCallAlert.this.lambda$new$8(view);
                 }
             });
-            frameLayout.addView(bottomSheetCell2, LayoutHelper.createLinear(-1, 50, 51, 0, 0, 0, 0));
+            viewGroup.addView(bottomSheetCell2, LayoutHelper.createLinear(-1, 50, 51, 0, 0, 0, 0));
         } else {
-            frameLayout.addView(this.doneButton, LayoutHelper.createFrame(-1, 50.0f, 83, 0.0f, 0.0f, 0.0f, 0.0f));
+            viewGroup.addView(this.doneButton, LayoutHelper.createFrame(-1, 50.0f, 83, 0.0f, 0.0f, 0.0f, 0.0f));
         }
         updateDoneButton(false, chat);
     }
@@ -700,14 +707,10 @@ public class JoinCallAlert extends BottomSheet {
         long peerId = MessageObject.getPeerId(this.selectedPeer);
         if (DialogObject.isUserDialog(peerId)) {
             this.doneButton.setText(LocaleController.formatString("VoipGroupContinueAs", R.string.VoipGroupContinueAs, UserObject.getFirstName(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(peerId)))), z);
-            return;
+        } else {
+            TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-peerId));
+            this.doneButton.setText(LocaleController.formatString("VoipGroupContinueAs", R.string.VoipGroupContinueAs, chat != null ? chat.title : ""), z);
         }
-        TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-peerId));
-        BottomSheetCell bottomSheetCell = this.doneButton;
-        int i = R.string.VoipGroupContinueAs;
-        Object[] objArr = new Object[1];
-        objArr[0] = chat != null ? chat.title : "";
-        bottomSheetCell.setText(LocaleController.formatString("VoipGroupContinueAs", i, objArr), z);
     }
 
     public void updateLayout() {

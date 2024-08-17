@@ -10,6 +10,7 @@ import android.os.SystemClock;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
+
 public class ProxyDrawable extends Drawable {
     private boolean connected;
     private float connectedAnimationProgress;
@@ -72,9 +73,7 @@ public class ProxyDrawable extends Drawable {
             int width = getBounds().width();
             int height = getBounds().height();
             int dp = AndroidUtilities.dp(4.0f);
-            int i2 = (width / 2) - dp;
-            int i3 = (height / 2) - dp;
-            this.cicleRect.set(i2, i3, i2 + dp + dp, i3 + dp + dp);
+            this.cicleRect.set((width / 2) - dp, (height / 2) - dp, r0 + dp + dp, r1 + dp + dp);
             canvas.drawArc(this.cicleRect, this.radOffset - 90, 90.0f, false, this.outerPaint);
             invalidateSelf();
         }

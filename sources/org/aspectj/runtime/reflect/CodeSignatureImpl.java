@@ -1,5 +1,8 @@
 package org.aspectj.runtime.reflect;
-abstract class CodeSignatureImpl extends MemberSignatureImpl {
+
+import org.aspectj.lang.Signature;
+
+abstract class CodeSignatureImpl extends MemberSignatureImpl implements Signature {
     Class[] exceptionTypes;
     String[] parameterNames;
     Class[] parameterTypes;

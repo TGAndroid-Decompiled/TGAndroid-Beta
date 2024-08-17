@@ -3,7 +3,6 @@ package org.telegram.messenger;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.security.keystore.KeyGenParameterSpec;
-import android.security.keystore.KeyPermanentlyInvalidatedException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.KeyPairGenerator;
 import java.security.KeyStore;
@@ -11,6 +10,7 @@ import java.security.KeyStoreException;
 import java.util.Locale;
 import javax.crypto.Cipher;
 import org.telegram.messenger.support.fingerprint.FingerprintManagerCompat;
+
 public class FingerprintController {
     private static final String KEY_ALIAS = "tmessages_passcode";
     private static Boolean hasChangedFingerprints;
@@ -129,9 +129,6 @@ public class FingerprintController {
             Cipher.getInstance("RSA/ECB/OAEPWithSHA-256AndMGF1Padding").init(2, keyStore.getKey("tmessages_passcode", null));
             hasChangedFingerprints = Boolean.FALSE;
             return false;
-        } catch (KeyPermanentlyInvalidatedException unused) {
-            hasChangedFingerprints = Boolean.TRUE;
-            return true;
         } catch (Exception e) {
             FileLog.e(e);
             hasChangedFingerprints = Boolean.FALSE;

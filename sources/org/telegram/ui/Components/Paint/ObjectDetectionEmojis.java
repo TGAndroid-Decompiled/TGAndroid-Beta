@@ -1,4 +1,5 @@
 package org.telegram.ui.Components.Paint;
+
 public class ObjectDetectionEmojis {
     private static String[] labelEmojis;
 

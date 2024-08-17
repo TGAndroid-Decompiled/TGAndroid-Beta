@@ -17,6 +17,7 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
+
 public class FireworksOverlay extends View {
     private static int[] colors;
     private static final int fallParticlesCount;
@@ -48,11 +49,10 @@ public class FireworksOverlay extends View {
     static {
         particlesCount = SharedConfig.getDevicePerformanceClass() == 0 ? 50 : 60;
         fallParticlesCount = SharedConfig.getDevicePerformanceClass() == 0 ? 20 : 30;
-        int[] iArr = {-13845272, -6421296, -79102, -187561, -14185218, -10897300};
-        colors = iArr;
+        colors = new int[]{-13845272, -6421296, -79102, -187561, -14185218, -10897300};
         heartColors = new int[]{-1944197, -10498574, -9623, -2399389, -1870160};
         starsColors = new int[]{-14778113, -15677815, -42601, -26844, -13639175};
-        paint = new Paint[iArr.length];
+        paint = new Paint[6];
         int i = 0;
         while (true) {
             Paint[] paintArr = paint;
@@ -85,13 +85,17 @@ public class FireworksOverlay extends View {
             byte b = this.type;
             if (b == 0) {
                 canvas.drawCircle(this.x, this.y, AndroidUtilities.dp(this.typeSize), FireworksOverlay.paint[this.colorType]);
-            } else if (b == 1) {
+                return;
+            }
+            if (b == 1) {
                 FireworksOverlay.this.rect.set(this.x - AndroidUtilities.dp(this.typeSize), this.y - AndroidUtilities.dp(2.0f), this.x + AndroidUtilities.dp(this.typeSize), this.y + AndroidUtilities.dp(2.0f));
                 canvas.save();
                 canvas.rotate(this.rotation, FireworksOverlay.this.rect.centerX(), FireworksOverlay.this.rect.centerY());
                 canvas.drawRoundRect(FireworksOverlay.this.rect, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), FireworksOverlay.paint[this.colorType]);
                 canvas.restore();
-            } else if (b == 2) {
+                return;
+            }
+            if (b == 2) {
                 Drawable drawable = FireworksOverlay.starsDrawable != null ? FireworksOverlay.starsDrawable[this.colorType] : null;
                 if (FireworksOverlay.heartDrawable != null) {
                     drawable = FireworksOverlay.heartDrawable[this.colorType];
@@ -99,13 +103,13 @@ public class FireworksOverlay extends View {
                 if (drawable != null) {
                     int intrinsicWidth = drawable.getIntrinsicWidth() / 2;
                     int intrinsicHeight = drawable.getIntrinsicHeight() / 2;
-                    float f = this.x;
-                    float f2 = this.y;
-                    drawable.setBounds(((int) f) - intrinsicWidth, ((int) f2) - intrinsicHeight, ((int) f) + intrinsicWidth, ((int) f2) + intrinsicHeight);
+                    int i = (int) this.x;
+                    int i2 = (int) this.y;
+                    drawable.setBounds(i - intrinsicWidth, i2 - intrinsicHeight, i + intrinsicWidth, i2 + intrinsicHeight);
                     canvas.save();
                     canvas.rotate(this.rotation, this.x, this.y);
-                    byte b2 = this.typeSize;
-                    canvas.scale(b2 / 6.0f, b2 / 6.0f, this.x, this.y);
+                    float f = this.typeSize / 6.0f;
+                    canvas.scale(f, f, this.x, this.y);
                     drawable.draw(canvas);
                     canvas.restore();
                 }

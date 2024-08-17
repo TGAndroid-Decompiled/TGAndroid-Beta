@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
+
 public class MatrixParticlesDrawable {
     MatrixTextParticle[][] matrixTextParticles;
     ArrayList<Particle>[] particles;
@@ -29,14 +30,11 @@ public class MatrixParticlesDrawable {
         textPaint.setTextAlign(Paint.Align.CENTER);
         int i = 0;
         while (i < 16) {
-            int i2 = i < 10 ? i + 48 : (i - 10) + 65;
+            int i2 = i < 10 ? i + 48 : i + 55;
             Bitmap[] bitmapArr = this.bitmaps;
             int i3 = this.size;
             bitmapArr[i] = Bitmap.createBitmap(i3, i3, Bitmap.Config.ARGB_8888);
-            Canvas canvas = new Canvas(this.bitmaps[i]);
-            String ch = Character.toString((char) i2);
-            int i4 = this.size;
-            canvas.drawText(ch, i4 >> 1, i4, textPaint);
+            new Canvas(this.bitmaps[i]).drawText(Character.toString((char) i2), r4 >> 1, this.size, textPaint);
             i++;
         }
     }
@@ -167,9 +165,9 @@ public class MatrixParticlesDrawable {
         }
 
         public void draw(Canvas canvas, float f, float f2, long j, float f3) {
-            long j2 = this.nextUpdateTime;
-            if (j2 - j < 150) {
-                float clamp = Utilities.clamp(1.0f - (((float) (j2 - j)) / 150.0f), 1.0f, 0.0f);
+            long j2 = this.nextUpdateTime - j;
+            if (j2 < 150) {
+                float clamp = Utilities.clamp(1.0f - (((float) j2) / 150.0f), 1.0f, 0.0f);
                 MatrixParticlesDrawable.this.paint.setAlpha((int) ((1.0f - clamp) * f3 * 255.0f));
                 MatrixParticlesDrawable matrixParticlesDrawable = MatrixParticlesDrawable.this;
                 canvas.drawBitmap(matrixParticlesDrawable.bitmaps[this.index], f, f2, matrixParticlesDrawable.paint);

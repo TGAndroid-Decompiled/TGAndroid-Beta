@@ -21,6 +21,7 @@ import org.telegram.ui.Components.ButtonBounce;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Stories.StoriesController;
 import org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet;
+
 public class StoryPrivacyButton extends View {
     private final Paint arrowPaint;
     private final Path arrowPath;
@@ -138,9 +139,10 @@ public class StoryPrivacyButton extends View {
         if (this.topColor == i && this.bottomColor == i2) {
             return;
         }
+        float dp = AndroidUtilities.dp(23.0f);
         this.topColor = i;
         this.bottomColor = i2;
-        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(23.0f), new int[]{i, i2}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, dp, new int[]{i, i2}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
         this.gradientMatrix.reset();
         this.gradientMatrix.postTranslate(0.0f, AndroidUtilities.dp(8.0f));
         linearGradient.setLocalMatrix(this.gradientMatrix);
@@ -171,16 +173,20 @@ public class StoryPrivacyButton extends View {
             float abs = Math.abs(f - 0.5f) + 0.5f;
             if (this.icon[1] != null && f > 0.5f) {
                 float dpf24 = this.drawArrow ? rectF.left + AndroidUtilities.dpf2(14.66f) : rectF.centerX();
+                Drawable drawable = this.icon[1];
+                int i = (int) (dpf24 - ((this.iconSize[1] / 2.0f) * abs));
                 float centerY = rectF.centerY();
-                float f2 = this.iconSize[1];
-                this.icon[1].setBounds((int) (dpf24 - ((this.iconSize[1] / 2.0f) * abs)), (int) (centerY - ((f2 / 2.0f) * abs)), (int) (dpf24 + ((f2 / 2.0f) * abs)), (int) (rectF.centerY() + ((this.iconSize[1] / 2.0f) * abs)));
+                float f2 = (this.iconSize[1] / 2.0f) * abs;
+                drawable.setBounds(i, (int) (centerY - f2), (int) (dpf24 + f2), (int) (rectF.centerY() + ((this.iconSize[1] / 2.0f) * abs)));
                 this.icon[1].draw(canvas);
             }
             if (this.icon[0] != null && f <= 0.5f) {
                 float dpf25 = this.drawArrow ? rectF.left + AndroidUtilities.dpf2(14.66f) : rectF.centerX();
+                Drawable drawable2 = this.icon[0];
+                int i2 = (int) (dpf25 - ((this.iconSize[0] / 2.0f) * abs));
                 float centerY2 = rectF.centerY();
-                float f3 = this.iconSize[0];
-                this.icon[0].setBounds((int) (dpf25 - ((this.iconSize[0] / 2.0f) * abs)), (int) (centerY2 - ((f3 / 2.0f) * abs)), (int) (dpf25 + ((f3 / 2.0f) * abs)), (int) (rectF.centerY() + ((this.iconSize[0] / 2.0f) * abs)));
+                float f3 = (this.iconSize[0] / 2.0f) * abs;
+                drawable2.setBounds(i2, (int) (centerY2 - f3), (int) (dpf25 + f3), (int) (rectF.centerY() + ((this.iconSize[0] / 2.0f) * abs)));
                 this.icon[0].draw(canvas);
             }
             if (this.drawArrow) {

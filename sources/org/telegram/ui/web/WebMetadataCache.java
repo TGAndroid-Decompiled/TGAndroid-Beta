@@ -39,6 +39,7 @@ import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.web.BotWebViewContainer;
 import org.telegram.ui.web.WebMetadataCache;
+
 public class WebMetadataCache {
     private static WebMetadataCache instance;
     private HashMap<String, WebMetadata> cache;
@@ -145,10 +146,10 @@ public class WebMetadataCache {
             this.backgroundColor = abstractSerializedData.readInt32(z);
             if (abstractSerializedData.readInt32(z) == 1450380236) {
                 this.favicon = null;
-                return;
+            } else {
+                this.faviconBytes = abstractSerializedData.readByteArray(z);
+                this.favicon = BitmapFactory.decodeStream(new ByteArrayInputStream(this.faviconBytes));
             }
-            this.faviconBytes = abstractSerializedData.readByteArray(z);
-            this.favicon = BitmapFactory.decodeStream(new ByteArrayInputStream(this.faviconBytes));
         }
     }
 
@@ -507,8 +508,7 @@ public class WebMetadataCache {
     }
 
     public static void lambda$retrieveFaviconAndSitename$6(WebView webView) {
-        String readRes = RLottieDrawable.readRes(null, R.raw.webview_ext);
-        webView.evaluateJavascript(readRes.replace("$DEBUG$", "" + BuildVars.DEBUG_VERSION), new ValueCallback() {
+        webView.evaluateJavascript(RLottieDrawable.readRes(null, R.raw.webview_ext).replace("$DEBUG$", "" + BuildVars.DEBUG_VERSION), new ValueCallback() {
             @Override
             public final void onReceiveValue(Object obj) {
                 WebMetadataCache.lambda$retrieveFaviconAndSitename$5((String) obj);

@@ -18,6 +18,7 @@ import com.microsoft.appcenter.utils.async.AppCenterConsumer;
 import java.io.File;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.ui.Components.AlertsCreator;
+
 public class ApplicationLoaderImpl extends ApplicationLoader {
     private static long lastUpdateCheckTime;
 
@@ -33,31 +34,32 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
         try {
             if (BuildVars.DEBUG_VERSION) {
                 Distribute.setEnabledForDebuggableBuild(true);
-                if (TextUtils.isEmpty("f9726602-67c9-48d2-b5d0-4761f1c1a8f3")) {
-                    throw new RuntimeException("App Center hash is empty. add to local.properties field APP_CENTER_HASH_PRIVATE and APP_CENTER_HASH_PUBLIC");
-                }
-                AppCenter.start(activity.getApplication(), "f9726602-67c9-48d2-b5d0-4761f1c1a8f3", Distribute.class, Crashes.class, Analytics.class);
-                Crashes.getMinidumpDirectory().thenAccept(new AppCenterConsumer() {
-                    @Override
-                    public final void accept(Object obj) {
-                        ApplicationLoaderImpl.lambda$startAppCenterInternal$0((String) obj);
+                if (!TextUtils.isEmpty("f9726602-67c9-48d2-b5d0-4761f1c1a8f3")) {
+                    AppCenter.start(activity.getApplication(), "f9726602-67c9-48d2-b5d0-4761f1c1a8f3", Distribute.class, Crashes.class, Analytics.class);
+                    Crashes.getMinidumpDirectory().thenAccept(new AppCenterConsumer() {
+                        @Override
+                        public final void accept(Object obj) {
+                            ApplicationLoaderImpl.lambda$startAppCenterInternal$0((String) obj);
+                        }
+                    });
+                    CustomProperties customProperties = new CustomProperties();
+                    customProperties.set("model", Build.MODEL);
+                    customProperties.set("manufacturer", Build.MANUFACTURER);
+                    if (Build.VERSION.SDK_INT >= 31) {
+                        str = Build.SOC_MODEL;
+                        customProperties.set("model", str);
+                        str2 = Build.SOC_MANUFACTURER;
+                        customProperties.set("manufacturer", str2);
                     }
-                });
-                CustomProperties customProperties = new CustomProperties();
-                customProperties.set("model", Build.MODEL);
-                customProperties.set("manufacturer", Build.MANUFACTURER);
-                if (Build.VERSION.SDK_INT >= 31) {
-                    str = Build.SOC_MODEL;
-                    customProperties.set("model", str);
-                    str2 = Build.SOC_MANUFACTURER;
-                    customProperties.set("manufacturer", str2);
+                    customProperties.set("device", Build.DEVICE);
+                    customProperties.set("product", Build.PRODUCT);
+                    customProperties.set("hardware", Build.HARDWARE);
+                    customProperties.set("user", Build.USER);
+                    AppCenter.setCustomProperties(customProperties);
+                    AppCenter.setUserId("uid=" + UserConfig.getInstance(UserConfig.selectedAccount).clientUserId);
+                    return;
                 }
-                customProperties.set("device", Build.DEVICE);
-                customProperties.set("product", Build.PRODUCT);
-                customProperties.set("hardware", Build.HARDWARE);
-                customProperties.set("user", Build.USER);
-                AppCenter.setCustomProperties(customProperties);
-                AppCenter.setUserId("uid=" + UserConfig.getInstance(UserConfig.selectedAccount).clientUserId);
+                throw new RuntimeException("App Center hash is empty. add to local.properties field APP_CENTER_HASH_PRIVATE and APP_CENTER_HASH_PUBLIC");
             }
         } catch (Throwable th) {
             FileLog.e(th);
@@ -98,9 +100,7 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
             sb.append("dual-camera[");
             sb.append((Build.MANUFACTURER + " " + Build.DEVICE).toUpperCase());
             sb.append("]");
-            String sb2 = sb.toString();
-            EventProperties eventProperties = new EventProperties().set("success", z).set("vendor", z2);
-            Analytics.trackEvent(sb2, eventProperties.set("product", Build.PRODUCT + "").set("model", Build.MODEL));
+            Analytics.trackEvent(sb.toString(), new EventProperties().set("success", z).set("vendor", z2).set("product", Build.PRODUCT + "").set("model", Build.MODEL));
         } catch (Throwable unused) {
         }
     }
@@ -108,15 +108,15 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
     @Override
     public boolean checkApkInstallPermissions(Context context) {
         boolean canRequestPackageInstalls;
-        if (Build.VERSION.SDK_INT >= 26) {
-            canRequestPackageInstalls = ApplicationLoader.applicationContext.getPackageManager().canRequestPackageInstalls();
-            if (canRequestPackageInstalls) {
-                return true;
-            }
-            AlertsCreator.createApkRestrictedDialog(context, null).show();
-            return false;
+        if (Build.VERSION.SDK_INT < 26) {
+            return true;
         }
-        return true;
+        canRequestPackageInstalls = ApplicationLoader.applicationContext.getPackageManager().canRequestPackageInstalls();
+        if (canRequestPackageInstalls) {
+            return true;
+        }
+        AlertsCreator.createApkRestrictedDialog(context, null).show();
+        return false;
     }
 
     @Override

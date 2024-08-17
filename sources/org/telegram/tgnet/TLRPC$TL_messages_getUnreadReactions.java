@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messages_getUnreadReactions extends TLObject {
     public int add_offset;
     public int flags;

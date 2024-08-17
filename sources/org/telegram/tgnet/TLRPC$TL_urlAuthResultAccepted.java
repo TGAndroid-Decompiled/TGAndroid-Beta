@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_urlAuthResultAccepted extends TLRPC$UrlAuthResult {
     public String url;
 

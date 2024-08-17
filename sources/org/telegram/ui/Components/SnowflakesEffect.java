@@ -10,6 +10,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
+
 public class SnowflakesEffect {
     private int color;
     private long lastAnimationTime;
@@ -71,35 +72,38 @@ public class SnowflakesEffect {
                     float f4 = dpf2;
                     double d4 = dpf22;
                     Double.isNaN(d4);
+                    float f5 = (float) ((cos2 * d3) - (sin2 * d4));
                     double sin3 = Math.sin(d2);
                     Double.isNaN(d3);
                     double cos3 = Math.cos(d2);
                     Double.isNaN(d4);
-                    float f5 = dpf22;
-                    float f6 = dp + f3;
-                    float f7 = dp2 + (sin * 0.66f);
-                    canvas2.drawLine(f6, f7, dp + ((float) ((cos2 * d3) - (sin2 * d4))), dp2 + ((float) ((sin3 * d3) + (cos3 * d4))), SnowflakesEffect.this.particleThinPaint);
+                    float f6 = dpf22;
+                    float f7 = dp + f3;
+                    float f8 = dp2 + (sin * 0.66f);
+                    canvas2.drawLine(f7, f8, dp + f5, dp2 + ((float) ((sin3 * d3) + (cos3 * d4))), SnowflakesEffect.this.particleThinPaint);
+                    double d5 = -Math.cos(d2);
                     Double.isNaN(d3);
-                    double d5 = (-Math.cos(d2)) * d3;
+                    double d6 = d5 * d3;
                     double sin4 = Math.sin(d2);
                     Double.isNaN(d4);
-                    float f8 = (float) (d5 - (sin4 * d4));
+                    float f9 = (float) (d6 - (sin4 * d4));
+                    double d7 = -Math.sin(d2);
                     Double.isNaN(d3);
-                    double d6 = (-Math.sin(d2)) * d3;
+                    double d8 = d7 * d3;
                     double cos4 = Math.cos(d2);
                     Double.isNaN(d4);
-                    canvas2.drawLine(f6, f7, dp + f8, dp2 + ((float) (d6 + (cos4 * d4))), SnowflakesEffect.this.particleThinPaint);
+                    canvas2.drawLine(f7, f8, dp + f9, dp2 + ((float) (d8 + (cos4 * d4))), SnowflakesEffect.this.particleThinPaint);
                     f2 += 1.0471976f;
                     i++;
                     dpf2 = f4;
                     f = f;
-                    dpf22 = f5;
+                    dpf22 = f6;
                 }
             }
             SnowflakesEffect.this.bitmapPaint.setAlpha((int) (this.alpha * 255.0f));
             canvas.save();
-            float f9 = this.scale;
-            canvas.scale(f9, f9, this.x, this.y);
+            float f10 = this.scale;
+            canvas.scale(f10, f10, this.x, this.y);
             SnowflakesEffect snowflakesEffect2 = SnowflakesEffect.this;
             canvas.drawBitmap(snowflakesEffect2.particleBitmap, this.x, this.y, snowflakesEffect2.bitmapPaint);
             canvas.restore();
@@ -111,13 +115,17 @@ public class SnowflakesEffect {
         Paint paint = new Paint(1);
         this.particlePaint = paint;
         paint.setStrokeWidth(AndroidUtilities.dp(1.5f));
-        this.particlePaint.setStrokeCap(Paint.Cap.ROUND);
-        this.particlePaint.setStyle(Paint.Style.STROKE);
-        Paint paint2 = new Paint(1);
-        this.particleThinPaint = paint2;
-        paint2.setStrokeWidth(AndroidUtilities.dp(0.5f));
-        this.particleThinPaint.setStrokeCap(Paint.Cap.ROUND);
-        this.particleThinPaint.setStyle(Paint.Style.STROKE);
+        Paint paint2 = this.particlePaint;
+        Paint.Cap cap = Paint.Cap.ROUND;
+        paint2.setStrokeCap(cap);
+        Paint paint3 = this.particlePaint;
+        Paint.Style style = Paint.Style.STROKE;
+        paint3.setStyle(style);
+        Paint paint4 = new Paint(1);
+        this.particleThinPaint = paint4;
+        paint4.setStrokeWidth(AndroidUtilities.dp(0.5f));
+        this.particleThinPaint.setStrokeCap(cap);
+        this.particleThinPaint.setStyle(style);
         updateColors();
         for (int i2 = 0; i2 < 20; i2++) {
             this.freeParticles.add(new Particle());
@@ -161,16 +169,19 @@ public class SnowflakesEffect {
                     }
                 } else if (f < 200.0f) {
                     particle.alpha = AndroidUtilities.accelerateInterpolator.getInterpolation(f / 200.0f);
-                } else if (f2 - f < 2000.0f) {
-                    particle.alpha = AndroidUtilities.decelerateInterpolator.getInterpolation((f2 - f) / 2000.0f);
+                } else {
+                    float f3 = f2 - f;
+                    if (f3 < 2000.0f) {
+                        particle.alpha = AndroidUtilities.decelerateInterpolator.getInterpolation(f3 / 2000.0f);
+                    }
                 }
-                float f3 = particle.x;
-                float f4 = particle.vx;
-                float f5 = particle.velocity;
-                float f6 = (float) j;
-                particle.x = f3 + (((f4 * f5) * f6) / 500.0f);
-                particle.y += ((particle.vy * f5) * f6) / 500.0f;
-                particle.currentTime += f6;
+                float f4 = particle.x;
+                float f5 = particle.vx;
+                float f6 = particle.velocity;
+                float f7 = (float) j;
+                particle.x = f4 + (((f5 * f6) * f7) / 500.0f);
+                particle.y += ((particle.vy * f6) * f7) / 500.0f;
+                particle.currentTime += f7;
             }
             i++;
         }
@@ -194,7 +205,7 @@ public class SnowflakesEffect {
                     int i6 = Build.VERSION.SDK_INT >= 21 ? AndroidUtilities.statusBarHeight : 0;
                     float nextFloat = Utilities.random.nextFloat() * view.getMeasuredWidth();
                     float nextFloat2 = i6 + (Utilities.random.nextFloat() * ((view.getMeasuredHeight() - AndroidUtilities.dp(20.0f)) - i6));
-                    double nextInt = (Utilities.random.nextInt(40) - 20) + 90;
+                    double nextInt = Utilities.random.nextInt(40) + 70;
                     Double.isNaN(nextInt);
                     double d = nextInt * 0.017453292519943295d;
                     float cos = (float) Math.cos(d);

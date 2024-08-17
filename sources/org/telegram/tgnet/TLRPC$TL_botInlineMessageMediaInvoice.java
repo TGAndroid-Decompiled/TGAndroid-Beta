@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_botInlineMessageMediaInvoice extends TLRPC$BotInlineMessage {
     public String currency;
     public String description;

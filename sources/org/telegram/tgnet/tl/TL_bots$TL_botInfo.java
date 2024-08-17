@@ -4,6 +4,7 @@ import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$Photo;
 import org.telegram.tgnet.TLRPC$TL_botCommand;
+
 public class TL_bots$TL_botInfo extends TL_bots$BotInfo {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

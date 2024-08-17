@@ -35,15 +35,17 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
+
 public class FragmentUsernameBottomSheet {
     public static void open(final Context context, final int i, String str, TLObject tLObject, final TL_fragment$TL_collectibleInfo tL_fragment$TL_collectibleInfo, final Theme.ResourcesProvider resourcesProvider) {
         String str2;
+        String str3;
         Object obj;
         String formatString;
-        String str3;
+        String str4;
         String formatString2;
         final String format;
-        String str4;
+        String str5;
         final ?? bottomSheet = new BottomSheet(context, false, resourcesProvider);
         bottomSheet.fixNavigationBar(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
         ?? linearLayout = new LinearLayout(context);
@@ -70,42 +72,36 @@ public class FragmentUsernameBottomSheet {
         } else {
             str2 = tLObject instanceof TLRPC$Chat ? ((TLRPC$Chat) tLObject).title : "";
         }
-        String str5 = str2;
         String formatCurrency = BillingController.getInstance().formatCurrency(tL_fragment$TL_collectibleInfo.amount, tL_fragment$TL_collectibleInfo.currency);
         String formatCurrency2 = BillingController.getInstance().formatCurrency(tL_fragment$TL_collectibleInfo.crypto_amount, tL_fragment$TL_collectibleInfo.crypto_currency);
         if (i == 0) {
-            String formatString3 = LocaleController.formatString(R.string.FragmentUsernameTitle, "@" + str);
+            str3 = str2;
+            formatString = LocaleController.formatString(R.string.FragmentUsernameTitle, "@" + str);
             int i3 = R.string.FragmentUsernameMessage;
-            Object[] objArr = new Object[3];
             obj = linearLayout;
-            objArr[0] = LocaleController.formatShortDateTime(tL_fragment$TL_collectibleInfo.purchase_date);
-            objArr[1] = formatCurrency2;
+            String formatShortDateTime = LocaleController.formatShortDateTime((long) tL_fragment$TL_collectibleInfo.purchase_date);
             if (TextUtils.isEmpty(formatCurrency)) {
-                str4 = "";
+                str5 = "";
             } else {
-                str4 = "(" + formatCurrency + ")";
+                str5 = "(" + formatCurrency + ")";
             }
-            objArr[2] = str4;
+            formatString2 = LocaleController.formatString(i3, formatShortDateTime, formatCurrency2, str5);
             format = MessagesController.getInstance(UserConfig.selectedAccount).linkPrefix + "/" + str;
-            formatString2 = LocaleController.formatString(i3, objArr);
-            formatString = formatString3;
         } else {
+            str3 = str2;
             obj = linearLayout;
             if (i != 1) {
                 return;
             }
             formatString = LocaleController.formatString(R.string.FragmentPhoneTitle, PhoneFormat.getInstance().format("+" + str));
             int i4 = R.string.FragmentPhoneMessage;
-            Object[] objArr2 = new Object[3];
-            objArr2[0] = LocaleController.formatShortDateTime((long) tL_fragment$TL_collectibleInfo.purchase_date);
-            objArr2[1] = formatCurrency2;
+            String formatShortDateTime2 = LocaleController.formatShortDateTime((long) tL_fragment$TL_collectibleInfo.purchase_date);
             if (TextUtils.isEmpty(formatCurrency)) {
-                str3 = "";
+                str4 = "";
             } else {
-                str3 = "(" + formatCurrency + ")";
+                str4 = "(" + formatCurrency + ")";
             }
-            objArr2[2] = str3;
-            formatString2 = LocaleController.formatString(i4, objArr2);
+            formatString2 = LocaleController.formatString(i4, formatShortDateTime2, formatCurrency2, str4);
             format = PhoneFormat.getInstance().format("+" + str);
         }
         final Runnable runnable = format != null ? new Runnable() {
@@ -128,8 +124,8 @@ public class FragmentUsernameBottomSheet {
         linksTextView.setLinkTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText2, resourcesProvider));
         linksTextView.setTextSize(1, 16.0f);
         linksTextView.setText(replaceSingleTag);
-        ?? r9 = obj;
-        r9.addView(linksTextView, LayoutHelper.createLinear(-1, -2, 1, 42, 0, 42, 0));
+        ?? r11 = obj;
+        r11.addView(linksTextView, LayoutHelper.createLinear(-1, -2, 1, 42, 0, 42, 0));
         FrameLayout frameLayout2 = new FrameLayout(context);
         frameLayout2.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), Theme.getColor(Theme.key_groupcreate_spanBackground, resourcesProvider)));
         BackupImageView backupImageView = new BackupImageView(context);
@@ -142,15 +138,15 @@ public class FragmentUsernameBottomSheet {
         textView.setTextColor(Theme.getColor(i5, resourcesProvider));
         textView.setTextSize(1, 13.0f);
         textView.setSingleLine();
-        textView.setText(Emoji.replaceEmoji(str5, textView.getPaint().getFontMetricsInt(), false));
+        textView.setText(Emoji.replaceEmoji(str3, textView.getPaint().getFontMetricsInt(), false));
         frameLayout2.addView(textView, LayoutHelper.createFrame(-2, -2.0f, 19, 37.0f, 0.0f, 10.0f, 0.0f));
-        r9.addView(frameLayout2, LayoutHelper.createLinear(-2, 28, 1, 42, 10, 42, 18));
+        r11.addView(frameLayout2, LayoutHelper.createLinear(-2, 28, 1, 42, 10, 42, 18));
         TextView textView2 = new TextView(context);
         textView2.setGravity(17);
         textView2.setTextColor(Theme.getColor(i5, resourcesProvider));
         textView2.setTextSize(1, 14.0f);
         textView2.setText(replaceCharSequence);
-        r9.addView(textView2, LayoutHelper.createLinear(-1, -2, 1, 32, 0, 32, 19));
+        r11.addView(textView2, LayoutHelper.createLinear(-1, -2, 1, 32, 0, 32, 19));
         ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
         buttonWithCounterView.setText(LocaleController.getString(R.string.FragmentUsernameOpen), false);
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
@@ -159,7 +155,7 @@ public class FragmentUsernameBottomSheet {
                 FragmentUsernameBottomSheet.lambda$open$1(context, tL_fragment$TL_collectibleInfo, view);
             }
         });
-        r9.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 6.0f, 0.0f, 6.0f, 0.0f));
+        r11.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 6.0f, 0.0f, 6.0f, 0.0f));
         if (runnable != null) {
             ButtonWithCounterView buttonWithCounterView2 = new ButtonWithCounterView(context, false, resourcesProvider);
             buttonWithCounterView2.setText(LocaleController.getString(i == 0 ? R.string.FragmentUsernameCopy : R.string.FragmentPhoneCopy), false);
@@ -169,9 +165,9 @@ public class FragmentUsernameBottomSheet {
                     FragmentUsernameBottomSheet.lambda$open$2(runnable, bottomSheet, view);
                 }
             });
-            r9.addView(buttonWithCounterView2, LayoutHelper.createLinear(-1, 48, 6.0f, 6.0f, 6.0f, 0.0f));
+            r11.addView(buttonWithCounterView2, LayoutHelper.createLinear(-1, 48, 6.0f, 6.0f, 6.0f, 0.0f));
         }
-        bottomSheet.setCustomView(r9);
+        bottomSheet.setCustomView(r11);
         bottomSheet.show();
     }
 

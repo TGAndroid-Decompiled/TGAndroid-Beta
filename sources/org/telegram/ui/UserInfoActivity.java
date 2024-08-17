@@ -54,6 +54,7 @@ import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalFragment;
 import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.UserInfoActivity;
+
 public class UserInfoActivity extends UniversalFragment implements NotificationCenter.NotificationCenterDelegate {
     private EditTextCell bioEdit;
     private CharSequence bioInfo;
@@ -151,7 +152,7 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
             public void onItemClick(int i2) {
                 if (i2 == -1) {
                     if (UserInfoActivity.this.onBackPressed()) {
-                        UserInfoActivity.this.finishFragment();
+                        UserInfoActivity.this.lambda$onBackPressed$308();
                     }
                 } else if (i2 == 1) {
                     UserInfoActivity.this.processDone(true);
@@ -201,15 +202,15 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
                 while (true) {
                     if (i >= privacyRules.size()) {
                         break;
-                    } else if (privacyRules.get(i) instanceof TLRPC$TL_privacyValueAllowContacts) {
+                    }
+                    if (privacyRules.get(i) instanceof TLRPC$TL_privacyValueAllowContacts) {
                         string3 = LocaleController.getString(R.string.EditProfileBirthdayInfoContacts);
                         break;
-                    } else {
-                        if ((privacyRules.get(i) instanceof TLRPC$TL_privacyValueAllowAll) || (privacyRules.get(i) instanceof TLRPC$TL_privacyValueDisallowAll)) {
-                            string3 = LocaleController.getString(R.string.EditProfileBirthdayInfo);
-                        }
-                        i++;
                     }
+                    if ((privacyRules.get(i) instanceof TLRPC$TL_privacyValueAllowAll) || (privacyRules.get(i) instanceof TLRPC$TL_privacyValueDisallowAll)) {
+                        string3 = LocaleController.getString(R.string.EditProfileBirthdayInfo);
+                    }
+                    i++;
                 }
             }
             this.birthdayInfo = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(string3, new Runnable() {
@@ -262,14 +263,18 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
                     UserInfoActivity.this.lambda$onClick$2((TLRPC$TL_birthday) obj);
                 }
             }, null, getResourceProvider()).create());
-        } else if (i2 == 2) {
+            return;
+        }
+        if (i2 == 2) {
             this.birthday = null;
             UniversalRecyclerView universalRecyclerView = this.listView;
             if (universalRecyclerView != null) {
                 universalRecyclerView.adapter.update(true);
             }
             checkDone(true);
-        } else if (i2 == 3) {
+            return;
+        }
+        if (i2 == 3) {
             AdminedChannelsFetcher adminedChannelsFetcher = this.channels;
             TLRPC$Chat tLRPC$Chat = this.channel;
             presentFragment(new ChooseChannelFragment(adminedChannelsFetcher, tLRPC$Chat == null ? 0L : tLRPC$Chat.id, new Utilities.Callback() {
@@ -314,8 +319,10 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
         UniversalRecyclerView universalRecyclerView;
         if (i == NotificationCenter.userInfoDidLoad) {
             setValue();
-        } else if (i != NotificationCenter.privacyRulesUpdated || (universalRecyclerView = this.listView) == null) {
         } else {
+            if (i != NotificationCenter.privacyRulesUpdated || (universalRecyclerView = this.listView) == null) {
+                return;
+            }
             universalRecyclerView.adapter.update(true);
         }
     }
@@ -420,12 +427,7 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
 
     public static boolean birthdaysEqual(TLRPC$TL_birthday tLRPC$TL_birthday, TLRPC$TL_birthday tLRPC$TL_birthday2) {
         if ((tLRPC$TL_birthday == null) != (tLRPC$TL_birthday2 != null)) {
-            if (tLRPC$TL_birthday == null) {
-                return true;
-            }
-            if (tLRPC$TL_birthday.day == tLRPC$TL_birthday2.day && tLRPC$TL_birthday.month == tLRPC$TL_birthday2.month && tLRPC$TL_birthday.year == tLRPC$TL_birthday2.year) {
-                return true;
-            }
+            return tLRPC$TL_birthday == null || (tLRPC$TL_birthday.day == tLRPC$TL_birthday2.day && tLRPC$TL_birthday.month == tLRPC$TL_birthday2.month && tLRPC$TL_birthday.year == tLRPC$TL_birthday2.year);
         }
         return false;
     }
@@ -520,7 +522,7 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
             arrayList.add(tLRPC$TL_account_updatePersonalChannel);
         }
         if (arrayList.isEmpty()) {
-            finishFragment();
+            lambda$onBackPressed$308();
             return;
         }
         final int[] iArr = {0};
@@ -568,17 +570,20 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
                 }
                 tLRPC$UserFull.birthday = tLRPC$TL_birthday;
                 getMessagesStorage().updateUserInfo(tLRPC$UserFull, false);
+                return;
             }
-        } else if (tLObject2 instanceof TLRPC$TL_boolFalse) {
+            return;
+        }
+        if (tLObject2 instanceof TLRPC$TL_boolFalse) {
             this.doneButtonDrawable.animateToProgress(0.0f);
             BulletinFactory.of(this).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
-        } else {
-            this.wasSaved = true;
-            int i = iArr[0] + 1;
-            iArr[0] = i;
-            if (i == arrayList.size()) {
-                finishFragment();
-            }
+            return;
+        }
+        this.wasSaved = true;
+        int i = iArr[0] + 1;
+        iArr[0] = i;
+        if (i == arrayList.size()) {
+            lambda$onBackPressed$308();
         }
     }
 
@@ -784,8 +789,10 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
             int i2 = uItem.id;
             if (i2 == 1) {
                 this.whenSelected.run(null);
-                finishFragment();
-            } else if (i2 == 2) {
+                lambda$onBackPressed$308();
+                return;
+            }
+            if (i2 == 2) {
                 this.invalidateAfterPause = true;
                 SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
                 if (!BuildVars.DEBUG_VERSION && globalMainSettings.getBoolean("channel_intro", false)) {
@@ -793,11 +800,14 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
                     bundle.putInt("step", 0);
                     presentFragment(new ChannelCreateActivity(bundle));
                     return;
+                } else {
+                    presentFragment(new ActionIntroActivity(0));
+                    globalMainSettings.edit().putBoolean("channel_intro", true).apply();
+                    return;
                 }
-                presentFragment(new ActionIntroActivity(0));
-                globalMainSettings.edit().putBoolean("channel_intro", true).apply();
-            } else if (uItem.viewType == 12) {
-                finishFragment();
+            }
+            if (uItem.viewType == 12) {
+                lambda$onBackPressed$308();
                 this.whenSelected.run(getMessagesController().getChat(Long.valueOf(-uItem.dialogId)));
             }
         }

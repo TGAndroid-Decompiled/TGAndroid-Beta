@@ -3,6 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_bots$BotInfo;
 import org.telegram.tgnet.tl.TL_stories$PeerStories;
+
 public abstract class TLRPC$UserFull extends TLObject {
     public String about;
     public TLRPC$TL_birthday birthday;

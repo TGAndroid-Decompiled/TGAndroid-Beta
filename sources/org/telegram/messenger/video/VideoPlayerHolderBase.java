@@ -17,6 +17,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.video.VideoPlayerHolderBase;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.ui.Components.VideoPlayer;
+
 public class VideoPlayerHolderBase {
     boolean audioDisabled;
     Uri contentUri;
@@ -533,10 +534,11 @@ public class VideoPlayerHolderBase {
                 this.videoPlayer.setPlayWhenReady(true);
                 this.videoPlayer.play();
                 return;
+            } else {
+                this.videoPlayer.setPlayWhenReady(false);
+                this.videoPlayer.pause();
+                return;
             }
-            this.videoPlayer.setPlayWhenReady(false);
-            this.videoPlayer.pause();
-            return;
         }
         this.videoPlayer.setVolume(z ? 1.0f : 0.0f);
     }

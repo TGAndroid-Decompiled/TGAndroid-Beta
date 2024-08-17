@@ -1,6 +1,7 @@
 package org.telegram.tgnet.tl;
 
 import org.telegram.tgnet.AbstractSerializedData;
+
 public class TL_bots$TL_botMenuButton extends TL_bots$BotMenuButton {
     public String text;
     public String url;

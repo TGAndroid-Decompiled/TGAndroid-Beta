@@ -5,6 +5,7 @@ import android.os.SystemClock;
 import android.view.View;
 import androidx.core.math.MathUtils;
 import org.telegram.messenger.AndroidUtilities;
+
 public class AnimatedFloat {
     private boolean firstSet;
     private Runnable invalidate;

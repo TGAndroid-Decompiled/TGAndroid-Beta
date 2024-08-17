@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_account_updateTheme extends TLObject {
     public TLRPC$InputDocument document;
     public int flags;

@@ -6,6 +6,7 @@ import android.graphics.Path;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
+
 public class PathAnimator {
     private float durationScale;
     private float scale;

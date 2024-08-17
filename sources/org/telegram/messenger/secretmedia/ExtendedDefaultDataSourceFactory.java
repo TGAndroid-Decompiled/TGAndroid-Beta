@@ -4,6 +4,7 @@ import android.content.Context;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
 import com.google.android.exoplayer2.upstream.TransferListener;
+
 public final class ExtendedDefaultDataSourceFactory implements DataSource.Factory {
     private final DataSource.Factory baseDataSourceFactory;
     private final Context context;

@@ -1,4 +1,5 @@
 package org.webrtc;
+
 interface BitrateAdjuster {
     int getAdjustedBitrateBps();
 

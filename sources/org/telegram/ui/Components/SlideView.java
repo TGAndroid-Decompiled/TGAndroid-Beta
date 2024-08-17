@@ -3,11 +3,8 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.os.Bundle;
 import android.widget.LinearLayout;
-public class SlideView extends LinearLayout {
-    public String getHeaderName() {
-        return "";
-    }
 
+public class SlideView extends LinearLayout {
     public boolean hasCustomKeyboard() {
         return false;
     }
@@ -52,5 +49,9 @@ public class SlideView extends LinearLayout {
 
     public SlideView(Context context) {
         super(context);
+    }
+
+    public String getHeaderName() {
+        return "";
     }
 }

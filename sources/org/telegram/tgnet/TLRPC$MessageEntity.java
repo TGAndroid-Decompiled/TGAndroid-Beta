@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public abstract class TLRPC$MessageEntity extends TLObject {
     public boolean collapsed;
     public int flags;

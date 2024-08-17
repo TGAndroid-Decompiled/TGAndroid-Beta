@@ -44,6 +44,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LineProgressView;
 import org.telegram.ui.GradientClip;
 import org.telegram.ui.web.WebActionBar;
+
 public class WebActionBar extends FrameLayout {
     private ValueAnimator addressAnimator;
     public int addressBackgroundColor;
@@ -178,7 +179,8 @@ public class WebActionBar extends FrameLayout {
         addView(linearLayout, LayoutHelper.createFrame(-2, 56, 83));
         ImageView imageView = new ImageView(context);
         this.backButton = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+        imageView.setScaleType(scaleType);
         BackDrawable backDrawable = new BackDrawable(false);
         this.backButtonDrawable = backDrawable;
         backDrawable.setAnimationTime(200.0f);
@@ -201,7 +203,7 @@ public class WebActionBar extends FrameLayout {
         addView(linearLayout2, LayoutHelper.createFrame(-2, 56, 85));
         ImageView imageView2 = new ImageView(context);
         this.forwardButton = imageView2;
-        imageView2.setScaleType(ImageView.ScaleType.CENTER);
+        imageView2.setScaleType(scaleType);
         ForwardDrawable forwardDrawable = new ForwardDrawable();
         this.forwardButtonDrawable = forwardDrawable;
         imageView2.setImageDrawable(forwardDrawable);
@@ -212,7 +214,7 @@ public class WebActionBar extends FrameLayout {
         linearLayout2.addView(imageView2, LayoutHelper.createLinear(54, 56));
         ImageView imageView3 = new ImageView(context);
         this.menuButton = imageView3;
-        imageView3.setScaleType(ImageView.ScaleType.CENTER);
+        imageView3.setScaleType(scaleType);
         imageView3.setImageResource(R.drawable.ic_ab_other);
         imageView3.setColorFilter(new PorterDuffColorFilter(0, PorterDuff.Mode.SRC_IN));
         imageView3.setOnClickListener(new View.OnClickListener() {
@@ -309,7 +311,7 @@ public class WebActionBar extends FrameLayout {
         frameLayout2.addView(editTextBoldCursor2, LayoutHelper.createFrame(-1, -1.0f, 119, 48.0f, 0.0f, 12.0f, 0.0f));
         ImageView imageView4 = new ImageView(context);
         this.clearButton = imageView4;
-        imageView4.setScaleType(ImageView.ScaleType.CENTER);
+        imageView4.setScaleType(scaleType);
         imageView4.setImageResource(R.drawable.ic_close_white);
         Drawable createSelectorDrawable4 = Theme.createSelectorDrawable(1090519039);
         this.clearButtonSelector = createSelectorDrawable4;
@@ -402,13 +404,13 @@ public class WebActionBar extends FrameLayout {
     }
 
     public boolean lambda$new$3(TextView textView, int i, KeyEvent keyEvent) {
-        if (keyEvent != null) {
-            if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
-                AndroidUtilities.hideKeyboard(this.searchEditText);
-                return false;
-            }
+        if (keyEvent == null) {
             return false;
         }
+        if ((keyEvent.getAction() != 1 || keyEvent.getKeyCode() != 84) && (keyEvent.getAction() != 0 || keyEvent.getKeyCode() != 66)) {
+            return false;
+        }
+        AndroidUtilities.hideKeyboard(this.searchEditText);
         return false;
     }
 
@@ -458,7 +460,10 @@ public class WebActionBar extends FrameLayout {
 
     public String getTitle() {
         CharSequence text = this.titles[0].title.getText();
-        return text == null ? "" : text.toString();
+        if (text == null) {
+            return "";
+        }
+        return text.toString();
     }
 
     public void swap() {
@@ -579,9 +584,12 @@ public class WebActionBar extends FrameLayout {
             this.backButtonDrawable.setColor(ColorUtils.blendARGB(this.textColor, this.addressTextColor, this.addressingProgress));
             this.backButtonDrawable.setRotatedColor(ColorUtils.blendARGB(this.textColor, this.addressTextColor, this.addressingProgress));
             this.forwardButtonDrawable.setColor(this.textColor);
-            this.menuButton.setColorFilter(new PorterDuffColorFilter(this.textColor, PorterDuff.Mode.SRC_IN));
-            this.forwardButton.setColorFilter(new PorterDuffColorFilter(this.textColor, PorterDuff.Mode.SRC_IN));
-            this.clearButton.setColorFilter(new PorterDuffColorFilter(this.textColor, PorterDuff.Mode.SRC_IN));
+            ImageView imageView = this.menuButton;
+            int i2 = this.textColor;
+            PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+            imageView.setColorFilter(new PorterDuffColorFilter(i2, mode));
+            this.forwardButton.setColorFilter(new PorterDuffColorFilter(this.textColor, mode));
+            this.clearButton.setColorFilter(new PorterDuffColorFilter(this.textColor, mode));
             int blendOver = Theme.blendOver(i, Theme.multAlpha(this.textColor, 0.22f));
             this.rippleColor = blendOver;
             Theme.setSelectorDrawableColor(this.backButtonSelector, blendOver, true);
@@ -600,9 +608,9 @@ public class WebActionBar extends FrameLayout {
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        int i2 = this.backgroundColor;
-        this.fromBackgroundColor = i2;
-        final float f2 = AndroidUtilities.computePerceivedBrightness(i2) <= 0.721f ? 1.0f : 0.0f;
+        int i3 = this.backgroundColor;
+        this.fromBackgroundColor = i3;
+        final float f2 = AndroidUtilities.computePerceivedBrightness(i3) <= 0.721f ? 1.0f : 0.0f;
         final float f3 = AndroidUtilities.computePerceivedBrightness(i) > 0.721f ? 0.0f : 1.0f;
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         this.colorAnimator = ofFloat;
@@ -794,8 +802,9 @@ public class WebActionBar extends FrameLayout {
             canvas.restore();
         }
         if (this.titleProgress > 0.0f) {
+            float width2 = getWidth() * this.titleProgress;
             canvas.save();
-            canvas.clipRect(0.0f, 0.0f, getWidth() * this.titleProgress, getHeight());
+            canvas.clipRect(0.0f, 0.0f, width2, getHeight());
             canvas.translate(right, f);
             canvas.translate(AndroidUtilities.dp(-12.0f) * (1.0f - this.titleProgress), 0.0f);
             float lerp = AndroidUtilities.lerp(1.0f, 0.5f, 1.0f - this.titleProgress);
@@ -825,6 +834,7 @@ public class WebActionBar extends FrameLayout {
     }
 
     public void showSearch(final boolean z, boolean z2) {
+        boolean z3 = false;
         if (this.searching == z) {
             return;
         }
@@ -833,14 +843,10 @@ public class WebActionBar extends FrameLayout {
             valueAnimator.cancel();
         }
         this.searching = z;
-        boolean z3 = false;
         if (z2) {
             this.searchEditText.setVisibility(0);
             this.backButtonDrawable.setRotation((this.backButtonShown || z) ? 0.0f : 1.0f, true);
-            float[] fArr = new float[2];
-            fArr[0] = this.searchingProgress;
-            fArr[1] = z ? 1.0f : 0.0f;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.searchingProgress, z ? 1.0f : 0.0f);
             this.searchAnimator = ofFloat;
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
@@ -866,10 +872,10 @@ public class WebActionBar extends FrameLayout {
                     if (webActionBar3.searching) {
                         webActionBar3.searchEditText.requestFocus();
                         AndroidUtilities.showKeyboard(WebActionBar.this.searchEditText);
-                        return;
+                    } else {
+                        webActionBar3.searchEditText.clearFocus();
+                        AndroidUtilities.hideKeyboard(WebActionBar.this.searchEditText);
                     }
-                    webActionBar3.searchEditText.clearFocus();
-                    AndroidUtilities.hideKeyboard(WebActionBar.this.searchEditText);
                 }
             });
             this.searchAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
@@ -880,7 +886,11 @@ public class WebActionBar extends FrameLayout {
             invalidate();
             this.searchEditText.setAlpha(z ? 1.0f : 0.0f);
             this.searchEditText.setVisibility(z ? 0 : 8);
-            this.backButtonDrawable.setRotation((this.backButtonShown || z) ? 0.0f : 0.0f, true);
+            BackDrawable backDrawable = this.backButtonDrawable;
+            if (!this.backButtonShown && !z) {
+                r2 = 1.0f;
+            }
+            backDrawable.setRotation(r2, true);
             if (this.searching) {
                 this.searchEditText.requestFocus();
                 AndroidUtilities.showKeyboard(this.searchEditText);
@@ -889,8 +899,9 @@ public class WebActionBar extends FrameLayout {
                 AndroidUtilities.hideKeyboard(this.searchEditText);
             }
         }
-        AndroidUtilities.updateViewShow(this.forwardButton, !z, true, z2);
-        AndroidUtilities.updateViewShow(this.menuButton, !z, true, z2);
+        boolean z4 = !z;
+        AndroidUtilities.updateViewShow(this.forwardButton, z4, true, z2);
+        AndroidUtilities.updateViewShow(this.menuButton, z4, true, z2);
         ImageView imageView = this.clearButton;
         if (this.searchEditText.length() > 0 && this.searching) {
             z3 = true;
@@ -934,10 +945,10 @@ public class WebActionBar extends FrameLayout {
         if (this.addressing) {
             this.addressEditText.requestFocus();
             AndroidUtilities.showKeyboard(this.addressEditText);
-            return;
+        } else {
+            this.addressEditText.clearFocus();
+            AndroidUtilities.hideKeyboard(this.addressEditText);
         }
-        this.addressEditText.clearFocus();
-        AndroidUtilities.hideKeyboard(this.addressEditText);
     }
 
     public void showAddress(final boolean z, boolean z2) {
@@ -960,10 +971,7 @@ public class WebActionBar extends FrameLayout {
         if (z2) {
             this.addressEditText.setVisibility(0);
             this.backButtonDrawable.setRotation((this.backButtonShown || z) ? 0.0f : 1.0f, true);
-            float[] fArr = new float[2];
-            fArr[0] = this.addressingProgress;
-            fArr[1] = z ? 1.0f : 0.0f;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.addressingProgress, z ? 1.0f : 0.0f);
             this.addressAnimator = ofFloat;
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
@@ -1002,7 +1010,11 @@ public class WebActionBar extends FrameLayout {
             this.addressEditText.setVisibility(z ? 0 : 8);
             this.menuButton.setTranslationX(AndroidUtilities.dp(56.0f) * this.addressingProgress);
             this.forwardButton.setTranslationX(AndroidUtilities.dp(112.0f) * this.addressingProgress);
-            this.backButtonDrawable.setRotation((this.backButtonShown || z) ? 0.0f : 0.0f, true);
+            BackDrawable backDrawable = this.backButtonDrawable;
+            if (!this.backButtonShown && !z) {
+                r2 = 1.0f;
+            }
+            backDrawable.setRotation(r2, true);
         }
         AndroidUtilities.cancelRunOnUIThread(new Runnable() {
             @Override

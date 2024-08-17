@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_updatePinnedMessages extends TLRPC$Update {
     public int flags;
     public ArrayList<Integer> messages = new ArrayList<>();

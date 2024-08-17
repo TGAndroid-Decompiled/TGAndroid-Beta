@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import org.telegram.ui.Charts.data.ChartData;
 import org.telegram.ui.Charts.view_data.LineViewData;
+
 public class LinearChartView extends BaseChartView<ChartData, LineViewData> {
     public LinearChartView(Context context) {
         super(context);
@@ -70,18 +71,16 @@ public class LinearChartView extends BaseChartView<ChartData, LineViewData> {
                                     float[] fArr = lineViewData.linesPathBottom;
                                     int i6 = i5 + 1;
                                     fArr[i5] = f3;
-                                    i5 = i6 + 1;
+                                    i5 += 2;
                                     fArr[i6] = f4;
                                 } else {
                                     float[] fArr2 = lineViewData.linesPathBottom;
-                                    int i7 = i5 + 1;
                                     fArr2[i5] = f3;
-                                    int i8 = i7 + 1;
+                                    fArr2[i5 + 1] = f4;
+                                    int i7 = i5 + 3;
+                                    fArr2[i5 + 2] = f3;
+                                    i5 += 4;
                                     fArr2[i7] = f4;
-                                    int i9 = i8 + 1;
-                                    fArr2[i8] = f3;
-                                    i5 = i9 + 1;
-                                    fArr2[i9] = f4;
                                 }
                             } else if (i4 == 0) {
                                 lineViewData.bottomLinePath.moveTo(f3, f4);

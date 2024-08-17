@@ -6,6 +6,7 @@ import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.text.TextUtils;
+import android.util.Property;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
@@ -20,6 +21,7 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ChatActivity;
+
 public class ImportingAlert extends BottomSheet implements NotificationCenter.NotificationCenterDelegate {
     private BottomSheetCell cell;
     private boolean completed;
@@ -220,7 +222,12 @@ public class ImportingAlert extends BottomSheet implements NotificationCenter.No
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.setDuration(250L);
         animatorSet.setInterpolator(CubicBezierInterpolator.EASE_OUT);
-        animatorSet.playTogether(ObjectAnimator.ofFloat(this.percentTextView, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.percentTextView, View.TRANSLATION_Y, -AndroidUtilities.dp(10.0f)), ObjectAnimator.ofFloat(this.infoTextView[0], View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.infoTextView[0], View.TRANSLATION_Y, -AndroidUtilities.dp(10.0f)), ObjectAnimator.ofFloat(this.importCountTextView[0], View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.importCountTextView[0], View.TRANSLATION_Y, -AndroidUtilities.dp(10.0f)), ObjectAnimator.ofFloat(this.infoTextView[1], View.ALPHA, 1.0f), ObjectAnimator.ofFloat(this.infoTextView[1], View.TRANSLATION_Y, 0.0f), ObjectAnimator.ofFloat(this.importCountTextView[1], View.ALPHA, 1.0f), ObjectAnimator.ofFloat(this.importCountTextView[1], View.TRANSLATION_Y, 0.0f), ObjectAnimator.ofFloat(this.lineProgressView, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.cell.linearLayout, View.TRANSLATION_Y, AndroidUtilities.dp(8.0f), 0.0f));
+        TextView textView = this.percentTextView;
+        Property property = View.ALPHA;
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property, 0.0f);
+        TextView textView2 = this.percentTextView;
+        Property property2 = View.TRANSLATION_Y;
+        animatorSet.playTogether(ofFloat, ObjectAnimator.ofFloat(textView2, (Property<TextView, Float>) property2, -AndroidUtilities.dp(10.0f)), ObjectAnimator.ofFloat(this.infoTextView[0], (Property<TextView, Float>) property, 0.0f), ObjectAnimator.ofFloat(this.infoTextView[0], (Property<TextView, Float>) property2, -AndroidUtilities.dp(10.0f)), ObjectAnimator.ofFloat(this.importCountTextView[0], (Property<TextView, Float>) property, 0.0f), ObjectAnimator.ofFloat(this.importCountTextView[0], (Property<TextView, Float>) property2, -AndroidUtilities.dp(10.0f)), ObjectAnimator.ofFloat(this.infoTextView[1], (Property<TextView, Float>) property, 1.0f), ObjectAnimator.ofFloat(this.infoTextView[1], (Property<TextView, Float>) property2, 0.0f), ObjectAnimator.ofFloat(this.importCountTextView[1], (Property<TextView, Float>) property, 1.0f), ObjectAnimator.ofFloat(this.importCountTextView[1], (Property<TextView, Float>) property2, 0.0f), ObjectAnimator.ofFloat(this.lineProgressView, (Property<LineProgressView, Float>) property, 0.0f), ObjectAnimator.ofFloat(this.cell.linearLayout, (Property<LinearLayout, Float>) property2, AndroidUtilities.dp(8.0f), 0.0f));
         this.cell.background.animate().scaleY(1.0f).setInterpolator(new OvershootInterpolator(1.02f)).setDuration(250L).start();
         this.cell.imageView.animate().scaleY(1.0f).scaleX(1.0f).setInterpolator(new OvershootInterpolator(1.02f)).setDuration(250L).start();
         this.cell.imageView.playAnimation();
@@ -250,7 +257,9 @@ public class ImportingAlert extends BottomSheet implements NotificationCenter.No
             this.percentTextView.setText(String.format("%d%%", Integer.valueOf(importingHistory.uploadProgress)));
             this.importCountTextView[0].setText(LocaleController.formatString("ImportCount", R.string.ImportCount, AndroidUtilities.formatFileSize(importingHistory.getUploadedCount()), AndroidUtilities.formatFileSize(importingHistory.getTotalCount())));
             this.lineProgressView.setProgress(importingHistory.uploadProgress / 100.0f, true);
-        } else if (i == NotificationCenter.stickersImportProgressChanged) {
+            return;
+        }
+        if (i == NotificationCenter.stickersImportProgressChanged) {
             if (objArr.length > 1) {
                 dismiss();
                 return;

@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import org.telegram.messenger.BuildVars;
+
 public class TLRPC$TL_decryptedMessage extends TLRPC$DecryptedMessage {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

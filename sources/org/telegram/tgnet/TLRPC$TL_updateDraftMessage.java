@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_updateDraftMessage extends TLRPC$Update {
     public TLRPC$DraftMessage draft;
     public int flags;

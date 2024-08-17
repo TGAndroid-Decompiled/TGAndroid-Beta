@@ -65,6 +65,7 @@ import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.TranslateAlert2;
+
 public class TranslateAlert2 extends BottomSheet implements NotificationCenter.NotificationCenterDelegate {
     private static HashMap<String, Locale> localesByCode;
     private PaddedAdapter adapter;
@@ -103,6 +104,8 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
 
     private TranslateAlert2(Context context, String str, String str2, CharSequence charSequence, ArrayList<TLRPC$MessageEntity> arrayList, TLRPC$InputPeer tLRPC$InputPeer, int i, Theme.ResourcesProvider resourcesProvider) {
         super(context, false, resourcesProvider);
+        Drawable textSelectHandleLeft;
+        Drawable textSelectHandleRight;
         this.firstTranslation = true;
         this.backgroundPaddingLeft = 0;
         fixNavigationBar();
@@ -141,11 +144,12 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
         int themedColor = getThemedColor(Theme.key_chat_TextSelectionCursor);
         try {
             if (Build.VERSION.SDK_INT >= 29 && !XiaomiUtilities.isMIUI()) {
-                Drawable textSelectHandleLeft = this.textView.getTextSelectHandleLeft();
-                textSelectHandleLeft.setColorFilter(themedColor, PorterDuff.Mode.SRC_IN);
+                textSelectHandleLeft = this.textView.getTextSelectHandleLeft();
+                PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+                textSelectHandleLeft.setColorFilter(themedColor, mode);
                 this.textView.setTextSelectHandleLeft(textSelectHandleLeft);
-                Drawable textSelectHandleRight = this.textView.getTextSelectHandleRight();
-                textSelectHandleRight.setColorFilter(themedColor, PorterDuff.Mode.SRC_IN);
+                textSelectHandleRight = this.textView.getTextSelectHandleRight();
+                textSelectHandleRight.setColorFilter(themedColor, mode);
                 this.textView.setTextSelectHandleRight(textSelectHandleRight);
             }
         } catch (Exception unused) {
@@ -257,9 +261,8 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
     public boolean hasEnoughHeight() {
         float f = 0.0f;
         for (int i = 0; i < this.listView.getChildCount(); i++) {
-            View childAt = this.listView.getChildAt(i);
-            if (this.listView.getChildAdapterPosition(childAt) == 1) {
-                f += childAt.getHeight();
+            if (this.listView.getChildAdapterPosition(this.listView.getChildAt(i)) == 1) {
+                f += r3.getHeight();
             }
         }
         return f >= ((float) ((this.listView.getHeight() - this.listView.getPaddingTop()) - this.listView.getPaddingBottom()));
@@ -341,7 +344,6 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
 
     public static TLRPC$TL_textWithEntities preprocess(TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities, TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities2) {
         Emoji.EmojiSpanRange emojiSpanRange;
-        boolean z;
         ArrayList<TLRPC$MessageEntity> arrayList;
         if (tLRPC$TL_textWithEntities2 == null || tLRPC$TL_textWithEntities2.text == null) {
             return null;
@@ -399,31 +401,28 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
                             if (i5 >= 0 && i5 < arrayList3.size() && (emojiSpanRange = arrayList3.get(i5)) != null) {
                                 int i8 = 0;
                                 while (true) {
-                                    if (i8 >= tLRPC$TL_textWithEntities2.entities.size()) {
-                                        z = false;
+                                    if (i8 < tLRPC$TL_textWithEntities2.entities.size()) {
+                                        TLRPC$MessageEntity tLRPC$MessageEntity3 = tLRPC$TL_textWithEntities2.entities.get(i8);
+                                        if (tLRPC$MessageEntity3 instanceof TLRPC$TL_messageEntityCustomEmoji) {
+                                            int i9 = emojiSpanRange.start;
+                                            int i10 = emojiSpanRange.end;
+                                            int i11 = tLRPC$MessageEntity3.offset;
+                                            if (AndroidUtilities.intersect1d(i9, i10, i11, tLRPC$MessageEntity3.length + i11)) {
+                                                break;
+                                            }
+                                        }
+                                        i8++;
+                                    } else {
+                                        TLRPC$TL_messageEntityCustomEmoji tLRPC$TL_messageEntityCustomEmoji = new TLRPC$TL_messageEntityCustomEmoji();
+                                        TLRPC$TL_messageEntityCustomEmoji tLRPC$TL_messageEntityCustomEmoji2 = (TLRPC$TL_messageEntityCustomEmoji) tLRPC$MessageEntity2;
+                                        tLRPC$TL_messageEntityCustomEmoji.document_id = tLRPC$TL_messageEntityCustomEmoji2.document_id;
+                                        tLRPC$TL_messageEntityCustomEmoji.document = tLRPC$TL_messageEntityCustomEmoji2.document;
+                                        int i12 = emojiSpanRange.start;
+                                        tLRPC$TL_messageEntityCustomEmoji.offset = i12;
+                                        tLRPC$TL_messageEntityCustomEmoji.length = emojiSpanRange.end - i12;
+                                        tLRPC$TL_textWithEntities2.entities.add(tLRPC$TL_messageEntityCustomEmoji);
                                         break;
                                     }
-                                    TLRPC$MessageEntity tLRPC$MessageEntity3 = tLRPC$TL_textWithEntities2.entities.get(i8);
-                                    if (tLRPC$MessageEntity3 instanceof TLRPC$TL_messageEntityCustomEmoji) {
-                                        int i9 = emojiSpanRange.start;
-                                        int i10 = emojiSpanRange.end;
-                                        int i11 = tLRPC$MessageEntity3.offset;
-                                        if (AndroidUtilities.intersect1d(i9, i10, i11, tLRPC$MessageEntity3.length + i11)) {
-                                            z = true;
-                                            break;
-                                        }
-                                    }
-                                    i8++;
-                                }
-                                if (!z) {
-                                    TLRPC$TL_messageEntityCustomEmoji tLRPC$TL_messageEntityCustomEmoji = new TLRPC$TL_messageEntityCustomEmoji();
-                                    TLRPC$TL_messageEntityCustomEmoji tLRPC$TL_messageEntityCustomEmoji2 = (TLRPC$TL_messageEntityCustomEmoji) tLRPC$MessageEntity2;
-                                    tLRPC$TL_messageEntityCustomEmoji.document_id = tLRPC$TL_messageEntityCustomEmoji2.document_id;
-                                    tLRPC$TL_messageEntityCustomEmoji.document = tLRPC$TL_messageEntityCustomEmoji2.document;
-                                    int i12 = emojiSpanRange.start;
-                                    tLRPC$TL_messageEntityCustomEmoji.offset = i12;
-                                    tLRPC$TL_messageEntityCustomEmoji.length = emojiSpanRange.end - i12;
-                                    tLRPC$TL_textWithEntities2.entities.add(tLRPC$TL_messageEntityCustomEmoji);
                                 }
                             }
                         }
@@ -457,7 +456,6 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
     }
 
     private CharSequence preprocessText(CharSequence charSequence) {
-        URLSpan[] uRLSpanArr;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence);
         if (this.onLinkPress != null || this.fragment != null) {
             for (final URLSpan uRLSpan : (URLSpan[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), URLSpan.class)) {
@@ -670,7 +668,9 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
             this.backButton.setImageResource(R.drawable.ic_ab_back);
             ImageView imageView2 = this.backButton;
             int i = Theme.key_dialogTextBlack;
-            imageView2.setColorFilter(new PorterDuffColorFilter(TranslateAlert2.this.getThemedColor(i), PorterDuff.Mode.MULTIPLY));
+            int themedColor = TranslateAlert2.this.getThemedColor(i);
+            PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+            imageView2.setColorFilter(new PorterDuffColorFilter(themedColor, mode));
             this.backButton.setBackground(Theme.createSelectorDrawable(TranslateAlert2.this.getThemedColor(Theme.key_listSelector)));
             this.backButton.setAlpha(0.0f);
             this.backButton.setOnClickListener(new View.OnClickListener() {
@@ -726,7 +726,7 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
             imageView3.setImageResource(R.drawable.search_arrow);
             ImageView imageView4 = this.arrowView;
             int i2 = Theme.key_player_actionBarSubtitle;
-            imageView4.setColorFilter(new PorterDuffColorFilter(TranslateAlert2.this.getThemedColor(i2), PorterDuff.Mode.MULTIPLY));
+            imageView4.setColorFilter(new PorterDuffColorFilter(TranslateAlert2.this.getThemedColor(i2), mode));
             if (LocaleController.isRTL) {
                 this.arrowView.setScaleX(-1.0f);
             }
@@ -1044,16 +1044,15 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
         if (str == null || str.equals("und") || str.equals("auto")) {
             return null;
         }
-        boolean z = false;
         String str2 = str.split("_")[0];
         if ("nb".equals(str2)) {
             str2 = "no";
         }
         if (zArr != null) {
             String string = LocaleController.getString("TranslateLanguage" + str2.toUpperCase());
-            boolean z2 = (string == null || string.startsWith("LOC_ERR")) ? false : true;
-            zArr[0] = z2;
-            if (z2) {
+            boolean z = (string == null || string.startsWith("LOC_ERR")) ? false : true;
+            zArr[0] = z;
+            if (z) {
                 return string;
             }
         }
@@ -1073,9 +1072,6 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
             return null;
         }
         if (currentLocaleInfo != null && "en".equals(currentLocaleInfo.pluralLangCode)) {
-            z = true;
-        }
-        if (z) {
             return builtinLanguageByPlural.nameEnglish;
         }
         return builtinLanguageByPlural.name;
@@ -1105,8 +1101,7 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
                     localesByCode.put(availableLocales[i].getLanguage(), availableLocales[i]);
                     String country = availableLocales[i].getCountry();
                     if (country != null && country.length() > 0) {
-                        HashMap<String, Locale> hashMap = localesByCode;
-                        hashMap.put(availableLocales[i].getLanguage() + "-" + country.toLowerCase(), availableLocales[i]);
+                        localesByCode.put(availableLocales[i].getLanguage() + "-" + country.toLowerCase(), availableLocales[i]);
                     }
                 }
             } catch (Exception unused) {
@@ -1117,14 +1112,14 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
             Locale locale = localesByCode.get(lowerCase);
             if (locale != null) {
                 String displayLanguage = locale.getDisplayLanguage(z ? locale : Locale.getDefault());
-                if (lowerCase.contains("-")) {
-                    String displayCountry = locale.getDisplayCountry(z ? locale : Locale.getDefault());
-                    if (TextUtils.isEmpty(displayCountry)) {
-                        return displayLanguage;
-                    }
-                    return displayLanguage + " (" + displayCountry + ")";
+                if (!lowerCase.contains("-")) {
+                    return displayLanguage;
                 }
-                return displayLanguage;
+                String displayCountry = locale.getDisplayCountry(z ? locale : Locale.getDefault());
+                if (TextUtils.isEmpty(displayCountry)) {
+                    return displayLanguage;
+                }
+                return displayLanguage + " (" + displayCountry + ")";
             }
         } catch (Exception unused2) {
         }

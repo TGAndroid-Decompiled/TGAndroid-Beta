@@ -22,6 +22,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.PhotoAlbumPickerActivity;
+
 public class WallpaperUpdater {
     private String currentPicturePath;
     private File currentWallpaperPath;
@@ -72,27 +73,27 @@ public class WallpaperUpdater {
                 if (i == 1) {
                     openGallery();
                     return;
-                } else if (z) {
+                }
+                if (z) {
                     if (i == 2) {
                         this.delegate.needOpenColorPicker();
                         return;
-                    } else if (i == 3) {
-                        this.delegate.didSelectWallpaper(null, null, false);
-                        return;
                     } else {
+                        if (i == 3) {
+                            this.delegate.didSelectWallpaper(null, null, false);
+                            return;
+                        }
                         return;
                     }
-                } else {
-                    return;
                 }
+                return;
             }
             try {
                 Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
                 File generatePicturePath = AndroidUtilities.generatePicturePath();
                 if (generatePicturePath != null) {
                     if (Build.VERSION.SDK_INT >= 24) {
-                        Activity activity = this.parentActivity;
-                        intent.putExtra("output", FileProvider.getUriForFile(activity, ApplicationLoader.getApplicationId() + ".provider", generatePicturePath));
+                        intent.putExtra("output", FileProvider.getUriForFile(this.parentActivity, ApplicationLoader.getApplicationId() + ".provider", generatePicturePath));
                         intent.addFlags(2);
                         intent.addFlags(1);
                     } else {
@@ -165,8 +166,7 @@ public class WallpaperUpdater {
             }
             SendMessagesHelper.SendingMediaInfo sendingMediaInfo = arrayList.get(0);
             if (sendingMediaInfo.path != null) {
-                File directory = FileLoader.getDirectory(4);
-                this.currentWallpaperPath = new File(directory, Utilities.random.nextInt() + ".jpg");
+                this.currentWallpaperPath = new File(FileLoader.getDirectory(4), Utilities.random.nextInt() + ".jpg");
                 android.graphics.Point realScreenSize = AndroidUtilities.getRealScreenSize();
                 Bitmap loadBitmap = ImageLoader.loadBitmap(sendingMediaInfo.path, null, (float) realScreenSize.x, (float) realScreenSize.y, true);
                 loadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(this.currentWallpaperPath));

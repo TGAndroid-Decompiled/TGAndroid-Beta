@@ -14,6 +14,7 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.SeekBarView;
+
 public class BrightnessControlCell extends FrameLayout {
     private ImageView leftImageView;
     Theme.ResourcesProvider resourcesProvider;
@@ -49,11 +50,6 @@ public class BrightnessControlCell extends FrameLayout {
         seekBarView.setReportChanges(true);
         seekBarView.setDelegate(new SeekBarView.SeekBarViewDelegate() {
             @Override
-            public CharSequence getContentDescription() {
-                return " ";
-            }
-
-            @Override
             public int getStepsCount() {
                 return SeekBarView.SeekBarViewDelegate.CC.$default$getStepsCount(this);
             }
@@ -66,6 +62,11 @@ public class BrightnessControlCell extends FrameLayout {
             public void onSeekBarDrag(boolean z, float f) {
                 BrightnessControlCell.this.didChangedValue(f);
             }
+
+            @Override
+            public CharSequence getContentDescription() {
+                return " ";
+            }
         });
         seekBarView.setImportantForAccessibility(2);
         addView(seekBarView, LayoutHelper.createFrame(-1, 38.0f, 51, 54.0f, 5.0f, 54.0f, 0.0f));
@@ -76,11 +77,11 @@ public class BrightnessControlCell extends FrameLayout {
             this.leftImageView.setImageResource(R.drawable.msg_brightness_low);
             this.rightImageView.setImageResource(R.drawable.msg_brightness_high);
             this.size = 48;
-            return;
+        } else {
+            this.leftImageView.setImageResource(R.drawable.msg_brightness_high);
+            this.rightImageView.setImageResource(R.drawable.msg_brightness_low);
+            this.size = 43;
         }
-        this.leftImageView.setImageResource(R.drawable.msg_brightness_high);
-        this.rightImageView.setImageResource(R.drawable.msg_brightness_low);
-        this.size = 43;
     }
 
     @Override
@@ -88,8 +89,10 @@ public class BrightnessControlCell extends FrameLayout {
         super.onAttachedToWindow();
         ImageView imageView = this.leftImageView;
         int i = Theme.key_windowBackgroundWhiteGrayIcon;
-        imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
-        this.rightImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
+        int color = Theme.getColor(i, this.resourcesProvider);
+        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+        imageView.setColorFilter(new PorterDuffColorFilter(color, mode));
+        this.rightImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, this.resourcesProvider), mode));
     }
 
     @Override

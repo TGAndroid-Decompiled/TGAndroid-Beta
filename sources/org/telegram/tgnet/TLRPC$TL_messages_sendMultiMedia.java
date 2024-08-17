@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_messages_sendMultiMedia extends TLObject {
     public boolean background;
     public boolean clear_draft;

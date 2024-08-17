@@ -29,6 +29,7 @@ import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RadialProgressView;
 import org.telegram.ui.Stars.StarsIntroActivity;
+
 public class LegendSignatureView extends FrameLayout {
     Drawable backgroundDrawable;
     public boolean canGoZoom;
@@ -222,10 +223,10 @@ public class LegendSignatureView extends FrameLayout {
         if (this.zoomEnabled) {
             this.canGoZoom = j5 > 0;
             this.chevron.setVisibility(j5 <= 0 ? 8 : 0);
-            return;
+        } else {
+            this.canGoZoom = false;
+            this.chevron.setVisibility(8);
         }
-        this.canGoZoom = false;
-        this.chevron.setVisibility(8);
     }
 
     private String formatData(Date date) {
@@ -236,10 +237,10 @@ public class LegendSignatureView extends FrameLayout {
     }
 
     private String capitalize(String str) {
-        if (str.length() > 0) {
-            return Character.toUpperCase(str.charAt(0)) + str.substring(1);
+        if (str.length() <= 0) {
+            return str;
         }
-        return str;
+        return Character.toUpperCase(str.charAt(0)) + str.substring(1);
     }
 
     public CharSequence formatWholeNumber(long j, int i, int i2, TextView textView, float f) {
@@ -264,23 +265,23 @@ public class LegendSignatureView extends FrameLayout {
                 return ChannelMonetizationLayout.replaceTON(sb.toString(), textView.getPaint(), 0.82f, false);
             }
             return "≈" + BillingController.getInstance().formatCurrency(((float) j) / f, "USD");
-        } else if (i == 2) {
+        }
+        if (i == 2) {
             if (i2 == 0) {
                 return StarsIntroActivity.replaceStarsWithPlain("XTR " + LocaleController.formatNumber(j, ' '), 0.7f);
             }
             return "≈" + BillingController.getInstance().formatCurrency(((float) j) / f, "USD");
-        } else {
-            float f2 = (float) j;
-            if (j < 10000) {
-                return String.format("%d", Long.valueOf(j));
-            }
-            int i3 = 0;
-            while (f2 >= 1000.0f && i3 < AndroidUtilities.numbersSignatureArray.length - 1) {
-                f2 /= 1000.0f;
-                i3++;
-            }
-            return String.format("%.2f", Float.valueOf(f2)) + AndroidUtilities.numbersSignatureArray[i3];
         }
+        float f2 = (float) j;
+        if (j < 10000) {
+            return String.format("%d", Long.valueOf(j));
+        }
+        int i3 = 0;
+        while (f2 >= 1000.0f && i3 < AndroidUtilities.numbersSignatureArray.length - 1) {
+            f2 /= 1000.0f;
+            i3++;
+        }
+        return String.format("%.2f", Float.valueOf(f2)) + AndroidUtilities.numbersSignatureArray[i3];
     }
 
     public void showProgress(boolean z, boolean z2) {

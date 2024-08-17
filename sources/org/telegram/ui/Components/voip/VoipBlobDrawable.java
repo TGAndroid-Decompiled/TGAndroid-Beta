@@ -2,16 +2,18 @@ package org.telegram.ui.Components.voip;
 
 import org.telegram.messenger.LiteMode;
 import org.telegram.ui.Components.BlobDrawable;
+
 public class VoipBlobDrawable extends BlobDrawable {
     public VoipBlobDrawable(int i) {
         super(i);
     }
 
     protected void generateBlob(float[] fArr, float[] fArr2, int i, float f) {
-        float f2 = this.maxRadius;
-        float f3 = this.minRadius;
-        fArr[i] = f3 + (Math.abs((this.random.nextInt() % 100.0f) / 100.0f) * (f2 - f3) * f);
-        fArr2[i] = ((360.0f / this.N) * i) + ((((this.random.nextInt() * f) % 100.0f) / 100.0f) * (360.0f / this.N) * 0.05f);
+        float f2 = (360.0f / this.N) * 0.05f;
+        float f3 = this.maxRadius;
+        float f4 = this.minRadius;
+        fArr[i] = f4 + (Math.abs((this.random.nextInt() % 100.0f) / 100.0f) * (f3 - f4) * f);
+        fArr2[i] = ((360.0f / this.N) * i) + ((((this.random.nextInt() * f) % 100.0f) / 100.0f) * f2);
         float[] fArr3 = this.speed;
         double abs = Math.abs(this.random.nextInt() % 100.0f) / 100.0f;
         Double.isNaN(abs);

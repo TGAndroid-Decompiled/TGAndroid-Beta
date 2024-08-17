@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_groupCallParticipant extends TLObject {
     public String about;
     public int active_date;

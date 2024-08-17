@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_account_disablePeerConnectedBot extends TLObject {
     public TLRPC$InputPeer peer;
 

@@ -5,6 +5,7 @@ import android.graphics.PointF;
 import com.google.android.gms.vision.face.Face;
 import com.google.android.gms.vision.face.Landmark;
 import org.telegram.ui.Components.Size;
+
 public class PhotoFace {
     private float angle;
     private org.telegram.ui.Components.Point chinPoint;
@@ -15,7 +16,6 @@ public class PhotoFace {
     private float width;
 
     public PhotoFace(Face face, Bitmap bitmap, Size size, boolean z) {
-        float degrees;
         org.telegram.ui.Components.Point point = null;
         org.telegram.ui.Components.Point point2 = null;
         org.telegram.ui.Components.Point point3 = null;
@@ -34,18 +34,18 @@ public class PhotoFace {
             }
         }
         if (point != null && point2 != null) {
-            if (point.x < point2.x) {
+            if (point.x >= point2.x) {
                 org.telegram.ui.Components.Point point5 = point2;
                 point2 = point;
                 point = point5;
             }
-            this.eyesCenterPoint = new org.telegram.ui.Components.Point((point.x * 0.5f) + (point2.x * 0.5f), (point.y * 0.5f) + (point2.y * 0.5f));
-            this.eyesDistance = (float) Math.hypot(point2.x - point.x, point2.y - point.y);
-            this.angle = (float) Math.toDegrees(Math.atan2(point2.y - point.y, point2.x - point.x) + 3.141592653589793d);
+            this.eyesCenterPoint = new org.telegram.ui.Components.Point((point2.x * 0.5f) + (point.x * 0.5f), (point2.y * 0.5f) + (point.y * 0.5f));
+            this.eyesDistance = (float) Math.hypot(point.x - point2.x, point.y - point2.y);
+            this.angle = (float) Math.toDegrees(Math.atan2(point.y - point2.y, point.x - point2.x) + 3.141592653589793d);
             float f = this.eyesDistance;
             this.width = 2.35f * f;
             float f2 = f * 0.8f;
-            double radians = (float) Math.toRadians(degrees - 90.0f);
+            double radians = (float) Math.toRadians(r12 - 90.0f);
             this.foreheadPoint = new org.telegram.ui.Components.Point(this.eyesCenterPoint.x + (((float) Math.cos(radians)) * f2), this.eyesCenterPoint.y + (f2 * ((float) Math.sin(radians))));
         }
         if (point3 == null || point4 == null) {
@@ -71,19 +71,19 @@ public class PhotoFace {
     }
 
     public org.telegram.ui.Components.Point getPointForAnchor(int i) {
-        if (i != 0) {
-            if (i != 1) {
-                if (i != 2) {
-                    if (i != 3) {
-                        return null;
-                    }
-                    return this.chinPoint;
-                }
-                return this.mouthPoint;
-            }
+        if (i == 0) {
+            return this.foreheadPoint;
+        }
+        if (i == 1) {
             return this.eyesCenterPoint;
         }
-        return this.foreheadPoint;
+        if (i == 2) {
+            return this.mouthPoint;
+        }
+        if (i != 3) {
+            return null;
+        }
+        return this.chinPoint;
     }
 
     public float getWidthForAnchor(int i) {

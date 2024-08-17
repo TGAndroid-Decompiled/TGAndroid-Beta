@@ -3,6 +3,7 @@ package org.telegram.messenger;
 import android.os.Handler;
 import android.os.Looper;
 import org.telegram.messenger.NotificationCenter;
+
 public final class ContactsLoadingObserver {
     private final Callback callback;
     private final ContactsController contactsController;
@@ -79,11 +80,11 @@ public final class ContactsLoadingObserver {
             return false;
         }
         boolean z2 = this.contactsController.contactsLoaded;
-        if (z2 || z) {
-            release();
-            this.callback.onResult(z2);
-            return true;
+        if (!z2 && !z) {
+            return false;
         }
-        return false;
+        release();
+        this.callback.onResult(z2);
+        return true;
     }
 }

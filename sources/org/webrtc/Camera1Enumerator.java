@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.webrtc.CameraEnumerationAndroid;
 import org.webrtc.CameraVideoCapturer;
+
 public class Camera1Enumerator implements CameraEnumerator {
     private static final String TAG = "Camera1Enumerator";
     private static List<List<CameraEnumerationAndroid.CaptureFormat>> cachedSupportedFormats;
@@ -70,13 +71,17 @@ public class Camera1Enumerator implements CameraEnumerator {
     static synchronized List<CameraEnumerationAndroid.CaptureFormat> getSupportedFormats(int i) {
         List<CameraEnumerationAndroid.CaptureFormat> list;
         synchronized (Camera1Enumerator.class) {
-            if (cachedSupportedFormats == null) {
-                cachedSupportedFormats = new ArrayList();
-                for (int i2 = 0; i2 < Camera.getNumberOfCameras(); i2++) {
-                    cachedSupportedFormats.add(enumerateFormats(i2));
+            try {
+                if (cachedSupportedFormats == null) {
+                    cachedSupportedFormats = new ArrayList();
+                    for (int i2 = 0; i2 < Camera.getNumberOfCameras(); i2++) {
+                        cachedSupportedFormats.add(enumerateFormats(i2));
+                    }
                 }
+                list = cachedSupportedFormats.get(i);
+            } catch (Throwable th) {
+                throw th;
             }
-            list = cachedSupportedFormats.get(i);
         }
         return list;
     }
@@ -109,8 +114,7 @@ public class Camera1Enumerator implements CameraEnumerator {
                 } catch (Exception e) {
                     Logging.e("Camera1Enumerator", "getSupportedFormats() failed on camera index " + i, e);
                 }
-                long elapsedRealtime2 = SystemClock.elapsedRealtime();
-                Logging.d("Camera1Enumerator", "Get supported formats for camera index " + i + " done. Time spent: " + (elapsedRealtime2 - elapsedRealtime) + " ms.");
+                Logging.d("Camera1Enumerator", "Get supported formats for camera index " + i + " done. Time spent: " + (SystemClock.elapsedRealtime() - elapsedRealtime) + " ms.");
                 return arrayList;
             } catch (RuntimeException e2) {
                 Logging.e("Camera1Enumerator", "Open camera failed on camera index " + i, e2);
@@ -159,7 +163,6 @@ public class Camera1Enumerator implements CameraEnumerator {
         if (cameraInfo == null) {
             return null;
         }
-        String str = cameraInfo.facing == 1 ? "front" : "back";
-        return "Camera " + i + ", Facing " + str + ", Orientation " + cameraInfo.orientation;
+        return "Camera " + i + ", Facing " + (cameraInfo.facing == 1 ? "front" : "back") + ", Orientation " + cameraInfo.orientation;
     }
 }

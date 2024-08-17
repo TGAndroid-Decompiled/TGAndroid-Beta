@@ -17,6 +17,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RadioButton;
+
 public class RadioCell extends FrameLayout {
     private boolean needDivider;
     private RadioButton radioButton;
@@ -102,14 +103,8 @@ public class RadioCell extends FrameLayout {
         if (arrayList != null) {
             TextView textView = this.textView;
             Property property = View.ALPHA;
-            float[] fArr = new float[1];
-            fArr[0] = z ? 1.0f : 0.5f;
-            arrayList.add(ObjectAnimator.ofFloat(textView, property, fArr));
-            RadioButton radioButton = this.radioButton;
-            Property property2 = View.ALPHA;
-            float[] fArr2 = new float[1];
-            fArr2[0] = z ? 1.0f : 0.5f;
-            arrayList.add(ObjectAnimator.ofFloat(radioButton, property2, fArr2));
+            arrayList.add(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property, z ? 1.0f : 0.5f));
+            arrayList.add(ObjectAnimator.ofFloat(this.radioButton, (Property<RadioButton, Float>) property, z ? 1.0f : 0.5f));
             return;
         }
         this.textView.setAlpha(z ? 1.0f : 0.5f);

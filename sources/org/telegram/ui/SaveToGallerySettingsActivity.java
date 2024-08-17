@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
@@ -51,6 +50,7 @@ import org.telegram.ui.Components.ListView.AdapterWithDiffUtils;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SeekBarView;
 import org.telegram.ui.DialogsActivity;
+
 public class SaveToGallerySettingsActivity extends BaseFragment {
     private final int VIEW_TYPE_ADD_EXCEPTION;
     private final int VIEW_TYPE_CHAT;
@@ -113,8 +113,8 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
 
     @Override
     public View createView(Context context) {
-        String str;
         int i;
+        String str;
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
         this.actionBar.setBackButtonDrawable(new BackDrawable(false));
@@ -122,7 +122,7 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
             @Override
             public void onItemClick(int i2) {
                 if (i2 == -1) {
-                    SaveToGallerySettingsActivity.this.finishFragment();
+                    SaveToGallerySettingsActivity.this.lambda$onBackPressed$308();
                 }
             }
         });
@@ -196,11 +196,11 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
             TextView textView = new TextView(getContext());
             textView.setTextSize(1, 14.0f);
             if (this.isNewException) {
-                str = "AddException";
                 i = R.string.AddException;
+                str = "AddException";
             } else {
-                str = "SaveException";
                 i = R.string.SaveException;
+                str = "SaveException";
             }
             textView.setText(LocaleController.getString(str, i));
             textView.setGravity(17);
@@ -221,16 +221,18 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
 
     public void lambda$createView$2(View view, int i, float f, float f2) {
         if (i == this.savePhotosRow) {
-            SaveToGallerySettingsHelper.Settings settings = getSettings();
-            settings.savePhoto = !settings.savePhoto;
+            getSettings().savePhoto = !r8.savePhoto;
             onSettingsUpdated();
             updateRows();
-        } else if (i == this.saveVideosRow) {
-            SaveToGallerySettingsHelper.Settings settings2 = getSettings();
-            settings2.saveVideo = !settings2.saveVideo;
+            return;
+        }
+        if (i == this.saveVideosRow) {
+            getSettings().saveVideo = !r8.saveVideo;
             onSettingsUpdated();
             updateRows();
-        } else if (this.items.get(i).viewType == 1) {
+            return;
+        }
+        if (this.items.get(i).viewType == 1) {
             Bundle bundle = new Bundle();
             bundle.putBoolean("onlySelect", true);
             bundle.putBoolean("checkCanWrite", false);
@@ -253,12 +255,16 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
                 }
             });
             presentFragment(dialogsActivity);
-        } else if (this.items.get(i).viewType == 2) {
+            return;
+        }
+        if (this.items.get(i).viewType == 2) {
             Bundle bundle2 = new Bundle();
             bundle2.putLong("dialog_id", this.items.get(i).exception.dialogId);
             bundle2.putInt("type", this.type);
             presentFragment(new SaveToGallerySettingsActivity(bundle2));
-        } else if (this.items.get(i).viewType == 4) {
+            return;
+        }
+        if (this.items.get(i).viewType == 4) {
             AlertDialog create = AlertsCreator.createSimpleAlert(getContext(), LocaleController.getString("NotificationsDeleteAllExceptionTitle", R.string.NotificationsDeleteAllExceptionTitle), LocaleController.getString("NotificationsDeleteAllExceptionAlert", R.string.NotificationsDeleteAllExceptionAlert), LocaleController.getString("Delete", R.string.Delete), new Runnable() {
                 @Override
                 public final void run() {
@@ -285,30 +291,30 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
     }
 
     public boolean lambda$createView$5(View view, final int i, float f, float f2) {
-        if (this.items.get(i).viewType == 2) {
-            final SaveToGallerySettingsHelper.DialogException dialogException = this.items.get(i).exception;
-            ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(getContext());
-            ActionBarMenuSubItem addItem = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_customize, LocaleController.getString("EditException", R.string.EditException), false, null);
-            ActionBarMenuSubItem addItem2 = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_delete, LocaleController.getString("DeleteException", R.string.DeleteException), false, null);
-            int i2 = Theme.key_text_RedRegular;
-            addItem2.setColors(Theme.getColor(i2), Theme.getColor(i2));
-            final ActionBarPopupWindow createSimplePopup = AlertsCreator.createSimplePopup(this, actionBarPopupWindowLayout, view, f, f2);
-            actionBarPopupWindowLayout.setParentWindow(createSimplePopup);
-            addItem.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view2) {
-                    SaveToGallerySettingsActivity.this.lambda$createView$3(createSimplePopup, i, view2);
-                }
-            });
-            addItem2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view2) {
-                    SaveToGallerySettingsActivity.this.lambda$createView$4(createSimplePopup, dialogException, view2);
-                }
-            });
-            return true;
+        if (this.items.get(i).viewType != 2) {
+            return false;
         }
-        return false;
+        final SaveToGallerySettingsHelper.DialogException dialogException = this.items.get(i).exception;
+        ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(getContext());
+        ActionBarMenuSubItem addItem = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_customize, LocaleController.getString("EditException", R.string.EditException), false, null);
+        ActionBarMenuSubItem addItem2 = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_delete, LocaleController.getString("DeleteException", R.string.DeleteException), false, null);
+        int i2 = Theme.key_text_RedRegular;
+        addItem2.setColors(Theme.getColor(i2), Theme.getColor(i2));
+        final ActionBarPopupWindow createSimplePopup = AlertsCreator.createSimplePopup(this, actionBarPopupWindowLayout, view, f, f2);
+        actionBarPopupWindowLayout.setParentWindow(createSimplePopup);
+        addItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view2) {
+                SaveToGallerySettingsActivity.this.lambda$createView$3(createSimplePopup, i, view2);
+            }
+        });
+        addItem2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view2) {
+                SaveToGallerySettingsActivity.this.lambda$createView$4(createSimplePopup, dialogException, view2);
+            }
+        });
+        return true;
     }
 
     public void lambda$createView$3(ActionBarPopupWindow actionBarPopupWindow, int i, View view) {
@@ -334,13 +340,14 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
             saveGalleryExceptions.put(dialogException.dialogId, dialogException);
             getUserConfig().updateSaveGalleryExceptions(this.type, saveGalleryExceptions);
         }
-        finishFragment();
+        lambda$onBackPressed$308();
     }
 
     private void updateRows() {
         ArrayList<? extends AdapterWithDiffUtils.Item> arrayList;
         String string;
         int i = 0;
+        int i2 = 1;
         if ((this.isPaused || this.adapter == null) ? false : true) {
             arrayList = new ArrayList<>();
             arrayList.addAll(this.items);
@@ -348,48 +355,54 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
             arrayList = null;
         }
         this.items.clear();
+        int i3 = 3;
         if (this.dialogException != null) {
             this.items.add(new Item(9));
-            this.items.add(new Item(3));
+            this.items.add(new Item(i3));
         }
-        this.items.add(new Item(5, LocaleController.getString("SaveToGallery", R.string.SaveToGallery)));
+        int i4 = 5;
+        this.items.add(new Item(i4, LocaleController.getString("SaveToGallery", R.string.SaveToGallery)));
         this.savePhotosRow = this.items.size();
-        this.items.add(new Item(6));
+        int i5 = 6;
+        this.items.add(new Item(i5));
         this.saveVideosRow = this.items.size();
-        this.items.add(new Item(6));
+        this.items.add(new Item(i5));
+        int i6 = 2;
+        int i7 = 4;
         if (this.dialogException != null) {
             string = LocaleController.getString("SaveToGalleryHintCurrent", R.string.SaveToGalleryHintCurrent);
         } else {
-            int i2 = this.type;
-            if (i2 == 1) {
+            int i8 = this.type;
+            if (i8 == 1) {
                 string = LocaleController.getString("SaveToGalleryHintUser", R.string.SaveToGalleryHintUser);
-            } else if (i2 == 4) {
+            } else if (i8 == 4) {
                 string = LocaleController.getString("SaveToGalleryHintChannels", R.string.SaveToGalleryHintChannels);
             } else {
-                string = i2 == 2 ? LocaleController.getString("SaveToGalleryHintGroup", R.string.SaveToGalleryHintGroup) : null;
+                string = i8 == 2 ? LocaleController.getString("SaveToGalleryHintGroup", R.string.SaveToGalleryHintGroup) : null;
             }
         }
-        this.items.add(new Item(7, string));
+        int i9 = 7;
+        this.items.add(new Item(i9, string));
         if (getSettings().saveVideo) {
-            this.items.add(new Item(5, LocaleController.getString("MaxVideoSize", R.string.MaxVideoSize)));
+            this.items.add(new Item(i4, LocaleController.getString("MaxVideoSize", R.string.MaxVideoSize)));
             this.items.add(new Item(8));
             this.videoDividerRow = this.items.size();
-            this.items.add(new Item(7));
+            this.items.add(new Item(i9));
         } else {
             this.videoDividerRow = -1;
         }
         if (this.dialogException == null) {
             this.exceptionsDialogs = getUserConfig().getSaveGalleryExceptions(this.type);
-            this.items.add(new Item(1));
+            this.items.add(new Item(i2));
             boolean z = false;
             while (i < this.exceptionsDialogs.size()) {
-                this.items.add(new Item(2, this.exceptionsDialogs.valueAt(i)));
+                this.items.add(new Item(i6, this.exceptionsDialogs.valueAt(i)));
                 i++;
                 z = true;
             }
             if (z) {
-                this.items.add(new Item(3));
-                this.items.add(new Item(4));
+                this.items.add(new Item(i3));
+                this.items.add(new Item(i7));
             }
             this.items.add(new Item(10));
         }
@@ -409,46 +422,46 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            LinearLayout linearLayout = null;
+            View view = null;
             switch (i) {
                 case 1:
                     TextCell textCell = new TextCell(viewGroup.getContext());
                     textCell.setTextAndIcon((CharSequence) LocaleController.getString("NotificationsAddAnException", R.string.NotificationsAddAnException), R.drawable.msg_contact_add, true);
                     textCell.setColors(Theme.key_windowBackgroundWhiteBlueIcon, Theme.key_windowBackgroundWhiteBlueButton);
                     textCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                    linearLayout = textCell;
+                    view = textCell;
                     break;
                 case 2:
                     UserCell userCell = new UserCell(viewGroup.getContext(), 4, 0, false, false);
                     userCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                    linearLayout = userCell;
+                    view = userCell;
                     break;
                 case 3:
-                    linearLayout = new ShadowSectionCell(viewGroup.getContext());
+                    view = new ShadowSectionCell(viewGroup.getContext());
                     break;
                 case 4:
                     TextCell textCell2 = new TextCell(viewGroup.getContext());
                     textCell2.setText(LocaleController.getString("NotificationsDeleteAllException", R.string.NotificationsDeleteAllException), false);
                     textCell2.setColors(-1, Theme.key_text_RedRegular);
                     textCell2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                    linearLayout = textCell2;
+                    view = textCell2;
                     break;
                 case 5:
                     HeaderCell headerCell = new HeaderCell(viewGroup.getContext());
                     headerCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                    linearLayout = headerCell;
+                    view = headerCell;
                     break;
                 case 6:
                     TextCheckCell textCheckCell = new TextCheckCell(viewGroup.getContext());
                     textCheckCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                    linearLayout = textCheckCell;
+                    view = textCheckCell;
                     break;
                 case 7:
-                    linearLayout = new TextInfoPrivacyCell(viewGroup.getContext());
+                    view = new TextInfoPrivacyCell(viewGroup.getContext());
                     break;
                 case 8:
-                    LinearLayout linearLayout2 = new LinearLayout(SaveToGallerySettingsActivity.this.getContext());
-                    linearLayout2.setOrientation(1);
+                    LinearLayout linearLayout = new LinearLayout(SaveToGallerySettingsActivity.this.getContext());
+                    linearLayout.setOrientation(1);
                     final SeekBarView seekBarView = new SeekBarView(SaveToGallerySettingsActivity.this.getContext());
                     FrameLayout frameLayout = new FrameLayout(SaveToGallerySettingsActivity.this.getContext());
                     SaveToGallerySettingsActivity saveToGallerySettingsActivity = SaveToGallerySettingsActivity.this;
@@ -466,8 +479,8 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
                     long j = 4194304000L;
                     selectableAnimatedTextView3.setText(AndroidUtilities.formatFileSize(4194304000L, true, false));
                     frameLayout.addView(selectableAnimatedTextView3, LayoutHelper.createFrame(-2, -2, 85));
-                    linearLayout2.addView(frameLayout, LayoutHelper.createLinear(-1, 20, 0, 21, 10, 21, 0));
-                    linearLayout2.addView(seekBarView, LayoutHelper.createLinear(-1, 38, 0, 5, 0, 5, 4));
+                    linearLayout.addView(frameLayout, LayoutHelper.createLinear(-1, 20, 0, 21, 10, 21, 0));
+                    linearLayout.addView(seekBarView, LayoutHelper.createLinear(-1, 38, 0, 5, 0, 5, 4));
                     long j2 = SaveToGallerySettingsActivity.this.getSettings().limitVideo;
                     if (j2 >= 0 && j2 <= 4194304000L) {
                         j = j2;
@@ -515,25 +528,25 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
                             }
                         }
                     });
-                    seekBarView.setProgress(((float) j) > ((float) 104857600) * 0.7f ? (0.3f * (((float) (j - 104857600)) / ((float) 4089446400L))) + 0.7f : (((float) (j - 524288)) / ((float) 104333312)) * 0.7f);
+                    seekBarView.setProgress(((float) j) > ((float) 104857600) * 0.7f ? ((((float) (j - 104857600)) / ((float) 4089446400L)) * 0.3f) + 0.7f : (((float) (j - 524288)) / ((float) 104333312)) * 0.7f);
                     seekBarView.delegate.onSeekBarDrag(false, seekBarView.getProgress());
-                    linearLayout2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                    linearLayout = linearLayout2;
+                    linearLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                    view = linearLayout;
                     break;
                 case 9:
                     UserCell2 userCell2 = new UserCell2(SaveToGallerySettingsActivity.this.getContext(), 4, 0, SaveToGallerySettingsActivity.this.getResourceProvider());
                     userCell2.setData(DialogObject.isUserDialog(SaveToGallerySettingsActivity.this.dialogId) ? MessagesController.getInstance(((BaseFragment) SaveToGallerySettingsActivity.this).currentAccount).getUser(Long.valueOf(SaveToGallerySettingsActivity.this.dialogId)) : MessagesController.getInstance(((BaseFragment) SaveToGallerySettingsActivity.this).currentAccount).getChat(Long.valueOf(-SaveToGallerySettingsActivity.this.dialogId)), null, null, 0);
                     userCell2.setBackgroundColor(SaveToGallerySettingsActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                    linearLayout = userCell2;
+                    view = userCell2;
                     break;
                 case 10:
                     ShadowSectionCell shadowSectionCell = new ShadowSectionCell(viewGroup.getContext());
                     shadowSectionCell.setBackgroundDrawable(Theme.getThemedDrawable(SaveToGallerySettingsActivity.this.getContext(), R.drawable.greydivider_bottom, Theme.getColor(Theme.key_windowBackgroundGrayShadow, SaveToGallerySettingsActivity.this.getResourceProvider())));
-                    linearLayout = shadowSectionCell;
+                    view = shadowSectionCell;
                     break;
             }
-            linearLayout.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-            return new RecyclerListView.Holder(linearLayout);
+            view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+            return new RecyclerListView.Holder(view);
         }
 
         @Override
@@ -541,17 +554,22 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
             String str;
             if (SaveToGallerySettingsActivity.this.items.get(i).viewType == 1) {
                 ((TextCell) viewHolder.itemView).setNeedDivider(SaveToGallerySettingsActivity.this.exceptionsDialogs.size() > 0);
-            } else if (SaveToGallerySettingsActivity.this.items.get(i).viewType == 6) {
+                return;
+            }
+            if (SaveToGallerySettingsActivity.this.items.get(i).viewType == 6) {
                 TextCheckCell textCheckCell = (TextCheckCell) viewHolder.itemView;
                 SaveToGallerySettingsHelper.Settings settings = SaveToGallerySettingsActivity.this.getSettings();
                 if (i == SaveToGallerySettingsActivity.this.savePhotosRow) {
                     textCheckCell.setTextAndCheck(LocaleController.getString(R.string.SaveToGalleryPhotos), settings.savePhoto, true);
                     textCheckCell.setColorfullIcon(SaveToGallerySettingsActivity.this.getThemedColor(Theme.key_statisticChartLine_lightblue), R.drawable.msg_filled_data_photos);
                     return;
+                } else {
+                    textCheckCell.setTextAndCheck(LocaleController.getString(R.string.SaveToGalleryVideos), settings.saveVideo, false);
+                    textCheckCell.setColorfullIcon(SaveToGallerySettingsActivity.this.getThemedColor(Theme.key_statisticChartLine_green), R.drawable.msg_filled_data_videos);
+                    return;
                 }
-                textCheckCell.setTextAndCheck(LocaleController.getString(R.string.SaveToGalleryVideos), settings.saveVideo, false);
-                textCheckCell.setColorfullIcon(SaveToGallerySettingsActivity.this.getThemedColor(Theme.key_statisticChartLine_green), R.drawable.msg_filled_data_videos);
-            } else if (SaveToGallerySettingsActivity.this.items.get(i).viewType == 7) {
+            }
+            if (SaveToGallerySettingsActivity.this.items.get(i).viewType == 7) {
                 TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
                 SaveToGallerySettingsActivity saveToGallerySettingsActivity = SaveToGallerySettingsActivity.this;
                 if (i == saveToGallerySettingsActivity.videoDividerRow) {
@@ -568,17 +586,22 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
                     } else if (i2 == 4) {
                         textInfoPrivacyCell.setText(LocaleController.formatString("SaveToGalleryVideoHintChannels", R.string.SaveToGalleryVideoHintChannels, new Object[0]));
                         return;
-                    } else if (i2 == 2) {
-                        textInfoPrivacyCell.setText(LocaleController.formatString("SaveToGalleryVideoHintGroup", R.string.SaveToGalleryVideoHintGroup, new Object[0]));
-                        return;
                     } else {
+                        if (i2 == 2) {
+                            textInfoPrivacyCell.setText(LocaleController.formatString("SaveToGalleryVideoHintGroup", R.string.SaveToGalleryVideoHintGroup, new Object[0]));
+                            return;
+                        }
                         return;
                     }
                 }
                 textInfoPrivacyCell.setText(saveToGallerySettingsActivity.items.get(i).title);
-            } else if (SaveToGallerySettingsActivity.this.items.get(i).viewType == 5) {
+                return;
+            }
+            if (SaveToGallerySettingsActivity.this.items.get(i).viewType == 5) {
                 ((HeaderCell) viewHolder.itemView).setText(SaveToGallerySettingsActivity.this.items.get(i).title);
-            } else if (SaveToGallerySettingsActivity.this.items.get(i).viewType == 2) {
+                return;
+            }
+            if (SaveToGallerySettingsActivity.this.items.get(i).viewType == 2) {
                 UserCell userCell = (UserCell) viewHolder.itemView;
                 SaveToGallerySettingsHelper.DialogException dialogException = SaveToGallerySettingsActivity.this.items.get(i).exception;
                 TLObject userOrChat = SaveToGallerySettingsActivity.this.getMessagesController().getUserOrChat(dialogException.dialogId);
@@ -648,7 +671,7 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
             }
             String str = this.title;
             if (str != null) {
-                return Objects.equals(str, item.title);
+                return str.equals(item.title);
             }
             SaveToGallerySettingsHelper.DialogException dialogException2 = this.exception;
             return dialogException2 == null || (dialogException = item.exception) == null || dialogException2.dialogId == dialogException.dialogId;

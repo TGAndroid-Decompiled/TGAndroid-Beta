@@ -51,6 +51,7 @@ import org.telegram.ui.Components.ContextProgressView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.ShareAlert;
 import org.telegram.ui.WebviewActivity;
+
 public class WebviewActivity extends BaseFragment {
     private String currentBot;
     private long currentDialogId;
@@ -168,8 +169,10 @@ public class WebviewActivity extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    WebviewActivity.this.finishFragment();
-                } else if (i != 1) {
+                    WebviewActivity.this.lambda$onBackPressed$308();
+                    return;
+                }
+                if (i != 1) {
                     if (i == 2) {
                         WebviewActivity.openGameInBrowser(WebviewActivity.this.currentUrl, WebviewActivity.this.currentMessageObject, WebviewActivity.this.getParentActivity(), WebviewActivity.this.short_param, WebviewActivity.this.currentBot);
                     }
@@ -186,8 +189,7 @@ public class WebviewActivity extends BaseFragment {
         if (i == 0) {
             createMenu.addItem(0, R.drawable.ic_ab_other).addSubItem(2, R.drawable.msg_openin, LocaleController.getString("OpenInExternalApp", R.string.OpenInExternalApp));
             this.actionBar.setTitle(this.currentGame);
-            ActionBar actionBar = this.actionBar;
-            actionBar.setSubtitle("@" + this.currentBot);
+            this.actionBar.setSubtitle("@" + this.currentBot);
             ContextProgressView contextProgressView = new ContextProgressView(context, 1);
             this.progressView = contextProgressView;
             this.progressItem.addView(contextProgressView, LayoutHelper.createFrame(-1, -1.0f));
@@ -197,9 +199,9 @@ public class WebviewActivity extends BaseFragment {
             this.progressView.setVisibility(4);
         } else if (i == 1) {
             this.actionBar.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground));
-            ActionBar actionBar2 = this.actionBar;
+            ActionBar actionBar = this.actionBar;
             int i2 = Theme.key_player_actionBarItems;
-            actionBar2.setItemsColor(Theme.getColor(i2), false);
+            actionBar.setItemsColor(Theme.getColor(i2), false);
             this.actionBar.setItemsColor(Theme.getColor(i2), true);
             this.actionBar.setItemsBackgroundColor(Theme.getColor(Theme.key_player_actionBarSelector), false);
             this.actionBar.setTitleColor(Theme.getColor(Theme.key_player_actionBarTitle));
@@ -239,27 +241,27 @@ public class WebviewActivity extends BaseFragment {
                     return false;
                 }
                 Uri parse = Uri.parse(str);
-                if ("tg".equals(parse.getScheme())) {
-                    if (WebviewActivity.this.type == 1) {
-                        try {
-                            WebviewActivity.this.reloadStats(Uri.parse(str.replace("tg:statsrefresh", "tg://telegram.org")).getQueryParameter("params"));
-                        } catch (Throwable th) {
-                            FileLog.e(th);
-                        }
-                    } else {
-                        WebviewActivity.this.finishFragment(false);
-                        try {
-                            Intent intent = new Intent("android.intent.action.VIEW", parse);
-                            intent.setComponent(new ComponentName(ApplicationLoader.applicationContext.getPackageName(), LaunchActivity.class.getName()));
-                            intent.putExtra("com.android.browser.application_id", ApplicationLoader.applicationContext.getPackageName());
-                            ApplicationLoader.applicationContext.startActivity(intent);
-                        } catch (Exception e) {
-                            FileLog.e(e);
-                        }
-                    }
-                    return true;
+                if (!"tg".equals(parse.getScheme())) {
+                    return false;
                 }
-                return false;
+                if (WebviewActivity.this.type == 1) {
+                    try {
+                        WebviewActivity.this.reloadStats(Uri.parse(str.replace("tg:statsrefresh", "tg://telegram.org")).getQueryParameter("params"));
+                    } catch (Throwable th) {
+                        FileLog.e(th);
+                    }
+                } else {
+                    WebviewActivity.this.finishFragment(false);
+                    try {
+                        Intent intent = new Intent("android.intent.action.VIEW", parse);
+                        intent.setComponent(new ComponentName(ApplicationLoader.applicationContext.getPackageName(), LaunchActivity.class.getName()));
+                        intent.putExtra("com.android.browser.application_id", ApplicationLoader.applicationContext.getPackageName());
+                        ApplicationLoader.applicationContext.startActivity(intent);
+                    } catch (Exception e) {
+                        FileLog.e(e);
+                    }
+                }
+                return true;
             }
 
             @Override

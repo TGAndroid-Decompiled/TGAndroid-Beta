@@ -39,6 +39,7 @@ import org.telegram.ui.Components.LoadingDrawable;
 import org.telegram.ui.Components.Scroller;
 import org.telegram.ui.Components.StaticLayoutEx;
 import org.telegram.ui.Components.Text;
+
 public class ChannelRecommendationsCell {
     private ChatMessageCell cell;
     private float channelsScrollWidth;
@@ -84,7 +85,6 @@ public class ChannelRecommendationsCell {
     }
 
     public void setMessageObject(MessageObject messageObject) {
-        StaticLayout staticLayout;
         int i;
         int i2;
         this.currentAccount = messageObject.currentAccount;
@@ -96,7 +96,7 @@ public class ChannelRecommendationsCell {
         this.serviceTextPaint.setTextSize(AndroidUtilities.dp(14.0f));
         this.serviceTextPaint.setColor(this.cell.getThemedColor(Theme.key_chat_serviceText));
         this.serviceText = new StaticLayout(LocaleController.getString(R.string.ChannelJoined), this.serviceTextPaint, this.msg.getMaxMessageTextWidth(), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
-        this.serviceTextLeft = staticLayout.getWidth();
+        this.serviceTextLeft = r13.getWidth();
         this.serviceTextRight = 0.0f;
         for (int i3 = 0; i3 < this.serviceText.getLineCount(); i3++) {
             this.serviceTextLeft = Math.min(this.serviceTextLeft, this.serviceText.getLineLeft(i3));
@@ -137,15 +137,13 @@ public class ChannelRecommendationsCell {
                 this.channels.add(new ChannelBlock(this.currentAccount, this.cell, (TLRPC$Chat) arrayList.get(i6)));
             }
             if (min < arrayList.size()) {
-                TLRPC$Chat[] tLRPC$ChatArr = new TLRPC$Chat[3];
                 TLRPC$Chat tLRPC$Chat = null;
-                tLRPC$ChatArr[0] = (min < 0 || min >= arrayList.size()) ? null : (TLRPC$Chat) arrayList.get(min);
-                tLRPC$ChatArr[1] = (min < 0 || (i2 = min + 1) >= arrayList.size()) ? null : (TLRPC$Chat) arrayList.get(i2);
+                TLRPC$Chat tLRPC$Chat2 = (min < 0 || min >= arrayList.size()) ? null : (TLRPC$Chat) arrayList.get(min);
+                TLRPC$Chat tLRPC$Chat3 = (min < 0 || (i2 = min + 1) >= arrayList.size()) ? null : (TLRPC$Chat) arrayList.get(i2);
                 if (min >= 0 && (i = min + 2) < arrayList.size()) {
                     tLRPC$Chat = (TLRPC$Chat) arrayList.get(i);
                 }
-                tLRPC$ChatArr[2] = tLRPC$Chat;
-                this.channels.add(new ChannelBlock(this.currentAccount, this.cell, tLRPC$ChatArr, (arrayList.size() + channelRecommendations.more) - min));
+                this.channels.add(new ChannelBlock(this.currentAccount, this.cell, new TLRPC$Chat[]{tLRPC$Chat2, tLRPC$Chat3, tLRPC$Chat}, (arrayList.size() + channelRecommendations.more) - min));
             }
         }
         if (isExpanded()) {
@@ -185,7 +183,6 @@ public class ChannelRecommendationsCell {
     public void draw(Canvas canvas) {
         float f;
         float f2;
-        int dp;
         if (this.msg == null || this.cell == null) {
             return;
         }
@@ -216,7 +213,7 @@ public class ChannelRecommendationsCell {
         if (clamp > 0.0f) {
             int width2 = this.cell.getWidth() - AndroidUtilities.dp(18.0f);
             this.blockWidth = (int) (width2 > AndroidUtilities.dp(441.0f) ? AndroidUtilities.dp(66.0f) : Math.max((width2 / 4.5f) - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(66.0f)));
-            this.channelsScrollWidth = (dp * this.channels.size()) + (AndroidUtilities.dp(9.0f) * (this.channels.size() - 1));
+            this.channelsScrollWidth = (r4 * this.channels.size()) + (AndroidUtilities.dp(9.0f) * (this.channels.size() - 1));
             int min = (int) Math.min(width2, this.blockWidth * 6.5f);
             this.backgroundBounds.set((this.cell.getWidth() - min) / 2.0f, AndroidUtilities.dp(10.0f) + f, (this.cell.getWidth() + min) / 2.0f, f + AndroidUtilities.dp(138.0f));
             this.scrollX = Utilities.clamp(this.scrollX, this.channelsScrollWidth - (this.backgroundBounds.width() - AndroidUtilities.dp(14.0f)), 0.0f);
@@ -233,15 +230,15 @@ public class ChannelRecommendationsCell {
                 text.draw(canvas, AndroidUtilities.dp(17.0f) + this.backgroundBounds.left, AndroidUtilities.dp(20.0f) + this.backgroundBounds.top, this.cell.getThemedColor(Theme.key_windowBackgroundWhiteBlackText), clamp);
             }
             float f4 = this.loadingAlpha.set(this.loading);
-            float dp2 = (this.backgroundBounds.left + AndroidUtilities.dp(7.0f)) - this.scrollX;
-            float dp3 = this.blockWidth + AndroidUtilities.dp(9.0f);
-            int floor = (int) Math.floor(((this.backgroundBounds.left - min) - dp2) / dp3);
-            int ceil = (int) Math.ceil((this.backgroundBounds.right - dp2) / dp3);
+            float dp = (this.backgroundBounds.left + AndroidUtilities.dp(7.0f)) - this.scrollX;
+            float dp2 = this.blockWidth + AndroidUtilities.dp(9.0f);
+            int floor = (int) Math.floor(((this.backgroundBounds.left - min) - dp) / dp2);
+            int ceil = (int) Math.ceil((this.backgroundBounds.right - dp) / dp2);
             if (f4 < 1.0f) {
                 for (int max = Math.max(0, floor); max < Math.min(ceil + 1, this.channels.size()); max++) {
                     ChannelBlock channelBlock = this.channels.get(max);
                     canvas.save();
-                    canvas.translate((max * dp3) + dp2, this.backgroundBounds.bottom - ChannelBlock.height());
+                    canvas.translate((max * dp2) + dp, this.backgroundBounds.bottom - ChannelBlock.height());
                     float f5 = (1.0f - f4) * clamp;
                     channelBlock.draw(canvas, this.blockWidth, f5);
                     channelBlock.drawText(canvas, this.blockWidth, f5);
@@ -251,7 +248,7 @@ public class ChannelRecommendationsCell {
             if (f4 > 0.0f) {
                 this.loadingPath.rewind();
                 for (int max2 = Math.max(0, floor); max2 < ceil; max2++) {
-                    ChannelBlock.fillPath(this.loadingPath, this.blockWidth, (max2 * dp3) + dp2);
+                    ChannelBlock.fillPath(this.loadingPath, this.blockWidth, (max2 * dp2) + dp);
                 }
                 if (this.loadingDrawable == null) {
                     LoadingDrawable loadingDrawable = new LoadingDrawable();
@@ -269,14 +266,14 @@ public class ChannelRecommendationsCell {
                 canvas.restore();
             }
             float scale = this.closeBounce.getScale(0.02f);
-            float dp4 = this.backgroundBounds.right - AndroidUtilities.dp(20.0f);
-            float dp5 = this.backgroundBounds.top + AndroidUtilities.dp(20.0f);
+            float dp3 = this.backgroundBounds.right - AndroidUtilities.dp(20.0f);
+            float dp4 = this.backgroundBounds.top + AndroidUtilities.dp(20.0f);
             canvas.save();
-            canvas.scale(scale, scale, dp4, dp5);
+            canvas.scale(scale, scale, dp3, dp4);
             this.closePaint.setStrokeWidth(AndroidUtilities.dp(1.33f));
-            canvas.drawLine(dp4 - AndroidUtilities.dp(4.0f), dp5 - AndroidUtilities.dp(4.0f), dp4 + AndroidUtilities.dp(4.0f), dp5 + AndroidUtilities.dp(4.0f), this.closePaint);
-            canvas.drawLine(dp4 - AndroidUtilities.dp(4.0f), dp5 + AndroidUtilities.dp(4.0f), dp4 + AndroidUtilities.dp(4.0f), dp5 - AndroidUtilities.dp(4.0f), this.closePaint);
-            this.closeBounds.set(dp4 - AndroidUtilities.dp(12.0f), dp5 - AndroidUtilities.dp(12.0f), dp4 + AndroidUtilities.dp(12.0f), dp5 + AndroidUtilities.dp(12.0f));
+            canvas.drawLine(dp3 - AndroidUtilities.dp(4.0f), dp4 - AndroidUtilities.dp(4.0f), dp3 + AndroidUtilities.dp(4.0f), dp4 + AndroidUtilities.dp(4.0f), this.closePaint);
+            canvas.drawLine(dp3 - AndroidUtilities.dp(4.0f), dp4 + AndroidUtilities.dp(4.0f), dp3 + AndroidUtilities.dp(4.0f), dp4 - AndroidUtilities.dp(4.0f), this.closePaint);
+            this.closeBounds.set(dp3 - AndroidUtilities.dp(12.0f), dp4 - AndroidUtilities.dp(12.0f), dp3 + AndroidUtilities.dp(12.0f), dp4 + AndroidUtilities.dp(12.0f));
             canvas.restore();
             canvas.restore();
         }
@@ -481,7 +478,6 @@ public class ChannelRecommendationsCell {
         }
 
         public void drawText(Canvas canvas, int i, float f) {
-            TextPaint textPaint;
             canvas.save();
             float scale = this.bounce.getScale(0.075f);
             float f2 = i;
@@ -495,7 +491,7 @@ public class ChannelRecommendationsCell {
                 } else {
                     this.nameTextPaint.setColor(this.cell.getThemedColor(Theme.key_windowBackgroundWhiteGrayText));
                 }
-                this.nameTextPaint.setAlpha((int) (textPaint.getAlpha() * f));
+                this.nameTextPaint.setAlpha((int) (r0.getAlpha() * f));
                 this.nameText.draw(canvas);
                 canvas.restore();
             }
@@ -607,14 +603,15 @@ public class ChannelRecommendationsCell {
 
         public static void fillPath(Path path, int i, float f) {
             float f2 = i;
-            path.addCircle((f2 / 2.0f) + f, AndroidUtilities.dp(10.0f) + (avatarSize() / 2.0f), avatarSize() / 2.0f, Path.Direction.CW);
+            Path.Direction direction = Path.Direction.CW;
+            path.addCircle((f2 / 2.0f) + f, AndroidUtilities.dp(10.0f) + (avatarSize() / 2.0f), avatarSize() / 2.0f, direction);
             float f3 = 0.4f * f2;
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(((f2 - f3) / 2.0f) + f, AndroidUtilities.dp(69.0f), ((f3 + f2) / 2.0f) + f, AndroidUtilities.dp(79.0f));
-            path.addRoundRect(rectF, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), Path.Direction.CW);
+            path.addRoundRect(rectF, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), direction);
             float f4 = 0.35f * f2;
             rectF.set(((f2 - f4) / 2.0f) + f, AndroidUtilities.dp(83.0f), f + ((f2 + f4) / 2.0f), AndroidUtilities.dp(91.0f));
-            path.addRoundRect(rectF, AndroidUtilities.dp(2.5f), AndroidUtilities.dp(2.5f), Path.Direction.CW);
+            path.addRoundRect(rectF, AndroidUtilities.dp(2.5f), AndroidUtilities.dp(2.5f), direction);
         }
 
         public void attach() {

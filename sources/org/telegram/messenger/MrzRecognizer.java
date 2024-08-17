@@ -11,6 +11,7 @@ import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 import java.util.Calendar;
 import java.util.HashMap;
+
 public class MrzRecognizer {
 
     public static class Result {
@@ -71,20 +72,20 @@ public class MrzRecognizer {
     public static Result recognize(Bitmap bitmap, boolean z) {
         Result recognizeBarcode;
         Result recognizeBarcode2;
-        if (!z || (recognizeBarcode2 = recognizeBarcode(bitmap)) == null) {
-            try {
-                Result recognizeMRZ = recognizeMRZ(bitmap);
-                if (recognizeMRZ != null) {
-                    return recognizeMRZ;
-                }
-            } catch (Exception unused) {
-            }
-            if (z || (recognizeBarcode = recognizeBarcode(bitmap)) == null) {
-                return null;
-            }
-            return recognizeBarcode;
+        if (z && (recognizeBarcode2 = recognizeBarcode(bitmap)) != null) {
+            return recognizeBarcode2;
         }
-        return recognizeBarcode2;
+        try {
+            Result recognizeMRZ = recognizeMRZ(bitmap);
+            if (recognizeMRZ != null) {
+                return recognizeMRZ;
+            }
+        } catch (Exception unused) {
+        }
+        if (z || (recognizeBarcode = recognizeBarcode(bitmap)) == null) {
+            return null;
+        }
+        return recognizeBarcode;
     }
 
     private static Result recognizeBarcode(Bitmap bitmap) {
@@ -119,7 +120,6 @@ public class MrzRecognizer {
                 result.number = driverLicense.licenseNumber;
                 String str2 = driverLicense.gender;
                 if (str2 != null) {
-                    str2.hashCode();
                     if (str2.equals("1")) {
                         result.gender = 1;
                     } else if (str2.equals("2")) {
@@ -177,7 +177,7 @@ public class MrzRecognizer {
         return null;
     }
 
-    private static org.telegram.messenger.MrzRecognizer.Result recognizeMRZ(android.graphics.Bitmap r25) {
+    private static org.telegram.messenger.MrzRecognizer.Result recognizeMRZ(android.graphics.Bitmap r28) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MrzRecognizer.recognizeMRZ(android.graphics.Bitmap):org.telegram.messenger.MrzRecognizer$Result");
     }
 
@@ -214,7 +214,7 @@ public class MrzRecognizer {
         int i = 0;
         for (int i2 = 0; i2 < charArray.length; i2++) {
             char c = charArray[i2];
-            i += ((c < '0' || c > '9') ? (c < 'A' || c > 'Z') ? 0 : (c - 'A') + 10 : c - '0') * iArr[i2 % 3];
+            i += ((c < '0' || c > '9') ? (c < 'A' || c > 'Z') ? 0 : c - '7' : c - '0') * iArr[i2 % 3];
         }
         return i % 10;
     }
@@ -223,7 +223,7 @@ public class MrzRecognizer {
         try {
             int parseInt = Integer.parseInt(str.substring(0, 2));
             result.birthYear = parseInt;
-            result.birthYear = parseInt < (Calendar.getInstance().get(1) % 100) + (-5) ? result.birthYear + 2000 : result.birthYear + 1900;
+            result.birthYear += parseInt < (Calendar.getInstance().get(1) % 100) + (-5) ? 2000 : 1900;
             result.birthMonth = Integer.parseInt(str.substring(2, 4));
             result.birthDay = Integer.parseInt(str.substring(4));
         } catch (NumberFormatException unused) {

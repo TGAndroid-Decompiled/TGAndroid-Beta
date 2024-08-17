@@ -45,6 +45,7 @@ import org.telegram.tgnet.tl.TL_stories$TL_storyItem;
 import org.telegram.tgnet.tl.TL_stories$TL_storyItemDeleted;
 import org.telegram.tgnet.tl.TL_stories$TL_storyItemSkipped;
 import org.telegram.tgnet.tl.TL_stories$TL_updateStory;
+
 public class StoriesStorage {
     int currentAccount;
     MessagesStorage storage;
@@ -68,8 +69,7 @@ public class StoriesStorage {
     }
 
     public static int lambda$getAllStories$1(TL_stories$PeerStories tL_stories$PeerStories) {
-        ArrayList<TL_stories$StoryItem> arrayList = tL_stories$PeerStories.stories;
-        return -arrayList.get(arrayList.size() - 1).date;
+        return -tL_stories$PeerStories.stories.get(r1.size() - 1).date;
     }
 
     private void checkExpiredStories(long j, ArrayList<TL_stories$StoryItem> arrayList) {
@@ -484,7 +484,6 @@ public class StoriesStorage {
     }
 
     public void lambda$fillMessagesWithStories$14(Timer.Task task, final ArrayList arrayList, long j, boolean z, Timer timer, int[] iArr, Runnable runnable, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        boolean z2;
         Timer.done(task);
         if (tLObject != null) {
             TL_stories$TL_stories_stories tL_stories$TL_stories_stories = (TL_stories$TL_stories_stories) tLObject;
@@ -492,21 +491,18 @@ public class StoriesStorage {
                 MessageObject messageObject = (MessageObject) arrayList.get(i);
                 int i2 = 0;
                 while (true) {
-                    if (i2 >= tL_stories$TL_stories_stories.stories.size()) {
-                        z2 = false;
-                        break;
-                    } else if (tL_stories$TL_stories_stories.stories.get(i2).id == getStoryId(messageObject)) {
-                        applyStory(this.currentAccount, j, messageObject, tL_stories$TL_stories_stories.stories.get(i2));
-                        z2 = true;
-                        break;
-                    } else {
+                    if (i2 < tL_stories$TL_stories_stories.stories.size()) {
+                        if (tL_stories$TL_stories_stories.stories.get(i2).id == getStoryId(messageObject)) {
+                            applyStory(this.currentAccount, j, messageObject, tL_stories$TL_stories_stories.stories.get(i2));
+                            break;
+                        }
                         i2++;
+                    } else {
+                        TL_stories$TL_storyItemDeleted tL_stories$TL_storyItemDeleted = new TL_stories$TL_storyItemDeleted();
+                        tL_stories$TL_storyItemDeleted.id = getStoryId(messageObject);
+                        applyStory(this.currentAccount, j, messageObject, tL_stories$TL_storyItemDeleted);
+                        break;
                     }
-                }
-                if (!z2) {
-                    TL_stories$TL_storyItemDeleted tL_stories$TL_storyItemDeleted = new TL_stories$TL_storyItemDeleted();
-                    tL_stories$TL_storyItemDeleted.id = getStoryId(messageObject);
-                    applyStory(this.currentAccount, j, messageObject, tL_stories$TL_storyItemDeleted);
                 }
                 if (z) {
                     this.storage.getStorageQueue().postRunnable(new Runnable() {
@@ -552,9 +548,12 @@ public class StoriesStorage {
         }
         for (int i3 = 0; i3 < messageObject.messageOwner.media.webpage.attributes.size(); i3++) {
             TLRPC$WebPageAttribute tLRPC$WebPageAttribute = messageObject.messageOwner.media.webpage.attributes.get(i3);
-            if ((tLRPC$WebPageAttribute instanceof TLRPC$TL_webPageAttributeStory) && ((TLRPC$TL_webPageAttributeStory) tLRPC$WebPageAttribute).id == tL_stories$StoryItem.id) {
-                tLRPC$WebPageAttribute.flags |= 1;
-                ((TLRPC$TL_webPageAttributeStory) tLRPC$WebPageAttribute).storyItem = checkExpiredStateLocal(i, j, tL_stories$StoryItem);
+            if (tLRPC$WebPageAttribute instanceof TLRPC$TL_webPageAttributeStory) {
+                TLRPC$TL_webPageAttributeStory tLRPC$TL_webPageAttributeStory = (TLRPC$TL_webPageAttributeStory) tLRPC$WebPageAttribute;
+                if (tLRPC$TL_webPageAttributeStory.id == tL_stories$StoryItem.id) {
+                    tLRPC$WebPageAttribute.flags |= 1;
+                    tLRPC$TL_webPageAttributeStory.storyItem = checkExpiredStateLocal(i, j, tL_stories$StoryItem);
+                }
             }
         }
     }
@@ -632,10 +631,7 @@ public class StoriesStorage {
         }
         int currentTime = ConnectionsManager.getInstance(i).getCurrentTime();
         int i2 = tL_stories$StoryItem.expire_date;
-        boolean z = true;
-        if (i2 <= 0 ? currentTime - tL_stories$StoryItem.date <= 86400 : currentTime <= i2) {
-            z = false;
-        }
+        boolean z = i2 <= 0 ? currentTime - tL_stories$StoryItem.date > 86400 : currentTime > i2;
         if (tL_stories$StoryItem.pinned || !z || j == 0 || j == UserConfig.getInstance(i).clientUserId) {
             return tL_stories$StoryItem;
         }

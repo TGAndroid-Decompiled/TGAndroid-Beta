@@ -5,6 +5,7 @@ import android.media.MediaFormat;
 import com.googlecode.mp4parser.util.Matrix;
 import java.io.File;
 import java.util.ArrayList;
+
 public class Mp4Movie {
     private File cacheFile;
     private int height;
@@ -31,7 +32,9 @@ public class Mp4Movie {
     public void setRotation(int i) {
         if (i == 0) {
             this.matrix = Matrix.ROTATE_0;
-        } else if (i == 90) {
+            return;
+        }
+        if (i == 90) {
             this.matrix = Matrix.ROTATE_90;
         } else if (i == 180) {
             this.matrix = Matrix.ROTATE_180;

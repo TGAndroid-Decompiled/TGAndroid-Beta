@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
+
 public class RadialProgress {
     private static DecelerateInterpolator decelerateInterpolator;
     private Drawable checkBackgroundDrawable;
@@ -71,13 +72,16 @@ public class RadialProgress {
         }
         Paint paint = new Paint(1);
         this.progressPaint = paint;
-        paint.setStyle(Paint.Style.STROKE);
-        this.progressPaint.setStrokeCap(Paint.Cap.ROUND);
+        Paint.Style style = Paint.Style.STROKE;
+        paint.setStyle(style);
+        Paint paint2 = this.progressPaint;
+        Paint.Cap cap = Paint.Cap.ROUND;
+        paint2.setStrokeCap(cap);
         this.progressPaint.setStrokeWidth(AndroidUtilities.dp(3.0f));
-        Paint paint2 = new Paint(1);
-        this.miniProgressPaint = paint2;
-        paint2.setStyle(Paint.Style.STROKE);
-        this.miniProgressPaint.setStrokeCap(Paint.Cap.ROUND);
+        Paint paint3 = new Paint(1);
+        this.miniProgressPaint = paint3;
+        paint3.setStyle(style);
+        this.miniProgressPaint.setStrokeCap(cap);
         this.miniProgressPaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
         this.miniProgressBackgroundPaint = new Paint(1);
         this.parent = view;
@@ -95,8 +99,13 @@ public class RadialProgress {
         long j = currentTimeMillis - this.lastUpdateTime;
         this.lastUpdateTime = currentTimeMillis;
         Drawable drawable = this.checkBackgroundDrawable;
-        if (drawable != null && (this.currentDrawable == drawable || this.previousDrawable == drawable)) {
-            throw null;
+        if (drawable != null) {
+            if (this.currentDrawable == drawable) {
+                throw null;
+            }
+            if (this.previousDrawable == drawable) {
+                throw null;
+            }
         }
         if (z) {
             if (this.animatedProgressValue != 1.0f) {
@@ -117,29 +126,33 @@ public class RadialProgress {
                 }
                 invalidateParent();
             }
-            if (this.drawMiniProgress) {
-                if (this.animatedProgressValue < 1.0f || this.previousMiniDrawable == null) {
+            if (!this.drawMiniProgress) {
+                if (this.animatedProgressValue < 1.0f || this.previousDrawable == null) {
                     return;
                 }
                 float f4 = this.animatedAlphaValue - (((float) j) / 200.0f);
                 this.animatedAlphaValue = f4;
                 if (f4 <= 0.0f) {
                     this.animatedAlphaValue = 0.0f;
-                    this.previousMiniDrawable = null;
-                    this.drawMiniProgress = this.currentMiniDrawable != null;
-                }
-                invalidateParent();
-            } else if (this.animatedProgressValue < 1.0f || this.previousDrawable == null) {
-            } else {
-                float f5 = this.animatedAlphaValue - (((float) j) / 200.0f);
-                this.animatedAlphaValue = f5;
-                if (f5 <= 0.0f) {
-                    this.animatedAlphaValue = 0.0f;
                     this.previousDrawable = null;
                 }
                 invalidateParent();
+                return;
             }
-        } else if (this.drawMiniProgress) {
+            if (this.animatedProgressValue < 1.0f || this.previousMiniDrawable == null) {
+                return;
+            }
+            float f5 = this.animatedAlphaValue - (((float) j) / 200.0f);
+            this.animatedAlphaValue = f5;
+            if (f5 <= 0.0f) {
+                this.animatedAlphaValue = 0.0f;
+                this.previousMiniDrawable = null;
+                this.drawMiniProgress = this.currentMiniDrawable != null;
+            }
+            invalidateParent();
+            return;
+        }
+        if (this.drawMiniProgress) {
             if (this.previousMiniDrawable != null) {
                 float f6 = this.animatedAlphaValue - (((float) j) / 200.0f);
                 this.animatedAlphaValue = f6;
@@ -149,8 +162,11 @@ public class RadialProgress {
                     this.drawMiniProgress = this.currentMiniDrawable != null;
                 }
                 invalidateParent();
+                return;
             }
-        } else if (this.previousDrawable != null) {
+            return;
+        }
+        if (this.previousDrawable != null) {
             float f7 = this.animatedAlphaValue - (((float) j) / 200.0f);
             this.animatedAlphaValue = f7;
             if (f7 <= 0.0f) {
@@ -353,8 +369,8 @@ public class RadialProgress {
             RectF rectF5 = this.cicleRect;
             RectF rectF6 = this.progressRect;
             float f7 = rectF6.left;
-            int i4 = this.diff;
-            rectF5.set(f7 + i4, rectF6.top + i4, rectF6.right - i4, rectF6.bottom - i4);
+            float f8 = this.diff;
+            rectF5.set(f7 + f8, rectF6.top + f8, rectF6.right - f8, rectF6.bottom - f8);
             drawArc(canvas, this.cicleRect, this.radOffset - 90.0f, Math.max(4.0f, this.animatedProgressValue * 360.0f), false, paint2);
             updateAnimation(true);
             return;

@@ -33,6 +33,7 @@ import org.xml.sax.ContentHandler;
 import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
+
 public class CopyUtilities {
     public static Spannable fromHTML(String str) {
         try {
@@ -82,7 +83,7 @@ public class CopyUtilities {
                 }
             }
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(fromHtml.toString());
-            MediaDataController.addTextStyleRuns(arrayList, spannableStringBuilder, spannableStringBuilder);
+            MediaDataController.addTextStyleRuns((ArrayList<TLRPC$MessageEntity>) arrayList, spannableStringBuilder, spannableStringBuilder);
             for (Object obj2 : spans) {
                 if (obj2 instanceof URLSpan) {
                     int spanStart2 = fromHtml.getSpanStart(obj2);
@@ -225,6 +226,8 @@ public class CopyUtilities {
 
         @Override
         public boolean handleTag(boolean z, String str, Editable editable, Attributes attributes) {
+            int i = 0;
+            int i2 = 1;
             if (str.startsWith("animated-emoji")) {
                 if (z) {
                     String value = HTMLTagAttributesHandler.getValue(attributes, "data-document-id");
@@ -245,7 +248,7 @@ public class CopyUtilities {
                 }
             } else if (str.equals("spoiler")) {
                 if (z) {
-                    editable.setSpan(new ParsedSpan(0), editable.length(), editable.length(), 17);
+                    editable.setSpan(new ParsedSpan(i), editable.length(), editable.length(), 17);
                     return true;
                 }
                 ParsedSpan last = getLast(editable, ParsedSpan.class, 0);
@@ -259,7 +262,7 @@ public class CopyUtilities {
                 }
             } else if (str.equals("pre")) {
                 if (z) {
-                    editable.setSpan(new ParsedSpan(1, HTMLTagAttributesHandler.getValue(attributes, "lang")), editable.length(), editable.length(), 17);
+                    editable.setSpan(new ParsedSpan(i2, HTMLTagAttributesHandler.getValue(attributes, "lang")), editable.length(), editable.length(), 17);
                     return true;
                 }
                 ParsedSpan last2 = getLast(editable, ParsedSpan.class, 1);
@@ -272,8 +275,9 @@ public class CopyUtilities {
                     return true;
                 }
             } else if (str.equals("blockquote")) {
+                int i3 = 2;
                 if (z) {
-                    editable.setSpan(new ParsedSpan(2), editable.length(), editable.length(), 17);
+                    editable.setSpan(new ParsedSpan(i3), editable.length(), editable.length(), 17);
                     return true;
                 }
                 ParsedSpan last3 = getLast(editable, ParsedSpan.class, 2);
@@ -286,8 +290,9 @@ public class CopyUtilities {
                     return true;
                 }
             } else if (str.equals("details")) {
+                int i4 = 3;
                 if (z) {
-                    editable.setSpan(new ParsedSpan(3), editable.length(), editable.length(), 17);
+                    editable.setSpan(new ParsedSpan(i4), editable.length(), editable.length(), 17);
                     return true;
                 }
                 ParsedSpan last4 = getLast(editable, ParsedSpan.class, 3);

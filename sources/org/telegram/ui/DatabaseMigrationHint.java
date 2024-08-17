@@ -12,6 +12,7 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieImageView;
+
 public class DatabaseMigrationHint extends FrameLayout {
     LinearLayout container;
     private final int currentAccount;

@@ -11,6 +11,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.CheckBoxCell;
+
 public class ClearHistoryAlert extends BottomSheet {
     private boolean autoDeleteOnly;
     private CheckBoxCell cell;
@@ -80,7 +81,7 @@ public class ClearHistoryAlert extends BottomSheet {
         }
     }
 
-    public ClearHistoryAlert(android.content.Context r26, org.telegram.tgnet.TLRPC$User r27, org.telegram.tgnet.TLRPC$Chat r28, boolean r29, org.telegram.ui.ActionBar.Theme.ResourcesProvider r30) {
+    public ClearHistoryAlert(android.content.Context r25, org.telegram.tgnet.TLRPC$User r26, org.telegram.tgnet.TLRPC$Chat r27, boolean r28, org.telegram.ui.ActionBar.Theme.ResourcesProvider r29) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ClearHistoryAlert.<init>(android.content.Context, org.telegram.tgnet.TLRPC$User, org.telegram.tgnet.TLRPC$Chat, boolean, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
     }
 
@@ -138,10 +139,13 @@ public class ClearHistoryAlert extends BottomSheet {
             this.setTimerButton.setVisibility(0);
             if (z) {
                 this.setTimerButton.animate().alpha(1.0f).setDuration(180L).start();
+                return;
             } else {
                 this.setTimerButton.setAlpha(1.0f);
+                return;
             }
-        } else if (z) {
+        }
+        if (z) {
             this.setTimerButton.animate().alpha(0.0f).setDuration(180L).start();
         } else {
             this.setTimerButton.setVisibility(4);

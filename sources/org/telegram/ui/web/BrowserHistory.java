@@ -13,6 +13,7 @@ import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.ui.web.WebMetadataCache;
+
 public class BrowserHistory {
     private static ArrayList<Utilities.Callback<ArrayList<Entry>>> callbacks;
     private static ArrayList<Entry> history;

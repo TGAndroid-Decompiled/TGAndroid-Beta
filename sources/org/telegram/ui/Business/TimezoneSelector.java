@@ -26,6 +26,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
+
 public class TimezoneSelector extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private String currentTimezone;
     private LinearLayout emptyView;
@@ -46,7 +47,7 @@ public class TimezoneSelector extends BaseFragment implements NotificationCenter
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    TimezoneSelector.this.finishFragment();
+                    TimezoneSelector.this.lambda$onBackPressed$308();
                 }
             }
         });
@@ -178,14 +179,17 @@ public class TimezoneSelector extends BaseFragment implements NotificationCenter
             }
             ((TextCheckCell) view).setChecked(this.useSystem);
             this.listView.adapter.update(true);
-        } else if (view.isEnabled()) {
+            return;
+        }
+        if (view.isEnabled()) {
             TimezonesController timezonesController = TimezonesController.getInstance(this.currentAccount);
             int i2 = uItem.id;
             if (i2 < 0 || i2 >= timezonesController.getTimezones().size()) {
                 return;
             }
+            TLRPC$TL_timezone tLRPC$TL_timezone = timezonesController.getTimezones().get(uItem.id);
             this.useSystem = false;
-            String str2 = timezonesController.getTimezones().get(uItem.id).id;
+            String str2 = tLRPC$TL_timezone.id;
             this.currentTimezone = str2;
             Utilities.Callback<String> callback2 = this.whenTimezoneSelected;
             if (callback2 != null) {

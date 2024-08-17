@@ -39,6 +39,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.LauncherIconController;
+
 public class AppIconsSelectorCell extends RecyclerListView implements NotificationCenter.NotificationCenterDelegate {
     private List<LauncherIconController.LauncherIcon> availableIcons;
     private int currentAccount;
@@ -109,30 +110,33 @@ public class AppIconsSelectorCell extends RecyclerListView implements Notificati
         LauncherIconController.LauncherIcon launcherIcon = this.availableIcons.get(i);
         if (launcherIcon.premium && !UserConfig.hasPremiumOnAccounts()) {
             baseFragment.showDialog(new PremiumFeatureBottomSheet(baseFragment, 10, true));
-        } else if (!LauncherIconController.isEnabled(launcherIcon)) {
-            LinearSmoothScroller linearSmoothScroller = new LinearSmoothScroller(context) {
-                @Override
-                public int calculateDtToFit(int i2, int i3, int i4, int i5, int i6) {
-                    return (i4 - i2) + AndroidUtilities.dp(16.0f);
-                }
-
-                @Override
-                public float calculateSpeedPerPixel(DisplayMetrics displayMetrics) {
-                    return super.calculateSpeedPerPixel(displayMetrics) * 3.0f;
-                }
-            };
-            linearSmoothScroller.setTargetPosition(i);
-            this.linearLayoutManager.startSmoothScroll(linearSmoothScroller);
-            LauncherIconController.setIcon(launcherIcon);
-            iconHolderView.setSelected(true, true);
-            for (int i2 = 0; i2 < getChildCount(); i2++) {
-                IconHolderView iconHolderView2 = (IconHolderView) getChildAt(i2);
-                if (iconHolderView2 != iconHolderView) {
-                    iconHolderView2.setSelected(false, true);
-                }
-            }
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.showBulletin, 5, launcherIcon);
+            return;
         }
+        if (LauncherIconController.isEnabled(launcherIcon)) {
+            return;
+        }
+        LinearSmoothScroller linearSmoothScroller = new LinearSmoothScroller(context) {
+            @Override
+            public int calculateDtToFit(int i2, int i3, int i4, int i5, int i6) {
+                return (i4 - i2) + AndroidUtilities.dp(16.0f);
+            }
+
+            @Override
+            public float calculateSpeedPerPixel(DisplayMetrics displayMetrics) {
+                return super.calculateSpeedPerPixel(displayMetrics) * 3.0f;
+            }
+        };
+        linearSmoothScroller.setTargetPosition(i);
+        this.linearLayoutManager.startSmoothScroll(linearSmoothScroller);
+        LauncherIconController.setIcon(launcherIcon);
+        iconHolderView.setSelected(true, true);
+        for (int i2 = 0; i2 < getChildCount(); i2++) {
+            IconHolderView iconHolderView2 = (IconHolderView) getChildAt(i2);
+            if (iconHolderView2 != iconHolderView) {
+                iconHolderView2.setSelected(false, true);
+            }
+        }
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.showBulletin, 5, launcherIcon);
     }
 
     @SuppressLint({"NotifyDataSetChanged"})
@@ -327,8 +331,8 @@ public class AppIconsSelectorCell extends RecyclerListView implements Notificati
             canvas.restore();
             Drawable drawable = this.foreground;
             if (drawable != null) {
-                int i = this.outerPadding;
-                drawable.setBounds(-i, -i, getWidth() + this.outerPadding, getHeight() + this.outerPadding);
+                int i = -this.outerPadding;
+                drawable.setBounds(i, i, getWidth() + this.outerPadding, getHeight() + this.outerPadding);
                 this.foreground.draw(canvas);
             }
         }

@@ -7,6 +7,7 @@ import android.view.ScaleGestureDetector;
 import android.view.VelocityTracker;
 import android.view.ViewConfiguration;
 import org.telegram.messenger.AndroidUtilities;
+
 public class CropGestureDetector {
     private ScaleGestureDetector mDetector;
     private boolean mIsDragging;
@@ -95,7 +96,7 @@ public class CropGestureDetector {
             }
             this.mActivePointerId = -1;
         } else if (action == 6) {
-            int action2 = (65280 & motionEvent.getAction()) >> 8;
+            int action2 = (motionEvent.getAction() & 65280) >> 8;
             if (motionEvent.getPointerId(action2) == this.mActivePointerId) {
                 int i = action2 == 0 ? 1 : 0;
                 this.mActivePointerId = motionEvent.getPointerId(i);

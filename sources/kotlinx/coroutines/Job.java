@@ -5,6 +5,7 @@ import kotlin.Unit;
 import kotlin.coroutines.CoroutineContext;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.functions.Function2;
+
 public interface Job extends CoroutineContext.Element {
     public static final Key Key = Key.$$INSTANCE;
 
@@ -30,16 +31,16 @@ public interface Job extends CoroutineContext.Element {
         }
 
         public static DisposableHandle invokeOnCompletion$default(Job job, boolean z, boolean z2, Function1 function1, int i, Object obj) {
-            if (obj == null) {
-                if ((i & 1) != 0) {
-                    z = false;
-                }
-                if ((i & 2) != 0) {
-                    z2 = true;
-                }
-                return job.invokeOnCompletion(z, z2, function1);
+            if (obj != null) {
+                throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: invokeOnCompletion");
             }
-            throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: invokeOnCompletion");
+            if ((i & 1) != 0) {
+                z = false;
+            }
+            if ((i & 2) != 0) {
+                z2 = true;
+            }
+            return job.invokeOnCompletion(z, z2, function1);
         }
     }
 

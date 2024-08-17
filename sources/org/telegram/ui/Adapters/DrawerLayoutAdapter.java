@@ -26,6 +26,7 @@ import org.telegram.ui.Cells.DrawerUserCell;
 import org.telegram.ui.Cells.EmptyCell;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SideMenultItemAnimator;
+
 public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
     private boolean accountsShown;
     private boolean hasGps;
@@ -41,8 +42,7 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
         this.mContext = context;
         this.mDrawerLayoutContainer = drawerLayoutContainer;
         this.itemAnimator = sideMenultItemAnimator;
-        boolean z = true;
-        this.accountsShown = (UserConfig.getActivatedAccountsCount() <= 1 || !MessagesController.getGlobalMainSettings().getBoolean("accountsShown", true)) ? false : false;
+        this.accountsShown = UserConfig.getActivatedAccountsCount() > 1 && MessagesController.getGlobalMainSettings().getBoolean("accountsShown", true);
         Theme.createCommonDialogResources(context);
         resetItems();
         try {
@@ -53,8 +53,8 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
     }
 
     private int getAccountRowsCount() {
-        int size = this.accountNumbers.size() + 1;
-        return this.accountNumbers.size() < 4 ? size + 1 : size;
+        int size = this.accountNumbers.size();
+        return this.accountNumbers.size() < 4 ? size + 2 : size + 1;
     }
 
     @Override
@@ -140,7 +140,9 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
         int itemViewType = viewHolder.getItemViewType();
         if (itemViewType == 0) {
             ((DrawerProfileCell) viewHolder.itemView).setUser(MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId())), this.accountsShown);
-        } else if (itemViewType != 3) {
+            return;
+        }
+        if (itemViewType != 3) {
             if (itemViewType != 4) {
                 return;
             }

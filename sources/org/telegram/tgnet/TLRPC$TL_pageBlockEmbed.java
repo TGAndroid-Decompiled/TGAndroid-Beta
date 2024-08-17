@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_pageBlockEmbed extends TLRPC$PageBlock {
     public boolean allow_scrolling;
     public TLRPC$TL_pageCaption caption;

@@ -119,6 +119,7 @@ import org.telegram.ui.SelectAnimatedEmojiDialog;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 import org.telegram.ui.Stories.recorder.PreviewView;
 import org.telegram.ui.ThemePreviewActivity;
+
 public class ChannelColorActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     protected Adapter adapter;
     public Drawable backgroundDrawable;
@@ -354,14 +355,15 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             if (str.equals("drawableMsgOutCheckRead")) {
                 ChannelColorActivity.this.msgOutCheckReadDrawable.setColorFilter(getColor(Theme.key_chat_outSentCheckRead), PorterDuff.Mode.MULTIPLY);
                 return ChannelColorActivity.this.msgOutCheckReadDrawable;
-            } else if (str.equals("drawableMsgOutHalfCheck")) {
+            }
+            if (str.equals("drawableMsgOutHalfCheck")) {
                 ChannelColorActivity.this.msgOutHalfCheckDrawable.setColorFilter(getColor(Theme.key_chat_outSentCheckRead), PorterDuff.Mode.MULTIPLY);
                 return ChannelColorActivity.this.msgOutHalfCheckDrawable;
-            } else if (ChannelColorActivity.this.parentResourcesProvider != null) {
-                return ChannelColorActivity.this.parentResourcesProvider.getDrawable(str);
-            } else {
-                return Theme.getThemeDrawable(str);
             }
+            if (ChannelColorActivity.this.parentResourcesProvider != null) {
+                return ChannelColorActivity.this.parentResourcesProvider.getDrawable(str);
+            }
+            return Theme.getThemeDrawable(str);
         }
 
         @Override
@@ -380,8 +382,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         }
 
         public void toggle() {
-            ChannelColorActivity channelColorActivity = ChannelColorActivity.this;
-            channelColorActivity.isDark = !channelColorActivity.isDark;
+            ChannelColorActivity.this.isDark = !r0.isDark;
             ChannelColorActivity.this.updateThemeColors();
             ChannelColorActivity.this.updateColors();
         }
@@ -495,15 +496,14 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                 if (i != -1) {
                     if (i == 1) {
                         ChannelColorActivity.this.toggleTheme();
-                        return;
                     }
-                    return;
-                }
-                ChannelColorActivity channelColorActivity = ChannelColorActivity.this;
-                if (channelColorActivity.currentLevel >= channelColorActivity.minLevelRequired() && ChannelColorActivity.this.hasUnsavedChanged()) {
-                    ChannelColorActivity.this.showUnsavedAlert();
                 } else {
-                    ChannelColorActivity.this.finishFragment();
+                    ChannelColorActivity channelColorActivity = ChannelColorActivity.this;
+                    if (channelColorActivity.currentLevel >= channelColorActivity.minLevelRequired() && ChannelColorActivity.this.hasUnsavedChanged()) {
+                        ChannelColorActivity.this.showUnsavedAlert();
+                    } else {
+                        ChannelColorActivity.this.lambda$onBackPressed$308();
+                    }
                 }
             }
         });
@@ -647,13 +647,17 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                     ChannelColorActivity.this.lambda$createView$1(i, view, (Long) obj, (Integer) obj2);
                 }
             });
-        } else if (i == this.removeProfileColorRow) {
+            return;
+        }
+        if (i == this.removeProfileColorRow) {
             this.selectedProfileColor = -1;
             this.selectedProfileEmoji = 0L;
             updateProfilePreview(true);
             updateButton(true);
             updateRows();
-        } else if (i == this.wallpaperRow) {
+            return;
+        }
+        if (i == this.wallpaperRow) {
             ChatThemeBottomSheet.openGalleryForBackground(getParentActivity(), this, this.dialogId, this.resourceProvider, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
@@ -745,6 +749,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
     }
 
     private void buttonClick() {
+        ?? r2;
         if (this.boostsStatus == null || this.button.isLoading()) {
             return;
         }
@@ -777,22 +782,23 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                 chat.color = new TLRPC$TL_peerColor();
                 chat.flags2 |= 128;
             }
-            int i = tLRPC$TL_channels_updateColor.flags | 4;
-            tLRPC$TL_channels_updateColor.flags = i;
+            int i = tLRPC$TL_channels_updateColor.flags;
+            tLRPC$TL_channels_updateColor.flags = i | 4;
             int i2 = this.selectedReplyColor;
             tLRPC$TL_channels_updateColor.color = i2;
             TLRPC$TL_peerColor tLRPC$TL_peerColor = chat.color;
-            int i3 = tLRPC$TL_peerColor.flags | 1;
-            tLRPC$TL_peerColor.flags = i3;
+            int i3 = tLRPC$TL_peerColor.flags;
+            int i4 = i3 | 1;
+            tLRPC$TL_peerColor.flags = i4;
             tLRPC$TL_peerColor.color = i2;
             long j = this.selectedReplyEmoji;
             if (j != 0) {
-                tLRPC$TL_channels_updateColor.flags = i | 1;
+                tLRPC$TL_channels_updateColor.flags = i | 5;
                 tLRPC$TL_channels_updateColor.background_emoji_id = j;
-                tLRPC$TL_peerColor.flags = i3 | 2;
+                tLRPC$TL_peerColor.flags = i3 | 3;
                 tLRPC$TL_peerColor.background_emoji_id = j;
             } else {
-                tLRPC$TL_peerColor.flags = i3 & (-3);
+                tLRPC$TL_peerColor.flags = i4 & (-3);
                 tLRPC$TL_peerColor.background_emoji_id = 0L;
             }
             iArr[0] = iArr[0] + 1;
@@ -811,13 +817,13 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                 chat.profile_color = new TLRPC$TL_peerColor();
                 chat.flags2 |= 256;
             }
-            int i4 = this.selectedProfileColor;
-            if (i4 >= 0) {
+            int i5 = this.selectedProfileColor;
+            if (i5 >= 0) {
                 tLRPC$TL_channels_updateColor2.flags |= 4;
-                tLRPC$TL_channels_updateColor2.color = i4;
+                tLRPC$TL_channels_updateColor2.color = i5;
                 TLRPC$TL_peerColor tLRPC$TL_peerColor2 = chat.profile_color;
                 tLRPC$TL_peerColor2.flags |= 1;
-                tLRPC$TL_peerColor2.color = i4;
+                tLRPC$TL_peerColor2.color = i5;
             } else {
                 chat.profile_color.flags &= -2;
             }
@@ -892,12 +898,14 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                 }
                 getMessagesController().putChatFull(chatFull);
                 NotificationCenter notificationCenter = getNotificationCenter();
-                int i5 = NotificationCenter.chatInfoDidLoad;
+                int i6 = NotificationCenter.chatInfoDidLoad;
                 Boolean bool = Boolean.FALSE;
-                notificationCenter.lambda$postNotificationNameOnUIThread$1(i5, chatFull, 0, bool, bool);
+                notificationCenter.lambda$postNotificationNameOnUIThread$1(i6, chatFull, 0, bool, bool);
             }
         }
-        if (!DialogObject.emojiStatusesEqual(this.currentStatusEmoji, this.selectedStatusEmoji)) {
+        if (DialogObject.emojiStatusesEqual(this.currentStatusEmoji, this.selectedStatusEmoji)) {
+            r2 = 0;
+        } else {
             TLRPC$TL_channels_updateEmojiStatus tLRPC$TL_channels_updateEmojiStatus = new TLRPC$TL_channels_updateEmojiStatus();
             tLRPC$TL_channels_updateEmojiStatus.channel = getMessagesController().getInputChannel(-this.dialogId);
             TLRPC$EmojiStatus tLRPC$EmojiStatus = this.selectedStatusEmoji;
@@ -911,6 +919,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                 chat.flags |= 512;
             }
             getMessagesController().updateEmojiStatusUntilUpdate(this.dialogId, this.selectedStatusEmoji);
+            r2 = 0;
             iArr[0] = iArr[0] + 1;
             getConnectionsManager().sendRequest(tLRPC$TL_channels_updateEmojiStatus, new RequestDelegate() {
                 @Override
@@ -919,13 +928,17 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                 }
             });
         }
-        if (iArr[0] == 0) {
-            finishFragment();
-            this.button.setLoading(false);
+        if (iArr[r2] == 0) {
+            lambda$onBackPressed$308();
+            this.button.setLoading(r2);
             return;
         }
-        getMessagesController().putChat(chat, false);
-        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_EMOJI_STATUS));
+        getMessagesController().putChat(chat, r2);
+        NotificationCenter notificationCenter2 = getNotificationCenter();
+        int i7 = NotificationCenter.updateInterfaces;
+        Object[] objArr = new Object[1];
+        objArr[r2] = Integer.valueOf(MessagesController.UPDATE_MASK_EMOJI_STATUS);
+        notificationCenter2.lambda$postNotificationNameOnUIThread$1(i7, objArr);
     }
 
     public void lambda$buttonClick$7(final boolean[] zArr, final int[] iArr, final int[] iArr2, final TLRPC$TL_error tLRPC$TL_error) {
@@ -947,15 +960,16 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             if ("BOOSTS_REQUIRED".equals(tLRPC$TL_error.text)) {
                 showLimit();
                 return;
+            } else {
+                this.button.setLoading(false);
+                BulletinFactory.of(this).createSimpleBulletin(R.raw.error, LocaleController.formatString(R.string.UnknownErrorCode, tLRPC$TL_error.text)).show();
+                return;
             }
-            this.button.setLoading(false);
-            BulletinFactory.of(this).createSimpleBulletin(R.raw.error, LocaleController.formatString(R.string.UnknownErrorCode, tLRPC$TL_error.text)).show();
-            return;
         }
         int i2 = i + 1;
         iArr[0] = i2;
         if (i2 == iArr2[0]) {
-            finishFragment();
+            lambda$onBackPressed$308();
             showBulletin();
             this.button.setLoading(false);
         }
@@ -1034,7 +1048,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
     }
 
     public void lambda$showUnsavedAlert$14(DialogInterface dialogInterface, int i) {
-        finishFragment();
+        lambda$onBackPressed$308();
     }
 
     public void lambda$showUnsavedAlert$15(DialogInterface dialogInterface, int i) {
@@ -1093,7 +1107,8 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         selectAnimatedEmojiDialog.setSelected(j == 0 ? null : Long.valueOf(j));
         selectAnimatedEmojiDialog.setSaveState(3);
         selectAnimatedEmojiDialog.setScrimDrawable(swapAnimatedEmojiDrawable, emojiCell);
-        SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow selectAnimatedEmojiDialogWindow = new SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow(selectAnimatedEmojiDialog, -2, -2) {
+        int i4 = -2;
+        SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow selectAnimatedEmojiDialogWindow = new SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow(selectAnimatedEmojiDialog, i4, i4) {
             @Override
             public void dismiss() {
                 super.dismiss();
@@ -1109,50 +1124,38 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
     protected void updateRows() {
         Adapter adapter;
         Adapter adapter2;
-        int i = 0 + 1;
         this.messagesPreviewRow = 0;
-        int i2 = i + 1;
-        this.replyColorListRow = i;
-        int i3 = i2 + 1;
-        this.replyEmojiRow = i2;
-        int i4 = i3 + 1;
-        this.replyHintRow = i3;
-        int i5 = i4 + 1;
-        this.wallpaperThemesRow = i4;
-        int i6 = i5 + 1;
-        this.wallpaperRow = i5;
-        int i7 = i6 + 1;
-        this.wallpaperHintRow = i6;
-        int i8 = i7 + 1;
-        this.profilePreviewRow = i7;
-        int i9 = i8 + 1;
-        this.profileColorGridRow = i8;
-        int i10 = i9 + 1;
-        this.rowsCount = i10;
-        this.profileEmojiRow = i9;
+        this.replyColorListRow = 1;
+        this.replyEmojiRow = 2;
+        this.replyHintRow = 3;
+        this.wallpaperThemesRow = 4;
+        this.wallpaperRow = 5;
+        this.wallpaperHintRow = 6;
+        this.profilePreviewRow = 7;
+        this.profileColorGridRow = 8;
+        this.rowsCount = 10;
+        this.profileEmojiRow = 9;
         if (this.selectedProfileEmoji != 0 || this.selectedProfileColor >= 0) {
             boolean z = this.removeProfileColorRow >= 0;
-            this.rowsCount = i10 + 1;
-            this.removeProfileColorRow = i10;
+            this.rowsCount = 11;
+            this.removeProfileColorRow = 10;
             if (!z && (adapter = this.adapter) != null) {
-                adapter.notifyItemInserted(i10);
+                adapter.notifyItemInserted(10);
                 this.adapter.notifyItemChanged(this.profileEmojiRow);
             }
         } else {
-            int i11 = this.removeProfileColorRow;
+            int i = this.removeProfileColorRow;
             this.removeProfileColorRow = -1;
-            if (i11 >= 0 && (adapter2 = this.adapter) != null) {
-                adapter2.notifyItemRemoved(i11);
+            if (i >= 0 && (adapter2 = this.adapter) != null) {
+                adapter2.notifyItemRemoved(i);
                 this.adapter.notifyItemChanged(this.profileEmojiRow);
             }
         }
-        int i12 = this.rowsCount;
-        int i13 = i12 + 1;
-        this.profileHintRow = i12;
-        int i14 = i13 + 1;
-        this.statusEmojiRow = i13;
-        this.rowsCount = i14 + 1;
-        this.statusHintRow = i14;
+        int i2 = this.rowsCount;
+        this.profileHintRow = i2;
+        this.statusEmojiRow = i2 + 1;
+        this.rowsCount = i2 + 3;
+        this.statusHintRow = i2 + 2;
     }
 
     protected int getProfileInfoStrRes() {
@@ -1186,7 +1189,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            ThemeChooser themeChooser;
+            FrameLayout frameLayout;
             if (i == 0) {
                 Context context = ChannelColorActivity.this.getContext();
                 INavigationLayout iNavigationLayout = ((BaseFragment) ChannelColorActivity.this).parentLayout;
@@ -1203,28 +1206,28 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                 Drawable backgroundDrawable = PreviewView.getBackgroundDrawable(drawable, i2, channelColorActivity3.selectedWallpaper, channelColorActivity3.isDark);
                 channelColorActivity2.backgroundDrawable = backgroundDrawable;
                 themePreviewMessagesCell.setOverrideBackground(backgroundDrawable);
-                themeChooser = themePreviewMessagesCell;
+                frameLayout = themePreviewMessagesCell;
             } else if (i == 2) {
-                ThemeChooser themeChooser2 = new ThemeChooser(ChannelColorActivity.this.getContext(), false, ((BaseFragment) ChannelColorActivity.this).currentAccount, ((BaseFragment) ChannelColorActivity.this).resourceProvider);
-                themeChooser2.setWithRemovedStub(true);
-                themeChooser2.setSelectedEmoticon(ChannelColorActivity.this.getThemeChooserEmoticon(), false);
-                themeChooser2.setGalleryWallpaper(ChannelColorActivity.this.galleryWallpaper);
-                themeChooser2.setOnEmoticonSelected(new Utilities.Callback() {
+                ThemeChooser themeChooser = new ThemeChooser(ChannelColorActivity.this.getContext(), false, ((BaseFragment) ChannelColorActivity.this).currentAccount, ((BaseFragment) ChannelColorActivity.this).resourceProvider);
+                themeChooser.setWithRemovedStub(true);
+                themeChooser.setSelectedEmoticon(ChannelColorActivity.this.getThemeChooserEmoticon(), false);
+                themeChooser.setGalleryWallpaper(ChannelColorActivity.this.galleryWallpaper);
+                themeChooser.setOnEmoticonSelected(new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
                         ChannelColorActivity.Adapter.this.lambda$onCreateViewHolder$0((String) obj);
                     }
                 });
-                themeChooser2.setBackgroundColor(ChannelColorActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                themeChooser = themeChooser2;
+                themeChooser.setBackgroundColor(ChannelColorActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
+                frameLayout = themeChooser;
             } else if (i == 5) {
                 FrameLayout textCell = new TextCell(ChannelColorActivity.this.getContext(), ChannelColorActivity.this.getResourceProvider());
                 textCell.setBackgroundColor(ChannelColorActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                themeChooser = textCell;
+                frameLayout = textCell;
             } else if (i == 6) {
                 FrameLayout emojiCell = new EmojiCell(ChannelColorActivity.this.getContext(), ((BaseFragment) ChannelColorActivity.this).resourceProvider);
                 emojiCell.setBackgroundColor(ChannelColorActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                themeChooser = emojiCell;
+                frameLayout = emojiCell;
             } else if (i == 3) {
                 final PeerColorPicker peerColorPicker = new PeerColorPicker(ChannelColorActivity.this.getContext(), ((BaseFragment) ChannelColorActivity.this).currentAccount, ((BaseFragment) ChannelColorActivity.this).resourceProvider);
                 peerColorPicker.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
@@ -1234,7 +1237,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                     }
                 });
                 peerColorPicker.setBackgroundColor(ChannelColorActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                themeChooser = peerColorPicker;
+                frameLayout = peerColorPicker;
             } else if (i == 4) {
                 PeerColorActivity.PeerColorGrid peerColorGrid = new PeerColorActivity.PeerColorGrid(ChannelColorActivity.this.getContext(), 1, ((BaseFragment) ChannelColorActivity.this).currentAccount, ((BaseFragment) ChannelColorActivity.this).resourceProvider);
                 peerColorGrid.setDivider(false);
@@ -1245,14 +1248,14 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                     }
                 });
                 peerColorGrid.setBackgroundColor(ChannelColorActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                themeChooser = peerColorGrid;
+                frameLayout = peerColorGrid;
             } else if (i == 1) {
                 ChannelColorActivity channelColorActivity4 = ChannelColorActivity.this;
-                themeChooser = new ProfilePreview(channelColorActivity4.getContext());
+                frameLayout = new ProfilePreview(channelColorActivity4.getContext());
             } else {
-                themeChooser = new TextInfoPrivacyCell(ChannelColorActivity.this.getContext());
+                frameLayout = new TextInfoPrivacyCell(ChannelColorActivity.this.getContext());
             }
-            return new RecyclerListView.Holder(themeChooser);
+            return new RecyclerListView.Holder(frameLayout);
         }
 
         public void lambda$onCreateViewHolder$0(String str) {
@@ -1305,11 +1308,17 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                 profilePreview.profileView.setForum(ChannelColorActivity.this.isForum());
                 profilePreview.profileView.setStatusEmoji(DialogObject.getEmojiStatusDocumentId(ChannelColorActivity.this.selectedStatusEmoji), false);
                 profilePreview.profileView.overrideAvatarColor(ChannelColorActivity.this.selectedReplyColor);
-            } else if (itemViewType == 3) {
+                return;
+            }
+            if (itemViewType == 3) {
                 ((PeerColorPicker) viewHolder.itemView).setSelected(ChannelColorActivity.this.selectedReplyColor, false);
-            } else if (itemViewType == 4) {
+                return;
+            }
+            if (itemViewType == 4) {
                 ((PeerColorActivity.PeerColorGrid) viewHolder.itemView).setSelected(ChannelColorActivity.this.selectedProfileColor, false);
-            } else if (itemViewType == 5) {
+                return;
+            }
+            if (itemViewType == 5) {
                 TextCell textCell = (TextCell) viewHolder.itemView;
                 ChannelColorActivity channelColorActivity = ChannelColorActivity.this;
                 if (i == channelColorActivity.removeProfileColorRow) {
@@ -1320,10 +1329,13 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                 ChannelColorActivity channelColorActivity2 = ChannelColorActivity.this;
                 if (channelColorActivity2.currentLevel < channelColorActivity2.getCustomWallpaperLevelMin()) {
                     textCell.setLockLevel(false, ChannelColorActivity.this.getCustomWallpaperLevelMin());
+                    return;
                 } else {
                     textCell.setLockLevel(false, 0);
+                    return;
                 }
-            } else if (itemViewType != 6) {
+            }
+            if (itemViewType != 6) {
                 if (itemViewType != 7) {
                     return;
                 }
@@ -1349,65 +1361,74 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                 Context context = ChannelColorActivity.this.getContext();
                 ChannelColorActivity channelColorActivity4 = ChannelColorActivity.this;
                 textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(context, i == channelColorActivity4.statusHintRow ? R.drawable.greydivider_bottom : R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow, ((BaseFragment) channelColorActivity4).resourceProvider));
-            } else {
-                EmojiCell emojiCell = (EmojiCell) viewHolder.itemView;
-                emojiCell.setDivider(false);
-                ChannelColorActivity channelColorActivity5 = ChannelColorActivity.this;
-                if (i == channelColorActivity5.replyEmojiRow) {
-                    emojiCell.setAdaptiveEmojiColor(((BaseFragment) channelColorActivity5).currentAccount, ChannelColorActivity.this.selectedReplyColor, true);
-                    emojiCell.setText(LocaleController.getString(R.string.ChannelReplyLogo));
-                    ChannelColorActivity channelColorActivity6 = ChannelColorActivity.this;
-                    if (channelColorActivity6.currentLevel < channelColorActivity6.getMessagesController().channelBgIconLevelMin) {
-                        emojiCell.setLockLevel(ChannelColorActivity.this.getMessagesController().channelBgIconLevelMin);
-                    } else {
-                        emojiCell.setLockLevel(0);
-                    }
-                    emojiCell.setEmoji(ChannelColorActivity.this.selectedReplyEmoji, false);
-                } else if (i == channelColorActivity5.profileEmojiRow) {
-                    emojiCell.setAdaptiveEmojiColor(((BaseFragment) channelColorActivity5).currentAccount, ChannelColorActivity.this.selectedProfileColor, false);
-                    emojiCell.setText(LocaleController.getString(R.string.ChannelProfileLogo));
-                    emojiCell.setDivider(ChannelColorActivity.this.removeProfileColorRow >= 0);
-                    ChannelColorActivity channelColorActivity7 = ChannelColorActivity.this;
-                    if (channelColorActivity7.currentLevel < channelColorActivity7.getProfileIconLevelMin()) {
-                        emojiCell.setLockLevel(ChannelColorActivity.this.getProfileIconLevelMin());
-                    } else {
-                        emojiCell.setLockLevel(0);
-                    }
-                    emojiCell.setEmoji(ChannelColorActivity.this.selectedProfileEmoji, false);
-                } else if (i == channelColorActivity5.statusEmojiRow) {
-                    emojiCell.setAdaptiveEmojiColor(((BaseFragment) channelColorActivity5).currentAccount, ChannelColorActivity.this.selectedProfileColor, false);
-                    emojiCell.setText(LocaleController.getString(ChannelColorActivity.this.getEmojiStatusStrRes()));
-                    ChannelColorActivity channelColorActivity8 = ChannelColorActivity.this;
-                    if (channelColorActivity8.currentLevel < channelColorActivity8.getEmojiStatusLevelMin()) {
-                        emojiCell.setLockLevel(ChannelColorActivity.this.getEmojiStatusLevelMin());
-                    } else {
-                        emojiCell.setLockLevel(0);
-                    }
-                    emojiCell.setEmoji(DialogObject.getEmojiStatusDocumentId(ChannelColorActivity.this.selectedStatusEmoji), false);
-                } else if (i == channelColorActivity5.packEmojiRow) {
-                    emojiCell.setAdaptiveEmojiColor(((BaseFragment) channelColorActivity5).currentAccount, ChannelColorActivity.this.selectedProfileColor, false);
-                    emojiCell.setText(LocaleController.getString(ChannelColorActivity.this.getEmojiPackStrRes()));
-                    ChannelColorActivity channelColorActivity9 = ChannelColorActivity.this;
-                    if (channelColorActivity9.currentLevel < channelColorActivity9.getEmojiStickersLevelMin()) {
-                        emojiCell.setLockLevel(ChannelColorActivity.this.getEmojiStickersLevelMin());
-                    } else {
-                        emojiCell.setLockLevel(0);
-                    }
-                    TLRPC$ChatFull chatFull = ChannelColorActivity.this.getMessagesController().getChatFull(-ChannelColorActivity.this.dialogId);
-                    if (chatFull != null && (tLRPC$StickerSet2 = chatFull.emojiset) != null) {
-                        emojiCell.setEmoji(ChannelColorActivity.this.getEmojiSetThumbId(tLRPC$StickerSet2), false);
-                    } else {
-                        emojiCell.setEmoji(0L, false);
-                    }
-                } else if (i == channelColorActivity5.packStickerRow) {
-                    emojiCell.setText(LocaleController.getString(channelColorActivity5.getStickerPackStrRes()));
+                return;
+            }
+            EmojiCell emojiCell = (EmojiCell) viewHolder.itemView;
+            emojiCell.setDivider(false);
+            ChannelColorActivity channelColorActivity5 = ChannelColorActivity.this;
+            if (i == channelColorActivity5.replyEmojiRow) {
+                emojiCell.setAdaptiveEmojiColor(((BaseFragment) channelColorActivity5).currentAccount, ChannelColorActivity.this.selectedReplyColor, true);
+                emojiCell.setText(LocaleController.getString(R.string.ChannelReplyLogo));
+                ChannelColorActivity channelColorActivity6 = ChannelColorActivity.this;
+                if (channelColorActivity6.currentLevel < channelColorActivity6.getMessagesController().channelBgIconLevelMin) {
+                    emojiCell.setLockLevel(ChannelColorActivity.this.getMessagesController().channelBgIconLevelMin);
+                } else {
                     emojiCell.setLockLevel(0);
-                    TLRPC$ChatFull chatFull2 = ChannelColorActivity.this.getMessagesController().getChatFull(-ChannelColorActivity.this.dialogId);
-                    if (chatFull2 != null && (tLRPC$StickerSet = chatFull2.stickerset) != null) {
-                        emojiCell.setEmoji(ChannelColorActivity.this.getEmojiSetThumb(tLRPC$StickerSet), false);
-                    } else {
-                        emojiCell.setEmoji(0L, false);
-                    }
+                }
+                emojiCell.setEmoji(ChannelColorActivity.this.selectedReplyEmoji, false);
+                return;
+            }
+            if (i == channelColorActivity5.profileEmojiRow) {
+                emojiCell.setAdaptiveEmojiColor(((BaseFragment) channelColorActivity5).currentAccount, ChannelColorActivity.this.selectedProfileColor, false);
+                emojiCell.setText(LocaleController.getString(R.string.ChannelProfileLogo));
+                emojiCell.setDivider(ChannelColorActivity.this.removeProfileColorRow >= 0);
+                ChannelColorActivity channelColorActivity7 = ChannelColorActivity.this;
+                if (channelColorActivity7.currentLevel < channelColorActivity7.getProfileIconLevelMin()) {
+                    emojiCell.setLockLevel(ChannelColorActivity.this.getProfileIconLevelMin());
+                } else {
+                    emojiCell.setLockLevel(0);
+                }
+                emojiCell.setEmoji(ChannelColorActivity.this.selectedProfileEmoji, false);
+                return;
+            }
+            if (i == channelColorActivity5.statusEmojiRow) {
+                emojiCell.setAdaptiveEmojiColor(((BaseFragment) channelColorActivity5).currentAccount, ChannelColorActivity.this.selectedProfileColor, false);
+                emojiCell.setText(LocaleController.getString(ChannelColorActivity.this.getEmojiStatusStrRes()));
+                ChannelColorActivity channelColorActivity8 = ChannelColorActivity.this;
+                if (channelColorActivity8.currentLevel < channelColorActivity8.getEmojiStatusLevelMin()) {
+                    emojiCell.setLockLevel(ChannelColorActivity.this.getEmojiStatusLevelMin());
+                } else {
+                    emojiCell.setLockLevel(0);
+                }
+                emojiCell.setEmoji(DialogObject.getEmojiStatusDocumentId(ChannelColorActivity.this.selectedStatusEmoji), false);
+                return;
+            }
+            if (i == channelColorActivity5.packEmojiRow) {
+                emojiCell.setAdaptiveEmojiColor(((BaseFragment) channelColorActivity5).currentAccount, ChannelColorActivity.this.selectedProfileColor, false);
+                emojiCell.setText(LocaleController.getString(ChannelColorActivity.this.getEmojiPackStrRes()));
+                ChannelColorActivity channelColorActivity9 = ChannelColorActivity.this;
+                if (channelColorActivity9.currentLevel < channelColorActivity9.getEmojiStickersLevelMin()) {
+                    emojiCell.setLockLevel(ChannelColorActivity.this.getEmojiStickersLevelMin());
+                } else {
+                    emojiCell.setLockLevel(0);
+                }
+                TLRPC$ChatFull chatFull = ChannelColorActivity.this.getMessagesController().getChatFull(-ChannelColorActivity.this.dialogId);
+                if (chatFull != null && (tLRPC$StickerSet2 = chatFull.emojiset) != null) {
+                    emojiCell.setEmoji(ChannelColorActivity.this.getEmojiSetThumbId(tLRPC$StickerSet2), false);
+                    return;
+                } else {
+                    emojiCell.setEmoji(0L, false);
+                    return;
+                }
+            }
+            if (i == channelColorActivity5.packStickerRow) {
+                emojiCell.setText(LocaleController.getString(channelColorActivity5.getStickerPackStrRes()));
+                emojiCell.setLockLevel(0);
+                TLRPC$ChatFull chatFull2 = ChannelColorActivity.this.getMessagesController().getChatFull(-ChannelColorActivity.this.dialogId);
+                if (chatFull2 != null && (tLRPC$StickerSet = chatFull2.stickerset) != null) {
+                    emojiCell.setEmoji(ChannelColorActivity.this.getEmojiSetThumb(tLRPC$StickerSet), false);
+                } else {
+                    emojiCell.setEmoji(0L, false);
                 }
             }
         }
@@ -1562,11 +1583,11 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             return 0L;
         }
         long j = tLRPC$StickerSet.thumb_document_id;
-        if (j == 0) {
-            TLRPC$TL_messages_stickerSet groupStickerSetById = getMediaDataController().getGroupStickerSetById(tLRPC$StickerSet);
-            return !groupStickerSetById.documents.isEmpty() ? groupStickerSetById.documents.get(0).id : j;
+        if (j != 0) {
+            return j;
         }
-        return j;
+        TLRPC$TL_messages_stickerSet groupStickerSetById = getMediaDataController().getGroupStickerSetById(tLRPC$StickerSet);
+        return !groupStickerSetById.documents.isEmpty() ? groupStickerSetById.documents.get(0).id : j;
     }
 
     public TLRPC$Document getEmojiSetThumb(TLRPC$StickerSet tLRPC$StickerSet) {
@@ -1707,10 +1728,10 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         public void setLockLevel(int i) {
             if (i <= 0) {
                 this.textView.setRightDrawable((Drawable) null);
-                return;
+            } else {
+                this.textView.setRightDrawable(new PeerColorActivity.LevelLock(getContext(), i, this.resourcesProvider));
+                this.textView.setDrawablePadding(AndroidUtilities.dp(6.0f));
             }
-            this.textView.setRightDrawable(new PeerColorActivity.LevelLock(getContext(), i, this.resourcesProvider));
-            this.textView.setDrawablePadding(AndroidUtilities.dp(6.0f));
         }
 
         public void setAdaptiveEmojiColor(int i, int i2, boolean z) {
@@ -1726,8 +1747,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             } else if (i2 < 7) {
                 this.color = Theme.getColor(Theme.keys_avatar_nameInMessage[i2], this.resourcesProvider);
             } else {
-                MessagesController messagesController = MessagesController.getInstance(i);
-                MessagesController.PeerColors peerColors = z ? messagesController.peerColors : messagesController.profilePeerColors;
+                MessagesController.PeerColors peerColors = z ? MessagesController.getInstance(i).peerColors : MessagesController.getInstance(i).profilePeerColors;
                 MessagesController.PeerColor color = peerColors == null ? null : peerColors.getColor(i2);
                 if (color != null) {
                     this.color = color.getColor(0, this.resourcesProvider);
@@ -2126,118 +2146,121 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                 int i = 0;
                 boolean z2 = false;
                 while (true) {
-                    int read = fileInputStream.read(ThemesHorizontalListCell.bytes);
-                    if (read == -1) {
-                        break;
-                    }
-                    int i2 = i;
-                    int i3 = 0;
-                    int i4 = 0;
-                    ?? r4 = z;
-                    while (true) {
-                        if (i3 >= read) {
+                    try {
+                        int read = fileInputStream.read(ThemesHorizontalListCell.bytes);
+                        if (read == -1) {
                             break;
                         }
-                        byte[] bArr = ThemesHorizontalListCell.bytes;
-                        if (bArr[i3] == 10) {
-                            int i5 = (i3 - i4) + r4;
-                            String str = new String(bArr, i4, i5 - 1, "UTF-8");
-                            if (str.startsWith("WLS=")) {
-                                String substring = str.substring(4);
-                                Uri parse = Uri.parse(substring);
-                                themeInfo.slug = parse.getQueryParameter("slug");
-                                File filesDirFixed = ApplicationLoader.getFilesDirFixed();
-                                themeInfo.pathToWallpaper = new File(filesDirFixed, Utilities.MD5(substring) + ".wp").getAbsolutePath();
-                                String queryParameter = parse.getQueryParameter("mode");
-                                if (queryParameter != null && (split = queryParameter.toLowerCase().split(" ")) != null && split.length > 0) {
-                                    int i6 = 0;
-                                    while (true) {
-                                        if (i6 >= split.length) {
-                                            break;
-                                        } else if ("blur".equals(split[i6])) {
-                                            themeInfo.isBlured = r4;
-                                            break;
-                                        } else {
-                                            i6++;
-                                        }
-                                    }
-                                }
-                                if (!TextUtils.isEmpty(parse.getQueryParameter("pattern"))) {
-                                    try {
-                                        String queryParameter2 = parse.getQueryParameter("bg_color");
-                                        if (!TextUtils.isEmpty(queryParameter2)) {
-                                            themeInfo.patternBgColor = Integer.parseInt(queryParameter2.substring(0, 6), 16) | (-16777216);
-                                            if (queryParameter2.length() >= 13 && AndroidUtilities.isValidWallChar(queryParameter2.charAt(6))) {
-                                                themeInfo.patternBgGradientColor1 = Integer.parseInt(queryParameter2.substring(7, 13), 16) | (-16777216);
-                                            }
-                                            if (queryParameter2.length() >= 20 && AndroidUtilities.isValidWallChar(queryParameter2.charAt(13))) {
-                                                themeInfo.patternBgGradientColor2 = Integer.parseInt(queryParameter2.substring(14, 20), 16) | (-16777216);
-                                            }
-                                            if (queryParameter2.length() == 27 && AndroidUtilities.isValidWallChar(queryParameter2.charAt(20))) {
-                                                themeInfo.patternBgGradientColor3 = Integer.parseInt(queryParameter2.substring(21), 16) | (-16777216);
-                                            }
-                                        }
-                                    } catch (Exception unused) {
-                                    }
-                                    try {
-                                        String queryParameter3 = parse.getQueryParameter("rotation");
-                                        if (!TextUtils.isEmpty(queryParameter3)) {
-                                            themeInfo.patternBgGradientRotation = Utilities.parseInt((CharSequence) queryParameter3).intValue();
-                                        }
-                                    } catch (Exception unused2) {
-                                    }
-                                    String queryParameter4 = parse.getQueryParameter("intensity");
-                                    if (!TextUtils.isEmpty(queryParameter4)) {
-                                        themeInfo.patternIntensity = Utilities.parseInt((CharSequence) queryParameter4).intValue();
-                                    }
-                                    if (themeInfo.patternIntensity == 0) {
-                                        themeInfo.patternIntensity = 50;
-                                    }
-                                }
-                            } else if (str.startsWith("WPS")) {
-                                themeInfo.previewWallpaperOffset = i5 + i2;
-                                z2 = true;
+                        int i2 = i;
+                        int i3 = 0;
+                        int i4 = 0;
+                        while (true) {
+                            if (i3 >= read) {
                                 break;
-                            } else {
-                                int indexOf = str.indexOf(61);
-                                if (indexOf != -1 && ((stringKeyToInt = ThemeColors.stringKeyToInt(str.substring(0, indexOf))) == Theme.key_chat_inBubble || stringKeyToInt == Theme.key_chat_outBubble || stringKeyToInt == Theme.key_chat_wallpaper || stringKeyToInt == Theme.key_chat_wallpaper_gradient_to1 || stringKeyToInt == Theme.key_chat_wallpaper_gradient_to2 || stringKeyToInt == Theme.key_chat_wallpaper_gradient_to3)) {
-                                    String substring2 = str.substring(indexOf + 1);
-                                    if (substring2.length() > 0 && substring2.charAt(0) == '#') {
+                            }
+                            byte[] bArr = ThemesHorizontalListCell.bytes;
+                            if (bArr[i3] == 10) {
+                                int i5 = i3 - i4;
+                                int i6 = i5 + 1;
+                                String str = new String(bArr, i4, i5, "UTF-8");
+                                if (str.startsWith("WLS=")) {
+                                    String substring = str.substring(4);
+                                    Uri parse = Uri.parse(substring);
+                                    themeInfo.slug = parse.getQueryParameter("slug");
+                                    themeInfo.pathToWallpaper = new File(ApplicationLoader.getFilesDirFixed(), Utilities.MD5(substring) + ".wp").getAbsolutePath();
+                                    String queryParameter = parse.getQueryParameter("mode");
+                                    if (queryParameter != null && (split = queryParameter.toLowerCase().split(" ")) != null && split.length > 0) {
+                                        int i7 = 0;
+                                        while (true) {
+                                            if (i7 >= split.length) {
+                                                break;
+                                            }
+                                            if ("blur".equals(split[i7])) {
+                                                themeInfo.isBlured = z;
+                                                break;
+                                            }
+                                            i7++;
+                                        }
+                                    }
+                                    if (!TextUtils.isEmpty(parse.getQueryParameter("pattern"))) {
                                         try {
-                                            intValue = Color.parseColor(substring2);
-                                        } catch (Exception unused3) {
+                                            String queryParameter2 = parse.getQueryParameter("bg_color");
+                                            if (!TextUtils.isEmpty(queryParameter2)) {
+                                                themeInfo.patternBgColor = Integer.parseInt(queryParameter2.substring(0, 6), 16) | (-16777216);
+                                                if (queryParameter2.length() >= 13 && AndroidUtilities.isValidWallChar(queryParameter2.charAt(6))) {
+                                                    themeInfo.patternBgGradientColor1 = Integer.parseInt(queryParameter2.substring(7, 13), 16) | (-16777216);
+                                                }
+                                                if (queryParameter2.length() >= 20 && AndroidUtilities.isValidWallChar(queryParameter2.charAt(13))) {
+                                                    themeInfo.patternBgGradientColor2 = Integer.parseInt(queryParameter2.substring(14, 20), 16) | (-16777216);
+                                                }
+                                                if (queryParameter2.length() == 27 && AndroidUtilities.isValidWallChar(queryParameter2.charAt(20))) {
+                                                    themeInfo.patternBgGradientColor3 = Integer.parseInt(queryParameter2.substring(21), 16) | (-16777216);
+                                                }
+                                            }
+                                        } catch (Exception unused) {
+                                        }
+                                        try {
+                                            String queryParameter3 = parse.getQueryParameter("rotation");
+                                            if (!TextUtils.isEmpty(queryParameter3)) {
+                                                themeInfo.patternBgGradientRotation = Utilities.parseInt((CharSequence) queryParameter3).intValue();
+                                            }
+                                        } catch (Exception unused2) {
+                                        }
+                                        String queryParameter4 = parse.getQueryParameter("intensity");
+                                        if (!TextUtils.isEmpty(queryParameter4)) {
+                                            themeInfo.patternIntensity = Utilities.parseInt((CharSequence) queryParameter4).intValue();
+                                        }
+                                        if (themeInfo.patternIntensity == 0) {
+                                            themeInfo.patternIntensity = 50;
+                                        }
+                                    }
+                                } else {
+                                    if (str.startsWith("WPS")) {
+                                        themeInfo.previewWallpaperOffset = i6 + i2;
+                                        z2 = true;
+                                        break;
+                                    }
+                                    int indexOf = str.indexOf(61);
+                                    if (indexOf != -1 && ((stringKeyToInt = ThemeColors.stringKeyToInt(str.substring(0, indexOf))) == Theme.key_chat_inBubble || stringKeyToInt == Theme.key_chat_outBubble || stringKeyToInt == Theme.key_chat_wallpaper || stringKeyToInt == Theme.key_chat_wallpaper_gradient_to1 || stringKeyToInt == Theme.key_chat_wallpaper_gradient_to2 || stringKeyToInt == Theme.key_chat_wallpaper_gradient_to3)) {
+                                        String substring2 = str.substring(indexOf + 1);
+                                        if (substring2.length() > 0 && substring2.charAt(0) == '#') {
+                                            try {
+                                                intValue = Color.parseColor(substring2);
+                                            } catch (Exception unused3) {
+                                                intValue = Utilities.parseInt((CharSequence) substring2).intValue();
+                                            }
+                                        } else {
                                             intValue = Utilities.parseInt((CharSequence) substring2).intValue();
                                         }
-                                    } else {
-                                        intValue = Utilities.parseInt((CharSequence) substring2).intValue();
-                                    }
-                                    if (stringKeyToInt == Theme.key_chat_inBubble) {
-                                        themeInfo.setPreviewInColor(intValue);
-                                    } else if (stringKeyToInt == Theme.key_chat_outBubble) {
-                                        themeInfo.setPreviewOutColor(intValue);
-                                    } else if (stringKeyToInt == Theme.key_chat_wallpaper) {
-                                        themeInfo.setPreviewBackgroundColor(intValue);
-                                    } else if (stringKeyToInt == Theme.key_chat_wallpaper_gradient_to1) {
-                                        themeInfo.previewBackgroundGradientColor1 = intValue;
-                                    } else if (stringKeyToInt == Theme.key_chat_wallpaper_gradient_to2) {
-                                        themeInfo.previewBackgroundGradientColor2 = intValue;
-                                    } else if (stringKeyToInt == Theme.key_chat_wallpaper_gradient_to3) {
-                                        themeInfo.previewBackgroundGradientColor3 = intValue;
+                                        if (stringKeyToInt == Theme.key_chat_inBubble) {
+                                            themeInfo.setPreviewInColor(intValue);
+                                        } else if (stringKeyToInt == Theme.key_chat_outBubble) {
+                                            themeInfo.setPreviewOutColor(intValue);
+                                        } else if (stringKeyToInt == Theme.key_chat_wallpaper) {
+                                            themeInfo.setPreviewBackgroundColor(intValue);
+                                        } else if (stringKeyToInt == Theme.key_chat_wallpaper_gradient_to1) {
+                                            themeInfo.previewBackgroundGradientColor1 = intValue;
+                                        } else if (stringKeyToInt == Theme.key_chat_wallpaper_gradient_to2) {
+                                            themeInfo.previewBackgroundGradientColor2 = intValue;
+                                        } else if (stringKeyToInt == Theme.key_chat_wallpaper_gradient_to3) {
+                                            themeInfo.previewBackgroundGradientColor3 = intValue;
+                                        }
                                     }
                                 }
+                                i4 += i6;
+                                i2 += i6;
                             }
-                            i4 += i5;
-                            i2 += i5;
+                            i3++;
+                            z = true;
                         }
-                        i3++;
-                        r4 = 1;
+                        if (z2 || i == i2) {
+                            break;
+                        }
+                        fileInputStream.getChannel().position(i2);
+                        i = i2;
+                        z = true;
+                    } finally {
                     }
-                    if (z2 || i == i2) {
-                        break;
-                    }
-                    fileInputStream.getChannel().position(i2);
-                    i = i2;
-                    z = true;
                 }
                 fileInputStream.close();
             } catch (Throwable th) {
@@ -2349,7 +2372,9 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         view.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
         if (view instanceof EmojiCell) {
             ((EmojiCell) view).updateColors();
-        } else if (view instanceof TextCell) {
+            return;
+        }
+        if (view instanceof TextCell) {
             ((TextCell) view).updateColors();
         } else if (view instanceof PeerColorPicker) {
             ((PeerColorPicker) view).updateColors();
@@ -2626,13 +2651,13 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             @Override
             protected void onDraw(Canvas canvas2) {
                 super.onDraw(canvas2);
-                if (ChannelColorActivity.this.isDark) {
+                if (!ChannelColorActivity.this.isDark) {
+                    canvas2.drawCircle(measuredWidth, measuredHeight, max * (1.0f - ChannelColorActivity.this.changeDayNightViewProgress), paint2);
+                } else {
                     if (ChannelColorActivity.this.changeDayNightViewProgress > 0.0f) {
                         canvas.drawCircle(measuredWidth, measuredHeight, max * ChannelColorActivity.this.changeDayNightViewProgress, paint);
                     }
                     canvas2.drawBitmap(createBitmap, 0.0f, 0.0f, paint2);
-                } else {
-                    canvas2.drawCircle(measuredWidth, measuredHeight, max * (1.0f - ChannelColorActivity.this.changeDayNightViewProgress), paint2);
                 }
                 canvas2.save();
                 canvas2.translate(f, f2);
@@ -2736,8 +2761,10 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             if (this.dialogId == ((Long) objArr[2]).longValue()) {
                 updateBoostsAndLevels((TL_stories$TL_premium_boostsStatus) objArr[0]);
             }
-        } else if (i != NotificationCenter.boostByChannelCreated || ((Boolean) objArr[1]).booleanValue()) {
         } else {
+            if (i != NotificationCenter.boostByChannelCreated || ((Boolean) objArr[1]).booleanValue()) {
+                return;
+            }
             getMessagesController().getBoostsController().getBoostsStats(this.dialogId, new Consumer() {
                 @Override
                 public final void accept(Object obj) {

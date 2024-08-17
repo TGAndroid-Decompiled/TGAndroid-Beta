@@ -50,6 +50,7 @@ import org.telegram.ui.bots.BotWebViewAttachedSheet;
 import org.telegram.ui.bots.BotWebViewSheet;
 import org.telegram.ui.bots.WebViewRequestProps;
 import org.telegram.ui.web.BotWebViewContainer;
+
 public class BottomSheetTabs extends FrameLayout {
     private static TextPaint textPaint;
     private final ActionBarLayout actionBarLayout;
@@ -239,8 +240,7 @@ public class BottomSheetTabs extends FrameLayout {
             WebTabData webTabData = tabs.get(i);
             ArticleViewer articleViewer = webTabData.articleViewer;
             if (articleViewer != null && !articleViewer.pagesStack.isEmpty()) {
-                ArrayList<Object> arrayList = webTabData.articleViewer.pagesStack;
-                Object obj = arrayList.get(arrayList.size() - 1);
+                Object obj = webTabData.articleViewer.pagesStack.get(r5.size() - 1);
                 if (obj instanceof ArticleViewer.CachedWeb) {
                     BotWebViewContainer.MyWebView myWebView = ((ArticleViewer.CachedWeb) obj).webView;
                     if (myWebView == null && (pageLayoutArr = webTabData.articleViewer.pages) != null && (pageLayout = pageLayoutArr[0]) != null) {
@@ -272,8 +272,7 @@ public class BottomSheetTabs extends FrameLayout {
             WebTabData webTabData = tabs.get(i);
             ArticleViewer articleViewer = webTabData.articleViewer;
             if (articleViewer != null && !articleViewer.pagesStack.isEmpty()) {
-                ArrayList<Object> arrayList = webTabData.articleViewer.pagesStack;
-                Object obj = arrayList.get(arrayList.size() - 1);
+                Object obj = webTabData.articleViewer.pagesStack.get(r4.size() - 1);
                 if ((obj instanceof TLRPC$WebPage) && (tLRPC$WebPage2 = (TLRPC$WebPage) obj) != null && tLRPC$WebPage2.id == tLRPC$WebPage.id) {
                     openTab(webTabData);
                     return webTabData;
@@ -297,26 +296,26 @@ public class BottomSheetTabs extends FrameLayout {
         BottomSheetTabsOverlay bottomSheetTabsOverlay = LaunchActivity.instance.getBottomSheetTabsOverlay();
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         int i = 0;
-        if (safeLastFragment != null) {
-            boolean z = false;
-            while (true) {
-                ArrayList<BaseFragment.AttachedSheet> arrayList = safeLastFragment.sheetsStack;
-                if (arrayList == null || i >= arrayList.size()) {
-                    break;
-                }
-                BaseFragment.AttachedSheet attachedSheet = safeLastFragment.sheetsStack.get(i);
-                if (attachedSheet instanceof BotWebViewAttachedSheet) {
-                    z = true;
-                    if (bottomSheetTabsOverlay != null) {
-                        bottomSheetTabsOverlay.setSlowerDismiss(true);
-                    }
-                    ((BotWebViewAttachedSheet) attachedSheet).dismiss(true, null);
-                }
-                i++;
-            }
-            return z;
+        if (safeLastFragment == null) {
+            return false;
         }
-        return false;
+        boolean z = false;
+        while (true) {
+            ArrayList<BaseFragment.AttachedSheet> arrayList = safeLastFragment.sheetsStack;
+            if (arrayList == null || i >= arrayList.size()) {
+                break;
+            }
+            BaseFragment.AttachedSheet attachedSheet = safeLastFragment.sheetsStack.get(i);
+            if (attachedSheet instanceof BotWebViewAttachedSheet) {
+                z = true;
+                if (bottomSheetTabsOverlay != null) {
+                    bottomSheetTabsOverlay.setSlowerDismiss(true);
+                }
+                ((BotWebViewAttachedSheet) attachedSheet).dismiss(true, null);
+            }
+            i++;
+        }
+        return z;
     }
 
     public void setNavigationBarColor(int i) {
@@ -326,7 +325,9 @@ public class BottomSheetTabs extends FrameLayout {
     public void setNavigationBarColor(int i, boolean z) {
         if (i != this.backgroundColor) {
             ActionBarLayout actionBarLayout = this.actionBarLayout;
-            z = (!actionBarLayout.startedTracking || actionBarLayout.animationInProgress) ? false : false;
+            if (!actionBarLayout.startedTracking || actionBarLayout.animationInProgress) {
+                z = false;
+            }
             this.backgroundColor = i;
             int blendOver = Theme.blendOver(i, Theme.multAlpha(-1, (AndroidUtilities.computePerceivedBrightness(i) > 0.721f ? 1 : (AndroidUtilities.computePerceivedBrightness(i) == 0.721f ? 0 : -1)) < 0 ? 0.08f : 0.75f));
             this.tabColor = blendOver;
@@ -373,26 +374,26 @@ public class BottomSheetTabs extends FrameLayout {
 
     public ArrayList<WebTabData> getTabs(int i) {
         ArrayList<WebTabData> arrayList = this.tabs.get(Integer.valueOf(i));
-        if (arrayList == null) {
-            HashMap<Integer, ArrayList<WebTabData>> hashMap = this.tabs;
-            Integer valueOf = Integer.valueOf(i);
-            ArrayList<WebTabData> arrayList2 = new ArrayList<>();
-            hashMap.put(valueOf, arrayList2);
-            return arrayList2;
+        if (arrayList != null) {
+            return arrayList;
         }
-        return arrayList;
+        HashMap<Integer, ArrayList<WebTabData>> hashMap = this.tabs;
+        Integer valueOf = Integer.valueOf(i);
+        ArrayList<WebTabData> arrayList2 = new ArrayList<>();
+        hashMap.put(valueOf, arrayList2);
+        return arrayList2;
     }
 
     public ArrayList<TabDrawable> getTabDrawables(int i) {
         ArrayList<TabDrawable> arrayList = this.tabDrawables.get(Integer.valueOf(i));
-        if (arrayList == null) {
-            HashMap<Integer, ArrayList<TabDrawable>> hashMap = this.tabDrawables;
-            Integer valueOf = Integer.valueOf(i);
-            ArrayList<TabDrawable> arrayList2 = new ArrayList<>();
-            hashMap.put(valueOf, arrayList2);
-            return arrayList2;
+        if (arrayList != null) {
+            return arrayList;
         }
-        return arrayList;
+        HashMap<Integer, ArrayList<TabDrawable>> hashMap = this.tabDrawables;
+        Integer valueOf = Integer.valueOf(i);
+        ArrayList<TabDrawable> arrayList2 = new ArrayList<>();
+        hashMap.put(valueOf, arrayList2);
+        return arrayList2;
     }
 
     public TabDrawable findTabDrawable(WebTabData webTabData) {
@@ -466,12 +467,10 @@ public class BottomSheetTabs extends FrameLayout {
         }
         setImportantForAccessibility(1);
         int i2 = R.string.AccDescrTabs;
-        Object[] objArr = new Object[1];
         if (charSequence == null) {
             charSequence = "";
         }
-        objArr[0] = charSequence;
-        setContentDescription(LocaleController.formatString(i2, objArr));
+        setContentDescription(LocaleController.formatString(i2, charSequence));
     }
 
     public boolean removeAll() {
@@ -501,7 +500,6 @@ public class BottomSheetTabs extends FrameLayout {
                         return removeTab(i, next, true);
                     }
                 }
-                continue;
             }
         }
         return false;
@@ -510,33 +508,35 @@ public class BottomSheetTabs extends FrameLayout {
     public void removeTab(final WebTabData webTabData, final Utilities.Callback<Boolean> callback) {
         if (webTabData == null) {
             callback.run(Boolean.TRUE);
-        } else if (!webTabData.confirmDismiss) {
+            return;
+        }
+        if (!webTabData.confirmDismiss) {
             removeTab(webTabData, true);
             callback.run(Boolean.TRUE);
-        } else {
-            TLRPC$User user = MessagesController.getInstance(webTabData.props.currentAccount).getUser(Long.valueOf(webTabData.props.botId));
-            final boolean[] zArr = {false};
-            AlertDialog create = new AlertDialog.Builder(getContext()).setTitle(user != null ? ContactsController.formatName(user.first_name, user.last_name) : null).setMessage(LocaleController.getString(R.string.BotWebViewChangesMayNotBeSaved)).setPositiveButton(LocaleController.getString(R.string.BotWebViewCloseAnyway), new DialogInterface.OnClickListener() {
-                @Override
-                public final void onClick(DialogInterface dialogInterface, int i) {
-                    BottomSheetTabs.this.lambda$removeTab$3(zArr, webTabData, callback, r5, dialogInterface, i);
-                }
-            }).setNegativeButton(LocaleController.getString(R.string.Cancel), new DialogInterface.OnClickListener() {
-                @Override
-                public final void onClick(DialogInterface dialogInterface, int i) {
-                    BottomSheetTabs.lambda$removeTab$4(zArr, callback, r3, dialogInterface, i);
-                }
-            }).create();
-            final AlertDialog[] alertDialogArr = {create};
-            create.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public final void onDismiss(DialogInterface dialogInterface) {
-                    BottomSheetTabs.lambda$removeTab$5(zArr, callback, dialogInterface);
-                }
-            });
-            alertDialogArr[0].show();
-            ((TextView) alertDialogArr[0].getButton(-1)).setTextColor(Theme.getColor(Theme.key_text_RedBold));
+            return;
         }
+        TLRPC$User user = MessagesController.getInstance(webTabData.props.currentAccount).getUser(Long.valueOf(webTabData.props.botId));
+        final boolean[] zArr = {false};
+        AlertDialog create = new AlertDialog.Builder(getContext()).setTitle(user != null ? ContactsController.formatName(user.first_name, user.last_name) : null).setMessage(LocaleController.getString(R.string.BotWebViewChangesMayNotBeSaved)).setPositiveButton(LocaleController.getString(R.string.BotWebViewCloseAnyway), new DialogInterface.OnClickListener() {
+            @Override
+            public final void onClick(DialogInterface dialogInterface, int i) {
+                BottomSheetTabs.this.lambda$removeTab$3(zArr, webTabData, callback, r5, dialogInterface, i);
+            }
+        }).setNegativeButton(LocaleController.getString(R.string.Cancel), new DialogInterface.OnClickListener() {
+            @Override
+            public final void onClick(DialogInterface dialogInterface, int i) {
+                BottomSheetTabs.lambda$removeTab$4(zArr, callback, r3, dialogInterface, i);
+            }
+        }).create();
+        final AlertDialog[] alertDialogArr = {create};
+        create.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public final void onDismiss(DialogInterface dialogInterface) {
+                BottomSheetTabs.lambda$removeTab$5(zArr, callback, dialogInterface);
+            }
+        });
+        alertDialogArr[0].show();
+        ((TextView) alertDialogArr[0].getButton(-1)).setTextColor(Theme.getColor(Theme.key_text_RedBold));
     }
 
     public void lambda$removeTab$3(boolean[] zArr, WebTabData webTabData, Utilities.Callback callback, AlertDialog[] alertDialogArr, DialogInterface dialogInterface, int i) {

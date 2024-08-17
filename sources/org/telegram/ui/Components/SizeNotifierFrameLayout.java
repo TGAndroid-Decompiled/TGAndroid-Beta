@@ -42,6 +42,7 @@ import org.telegram.ui.BlurSettingsBottomSheet;
 import org.telegram.ui.ChatBackgroundDrawable;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.WallpaperParallaxEffect;
+
 public class SizeNotifierFrameLayout extends FrameLayout {
     private static DispatchQueue blurQueue;
     public static boolean drawingBlur;
@@ -241,16 +242,14 @@ public class SizeNotifierFrameLayout extends FrameLayout {
             sizeNotifierFrameLayout4.themeAnimationValue = Utilities.clamp(sizeNotifierFrameLayout4.themeAnimationValue + (AndroidUtilities.screenRefreshTime / 200.0f), 1.0f, 0.0f);
             int i = 0;
             while (i < 2) {
-                SizeNotifierFrameLayout sizeNotifierFrameLayout5 = SizeNotifierFrameLayout.this;
-                Drawable drawable = i == 0 ? sizeNotifierFrameLayout5.oldBackgroundDrawable : sizeNotifierFrameLayout5.backgroundDrawable;
+                Drawable drawable = i == 0 ? SizeNotifierFrameLayout.this.oldBackgroundDrawable : SizeNotifierFrameLayout.this.backgroundDrawable;
                 if (drawable != null) {
                     if (i == 1 && SizeNotifierFrameLayout.this.oldBackgroundDrawable != null && SizeNotifierFrameLayout.this.parentLayout != null) {
                         drawable.setAlpha((int) (SizeNotifierFrameLayout.this.themeAnimationValue * 255.0f));
                     } else {
                         drawable.setAlpha(255);
                     }
-                    SizeNotifierFrameLayout sizeNotifierFrameLayout6 = SizeNotifierFrameLayout.this;
-                    if (i == 0 ? sizeNotifierFrameLayout6.oldBackgroundMotion : sizeNotifierFrameLayout6.backgroundMotion) {
+                    if (i == 0 ? SizeNotifierFrameLayout.this.oldBackgroundMotion : SizeNotifierFrameLayout.this.backgroundMotion) {
                         f = SizeNotifierFrameLayout.this.parallaxScale;
                         f2 = SizeNotifierFrameLayout.this.translationX;
                         f3 = SizeNotifierFrameLayout.this.translationY;
@@ -356,8 +355,8 @@ public class SizeNotifierFrameLayout extends FrameLayout {
                         canvas.restore();
                     }
                     if (i == 0 && SizeNotifierFrameLayout.this.oldBackgroundDrawable != null && SizeNotifierFrameLayout.this.themeAnimationValue >= 1.0f) {
-                        SizeNotifierFrameLayout sizeNotifierFrameLayout7 = SizeNotifierFrameLayout.this;
-                        if (sizeNotifierFrameLayout7.attached && (sizeNotifierFrameLayout7.oldBackgroundDrawable instanceof ChatBackgroundDrawable)) {
+                        SizeNotifierFrameLayout sizeNotifierFrameLayout5 = SizeNotifierFrameLayout.this;
+                        if (sizeNotifierFrameLayout5.attached && (sizeNotifierFrameLayout5.oldBackgroundDrawable instanceof ChatBackgroundDrawable)) {
                             ((ChatBackgroundDrawable) SizeNotifierFrameLayout.this.oldBackgroundDrawable).onDetachedFromWindow(SizeNotifierFrameLayout.this.backgroundView);
                         }
                         SizeNotifierFrameLayout.this.oldBackgroundDrawable = null;
@@ -548,17 +547,16 @@ public class SizeNotifierFrameLayout extends FrameLayout {
             }
             int i = this.emojiHeight;
             return i != 0 ? i : this.backgroundTranslationY;
-        } else if (drawable instanceof ChatBackgroundDrawable) {
-            return this.backgroundTranslationY;
-        } else {
-            return 0;
         }
+        if (drawable instanceof ChatBackgroundDrawable) {
+            return this.backgroundTranslationY;
+        }
+        return 0;
     }
 
     public int getBackgroundSizeY() {
-        int i;
         Drawable drawable = this.backgroundDrawable;
-        int i2 = 0;
+        int i = 0;
         if (drawable instanceof MotionBackgroundDrawable) {
             if (!((MotionBackgroundDrawable) drawable).hasPattern()) {
                 if (this.animationInProgress) {
@@ -569,14 +567,13 @@ public class SizeNotifierFrameLayout extends FrameLayout {
                         i = this.backgroundTranslationY;
                     }
                 }
-                i2 = i;
             } else if (this.backgroundTranslationY == 0) {
-                i2 = -this.keyboardHeight;
+                i = -this.keyboardHeight;
             }
         } else if (drawable instanceof ChatBackgroundDrawable) {
-            i2 = this.backgroundTranslationY;
+            i = this.backgroundTranslationY;
         }
-        return getMeasuredHeight() - i2;
+        return getMeasuredHeight() - i;
     }
 
     public int getHeightWithKeyboard() {
@@ -662,10 +659,11 @@ public class SizeNotifierFrameLayout extends FrameLayout {
         }
         if (blurBitmap == null) {
             blurBitmap = new BlurBitmap();
-            blurBitmap.topBitmap = Bitmap.createBitmap(i2, i, Bitmap.Config.ARGB_8888);
+            Bitmap.Config config = Bitmap.Config.ARGB_8888;
+            blurBitmap.topBitmap = Bitmap.createBitmap(i2, i, config);
             blurBitmap.topCanvas = new SimplerCanvas(blurBitmap.topBitmap);
             if (this.needBlurBottom) {
-                blurBitmap.bottomBitmap = Bitmap.createBitmap(i2, i, Bitmap.Config.ARGB_8888);
+                blurBitmap.bottomBitmap = Bitmap.createBitmap(i2, i, config);
                 blurBitmap.bottomCanvas = new SimplerCanvas(blurBitmap.bottomBitmap);
             }
         } else {
@@ -737,20 +735,19 @@ public class SizeNotifierFrameLayout extends FrameLayout {
             if (blurBitmap.needBlurBottom && (bitmap = blurBitmap.bottomBitmap) != null) {
                 Utilities.stackBlurBitmap(bitmap, this.radius);
             }
+            SizeNotifierFrameLayout.this.times = (int) (r2.times + (System.currentTimeMillis() - currentTimeMillis));
             SizeNotifierFrameLayout sizeNotifierFrameLayout = SizeNotifierFrameLayout.this;
-            sizeNotifierFrameLayout.times = (int) (sizeNotifierFrameLayout.times + (System.currentTimeMillis() - currentTimeMillis));
-            SizeNotifierFrameLayout sizeNotifierFrameLayout2 = SizeNotifierFrameLayout.this;
-            int i = sizeNotifierFrameLayout2.count + 1;
-            sizeNotifierFrameLayout2.count = i;
+            int i = sizeNotifierFrameLayout.count + 1;
+            sizeNotifierFrameLayout.count = i;
             if (i > 1000) {
                 StringBuilder sb = new StringBuilder();
                 sb.append("chat blur generating average time");
-                SizeNotifierFrameLayout sizeNotifierFrameLayout3 = SizeNotifierFrameLayout.this;
-                sb.append(sizeNotifierFrameLayout3.times / sizeNotifierFrameLayout3.count);
+                SizeNotifierFrameLayout sizeNotifierFrameLayout2 = SizeNotifierFrameLayout.this;
+                sb.append(sizeNotifierFrameLayout2.times / sizeNotifierFrameLayout2.count);
                 FileLog.d(sb.toString());
-                SizeNotifierFrameLayout sizeNotifierFrameLayout4 = SizeNotifierFrameLayout.this;
-                sizeNotifierFrameLayout4.count = 0;
-                sizeNotifierFrameLayout4.times = 0;
+                SizeNotifierFrameLayout sizeNotifierFrameLayout3 = SizeNotifierFrameLayout.this;
+                sizeNotifierFrameLayout3.count = 0;
+                sizeNotifierFrameLayout3.times = 0;
             }
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -780,9 +777,7 @@ public class SizeNotifierFrameLayout extends FrameLayout {
             SizeNotifierFrameLayout.this.blurPaintTop.setShader(new BitmapShader(bitmap, tileMode, tileMode));
             BlurBitmap blurBitmap3 = this.finalBitmap;
             if (blurBitmap3.needBlurBottom && blurBitmap3.bottomBitmap != null) {
-                Bitmap bitmap2 = this.finalBitmap.bottomBitmap;
-                Shader.TileMode tileMode2 = Shader.TileMode.CLAMP;
-                SizeNotifierFrameLayout.this.blurPaintBottom.setShader(new BitmapShader(bitmap2, tileMode2, tileMode2));
+                SizeNotifierFrameLayout.this.blurPaintBottom.setShader(new BitmapShader(this.finalBitmap.bottomBitmap, tileMode, tileMode));
             }
             ValueAnimator valueAnimator = SizeNotifierFrameLayout.this.blurCrossfade;
             if (valueAnimator != null) {
@@ -948,9 +943,10 @@ public class SizeNotifierFrameLayout extends FrameLayout {
         int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
         if (devicePerformanceClass == 1) {
             dp = AndroidUtilities.dp(12.0f);
-        } else if (devicePerformanceClass == 2) {
-            return AndroidUtilities.density;
         } else {
+            if (devicePerformanceClass == 2) {
+                return AndroidUtilities.density;
+            }
             dp = AndroidUtilities.dp(15.0f);
         }
         return dp;
@@ -974,7 +970,9 @@ public class SizeNotifierFrameLayout extends FrameLayout {
         int alpha = Color.alpha(Theme.getColor((DRAW_USING_RENDERNODE() && SharedConfig.getDevicePerformanceClass() == 2) ? Theme.key_chat_BlurAlpha : Theme.key_chat_BlurAlphaSlow));
         if (!SharedConfig.chatBlurEnabled()) {
             canvas.drawRect(rect, paint);
-        } else if (DRAW_USING_RENDERNODE()) {
+            return;
+        }
+        if (DRAW_USING_RENDERNODE()) {
             if (!canvas.isHardwareAccelerated()) {
                 canvas.drawRect(rect, paint);
                 return;
@@ -1047,25 +1045,27 @@ public class SizeNotifierFrameLayout extends FrameLayout {
                 canvas.drawRenderNode(this.blurNodes[i]);
             }
             canvas.restore();
-        } else if (this.currentBitmap == null) {
-            canvas.drawRect(rect, paint);
-        } else {
-            updateBlurShaderPosition(f, z);
-            paint.setAlpha(255);
-            if (this.blurCrossfadeProgress != 1.0f && this.selectedBlurPaint2.getShader() != null) {
-                canvas.drawRect(rect, paint);
-                canvas.drawRect(rect, this.selectedBlurPaint2);
-                canvas.saveLayerAlpha(rect.left, rect.top, rect.right, rect.bottom, (int) (this.blurCrossfadeProgress * 255.0f), 31);
-                canvas.drawRect(rect, paint);
-                canvas.drawRect(rect, this.selectedBlurPaint);
-                canvas.restore();
-            } else {
-                canvas.drawRect(rect, paint);
-                canvas.drawRect(rect, this.selectedBlurPaint);
-            }
-            paint.setAlpha(alpha);
-            canvas.drawRect(rect, paint);
+            return;
         }
+        if (this.currentBitmap == null) {
+            canvas.drawRect(rect, paint);
+            return;
+        }
+        updateBlurShaderPosition(f, z);
+        paint.setAlpha(255);
+        if (this.blurCrossfadeProgress != 1.0f && this.selectedBlurPaint2.getShader() != null) {
+            canvas.drawRect(rect, paint);
+            canvas.drawRect(rect, this.selectedBlurPaint2);
+            canvas.saveLayerAlpha(rect.left, rect.top, rect.right, rect.bottom, (int) (this.blurCrossfadeProgress * 255.0f), 31);
+            canvas.drawRect(rect, paint);
+            canvas.drawRect(rect, this.selectedBlurPaint);
+            canvas.restore();
+        } else {
+            canvas.drawRect(rect, paint);
+            canvas.drawRect(rect, this.selectedBlurPaint);
+        }
+        paint.setAlpha(alpha);
+        canvas.drawRect(rect, paint);
     }
 
     public void drawBlurCircle(Canvas canvas, float f, float f2, float f3, float f4, Paint paint, boolean z) {
@@ -1120,12 +1120,11 @@ public class SizeNotifierFrameLayout extends FrameLayout {
                 Matrix matrix3 = this.matrix;
                 BlurBitmap blurBitmap5 = this.currentBitmap;
                 matrix3.preScale(blurBitmap5.topScaleX, blurBitmap5.topScaleY);
-                BlurBitmap blurBitmap6 = this.prevBitmap;
-                if (blurBitmap6 != null) {
-                    this.matrix2.setTranslate(0.0f, (f3 - blurBitmap6.pixelFixOffset) - 34.0f);
+                if (this.prevBitmap != null) {
+                    this.matrix2.setTranslate(0.0f, (f3 - r7.pixelFixOffset) - 34.0f);
                     Matrix matrix4 = this.matrix2;
-                    BlurBitmap blurBitmap7 = this.prevBitmap;
-                    matrix4.preScale(blurBitmap7.topScaleX, blurBitmap7.topScaleY);
+                    BlurBitmap blurBitmap6 = this.prevBitmap;
+                    matrix4.preScale(blurBitmap6.topScaleX, blurBitmap6.topScaleY);
                 }
             }
             this.selectedBlurPaint.getShader().setLocalMatrix(this.matrix);

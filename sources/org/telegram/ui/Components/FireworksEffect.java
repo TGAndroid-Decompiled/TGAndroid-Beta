@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
+
 public class FireworksEffect {
     private long lastAnimationTime;
     private Paint particlePaint;

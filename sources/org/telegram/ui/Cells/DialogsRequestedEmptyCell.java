@@ -25,6 +25,7 @@ import org.telegram.tgnet.TLRPC$TL_requestPeerTypeChat;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
+
 public class DialogsRequestedEmptyCell extends LinearLayout implements NotificationCenter.NotificationCenterDelegate {
     TextView buttonView;
     int currentAccount;
@@ -125,16 +126,18 @@ public class DialogsRequestedEmptyCell extends LinearLayout implements Notificat
             this.subtitleView.setText(LocaleController.getString("NoSuchChannelsInfo", R.string.NoSuchChannelsInfo));
             this.buttonView.setVisibility(0);
             this.buttonView.setText(LocaleController.getString("CreateChannelForThis", R.string.CreateChannelForThis));
-        } else if (tLRPC$RequestPeerType instanceof TLRPC$TL_requestPeerTypeChat) {
+            return;
+        }
+        if (tLRPC$RequestPeerType instanceof TLRPC$TL_requestPeerTypeChat) {
             this.titleView.setText(LocaleController.getString("NoSuchGroups", R.string.NoSuchGroups));
             this.subtitleView.setText(LocaleController.getString("NoSuchGroupsInfo", R.string.NoSuchGroupsInfo));
             this.buttonView.setVisibility(0);
             this.buttonView.setText(LocaleController.getString("CreateGroupForThis", R.string.CreateGroupForThis));
-        } else {
-            this.titleView.setText(LocaleController.getString("NoSuchUsers", R.string.NoSuchUsers));
-            this.subtitleView.setText(LocaleController.getString("NoSuchUsersInfo", R.string.NoSuchUsersInfo));
-            this.buttonView.setVisibility(8);
+            return;
         }
+        this.titleView.setText(LocaleController.getString("NoSuchUsers", R.string.NoSuchUsers));
+        this.subtitleView.setText(LocaleController.getString("NoSuchUsersInfo", R.string.NoSuchUsersInfo));
+        this.buttonView.setVisibility(8);
     }
 
     @Override

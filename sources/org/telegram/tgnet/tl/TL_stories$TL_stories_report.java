@@ -6,6 +6,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Bool;
 import org.telegram.tgnet.TLRPC$InputPeer;
 import org.telegram.tgnet.TLRPC$ReportReason;
+
 public class TL_stories$TL_stories_report extends TLObject {
     public ArrayList<Integer> id = new ArrayList<>();
     public String message;

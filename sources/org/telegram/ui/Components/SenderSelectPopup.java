@@ -48,6 +48,7 @@ import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.PremiumPreviewFragment;
+
 public class SenderSelectPopup extends ActionBarPopupWindow {
     private FrameLayout bulletinContainer;
     private Runnable bulletinHideCallback;
@@ -248,8 +249,7 @@ public class SenderSelectPopup extends ActionBarPopupWindow {
                         View contentView = SenderSelectPopup.this.getContentView();
                         contentView.getLocationInWindow(r2);
                         int[] iArr = {iArr[0] + SenderSelectPopup.this.popupX, iArr[1] + SenderSelectPopup.this.popupY};
-                        int[] iArr2 = new int[2];
-                        getLocationInWindow(iArr2);
+                        getLocationInWindow(new int[2]);
                         if ((motionEvent.getAction() == 0 && motionEvent.getX() <= iArr[0]) || motionEvent.getX() >= iArr[0] + contentView.getWidth() || motionEvent.getY() <= iArr[1] || motionEvent.getY() >= iArr[1] + contentView.getHeight()) {
                             if (!SenderSelectPopup.this.dismissed && !SenderSelectPopup.this.isDismissingByBulletin) {
                                 SenderSelectPopup.this.isDismissingByBulletin = true;
@@ -257,7 +257,7 @@ public class SenderSelectPopup extends ActionBarPopupWindow {
                             }
                             return true;
                         }
-                        motionEvent.offsetLocation(iArr2[0] - iArr[0], (AndroidUtilities.statusBarHeight + iArr2[1]) - iArr[1]);
+                        motionEvent.offsetLocation(r1[0] - iArr[0], (AndroidUtilities.statusBarHeight + r1[1]) - iArr[1]);
                         return contentView.dispatchTouchEvent(motionEvent);
                     }
                 };
@@ -387,13 +387,13 @@ public class SenderSelectPopup extends ActionBarPopupWindow {
     }
 
     public void startShowAnimation() {
-        for (SpringAnimation springAnimation : this.springAnimations) {
-            springAnimation.cancel();
+        Iterator<SpringAnimation> it = this.springAnimations.iterator();
+        while (it.hasNext()) {
+            it.next().cancel();
         }
         this.springAnimations.clear();
         this.scrimPopupContainerLayout.setPivotX(AndroidUtilities.dp(8.0f));
-        FrameLayout frameLayout = this.scrimPopupContainerLayout;
-        frameLayout.setPivotY(frameLayout.getMeasuredHeight() - AndroidUtilities.dp(8.0f));
+        this.scrimPopupContainerLayout.setPivotY(r4.getMeasuredHeight() - AndroidUtilities.dp(8.0f));
         this.recyclerContainer.setPivotX(0.0f);
         this.recyclerContainer.setPivotY(0.0f);
         ArrayList<TLRPC$TL_sendAsPeer> arrayList = this.sendAsPeers.peers;
@@ -428,27 +428,29 @@ public class SenderSelectPopup extends ActionBarPopupWindow {
         this.scrimPopupContainerLayout.setScaleY(0.25f);
         this.recyclerContainer.setAlpha(0.25f);
         this.dimView.setAlpha(0.0f);
-        FrameLayout frameLayout2 = this.scrimPopupContainerLayout;
-        DynamicAnimation.ViewProperty viewProperty = DynamicAnimation.ALPHA;
-        for (final SpringAnimation springAnimation2 : Arrays.asList(new SpringAnimation(this.scrimPopupContainerLayout, DynamicAnimation.SCALE_X).setSpring(new SpringForce(1.0f).setStiffness(750.0f).setDampingRatio(1.0f)).addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
+        SpringAnimation addUpdateListener = new SpringAnimation(this.scrimPopupContainerLayout, DynamicAnimation.SCALE_X).setSpring(new SpringForce(1.0f).setStiffness(750.0f).setDampingRatio(1.0f)).addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
             @Override
             public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
                 SenderSelectPopup.this.lambda$startShowAnimation$3(dynamicAnimation, f, f2);
             }
-        }), new SpringAnimation(this.scrimPopupContainerLayout, DynamicAnimation.SCALE_Y).setSpring(new SpringForce(1.0f).setStiffness(750.0f).setDampingRatio(1.0f)).addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
+        });
+        SpringAnimation addUpdateListener2 = new SpringAnimation(this.scrimPopupContainerLayout, DynamicAnimation.SCALE_Y).setSpring(new SpringForce(1.0f).setStiffness(750.0f).setDampingRatio(1.0f)).addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
             @Override
             public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
                 SenderSelectPopup.this.lambda$startShowAnimation$4(dynamicAnimation, f, f2);
             }
-        }), new SpringAnimation(frameLayout2, viewProperty).setSpring(new SpringForce(1.0f).setStiffness(750.0f).setDampingRatio(1.0f)), new SpringAnimation(this.recyclerContainer, viewProperty).setSpring(new SpringForce(1.0f).setStiffness(750.0f).setDampingRatio(1.0f)), new SpringAnimation(this.dimView, viewProperty).setSpring(new SpringForce(1.0f).setStiffness(750.0f).setDampingRatio(1.0f)))) {
-            this.springAnimations.add(springAnimation2);
-            springAnimation2.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
+        });
+        FrameLayout frameLayout = this.scrimPopupContainerLayout;
+        DynamicAnimation.ViewProperty viewProperty = DynamicAnimation.ALPHA;
+        for (final SpringAnimation springAnimation : Arrays.asList(addUpdateListener, addUpdateListener2, new SpringAnimation(frameLayout, viewProperty).setSpring(new SpringForce(1.0f).setStiffness(750.0f).setDampingRatio(1.0f)), new SpringAnimation(this.recyclerContainer, viewProperty).setSpring(new SpringForce(1.0f).setStiffness(750.0f).setDampingRatio(1.0f)), new SpringAnimation(this.dimView, viewProperty).setSpring(new SpringForce(1.0f).setStiffness(750.0f).setDampingRatio(1.0f)))) {
+            this.springAnimations.add(springAnimation);
+            springAnimation.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                 @Override
                 public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
-                    SenderSelectPopup.this.lambda$startShowAnimation$5(springAnimation2, dynamicAnimation, z, f, f2);
+                    SenderSelectPopup.this.lambda$startShowAnimation$5(springAnimation, dynamicAnimation, z, f, f2);
                 }
             });
-            springAnimation2.start();
+            springAnimation.start();
         }
     }
 
@@ -475,8 +477,7 @@ public class SenderSelectPopup extends ActionBarPopupWindow {
         }
         this.springAnimations.clear();
         this.scrimPopupContainerLayout.setPivotX(AndroidUtilities.dp(8.0f));
-        FrameLayout frameLayout = this.scrimPopupContainerLayout;
-        frameLayout.setPivotY(frameLayout.getMeasuredHeight() - AndroidUtilities.dp(8.0f));
+        this.scrimPopupContainerLayout.setPivotY(r2.getMeasuredHeight() - AndroidUtilities.dp(8.0f));
         this.recyclerContainer.setPivotX(0.0f);
         this.recyclerContainer.setPivotY(0.0f);
         this.scrimPopupContainerLayout.setScaleX(1.0f);
@@ -484,19 +485,21 @@ public class SenderSelectPopup extends ActionBarPopupWindow {
         this.recyclerContainer.setAlpha(1.0f);
         this.dimView.setAlpha(1.0f);
         ArrayList<SpringAnimation> arrayList = new ArrayList();
-        FrameLayout frameLayout2 = this.scrimPopupContainerLayout;
-        DynamicAnimation.ViewProperty viewProperty = DynamicAnimation.ALPHA;
-        arrayList.addAll(Arrays.asList(new SpringAnimation(this.scrimPopupContainerLayout, DynamicAnimation.SCALE_X).setSpring(new SpringForce(0.25f).setStiffness(750.0f).setDampingRatio(1.0f)).addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
+        SpringAnimation addUpdateListener = new SpringAnimation(this.scrimPopupContainerLayout, DynamicAnimation.SCALE_X).setSpring(new SpringForce(0.25f).setStiffness(750.0f).setDampingRatio(1.0f)).addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
             @Override
             public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
                 SenderSelectPopup.this.lambda$startDismissAnimation$6(dynamicAnimation, f, f2);
             }
-        }), new SpringAnimation(this.scrimPopupContainerLayout, DynamicAnimation.SCALE_Y).setSpring(new SpringForce(0.25f).setStiffness(750.0f).setDampingRatio(1.0f)).addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
+        });
+        SpringAnimation addUpdateListener2 = new SpringAnimation(this.scrimPopupContainerLayout, DynamicAnimation.SCALE_Y).setSpring(new SpringForce(0.25f).setStiffness(750.0f).setDampingRatio(1.0f)).addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
             @Override
             public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
                 SenderSelectPopup.this.lambda$startDismissAnimation$7(dynamicAnimation, f, f2);
             }
-        }), new SpringAnimation(frameLayout2, viewProperty).setSpring(new SpringForce(0.0f).setStiffness(750.0f).setDampingRatio(1.0f)), new SpringAnimation(this.recyclerContainer, viewProperty).setSpring(new SpringForce(0.25f).setStiffness(750.0f).setDampingRatio(1.0f)), new SpringAnimation(this.dimView, viewProperty).setSpring(new SpringForce(0.0f).setStiffness(750.0f).setDampingRatio(1.0f)).addEndListener(new DynamicAnimation.OnAnimationEndListener() {
+        });
+        FrameLayout frameLayout = this.scrimPopupContainerLayout;
+        DynamicAnimation.ViewProperty viewProperty = DynamicAnimation.ALPHA;
+        arrayList.addAll(Arrays.asList(addUpdateListener, addUpdateListener2, new SpringAnimation(frameLayout, viewProperty).setSpring(new SpringForce(0.0f).setStiffness(750.0f).setDampingRatio(1.0f)), new SpringAnimation(this.recyclerContainer, viewProperty).setSpring(new SpringForce(0.25f).setStiffness(750.0f).setDampingRatio(1.0f)), new SpringAnimation(this.dimView, viewProperty).setSpring(new SpringForce(0.0f).setStiffness(750.0f).setDampingRatio(1.0f)).addEndListener(new DynamicAnimation.OnAnimationEndListener() {
             @Override
             public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
                 SenderSelectPopup.this.lambda$startDismissAnimation$8(dynamicAnimation, z, f, f2);

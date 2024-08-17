@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_topPeerCategoryPeers extends TLObject {
     public TLRPC$TopPeerCategory category;
     public int count;

@@ -19,6 +19,7 @@ import org.telegram.ui.Cells.FixedHeightEmptyCell;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.PremiumGradient;
 import org.telegram.ui.Components.RecyclerListView;
+
 public class DoubledLimitsBottomSheet$Adapter extends RecyclerListView.SelectionAdapter {
     ViewGroup containerView;
     boolean drawHeader;
@@ -60,11 +61,10 @@ public class DoubledLimitsBottomSheet$Adapter extends RecyclerListView.Selection
         arrayList.add(new DoubledLimitsBottomSheet$Limit(LocaleController.getString("ChatPerFolderLimitTitle", R.string.ChatPerFolderLimitTitle), LocaleController.formatString("ChatPerFolderLimitSubtitle", R.string.ChatPerFolderLimitSubtitle, Integer.valueOf(messagesController.dialogFiltersChatsLimitPremium)), messagesController.dialogFiltersChatsLimitDefault, messagesController.dialogFiltersChatsLimitPremium, null));
         arrayList.add(new DoubledLimitsBottomSheet$Limit(LocaleController.getString("ConnectedAccountsLimitTitle", R.string.ConnectedAccountsLimitTitle), LocaleController.formatString("ConnectedAccountsLimitSubtitle", R.string.ConnectedAccountsLimitSubtitle, 4), 3, 4, null));
         arrayList.add(new DoubledLimitsBottomSheet$Limit(LocaleController.getString(R.string.SimilarChannelsLimitTitle), LocaleController.formatString(R.string.SimilarChannelsLimitSubtitle, Integer.valueOf(messagesController.recommendedChannelsLimitPremium)), messagesController.recommendedChannelsLimitDefault, messagesController.recommendedChannelsLimitPremium, null));
-        int i2 = 1 + 0;
-        this.rowCount = i2;
+        this.rowCount = 1;
         this.headerRow = 0;
-        this.limitsStartRow = i2;
-        int size = i2 + arrayList.size();
+        this.limitsStartRow = 1;
+        int size = arrayList.size() + 1;
         this.rowCount = size;
         this.limitsStartEnd = size;
     }

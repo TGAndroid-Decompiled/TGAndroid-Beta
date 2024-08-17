@@ -43,7 +43,7 @@ import androidx.core.graphics.ColorUtils;
 import java.util.ArrayList;
 import java.util.Map;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BillingController$$ExternalSyntheticLambda6;
+import org.telegram.messenger.BillingController$$ExternalSyntheticLambda10;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
@@ -61,6 +61,7 @@ import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.RadialProgressView;
 import org.telegram.ui.Components.spoilers.SpoilersTextView;
+
 public class AlertDialog extends Dialog implements Drawable.Callback, NotificationCenter.NotificationCenterDelegate {
     private View aboveMessageView;
     private int additioanalHorizontalPadding;
@@ -228,10 +229,10 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
                 this.imageView.setImageResource(i);
                 this.imageView.setVisibility(0);
                 this.textView.setPadding(LocaleController.isRTL ? 0 : AndroidUtilities.dp(56.0f), 0, LocaleController.isRTL ? AndroidUtilities.dp(56.0f) : 0, 0);
-                return;
+            } else {
+                this.imageView.setVisibility(4);
+                this.textView.setPadding(0, 0, 0, 0);
             }
-            this.imageView.setVisibility(4);
-            this.textView.setPadding(0, 0, 0, 0);
         }
 
         protected int getThemedColor(int i) {
@@ -258,7 +259,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         this.dismissDialogByButtons = true;
         this.containerViewLocation = new int[2];
         this.checkFocusable = true;
-        this.dismissRunnable = new BillingController$$ExternalSyntheticLambda6(this);
+        this.dismissRunnable = new BillingController$$ExternalSyntheticLambda10(this);
         this.showRunnable = new Runnable() {
             @Override
             public final void run() {
@@ -425,7 +426,6 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         @Override
         public void draw(Canvas canvas) {
             float dp;
-            Paint paint;
             if (AlertDialog.this.blurredBackground && !AlertDialog.this.blurredNativeBackground) {
                 if (AlertDialog.this.progressViewStyle == 3 && AlertDialog.this.progressViewContainer != null) {
                     dp = AndroidUtilities.dp(18.0f);
@@ -448,7 +448,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
                 RectF rectF = AndroidUtilities.rectTmp;
                 canvas.drawRoundRect(rectF, dp, dp, AlertDialog.this.dimBlurPaint);
                 this.backgroundPaint.setColor(AlertDialog.this.backgroundColor);
-                this.backgroundPaint.setAlpha((int) (paint.getAlpha() * ((f * (AlertDialog.this.blurOpacity - 1.0f)) + 1.0f)));
+                this.backgroundPaint.setAlpha((int) (r4.getAlpha() * ((f * (AlertDialog.this.blurOpacity - 1.0f)) + 1.0f)));
                 canvas.drawRoundRect(rectF, dp, dp, this.backgroundPaint);
             }
             super.draw(canvas);
@@ -1220,12 +1220,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         this.shadowAnimation[i] = new AnimatorSet();
         BitmapDrawable bitmapDrawable = this.shadow[i];
         if (bitmapDrawable != null) {
-            AnimatorSet animatorSet2 = this.shadowAnimation[i];
-            Animator[] animatorArr = new Animator[1];
-            int[] iArr = new int[1];
-            iArr[0] = z ? 255 : 0;
-            animatorArr[0] = ObjectAnimator.ofInt(bitmapDrawable, "alpha", iArr);
-            animatorSet2.playTogether(animatorArr);
+            this.shadowAnimation[i].playTogether(ObjectAnimator.ofInt(bitmapDrawable, "alpha", z ? 255 : 0));
         }
         this.shadowAnimation[i].setDuration(150L);
         this.shadowAnimation[i].addListener(new AnimatorListenerAdapter() {
@@ -1277,16 +1272,16 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         if (view.onCheckIsTextEditor()) {
             return true;
         }
-        if (view instanceof ViewGroup) {
-            ViewGroup viewGroup = (ViewGroup) view;
-            int childCount = viewGroup.getChildCount();
-            while (childCount > 0) {
-                childCount--;
-                if (canTextInput(viewGroup.getChildAt(childCount))) {
-                    return true;
-                }
-            }
+        if (!(view instanceof ViewGroup)) {
             return false;
+        }
+        ViewGroup viewGroup = (ViewGroup) view;
+        int childCount = viewGroup.getChildCount();
+        while (childCount > 0) {
+            childCount--;
+            if (canTextInput(viewGroup.getChildAt(childCount))) {
+                return true;
+            }
         }
         return false;
     }
@@ -1303,7 +1298,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
     public void dismissUnless(long j) {
         long currentTimeMillis = System.currentTimeMillis() - this.shownAt;
         if (currentTimeMillis < j) {
-            AndroidUtilities.runOnUIThread(new BillingController$$ExternalSyntheticLambda6(this), currentTimeMillis - j);
+            AndroidUtilities.runOnUIThread(new BillingController$$ExternalSyntheticLambda10(this), currentTimeMillis - j);
         } else {
             dismiss();
         }
@@ -1315,32 +1310,34 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         Utilities.Callback<Runnable> callback = this.overridenDissmissListener;
         if (callback != null) {
             this.overridenDissmissListener = null;
-            callback.run(new BillingController$$ExternalSyntheticLambda6(this));
-        } else if (this.dismissed) {
-        } else {
-            this.dismissed = true;
-            NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.emojiLoaded);
-            DialogInterface.OnDismissListener onDismissListener = this.onDismissListener;
-            if (onDismissListener != null) {
-                onDismissListener.onDismiss(this);
-            }
-            AlertDialog alertDialog = this.cancelDialog;
-            if (alertDialog != null) {
-                alertDialog.dismiss();
-            }
-            try {
-                super.dismiss();
-            } catch (Throwable unused) {
-            }
-            AndroidUtilities.cancelRunOnUIThread(this.showRunnable);
-            if (this.blurShader == null || (bitmap = this.blurBitmap) == null) {
-                return;
-            }
-            bitmap.recycle();
-            this.blurShader = null;
-            this.blurPaint = null;
-            this.blurBitmap = null;
+            callback.run(new BillingController$$ExternalSyntheticLambda10(this));
+            return;
         }
+        if (this.dismissed) {
+            return;
+        }
+        this.dismissed = true;
+        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.emojiLoaded);
+        DialogInterface.OnDismissListener onDismissListener = this.onDismissListener;
+        if (onDismissListener != null) {
+            onDismissListener.onDismiss(this);
+        }
+        AlertDialog alertDialog = this.cancelDialog;
+        if (alertDialog != null) {
+            alertDialog.dismiss();
+        }
+        try {
+            super.dismiss();
+        } catch (Throwable unused) {
+        }
+        AndroidUtilities.cancelRunOnUIThread(this.showRunnable);
+        if (this.blurShader == null || (bitmap = this.blurBitmap) == null) {
+            return;
+        }
+        bitmap.recycle();
+        this.blurShader = null;
+        this.blurPaint = null;
+        this.blurBitmap = null;
     }
 
     @Override
@@ -1391,9 +1388,9 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
             if (!TextUtils.isEmpty(charSequence)) {
                 this.messageTextView.setText(this.message);
                 this.messageTextView.setVisibility(0);
-                return;
+            } else {
+                this.messageTextView.setVisibility(8);
             }
-            this.messageTextView.setVisibility(8);
         }
     }
 

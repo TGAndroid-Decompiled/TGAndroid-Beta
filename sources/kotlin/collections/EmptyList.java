@@ -8,6 +8,7 @@ import java.util.ListIterator;
 import java.util.RandomAccess;
 import kotlin.jvm.internal.CollectionToArray;
 import kotlin.jvm.internal.Intrinsics;
+
 public final class EmptyList implements List, Serializable, RandomAccess {
     public static final EmptyList INSTANCE = new EmptyList();
 
@@ -101,10 +102,6 @@ public final class EmptyList implements List, Serializable, RandomAccess {
         return (T[]) CollectionToArray.toArray(this, array);
     }
 
-    public String toString() {
-        return "[]";
-    }
-
     private EmptyList() {
     }
 
@@ -140,6 +137,10 @@ public final class EmptyList implements List, Serializable, RandomAccess {
     @Override
     public boolean equals(Object obj) {
         return (obj instanceof List) && ((List) obj).isEmpty();
+    }
+
+    public String toString() {
+        return "[]";
     }
 
     @Override

@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_inputStorePaymentStarsGift extends TLRPC$InputStorePaymentPurpose {
     public long amount;
     public String currency;

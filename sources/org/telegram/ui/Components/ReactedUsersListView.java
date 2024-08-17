@@ -45,6 +45,7 @@ import org.telegram.ui.Cells.ReactedUserHolderView;
 import org.telegram.ui.Components.ReactedHeaderView;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Components.RecyclerListView;
+
 public class ReactedUsersListView extends FrameLayout {
     private RecyclerView.Adapter adapter;
     public boolean canLoadMore;
@@ -207,11 +208,14 @@ public class ReactedUsersListView extends FrameLayout {
             OnProfileSelectedListener onProfileSelectedListener = this.onProfileSelectedListener;
             if (onProfileSelectedListener != null) {
                 onProfileSelectedListener.onProfileSelected(this, MessageObject.getPeerId(this.userReactions.get(i).peer_id), this.userReactions.get(i));
+                return;
             }
-        } else if (itemViewType != 1 || (onCustomEmojiSelectedListener = this.onCustomEmojiSelectedListener) == null) {
-        } else {
-            onCustomEmojiSelectedListener.showCustomEmojiAlert(this, this.customEmojiStickerSets);
+            return;
         }
+        if (itemViewType != 1 || (onCustomEmojiSelectedListener = this.onCustomEmojiSelectedListener) == null) {
+            return;
+        }
+        onCustomEmojiSelectedListener.showCustomEmojiAlert(this, this.customEmojiStickerSets);
     }
 
     @SuppressLint({"NotifyDataSetChanged"})

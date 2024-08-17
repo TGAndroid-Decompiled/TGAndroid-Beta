@@ -18,6 +18,7 @@ import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$InputStorePaymentPurpose;
+
 public class BillingUtilities {
     public static void extractCurrencyExp(Map<String, Integer> map) {
         if (map.isEmpty()) {
@@ -172,27 +173,29 @@ public class BillingUtilities {
         }
         String obfuscatedAccountId = accountIdentifiers.getObfuscatedAccountId();
         String obfuscatedProfileId = accountIdentifiers.getObfuscatedProfileId();
-        if (obfuscatedAccountId == null || obfuscatedAccountId.isEmpty() || obfuscatedProfileId == null || obfuscatedProfileId.isEmpty()) {
-            FileLog.d("Billing: Extract payload. Empty AccountIdentifiers");
-            return null;
-        }
-        try {
+        if (obfuscatedAccountId != null && !obfuscatedAccountId.isEmpty() && obfuscatedProfileId != null) {
             try {
-                tLRPC$InputStorePaymentPurpose = getPurpose(obfuscatedProfileId);
-            } catch (Exception e) {
-                FileLog.e("Billing: Extract payload, failed to get purpose", e);
-                tLRPC$InputStorePaymentPurpose = null;
-            }
-            AccountInstance findAccountById = findAccountById(Long.parseLong(new String(Base64.decode(obfuscatedAccountId, 0), Charsets.UTF_8)));
-            if (findAccountById == null) {
-                FileLog.d("Billing: Extract payload. AccountInstance not found");
+                if (!obfuscatedProfileId.isEmpty()) {
+                    try {
+                        tLRPC$InputStorePaymentPurpose = getPurpose(obfuscatedProfileId);
+                    } catch (Exception e) {
+                        FileLog.e("Billing: Extract payload, failed to get purpose", e);
+                        tLRPC$InputStorePaymentPurpose = null;
+                    }
+                    AccountInstance findAccountById = findAccountById(Long.parseLong(new String(Base64.decode(obfuscatedAccountId, 0), Charsets.UTF_8)));
+                    if (findAccountById == null) {
+                        FileLog.d("Billing: Extract payload. AccountInstance not found");
+                        return null;
+                    }
+                    return Pair.create(findAccountById, tLRPC$InputStorePaymentPurpose);
+                }
+            } catch (Exception e2) {
+                FileLog.e("Billing: Extract Payload", e2);
                 return null;
             }
-            return Pair.create(findAccountById, tLRPC$InputStorePaymentPurpose);
-        } catch (Exception e2) {
-            FileLog.e("Billing: Extract Payload", e2);
-            return null;
         }
+        FileLog.d("Billing: Extract payload. Empty AccountIdentifiers");
+        return null;
     }
 
     public static void cleanupPurchase(Purchase purchase) {

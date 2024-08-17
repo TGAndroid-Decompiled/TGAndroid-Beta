@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_pageCaption extends TLObject {
     public TLRPC$RichText credit;
     public TLRPC$RichText text;

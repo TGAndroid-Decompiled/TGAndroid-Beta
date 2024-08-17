@@ -33,6 +33,7 @@ import org.telegram.tgnet.TLRPC$TL_help_appUpdate;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.LaunchActivity;
+
 public class SharedConfig {
     private static final int[] LOW_SOC;
     public static final int PASSCODE_TYPE_PASSWORD = 1;
@@ -193,10 +194,6 @@ public class SharedConfig {
     public static void lambda$checkSdCard$1(DialogInterface dialogInterface, int i) {
     }
 
-    public static String performanceClassName(int i) {
-        return i != 0 ? i != 1 ? i != 2 ? "UNKNOWN" : "HIGH" : "AVERAGE" : "LOW";
-    }
-
     public static boolean loopStickers() {
         return LiteMode.isEnabled(2);
     }
@@ -242,7 +239,35 @@ public class SharedConfig {
     }
 
     public static boolean allowPreparingHevcPlayers() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SharedConfig.allowPreparingHevcPlayers():boolean");
+        int maxSupportedInstances;
+        if (Build.VERSION.SDK_INT < 23) {
+            return false;
+        }
+        if (allowPreparingHevcPlayers == null) {
+            int codecCount = MediaCodecList.getCodecCount();
+            int i = 0;
+            for (int i2 = 0; i2 < codecCount; i2++) {
+                MediaCodecInfo codecInfoAt = MediaCodecList.getCodecInfoAt(i2);
+                if (!codecInfoAt.isEncoder()) {
+                    int i3 = 0;
+                    while (true) {
+                        if (i3 >= codecInfoAt.getSupportedTypes().length) {
+                            break;
+                        }
+                        if (codecInfoAt.getSupportedTypes()[i3].contains("video/hevc")) {
+                            maxSupportedInstances = codecInfoAt.getCapabilitiesForType("video/hevc").getMaxSupportedInstances();
+                            if (maxSupportedInstances > i) {
+                                i = maxSupportedInstances;
+                            }
+                        } else {
+                            i3++;
+                        }
+                    }
+                }
+            }
+            allowPreparingHevcPlayers = Boolean.valueOf(i >= 8);
+        }
+        return allowPreparingHevcPlayers.booleanValue();
     }
 
     public static void togglePaymentByInvoice() {
@@ -332,7 +357,6 @@ public class SharedConfig {
                             }
                         }
                     }
-                    continue;
                 }
             }
             goodHevcEncoder = "";
@@ -411,63 +435,67 @@ public class SharedConfig {
     public static void saveConfig() {
         synchronized (sync) {
             try {
-                SharedPreferences.Editor edit = ApplicationLoader.applicationContext.getSharedPreferences("userconfing", 0).edit();
-                edit.putBoolean("saveIncomingPhotos", saveIncomingPhotos);
-                edit.putString("passcodeHash1", passcodeHash);
-                byte[] bArr = passcodeSalt;
-                edit.putString("passcodeSalt", bArr.length > 0 ? Base64.encodeToString(bArr, 0) : "");
-                edit.putBoolean("appLocked", appLocked);
-                edit.putInt("passcodeType", passcodeType);
-                edit.putLong("passcodeRetryInMs", passcodeRetryInMs);
-                edit.putLong("lastUptimeMillis", lastUptimeMillis);
-                edit.putInt("badPasscodeTries", badPasscodeTries);
-                edit.putInt("autoLockIn", autoLockIn);
-                edit.putInt("lastPauseTime", lastPauseTime);
-                edit.putBoolean("useFingerprint", useFingerprintLock);
-                edit.putBoolean("allowScreenCapture", allowScreenCapture);
-                edit.putString("pushString2", pushString);
-                edit.putInt("pushType", pushType);
-                edit.putBoolean("pushStatSent", pushStatSent);
-                byte[] bArr2 = pushAuthKey;
-                edit.putString("pushAuthKey", bArr2 != null ? Base64.encodeToString(bArr2, 0) : "");
-                edit.putInt("lastLocalId", lastLocalId);
-                edit.putString("passportConfigJson", passportConfigJson);
-                edit.putInt("passportConfigHash", passportConfigHash);
-                edit.putBoolean("sortContactsByName", sortContactsByName);
-                edit.putBoolean("sortFilesByName", sortFilesByName);
-                edit.putInt("textSelectionHintShows", textSelectionHintShows);
-                edit.putInt("scheduledOrNoSoundHintShows", scheduledOrNoSoundHintShows);
-                edit.putLong("scheduledOrNoSoundHintSeenAt", scheduledOrNoSoundHintSeenAt);
-                edit.putInt("scheduledHintShows", scheduledHintShows);
-                edit.putLong("scheduledHintSeenAt", scheduledHintSeenAt);
-                edit.putBoolean("forwardingOptionsHintShown", forwardingOptionsHintShown);
-                edit.putBoolean("replyingOptionsHintShown", replyingOptionsHintShown);
-                edit.putInt("lockRecordAudioVideoHint", lockRecordAudioVideoHint);
-                edit.putString("storageCacheDir", !TextUtils.isEmpty(storageCacheDir) ? storageCacheDir : "");
-                edit.putBoolean("proxyRotationEnabled", proxyRotationEnabled);
-                edit.putInt("proxyRotationTimeout", proxyRotationTimeout);
-                TLRPC$TL_help_appUpdate tLRPC$TL_help_appUpdate = pendingAppUpdate;
-                if (tLRPC$TL_help_appUpdate != null) {
-                    try {
-                        SerializedData serializedData = new SerializedData(tLRPC$TL_help_appUpdate.getObjectSize());
-                        pendingAppUpdate.serializeToStream(serializedData);
-                        edit.putString("appUpdate", Base64.encodeToString(serializedData.toByteArray(), 0));
-                        edit.putInt("appUpdateBuild", pendingAppUpdateBuildVersion);
-                        serializedData.cleanup();
-                    } catch (Exception unused) {
+                try {
+                    SharedPreferences.Editor edit = ApplicationLoader.applicationContext.getSharedPreferences("userconfing", 0).edit();
+                    edit.putBoolean("saveIncomingPhotos", saveIncomingPhotos);
+                    edit.putString("passcodeHash1", passcodeHash);
+                    byte[] bArr = passcodeSalt;
+                    edit.putString("passcodeSalt", bArr.length > 0 ? Base64.encodeToString(bArr, 0) : "");
+                    edit.putBoolean("appLocked", appLocked);
+                    edit.putInt("passcodeType", passcodeType);
+                    edit.putLong("passcodeRetryInMs", passcodeRetryInMs);
+                    edit.putLong("lastUptimeMillis", lastUptimeMillis);
+                    edit.putInt("badPasscodeTries", badPasscodeTries);
+                    edit.putInt("autoLockIn", autoLockIn);
+                    edit.putInt("lastPauseTime", lastPauseTime);
+                    edit.putBoolean("useFingerprint", useFingerprintLock);
+                    edit.putBoolean("allowScreenCapture", allowScreenCapture);
+                    edit.putString("pushString2", pushString);
+                    edit.putInt("pushType", pushType);
+                    edit.putBoolean("pushStatSent", pushStatSent);
+                    byte[] bArr2 = pushAuthKey;
+                    edit.putString("pushAuthKey", bArr2 != null ? Base64.encodeToString(bArr2, 0) : "");
+                    edit.putInt("lastLocalId", lastLocalId);
+                    edit.putString("passportConfigJson", passportConfigJson);
+                    edit.putInt("passportConfigHash", passportConfigHash);
+                    edit.putBoolean("sortContactsByName", sortContactsByName);
+                    edit.putBoolean("sortFilesByName", sortFilesByName);
+                    edit.putInt("textSelectionHintShows", textSelectionHintShows);
+                    edit.putInt("scheduledOrNoSoundHintShows", scheduledOrNoSoundHintShows);
+                    edit.putLong("scheduledOrNoSoundHintSeenAt", scheduledOrNoSoundHintSeenAt);
+                    edit.putInt("scheduledHintShows", scheduledHintShows);
+                    edit.putLong("scheduledHintSeenAt", scheduledHintSeenAt);
+                    edit.putBoolean("forwardingOptionsHintShown", forwardingOptionsHintShown);
+                    edit.putBoolean("replyingOptionsHintShown", replyingOptionsHintShown);
+                    edit.putInt("lockRecordAudioVideoHint", lockRecordAudioVideoHint);
+                    edit.putString("storageCacheDir", !TextUtils.isEmpty(storageCacheDir) ? storageCacheDir : "");
+                    edit.putBoolean("proxyRotationEnabled", proxyRotationEnabled);
+                    edit.putInt("proxyRotationTimeout", proxyRotationTimeout);
+                    TLRPC$TL_help_appUpdate tLRPC$TL_help_appUpdate = pendingAppUpdate;
+                    if (tLRPC$TL_help_appUpdate != null) {
+                        try {
+                            SerializedData serializedData = new SerializedData(tLRPC$TL_help_appUpdate.getObjectSize());
+                            pendingAppUpdate.serializeToStream(serializedData);
+                            edit.putString("appUpdate", Base64.encodeToString(serializedData.toByteArray(), 0));
+                            edit.putInt("appUpdateBuild", pendingAppUpdateBuildVersion);
+                            serializedData.cleanup();
+                        } catch (Exception unused) {
+                        }
+                    } else {
+                        edit.remove("appUpdate");
                     }
-                } else {
-                    edit.remove("appUpdate");
+                    edit.putLong("appUpdateCheckTime", lastUpdateCheckTime);
+                    edit.apply();
+                    SharedPreferences.Editor edit2 = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0).edit();
+                    edit2.putBoolean("hasEmailLogin", hasEmailLogin);
+                    edit2.putBoolean("floatingDebugActive", isFloatingDebugActive);
+                    edit2.putBoolean("record_via_sco", recordViaSco);
+                    edit2.apply();
+                } catch (Exception e) {
+                    FileLog.e(e);
                 }
-                edit.putLong("appUpdateCheckTime", lastUpdateCheckTime);
-                edit.apply();
-                SharedPreferences.Editor edit2 = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0).edit();
-                edit2.putBoolean("hasEmailLogin", hasEmailLogin);
-                edit2.putBoolean("floatingDebugActive", isFloatingDebugActive);
-                edit2.putBoolean("record_via_sco", recordViaSco);
-                edit2.apply();
-            } catch (Exception e) {
-                FileLog.e(e);
+            } catch (Throwable th) {
+                throw th;
             }
         }
     }
@@ -1224,7 +1252,7 @@ public class SharedConfig {
         if (!proxyInfo.available) {
             j += 100000;
         }
-        long j2 = proxyInfo3 != proxyInfo2 ? 0L : -200000L;
+        long j2 = proxyInfo3 == proxyInfo2 ? -200000L : 0L;
         if (!proxyInfo2.available) {
             j2 += 100000;
         }
@@ -1312,11 +1340,11 @@ public class SharedConfig {
         int i2 = chatSwipeAction;
         if (i2 < 0) {
             return !MessagesController.getInstance(i).dialogFilters.isEmpty() ? 5 : 2;
-        } else if (i2 == 5 && MessagesController.getInstance(i).dialogFilters.isEmpty()) {
-            return 2;
-        } else {
-            return chatSwipeAction;
         }
+        if (i2 == 5 && MessagesController.getInstance(i).dialogFilters.isEmpty()) {
+            return 2;
+        }
+        return chatSwipeAction;
     }
 
     public static void updateChatListSwipeSetting(int i) {
@@ -1356,60 +1384,20 @@ public class SharedConfig {
     }
 
     public static int measureDevicePerformanceClass() {
-        long j;
-        String str;
-        String str2;
-        int i = Build.VERSION.SDK_INT;
-        int i2 = ConnectionsManager.CPU_COUNT;
-        int memoryClass = ((ActivityManager) ApplicationLoader.applicationContext.getSystemService("activity")).getMemoryClass();
-        int i3 = 0;
-        if (i >= 31) {
-            str = Build.SOC_MODEL;
-            if (str != null) {
-                str2 = Build.SOC_MODEL;
-                int hashCode = str2.toUpperCase().hashCode();
-                int i4 = 0;
-                while (true) {
-                    int[] iArr = LOW_SOC;
-                    if (i4 >= iArr.length) {
-                        break;
-                    } else if (iArr[i4] == hashCode) {
-                        return 0;
-                    } else {
-                        i4++;
-                    }
-                }
-            }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SharedConfig.measureDevicePerformanceClass():int");
+    }
+
+    public static String performanceClassName(int i) {
+        if (i == 0) {
+            return "LOW";
         }
-        int i5 = 0;
-        int i6 = 0;
-        for (int i7 = 0; i7 < i2; i7++) {
-            try {
-                RandomAccessFile randomAccessFile = new RandomAccessFile(String.format(Locale.ENGLISH, "/sys/devices/system/cpu/cpu%d/cpufreq/cpuinfo_max_freq", Integer.valueOf(i7)), "r");
-                String readLine = randomAccessFile.readLine();
-                if (readLine != null) {
-                    i6 += Utilities.parseInt((CharSequence) readLine).intValue() / 1000;
-                    i5++;
-                }
-                randomAccessFile.close();
-            } catch (Throwable unused) {
-            }
+        if (i == 1) {
+            return "AVERAGE";
         }
-        int ceil = i5 == 0 ? -1 : (int) Math.ceil(i6 / i5);
-        try {
-            ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
-            ((ActivityManager) ApplicationLoader.applicationContext.getSystemService("activity")).getMemoryInfo(memoryInfo);
-            j = memoryInfo.totalMem;
-        } catch (Exception unused2) {
-            j = -1;
+        if (i == 2) {
+            return "HIGH";
         }
-        if (i >= 21 && i2 > 2 && memoryClass > 100 && ((i2 > 4 || ceil == -1 || ceil > 1250) && ((i2 > 4 || ceil > 1600 || memoryClass > 128 || i > 21) && ((i2 > 4 || ceil > 1300 || memoryClass > 128 || i > 24) && (j == -1 || j >= 2147483648L))))) {
-            i3 = (i2 < 8 || memoryClass <= 160 || (ceil != -1 && ceil <= 2055) || (ceil == -1 && i2 == 8 && i <= 23)) ? 1 : 2;
-        }
-        if (BuildVars.LOGS_ENABLED) {
-            FileLog.d("device performance info selected_class = " + i3 + " (cpu_count = " + i2 + ", freq = " + ceil + ", memoryClass = " + memoryClass + ", android version " + i + ", manufacture " + Build.MANUFACTURER + ", screenRefreshRate=" + AndroidUtilities.screenRefreshRate + ")");
-        }
-        return i3;
+        return "UNKNOWN";
     }
 
     public static void setMediaColumnsCount(int i) {
@@ -1514,9 +1502,9 @@ public class SharedConfig {
 
     public static void toggleUseCamera2(int i) {
         SharedPreferences.Editor edit = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0).edit();
-        Boolean valueOf = Boolean.valueOf(!isUsingCamera2(i));
-        useCamera2Force = valueOf;
-        edit.putBoolean("useCamera2Force_2", valueOf.booleanValue()).apply();
+        boolean z = !isUsingCamera2(i);
+        useCamera2Force = Boolean.valueOf(z);
+        edit.putBoolean("useCamera2Force_2", z).apply();
     }
 
     @Deprecated

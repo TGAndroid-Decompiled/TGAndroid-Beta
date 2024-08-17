@@ -1,4 +1,5 @@
 package org.webrtc;
+
 public final class CandidatePairChangeEvent {
     public final int estimatedDisconnectedTimeMs;
     public final int lastDataReceivedMs;

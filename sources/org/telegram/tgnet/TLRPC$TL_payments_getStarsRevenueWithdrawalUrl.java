@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_payments_getStarsRevenueWithdrawalUrl extends TLObject {
     public TLRPC$InputCheckPasswordSRP password;
     public TLRPC$InputPeer peer;

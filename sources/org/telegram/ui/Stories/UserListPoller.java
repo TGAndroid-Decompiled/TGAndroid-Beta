@@ -22,6 +22,7 @@ import org.telegram.ui.Cells.DialogCell;
 import org.telegram.ui.Cells.UserCell;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Stories.UserListPoller;
+
 public class UserListPoller {
     private static UserListPoller[] istances = new UserListPoller[4];
     final int currentAccount;

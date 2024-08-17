@@ -96,6 +96,7 @@ import org.telegram.ui.Components.TransformableLoginButtonView;
 import org.telegram.ui.Components.VerticalPositionAutoAnimator;
 import org.telegram.ui.Components.spoilers.SpoilersTextView;
 import org.telegram.ui.TwoStepVerificationSetupActivity;
+
 public class TwoStepVerificationSetupActivity extends BaseFragment {
     private AnimatorSet actionBarAnimator;
     private View actionBarBackground;
@@ -371,7 +372,8 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
         });
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.imageView = rLottieImageView;
-        rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+        rLottieImageView.setScaleType(scaleType);
         if (this.currentType == 2 && AndroidUtilities.isSmallScreen()) {
             this.imageView.setVisibility(8);
         } else if (!isIntro()) {
@@ -528,18 +530,9 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                             }
                             TwoStepVerificationSetupActivity.this.actionBarAnimator = new AnimatorSet();
                             AnimatorSet animatorSet = TwoStepVerificationSetupActivity.this.actionBarAnimator;
-                            Animator[] animatorArr = new Animator[2];
                             View view = TwoStepVerificationSetupActivity.this.actionBarBackground;
                             Property property = View.ALPHA;
-                            float[] fArr = new float[1];
-                            fArr[0] = z ? 1.0f : 0.0f;
-                            animatorArr[0] = ObjectAnimator.ofFloat(view, property, fArr);
-                            SimpleTextView titleTextView = ((BaseFragment) TwoStepVerificationSetupActivity.this).actionBar.getTitleTextView();
-                            Property property2 = View.ALPHA;
-                            float[] fArr2 = new float[1];
-                            fArr2[0] = z ? 1.0f : 0.0f;
-                            animatorArr[1] = ObjectAnimator.ofFloat(titleTextView, property2, fArr2);
-                            animatorSet.playTogether(animatorArr);
+                            animatorSet.playTogether(ObjectAnimator.ofFloat(view, (Property<View, Float>) property, z ? 1.0f : 0.0f), ObjectAnimator.ofFloat(((BaseFragment) TwoStepVerificationSetupActivity.this).actionBar.getTitleTextView(), (Property<SimpleTextView, Float>) property, z ? 1.0f : 0.0f));
                             TwoStepVerificationSetupActivity.this.actionBarAnimator.setDuration(150L);
                             TwoStepVerificationSetupActivity.this.actionBarAnimator.addListener(new AnimatorListenerAdapter() {
                                 @Override
@@ -677,7 +670,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                 };
                 this.showPasswordButton = imageView;
                 imageView.setImageResource(R.drawable.msg_message);
-                this.showPasswordButton.setScaleType(ImageView.ScaleType.CENTER);
+                this.showPasswordButton.setScaleType(scaleType);
                 this.showPasswordButton.setContentDescription(LocaleController.getString(R.string.TwoStepVerificationShowPassword));
                 if (i2 >= 21) {
                     this.showPasswordButton.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_listSelector)));
@@ -760,21 +753,16 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                     }
                 };
                 this.codeFieldContainer = codeFieldContainer;
-                boolean z = true;
                 codeFieldContainer.setNumbersCount(6, 1);
-                CodeNumberField[] codeNumberFieldArr = this.codeFieldContainer.codeField;
-                int length = codeNumberFieldArr.length;
-                int i6 = 0;
-                while (i6 < length) {
-                    CodeNumberField codeNumberField = codeNumberFieldArr[i6];
-                    codeNumberField.setShowSoftInputOnFocusCompat(isCustomKeyboardVisible() ^ z);
+                for (CodeNumberField codeNumberField : this.codeFieldContainer.codeField) {
+                    codeNumberField.setShowSoftInputOnFocusCompat(!isCustomKeyboardVisible());
                     codeNumberField.addTextChangedListener(new TextWatcher() {
                         @Override
-                        public void beforeTextChanged(CharSequence charSequence, int i7, int i8, int i9) {
+                        public void beforeTextChanged(CharSequence charSequence, int i6, int i7, int i8) {
                         }
 
                         @Override
-                        public void onTextChanged(CharSequence charSequence, int i7, int i8, int i9) {
+                        public void onTextChanged(CharSequence charSequence, int i6, int i7, int i8) {
                         }
 
                         @Override
@@ -787,12 +775,10 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                     });
                     codeNumberField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                         @Override
-                        public final void onFocusChange(View view, boolean z2) {
-                            TwoStepVerificationSetupActivity.this.lambda$createView$16(view, z2);
+                        public final void onFocusChange(View view, boolean z) {
+                            TwoStepVerificationSetupActivity.this.lambda$createView$16(view, z);
                         }
                     });
-                    i6++;
-                    z = true;
                 }
                 this.codeFieldContainer.setVisibility(8);
                 linearLayout.addView(this.codeFieldContainer, LayoutHelper.createLinear(-2, -2, 1, 0, 32, 0, 0));
@@ -846,18 +832,18 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
             case 9:
                 ViewGroup viewGroup2 = new ViewGroup(context) {
                     @Override
-                    protected void onMeasure(int i7, int i8) {
-                        int size = View.MeasureSpec.getSize(i7);
-                        int size2 = View.MeasureSpec.getSize(i8);
-                        ((BaseFragment) TwoStepVerificationSetupActivity.this).actionBar.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), i8);
+                    protected void onMeasure(int i6, int i7) {
+                        int size = View.MeasureSpec.getSize(i6);
+                        int size2 = View.MeasureSpec.getSize(i7);
+                        ((BaseFragment) TwoStepVerificationSetupActivity.this).actionBar.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), i7);
                         if (size > size2) {
                             float f = size;
                             TwoStepVerificationSetupActivity.this.imageView.measure(View.MeasureSpec.makeMeasureSpec((int) (0.45f * f), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (size2 * 0.68f), 1073741824));
-                            int i9 = (int) (f * 0.6f);
-                            TwoStepVerificationSetupActivity.this.titleTextView.measure(View.MeasureSpec.makeMeasureSpec(i9, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                            TwoStepVerificationSetupActivity.this.descriptionText.measure(View.MeasureSpec.makeMeasureSpec(i9, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                            TwoStepVerificationSetupActivity.this.descriptionText2.measure(View.MeasureSpec.makeMeasureSpec(i9, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                            TwoStepVerificationSetupActivity.this.buttonTextView.measure(View.MeasureSpec.makeMeasureSpec(i9, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(42.0f), 1073741824));
+                            int i8 = (int) (f * 0.6f);
+                            TwoStepVerificationSetupActivity.this.titleTextView.measure(View.MeasureSpec.makeMeasureSpec(i8, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
+                            TwoStepVerificationSetupActivity.this.descriptionText.measure(View.MeasureSpec.makeMeasureSpec(i8, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
+                            TwoStepVerificationSetupActivity.this.descriptionText2.measure(View.MeasureSpec.makeMeasureSpec(i8, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
+                            TwoStepVerificationSetupActivity.this.buttonTextView.measure(View.MeasureSpec.makeMeasureSpec(i8, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(42.0f), 1073741824));
                         } else {
                             float f2 = TwoStepVerificationSetupActivity.this.currentType == 7 ? 160 : 140;
                             TwoStepVerificationSetupActivity.this.imageView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(f2), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(f2), 1073741824));
@@ -870,35 +856,35 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                     }
 
                     @Override
-                    protected void onLayout(boolean z2, int i7, int i8, int i9, int i10) {
-                        ((BaseFragment) TwoStepVerificationSetupActivity.this).actionBar.layout(0, 0, i9, ((BaseFragment) TwoStepVerificationSetupActivity.this).actionBar.getMeasuredHeight());
+                    protected void onLayout(boolean z, int i6, int i7, int i8, int i9) {
+                        ((BaseFragment) TwoStepVerificationSetupActivity.this).actionBar.layout(0, 0, i8, ((BaseFragment) TwoStepVerificationSetupActivity.this).actionBar.getMeasuredHeight());
+                        int i10 = i8 - i6;
                         int i11 = i9 - i7;
-                        int i12 = i10 - i8;
-                        if (i9 > i10) {
-                            int measuredHeight = (i12 - TwoStepVerificationSetupActivity.this.imageView.getMeasuredHeight()) / 2;
+                        if (i8 > i9) {
+                            int measuredHeight = (i11 - TwoStepVerificationSetupActivity.this.imageView.getMeasuredHeight()) / 2;
                             TwoStepVerificationSetupActivity.this.imageView.layout(0, measuredHeight, TwoStepVerificationSetupActivity.this.imageView.getMeasuredWidth(), TwoStepVerificationSetupActivity.this.imageView.getMeasuredHeight() + measuredHeight);
-                            float f = i11;
+                            float f = i10;
                             float f2 = 0.4f * f;
-                            int i13 = (int) f2;
-                            float f3 = i12;
-                            int i14 = (int) (0.22f * f3);
-                            TwoStepVerificationSetupActivity.this.titleTextView.layout(i13, i14, TwoStepVerificationSetupActivity.this.titleTextView.getMeasuredWidth() + i13, TwoStepVerificationSetupActivity.this.titleTextView.getMeasuredHeight() + i14);
-                            int i15 = (int) (0.39f * f3);
-                            TwoStepVerificationSetupActivity.this.descriptionText.layout(i13, i15, TwoStepVerificationSetupActivity.this.descriptionText.getMeasuredWidth() + i13, TwoStepVerificationSetupActivity.this.descriptionText.getMeasuredHeight() + i15);
+                            int i12 = (int) f2;
+                            float f3 = i11;
+                            int i13 = (int) (0.22f * f3);
+                            TwoStepVerificationSetupActivity.this.titleTextView.layout(i12, i13, TwoStepVerificationSetupActivity.this.titleTextView.getMeasuredWidth() + i12, TwoStepVerificationSetupActivity.this.titleTextView.getMeasuredHeight() + i13);
+                            int i14 = (int) (0.39f * f3);
+                            TwoStepVerificationSetupActivity.this.descriptionText.layout(i12, i14, TwoStepVerificationSetupActivity.this.descriptionText.getMeasuredWidth() + i12, TwoStepVerificationSetupActivity.this.descriptionText.getMeasuredHeight() + i14);
                             int measuredWidth = (int) (f2 + (((f * 0.6f) - TwoStepVerificationSetupActivity.this.buttonTextView.getMeasuredWidth()) / 2.0f));
-                            int i16 = (int) (f3 * 0.64f);
-                            TwoStepVerificationSetupActivity.this.buttonTextView.layout(measuredWidth, i16, TwoStepVerificationSetupActivity.this.buttonTextView.getMeasuredWidth() + measuredWidth, TwoStepVerificationSetupActivity.this.buttonTextView.getMeasuredHeight() + i16);
+                            int i15 = (int) (f3 * 0.64f);
+                            TwoStepVerificationSetupActivity.this.buttonTextView.layout(measuredWidth, i15, TwoStepVerificationSetupActivity.this.buttonTextView.getMeasuredWidth() + measuredWidth, TwoStepVerificationSetupActivity.this.buttonTextView.getMeasuredHeight() + i15);
                             return;
                         }
-                        int i17 = (int) (i12 * 0.3f);
-                        int measuredWidth2 = (i11 - TwoStepVerificationSetupActivity.this.imageView.getMeasuredWidth()) / 2;
-                        TwoStepVerificationSetupActivity.this.imageView.layout(measuredWidth2, i17, TwoStepVerificationSetupActivity.this.imageView.getMeasuredWidth() + measuredWidth2, TwoStepVerificationSetupActivity.this.imageView.getMeasuredHeight() + i17);
-                        int measuredHeight2 = i17 + TwoStepVerificationSetupActivity.this.imageView.getMeasuredHeight() + AndroidUtilities.dp(16.0f);
+                        int i16 = (int) (i11 * 0.3f);
+                        int measuredWidth2 = (i10 - TwoStepVerificationSetupActivity.this.imageView.getMeasuredWidth()) / 2;
+                        TwoStepVerificationSetupActivity.this.imageView.layout(measuredWidth2, i16, TwoStepVerificationSetupActivity.this.imageView.getMeasuredWidth() + measuredWidth2, TwoStepVerificationSetupActivity.this.imageView.getMeasuredHeight() + i16);
+                        int measuredHeight2 = i16 + TwoStepVerificationSetupActivity.this.imageView.getMeasuredHeight() + AndroidUtilities.dp(16.0f);
                         TwoStepVerificationSetupActivity.this.titleTextView.layout(0, measuredHeight2, TwoStepVerificationSetupActivity.this.titleTextView.getMeasuredWidth(), TwoStepVerificationSetupActivity.this.titleTextView.getMeasuredHeight() + measuredHeight2);
                         int measuredHeight3 = measuredHeight2 + TwoStepVerificationSetupActivity.this.titleTextView.getMeasuredHeight() + AndroidUtilities.dp(12.0f);
                         TwoStepVerificationSetupActivity.this.descriptionText.layout(0, measuredHeight3, TwoStepVerificationSetupActivity.this.descriptionText.getMeasuredWidth(), TwoStepVerificationSetupActivity.this.descriptionText.getMeasuredHeight() + measuredHeight3);
-                        int measuredWidth3 = (i11 - TwoStepVerificationSetupActivity.this.buttonTextView.getMeasuredWidth()) / 2;
-                        int measuredHeight4 = (i12 - TwoStepVerificationSetupActivity.this.buttonTextView.getMeasuredHeight()) - AndroidUtilities.dp(48.0f);
+                        int measuredWidth3 = (i10 - TwoStepVerificationSetupActivity.this.buttonTextView.getMeasuredWidth()) / 2;
+                        int measuredHeight4 = (i11 - TwoStepVerificationSetupActivity.this.buttonTextView.getMeasuredHeight()) - AndroidUtilities.dp(48.0f);
                         TwoStepVerificationSetupActivity.this.buttonTextView.layout(measuredWidth3, measuredHeight4, TwoStepVerificationSetupActivity.this.buttonTextView.getMeasuredWidth() + measuredWidth3, TwoStepVerificationSetupActivity.this.buttonTextView.getMeasuredHeight() + measuredHeight4);
                     }
                 };
@@ -919,17 +905,17 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                 break;
         }
         this.fragmentView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-        int i7 = this.currentType;
-        switch (i7) {
+        int i6 = this.currentType;
+        switch (i6) {
             case 0:
             case 1:
                 if (this.currentPassword.has_password) {
                     ActionBar actionBar2 = this.actionBar;
-                    int i8 = R.string.PleaseEnterNewFirstPassword;
-                    actionBar2.setTitle(LocaleController.getString("PleaseEnterNewFirstPassword", i8));
-                    this.titleTextView.setText(LocaleController.getString("PleaseEnterNewFirstPassword", i8));
+                    int i7 = R.string.PleaseEnterNewFirstPassword;
+                    actionBar2.setTitle(LocaleController.getString("PleaseEnterNewFirstPassword", i7));
+                    this.titleTextView.setText(LocaleController.getString("PleaseEnterNewFirstPassword", i7));
                 } else {
-                    String string = LocaleController.getString(i7 == 0 ? R.string.CreatePassword : R.string.ReEnterPassword);
+                    String string = LocaleController.getString(i6 == 0 ? R.string.CreatePassword : R.string.ReEnterPassword);
                     this.actionBar.setTitle(string);
                     this.titleTextView.setText(string);
                 }
@@ -948,26 +934,26 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                 AndroidUtilities.updateViewVisibilityAnimated(this.showPasswordButton, false, 0.1f, false);
                 RLottieDrawable[] rLottieDrawableArr = new RLottieDrawable[7];
                 this.animationDrawables = rLottieDrawableArr;
-                int i9 = R.raw.tsv_setup_monkey_idle1;
-                rLottieDrawableArr[0] = new RLottieDrawable(i9, "" + i9, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
+                int i8 = R.raw.tsv_setup_monkey_idle1;
+                rLottieDrawableArr[0] = new RLottieDrawable(i8, "" + i8, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
                 RLottieDrawable[] rLottieDrawableArr2 = this.animationDrawables;
-                int i10 = R.raw.tsv_setup_monkey_idle2;
-                rLottieDrawableArr2[1] = new RLottieDrawable(i10, "" + i10, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
+                int i9 = R.raw.tsv_setup_monkey_idle2;
+                rLottieDrawableArr2[1] = new RLottieDrawable(i9, "" + i9, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
                 RLottieDrawable[] rLottieDrawableArr3 = this.animationDrawables;
-                int i11 = R.raw.tsv_monkey_close;
-                rLottieDrawableArr3[2] = new RLottieDrawable(i11, "" + i11, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
+                int i10 = R.raw.tsv_monkey_close;
+                rLottieDrawableArr3[2] = new RLottieDrawable(i10, "" + i10, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
                 RLottieDrawable[] rLottieDrawableArr4 = this.animationDrawables;
-                int i12 = R.raw.tsv_setup_monkey_peek;
-                rLottieDrawableArr4[3] = new RLottieDrawable(i12, "" + i12, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
+                int i11 = R.raw.tsv_setup_monkey_peek;
+                rLottieDrawableArr4[3] = new RLottieDrawable(i11, "" + i11, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
                 RLottieDrawable[] rLottieDrawableArr5 = this.animationDrawables;
-                int i13 = R.raw.tsv_setup_monkey_close_and_peek_to_idle;
-                rLottieDrawableArr5[4] = new RLottieDrawable(i13, "" + i13, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
+                int i12 = R.raw.tsv_setup_monkey_close_and_peek_to_idle;
+                rLottieDrawableArr5[4] = new RLottieDrawable(i12, "" + i12, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
                 RLottieDrawable[] rLottieDrawableArr6 = this.animationDrawables;
-                int i14 = R.raw.tsv_setup_monkey_close_and_peek;
-                rLottieDrawableArr6[5] = new RLottieDrawable(i14, "" + i14, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
+                int i13 = R.raw.tsv_setup_monkey_close_and_peek;
+                rLottieDrawableArr6[5] = new RLottieDrawable(i13, "" + i13, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
                 RLottieDrawable[] rLottieDrawableArr7 = this.animationDrawables;
-                int i15 = R.raw.tsv_setup_monkey_tracking;
-                rLottieDrawableArr7[6] = new RLottieDrawable(i15, "" + i15, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
+                int i14 = R.raw.tsv_setup_monkey_tracking;
+                rLottieDrawableArr7[6] = new RLottieDrawable(i14, "" + i14, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
                 this.animationDrawables[6].setPlayInDirectionOfCustomEndFrame(true);
                 this.animationDrawables[6].setCustomEndFrame(19);
                 this.animationDrawables[2].setOnFinishCallback(this.finishCallback, 97);
@@ -976,18 +962,18 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                 break;
             case 2:
                 ActionBar actionBar3 = this.actionBar;
-                int i16 = R.string.PasswordHint;
-                actionBar3.setTitle(LocaleController.getString("PasswordHint", i16));
+                int i15 = R.string.PasswordHint;
+                actionBar3.setTitle(LocaleController.getString("PasswordHint", i15));
                 this.actionBar.getTitleTextView().setAlpha(0.0f);
                 this.bottomSkipButton.setVisibility(0);
                 this.bottomSkipButton.setText(LocaleController.getString("YourEmailSkip", R.string.YourEmailSkip));
-                this.titleTextView.setText(LocaleController.getString("PasswordHint", i16));
+                this.titleTextView.setText(LocaleController.getString("PasswordHint", i15));
                 this.descriptionText.setText(LocaleController.getString(R.string.PasswordHintDescription));
                 this.descriptionText.setVisibility(0);
                 OutlineTextContainerView outlineTextContainerView2 = this.outlineTextFirstRow;
-                int i17 = R.string.PasswordHintPlaceholder;
-                outlineTextContainerView2.setText(LocaleController.getString(i17));
-                this.editTextFirstRow.setContentDescription(LocaleController.getString(i17));
+                int i16 = R.string.PasswordHintPlaceholder;
+                outlineTextContainerView2.setText(LocaleController.getString(i16));
+                this.editTextFirstRow.setContentDescription(LocaleController.getString(i16));
                 this.editTextFirstRow.setImeOptions(268435461);
                 this.outlineTextSecondRow.setVisibility(8);
                 this.imageView.setAnimation(R.raw.tsv_setup_hint, 120, 120);
@@ -995,21 +981,21 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                 break;
             case 3:
                 ActionBar actionBar4 = this.actionBar;
-                int i18 = R.string.RecoveryEmailTitle;
-                actionBar4.setTitle(LocaleController.getString("RecoveryEmailTitle", i18));
+                int i17 = R.string.RecoveryEmailTitle;
+                actionBar4.setTitle(LocaleController.getString("RecoveryEmailTitle", i17));
                 this.actionBar.getTitleTextView().setAlpha(0.0f);
                 if (!this.emailOnly) {
                     this.bottomSkipButton.setVisibility(0);
                     this.bottomSkipButton.setAlpha(0.0f);
                     this.bottomSkipButton.setText(LocaleController.getString("YourEmailSkip", R.string.YourEmailSkip));
                 }
-                this.titleTextView.setText(LocaleController.getString("RecoveryEmailTitle", i18));
+                this.titleTextView.setText(LocaleController.getString("RecoveryEmailTitle", i17));
                 this.descriptionText.setText(LocaleController.getString("RecoveryEmailSubtitle", R.string.RecoveryEmailSubtitle));
                 this.descriptionText.setVisibility(0);
                 OutlineTextContainerView outlineTextContainerView3 = this.outlineTextFirstRow;
-                int i19 = R.string.PaymentShippingEmailPlaceholder;
-                outlineTextContainerView3.setText(LocaleController.getString(i19));
-                this.editTextFirstRow.setContentDescription(LocaleController.getString(i19));
+                int i18 = R.string.PaymentShippingEmailPlaceholder;
+                outlineTextContainerView3.setText(LocaleController.getString(i18));
+                this.editTextFirstRow.setContentDescription(LocaleController.getString(i18));
                 this.editTextFirstRow.setImeOptions(268435461);
                 this.editTextFirstRow.setInputType(33);
                 this.outlineTextSecondRow.setVisibility(8);
@@ -1018,10 +1004,10 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                 break;
             case 4:
                 ActionBar actionBar5 = this.actionBar;
-                int i20 = R.string.PasswordRecovery;
-                actionBar5.setTitle(LocaleController.getString("PasswordRecovery", i20));
+                int i19 = R.string.PasswordRecovery;
+                actionBar5.setTitle(LocaleController.getString("PasswordRecovery", i19));
                 this.actionBar.getTitleTextView().setAlpha(0.0f);
-                this.titleTextView.setText(LocaleController.getString("PasswordRecovery", i20));
+                this.titleTextView.setText(LocaleController.getString("PasswordRecovery", i19));
                 this.keyboardView.setVisibility(0);
                 this.outlineTextFirstRow.setVisibility(8);
                 String str = this.currentPassword.email_unconfirmed_pattern;
@@ -1033,9 +1019,9 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                     TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun();
                     textStyleRun.flags |= 256;
                     textStyleRun.start = indexOf;
-                    int i21 = lastIndexOf + 1;
-                    textStyleRun.end = i21;
-                    valueOf.setSpan(new TextStyleSpan(textStyleRun), indexOf, i21, 0);
+                    int i20 = lastIndexOf + 1;
+                    textStyleRun.end = i20;
+                    valueOf.setSpan(new TextStyleSpan(textStyleRun), indexOf, i20, 0);
                 }
                 this.descriptionText.setText(AndroidUtilities.formatSpannable(LocaleController.getString(R.string.RestoreEmailSent), valueOf));
                 this.descriptionText.setVisibility(0);
@@ -1046,18 +1032,16 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                 break;
             case 5:
                 ActionBar actionBar6 = this.actionBar;
-                int i22 = R.string.VerificationCode;
-                actionBar6.setTitle(LocaleController.getString("VerificationCode", i22));
+                int i21 = R.string.VerificationCode;
+                actionBar6.setTitle(LocaleController.getString("VerificationCode", i21));
                 this.actionBar.getTitleTextView().setAlpha(0.0f);
-                this.titleTextView.setText(LocaleController.getString("VerificationCode", i22));
+                this.titleTextView.setText(LocaleController.getString("VerificationCode", i21));
                 this.outlineTextFirstRow.setVisibility(8);
                 this.keyboardView.setVisibility(0);
                 TextView textView6 = this.descriptionText;
-                int i23 = R.string.EmailPasswordConfirmText2;
-                Object[] objArr = new Object[1];
+                int i22 = R.string.EmailPasswordConfirmText2;
                 String str3 = this.currentPassword.email_unconfirmed_pattern;
-                objArr[0] = str3 != null ? str3 : "";
-                textView6.setText(LocaleController.formatString("EmailPasswordConfirmText2", i23, objArr));
+                textView6.setText(LocaleController.formatString("EmailPasswordConfirmText2", i22, str3 != null ? str3 : ""));
                 this.descriptionText.setVisibility(0);
                 this.floatingButtonContainer.setVisibility(8);
                 this.bottomSkipButton.setVisibility(0);
@@ -1098,18 +1082,18 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                 break;
             case 8:
                 ActionBar actionBar7 = this.actionBar;
-                int i24 = R.string.PleaseEnterCurrentPassword;
-                actionBar7.setTitle(LocaleController.getString("PleaseEnterCurrentPassword", i24));
-                this.titleTextView.setText(LocaleController.getString("PleaseEnterCurrentPassword", i24));
+                int i23 = R.string.PleaseEnterCurrentPassword;
+                actionBar7.setTitle(LocaleController.getString("PleaseEnterCurrentPassword", i23));
+                this.titleTextView.setText(LocaleController.getString("PleaseEnterCurrentPassword", i23));
                 this.descriptionText.setText(LocaleController.getString("CheckPasswordInfo", R.string.CheckPasswordInfo));
                 this.descriptionText.setVisibility(0);
                 this.actionBar.getTitleTextView().setAlpha(0.0f);
                 this.descriptionText2.setText(LocaleController.getString("ForgotPassword", R.string.ForgotPassword));
                 this.descriptionText2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText2));
                 OutlineTextContainerView outlineTextContainerView4 = this.outlineTextFirstRow;
-                int i25 = R.string.LoginPassword;
-                outlineTextContainerView4.setText(LocaleController.getString(i25));
-                this.editTextFirstRow.setContentDescription(LocaleController.getString(i25));
+                int i24 = R.string.LoginPassword;
+                outlineTextContainerView4.setText(LocaleController.getString(i24));
+                this.editTextFirstRow.setContentDescription(LocaleController.getString(i24));
                 this.editTextFirstRow.setImeOptions(268435462);
                 this.editTextFirstRow.setInputType(129);
                 this.editTextFirstRow.setTransformationMethod(PasswordTransformationMethod.getInstance());
@@ -1130,11 +1114,11 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
         if (editTextBoldCursor4 != null) {
             editTextBoldCursor4.addTextChangedListener(new TextWatcher() {
                 @Override
-                public void beforeTextChanged(CharSequence charSequence, int i26, int i27, int i28) {
+                public void beforeTextChanged(CharSequence charSequence, int i25, int i26, int i27) {
                 }
 
                 @Override
-                public void onTextChanged(CharSequence charSequence, int i26, int i27, int i28) {
+                public void onTextChanged(CharSequence charSequence, int i25, int i26, int i27) {
                 }
 
                 @Override
@@ -1152,39 +1136,52 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                                 TwoStepVerificationSetupActivity.this.imageView.setAnimation(TwoStepVerificationSetupActivity.this.animationDrawables[5]);
                                 TwoStepVerificationSetupActivity.this.animationDrawables[5].setProgress(0.0f, false);
                                 TwoStepVerificationSetupActivity.this.imageView.playAnimation();
-                            } else if (animatedDrawable != TwoStepVerificationSetupActivity.this.animationDrawables[3]) {
+                                return;
+                            }
+                            if (animatedDrawable != TwoStepVerificationSetupActivity.this.animationDrawables[3]) {
                                 if (animatedDrawable != TwoStepVerificationSetupActivity.this.animationDrawables[2]) {
                                     TwoStepVerificationSetupActivity.this.imageView.setAnimation(TwoStepVerificationSetupActivity.this.animationDrawables[2]);
                                     TwoStepVerificationSetupActivity.this.animationDrawables[2].setCustomEndFrame(49);
                                     TwoStepVerificationSetupActivity.this.animationDrawables[2].setProgress(0.0f, false);
                                     TwoStepVerificationSetupActivity.this.imageView.playAnimation();
-                                } else if (TwoStepVerificationSetupActivity.this.animationDrawables[2].getCurrentFrame() < 49) {
-                                    TwoStepVerificationSetupActivity.this.animationDrawables[2].setCustomEndFrame(49);
+                                    return;
                                 }
+                                if (TwoStepVerificationSetupActivity.this.animationDrawables[2].getCurrentFrame() < 49) {
+                                    TwoStepVerificationSetupActivity.this.animationDrawables[2].setCustomEndFrame(49);
+                                    return;
+                                }
+                                return;
                             }
-                        } else if ((animatedDrawable != TwoStepVerificationSetupActivity.this.animationDrawables[3] || TwoStepVerificationSetupActivity.this.editTextFirstRow.getTransformationMethod() != null) && animatedDrawable != TwoStepVerificationSetupActivity.this.animationDrawables[5]) {
+                            return;
+                        }
+                        if ((animatedDrawable != TwoStepVerificationSetupActivity.this.animationDrawables[3] || TwoStepVerificationSetupActivity.this.editTextFirstRow.getTransformationMethod() != null) && animatedDrawable != TwoStepVerificationSetupActivity.this.animationDrawables[5]) {
                             TwoStepVerificationSetupActivity.this.animationDrawables[2].setCustomEndFrame(-1);
                             if (animatedDrawable != TwoStepVerificationSetupActivity.this.animationDrawables[2]) {
                                 TwoStepVerificationSetupActivity.this.imageView.setAnimation(TwoStepVerificationSetupActivity.this.animationDrawables[2]);
                                 TwoStepVerificationSetupActivity.this.animationDrawables[2].setCurrentFrame(49, false);
                             }
                             TwoStepVerificationSetupActivity.this.imageView.playAnimation();
-                        } else {
-                            TwoStepVerificationSetupActivity.this.imageView.setAnimation(TwoStepVerificationSetupActivity.this.animationDrawables[4]);
-                            TwoStepVerificationSetupActivity.this.animationDrawables[4].setProgress(0.0f, false);
-                            TwoStepVerificationSetupActivity.this.imageView.playAnimation();
+                            return;
                         }
-                    } else if (TwoStepVerificationSetupActivity.this.currentType == 1) {
+                        TwoStepVerificationSetupActivity.this.imageView.setAnimation(TwoStepVerificationSetupActivity.this.animationDrawables[4]);
+                        TwoStepVerificationSetupActivity.this.animationDrawables[4].setProgress(0.0f, false);
+                        TwoStepVerificationSetupActivity.this.imageView.playAnimation();
+                        return;
+                    }
+                    if (TwoStepVerificationSetupActivity.this.currentType == 1) {
                         try {
                             TwoStepVerificationSetupActivity.this.animationDrawables[6].setCustomEndFrame((int) ((Math.min(1.0f, TwoStepVerificationSetupActivity.this.editTextFirstRow.getLayout().getLineWidth(0) / TwoStepVerificationSetupActivity.this.editTextFirstRow.getWidth()) * 142.0f) + 18.0f));
                             TwoStepVerificationSetupActivity.this.imageView.playAnimation();
+                            return;
                         } catch (Exception e) {
                             FileLog.e(e);
+                            return;
                         }
-                    } else if (TwoStepVerificationSetupActivity.this.currentType != 8 || editable.length() <= 0) {
-                    } else {
-                        TwoStepVerificationSetupActivity.this.showDoneButton(true);
                     }
+                    if (TwoStepVerificationSetupActivity.this.currentType != 8 || editable.length() <= 0) {
+                        return;
+                    }
+                    TwoStepVerificationSetupActivity.this.showDoneButton(true);
                 }
             });
         }
@@ -1201,10 +1198,13 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
             if (i == -1) {
                 if (TwoStepVerificationSetupActivity.this.otherwiseReloginDays >= 0 && ((BaseFragment) TwoStepVerificationSetupActivity.this).parentLayout.getFragmentStack().size() == 1) {
                     TwoStepVerificationSetupActivity.this.showSetForcePasswordAlert();
+                    return;
                 } else {
-                    TwoStepVerificationSetupActivity.this.finishFragment();
+                    TwoStepVerificationSetupActivity.this.lambda$onBackPressed$308();
+                    return;
                 }
-            } else if (i == 1) {
+            }
+            if (i == 1) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(TwoStepVerificationSetupActivity.this.getParentActivity());
                 if (TwoStepVerificationSetupActivity.this.currentPassword != null && TwoStepVerificationSetupActivity.this.currentPassword.has_password) {
                     string = LocaleController.getString("CancelEmailQuestion", R.string.CancelEmailQuestion);
@@ -1255,27 +1255,30 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                     TwoStepVerificationSetupActivity.this.lambda$createView$5(tLObject, tLRPC$TL_error);
                 }
             });
-        } else if (i != 3) {
+            return;
+        }
+        if (i != 3) {
             if (i == 2) {
                 onHintDone();
+                return;
             }
-        } else {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-            builder.setMessage(LocaleController.getString("YourEmailSkipWarningText", R.string.YourEmailSkipWarningText));
-            builder.setTitle(LocaleController.getString("YourEmailSkipWarning", R.string.YourEmailSkipWarning));
-            builder.setPositiveButton(LocaleController.getString("YourEmailSkip", R.string.YourEmailSkip), new DialogInterface.OnClickListener() {
-                @Override
-                public final void onClick(DialogInterface dialogInterface, int i2) {
-                    TwoStepVerificationSetupActivity.this.lambda$createView$6(dialogInterface, i2);
-                }
-            });
-            builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
-            AlertDialog create = builder.create();
-            showDialog(create);
-            TextView textView = (TextView) create.getButton(-1);
-            if (textView != null) {
-                textView.setTextColor(Theme.getColor(Theme.key_text_RedBold));
+            return;
+        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
+        builder.setMessage(LocaleController.getString("YourEmailSkipWarningText", R.string.YourEmailSkipWarningText));
+        builder.setTitle(LocaleController.getString("YourEmailSkipWarning", R.string.YourEmailSkipWarning));
+        builder.setPositiveButton(LocaleController.getString("YourEmailSkip", R.string.YourEmailSkip), new DialogInterface.OnClickListener() {
+            @Override
+            public final void onClick(DialogInterface dialogInterface, int i2) {
+                TwoStepVerificationSetupActivity.this.lambda$createView$6(dialogInterface, i2);
             }
+        });
+        builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
+        AlertDialog create = builder.create();
+        showDialog(create);
+        TextView textView = (TextView) create.getButton(-1);
+        if (textView != null) {
+            textView.setTextColor(Theme.getColor(Theme.key_text_RedBold));
         }
     }
 
@@ -1306,8 +1309,11 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
             if (showDialog != null) {
                 showDialog.setCanceledOnTouchOutside(false);
                 showDialog.setCancelable(false);
+                return;
             }
-        } else if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
+            return;
+        }
+        if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
             int intValue = Utilities.parseInt((CharSequence) tLRPC$TL_error.text).intValue();
             if (intValue < 60) {
                 formatPluralString = LocaleController.formatPluralString("Seconds", intValue, new Object[0]);
@@ -1315,9 +1321,9 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                 formatPluralString = LocaleController.formatPluralString("Minutes", intValue / 60, new Object[0]);
             }
             showAlertWithText(LocaleController.getString("TwoStepVerificationTitle", R.string.TwoStepVerificationTitle), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, formatPluralString));
-        } else {
-            showAlertWithText(LocaleController.getString("TwoStepVerificationTitle", R.string.TwoStepVerificationTitle), tLRPC$TL_error.text);
+            return;
         }
+        showAlertWithText(LocaleController.getString("TwoStepVerificationTitle", R.string.TwoStepVerificationTitle), tLRPC$TL_error.text);
     }
 
     public void lambda$createView$3(DialogInterface dialogInterface, int i) {
@@ -1326,7 +1332,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
             this.fragmentsToClose.get(i2).removeSelfFromStack();
         }
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.twoStepPasswordChanged, new Object[0]);
-        finishFragment();
+        lambda$onBackPressed$308();
     }
 
     public void lambda$createView$6(DialogInterface dialogInterface, int i) {
@@ -1349,15 +1355,15 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
     }
 
     public boolean lambda$createView$11(TextView textView, int i, KeyEvent keyEvent) {
-        if (i == 5 || i == 6) {
-            if (this.outlineTextSecondRow.getVisibility() == 0) {
-                this.editTextSecondRow.requestFocus();
-                return true;
-            }
-            processNext();
+        if (i != 5 && i != 6) {
+            return false;
+        }
+        if (this.outlineTextSecondRow.getVisibility() == 0) {
+            this.editTextSecondRow.requestFocus();
             return true;
         }
-        return false;
+        processNext();
+        return true;
     }
 
     public void lambda$createView$12(View view, boolean z) {
@@ -1401,11 +1407,11 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
     }
 
     public boolean lambda$createView$14(TextView textView, int i, KeyEvent keyEvent) {
-        if (i == 5 || i == 6) {
-            processNext();
-            return true;
+        if (i != 5 && i != 6) {
+            return false;
         }
-        return false;
+        processNext();
+        return true;
     }
 
     public void lambda$createView$15(View view, boolean z) {
@@ -1435,7 +1441,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
 
     public void lambda$createView$17(DialogInterface dialogInterface, int i) {
         onReset();
-        finishFragment();
+        lambda$onBackPressed$308();
     }
 
     public void lambda$createView$20(View view) {
@@ -1559,7 +1565,8 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                 if (this.editTextFirstRow.length() == 0) {
                     onFieldError(this.outlineTextFirstRow, this.editTextFirstRow, false);
                     return;
-                } else if (!this.editTextFirstRow.getText().toString().equals(this.firstPassword) && this.currentType == 1) {
+                }
+                if (!this.editTextFirstRow.getText().toString().equals(this.firstPassword) && this.currentType == 1) {
                     AndroidUtilities.shakeViewSpring(this.outlineTextFirstRow, 5.0f);
                     try {
                         this.outlineTextFirstRow.performHapticFeedback(3, 2);
@@ -1572,19 +1579,18 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                         FileLog.e(e);
                         return;
                     }
-                } else {
-                    TwoStepVerificationSetupActivity twoStepVerificationSetupActivity = new TwoStepVerificationSetupActivity(this.currentAccount, this.currentType != 0 ? 2 : 1, this.currentPassword);
-                    twoStepVerificationSetupActivity.fromRegistration = this.fromRegistration;
-                    twoStepVerificationSetupActivity.firstPassword = this.editTextFirstRow.getText().toString();
-                    twoStepVerificationSetupActivity.setCurrentPasswordParams(this.currentPasswordHash, this.currentSecretId, this.currentSecret, this.emailOnly);
-                    twoStepVerificationSetupActivity.setCurrentEmailCode(this.emailCode);
-                    twoStepVerificationSetupActivity.fragmentsToClose.addAll(this.fragmentsToClose);
-                    twoStepVerificationSetupActivity.fragmentsToClose.add(this);
-                    twoStepVerificationSetupActivity.closeAfterSet = this.closeAfterSet;
-                    twoStepVerificationSetupActivity.setBlockingAlert(this.otherwiseReloginDays);
-                    presentFragment(twoStepVerificationSetupActivity);
-                    return;
                 }
+                TwoStepVerificationSetupActivity twoStepVerificationSetupActivity = new TwoStepVerificationSetupActivity(this.currentAccount, this.currentType != 0 ? 2 : 1, this.currentPassword);
+                twoStepVerificationSetupActivity.fromRegistration = this.fromRegistration;
+                twoStepVerificationSetupActivity.firstPassword = this.editTextFirstRow.getText().toString();
+                twoStepVerificationSetupActivity.setCurrentPasswordParams(this.currentPasswordHash, this.currentSecretId, this.currentSecret, this.emailOnly);
+                twoStepVerificationSetupActivity.setCurrentEmailCode(this.emailCode);
+                twoStepVerificationSetupActivity.fragmentsToClose.addAll(this.fragmentsToClose);
+                twoStepVerificationSetupActivity.fragmentsToClose.add(this);
+                twoStepVerificationSetupActivity.closeAfterSet = this.closeAfterSet;
+                twoStepVerificationSetupActivity.setBlockingAlert(this.otherwiseReloginDays);
+                presentFragment(twoStepVerificationSetupActivity);
+                return;
             case 2:
                 String obj = this.editTextFirstRow.getText().toString();
                 this.hint = obj;
@@ -1650,9 +1656,10 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                 return;
             case 7:
                 if (this.closeAfterSet) {
-                    finishFragment();
+                    lambda$onBackPressed$308();
                     return;
-                } else if (this.fromRegistration) {
+                }
+                if (this.fromRegistration) {
                     Bundle bundle = new Bundle();
                     bundle.putBoolean("afterSignup", true);
                     presentFragment(new DialogsActivity(bundle), true);
@@ -1685,7 +1692,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                 });
                 return;
             case 9:
-                finishFragment();
+                lambda$onBackPressed$308();
                 return;
             default:
                 return;
@@ -1766,7 +1773,9 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
             this.descriptionText.setTextColor(Theme.getColor(Theme.key_text_RedRegular));
             onFieldError(this.outlineTextFirstRow, this.editTextFirstRow, true);
             showDoneButton(false);
-        } else if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
+            return;
+        }
+        if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
             int intValue = Utilities.parseInt((CharSequence) tLRPC$TL_error.text).intValue();
             if (intValue < 60) {
                 formatPluralString = LocaleController.formatPluralString("Seconds", intValue, new Object[0]);
@@ -1774,9 +1783,9 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                 formatPluralString = LocaleController.formatPluralString("Minutes", intValue / 60, new Object[0]);
             }
             showAlertWithText(LocaleController.getString("AppName", R.string.AppName), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, formatPluralString));
-        } else {
-            showAlertWithText(LocaleController.getString("AppName", R.string.AppName), tLRPC$TL_error.text);
+            return;
         }
+        showAlertWithText(LocaleController.getString("AppName", R.string.AppName), tLRPC$TL_error.text);
     }
 
     public void lambda$processNext$25(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
@@ -1816,9 +1825,13 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                     TwoStepVerificationSetupActivity.this.lambda$processNext$29(str);
                 }
             });
-        } else if (tLRPC$TL_error == null || tLRPC$TL_error.text.startsWith("CODE_INVALID")) {
+            return;
+        }
+        if (tLRPC$TL_error == null || tLRPC$TL_error.text.startsWith("CODE_INVALID")) {
             onCodeFieldError(true);
-        } else if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
+            return;
+        }
+        if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
             int intValue = Utilities.parseInt((CharSequence) tLRPC$TL_error.text).intValue();
             if (intValue < 60) {
                 formatPluralString = LocaleController.formatPluralString("Seconds", intValue, new Object[0]);
@@ -1826,9 +1839,9 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                 formatPluralString = LocaleController.formatPluralString("Minutes", intValue / 60, new Object[0]);
             }
             showAlertWithText(LocaleController.getString("TwoStepVerificationTitle", R.string.TwoStepVerificationTitle), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, formatPluralString));
-        } else {
-            showAlertWithText(LocaleController.getString("TwoStepVerificationTitle", R.string.TwoStepVerificationTitle), tLRPC$TL_error.text);
+            return;
         }
+        showAlertWithText(LocaleController.getString("TwoStepVerificationTitle", R.string.TwoStepVerificationTitle), tLRPC$TL_error.text);
     }
 
     public void lambda$processNext$29(String str) {
@@ -1863,17 +1876,21 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                     TwoStepVerificationSetupActivity.this.lambda$processNext$33();
                 }
             });
-        } else if (tLRPC$TL_error.text.startsWith("CODE_INVALID")) {
-            onCodeFieldError(true);
-        } else if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
-            int intValue = Utilities.parseInt((CharSequence) tLRPC$TL_error.text).intValue();
-            if (intValue < 60) {
-                formatPluralString = LocaleController.formatPluralString("Seconds", intValue, new Object[0]);
-            } else {
-                formatPluralString = LocaleController.formatPluralString("Minutes", intValue / 60, new Object[0]);
-            }
-            showAlertWithText(LocaleController.getString("AppName", R.string.AppName), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, formatPluralString));
         } else {
+            if (tLRPC$TL_error.text.startsWith("CODE_INVALID")) {
+                onCodeFieldError(true);
+                return;
+            }
+            if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
+                int intValue = Utilities.parseInt((CharSequence) tLRPC$TL_error.text).intValue();
+                if (intValue < 60) {
+                    formatPluralString = LocaleController.formatPluralString("Seconds", intValue, new Object[0]);
+                } else {
+                    formatPluralString = LocaleController.formatPluralString("Minutes", intValue / 60, new Object[0]);
+                }
+                showAlertWithText(LocaleController.getString("AppName", R.string.AppName), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, formatPluralString));
+                return;
+            }
             showAlertWithText(LocaleController.getString("AppName", R.string.AppName), tLRPC$TL_error.text);
         }
     }
@@ -1918,8 +1935,9 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
         presentFragment(twoStepVerificationSetupActivity, true);
         NotificationCenter notificationCenter = NotificationCenter.getInstance(this.currentAccount);
         int i2 = NotificationCenter.twoStepPasswordChanged;
+        byte[] bArr = this.currentPasswordHash;
         TLRPC$account_Password tLRPC$account_Password2 = this.currentPassword;
-        notificationCenter.lambda$postNotificationNameOnUIThread$1(i2, this.currentPasswordHash, tLRPC$account_Password2.new_algo, tLRPC$account_Password2.new_secure_algo, tLRPC$account_Password2.secure_random, this.email, this.hint, null, this.firstPassword);
+        notificationCenter.lambda$postNotificationNameOnUIThread$1(i2, bArr, tLRPC$account_Password2.new_algo, tLRPC$account_Password2.new_secure_algo, tLRPC$account_Password2.secure_random, this.email, this.hint, null, this.firstPassword);
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetOrRemoveTwoStepPassword, this.currentPassword);
     }
 
@@ -1930,8 +1948,9 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
         }
         NotificationCenter notificationCenter = NotificationCenter.getInstance(this.currentAccount);
         int i3 = NotificationCenter.twoStepPasswordChanged;
+        byte[] bArr = this.currentPasswordHash;
         TLRPC$account_Password tLRPC$account_Password = this.currentPassword;
-        notificationCenter.lambda$postNotificationNameOnUIThread$1(i3, this.currentPasswordHash, tLRPC$account_Password.new_algo, tLRPC$account_Password.new_secure_algo, tLRPC$account_Password.secure_random, this.email, this.hint, null, this.firstPassword);
+        notificationCenter.lambda$postNotificationNameOnUIThread$1(i3, bArr, tLRPC$account_Password.new_algo, tLRPC$account_Password.new_secure_algo, tLRPC$account_Password.secure_random, this.email, this.hint, null, this.firstPassword);
         TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
         TLRPC$account_Password tLRPC$account_Password2 = this.currentPassword;
         tLRPC$account_Password2.has_password = true;
@@ -1944,7 +1963,6 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
     }
 
     private void onCodeFieldError(boolean z) {
-        CodeNumberField[] codeNumberFieldArr;
         for (CodeNumberField codeNumberField : this.codeFieldContainer.codeField) {
             if (z) {
                 codeNumberField.setText("");
@@ -2014,10 +2032,28 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
         this.buttonAnimation = new AnimatorSet();
         if (z) {
             this.buttonTextView.setVisibility(0);
-            this.buttonAnimation.playTogether(ObjectAnimator.ofFloat(this.descriptionText2, View.SCALE_X, 0.9f), ObjectAnimator.ofFloat(this.descriptionText2, View.SCALE_Y, 0.9f), ObjectAnimator.ofFloat(this.descriptionText2, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.buttonTextView, View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(this.buttonTextView, View.SCALE_Y, 1.0f), ObjectAnimator.ofFloat(this.buttonTextView, View.ALPHA, 1.0f));
+            AnimatorSet animatorSet2 = this.buttonAnimation;
+            TextView textView = this.descriptionText2;
+            Property property = View.SCALE_X;
+            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property, 0.9f);
+            TextView textView2 = this.descriptionText2;
+            Property property2 = View.SCALE_Y;
+            ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(textView2, (Property<TextView, Float>) property2, 0.9f);
+            TextView textView3 = this.descriptionText2;
+            Property property3 = View.ALPHA;
+            animatorSet2.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(textView3, (Property<TextView, Float>) property3, 0.0f), ObjectAnimator.ofFloat(this.buttonTextView, (Property<TextView, Float>) property, 1.0f), ObjectAnimator.ofFloat(this.buttonTextView, (Property<TextView, Float>) property2, 1.0f), ObjectAnimator.ofFloat(this.buttonTextView, (Property<TextView, Float>) property3, 1.0f));
         } else {
             this.descriptionText2.setVisibility(0);
-            this.buttonAnimation.playTogether(ObjectAnimator.ofFloat(this.buttonTextView, View.SCALE_X, 0.9f), ObjectAnimator.ofFloat(this.buttonTextView, View.SCALE_Y, 0.9f), ObjectAnimator.ofFloat(this.buttonTextView, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.descriptionText2, View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(this.descriptionText2, View.SCALE_Y, 1.0f), ObjectAnimator.ofFloat(this.descriptionText2, View.ALPHA, 1.0f));
+            AnimatorSet animatorSet3 = this.buttonAnimation;
+            TextView textView4 = this.buttonTextView;
+            Property property4 = View.SCALE_X;
+            ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(textView4, (Property<TextView, Float>) property4, 0.9f);
+            TextView textView5 = this.buttonTextView;
+            Property property5 = View.SCALE_Y;
+            ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(textView5, (Property<TextView, Float>) property5, 0.9f);
+            TextView textView6 = this.buttonTextView;
+            Property property6 = View.ALPHA;
+            animatorSet3.playTogether(ofFloat3, ofFloat4, ObjectAnimator.ofFloat(textView6, (Property<TextView, Float>) property6, 0.0f), ObjectAnimator.ofFloat(this.descriptionText2, (Property<TextView, Float>) property4, 1.0f), ObjectAnimator.ofFloat(this.descriptionText2, (Property<TextView, Float>) property5, 1.0f), ObjectAnimator.ofFloat(this.descriptionText2, (Property<TextView, Float>) property6, 1.0f));
         }
         this.buttonAnimation.addListener(new AnimatorListenerAdapter() {
             @Override
@@ -2141,7 +2177,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                     }
                     if (!this.waitingForEmail && tLRPC$PasswordKdfAlgo != null) {
                         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.twoStepPasswordChanged, null, tLRPC$PasswordKdfAlgo, tLRPC$SecurePasswordKdfAlgo, bArr, str, str2, null, null);
-                        finishFragment();
+                        lambda$onBackPressed$308();
                     }
                 }
             }
@@ -2159,9 +2195,17 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
         }
         AnimatorSet animatorSet = new AnimatorSet();
         if (this.floatingButtonContainer.getVisibility() == 0) {
-            animatorSet.playTogether(ObjectAnimator.ofFloat(this.floatingProgressView, View.ALPHA, 1.0f), ObjectAnimator.ofFloat(this.floatingProgressView, View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(this.floatingProgressView, View.SCALE_Y, 1.0f), ObjectAnimator.ofFloat(this.floatingButtonIcon, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.floatingButtonIcon, View.SCALE_X, 0.1f), ObjectAnimator.ofFloat(this.floatingButtonIcon, View.SCALE_Y, 0.1f));
+            RadialProgressView radialProgressView = this.floatingProgressView;
+            Property property = View.ALPHA;
+            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(radialProgressView, (Property<RadialProgressView, Float>) property, 1.0f);
+            RadialProgressView radialProgressView2 = this.floatingProgressView;
+            Property property2 = View.SCALE_X;
+            ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(radialProgressView2, (Property<RadialProgressView, Float>) property2, 1.0f);
+            RadialProgressView radialProgressView3 = this.floatingProgressView;
+            Property property3 = View.SCALE_Y;
+            animatorSet.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(radialProgressView3, (Property<RadialProgressView, Float>) property3, 1.0f), ObjectAnimator.ofFloat(this.floatingButtonIcon, (Property<TransformableLoginButtonView, Float>) property, 0.0f), ObjectAnimator.ofFloat(this.floatingButtonIcon, (Property<TransformableLoginButtonView, Float>) property2, 0.1f), ObjectAnimator.ofFloat(this.floatingButtonIcon, (Property<TransformableLoginButtonView, Float>) property3, 0.1f));
         } else {
-            animatorSet.playTogether(ObjectAnimator.ofFloat(this.radialProgressView, View.ALPHA, 1.0f), ObjectAnimator.ofFloat(this.radialProgressView, View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(this.radialProgressView, View.SCALE_Y, 1.0f));
+            animatorSet.playTogether(ObjectAnimator.ofFloat(this.radialProgressView, (Property<RadialProgressView, Float>) View.ALPHA, 1.0f), ObjectAnimator.ofFloat(this.radialProgressView, (Property<RadialProgressView, Float>) View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(this.radialProgressView, (Property<RadialProgressView, Float>) View.SCALE_Y, 1.0f));
         }
         animatorSet.setInterpolator(CubicBezierInterpolator.DEFAULT);
         animatorSet.start();
@@ -2170,9 +2214,17 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
     protected void needHideProgress() {
         AnimatorSet animatorSet = new AnimatorSet();
         if (this.floatingButtonContainer.getVisibility() == 0) {
-            animatorSet.playTogether(ObjectAnimator.ofFloat(this.floatingProgressView, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.floatingProgressView, View.SCALE_X, 0.1f), ObjectAnimator.ofFloat(this.floatingProgressView, View.SCALE_Y, 0.1f), ObjectAnimator.ofFloat(this.floatingButtonIcon, View.ALPHA, 1.0f), ObjectAnimator.ofFloat(this.floatingButtonIcon, View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(this.floatingButtonIcon, View.SCALE_Y, 1.0f));
+            RadialProgressView radialProgressView = this.floatingProgressView;
+            Property property = View.ALPHA;
+            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(radialProgressView, (Property<RadialProgressView, Float>) property, 0.0f);
+            RadialProgressView radialProgressView2 = this.floatingProgressView;
+            Property property2 = View.SCALE_X;
+            ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(radialProgressView2, (Property<RadialProgressView, Float>) property2, 0.1f);
+            RadialProgressView radialProgressView3 = this.floatingProgressView;
+            Property property3 = View.SCALE_Y;
+            animatorSet.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(radialProgressView3, (Property<RadialProgressView, Float>) property3, 0.1f), ObjectAnimator.ofFloat(this.floatingButtonIcon, (Property<TransformableLoginButtonView, Float>) property, 1.0f), ObjectAnimator.ofFloat(this.floatingButtonIcon, (Property<TransformableLoginButtonView, Float>) property2, 1.0f), ObjectAnimator.ofFloat(this.floatingButtonIcon, (Property<TransformableLoginButtonView, Float>) property3, 1.0f));
         } else {
-            animatorSet.playTogether(ObjectAnimator.ofFloat(this.radialProgressView, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.radialProgressView, View.SCALE_X, 0.1f), ObjectAnimator.ofFloat(this.radialProgressView, View.SCALE_Y, 0.1f));
+            animatorSet.playTogether(ObjectAnimator.ofFloat(this.radialProgressView, (Property<RadialProgressView, Float>) View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.radialProgressView, (Property<RadialProgressView, Float>) View.SCALE_X, 0.1f), ObjectAnimator.ofFloat(this.radialProgressView, (Property<RadialProgressView, Float>) View.SCALE_Y, 0.1f));
         }
         animatorSet.setInterpolator(CubicBezierInterpolator.DEFAULT);
         animatorSet.start();
@@ -2406,9 +2458,12 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                     }
                     NotificationCenter notificationCenter = NotificationCenter.getInstance(this.currentAccount);
                     int i2 = NotificationCenter.twoStepPasswordChanged;
+                    TLRPC$PasswordKdfAlgo tLRPC$PasswordKdfAlgo = tLRPC$TL_account_passwordInputSettings.new_algo;
                     TLRPC$account_Password tLRPC$account_Password2 = this.currentPassword;
+                    TLRPC$SecurePasswordKdfAlgo tLRPC$SecurePasswordKdfAlgo = tLRPC$account_Password2.new_secure_algo;
+                    byte[] bArr2 = tLRPC$account_Password2.secure_random;
                     String str2 = this.email;
-                    notificationCenter.lambda$postNotificationNameOnUIThread$1(i2, bArr, tLRPC$TL_account_passwordInputSettings.new_algo, tLRPC$account_Password2.new_secure_algo, tLRPC$account_Password2.secure_random, str2, this.hint, str2, this.firstPassword);
+                    notificationCenter.lambda$postNotificationNameOnUIThread$1(i2, bArr, tLRPC$PasswordKdfAlgo, tLRPC$SecurePasswordKdfAlgo, bArr2, str2, this.hint, str2, this.firstPassword);
                     TLRPC$account_Password tLRPC$account_Password3 = this.currentPassword;
                     tLRPC$account_Password3.email_unconfirmed_pattern = this.email;
                     TwoStepVerificationSetupActivity twoStepVerificationSetupActivity = new TwoStepVerificationSetupActivity(5, tLRPC$account_Password3);
@@ -2418,10 +2473,12 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                     twoStepVerificationSetupActivity.setBlockingAlert(this.otherwiseReloginDays);
                     presentFragment(twoStepVerificationSetupActivity, true);
                     return;
-                } else if ("EMAIL_INVALID".equals(tLRPC$TL_error.text)) {
+                }
+                if ("EMAIL_INVALID".equals(tLRPC$TL_error.text)) {
                     showAlertWithText(LocaleController.getString("AppName", R.string.AppName), LocaleController.getString("PasswordEmailInvalid", R.string.PasswordEmailInvalid));
                     return;
-                } else if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
+                }
+                if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
                     int intValue = Utilities.parseInt((CharSequence) tLRPC$TL_error.text).intValue();
                     if (intValue < 60) {
                         formatPluralString = LocaleController.formatPluralString("Seconds", intValue, new Object[0]);
@@ -2430,10 +2487,9 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                     }
                     showAlertWithText(LocaleController.getString("AppName", R.string.AppName), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, formatPluralString));
                     return;
-                } else {
-                    showAlertWithText(LocaleController.getString("AppName", R.string.AppName), tLRPC$TL_error.text);
-                    return;
                 }
+                showAlertWithText(LocaleController.getString("AppName", R.string.AppName), tLRPC$TL_error.text);
+                return;
             }
             return;
         }
@@ -2445,50 +2501,53 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
             }
             NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didRemoveTwoStepPassword, new Object[0]);
             NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetOrRemoveTwoStepPassword, new Object[0]);
-            finishFragment();
-        } else if (getParentActivity() != null) {
-            if (this.currentPassword.has_password) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-                builder.setPositiveButton(LocaleController.getString("OK", R.string.OK), new DialogInterface.OnClickListener() {
-                    @Override
-                    public final void onClick(DialogInterface dialogInterface, int i4) {
-                        TwoStepVerificationSetupActivity.this.lambda$setNewPassword$47(bArr, dialogInterface, i4);
-                    }
-                });
-                if (str == null && (tLRPC$account_Password = this.currentPassword) != null && tLRPC$account_Password.has_password) {
-                    builder.setMessage(LocaleController.getString("YourEmailSuccessText", R.string.YourEmailSuccessText));
-                } else {
-                    builder.setMessage(LocaleController.getString("YourPasswordChangedSuccessText", R.string.YourPasswordChangedSuccessText));
+            lambda$onBackPressed$308();
+            return;
+        }
+        if (getParentActivity() == null) {
+            return;
+        }
+        if (this.currentPassword.has_password) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
+            builder.setPositiveButton(LocaleController.getString("OK", R.string.OK), new DialogInterface.OnClickListener() {
+                @Override
+                public final void onClick(DialogInterface dialogInterface, int i4) {
+                    TwoStepVerificationSetupActivity.this.lambda$setNewPassword$47(bArr, dialogInterface, i4);
                 }
-                builder.setTitle(LocaleController.getString("YourPasswordSuccess", R.string.YourPasswordSuccess));
-                Dialog showDialog = showDialog(builder.create());
-                if (showDialog != null) {
-                    showDialog.setCanceledOnTouchOutside(false);
-                    showDialog.setCancelable(false);
-                    return;
-                }
+            });
+            if (str == null && (tLRPC$account_Password = this.currentPassword) != null && tLRPC$account_Password.has_password) {
+                builder.setMessage(LocaleController.getString("YourEmailSuccessText", R.string.YourEmailSuccessText));
+            } else {
+                builder.setMessage(LocaleController.getString("YourPasswordChangedSuccessText", R.string.YourPasswordChangedSuccessText));
+            }
+            builder.setTitle(LocaleController.getString("YourPasswordSuccess", R.string.YourPasswordSuccess));
+            Dialog showDialog = showDialog(builder.create());
+            if (showDialog != null) {
+                showDialog.setCanceledOnTouchOutside(false);
+                showDialog.setCancelable(false);
                 return;
             }
-            int size3 = this.fragmentsToClose.size();
-            for (int i4 = 0; i4 < size3; i4++) {
-                this.fragmentsToClose.get(i4).removeSelfFromStack();
-            }
-            TLRPC$account_Password tLRPC$account_Password4 = this.currentPassword;
-            tLRPC$account_Password4.has_password = true;
-            if (!tLRPC$account_Password4.has_recovery) {
-                tLRPC$account_Password4.has_recovery = !TextUtils.isEmpty(tLRPC$account_Password4.email_unconfirmed_pattern);
-            }
-            if (this.closeAfterSet) {
-                NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.twoStepPasswordChanged, new Object[0]);
-            }
-            TwoStepVerificationSetupActivity twoStepVerificationSetupActivity2 = new TwoStepVerificationSetupActivity(7, this.currentPassword);
-            twoStepVerificationSetupActivity2.fromRegistration = this.fromRegistration;
-            twoStepVerificationSetupActivity2.setCurrentPasswordParams(bArr != null ? bArr : this.currentPasswordHash, this.currentSecretId, this.currentSecret, this.emailOnly);
-            twoStepVerificationSetupActivity2.closeAfterSet = this.closeAfterSet;
-            twoStepVerificationSetupActivity2.setBlockingAlert(this.otherwiseReloginDays);
-            presentFragment(twoStepVerificationSetupActivity2, true);
-            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetOrRemoveTwoStepPassword, this.currentPassword);
+            return;
         }
+        int size3 = this.fragmentsToClose.size();
+        for (int i4 = 0; i4 < size3; i4++) {
+            this.fragmentsToClose.get(i4).removeSelfFromStack();
+        }
+        TLRPC$account_Password tLRPC$account_Password4 = this.currentPassword;
+        tLRPC$account_Password4.has_password = true;
+        if (!tLRPC$account_Password4.has_recovery) {
+            tLRPC$account_Password4.has_recovery = !TextUtils.isEmpty(tLRPC$account_Password4.email_unconfirmed_pattern);
+        }
+        if (this.closeAfterSet) {
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.twoStepPasswordChanged, new Object[0]);
+        }
+        TwoStepVerificationSetupActivity twoStepVerificationSetupActivity2 = new TwoStepVerificationSetupActivity(7, this.currentPassword);
+        twoStepVerificationSetupActivity2.fromRegistration = this.fromRegistration;
+        twoStepVerificationSetupActivity2.setCurrentPasswordParams(bArr != null ? bArr : this.currentPasswordHash, this.currentSecretId, this.currentSecret, this.emailOnly);
+        twoStepVerificationSetupActivity2.closeAfterSet = this.closeAfterSet;
+        twoStepVerificationSetupActivity2.setBlockingAlert(this.otherwiseReloginDays);
+        presentFragment(twoStepVerificationSetupActivity2, true);
+        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetOrRemoveTwoStepPassword, this.currentPassword);
     }
 
     public void lambda$setNewPassword$46(final boolean z, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
@@ -2534,10 +2593,10 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
     protected TLRPC$TL_inputCheckPasswordSRP getNewSrpPassword() {
         TLRPC$account_Password tLRPC$account_Password = this.currentPassword;
         TLRPC$PasswordKdfAlgo tLRPC$PasswordKdfAlgo = tLRPC$account_Password.current_algo;
-        if (tLRPC$PasswordKdfAlgo instanceof TLRPC$TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow) {
-            return SRPHelper.startCheck(this.currentPasswordHash, tLRPC$account_Password.srp_id, tLRPC$account_Password.srp_B, (TLRPC$TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow) tLRPC$PasswordKdfAlgo);
+        if (!(tLRPC$PasswordKdfAlgo instanceof TLRPC$TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow)) {
+            return null;
         }
-        return null;
+        return SRPHelper.startCheck(this.currentPasswordHash, tLRPC$account_Password.srp_id, tLRPC$account_Password.srp_B, (TLRPC$TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow) tLRPC$PasswordKdfAlgo);
     }
 
     private void onFieldError(View view, TextView textView, boolean z) {
@@ -2585,7 +2644,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
             showSetForcePasswordAlert();
             return false;
         }
-        finishFragment();
+        lambda$onBackPressed$308();
         return true;
     }
 
@@ -2614,7 +2673,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
     }
 
     public void lambda$showSetForcePasswordAlert$51(DialogInterface dialogInterface, int i) {
-        finishFragment();
+        lambda$onBackPressed$308();
     }
 
     public void setBlockingAlert(int i) {
@@ -2622,14 +2681,14 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
     }
 
     @Override
-    public void finishFragment() {
+    public void lambda$onBackPressed$308() {
         if (this.otherwiseReloginDays >= 0 && this.parentLayout.getFragmentStack().size() == 1) {
             Bundle bundle = new Bundle();
             bundle.putBoolean("afterSignup", true);
             presentFragment(new DialogsActivity(bundle), true);
             return;
         }
-        super.finishFragment();
+        super.lambda$onBackPressed$308();
     }
 
     @Override

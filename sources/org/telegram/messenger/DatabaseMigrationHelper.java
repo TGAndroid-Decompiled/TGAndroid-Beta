@@ -11,6 +11,7 @@ import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$TL_chatFull;
 import org.telegram.tgnet.TLRPC$TL_peerNotifySettingsEmpty_layer77;
 import org.telegram.tgnet.TLRPC$TL_photoEmpty;
+
 public class DatabaseMigrationHelper {
     public static int migrate(MessagesStorage messagesStorage, int i) throws Exception {
         SQLiteDatabase sQLiteDatabase;
@@ -808,9 +809,8 @@ public class DatabaseMigrationHelper {
                                     nativeByteBuffer = byteBufferValue7;
                                 }
                                 byteBufferValue6.reuse();
-                                NativeByteBuffer nativeByteBuffer5 = new NativeByteBuffer(TLdeserialize2.getObjectSize());
-                                TLdeserialize2.serializeToStream(nativeByteBuffer5);
-                                byteBufferValue6 = nativeByteBuffer5;
+                                byteBufferValue6 = new NativeByteBuffer(TLdeserialize2.getObjectSize());
+                                TLdeserialize2.serializeToStream(byteBufferValue6);
                             } else {
                                 i2 = intValue28;
                                 nativeByteBuffer = byteBufferValue7;
@@ -953,7 +953,7 @@ public class DatabaseMigrationHelper {
                     long makeFolderDialogId = DialogObject.makeFolderDialogId(intValue31);
                     executeFast16.requery();
                     executeFast16.bindLong(1, makeFolderDialogId);
-                    executeFast16.bindLong(2, 8589934592L | intValue31);
+                    executeFast16.bindLong(2, intValue31 | 8589934592L);
                     executeFast16.step();
                 }
                 executeFast16.dispose();
@@ -1384,15 +1384,15 @@ public class DatabaseMigrationHelper {
             sQLiteDatabase.executeFast("PRAGMA user_version = 154").stepThis().dispose();
             i7 = 154;
         }
-        if (i7 == 154) {
-            sQLiteDatabase.executeFast("CREATE TABLE fact_checks(hash INTEGER PRIMARY KEY, data BLOB, expires INTEGER);").stepThis().dispose();
-            sQLiteDatabase.executeFast("PRAGMA user_version = 155").stepThis().dispose();
-            return 155;
+        if (i7 != 154) {
+            return i7;
         }
-        return i7;
+        sQLiteDatabase.executeFast("CREATE TABLE fact_checks(hash INTEGER PRIMARY KEY, data BLOB, expires INTEGER);").stepThis().dispose();
+        sQLiteDatabase.executeFast("PRAGMA user_version = 155").stepThis().dispose();
+        return 155;
     }
 
-    public static boolean recoverDatabase(java.io.File r22, java.io.File r23, java.io.File r24, int r25) {
+    public static boolean recoverDatabase(java.io.File r21, java.io.File r22, java.io.File r23, int r24) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.DatabaseMigrationHelper.recoverDatabase(java.io.File, java.io.File, java.io.File, int):boolean");
     }
 }

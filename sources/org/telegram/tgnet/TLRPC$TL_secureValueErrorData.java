@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_secureValueErrorData extends TLRPC$SecureValueError {
     public byte[] data_hash;
     public String field;

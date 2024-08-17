@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public abstract class TLRPC$PhoneConnection extends TLObject {
     public int flags;
     public long id;

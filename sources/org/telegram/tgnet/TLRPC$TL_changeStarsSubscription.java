@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_changeStarsSubscription extends TLObject {
     public Boolean canceled;
     public int flags;

@@ -3,6 +3,7 @@ package kotlin.jvm;
 import kotlin.jvm.internal.ClassBasedDeclarationContainer;
 import kotlin.jvm.internal.Intrinsics;
 import kotlin.reflect.KClass;
+
 public final class JvmClassMappingKt {
     public static final <T> Class<T> getJavaClass(KClass<T> kClass) {
         Intrinsics.checkNotNullParameter(kClass, "<this>");

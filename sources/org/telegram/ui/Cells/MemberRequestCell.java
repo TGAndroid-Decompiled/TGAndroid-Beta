@@ -17,6 +17,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
+
 public class MemberRequestCell extends FrameLayout {
     private final AvatarDrawable avatarDrawable;
     private final BackupImageView avatarImageView;
@@ -33,8 +34,8 @@ public class MemberRequestCell extends FrameLayout {
 
     public MemberRequestCell(Context context, final OnClickListener onClickListener, boolean z) {
         super(context);
-        String str;
         int i;
+        String str;
         this.avatarDrawable = new AvatarDrawable();
         BackupImageView backupImageView = new BackupImageView(getContext());
         this.avatarImageView = backupImageView;
@@ -64,11 +65,11 @@ public class MemberRequestCell extends FrameLayout {
         textView.setMaxLines(1);
         textView.setPadding(dp, 0, dp, 0);
         if (z) {
-            str = "AddToChannel";
             i = R.string.AddToChannel;
+            str = "AddToChannel";
         } else {
-            str = "AddToGroup";
             i = R.string.AddToGroup;
+            str = "AddToGroup";
         }
         textView.setText(LocaleController.getString(str, i));
         textView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));

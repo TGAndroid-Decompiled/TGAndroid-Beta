@@ -68,6 +68,7 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.DialogsActivity;
 import org.telegram.ui.Stories.StoriesController;
 import org.telegram.ui.Stories.StoriesListPlaceProvider;
+
 public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements DialogCell.DialogCellDelegate {
     private static final boolean ALLOW_UPDATE_IN_BACKGROUND = BuildVars.DEBUG_PRIVATE_VERSION;
     private ArchiveHintCell archiveHintCell;
@@ -125,13 +126,12 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
     }
 
     public DialogsAdapter(DialogsActivity dialogsActivity, Context context, int i, int i2, boolean z, ArrayList<Long> arrayList, int i3, TLRPC$RequestPeerType tLRPC$RequestPeerType) {
-        boolean z2 = true;
         this.mContext = context;
         this.parentFragment = dialogsActivity;
         this.dialogsType = i;
         this.folderId = i2;
         this.isOnlySelect = z;
-        this.hasHints = (i2 == 0 && i == 0 && !z) ? false : false;
+        this.hasHints = i2 == 0 && i == 0 && !z;
         this.selectedDialogs = arrayList;
         this.currentAccount = i3;
         if (i2 == 0) {
@@ -235,7 +235,6 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
 
         public ItemInternal(int i, TLRPC$Dialog tLRPC$Dialog) {
             super(i, true);
-            boolean z = true;
             this.dialog = tLRPC$Dialog;
             if (tLRPC$Dialog != null) {
                 int i2 = DialogsAdapter.this.dialogsStableIds.get(tLRPC$Dialog.id, -1);
@@ -257,7 +256,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
             if (tLRPC$Dialog != null) {
                 if (DialogsAdapter.this.dialogsType == 7 || DialogsAdapter.this.dialogsType == 8) {
                     MessagesController.DialogFilter dialogFilter = MessagesController.getInstance(DialogsAdapter.this.currentAccount).selectedDialogFilter[DialogsAdapter.this.dialogsType == 8 ? (char) 1 : (char) 0];
-                    this.pinned = (dialogFilter == null || dialogFilter.pinnedDialogs.indexOfKey(tLRPC$Dialog.id) < 0) ? false : false;
+                    this.pinned = dialogFilter != null && dialogFilter.pinnedDialogs.indexOfKey(tLRPC$Dialog.id) >= 0;
                 } else {
                     this.pinned = tLRPC$Dialog.pinned;
                 }
@@ -279,9 +278,11 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
             this.emptyType = i;
             if (i == 10) {
                 this.stableId = 1;
-            } else if (this.viewType == 19) {
-                this.stableId = 5;
             } else {
+                if (this.viewType == 19) {
+                    this.stableId = 5;
+                    return;
+                }
                 int i2 = DialogsAdapter.this.stableIdPointer;
                 DialogsAdapter.this.stableIdPointer = i2 + 1;
                 this.stableId = i2;
@@ -328,18 +329,20 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
             if (i == 0) {
                 TLRPC$Dialog tLRPC$Dialog3 = this.dialog;
                 return tLRPC$Dialog3 != null && (tLRPC$Dialog2 = itemInternal.dialog) != null && tLRPC$Dialog3.id == tLRPC$Dialog2.id && this.isFolder == itemInternal.isFolder && this.isForumCell == itemInternal.isForumCell && this.pinned == itemInternal.pinned;
-            } else if (i == 14) {
+            }
+            if (i == 14) {
                 TLRPC$Dialog tLRPC$Dialog4 = this.dialog;
                 return tLRPC$Dialog4 != null && (tLRPC$Dialog = itemInternal.dialog) != null && tLRPC$Dialog4.id == tLRPC$Dialog.id && tLRPC$Dialog4.isFolder == tLRPC$Dialog.isFolder;
-            } else if (i == 4) {
+            }
+            if (i == 4) {
                 TLRPC$RecentMeUrl tLRPC$RecentMeUrl = this.recentMeUrl;
                 return (tLRPC$RecentMeUrl == null || itemInternal.recentMeUrl == null || (str = tLRPC$RecentMeUrl.url) == null || !str.equals(str)) ? false : true;
-            } else if (i != 6) {
-                return i == 5 ? this.emptyType == itemInternal.emptyType : i != 10;
-            } else {
-                TLRPC$TL_contact tLRPC$TL_contact2 = this.contact;
-                return (tLRPC$TL_contact2 == null || (tLRPC$TL_contact = itemInternal.contact) == null || tLRPC$TL_contact2.user_id != tLRPC$TL_contact.user_id) ? false : true;
             }
+            if (i != 6) {
+                return i == 5 ? this.emptyType == itemInternal.emptyType : i != 10;
+            }
+            TLRPC$TL_contact tLRPC$TL_contact2 = this.contact;
+            return (tLRPC$TL_contact2 == null || (tLRPC$TL_contact = itemInternal.contact) == null || tLRPC$TL_contact2.user_id != tLRPC$TL_contact.user_id) ? false : true;
         }
 
         public int hashCode() {
@@ -522,28 +525,28 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View view;
+        ViewGroup viewGroup2;
         ?? flickerLoadingView;
-        View view2;
+        ViewGroup viewGroup3;
         switch (i) {
             case 0:
                 int i2 = this.dialogsType;
                 if (i2 == 2 || i2 == 15) {
-                    view = new ProfileSearchCell(this.mContext);
+                    viewGroup2 = new ProfileSearchCell(this.mContext);
                 } else {
                     ?? dialogCell = new DialogCell(this.parentFragment, this.mContext, true, false, this.currentAccount, null);
                     dialogCell.setArchivedPullAnimation(this.pullForegroundDrawable);
                     dialogCell.setPreloader(this.preloader);
                     dialogCell.setDialogCellDelegate(this);
                     dialogCell.setIsTransitionSupport(this.isTransitionSupport);
-                    view = dialogCell;
+                    viewGroup2 = dialogCell;
                 }
-                view2 = view;
+                viewGroup3 = viewGroup2;
                 if (this.dialogsType == 15) {
-                    view.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                    view2 = view;
+                    viewGroup2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                    viewGroup3 = viewGroup2;
+                    break;
                 }
-                flickerLoadingView = view2;
                 break;
             case 1:
             case 13:
@@ -556,8 +559,8 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                 }
                 if (i == 13) {
                     flickerLoadingView.setItemsCount((int) ((AndroidUtilities.displaySize.y * 0.5f) / AndroidUtilities.dp(64.0f)));
-                    break;
                 }
+                viewGroup3 = flickerLoadingView;
                 break;
             case 2:
                 flickerLoadingView = new HeaderCell(this.mContext);
@@ -571,55 +574,59 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                 flickerLoadingView.addView(textView, LayoutHelper.createFrame(-1, -1.0f, (LocaleController.isRTL ? 3 : 5) | 48, 17.0f, 15.0f, 17.0f, 0.0f));
                 textView.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public final void onClick(View view3) {
-                        DialogsAdapter.this.lambda$onCreateViewHolder$3(view3);
+                    public final void onClick(View view) {
+                        DialogsAdapter.this.lambda$onCreateViewHolder$3(view);
                     }
                 });
+                viewGroup3 = flickerLoadingView;
                 break;
             case 3:
-                flickerLoadingView = new FrameLayout(this.mContext) {
+                ViewGroup viewGroup4 = new FrameLayout(this.mContext) {
                     @Override
                     protected void onMeasure(int i4, int i5) {
                         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i4), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(12.0f), 1073741824));
                     }
                 };
-                flickerLoadingView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
-                View view3 = new View(this.mContext);
-                view3.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
-                flickerLoadingView.addView(view3, LayoutHelper.createFrame(-1, -1.0f));
+                viewGroup4.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
+                View view = new View(this.mContext);
+                view.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
+                viewGroup4.addView(view, LayoutHelper.createFrame(-1, -1.0f));
+                viewGroup3 = viewGroup4;
                 break;
             case 4:
-                flickerLoadingView = new DialogMeUrlCell(this.mContext);
+                viewGroup3 = new DialogMeUrlCell(this.mContext);
                 break;
             case 5:
-                flickerLoadingView = new DialogsEmptyCell(this.mContext);
+                viewGroup3 = new DialogsEmptyCell(this.mContext);
                 break;
             case 6:
-                flickerLoadingView = new UserCell(this.mContext, 8, 0, false);
+                viewGroup3 = new UserCell(this.mContext, 8, 0, false);
                 break;
             case 7:
-                flickerLoadingView = new HeaderCell(this.mContext);
-                flickerLoadingView.setPadding(0, 0, 0, AndroidUtilities.dp(12.0f));
+                ViewGroup headerCell = new HeaderCell(this.mContext);
+                headerCell.setPadding(0, 0, 0, AndroidUtilities.dp(12.0f));
+                viewGroup3 = headerCell;
                 break;
             case 8:
                 flickerLoadingView = new ShadowSectionCell(this.mContext);
                 CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
                 combinedDrawable.setFullsize(true);
                 flickerLoadingView.setBackgroundDrawable(combinedDrawable);
+                viewGroup3 = flickerLoadingView;
                 break;
             case 9:
             case 12:
             default:
-                View textCell = new TextCell(this.mContext);
-                view2 = textCell;
+                ViewGroup textCell = new TextCell(this.mContext);
+                viewGroup3 = textCell;
                 if (this.dialogsType == 15) {
                     textCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                    view2 = textCell;
+                    viewGroup3 = textCell;
+                    break;
                 }
-                flickerLoadingView = view2;
                 break;
             case 10:
-                flickerLoadingView = new LastEmptyView(this.mContext);
+                viewGroup3 = new LastEmptyView(this.mContext);
                 break;
             case 11:
                 flickerLoadingView = new TextInfoPrivacyCell(this.mContext) {
@@ -675,17 +682,19 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                 CombinedDrawable combinedDrawable2 = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
                 combinedDrawable2.setFullsize(true);
                 flickerLoadingView.setBackgroundDrawable(combinedDrawable2);
+                viewGroup3 = flickerLoadingView;
                 break;
             case 14:
-                flickerLoadingView = new HeaderCell(this.mContext, Theme.key_graySectionText, 16, 0, false);
-                flickerLoadingView.setHeight(32);
-                flickerLoadingView.setClickable(false);
+                HeaderCell headerCell2 = new HeaderCell(this.mContext, Theme.key_graySectionText, 16, 0, false);
+                headerCell2.setHeight(32);
+                headerCell2.setClickable(false);
+                viewGroup3 = headerCell2;
                 break;
             case 15:
-                flickerLoadingView = new RequestPeerRequirementsCell(this.mContext);
+                viewGroup3 = new RequestPeerRequirementsCell(this.mContext);
                 break;
             case 16:
-                flickerLoadingView = new DialogsRequestedEmptyCell(this.mContext) {
+                viewGroup3 = new DialogsRequestedEmptyCell(this.mContext) {
                     @Override
                     protected void onButtonClick() {
                         DialogsAdapter.this.onCreateGroupForThisClick();
@@ -693,10 +702,10 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                 };
                 break;
             case 17:
-                flickerLoadingView = new DialogsHintCell(this.mContext, null);
+                viewGroup3 = new DialogsHintCell(this.mContext, null);
                 break;
             case 18:
-                flickerLoadingView = new View(this.mContext) {
+                viewGroup3 = new View(this.mContext) {
                     @Override
                     protected void onMeasure(int i4, int i5) {
                         super.onMeasure(i4, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(81.0f), 1073741824));
@@ -704,34 +713,35 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                 };
                 break;
             case 19:
-                flickerLoadingView = new LastEmptyView(this.mContext);
-                flickerLoadingView.addView(new ArchiveHelp(this.mContext, this.currentAccount, null, new Runnable() {
+                ViewGroup lastEmptyView = new LastEmptyView(this.mContext);
+                lastEmptyView.addView(new ArchiveHelp(this.mContext, this.currentAccount, null, new Runnable() {
                     @Override
                     public final void run() {
                         DialogsAdapter.this.onArchiveSettingsClick();
                     }
                 }, null), LayoutHelper.createFrame(-1, -1.0f, 17, 0.0f, -40.0f, 0.0f, 0.0f));
+                viewGroup3 = lastEmptyView;
                 break;
         }
-        flickerLoadingView.setLayoutParams(new RecyclerView.LayoutParams(-1, (i == 5 || i == 19) ? -1 : -2));
-        return new RecyclerListView.Holder(flickerLoadingView);
+        viewGroup3.setLayoutParams(new RecyclerView.LayoutParams(-1, (i == 5 || i == 19) ? -1 : -2));
+        return new RecyclerListView.Holder(viewGroup3);
     }
 
     public int dialogsEmptyType() {
         int i = this.dialogsType;
         if (i == 7 || i == 8) {
             return MessagesController.getInstance(this.currentAccount).isDialogsEndReached(this.folderId) ? 2 : 3;
-        } else if (this.folderId == 1) {
-            return 2;
-        } else {
-            return this.onlineContacts != null ? 1 : 0;
         }
+        if (this.folderId == 1) {
+            return 2;
+        }
+        return this.onlineContacts != null ? 1 : 0;
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
         TLRPC$Chat tLRPC$Chat;
-        TLRPC$User tLRPC$User;
+        TLRPC$Chat tLRPC$Chat2;
         String str;
         String str2;
         String lowerCase;
@@ -777,11 +787,11 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                     }
                     str2 = lowerCase;
                     str = str3;
-                    tLRPC$User = tLRPC$Chat;
+                    tLRPC$Chat2 = tLRPC$Chat;
                 } else {
                     TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(tLRPC$Dialog.id));
                     String str4 = "";
-                    if (user != null) {
+                    if (user != 0) {
                         String userName = UserObject.getUserName(user);
                         if (!UserObject.isReplyUser(user)) {
                             if (user.bot) {
@@ -790,16 +800,16 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                                 str4 = LocaleController.formatUserStatus(this.currentAccount, user);
                             }
                         }
-                        tLRPC$User = user;
+                        tLRPC$Chat2 = user;
                         str = userName;
                     } else {
-                        tLRPC$User = null;
+                        tLRPC$Chat2 = null;
                         str = null;
                     }
                     str2 = str4;
                 }
                 profileSearchCell.useSeparator = tLRPC$Dialog2 != null;
-                profileSearchCell.setData(tLRPC$User, null, str, str2, false, false);
+                profileSearchCell.setData(tLRPC$Chat2, null, str, str2, false, false);
                 profileSearchCell.setChecked(this.selectedDialogs.contains(Long.valueOf(profileSearchCell.getDialogId())), dialogId == profileSearchCell.getDialogId());
             } else {
                 DialogCell dialogCell = (DialogCell) viewHolder.itemView;
@@ -1128,9 +1138,10 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
             if (!preloadIsAvilable() || !this.resumed || this.preloadDialogsPool.isEmpty() || this.currentRequestCount >= 4 || this.networkRequestCount > 6) {
                 return;
             }
-            long longValue = this.preloadDialogsPool.remove(0).longValue();
+            Long remove = this.preloadDialogsPool.remove(0);
+            long longValue = remove.longValue();
             this.currentRequestCount++;
-            this.loadingDialogs.add(Long.valueOf(longValue));
+            this.loadingDialogs.add(remove);
             MessagesController.getInstance(UserConfig.selectedAccount).ensureMessagesLoaded(longValue, 0, new AnonymousClass1(longValue));
         }
 
@@ -1153,20 +1164,19 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
             }
 
             public void lambda$onMessagesLoaded$0(boolean z, long j) {
-                DialogsPreloader dialogsPreloader;
                 if (!z) {
-                    DialogsPreloader dialogsPreloader2 = DialogsPreloader.this;
-                    int i = dialogsPreloader2.networkRequestCount + 1;
-                    dialogsPreloader2.networkRequestCount = i;
+                    DialogsPreloader dialogsPreloader = DialogsPreloader.this;
+                    int i = dialogsPreloader.networkRequestCount + 1;
+                    dialogsPreloader.networkRequestCount = i;
                     if (i >= 6) {
-                        AndroidUtilities.cancelRunOnUIThread(dialogsPreloader2.clearNetworkRequestCount);
+                        AndroidUtilities.cancelRunOnUIThread(dialogsPreloader.clearNetworkRequestCount);
                         AndroidUtilities.runOnUIThread(DialogsPreloader.this.clearNetworkRequestCount, 60000L);
                     }
                 }
                 if (DialogsPreloader.this.loadingDialogs.remove(Long.valueOf(j))) {
                     DialogsPreloader.this.dialogsReadyMap.add(Long.valueOf(j));
                     DialogsPreloader.this.updateList();
-                    dialogsPreloader.currentRequestCount--;
+                    r3.currentRequestCount--;
                     DialogsPreloader.this.start();
                 }
             }
@@ -1183,10 +1193,9 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
             }
 
             public void lambda$onError$1(long j) {
-                DialogsPreloader dialogsPreloader;
                 if (DialogsPreloader.this.loadingDialogs.remove(Long.valueOf(j))) {
                     DialogsPreloader.this.preloadedErrorMap.add(Long.valueOf(j));
-                    dialogsPreloader.currentRequestCount--;
+                    r3.currentRequestCount--;
                     DialogsPreloader.this.start();
                 }
             }
@@ -1248,12 +1257,12 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
 
     public int getItemHeight(int i) {
         int dp = AndroidUtilities.dp(SharedConfig.useThreeLinesLayout ? 78.0f : 72.0f);
-        if (this.itemInternals.get(i).viewType == 0) {
-            if (!this.itemInternals.get(i).isForumCell || this.collapsedView) {
-                return dp;
-            }
-            return AndroidUtilities.dp(SharedConfig.useThreeLinesLayout ? 86.0f : 91.0f);
+        if (this.itemInternals.get(i).viewType != 0) {
+            return 0;
         }
-        return 0;
+        if (!this.itemInternals.get(i).isForumCell || this.collapsedView) {
+            return dp;
+        }
+        return AndroidUtilities.dp(SharedConfig.useThreeLinesLayout ? 86.0f : 91.0f);
     }
 }

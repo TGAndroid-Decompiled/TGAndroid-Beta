@@ -53,6 +53,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LetterDrawable;
 import org.telegram.ui.Components.RadialProgress2;
 import org.telegram.ui.PhotoViewer;
+
 public class ContextLinkCell extends FrameLayout implements DownloadController.FileDownloadProgressListener {
     private static AccelerateInterpolator interpolator = new AccelerateInterpolator(0.5f);
     public final Property<ContextLinkCell, Float> IMAGE_SCALE;
@@ -164,7 +165,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
 
     @Override
     @android.annotation.SuppressLint({"DrawAllocation"})
-    protected void onMeasure(int r40, int r41) {
+    protected void onMeasure(int r44, int r45) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ContextLinkCell.onMeasure(int, int):void");
     }
 
@@ -255,7 +256,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
                 StringBuilder sb2 = new StringBuilder();
                 sb2.append(Utilities.MD5(this.inlineResult.content.url));
                 sb2.append(".");
-                sb2.append(ImageLoader.getHttpUrlExtension(this.inlineResult.content.url, this.documentAttachType != 5 ? "ogg" : "mp3"));
+                sb2.append(ImageLoader.getHttpUrlExtension(this.inlineResult.content.url, this.documentAttachType == 5 ? "mp3" : "ogg"));
                 tLRPC$TL_message.attachPath = new File(directory, sb2.toString()).getAbsolutePath();
             }
             this.currentMessageObject = new MessageObject(this.currentAccount, tLRPC$TL_message, false, true);
@@ -454,14 +455,20 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
                     this.buttonState = 1;
                     this.radialProgress.setIcon(getIconForCurrentState(), false, true);
                     invalidate();
+                    return;
                 }
-            } else if (i2 == 1) {
+                return;
+            }
+            if (i2 == 1) {
                 if (MediaController.getInstance().lambda$startAudioAgain$7(this.currentMessageObject)) {
                     this.buttonState = 0;
                     this.radialProgress.setIcon(getIconForCurrentState(), false, true);
                     invalidate();
+                    return;
                 }
-            } else if (i2 == 2) {
+                return;
+            }
+            if (i2 == 2) {
                 this.radialProgress.setProgress(0.0f, false);
                 if (this.documentAttach != null) {
                     FileLoader.getInstance(this.currentAccount).loadFile(this.documentAttach, this.inlineResult, 1, 0);
@@ -471,7 +478,9 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
                 this.buttonState = 4;
                 this.radialProgress.setIcon(getIconForCurrentState(), false, true);
                 invalidate();
-            } else if (i2 == 4) {
+                return;
+            }
+            if (i2 == 4) {
                 if (this.documentAttach != null) {
                     FileLoader.getInstance(this.currentAccount).cancelLoadFile(this.documentAttach);
                 } else if (this.inlineResult.content instanceof TLRPC$TL_webDocument) {
@@ -573,9 +582,8 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
             }
         }
         if (this.drawLinkImageView) {
-            TLRPC$BotInlineResult tLRPC$BotInlineResult5 = this.inlineResult;
-            if (tLRPC$BotInlineResult5 != null) {
-                this.linkImageView.setVisible(!PhotoViewer.isShowingImage(tLRPC$BotInlineResult5), false);
+            if (this.inlineResult != null) {
+                this.linkImageView.setVisible(!PhotoViewer.isShowingImage(r0), false);
             }
             canvas.save();
             float f = this.imageScale;
@@ -629,51 +637,53 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
             this.resolveFileNameId = i;
             Utilities.searchQueue.postRunnable(new AnonymousClass1(i, z));
             this.radialProgress.setIcon(4, z, false);
-        } else if (TextUtils.isEmpty(str)) {
+            return;
+        }
+        if (TextUtils.isEmpty(str)) {
             this.buttonState = -1;
             this.radialProgress.setIcon(4, z, false);
-        } else {
-            if (this.documentAttach != null) {
-                isLoadingHttpFile = FileLoader.getInstance(this.currentAccount).isLoadingFile(this.fileName);
-            } else {
-                isLoadingHttpFile = ImageLoader.getInstance().isLoadingHttpFile(this.fileName);
-            }
-            if (isLoadingHttpFile || !this.fileExist) {
-                DownloadController.getInstance(this.currentAccount).addLoadingFileObserver(this.fileName, this);
-                int i2 = this.documentAttachType;
-                if (i2 != 5 && i2 != 3) {
-                    this.buttonState = 1;
-                    Float fileProgress = ImageLoader.getInstance().getFileProgress(this.fileName);
-                    this.radialProgress.setProgress(fileProgress != null ? fileProgress.floatValue() : 0.0f, false);
-                } else if (!isLoadingHttpFile) {
-                    this.buttonState = 2;
-                } else {
-                    this.buttonState = 4;
-                    Float fileProgress2 = ImageLoader.getInstance().getFileProgress(this.fileName);
-                    if (fileProgress2 != null) {
-                        this.radialProgress.setProgress(fileProgress2.floatValue(), z2);
-                    } else {
-                        this.radialProgress.setProgress(0.0f, z2);
-                    }
-                }
-            } else {
-                DownloadController.getInstance(this.currentAccount).removeLoadingFileObserver(this);
-                int i3 = this.documentAttachType;
-                if (i3 == 5 || i3 == 3) {
-                    boolean isPlayingMessage = MediaController.getInstance().isPlayingMessage(this.currentMessageObject);
-                    if (!isPlayingMessage || (isPlayingMessage && MediaController.getInstance().isMessagePaused())) {
-                        this.buttonState = 0;
-                    } else {
-                        this.buttonState = 1;
-                    }
-                    this.radialProgress.setProgress(1.0f, z2);
-                } else {
-                    this.buttonState = -1;
-                }
-            }
-            this.radialProgress.setIcon(getIconForCurrentState(), z, z2);
-            invalidate();
+            return;
         }
+        if (this.documentAttach != null) {
+            isLoadingHttpFile = FileLoader.getInstance(this.currentAccount).isLoadingFile(this.fileName);
+        } else {
+            isLoadingHttpFile = ImageLoader.getInstance().isLoadingHttpFile(this.fileName);
+        }
+        if (isLoadingHttpFile || !this.fileExist) {
+            DownloadController.getInstance(this.currentAccount).addLoadingFileObserver(this.fileName, this);
+            int i2 = this.documentAttachType;
+            if (i2 != 5 && i2 != 3) {
+                this.buttonState = 1;
+                Float fileProgress = ImageLoader.getInstance().getFileProgress(this.fileName);
+                this.radialProgress.setProgress(fileProgress != null ? fileProgress.floatValue() : 0.0f, false);
+            } else if (!isLoadingHttpFile) {
+                this.buttonState = 2;
+            } else {
+                this.buttonState = 4;
+                Float fileProgress2 = ImageLoader.getInstance().getFileProgress(this.fileName);
+                if (fileProgress2 != null) {
+                    this.radialProgress.setProgress(fileProgress2.floatValue(), z2);
+                } else {
+                    this.radialProgress.setProgress(0.0f, z2);
+                }
+            }
+        } else {
+            DownloadController.getInstance(this.currentAccount).removeLoadingFileObserver(this);
+            int i3 = this.documentAttachType;
+            if (i3 == 5 || i3 == 3) {
+                boolean isPlayingMessage = MediaController.getInstance().isPlayingMessage(this.currentMessageObject);
+                if (!isPlayingMessage || (isPlayingMessage && MediaController.getInstance().isMessagePaused())) {
+                    this.buttonState = 0;
+                } else {
+                    this.buttonState = 1;
+                }
+                this.radialProgress.setProgress(1.0f, z2);
+            } else {
+                this.buttonState = -1;
+            }
+        }
+        this.radialProgress.setIcon(getIconForCurrentState(), z, z2);
+        invalidate();
     }
 
     public class AnonymousClass1 implements Runnable {
@@ -820,12 +830,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
         if (z2) {
             AnimatorSet animatorSet2 = new AnimatorSet();
             this.animator = animatorSet2;
-            Animator[] animatorArr = new Animator[1];
-            Property<ContextLinkCell, Float> property = this.IMAGE_SCALE;
-            float[] fArr = new float[1];
-            fArr[0] = z ? 0.81f : 1.0f;
-            animatorArr[0] = ObjectAnimator.ofFloat(this, property, fArr);
-            animatorSet2.playTogether(animatorArr);
+            animatorSet2.playTogether(ObjectAnimator.ofFloat(this, this.IMAGE_SCALE, z ? 0.81f : 1.0f));
             this.animator.setDuration(200L);
             this.animator.addListener(new AnimatorListenerAdapter() {
                 @Override

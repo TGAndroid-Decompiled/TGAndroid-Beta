@@ -1,6 +1,7 @@
 package org.telegram.tgnet.tl;
 
 import org.telegram.tgnet.AbstractSerializedData;
+
 public class TL_stories$TL_mediaAreaWeather extends TL_stories$MediaArea {
     public int color;
     public String emoji;

@@ -53,6 +53,7 @@ import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SuggestEmojiView;
 import org.telegram.ui.ContentPreviewViewer;
+
 public class SuggestEmojiView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private Adapter adapter;
     private Integer arrowToEnd;
@@ -262,12 +263,12 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
                 return false;
             }
             BaseFragment parentFragment = SuggestEmojiView.this.enterView.getParentFragment();
-            if (parentFragment instanceof ChatActivity) {
-                ChatActivity chatActivity = (ChatActivity) parentFragment;
-                if (chatActivity.canSendMessage()) {
-                    return UserConfig.getInstance(UserConfig.selectedAccount).isPremium() || (chatActivity.getCurrentUser() != null && UserObject.isUserSelf(chatActivity.getCurrentUser()));
-                }
+            if (!(parentFragment instanceof ChatActivity)) {
                 return false;
+            }
+            ChatActivity chatActivity = (ChatActivity) parentFragment;
+            if (chatActivity.canSendMessage()) {
+                return UserConfig.getInstance(UserConfig.selectedAccount).isPremium() || (chatActivity.getCurrentUser() != null && UserObject.isUserSelf(chatActivity.getCurrentUser()));
             }
             return false;
         }
@@ -314,22 +315,22 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
 
         @Override
         public void setAsEmojiStatus(TLRPC$Document tLRPC$Document, Integer num) {
-            TLRPC$TL_emojiStatusUntil tLRPC$TL_emojiStatusUntil;
+            TLRPC$EmojiStatus tLRPC$EmojiStatus;
             if (tLRPC$Document == null) {
-                tLRPC$TL_emojiStatusUntil = new TLRPC$TL_emojiStatusEmpty();
+                tLRPC$EmojiStatus = new TLRPC$TL_emojiStatusEmpty();
             } else if (num != null) {
-                TLRPC$TL_emojiStatusUntil tLRPC$TL_emojiStatusUntil2 = new TLRPC$TL_emojiStatusUntil();
-                tLRPC$TL_emojiStatusUntil2.document_id = tLRPC$Document.id;
-                tLRPC$TL_emojiStatusUntil2.until = num.intValue();
-                tLRPC$TL_emojiStatusUntil = tLRPC$TL_emojiStatusUntil2;
+                TLRPC$TL_emojiStatusUntil tLRPC$TL_emojiStatusUntil = new TLRPC$TL_emojiStatusUntil();
+                tLRPC$TL_emojiStatusUntil.document_id = tLRPC$Document.id;
+                tLRPC$TL_emojiStatusUntil.until = num.intValue();
+                tLRPC$EmojiStatus = tLRPC$TL_emojiStatusUntil;
             } else {
                 TLRPC$TL_emojiStatus tLRPC$TL_emojiStatus = new TLRPC$TL_emojiStatus();
                 tLRPC$TL_emojiStatus.document_id = tLRPC$Document.id;
-                tLRPC$TL_emojiStatusUntil = tLRPC$TL_emojiStatus;
+                tLRPC$EmojiStatus = tLRPC$TL_emojiStatus;
             }
             TLRPC$User currentUser = UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser();
             final TLRPC$EmojiStatus tLRPC$TL_emojiStatusEmpty = currentUser == null ? new TLRPC$TL_emojiStatusEmpty() : currentUser.emoji_status;
-            MessagesController.getInstance(SuggestEmojiView.this.currentAccount).updateEmojiStatus(tLRPC$TL_emojiStatusUntil);
+            MessagesController.getInstance(SuggestEmojiView.this.currentAccount).updateEmojiStatus(tLRPC$EmojiStatus);
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
@@ -576,8 +577,10 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         }
         Drawable drawable = Theme.chat_gradientLeftDrawable;
         int i = Theme.key_chat_stickersHintPanel;
-        drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
-        Theme.chat_gradientRightDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
+        int color = Theme.getColor(i, this.resourcesProvider);
+        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+        drawable.setColorFilter(new PorterDuffColorFilter(color, mode));
+        Theme.chat_gradientRightDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, this.resourcesProvider), mode));
     }
 
     public void forceClose() {
@@ -990,11 +993,12 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         float f8 = f5 / 2.0f;
         int max = (int) Math.max((this.arrowX - Math.max(f7, Math.min(f8, AndroidUtilities.dp(66.0f)))) - this.listView.getLeft(), 0.0f);
         if (this.listView.getPaddingLeft() != max) {
+            int paddingLeft = this.listView.getPaddingLeft() - max;
             this.listView.setPadding(max, 0, 0, 0);
-            this.listView.scrollBy(this.listView.getPaddingLeft() - max, 0);
+            this.listView.scrollBy(paddingLeft, 0);
         }
         this.listView.setTranslationX(((int) Math.max((f3 - Math.max(f7, Math.min(f8, AndroidUtilities.dp(66.0f)))) - this.listView.getLeft(), 0.0f)) - max);
-        float paddingLeft = (f6 - f8) + this.listView.getPaddingLeft() + this.listView.getTranslationX();
+        float paddingLeft2 = (f6 - f8) + this.listView.getPaddingLeft() + this.listView.getTranslationX();
         float top = this.listView.getTop() + this.listView.getTranslationY() + this.listView.getPaddingTop() + (this.direction == 0 ? 0 : AndroidUtilities.dp(6.66f));
         float min = Math.min(f6 + f8 + this.listView.getPaddingLeft() + this.listView.getTranslationX(), getWidth() - this.containerView.getPaddingRight());
         float bottom = (this.listView.getBottom() + this.listView.getTranslationY()) - (this.direction == 0 ? AndroidUtilities.dp(6.66f) : 0);
@@ -1003,11 +1007,11 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         if (i2 == 0) {
             RectF rectF = AndroidUtilities.rectTmp;
             float f9 = bottom - min2;
-            float f10 = paddingLeft + min2;
-            rectF.set(paddingLeft, f9, f10, bottom);
+            float f10 = paddingLeft2 + min2;
+            rectF.set(paddingLeft2, f9, f10, bottom);
             this.path.arcTo(rectF, 90.0f, 90.0f);
             float f11 = top + min2;
-            rectF.set(paddingLeft, top, f10, f11);
+            rectF.set(paddingLeft2, top, f10, f11);
             this.path.arcTo(rectF, -180.0f, 90.0f);
             float f12 = min - min2;
             rectF.set(f12, top, min, f11);
@@ -1026,10 +1030,10 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
             float f15 = bottom - min2;
             rectF2.set(f13, f15, min, bottom);
             this.path.arcTo(rectF2, 0.0f, 90.0f);
-            float f16 = min2 + paddingLeft;
-            rectF2.set(paddingLeft, f15, f16, bottom);
+            float f16 = min2 + paddingLeft2;
+            rectF2.set(paddingLeft2, f15, f16, bottom);
             this.path.arcTo(rectF2, 90.0f, 90.0f);
-            rectF2.set(paddingLeft, top, f16, f14);
+            rectF2.set(paddingLeft2, top, f16, f14);
             this.path.arcTo(rectF2, -180.0f, 90.0f);
             this.path.lineTo(f3 - AndroidUtilities.dp(8.66f), top);
             this.path.lineTo(f3, top - AndroidUtilities.dp(6.66f));
@@ -1046,7 +1050,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         if (f < 1.0f) {
             this.circlePath.rewind();
             float dp = this.direction == 0 ? AndroidUtilities.dp(6.66f) + bottom : top - AndroidUtilities.dp(6.66f);
-            double d = f3 - paddingLeft;
+            double d = f3 - paddingLeft2;
             double d2 = dp - top;
             double d3 = f3 - min;
             double d4 = dp - bottom;
@@ -1135,10 +1139,13 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
                 return;
             }
             fireUpdate();
-        } else if (i == NotificationCenter.emojiLoaded && this.listView != null) {
-            for (int i3 = 0; i3 < this.listView.getChildCount(); i3++) {
-                this.listView.getChildAt(i3).invalidate();
-            }
+            return;
+        }
+        if (i != NotificationCenter.emojiLoaded || this.listView == null) {
+            return;
+        }
+        for (int i3 = 0; i3 < this.listView.getChildCount(); i3++) {
+            this.listView.getChildAt(i3).invalidate();
         }
     }
 
@@ -1159,7 +1166,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
 
         @Override
         protected void onMeasure(int i, int i2) {
-            setPadding(AndroidUtilities.dp(3.0f), AndroidUtilities.dp((this.direction == 0 ? 0.0f : 6.66f) + 3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp((this.direction == 0 ? 6.66f : 0.0f) + 3.0f));
+            setPadding(AndroidUtilities.dp(3.0f), AndroidUtilities.dp((this.direction == 0 ? 0.0f : 6.66f) + 3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp((this.direction != 0 ? 0.0f : 6.66f) + 3.0f));
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(44.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(52.0f), 1073741824));
         }
 
@@ -1210,8 +1217,10 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         protected void dispatchDraw(Canvas canvas) {
             float f = ((1.0f - this.pressed.set(isPressed() ? 1.0f : 0.0f)) * 0.2f) + 0.8f;
             if (this.drawable != null) {
+                int width = getWidth() / 2;
+                int height = ((getHeight() - getPaddingBottom()) + getPaddingTop()) / 2;
                 this.drawable.setBounds(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
-                canvas.scale(f, f, getWidth() / 2, ((getHeight() - getPaddingBottom()) + getPaddingTop()) / 2);
+                canvas.scale(f, f, width, height);
                 Drawable drawable = this.drawable;
                 if (drawable instanceof AnimatedEmojiDrawable) {
                     ((AnimatedEmojiDrawable) drawable).setTime(System.currentTimeMillis());

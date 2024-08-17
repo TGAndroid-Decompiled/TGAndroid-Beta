@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_account_uploadWallPaper extends TLObject {
     public TLRPC$InputFile file;
     public String mime_type;

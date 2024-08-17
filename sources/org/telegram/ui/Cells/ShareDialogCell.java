@@ -21,7 +21,6 @@ import androidx.dynamicanimation.animation.DynamicAnimation;
 import androidx.dynamicanimation.animation.FloatValueHolder;
 import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.dynamicanimation.animation.SpringForce;
-import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
@@ -48,6 +47,7 @@ import org.telegram.ui.Components.Forum.ForumUtilities;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.PremiumGradient;
 import org.telegram.ui.Components.RLottieDrawable;
+
 public class ShareDialogCell extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private final AvatarDrawable avatarDrawable;
     private final CheckBox2 checkBox;
@@ -305,7 +305,7 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
     }
 
     @Override
-    protected boolean drawChild(android.graphics.Canvas r25, android.view.View r26, long r27) {
+    protected boolean drawChild(android.graphics.Canvas r26, android.view.View r27, long r28) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ShareDialogCell.drawChild(android.graphics.Canvas, android.view.View, long):boolean");
     }
 
@@ -361,7 +361,6 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
                 RLottieDrawable rLottieDrawable = new RLottieDrawable(R.raw.story_repost, "story_repost", AndroidUtilities.dp(42.0f), AndroidUtilities.dp(42.0f), true, null);
                 this.lottieDrawable = rLottieDrawable;
                 rLottieDrawable.setMasterParent(view);
-                Objects.requireNonNull(rLottieDrawable);
                 AndroidUtilities.runOnUIThread(new ShareDialogCell$RepostStoryDrawable$$ExternalSyntheticLambda0(rLottieDrawable), 450L);
                 this.drawable = null;
                 return;

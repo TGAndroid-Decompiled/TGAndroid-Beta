@@ -1,4 +1,5 @@
 package org.telegram.ui;
+
 public final class ProfileActivity$$ExternalSyntheticLambda2 implements Runnable {
     public final ProfileActivity f$0;
 
@@ -8,6 +9,6 @@ public final class ProfileActivity$$ExternalSyntheticLambda2 implements Runnable
 
     @Override
     public final void run() {
-        ProfileActivity.m2829$r8$lambda$9EZ_WtnMBKkzF7Jtmqu4Ps3Pg(this.f$0);
+        ProfileActivity.m2972$r8$lambda$w8rO6ZmkolCrj34I0aad2OtBk(this.f$0);
     }
 }

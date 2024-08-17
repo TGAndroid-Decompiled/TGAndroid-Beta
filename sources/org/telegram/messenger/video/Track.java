@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import org.telegram.messenger.video.Track;
+
 public class Track {
     private static Map<Integer, Integer> samplingFrequencyIndexMap;
     private String handler;
@@ -73,6 +74,7 @@ public class Track {
     }
 
     public Track(int i, MediaFormat mediaFormat, boolean z) {
+        String str;
         this.syncSamples = null;
         this.volume = 0.0f;
         this.trackId = i;
@@ -181,7 +183,8 @@ public class Track {
                 visualSampleEntry.addBox(avcConfigurationBox);
                 this.sampleDescriptionBox.addBox(visualSampleEntry);
                 return;
-            } else if (string.equals("video/mp4v")) {
+            }
+            if (string.equals("video/mp4v")) {
                 VisualSampleEntry visualSampleEntry2 = new VisualSampleEntry("mp4v");
                 visualSampleEntry2.setDataReferenceIndex(1);
                 visualSampleEntry2.setDepth(24);
@@ -192,57 +195,57 @@ public class Track {
                 visualSampleEntry2.setHeight(this.height);
                 this.sampleDescriptionBox.addBox(visualSampleEntry2);
                 return;
-            } else if (!string.equals("video/hevc") || mediaFormat.getByteBuffer("csd-0") == null) {
+            }
+            if (!string.equals("video/hevc") || mediaFormat.getByteBuffer("csd-0") == null) {
                 return;
-            } else {
-                byte[] array = mediaFormat.getByteBuffer("csd-0").array();
-                int i2 = 0;
-                int i3 = -1;
-                int i4 = -1;
-                int i5 = -1;
-                for (int i6 = 0; i6 < array.length; i6++) {
-                    if (i2 == 3 && array[i6] == 1) {
-                        if (i5 == -1) {
-                            i5 = i6 - 3;
-                        } else if (i3 == -1) {
-                            i3 = i6 - 3;
-                        } else if (i4 == -1) {
-                            i4 = i6 - 3;
-                        }
-                    }
-                    i2 = array[i6] == 0 ? i2 + 1 : 0;
-                }
-                byte[] bArr3 = new byte[i3 - 4];
-                byte[] bArr4 = new byte[(i4 - i3) - 4];
-                byte[] bArr5 = new byte[(array.length - i4) - 4];
-                for (int i7 = 0; i7 < array.length; i7++) {
-                    if (i7 < i3) {
-                        int i8 = i7 - 4;
-                        if (i8 >= 0) {
-                            bArr3[i8] = array[i7];
-                        }
-                    } else if (i7 < i4) {
-                        int i9 = (i7 - i3) - 4;
-                        if (i9 >= 0) {
-                            bArr4[i9] = array[i7];
-                        }
-                    } else {
-                        int i10 = (i7 - i4) - 4;
-                        if (i10 >= 0) {
-                            bArr5[i10] = array[i7];
-                        }
+            }
+            byte[] array = mediaFormat.getByteBuffer("csd-0").array();
+            int i2 = 0;
+            int i3 = -1;
+            int i4 = -1;
+            int i5 = -1;
+            for (int i6 = 0; i6 < array.length; i6++) {
+                if (i2 == 3 && array[i6] == 1) {
+                    if (i5 == -1) {
+                        i5 = i6 - 3;
+                    } else if (i4 == -1) {
+                        i4 = i6 - 3;
+                    } else if (i3 == -1) {
+                        i3 = i6 - 3;
                     }
                 }
-                try {
-                    VisualSampleEntry parseFromCsd = HevcDecoderConfigurationRecord.parseFromCsd(Arrays.asList(ByteBuffer.wrap(bArr3), ByteBuffer.wrap(bArr5), ByteBuffer.wrap(bArr4)));
-                    parseFromCsd.setWidth(this.width);
-                    parseFromCsd.setHeight(this.height);
-                    this.sampleDescriptionBox.addBox(parseFromCsd);
-                    return;
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    return;
+                i2 = array[i6] == 0 ? i2 + 1 : 0;
+            }
+            byte[] bArr3 = new byte[i4 - 4];
+            byte[] bArr4 = new byte[(i3 - i4) - 4];
+            byte[] bArr5 = new byte[(array.length - i3) - 4];
+            for (int i7 = 0; i7 < array.length; i7++) {
+                if (i7 < i4) {
+                    int i8 = i7 - 4;
+                    if (i8 >= 0) {
+                        bArr3[i8] = array[i7];
+                    }
+                } else if (i7 < i3) {
+                    int i9 = (i7 - i4) - 4;
+                    if (i9 >= 0) {
+                        bArr4[i9] = array[i7];
+                    }
+                } else {
+                    int i10 = (i7 - i3) - 4;
+                    if (i10 >= 0) {
+                        bArr5[i10] = array[i7];
+                    }
                 }
+            }
+            try {
+                VisualSampleEntry parseFromCsd = HevcDecoderConfigurationRecord.parseFromCsd(Arrays.asList(ByteBuffer.wrap(bArr3), ByteBuffer.wrap(bArr5), ByteBuffer.wrap(bArr4)));
+                parseFromCsd.setWidth(this.width);
+                parseFromCsd.setHeight(this.height);
+                this.sampleDescriptionBox.addBox(parseFromCsd);
+                return;
+            } catch (IOException e) {
+                e.printStackTrace();
+                return;
             }
         }
         this.volume = 1.0f;
@@ -261,9 +264,13 @@ public class Track {
         SLConfigDescriptor sLConfigDescriptor = new SLConfigDescriptor();
         sLConfigDescriptor.setPredefined(2);
         eSDescriptor.setSlConfigDescriptor(sLConfigDescriptor);
-        String string2 = mediaFormat.containsKey("mime") ? mediaFormat.getString("mime") : "audio/mp4-latm";
+        if (mediaFormat.containsKey("mime")) {
+            str = mediaFormat.getString("mime");
+        } else {
+            str = "audio/mp4-latm";
+        }
         DecoderConfigDescriptor decoderConfigDescriptor = new DecoderConfigDescriptor();
-        if ("audio/mpeg".equals(string2)) {
+        if ("audio/mpeg".equals(str)) {
             decoderConfigDescriptor.setObjectTypeIndication(105);
         } else {
             decoderConfigDescriptor.setObjectTypeIndication(64);
@@ -361,9 +368,7 @@ public class Track {
     }
 
     public long getLastFrameTimestamp() {
-        long j = this.duration;
-        long[] jArr = this.sampleDurations;
-        return (((j - jArr[jArr.length - 1]) * 1000000) - 500000) / this.timeScale;
+        return (((this.duration - this.sampleDurations[r2.length - 1]) * 1000000) - 500000) / this.timeScale;
     }
 
     public long getDuration() {

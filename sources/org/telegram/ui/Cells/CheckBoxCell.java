@@ -34,6 +34,7 @@ import org.telegram.ui.Components.CheckBoxSquare;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkSpanDrawable;
+
 public class CheckBoxCell extends FrameLayout {
     private AnimatedTextView animatedTextView;
     private AvatarDrawable avatarDrawable;
@@ -349,7 +350,7 @@ public class CheckBoxCell extends FrameLayout {
             }
             int i3 = measuredWidth / 2;
             this.valueTextView.measure(View.MeasureSpec.makeMeasureSpec(i3, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
-            int measuredWidth2 = this.valueTextView.getMeasuredWidth() + 0;
+            int measuredWidth2 = this.valueTextView.getMeasuredWidth();
             CollapseButton collapseButton = this.collapseButton;
             if (collapseButton != null) {
                 collapseButton.measure(View.MeasureSpec.makeMeasureSpec(i3, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
@@ -427,9 +428,9 @@ public class CheckBoxCell extends FrameLayout {
         }
         if (this.textAnimated) {
             this.animatedTextView.setText(Emoji.replaceEmoji(formatName, this.animatedTextView.getPaint().getFontMetricsInt(), false));
-            return;
+        } else {
+            this.linksTextView.setText(formatName);
         }
-        this.linksTextView.setText(formatName);
     }
 
     public void setPad(int i) {

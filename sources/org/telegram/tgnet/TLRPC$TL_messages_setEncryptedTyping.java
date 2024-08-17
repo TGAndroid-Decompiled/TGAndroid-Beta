@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messages_setEncryptedTyping extends TLObject {
     public TLRPC$TL_inputEncryptedChat peer;
     public boolean typing;

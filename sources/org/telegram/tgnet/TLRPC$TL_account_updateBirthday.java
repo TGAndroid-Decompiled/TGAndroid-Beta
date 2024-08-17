@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_account_updateBirthday extends TLObject {
     public TLRPC$TL_birthday birthday;
     public int flags;

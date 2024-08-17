@@ -15,6 +15,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.TextCheckCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
+
 public class JoinToSendSettingsView extends LinearLayout {
     private final int MAXSPEC;
     private TLRPC$Chat currentChat;
@@ -154,12 +155,12 @@ public class JoinToSendSettingsView extends LinearLayout {
         TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights;
         TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights2;
         this.currentChat = tLRPC$Chat;
-        boolean z = false;
+        boolean z = true;
         this.joinToSendCell.setEnabled(tLRPC$Chat.creator || ((tLRPC$TL_chatAdminRights2 = tLRPC$Chat.admin_rights) != null && tLRPC$TL_chatAdminRights2.ban_users));
         TextCheckCell textCheckCell = this.joinRequestCell;
         TLRPC$Chat tLRPC$Chat2 = this.currentChat;
-        if (tLRPC$Chat2.creator || ((tLRPC$TL_chatAdminRights = tLRPC$Chat2.admin_rights) != null && tLRPC$TL_chatAdminRights.ban_users)) {
-            z = true;
+        if (!tLRPC$Chat2.creator && ((tLRPC$TL_chatAdminRights = tLRPC$Chat2.admin_rights) == null || !tLRPC$TL_chatAdminRights.ban_users)) {
+            z = false;
         }
         textCheckCell.setEnabled(z);
     }
@@ -203,10 +204,7 @@ public class JoinToSendSettingsView extends LinearLayout {
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        float[] fArr = new float[2];
-        fArr[0] = this.toggleValue;
-        fArr[1] = this.isJoinToSend ? 1.0f : 0.0f;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.toggleValue, this.isJoinToSend ? 1.0f : 0.0f);
         this.toggleAnimator = ofFloat;
         ofFloat.setDuration(200L);
         this.toggleAnimator.setInterpolator(CubicBezierInterpolator.DEFAULT);
@@ -240,7 +238,7 @@ public class JoinToSendSettingsView extends LinearLayout {
     protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
         HeaderCell headerCell = this.joinHeaderCell;
         int i5 = i3 - i;
-        int measuredHeight = headerCell.getMeasuredHeight() + 0;
+        int measuredHeight = headerCell.getMeasuredHeight();
         headerCell.layout(0, 0, i5, measuredHeight);
         if (this.joinToSendCell.getVisibility() == 0) {
             TextCheckCell textCheckCell = this.joinToSendCell;

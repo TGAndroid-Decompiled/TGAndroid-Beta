@@ -6,6 +6,7 @@ import android.os.Looper;
 import android.view.Choreographer;
 import kotlin.Result;
 import kotlin.ResultKt;
+
 public final class HandlerDispatcherKt {
     public static final HandlerDispatcher Main;
     private static volatile Choreographer choreographer;
@@ -29,14 +30,14 @@ public final class HandlerDispatcherKt {
     }
 
     static {
-        Object m153constructorimpl;
+        Object m157constructorimpl;
         try {
             Result.Companion companion = Result.Companion;
-            m153constructorimpl = Result.m153constructorimpl(new HandlerContext(asHandler(Looper.getMainLooper(), true), null, 2, null));
+            m157constructorimpl = Result.m157constructorimpl(new HandlerContext(asHandler(Looper.getMainLooper(), true), null, 2, null));
         } catch (Throwable th) {
             Result.Companion companion2 = Result.Companion;
-            m153constructorimpl = Result.m153constructorimpl(ResultKt.createFailure(th));
+            m157constructorimpl = Result.m157constructorimpl(ResultKt.createFailure(th));
         }
-        Main = Result.m155isFailureimpl(m153constructorimpl) ? null : m153constructorimpl;
+        Main = (HandlerDispatcher) (Result.m159isFailureimpl(m157constructorimpl) ? null : m157constructorimpl);
     }
 }

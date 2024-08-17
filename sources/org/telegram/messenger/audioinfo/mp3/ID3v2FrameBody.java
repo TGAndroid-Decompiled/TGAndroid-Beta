@@ -3,6 +3,7 @@ package org.telegram.messenger.audioinfo.mp3;
 import java.io.IOException;
 import java.io.InputStream;
 import org.telegram.messenger.audioinfo.util.RangeInputStream;
+
 public class ID3v2FrameBody {
     static final ThreadLocal<Buffer> textBuffer = new ThreadLocal<Buffer>() {
         @Override
@@ -117,19 +118,19 @@ public class ID3v2FrameBody {
 
     public ID3v2Encoding readEncoding() throws IOException, ID3v2Exception {
         byte readByte = this.data.readByte();
-        if (readByte != 0) {
-            if (readByte != 1) {
-                if (readByte != 2) {
-                    if (readByte == 3) {
-                        return ID3v2Encoding.UTF_8;
-                    }
-                    throw new ID3v2Exception("Invalid encoding: " + ((int) readByte));
-                }
-                return ID3v2Encoding.UTF_16BE;
-            }
+        if (readByte == 0) {
+            return ID3v2Encoding.ISO_8859_1;
+        }
+        if (readByte == 1) {
             return ID3v2Encoding.UTF_16;
         }
-        return ID3v2Encoding.ISO_8859_1;
+        if (readByte == 2) {
+            return ID3v2Encoding.UTF_16BE;
+        }
+        if (readByte == 3) {
+            return ID3v2Encoding.UTF_8;
+        }
+        throw new ID3v2Exception("Invalid encoding: " + ((int) readByte));
     }
 
     public String toString() {

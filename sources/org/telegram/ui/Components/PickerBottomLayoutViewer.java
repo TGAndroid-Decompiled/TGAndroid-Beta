@@ -7,6 +7,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
+
 public class PickerBottomLayoutViewer extends FrameLayout {
     public TextView cancelButton;
     public TextView doneButton;
@@ -60,9 +61,10 @@ public class PickerBottomLayoutViewer extends FrameLayout {
                 this.doneButton.setTextColor(-6710887);
                 this.doneButton.setEnabled(false);
                 return;
+            } else {
+                this.doneButton.setTextColor(this.isDarkTheme ? -1 : -15095832);
+                return;
             }
-            this.doneButton.setTextColor(this.isDarkTheme ? -1 : -15095832);
-            return;
         }
         this.doneButtonBadgeTextView.setVisibility(0);
         this.doneButtonBadgeTextView.setText(String.format("%d", Integer.valueOf(i)));

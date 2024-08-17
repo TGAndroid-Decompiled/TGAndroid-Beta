@@ -8,6 +8,7 @@ import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
+
 public class Render {
     public static RectF RenderPath(Path path, RenderState renderState, boolean z) {
         renderState.baseWeight = path.getBaseWeight();
@@ -63,8 +64,9 @@ public class Render {
         double d6 = renderState.remainder;
         Double.isNaN(distanceTo);
         Double.isNaN(max);
+        int ceil = (int) Math.ceil((distanceTo - d6) / max);
         int count = renderState.getCount();
-        renderState.appendValuesCount((int) Math.ceil((distanceTo - d6) / max));
+        renderState.appendValuesCount(ceil);
         renderState.setPosition(count);
         Point add = point.add(point4.multiplyByScalar(renderState.remainder));
         double d7 = renderState.remainder;
@@ -106,39 +108,39 @@ public class Render {
     }
 
     private static RectF Draw(RenderState renderState) {
-        int i;
+        char c;
         float f;
+        char c2 = 0;
         RectF rectF = new RectF(0.0f, 0.0f, 0.0f, 0.0f);
         int count = renderState.getCount();
         if (count <= 0) {
             return rectF;
         }
-        int i2 = count - 1;
-        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(((count * 4) + (i2 * 2)) * 20);
+        int i = count - 1;
+        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(((count * 4) + (i * 2)) * 20);
         allocateDirect.order(ByteOrder.nativeOrder());
         FloatBuffer asFloatBuffer = allocateDirect.asFloatBuffer();
-        char c = 0;
         asFloatBuffer.position(0);
         renderState.setPosition(0);
+        int i2 = 0;
         int i3 = 0;
-        int i4 = 0;
-        while (i3 < count) {
+        while (i2 < count) {
             float read = renderState.read();
             float read2 = renderState.read();
             float read3 = renderState.read();
             float read4 = renderState.read();
             float read5 = renderState.read();
             RectF rectF2 = new RectF(read - read3, read2 - read3, read + read3, read2 + read3);
-            float[] fArr = new float[8];
             float f2 = rectF2.left;
-            fArr[c] = f2;
             float f3 = rectF2.top;
-            fArr[1] = f3;
             float f4 = rectF2.right;
+            float f5 = rectF2.bottom;
+            float[] fArr = new float[8];
+            fArr[c2] = f2;
+            fArr[1] = f3;
             fArr[2] = f4;
             fArr[3] = f3;
             fArr[4] = f2;
-            float f5 = rectF2.bottom;
             fArr[5] = f5;
             fArr[6] = f4;
             fArr[7] = f5;
@@ -150,21 +152,21 @@ public class Render {
             matrix.mapRect(rectF2);
             Utils.RectFIntegral(rectF2);
             rectF.union(rectF2);
-            if (i4 != 0) {
+            if (i3 != 0) {
                 asFloatBuffer.put(fArr[0]);
-                i = 1;
+                c = 1;
                 asFloatBuffer.put(fArr[1]);
                 f = 0.0f;
                 asFloatBuffer.put(0.0f);
                 asFloatBuffer.put(0.0f);
                 asFloatBuffer.put(read5);
-                i4++;
+                i3++;
             } else {
-                i = 1;
+                c = 1;
                 f = 0.0f;
             }
             asFloatBuffer.put(fArr[0]);
-            asFloatBuffer.put(fArr[i]);
+            asFloatBuffer.put(fArr[c]);
             asFloatBuffer.put(f);
             asFloatBuffer.put(f);
             asFloatBuffer.put(read5);
@@ -183,17 +185,19 @@ public class Render {
             asFloatBuffer.put(1.0f);
             asFloatBuffer.put(1.0f);
             asFloatBuffer.put(read5);
-            i4 = i4 + i + i + i + i;
-            if (i3 != i2) {
+            int i4 = i3 + 4;
+            if (i2 != i) {
                 asFloatBuffer.put(fArr[6]);
                 asFloatBuffer.put(fArr[7]);
                 asFloatBuffer.put(1.0f);
                 asFloatBuffer.put(1.0f);
                 asFloatBuffer.put(read5);
-                i4++;
+                i3 += 5;
+            } else {
+                i3 = i4;
             }
-            i3++;
-            c = 0;
+            i2++;
+            c2 = 0;
         }
         asFloatBuffer.position(0);
         GLES20.glVertexAttribPointer(0, 2, 5126, false, 20, (Buffer) asFloatBuffer.slice());
@@ -204,7 +208,7 @@ public class Render {
         asFloatBuffer.position(4);
         GLES20.glVertexAttribPointer(2, 1, 5126, true, 20, (Buffer) asFloatBuffer.slice());
         GLES20.glEnableVertexAttribArray(2);
-        GLES20.glDrawArrays(5, 0, i4);
+        GLES20.glDrawArrays(5, 0, i3);
         return rectF;
     }
 }

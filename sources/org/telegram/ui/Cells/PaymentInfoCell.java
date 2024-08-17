@@ -17,6 +17,7 @@ import org.telegram.tgnet.TLRPC$WebDocument;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
+
 public class PaymentInfoCell extends FrameLayout {
     private TextView detailExTextView;
     private TextView detailTextView;
@@ -38,33 +39,35 @@ public class PaymentInfoCell extends FrameLayout {
         this.nameTextView.setTypeface(AndroidUtilities.bold());
         this.nameTextView.setMaxLines(1);
         this.nameTextView.setSingleLine(true);
-        this.nameTextView.setEllipsize(TextUtils.TruncateAt.END);
-        this.nameTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
         TextView textView2 = this.nameTextView;
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        textView2.setEllipsize(truncateAt);
+        this.nameTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
+        TextView textView3 = this.nameTextView;
         boolean z = LocaleController.isRTL;
-        addView(textView2, LayoutHelper.createFrame(-1, -2.0f, (z ? 5 : 3) | 48, z ? 10.0f : 123.0f, 9.0f, z ? 123.0f : 10.0f, 0.0f));
-        TextView textView3 = new TextView(context);
-        this.detailTextView = textView3;
-        textView3.setTextColor(Theme.getColor(i));
+        addView(textView3, LayoutHelper.createFrame(-1, -2.0f, (z ? 5 : 3) | 48, z ? 10.0f : 123.0f, 9.0f, z ? 123.0f : 10.0f, 0.0f));
+        TextView textView4 = new TextView(context);
+        this.detailTextView = textView4;
+        textView4.setTextColor(Theme.getColor(i));
         this.detailTextView.setTextSize(1, 14.0f);
         this.detailTextView.setMaxLines(3);
-        this.detailTextView.setEllipsize(TextUtils.TruncateAt.END);
+        this.detailTextView.setEllipsize(truncateAt);
         this.detailTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
-        TextView textView4 = this.detailTextView;
+        TextView textView5 = this.detailTextView;
         boolean z2 = LocaleController.isRTL;
-        addView(textView4, LayoutHelper.createFrame(-1, -2.0f, (z2 ? 5 : 3) | 48, z2 ? 10.0f : 123.0f, 33.0f, z2 ? 123.0f : 10.0f, 0.0f));
-        TextView textView5 = new TextView(context);
-        this.detailExTextView = textView5;
-        textView5.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2));
+        addView(textView5, LayoutHelper.createFrame(-1, -2.0f, (z2 ? 5 : 3) | 48, z2 ? 10.0f : 123.0f, 33.0f, z2 ? 123.0f : 10.0f, 0.0f));
+        TextView textView6 = new TextView(context);
+        this.detailExTextView = textView6;
+        textView6.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2));
         this.detailExTextView.setTextSize(1, 14.0f);
         this.detailExTextView.setLines(1);
         this.detailExTextView.setMaxLines(1);
         this.detailExTextView.setSingleLine(true);
-        this.detailExTextView.setEllipsize(TextUtils.TruncateAt.END);
+        this.detailExTextView.setEllipsize(truncateAt);
         this.detailExTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
-        TextView textView6 = this.detailExTextView;
+        TextView textView7 = this.detailExTextView;
         boolean z3 = LocaleController.isRTL;
-        addView(textView6, LayoutHelper.createFrame(-1, -2.0f, (z3 ? 5 : 3) | 48, z3 ? 10.0f : 123.0f, 90.0f, z3 ? 123.0f : 10.0f, 9.0f));
+        addView(textView7, LayoutHelper.createFrame(-1, -2.0f, (z3 ? 5 : 3) | 48, z3 ? 10.0f : 123.0f, 90.0f, z3 ? 123.0f : 10.0f, 9.0f));
     }
 
     @Override

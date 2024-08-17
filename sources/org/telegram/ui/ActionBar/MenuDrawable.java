@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
 import android.view.animation.DecelerateInterpolator;
 import org.telegram.messenger.AndroidUtilities;
+
 public class MenuDrawable extends Drawable {
     public static int TYPE_DEFAULT = 0;
     public static int TYPE_UDPATE_AVAILABLE = 1;
@@ -108,7 +109,7 @@ public class MenuDrawable extends Drawable {
     }
 
     @Override
-    public void draw(android.graphics.Canvas r26) {
+    public void draw(android.graphics.Canvas r25) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.MenuDrawable.draw(android.graphics.Canvas):void");
     }
 

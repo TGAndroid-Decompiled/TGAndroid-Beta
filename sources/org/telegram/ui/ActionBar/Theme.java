@@ -54,6 +54,7 @@ import android.util.SparseIntArray;
 import android.util.StateSet;
 import android.view.View;
 import android.widget.FrameLayout;
+import androidx.appcompat.widget.AppCompatImageHelper$$ExternalSyntheticApiModelOutline0;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.math.MathUtils;
 import java.io.File;
@@ -72,6 +73,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
@@ -89,7 +91,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda446;
+import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda91;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
@@ -150,6 +152,7 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.RoundVideoProgressShadow;
 import org.telegram.ui.ThemeActivity;
 import org.telegram.ui.ThemePreviewActivity;
+
 public class Theme {
     public static Paint DEBUG_BLUE;
     public static Paint DEBUG_RED;
@@ -1249,7 +1252,7 @@ public class Theme {
     public static RLottieDrawable[] chat_attachButtonDrawables = new RLottieDrawable[6];
     public static Drawable[] chat_locationDrawable = new Drawable[2];
     public static Drawable[] chat_contactDrawable = new Drawable[2];
-    public static Drawable[][] chat_fileStatesDrawable = (Drawable[][]) Array.newInstance(Drawable.class, 5, 2);
+    public static Drawable[][] chat_fileStatesDrawable = (Drawable[][]) Array.newInstance((Class<?>) Drawable.class, 5, 2);
     public static Path[] chat_filePath = new Path[2];
     public static Path[] chat_updatePath = new Path[3];
 
@@ -1375,7 +1378,7 @@ public class Theme {
             this.shadowDrawable = new Drawable[4];
             this.shadowDrawableColor = new int[]{-1, -1, -1, -1};
             this.currentBackgroundDrawableRadius = new int[][]{new int[]{-1, -1, -1, -1}, new int[]{-1, -1, -1, -1}, new int[]{-1, -1, -1, -1}, new int[]{-1, -1, -1, -1}};
-            this.backgroundDrawable = (Drawable[][]) Array.newInstance(Drawable.class, 4, 4);
+            this.backgroundDrawable = (Drawable[][]) Array.newInstance((Class<?>) Drawable.class, 4, 4);
             this.backgroundDrawableColor = new int[][]{new int[]{-1, -1, -1, -1}, new int[]{-1, -1, -1, -1}, new int[]{-1, -1, -1, -1}, new int[]{-1, -1, -1, -1}};
             this.resourcesProvider = resourcesProvider;
             this.isOut = z;
@@ -1393,18 +1396,19 @@ public class Theme {
         public void applyMatrixScale() {
             Bitmap bitmap;
             if (this.gradientShader instanceof BitmapShader) {
-                char c = 2;
                 if (this.isCrossfadeBackground && (bitmap = this.crosfadeFromBitmap) != null) {
-                    char c2 = this.currentType != 2 ? (char) 0 : (char) 1;
-                    float min = 1.0f / Math.min(bitmap.getWidth() / motionBackground[c2].getBounds().width(), this.crosfadeFromBitmap.getHeight() / motionBackground[c2].getBounds().height());
+                    r2 = this.currentType == 2 ? (char) 1 : (char) 0;
+                    float min = 1.0f / Math.min(bitmap.getWidth() / motionBackground[r2].getBounds().width(), this.crosfadeFromBitmap.getHeight() / motionBackground[r2].getBounds().height());
                     this.matrix.postScale(min, min);
                     return;
                 }
-                if (!this.themePreview) {
-                    c = this.currentType != 2 ? (char) 0 : (char) 1;
+                if (this.themePreview) {
+                    r2 = 2;
+                } else if (this.currentType == 2) {
+                    r2 = 1;
                 }
-                Bitmap bitmap2 = motionBackground[c].getBitmap();
-                float min2 = 1.0f / Math.min(bitmap2.getWidth() / motionBackground[c].getBounds().width(), bitmap2.getHeight() / motionBackground[c].getBounds().height());
+                Bitmap bitmap2 = motionBackground[r2].getBitmap();
+                float min2 = 1.0f / Math.min(bitmap2.getWidth() / motionBackground[r2].getBounds().width(), bitmap2.getHeight() / motionBackground[r2].getBounds().height());
                 this.matrix.postScale(min2, min2);
             }
         }
@@ -1444,127 +1448,8 @@ public class Theme {
             setTop(i, i2, i3, i3, 0, 0, z, z2);
         }
 
-        public void setTop(int i, int i2, int i3, int i4, int i5, int i6, boolean z, boolean z2) {
-            int color;
-            int i7;
-            int i8;
-            int i9;
-            boolean z3;
-            char c;
-            int i10;
-            int i11;
-            MotionBackgroundDrawable motionBackgroundDrawable;
-            MessageDrawable messageDrawable = this.crossfadeFromDrawable;
-            if (messageDrawable != null) {
-                messageDrawable.setTop(i, i2, i3, i4, i5, i6, z, z2);
-            }
-            if (this.isOut) {
-                color = getColor(this.isSelected ? Theme.key_chat_outBubbleSelected : Theme.key_chat_outBubble);
-                int currentColor = getCurrentColor(Theme.key_chat_outBubbleGradient1);
-                int currentColor2 = getCurrentColor(Theme.key_chat_outBubbleGradient2);
-                i7 = currentColor;
-                i8 = currentColor2;
-                i9 = getCurrentColor(Theme.key_chat_outBubbleGradient3);
-                z3 = getCurrentColor(Theme.key_chat_outBubbleGradientAnimated) != 0;
-            } else {
-                color = getColor(this.isSelected ? Theme.key_chat_inBubbleSelected : Theme.key_chat_inBubble);
-                i7 = 0;
-                i8 = 0;
-                i9 = 0;
-                z3 = false;
-            }
-            if (i7 != 0) {
-                color = getColor(Theme.key_chat_outBubble);
-            }
-            if (this.themePreview) {
-                c = 2;
-            } else {
-                c = this.currentType == 2 ? (char) 1 : (char) 0;
-            }
-            if (!this.isCrossfadeBackground && i8 != 0 && z3 && (motionBackgroundDrawable = motionBackground[c]) != null) {
-                int[] colors = motionBackgroundDrawable.getColors();
-                this.currentColor = colors[0];
-                this.currentGradientColor1 = colors[1];
-                this.currentGradientColor2 = colors[2];
-                this.currentGradientColor3 = colors[3];
-            }
-            if (this.isCrossfadeBackground && i8 != 0 && z3) {
-                if (i3 == this.currentBackgroundHeight && this.crosfadeFromBitmapShader != null && this.currentColor == color && this.currentGradientColor1 == i7 && this.currentGradientColor2 == i8 && this.currentGradientColor3 == i9 && this.currentAnimateGradient == z3) {
-                    i11 = -1;
-                } else {
-                    if (this.crosfadeFromBitmap == null) {
-                        this.crosfadeFromBitmap = Bitmap.createBitmap(60, 80, Bitmap.Config.ARGB_8888);
-                        Bitmap bitmap = this.crosfadeFromBitmap;
-                        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                        this.crosfadeFromBitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
-                    }
-                    MotionBackgroundDrawable[] motionBackgroundDrawableArr = motionBackground;
-                    if (motionBackgroundDrawableArr[c] == null) {
-                        motionBackgroundDrawableArr[c] = new MotionBackgroundDrawable();
-                        if (this.currentType != 2) {
-                            motionBackground[c].setPostInvalidateParent(true);
-                        }
-                        motionBackground[c].setRoundRadius(dp(1.0f));
-                    }
-                    i11 = -1;
-                    motionBackground[c].setColors(color, i7, i8, i9, this.crosfadeFromBitmap);
-                    this.crosfadeFromBitmapShader.setLocalMatrix(this.matrix);
-                }
-                Shader shader = this.crosfadeFromBitmapShader;
-                this.gradientShader = shader;
-                this.paint.setShader(shader);
-                this.paint.setColor(i11);
-                this.currentColor = color;
-                this.currentAnimateGradient = z3;
-                this.currentGradientColor1 = i7;
-                this.currentGradientColor2 = i8;
-                this.currentGradientColor3 = i9;
-            } else if (i7 != 0 && (this.gradientShader == null || i3 != this.currentBackgroundHeight || this.currentColor != color || this.currentGradientColor1 != i7 || this.currentGradientColor2 != i8 || this.currentGradientColor3 != i9 || this.currentAnimateGradient != z3)) {
-                if (i8 != 0 && z3) {
-                    MotionBackgroundDrawable[] motionBackgroundDrawableArr2 = motionBackground;
-                    if (motionBackgroundDrawableArr2[c] == null) {
-                        motionBackgroundDrawableArr2[c] = new MotionBackgroundDrawable();
-                        if (this.currentType != 2) {
-                            motionBackground[c].setPostInvalidateParent(true);
-                        }
-                        motionBackground[c].setRoundRadius(dp(1.0f));
-                    }
-                    motionBackground[c].setColors(color, i7, i8, i9);
-                    this.gradientShader = motionBackground[c].getBitmapShader();
-                } else if (i8 == 0) {
-                    this.gradientShader = new LinearGradient(0.0f, i5, 0.0f, i3, new int[]{i7, color}, (float[]) null, Shader.TileMode.CLAMP);
-                } else if (i9 != 0) {
-                    this.gradientShader = new LinearGradient(0.0f, i5, 0.0f, i3, new int[]{i9, i8, i7, color}, (float[]) null, Shader.TileMode.CLAMP);
-                } else {
-                    this.gradientShader = new LinearGradient(0.0f, i5, 0.0f, i3, new int[]{i8, i7, color}, (float[]) null, Shader.TileMode.CLAMP);
-                }
-                this.paint.setShader(this.gradientShader);
-                this.currentColor = color;
-                this.currentAnimateGradient = z3;
-                this.currentGradientColor1 = i7;
-                this.currentGradientColor2 = i8;
-                this.currentGradientColor3 = i9;
-                this.paint.setColor(-1);
-            } else if (i7 == 0) {
-                if (this.gradientShader != null) {
-                    this.gradientShader = null;
-                    this.paint.setShader(null);
-                }
-                this.paint.setColor(color);
-            }
-            if (this.gradientShader instanceof BitmapShader) {
-                i10 = 0;
-                motionBackground[c].setBounds(0, i5, i2, i3 - i4);
-            } else {
-                i10 = 0;
-            }
-            this.currentBackgroundHeight = i3;
-            if (this.gradientShader instanceof BitmapShader) {
-                i10 = i4;
-            }
-            this.topY = i - i10;
-            this.isTopNear = z;
-            this.isBottomNear = z2;
+        public void setTop(int r34, int r35, int r36, int r37, int r38, int r39, boolean r40, boolean r41) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.Theme.MessageDrawable.setTop(int, int, int, int, int, int, boolean, boolean):void");
         }
 
         public int getTopY() {
@@ -1586,84 +1471,8 @@ public class Theme {
             return this.shadowDrawable;
         }
 
-        public Drawable getBackgroundDrawable() {
-            char c;
-            int color;
-            int i = this.overrideRoundRadius;
-            boolean z = false;
-            if (i == 0) {
-                i = this.overrideRounding > 0.0f ? 0 : dp(SharedConfig.bubbleRadius);
-            }
-            boolean z2 = this.isTopNear;
-            char c2 = 3;
-            if (z2 && this.isBottomNear) {
-                c = 3;
-            } else if (z2) {
-                c = 2;
-            } else {
-                c = this.isBottomNear ? (char) 1 : (char) 0;
-            }
-            boolean z3 = this.isSelected;
-            if (!z3 || !this.botButtonsBottom) {
-                if (z3) {
-                    c2 = 1;
-                } else {
-                    c2 = this.botButtonsBottom ? (char) 2 : (char) 0;
-                }
-            }
-            boolean z4 = (this.gradientShader != null || z3 || this.isCrossfadeBackground) ? false : true;
-            int color2 = getColor(this.isOut ? Theme.key_chat_outBubbleShadow : Theme.key_chat_inBubbleShadow);
-            if (this.lastDrawWithShadow != z4 || this.currentBackgroundDrawableRadius[c2][c] != i || (z4 && this.shadowDrawableColor[c] != color2)) {
-                this.currentBackgroundDrawableRadius[c2][c] = i;
-                try {
-                    Bitmap createBitmap = Bitmap.createBitmap(dp(50.0f), dp(40.0f), Bitmap.Config.ARGB_8888);
-                    Canvas canvas = new Canvas(createBitmap);
-                    this.backupRect.set(getBounds());
-                    if (z4) {
-                        this.shadowDrawableColor[c] = color2;
-                        Paint paint = new Paint(1);
-                        paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, dp(40.0f), new int[]{358573417, 694117737}, (float[]) null, Shader.TileMode.CLAMP));
-                        paint.setColorFilter(new PorterDuffColorFilter(color2, PorterDuff.Mode.MULTIPLY));
-                        paint.setShadowLayer(2.0f, 0.0f, 1.0f, -1);
-                        if (AndroidUtilities.density > 1.0f) {
-                            setBounds(-1, -1, createBitmap.getWidth() + 1, createBitmap.getHeight() + 1);
-                        } else {
-                            setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());
-                        }
-                        draw(canvas, paint);
-                        if (AndroidUtilities.density > 1.0f) {
-                            paint.setColor(0);
-                            paint.setShadowLayer(0.0f, 0.0f, 0.0f, 0);
-                            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-                            setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());
-                            draw(canvas, paint);
-                        }
-                    }
-                    Paint paint2 = new Paint(1);
-                    paint2.setColor(-1);
-                    setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());
-                    draw(canvas, paint2);
-                    this.backgroundDrawable[c2][c] = new NinePatchDrawable(createBitmap, getByteBuffer((createBitmap.getWidth() / 2) - 1, (createBitmap.getWidth() / 2) + 1, (createBitmap.getHeight() / 2) - 1, (createBitmap.getHeight() / 2) + 1).array(), new Rect(), null);
-                    try {
-                        setBounds(this.backupRect);
-                    } catch (Throwable unused) {
-                    }
-                    z = true;
-                } catch (Throwable unused2) {
-                }
-            }
-            this.lastDrawWithShadow = z4;
-            if (this.isSelected) {
-                color = getColor(this.isOut ? Theme.key_chat_outBubbleSelected : Theme.key_chat_inBubbleSelected);
-            } else {
-                color = getColor(this.isOut ? Theme.key_chat_outBubble : Theme.key_chat_inBubble);
-            }
-            Drawable drawable = this.backgroundDrawable[c2][c];
-            if (drawable != null && (this.backgroundDrawableColor[c2][c] != color || z)) {
-                drawable.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
-                this.backgroundDrawableColor[c2][c] = color;
-            }
-            return this.backgroundDrawable[c2][c];
+        public android.graphics.drawable.Drawable getBackgroundDrawable() {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.Theme.MessageDrawable.getBackgroundDrawable():android.graphics.drawable.Drawable");
         }
 
         public Drawable getTransitionDrawable(int i) {
@@ -1752,7 +1561,6 @@ public class Theme {
         }
 
         protected void finalize() throws Throwable {
-            Bitmap[] bitmapArr;
             super.finalize();
             for (Bitmap bitmap : this.shadowDrawableBitmap) {
                 if (bitmap != null) {
@@ -1824,130 +1632,16 @@ public class Theme {
             draw(canvas, null);
         }
 
-        public void draw(Canvas canvas, Paint paint) {
-            int dp;
-            int dp2;
-            int i;
-            int i2;
-            boolean z;
-            boolean z2;
-            Path path;
-            boolean z3;
-            Drawable backgroundDrawable;
-            Rect bounds = getBounds();
-            if (paint == null && this.gradientShader == null && this.overrideRoundRadius == 0 && this.overrideRounding <= 0.0f && (backgroundDrawable = getBackgroundDrawable()) != null) {
-                backgroundDrawable.setBounds(bounds);
-                backgroundDrawable.draw(canvas);
-                return;
-            }
-            int dp3 = dp(2.0f);
-            int i3 = this.overrideRoundRadius;
-            if (i3 != 0) {
-                i2 = i3;
-                i = i2;
-            } else {
-                if (this.overrideRounding > 0.0f) {
-                    dp = AndroidUtilities.lerp(dp(SharedConfig.bubbleRadius), Math.min(bounds.width(), bounds.height()) / 2, this.overrideRounding);
-                    dp2 = AndroidUtilities.lerp(dp(Math.min(6, SharedConfig.bubbleRadius)), Math.min(bounds.width(), bounds.height()) / 2, this.overrideRounding);
-                } else if (this.currentType == 2) {
-                    dp = dp(6.0f);
-                    dp2 = dp(6.0f);
-                } else {
-                    dp = dp(SharedConfig.bubbleRadius);
-                    dp2 = dp(Math.min(6, SharedConfig.bubbleRadius));
-                }
-                i = dp2;
-                i2 = dp;
-            }
-            int dp4 = dp(6.0f);
-            Paint paint2 = paint == null ? this.paint : paint;
-            if (paint == null && this.gradientShader != null) {
-                this.matrix.reset();
-                applyMatrixScale();
-                this.matrix.postTranslate(0.0f, -this.topY);
-                this.gradientShader.setLocalMatrix(this.matrix);
-            }
-            int max = Math.max(bounds.top, 0);
-            if (this.pathDrawCacheParams == null || bounds.height() >= this.currentBackgroundHeight) {
-                boolean z4 = this.currentType != 1 ? (this.topY + bounds.bottom) - i2 < this.currentBackgroundHeight : (this.topY + bounds.bottom) - (dp4 * 2) < this.currentBackgroundHeight;
-                z = this.topY + (i2 * 2) >= 0;
-                z2 = z4;
-            } else {
-                z2 = true;
-                z = true;
-            }
-            PathDrawParams pathDrawParams = this.pathDrawCacheParams;
-            if (pathDrawParams != null) {
-                path = pathDrawParams.path;
-                z3 = pathDrawParams.invalidatePath(bounds, z2, z);
-            } else {
-                path = this.path;
-                z3 = true;
-            }
-            if (z3 || this.overrideRoundRadius != 0) {
-                generatePath(path, bounds, dp3, i2, dp4, i, max, z2, z, paint != null);
-            }
-            canvas.drawPath(path, paint2);
-            if (this.gradientShader != null && this.isSelected && paint == null) {
-                int color = getColor(Theme.key_chat_outBubbleGradientSelectedOverlay);
-                this.selectedPaint.setColor(ColorUtils.setAlphaComponent(color, (int) ((Color.alpha(color) * this.alpha) / 255.0f)));
-                canvas.drawPath(path, this.selectedPaint);
-            }
+        public void draw(android.graphics.Canvas r17, android.graphics.Paint r18) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.Theme.MessageDrawable.draw(android.graphics.Canvas, android.graphics.Paint):void");
         }
 
         public Path makePath() {
             return makePath(this.pathDrawCacheParams);
         }
 
-        public Path makePath(PathDrawParams pathDrawParams) {
-            int dp;
-            int dp2;
-            int i;
-            int i2;
-            boolean z;
-            boolean z2;
-            Path path;
-            Rect bounds = getBounds();
-            int dp3 = dp(2.0f);
-            int i3 = this.overrideRoundRadius;
-            if (i3 != 0) {
-                i2 = i3;
-                i = i2;
-            } else {
-                if (this.overrideRounding > 0.0f) {
-                    dp = AndroidUtilities.lerp(dp(SharedConfig.bubbleRadius), Math.min(bounds.width(), bounds.height()) / 2, this.overrideRounding);
-                    dp2 = AndroidUtilities.lerp(dp(Math.min(6, SharedConfig.bubbleRadius)), Math.min(bounds.width(), bounds.height()) / 2, this.overrideRounding);
-                } else if (this.currentType == 2) {
-                    dp = dp(6.0f);
-                    dp2 = dp(6.0f);
-                } else {
-                    dp = dp(SharedConfig.bubbleRadius);
-                    dp2 = dp(Math.min(6, SharedConfig.bubbleRadius));
-                }
-                i = dp2;
-                i2 = dp;
-            }
-            int dp4 = dp(6.0f);
-            int max = Math.max(bounds.top, 0);
-            boolean z3 = true;
-            if (pathDrawParams == null || bounds.height() >= this.currentBackgroundHeight) {
-                z = this.currentType != 1 ? (this.topY + bounds.bottom) - i2 < this.currentBackgroundHeight : (this.topY + bounds.bottom) - (dp4 * 2) < this.currentBackgroundHeight;
-                z2 = this.topY + (i2 * 2) >= 0;
-            } else {
-                z = true;
-                z2 = true;
-            }
-            if (pathDrawParams != null) {
-                Path path2 = pathDrawParams.path;
-                z3 = pathDrawParams.invalidatePath(bounds, z, z2);
-                path = path2;
-            } else {
-                path = this.path;
-            }
-            if (z3 || this.overrideRoundRadius != 0) {
-                generatePath(path, bounds, dp3, i2, dp4, i, max, z, z2, true);
-            }
-            return path;
+        public android.graphics.Path makePath(org.telegram.ui.ActionBar.Theme.MessageDrawable.PathDrawParams r13) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.Theme.MessageDrawable.makePath(org.telegram.ui.ActionBar.Theme$MessageDrawable$PathDrawParams):android.graphics.Path");
         }
 
         private void generatePath(Path path, Rect rect, int i, int i2, int i3, int i4, int i5, boolean z, boolean z2, boolean z3) {
@@ -1966,11 +1660,8 @@ public class Theme {
                         path.moveTo(rect.right - dp(2.6f), rect.bottom - i);
                     }
                     path.lineTo(rect.left + i + i7, rect.bottom - i);
-                    RectF rectF = this.rect;
-                    int i8 = rect.left;
-                    int i9 = rect.bottom;
-                    int i10 = i7 * 2;
-                    rectF.set(i8 + i, (i9 - i) - i10, i8 + i + i10, i9 - i);
+                    int i8 = i7 * 2;
+                    this.rect.set(rect.left + i, r10 - i8, r11 + i8, rect.bottom - i);
                     path.arcTo(this.rect, 90.0f, 90.0f, false);
                 } else {
                     path.moveTo(rect.right - dp(8.0f), (i5 - this.topY) + this.currentBackgroundHeight);
@@ -1978,24 +1669,20 @@ public class Theme {
                 }
                 if (this.drawFullBubble || this.currentType == 2 || z3 || z2) {
                     path.lineTo(rect.left + i, rect.top + i + i6);
-                    RectF rectF2 = this.rect;
-                    int i11 = rect.left;
-                    int i12 = rect.top;
-                    int i13 = i6 * 2;
-                    rectF2.set(i11 + i, i12 + i, i11 + i + i13, i12 + i + i13);
+                    int i9 = i6 * 2;
+                    this.rect.set(rect.left + i, rect.top + i, r9 + i9, r11 + i9);
                     path.arcTo(this.rect, 180.0f, 90.0f, false);
-                    int i14 = this.isTopNear ? i4 : i6;
+                    int i10 = this.isTopNear ? i4 : i6;
                     if (this.currentType == 1) {
-                        path.lineTo((rect.right - i) - i14, rect.top + i);
-                        RectF rectF3 = this.rect;
-                        int i15 = rect.right;
-                        int i16 = i14 * 2;
-                        int i17 = rect.top;
-                        rectF3.set((i15 - i) - i16, i17 + i, i15 - i, i17 + i + i16);
+                        path.lineTo((rect.right - i) - i10, rect.top + i);
+                        RectF rectF = this.rect;
+                        int i11 = rect.right - i;
+                        int i12 = i10 * 2;
+                        rectF.set(i11 - i12, rect.top + i, i11, r12 + i12);
                     } else {
-                        path.lineTo((rect.right - dp(8.0f)) - i14, rect.top + i);
-                        int i18 = i14 * 2;
-                        this.rect.set((rect.right - dp(8.0f)) - i18, rect.top + i, rect.right - dp(8.0f), rect.top + i + i18);
+                        path.lineTo((rect.right - dp(8.0f)) - i10, rect.top + i);
+                        int i13 = i10 * 2;
+                        this.rect.set((rect.right - dp(8.0f)) - i13, rect.top + i, rect.right - dp(8.0f), rect.top + i + i13);
                     }
                     path.arcTo(this.rect, 270.0f, 90.0f, false);
                 } else {
@@ -2006,44 +1693,38 @@ public class Theme {
                         path.lineTo(rect.right - dp(8.0f), (i5 - this.topY) - dp(2.0f));
                     }
                 }
-                int i19 = this.currentType;
-                if (i19 == 1) {
+                int i14 = this.currentType;
+                if (i14 == 1) {
                     if (z3 || z) {
                         if (this.isBottomNear) {
                             i6 = i4;
                         }
                         path.lineTo(rect.right - i, (rect.bottom - i) - i6);
-                        RectF rectF4 = this.rect;
-                        int i20 = rect.right;
-                        int i21 = i6 * 2;
-                        int i22 = rect.bottom;
-                        rectF4.set((i20 - i) - i21, (i22 - i) - i21, i20 - i, i22 - i);
+                        int i15 = i6 * 2;
+                        this.rect.set(r4 - i15, r2 - i15, rect.right - i, rect.bottom - i);
                         path.arcTo(this.rect, 0.0f, 90.0f, false);
                     } else {
                         path.lineTo(rect.right - i, (i5 - this.topY) + this.currentBackgroundHeight);
                     }
-                } else if (this.drawFullBubble || i19 == 2 || z3 || z) {
+                } else if (this.drawFullBubble || i14 == 2 || z3 || z) {
                     path.lineTo(rect.right - dp(8.0f), ((rect.bottom - i) - i3) - dp(3.0f));
-                    int i23 = i3 * 2;
-                    this.rect.set(rect.right - dp(8.0f), ((rect.bottom - i) - i23) - dp(9.0f), (rect.right - dp(7.0f)) + i23, (rect.bottom - i) - dp(1.0f));
+                    int i16 = i3 * 2;
+                    this.rect.set(rect.right - dp(8.0f), ((rect.bottom - i) - i16) - dp(9.0f), (rect.right - dp(7.0f)) + i16, (rect.bottom - i) - dp(1.0f));
                     path.arcTo(this.rect, 180.0f, -83.0f, false);
                 } else {
                     path.lineTo(rect.right - dp(8.0f), (i5 - this.topY) + this.currentBackgroundHeight);
                 }
             } else {
                 if (this.drawFullBubble || this.currentType == 2 || z3 || z) {
-                    int i24 = this.botButtonsBottom ? i4 : i6;
+                    int i17 = this.botButtonsBottom ? i4 : i6;
                     if (this.currentType == 1) {
-                        path.moveTo(rect.left + dp(8.0f) + i24, rect.bottom - i);
+                        path.moveTo(rect.left + dp(8.0f) + i17, rect.bottom - i);
                     } else {
                         path.moveTo(rect.left + dp(2.6f), rect.bottom - i);
                     }
-                    path.lineTo((rect.right - i) - i24, rect.bottom - i);
-                    RectF rectF5 = this.rect;
-                    int i25 = rect.right;
-                    int i26 = i24 * 2;
-                    int i27 = rect.bottom;
-                    rectF5.set((i25 - i) - i26, (i27 - i) - i26, i25 - i, i27 - i);
+                    path.lineTo((rect.right - i) - i17, rect.bottom - i);
+                    int i18 = i17 * 2;
+                    this.rect.set(r11 - i18, r13 - i18, rect.right - i, rect.bottom - i);
                     path.arcTo(this.rect, 90.0f, -90.0f, false);
                 } else {
                     path.moveTo(rect.left + dp(8.0f), (i5 - this.topY) + this.currentBackgroundHeight);
@@ -2051,24 +1732,20 @@ public class Theme {
                 }
                 if (this.drawFullBubble || this.currentType == 2 || z3 || z2) {
                     path.lineTo(rect.right - i, rect.top + i + i6);
-                    RectF rectF6 = this.rect;
-                    int i28 = rect.right;
-                    int i29 = i6 * 2;
-                    int i30 = rect.top;
-                    rectF6.set((i28 - i) - i29, i30 + i, i28 - i, i30 + i + i29);
+                    RectF rectF2 = this.rect;
+                    int i19 = rect.right - i;
+                    int i20 = i6 * 2;
+                    rectF2.set(i19 - i20, rect.top + i, i19, r13 + i20);
                     path.arcTo(this.rect, 0.0f, -90.0f, false);
-                    int i31 = this.isTopNear ? i4 : i6;
+                    int i21 = this.isTopNear ? i4 : i6;
                     if (this.currentType == 1) {
-                        path.lineTo(rect.left + i + i31, rect.top + i);
-                        RectF rectF7 = this.rect;
-                        int i32 = rect.left;
-                        int i33 = rect.top;
-                        int i34 = i31 * 2;
-                        rectF7.set(i32 + i, i33 + i, i32 + i + i34, i33 + i + i34);
+                        path.lineTo(rect.left + i + i21, rect.top + i);
+                        int i22 = i21 * 2;
+                        this.rect.set(rect.left + i, rect.top + i, r11 + i22, r13 + i22);
                     } else {
-                        path.lineTo(rect.left + dp(8.0f) + i31, rect.top + i);
-                        int i35 = i31 * 2;
-                        this.rect.set(rect.left + dp(8.0f), rect.top + i, rect.left + dp(8.0f) + i35, rect.top + i + i35);
+                        path.lineTo(rect.left + dp(8.0f) + i21, rect.top + i);
+                        int i23 = i21 * 2;
+                        this.rect.set(rect.left + dp(8.0f), rect.top + i, rect.left + dp(8.0f) + i23, rect.top + i + i23);
                     }
                     path.arcTo(this.rect, 270.0f, -90.0f, false);
                 } else {
@@ -2079,26 +1756,23 @@ public class Theme {
                         path.lineTo(rect.left + dp(8.0f), (i5 - this.topY) - dp(2.0f));
                     }
                 }
-                int i36 = this.currentType;
-                if (i36 == 1) {
+                int i24 = this.currentType;
+                if (i24 == 1) {
                     if (z3 || z) {
                         if (this.isBottomNear || this.botButtonsBottom) {
                             i6 = i4;
                         }
                         path.lineTo(rect.left + i, (rect.bottom - i) - i6);
-                        RectF rectF8 = this.rect;
-                        int i37 = rect.left;
-                        int i38 = rect.bottom;
-                        int i39 = i6 * 2;
-                        rectF8.set(i37 + i, (i38 - i) - i39, i37 + i + i39, i38 - i);
+                        int i25 = i6 * 2;
+                        this.rect.set(rect.left + i, r2 - i25, r4 + i25, rect.bottom - i);
                         path.arcTo(this.rect, 180.0f, -90.0f, false);
                     } else {
                         path.lineTo(rect.left + i, (i5 - this.topY) + this.currentBackgroundHeight);
                     }
-                } else if (this.drawFullBubble || i36 == 2 || z3 || z) {
+                } else if (this.drawFullBubble || i24 == 2 || z3 || z) {
                     path.lineTo(rect.left + dp(8.0f), ((rect.bottom - i) - i3) - dp(3.0f));
-                    int i40 = i3 * 2;
-                    this.rect.set((rect.left + dp(7.0f)) - i40, ((rect.bottom - i) - i40) - dp(9.0f), rect.left + dp(8.0f), (rect.bottom - i) - dp(1.0f));
+                    int i26 = i3 * 2;
+                    this.rect.set((rect.left + dp(7.0f)) - i26, ((rect.bottom - i) - i26) - dp(9.0f), rect.left + dp(8.0f), (rect.bottom - i) - dp(1.0f));
                     path.arcTo(this.rect, 0.0f, 83.0f, false);
                 } else {
                     path.lineTo(rect.left + dp(8.0f), (i5 - this.topY) + this.currentBackgroundHeight);
@@ -2195,12 +1869,23 @@ public class Theme {
         }
 
         public static void createLoader(boolean z) {
+            String str;
             ArrayList<ThemeAccent> arrayList;
             if (loader == null || z) {
                 ArrayList arrayList2 = null;
-                int i = 0;
-                while (i < 5) {
-                    ThemeInfo themeInfo = (ThemeInfo) Theme.themesDict.get(i != 0 ? i != 1 ? i != 2 ? i != 3 ? "Night" : "Day" : "Arctic Blue" : "Dark Blue" : "Blue");
+                for (int i = 0; i < 5; i++) {
+                    if (i == 0) {
+                        str = "Blue";
+                    } else if (i == 1) {
+                        str = "Dark Blue";
+                    } else if (i == 2) {
+                        str = "Arctic Blue";
+                    } else if (i == 3) {
+                        str = "Day";
+                    } else {
+                        str = "Night";
+                    }
+                    ThemeInfo themeInfo = (ThemeInfo) Theme.themesDict.get(str);
                     if (themeInfo != null && (arrayList = themeInfo.themeAccents) != null && !arrayList.isEmpty()) {
                         int size = themeInfo.themeAccents.size();
                         for (int i2 = 0; i2 < size; i2++) {
@@ -2213,7 +1898,6 @@ public class Theme {
                             }
                         }
                     }
-                    i++;
                 }
                 loader = new PatternsLoader(arrayList2);
             }
@@ -2285,17 +1969,17 @@ public class Theme {
                             File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tLRPC$TL_wallPaper.document, true);
                             int size2 = arrayList.size();
                             Bitmap bitmap2 = bitmap;
-                            Boolean bool = bitmap2;
+                            ?? r12 = bitmap2;
                             int i2 = 0;
-                            AnonymousClass1 anonymousClass1 = bitmap;
+                            ?? r4 = bitmap;
                             while (i2 < size2) {
                                 ThemeAccent themeAccent = (ThemeAccent) arrayList.get(i2);
-                                bool = bool;
+                                r12 = r12;
                                 if (themeAccent.patternSlug.equals(tLRPC$TL_wallPaper.slug)) {
-                                    if (bool == 0) {
-                                        bool = Boolean.valueOf(pathToAttach.exists());
+                                    if (r12 == 0) {
+                                        r12 = Boolean.valueOf(pathToAttach.exists());
                                     }
-                                    if (bitmap2 != null || bool.booleanValue()) {
+                                    if (bitmap2 != null || r12.booleanValue()) {
                                         bitmap2 = createWallpaperForAccent(bitmap2, "application/x-tgwallpattern".equals(tLRPC$TL_wallPaper.document.mime_type), pathToAttach, themeAccent);
                                         if (arrayList2 == null) {
                                             arrayList2 = new ArrayList<>();
@@ -2316,8 +2000,8 @@ public class Theme {
                                     }
                                 }
                                 i2++;
-                                anonymousClass1 = 0;
-                                bool = bool;
+                                r4 = 0;
+                                r12 = r12;
                             }
                             if (bitmap2 != null) {
                                 bitmap2.recycle();
@@ -2350,8 +2034,9 @@ public class Theme {
                 if (this.watingForLoad != null) {
                     NotificationCenter.getInstance(this.account).addObserver(this, NotificationCenter.fileLoaded);
                     NotificationCenter.getInstance(this.account).addObserver(this, NotificationCenter.fileLoadFailed);
-                    for (Map.Entry<String, LoadingPattern> entry : this.watingForLoad.entrySet()) {
-                        FileLoader.getInstance(this.account).loadFile(ImageLocation.getForDocument(entry.getValue().pattern.document), "wallpaper", null, 0, 1);
+                    Iterator<Map.Entry<String, LoadingPattern>> it = this.watingForLoad.entrySet().iterator();
+                    while (it.hasNext()) {
+                        FileLoader.getInstance(this.account).loadFile(ImageLocation.getForDocument(it.next().getValue().pattern.document), "wallpaper", null, 0, 1);
                     }
                     return;
                 }
@@ -2364,102 +2049,8 @@ public class Theme {
             }
         }
 
-        private Bitmap createWallpaperForAccent(Bitmap bitmap, boolean z, File file, ThemeAccent themeAccent) {
-            Bitmap bitmap2;
-            File pathToWallpaper;
-            Drawable drawable;
-            int patternColor;
-            Bitmap loadScreenSizedBitmap;
-            int i;
-            int i2;
-            int i3;
-            try {
-                pathToWallpaper = themeAccent.getPathToWallpaper();
-                drawable = null;
-            } catch (Throwable th) {
-                th = th;
-                bitmap2 = bitmap;
-            }
-            if (pathToWallpaper == null) {
-                return null;
-            }
-            ThemeInfo themeInfo = themeAccent.parentTheme;
-            SparseIntArray themeFileValues = Theme.getThemeFileValues(null, themeInfo.assetName, null);
-            Theme.checkIsDark(themeFileValues, themeInfo);
-            int i4 = themeAccent.accentColor;
-            int i5 = (int) themeAccent.backgroundOverrideColor;
-            long j = themeAccent.backgroundGradientOverrideColor1;
-            int i6 = (int) j;
-            if (i6 == 0 && j == 0) {
-                if (i5 != 0) {
-                    i4 = i5;
-                }
-                int i7 = themeFileValues.get(Theme.key_chat_wallpaper_gradient_to1);
-                if (i7 != 0) {
-                    i6 = Theme.changeColorAccent(themeInfo, i4, i7);
-                }
-            } else {
-                i4 = 0;
-            }
-            long j2 = themeAccent.backgroundGradientOverrideColor2;
-            int i8 = (int) j2;
-            if (i8 == 0 && j2 == 0 && (i3 = themeFileValues.get(Theme.key_chat_wallpaper_gradient_to2)) != 0) {
-                i8 = Theme.changeColorAccent(themeInfo, i4, i3);
-            }
-            long j3 = themeAccent.backgroundGradientOverrideColor3;
-            int i9 = (int) j3;
-            if (i9 == 0 && j3 == 0 && (i2 = themeFileValues.get(Theme.key_chat_wallpaper_gradient_to3)) != 0) {
-                i9 = Theme.changeColorAccent(themeInfo, i4, i2);
-            }
-            if (i5 == 0 && (i = themeFileValues.get(Theme.key_chat_wallpaper)) != 0) {
-                i5 = Theme.changeColorAccent(themeInfo, i4, i);
-            }
-            if (i8 != 0) {
-                patternColor = MotionBackgroundDrawable.getPatternColor(i5, i6, i8, i9);
-            } else if (i6 != 0) {
-                Drawable backgroundGradientDrawable = new BackgroundGradientDrawable(BackgroundGradientDrawable.getGradientOrientation(themeAccent.backgroundRotation), new int[]{i5, i6});
-                patternColor = AndroidUtilities.getPatternColor(AndroidUtilities.getAverageColor(i5, i6));
-                drawable = backgroundGradientDrawable;
-            } else {
-                drawable = new ColorDrawable(i5);
-                patternColor = AndroidUtilities.getPatternColor(i5);
-            }
-            if (bitmap == null) {
-                Point point = AndroidUtilities.displaySize;
-                int min = Math.min(point.x, point.y);
-                Point point2 = AndroidUtilities.displaySize;
-                int max = Math.max(point2.x, point2.y);
-                if (!z) {
-                    loadScreenSizedBitmap = Theme.loadScreenSizedBitmap(new FileInputStream(file), 0);
-                } else {
-                    loadScreenSizedBitmap = SvgHelper.getBitmap(file, min, max, false);
-                }
-                bitmap2 = loadScreenSizedBitmap;
-            } else {
-                bitmap2 = bitmap;
-            }
-            try {
-                if (drawable != null) {
-                    Bitmap createBitmap = Bitmap.createBitmap(bitmap2.getWidth(), bitmap2.getHeight(), Bitmap.Config.ARGB_8888);
-                    Canvas canvas = new Canvas(createBitmap);
-                    drawable.setBounds(0, 0, bitmap2.getWidth(), bitmap2.getHeight());
-                    drawable.draw(canvas);
-                    Paint paint = new Paint(2);
-                    paint.setColorFilter(new PorterDuffColorFilter(patternColor, PorterDuff.Mode.SRC_IN));
-                    paint.setAlpha((int) (Math.abs(themeAccent.patternIntensity) * 255.0f));
-                    canvas.drawBitmap(bitmap2, 0.0f, 0.0f, paint);
-                    createBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(pathToWallpaper));
-                } else {
-                    FileOutputStream fileOutputStream = new FileOutputStream(pathToWallpaper);
-                    bitmap2.compress(Bitmap.CompressFormat.PNG, 87, fileOutputStream);
-                    fileOutputStream.close();
-                }
-            } catch (Throwable th2) {
-                th = th2;
-                FileLog.e(th);
-                return bitmap2;
-            }
-            return bitmap2;
+        private android.graphics.Bitmap createWallpaperForAccent(android.graphics.Bitmap r19, boolean r20, java.io.File r21, org.telegram.ui.ActionBar.Theme.ThemeAccent r22) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.Theme.PatternsLoader.createWallpaperForAccent(android.graphics.Bitmap, boolean, java.io.File, org.telegram.ui.ActionBar.Theme$ThemeAccent):android.graphics.Bitmap");
         }
 
         @Override
@@ -2477,11 +2068,14 @@ public class Theme {
                             Theme.PatternsLoader.this.lambda$didReceivedNotification$3(remove);
                         }
                     });
+                    return;
                 }
-            } else if (i != NotificationCenter.fileLoadFailed || hashMap.remove((String) objArr[0]) == null) {
-            } else {
-                checkCurrentWallpaper(null, false);
+                return;
             }
+            if (i != NotificationCenter.fileLoadFailed || hashMap.remove((String) objArr[0]) == null) {
+                return;
+            }
+            checkCurrentWallpaper(null, false);
         }
 
         public void lambda$didReceivedNotification$3(LoadingPattern loadingPattern) {
@@ -2898,8 +2492,7 @@ public class Theme {
                     float f2 = fArr2[2];
                     if (f2 < 1.0f && f2 > 0.0f) {
                         fArr2[1] = Math.max(0.0f, Math.min(1.0f, f + 0.28f));
-                        float[] fArr3 = this.tempHSV;
-                        fArr3[2] = Math.max(0.0f, Math.min(1.0f, fArr3[2] - 0.1f));
+                        this.tempHSV[2] = Math.max(0.0f, Math.min(1.0f, r7[2] - 0.1f));
                         i2 = 32;
                     }
                 }
@@ -2942,9 +2535,9 @@ public class Theme {
                 if (sparseIntArray.indexOfKey(iArr[i5]) >= 0) {
                     try {
                         int i6 = sparseIntArray.get(iArr[i5]);
-                        i2 += Color.red(i6);
+                        i4 += Color.red(i6);
                         i3 += Color.green(i6);
-                        i4 += Color.blue(i6);
+                        i2 += Color.blue(i6);
                         i++;
                     } catch (Exception unused) {
                     }
@@ -2953,7 +2546,7 @@ public class Theme {
             if (i == 0) {
                 return 0;
             }
-            return Color.argb(255, i2 / i, i3 / i, i4 / i);
+            return Color.argb(255, i4 / i, i3 / i, i2 / i);
         }
 
         public File getPathToWallpaper() {
@@ -2962,11 +2555,11 @@ public class Theme {
                     return null;
                 }
                 return new File(ApplicationLoader.getFilesDirFixed(), String.format(Locale.US, "%s_%d_%s_v5.jpg", this.parentTheme.getKey(), Integer.valueOf(this.id), this.patternSlug));
-            } else if (TextUtils.isEmpty(this.patternSlug)) {
-                return null;
-            } else {
-                return new File(ApplicationLoader.getFilesDirFixed(), String.format(Locale.US, "%s_%d_%s_v8_debug.jpg", this.parentTheme.getKey(), Integer.valueOf(this.id), this.patternSlug));
             }
+            if (TextUtils.isEmpty(this.patternSlug)) {
+                return null;
+            }
+            return new File(ApplicationLoader.getFilesDirFixed(), String.format(Locale.US, "%s_%d_%s_v8_debug.jpg", this.parentTheme.getKey(), Integer.valueOf(this.id), this.patternSlug));
         }
 
         public java.io.File saveToFile() {
@@ -3458,45 +3051,45 @@ public class Theme {
         }
 
         public boolean isDefaultMyMessagesBubbles() {
-            if (this.firstAccentIsDefault) {
-                int i = this.currentAccentId;
-                int i2 = Theme.DEFALT_THEME_ACCENT_ID;
-                if (i == i2) {
-                    return true;
-                }
-                ThemeAccent themeAccent = this.themeAccentsMap.get(i2);
-                ThemeAccent themeAccent2 = this.themeAccentsMap.get(this.currentAccentId);
-                return themeAccent != null && themeAccent2 != null && themeAccent.myMessagesAccentColor == themeAccent2.myMessagesAccentColor && themeAccent.myMessagesGradientAccentColor1 == themeAccent2.myMessagesGradientAccentColor1 && themeAccent.myMessagesGradientAccentColor2 == themeAccent2.myMessagesGradientAccentColor2 && themeAccent.myMessagesGradientAccentColor3 == themeAccent2.myMessagesGradientAccentColor3 && themeAccent.myMessagesAnimated == themeAccent2.myMessagesAnimated;
+            if (!this.firstAccentIsDefault) {
+                return false;
             }
-            return false;
+            int i = this.currentAccentId;
+            int i2 = Theme.DEFALT_THEME_ACCENT_ID;
+            if (i == i2) {
+                return true;
+            }
+            ThemeAccent themeAccent = this.themeAccentsMap.get(i2);
+            ThemeAccent themeAccent2 = this.themeAccentsMap.get(this.currentAccentId);
+            return themeAccent != null && themeAccent2 != null && themeAccent.myMessagesAccentColor == themeAccent2.myMessagesAccentColor && themeAccent.myMessagesGradientAccentColor1 == themeAccent2.myMessagesGradientAccentColor1 && themeAccent.myMessagesGradientAccentColor2 == themeAccent2.myMessagesGradientAccentColor2 && themeAccent.myMessagesGradientAccentColor3 == themeAccent2.myMessagesGradientAccentColor3 && themeAccent.myMessagesAnimated == themeAccent2.myMessagesAnimated;
         }
 
         public boolean isDefaultMyMessages() {
-            if (this.firstAccentIsDefault) {
-                int i = this.currentAccentId;
-                int i2 = Theme.DEFALT_THEME_ACCENT_ID;
-                if (i == i2) {
-                    return true;
-                }
-                ThemeAccent themeAccent = this.themeAccentsMap.get(i2);
-                ThemeAccent themeAccent2 = this.themeAccentsMap.get(this.currentAccentId);
-                return themeAccent != null && themeAccent2 != null && themeAccent.accentColor2 == themeAccent2.accentColor2 && themeAccent.myMessagesAccentColor == themeAccent2.myMessagesAccentColor && themeAccent.myMessagesGradientAccentColor1 == themeAccent2.myMessagesGradientAccentColor1 && themeAccent.myMessagesGradientAccentColor2 == themeAccent2.myMessagesGradientAccentColor2 && themeAccent.myMessagesGradientAccentColor3 == themeAccent2.myMessagesGradientAccentColor3 && themeAccent.myMessagesAnimated == themeAccent2.myMessagesAnimated;
+            if (!this.firstAccentIsDefault) {
+                return false;
             }
-            return false;
+            int i = this.currentAccentId;
+            int i2 = Theme.DEFALT_THEME_ACCENT_ID;
+            if (i == i2) {
+                return true;
+            }
+            ThemeAccent themeAccent = this.themeAccentsMap.get(i2);
+            ThemeAccent themeAccent2 = this.themeAccentsMap.get(this.currentAccentId);
+            return themeAccent != null && themeAccent2 != null && themeAccent.accentColor2 == themeAccent2.accentColor2 && themeAccent.myMessagesAccentColor == themeAccent2.myMessagesAccentColor && themeAccent.myMessagesGradientAccentColor1 == themeAccent2.myMessagesGradientAccentColor1 && themeAccent.myMessagesGradientAccentColor2 == themeAccent2.myMessagesGradientAccentColor2 && themeAccent.myMessagesGradientAccentColor3 == themeAccent2.myMessagesGradientAccentColor3 && themeAccent.myMessagesAnimated == themeAccent2.myMessagesAnimated;
         }
 
         public boolean isDefaultMainAccent() {
-            if (this.firstAccentIsDefault) {
-                int i = this.currentAccentId;
-                int i2 = Theme.DEFALT_THEME_ACCENT_ID;
-                if (i == i2) {
-                    return true;
-                }
-                ThemeAccent themeAccent = this.themeAccentsMap.get(i2);
-                ThemeAccent themeAccent2 = this.themeAccentsMap.get(this.currentAccentId);
-                return (themeAccent2 == null || themeAccent == null || themeAccent.accentColor != themeAccent2.accentColor) ? false : true;
+            if (!this.firstAccentIsDefault) {
+                return false;
             }
-            return false;
+            int i = this.currentAccentId;
+            int i2 = Theme.DEFALT_THEME_ACCENT_ID;
+            if (i == i2) {
+                return true;
+            }
+            ThemeAccent themeAccent = this.themeAccentsMap.get(i2);
+            ThemeAccent themeAccent2 = this.themeAccentsMap.get(this.currentAccentId);
+            return (themeAccent2 == null || themeAccent == null || themeAccent.accentColor != themeAccent2.accentColor) ? false : true;
         }
 
         public boolean hasAccentColors() {
@@ -3542,8 +3135,12 @@ public class Theme {
                     themeInfo.account = jSONObject.getInt("account");
                 }
                 if (jSONObject.has("info")) {
-                    SerializedData serializedData = new SerializedData(Utilities.hexToBytes(jSONObject.getString("info")));
-                    themeInfo.info = TLRPC$Theme.TLdeserialize(serializedData, serializedData.readInt32(true), true);
+                    try {
+                        SerializedData serializedData = new SerializedData(Utilities.hexToBytes(jSONObject.getString("info")));
+                        themeInfo.info = TLRPC$Theme.TLdeserialize(serializedData, serializedData.readInt32(true), true);
+                    } catch (Throwable th) {
+                        FileLog.e(th);
+                    }
                 }
                 if (jSONObject.has("loaded")) {
                     themeInfo.loaded = jSONObject.getBoolean("loaded");
@@ -3589,12 +3186,12 @@ public class Theme {
                     themeAccent.myMessagesGradientAccentColor1 = iArr3[i];
                 }
                 if (iArr4 != null) {
-                    int i2 = iArr4[i];
-                    themeAccent.backgroundOverrideColor = i2;
+                    long j = iArr4[i];
+                    themeAccent.backgroundOverrideColor = j;
                     if (this.firstAccentIsDefault && themeAccent.id == Theme.DEFALT_THEME_ACCENT_ID) {
                         themeAccent.backgroundOverrideColor = 4294967296L;
                     } else {
-                        themeAccent.backgroundOverrideColor = i2;
+                        themeAccent.backgroundOverrideColor = j;
                     }
                 }
                 if (iArr5 != null) {
@@ -3667,15 +3264,7 @@ public class Theme {
             this.previewParsed = false;
             Theme.saveOtherThemes(true);
             if (this == Theme.currentTheme && Theme.previousTheme == null) {
-                NotificationCenter globalInstance = NotificationCenter.getGlobalInstance();
-                int i = NotificationCenter.needSetDayNightTheme;
-                Object[] objArr = new Object[5];
-                objArr[0] = this;
-                objArr[1] = Boolean.valueOf(this == Theme.currentNightTheme);
-                objArr[2] = null;
-                objArr[3] = -1;
-                objArr[4] = Theme.fallbackKeys;
-                globalInstance.lambda$postNotificationNameOnUIThread$1(i, objArr);
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, this, Boolean.valueOf(this == Theme.currentNightTheme), null, -1, Theme.fallbackKeys);
             }
         }
 
@@ -3688,9 +3277,6 @@ public class Theme {
             int i2;
             float f;
             TLRPC$WallPaperSettings tLRPC$WallPaperSettings;
-            int i3;
-            int i4;
-            int i5;
             int intValue = tLRPC$ThemeSettings.message_colors.size() > 0 ? tLRPC$ThemeSettings.message_colors.get(0).intValue() | (-16777216) : 0;
             int intValue2 = tLRPC$ThemeSettings.message_colors.size() > 1 ? tLRPC$ThemeSettings.message_colors.get(1).intValue() | (-16777216) : 0;
             if (intValue == intValue2) {
@@ -3708,9 +3294,9 @@ public class Theme {
                 i2 = 0;
             } else {
                 i = Theme.getWallpaperColor(tLRPC$WallPaperSettings.background_color);
-                j = tLRPC$ThemeSettings.wallpaper.settings.second_background_color == 0 ? 4294967296L : Theme.getWallpaperColor(i3);
-                j2 = tLRPC$ThemeSettings.wallpaper.settings.third_background_color == 0 ? 4294967296L : Theme.getWallpaperColor(i4);
-                j3 = tLRPC$ThemeSettings.wallpaper.settings.fourth_background_color != 0 ? Theme.getWallpaperColor(i5) : 4294967296L;
+                j = tLRPC$ThemeSettings.wallpaper.settings.second_background_color == 0 ? 4294967296L : Theme.getWallpaperColor(r11);
+                j2 = tLRPC$ThemeSettings.wallpaper.settings.third_background_color == 0 ? 4294967296L : Theme.getWallpaperColor(r11);
+                j3 = tLRPC$ThemeSettings.wallpaper.settings.fourth_background_color != 0 ? Theme.getWallpaperColor(r11) : 4294967296L;
                 i2 = AndroidUtilities.getWallpaperRotation(tLRPC$ThemeSettings.wallpaper.settings.rotation, false);
                 TLRPC$WallPaper tLRPC$WallPaper2 = tLRPC$ThemeSettings.wallpaper;
                 if (!(tLRPC$WallPaper2 instanceof TLRPC$TL_wallPaperNoFile) && tLRPC$WallPaper2.pattern) {
@@ -3742,11 +3328,10 @@ public class Theme {
             if (tLRPC$WallPaper == null || (tLRPC$WallPaperSettings = tLRPC$WallPaper.settings) == null) {
                 return;
             }
-            int i = tLRPC$WallPaperSettings.background_color;
-            if (i == 0) {
+            if (tLRPC$WallPaperSettings.background_color == 0) {
                 themeAccent.backgroundOverrideColor = 4294967296L;
             } else {
-                themeAccent.backgroundOverrideColor = Theme.getWallpaperColor(i);
+                themeAccent.backgroundOverrideColor = Theme.getWallpaperColor(r0);
             }
             TLRPC$WallPaperSettings tLRPC$WallPaperSettings2 = tLRPC$ThemeSettings.wallpaper.settings;
             if ((tLRPC$WallPaperSettings2.flags & 16) != 0 && tLRPC$WallPaperSettings2.second_background_color == 0) {
@@ -3829,40 +3414,40 @@ public class Theme {
             if (this.themeAccents == null || (themeAccent = this.themeAccentsMap.get(this.currentAccentId)) == null) {
                 return null;
             }
-            if (z) {
-                int i = this.lastAccentId + 1;
-                this.lastAccentId = i;
-                ThemeAccent themeAccent2 = new ThemeAccent();
-                themeAccent2.accentColor = themeAccent.accentColor;
-                themeAccent2.accentColor2 = themeAccent.accentColor2;
-                themeAccent2.myMessagesAccentColor = themeAccent.myMessagesAccentColor;
-                themeAccent2.myMessagesGradientAccentColor1 = themeAccent.myMessagesGradientAccentColor1;
-                themeAccent2.myMessagesGradientAccentColor2 = themeAccent.myMessagesGradientAccentColor2;
-                themeAccent2.myMessagesGradientAccentColor3 = themeAccent.myMessagesGradientAccentColor3;
-                themeAccent2.myMessagesAnimated = themeAccent.myMessagesAnimated;
-                themeAccent2.backgroundOverrideColor = themeAccent.backgroundOverrideColor;
-                themeAccent2.backgroundGradientOverrideColor1 = themeAccent.backgroundGradientOverrideColor1;
-                themeAccent2.backgroundGradientOverrideColor2 = themeAccent.backgroundGradientOverrideColor2;
-                themeAccent2.backgroundGradientOverrideColor3 = themeAccent.backgroundGradientOverrideColor3;
-                themeAccent2.backgroundRotation = themeAccent.backgroundRotation;
-                themeAccent2.patternSlug = themeAccent.patternSlug;
-                themeAccent2.patternIntensity = themeAccent.patternIntensity;
-                themeAccent2.patternMotion = themeAccent.patternMotion;
-                themeAccent2.parentTheme = this;
-                OverrideWallpaperInfo overrideWallpaperInfo = this.overrideWallpaper;
-                if (overrideWallpaperInfo != null) {
-                    themeAccent2.overrideWallpaper = new OverrideWallpaperInfo(overrideWallpaperInfo, this, themeAccent2);
-                }
-                this.prevAccentId = this.currentAccentId;
-                themeAccent2.id = i;
-                this.currentAccentId = i;
-                this.overrideWallpaper = themeAccent2.overrideWallpaper;
-                this.themeAccentsMap.put(i, themeAccent2);
-                this.themeAccents.add(0, themeAccent2);
-                Theme.sortAccents(this);
-                return themeAccent2;
+            if (!z) {
+                return themeAccent;
             }
-            return themeAccent;
+            int i = this.lastAccentId + 1;
+            this.lastAccentId = i;
+            ThemeAccent themeAccent2 = new ThemeAccent();
+            themeAccent2.accentColor = themeAccent.accentColor;
+            themeAccent2.accentColor2 = themeAccent.accentColor2;
+            themeAccent2.myMessagesAccentColor = themeAccent.myMessagesAccentColor;
+            themeAccent2.myMessagesGradientAccentColor1 = themeAccent.myMessagesGradientAccentColor1;
+            themeAccent2.myMessagesGradientAccentColor2 = themeAccent.myMessagesGradientAccentColor2;
+            themeAccent2.myMessagesGradientAccentColor3 = themeAccent.myMessagesGradientAccentColor3;
+            themeAccent2.myMessagesAnimated = themeAccent.myMessagesAnimated;
+            themeAccent2.backgroundOverrideColor = themeAccent.backgroundOverrideColor;
+            themeAccent2.backgroundGradientOverrideColor1 = themeAccent.backgroundGradientOverrideColor1;
+            themeAccent2.backgroundGradientOverrideColor2 = themeAccent.backgroundGradientOverrideColor2;
+            themeAccent2.backgroundGradientOverrideColor3 = themeAccent.backgroundGradientOverrideColor3;
+            themeAccent2.backgroundRotation = themeAccent.backgroundRotation;
+            themeAccent2.patternSlug = themeAccent.patternSlug;
+            themeAccent2.patternIntensity = themeAccent.patternIntensity;
+            themeAccent2.patternMotion = themeAccent.patternMotion;
+            themeAccent2.parentTheme = this;
+            OverrideWallpaperInfo overrideWallpaperInfo = this.overrideWallpaper;
+            if (overrideWallpaperInfo != null) {
+                themeAccent2.overrideWallpaper = new OverrideWallpaperInfo(overrideWallpaperInfo, this, themeAccent2);
+            }
+            this.prevAccentId = this.currentAccentId;
+            themeAccent2.id = i;
+            this.currentAccentId = i;
+            this.overrideWallpaper = themeAccent2.overrideWallpaper;
+            this.themeAccentsMap.put(i, themeAccent2);
+            this.themeAccents.add(0, themeAccent2);
+            Theme.sortAccents(this);
+            return themeAccent2;
         }
 
         public int getAccentColor(int i) {
@@ -3933,7 +3518,9 @@ public class Theme {
                             Theme.ThemeInfo.this.lambda$didReceivedNotification$0(file);
                         }
                     });
-                } else if (str.equals(FileLoader.getAttachFileName(this.info.document))) {
+                    return;
+                }
+                if (str.equals(FileLoader.getAttachFileName(this.info.document))) {
                     removeObservers();
                     if (i == i3) {
                         File file2 = new File(this.pathToFile);
@@ -4054,21 +3641,21 @@ public class Theme {
         ?? r3 = themeAccent2.isDefault;
         if (r0 != r3) {
             return r0 > r3 ? -1 : 1;
-        } else if (r0 != 0) {
+        }
+        if (r0 != 0) {
             int i = themeAccent.id;
             int i2 = themeAccent2.id;
             if (i > i2) {
                 return 1;
             }
             return i < i2 ? -1 : 0;
-        } else {
-            int i3 = themeAccent.id;
-            int i4 = themeAccent2.id;
-            if (i3 > i4) {
-                return -1;
-            }
-            return i3 < i4 ? 1 : 0;
         }
+        int i3 = themeAccent.id;
+        int i4 = themeAccent2.id;
+        if (i3 > i4) {
+            return -1;
+        }
+        return i3 < i4 ? 1 : 0;
     }
 
     public static void saveAutoNightThemeConfig() {
@@ -4161,9 +3748,10 @@ public class Theme {
     public static Drawable createEditTextDrawable(Context context, int i, int i2) {
         Resources resources = context.getResources();
         Drawable mutate = resources.getDrawable(R.drawable.search_dark).mutate();
-        mutate.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
+        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+        mutate.setColorFilter(new PorterDuffColorFilter(i, mode));
         Drawable mutate2 = resources.getDrawable(R.drawable.search_dark_activated).mutate();
-        mutate2.setColorFilter(new PorterDuffColorFilter(i2, PorterDuff.Mode.MULTIPLY));
+        mutate2.setColorFilter(new PorterDuffColorFilter(i2, mode));
         StateListDrawable stateListDrawable = new StateListDrawable() {
             @Override
             public boolean selectDrawable(int i3) {
@@ -4201,16 +3789,16 @@ public class Theme {
         int i2 = calendar.get(5);
         calendar.get(12);
         int i3 = calendar.get(11);
-        if ((i != 11 || i2 < 24 || i2 > 31) && !(i == 0 && i2 == 1)) {
-            if (i == 1 && i2 == 14) {
-                return 1;
-            }
-            if (i != 9 || i2 < 30) {
-                return (i == 10 && i2 == 1 && i3 < 12) ? 2 : -1;
-            }
-            return 2;
+        if ((i == 11 && i2 >= 24 && i2 <= 31) || (i == 0 && i2 == 1)) {
+            return 0;
         }
-        return 0;
+        if (i == 1 && i2 == 14) {
+            return 1;
+        }
+        if (i != 9 || i2 < 30) {
+            return (i == 10 && i2 == 1 && i3 < 12) ? 2 : -1;
+        }
+        return 2;
     }
 
     public static android.graphics.drawable.Drawable getCurrentHolidayDrawable() {
@@ -4358,14 +3946,12 @@ public class Theme {
                 this.rect.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
                 Theme.applyServiceShaderMatrixForView(view, view2);
                 RectF rectF = this.rect;
-                int i2 = i;
-                float f = i2;
-                float f2 = i2;
+                float f = i;
                 Paint paint2 = paint;
                 if (paint2 == null) {
                     paint2 = Theme.getThemePaint("paintChatActionBackground", resourcesProvider);
                 }
-                canvas.drawRoundRect(rectF, f, f2, paint2);
+                canvas.drawRoundRect(rectF, f, f, paint2);
                 ResourcesProvider resourcesProvider2 = resourcesProvider;
                 if (resourcesProvider2 != null) {
                     if (!resourcesProvider2.hasGradientService()) {
@@ -4375,8 +3961,8 @@ public class Theme {
                     return;
                 }
                 RectF rectF2 = this.rect;
-                int i3 = i;
-                canvas.drawRoundRect(rectF2, i3, i3, Theme.getThemePaint("paintChatActionBackgroundDarken", resourcesProvider));
+                float f2 = i;
+                canvas.drawRoundRect(rectF2, f2, f2, Theme.getThemePaint("paintChatActionBackgroundDarken", resourcesProvider));
             }
         };
     }
@@ -4679,7 +4265,22 @@ public class Theme {
         }
 
         private static float[] calcRadii(float... fArr) {
-            return fArr.length == 0 ? new float[]{0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f} : fArr.length == 1 ? new float[]{AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0])} : fArr.length == 2 ? new float[]{AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[1])} : fArr.length == 3 ? new float[]{AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[2]), AndroidUtilities.dp(fArr[2]), AndroidUtilities.dp(fArr[2]), AndroidUtilities.dp(fArr[2])} : fArr.length < 8 ? new float[]{AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[2]), AndroidUtilities.dp(fArr[2]), AndroidUtilities.dp(fArr[3]), AndroidUtilities.dp(fArr[3])} : new float[]{AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[2]), AndroidUtilities.dp(fArr[3]), AndroidUtilities.dp(fArr[4]), AndroidUtilities.dp(fArr[5]), AndroidUtilities.dp(fArr[6]), AndroidUtilities.dp(fArr[7])};
+            if (fArr.length == 0) {
+                return new float[]{0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f};
+            }
+            if (fArr.length == 1) {
+                return new float[]{AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0])};
+            }
+            if (fArr.length == 2) {
+                return new float[]{AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[1])};
+            }
+            if (fArr.length == 3) {
+                return new float[]{AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[2]), AndroidUtilities.dp(fArr[2]), AndroidUtilities.dp(fArr[2]), AndroidUtilities.dp(fArr[2])};
+            }
+            if (fArr.length < 8) {
+                return new float[]{AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[2]), AndroidUtilities.dp(fArr[2]), AndroidUtilities.dp(fArr[3]), AndroidUtilities.dp(fArr[3])};
+            }
+            return new float[]{AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[2]), AndroidUtilities.dp(fArr[3]), AndroidUtilities.dp(fArr[4]), AndroidUtilities.dp(fArr[5]), AndroidUtilities.dp(fArr[6]), AndroidUtilities.dp(fArr[7])};
         }
 
         private static boolean hasNonzeroRadii(float... fArr) {
@@ -4818,11 +4419,11 @@ public class Theme {
     public static void setMaskDrawableRad(Drawable drawable, int i, int i2) {
         int numberOfLayers;
         Drawable drawable2;
-        if (Build.VERSION.SDK_INT >= 21 && (drawable instanceof RippleDrawable)) {
-            RippleDrawable rippleDrawable = (RippleDrawable) drawable;
-            numberOfLayers = rippleDrawable.getNumberOfLayers();
+        if (Build.VERSION.SDK_INT >= 21 && AppCompatImageHelper$$ExternalSyntheticApiModelOutline0.m(drawable)) {
+            RippleDrawable m = Theme$$ExternalSyntheticApiModelOutline0.m(drawable);
+            numberOfLayers = m.getNumberOfLayers();
             for (int i3 = 0; i3 < numberOfLayers; i3++) {
-                drawable2 = rippleDrawable.getDrawable(i3);
+                drawable2 = m.getDrawable(i3);
                 if (drawable2 instanceof RippleRadMaskDrawable) {
                     ((RippleRadMaskDrawable) drawable2).setRadius(i, i2);
                     return;
@@ -4834,11 +4435,11 @@ public class Theme {
     public static void setMaskDrawableRad(Drawable drawable, float f, float f2, float f3, float f4) {
         int numberOfLayers;
         Drawable drawable2;
-        if (Build.VERSION.SDK_INT >= 21 && (drawable instanceof RippleDrawable)) {
-            RippleDrawable rippleDrawable = (RippleDrawable) drawable;
-            numberOfLayers = rippleDrawable.getNumberOfLayers();
+        if (Build.VERSION.SDK_INT >= 21 && AppCompatImageHelper$$ExternalSyntheticApiModelOutline0.m(drawable)) {
+            RippleDrawable m = Theme$$ExternalSyntheticApiModelOutline0.m(drawable);
+            numberOfLayers = m.getNumberOfLayers();
             for (int i = 0; i < numberOfLayers; i++) {
-                drawable2 = rippleDrawable.getDrawable(i);
+                drawable2 = m.getDrawable(i);
                 if (drawable2 instanceof RippleRadMaskDrawable) {
                     ((RippleRadMaskDrawable) drawable2).setRadius(f, f2, f3, f4);
                     return;
@@ -4955,9 +4556,9 @@ public class Theme {
         if (z) {
             isApplyingAccent = false;
             reloadWallpaper(true);
-            return;
+        } else {
+            currentTheme.setOverrideWallpaper(null);
         }
-        currentTheme.setOverrideWallpaper(null);
     }
 
     public static ThemeInfo fillThemeValues(File file, String str, TLRPC$TL_theme tLRPC$TL_theme) {
@@ -4972,51 +4573,54 @@ public class Theme {
             checkIsDark(getThemeFileValues(new File(themeInfo.pathToFile), null, strArr), themeInfo);
             if (!TextUtils.isEmpty(strArr[0])) {
                 String str2 = strArr[0];
-                File filesDirFixed = ApplicationLoader.getFilesDirFixed();
-                themeInfo.pathToWallpaper = new File(filesDirFixed, Utilities.MD5(str2) + ".wp").getAbsolutePath();
-                Uri parse = Uri.parse(str2);
-                themeInfo.slug = parse.getQueryParameter("slug");
-                String queryParameter = parse.getQueryParameter("mode");
-                if (queryParameter != null && (split = queryParameter.toLowerCase().split(" ")) != null && split.length > 0) {
-                    for (int i = 0; i < split.length; i++) {
-                        if ("blur".equals(split[i])) {
-                            themeInfo.isBlured = true;
-                        } else if ("motion".equals(split[i])) {
-                            themeInfo.isMotion = true;
-                        }
-                    }
-                }
-                String queryParameter2 = parse.getQueryParameter("intensity");
-                if (!TextUtils.isEmpty(queryParameter2)) {
-                    try {
-                        String queryParameter3 = parse.getQueryParameter("bg_color");
-                        if (!TextUtils.isEmpty(queryParameter3)) {
-                            themeInfo.patternBgColor = Integer.parseInt(queryParameter3.substring(0, 6), 16) | (-16777216);
-                            if (queryParameter3.length() >= 13 && AndroidUtilities.isValidWallChar(queryParameter3.charAt(6))) {
-                                themeInfo.patternBgGradientColor1 = Integer.parseInt(queryParameter3.substring(7, 13), 16) | (-16777216);
-                            }
-                            if (queryParameter3.length() >= 20 && AndroidUtilities.isValidWallChar(queryParameter3.charAt(13))) {
-                                themeInfo.patternBgGradientColor2 = Integer.parseInt(queryParameter3.substring(14, 20), 16) | (-16777216);
-                            }
-                            if (queryParameter3.length() == 27 && AndroidUtilities.isValidWallChar(queryParameter3.charAt(20))) {
-                                themeInfo.patternBgGradientColor3 = Integer.parseInt(queryParameter3.substring(21), 16) | (-16777216);
+                themeInfo.pathToWallpaper = new File(ApplicationLoader.getFilesDirFixed(), Utilities.MD5(str2) + ".wp").getAbsolutePath();
+                try {
+                    Uri parse = Uri.parse(str2);
+                    themeInfo.slug = parse.getQueryParameter("slug");
+                    String queryParameter = parse.getQueryParameter("mode");
+                    if (queryParameter != null && (split = queryParameter.toLowerCase().split(" ")) != null && split.length > 0) {
+                        for (int i = 0; i < split.length; i++) {
+                            if ("blur".equals(split[i])) {
+                                themeInfo.isBlured = true;
+                            } else if ("motion".equals(split[i])) {
+                                themeInfo.isMotion = true;
                             }
                         }
-                    } catch (Exception unused) {
                     }
-                    try {
-                        String queryParameter4 = parse.getQueryParameter("rotation");
-                        if (!TextUtils.isEmpty(queryParameter4)) {
-                            themeInfo.patternBgGradientRotation = Utilities.parseInt((CharSequence) queryParameter4).intValue();
-                        }
-                    } catch (Exception unused2) {
-                    }
+                    String queryParameter2 = parse.getQueryParameter("intensity");
                     if (!TextUtils.isEmpty(queryParameter2)) {
-                        themeInfo.patternIntensity = Utilities.parseInt((CharSequence) queryParameter2).intValue();
+                        try {
+                            String queryParameter3 = parse.getQueryParameter("bg_color");
+                            if (!TextUtils.isEmpty(queryParameter3)) {
+                                themeInfo.patternBgColor = Integer.parseInt(queryParameter3.substring(0, 6), 16) | (-16777216);
+                                if (queryParameter3.length() >= 13 && AndroidUtilities.isValidWallChar(queryParameter3.charAt(6))) {
+                                    themeInfo.patternBgGradientColor1 = Integer.parseInt(queryParameter3.substring(7, 13), 16) | (-16777216);
+                                }
+                                if (queryParameter3.length() >= 20 && AndroidUtilities.isValidWallChar(queryParameter3.charAt(13))) {
+                                    themeInfo.patternBgGradientColor2 = Integer.parseInt(queryParameter3.substring(14, 20), 16) | (-16777216);
+                                }
+                                if (queryParameter3.length() == 27 && AndroidUtilities.isValidWallChar(queryParameter3.charAt(20))) {
+                                    themeInfo.patternBgGradientColor3 = Integer.parseInt(queryParameter3.substring(21), 16) | (-16777216);
+                                }
+                            }
+                        } catch (Exception unused) {
+                        }
+                        try {
+                            String queryParameter4 = parse.getQueryParameter("rotation");
+                            if (!TextUtils.isEmpty(queryParameter4)) {
+                                themeInfo.patternBgGradientRotation = Utilities.parseInt((CharSequence) queryParameter4).intValue();
+                            }
+                        } catch (Exception unused2) {
+                        }
+                        if (!TextUtils.isEmpty(queryParameter2)) {
+                            themeInfo.patternIntensity = Utilities.parseInt((CharSequence) queryParameter2).intValue();
+                        }
+                        if (themeInfo.patternIntensity == 0) {
+                            themeInfo.patternIntensity = 50;
+                        }
                     }
-                    if (themeInfo.patternIntensity == 0) {
-                        themeInfo.patternIntensity = 50;
-                    }
+                } catch (Throwable th) {
+                    FileLog.e(th);
                 }
             } else {
                 themedWallpaperLink = null;
@@ -5116,8 +4720,7 @@ public class Theme {
             themedWallpaperFileOffset = currentColorsNoAccent.get(key_wallpaperFileOffset, -1);
             if (!TextUtils.isEmpty(strArr[0])) {
                 themedWallpaperLink = strArr[0];
-                File filesDirFixed = ApplicationLoader.getFilesDirFixed();
-                String absolutePath = new File(filesDirFixed, Utilities.MD5(themedWallpaperLink) + ".wp").getAbsolutePath();
+                String absolutePath = new File(ApplicationLoader.getFilesDirFixed(), Utilities.MD5(themedWallpaperLink) + ".wp").getAbsolutePath();
                 try {
                     String str = themeInfo.pathToWallpaper;
                     if (str != null && !str.equals(absolutePath)) {
@@ -5126,42 +4729,46 @@ public class Theme {
                 } catch (Exception unused) {
                 }
                 themeInfo.pathToWallpaper = absolutePath;
-                Uri parse = Uri.parse(themedWallpaperLink);
-                themeInfo.slug = parse.getQueryParameter("slug");
-                String queryParameter = parse.getQueryParameter("mode");
-                if (queryParameter != null && (split = queryParameter.toLowerCase().split(" ")) != null && split.length > 0) {
-                    for (int i = 0; i < split.length; i++) {
-                        if ("blur".equals(split[i])) {
-                            themeInfo.isBlured = true;
-                        } else if ("motion".equals(split[i])) {
-                            themeInfo.isMotion = true;
-                        }
-                    }
-                }
-                Utilities.parseInt((CharSequence) parse.getQueryParameter("intensity")).intValue();
-                themeInfo.patternBgGradientRotation = 45;
                 try {
-                    String queryParameter2 = parse.getQueryParameter("bg_color");
-                    if (!TextUtils.isEmpty(queryParameter2)) {
-                        themeInfo.patternBgColor = Integer.parseInt(queryParameter2.substring(0, 6), 16) | (-16777216);
-                        if (queryParameter2.length() >= 13 && AndroidUtilities.isValidWallChar(queryParameter2.charAt(6))) {
-                            themeInfo.patternBgGradientColor1 = Integer.parseInt(queryParameter2.substring(7, 13), 16) | (-16777216);
-                        }
-                        if (queryParameter2.length() >= 20 && AndroidUtilities.isValidWallChar(queryParameter2.charAt(13))) {
-                            themeInfo.patternBgGradientColor2 = Integer.parseInt(queryParameter2.substring(14, 20), 16) | (-16777216);
-                        }
-                        if (queryParameter2.length() == 27 && AndroidUtilities.isValidWallChar(queryParameter2.charAt(20))) {
-                            themeInfo.patternBgGradientColor3 = Integer.parseInt(queryParameter2.substring(21), 16) | (-16777216);
+                    Uri parse = Uri.parse(themedWallpaperLink);
+                    themeInfo.slug = parse.getQueryParameter("slug");
+                    String queryParameter = parse.getQueryParameter("mode");
+                    if (queryParameter != null && (split = queryParameter.toLowerCase().split(" ")) != null && split.length > 0) {
+                        for (int i = 0; i < split.length; i++) {
+                            if ("blur".equals(split[i])) {
+                                themeInfo.isBlured = true;
+                            } else if ("motion".equals(split[i])) {
+                                themeInfo.isMotion = true;
+                            }
                         }
                     }
-                } catch (Exception unused2) {
-                }
-                try {
-                    String queryParameter3 = parse.getQueryParameter("rotation");
-                    if (!TextUtils.isEmpty(queryParameter3)) {
-                        themeInfo.patternBgGradientRotation = Utilities.parseInt((CharSequence) queryParameter3).intValue();
+                    Utilities.parseInt((CharSequence) parse.getQueryParameter("intensity")).intValue();
+                    themeInfo.patternBgGradientRotation = 45;
+                    try {
+                        String queryParameter2 = parse.getQueryParameter("bg_color");
+                        if (!TextUtils.isEmpty(queryParameter2)) {
+                            themeInfo.patternBgColor = Integer.parseInt(queryParameter2.substring(0, 6), 16) | (-16777216);
+                            if (queryParameter2.length() >= 13 && AndroidUtilities.isValidWallChar(queryParameter2.charAt(6))) {
+                                themeInfo.patternBgGradientColor1 = Integer.parseInt(queryParameter2.substring(7, 13), 16) | (-16777216);
+                            }
+                            if (queryParameter2.length() >= 20 && AndroidUtilities.isValidWallChar(queryParameter2.charAt(13))) {
+                                themeInfo.patternBgGradientColor2 = Integer.parseInt(queryParameter2.substring(14, 20), 16) | (-16777216);
+                            }
+                            if (queryParameter2.length() == 27 && AndroidUtilities.isValidWallChar(queryParameter2.charAt(20))) {
+                                themeInfo.patternBgGradientColor3 = Integer.parseInt(queryParameter2.substring(21), 16) | (-16777216);
+                            }
+                        }
+                    } catch (Exception unused2) {
                     }
-                } catch (Exception unused3) {
+                    try {
+                        String queryParameter3 = parse.getQueryParameter("rotation");
+                        if (!TextUtils.isEmpty(queryParameter3)) {
+                            themeInfo.patternBgGradientRotation = Utilities.parseInt((CharSequence) queryParameter3).intValue();
+                        }
+                    } catch (Exception unused3) {
+                    }
+                } catch (Throwable th) {
+                    FileLog.e(th);
                 }
             } else {
                 try {
@@ -5178,7 +4785,7 @@ public class Theme {
                 if (isCurrentThemeNight()) {
                     switchNightThemeDelay = 2000;
                     lastDelayUpdateTime = SystemClock.elapsedRealtime();
-                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda446(), 2100L);
+                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda91(), 2100L);
                 }
             }
             currentTheme = themeInfo;
@@ -5208,7 +4815,7 @@ public class Theme {
         float red = Color.red(i) / 255.0f;
         float green = Color.green(i) / 255.0f;
         float blue = Color.blue(i) / 255.0f;
-        return ((((red * 0.5f) + ((((float) Color.red(i2)) / 255.0f) * 0.5f)) * 0.2126f) + (((green * 0.5f) + ((((float) Color.green(i2)) / 255.0f) * 0.5f)) * 0.7152f)) + (((blue * 0.5f) + ((((float) Color.blue(i2)) / 255.0f) * 0.5f)) * 0.0722f) > 0.705f || ((red * 0.2126f) + (green * 0.7152f)) + (blue * 0.0722f) > 0.705f;
+        return ((((red * 0.5f) + ((Color.red(i2) / 255.0f) * 0.5f)) * 0.2126f) + (((green * 0.5f) + ((Color.green(i2) / 255.0f) * 0.5f)) * 0.7152f)) + (((blue * 0.5f) + ((((float) Color.blue(i2)) / 255.0f) * 0.5f)) * 0.0722f) > 0.705f || ((red * 0.2126f) + (green * 0.7152f)) + (blue * 0.0722f) > 0.705f;
     }
 
     public static void refreshThemeColors() {
@@ -5283,12 +4890,12 @@ public class Theme {
             threadLocal = hsvTemp5Local;
         }
         float[] fArr = threadLocal.get();
-        if (fArr == null) {
-            float[] fArr2 = new float[3];
-            threadLocal.set(fArr2);
-            return fArr2;
+        if (fArr != null) {
+            return fArr;
         }
-        return fArr;
+        float[] fArr2 = new float[3];
+        threadLocal.set(fArr2);
+        return fArr2;
     }
 
     public static int getAccentColor(float[] fArr, int i, int i2) {
@@ -5315,7 +4922,6 @@ public class Theme {
         }
         float[] fArr3 = tmpHSV5;
         Color.colorToHSV(i, fArr3);
-        boolean z2 = false;
         if (Math.min(abs(fArr3[0] - fArr[0]), abs((fArr3[0] - fArr[0]) - 360.0f)) > 30.0f) {
             return i2;
         }
@@ -5326,10 +4932,14 @@ public class Theme {
         int HSVToColor = Color.HSVToColor(Color.alpha(i), fArr3);
         float computePerceivedBrightness = AndroidUtilities.computePerceivedBrightness(i);
         float computePerceivedBrightness2 = AndroidUtilities.computePerceivedBrightness(HSVToColor);
-        if (!z ? computePerceivedBrightness < computePerceivedBrightness2 : computePerceivedBrightness > computePerceivedBrightness2) {
-            z2 = true;
+        if (z) {
+            if (computePerceivedBrightness <= computePerceivedBrightness2) {
+                return HSVToColor;
+            }
+        } else if (computePerceivedBrightness >= computePerceivedBrightness2) {
+            return HSVToColor;
         }
-        return z2 ? changeBrightness(HSVToColor, ((0.39999998f * computePerceivedBrightness) / computePerceivedBrightness2) + 0.6f) : HSVToColor;
+        return changeBrightness(HSVToColor, ((computePerceivedBrightness * 0.39999998f) / computePerceivedBrightness2) + 0.6f);
     }
 
     private static int changeBrightness(int i, float f) {
@@ -5457,44 +5067,54 @@ public class Theme {
     }
 
     private static void saveOtherThemes(boolean z, boolean z2) {
+        String str;
         ArrayList<ThemeAccent> arrayList;
-        int i = 0;
         SharedPreferences.Editor edit = ApplicationLoader.applicationContext.getSharedPreferences("themeconfig", 0).edit();
         if (z) {
             JSONArray jSONArray = new JSONArray();
-            for (int i2 = 0; i2 < otherThemes.size(); i2++) {
-                JSONObject saveJson = otherThemes.get(i2).getSaveJson();
+            for (int i = 0; i < otherThemes.size(); i++) {
+                JSONObject saveJson = otherThemes.get(i).getSaveJson();
                 if (saveJson != null) {
                     jSONArray.put(saveJson);
                 }
             }
             edit.putString("themes2", jSONArray.toString());
         }
-        int i3 = 0;
-        while (i3 < 4) {
+        int i2 = 0;
+        while (i2 < 4) {
             StringBuilder sb = new StringBuilder();
             sb.append("2remoteThemesHash");
             Object obj = "";
-            sb.append(i3 != 0 ? Integer.valueOf(i3) : "");
-            edit.putLong(sb.toString(), remoteThemesHash[i3]);
+            sb.append(i2 != 0 ? Integer.valueOf(i2) : "");
+            edit.putLong(sb.toString(), remoteThemesHash[i2]);
             StringBuilder sb2 = new StringBuilder();
             sb2.append("lastLoadingThemesTime");
-            if (i3 != 0) {
-                obj = Integer.valueOf(i3);
+            if (i2 != 0) {
+                obj = Integer.valueOf(i2);
             }
             sb2.append(obj);
-            edit.putInt(sb2.toString(), lastLoadingThemesTime[i3]);
-            i3++;
+            edit.putInt(sb2.toString(), lastLoadingThemesTime[i2]);
+            i2++;
         }
         edit.putInt("lastLoadingCurrentThemeTime", lastLoadingCurrentThemeTime);
         edit.commit();
         if (z) {
-            while (i < 5) {
-                ThemeInfo themeInfo = themesDict.get(i != 0 ? i != 1 ? i != 2 ? i != 3 ? "Night" : "Day" : "Arctic Blue" : "Dark Blue" : "Blue");
+            for (int i3 = 0; i3 < 5; i3++) {
+                if (i3 == 0) {
+                    str = "Blue";
+                } else if (i3 == 1) {
+                    str = "Dark Blue";
+                } else if (i3 == 2) {
+                    str = "Arctic Blue";
+                } else if (i3 == 3) {
+                    str = "Day";
+                } else {
+                    str = "Night";
+                }
+                ThemeInfo themeInfo = themesDict.get(str);
                 if (themeInfo != null && (arrayList = themeInfo.themeAccents) != null && !arrayList.isEmpty()) {
                     saveThemeAccents(themeInfo, true, false, false, false, z2);
                 }
-                i++;
             }
         }
     }
@@ -5743,8 +5363,7 @@ public class Theme {
 
     public static ThemeInfo createNewTheme(String str) {
         ThemeInfo themeInfo = new ThemeInfo();
-        File filesDirFixed = ApplicationLoader.getFilesDirFixed();
-        themeInfo.pathToFile = new File(filesDirFixed, "theme" + Utilities.random.nextLong() + ".attheme").getAbsolutePath();
+        themeInfo.pathToFile = new File(ApplicationLoader.getFilesDirFixed(), "theme" + Utilities.random.nextLong() + ".attheme").getAbsolutePath();
         themeInfo.name = str;
         themedWallpaperLink = getWallpaperUrl(currentTheme.overrideWallpaper);
         themeInfo.account = UserConfig.selectedAccount;
@@ -5789,10 +5408,10 @@ public class Theme {
             }
             str = "https://attheme.org?slug=" + overrideWallpaperInfo.slug + "&intensity=" + ((int) (overrideWallpaperInfo.intensity * 100.0f)) + "&bg_color=" + lowerCase;
         }
-        if (sb.length() > 0) {
-            return str + "&mode=" + sb.toString();
+        if (sb.length() <= 0) {
+            return str;
         }
-        return str;
+        return str + "&mode=" + sb.toString();
     }
 
     public static void saveCurrentTheme(org.telegram.ui.ActionBar.Theme.ThemeInfo r15, boolean r16, boolean r17, boolean r18) {
@@ -5814,7 +5433,7 @@ public class Theme {
                         } else if (accent != null && (tLRPC$TL_theme = accent.info) != null) {
                             i = UserConfig.selectedAccount;
                         }
-                        if (tLRPC$TL_theme != null && tLRPC$TL_theme.document != null) {
+                        if (tLRPC$TL_theme.document != null) {
                             loadingCurrentTheme++;
                             TLRPC$TL_account_getTheme tLRPC$TL_account_getTheme = new TLRPC$TL_account_getTheme();
                             tLRPC$TL_account_getTheme.document_id = tLRPC$TL_theme.document.id;
@@ -5882,7 +5501,7 @@ public class Theme {
         });
     }
 
-    public static void lambda$loadRemoteThemes$8(int r18, org.telegram.tgnet.TLObject r19) {
+    public static void lambda$loadRemoteThemes$8(int r19, org.telegram.tgnet.TLObject r20) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.Theme.lambda$loadRemoteThemes$8(int, org.telegram.tgnet.TLObject):void");
     }
 
@@ -5958,8 +5577,9 @@ public class Theme {
                 String baseThemeKey = getBaseThemeKey(tLRPC$ThemeSettings);
                 if (baseThemeKey == null || (themeInfo = themesDict.get(baseThemeKey)) == null) {
                     return;
+                } else {
+                    themeAccent = themeInfo.accentsByThemeId.get(tLRPC$TL_theme.id);
                 }
-                themeAccent = themeInfo.accentsByThemeId.get(tLRPC$TL_theme.id);
             }
             if (themeAccent == null) {
                 return;
@@ -5982,13 +5602,8 @@ public class Theme {
                     refreshThemeColors();
                     NotificationCenter globalInstance = NotificationCenter.getGlobalInstance();
                     int i2 = NotificationCenter.needSetDayNightTheme;
-                    Object[] objArr = new Object[4];
                     ThemeInfo themeInfo3 = currentTheme;
-                    objArr[0] = themeInfo3;
-                    objArr[1] = Boolean.valueOf(currentNightTheme == themeInfo3);
-                    objArr[2] = null;
-                    objArr[3] = -1;
-                    globalInstance.lambda$postNotificationNameOnUIThread$1(i2, objArr);
+                    globalInstance.lambda$postNotificationNameOnUIThread$1(i2, themeInfo3, Boolean.valueOf(currentNightTheme == themeInfo3), null, -1);
                 }
                 PatternsLoader.createLoader(true);
             }
@@ -6001,8 +5616,9 @@ public class Theme {
                 str = themeInfo.getKey();
                 hashMap.remove(str);
             } else {
+                HashMap<String, ThemeInfo> hashMap2 = themesDict;
                 str = "remote" + tLRPC$TL_theme.id;
-                themeInfo = themesDict.get(str);
+                themeInfo = hashMap2.get(str);
             }
             if (themeInfo == null) {
                 return;
@@ -6043,9 +5659,12 @@ public class Theme {
         if (!file.exists() || (j != 0 && file.length() != j)) {
             try {
                 InputStream open2 = ApplicationLoader.applicationContext.getAssets().open(str);
-                AndroidUtilities.copyFile(open2, file);
-                if (open2 != null) {
-                    open2.close();
+                try {
+                    AndroidUtilities.copyFile(open2, file);
+                    if (open2 != null) {
+                        open2.close();
+                    }
+                } finally {
                 }
             } catch (Exception e2) {
                 FileLog.e(e2);
@@ -6062,7 +5681,7 @@ public class Theme {
         return defaultColors[i];
     }
 
-    public static java.lang.String createThemePreviewImage(java.lang.String r34, java.lang.String r35, org.telegram.ui.ActionBar.Theme.ThemeAccent r36) {
+    public static java.lang.String createThemePreviewImage(java.lang.String r33, java.lang.String r34, org.telegram.ui.ActionBar.Theme.ThemeAccent r35) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.Theme.createThemePreviewImage(java.lang.String, java.lang.String, org.telegram.ui.ActionBar.Theme$ThemeAccent):java.lang.String");
     }
 
@@ -6091,107 +5710,8 @@ public class Theme {
         callback.run(getThemeFileValues(file, str, strArr));
     }
 
-    public static SparseIntArray getThemeFileValues(File file, String str, String[] strArr) {
-        int intValue;
-        SparseIntArray sparseIntArray = new SparseIntArray();
-        FileInputStream fileInputStream = null;
-        try {
-            try {
-                byte[] bArr = new byte[1024];
-                FileInputStream fileInputStream2 = new FileInputStream(str != null ? getAssetFile(str) : file);
-                int i = -1;
-                int i2 = 0;
-                int i3 = -1;
-                boolean z = false;
-                while (true) {
-                    try {
-                        int read = fileInputStream2.read(bArr);
-                        if (read == i) {
-                            break;
-                        }
-                        int i4 = i2;
-                        int i5 = 0;
-                        int i6 = 0;
-                        while (true) {
-                            if (i5 >= read) {
-                                break;
-                            }
-                            if (bArr[i5] == 10) {
-                                int i7 = (i5 - i6) + 1;
-                                String str2 = new String(bArr, i6, i7 - 1);
-                                if (str2.startsWith("WLS=")) {
-                                    if (strArr != null && strArr.length > 0) {
-                                        strArr[0] = str2.substring(4);
-                                    }
-                                } else if (str2.startsWith("WPS")) {
-                                    i3 = i7 + i4;
-                                    z = true;
-                                    break;
-                                } else {
-                                    int indexOf = str2.indexOf(61);
-                                    if (indexOf != i) {
-                                        String substring = str2.substring(0, indexOf);
-                                        String substring2 = str2.substring(indexOf + 1);
-                                        if (substring2.length() > 0 && substring2.charAt(0) == '#') {
-                                            try {
-                                                intValue = Color.parseColor(substring2);
-                                            } catch (Exception unused) {
-                                                intValue = Utilities.parseInt((CharSequence) substring2).intValue();
-                                            }
-                                        } else {
-                                            intValue = Utilities.parseInt((CharSequence) substring2).intValue();
-                                        }
-                                        int stringKeyToInt = ThemeColors.stringKeyToInt(substring);
-                                        if (stringKeyToInt >= 0) {
-                                            sparseIntArray.put(stringKeyToInt, intValue);
-                                        }
-                                    }
-                                }
-                                i6 += i7;
-                                i4 += i7;
-                            }
-                            i5++;
-                            i = -1;
-                        }
-                        if (i2 == i4) {
-                            break;
-                        }
-                        fileInputStream2.getChannel().position(i4);
-                        if (z) {
-                            break;
-                        }
-                        i2 = i4;
-                        i = -1;
-                    } catch (Throwable th) {
-                        th = th;
-                        fileInputStream = fileInputStream2;
-                        try {
-                            FileLog.e(th);
-                            if (fileInputStream != null) {
-                                fileInputStream.close();
-                            }
-                            return sparseIntArray;
-                        } catch (Throwable th2) {
-                            if (fileInputStream != null) {
-                                try {
-                                    fileInputStream.close();
-                                } catch (Exception e) {
-                                    FileLog.e(e);
-                                }
-                            }
-                            throw th2;
-                        }
-                    }
-                }
-                sparseIntArray.put(key_wallpaperFileOffset, i3);
-                fileInputStream2.close();
-            } catch (Exception e2) {
-                FileLog.e(e2);
-            }
-        } catch (Throwable th3) {
-            th = th3;
-        }
-        return sparseIntArray;
+    public static android.util.SparseIntArray getThemeFileValues(java.io.File r17, java.lang.String r18, java.lang.String[] r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.Theme.getThemeFileValues(java.io.File, java.lang.String, java.lang.String[]):android.util.SparseIntArray");
     }
 
     public static void createCommonResources(Context context) {
@@ -6341,8 +5861,10 @@ public class Theme {
                 dialogs_unarchiveDrawable.setLayerColor("Box2.**", getNonAnimatedColor(i4));
                 dialogs_unarchiveDrawable.setLayerColor("Box1.**", getNonAnimatedColor(i4));
                 dialogs_unarchiveDrawable.commitApplyLayerColors();
-                chat_animatedEmojiTextColorFilter = new PorterDuffColorFilter(getColor(key_windowBackgroundWhiteBlackText), PorterDuff.Mode.SRC_IN);
-                chat_outAnimatedEmojiTextColorFilter = new PorterDuffColorFilter(getColor(key_chat_messageTextOut), PorterDuff.Mode.SRC_IN);
+                int color = getColor(key_windowBackgroundWhiteBlackText);
+                PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+                chat_animatedEmojiTextColorFilter = new PorterDuffColorFilter(color, mode);
+                chat_outAnimatedEmojiTextColorFilter = new PorterDuffColorFilter(getColor(key_chat_messageTextOut), mode);
                 PremiumGradient.getInstance().checkIconColors();
                 return;
             }
@@ -6539,71 +6061,75 @@ public class Theme {
 
     public static void createCommonMessageResources() {
         synchronized (sync) {
-            if (chat_msgTextPaint == null) {
-                chat_msgTextPaint = new TextPaint(1);
-                chat_msgGameTextPaint = new TextPaint(1);
-                chat_msgTextPaintEmoji = new TextPaint[6];
-                chat_msgTextPaintOneEmoji = new TextPaint(1);
-                chat_msgTextPaintTwoEmoji = new TextPaint(1);
-                chat_msgTextPaintThreeEmoji = new TextPaint(1);
-                TextPaint textPaint = new TextPaint(1);
-                chat_msgBotButtonPaint = textPaint;
-                textPaint.setTypeface(AndroidUtilities.bold());
-                TextPaint textPaint2 = new TextPaint(1);
-                chat_namePaint = textPaint2;
-                textPaint2.setTypeface(AndroidUtilities.bold());
-                TextPaint textPaint3 = new TextPaint(1);
-                chat_replyNamePaint = textPaint3;
-                textPaint3.setTypeface(AndroidUtilities.bold());
-                chat_replyTextPaint = new TextPaint(1);
-                chat_quoteTextPaint = new TextPaint(1);
-                chat_titleLabelTextPaint = new TextPaint(1);
-                TextPaint textPaint4 = new TextPaint(1);
-                chat_topicTextPaint = textPaint4;
-                textPaint4.setTypeface(AndroidUtilities.bold());
-                chat_forwardNamePaint = new TextPaint(1);
-                chat_adminPaint = new TextPaint(1);
-                chat_timePaint = new TextPaint(1);
-                TextPaint textPaint5 = new TextPaint(1);
-                chat_msgTextCodePaint = textPaint5;
-                textPaint5.setTypeface(Typeface.MONOSPACE);
-                TextPaint textPaint6 = new TextPaint(1);
-                chat_msgTextCode2Paint = textPaint6;
-                textPaint6.setTypeface(Typeface.MONOSPACE);
-                TextPaint textPaint7 = new TextPaint(1);
-                chat_msgTextCode3Paint = textPaint7;
-                textPaint7.setTypeface(Typeface.MONOSPACE);
-                chat_msgCodeBgPaint = new TextPaint(1);
-            }
-            int i = 0;
-            float[] fArr = {0.68f, 0.46f, 0.34f, 0.28f, 0.22f, 0.19f};
-            while (true) {
-                TextPaint[] textPaintArr = chat_msgTextPaintEmoji;
-                if (i < textPaintArr.length) {
-                    textPaintArr[i] = new TextPaint(1);
-                    chat_msgTextPaintEmoji[i].setTextSize(AndroidUtilities.dp(fArr[i] * 120.0f));
-                    i++;
-                } else {
-                    chat_msgTextPaintOneEmoji.setTextSize(AndroidUtilities.dp(46.0f));
-                    chat_msgTextPaintTwoEmoji.setTextSize(AndroidUtilities.dp(38.0f));
-                    chat_msgTextPaintThreeEmoji.setTextSize(AndroidUtilities.dp(30.0f));
-                    chat_msgTextPaint.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize));
-                    chat_msgGameTextPaint.setTextSize(AndroidUtilities.dp(14.0f));
-                    chat_msgBotButtonPaint.setTextSize(AndroidUtilities.dp(15.0f));
-                    float f = ((SharedConfig.fontSize * 2) + 10) / 3.0f;
-                    chat_namePaint.setTextSize(AndroidUtilities.dp(f));
-                    chat_replyNamePaint.setTextSize(AndroidUtilities.dp(f));
-                    chat_replyTextPaint.setTextSize(AndroidUtilities.dp(f));
-                    float f2 = f - 1.0f;
-                    chat_quoteTextPaint.setTextSize(AndroidUtilities.dp(f2));
-                    chat_topicTextPaint.setTextSize(AndroidUtilities.dp(f2));
-                    chat_titleLabelTextPaint.setTextSize(AndroidUtilities.dp(f - 2.0f));
-                    chat_forwardNamePaint.setTextSize(AndroidUtilities.dp(f));
-                    chat_adminPaint.setTextSize(AndroidUtilities.dp(f2));
-                    chat_msgTextCodePaint.setTextSize(AndroidUtilities.dp(Math.max(Math.min(10, SharedConfig.fontSize - 1), SharedConfig.fontSize - 2)));
-                    chat_msgTextCode2Paint.setTextSize(AndroidUtilities.dp(Math.max(Math.min(10, SharedConfig.fontSize - 2), SharedConfig.fontSize - 3)));
-                    chat_msgTextCode3Paint.setTextSize(AndroidUtilities.dp(Math.max(Math.min(10, SharedConfig.fontSize - 2), SharedConfig.fontSize - 5)));
+            try {
+                if (chat_msgTextPaint == null) {
+                    chat_msgTextPaint = new TextPaint(1);
+                    chat_msgGameTextPaint = new TextPaint(1);
+                    chat_msgTextPaintEmoji = new TextPaint[6];
+                    chat_msgTextPaintOneEmoji = new TextPaint(1);
+                    chat_msgTextPaintTwoEmoji = new TextPaint(1);
+                    chat_msgTextPaintThreeEmoji = new TextPaint(1);
+                    TextPaint textPaint = new TextPaint(1);
+                    chat_msgBotButtonPaint = textPaint;
+                    textPaint.setTypeface(AndroidUtilities.bold());
+                    TextPaint textPaint2 = new TextPaint(1);
+                    chat_namePaint = textPaint2;
+                    textPaint2.setTypeface(AndroidUtilities.bold());
+                    TextPaint textPaint3 = new TextPaint(1);
+                    chat_replyNamePaint = textPaint3;
+                    textPaint3.setTypeface(AndroidUtilities.bold());
+                    chat_replyTextPaint = new TextPaint(1);
+                    chat_quoteTextPaint = new TextPaint(1);
+                    chat_titleLabelTextPaint = new TextPaint(1);
+                    TextPaint textPaint4 = new TextPaint(1);
+                    chat_topicTextPaint = textPaint4;
+                    textPaint4.setTypeface(AndroidUtilities.bold());
+                    chat_forwardNamePaint = new TextPaint(1);
+                    chat_adminPaint = new TextPaint(1);
+                    chat_timePaint = new TextPaint(1);
+                    TextPaint textPaint5 = new TextPaint(1);
+                    chat_msgTextCodePaint = textPaint5;
+                    Typeface typeface = Typeface.MONOSPACE;
+                    textPaint5.setTypeface(typeface);
+                    TextPaint textPaint6 = new TextPaint(1);
+                    chat_msgTextCode2Paint = textPaint6;
+                    textPaint6.setTypeface(typeface);
+                    TextPaint textPaint7 = new TextPaint(1);
+                    chat_msgTextCode3Paint = textPaint7;
+                    textPaint7.setTypeface(typeface);
+                    chat_msgCodeBgPaint = new TextPaint(1);
                 }
+                float[] fArr = {0.68f, 0.46f, 0.34f, 0.28f, 0.22f, 0.19f};
+                int i = 0;
+                while (true) {
+                    TextPaint[] textPaintArr = chat_msgTextPaintEmoji;
+                    if (i < textPaintArr.length) {
+                        textPaintArr[i] = new TextPaint(1);
+                        chat_msgTextPaintEmoji[i].setTextSize(AndroidUtilities.dp(fArr[i] * 120.0f));
+                        i++;
+                    } else {
+                        chat_msgTextPaintOneEmoji.setTextSize(AndroidUtilities.dp(46.0f));
+                        chat_msgTextPaintTwoEmoji.setTextSize(AndroidUtilities.dp(38.0f));
+                        chat_msgTextPaintThreeEmoji.setTextSize(AndroidUtilities.dp(30.0f));
+                        chat_msgTextPaint.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize));
+                        chat_msgGameTextPaint.setTextSize(AndroidUtilities.dp(14.0f));
+                        chat_msgBotButtonPaint.setTextSize(AndroidUtilities.dp(15.0f));
+                        chat_namePaint.setTextSize(AndroidUtilities.dp(r0));
+                        chat_replyNamePaint.setTextSize(AndroidUtilities.dp(r0));
+                        chat_replyTextPaint.setTextSize(AndroidUtilities.dp(r0));
+                        float f = (((SharedConfig.fontSize * 2) + 10) / 3.0f) - 1.0f;
+                        chat_quoteTextPaint.setTextSize(AndroidUtilities.dp(f));
+                        chat_topicTextPaint.setTextSize(AndroidUtilities.dp(f));
+                        chat_titleLabelTextPaint.setTextSize(AndroidUtilities.dp(r0 - 2.0f));
+                        chat_forwardNamePaint.setTextSize(AndroidUtilities.dp(r0));
+                        chat_adminPaint.setTextSize(AndroidUtilities.dp(f));
+                        chat_msgTextCodePaint.setTextSize(AndroidUtilities.dp(Math.max(Math.min(10, SharedConfig.fontSize - 1), SharedConfig.fontSize - 2)));
+                        chat_msgTextCode2Paint.setTextSize(AndroidUtilities.dp(Math.max(Math.min(10, SharedConfig.fontSize - 2), SharedConfig.fontSize - 3)));
+                        chat_msgTextCode3Paint.setTextSize(AndroidUtilities.dp(Math.max(Math.min(10, SharedConfig.fontSize - 2), SharedConfig.fontSize - 5)));
+                    }
+                }
+            } catch (Throwable th) {
+                throw th;
             }
         }
     }
@@ -6624,30 +6150,33 @@ public class Theme {
             chat_docBackPaint = new Paint(1);
             Paint paint = new Paint(1);
             chat_deleteProgressPaint = paint;
-            paint.setStyle(Paint.Style.STROKE);
-            chat_deleteProgressPaint.setStrokeCap(Paint.Cap.ROUND);
+            Paint.Style style = Paint.Style.STROKE;
+            paint.setStyle(style);
+            Paint paint2 = chat_deleteProgressPaint;
+            Paint.Cap cap = Paint.Cap.ROUND;
+            paint2.setStrokeCap(cap);
             TextPaint textPaint4 = new TextPaint(1);
             chat_locationTitlePaint = textPaint4;
             textPaint4.setTypeface(AndroidUtilities.bold());
             chat_locationAddressPaint = new TextPaint(1);
-            Paint paint2 = new Paint();
-            chat_urlPaint = paint2;
-            paint2.setPathEffect(LinkPath.getRoundedEffect());
             Paint paint3 = new Paint();
-            chat_outUrlPaint = paint3;
+            chat_urlPaint = paint3;
             paint3.setPathEffect(LinkPath.getRoundedEffect());
             Paint paint4 = new Paint();
-            chat_textSearchSelectionPaint = paint4;
+            chat_outUrlPaint = paint4;
             paint4.setPathEffect(LinkPath.getRoundedEffect());
-            Paint paint5 = new Paint(1);
-            chat_radialProgressPaint = paint5;
-            paint5.setStrokeCap(Paint.Cap.ROUND);
-            chat_radialProgressPaint.setStyle(Paint.Style.STROKE);
-            chat_radialProgressPaint.setColor(-1610612737);
+            Paint paint5 = new Paint();
+            chat_textSearchSelectionPaint = paint5;
+            paint5.setPathEffect(LinkPath.getRoundedEffect());
             Paint paint6 = new Paint(1);
-            chat_radialProgress2Paint = paint6;
-            paint6.setStrokeCap(Paint.Cap.ROUND);
-            chat_radialProgress2Paint.setStyle(Paint.Style.STROKE);
+            chat_radialProgressPaint = paint6;
+            paint6.setStrokeCap(cap);
+            chat_radialProgressPaint.setStyle(style);
+            chat_radialProgressPaint.setColor(-1610612737);
+            Paint paint7 = new Paint(1);
+            chat_radialProgress2Paint = paint7;
+            paint7.setStrokeCap(cap);
+            chat_radialProgress2Paint.setStyle(style);
             chat_audioTimePaint = new TextPaint(1);
             TextPaint textPaint5 = new TextPaint(1);
             chat_livePaint = textPaint5;
@@ -6686,31 +6215,31 @@ public class Theme {
             TextPaint textPaint13 = new TextPaint(1);
             chat_instantViewPaint = textPaint13;
             textPaint13.setTypeface(AndroidUtilities.bold());
-            Paint paint7 = new Paint(1);
-            chat_instantViewRectPaint = paint7;
-            paint7.setStyle(Paint.Style.STROKE);
-            chat_instantViewRectPaint.setStrokeCap(Paint.Cap.ROUND);
-            chat_instantViewButtonPaint = new Paint(1);
             Paint paint8 = new Paint(1);
-            chat_pollTimerPaint = paint8;
-            paint8.setStyle(Paint.Style.STROKE);
-            chat_pollTimerPaint.setStrokeCap(Paint.Cap.ROUND);
+            chat_instantViewRectPaint = paint8;
+            paint8.setStyle(style);
+            chat_instantViewRectPaint.setStrokeCap(cap);
+            chat_instantViewButtonPaint = new Paint(1);
+            Paint paint9 = new Paint(1);
+            chat_pollTimerPaint = paint9;
+            paint9.setStyle(style);
+            chat_pollTimerPaint.setStrokeCap(cap);
             chat_replyLinePaint = new Paint(1);
             chat_msgErrorPaint = new Paint(1);
             chat_statusPaint = new Paint(1);
-            Paint paint9 = new Paint(1);
-            chat_statusRecordPaint = paint9;
-            paint9.setStyle(Paint.Style.STROKE);
-            chat_statusRecordPaint.setStrokeCap(Paint.Cap.ROUND);
+            Paint paint10 = new Paint(1);
+            chat_statusRecordPaint = paint10;
+            paint10.setStyle(style);
+            chat_statusRecordPaint.setStrokeCap(cap);
             chat_actionTextPaint = new TextPaint(1);
             chat_actionTextPaint2 = new TextPaint(1);
             chat_actionTextPaint.setTypeface(AndroidUtilities.bold());
             TextPaint textPaint14 = new TextPaint(1);
             chat_unlockExtendedMediaTextPaint = textPaint14;
             textPaint14.setTypeface(AndroidUtilities.bold());
-            Paint paint10 = new Paint(1);
-            chat_actionBackgroundGradientDarkenPaint = paint10;
-            paint10.setColor(352321536);
+            Paint paint11 = new Paint(1);
+            chat_actionBackgroundGradientDarkenPaint = paint11;
+            paint11.setColor(352321536);
             chat_timeBackgroundPaint = new Paint(1);
             TextPaint textPaint15 = new TextPaint(1);
             chat_contextResult_titleTextPaint = textPaint15;
@@ -6723,9 +6252,9 @@ public class Theme {
             chat_actionBackgroundPaint = new Paint(7);
             chat_actionBackgroundSelectedPaint = new Paint(7);
             addChatPaint("paintChatMessageBackgroundSelected", chat_messageBackgroundSelectedPaint, key_chat_selectedBackground);
-            Paint paint11 = chat_actionBackgroundPaint;
+            Paint paint12 = chat_actionBackgroundPaint;
             int i = key_chat_serviceBackground;
-            addChatPaint("paintChatActionBackground", paint11, i);
+            addChatPaint("paintChatActionBackground", paint12, i);
             addChatPaint("paintChatActionBackgroundDarken", chat_actionBackgroundGradientDarkenPaint, i);
             addChatPaint("paintChatActionBackgroundSelected", chat_actionBackgroundSelectedPaint, key_chat_serviceBackgroundSelected);
             TextPaint textPaint16 = chat_actionTextPaint;
@@ -7010,15 +6539,13 @@ public class Theme {
         chat_contactNamePaint.setTextSize(AndroidUtilities.dp(15.0f));
         chat_contactPhonePaint.setTextSize(AndroidUtilities.dp(13.0f));
         chat_durationPaint.setTextSize(AndroidUtilities.dp(12.0f));
-        float f = ((SharedConfig.fontSize * 2) + 10) / 3.0f;
-        chat_namePaint.setTextSize(AndroidUtilities.dp(f));
-        chat_replyNamePaint.setTextSize(AndroidUtilities.dp(f));
-        chat_replyTextPaint.setTextSize(AndroidUtilities.dp(f));
-        float f2 = f - 1.0f;
-        chat_topicTextPaint.setTextSize(AndroidUtilities.dp(f2));
-        chat_forwardNamePaint.setTextSize(AndroidUtilities.dp(f));
-        chat_adminPaint.setTextSize(AndroidUtilities.dp(f2));
-        int i32 = SharedConfig.PASSCODE_TYPE_PIN;
+        chat_namePaint.setTextSize(AndroidUtilities.dp(r0));
+        chat_replyNamePaint.setTextSize(AndroidUtilities.dp(r0));
+        chat_replyTextPaint.setTextSize(AndroidUtilities.dp(r0));
+        float f = (((SharedConfig.fontSize * 2) + 10) / 3.0f) - 1.0f;
+        chat_topicTextPaint.setTextSize(AndroidUtilities.dp(f));
+        chat_forwardNamePaint.setTextSize(AndroidUtilities.dp(r0));
+        chat_adminPaint.setTextSize(AndroidUtilities.dp(f));
         chat_timePaint.setTextSize(AndroidUtilities.dp(12.0f));
         chat_gamePaint.setTextSize(AndroidUtilities.dp(13.0f));
         chat_shipmentPaint.setTextSize(AndroidUtilities.dp(13.0f));
@@ -7591,19 +7118,19 @@ public class Theme {
 
     public static int getDefaultAccentColor(int i) {
         int indexOfKey = currentColorsNoAccent.indexOfKey(i);
-        if (indexOfKey >= 0) {
-            int valueAt = currentColorsNoAccent.valueAt(indexOfKey);
-            ThemeAccent accent = currentTheme.getAccent(false);
-            if (accent == null) {
-                return 0;
-            }
-            float[] tempHsv = getTempHsv(1);
-            float[] tempHsv2 = getTempHsv(2);
-            Color.colorToHSV(currentTheme.accentBaseColor, tempHsv);
-            Color.colorToHSV(accent.accentColor, tempHsv2);
-            return changeColorAccent(tempHsv, tempHsv2, valueAt, currentTheme.isDark(), valueAt);
+        if (indexOfKey < 0) {
+            return 0;
         }
-        return 0;
+        int valueAt = currentColorsNoAccent.valueAt(indexOfKey);
+        ThemeAccent accent = currentTheme.getAccent(false);
+        if (accent == null) {
+            return 0;
+        }
+        float[] tempHsv = getTempHsv(1);
+        float[] tempHsv2 = getTempHsv(2);
+        Color.colorToHSV(currentTheme.accentBaseColor, tempHsv);
+        Color.colorToHSV(accent.accentColor, tempHsv2);
+        return changeColorAccent(tempHsv, tempHsv2, valueAt, currentTheme.isDark(), valueAt);
     }
 
     public static int getNonAnimatedColor(int i) {
@@ -7633,32 +7160,16 @@ public class Theme {
         if (!z && (sparseIntArray = animatingColors) != null && (indexOfKey2 = sparseIntArray.indexOfKey(i)) >= 0) {
             return animatingColors.valueAt(indexOfKey2);
         }
-        if (serviceBitmapShader == null || !(key_chat_serviceText == i || key_chat_serviceLink == i || key_chat_serviceIcon == i || key_chat_stickerReplyLine == i || key_chat_stickerReplyNameText == i || key_chat_stickerReplyMessageText == i)) {
-            if (currentTheme == defaultTheme) {
-                if (isMyMessagesBubbles(i)) {
-                    isDefaultMyMessages = currentTheme.isDefaultMyMessagesBubbles();
-                } else {
-                    isDefaultMyMessages = isMyMessages(i) ? currentTheme.isDefaultMyMessages() : (key_chat_wallpaper == i || key_chat_wallpaper_gradient_to1 == i || key_chat_wallpaper_gradient_to2 == i || key_chat_wallpaper_gradient_to3 == i) ? false : currentTheme.isDefaultMainAccent();
-                }
-                if (isDefaultMyMessages) {
-                    if (i == key_chat_serviceBackground) {
-                        return serviceMessageColor;
-                    }
-                    if (i == key_chat_serviceBackgroundSelected) {
-                        return serviceSelectedMessageColor;
-                    }
-                    return getDefaultColor(i);
-                }
+        if (serviceBitmapShader != null && (key_chat_serviceText == i || key_chat_serviceLink == i || key_chat_serviceIcon == i || key_chat_stickerReplyLine == i || key_chat_stickerReplyNameText == i || key_chat_stickerReplyMessageText == i)) {
+            return -1;
+        }
+        if (currentTheme == defaultTheme) {
+            if (isMyMessagesBubbles(i)) {
+                isDefaultMyMessages = currentTheme.isDefaultMyMessagesBubbles();
+            } else {
+                isDefaultMyMessages = isMyMessages(i) ? currentTheme.isDefaultMyMessages() : (key_chat_wallpaper == i || key_chat_wallpaper_gradient_to1 == i || key_chat_wallpaper_gradient_to2 == i || key_chat_wallpaper_gradient_to3 == i) ? false : currentTheme.isDefaultMainAccent();
             }
-            int indexOfKey3 = currentColors.indexOfKey(i);
-            if (indexOfKey3 < 0) {
-                int i2 = fallbackKeys.get(i, -1);
-                if (i2 != -1 && (indexOfKey = currentColors.indexOfKey(i2)) >= 0) {
-                    return currentColors.valueAt(indexOfKey);
-                }
-                if (zArr != null) {
-                    zArr[0] = true;
-                }
+            if (isDefaultMyMessages) {
                 if (i == key_chat_serviceBackground) {
                     return serviceMessageColor;
                 }
@@ -7667,10 +7178,26 @@ public class Theme {
                 }
                 return getDefaultColor(i);
             }
-            int valueAt = currentColors.valueAt(indexOfKey3);
-            return (key_windowBackgroundWhite == i || key_windowBackgroundGray == i || key_actionBarDefault == i || key_actionBarDefaultArchived == i) ? valueAt | (-16777216) : valueAt;
         }
-        return -1;
+        int indexOfKey3 = currentColors.indexOfKey(i);
+        if (indexOfKey3 < 0) {
+            int i2 = fallbackKeys.get(i, -1);
+            if (i2 != -1 && (indexOfKey = currentColors.indexOfKey(i2)) >= 0) {
+                return currentColors.valueAt(indexOfKey);
+            }
+            if (zArr != null) {
+                zArr[0] = true;
+            }
+            if (i == key_chat_serviceBackground) {
+                return serviceMessageColor;
+            }
+            if (i == key_chat_serviceBackgroundSelected) {
+                return serviceSelectedMessageColor;
+            }
+            return getDefaultColor(i);
+        }
+        int valueAt = currentColors.valueAt(indexOfKey3);
+        return (key_windowBackgroundWhite == i || key_windowBackgroundGray == i || key_actionBarDefault == i || key_actionBarDefaultArchived == i) ? valueAt | (-16777216) : valueAt;
     }
 
     private static boolean isMyMessagesBubbles(int i) {
@@ -7693,16 +7220,24 @@ public class Theme {
         }
         if (i == key_chat_selectedBackground) {
             applyChatMessageSelectedBackgroundColor();
-        } else if (i == key_chat_serviceBackground || i == key_chat_serviceBackgroundSelected) {
+            return;
+        }
+        if (i == key_chat_serviceBackground || i == key_chat_serviceBackgroundSelected) {
             applyChatServiceMessageColor();
-        } else if (i == i3 || i == key_chat_wallpaper_gradient_to1 || i == key_chat_wallpaper_gradient_to2 || i == key_chat_wallpaper_gradient_to3 || i == key_chat_wallpaper_gradient_rotation) {
+            return;
+        }
+        if (i == i3 || i == key_chat_wallpaper_gradient_to1 || i == key_chat_wallpaper_gradient_to2 || i == key_chat_wallpaper_gradient_to3 || i == key_chat_wallpaper_gradient_rotation) {
             reloadWallpaper(true);
-        } else if (i == key_actionBarDefault) {
+            return;
+        }
+        if (i == key_actionBarDefault) {
             if (Build.VERSION.SDK_INT >= 23) {
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
             }
-        } else if (i != key_windowBackgroundGray || Build.VERSION.SDK_INT < 26) {
         } else {
+            if (i != key_windowBackgroundGray || Build.VERSION.SDK_INT < 26) {
+                return;
+            }
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
         }
     }
@@ -7740,9 +7275,13 @@ public class Theme {
         }
         if (drawable instanceof StatusDrawable) {
             ((StatusDrawable) drawable).setColor(i);
-        } else if (drawable instanceof MsgClockDrawable) {
+            return;
+        }
+        if (drawable instanceof MsgClockDrawable) {
             ((MsgClockDrawable) drawable).setColor(i);
-        } else if (drawable instanceof ShapeDrawable) {
+            return;
+        }
+        if (drawable instanceof ShapeDrawable) {
             ((ShapeDrawable) drawable).getPaint().setColor(i);
         } else if (drawable instanceof ScamDrawable) {
             ((ScamDrawable) drawable).setColor(i);
@@ -7781,7 +7320,7 @@ public class Theme {
             return;
         }
         try {
-            RippleDrawable.class.getDeclaredMethod("setForceSoftware", Boolean.TYPE).invoke(rippleDrawable, Boolean.TRUE);
+            Theme$$ExternalSyntheticApiModelOutline8.m().getDeclaredMethod("setForceSoftware", Boolean.TYPE).invoke(rippleDrawable, Boolean.TRUE);
         } catch (Throwable unused) {
         }
     }
@@ -7805,26 +7344,30 @@ public class Theme {
                 }
                 if (stateDrawable instanceof ShapeDrawable) {
                     ((ShapeDrawable) stateDrawable).getPaint().setColor(i);
+                    return;
                 } else {
                     stateDrawable.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
+                    return;
                 }
             } catch (Throwable unused) {
-            }
-        } else if (Build.VERSION.SDK_INT < 21 || !(drawable instanceof RippleDrawable)) {
-        } else {
-            RippleDrawable rippleDrawable = (RippleDrawable) drawable;
-            if (z) {
-                rippleDrawable.setColor(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i}));
                 return;
             }
-            numberOfLayers = rippleDrawable.getNumberOfLayers();
-            if (numberOfLayers > 0) {
-                drawable2 = rippleDrawable.getDrawable(0);
-                if (drawable2 instanceof ShapeDrawable) {
-                    ((ShapeDrawable) drawable2).getPaint().setColor(i);
-                } else {
-                    drawable2.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
-                }
+        }
+        if (Build.VERSION.SDK_INT < 21 || !AppCompatImageHelper$$ExternalSyntheticApiModelOutline0.m(drawable)) {
+            return;
+        }
+        RippleDrawable m = Theme$$ExternalSyntheticApiModelOutline0.m(drawable);
+        if (z) {
+            m.setColor(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i}));
+            return;
+        }
+        numberOfLayers = m.getNumberOfLayers();
+        if (numberOfLayers > 0) {
+            drawable2 = m.getDrawable(0);
+            if (drawable2 instanceof ShapeDrawable) {
+                ((ShapeDrawable) drawable2).getPaint().setColor(i);
+            } else {
+                drawable2.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
             }
         }
     }
@@ -7942,7 +7485,7 @@ public class Theme {
         return createBackgroundDrawable(themeInfo, overrideWallpaperInfo, sparseIntArray, pathToWallpaper, str, currentColorsNoAccent.get(key_wallpaperFileOffset, -1), (int) f, i, z2, false, false, z3, null, z);
     }
 
-    public static org.telegram.ui.ActionBar.Theme.BackgroundDrawableSettings createBackgroundDrawable(org.telegram.ui.ActionBar.Theme.ThemeInfo r25, org.telegram.ui.ActionBar.Theme.OverrideWallpaperInfo r26, android.util.SparseIntArray r27, java.io.File r28, java.lang.String r29, int r30, int r31, int r32, boolean r33, boolean r34, boolean r35, boolean r36, org.telegram.tgnet.TLRPC$Document r37, boolean r38) {
+    public static org.telegram.ui.ActionBar.Theme.BackgroundDrawableSettings createBackgroundDrawable(org.telegram.ui.ActionBar.Theme.ThemeInfo r24, org.telegram.ui.ActionBar.Theme.OverrideWallpaperInfo r25, android.util.SparseIntArray r26, java.io.File r27, java.lang.String r28, int r29, int r30, int r31, boolean r32, boolean r33, boolean r34, boolean r35, org.telegram.tgnet.TLRPC$Document r36, boolean r37) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.Theme.createBackgroundDrawable(org.telegram.ui.ActionBar.Theme$ThemeInfo, org.telegram.ui.ActionBar.Theme$OverrideWallpaperInfo, android.util.SparseIntArray, java.io.File, java.lang.String, int, int, int, boolean, boolean, boolean, boolean, org.telegram.tgnet.TLRPC$Document, boolean):org.telegram.ui.ActionBar.Theme$BackgroundDrawableSettings");
     }
 
@@ -7965,6 +7508,7 @@ public class Theme {
 
     public static Bitmap loadScreenSizedBitmap(FileInputStream fileInputStream, int i) {
         float min;
+        int i2;
         try {
             try {
                 BitmapFactory.Options options = new BitmapFactory.Options();
@@ -7989,10 +7533,14 @@ public class Theme {
                 }
                 options.inJustDecodeBounds = false;
                 if (min > 1.0f && (f > min2 || f2 > max)) {
-                    int i2 = 1;
-                    do {
-                        i2 *= 2;
-                    } while (i2 * 2 < min);
+                    int i3 = 1;
+                    while (true) {
+                        i2 = i3 * 2;
+                        if (i3 * 4 >= min) {
+                            break;
+                        }
+                        i3 = i2;
+                    }
                     options.inSampleSize = i2;
                 } else {
                     options.inSampleSize = (int) min;
@@ -8016,24 +7564,24 @@ public class Theme {
                 } catch (Exception unused2) {
                 }
                 return decodeStream;
-            } catch (Exception e) {
-                FileLog.e(e);
+            } catch (Throwable th) {
                 if (fileInputStream != null) {
                     try {
                         fileInputStream.close();
                     } catch (Exception unused3) {
                     }
                 }
-                return null;
+                throw th;
             }
-        } catch (Throwable th) {
+        } catch (Exception e) {
+            FileLog.e(e);
             if (fileInputStream != null) {
                 try {
                     fileInputStream.close();
                 } catch (Exception unused4) {
                 }
             }
-            throw th;
+            return null;
         }
     }
 
@@ -8046,7 +7594,10 @@ public class Theme {
         if (overrideWallpaperInfo != null) {
             return overrideWallpaperInfo.slug;
         }
-        return hasWallpaperFromTheme() ? "t" : "d";
+        if (hasWallpaperFromTheme()) {
+            return "t";
+        }
+        return "d";
     }
 
     public static Drawable getCachedWallpaper() {
@@ -8055,7 +7606,7 @@ public class Theme {
             return cachedWallpaperNonBlocking;
         }
         CountDownLatch countDownLatch = new CountDownLatch(1);
-        Utilities.themeQueue.postRunnable(new Theme$$ExternalSyntheticLambda6(countDownLatch));
+        Utilities.themeQueue.postRunnable(new Theme$$ExternalSyntheticLambda14(countDownLatch));
         try {
             countDownLatch.await();
         } catch (Exception e) {
@@ -8226,16 +7777,16 @@ public class Theme {
 
     public static boolean isHome(ThemeAccent themeAccent) {
         ThemeInfo themeInfo = themeAccent.parentTheme;
-        if (themeInfo != null) {
-            if (themeInfo.getKey().equals("Blue") && themeAccent.id == 99) {
-                return true;
-            }
-            if (themeAccent.parentTheme.getKey().equals("Day") && themeAccent.id == 9) {
-                return true;
-            }
-            return (themeAccent.parentTheme.getKey().equals("Night") || themeAccent.parentTheme.getKey().equals("Dark Blue")) && themeAccent.id == 0;
+        if (themeInfo == null) {
+            return false;
         }
-        return false;
+        if (themeInfo.getKey().equals("Blue") && themeAccent.id == 99) {
+            return true;
+        }
+        if (themeAccent.parentTheme.getKey().equals("Day") && themeAccent.id == 9) {
+            return true;
+        }
+        return (themeAccent.parentTheme.getKey().equals("Night") || themeAccent.parentTheme.getKey().equals("Dark Blue")) && themeAccent.id == 0;
     }
 
     public static void turnOffAutoNight(final BaseFragment baseFragment) {

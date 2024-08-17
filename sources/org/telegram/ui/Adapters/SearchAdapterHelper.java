@@ -32,6 +32,7 @@ import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.Adapters.DialogsSearchAdapter;
 import org.telegram.ui.Adapters.SearchAdapterHelper;
 import org.telegram.ui.Components.ShareAlert;
+
 public class SearchAdapterHelper {
     private boolean allResultsAreGlobal;
     private SearchAdapterHelperDelegate delegate;

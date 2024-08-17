@@ -9,6 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import androidx.core.content.ContextCompat;
 import java.util.ArrayList;
+
 public class ReplaceableIconDrawable extends Drawable implements Animator.AnimatorListener {
     private ValueAnimator animation;
     private ColorFilter colorFilter;
@@ -64,7 +65,9 @@ public class ReplaceableIconDrawable extends Drawable implements Animator.Animat
             invalidateSelf();
             return;
         }
-        z = (getBounds() == null || getBounds().isEmpty()) ? false : false;
+        if (getBounds() == null || getBounds().isEmpty()) {
+            z = false;
+        }
         Drawable drawable2 = this.currentDrawable;
         if (drawable == drawable2) {
             drawable2.setColorFilter(this.colorFilter);
@@ -112,10 +115,10 @@ public class ReplaceableIconDrawable extends Drawable implements Animator.Animat
     }
 
     private void updateBounds(Drawable drawable, android.graphics.Rect rect) {
+        int height;
         int intrinsicHeight;
-        int i;
+        int width;
         int intrinsicWidth;
-        int i2;
         if (drawable == null) {
             return;
         }
@@ -124,26 +127,20 @@ public class ReplaceableIconDrawable extends Drawable implements Animator.Animat
             return;
         }
         if (drawable.getIntrinsicHeight() < 0) {
-            i = rect.top;
+            height = rect.top;
             intrinsicHeight = rect.bottom;
         } else {
-            int height = (rect.height() - drawable.getIntrinsicHeight()) / 2;
-            int i3 = rect.top;
-            int i4 = i3 + height;
-            intrinsicHeight = i3 + height + drawable.getIntrinsicHeight();
-            i = i4;
+            height = ((rect.height() - drawable.getIntrinsicHeight()) / 2) + rect.top;
+            intrinsicHeight = drawable.getIntrinsicHeight() + height;
         }
         if (drawable.getIntrinsicWidth() < 0) {
-            i2 = rect.left;
+            width = rect.left;
             intrinsicWidth = rect.right;
         } else {
-            int width = (rect.width() - drawable.getIntrinsicWidth()) / 2;
-            int i5 = rect.left;
-            int i6 = i5 + width;
-            intrinsicWidth = i5 + width + drawable.getIntrinsicWidth();
-            i2 = i6;
+            width = ((rect.width() - drawable.getIntrinsicWidth()) / 2) + rect.left;
+            intrinsicWidth = drawable.getIntrinsicWidth() + width;
         }
-        drawable.setBounds(i2, i, intrinsicWidth, intrinsicHeight);
+        drawable.setBounds(width, height, intrinsicWidth, intrinsicHeight);
     }
 
     @Override

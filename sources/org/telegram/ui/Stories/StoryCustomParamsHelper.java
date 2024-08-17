@@ -5,6 +5,7 @@ import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$TL_textWithEntities;
 import org.telegram.tgnet.tl.TL_stories$StoryItem;
+
 public class StoryCustomParamsHelper {
     public static boolean isEmpty(TL_stories$StoryItem tL_stories$StoryItem) {
         return tL_stories$StoryItem.detectedLng == null && tL_stories$StoryItem.translatedLng == null && !tL_stories$StoryItem.translated && tL_stories$StoryItem.translatedText == null;
@@ -43,13 +44,13 @@ public class StoryCustomParamsHelper {
         private Params_v1(TL_stories$StoryItem tL_stories$StoryItem) {
             this.flags = 0;
             this.storyItem = tL_stories$StoryItem;
-            int i = (tL_stories$StoryItem.translated ? 1 : 0) + 0;
+            boolean z = tL_stories$StoryItem.translated;
+            this.flags = z ? 1 : 0;
+            int i = (z ? 1 : 0) + (tL_stories$StoryItem.detectedLng != null ? 2 : 0);
             this.flags = i;
-            int i2 = i + (tL_stories$StoryItem.detectedLng != null ? 2 : 0);
+            int i2 = i + (tL_stories$StoryItem.translatedText != null ? 4 : 0);
             this.flags = i2;
-            int i3 = i2 + (tL_stories$StoryItem.translatedText != null ? 4 : 0);
-            this.flags = i3;
-            this.flags = i3 + (tL_stories$StoryItem.translatedLng != null ? 8 : 0);
+            this.flags = i2 + (tL_stories$StoryItem.translatedLng != null ? 8 : 0);
         }
 
         @Override

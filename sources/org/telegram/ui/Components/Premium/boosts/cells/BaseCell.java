@@ -22,6 +22,7 @@ import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RadioButton;
 import org.telegram.ui.Components.RecyclerListView;
+
 @SuppressLint({"ViewConstructor"})
 public abstract class BaseCell extends FrameLayout {
     protected final AvatarDrawable avatarDrawable;
@@ -172,10 +173,10 @@ public abstract class BaseCell extends FrameLayout {
             if (LocaleController.isRTL) {
                 this.titleTextView.setTranslationX(AndroidUtilities.dp(40.0f));
                 this.subtitleTextView.setTranslationX(AndroidUtilities.dp(40.0f));
-                return;
+            } else {
+                this.titleTextView.setTranslationX(AndroidUtilities.dp(-40.0f));
+                this.subtitleTextView.setTranslationX(AndroidUtilities.dp(-40.0f));
             }
-            this.titleTextView.setTranslationX(AndroidUtilities.dp(-40.0f));
-            this.subtitleTextView.setTranslationX(AndroidUtilities.dp(-40.0f));
         }
     }
 

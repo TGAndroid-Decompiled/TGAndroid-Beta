@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_pageBlockSubtitle extends TLRPC$PageBlock {
     public TLRPC$RichText text;
 

@@ -25,6 +25,7 @@ import org.telegram.ui.Components.ColorSpanUnderline;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ScaleStateListAnimator;
+
 public class StickerSetNameCell extends FrameLayout {
     private ImageView buttonView;
     private TextView editView;
@@ -60,7 +61,9 @@ public class StickerSetNameCell extends FrameLayout {
         textView.setTextColor(getThemedColor(i));
         this.textView.setTextSize(1, 15.0f);
         this.textView.setTypeface(AndroidUtilities.bold());
-        this.textView.setEllipsize(TextUtils.TruncateAt.END);
+        TextView textView2 = this.textView;
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        textView2.setEllipsize(truncateAt);
         this.textView.setSingleLine(true);
         if (z) {
             this.textView.setGravity(17);
@@ -73,12 +76,12 @@ public class StickerSetNameCell extends FrameLayout {
         }
         addView(linearLayout, createFrame);
         linearLayout.addView(this.textView, LayoutHelper.createLinear(-2, -2, 1.0f, 16));
-        TextView textView2 = new TextView(context);
-        this.editView = textView2;
-        textView2.setTextColor(getThemedColor(i));
+        TextView textView3 = new TextView(context);
+        this.editView = textView3;
+        textView3.setTextColor(getThemedColor(i));
         this.editView.setTextSize(1, 11.0f);
         this.editView.setTypeface(AndroidUtilities.bold());
-        this.editView.setEllipsize(TextUtils.TruncateAt.END);
+        this.editView.setEllipsize(truncateAt);
         this.editView.setPadding(AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.33f), 0);
         this.editView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(9.0f), Theme.multAlpha(getThemedColor(i), 0.1f), Theme.multAlpha(getThemedColor(i), 0.24f)));
         this.editView.setGravity(17);
@@ -86,11 +89,11 @@ public class StickerSetNameCell extends FrameLayout {
         ScaleStateListAnimator.apply(this.editView);
         linearLayout.addView(this.editView, LayoutHelper.createLinear(-2, -2, 0.0f, 16, 5, 1, 0, 0));
         this.editView.setVisibility(8);
-        TextView textView3 = new TextView(context);
-        this.urlTextView = textView3;
-        textView3.setTextColor(getThemedColor(i));
+        TextView textView4 = new TextView(context);
+        this.urlTextView = textView4;
+        textView4.setTextColor(getThemedColor(i));
         this.urlTextView.setTextSize(1, 12.0f);
-        this.urlTextView.setEllipsize(TextUtils.TruncateAt.END);
+        this.urlTextView.setEllipsize(truncateAt);
         this.urlTextView.setSingleLine(true);
         this.urlTextView.setVisibility(4);
         if (z2) {

@@ -33,6 +33,7 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.voip.ImageWithWavesView;
+
 public class AcceptDeclineView extends View {
     private Paint acceptCirclePaint;
     private FabBackgroundDrawable acceptDrawable;
@@ -114,9 +115,11 @@ public class AcceptDeclineView extends View {
         String string = LocaleController.getString("AcceptCall", R.string.AcceptCall);
         String string2 = LocaleController.getString("DeclineCall", R.string.DeclineCall);
         String string3 = LocaleController.getString("RetryCall", R.string.RetryCall);
-        this.acceptLayout = new StaticLayout(string, textPaint, (int) textPaint.measureText(string), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-        this.declineLayout = new StaticLayout(string2, textPaint, (int) textPaint.measureText(string2), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-        this.retryLayout = new StaticLayout(string3, textPaint, (int) textPaint.measureText(string3), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        int measureText = (int) textPaint.measureText(string);
+        Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
+        this.acceptLayout = new StaticLayout(string, textPaint, measureText, alignment, 1.0f, 0.0f, false);
+        this.declineLayout = new StaticLayout(string2, textPaint, (int) textPaint.measureText(string2), alignment, 1.0f, 0.0f, false);
+        this.retryLayout = new StaticLayout(string3, textPaint, (int) textPaint.measureText(string3), alignment, 1.0f, 0.0f, false);
         this.callDrawable = ContextCompat.getDrawable(context, R.drawable.calls_decline).mutate();
         Drawable mutate = ContextCompat.getDrawable(context, R.drawable.ic_close_white).mutate();
         this.cancelDrawable = mutate;
@@ -357,11 +360,11 @@ public class AcceptDeclineView extends View {
                             return AcceptDeclineView.this.retryLayout.getText();
                         }
                         return null;
-                    } else if (acceptDeclineView.acceptLayout != null) {
-                        return AcceptDeclineView.this.acceptLayout.getText();
-                    } else {
-                        return null;
                     }
+                    if (acceptDeclineView.acceptLayout != null) {
+                        return AcceptDeclineView.this.acceptLayout.getText();
+                    }
+                    return null;
                 }
 
                 @Override
@@ -460,12 +463,12 @@ public class AcceptDeclineView extends View {
             if (i2 == 64) {
                 sendAccessibilityEventForVirtualView(i, 32768);
                 return false;
-            } else if (i2 == 16) {
-                onVirtualViewClick(i);
-                return true;
-            } else {
+            }
+            if (i2 != 16) {
                 return false;
             }
+            onVirtualViewClick(i);
+            return true;
         }
 
         public boolean onHoverEvent(MotionEvent motionEvent) {

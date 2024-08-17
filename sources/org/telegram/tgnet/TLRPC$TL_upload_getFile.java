@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_upload_getFile extends TLObject {
     public boolean cdn_supported;
     public int flags;

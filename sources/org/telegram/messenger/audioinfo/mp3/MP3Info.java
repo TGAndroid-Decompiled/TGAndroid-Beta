@@ -7,6 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.telegram.messenger.audioinfo.AudioInfo;
 import org.telegram.messenger.audioinfo.mp3.MP3Frame;
+
 public class MP3Info extends AudioInfo {
     static final Logger LOGGER = Logger.getLogger(MP3Info.class.getName());
 
@@ -100,66 +101,8 @@ public class MP3Info extends AudioInfo {
         }
     }
 
-    MP3Frame readFirstFrame(MP3Input mP3Input, StopReadCondition stopReadCondition) throws IOException {
-        MP3Frame.Header header;
-        int read = stopReadCondition.stopRead(mP3Input) ? -1 : mP3Input.read();
-        int i = 0;
-        while (read != -1) {
-            if (i == 255 && (read & 224) == 224) {
-                mP3Input.mark(2);
-                int read2 = stopReadCondition.stopRead(mP3Input) ? -1 : mP3Input.read();
-                if (read2 == -1) {
-                    break;
-                }
-                int read3 = stopReadCondition.stopRead(mP3Input) ? -1 : mP3Input.read();
-                if (read3 == -1) {
-                    break;
-                }
-                try {
-                    header = new MP3Frame.Header(read, read2, read3);
-                } catch (MP3Exception unused) {
-                    header = null;
-                }
-                if (header != null) {
-                    mP3Input.reset();
-                    mP3Input.mark(header.getFrameSize() + 2);
-                    int frameSize = header.getFrameSize();
-                    byte[] bArr = new byte[frameSize];
-                    bArr[0] = -1;
-                    bArr[1] = (byte) read;
-                    int i2 = frameSize - 2;
-                    try {
-                        mP3Input.readFully(bArr, 2, i2);
-                        MP3Frame mP3Frame = new MP3Frame(header, bArr);
-                        if (!mP3Frame.isChecksumError()) {
-                            int read4 = stopReadCondition.stopRead(mP3Input) ? -1 : mP3Input.read();
-                            int read5 = stopReadCondition.stopRead(mP3Input) ? -1 : mP3Input.read();
-                            if (read4 != -1 && read5 != -1) {
-                                if (read4 == 255 && (read5 & 254) == (read & 254)) {
-                                    int read6 = stopReadCondition.stopRead(mP3Input) ? -1 : mP3Input.read();
-                                    int read7 = stopReadCondition.stopRead(mP3Input) ? -1 : mP3Input.read();
-                                    if (read6 != -1 && read7 != -1) {
-                                        try {
-                                            if (new MP3Frame.Header(read5, read6, read7).isCompatible(header)) {
-                                                mP3Input.reset();
-                                                mP3Input.skipFully(i2);
-                                            }
-                                        } catch (MP3Exception unused2) {
-                                        }
-                                    }
-                                }
-                            }
-                            return mP3Frame;
-                        }
-                    } catch (EOFException unused3) {
-                    }
-                }
-                mP3Input.reset();
-            }
-            i = read;
-            read = stopReadCondition.stopRead(mP3Input) ? -1 : mP3Input.read();
-        }
-        return null;
+    org.telegram.messenger.audioinfo.mp3.MP3Frame readFirstFrame(org.telegram.messenger.audioinfo.mp3.MP3Input r13, org.telegram.messenger.audioinfo.mp3.MP3Info.StopReadCondition r14) throws java.io.IOException {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.audioinfo.mp3.MP3Info.readFirstFrame(org.telegram.messenger.audioinfo.mp3.MP3Input, org.telegram.messenger.audioinfo.mp3.MP3Info$StopReadCondition):org.telegram.messenger.audioinfo.mp3.MP3Frame");
     }
 
     MP3Frame readNextFrame(MP3Input mP3Input, StopReadCondition stopReadCondition, MP3Frame mP3Frame) throws IOException {
@@ -200,11 +143,10 @@ public class MP3Info extends AudioInfo {
     }
 
     long calculateDuration(MP3Input mP3Input, long j, StopReadCondition stopReadCondition) throws IOException, MP3Exception {
-        int numberOfFrames;
         MP3Frame readFirstFrame = readFirstFrame(mP3Input, stopReadCondition);
         if (readFirstFrame != null) {
             if (readFirstFrame.getNumberOfFrames() > 0) {
-                return readFirstFrame.getHeader().getTotalDuration(numberOfFrames * readFirstFrame.getSize());
+                return readFirstFrame.getHeader().getTotalDuration(r4 * readFirstFrame.getSize());
             }
             long position = mP3Input.getPosition() - readFirstFrame.getSize();
             long size = readFirstFrame.getSize();

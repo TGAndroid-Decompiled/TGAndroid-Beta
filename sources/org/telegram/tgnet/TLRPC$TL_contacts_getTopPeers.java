@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_contacts_getTopPeers extends TLObject {
     public boolean bots_app;
     public boolean bots_inline;

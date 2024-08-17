@@ -17,6 +17,7 @@ import org.telegram.tgnet.TLRPC$TL_contacts_contactBirthdays;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$UserFull;
+
 public class BirthdayController {
     private static volatile BirthdayController[] Instance = new BirthdayController[4];
     private static final Object[] lockObjects = new Object[4];
@@ -36,12 +37,15 @@ public class BirthdayController {
         BirthdayController birthdayController = Instance[i];
         if (birthdayController == null) {
             synchronized (lockObjects[i]) {
-                birthdayController = Instance[i];
-                if (birthdayController == null) {
-                    BirthdayController[] birthdayControllerArr = Instance;
-                    BirthdayController birthdayController2 = new BirthdayController(i);
-                    birthdayControllerArr[i] = birthdayController2;
-                    birthdayController = birthdayController2;
+                try {
+                    birthdayController = Instance[i];
+                    if (birthdayController == null) {
+                        BirthdayController[] birthdayControllerArr = Instance;
+                        BirthdayController birthdayController2 = new BirthdayController(i);
+                        birthdayControllerArr[i] = birthdayController2;
+                        birthdayController = birthdayController2;
+                    }
+                } finally {
                 }
             }
         }
@@ -104,14 +108,18 @@ public class BirthdayController {
         if (!z2) {
             z2 = currentTimeMillis - j > ((long) (BuildVars.DEBUG_PRIVATE_VERSION ? 25000 : 43200000));
         }
-        if (!z2) {
+        if (z2) {
+            z = z2;
+        } else {
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(this.lastCheckDate);
             Calendar calendar2 = Calendar.getInstance();
             calendar2.setTimeInMillis(currentTimeMillis);
-            z2 = (calendar.get(5) == calendar2.get(5) && calendar.get(2) == calendar2.get(2) && calendar.get(1) == calendar2.get(1)) ? true : true;
+            if (calendar.get(5) != calendar2.get(5) || calendar.get(2) != calendar2.get(2) || calendar.get(1) != calendar2.get(1)) {
+                z = true;
+            }
         }
-        if (z2) {
+        if (z) {
             this.loading = true;
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TLObject() {
                 @Override
@@ -253,12 +261,9 @@ public class BirthdayController {
                     if (tLRPC$User != null && !UserObject.isUserSelf(tLRPC$User)) {
                         arrayList.add(tLRPC$User);
                     }
-                } else {
-                    it = it2;
-                    i = i8;
+                    i8 = i;
+                    it2 = it;
                 }
-                i8 = i;
-                it2 = it;
             }
             return birthdayState;
         }
@@ -317,11 +322,11 @@ public class BirthdayController {
                 if (z) {
                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
                 }
-                return;
-            }
-            int readInt322 = abstractSerializedData.readInt32(z);
-            for (int i = 0; i < readInt322; i++) {
-                this.contacts.add(TLRPC$TL_contactBirthday.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z));
+            } else {
+                int readInt322 = abstractSerializedData.readInt32(z);
+                for (int i = 0; i < readInt322; i++) {
+                    this.contacts.add(TLRPC$TL_contactBirthday.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z));
+                }
             }
         }
 

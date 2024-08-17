@@ -22,6 +22,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.text.InputFilter;
+import android.util.Property;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,6 +77,7 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.VerticalPositionAutoAnimator;
 import org.telegram.ui.LocationActivity;
+
 public class GroupCreateFinalActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate, ImageUpdater.ImageUpdaterDelegate {
     private GroupCreateAdapter adapter;
     private TLRPC$FileLocation avatar;
@@ -288,9 +290,8 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
 
     @Override
     public View createView(Context context) {
-        String str;
         int i;
-        SizeNotifierFrameLayout sizeNotifierFrameLayout;
+        String str;
         EditTextEmoji editTextEmoji = this.editText;
         if (editTextEmoji != null) {
             editTextEmoji.onDestroy();
@@ -302,11 +303,11 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
             @Override
             public void onItemClick(int i2) {
                 if (i2 == -1) {
-                    GroupCreateFinalActivity.this.finishFragment();
+                    GroupCreateFinalActivity.this.lambda$onBackPressed$308();
                 }
             }
         });
-        SizeNotifierFrameLayout sizeNotifierFrameLayout2 = new SizeNotifierFrameLayout(context) {
+        SizeNotifierFrameLayout sizeNotifierFrameLayout = new SizeNotifierFrameLayout(context) {
             private boolean ignoreLayout;
 
             @Override
@@ -355,8 +356,8 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
                 super.requestLayout();
             }
         };
-        this.fragmentView = sizeNotifierFrameLayout2;
-        sizeNotifierFrameLayout2.setLayoutParams(new ViewGroup.LayoutParams(-1, -1));
+        this.fragmentView = sizeNotifierFrameLayout;
+        sizeNotifierFrameLayout.setLayoutParams(new ViewGroup.LayoutParams(-1, -1));
         this.fragmentView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
@@ -379,7 +380,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
             }
         };
         linearLayout.setOrientation(1);
-        sizeNotifierFrameLayout2.addView(linearLayout, LayoutHelper.createFrame(-1, -1.0f));
+        sizeNotifierFrameLayout.addView(linearLayout, LayoutHelper.createFrame(-1, -1.0f));
         FrameLayout frameLayout = new FrameLayout(context);
         this.editTextContainer = frameLayout;
         linearLayout.addView(frameLayout, LayoutHelper.createLinear(-1, -2));
@@ -446,7 +447,8 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
             }
         };
         this.avatarEditor = rLottieImageView;
-        rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+        rLottieImageView.setScaleType(scaleType);
         this.avatarEditor.setAnimation(this.cameraDrawable);
         this.avatarEditor.setEnabled(false);
         this.avatarEditor.setClickable(false);
@@ -471,15 +473,15 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         boolean z4 = LocaleController.isRTL;
         frameLayout5.addView(radialProgressView2, LayoutHelper.createFrame(64, 64.0f, (z4 ? 5 : 3) | 48, z4 ? 0.0f : 16.0f, 16.0f, z4 ? 16.0f : 0.0f, 16.0f));
         showAvatarProgress(false, false);
-        EditTextEmoji editTextEmoji2 = new EditTextEmoji(context, sizeNotifierFrameLayout2, this, 0, false);
+        EditTextEmoji editTextEmoji2 = new EditTextEmoji(context, sizeNotifierFrameLayout, this, 0, false);
         this.editText = editTextEmoji2;
         int i3 = this.chatType;
         if (i3 == 0 || i3 == 4 || i3 == 5) {
-            str = "EnterGroupNamePlaceholder";
             i = R.string.EnterGroupNamePlaceholder;
+            str = "EnterGroupNamePlaceholder";
         } else {
-            str = "EnterListName";
             i = R.string.EnterListName;
+            str = "EnterListName";
         }
         editTextEmoji2.setHint(LocaleController.getString(str, i));
         String str2 = this.nameToSet;
@@ -543,7 +545,6 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         this.floatingButtonContainer.setBackgroundDrawable(createSimpleSelectorCircleDrawable);
         if (i4 >= 21) {
             StateListAnimator stateListAnimator = new StateListAnimator();
-            sizeNotifierFrameLayout = sizeNotifierFrameLayout2;
             stateListAnimator.addState(new int[]{16842919}, ObjectAnimator.ofFloat(this.floatingButtonIcon, "translationZ", AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f)).setDuration(200L));
             stateListAnimator.addState(new int[0], ObjectAnimator.ofFloat(this.floatingButtonIcon, "translationZ", AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f)).setDuration(200L));
             this.floatingButtonContainer.setStateListAnimator(stateListAnimator);
@@ -554,8 +555,6 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
                     outline.setOval(0, 0, AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f));
                 }
             });
-        } else {
-            sizeNotifierFrameLayout = sizeNotifierFrameLayout2;
         }
         VerticalPositionAutoAnimator.attach(this.floatingButtonContainer);
         View view2 = this.floatingButtonContainer;
@@ -571,7 +570,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         });
         ImageView imageView = new ImageView(context);
         this.floatingButtonIcon = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setScaleType(scaleType);
         this.floatingButtonIcon.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_chats_actionIcon), PorterDuff.Mode.MULTIPLY));
         this.floatingButtonIcon.setImageResource(R.drawable.checkbig);
         this.floatingButtonIcon.setPadding(0, AndroidUtilities.dp(2.0f), 0, 0);
@@ -622,9 +621,9 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         if (!this.imageUpdater.isUploadingImage()) {
             this.cameraDrawable.setCustomEndFrame(86);
             this.avatarEditor.playAnimation();
-            return;
+        } else {
+            this.cameraDrawable.setCurrentFrame(0, false);
         }
-        this.cameraDrawable.setCurrentFrame(0, false);
     }
 
     public void lambda$createView$6(View view, int i, float f, float f2) {
@@ -704,10 +703,10 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         this.editText.setEnabled(false);
         if (this.imageUpdater.isUploadingImage()) {
             this.createAfterUpload = true;
-            return;
+        } else {
+            showEditDoneProgress(true);
+            this.reqId = getMessagesController().createChat(this.editText.getText().toString(), this.selectedContacts, null, this.chatType, this.forImport, this.currentGroupCreateLocation, this.currentGroupCreateAddress, this.ttlPeriod, this);
         }
-        showEditDoneProgress(true);
-        this.reqId = getMessagesController().createChat(this.editText.getText().toString(), this.selectedContacts, null, this.chatType, this.forImport, this.currentGroupCreateLocation, this.currentGroupCreateAddress, this.ttlPeriod, this);
     }
 
     @Override
@@ -781,47 +780,55 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
             animatorSet.cancel();
             this.avatarAnimation = null;
         }
-        if (z2) {
-            this.avatarAnimation = new AnimatorSet();
+        if (!z2) {
             if (z) {
+                this.avatarEditor.setAlpha(1.0f);
+                this.avatarEditor.setVisibility(4);
+                this.avatarProgressView.setAlpha(1.0f);
                 this.avatarProgressView.setVisibility(0);
-                this.avatarAnimation.playTogether(ObjectAnimator.ofFloat(this.avatarEditor, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.avatarProgressView, View.ALPHA, 1.0f));
-            } else {
-                this.avatarEditor.setVisibility(0);
-                this.avatarAnimation.playTogether(ObjectAnimator.ofFloat(this.avatarEditor, View.ALPHA, 1.0f), ObjectAnimator.ofFloat(this.avatarProgressView, View.ALPHA, 0.0f));
+                return;
             }
-            this.avatarAnimation.setDuration(180L);
-            this.avatarAnimation.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    if (GroupCreateFinalActivity.this.avatarAnimation == null || GroupCreateFinalActivity.this.avatarEditor == null) {
-                        return;
-                    }
-                    if (z) {
-                        GroupCreateFinalActivity.this.avatarEditor.setVisibility(4);
-                    } else {
-                        GroupCreateFinalActivity.this.avatarProgressView.setVisibility(4);
-                    }
-                    GroupCreateFinalActivity.this.avatarAnimation = null;
-                }
-
-                @Override
-                public void onAnimationCancel(Animator animator) {
-                    GroupCreateFinalActivity.this.avatarAnimation = null;
-                }
-            });
-            this.avatarAnimation.start();
-        } else if (z) {
-            this.avatarEditor.setAlpha(1.0f);
-            this.avatarEditor.setVisibility(4);
-            this.avatarProgressView.setAlpha(1.0f);
-            this.avatarProgressView.setVisibility(0);
-        } else {
             this.avatarEditor.setAlpha(1.0f);
             this.avatarEditor.setVisibility(0);
             this.avatarProgressView.setAlpha(0.0f);
             this.avatarProgressView.setVisibility(4);
+            return;
         }
+        this.avatarAnimation = new AnimatorSet();
+        if (z) {
+            this.avatarProgressView.setVisibility(0);
+            AnimatorSet animatorSet2 = this.avatarAnimation;
+            RLottieImageView rLottieImageView = this.avatarEditor;
+            Property property = View.ALPHA;
+            animatorSet2.playTogether(ObjectAnimator.ofFloat(rLottieImageView, (Property<RLottieImageView, Float>) property, 0.0f), ObjectAnimator.ofFloat(this.avatarProgressView, (Property<RadialProgressView, Float>) property, 1.0f));
+        } else {
+            this.avatarEditor.setVisibility(0);
+            AnimatorSet animatorSet3 = this.avatarAnimation;
+            RLottieImageView rLottieImageView2 = this.avatarEditor;
+            Property property2 = View.ALPHA;
+            animatorSet3.playTogether(ObjectAnimator.ofFloat(rLottieImageView2, (Property<RLottieImageView, Float>) property2, 1.0f), ObjectAnimator.ofFloat(this.avatarProgressView, (Property<RadialProgressView, Float>) property2, 0.0f));
+        }
+        this.avatarAnimation.setDuration(180L);
+        this.avatarAnimation.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                if (GroupCreateFinalActivity.this.avatarAnimation == null || GroupCreateFinalActivity.this.avatarEditor == null) {
+                    return;
+                }
+                if (z) {
+                    GroupCreateFinalActivity.this.avatarEditor.setVisibility(4);
+                } else {
+                    GroupCreateFinalActivity.this.avatarProgressView.setVisibility(4);
+                }
+                GroupCreateFinalActivity.this.avatarAnimation = null;
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animator) {
+                GroupCreateFinalActivity.this.avatarAnimation = null;
+            }
+        });
+        this.avatarAnimation.start();
     }
 
     @Override
@@ -885,7 +892,9 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
                     ((GroupCreateUserCell) childAt).update(intValue);
                 }
             }
-        } else if (i == NotificationCenter.chatDidFailCreate) {
+            return;
+        }
+        if (i == NotificationCenter.chatDidFailCreate) {
             this.reqId = 0;
             this.donePressed = false;
             showEditDoneProgress(false);
@@ -896,8 +905,11 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
             GroupCreateFinalActivityDelegate groupCreateFinalActivityDelegate = this.delegate;
             if (groupCreateFinalActivityDelegate != null) {
                 groupCreateFinalActivityDelegate.didFailChatCreation();
+                return;
             }
-        } else if (i == NotificationCenter.chatDidCreated) {
+            return;
+        }
+        if (i == NotificationCenter.chatDidCreated) {
             this.reqId = 0;
             long longValue = ((Long) objArr[0]).longValue();
             GroupCreateFinalActivityDelegate groupCreateFinalActivityDelegate2 = this.delegate;
@@ -1009,7 +1021,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             View shadowSectionCell;
-            TextSettingsCell textSettingsCell;
+            View view;
             if (i == 0) {
                 shadowSectionCell = new ShadowSectionCell(this.context);
                 CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawableByKey(this.context, R.drawable.greydivider_top, Theme.key_windowBackgroundGrayShadow));
@@ -1019,32 +1031,32 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
                 if (i == 1) {
                     HeaderCell headerCell = new HeaderCell(this.context);
                     headerCell.setHeight(46);
-                    textSettingsCell = headerCell;
+                    view = headerCell;
                 } else if (i == 2) {
-                    textSettingsCell = new GroupCreateUserCell(this.context, 0, 3, false);
+                    view = new GroupCreateUserCell(this.context, 0, 3, false);
                 } else if (i == 4) {
-                    textSettingsCell = new TextCell(this.context);
+                    view = new TextCell(this.context);
                 } else if (i == 5) {
                     shadowSectionCell = new TextInfoPrivacyCell(this.context);
                     CombinedDrawable combinedDrawable2 = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawableByKey(this.context, GroupCreateFinalActivity.this.selectedContacts.size() == 0 ? R.drawable.greydivider_bottom : R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
                     combinedDrawable2.setFullsize(true);
                     shadowSectionCell.setBackgroundDrawable(combinedDrawable2);
                 } else if (i == 6) {
-                    textSettingsCell = new TextCell(this.context, 23, false, true, GroupCreateFinalActivity.this.getResourceProvider());
+                    view = new TextCell(this.context, 23, false, true, GroupCreateFinalActivity.this.getResourceProvider());
                 } else if (i != 7) {
-                    textSettingsCell = new TextSettingsCell(this.context);
+                    view = new TextSettingsCell(this.context);
                 } else {
-                    View view = new View(this.context);
-                    textSettingsCell = view;
+                    View view2 = new View(this.context);
+                    view = view2;
                     if (GroupCreateFinalActivity.this.selectedContacts.isEmpty()) {
-                        view.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
-                        textSettingsCell = view;
+                        view2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
+                        view = view2;
                     }
                 }
-                return new RecyclerListView.Holder(textSettingsCell);
+                return new RecyclerListView.Holder(view);
             }
-            textSettingsCell = shadowSectionCell;
-            return new RecyclerListView.Holder(textSettingsCell);
+            view = shadowSectionCell;
+            return new RecyclerListView.Holder(view);
         }
 
         @Override

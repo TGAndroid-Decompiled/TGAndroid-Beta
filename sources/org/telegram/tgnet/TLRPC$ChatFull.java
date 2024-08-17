@@ -3,6 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_bots$BotInfo;
 import org.telegram.tgnet.tl.TL_stories$PeerStories;
+
 public abstract class TLRPC$ChatFull extends TLObject {
     public String about;
     public int admins_count;
@@ -767,10 +768,11 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
                                 }
                                 return;
-                            }
-                            int readInt325 = abstractSerializedData2.readInt32(z2);
-                            for (int i3 = 0; i3 < readInt325; i3++) {
-                                this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
+                            } else {
+                                int readInt325 = abstractSerializedData2.readInt32(z2);
+                                for (int i3 = 0; i3 < readInt325; i3++) {
+                                    this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
+                                }
                             }
                         }
                         if ((this.flags & 262144) != 0) {
@@ -1029,10 +1031,11 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
                                 }
                                 return;
-                            }
-                            int readInt325 = abstractSerializedData2.readInt32(z2);
-                            for (int i3 = 0; i3 < readInt325; i3++) {
-                                this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
+                            } else {
+                                int readInt325 = abstractSerializedData2.readInt32(z2);
+                                for (int i3 = 0; i3 < readInt325; i3++) {
+                                    this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
+                                }
                             }
                         }
                         if ((this.flags & 262144) != 0) {
@@ -1041,11 +1044,11 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                 if (z2) {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt326)));
                                 }
-                                return;
-                            }
-                            int readInt327 = abstractSerializedData2.readInt32(z2);
-                            for (int i4 = 0; i4 < readInt327; i4++) {
-                                this.available_reactions_legacy.add(abstractSerializedData2.readString(z2));
+                            } else {
+                                int readInt327 = abstractSerializedData2.readInt32(z2);
+                                for (int i4 = 0; i4 < readInt327; i4++) {
+                                    this.available_reactions_legacy.add(abstractSerializedData2.readString(z2));
+                                }
                             }
                         }
                     }
@@ -1217,10 +1220,11 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
                                 }
                                 return;
-                            }
-                            int readInt325 = abstractSerializedData2.readInt32(z2);
-                            for (int i3 = 0; i3 < readInt325; i3++) {
-                                this.pending_suggestions.add(abstractSerializedData2.readString(z2));
+                            } else {
+                                int readInt325 = abstractSerializedData2.readInt32(z2);
+                                for (int i3 = 0; i3 < readInt325; i3++) {
+                                    this.pending_suggestions.add(abstractSerializedData2.readString(z2));
+                                }
                             }
                         }
                         if ((this.flags & 67108864) != 0) {
@@ -1239,10 +1243,11 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt326)));
                                 }
                                 return;
-                            }
-                            int readInt327 = abstractSerializedData2.readInt32(z2);
-                            for (int i4 = 0; i4 < readInt327; i4++) {
-                                this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
+                            } else {
+                                int readInt327 = abstractSerializedData2.readInt32(z2);
+                                for (int i4 = 0; i4 < readInt327; i4++) {
+                                    this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
+                                }
                             }
                         }
                         if ((this.flags & 536870912) != 0) {
@@ -1254,11 +1259,11 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                 if (z2) {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt328)));
                                 }
-                                return;
-                            }
-                            int readInt329 = abstractSerializedData2.readInt32(z2);
-                            for (int i5 = 0; i5 < readInt329; i5++) {
-                                this.available_reactions_legacy.add(abstractSerializedData2.readString(z2));
+                            } else {
+                                int readInt329 = abstractSerializedData2.readInt32(z2);
+                                for (int i5 = 0; i5 < readInt329; i5++) {
+                                    this.available_reactions_legacy.add(abstractSerializedData2.readString(z2));
+                                }
                             }
                         }
                     }
@@ -1494,10 +1499,11 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
                                 }
                                 return;
-                            }
-                            int readInt325 = abstractSerializedData2.readInt32(z2);
-                            for (int i3 = 0; i3 < readInt325; i3++) {
-                                this.pending_suggestions.add(abstractSerializedData2.readString(z2));
+                            } else {
+                                int readInt325 = abstractSerializedData2.readInt32(z2);
+                                for (int i3 = 0; i3 < readInt325; i3++) {
+                                    this.pending_suggestions.add(abstractSerializedData2.readString(z2));
+                                }
                             }
                         }
                         if ((this.flags & 67108864) != 0) {
@@ -1720,10 +1726,11 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt325)));
                                 }
                                 return;
-                            }
-                            int readInt326 = abstractSerializedData2.readInt32(z2);
-                            for (int i3 = 0; i3 < readInt326; i3++) {
-                                this.pending_suggestions.add(abstractSerializedData2.readString(z2));
+                            } else {
+                                int readInt326 = abstractSerializedData2.readInt32(z2);
+                                for (int i3 = 0; i3 < readInt326; i3++) {
+                                    this.pending_suggestions.add(abstractSerializedData2.readString(z2));
+                                }
                             }
                         }
                         if ((this.flags & 67108864) != 0) {
@@ -1742,10 +1749,11 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt327)));
                                 }
                                 return;
-                            }
-                            int readInt328 = abstractSerializedData2.readInt32(z2);
-                            for (int i4 = 0; i4 < readInt328; i4++) {
-                                this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
+                            } else {
+                                int readInt328 = abstractSerializedData2.readInt32(z2);
+                                for (int i4 = 0; i4 < readInt328; i4++) {
+                                    this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
+                                }
                             }
                         }
                         if ((this.flags & 536870912) != 0) {
@@ -1757,11 +1765,11 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                 if (z2) {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt329)));
                                 }
-                                return;
-                            }
-                            int readInt3210 = abstractSerializedData2.readInt32(z2);
-                            for (int i5 = 0; i5 < readInt3210; i5++) {
-                                this.available_reactions_legacy.add(abstractSerializedData2.readString(z2));
+                            } else {
+                                int readInt3210 = abstractSerializedData2.readInt32(z2);
+                                for (int i5 = 0; i5 < readInt3210; i5++) {
+                                    this.available_reactions_legacy.add(abstractSerializedData2.readString(z2));
+                                }
                             }
                         }
                     }
@@ -2523,10 +2531,11 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt325)));
                                 }
                                 return;
-                            }
-                            int readInt326 = abstractSerializedData2.readInt32(z2);
-                            for (int i3 = 0; i3 < readInt326; i3++) {
-                                this.pending_suggestions.add(abstractSerializedData2.readString(z2));
+                            } else {
+                                int readInt326 = abstractSerializedData2.readInt32(z2);
+                                for (int i3 = 0; i3 < readInt326; i3++) {
+                                    this.pending_suggestions.add(abstractSerializedData2.readString(z2));
+                                }
                             }
                         }
                         if ((this.flags & 67108864) != 0) {
@@ -2545,10 +2554,11 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt327)));
                                 }
                                 return;
-                            }
-                            int readInt328 = abstractSerializedData2.readInt32(z2);
-                            for (int i4 = 0; i4 < readInt328; i4++) {
-                                this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
+                            } else {
+                                int readInt328 = abstractSerializedData2.readInt32(z2);
+                                for (int i4 = 0; i4 < readInt328; i4++) {
+                                    this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
+                                }
                             }
                         }
                         if ((this.flags & 536870912) != 0) {
@@ -3162,10 +3172,11 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt325)));
                                 }
                                 return;
-                            }
-                            int readInt326 = abstractSerializedData2.readInt32(z2);
-                            for (int i3 = 0; i3 < readInt326; i3++) {
-                                this.pending_suggestions.add(abstractSerializedData2.readString(z2));
+                            } else {
+                                int readInt326 = abstractSerializedData2.readInt32(z2);
+                                for (int i3 = 0; i3 < readInt326; i3++) {
+                                    this.pending_suggestions.add(abstractSerializedData2.readString(z2));
+                                }
                             }
                         }
                         if ((this.flags & 67108864) != 0) {
@@ -3184,10 +3195,11 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt327)));
                                 }
                                 return;
-                            }
-                            int readInt328 = abstractSerializedData2.readInt32(z2);
-                            for (int i4 = 0; i4 < readInt328; i4++) {
-                                this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
+                            } else {
+                                int readInt328 = abstractSerializedData2.readInt32(z2);
+                                for (int i4 = 0; i4 < readInt328; i4++) {
+                                    this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
+                                }
                             }
                         }
                         if ((this.flags & 536870912) != 0) {
@@ -3988,11 +4000,11 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                 if (z2) {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
                                 }
-                                return;
-                            }
-                            int readInt325 = abstractSerializedData2.readInt32(z2);
-                            for (int i3 = 0; i3 < readInt325; i3++) {
-                                this.pending_suggestions.add(abstractSerializedData2.readString(z2));
+                            } else {
+                                int readInt325 = abstractSerializedData2.readInt32(z2);
+                                for (int i3 = 0; i3 < readInt325; i3++) {
+                                    this.pending_suggestions.add(abstractSerializedData2.readString(z2));
+                                }
                             }
                         }
                     }
@@ -4417,10 +4429,11 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
                                 }
                                 return;
-                            }
-                            int readInt325 = abstractSerializedData2.readInt32(z2);
-                            for (int i3 = 0; i3 < readInt325; i3++) {
-                                this.pending_suggestions.add(abstractSerializedData2.readString(z2));
+                            } else {
+                                int readInt325 = abstractSerializedData2.readInt32(z2);
+                                for (int i3 = 0; i3 < readInt325; i3++) {
+                                    this.pending_suggestions.add(abstractSerializedData2.readString(z2));
+                                }
                             }
                         }
                         if ((this.flags & 67108864) != 0) {
@@ -4651,10 +4664,11 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt325)));
                                 }
                                 return;
-                            }
-                            int readInt326 = abstractSerializedData2.readInt32(z2);
-                            for (int i3 = 0; i3 < readInt326; i3++) {
-                                this.pending_suggestions.add(abstractSerializedData2.readString(z2));
+                            } else {
+                                int readInt326 = abstractSerializedData2.readInt32(z2);
+                                for (int i3 = 0; i3 < readInt326; i3++) {
+                                    this.pending_suggestions.add(abstractSerializedData2.readString(z2));
+                                }
                             }
                         }
                         if ((this.flags & 67108864) != 0) {
@@ -4673,10 +4687,11 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt327)));
                                 }
                                 return;
-                            }
-                            int readInt328 = abstractSerializedData2.readInt32(z2);
-                            for (int i4 = 0; i4 < readInt328; i4++) {
-                                this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
+                            } else {
+                                int readInt328 = abstractSerializedData2.readInt32(z2);
+                                for (int i4 = 0; i4 < readInt328; i4++) {
+                                    this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
+                                }
                             }
                         }
                         if ((this.flags & 536870912) != 0) {
@@ -4923,11 +4938,11 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                 if (z2) {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
                                 }
-                                return;
-                            }
-                            int readInt325 = abstractSerializedData2.readInt32(z2);
-                            for (int i3 = 0; i3 < readInt325; i3++) {
-                                this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
+                            } else {
+                                int readInt325 = abstractSerializedData2.readInt32(z2);
+                                for (int i3 = 0; i3 < readInt325; i3++) {
+                                    this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
+                                }
                             }
                         }
                     }
@@ -5295,10 +5310,11 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
                                 }
                                 return;
-                            }
-                            int readInt325 = abstractSerializedData2.readInt32(z2);
-                            for (int i3 = 0; i3 < readInt325; i3++) {
-                                this.pending_suggestions.add(abstractSerializedData2.readString(z2));
+                            } else {
+                                int readInt325 = abstractSerializedData2.readInt32(z2);
+                                for (int i3 = 0; i3 < readInt325; i3++) {
+                                    this.pending_suggestions.add(abstractSerializedData2.readString(z2));
+                                }
                             }
                         }
                         if ((this.flags & 67108864) != 0) {
@@ -5512,10 +5528,11 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
                                 }
                                 return;
-                            }
-                            int readInt325 = abstractSerializedData2.readInt32(z2);
-                            for (int i3 = 0; i3 < readInt325; i3++) {
-                                this.pending_suggestions.add(abstractSerializedData2.readString(z2));
+                            } else {
+                                int readInt325 = abstractSerializedData2.readInt32(z2);
+                                for (int i3 = 0; i3 < readInt325; i3++) {
+                                    this.pending_suggestions.add(abstractSerializedData2.readString(z2));
+                                }
                             }
                         }
                         if ((this.flags & 67108864) != 0) {
@@ -5534,10 +5551,11 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt326)));
                                 }
                                 return;
-                            }
-                            int readInt327 = abstractSerializedData2.readInt32(z2);
-                            for (int i4 = 0; i4 < readInt327; i4++) {
-                                this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
+                            } else {
+                                int readInt327 = abstractSerializedData2.readInt32(z2);
+                                for (int i4 = 0; i4 < readInt327; i4++) {
+                                    this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
+                                }
                             }
                         }
                         if ((this.flags & 536870912) != 0) {
@@ -5768,10 +5786,11 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
                                 }
                                 return;
-                            }
-                            int readInt325 = abstractSerializedData2.readInt32(z2);
-                            for (int i3 = 0; i3 < readInt325; i3++) {
-                                this.pending_suggestions.add(abstractSerializedData2.readString(z2));
+                            } else {
+                                int readInt325 = abstractSerializedData2.readInt32(z2);
+                                for (int i3 = 0; i3 < readInt325; i3++) {
+                                    this.pending_suggestions.add(abstractSerializedData2.readString(z2));
+                                }
                             }
                         }
                         if ((this.flags & 67108864) != 0) {
@@ -5789,11 +5808,11 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                 if (z2) {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt326)));
                                 }
-                                return;
-                            }
-                            int readInt327 = abstractSerializedData2.readInt32(z2);
-                            for (int i4 = 0; i4 < readInt327; i4++) {
-                                this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
+                            } else {
+                                int readInt327 = abstractSerializedData2.readInt32(z2);
+                                for (int i4 = 0; i4 < readInt327; i4++) {
+                                    this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
+                                }
                             }
                         }
                     }
@@ -6026,10 +6045,11 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt325)));
                                 }
                                 return;
-                            }
-                            int readInt326 = abstractSerializedData2.readInt32(z2);
-                            for (int i3 = 0; i3 < readInt326; i3++) {
-                                this.pending_suggestions.add(abstractSerializedData2.readString(z2));
+                            } else {
+                                int readInt326 = abstractSerializedData2.readInt32(z2);
+                                for (int i3 = 0; i3 < readInt326; i3++) {
+                                    this.pending_suggestions.add(abstractSerializedData2.readString(z2));
+                                }
                             }
                         }
                         if ((this.flags & 67108864) != 0) {
@@ -6048,10 +6068,11 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt327)));
                                 }
                                 return;
-                            }
-                            int readInt328 = abstractSerializedData2.readInt32(z2);
-                            for (int i4 = 0; i4 < readInt328; i4++) {
-                                this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
+                            } else {
+                                int readInt328 = abstractSerializedData2.readInt32(z2);
+                                for (int i4 = 0; i4 < readInt328; i4++) {
+                                    this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
+                                }
                             }
                         }
                         if ((this.flags & 536870912) != 0) {
@@ -6339,10 +6360,11 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt325)));
                                 }
                                 return;
-                            }
-                            int readInt326 = abstractSerializedData2.readInt32(z2);
-                            for (int i3 = 0; i3 < readInt326; i3++) {
-                                this.pending_suggestions.add(abstractSerializedData2.readString(z2));
+                            } else {
+                                int readInt326 = abstractSerializedData2.readInt32(z2);
+                                for (int i3 = 0; i3 < readInt326; i3++) {
+                                    this.pending_suggestions.add(abstractSerializedData2.readString(z2));
+                                }
                             }
                         }
                         if ((this.flags & 67108864) != 0) {
@@ -6361,10 +6383,11 @@ public abstract class TLRPC$ChatFull extends TLObject {
                                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt327)));
                                 }
                                 return;
-                            }
-                            int readInt328 = abstractSerializedData2.readInt32(z2);
-                            for (int i4 = 0; i4 < readInt328; i4++) {
-                                this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
+                            } else {
+                                int readInt328 = abstractSerializedData2.readInt32(z2);
+                                for (int i4 = 0; i4 < readInt328; i4++) {
+                                    this.recent_requesters.add(Long.valueOf(abstractSerializedData2.readInt64(z2)));
+                                }
                             }
                         }
                         if ((this.flags & 536870912) != 0) {

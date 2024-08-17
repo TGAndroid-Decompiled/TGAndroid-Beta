@@ -3,6 +3,7 @@ package org.telegram.messenger;
 import android.content.Intent;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.support.JobIntentService;
+
 public class KeepAliveJob extends JobIntentService {
     private static volatile CountDownLatch countDownLatch;
     private static volatile boolean startingJob;
@@ -36,17 +37,21 @@ public class KeepAliveJob extends JobIntentService {
 
     public static void finishJobInternal() {
         synchronized (sync) {
-            if (countDownLatch != null) {
-                if (BuildVars.LOGS_ENABLED) {
-                    FileLog.d("finish keep-alive job");
+            try {
+                if (countDownLatch != null) {
+                    if (BuildVars.LOGS_ENABLED) {
+                        FileLog.d("finish keep-alive job");
+                    }
+                    countDownLatch.countDown();
                 }
-                countDownLatch.countDown();
-            }
-            if (startingJob) {
-                if (BuildVars.LOGS_ENABLED) {
-                    FileLog.d("finish queued keep-alive job");
+                if (startingJob) {
+                    if (BuildVars.LOGS_ENABLED) {
+                        FileLog.d("finish queued keep-alive job");
+                    }
+                    startingJob = false;
                 }
-                startingJob = false;
+            } catch (Throwable th) {
+                throw th;
             }
         }
     }
@@ -58,23 +63,27 @@ public class KeepAliveJob extends JobIntentService {
     @Override
     protected void onHandleWork(Intent intent) {
         synchronized (sync) {
-            if (startingJob) {
-                countDownLatch = new CountDownLatch(1);
-                if (BuildVars.LOGS_ENABLED) {
-                    FileLog.d("started keep-alive job");
+            try {
+                if (startingJob) {
+                    countDownLatch = new CountDownLatch(1);
+                    if (BuildVars.LOGS_ENABLED) {
+                        FileLog.d("started keep-alive job");
+                    }
+                    Utilities.globalQueue.postRunnable(finishJobByTimeoutRunnable, 60000L);
+                    try {
+                        countDownLatch.await();
+                    } catch (Throwable unused) {
+                    }
+                    Utilities.globalQueue.cancelRunnable(finishJobByTimeoutRunnable);
+                    synchronized (sync) {
+                        countDownLatch = null;
+                    }
+                    if (BuildVars.LOGS_ENABLED) {
+                        FileLog.d("ended keep-alive job");
+                    }
                 }
-                Utilities.globalQueue.postRunnable(finishJobByTimeoutRunnable, 60000L);
-                try {
-                    countDownLatch.await();
-                } catch (Throwable unused) {
-                }
-                Utilities.globalQueue.cancelRunnable(finishJobByTimeoutRunnable);
-                synchronized (sync) {
-                    countDownLatch = null;
-                }
-                if (BuildVars.LOGS_ENABLED) {
-                    FileLog.d("ended keep-alive job");
-                }
+            } catch (Throwable th) {
+                throw th;
             }
         }
     }

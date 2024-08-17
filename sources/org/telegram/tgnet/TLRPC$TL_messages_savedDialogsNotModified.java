@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messages_savedDialogsNotModified extends TLRPC$messages_SavedDialogs {
     public int count;
 

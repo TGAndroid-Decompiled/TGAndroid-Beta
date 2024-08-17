@@ -6,6 +6,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$Photo;
 import org.telegram.tgnet.TLRPC$TL_botCommand;
+
 public abstract class TL_bots$BotInfo extends TLObject {
     public ArrayList<TLRPC$TL_botCommand> commands = new ArrayList<>();
     public String description;

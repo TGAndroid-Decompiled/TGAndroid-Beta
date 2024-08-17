@@ -5,6 +5,7 @@ import android.graphics.ColorFilter;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+
 public class ClipRoundedDrawable extends Drawable {
     private int R;
     private Drawable.Callback callback;

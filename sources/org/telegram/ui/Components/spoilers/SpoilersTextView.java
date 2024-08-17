@@ -15,6 +15,7 @@ import android.text.Spanned;
 import android.view.MotionEvent;
 import android.widget.TextView;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Stack;
 import org.telegram.messenger.AndroidUtilities;
@@ -22,6 +23,7 @@ import org.telegram.messenger.Emoji;
 import org.telegram.ui.Cells.TextSelectionHelper;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.spoilers.SpoilersClickDetector;
+
 public class SpoilersTextView extends TextView implements TextSelectionHelper.SimpleSelectabeleView {
     public boolean allowClickSpoilers;
     private AnimatedEmojiSpan.EmojiGroupedSpans animatedEmoji;
@@ -69,8 +71,9 @@ public class SpoilersTextView extends TextView implements TextSelectionHelper.Si
             }
         });
         float sqrt = (float) Math.sqrt(Math.pow(getWidth(), 2.0d) + Math.pow(getHeight(), 2.0d));
-        for (SpoilerEffect spoilerEffect2 : this.spoilers) {
-            spoilerEffect2.startRipple(f, f2, sqrt);
+        Iterator<SpoilerEffect> it = this.spoilers.iterator();
+        while (it.hasNext()) {
+            it.next().startRipple(f, f2, sqrt);
         }
     }
 
@@ -131,8 +134,9 @@ public class SpoilersTextView extends TextView implements TextSelectionHelper.Si
         int paddingTop = getPaddingTop();
         canvas.save();
         this.path.rewind();
-        for (SpoilerEffect spoilerEffect : this.spoilers) {
-            Rect bounds = spoilerEffect.getBounds();
+        Iterator<SpoilerEffect> it = this.spoilers.iterator();
+        while (it.hasNext()) {
+            Rect bounds = it.next().getBounds();
             this.path.addRect(bounds.left + paddingLeft, bounds.top + paddingTop, bounds.right + paddingLeft, bounds.bottom + paddingTop, Path.Direction.CW);
         }
         canvas.clipPath(this.path, Region.Op.DIFFERENCE);
@@ -166,9 +170,9 @@ public class SpoilersTextView extends TextView implements TextSelectionHelper.Si
             canvas.save();
         }
         canvas.translate(getPaddingLeft(), getPaddingTop() + AndroidUtilities.dp(2.0f));
-        for (SpoilerEffect spoilerEffect2 : this.spoilers) {
-            spoilerEffect2.setColor(getPaint().getColor());
-            spoilerEffect2.draw(canvas);
+        for (SpoilerEffect spoilerEffect : this.spoilers) {
+            spoilerEffect.setColor(getPaint().getColor());
+            spoilerEffect.draw(canvas);
         }
         if (z) {
             this.path.rewind();

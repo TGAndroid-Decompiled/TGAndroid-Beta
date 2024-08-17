@@ -2,6 +2,7 @@ package kotlin.internal.jdk7;
 
 import kotlin.internal.PlatformImplementations;
 import kotlin.jvm.internal.Intrinsics;
+
 public class JDK7PlatformImplementations extends PlatformImplementations {
 
     public static final class ReflectSdkVersion {
@@ -12,7 +13,25 @@ public class JDK7PlatformImplementations extends PlatformImplementations {
         }
 
         static {
-            throw new UnsupportedOperationException("Method not decompiled: kotlin.internal.jdk7.JDK7PlatformImplementations.ReflectSdkVersion.<clinit>():void");
+            Integer num;
+            Object obj;
+            Integer num2 = null;
+            try {
+                obj = Class.forName("android.os.Build$VERSION").getField("SDK_INT").get(null);
+            } catch (Throwable unused) {
+            }
+            if (obj instanceof Integer) {
+                num = (Integer) obj;
+                if (num != null && num.intValue() > 0) {
+                    num2 = num;
+                }
+                sdkVersion = num2;
+            }
+            num = null;
+            if (num != null) {
+                num2 = num;
+            }
+            sdkVersion = num2;
         }
     }
 

@@ -1,4 +1,5 @@
 package kotlinx.coroutines.internal;
+
 final class SystemPropsKt__SystemPropsKt {
     private static final int AVAILABLE_PROCESSORS = Runtime.getRuntime().availableProcessors();
 

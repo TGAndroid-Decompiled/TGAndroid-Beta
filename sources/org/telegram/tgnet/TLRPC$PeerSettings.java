@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$PeerSettings extends TLObject {
     public boolean add_contact;
     public boolean autoarchived;

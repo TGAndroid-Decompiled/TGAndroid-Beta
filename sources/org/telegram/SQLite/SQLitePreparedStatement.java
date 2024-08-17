@@ -5,6 +5,7 @@ import java.nio.ByteBuffer;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 import org.telegram.tgnet.NativeByteBuffer;
+
 public class SQLitePreparedStatement {
     private boolean isFinalized = false;
     private String query;

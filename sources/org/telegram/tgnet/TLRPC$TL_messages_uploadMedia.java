@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messages_uploadMedia extends TLObject {
     public TLRPC$InputMedia media;
     public TLRPC$InputPeer peer;

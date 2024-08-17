@@ -53,6 +53,7 @@ import org.telegram.ui.EmptyBaseFragment;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Stories.StoryViewer;
 import org.telegram.ui.bots.BotWebViewAttachedSheet;
+
 public abstract class BaseFragment {
     protected ActionBar actionBar;
     protected Bundle arguments;
@@ -218,7 +219,7 @@ public abstract class BaseFragment {
 
         int getNavigationBarColor(int i);
 
-        View getWindowView();
+        View mo988getWindowView();
 
         boolean isAttachedLightStatusBar();
 
@@ -276,13 +277,13 @@ public abstract class BaseFragment {
     }
 
     public boolean hasShownSheet() {
-        if (hasSheet()) {
-            for (int size = this.sheetsStack.size() - 1; size >= 0; size--) {
-                if (this.sheetsStack.get(size).isShown()) {
-                    return true;
-                }
-            }
+        if (!hasSheet()) {
             return false;
+        }
+        for (int size = this.sheetsStack.size() - 1; size >= 0; size--) {
+            if (this.sheetsStack.get(size).isShown()) {
+                return true;
+            }
         }
         return false;
     }
@@ -422,7 +423,7 @@ public abstract class BaseFragment {
         ViewGroup viewGroup;
         if (this.parentLayout != iNavigationLayout) {
             this.parentLayout = iNavigationLayout;
-            boolean z = true;
+            boolean z = false;
             this.inBubbleMode = iNavigationLayout != null && iNavigationLayout.isInBubbleMode();
             View view = this.fragmentView;
             if (view != null) {
@@ -443,7 +444,9 @@ public abstract class BaseFragment {
             }
             if (this.actionBar != null) {
                 INavigationLayout iNavigationLayout3 = this.parentLayout;
-                z = (iNavigationLayout3 == null || iNavigationLayout3.getView().getContext() == this.actionBar.getContext()) ? false : false;
+                if (iNavigationLayout3 != null && iNavigationLayout3.getView().getContext() != this.actionBar.getContext()) {
+                    z = true;
+                }
                 if ((this.actionBar.shouldAddToContainer() || z) && (viewGroup = (ViewGroup) this.actionBar.getParent()) != null) {
                     try {
                         viewGroup.removeViewInLayout(this.actionBar);
@@ -615,13 +618,13 @@ public abstract class BaseFragment {
 
     public boolean closeSheet() {
         ArrayList<AttachedSheet> arrayList = this.sheetsStack;
-        if (arrayList != null) {
-            for (int size = arrayList.size() - 1; size >= 0; size--) {
-                if (this.sheetsStack.get(size).isShown()) {
-                    return this.sheetsStack.get(size).onAttachedBackPressed();
-                }
-            }
+        if (arrayList == null) {
             return false;
+        }
+        for (int size = arrayList.size() - 1; size >= 0; size--) {
+            if (this.sheetsStack.get(size).isShown()) {
+                return this.sheetsStack.get(size).onAttachedBackPressed();
+            }
         }
         return false;
     }
@@ -637,12 +640,12 @@ public abstract class BaseFragment {
 
     public FrameLayout getLayoutContainer() {
         View view = this.fragmentView;
-        if (view != null) {
-            ViewParent parent = view.getParent();
-            if (parent instanceof FrameLayout) {
-                return (FrameLayout) parent;
-            }
+        if (view == null) {
             return null;
+        }
+        ViewParent parent = view.getParent();
+        if (parent instanceof FrameLayout) {
+            return (FrameLayout) parent;
         }
         return null;
     }
@@ -926,19 +929,18 @@ public abstract class BaseFragment {
         if (getParentActivity() == null) {
             return null;
         }
-        INavigationLayout newLayout = INavigationLayout.CC.newLayout(getParentActivity(), false, new Supplier() {
+        INavigationLayout[] iNavigationLayoutArr = {INavigationLayout.CC.newLayout(getParentActivity(), false, new Supplier() {
             @Override
             public final Object get() {
                 BottomSheet lambda$showAsSheet$1;
                 lambda$showAsSheet$1 = BaseFragment.lambda$showAsSheet$1(r1);
                 return lambda$showAsSheet$1;
             }
-        });
-        INavigationLayout[] iNavigationLayoutArr = {newLayout};
-        newLayout.setIsSheet(true);
+        })};
+        iNavigationLayoutArr[0].setIsSheet(true);
         LaunchActivity.instance.sheetFragmentsStack.add(iNavigationLayoutArr[0]);
         baseFragment.onTransitionAnimationStart(true, false);
-        AnonymousClass1 anonymousClass1 = new AnonymousClass1(getParentActivity(), true, baseFragment.getResourceProvider(), bottomSheetParams, iNavigationLayoutArr, baseFragment, r12);
+        AnonymousClass1 anonymousClass1 = new AnonymousClass1(getParentActivity(), true, baseFragment.getResourceProvider(), bottomSheetParams, iNavigationLayoutArr, baseFragment, r13);
         final BottomSheet[] bottomSheetArr = {anonymousClass1};
         if (bottomSheetParams != null) {
             anonymousClass1.setAllowNestedScroll(bottomSheetParams.allowNestedScroll);
@@ -1139,24 +1141,24 @@ public abstract class BaseFragment {
 
     public boolean isLightStatusBar() {
         int color;
-        if (getLastStoryViewer() == null || !getLastStoryViewer().isShown()) {
-            if (!hasForceLightStatusBar() || Theme.getCurrentTheme().isDark()) {
-                Theme.ResourcesProvider resourceProvider = getResourceProvider();
-                int i = Theme.key_actionBarDefault;
-                ActionBar actionBar = this.actionBar;
-                if (actionBar != null && actionBar.isActionModeShowed()) {
-                    i = Theme.key_actionBarActionModeDefault;
-                }
-                if (resourceProvider != null) {
-                    color = resourceProvider.getColorOrDefault(i);
-                } else {
-                    color = Theme.getColor(i, null, true);
-                }
-                return ColorUtils.calculateLuminance(color) > 0.699999988079071d;
-            }
+        if (getLastStoryViewer() != null && getLastStoryViewer().isShown()) {
+            return false;
+        }
+        if (hasForceLightStatusBar() && !Theme.getCurrentTheme().isDark()) {
             return true;
         }
-        return false;
+        Theme.ResourcesProvider resourceProvider = getResourceProvider();
+        int i = Theme.key_actionBarDefault;
+        ActionBar actionBar = this.actionBar;
+        if (actionBar != null && actionBar.isActionModeShowed()) {
+            i = Theme.key_actionBarActionModeDefault;
+        }
+        if (resourceProvider != null) {
+            color = resourceProvider.getColorOrDefault(i);
+        } else {
+            color = Theme.getColor(i, null, true);
+        }
+        return ColorUtils.calculateLuminance(color) > 0.699999988079071d;
     }
 
     public void setPreviewDelegate(PreviewDelegate previewDelegate) {
@@ -1180,8 +1182,8 @@ public abstract class BaseFragment {
             for (int i = 0; i < this.sheetsStack.size(); i++) {
                 AttachedSheet attachedSheet = this.sheetsStack.get(i);
                 if (attachedSheet != null && attachedSheet.attachedToParent()) {
-                    AndroidUtilities.removeFromParent(attachedSheet.getWindowView());
-                    layoutContainer.addView(attachedSheet.getWindowView());
+                    AndroidUtilities.removeFromParent(attachedSheet.mo988getWindowView());
+                    layoutContainer.addView(attachedSheet.mo988getWindowView());
                 }
             }
         }
@@ -1192,7 +1194,7 @@ public abstract class BaseFragment {
             for (int i = 0; i < this.sheetsStack.size(); i++) {
                 AttachedSheet attachedSheet = this.sheetsStack.get(i);
                 if (attachedSheet != null && attachedSheet.attachedToParent()) {
-                    AndroidUtilities.removeFromParent(attachedSheet.getWindowView());
+                    AndroidUtilities.removeFromParent(attachedSheet.mo988getWindowView());
                 }
             }
         }

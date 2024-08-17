@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_pageBlockVideo extends TLRPC$PageBlock {
     public boolean autoplay;
     public TLRPC$TL_pageCaption caption;

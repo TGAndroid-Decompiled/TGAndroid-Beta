@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_chatBannedRights extends TLObject {
     public boolean change_info;
     public boolean embed_links;

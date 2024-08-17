@@ -25,6 +25,7 @@ import org.telegram.ui.Components.AnimationProperties;
 import org.telegram.ui.Components.Crop.CropRotationWheel;
 import org.telegram.ui.Components.Crop.CropTransform;
 import org.telegram.ui.Components.Crop.CropView;
+
 public class PhotoCropView extends FrameLayout {
     public final Property<PhotoCropView, Float> ANIMATION_VALUE;
     public final Property<PhotoCropView, Float> PROGRESS_VALUE;
@@ -207,8 +208,7 @@ public class PhotoCropView extends FrameLayout {
         if (this.thumbImageVisible && view == (cropView = this.cropView)) {
             RectF actualRect = cropView.getActualRect();
             int dp = AndroidUtilities.dp(32.0f);
-            int i = dp / 2;
-            int videoThumbX = (this.delegate.getVideoThumbX() - i) + AndroidUtilities.dp(2.0f);
+            int videoThumbX = (this.delegate.getVideoThumbX() - (dp / 2)) + AndroidUtilities.dp(2.0f);
             int measuredHeight = getMeasuredHeight() - AndroidUtilities.dp(156.0f);
             float f = actualRect.left;
             float f2 = this.thumbAnimationProgress;
@@ -227,7 +227,7 @@ public class PhotoCropView extends FrameLayout {
             }
             this.circlePaint.setColor(getThemedColor(Theme.key_chat_editMediaButton));
             this.circlePaint.setAlpha(Math.min(255, (int) (this.thumbAnimationProgress * 255.0f * this.thumbImageVisibleProgress)));
-            canvas.drawCircle(videoThumbX + i, measuredHeight + dp + AndroidUtilities.dp(8.0f), AndroidUtilities.dp(3.0f), this.circlePaint);
+            canvas.drawCircle(videoThumbX + r1, measuredHeight + dp + AndroidUtilities.dp(8.0f), AndroidUtilities.dp(3.0f), this.circlePaint);
         }
         return drawChild;
     }
@@ -322,12 +322,7 @@ public class PhotoCropView extends FrameLayout {
         }
         AnimatorSet animatorSet2 = new AnimatorSet();
         this.thumbOverrideAnimation = animatorSet2;
-        Animator[] animatorArr = new Animator[1];
-        Property<PhotoCropView, Float> property = this.PROGRESS_VALUE;
-        float[] fArr = new float[1];
-        fArr[0] = z ? 1.0f : 0.0f;
-        animatorArr[0] = ObjectAnimator.ofFloat(this, property, fArr);
-        animatorSet2.playTogether(animatorArr);
+        animatorSet2.playTogether(ObjectAnimator.ofFloat(this, this.PROGRESS_VALUE, z ? 1.0f : 0.0f));
         this.thumbOverrideAnimation.setDuration(180L);
         this.thumbOverrideAnimation.addListener(new AnimatorListenerAdapter() {
             @Override

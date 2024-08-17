@@ -19,6 +19,7 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC$TL_attachMenuBot;
 import org.telegram.tgnet.TLRPC$TL_attachMenuBotIcon;
 import org.telegram.ui.ActionBar.Theme;
+
 public class AttachBotIntroTopView extends View {
     private Drawable attachDrawable;
     private Paint backgroundPaint;
@@ -83,9 +84,11 @@ public class AttachBotIntroTopView extends View {
     }
 
     public void setColor(int i) {
-        this.attachDrawable.setColorFilter(i, PorterDuff.Mode.SRC_IN);
+        Drawable drawable = this.attachDrawable;
+        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+        drawable.setColorFilter(i, mode);
         this.paint.setColor(i);
-        this.imageReceiver.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
+        this.imageReceiver.setColorFilter(new PorterDuffColorFilter(i, mode));
     }
 
     @Override

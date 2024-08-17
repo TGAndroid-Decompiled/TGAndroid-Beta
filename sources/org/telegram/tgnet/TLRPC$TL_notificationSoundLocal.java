@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_notificationSoundLocal extends TLRPC$NotificationSound {
     public String data;
     public String title;

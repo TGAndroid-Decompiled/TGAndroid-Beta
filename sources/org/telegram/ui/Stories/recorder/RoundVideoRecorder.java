@@ -20,6 +20,7 @@ import org.telegram.messenger.camera.CameraView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.Paint.Views.RoundView;
+
 public class RoundVideoRecorder extends FrameLayout {
     public final long MAX_DURATION;
     private float alpha;
@@ -199,7 +200,7 @@ public class RoundVideoRecorder extends FrameLayout {
             this.progressPaint.setColor(Theme.multAlpha(-1090519041, this.alpha));
             this.progressPaint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.33f), Theme.multAlpha(536870912, this.alpha));
             rectF.inset(-AndroidUtilities.dp(7.665f), -AndroidUtilities.dp(7.665f));
-            canvas.drawArc(rectF, -90.0f, 360.0f * clamp, false, this.progressPaint);
+            canvas.drawArc(rectF, -90.0f, clamp * 360.0f, false, this.progressPaint);
             if (this.recordingStopped <= 0) {
                 invalidate();
             }

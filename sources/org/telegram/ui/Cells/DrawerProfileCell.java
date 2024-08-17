@@ -7,7 +7,6 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.RippleDrawable;
 import android.os.Build;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
@@ -36,6 +35,7 @@ import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.DrawerLayoutContainer;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticApiModelOutline0;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
@@ -50,6 +50,7 @@ import org.telegram.ui.Components.Reactions.HwEmojis;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Components.SnowflakesEffect;
 import org.telegram.ui.ThemeActivity;
+
 public class DrawerProfileCell extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private static RLottieDrawable sunDrawable;
     public static boolean switchingTheme;
@@ -108,10 +109,8 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
                 super.onDraw(canvas);
                 if (DrawerProfileCell.this.updateRightDrawable) {
                     DrawerProfileCell.this.updateRightDrawable = false;
-                    DrawerProfileCell drawerProfileCell = DrawerProfileCell.this;
-                    Rect rect = AndroidUtilities.rectTmp2;
-                    drawerProfileCell.getEmojiStatusLocation(rect);
-                    DrawerProfileCell.this.animatedStatus.translate(rect.centerX(), rect.centerY());
+                    DrawerProfileCell.this.getEmojiStatusLocation(AndroidUtilities.rectTmp2);
+                    DrawerProfileCell.this.animatedStatus.translate(r0.centerX(), r0.centerY());
                 }
             }
 
@@ -171,7 +170,8 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
         addView(this.phoneTextView, LayoutHelper.createFrame(-1, -2.0f, 83, 16.0f, 0.0f, 52.0f, 9.0f));
         ImageView imageView2 = new ImageView(context);
         this.arrowView = imageView2;
-        imageView2.setScaleType(ImageView.ScaleType.CENTER);
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+        imageView2.setScaleType(scaleType);
         this.arrowView.setImageResource(R.drawable.msg_expand);
         addView(this.arrowView, LayoutHelper.createFrame(59, 59, 85));
         setArrowState(false);
@@ -211,14 +211,14 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
         sunDrawable.setLayerColor("Path.**", color);
         sunDrawable.setLayerColor("Path 5.**", color);
         sunDrawable.commitApplyLayerColors();
-        this.darkThemeView.setScaleType(ImageView.ScaleType.CENTER);
+        this.darkThemeView.setScaleType(scaleType);
         this.darkThemeView.setAnimation(sunDrawable);
         if (Build.VERSION.SDK_INT >= 21) {
             RLottieImageView rLottieImageView2 = this.darkThemeView;
             int color2 = Theme.getColor(Theme.key_listSelector);
             this.darkThemeBackgroundColor = color2;
             rLottieImageView2.setBackgroundDrawable(Theme.createSelectorDrawable(color2, 1, AndroidUtilities.dp(17.0f)));
-            Theme.setRippleDrawableForceSoftware((RippleDrawable) this.darkThemeView.getBackground());
+            Theme.setRippleDrawableForceSoftware(Theme$$ExternalSyntheticApiModelOutline0.m(this.darkThemeView.getBackground()));
         }
         if (!z && sunDrawable.getCustomEndFrame() != sunDrawable.getCurrentFrame()) {
             this.darkThemeView.playAnimation();
@@ -269,11 +269,11 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
     }
 
     public static boolean lambda$new$3(DrawerLayoutContainer drawerLayoutContainer, View view) {
-        if (drawerLayoutContainer != null) {
-            drawerLayoutContainer.presentFragment(new ThemeActivity(0));
-            return true;
+        if (drawerLayoutContainer == null) {
+            return false;
         }
-        return false;
+        drawerLayoutContainer.presentFragment(new ThemeActivity(0));
+        return true;
     }
 
     public static class AnimatedStatusView extends View {
@@ -382,8 +382,7 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
                 int i = this.animationUniq;
                 this.animationUniq = i + 1;
                 imageReceiver.setUniqKeyPrefix(Integer.toString(i));
-                ImageLocation forDocument = ImageLocation.getForDocument(tLRPC$TL_availableReaction.around_animation);
-                imageReceiver.setImage(forDocument, this.effectsSize + "_" + this.effectsSize + "_nolimit", null, "tgs", tLRPC$TL_availableReaction, 1);
+                imageReceiver.setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.around_animation), this.effectsSize + "_" + this.effectsSize + "_nolimit", null, "tgs", tLRPC$TL_availableReaction, 1);
                 imageReceiver.setAutoRepeat(0);
                 imageReceiver.onAttachedToWindow();
                 this.animations.add(imageReceiver);
@@ -572,9 +571,7 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
         }
         this.animatedStatus.setColor(Theme.getColor(Theme.isCurrentThemeDark() ? Theme.key_chats_verifiedBackground : Theme.key_chats_menuPhoneCats));
         this.status.setColor(Integer.valueOf(Theme.getColor(Theme.isCurrentThemeDark() ? Theme.key_chats_verifiedBackground : Theme.key_chats_menuPhoneCats)));
-        TextView textView = this.phoneTextView;
-        PhoneFormat phoneFormat = PhoneFormat.getInstance();
-        textView.setText(phoneFormat.format("+" + tLRPC$User.phone));
+        this.phoneTextView.setText(PhoneFormat.getInstance().format("+" + tLRPC$User.phone));
         AvatarDrawable avatarDrawable = new AvatarDrawable(tLRPC$User);
         avatarDrawable.setColor(Theme.getColor(Theme.key_avatar_backgroundInProfileBlue));
         this.avatarImageView.setForUserOrChat(tLRPC$User, avatarDrawable);
@@ -611,8 +608,8 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
     }
 
     private void setArrowState(boolean z) {
-        String str;
         int i;
+        String str;
         float f = this.accountsShown ? 180.0f : 0.0f;
         if (z) {
             this.arrowView.animate().rotation(f).setDuration(220L).setInterpolator(CubicBezierInterpolator.EASE_OUT).start();
@@ -622,11 +619,11 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
         }
         ImageView imageView = this.arrowView;
         if (this.accountsShown) {
-            str = "AccDescrHideAccounts";
             i = R.string.AccDescrHideAccounts;
+            str = "AccDescrHideAccounts";
         } else {
-            str = "AccDescrShowAccounts";
             i = R.string.AccDescrShowAccounts;
+            str = "AccDescrShowAccounts";
         }
         imageView.setContentDescription(LocaleController.getString(str, i));
     }
@@ -635,11 +632,17 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.emojiLoaded) {
             this.nameTextView.invalidate();
-        } else if (i == NotificationCenter.userEmojiStatusUpdated) {
+            return;
+        }
+        if (i == NotificationCenter.userEmojiStatusUpdated) {
             setUser((TLRPC$User) objArr[0], this.accountsShown);
-        } else if (i == NotificationCenter.currentUserPremiumStatusChanged) {
+            return;
+        }
+        if (i == NotificationCenter.currentUserPremiumStatusChanged) {
             setUser(UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser(), this.accountsShown);
-        } else if (i == NotificationCenter.updateInterfaces) {
+            return;
+        }
+        if (i == NotificationCenter.updateInterfaces) {
             int intValue = ((Integer) objArr[0]).intValue();
             if ((MessagesController.UPDATE_MASK_NAME & intValue) == 0 && (MessagesController.UPDATE_MASK_AVATAR & intValue) == 0 && (MessagesController.UPDATE_MASK_STATUS & intValue) == 0 && (MessagesController.UPDATE_MASK_PHONE & intValue) == 0 && (intValue & MessagesController.UPDATE_MASK_EMOJI_STATUS) == 0) {
                 return;

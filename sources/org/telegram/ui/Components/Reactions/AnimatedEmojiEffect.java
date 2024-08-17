@@ -19,6 +19,7 @@ import org.telegram.tgnet.TLRPC$TL_messages_stickerSet;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.EmojiAnimationsOverlay;
+
 public class AnimatedEmojiEffect {
     private static int currentIndex;
     public AnimatedEmojiDrawable animatedEmojiDrawable;
@@ -72,8 +73,8 @@ public class AnimatedEmojiEffect {
         } else {
             long currentTimeMillis = System.currentTimeMillis();
             if (this.particles.size() < 12) {
-                long j = this.startTime;
-                if (currentTimeMillis - j < 1500 && currentTimeMillis - j > 200 && currentTimeMillis - this.lastGenerateTime > 50 && Utilities.fastRandom.nextInt() % 6 == 0) {
+                long j = currentTimeMillis - this.startTime;
+                if (j < 1500 && j > 200 && currentTimeMillis - this.lastGenerateTime > 50 && Utilities.fastRandom.nextInt() % 6 == 0) {
                     Particle particle2 = new Particle();
                     particle2.generate();
                     this.particles.add(particle2);
@@ -82,16 +83,14 @@ public class AnimatedEmojiEffect {
             }
         }
         ImageReceiver imageReceiver = this.effectImageReceiver;
-        if (imageReceiver != null && this.showGeneric) {
-            if (!(imageReceiver.getLottieAnimation() != null && this.effectImageReceiver.getLottieAnimation().isLastFrame())) {
-                if (this.longAnimation) {
-                    canvas.save();
-                    canvas.translate(this.bounds.width() / 3.0f, 0.0f);
-                    this.effectImageReceiver.draw(canvas);
-                    canvas.restore();
-                } else {
-                    this.effectImageReceiver.draw(canvas);
-                }
+        if (imageReceiver != null && this.showGeneric && (imageReceiver.getLottieAnimation() == null || !this.effectImageReceiver.getLottieAnimation().isLastFrame())) {
+            if (this.longAnimation) {
+                canvas.save();
+                canvas.translate(this.bounds.width() / 3.0f, 0.0f);
+                this.effectImageReceiver.draw(canvas);
+                canvas.restore();
+            } else {
+                this.effectImageReceiver.draw(canvas);
             }
         }
         canvas.save();
@@ -143,9 +142,7 @@ public class AnimatedEmojiEffect {
                 sb.append(" ");
                 imageReceiver2.setUniqKeyPrefix(sb.toString());
                 int filterWidth = EmojiAnimationsOverlay.getFilterWidth();
-                ImageReceiver imageReceiver3 = this.effectImageReceiver;
-                ImageLocation forDocument = ImageLocation.getForDocument(tLRPC$TL_availableReaction.around_animation);
-                imageReceiver3.setImage(forDocument, filterWidth + "_" + filterWidth + "_pcache_compress", null, null, tLRPC$TL_availableReaction.around_animation, 0);
+                this.effectImageReceiver.setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.around_animation), filterWidth + "_" + filterWidth + "_pcache_compress", null, null, tLRPC$TL_availableReaction.around_animation, 0);
             } else {
                 this.effectImageReceiver.setImage(ImageLocation.getForDocument(tLRPC$Document), ReactionsEffectOverlay.getFilterForAroundAnimation(), null, null, tLRPC$TL_availableReaction.around_animation, 0);
             }
@@ -161,17 +158,15 @@ public class AnimatedEmojiEffect {
                     this.animationIndex = Math.abs(Utilities.fastRandom.nextInt() % tLRPC$TL_messages_stickerSet.documents.size());
                 }
                 if (this.longAnimation) {
-                    ImageReceiver imageReceiver4 = this.effectImageReceiver;
+                    ImageReceiver imageReceiver3 = this.effectImageReceiver;
                     StringBuilder sb2 = new StringBuilder();
                     int i2 = currentIndex;
                     currentIndex = i2 + 1;
                     sb2.append(i2);
                     sb2.append(" ");
-                    imageReceiver4.setUniqKeyPrefix(sb2.toString());
+                    imageReceiver3.setUniqKeyPrefix(sb2.toString());
                     int filterWidth2 = EmojiAnimationsOverlay.getFilterWidth();
-                    ImageReceiver imageReceiver5 = this.effectImageReceiver;
-                    ImageLocation forDocument2 = ImageLocation.getForDocument(tLRPC$TL_messages_stickerSet.documents.get(this.animationIndex));
-                    imageReceiver5.setImage(forDocument2, filterWidth2 + "_" + filterWidth2 + "_pcache_compress", null, null, tLRPC$TL_messages_stickerSet.documents.get(this.animationIndex), 0);
+                    this.effectImageReceiver.setImage(ImageLocation.getForDocument(tLRPC$TL_messages_stickerSet.documents.get(this.animationIndex)), filterWidth2 + "_" + filterWidth2 + "_pcache_compress", null, null, tLRPC$TL_messages_stickerSet.documents.get(this.animationIndex), 0);
                 } else {
                     this.effectImageReceiver.setImage(ImageLocation.getForDocument(tLRPC$TL_messages_stickerSet.documents.get(this.animationIndex)), "60_60", null, null, tLRPC$TL_messages_stickerSet.documents.get(this.animationIndex), 0);
                 }
@@ -183,10 +178,10 @@ public class AnimatedEmojiEffect {
                 this.effectImageReceiver.getLottieAnimation().setCurrentFrame(0, false, true);
             }
             this.effectImageReceiver.setAutoRepeat(0);
-            return;
+        } else {
+            int i3 = R.raw.custom_emoji_reaction;
+            this.effectImageReceiver.setImageBitmap(new RLottieDrawable(i3, "" + i3, AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f), false, null));
         }
-        int i3 = R.raw.custom_emoji_reaction;
-        this.effectImageReceiver.setImageBitmap(new RLottieDrawable(i3, "" + i3, AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f), false, null));
     }
 
     public void removeView(View view) {
@@ -237,10 +232,9 @@ public class AnimatedEmojiEffect {
                     f = f2;
                 }
             }
-            AnimatedEmojiEffect animatedEmojiEffect = AnimatedEmojiEffect.this;
-            float f6 = animatedEmojiEffect.longAnimation ? 0.8f : 0.5f;
+            float f6 = AnimatedEmojiEffect.this.longAnimation ? 0.8f : 0.5f;
             this.toX = randX;
-            if (randX > animatedEmojiEffect.bounds.width() * f6) {
+            if (randX > r0.bounds.width() * f6) {
                 this.fromX = AnimatedEmojiEffect.this.bounds.width() * f6;
             } else {
                 float width = AnimatedEmojiEffect.this.bounds.width() * f6;
@@ -250,16 +244,15 @@ public class AnimatedEmojiEffect {
                 }
             }
             this.fromY = (AnimatedEmojiEffect.this.bounds.height() * 0.45f) + (AnimatedEmojiEffect.this.bounds.height() * 0.1f * (Math.abs(Utilities.fastRandom.nextInt() % 100) / 100.0f));
-            AnimatedEmojiEffect animatedEmojiEffect2 = AnimatedEmojiEffect.this;
-            if (animatedEmojiEffect2.longAnimation) {
-                float width2 = (animatedEmojiEffect2.bounds.width() * 0.05f) + (AnimatedEmojiEffect.this.bounds.width() * 0.1f * (Math.abs(Utilities.fastRandom.nextInt() % 100) / 100.0f));
+            if (AnimatedEmojiEffect.this.longAnimation) {
+                float width2 = (r0.bounds.width() * 0.05f) + (AnimatedEmojiEffect.this.bounds.width() * 0.1f * (Math.abs(Utilities.fastRandom.nextInt() % 100) / 100.0f));
                 this.fromSize = width2;
                 this.toSize = width2 * (((Math.abs(Utilities.fastRandom.nextInt() % 100) / 100.0f) * 1.5f) + 1.5f);
                 this.toY1 = (this.fromSize / 2.0f) + (AnimatedEmojiEffect.this.bounds.height() * 0.1f * (Math.abs(Utilities.fastRandom.nextInt() % 100) / 100.0f));
                 this.toY2 = AnimatedEmojiEffect.this.bounds.height() + this.fromSize;
                 this.duration = Math.abs(Utilities.fastRandom.nextInt() % 600) + 1000;
             } else {
-                float width3 = (animatedEmojiEffect2.bounds.width() * 0.05f) + (AnimatedEmojiEffect.this.bounds.width() * 0.1f * (Math.abs(Utilities.fastRandom.nextInt() % 100) / 100.0f));
+                float width3 = (r0.bounds.width() * 0.05f) + (AnimatedEmojiEffect.this.bounds.width() * 0.1f * (Math.abs(Utilities.fastRandom.nextInt() % 100) / 100.0f));
                 this.fromSize = width3;
                 this.toSize = width3 * (((Math.abs(Utilities.fastRandom.nextInt() % 100) / 100.0f) * 0.5f) + 1.5f);
                 this.toY1 = randY;
@@ -276,11 +269,10 @@ public class AnimatedEmojiEffect {
         }
 
         private float randX() {
-            AnimatedEmojiEffect animatedEmojiEffect = AnimatedEmojiEffect.this;
-            if (animatedEmojiEffect.longAnimation) {
-                return (animatedEmojiEffect.bounds.width() * (-0.25f)) + (AnimatedEmojiEffect.this.bounds.width() * 1.5f * (Math.abs(Utilities.fastRandom.nextInt() % 100) / 100.0f));
+            if (AnimatedEmojiEffect.this.longAnimation) {
+                return (r0.bounds.width() * (-0.25f)) + (AnimatedEmojiEffect.this.bounds.width() * 1.5f * (Math.abs(Utilities.fastRandom.nextInt() % 100) / 100.0f));
             }
-            return animatedEmojiEffect.bounds.width() * (Math.abs(Utilities.fastRandom.nextInt() % 100) / 100.0f);
+            return r0.bounds.width() * (Math.abs(Utilities.fastRandom.nextInt() % 100) / 100.0f);
         }
 
         public void draw(android.graphics.Canvas r10) {

@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public abstract class TLRPC$PollResults extends TLObject {
     public int flags;
     public boolean min;

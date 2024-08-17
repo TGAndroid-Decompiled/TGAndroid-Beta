@@ -47,6 +47,7 @@ import org.telegram.ui.Components.Shaker;
 import org.telegram.ui.Components.Text;
 import org.telegram.ui.Components.spoilers.SpoilerEffect;
 import org.telegram.ui.Components.spoilers.SpoilerEffect2;
+
 public class SharedPhotoVideoCell2 extends FrameLayout {
     static boolean lastAutoDownload;
     static long lastUpdateDownloadSettingsTime;
@@ -363,10 +364,10 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
             int i = tL_stories$StoryViews.views_count;
             this.drawViews = i > 0;
             this.viewsText.setText(AndroidUtilities.formatWholeNumber(i, 0), true);
-            return;
+        } else {
+            this.drawViews = false;
+            this.viewsText.setText("", false);
         }
-        this.drawViews = false;
-        this.viewsText.setText("", false);
     }
 
     public boolean viewsOnLeft(float f) {
@@ -552,14 +553,13 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
         if (messageObject != null && messageObject.hasMediaSpoilers() && SpoilerEffect2.supports()) {
             if (this.mediaSpoilerEffect2 == null) {
                 this.mediaSpoilerEffect2 = SpoilerEffect2.getInstance(this);
-                return;
             }
-            return;
-        }
-        SpoilerEffect2 spoilerEffect2 = this.mediaSpoilerEffect2;
-        if (spoilerEffect2 != null) {
-            spoilerEffect2.detach(this);
-            this.mediaSpoilerEffect2 = null;
+        } else {
+            SpoilerEffect2 spoilerEffect2 = this.mediaSpoilerEffect2;
+            if (spoilerEffect2 != null) {
+                spoilerEffect2.detach(this);
+                this.mediaSpoilerEffect2 = null;
+            }
         }
     }
 
@@ -640,10 +640,7 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
             valueAnimator.cancel();
         }
         if (z2) {
-            float[] fArr = new float[2];
-            fArr[0] = this.checkBoxProgress;
-            fArr[1] = z ? 1.0f : 0.0f;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.checkBoxProgress, z ? 1.0f : 0.0f);
             this.animator = ofFloat;
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
@@ -707,12 +704,12 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
 
         public String getFilterString(int i) {
             String str = this.imageFilters.get(i);
-            if (str == null) {
-                String str2 = i + "_" + i + "_isc";
-                this.imageFilters.put(i, str2);
-                return str2;
+            if (str != null) {
+                return str;
             }
-            return str;
+            String str2 = i + "_" + i + "_isc";
+            this.imageFilters.put(i, str2);
+            return str2;
         }
 
         public Bitmap getPrivacyBitmap(Context context, int i) {
@@ -721,18 +718,22 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
                 return bitmap;
             }
             Bitmap decodeResource = BitmapFactory.decodeResource(context.getResources(), i);
-            Bitmap createBitmap = Bitmap.createBitmap(decodeResource.getWidth(), decodeResource.getHeight(), Bitmap.Config.ARGB_8888);
+            int width = decodeResource.getWidth();
+            int height = decodeResource.getHeight();
+            Bitmap.Config config = Bitmap.Config.ARGB_8888;
+            Bitmap createBitmap = Bitmap.createBitmap(width, height, config);
             Canvas canvas = new Canvas(createBitmap);
             Paint paint = new Paint(3);
-            paint.setColorFilter(new PorterDuffColorFilter(-10461088, PorterDuff.Mode.SRC_IN));
+            PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+            paint.setColorFilter(new PorterDuffColorFilter(-10461088, mode));
             canvas.drawBitmap(decodeResource, 0.0f, 0.0f, paint);
             Utilities.stackBlurBitmap(createBitmap, AndroidUtilities.dp(1.0f));
-            Bitmap createBitmap2 = Bitmap.createBitmap(decodeResource.getWidth(), decodeResource.getHeight(), Bitmap.Config.ARGB_8888);
+            Bitmap createBitmap2 = Bitmap.createBitmap(decodeResource.getWidth(), decodeResource.getHeight(), config);
             Canvas canvas2 = new Canvas(createBitmap2);
             canvas2.drawBitmap(createBitmap, 0.0f, 0.0f, paint);
             canvas2.drawBitmap(createBitmap, 0.0f, 0.0f, paint);
             canvas2.drawBitmap(createBitmap, 0.0f, 0.0f, paint);
-            paint.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+            paint.setColorFilter(new PorterDuffColorFilter(-1, mode));
             canvas2.drawBitmap(decodeResource, 0.0f, 0.0f, paint);
             createBitmap.recycle();
             decodeResource.recycle();

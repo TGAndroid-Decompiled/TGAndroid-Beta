@@ -26,6 +26,7 @@ import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
+
 public class ReplyMessageLine {
     public int backgroundColor;
     public final AnimatedColor backgroundColorAnimated;
@@ -445,8 +446,13 @@ public class ReplyMessageLine {
         RectF rectF2 = this.rectF;
         float f2 = rectF.left;
         rectF2.set(f2, rectF.top, Math.max(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(floor * 2)) + f2, rectF.bottom);
+        Path path = this.clipPath;
+        RectF rectF3 = this.rectF;
         float f3 = floor;
-        this.clipPath.addRoundRect(this.rectF, AndroidUtilities.dp(f3), AndroidUtilities.dp(f3), Path.Direction.CW);
+        float dp = AndroidUtilities.dp(f3);
+        float dp2 = AndroidUtilities.dp(f3);
+        Path.Direction direction = Path.Direction.CW;
+        path.addRoundRect(rectF3, dp, dp2, direction);
         canvas.clipPath(this.clipPath);
         float f4 = rectF.left;
         canvas.clipRect(f4, rectF.top, AndroidUtilities.dp(3.0f) + f4, rectF.bottom);
@@ -466,7 +472,7 @@ public class ReplyMessageLine {
             float pow = ((float) Math.pow((this.loadingT / 240.0f) / 4.0f, 0.8500000238418579d)) * 4.0f;
             this.rectF.set(rectF.left, rectF.top + (rectF.height() * AndroidUtilities.lerp(0.0f, 1.0f - CubicBezierInterpolator.EASE_IN.getInterpolation(MathUtils.clamp(((Math.max(pow, 0.5f) + 1.5f) % 3.5f) * 0.5f, 0.0f, 1.0f)), f5)), rectF.left + AndroidUtilities.dp(6.0f), rectF.top + (rectF.height() * AndroidUtilities.lerp(1.0f, 1.0f - CubicBezierInterpolator.EASE_OUT.getInterpolation(MathUtils.clamp((((pow + 1.5f) % 3.5f) - 1.5f) * 0.5f, 0.0f, 1.0f)), f5)));
             this.lineClipPath.rewind();
-            this.lineClipPath.addRoundRect(this.rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), Path.Direction.CW);
+            this.lineClipPath.addRoundRect(this.rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), direction);
             canvas.clipPath(this.lineClipPath);
             this.parentView.invalidate();
             z = true;
@@ -554,12 +560,12 @@ public class ReplyMessageLine {
     }
 
     public void drawBackground(Canvas canvas, RectF rectF, float f, boolean z, boolean z2) {
+        int i;
         if (!z2) {
             this.backgroundPath.rewind();
             this.backgroundPath.addRoundRect(rectF, this.radii, Path.Direction.CW);
             this.backgroundPaint.setColor(this.backgroundColorAnimated.set(this.backgroundColor));
-            Paint paint = this.backgroundPaint;
-            paint.setAlpha((int) (paint.getAlpha() * f));
+            this.backgroundPaint.setAlpha((int) (r5.getAlpha() * f));
             canvas.drawPath(this.backgroundPath, this.backgroundPaint);
         }
         if (this.emoji == null) {
@@ -569,9 +575,11 @@ public class ReplyMessageLine {
         if (f2 <= 0.0f || this.emojiAlpha <= 0.0f) {
             return;
         }
-        int i = 0;
         if (this.iconCoords == null) {
+            i = 0;
             this.iconCoords = new IconCoords[]{new IconCoords(4.0f, -6.33f, 1.0f, 1.0f), new IconCoords(30.0f, 3.0f, 0.78f, 0.9f), new IconCoords(46.0f, -17.0f, 0.6f, 0.6f), new IconCoords(69.66f, -0.666f, 0.87f, 0.7f), new IconCoords(98.0f, -12.6f, 1.03f, 0.3f), new IconCoords(51.0f, 24.0f, 1.0f, 0.5f), new IconCoords(6.33f, 20.0f, 0.77f, 0.7f), new IconCoords(-19.0f, 12.0f, 0.8f, 0.6f, true), new IconCoords(-22.0f, 36.0f, 0.7f, 0.5f, true)};
+        } else {
+            i = 0;
         }
         canvas.save();
         canvas.clipRect(rectF);
@@ -582,7 +590,7 @@ public class ReplyMessageLine {
         }
         float min = Math.min(rectF.centerY(), rectF.top + AndroidUtilities.dp(21.0f));
         this.emoji.setColor(Integer.valueOf(getColor()));
-        this.emoji.setAlpha((int) (255.0f * f * (rectF.width() < ((float) AndroidUtilities.dp(140.0f)) ? 0.3f : 0.5f)));
+        this.emoji.setAlpha((int) (255.0f * f * (rectF.width() >= ((float) AndroidUtilities.dp(140.0f)) ? 0.5f : 0.3f)));
         while (true) {
             IconCoords[] iconCoordsArr = this.iconCoords;
             if (i < iconCoordsArr.length) {

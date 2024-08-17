@@ -1,7 +1,6 @@
 package org.telegram.ui.Business;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.view.View;
@@ -28,6 +27,7 @@ import org.telegram.ui.Components.ClickableAnimatedTextView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
+
 public class BusinessBotButton extends FrameLayout {
     private final AvatarDrawable avatarDrawable;
     private final BackupImageView avatarView;
@@ -168,10 +168,7 @@ public class BusinessBotButton extends FrameLayout {
         TLRPC$TL_account_disablePeerConnectedBot tLRPC$TL_account_disablePeerConnectedBot = new TLRPC$TL_account_disablePeerConnectedBot();
         tLRPC$TL_account_disablePeerConnectedBot.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_account_disablePeerConnectedBot, null);
-        SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(this.currentAccount).edit();
-        SharedPreferences.Editor remove = edit.remove("dialog_botid" + this.dialogId);
-        SharedPreferences.Editor remove2 = remove.remove("dialog_boturl" + this.dialogId);
-        remove2.remove("dialog_botflags" + this.dialogId).apply();
+        MessagesController.getNotificationsSettings(this.currentAccount).edit().remove("dialog_botid" + this.dialogId).remove("dialog_boturl" + this.dialogId).remove("dialog_botflags" + this.dialogId).apply();
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.peerSettingsDidLoad, Long.valueOf(this.dialogId));
         BusinessChatbotController.getInstance(this.currentAccount).invalidate(false);
     }

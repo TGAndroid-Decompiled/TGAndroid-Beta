@@ -1,6 +1,7 @@
 package kotlin.ranges;
 
 import kotlin.jvm.internal.DefaultConstructorMarker;
+
 public final class IntRange extends IntProgression {
     public static final Companion Companion = new Companion(null);
     private static final IntRange EMPTY = new IntRange(1, 0);
@@ -13,12 +14,10 @@ public final class IntRange extends IntProgression {
         return getFirst() <= i && i <= getLast();
     }
 
-    @Override
     public boolean isEmpty() {
         return getFirst() > getLast();
     }
 
-    @Override
     public boolean equals(Object obj) {
         if (obj instanceof IntRange) {
             if (!isEmpty() || !((IntRange) obj).isEmpty()) {
@@ -31,7 +30,6 @@ public final class IntRange extends IntProgression {
         return false;
     }
 
-    @Override
     public int hashCode() {
         if (isEmpty()) {
             return -1;
@@ -39,7 +37,6 @@ public final class IntRange extends IntProgression {
         return (getFirst() * 31) + getLast();
     }
 
-    @Override
     public String toString() {
         return getFirst() + ".." + getLast();
     }

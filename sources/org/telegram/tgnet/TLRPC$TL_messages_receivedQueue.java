@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messages_receivedQueue extends TLObject {
     public int max_qts;
 

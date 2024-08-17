@@ -30,6 +30,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.MotionBackgroundDrawable;
 import org.webrtc.RendererCommon;
 import org.webrtc.TextureViewRenderer;
+
 public class VoIPTextureView extends FrameLayout {
     public static int SCALE_TYPE_ADAPTIVE = 2;
     public static int SCALE_TYPE_FILL = 0;
@@ -172,8 +173,9 @@ public class VoIPTextureView extends FrameLayout {
                     int i = (int) voIPTextureView.currentClipHorizontal;
                     int i2 = (int) voIPTextureView.currentClipVertical;
                     int measuredWidth = (int) (view2.getMeasuredWidth() - VoIPTextureView.this.currentClipHorizontal);
+                    float measuredHeight = view2.getMeasuredHeight();
                     VoIPTextureView voIPTextureView2 = VoIPTextureView.this;
-                    outline.setRoundRect(i, i2, measuredWidth, (int) (view2.getMeasuredHeight() - voIPTextureView2.currentClipVertical), voIPTextureView2.roundRadius);
+                    outline.setRoundRect(i, i2, measuredWidth, (int) (measuredHeight - voIPTextureView2.currentClipVertical), voIPTextureView2.roundRadius);
                 }
             });
             setClipToOutline(true);
@@ -255,10 +257,10 @@ public class VoIPTextureView extends FrameLayout {
             if (f <= 0.0f) {
                 this.stubVisibleProgress = 0.0f;
                 this.imageView.setVisibility(8);
-                return;
+            } else {
+                invalidate();
+                this.imageView.setAlpha(this.stubVisibleProgress);
             }
-            invalidate();
-            this.imageView.setAlpha(this.stubVisibleProgress);
         }
     }
 
@@ -502,7 +504,9 @@ public class VoIPTextureView extends FrameLayout {
             }
             this.animateOnNextLayoutAnimations.clear();
             this.animateNextDuration = 0L;
-        } else if (this.currentAnimation == null) {
+            return;
+        }
+        if (this.currentAnimation == null) {
             this.renderer.setScaleX(this.scaleTextureToFill);
             this.renderer.setScaleY(this.scaleTextureToFill);
             TextureView textureView3 = this.blurRenderer;

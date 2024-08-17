@@ -16,6 +16,7 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RadioButton;
+
 public class ChatListCell extends LinearLayout {
     private ListView[] listView;
 
@@ -30,19 +31,19 @@ public class ChatListCell extends LinearLayout {
 
         public ListView(Context context, boolean z) {
             super(context);
-            String str;
             int i;
+            String str;
             this.rect = new RectF();
             boolean z2 = true;
             this.textPaint = new TextPaint(1);
             setWillNotDraw(false);
             this.isThreeLines = z;
             if (z) {
-                str = "ChatListExpanded";
                 i = R.string.ChatListExpanded;
+                str = "ChatListExpanded";
             } else {
-                str = "ChatListDefault";
                 i = R.string.ChatListDefault;
+                str = "ChatListDefault";
             }
             setContentDescription(LocaleController.getString(str, i));
             this.textPaint.setTextSize(AndroidUtilities.dp(13.0f));
@@ -66,8 +67,8 @@ public class ChatListCell extends LinearLayout {
 
         @Override
         protected void onDraw(Canvas canvas) {
-            String str;
             int i;
+            String str;
             int color = Theme.getColor(Theme.key_switchTrack);
             int red = Color.red(color);
             int green = Color.green(color);
@@ -80,15 +81,17 @@ public class ChatListCell extends LinearLayout {
             Theme.dialogs_onlineCirclePaint.setColor(Color.argb((int) ((1.0f - this.button.getProgress()) * 31.0f), red, green, blue));
             canvas.drawRoundRect(this.rect, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), Theme.dialogs_onlineCirclePaint);
             if (this.isThreeLines) {
-                str = "ChatListExpanded";
                 i = R.string.ChatListExpanded;
+                str = "ChatListExpanded";
             } else {
-                str = "ChatListDefault";
                 i = R.string.ChatListDefault;
+                str = "ChatListDefault";
             }
             String string = LocaleController.getString(str, i);
+            int ceil = (int) Math.ceil(this.textPaint.measureText(string));
             this.textPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
-            canvas.drawText(string, (getMeasuredWidth() - ((int) Math.ceil(this.textPaint.measureText(string)))) / 2, AndroidUtilities.dp(96.0f), this.textPaint);
+            int measuredWidth = getMeasuredWidth() - ceil;
+            canvas.drawText(string, measuredWidth / 2, AndroidUtilities.dp(96.0f), this.textPaint);
             int i2 = 0;
             for (int i3 = 2; i2 < i3; i3 = 2) {
                 int dp = AndroidUtilities.dp(i2 == 0 ? 21.0f : 53.0f);
@@ -100,11 +103,11 @@ public class ChatListCell extends LinearLayout {
                         Theme.dialogs_onlineCirclePaint.setColor(Color.argb(i4 == 0 ? 204 : 90, red, green, blue));
                         if (this.isThreeLines) {
                             float f = i4 * 7;
-                            this.rect.set(AndroidUtilities.dp(41.0f), dp - AndroidUtilities.dp(8.3f - f), getMeasuredWidth() - AndroidUtilities.dp(i4 != 0 ? 48.0f : 72.0f), dp - AndroidUtilities.dp(5.3f - f));
+                            this.rect.set(AndroidUtilities.dp(41.0f), dp - AndroidUtilities.dp(8.3f - f), getMeasuredWidth() - AndroidUtilities.dp(i4 == 0 ? 72.0f : 48.0f), dp - AndroidUtilities.dp(5.3f - f));
                             canvas.drawRoundRect(this.rect, AndroidUtilities.dpf2(1.5f), AndroidUtilities.dpf2(1.5f), Theme.dialogs_onlineCirclePaint);
                         } else {
                             int i5 = i4 * 10;
-                            this.rect.set(AndroidUtilities.dp(41.0f), dp - AndroidUtilities.dp(7 - i5), getMeasuredWidth() - AndroidUtilities.dp(i4 != 0 ? 48.0f : 72.0f), dp - AndroidUtilities.dp(3 - i5));
+                            this.rect.set(AndroidUtilities.dp(41.0f), dp - AndroidUtilities.dp(7 - i5), getMeasuredWidth() - AndroidUtilities.dp(i4 == 0 ? 72.0f : 48.0f), dp - AndroidUtilities.dp(3 - i5));
                             canvas.drawRoundRect(this.rect, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), Theme.dialogs_onlineCirclePaint);
                         }
                         i4++;
@@ -116,18 +119,18 @@ public class ChatListCell extends LinearLayout {
 
         @Override
         public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-            String str;
             int i;
+            String str;
             super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
             accessibilityNodeInfo.setClassName(RadioButton.class.getName());
             accessibilityNodeInfo.setChecked(this.button.isChecked());
             accessibilityNodeInfo.setCheckable(true);
             if (this.isThreeLines) {
-                str = "ChatListExpanded";
                 i = R.string.ChatListExpanded;
+                str = "ChatListExpanded";
             } else {
-                str = "ChatListDefault";
                 i = R.string.ChatListDefault;
+                str = "ChatListDefault";
             }
             accessibilityNodeInfo.setContentDescription(LocaleController.getString(str, i));
         }

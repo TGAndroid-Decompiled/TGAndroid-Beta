@@ -15,6 +15,7 @@ import androidx.dynamicanimation.animation.SpringForce;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.SimpleFloatPropertyCompat;
+
 public class OutlineTextContainerView extends FrameLayout {
     private EditText attachedEditText;
     private float errorProgress;
@@ -151,17 +152,11 @@ public class OutlineTextContainerView extends FrameLayout {
     }
 
     public void updateColor() {
-        float f = 0.0f;
         int blendARGB = ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhiteHintText, this.resourcesProvider), Theme.getColor(Theme.key_windowBackgroundWhiteValueText, this.resourcesProvider), (!this.forceUseCenter || this.forceForceUseCenter) ? this.titleProgress : 0.0f);
         TextPaint textPaint = this.textPaint;
         int i = Theme.key_text_RedBold;
         textPaint.setColor(ColorUtils.blendARGB(blendARGB, Theme.getColor(i, this.resourcesProvider), this.errorProgress));
-        int color = Theme.getColor(Theme.key_windowBackgroundWhiteInputField, this.resourcesProvider);
-        int color2 = Theme.getColor(Theme.key_windowBackgroundWhiteInputFieldActivated, this.resourcesProvider);
-        if (!this.forceUseCenter || this.forceForceUseCenter) {
-            f = this.selectionProgress;
-        }
-        setColor(ColorUtils.blendARGB(ColorUtils.blendARGB(color, color2, f), Theme.getColor(i, this.resourcesProvider), this.errorProgress));
+        setColor(ColorUtils.blendARGB(ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhiteInputField, this.resourcesProvider), Theme.getColor(Theme.key_windowBackgroundWhiteInputFieldActivated, this.resourcesProvider), (!this.forceUseCenter || this.forceForceUseCenter) ? this.selectionProgress : 0.0f), Theme.getColor(i, this.resourcesProvider), this.errorProgress));
     }
 
     public void animateSelection(float f) {

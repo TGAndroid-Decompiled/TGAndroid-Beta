@@ -57,6 +57,7 @@ import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.LaunchActivity;
+
 public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
     private static final boolean AVOID_SYSTEM_CUTOUT_FULLSCREEN = false;
     private boolean allowCustomAnimation;
@@ -406,8 +407,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         }
 
         private void checkDismiss(float f, float f2) {
-            float translationY = BottomSheet.this.containerView.getTranslationY();
-            if (!((translationY < AndroidUtilities.getPixelsInCM(0.8f, false) && (f2 < 3500.0f || Math.abs(f2) < Math.abs(f))) || (f2 < 0.0f && Math.abs(f2) >= 3500.0f))) {
+            if ((BottomSheet.this.containerView.getTranslationY() >= AndroidUtilities.getPixelsInCM(0.8f, false) || (f2 >= 3500.0f && Math.abs(f2) >= Math.abs(f))) && (f2 >= 0.0f || Math.abs(f2) < 3500.0f)) {
                 boolean z = BottomSheet.this.allowCustomAnimation;
                 BottomSheet.this.allowCustomAnimation = false;
                 BottomSheet.this.useFastDismiss = true;
@@ -424,7 +424,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
                 }
             });
             this.currentAnimation.playTogether(ObjectAnimator.ofFloat(BottomSheet.this.containerView, "translationY", 0.0f), ofFloat);
-            this.currentAnimation.setDuration((int) ((Math.max(0.0f, translationY) / AndroidUtilities.getPixelsInCM(0.8f, false)) * 250.0f));
+            this.currentAnimation.setDuration((int) ((Math.max(0.0f, r2) / AndroidUtilities.getPixelsInCM(0.8f, false)) * 250.0f));
             this.currentAnimation.setInterpolator(CubicBezierInterpolator.DEFAULT);
             this.currentAnimation.addListener(new AnimatorListenerAdapter() {
                 @Override
@@ -492,7 +492,8 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
                         this.velocityTracker = VelocityTracker.obtain();
                     }
                     float xVelocity = this.velocityTracker.getXVelocity();
-                    if (this.swipeBackX < ((float) BottomSheet.this.containerView.getMeasuredWidth()) / 3.0f && (xVelocity < 3500.0f || xVelocity < this.velocityTracker.getYVelocity())) {
+                    float yVelocity = this.velocityTracker.getYVelocity();
+                    if (this.swipeBackX < BottomSheet.this.containerView.getMeasuredWidth() / 3.0f && (xVelocity < 3500.0f || xVelocity < yVelocity)) {
                         float max = Math.max(this.swipeBackX, 0.0f);
                         this.swipeBackX = max;
                         ValueAnimator ofFloat = ValueAnimator.ofFloat(max, 0.0f);
@@ -525,8 +526,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
                             @Override
                             public void onAnimationEnd(Animator animator) {
                                 BottomSheet.this.skipDismissAnimation = true;
-                                ContainerView containerView = ContainerView.this;
-                                BottomSheet.this.containerView.setTranslationX(containerView.getMeasuredWidth());
+                                BottomSheet.this.containerView.setTranslationX(r2.getMeasuredWidth());
                                 BottomSheet.this.dismiss();
                                 BottomSheet.this.container.invalidate();
                             }
@@ -609,7 +609,10 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
                 }
                 this.startedTrackingPointerId = -1;
             }
-            return (!z && this.maybeStartTracking) || this.startedTracking || !(BottomSheet.this.canDismissWithSwipe() || BottomSheet.this.canSwipeToBack(motionEvent));
+            if ((z || !this.maybeStartTracking) && !this.startedTracking) {
+                return (BottomSheet.this.canDismissWithSwipe() || BottomSheet.this.canSwipeToBack(motionEvent)) ? false : true;
+            }
+            return true;
         }
 
         public void lambda$processTouchEvent$1(ValueAnimator valueAnimator) {
@@ -754,10 +757,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
     }
 
     public void setHideSystemVerticalInsets(boolean z) {
-        float[] fArr = new float[2];
-        fArr[0] = this.hideSystemVerticalInsetsProgress;
-        fArr[1] = z ? 1.0f : 0.0f;
-        ValueAnimator duration = ValueAnimator.ofFloat(fArr).setDuration(180L);
+        ValueAnimator duration = ValueAnimator.ofFloat(this.hideSystemVerticalInsetsProgress, z ? 1.0f : 0.0f).setDuration(180L);
         duration.setInterpolator(CubicBezierInterpolator.DEFAULT);
         duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -830,12 +830,13 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
             }
             ImageView imageView = new ImageView(context);
             this.imageView = imageView;
-            imageView.setScaleType(ImageView.ScaleType.CENTER);
+            ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+            imageView.setScaleType(scaleType);
             this.imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_dialogIcon), PorterDuff.Mode.MULTIPLY));
             addView(this.imageView, LayoutHelper.createFrame(56, 48, (LocaleController.isRTL ? 5 : 3) | 16));
             ImageView imageView2 = new ImageView(context);
             this.imageView2 = imageView2;
-            imageView2.setScaleType(ImageView.ScaleType.CENTER);
+            imageView2.setScaleType(scaleType);
             this.imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_radioBackgroundChecked, resourcesProvider), PorterDuff.Mode.SRC_IN));
             addView(this.imageView2, LayoutHelper.createFrame(56, 48, (LocaleController.isRTL ? 3 : 5) | 16));
             TextView textView = new TextView(context);
@@ -848,13 +849,17 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
                 this.textView.setTextColor(getThemedColor(Theme.key_dialogTextBlack));
                 this.textView.setTextSize(1, 16.0f);
                 addView(this.textView, LayoutHelper.createFrame(-2, -2, (LocaleController.isRTL ? 5 : 3) | 16));
-            } else if (i == 1) {
+                return;
+            }
+            if (i == 1) {
                 this.textView.setGravity(17);
                 this.textView.setTextColor(getThemedColor(Theme.key_dialogTextBlack));
                 this.textView.setTextSize(1, 14.0f);
                 this.textView.setTypeface(AndroidUtilities.bold());
                 addView(this.textView, LayoutHelper.createFrame(-1, -1.0f));
-            } else if (i == 2) {
+                return;
+            }
+            if (i == 2) {
                 this.textView.setGravity(17);
                 this.textView.setTextColor(getThemedColor(Theme.key_featuredStickers_buttonText));
                 this.textView.setTextSize(1, 14.0f);
@@ -907,10 +912,11 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
                     this.textView.setPadding(AndroidUtilities.dp(LocaleController.isRTL ? 21.0f : 72.0f), 0, AndroidUtilities.dp(LocaleController.isRTL ? 72.0f : 21.0f), 0);
                     this.imageView.setPadding(LocaleController.isRTL ? 0 : AndroidUtilities.dp(5.0f), 0, LocaleController.isRTL ? AndroidUtilities.dp(5.0f) : 5, 0);
                     return;
+                } else {
+                    this.textView.setPadding(AndroidUtilities.dp(LocaleController.isRTL ? 16.0f : 72.0f), 0, AndroidUtilities.dp(LocaleController.isRTL ? 72.0f : 16.0f), 0);
+                    this.imageView.setPadding(0, 0, 0, 0);
+                    return;
                 }
-                this.textView.setPadding(AndroidUtilities.dp(LocaleController.isRTL ? 16.0f : 72.0f), 0, AndroidUtilities.dp(LocaleController.isRTL ? 72.0f : 16.0f), 0);
-                this.imageView.setPadding(0, 0, 0, 0);
-                return;
             }
             this.imageView.setVisibility(4);
             this.textView.setPadding(AndroidUtilities.dp(z ? 21.0f : 16.0f), 0, AndroidUtilities.dp(z ? 21.0f : 16.0f), 0);
@@ -985,7 +991,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         this.applyTopPadding = true;
         this.applyBottomPadding = true;
         this.itemViews = new ArrayList<>();
-        this.dismissRunnable = new BottomSheet$$ExternalSyntheticLambda5(this);
+        this.dismissRunnable = new BottomSheet$$ExternalSyntheticLambda7(this);
         this.navigationBarAlpha = 0.0f;
         this.navBarColorKey = Theme.key_windowBackgroundGray;
         this.pauseAllHeavyOperations = true;
@@ -1154,7 +1160,6 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         Window window;
         int i;
         BaseFragment baseFragment = this.attachedFragment;
-        Drawable drawable = null;
         if (baseFragment != null) {
             baseFragment.addSheet(this);
             if (this.attachedFragment.getLayoutContainer() == null) {
@@ -1193,10 +1198,9 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
                 @Override
                 public void setTranslationY(float f) {
                     super.setTranslationY(f);
-                    BottomSheet bottomSheet = BottomSheet.this;
-                    FrameLayout frameLayout2 = bottomSheet.topBulletinContainer;
+                    FrameLayout frameLayout2 = BottomSheet.this.topBulletinContainer;
                     if (frameLayout2 != null) {
-                        frameLayout2.setTranslationY((-(bottomSheet.container.getHeight() - BottomSheet.this.containerView.getY())) + BottomSheet.this.backgroundPaddingTop);
+                        frameLayout2.setTranslationY((-(r0.container.getHeight() - BottomSheet.this.containerView.getY())) + BottomSheet.this.backgroundPaddingTop);
                     }
                     BottomSheet.this.onContainerTranslationYChanged(f);
                 }
@@ -1222,7 +1226,9 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
                         int measuredHeight = getMeasuredHeight();
                         if (BottomSheet.this.customView != null) {
                             ((ViewGroup.MarginLayoutParams) BottomSheet.this.customView.getLayoutParams()).topMargin = measuredHeight;
-                        } else if (BottomSheet.this.containerView != null) {
+                            return;
+                        }
+                        if (BottomSheet.this.containerView != null) {
                             for (int i4 = 1; i4 < BottomSheet.this.containerView.getChildCount(); i4++) {
                                 View childAt = BottomSheet.this.containerView.getChildAt(i4);
                                 if (childAt instanceof BottomSheetCell) {
@@ -1296,7 +1302,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
                     BottomSheetCell bottomSheetCell = new BottomSheetCell(getContext(), this.cellType, this.resourcesProvider);
                     CharSequence charSequence = this.items[i2];
                     int[] iArr = this.itemIcons;
-                    bottomSheetCell.setTextAndIcon(charSequence, iArr != null ? iArr[i2] : 0, drawable, this.bigTitle);
+                    bottomSheetCell.setTextAndIcon(charSequence, iArr != null ? iArr[i2] : 0, null, this.bigTitle);
                     this.containerView.addView(bottomSheetCell, LayoutHelper.createFrame(-1, 48.0f, 51, 0.0f, i, 0.0f, 0.0f));
                     i += 48;
                     bottomSheetCell.setTag(Integer.valueOf(i2));
@@ -1309,7 +1315,6 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
                     this.itemViews.add(bottomSheetCell);
                 }
                 i2++;
-                drawable = null;
             }
         }
         if (this.attachedFragment == null && window != null) {
@@ -1421,8 +1426,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
             }
             this.backDrawable.setAlpha(0);
             this.layoutCount = 2;
-            ViewGroup viewGroup = this.containerView;
-            viewGroup.setTranslationY((Build.VERSION.SDK_INT >= 21 ? AndroidUtilities.statusBarHeight * (1.0f - this.hideSystemVerticalInsetsProgress) : 0.0f) + viewGroup.getMeasuredHeight() + (this.scrollNavBar ? getBottomInset() : 0));
+            this.containerView.setTranslationY((Build.VERSION.SDK_INT >= 21 ? AndroidUtilities.statusBarHeight * (1.0f - this.hideSystemVerticalInsetsProgress) : 0.0f) + r1.getMeasuredHeight() + (this.scrollNavBar ? getBottomInset() : 0));
             long j = this.openNoDelay ? 0L : 150L;
             if (this.waitingKeyboard) {
                 j = 500;
@@ -1552,17 +1556,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         });
         AnimatorSet animatorSet = new AnimatorSet();
         this.currentSheetAnimation = animatorSet;
-        Animator[] animatorArr = new Animator[5];
-        animatorArr[0] = ObjectAnimator.ofFloat(this.containerView, View.TRANSLATION_X, 0.0f);
-        animatorArr[1] = ObjectAnimator.ofFloat(this.containerView, View.ALPHA, 1.0f);
-        animatorArr[2] = ObjectAnimator.ofFloat(this.containerView, View.TRANSLATION_Y, 0.0f);
-        ColorDrawable colorDrawable = this.backDrawable;
-        Property<ColorDrawable, Integer> property = AnimationProperties.COLOR_DRAWABLE_ALPHA;
-        int[] iArr = new int[1];
-        iArr[0] = this.dimBehind ? this.dimBehindAlpha : 0;
-        animatorArr[3] = ObjectAnimator.ofInt(colorDrawable, property, iArr);
-        animatorArr[4] = this.navigationBarAnimation;
-        animatorSet.playTogether(animatorArr);
+        animatorSet.playTogether(ObjectAnimator.ofFloat(this.containerView, (Property<ViewGroup, Float>) View.TRANSLATION_X, 0.0f), ObjectAnimator.ofFloat(this.containerView, (Property<ViewGroup, Float>) View.ALPHA, 1.0f), ObjectAnimator.ofFloat(this.containerView, (Property<ViewGroup, Float>) View.TRANSLATION_Y, 0.0f), ObjectAnimator.ofInt(this.backDrawable, AnimationProperties.COLOR_DRAWABLE_ALPHA, this.dimBehind ? this.dimBehindAlpha : 0), this.navigationBarAnimation);
         if (this.transitionFromRight) {
             this.currentSheetAnimation.setDuration(250L);
             this.currentSheetAnimation.setInterpolator(CubicBezierInterpolator.DEFAULT);
@@ -1701,14 +1695,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         this.currentSheetAnimationType = 2;
         AnimatorSet animatorSet = new AnimatorSet();
         this.currentSheetAnimation = animatorSet;
-        Animator[] animatorArr = new Animator[2];
-        ViewGroup viewGroup = this.containerView;
-        Property property = View.TRANSLATION_Y;
-        float[] fArr = new float[1];
-        fArr[0] = getContainerViewHeight() + this.keyboardHeight + AndroidUtilities.dp(10.0f) + (this.scrollNavBar ? getBottomInset() : 0);
-        animatorArr[0] = ObjectAnimator.ofFloat(viewGroup, property, fArr);
-        animatorArr[1] = ObjectAnimator.ofInt(this.backDrawable, AnimationProperties.COLOR_DRAWABLE_ALPHA, 0);
-        animatorSet.playTogether(animatorArr);
+        animatorSet.playTogether(ObjectAnimator.ofFloat(this.containerView, (Property<ViewGroup, Float>) View.TRANSLATION_Y, getContainerViewHeight() + this.keyboardHeight + AndroidUtilities.dp(10.0f) + (this.scrollNavBar ? getBottomInset() : 0)), ObjectAnimator.ofInt(this.backDrawable, AnimationProperties.COLOR_DRAWABLE_ALPHA, 0));
         this.currentSheetAnimation.setDuration(this.cellType == Builder.CELL_TYPE_CALL ? 330L : 180L);
         this.currentSheetAnimation.setInterpolator(CubicBezierInterpolator.EASE_OUT);
         this.currentSheetAnimation.addListener(new AnonymousClass7(i));
@@ -1823,7 +1810,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
     }
 
     @Override
-    public View getWindowView() {
+    public View mo988getWindowView() {
         return this.container;
     }
 
@@ -1949,12 +1936,12 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         if (baseFragment != null) {
             baseFragment.removeSheet(this);
             AndroidUtilities.removeFromParent(this.container);
-            return;
-        }
-        try {
-            super.dismiss();
-        } catch (Exception e) {
-            FileLog.e((Throwable) e, false);
+        } else {
+            try {
+                super.dismiss();
+            } catch (Exception e) {
+                FileLog.e((Throwable) e, false);
+            }
         }
     }
 
@@ -2113,11 +2100,11 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         }
         if (this.attachedFragment != null) {
             LaunchActivity.instance.checkSystemBarColors(true, true, true, false);
-            AndroidUtilities.setLightNavigationBar(getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
-            return;
+            AndroidUtilities.setLightNavigationBar(mo988getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
+        } else {
+            AndroidUtilities.setNavigationBarColor(getWindow(), this.overlayDrawNavBarColor);
+            AndroidUtilities.setLightNavigationBar(getWindow(), ((double) AndroidUtilities.computePerceivedBrightness(this.overlayDrawNavBarColor)) > 0.721d);
         }
-        AndroidUtilities.setNavigationBarColor(getWindow(), this.overlayDrawNavBarColor);
-        AndroidUtilities.setLightNavigationBar(getWindow(), ((double) AndroidUtilities.computePerceivedBrightness(this.overlayDrawNavBarColor)) > 0.721d);
     }
 
     public ViewGroup getContainerView() {

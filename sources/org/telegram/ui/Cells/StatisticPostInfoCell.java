@@ -37,6 +37,7 @@ import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.StatisticActivity;
 import org.telegram.ui.Stories.StoriesUtilities;
+
 @SuppressLint({"ViewConstructor"})
 public class StatisticPostInfoCell extends FrameLayout {
     private final AvatarDrawable avatarDrawable;
@@ -63,10 +64,9 @@ public class StatisticPostInfoCell extends FrameLayout {
         BackupImageView backupImageView = new BackupImageView(context) {
             @Override
             public void onDraw(Canvas canvas) {
-                int dp;
                 if (StatisticPostInfoCell.this.postInfo != null && StatisticPostInfoCell.this.postInfo.isStory()) {
-                    float dp2 = AndroidUtilities.dp(1.0f);
-                    StatisticPostInfoCell.this.storyAvatarParams.originalAvatarRect.set(dp2, dp2, getMeasuredWidth() - dp, getMeasuredHeight() - dp);
+                    float dp = AndroidUtilities.dp(1.0f);
+                    StatisticPostInfoCell.this.storyAvatarParams.originalAvatarRect.set(dp, dp, getMeasuredWidth() - r0, getMeasuredHeight() - r0);
                     StatisticPostInfoCell.this.storyAvatarParams.drawSegments = false;
                     StatisticPostInfoCell.this.storyAvatarParams.animate = false;
                     StatisticPostInfoCell.this.storyAvatarParams.drawInside = true;

@@ -13,6 +13,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+
 public class VoipCoverEmoji {
     private final boolean allowAnimations;
     private int diffX;
@@ -80,10 +81,8 @@ public class VoipCoverEmoji {
     }
 
     public void lambda$new$0(View view, ValueAnimator valueAnimator) {
-        int i = this.fromRandomX;
-        this.randomX = (int) (i + ((this.toRandomX - i) * ((Float) valueAnimator.getAnimatedValue()).floatValue()));
-        int i2 = this.fromRandomY;
-        this.randomY = (int) (i2 + ((this.toRandomY - i2) * ((Float) valueAnimator.getAnimatedValue()).floatValue()));
+        this.randomX = (int) (this.fromRandomX + ((this.toRandomX - r0) * ((Float) valueAnimator.getAnimatedValue()).floatValue()));
+        this.randomY = (int) (this.fromRandomY + ((this.toRandomY - r0) * ((Float) valueAnimator.getAnimatedValue()).floatValue()));
         view.invalidate();
     }
 
@@ -98,13 +97,15 @@ public class VoipCoverEmoji {
             }
         }
         this.isShown = true;
+        final int i = 12;
         this.diffX = this.posX > getCenterX() ? AndroidUtilities.dp(12) : -AndroidUtilities.dp(12);
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat.setInterpolator(new CubicBezierInterpolator(0.34d, 1.36d, 0.64d, 1.0d));
+        final int i2 = 350;
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                VoipCoverEmoji.this.lambda$show$2(r2, r3, valueAnimator);
+                VoipCoverEmoji.this.lambda$show$2(i, i2, valueAnimator);
             }
         });
         long j = 350;

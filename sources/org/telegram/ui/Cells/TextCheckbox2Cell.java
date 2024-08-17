@@ -17,6 +17,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimationProperties;
 import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.LayoutHelper;
+
 public class TextCheckbox2Cell extends FrameLayout {
     public static final Property<TextCheckbox2Cell, Float> ANIMATION_PROGRESS = new AnimationProperties.FloatProperty<TextCheckbox2Cell>("animationProgress") {
         @Override
@@ -60,23 +61,25 @@ public class TextCheckbox2Cell extends FrameLayout {
         this.textView.setMaxLines(1);
         this.textView.setSingleLine(true);
         this.textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
-        this.textView.setEllipsize(TextUtils.TruncateAt.END);
         TextView textView2 = this.textView;
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        textView2.setEllipsize(truncateAt);
+        TextView textView3 = this.textView;
         boolean z2 = LocaleController.isRTL;
-        addView(textView2, LayoutHelper.createFrame(-1, -1.0f, (z2 ? 5 : 3) | 48, z2 ? i : 64.0f, 0.0f, z2 ? 64.0f : i, 0.0f));
-        TextView textView3 = new TextView(context);
-        this.valueTextView = textView3;
-        textView3.setTextColor(Theme.getColor(z ? Theme.key_dialogIcon : Theme.key_windowBackgroundWhiteGrayText2));
+        addView(textView3, LayoutHelper.createFrame(-1, -1.0f, (z2 ? 5 : 3) | 48, z2 ? i : 64.0f, 0.0f, z2 ? 64.0f : i, 0.0f));
+        TextView textView4 = new TextView(context);
+        this.valueTextView = textView4;
+        textView4.setTextColor(Theme.getColor(z ? Theme.key_dialogIcon : Theme.key_windowBackgroundWhiteGrayText2));
         this.valueTextView.setTextSize(1, 13.0f);
         this.valueTextView.setGravity(LocaleController.isRTL ? 5 : 3);
         this.valueTextView.setLines(1);
         this.valueTextView.setMaxLines(1);
         this.valueTextView.setSingleLine(true);
         this.valueTextView.setPadding(0, 0, 0, 0);
-        this.valueTextView.setEllipsize(TextUtils.TruncateAt.END);
-        TextView textView4 = this.valueTextView;
+        this.valueTextView.setEllipsize(truncateAt);
+        TextView textView5 = this.valueTextView;
         boolean z3 = LocaleController.isRTL;
-        addView(textView4, LayoutHelper.createFrame(-2, -2.0f, (z3 ? 5 : 3) | 48, z3 ? i : 64.0f, 36.0f, z3 ? 64.0f : i, 0.0f));
+        addView(textView5, LayoutHelper.createFrame(-2, -2.0f, (z3 ? 5 : 3) | 48, z3 ? i : 64.0f, 36.0f, z3 ? 64.0f : i, 0.0f));
         CheckBox2 checkBox2 = new CheckBox2(context, 21);
         this.checkbox = checkBox2;
         checkBox2.setDrawUnchecked(true);
@@ -156,7 +159,7 @@ public class TextCheckbox2Cell extends FrameLayout {
         this.animationProgress = f;
         Math.max(this.lastTouchX, getMeasuredWidth() - this.lastTouchX);
         AndroidUtilities.dp(40.0f);
-        int measuredHeight = getMeasuredHeight() / 2;
+        getMeasuredHeight();
     }
 
     @Override

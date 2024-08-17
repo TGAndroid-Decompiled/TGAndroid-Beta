@@ -4,6 +4,7 @@ import androidx.concurrent.futures.AbstractResolvableFuture$SafeAtomicHelper$$Ex
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 import java.util.concurrent.atomic.AtomicReferenceArray;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
+
 public final class WorkQueue {
     private static final AtomicReferenceFieldUpdater lastScheduledTask$FU = AtomicReferenceFieldUpdater.newUpdater(WorkQueue.class, Object.class, "lastScheduledTask");
     private static final AtomicIntegerFieldUpdater producerIndex$FU = AtomicIntegerFieldUpdater.newUpdater(WorkQueue.class, "producerIndex");
@@ -63,11 +64,10 @@ public final class WorkQueue {
     }
 
     private final void decrementIfBlocking(Task task) {
-        if (task != null) {
-            if (task.taskContext.getTaskMode() == 1) {
-                blockingTasksInBuffer$FU.decrementAndGet(this);
-            }
+        if (task == null || task.taskContext.getTaskMode() != 1) {
+            return;
         }
+        blockingTasksInBuffer$FU.decrementAndGet(this);
     }
 
     public final long tryStealFrom(WorkQueue workQueue) {
@@ -80,26 +80,19 @@ public final class WorkQueue {
     }
 
     public final long tryStealBlockingFrom(WorkQueue workQueue) {
-        int i = workQueue.consumerIndex;
-        int i2 = workQueue.producerIndex;
+        int i = workQueue.producerIndex;
         AtomicReferenceArray<Task> atomicReferenceArray = workQueue.buffer;
-        while (true) {
-            if (i == i2) {
-                break;
-            }
-            int i3 = i & 127;
+        for (int i2 = workQueue.consumerIndex; i2 != i; i2++) {
+            int i3 = i2 & 127;
             if (workQueue.blockingTasksInBuffer == 0) {
                 break;
             }
             Task task = atomicReferenceArray.get(i3);
-            if (task != null) {
-                if ((task.taskContext.getTaskMode() == 1) && WorkQueue$$ExternalSyntheticBackportWithForwarding0.m(atomicReferenceArray, i3, task, null)) {
-                    blockingTasksInBuffer$FU.decrementAndGet(workQueue);
-                    add$default(this, task, false, 2, null);
-                    return -1L;
-                }
+            if (task != null && task.taskContext.getTaskMode() == 1 && WorkQueue$$ExternalSyntheticBackportWithForwarding0.m(atomicReferenceArray, i3, task, null)) {
+                blockingTasksInBuffer$FU.decrementAndGet(workQueue);
+                add$default(this, task, false, 2, null);
+                return -1L;
             }
-            i++;
         }
         return tryStealLastScheduled(workQueue, true);
     }
@@ -120,10 +113,8 @@ public final class WorkQueue {
             if (task == null) {
                 return -2L;
             }
-            if (z) {
-                if (!(task.taskContext.getTaskMode() == 1)) {
-                    return -2L;
-                }
+            if (z && task.taskContext.getTaskMode() != 1) {
+                return -2L;
             }
             long nanoTime = TasksKt.schedulerTimeSource.nanoTime() - task.submissionTime;
             long j = TasksKt.WORK_STEALING_TIME_RESOLUTION_NS;

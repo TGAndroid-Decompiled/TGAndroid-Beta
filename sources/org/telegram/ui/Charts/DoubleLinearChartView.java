@@ -12,6 +12,7 @@ import org.telegram.ui.Charts.data.DoubleLinearChartData;
 import org.telegram.ui.Charts.view_data.ChartHorizontalLinesData;
 import org.telegram.ui.Charts.view_data.LineViewData;
 import org.telegram.ui.Charts.view_data.TransitionParams;
+
 public class DoubleLinearChartView extends BaseChartView<DoubleLinearChartData, LineViewData> {
     public DoubleLinearChartView(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context, resourcesProvider);
@@ -37,8 +38,8 @@ public class DoubleLinearChartView extends BaseChartView<DoubleLinearChartData, 
             float f8 = (f6 * f7) - BaseChartView.HORIZONTAL_PADDING;
             canvas.save();
             int i = this.transitionMode;
-            int i2 = 2;
             float f9 = 0.0f;
+            int i2 = 2;
             int i3 = 1;
             if (i == 2) {
                 TransitionParams transitionParams = this.transitionParams;
@@ -62,8 +63,8 @@ public class DoubleLinearChartView extends BaseChartView<DoubleLinearChartData, 
                 if (lineViewData.enabled || lineViewData.alpha != f9) {
                     long[] jArr = lineViewData.line.y;
                     lineViewData.chartPath.reset();
-                    T t = this.chartData;
-                    int i6 = ((int) (BaseChartView.HORIZONTAL_PADDING / (((DoubleLinearChartData) t).xPercentage.length < i2 ? 1.0f : ((DoubleLinearChartData) t).xPercentage[i3] * f7))) + i3;
+                    float[] fArr = ((DoubleLinearChartData) this.chartData).xPercentage;
+                    int i6 = ((int) (BaseChartView.HORIZONTAL_PADDING / (fArr.length < i2 ? 1.0f : fArr[i3] * f7))) + i3;
                     int max = Math.max(i4, this.startXIndex - i6);
                     int min = Math.min(((DoubleLinearChartData) this.chartData).xPercentage.length - i3, this.endXIndex + i6);
                     boolean z = true;
@@ -73,9 +74,9 @@ public class DoubleLinearChartView extends BaseChartView<DoubleLinearChartData, 
                         if (j < 0) {
                             f3 = f7;
                         } else {
-                            T t2 = this.chartData;
-                            float f13 = (((DoubleLinearChartData) t2).xPercentage[max] * f7) - f8;
-                            float f14 = ((float) j) * ((DoubleLinearChartData) t2).linesK[i5];
+                            DoubleLinearChartData doubleLinearChartData = (DoubleLinearChartData) this.chartData;
+                            float f13 = (doubleLinearChartData.xPercentage[max] * f7) - f8;
+                            float f14 = ((float) j) * doubleLinearChartData.linesK[i5];
                             float f15 = this.currentMinHeight;
                             float f16 = (f14 - f15) / (this.currentMaxHeight - f15);
                             float strokeWidth = lineViewData.paint.getStrokeWidth() / 2.0f;
@@ -83,21 +84,19 @@ public class DoubleLinearChartView extends BaseChartView<DoubleLinearChartData, 
                             float measuredHeight = ((getMeasuredHeight() - this.chartBottom) - strokeWidth) - (f16 * (((getMeasuredHeight() - this.chartBottom) - BaseChartView.SIGNATURE_TEXT_HEIGHT) - strokeWidth));
                             if (BaseChartView.USE_LINES) {
                                 if (i7 == 0) {
-                                    float[] fArr = lineViewData.linesPath;
-                                    int i8 = i7 + 1;
-                                    fArr[i7] = f13;
-                                    i7 = i8 + 1;
-                                    fArr[i8] = measuredHeight;
-                                } else {
                                     float[] fArr2 = lineViewData.linesPath;
-                                    int i9 = i7 + 1;
+                                    int i8 = i7 + 1;
                                     fArr2[i7] = f13;
-                                    int i10 = i9 + 1;
-                                    fArr2[i9] = measuredHeight;
-                                    int i11 = i10 + 1;
-                                    fArr2[i10] = f13;
-                                    i7 = i11 + 1;
-                                    fArr2[i11] = measuredHeight;
+                                    i7 += 2;
+                                    fArr2[i8] = measuredHeight;
+                                } else {
+                                    float[] fArr3 = lineViewData.linesPath;
+                                    fArr3[i7] = f13;
+                                    fArr3[i7 + 1] = measuredHeight;
+                                    int i9 = i7 + 3;
+                                    fArr3[i7 + 2] = f13;
+                                    i7 += 4;
+                                    fArr3[i9] = measuredHeight;
                                 }
                             } else if (z) {
                                 lineViewData.chartPath.moveTo(f13, measuredHeight);
@@ -121,8 +120,8 @@ public class DoubleLinearChartView extends BaseChartView<DoubleLinearChartData, 
                         i5++;
                         f7 = f2;
                         i4 = 0;
-                        i2 = 2;
                         f9 = 0.0f;
+                        i2 = 2;
                         i3 = 1;
                     } else {
                         canvas.drawPath(lineViewData.chartPath, lineViewData.paint);
@@ -133,8 +132,8 @@ public class DoubleLinearChartView extends BaseChartView<DoubleLinearChartData, 
                 i5++;
                 f7 = f2;
                 i4 = 0;
-                i2 = 2;
                 f9 = 0.0f;
+                i2 = 2;
                 i3 = 1;
             }
             canvas.restore();
@@ -165,33 +164,31 @@ public class DoubleLinearChartView extends BaseChartView<DoubleLinearChartData, 
                         if (j < 0) {
                             i = length;
                         } else {
-                            T t = this.chartData;
-                            float f2 = ((DoubleLinearChartData) t).xPercentage[i5] * this.pickerWidth;
+                            DoubleLinearChartData doubleLinearChartData = (DoubleLinearChartData) this.chartData;
+                            float f2 = doubleLinearChartData.xPercentage[i5] * this.pickerWidth;
                             if (BaseChartView.ANIMATE_PICKER_SIZES) {
                                 f = this.pickerMaxHeight;
                                 i = length;
                             } else {
                                 i = length;
-                                f = (float) ((DoubleLinearChartData) t).maxValue;
+                                f = (float) doubleLinearChartData.maxValue;
                             }
-                            float f3 = (1.0f - ((((float) j) * ((DoubleLinearChartData) t).linesK[i4]) / f)) * (i3 - measuredHeight2);
+                            float f3 = (1.0f - ((((float) j) * doubleLinearChartData.linesK[i4]) / f)) * (i3 - measuredHeight2);
                             if (BaseChartView.USE_LINES) {
                                 if (i6 == 0) {
                                     float[] fArr = lineViewData.linesPathBottom;
                                     int i7 = i6 + 1;
                                     fArr[i6] = f2;
-                                    i6 = i7 + 1;
+                                    i6 += 2;
                                     fArr[i7] = f3;
                                 } else {
                                     float[] fArr2 = lineViewData.linesPathBottom;
-                                    int i8 = i6 + 1;
                                     fArr2[i6] = f2;
-                                    int i9 = i8 + 1;
+                                    fArr2[i6 + 1] = f3;
+                                    int i8 = i6 + 3;
+                                    fArr2[i6 + 2] = f2;
+                                    i6 += 4;
                                     fArr2[i8] = f3;
-                                    int i10 = i9 + 1;
-                                    fArr2[i9] = f2;
-                                    i6 = i10 + 1;
-                                    fArr2[i10] = f3;
                                 }
                             } else if (i5 == 0) {
                                 lineViewData.bottomLinePath.moveTo(f2, f3);
@@ -222,23 +219,24 @@ public class DoubleLinearChartView extends BaseChartView<DoubleLinearChartData, 
         if (i < 0 || !this.legendShowing) {
             return;
         }
+        int i2 = (int) (this.chartActiveLineAlpha * this.selectionA);
         float f = this.chartWidth;
         ChartPickerDelegate chartPickerDelegate = this.pickerDelegate;
         float f2 = chartPickerDelegate.pickerEnd;
         float f3 = chartPickerDelegate.pickerStart;
         float f4 = f / (f2 - f3);
         float f5 = (((DoubleLinearChartData) this.chartData).xPercentage[i] * f4) - ((f3 * f4) - BaseChartView.HORIZONTAL_PADDING);
-        this.selectedLinePaint.setAlpha((int) (this.chartActiveLineAlpha * this.selectionA));
+        this.selectedLinePaint.setAlpha(i2);
         canvas.drawLine(f5, 0.0f, f5, this.chartArea.bottom, this.selectedLinePaint);
         this.tmpN = this.lines.size();
-        int i2 = 0;
+        int i3 = 0;
         while (true) {
-            this.tmpI = i2;
-            int i3 = this.tmpI;
-            if (i3 >= this.tmpN) {
+            this.tmpI = i3;
+            int i4 = this.tmpI;
+            if (i4 >= this.tmpN) {
                 return;
             }
-            LineViewData lineViewData = (LineViewData) this.lines.get(i3);
+            LineViewData lineViewData = (LineViewData) this.lines.get(i4);
             if (lineViewData.enabled || lineViewData.alpha != 0.0f) {
                 float f6 = ((float) lineViewData.line.y[this.selectedIndex]) * ((DoubleLinearChartData) this.chartData).linesK[this.tmpI];
                 float f7 = this.currentMinHeight;
@@ -248,7 +246,7 @@ public class DoubleLinearChartView extends BaseChartView<DoubleLinearChartData, 
                 canvas.drawPoint(f5, measuredHeight, lineViewData.selectionPaint);
                 canvas.drawPoint(f5, measuredHeight, this.selectionBackgroundPaint);
             }
-            i2 = this.tmpI + 1;
+            i3 = this.tmpI + 1;
         }
     }
 
@@ -342,11 +340,11 @@ public class DoubleLinearChartView extends BaseChartView<DoubleLinearChartData, 
     @Override
     protected ChartHorizontalLinesData createHorizontalLinesData(long j, long j2, int i) {
         float f;
-        T t = this.chartData;
-        if (((DoubleLinearChartData) t).linesK.length < 2) {
+        float[] fArr = ((DoubleLinearChartData) this.chartData).linesK;
+        if (fArr.length < 2) {
             f = 1.0f;
         } else {
-            f = ((DoubleLinearChartData) t).linesK[((DoubleLinearChartData) t).linesK[0] == 1.0f ? (char) 1 : (char) 0];
+            f = fArr[fArr[0] == 1.0f ? (char) 1 : (char) 0];
         }
         return new ChartHorizontalLinesData(j, j2, this.useMinHeight, f, i, this.signaturePaint, this.signaturePaint2);
     }

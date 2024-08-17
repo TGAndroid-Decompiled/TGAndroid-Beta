@@ -18,6 +18,7 @@ import org.telegram.ui.Components.Forum.ForumUtilities;
 import org.telegram.ui.DialogsActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.TopicsFragment;
+
 public class BackButtonMenu {
 
     public static class PulledDialog<T> {
@@ -51,8 +52,7 @@ public class BackButtonMenu {
             i = -1;
             for (int i2 = 0; i2 < pulledDialogs.size(); i2++) {
                 PulledDialog pulledDialog = pulledDialogs.get(i2);
-                TLRPC$TL_forumTopic tLRPC$TL_forumTopic = pulledDialog.topic;
-                if (tLRPC$TL_forumTopic != null && tLRPC$TL_forumTopic.id != j2) {
+                if (pulledDialog.topic != null && r7.id != j2) {
                     int i3 = pulledDialog.stackIndex;
                     if (i3 >= i) {
                         i = i3;
@@ -144,7 +144,6 @@ public class BackButtonMenu {
 
     public static void addToPulledDialogs(BaseFragment baseFragment, int i, TLRPC$Chat tLRPC$Chat, TLRPC$User tLRPC$User, TLRPC$TL_forumTopic tLRPC$TL_forumTopic, long j, int i2, int i3) {
         INavigationLayout parentLayout;
-        boolean z;
         if ((tLRPC$Chat == null && tLRPC$User == null) || baseFragment == null || (parentLayout = baseFragment.getParentLayout()) == null) {
             return;
         }
@@ -152,14 +151,12 @@ public class BackButtonMenu {
             parentLayout.setPulledDialogs(new ArrayList());
         }
         for (PulledDialog pulledDialog : parentLayout.getPulledDialogs()) {
-            if ((tLRPC$TL_forumTopic == null && pulledDialog.dialogId == j) || (tLRPC$TL_forumTopic != null && pulledDialog.topic.id == tLRPC$TL_forumTopic.id)) {
-                z = true;
-                break;
+            if (tLRPC$TL_forumTopic == null && pulledDialog.dialogId == j) {
+                return;
             }
-        }
-        z = false;
-        if (z) {
-            return;
+            if (tLRPC$TL_forumTopic != null && pulledDialog.topic.id == tLRPC$TL_forumTopic.id) {
+                return;
+            }
         }
         PulledDialog pulledDialog2 = new PulledDialog();
         pulledDialog2.activity = ChatActivity.class;

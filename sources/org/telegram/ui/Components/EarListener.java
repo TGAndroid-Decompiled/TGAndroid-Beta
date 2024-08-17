@@ -14,6 +14,7 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.ui.PhotoViewer;
+
 public class EarListener implements SensorEventListener {
     private Sensor accelerometerSensor;
     private boolean accelerometerVertical;
@@ -280,7 +281,7 @@ public class EarListener implements SensorEventListener {
             if (this.raisedToBack == 6 || this.accelerometerVertical) {
                 this.lastAccelerometerDetected = System.currentTimeMillis();
             }
-            boolean z2 = (!(this.raisedToBack == 6 || this.accelerometerVertical || ((System.currentTimeMillis() - this.lastAccelerometerDetected) > 60L ? 1 : ((System.currentTimeMillis() - this.lastAccelerometerDetected) == 60L ? 0 : -1)) < 0) || forbidRaiseToListen() || VoIPService.isAnyKindOfCallActive() || PhotoViewer.getInstance().isVisible()) ? false : true;
+            boolean z2 = ((this.raisedToBack != 6 && !this.accelerometerVertical && System.currentTimeMillis() - this.lastAccelerometerDetected >= 60) || forbidRaiseToListen() || VoIPService.isAnyKindOfCallActive() || PhotoViewer.getInstance().isVisible()) ? false : true;
             if (this.proximityWakeLock != null && disableWakeLockWhenNotUsed()) {
                 boolean isHeld = this.proximityWakeLock.isHeld();
                 if (isHeld && !z2) {

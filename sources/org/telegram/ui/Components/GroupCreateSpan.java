@@ -20,6 +20,7 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
+
 public class GroupCreateSpan extends View {
     private AvatarDrawable avatarDrawable;
     private int[] colors;
@@ -58,7 +59,7 @@ public class GroupCreateSpan extends View {
         this(context, obj, contact, false, resourcesProvider);
     }
 
-    public GroupCreateSpan(android.content.Context r34, java.lang.Object r35, org.telegram.messenger.ContactsController.Contact r36, boolean r37, org.telegram.ui.ActionBar.Theme.ResourcesProvider r38) {
+    public GroupCreateSpan(android.content.Context r33, java.lang.Object r34, org.telegram.messenger.ContactsController.Contact r35, boolean r36, org.telegram.ui.ActionBar.Theme.ResourcesProvider r37) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.GroupCreateSpan.<init>(android.content.Context, java.lang.Object, org.telegram.messenger.ContactsController$Contact, boolean, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
     }
 
@@ -118,10 +119,6 @@ public class GroupCreateSpan extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        int i;
-        int i2;
-        int i3;
-        int color;
         boolean z = this.deleting;
         if ((z && this.progress != 1.0f) || (!z && this.progress != 0.0f)) {
             long currentTimeMillis = System.currentTimeMillis() - this.lastUpdateTime;
@@ -147,16 +144,17 @@ public class GroupCreateSpan extends View {
         this.rect.set(0.0f, 0.0f, getMeasuredWidth(), AndroidUtilities.dp(this.small ? 28.0f : 32.0f));
         Paint paint = backPaint;
         int[] iArr = this.colors;
-        int i4 = iArr[6];
-        float f3 = this.progress;
-        paint.setColor(Color.argb(i4 + ((int) ((iArr[7] - i4) * f3)), iArr[0] + ((int) ((iArr[1] - i) * f3)), iArr[2] + ((int) ((iArr[3] - i2) * f3)), iArr[4] + ((int) ((iArr[5] - i3) * f3))));
+        int i = iArr[6];
+        float f3 = iArr[7] - i;
+        float f4 = this.progress;
+        paint.setColor(Color.argb(i + ((int) (f3 * f4)), iArr[0] + ((int) ((iArr[1] - r5) * f4)), iArr[2] + ((int) ((iArr[3] - r7) * f4)), iArr[4] + ((int) ((iArr[5] - r8) * f4))));
         canvas.drawRoundRect(this.rect, AndroidUtilities.dp(this.small ? 14.0f : 16.0f), AndroidUtilities.dp(this.small ? 14.0f : 16.0f), backPaint);
         if (this.progress != 1.0f) {
             this.imageReceiver.draw(canvas);
         }
         if (this.progress != 0.0f) {
             backPaint.setColor(this.avatarDrawable.getColor());
-            backPaint.setAlpha((int) (this.progress * 255.0f * (Color.alpha(color) / 255.0f)));
+            backPaint.setAlpha((int) (this.progress * 255.0f * (Color.alpha(r0) / 255.0f)));
             canvas.drawCircle(AndroidUtilities.dp(this.small ? 14.0f : 16.0f), AndroidUtilities.dp(this.small ? 14.0f : 16.0f), AndroidUtilities.dp(this.small ? 14.0f : 16.0f), backPaint);
             canvas.save();
             canvas.rotate((1.0f - this.progress) * 45.0f, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));

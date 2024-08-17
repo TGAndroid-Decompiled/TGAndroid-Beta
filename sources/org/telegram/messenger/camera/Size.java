@@ -1,4 +1,5 @@
 package org.telegram.messenger.camera;
+
 public final class Size {
     public final int mHeight;
     public final int mWidth;
@@ -23,11 +24,11 @@ public final class Size {
         if (this == obj) {
             return true;
         }
-        if (obj instanceof Size) {
-            Size size = (Size) obj;
-            return this.mWidth == size.mWidth && this.mHeight == size.mHeight;
+        if (!(obj instanceof Size)) {
+            return false;
         }
-        return false;
+        Size size = (Size) obj;
+        return this.mWidth == size.mWidth && this.mHeight == size.mHeight;
     }
 
     public String toString() {

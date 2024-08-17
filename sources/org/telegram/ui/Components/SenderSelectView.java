@@ -23,6 +23,7 @@ import org.telegram.tgnet.TLRPC$ChatInvite;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.SimpleFloatPropertyCompat;
+
 public class SenderSelectView extends View {
     private static final FloatPropertyCompat<SenderSelectView> MENU_PROGRESS = new SimpleFloatPropertyCompat("menuProgress", new SimpleFloatPropertyCompat.Getter() {
         @Override
@@ -125,8 +126,10 @@ public class SenderSelectView extends View {
             str = UserObject.getFirstName((TLRPC$User) tLObject);
         } else if (tLObject instanceof TLRPC$Chat) {
             str = ((TLRPC$Chat) tLObject).title;
+        } else if (!(tLObject instanceof TLRPC$ChatInvite)) {
+            str = "";
         } else {
-            str = tLObject instanceof TLRPC$ChatInvite ? ((TLRPC$ChatInvite) tLObject).title : "";
+            str = ((TLRPC$ChatInvite) tLObject).title;
         }
         setContentDescription(LocaleController.formatString("AccDescrSendAsPeer", R.string.AccDescrSendAsPeer, str));
         this.avatarDrawable.setInfo(tLObject);

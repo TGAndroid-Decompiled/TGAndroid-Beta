@@ -73,6 +73,7 @@ import org.telegram.ui.Stories.StoriesController;
 import org.telegram.ui.Stories.StoriesUtilities;
 import org.telegram.ui.Stories.recorder.HintView2;
 import org.telegram.ui.Stories.recorder.StoryRecorder;
+
 public class DialogStoriesCell extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     float K;
     private ActionBar actionBar;
@@ -350,10 +351,10 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
     }
 
     public boolean lambda$new$2(View view, int i) {
-        if (this.collapsedProgress == 0.0f && this.overscrollPrgoress == 0.0f) {
-            onUserLongPressed(view, ((StoryCell) view).dialogId);
+        if (this.collapsedProgress != 0.0f || this.overscrollPrgoress != 0.0f) {
             return false;
         }
+        onUserLongPressed(view, ((StoryCell) view).dialogId);
         return false;
     }
 
@@ -368,10 +369,13 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         if (storyCell.isSelf && !this.storiesController.hasSelfStories()) {
             if (!MessagesController.getInstance(this.currentAccount).storiesEnabled()) {
                 showPremiumHint();
+                return;
             } else {
                 openStoryRecorder();
+                return;
             }
-        } else if (this.storiesController.hasStories(storyCell.dialogId) || this.storiesController.hasUploadingStories(storyCell.dialogId)) {
+        }
+        if (this.storiesController.hasStories(storyCell.dialogId) || this.storiesController.hasUploadingStories(storyCell.dialogId)) {
             TL_stories$PeerStories stories = this.storiesController.getStories(storyCell.dialogId);
             final long j = storyCell.dialogId;
             StoriesUtilities.EnsureStoryFileLoadedObject ensureStoryFileLoadedObject = this.globalCancelable;
@@ -423,7 +427,6 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
     }
 
     public void updateItems(boolean z, boolean z2) {
-        boolean z3 = true;
         if ((this.currentState == 1 || this.overscrollPrgoress != 0.0f) && !z2) {
             this.updateOnIdleState = true;
             return;
@@ -470,7 +473,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
             this.currentTitle = LocaleController.formatPluralString("Stories", max, new Object[0]);
         }
         if (!this.hasOverlayText) {
-            this.titleView.setText(this.currentTitle, (!z || LocaleController.isRTL) ? false : false);
+            this.titleView.setText(this.currentTitle, z && !LocaleController.isRTL);
         }
         this.miniItems.clear();
         for (int i2 = 0; i2 < this.items.size(); i2++) {
@@ -576,10 +579,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
                 this.valueAnimator = null;
             }
             if (z) {
-                float[] fArr = new float[2];
-                fArr[0] = this.collapsedProgress2;
-                fArr[1] = z2 ? 1.0f : 0.0f;
-                this.valueAnimator = ValueAnimator.ofFloat(fArr);
+                this.valueAnimator = ValueAnimator.ofFloat(this.collapsedProgress2, z2 ? 1.0f : 0.0f);
             } else {
                 this.collapsedProgress2 = z2 ? 1.0f : 0.0f;
                 checkCollapsedProgres();
@@ -668,17 +668,18 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
             if (i >= this.items.size()) {
                 i = -1;
                 break;
-            } else if (this.items.get(i).dialogId == j) {
-                break;
-            } else {
-                i++;
             }
+            if (this.items.get(i).dialogId == j) {
+                break;
+            }
+            i++;
         }
         if (i >= 0) {
             if (i < this.layoutManager.findFirstCompletelyVisibleItemPosition()) {
                 this.layoutManager.scrollToPositionWithOffset(i, 0);
                 return true;
-            } else if (i > this.layoutManager.findLastCompletelyVisibleItemPosition()) {
+            }
+            if (i > this.layoutManager.findLastCompletelyVisibleItemPosition()) {
                 this.layoutManager.scrollToPositionWithOffset(i, 0, true);
                 return true;
             }
@@ -700,11 +701,11 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
     }
 
     public boolean scrollToFirst() {
-        if (this.layoutManager.findFirstVisibleItemPosition() != 0) {
-            this.recyclerListView.smoothScrollToPosition(0);
-            return true;
+        if (this.layoutManager.findFirstVisibleItemPosition() == 0) {
+            return false;
         }
-        return false;
+        this.recyclerListView.smoothScrollToPosition(0);
+        return true;
     }
 
     public void openStoryRecorder() {
@@ -725,9 +726,11 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
                     storyCell = storyCell2;
                     break;
                 }
-            } else if (storyCell2.dialogId == j) {
-                storyCell = storyCell2;
-                break;
+            } else {
+                if (storyCell2.dialogId == j) {
+                    storyCell = storyCell2;
+                    break;
+                }
             }
         }
         storyCell = null;
@@ -765,18 +768,18 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
                 this.overlayTextId = i;
                 String string = LocaleController.getString(str, i);
                 boolean isEmpty = TextUtils.isEmpty(string);
-                SpannableString spannableString = string;
+                String str2 = string;
                 if (!isEmpty) {
                     int indexOf = TextUtils.indexOf(string, "...");
-                    spannableString = string;
+                    str2 = string;
                     if (indexOf >= 0) {
                         SpannableString valueOf = SpannableString.valueOf(string);
                         this.ellipsizeSpanAnimator.wrap(valueOf, indexOf);
                         z = true;
-                        spannableString = valueOf;
+                        str2 = valueOf;
                     }
                 }
-                this.titleView.setText(spannableString, true ^ LocaleController.isRTL);
+                this.titleView.setText(str2, true ^ LocaleController.isRTL);
             }
         } else {
             this.hasOverlayText = false;
@@ -1001,7 +1004,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         }
 
         public void setDialogId(long j) {
-            TLRPC$User tLRPC$User;
+            TLRPC$Chat tLRPC$Chat;
             long j2 = this.dialogId;
             boolean z = j2 == j;
             if (!z && this.cancellable != null) {
@@ -1016,20 +1019,20 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
                 TLRPC$User user = MessagesController.getInstance(DialogStoriesCell.this.currentAccount).getUser(Long.valueOf(j));
                 this.user = user;
                 this.chat = null;
-                tLRPC$User = user;
+                tLRPC$Chat = user;
             } else {
                 TLRPC$Chat chat = MessagesController.getInstance(DialogStoriesCell.this.currentAccount).getChat(Long.valueOf(-j));
                 this.chat = chat;
                 this.user = null;
-                tLRPC$User = chat;
+                tLRPC$Chat = chat;
             }
-            if (tLRPC$User == null) {
+            if (tLRPC$Chat == null) {
                 this.textView.setText("");
                 this.avatarImage.clearImage();
                 return;
             }
-            this.avatarDrawable.setInfo(DialogStoriesCell.this.currentAccount, (TLObject) tLRPC$User);
-            this.avatarImage.setForUserOrChat(tLRPC$User, this.avatarDrawable);
+            this.avatarDrawable.setInfo(DialogStoriesCell.this.currentAccount, (TLObject) tLRPC$Chat);
+            this.avatarImage.setForUserOrChat(tLRPC$Chat, this.avatarDrawable);
             if (this.mini) {
                 return;
             }
@@ -1038,15 +1041,21 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
                 this.textView.setTextSize(10);
                 this.textView.setText(LocaleController.getString(R.string.FailedStory));
                 this.isUploadingState = false;
-            } else if (!Utilities.isNullOrEmpty(DialogStoriesCell.this.storiesController.getUploadingStories(j))) {
+                return;
+            }
+            if (!Utilities.isNullOrEmpty(DialogStoriesCell.this.storiesController.getUploadingStories(j))) {
                 this.textView.setTextSize(10);
                 StoriesUtilities.applyUploadingStr(this.textView, true, false);
                 this.isUploadingState = true;
-            } else if (DialogStoriesCell.this.storiesController.getEditingStory(j) != null) {
+                return;
+            }
+            if (DialogStoriesCell.this.storiesController.getEditingStory(j) != null) {
                 this.textView.setTextSize(10);
                 StoriesUtilities.applyUploadingStr(this.textView, true, false);
                 this.isUploadingState = true;
-            } else if (this.isSelf) {
+                return;
+            }
+            if (this.isSelf) {
                 if (z && this.isUploadingState && !this.mini) {
                     final SimpleTextView simpleTextView = this.textView;
                     createTextView();
@@ -1088,7 +1097,9 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
                 this.isUploadingState = false;
                 this.textView.setTextSize(10);
                 this.textView.setText(LocaleController.getString(R.string.MyStory));
-            } else if (this.user != null) {
+                return;
+            }
+            if (this.user != null) {
                 this.textView.setTextSize(11);
                 String str = this.user.first_name;
                 String trim = str != null ? str.trim() : "";
@@ -1106,11 +1117,11 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
                 }
                 this.textView.setText(Emoji.replaceEmoji(trim, this.textView.getPaint().getFontMetricsInt(), false));
                 this.textView.setRightDrawable((Drawable) null);
-            } else {
-                this.textView.setTextSize(11);
-                this.textView.setText(Emoji.replaceEmoji(this.chat.title, this.textView.getPaint().getFontMetricsInt(), false));
-                this.textView.setRightDrawable((Drawable) null);
+                return;
             }
+            this.textView.setTextSize(11);
+            this.textView.setText(Emoji.replaceEmoji(this.chat.title, this.textView.getPaint().getFontMetricsInt(), false));
+            this.textView.setRightDrawable((Drawable) null);
         }
 
         public void lambda$setDialogId$0() {
@@ -1126,8 +1137,9 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         }
 
         float getCy() {
-            float dp = AndroidUtilities.dp(28.0f);
-            return AndroidUtilities.lerp(AndroidUtilities.dp(5.0f), (ActionBar.getCurrentActionBarHeight() - dp) / 2.0f, DialogStoriesCell.this.collapsedProgress1) + (AndroidUtilities.lerp(AndroidUtilities.dp(48.0f), dp, this.progressToCollapsed) / 2.0f);
+            float dp = AndroidUtilities.dp(48.0f);
+            float dp2 = AndroidUtilities.dp(28.0f);
+            return AndroidUtilities.lerp(AndroidUtilities.dp(5.0f), (ActionBar.getCurrentActionBarHeight() - dp2) / 2.0f, DialogStoriesCell.this.collapsedProgress1) + (AndroidUtilities.lerp(dp, dp2, this.progressToCollapsed) / 2.0f);
         }
 
         @Override
@@ -1135,13 +1147,13 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
             float f;
             float f2;
             float f3;
+            float size;
+            boolean z;
+            Paint unreadCirclePaint;
             float f4;
             float f5;
             float f6;
             float f7;
-            float size;
-            boolean isCloseFriends;
-            Paint unreadCirclePaint;
             RadialProgress radialProgress;
             float dp = AndroidUtilities.dp(48.0f);
             float dp2 = AndroidUtilities.dp(28.0f);
@@ -1183,20 +1195,24 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
                 this.radialProgress = DialogStoriesCell.this.radialProgress;
             }
             ArrayList<StoriesController.UploadingStory> uploadingAndEditingStories = DialogStoriesCell.this.storiesController.getUploadingAndEditingStories(this.dialogId);
-            boolean z = (uploadingAndEditingStories == null || uploadingAndEditingStories.isEmpty()) ? false : true;
-            if (z || (this.progressWasDrawn && (radialProgress = this.radialProgress) != null && radialProgress.getAnimatedProgress() < 0.98f)) {
-                if (!z) {
-                    isCloseFriends = DialogStoriesCell.this.lastUploadingCloseFriends;
+            boolean z2 = (uploadingAndEditingStories == null || uploadingAndEditingStories.isEmpty()) ? false : true;
+            if (z2 || (this.progressWasDrawn && (radialProgress = this.radialProgress) != null && radialProgress.getAnimatedProgress() < 0.98f)) {
+                f = lerp3;
+                f2 = lerp2;
+                f3 = f9;
+                if (!z2) {
+                    z = DialogStoriesCell.this.lastUploadingCloseFriends;
                     size = 1.0f;
                 } else {
                     float f13 = 0.0f;
                     for (int i = 0; i < uploadingAndEditingStories.size(); i++) {
                         f13 += uploadingAndEditingStories.get(i).progress;
                     }
-                    size = f13 / uploadingAndEditingStories.size();
                     DialogStoriesCell dialogStoriesCell = DialogStoriesCell.this;
-                    isCloseFriends = uploadingAndEditingStories.get(uploadingAndEditingStories.size() - 1).isCloseFriends();
+                    boolean isCloseFriends = uploadingAndEditingStories.get(uploadingAndEditingStories.size() - 1).isCloseFriends();
                     dialogStoriesCell.lastUploadingCloseFriends = isCloseFriends;
+                    size = f13 / uploadingAndEditingStories.size();
+                    z = isCloseFriends;
                 }
                 invalidate();
                 if (this.radialProgress == null) {
@@ -1219,7 +1235,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
                     canvas.restore();
                 }
                 this.radialProgress.setDiff(0);
-                if (isCloseFriends) {
+                if (z) {
                     unreadCirclePaint = StoriesUtilities.getCloseFriendsPaint(this.avatarImage);
                 } else {
                     unreadCirclePaint = StoriesUtilities.getUnreadCirclePaint(this.avatarImage, true);
@@ -1234,10 +1250,6 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
                 this.progressWasDrawn = true;
                 DialogStoriesCell.this.drawCircleForce = true;
                 invalidate();
-                f = f9;
-                f2 = lerp3;
-                f3 = lerp;
-                f4 = measuredWidth;
             } else {
                 float f14 = this.failT.set(this.isFail);
                 if (this.drawAvatar) {
@@ -1260,87 +1272,77 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
                                 StoryCell.this.params.forceAnimateProgressToSegments = false;
                             }
                         });
-                        f5 = lerp;
                         ofFloat.setDuration(100L);
                         ofFloat.start();
-                    } else {
-                        f5 = lerp;
                     }
                     StoriesUtilities.AvatarStoryParams avatarStoryParams3 = this.params;
-                    float f15 = avatarStoryParams3.progressToSegments * f14;
-                    avatarStoryParams3.animate = !this.progressWasDrawn;
+                    f14 *= avatarStoryParams3.progressToSegments;
+                    avatarStoryParams3.animate = true ^ this.progressWasDrawn;
                     avatarStoryParams3.progressToArc = getArcProgress(this.cx, f8);
                     StoriesUtilities.AvatarStoryParams avatarStoryParams4 = this.params;
                     avatarStoryParams4.isLast = this.isLast;
                     avatarStoryParams4.isFirst = this.isFirst;
-                    avatarStoryParams4.alpha = 1.0f - f15;
-                    boolean z2 = this.isSelf;
-                    if (!z2 && this.crossfadeToDialog) {
+                    avatarStoryParams4.alpha = 1.0f - f14;
+                    boolean z3 = this.isSelf;
+                    if (!z3 && this.crossfadeToDialog) {
                         avatarStoryParams4.crossfadeToDialog = this.crossfadeToDialogId;
                         avatarStoryParams4.crossfadeToDialogProgress = this.progressToCollapsed2;
                     } else {
                         avatarStoryParams4.crossfadeToDialog = 0L;
                     }
-                    if (z2) {
-                        f4 = measuredWidth;
-                        f6 = f11;
-                        f3 = f5;
-                        f7 = f10;
-                        f = f9;
-                        f2 = lerp3;
+                    if (z3) {
+                        f5 = f11;
+                        f6 = f10;
+                        f7 = lerp3;
+                        f4 = lerp2;
+                        f3 = f9;
                         StoriesUtilities.drawAvatarWithStory(this.dialogId, canvas, this.avatarImage, DialogStoriesCell.this.storiesController.hasSelfStories(), this.params);
                     } else {
-                        f = f9;
-                        f2 = lerp3;
-                        f3 = f5;
-                        f4 = measuredWidth;
-                        f6 = f11;
-                        f7 = f10;
+                        f5 = f11;
+                        f6 = f10;
+                        f7 = lerp3;
+                        f4 = lerp2;
+                        f3 = f9;
                         long j = this.dialogId;
                         StoriesUtilities.drawAvatarWithStory(j, canvas, this.avatarImage, DialogStoriesCell.this.storiesController.hasStories(j), this.params);
                     }
-                    if (f15 > 0.0f) {
+                    f = f7;
+                    if (f14 > 0.0f) {
                         Paint errorPaint = StoriesUtilities.getErrorPaint(this.avatarImage);
                         errorPaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-                        errorPaint.setAlpha((int) (255.0f * f15));
-                        canvas.drawCircle(f7, f6, (f8 + AndroidUtilities.dp(4.0f)) * this.params.getScale(), errorPaint);
+                        errorPaint.setAlpha((int) (255.0f * f14));
+                        canvas.drawCircle(f6, f5, (f8 + AndroidUtilities.dp(4.0f)) * this.params.getScale(), errorPaint);
                     }
-                    f14 = f15;
                 } else {
-                    f = f9;
-                    f2 = lerp3;
-                    f3 = lerp;
-                    f4 = measuredWidth;
+                    f = lerp3;
+                    f4 = lerp2;
+                    f3 = f9;
                 }
                 this.progressWasDrawn = false;
                 if (this.drawAvatar) {
                     canvas.save();
-                    float f16 = 1.0f - clamp;
-                    canvas.scale(f16, f16, this.cx + AndroidUtilities.dp(16.0f), this.cy + AndroidUtilities.dp(16.0f));
+                    float f15 = 1.0f - clamp;
+                    canvas.scale(f15, f15, this.cx + AndroidUtilities.dp(16.0f), this.cy + AndroidUtilities.dp(16.0f));
                     drawPlus(canvas, this.cx, this.cy, 1.0f);
                     drawFail(canvas, this.cx, this.cy, f14);
                     canvas.restore();
                 }
+                f2 = f4;
             }
             canvas.restore();
             if (this.crossfadeToDialog && this.progressToCollapsed2 > 0.0f) {
-                float f17 = f3;
-                this.crossfageToAvatarImage.setImageCoords(lerp2, f2, f17, f17);
+                this.crossfageToAvatarImage.setImageCoords(f2, f, lerp, lerp);
                 this.crossfageToAvatarImage.setAlpha(this.progressToCollapsed2);
                 this.crossfageToAvatarImage.draw(canvas);
             }
-            this.textViewContainer.setTranslationY(f + (AndroidUtilities.dp(7.0f) * (1.0f - this.progressToCollapsed)));
-            this.textViewContainer.setTranslationX(lerp2 - f4);
+            this.textViewContainer.setTranslationY(f3 + (AndroidUtilities.dp(7.0f) * (1.0f - this.progressToCollapsed)));
+            this.textViewContainer.setTranslationX(f2 - measuredWidth);
             if (!this.mini) {
                 if (this.isSelf) {
                     this.textAlpha = 1.0f;
                 } else {
                     StoriesUtilities.AvatarStoryParams avatarStoryParams5 = this.params;
-                    if (avatarStoryParams5.progressToSate != 1.0f) {
-                        int i2 = avatarStoryParams5.currentState;
-                    } else {
-                        int i3 = avatarStoryParams5.currentState;
-                    }
+                    float f16 = avatarStoryParams5.progressToSate;
                     this.textAlpha = avatarStoryParams5.globalState == 2 ? 0.7f : 1.0f;
                 }
                 this.textViewContainer.setAlpha(this.textAlphaTransition * this.textAlpha);
@@ -1403,11 +1405,9 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         }
 
         private float getArcProgress(float f, float f2) {
-            float lerp;
-            float dpf2;
             if (!this.isLast && DialogStoriesCell.this.overscrollPrgoress <= 0.0f) {
                 if (AndroidUtilities.lerp(getMeasuredWidth(), AndroidUtilities.dp(18.0f), CubicBezierInterpolator.EASE_OUT.getInterpolation(this.progressToCollapsed)) < (f2 + AndroidUtilities.dpf2(3.5f)) * 2.0f) {
-                    return ((float) Math.toDegrees(Math.acos((lerp / 2.0f) / dpf2))) * 2.0f;
+                    return ((float) Math.toDegrees(Math.acos((r4 / 2.0f) / r5))) * 2.0f;
                 }
             }
             return 0.0f;
@@ -1544,7 +1544,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         }
 
         public void setCrossfadeTo(long j) {
-            TLRPC$User tLRPC$User;
+            TLRPC$Chat tLRPC$Chat;
             if (this.crossfadeToDialogId != j) {
                 this.crossfadeToDialogId = j;
                 boolean z = j != -1;
@@ -1557,16 +1557,16 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
                     TLRPC$User user = MessagesController.getInstance(DialogStoriesCell.this.currentAccount).getUser(Long.valueOf(j));
                     this.user = user;
                     this.chat = null;
-                    tLRPC$User = user;
+                    tLRPC$Chat = user;
                 } else {
                     TLRPC$Chat chat = MessagesController.getInstance(DialogStoriesCell.this.currentAccount).getChat(Long.valueOf(-j));
                     this.chat = chat;
                     this.user = null;
-                    tLRPC$User = chat;
+                    tLRPC$Chat = chat;
                 }
-                if (tLRPC$User != null) {
-                    this.crossfadeAvatarDrawable.setInfo(DialogStoriesCell.this.currentAccount, (TLObject) tLRPC$User);
-                    this.crossfageToAvatarImage.setForUserOrChat(tLRPC$User, this.crossfadeAvatarDrawable);
+                if (tLRPC$Chat != null) {
+                    this.crossfadeAvatarDrawable.setInfo(DialogStoriesCell.this.currentAccount, (TLObject) tLRPC$Chat);
+                    this.crossfageToAvatarImage.setForUserOrChat(tLRPC$Chat, this.crossfadeAvatarDrawable);
                 }
             }
         }
@@ -1583,8 +1583,12 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
                 int color = Theme.getColor(DialogStoriesCell.this.type == 0 ? Theme.key_actionBarDefault : Theme.key_actionBarDefaultArchived);
                 if (this.lastColor != color) {
                     this.lastColor = color;
-                    mutate.setColorFilter(new PorterDuffColorFilter(ColorUtils.blendARGB(Theme.getColor(DialogStoriesCell.this.type == 0 ? Theme.key_actionBarDefaultTitle : Theme.key_actionBarDefaultArchivedTitle), color, 0.1f), PorterDuff.Mode.MULTIPLY));
-                    mutate2.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
+                    int color2 = Theme.getColor(DialogStoriesCell.this.type == 0 ? Theme.key_actionBarDefaultTitle : Theme.key_actionBarDefaultArchivedTitle);
+                    Drawable drawable = mutate;
+                    int blendARGB = ColorUtils.blendARGB(color2, color, 0.1f);
+                    PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+                    drawable.setColorFilter(new PorterDuffColorFilter(blendARGB, mode));
+                    mutate2.setColorFilter(new PorterDuffColorFilter(color, mode));
                 }
                 super.draw(canvas);
             }

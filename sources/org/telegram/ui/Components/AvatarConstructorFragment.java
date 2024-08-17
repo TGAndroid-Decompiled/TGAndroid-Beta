@@ -57,6 +57,7 @@ import org.telegram.ui.Components.ColorPicker;
 import org.telegram.ui.Components.ImageUpdater;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.SelectAnimatedEmojiDialog;
+
 public class AvatarConstructorFragment extends BaseFragment {
     public static final int[][] defaultColors = {new int[]{-11694593, -13910017, -14622003, -15801871}, new int[]{-10569989, -14692629, -12191817, -14683687}, new int[]{-16133536, -10560448, -4070106, -8331477}, new int[]{-693938, -690388, -11246, -22717}, new int[]{-636796, -1090751, -612560, -35006}, new int[]{-439392, -304000, -19910, -98718}, new int[]{-8160001, -5217281, -36183, -1938945}};
     CanvasButton avatarClickableArea;
@@ -272,18 +273,15 @@ public class AvatarConstructorFragment extends BaseFragment {
                         int i2 = avatarConstructorFragment2.expandedHeight - avatarConstructorFragment2.collapsedHeight;
                         int i3 = AndroidUtilities.statusBarHeight;
                         int currentActionBarHeight = ActionBar.getCurrentActionBarHeight();
-                        AvatarConstructorFragment avatarConstructorFragment3 = AvatarConstructorFragment.this;
-                        float lerp = AndroidUtilities.lerp(y, i3 + ((currentActionBarHeight - avatarConstructorFragment3.collapsedHeight) >> 1), avatarConstructorFragment3.keyboardVisibleProgress);
+                        float lerp = AndroidUtilities.lerp(y, i3 + ((currentActionBarHeight - r6.collapsedHeight) >> 1), AvatarConstructorFragment.this.keyboardVisibleProgress);
                         canvas.translate(x, lerp);
                         AvatarConstructorFragment.this.previewView.draw(canvas);
-                        RectF rectF = AndroidUtilities.rectTmp;
                         float f = i2 / 2.0f;
-                        AvatarConstructorFragment avatarConstructorFragment4 = AvatarConstructorFragment.this;
-                        rectF.set(x, lerp - (avatarConstructorFragment4.progressToExpand * f), avatarConstructorFragment4.previewView.getMeasuredWidth() + x, AvatarConstructorFragment.this.previewView.getMeasuredHeight() + lerp + (f * AvatarConstructorFragment.this.progressToExpand));
+                        AndroidUtilities.rectTmp.set(x, lerp - (AvatarConstructorFragment.this.progressToExpand * f), r5.previewView.getMeasuredWidth() + x, AvatarConstructorFragment.this.previewView.getMeasuredHeight() + lerp + (f * AvatarConstructorFragment.this.progressToExpand));
                         float f2 = x + AvatarConstructorFragment.this.previewView.cx;
                         float f3 = lerp + AvatarConstructorFragment.this.previewView.cy;
-                        AvatarConstructorFragment avatarConstructorFragment5 = AvatarConstructorFragment.this;
-                        avatarConstructorFragment5.avatarClickableArea.setRect((int) (f2 - avatarConstructorFragment5.previewView.size), (int) (f3 - AvatarConstructorFragment.this.previewView.size), (int) (f2 + AvatarConstructorFragment.this.previewView.size), (int) (f3 + AvatarConstructorFragment.this.previewView.size));
+                        AvatarConstructorFragment avatarConstructorFragment3 = AvatarConstructorFragment.this;
+                        avatarConstructorFragment3.avatarClickableArea.setRect((int) (f2 - avatarConstructorFragment3.previewView.size), (int) (f3 - AvatarConstructorFragment.this.previewView.size), (int) (f2 + AvatarConstructorFragment.this.previewView.size), (int) (f3 + AvatarConstructorFragment.this.previewView.size));
                         canvas.restore();
                     }
                     canvas.restoreToCount(save);
@@ -521,22 +519,19 @@ public class AvatarConstructorFragment extends BaseFragment {
             create.redPositive();
             return;
         }
-        finishFragment();
+        lambda$onBackPressed$308();
     }
 
     public void lambda$discardEditor$2(DialogInterface dialogInterface, int i) {
-        finishFragment();
+        lambda$onBackPressed$308();
     }
 
     public void createKeyboardVisibleAnimator(final boolean z) {
         if (this.isLandscapeMode) {
             return;
         }
-        float[] fArr = new float[2];
-        fArr[0] = this.keyboardVisibleProgress;
         final float f = 0.0f;
-        fArr[1] = z ? 1.0f : 0.0f;
-        this.keyboardVisibilityAnimator = ValueAnimator.ofFloat(fArr);
+        this.keyboardVisibilityAnimator = ValueAnimator.ofFloat(this.keyboardVisibleProgress, z ? 1.0f : 0.0f);
         final float f2 = ((this.expandedHeight - this.collapsedHeight) - AndroidUtilities.statusBarHeight) * this.progressToExpand;
         if (z) {
             this.previewView.setExpanded(false);
@@ -588,7 +583,7 @@ public class AvatarConstructorFragment extends BaseFragment {
             delegate.onDone(previewView.backgroundGradient, previewView.documentId, previewView.document, previewView);
         }
         if (this.finishOnDone) {
-            finishFragment();
+            lambda$onBackPressed$308();
         }
     }
 
@@ -597,10 +592,7 @@ public class AvatarConstructorFragment extends BaseFragment {
             return;
         }
         cancelExpandAnimator();
-        float[] fArr = new float[2];
-        fArr[0] = this.progressToExpand;
-        fArr[1] = z ? 1.0f : 0.0f;
-        this.expandAnimator = ValueAnimator.ofFloat(fArr);
+        this.expandAnimator = ValueAnimator.ofFloat(this.progressToExpand, z ? 1.0f : 0.0f);
         if (z2) {
             this.previewView.overrideExpandProgress = this.progressToExpand;
             if (Build.VERSION.SDK_INT >= 23) {
@@ -806,8 +798,7 @@ public class AvatarConstructorFragment extends BaseFragment {
             this.cx = AndroidUtilities.lerp(this.cx, (getMeasuredWidth() - AndroidUtilities.dp(12.0f)) - AndroidUtilities.dp(21.0f), AvatarConstructorFragment.this.keyboardVisibleProgress);
             canvas.save();
             AvatarConstructorFragment avatarConstructorFragment = AvatarConstructorFragment.this;
-            int i = avatarConstructorFragment.expandedHeight - avatarConstructorFragment.collapsedHeight;
-            canvas.clipRect(0.0f, (-i) / 2.0f, getMeasuredWidth(), getMeasuredHeight() + ((i / 2.0f) * AvatarConstructorFragment.this.progressToExpand));
+            canvas.clipRect(0.0f, (-r3) / 2.0f, getMeasuredWidth(), getMeasuredHeight() + (((avatarConstructorFragment.expandedHeight - avatarConstructorFragment.collapsedHeight) / 2.0f) * AvatarConstructorFragment.this.progressToExpand));
             BackgroundGradient backgroundGradient = this.backgroundGradient;
             if (backgroundGradient != null) {
                 this.gradientTools.setColors(backgroundGradient.color1, backgroundGradient.color2, backgroundGradient.color3, backgroundGradient.color4);
@@ -903,12 +894,12 @@ public class AvatarConstructorFragment extends BaseFragment {
         public ImageReceiver getImageReceiver() {
             ImageReceiver imageReceiver = this.backupImageView.getImageReceiver();
             AnimatedEmojiDrawable animatedEmojiDrawable = this.backupImageView.animatedEmojiDrawable;
-            if (animatedEmojiDrawable != null) {
-                ImageReceiver imageReceiver2 = animatedEmojiDrawable.getImageReceiver();
-                this.backupImageView.animatedEmojiDrawable.setColorFilter(this.colorFilter);
-                return imageReceiver2;
+            if (animatedEmojiDrawable == null) {
+                return imageReceiver;
             }
-            return imageReceiver;
+            ImageReceiver imageReceiver2 = animatedEmojiDrawable.getImageReceiver();
+            this.backupImageView.animatedEmojiDrawable.setColorFilter(this.colorFilter);
+            return imageReceiver2;
         }
 
         public boolean hasAnimation() {
@@ -1050,28 +1041,27 @@ public class AvatarConstructorFragment extends BaseFragment {
         }
 
         public void selectGradient(BackgroundGradient backgroundGradient) {
-            boolean z = false;
             int i = 0;
             while (true) {
-                if (i >= this.gradients.size()) {
-                    break;
-                } else if (this.gradients.get(i).equals(backgroundGradient)) {
-                    this.selectedItemId = this.gradients.get(i).stableId;
-                    z = true;
-                    break;
-                } else {
+                if (i < this.gradients.size()) {
+                    if (this.gradients.get(i).equals(backgroundGradient)) {
+                        this.selectedItemId = this.gradients.get(i).stableId;
+                        break;
+                    }
                     i++;
+                } else {
+                    this.customSelectedGradient = backgroundGradient;
+                    this.selectedItemId = 1;
+                    break;
                 }
-            }
-            if (!z) {
-                this.customSelectedGradient = backgroundGradient;
-                this.selectedItemId = 1;
             }
             this.adapter.notifyDataSetChanged();
         }
     }
 
     public void showColorPicker() {
+        boolean z = false;
+        boolean z2 = true;
         if (this.bottomSheet != null) {
             return;
         }
@@ -1081,7 +1071,7 @@ public class AvatarConstructorFragment extends BaseFragment {
         BackgroundGradient backgroundGradient = this.previewView.backgroundGradient;
         final boolean[] zArr = {false};
         AndroidUtilities.requestAdjustNothing(getParentActivity(), getClassGuid());
-        BottomSheet bottomSheet = new BottomSheet(getContext(), true) {
+        BottomSheet bottomSheet = new BottomSheet(getContext(), z2) {
             @Override
             public void dismiss() {
                 super.dismiss();
@@ -1124,7 +1114,7 @@ public class AvatarConstructorFragment extends BaseFragment {
             }
         }).alpha(1.0f).setDuration(200L).start();
         this.colorPickerGradient = new BackgroundGradient();
-        ColorPicker colorPicker = new ColorPicker(getContext(), false, new ColorPicker.ColorPickerDelegate() {
+        ColorPicker colorPicker = new ColorPicker(getContext(), z, new ColorPicker.ColorPickerDelegate() {
             @Override
             public void deleteTheme() {
                 ColorPicker.ColorPickerDelegate.CC.$default$deleteTheme(this);
@@ -1136,13 +1126,13 @@ public class AvatarConstructorFragment extends BaseFragment {
             }
 
             @Override
-            public void openThemeCreate(boolean z) {
-                ColorPicker.ColorPickerDelegate.CC.$default$openThemeCreate(this, z);
+            public void openThemeCreate(boolean z3) {
+                ColorPicker.ColorPickerDelegate.CC.$default$openThemeCreate(this, z3);
             }
 
             @Override
-            public final void setColor(int i, int i2, boolean z) {
-                AvatarConstructorFragment.this.lambda$showColorPicker$4(i, i2, z);
+            public final void setColor(int i, int i2, boolean z3) {
+                AvatarConstructorFragment.this.lambda$showColorPicker$4(i, i2, z3);
             }
         }) {
             @Override
@@ -1279,11 +1269,11 @@ public class AvatarConstructorFragment extends BaseFragment {
             if (this == obj) {
                 return true;
             }
-            if (obj instanceof BackgroundGradient) {
-                BackgroundGradient backgroundGradient = (BackgroundGradient) obj;
-                return this.color1 == backgroundGradient.color1 && this.color2 == backgroundGradient.color2 && this.color3 == backgroundGradient.color3 && this.color4 == backgroundGradient.color4;
+            if (!(obj instanceof BackgroundGradient)) {
+                return false;
             }
-            return false;
+            BackgroundGradient backgroundGradient = (BackgroundGradient) obj;
+            return this.color1 == backgroundGradient.color1 && this.color2 == backgroundGradient.color2 && this.color3 == backgroundGradient.color3 && this.color4 == backgroundGradient.color4;
         }
 
         public int hashCode() {
@@ -1363,8 +1353,7 @@ public class AvatarConstructorFragment extends BaseFragment {
                         this.addIcon = drawable;
                         drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_chat_emojiSearchIcon), PorterDuff.Mode.MULTIPLY));
                     }
-                    Drawable drawable2 = this.addIcon;
-                    drawable2.setBounds((int) (measuredWidth - (drawable2.getIntrinsicWidth() / 2.0f)), (int) (measuredHeight - (this.addIcon.getIntrinsicHeight() / 2.0f)), (int) (measuredWidth + (this.addIcon.getIntrinsicWidth() / 2.0f)), (int) (measuredHeight + (this.addIcon.getIntrinsicHeight() / 2.0f)));
+                    this.addIcon.setBounds((int) (measuredWidth - (r2.getIntrinsicWidth() / 2.0f)), (int) (measuredHeight - (this.addIcon.getIntrinsicHeight() / 2.0f)), (int) (measuredWidth + (this.addIcon.getIntrinsicWidth() / 2.0f)), (int) (measuredHeight + (this.addIcon.getIntrinsicHeight() / 2.0f)));
                     this.addIcon.draw(canvas);
                     return;
                 }
@@ -1414,10 +1403,7 @@ public class AvatarConstructorFragment extends BaseFragment {
                     valueAnimator.removeAllListeners();
                     this.lightProgressAnimator.cancel();
                 }
-                float[] fArr = new float[2];
-                fArr[0] = this.progressToLightStatusBar;
-                fArr[1] = z ? 0.0f : 1.0f;
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(this.progressToLightStatusBar, z ? 0.0f : 1.0f);
                 this.lightProgressAnimator = ofFloat;
                 ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
@@ -1512,8 +1498,7 @@ public class AvatarConstructorFragment extends BaseFragment {
                 return;
             }
             avatarConstructorFragment.cancelExpandAnimator();
-            AvatarConstructorFragment avatarConstructorFragment2 = AvatarConstructorFragment.this;
-            AvatarConstructorFragment.this.setProgressToExpand(Utilities.clamp(avatarConstructorFragment2.progressToExpand - (i4 / avatarConstructorFragment2.expandedHeight), 1.0f, 0.0f), true);
+            AvatarConstructorFragment.this.setProgressToExpand(Utilities.clamp(AvatarConstructorFragment.this.progressToExpand - (i4 / r1.expandedHeight), 1.0f, 0.0f), true);
         }
 
         @Override
@@ -1523,8 +1508,7 @@ public class AvatarConstructorFragment extends BaseFragment {
                 return;
             }
             avatarConstructorFragment.cancelExpandAnimator();
-            AvatarConstructorFragment avatarConstructorFragment2 = AvatarConstructorFragment.this;
-            AvatarConstructorFragment.this.setProgressToExpand(Utilities.clamp(avatarConstructorFragment2.progressToExpand - (i2 / avatarConstructorFragment2.expandedHeight), 1.0f, 0.0f), true);
+            AvatarConstructorFragment.this.setProgressToExpand(Utilities.clamp(AvatarConstructorFragment.this.progressToExpand - (i2 / r3.expandedHeight), 1.0f, 0.0f), true);
             iArr[1] = i2;
         }
 

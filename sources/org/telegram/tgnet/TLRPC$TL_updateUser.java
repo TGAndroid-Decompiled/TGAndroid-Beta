@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_updateUser extends TLRPC$Update {
     public long user_id;
 

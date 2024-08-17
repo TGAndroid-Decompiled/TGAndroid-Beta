@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public abstract class TLRPC$DialogFilter extends TLObject {
     public boolean bots;
     public boolean broadcasts;

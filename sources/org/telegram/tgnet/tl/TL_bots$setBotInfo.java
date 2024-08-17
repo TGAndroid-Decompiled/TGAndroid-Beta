@@ -4,6 +4,7 @@ import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Bool;
 import org.telegram.tgnet.TLRPC$InputUser;
+
 public class TL_bots$setBotInfo extends TLObject {
     public String about;
     public TLRPC$InputUser bot;

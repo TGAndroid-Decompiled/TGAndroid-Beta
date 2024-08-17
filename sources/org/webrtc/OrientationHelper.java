@@ -2,6 +2,7 @@ package org.webrtc;
 
 import android.view.OrientationEventListener;
 import org.telegram.messenger.ApplicationLoader;
+
 public class OrientationHelper {
     private static final int ORIENTATION_HYSTERESIS = 5;
     public static volatile int cameraOrientation;
@@ -27,23 +28,22 @@ public class OrientationHelper {
     }
 
     public int roundOrientation(int i, int i2) {
-        boolean z = true;
         if (i2 != -1) {
             int abs = Math.abs(i - i2);
             if (Math.min(abs, 360 - abs) < 50) {
-                z = false;
+                return i2;
             }
         }
-        return z ? (((i + 45) / 90) * 90) % 360 : i2;
+        return (((i + 45) / 90) * 90) % 360;
     }
 
     public void start() {
         if (this.orientationEventListener.canDetectOrientation()) {
             this.orientationEventListener.enable();
-            return;
+        } else {
+            this.orientationEventListener.disable();
+            this.orientationEventListener = null;
         }
-        this.orientationEventListener.disable();
-        this.orientationEventListener = null;
     }
 
     public void stop() {

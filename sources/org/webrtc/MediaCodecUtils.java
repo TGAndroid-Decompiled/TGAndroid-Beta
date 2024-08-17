@@ -10,6 +10,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import org.telegram.messenger.FileLog;
+
 class MediaCodecUtils {
     static final int COLOR_QCOM_FORMATYUV420PackedSemiPlanar32m = 2141391876;
     static final int COLOR_QCOM_FORMATYVU420PackedSemiPlanar16m4ka = 2141391874;
@@ -61,7 +62,6 @@ class MediaCodecUtils {
     }
 
     public static Integer selectColorFormat(int[] iArr, MediaCodecInfo.CodecCapabilities codecCapabilities) {
-        int[] iArr2;
         for (int i : iArr) {
             for (int i2 : codecCapabilities.colorFormats) {
                 if (i2 == i) {

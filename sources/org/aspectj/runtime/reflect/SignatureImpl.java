@@ -3,6 +3,7 @@ package org.aspectj.runtime.reflect;
 import java.lang.ref.SoftReference;
 import java.util.StringTokenizer;
 import org.aspectj.lang.Signature;
+
 abstract class SignatureImpl implements Signature {
     private static boolean useCache = true;
     Class declaringType;

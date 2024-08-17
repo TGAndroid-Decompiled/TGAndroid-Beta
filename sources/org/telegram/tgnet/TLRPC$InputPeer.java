@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public abstract class TLRPC$InputPeer extends TLObject {
     public long access_hash;
     public long channel_id;

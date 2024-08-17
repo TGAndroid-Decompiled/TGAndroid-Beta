@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.SimpleItemAnimator;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
 public class SideMenultItemAnimator extends SimpleItemAnimator {
     private static TimeInterpolator sDefaultInterpolator;
     private RecyclerListView parentRecyclerView;
@@ -372,9 +373,10 @@ public class SideMenultItemAnimator extends SimpleItemAnimator {
         boolean z = false;
         if (changeInfo.newHolder == viewHolder) {
             changeInfo.newHolder = null;
-        } else if (changeInfo.oldHolder != viewHolder) {
-            return false;
         } else {
+            if (changeInfo.oldHolder != viewHolder) {
+                return false;
+            }
             changeInfo.oldHolder = null;
             z = true;
         }
@@ -394,7 +396,8 @@ public class SideMenultItemAnimator extends SimpleItemAnimator {
             size--;
             if (size < 0) {
                 break;
-            } else if (this.mPendingMoves.get(size).holder == viewHolder) {
+            }
+            if (this.mPendingMoves.get(size).holder == viewHolder) {
                 view.setTranslationY(0.0f);
                 view.setTranslationX(0.0f);
                 dispatchMoveFinished(viewHolder);
@@ -423,7 +426,8 @@ public class SideMenultItemAnimator extends SimpleItemAnimator {
             while (true) {
                 if (size4 < 0) {
                     break;
-                } else if (arrayList2.get(size4).holder == viewHolder) {
+                }
+                if (arrayList2.get(size4).holder == viewHolder) {
                     view.setTranslationY(0.0f);
                     view.setTranslationX(0.0f);
                     dispatchMoveFinished(viewHolder);
@@ -463,20 +467,20 @@ public class SideMenultItemAnimator extends SimpleItemAnimator {
     }
 
     public boolean isAnimatingChild(View view) {
-        if (this.shouldClipChildren) {
-            int size = this.mRemoveAnimations.size();
-            for (int i = 0; i < size; i++) {
-                if (this.mRemoveAnimations.get(i).itemView == view) {
-                    return true;
-                }
-            }
-            int size2 = this.mAddAnimations.size();
-            for (int i2 = 0; i2 < size2; i2++) {
-                if (this.mAddAnimations.get(i2).itemView == view) {
-                    return true;
-                }
-            }
+        if (!this.shouldClipChildren) {
             return false;
+        }
+        int size = this.mRemoveAnimations.size();
+        for (int i = 0; i < size; i++) {
+            if (this.mRemoveAnimations.get(i).itemView == view) {
+                return true;
+            }
+        }
+        int size2 = this.mAddAnimations.size();
+        for (int i2 = 0; i2 < size2; i2++) {
+            if (this.mAddAnimations.get(i2).itemView == view) {
+                return true;
+            }
         }
         return false;
     }
@@ -487,27 +491,27 @@ public class SideMenultItemAnimator extends SimpleItemAnimator {
 
     public int getAnimationClipTop() {
         int i = 0;
-        if (this.shouldClipChildren) {
-            int i2 = Integer.MAX_VALUE;
-            if (!this.mRemoveAnimations.isEmpty()) {
-                int size = this.mRemoveAnimations.size();
-                while (i < size) {
-                    i2 = Math.min(i2, this.mRemoveAnimations.get(i).itemView.getTop());
-                    i++;
-                }
-                return i2;
-            } else if (this.mAddAnimations.isEmpty()) {
-                return 0;
-            } else {
-                int size2 = this.mAddAnimations.size();
-                while (i < size2) {
-                    i2 = Math.min(i2, this.mAddAnimations.get(i).itemView.getTop());
-                    i++;
-                }
-                return i2;
-            }
+        if (!this.shouldClipChildren) {
+            return 0;
         }
-        return 0;
+        int i2 = Integer.MAX_VALUE;
+        if (!this.mRemoveAnimations.isEmpty()) {
+            int size = this.mRemoveAnimations.size();
+            while (i < size) {
+                i2 = Math.min(i2, this.mRemoveAnimations.get(i).itemView.getTop());
+                i++;
+            }
+            return i2;
+        }
+        if (this.mAddAnimations.isEmpty()) {
+            return 0;
+        }
+        int size2 = this.mAddAnimations.size();
+        while (i < size2) {
+            i2 = Math.min(i2, this.mAddAnimations.get(i).itemView.getTop());
+            i++;
+        }
+        return i2;
     }
 
     void dispatchFinishedWhenDone() {

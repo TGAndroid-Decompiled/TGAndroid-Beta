@@ -17,6 +17,7 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.StarParticlesView;
 import org.telegram.ui.LauncherIconController;
+
 public class PremiumAppIconsPreviewView extends FrameLayout implements PagerHeaderView {
     private AdaptiveIconImageView bottomLeftIcon;
     private AdaptiveIconImageView bottomRightIcon;
@@ -27,7 +28,6 @@ public class PremiumAppIconsPreviewView extends FrameLayout implements PagerHead
 
     public PremiumAppIconsPreviewView(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
-        LauncherIconController.LauncherIcon[] values;
         this.icons = new ArrayList();
         this.resourcesProvider = resourcesProvider;
         for (LauncherIconController.LauncherIcon launcherIcon : LauncherIconController.LauncherIcon.values()) {
@@ -41,12 +41,12 @@ public class PremiumAppIconsPreviewView extends FrameLayout implements PagerHead
         if (this.icons.size() < 3) {
             FileLog.e(new IllegalArgumentException("There should be at least 3 premium icons!"));
             this.isEmpty = true;
-            return;
+        } else {
+            this.topIcon = newIconView(context, 0);
+            this.bottomLeftIcon = newIconView(context, 1);
+            this.bottomRightIcon = newIconView(context, 2);
+            setClipChildren(false);
         }
-        this.topIcon = newIconView(context, 0);
-        this.bottomLeftIcon = newIconView(context, 1);
-        this.bottomRightIcon = newIconView(context, 2);
-        setClipChildren(false);
     }
 
     private AdaptiveIconImageView newIconView(Context context, int i) {
@@ -147,8 +147,8 @@ public class PremiumAppIconsPreviewView extends FrameLayout implements PagerHead
             float f = -dp;
             this.drawable.rect.set(f, f, getWidth() + dp, getHeight() + dp);
             canvas.save();
-            float f2 = this.particlesScale;
-            canvas.scale(1.0f - f2, 1.0f - f2, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
+            float f2 = 1.0f - this.particlesScale;
+            canvas.scale(f2, f2, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
             this.drawable.onDraw(canvas);
             canvas.restore();
             invalidate();
