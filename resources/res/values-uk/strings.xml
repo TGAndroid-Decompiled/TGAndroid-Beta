@@ -9,7 +9,7 @@
     <string name="AddEmailSubtitle">Ви отримуватимете коди для входу в Telegram на е-пошту, а не через SMS. Будь ласка, додайте адресу, до якої ви маєте доступ.</string>
     <string name="AddEmailTitle">Вкажіть е-пошту для входу</string>
     <string name="AppName">Telegram</string>
-    <string name="AppNameBeta">Telegram</string>
+    <string name="AppNameBeta">Telegram Beta</string>
     <string name="CallAvailableIn">Ви зможете зробити запит на виклик за %1$d:%2$02d</string>
     <string name="CallText">Telegram зателефонує вам за %1$d:%2$02d</string>
     <string name="Calling">Телефонуємо вам...</string>

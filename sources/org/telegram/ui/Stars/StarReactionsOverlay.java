@@ -161,12 +161,14 @@ public class StarReactionsOverlay extends View {
         if (chatMessageCell2 != null) {
             chatMessageCell2.setScrimReaction(null);
             this.cell.setInvalidateListener(null);
+            this.cell.invalidate();
         }
         this.cell = chatMessageCell;
         this.messageId = (chatMessageCell == null || chatMessageCell.getPrimaryMessageObject() == null) ? 0 : chatMessageCell.getPrimaryMessageObject().getId();
         ChatMessageCell chatMessageCell3 = this.cell;
         if (chatMessageCell3 != null) {
-            chatMessageCell3.setInvalidateListener(new Runnable() {
+            chatMessageCell3.invalidate();
+            this.cell.setInvalidateListener(new Runnable() {
                 @Override
                 public final void run() {
                     StarReactionsOverlay.this.invalidate();

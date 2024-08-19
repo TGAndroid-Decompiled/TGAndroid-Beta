@@ -121,7 +121,7 @@
     <string name="AlternativeOptions">خيارات بديلة</string>
     <string name="AlwaysShowPopup">إظهارها دائمًا</string>
     <string name="AppName">تيليجرام</string>
-    <string name="AppNameBeta">تيليجرام</string>
+    <string name="AppNameBeta">(Beta) تيليجرام</string>
     <string name="AppUpdate">تحديث تيليجرام</string>
     <string name="AppUpdateChangelogEmpty">**ما الجديد؟**\n\n• إصلاح للمشاكل وتحسينات أخرى.</string>
     <string name="AppUpdateDownloadNow">تنزيله الآن</string>
