@@ -212,7 +212,7 @@ public class StatisticPostInfoCell extends FrameLayout {
         if (messageObject.isMusic()) {
             charSequence = String.format("%s, %s", messageObject.getMusicTitle().trim(), messageObject.getMusicAuthor().trim());
         } else if (messageObject.isStory()) {
-            charSequence = LocaleController.getString("Story", R.string.Story);
+            charSequence = LocaleController.getString(R.string.Story);
         } else {
             CharSequence charSequence2 = messageObject.caption;
             charSequence = charSequence2 != null ? charSequence2 : messageObject.messageText;

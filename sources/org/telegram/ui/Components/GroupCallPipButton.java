@@ -271,16 +271,16 @@ public class GroupCallPipButton extends FrameLayout implements NotificationCente
             }
             VoIPService sharedInstance = VoIPService.getSharedInstance();
             if (sharedInstance != null && ChatObject.isChannelOrGiga(sharedInstance.getChat())) {
-                string = LocaleController.getString("VoipChannelVoiceChat", R.string.VoipChannelVoiceChat);
+                string = LocaleController.getString(R.string.VoipChannelVoiceChat);
             } else {
-                string = LocaleController.getString("VoipGroupVoiceChat", R.string.VoipGroupVoiceChat);
+                string = LocaleController.getString(R.string.VoipGroupVoiceChat);
             }
             if (i == 0) {
-                string = string + ", " + LocaleController.getString("VoipTapToMute", R.string.VoipTapToMute);
+                string = string + ", " + LocaleController.getString(R.string.VoipTapToMute);
             } else if (i == 2) {
-                string = string + ", " + LocaleController.getString("Connecting", R.string.Connecting);
+                string = string + ", " + LocaleController.getString(R.string.Connecting);
             } else if (i == 3) {
-                string = string + ", " + LocaleController.getString("VoipMutedByAdmin", R.string.VoipMutedByAdmin);
+                string = string + ", " + LocaleController.getString(R.string.VoipMutedByAdmin);
             }
             setContentDescription(string);
             invalidate();
@@ -289,20 +289,11 @@ public class GroupCallPipButton extends FrameLayout implements NotificationCente
 
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        int i;
-        String str;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         if (Build.VERSION.SDK_INT < 21 || GroupCallPip.getInstance() == null) {
             return;
         }
-        if (GroupCallPip.getInstance().showAlert) {
-            i = R.string.AccDescrCloseMenu;
-            str = "AccDescrCloseMenu";
-        } else {
-            i = R.string.AccDescrOpenMenu2;
-            str = "AccDescrOpenMenu2";
-        }
-        accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString(str, i)));
+        accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString(GroupCallPip.getInstance().showAlert ? R.string.AccDescrCloseMenu : R.string.AccDescrOpenMenu2)));
     }
 
     @Override

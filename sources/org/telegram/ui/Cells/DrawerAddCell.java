@@ -40,7 +40,7 @@ public class DrawerAddCell extends FrameLayout {
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.textView.setTextColor(Theme.getColor(Theme.key_chats_menuItemText));
-        this.textView.setText(LocaleController.getString("AddAccount", R.string.AddAccount));
+        this.textView.setText(LocaleController.getString(R.string.AddAccount));
         Drawable drawable = getResources().getDrawable(R.drawable.msg_add);
         if (drawable != null) {
             drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_chats_menuItemIcon), PorterDuff.Mode.MULTIPLY));

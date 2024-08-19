@@ -80,7 +80,7 @@ public class PreviewHighlightView extends FrameLayout {
         BackupImageView backupImageView = peerHeaderView.backupImageView;
         backupImageView.setForUserOrChat(currentUser, backupImageView.getAvatarDrawable());
         peerHeaderView.titleView.setText(Emoji.replaceEmoji(UserObject.getUserName(currentUser), peerHeaderView.titleView.getPaint().getFontMetricsInt(), false));
-        peerHeaderView.setSubtitle(LocaleController.getString("RightNow", R.string.RightNow), false);
+        peerHeaderView.setSubtitle(LocaleController.getString(R.string.RightNow), false);
         frameLayout.addView(peerHeaderView, LayoutHelper.createFrame(-1, -2.0f, 55, 0.0f, 17.0f, 0.0f, 0.0f));
         ImageView imageView = new ImageView(context);
         imageView.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_close_white).mutate());
@@ -104,7 +104,7 @@ public class PreviewHighlightView extends FrameLayout {
         TextView textView = new TextView(context);
         textView.setTextSize(1, 18.0f);
         textView.setTextColor(1694498815);
-        textView.setText(LocaleController.getString("ReplyPrivately", R.string.ReplyPrivately));
+        textView.setText(LocaleController.getString(R.string.ReplyPrivately));
         frameLayout3.addView(textView, LayoutHelper.createFrame(-2, -2.0f, 19, 24.0f, 0.0f, 24.0f, 0.0f));
         ImageView imageView3 = new ImageView(context);
         imageView3.setImageResource(R.drawable.input_attach);

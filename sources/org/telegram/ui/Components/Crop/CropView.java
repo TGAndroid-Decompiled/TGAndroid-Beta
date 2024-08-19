@@ -1264,8 +1264,8 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
         this.hasAspectRatioDialog = true;
         String[] strArr = new String[8];
         final Integer[][] numArr = {new Integer[]{3, 2}, new Integer[]{5, 3}, new Integer[]{4, 3}, new Integer[]{5, 4}, new Integer[]{7, 5}, new Integer[]{16, 9}};
-        strArr[0] = LocaleController.getString("CropOriginal", R.string.CropOriginal);
-        strArr[1] = LocaleController.getString("CropSquare", R.string.CropSquare);
+        strArr[0] = LocaleController.getString(R.string.CropOriginal);
+        strArr[1] = LocaleController.getString(R.string.CropSquare);
         int i = 2;
         for (int i2 = 0; i2 < 6; i2++) {
             Integer[] numArr2 = numArr[i2];

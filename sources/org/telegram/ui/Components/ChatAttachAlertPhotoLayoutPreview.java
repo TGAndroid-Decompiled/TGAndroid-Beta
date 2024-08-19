@@ -137,7 +137,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         this.header.setMaxLines(1);
         this.header.setEllipsize(TextUtils.TruncateAt.END);
         this.header.setTextColor(getThemedColor(Theme.key_dialogTextBlack));
-        this.header.setText(LocaleController.getString("AttachMediaPreview", R.string.AttachMediaPreview));
+        this.header.setText(LocaleController.getString(R.string.AttachMediaPreview));
         this.header.setTypeface(AndroidUtilities.bold());
         this.header.setCompoundDrawablePadding(AndroidUtilities.dp(4.0f));
         this.header.setPadding(0, 0, AndroidUtilities.dp(10.0f), 0);
@@ -661,7 +661,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             setWillNotDraw(false);
             ChatActionCell chatActionCell = new ChatActionCell(context, true, ChatAttachAlertPhotoLayoutPreview.this.themeDelegate);
             this.hintView = chatActionCell;
-            chatActionCell.setCustomText(LocaleController.getString("AttachMediaDragHint", R.string.AttachMediaDragHint));
+            chatActionCell.setCustomText(LocaleController.getString(R.string.AttachMediaDragHint));
             addView(this.hintView);
         }
 

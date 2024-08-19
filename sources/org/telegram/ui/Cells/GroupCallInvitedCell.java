@@ -63,7 +63,7 @@ public class GroupCallInvitedCell extends FrameLayout {
         simpleTextView3.setTextSize(15);
         this.statusTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
         this.statusTextView.setTextColor(Theme.getColor(this.grayIconColor));
-        this.statusTextView.setText(LocaleController.getString("Invited", R.string.Invited));
+        this.statusTextView.setText(LocaleController.getString(R.string.Invited));
         SimpleTextView simpleTextView4 = this.statusTextView;
         boolean z3 = LocaleController.isRTL;
         addView(simpleTextView4, LayoutHelper.createFrame(-1, 20.0f, (z3 ? 5 : 3) | 48, z3 ? 54.0f : 67.0f, 32.0f, z3 ? 67.0f : 54.0f, 0.0f));

@@ -142,7 +142,7 @@ public class FeaturesPageView extends BaseListPageView {
                 textView.setTextSize(1, 20.0f);
                 textView.setTypeface(AndroidUtilities.bold());
                 textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, FeaturesPageView.this.resourcesProvider));
-                textView.setText(LocaleController.getString("UpgradedStories", R.string.UpgradedStories));
+                textView.setText(LocaleController.getString(R.string.UpgradedStories));
                 addView(textView, LayoutHelper.createFrame(-2, -2.0f, 1, 0.0f, 111.0f, 0.0f, 0.0f));
                 GradientTools gradientTools = this.gradientTools;
                 gradientTools.isLinear = true;

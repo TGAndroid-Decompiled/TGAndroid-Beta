@@ -242,9 +242,9 @@ public class SharedPhotoVideoCell extends FrameLayout {
         public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
             super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
             if (this.currentMessageObject.isVideo()) {
-                accessibilityNodeInfo.setText(LocaleController.getString("AttachVideo", R.string.AttachVideo) + ", " + LocaleController.formatDuration((int) this.currentMessageObject.getDuration()));
+                accessibilityNodeInfo.setText(LocaleController.getString(R.string.AttachVideo) + ", " + LocaleController.formatDuration((int) this.currentMessageObject.getDuration()));
             } else {
-                accessibilityNodeInfo.setText(LocaleController.getString("AttachPhoto", R.string.AttachPhoto));
+                accessibilityNodeInfo.setText(LocaleController.getString(R.string.AttachPhoto));
             }
             if (this.checkBox.isChecked()) {
                 accessibilityNodeInfo.setCheckable(true);

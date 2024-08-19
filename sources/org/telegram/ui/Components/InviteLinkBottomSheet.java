@@ -319,15 +319,15 @@ public class InviteLinkBottomSheet extends BottomSheet {
         this.titleTextView.setTypeface(AndroidUtilities.bold());
         if (!z) {
             if (tLRPC$TL_chatInviteExported.expired) {
-                this.titleTextView.setText(LocaleController.getString("ExpiredLink", R.string.ExpiredLink));
+                this.titleTextView.setText(LocaleController.getString(R.string.ExpiredLink));
             } else if (tLRPC$TL_chatInviteExported.revoked) {
-                this.titleTextView.setText(LocaleController.getString("RevokedLink", R.string.RevokedLink));
+                this.titleTextView.setText(LocaleController.getString(R.string.RevokedLink));
             } else {
-                this.titleTextView.setText(LocaleController.getString("InviteLink", R.string.InviteLink));
+                this.titleTextView.setText(LocaleController.getString(R.string.InviteLink));
             }
             this.titleVisible = true;
         } else {
-            this.titleTextView.setText(LocaleController.getString("InviteLink", R.string.InviteLink));
+            this.titleTextView.setText(LocaleController.getString(R.string.InviteLink));
             this.titleVisible = false;
             this.titleTextView.setVisibility(4);
             this.titleTextView.setAlpha(0.0f);
@@ -833,14 +833,14 @@ public class InviteLinkBottomSheet extends BottomSheet {
                         if (!TextUtils.isEmpty(tLRPC$ChannelParticipant.rank)) {
                             str2 = tLRPC$ChannelParticipant.rank;
                         } else if (tLRPC$ChannelParticipant instanceof TLRPC$TL_channelParticipantCreator) {
-                            str2 = LocaleController.getString("ChannelCreator", R.string.ChannelCreator);
+                            str2 = LocaleController.getString(R.string.ChannelCreator);
                         } else if (tLRPC$ChannelParticipant instanceof TLRPC$TL_channelParticipantAdmin) {
-                            str2 = LocaleController.getString("ChannelAdmin", R.string.ChannelAdmin);
+                            str2 = LocaleController.getString(R.string.ChannelAdmin);
                         }
                     } else if (tLRPC$ChatParticipant instanceof TLRPC$TL_chatParticipantCreator) {
-                        str2 = LocaleController.getString("ChannelCreator", R.string.ChannelCreator);
+                        str2 = LocaleController.getString(R.string.ChannelCreator);
                     } else if (tLRPC$ChatParticipant instanceof TLRPC$TL_chatParticipantAdmin) {
-                        str2 = LocaleController.getString("ChannelAdmin", R.string.ChannelAdmin);
+                        str2 = LocaleController.getString(R.string.ChannelAdmin);
                     }
                 }
                 revenueUserCell.setAdminRole(str2);
@@ -890,16 +890,16 @@ public class InviteLinkBottomSheet extends BottomSheet {
             timerPrivacyCell.setFixedSize(0);
             TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported4 = InviteLinkBottomSheet.this.invite;
             if (tLRPC$TL_chatInviteExported4.revoked) {
-                timerPrivacyCell.setText(LocaleController.getString("LinkIsNoActive", R.string.LinkIsNoActive));
+                timerPrivacyCell.setText(LocaleController.getString(R.string.LinkIsNoActive));
                 return;
             }
             if (tLRPC$TL_chatInviteExported4.expired) {
                 int i10 = tLRPC$TL_chatInviteExported4.usage_limit;
                 if (i10 > 0 && i10 == tLRPC$TL_chatInviteExported4.usage) {
-                    timerPrivacyCell.setText(LocaleController.getString("LinkIsExpiredLimitReached", R.string.LinkIsExpiredLimitReached));
+                    timerPrivacyCell.setText(LocaleController.getString(R.string.LinkIsExpiredLimitReached));
                     return;
                 } else {
-                    timerPrivacyCell.setText(LocaleController.getString("LinkIsExpired", R.string.LinkIsExpired));
+                    timerPrivacyCell.setText(LocaleController.getString(R.string.LinkIsExpired));
                     timerPrivacyCell.setTextColor(Theme.getColor(Theme.key_text_RedRegular));
                     return;
                 }

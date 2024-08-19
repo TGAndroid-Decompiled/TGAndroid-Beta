@@ -144,14 +144,14 @@ public class OtherDocumentPlaceholderDrawable extends RecyclableDrawable impleme
         canvas.drawText(this.fileName, (width - ((int) Math.ceil(namePaint.measureText(this.fileName)))) / 2, AndroidUtilities.dp(96.0f) + dp2, namePaint);
         canvas.drawText(this.fileSize, (width - ((int) Math.ceil(sizePaint.measureText(this.fileSize)))) / 2, AndroidUtilities.dp(125.0f) + dp2, sizePaint);
         if (this.loaded) {
-            string = LocaleController.getString("OpenFile", R.string.OpenFile);
+            string = LocaleController.getString(R.string.OpenFile);
             textPaint = openPaint;
             dp = 0;
         } else {
             if (this.loading) {
-                string = LocaleController.getString("Cancel", R.string.Cancel).toUpperCase();
+                string = LocaleController.getString(R.string.Cancel).toUpperCase();
             } else {
-                string = LocaleController.getString("TapToDownload", R.string.TapToDownload);
+                string = LocaleController.getString(R.string.TapToDownload);
             }
             dp = AndroidUtilities.dp(28.0f);
             textPaint = buttonPaint;

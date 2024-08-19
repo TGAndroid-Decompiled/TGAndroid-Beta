@@ -167,10 +167,18 @@ public class StarsController {
     }
 
     public long getBalance() {
-        return getBalance(null);
+        return getBalance((Runnable) null);
     }
 
-    public long getBalance(final Runnable runnable) {
+    public long getBalance(boolean z) {
+        return getBalance(z, null);
+    }
+
+    public long getBalance(Runnable runnable) {
+        return getBalance(true, runnable);
+    }
+
+    public long getBalance(boolean z, final Runnable runnable) {
         if ((!this.balanceLoaded || System.currentTimeMillis() - this.lastBalanceLoaded > 60000) && !this.balanceLoading) {
             this.balanceLoading = true;
             TLRPC$TL_payments_getStarsStatus tLRPC$TL_payments_getStarsStatus = new TLRPC$TL_payments_getStarsStatus();
@@ -182,7 +190,7 @@ public class StarsController {
                 }
             });
         }
-        return Math.max(0L, this.balance - this.minus);
+        return Math.max(0L, this.balance - (z ? this.minus : 0L));
     }
 
     public void lambda$getBalance$1(final Runnable runnable, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -2479,7 +2487,7 @@ public class StarsController {
             this.currentPendingReactions = new PendingPaidReactions(from, messageObject, chatActivity, ConnectionsManager.getInstance(this.currentAccount).getCurrentTime(), z);
         }
         final long j2 = this.currentPendingReactions.amount + j;
-        if (z2 && starsController.balanceAvailable() && starsController.getBalance() < j2) {
+        if (z2 && starsController.balanceAvailable() && starsController.getBalance(false) < j2) {
             this.currentPendingReactions.cancel();
             long dialogId2 = chatActivity.getDialogId();
             if (dialogId2 >= 0) {

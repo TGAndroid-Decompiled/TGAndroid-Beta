@@ -926,7 +926,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         linearLayout.setOrientation(0);
         this.emojiLayout.setPadding(0, 0, 0, AndroidUtilities.dp(30.0f));
         this.emojiLayout.setClipToPadding(false);
-        this.emojiLayout.setContentDescription(LocaleController.getString("VoipHintEncryptionKey", R.string.VoipHintEncryptionKey));
+        this.emojiLayout.setContentDescription(LocaleController.getString(R.string.VoipHintEncryptionKey));
         this.emojiLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
@@ -949,7 +949,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         emojiRationalLayout.setOrientation(1);
         TextView textView = new TextView(context);
         this.emojiRationalTopTextView = textView;
-        textView.setText(LocaleController.getString("VoipCallEncryptionEndToEnd", R.string.VoipCallEncryptionEndToEnd));
+        textView.setText(LocaleController.getString(R.string.VoipCallEncryptionEndToEnd));
         this.emojiRationalTopTextView.setTextSize(1, 15.0f);
         this.emojiRationalTopTextView.setTypeface(AndroidUtilities.bold());
         this.emojiRationalTopTextView.setTextColor(-1);
@@ -992,9 +992,9 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
                 sb.append(", ");
                 TLRPC$PhoneCall tLRPC$PhoneCall = sharedInstance.privateCall;
                 if (tLRPC$PhoneCall != null && tLRPC$PhoneCall.video) {
-                    sb.append(LocaleController.getString("VoipInVideoCallBranding", R.string.VoipInVideoCallBranding));
+                    sb.append(LocaleController.getString(R.string.VoipInVideoCallBranding));
                 } else {
-                    sb.append(LocaleController.getString("VoipInCallBranding", R.string.VoipInCallBranding));
+                    sb.append(LocaleController.getString(R.string.VoipInCallBranding));
                 }
                 long callDuration = sharedInstance.getCallDuration();
                 if (callDuration > 0) {
@@ -1086,7 +1086,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         imageView.setBackground(Theme.createSelectorDrawable(ColorUtils.setAlphaComponent(-1, 76)));
         this.backIcon.setImageResource(R.drawable.msg_call_minimize_shadow);
         this.backIcon.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
-        this.backIcon.setContentDescription(LocaleController.getString("Back", R.string.Back));
+        this.backIcon.setContentDescription(LocaleController.getString(R.string.Back));
         frameLayout.addView(this.backIcon, LayoutHelper.createFrame(56, 56, 51));
         ImageView imageView2 = new ImageView(context) {
             @Override
@@ -1140,11 +1140,11 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
             }
         }).setHideByTouch(true).setMaxWidth(320.0f).useScale(true).setInnerPadding(10, 6, 10, 6).setRounding(8.0f);
         this.tapToVideoTooltip = rounding;
-        rounding.setText(LocaleController.getString("TapToTurnCamera", R.string.TapToTurnCamera));
+        rounding.setText(LocaleController.getString(R.string.TapToTurnCamera));
         frameLayout.addView(this.tapToVideoTooltip, LayoutHelper.createFrame(-2, -2.0f, 80, 19.0f, 0.0f, 19.0f, 0.0f));
         HintView2 rounding2 = new VoIpHintView(context, 1, this.backgroundProvider, false).setMultilineText(true).setTextAlign(alignment).setDuration(4000L).setHideByTouch(true).setMaxWidth(320.0f).useScale(true).setInnerPadding(10, 6, 10, 6).setRounding(8.0f);
         this.encryptionTooltip = rounding2;
-        rounding2.setText(LocaleController.getString("VoipHintEncryptionKey", R.string.VoipHintEncryptionKey));
+        rounding2.setText(LocaleController.getString(R.string.VoipHintEncryptionKey));
         frameLayout.addView(this.encryptionTooltip, LayoutHelper.createFrame(-2, -2.0f, 1, 0.0f, 0.0f, 0.0f, 0.0f));
         updateViewState();
         VoIPService sharedInstance = VoIPService.getSharedInstance();
@@ -1309,7 +1309,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         this.bottomVideoBtn.animate().cancel();
         this.acceptDeclineView.getLocationOnScreen(new int[2]);
         this.acceptDeclineView.stopAnimations();
-        this.bottomEndCallBtn.setData(R.drawable.calls_decline, -1, -1041108, LocaleController.getString("VoipEndCall2", R.string.VoipEndCall2), false, false);
+        this.bottomEndCallBtn.setData(R.drawable.calls_decline, -1, -1041108, LocaleController.getString(R.string.VoipEndCall2), false, false);
         this.bottomSpeakerBtn.setType(VoIpSwitchLayout.Type.SPEAKER, false);
         this.bottomMuteBtn.setType(VoIpSwitchLayout.Type.MICRO, false);
         this.bottomVideoBtn.setType(VoIpSwitchLayout.Type.VIDEO, true);
@@ -2241,7 +2241,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
             }
             setVideoAction(this.bottomVideoBtn, sharedInstance, false);
             setMicrohoneAction(this.bottomMuteBtn, sharedInstance, z);
-            this.bottomEndCallBtn.setData(R.drawable.calls_decline, -1, -1041108, LocaleController.getString("VoipEndCall2", R.string.VoipEndCall2), false, z);
+            this.bottomEndCallBtn.setData(R.drawable.calls_decline, -1, -1041108, LocaleController.getString(R.string.VoipEndCall2), false, z);
             this.bottomEndCallBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
@@ -2295,9 +2295,9 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
             boolean z = !sharedInstance.isMicMute();
             if (this.accessibilityManager.isTouchExplorationEnabled()) {
                 if (z) {
-                    string = LocaleController.getString("AccDescrVoipMicOff", R.string.AccDescrVoipMicOff);
+                    string = LocaleController.getString(R.string.AccDescrVoipMicOff);
                 } else {
-                    string = LocaleController.getString("AccDescrVoipMicOn", R.string.AccDescrVoipMicOn);
+                    string = LocaleController.getString(R.string.AccDescrVoipMicOn);
                 }
                 view.announceForAccessibility(string);
             }
@@ -2347,14 +2347,14 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         }
         if (i < 21 && (tLRPC$PhoneCall = voIPService.privateCall) != null && !tLRPC$PhoneCall.video && !this.callingUserIsVideo && !voIPService.sharedUIParams.cameraAlertWasShowed) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this.activity);
-            builder.setMessage(LocaleController.getString("VoipSwitchToVideoCall", R.string.VoipSwitchToVideoCall));
-            builder.setPositiveButton(LocaleController.getString("VoipSwitch", R.string.VoipSwitch), new DialogInterface.OnClickListener() {
+            builder.setMessage(LocaleController.getString(R.string.VoipSwitchToVideoCall));
+            builder.setPositiveButton(LocaleController.getString(R.string.VoipSwitch), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i2) {
                     VoIPFragment.this.lambda$setVideoAction$35(voIPService, dialogInterface, i2);
                 }
             });
-            builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
+            builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
             builder.create().show();
             return;
         }
@@ -2444,9 +2444,9 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
             this.hideUiRunnableWaiting = false;
             if (this.accessibilityManager.isTouchExplorationEnabled()) {
                 if (voIPService.isFrontFaceCamera()) {
-                    string = LocaleController.getString("AccDescrVoipCamSwitchedToBack", R.string.AccDescrVoipCamSwitchedToBack);
+                    string = LocaleController.getString(R.string.AccDescrVoipCamSwitchedToBack);
                 } else {
-                    string = LocaleController.getString("AccDescrVoipCamSwitchedToFront", R.string.AccDescrVoipCamSwitchedToFront);
+                    string = LocaleController.getString(R.string.AccDescrVoipCamSwitchedToFront);
                 }
                 view.announceForAccessibility(string);
             }
@@ -2470,9 +2470,9 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         if (sharedInstance != null) {
             if (this.accessibilityManager.isTouchExplorationEnabled()) {
                 if (!this.currentUserIsVideo) {
-                    string = LocaleController.getString("AccDescrVoipCamOn", R.string.AccDescrVoipCamOn);
+                    string = LocaleController.getString(R.string.AccDescrVoipCamOn);
                 } else {
-                    string = LocaleController.getString("AccDescrVoipCamOff", R.string.AccDescrVoipCamOff);
+                    string = LocaleController.getString(R.string.AccDescrVoipCamOff);
                 }
                 this.fragmentView.announceForAccessibility(string);
             }
@@ -2703,7 +2703,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         if (this.activity.isFinishing()) {
             return;
         }
-        AlertDialog show = new DarkAlertDialog.Builder(this.activity).setTitle(LocaleController.getString("VoipFailed", R.string.VoipFailed)).setMessage(charSequence).setPositiveButton(LocaleController.getString("OK", R.string.OK), null).show();
+        AlertDialog show = new DarkAlertDialog.Builder(this.activity).setTitle(LocaleController.getString(R.string.VoipFailed)).setMessage(charSequence).setPositiveButton(LocaleController.getString(R.string.OK), null).show();
         show.setCanceledOnTouchOutside(true);
         show.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override

@@ -802,7 +802,7 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
             if (itemViewType == 1) {
                 ManageChatTextCell manageChatTextCell = (ManageChatTextCell) viewHolder.itemView;
                 if (i == GroupVoipInviteAlert.this.addNewRow) {
-                    manageChatTextCell.setText(LocaleController.getString("VoipGroupCopyInviteLink", R.string.VoipGroupCopyInviteLink), null, R.drawable.msg_link, 7, (!GroupVoipInviteAlert.this.loadingUsers || GroupVoipInviteAlert.this.firstLoaded) && GroupVoipInviteAlert.this.membersHeaderRow == -1 && !GroupVoipInviteAlert.this.participants.isEmpty());
+                    manageChatTextCell.setText(LocaleController.getString(R.string.VoipGroupCopyInviteLink), null, R.drawable.msg_link, 7, (!GroupVoipInviteAlert.this.loadingUsers || GroupVoipInviteAlert.this.firstLoaded) && GroupVoipInviteAlert.this.membersHeaderRow == -1 && !GroupVoipInviteAlert.this.participants.isEmpty());
                     return;
                 }
                 return;
@@ -814,16 +814,16 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
             if (i != GroupVoipInviteAlert.this.membersHeaderRow) {
                 if (i == GroupVoipInviteAlert.this.contactsHeaderRow) {
                     if (GroupVoipInviteAlert.this.showContacts) {
-                        graySectionCell.setText(LocaleController.getString("YourContactsToInvite", R.string.YourContactsToInvite));
+                        graySectionCell.setText(LocaleController.getString(R.string.YourContactsToInvite));
                         return;
                     } else {
-                        graySectionCell.setText(LocaleController.getString("GroupContacts", R.string.GroupContacts));
+                        graySectionCell.setText(LocaleController.getString(R.string.GroupContacts));
                         return;
                     }
                 }
                 return;
             }
-            graySectionCell.setText(LocaleController.getString("ChannelOtherMembers", R.string.ChannelOtherMembers));
+            graySectionCell.setText(LocaleController.getString(R.string.ChannelOtherMembers));
         }
 
         @Override

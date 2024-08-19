@@ -453,7 +453,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         int max = Math.max(1, Math.max(this.storiesController.getTotalStoriesCount(this.type == 1), size));
         if (this.storiesController.hasOnlySelfStories()) {
             if (this.storiesController.hasUploadingStories(UserConfig.getInstance(this.currentAccount).getClientUserId())) {
-                String string = LocaleController.getString("UploadingStory", R.string.UploadingStory);
+                String string = LocaleController.getString(R.string.UploadingStory);
                 if (string.indexOf("…") > 0) {
                     if (this.uploadingString == null) {
                         SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(string);
@@ -467,7 +467,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
                     this.currentTitle = string;
                 }
             } else {
-                this.currentTitle = LocaleController.getString("MyStory", R.string.MyStory);
+                this.currentTitle = LocaleController.getString(R.string.MyStory);
             }
         } else {
             this.currentTitle = LocaleController.formatPluralString("Stories", max, new Object[0]);

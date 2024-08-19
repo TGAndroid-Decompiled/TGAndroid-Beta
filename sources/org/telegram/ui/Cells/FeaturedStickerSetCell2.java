@@ -102,7 +102,7 @@ public class FeaturedStickerSetCell2 extends FrameLayout implements Notification
         addView(backupImageView, LayoutHelper.createFrame(48, 48.0f, (z3 ? 5 : 3) | 48, z3 ? 0.0f : 12.0f, 8.0f, z3 ? 12.0f : 0.0f, 0.0f));
         ProgressButton progressButton = new ProgressButton(context);
         this.addButton = progressButton;
-        progressButton.setText(LocaleController.getString("Add", R.string.Add));
+        progressButton.setText(LocaleController.getString(R.string.Add));
         progressButton.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
         addView(progressButton, LayoutHelper.createFrameRelatively(-2.0f, 28.0f, 8388661, 0.0f, 18.0f, 14.0f, 0.0f));
         TextView textView3 = new TextView(context);
@@ -111,12 +111,12 @@ public class FeaturedStickerSetCell2 extends FrameLayout implements Notification
         textView3.setTextColor(Theme.getColor(Theme.key_featuredStickers_removeButtonText));
         textView3.setTextSize(1, 14.0f);
         textView3.setTypeface(AndroidUtilities.bold());
-        textView3.setText(LocaleController.getString("StickersRemove", R.string.StickersRemove));
+        textView3.setText(LocaleController.getString(R.string.StickersRemove));
         addView(textView3, LayoutHelper.createFrameRelatively(-2.0f, 28.0f, 8388661, 0.0f, 16.0f, 14.0f, 0.0f));
         PremiumButtonView premiumButtonView = new PremiumButtonView(context, AndroidUtilities.dp(4.0f), false, resourcesProvider);
         this.unlockButton = premiumButtonView;
         premiumButtonView.setIcon(R.raw.unlock_icon);
-        premiumButtonView.setButton(LocaleController.getString("Unlock", R.string.Unlock), new View.OnClickListener() {
+        premiumButtonView.setButton(LocaleController.getString(R.string.Unlock), new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
                 FeaturedStickerSetCell2.this.lambda$new$0(view);

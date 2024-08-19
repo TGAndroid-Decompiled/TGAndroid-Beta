@@ -174,9 +174,9 @@ public class CreateGroupCallBottomSheet extends BottomSheetWithRecyclerListView 
     @Override
     protected CharSequence getTitle() {
         if (this.isChannelOrGiga) {
-            return LocaleController.getString("StartVoipChannelTitle", R.string.StartVoipChannelTitle);
+            return LocaleController.getString(R.string.StartVoipChannelTitle);
         }
-        return LocaleController.getString("StartVoipChatTitle", R.string.StartVoipChatTitle);
+        return LocaleController.getString(R.string.StartVoipChatTitle);
     }
 
     @Override
@@ -228,7 +228,7 @@ public class CreateGroupCallBottomSheet extends BottomSheetWithRecyclerListView 
                     long peerId = MessageObject.getPeerId(tLRPC$Peer);
                     if (peerId > 0) {
                         chat = MessagesController.getInstance(((BottomSheet) CreateGroupCallBottomSheet.this).currentAccount).getUser(Long.valueOf(peerId));
-                        str = LocaleController.getString("VoipGroupPersonalAccount", R.string.VoipGroupPersonalAccount);
+                        str = LocaleController.getString(R.string.VoipGroupPersonalAccount);
                     } else {
                         chat = MessagesController.getInstance(((BottomSheet) CreateGroupCallBottomSheet.this).currentAccount).getChat(Long.valueOf(-peerId));
                         str = null;
@@ -242,7 +242,7 @@ public class CreateGroupCallBottomSheet extends BottomSheetWithRecyclerListView 
                     HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
                     headerCell.setTextSize(15.0f);
                     headerCell.setPadding(0, 0, 0, AndroidUtilities.dp(2.0f));
-                    headerCell.setText(LocaleController.getString("VoipChatDisplayedAs", R.string.VoipChatDisplayedAs).replace(":", ""));
+                    headerCell.setText(LocaleController.getString(R.string.VoipChatDisplayedAs).replace(":", ""));
                 }
             }
 

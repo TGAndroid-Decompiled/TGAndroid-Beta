@@ -321,7 +321,7 @@ public class GiveawayMessageCell {
                 StaticLayout createStaticLayout = StaticLayoutEx.createStaticLayout(Emoji.replaceEmoji(AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingGiveawayMsgPrizes", tLRPC$TL_messageMediaGiveaway.quantity, tLRPC$TL_messageMediaGiveaway.prize_description)), this.countriesTextPaint.getFontMetricsInt(), false), this.textPaint, i5, Layout.Alignment.ALIGN_CENTER, 1.0f, AndroidUtilities.dp(2.0f), false, TextUtils.TruncateAt.END, i5, 20);
                 this.additionPrizeLayout = createStaticLayout;
                 this.additionPrizeHeight = createStaticLayout.getLineBottom(createStaticLayout.getLineCount() - 1) + AndroidUtilities.dp(22.0f);
-                String string = LocaleController.getString("BoostingGiveawayMsgWithDivider", R.string.BoostingGiveawayMsgWithDivider);
+                String string = LocaleController.getString(R.string.BoostingGiveawayMsgWithDivider);
                 this.textDivider = string;
                 this.textDividerWidth = this.textDividerPaint.measureText(string, 0, string.length());
             }

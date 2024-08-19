@@ -1487,7 +1487,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
             i = 1;
             i = 1;
             f = 1.0f;
-            this.actionBar.setTitle(LocaleController.getString("DisappearingPhoto", R.string.DisappearingPhoto));
+            this.actionBar.setTitle(LocaleController.getString(R.string.DisappearingPhoto));
             TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, AndroidUtilities.getPhotoSize());
             this.centerImage.setImage(ImageLocation.getForObject(closestPhotoSizeWithSize, messageObject.photoThumbsObject), (String) null, this.currentThumb != null ? new BitmapDrawable(this.currentThumb.bitmap) : null, -1L, (String) null, messageObject, 2);
             r15 = obj;
@@ -1518,7 +1518,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
                 i = 1;
                 f = 1.0f;
                 this.playerRetryPlayCount = 1;
-                this.actionBar.setTitle(LocaleController.getString("DisappearingVideo", R.string.DisappearingVideo));
+                this.actionBar.setTitle(LocaleController.getString(R.string.DisappearingVideo));
                 File file = new File(messageObject.messageOwner.attachPath);
                 if (file.exists()) {
                     preparePlayer(file);
@@ -1534,7 +1534,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
                 this.seekbarContainer.setVisibility(0);
                 this.centerImage.setImage((ImageLocation) null, (String) null, this.currentThumb != null ? new BitmapDrawable(this.currentThumb.bitmap) : null, -1L, (String) null, messageObject, 2);
             } else {
-                this.actionBar.setTitle(LocaleController.getString("DisappearingGif", R.string.DisappearingGif));
+                this.actionBar.setTitle(LocaleController.getString(R.string.DisappearingGif));
                 String str2 = messageObject.messageOwner.attachPath;
                 if (str2 != null && messageObject.attachPathExists) {
                     forDocument = ImageLocation.getForPath(str2);

@@ -1568,7 +1568,7 @@ public class NotificationsController extends BaseController {
         NotificationBadge.applyCount(i);
     }
 
-    private java.lang.String getShortStringForMessage(org.telegram.messenger.MessageObject r30, java.lang.String[] r31, boolean[] r32) {
+    private java.lang.String getShortStringForMessage(org.telegram.messenger.MessageObject r27, java.lang.String[] r28, boolean[] r29) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsController.getShortStringForMessage(org.telegram.messenger.MessageObject, java.lang.String[], boolean[]):java.lang.String");
     }
 
@@ -1592,7 +1592,7 @@ public class NotificationsController extends BaseController {
         return sb.toString();
     }
 
-    private java.lang.String getStringForMessage(org.telegram.messenger.MessageObject r49, boolean r50, boolean[] r51, boolean[] r52) {
+    private java.lang.String getStringForMessage(org.telegram.messenger.MessageObject r46, boolean r47, boolean[] r48, boolean[] r49) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsController.getStringForMessage(org.telegram.messenger.MessageObject, boolean, boolean[], boolean[]):java.lang.String");
     }
 
@@ -2110,10 +2110,10 @@ public class NotificationsController extends BaseController {
             String str12 = user != null ? " (" + ContactsController.formatName(user.first_name, user.last_name) + ")" : "";
             ArrayList arrayList = new ArrayList();
             if (str2 != null) {
-                arrayList.add(new NotificationChannelGroup(str2, LocaleController.getString("NotificationsChannels", R.string.NotificationsChannels) + str12));
+                arrayList.add(new NotificationChannelGroup(str2, LocaleController.getString(R.string.NotificationsChannels) + str12));
             }
             if (str3 != null) {
-                arrayList.add(new NotificationChannelGroup(str3, LocaleController.getString("NotificationsGroups", R.string.NotificationsGroups) + str12));
+                arrayList.add(new NotificationChannelGroup(str3, LocaleController.getString(R.string.NotificationsGroups) + str12));
             }
             if (str10 != null) {
                 arrayList.add(new NotificationChannelGroup(str10, LocaleController.getString(R.string.NotificationsStories) + str12));
@@ -2122,10 +2122,10 @@ public class NotificationsController extends BaseController {
                 arrayList.add(new NotificationChannelGroup(str9, LocaleController.getString(R.string.NotificationsReactions) + str12));
             }
             if (str11 != null) {
-                arrayList.add(new NotificationChannelGroup(str11, LocaleController.getString("NotificationsPrivateChats", R.string.NotificationsPrivateChats) + str12));
+                arrayList.add(new NotificationChannelGroup(str11, LocaleController.getString(R.string.NotificationsPrivateChats) + str12));
             }
             if (str8 != null) {
-                arrayList.add(new NotificationChannelGroup(str8, LocaleController.getString("NotificationsOther", R.string.NotificationsOther) + str12));
+                arrayList.add(new NotificationChannelGroup(str8, LocaleController.getString(R.string.NotificationsOther) + str12));
             }
             systemNotificationManager.createNotificationChannelGroups(arrayList);
         }
@@ -2137,7 +2137,7 @@ public class NotificationsController extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsController.validateChannelId(long, long, java.lang.String, long[], int, android.net.Uri, int, boolean, boolean, boolean, int):java.lang.String");
     }
 
-    private void showOrUpdateNotification(boolean r59) {
+    private void showOrUpdateNotification(boolean r56) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsController.showOrUpdateNotification(boolean):void");
     }
 
@@ -2163,7 +2163,7 @@ public class NotificationsController extends BaseController {
         }
         SharedPreferences.Editor edit = getAccountInstance().getNotificationsSettings().edit();
         String uri3 = uri2.toString();
-        String string = LocaleController.getString("DefaultRingtone", R.string.DefaultRingtone);
+        String string = LocaleController.getString(R.string.DefaultRingtone);
         if (z) {
             if (i3 == 2) {
                 edit.putString("ChannelSound", string);
@@ -2199,7 +2199,7 @@ public class NotificationsController extends BaseController {
     }
 
     @android.annotation.SuppressLint({"InlinedApi"})
-    private void showExtraNotifications(androidx.core.app.NotificationCompat.Builder r85, java.lang.String r86, long r87, long r89, java.lang.String r91, long[] r92, int r93, android.net.Uri r94, int r95, boolean r96, boolean r97, boolean r98, int r99) {
+    private void showExtraNotifications(androidx.core.app.NotificationCompat.Builder r80, java.lang.String r81, long r82, long r84, java.lang.String r86, long[] r87, int r88, android.net.Uri r89, int r90, boolean r91, boolean r92, boolean r93, int r94) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsController.showExtraNotifications(androidx.core.app.NotificationCompat$Builder, java.lang.String, long, long, java.lang.String, long[], int, android.net.Uri, int, boolean, boolean, boolean, int):void");
     }
 

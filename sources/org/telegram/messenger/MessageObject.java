@@ -1097,7 +1097,7 @@ public class MessageObject {
             if (str == null) {
                 return null;
             }
-            String replaceAll = str.toLowerCase().replaceAll("\\W", "");
+            String replaceAll = str.toLowerCase().replaceAll("\\W|lang$", "");
             replaceAll.hashCode();
             char c = 65535;
             switch (replaceAll.hashCode()) {
@@ -1179,261 +1179,267 @@ public class MessageObject {
                         break;
                     }
                     break;
+                case 3304:
+                    if (replaceAll.equals("go")) {
+                        c = '\r';
+                        break;
+                    }
+                    break;
                 case 3401:
                     if (replaceAll.equals("js")) {
-                        c = '\r';
+                        c = 14;
                         break;
                     }
                     break;
                 case 3479:
                     if (replaceAll.equals("md")) {
-                        c = 14;
+                        c = 15;
                         break;
                     }
                     break;
                 case 3593:
                     if (replaceAll.equals("py")) {
-                        c = 15;
+                        c = 16;
                         break;
                     }
                     break;
                 case 3632:
                     if (replaceAll.equals("rb")) {
-                        c = 16;
+                        c = 17;
                         break;
                     }
                     break;
                 case 3704:
                     if (replaceAll.equals("tl")) {
-                        c = 17;
+                        c = 18;
                         break;
                     }
                     break;
                 case 3711:
                     if (replaceAll.equals("ts")) {
-                        c = 18;
+                        c = 19;
                         break;
                     }
                     break;
                 case 96891:
                     if (replaceAll.equals("asm")) {
-                        c = 19;
+                        c = 20;
                         break;
                     }
                     break;
                 case 98723:
                     if (replaceAll.equals("cpp")) {
-                        c = 20;
+                        c = 21;
                         break;
                     }
                     break;
                 case 98819:
                     if (replaceAll.equals("css")) {
-                        c = 21;
+                        c = 22;
                         break;
                     }
                     break;
                 case 98822:
                     if (replaceAll.equals("csv")) {
-                        c = 22;
+                        c = 23;
                         break;
                     }
                     break;
                 case 104420:
                     if (replaceAll.equals("ini")) {
-                        c = 23;
+                        c = 24;
                         break;
                     }
                     break;
                 case 105551:
                     if (replaceAll.equals("jsx")) {
-                        c = 24;
+                        c = 25;
                         break;
                     }
                     break;
                 case 107512:
                     if (replaceAll.equals("lua")) {
-                        c = 25;
+                        c = 26;
                         break;
                     }
                     break;
                 case 110968:
                     if (replaceAll.equals("php")) {
-                        c = 26;
+                        c = 27;
                         break;
                     }
                     break;
                 case 114922:
                     if (replaceAll.equals("tlb")) {
-                        c = 27;
+                        c = 28;
                         break;
                     }
                     break;
                 case 115161:
                     if (replaceAll.equals("tsx")) {
-                        c = 28;
+                        c = 29;
                         break;
                     }
                     break;
                 case 118807:
                     if (replaceAll.equals("xml")) {
-                        c = 29;
+                        c = 30;
                         break;
                     }
                     break;
                 case 119768:
                     if (replaceAll.equals("yml")) {
-                        c = 30;
+                        c = 31;
                         break;
                     }
                     break;
                 case 3075967:
                     if (replaceAll.equals("dart")) {
-                        c = 31;
+                        c = ' ';
                         break;
                     }
                     break;
                 case 3142865:
                     if (replaceAll.equals("fift")) {
-                        c = ' ';
+                        c = '!';
                         break;
                     }
                     break;
                 case 3154628:
                     if (replaceAll.equals("func")) {
-                        c = '!';
+                        c = '\"';
                         break;
                     }
                     break;
                 case 3175934:
                     if (replaceAll.equals("glsl")) {
-                        c = '\"';
+                        c = '#';
                         break;
                     }
                     break;
                 case 3205725:
                     if (replaceAll.equals("hlsl")) {
-                        c = '#';
+                        c = '$';
                         break;
                     }
                     break;
                 case 3213227:
                     if (replaceAll.equals("html")) {
-                        c = '$';
+                        c = '%';
                         break;
                     }
                     break;
                 case 3213448:
                     if (replaceAll.equals("http")) {
-                        c = '%';
+                        c = '&';
                         break;
                     }
                     break;
                 case 3254818:
                     if (replaceAll.equals("java")) {
-                        c = '&';
+                        c = '\'';
                         break;
                     }
                     break;
                 case 3271912:
                     if (replaceAll.equals("json")) {
-                        c = '\'';
+                        c = '(';
                         break;
                     }
                     break;
                 case 3318169:
                     if (replaceAll.equals("less")) {
-                        c = '(';
+                        c = ')';
                         break;
                     }
                     break;
                 case 3373901:
                     if (replaceAll.equals("nasm")) {
-                        c = ')';
+                        c = '*';
                         break;
                     }
                     break;
                 case 3404364:
                     if (replaceAll.equals("objc")) {
-                        c = '*';
+                        c = '+';
                         break;
                     }
                     break;
                 case 3511770:
                     if (replaceAll.equals("ruby")) {
-                        c = '+';
+                        c = ',';
                         break;
                     }
                     break;
                 case 3512292:
                     if (replaceAll.equals("rust")) {
-                        c = ',';
+                        c = '-';
                         break;
                     }
                     break;
                 case 3524784:
                     if (replaceAll.equals("scss")) {
-                        c = '-';
+                        c = '.';
                         break;
                     }
                     break;
                 case 3561037:
                     if (replaceAll.equals("tl-b")) {
-                        c = '.';
+                        c = '/';
                         break;
                     }
                     break;
                 case 3642020:
                     if (replaceAll.equals("wasm")) {
-                        c = '/';
+                        c = '0';
                         break;
                     }
                     break;
                 case 3701415:
                     if (replaceAll.equals("yaml")) {
-                        c = '0';
+                        c = '1';
                         break;
                     }
                     break;
                 case 94833107:
                     if (replaceAll.equals("cobol")) {
-                        c = '1';
+                        c = '2';
                         break;
                     }
                     break;
                 case 101429325:
                     if (replaceAll.equals("json5")) {
-                        c = '2';
+                        c = '3';
                         break;
                     }
                     break;
                 case 109854227:
                     if (replaceAll.equals("swift")) {
-                        c = '3';
+                        c = '4';
                         break;
                     }
                     break;
                 case 188995949:
                     if (replaceAll.equals("javascript")) {
-                        c = '4';
+                        c = '5';
                         break;
                     }
                     break;
                 case 213985633:
                     if (replaceAll.equals("autohotkey")) {
-                        c = '5';
+                        c = '6';
                         break;
                     }
                     break;
                 case 246938863:
                     if (replaceAll.equals("markdown")) {
-                        c = '6';
+                        c = '7';
                         break;
                     }
                     break;
                 case 1067478602:
                     if (replaceAll.equals("objectivec")) {
-                        c = '7';
+                        c = '8';
                         break;
                     }
                     break;
@@ -1452,63 +1458,64 @@ public class MessageObject {
                 case 6:
                 case '\b':
                 case '\n':
-                case 25:
-                case 31:
+                case '\r':
+                case 26:
                 case ' ':
-                case '&':
-                case ',':
-                case '3':
+                case '!':
+                case '\'':
+                case '-':
+                case '4':
                     return capitalizeFirst(str);
                 case 7:
-                case 15:
+                case 16:
                     return "Python";
                 case '\t':
-                case 18:
+                case 19:
                     return "TypeScript";
                 case 11:
-                case 17:
-                case 19:
-                case 21:
+                case 18:
+                case 20:
                 case 22:
                 case 23:
                 case 24:
-                case 26:
-                case 28:
+                case 25:
+                case 27:
                 case 29:
                 case 30:
-                case '\"':
+                case 31:
                 case '#':
                 case '$':
                 case '%':
-                case '\'':
+                case '&':
                 case '(':
                 case ')':
-                case '-':
-                case '/':
+                case '*':
+                case '.':
                 case '0':
                 case '1':
                 case '2':
+                case '3':
                     return str.toUpperCase();
-                case '\r':
-                case '4':
-                    return "JavaScript";
                 case 14:
-                case '6':
-                    return "Markdown";
-                case 16:
-                case '+':
-                    return "Ruby";
-                case 20:
-                    return "C++";
-                case 27:
-                case '.':
-                    return "TL-B";
-                case '!':
-                    return "FunC";
-                case '*':
-                case '7':
-                    return "Objective-C";
                 case '5':
+                    return "JavaScript";
+                case 15:
+                case '7':
+                    return "Markdown";
+                case 17:
+                case ',':
+                    return "Ruby";
+                case 21:
+                    return "C++";
+                case 28:
+                case '/':
+                    return "TL-B";
+                case '\"':
+                    return "FunC";
+                case '+':
+                case '8':
+                    return "Objective-C";
+                case '6':
                     return "AutoHotKey";
                 default:
                     return str;
@@ -2101,7 +2108,7 @@ public class MessageObject {
         return Theme.chat_msgTextPaint;
     }
 
-    public MessageObject(int r37, org.telegram.tgnet.TLRPC$TL_channelAdminLogEvent r38, java.util.ArrayList<org.telegram.messenger.MessageObject> r39, java.util.HashMap<java.lang.String, java.util.ArrayList<org.telegram.messenger.MessageObject>> r40, org.telegram.tgnet.TLRPC$Chat r41, int[] r42, boolean r43) {
+    public MessageObject(int r33, org.telegram.tgnet.TLRPC$TL_channelAdminLogEvent r34, java.util.ArrayList<org.telegram.messenger.MessageObject> r35, java.util.HashMap<java.lang.String, java.util.ArrayList<org.telegram.messenger.MessageObject>> r36, org.telegram.tgnet.TLRPC$Chat r37, int[] r38, boolean r39) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.<init>(int, org.telegram.tgnet.TLRPC$TL_channelAdminLogEvent, java.util.ArrayList, java.util.HashMap, org.telegram.tgnet.TLRPC$Chat, int[], boolean):void");
     }
 
@@ -2136,7 +2143,7 @@ public class MessageObject {
 
     private CharSequence getStringFrom(TLRPC$ChatReactions tLRPC$ChatReactions) {
         if (tLRPC$ChatReactions instanceof TLRPC$TL_chatReactionsAll) {
-            return LocaleController.getString("AllReactions", R.string.AllReactions);
+            return LocaleController.getString(R.string.AllReactions);
         }
         if (tLRPC$ChatReactions instanceof TLRPC$TL_chatReactionsSome) {
             TLRPC$TL_chatReactionsSome tLRPC$TL_chatReactionsSome = (TLRPC$TL_chatReactionsSome) tLRPC$ChatReactions;
@@ -2149,12 +2156,12 @@ public class MessageObject {
             }
             return spannableStringBuilder;
         }
-        return LocaleController.getString("NoReactions", R.string.NoReactions);
+        return LocaleController.getString(R.string.NoReactions);
     }
 
     private String getUsernamesString(ArrayList<String> arrayList) {
         if (arrayList == null || arrayList.size() == 0) {
-            return LocaleController.getString("UsernameEmpty", R.string.UsernameEmpty).toLowerCase();
+            return LocaleController.getString(R.string.UsernameEmpty).toLowerCase();
         }
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < arrayList.size(); i++) {
@@ -2182,7 +2189,7 @@ public class MessageObject {
             if (tLObject instanceof TLRPC$User) {
                 TLRPC$User tLRPC$User = (TLRPC$User) tLObject;
                 if (tLRPC$User.deleted) {
-                    str = LocaleController.getString("HiddenName", R.string.HiddenName);
+                    str = LocaleController.getString(R.string.HiddenName);
                 } else {
                     str = ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name);
                 }
@@ -2392,7 +2399,7 @@ public class MessageObject {
             TLRPC$Message tLRPC$Message = messageObject.messageOwner;
             if (!(tLRPC$Message instanceof TLRPC$TL_messageEmpty) && !(tLRPC$Message.action instanceof TLRPC$TL_messageActionHistoryClear)) {
                 if (messageObject.isMusic()) {
-                    String string = LocaleController.getString("ActionPinnedMusic", R.string.ActionPinnedMusic);
+                    String string = LocaleController.getString(R.string.ActionPinnedMusic);
                     if (tLRPC$User == null) {
                         tLRPC$User = tLRPC$Chat;
                     }
@@ -2400,7 +2407,7 @@ public class MessageObject {
                     return;
                 }
                 if (this.replyMessageObject.isVideo()) {
-                    String string2 = LocaleController.getString("ActionPinnedVideo", R.string.ActionPinnedVideo);
+                    String string2 = LocaleController.getString(R.string.ActionPinnedVideo);
                     if (tLRPC$User == null) {
                         tLRPC$User = tLRPC$Chat;
                     }
@@ -2408,7 +2415,7 @@ public class MessageObject {
                     return;
                 }
                 if (this.replyMessageObject.isGif()) {
-                    String string3 = LocaleController.getString("ActionPinnedGif", R.string.ActionPinnedGif);
+                    String string3 = LocaleController.getString(R.string.ActionPinnedGif);
                     if (tLRPC$User == null) {
                         tLRPC$User = tLRPC$Chat;
                     }
@@ -2416,7 +2423,7 @@ public class MessageObject {
                     return;
                 }
                 if (this.replyMessageObject.isVoice()) {
-                    String string4 = LocaleController.getString("ActionPinnedVoice", R.string.ActionPinnedVoice);
+                    String string4 = LocaleController.getString(R.string.ActionPinnedVoice);
                     if (tLRPC$User == null) {
                         tLRPC$User = tLRPC$Chat;
                     }
@@ -2424,7 +2431,7 @@ public class MessageObject {
                     return;
                 }
                 if (this.replyMessageObject.isRoundVideo()) {
-                    String string5 = LocaleController.getString("ActionPinnedRound", R.string.ActionPinnedRound);
+                    String string5 = LocaleController.getString(R.string.ActionPinnedRound);
                     if (tLRPC$User == null) {
                         tLRPC$User = tLRPC$Chat;
                     }
@@ -2432,7 +2439,7 @@ public class MessageObject {
                     return;
                 }
                 if ((this.replyMessageObject.isSticker() || this.replyMessageObject.isAnimatedSticker()) && !this.replyMessageObject.isAnimatedEmoji()) {
-                    String string6 = LocaleController.getString("ActionPinnedSticker", R.string.ActionPinnedSticker);
+                    String string6 = LocaleController.getString(R.string.ActionPinnedSticker);
                     if (tLRPC$User == null) {
                         tLRPC$User = tLRPC$Chat;
                     }
@@ -2440,7 +2447,7 @@ public class MessageObject {
                     return;
                 }
                 if (getMedia(this.replyMessageObject) instanceof TLRPC$TL_messageMediaDocument) {
-                    String string7 = LocaleController.getString("ActionPinnedFile", R.string.ActionPinnedFile);
+                    String string7 = LocaleController.getString(R.string.ActionPinnedFile);
                     if (tLRPC$User == null) {
                         tLRPC$User = tLRPC$Chat;
                     }
@@ -2448,7 +2455,7 @@ public class MessageObject {
                     return;
                 }
                 if (getMedia(this.replyMessageObject) instanceof TLRPC$TL_messageMediaGeo) {
-                    String string8 = LocaleController.getString("ActionPinnedGeo", R.string.ActionPinnedGeo);
+                    String string8 = LocaleController.getString(R.string.ActionPinnedGeo);
                     if (tLRPC$User == null) {
                         tLRPC$User = tLRPC$Chat;
                     }
@@ -2456,7 +2463,7 @@ public class MessageObject {
                     return;
                 }
                 if (getMedia(this.replyMessageObject) instanceof TLRPC$TL_messageMediaGeoLive) {
-                    String string9 = LocaleController.getString("ActionPinnedGeoLive", R.string.ActionPinnedGeoLive);
+                    String string9 = LocaleController.getString(R.string.ActionPinnedGeoLive);
                     if (tLRPC$User == null) {
                         tLRPC$User = tLRPC$Chat;
                     }
@@ -2464,7 +2471,7 @@ public class MessageObject {
                     return;
                 }
                 if (getMedia(this.replyMessageObject) instanceof TLRPC$TL_messageMediaContact) {
-                    String string10 = LocaleController.getString("ActionPinnedContact", R.string.ActionPinnedContact);
+                    String string10 = LocaleController.getString(R.string.ActionPinnedContact);
                     if (tLRPC$User == null) {
                         tLRPC$User = tLRPC$Chat;
                     }
@@ -2473,14 +2480,14 @@ public class MessageObject {
                 }
                 if (getMedia(this.replyMessageObject) instanceof TLRPC$TL_messageMediaPoll) {
                     if (((TLRPC$TL_messageMediaPoll) getMedia(this.replyMessageObject)).poll.quiz) {
-                        String string11 = LocaleController.getString("ActionPinnedQuiz", R.string.ActionPinnedQuiz);
+                        String string11 = LocaleController.getString(R.string.ActionPinnedQuiz);
                         if (tLRPC$User == null) {
                             tLRPC$User = tLRPC$Chat;
                         }
                         this.messageText = replaceWithLink(string11, "un1", tLRPC$User);
                         return;
                     }
-                    String string12 = LocaleController.getString("ActionPinnedPoll", R.string.ActionPinnedPoll);
+                    String string12 = LocaleController.getString(R.string.ActionPinnedPoll);
                     if (tLRPC$User == null) {
                         tLRPC$User = tLRPC$Chat;
                     }
@@ -2488,7 +2495,7 @@ public class MessageObject {
                     return;
                 }
                 if (getMedia(this.replyMessageObject) instanceof TLRPC$TL_messageMediaPhoto) {
-                    String string13 = LocaleController.getString("ActionPinnedPhoto", R.string.ActionPinnedPhoto);
+                    String string13 = LocaleController.getString(R.string.ActionPinnedPhoto);
                     if (tLRPC$User == null) {
                         tLRPC$User = tLRPC$Chat;
                     }
@@ -2531,14 +2538,14 @@ public class MessageObject {
                             replaceEmoji = new SpannableStringBuilder(replaceEmoji).append((CharSequence) "...");
                         }
                     }
-                    SpannableStringBuilder formatSpannable = AndroidUtilities.formatSpannable(LocaleController.getString("ActionPinnedText", R.string.ActionPinnedText), replaceEmoji);
+                    SpannableStringBuilder formatSpannable = AndroidUtilities.formatSpannable(LocaleController.getString(R.string.ActionPinnedText), replaceEmoji);
                     if (tLRPC$User == null) {
                         tLRPC$User = tLRPC$Chat;
                     }
                     this.messageText = replaceWithLink(formatSpannable, "un1", tLRPC$User);
                     return;
                 }
-                String string14 = LocaleController.getString("ActionPinnedNoText", R.string.ActionPinnedNoText);
+                String string14 = LocaleController.getString(R.string.ActionPinnedNoText);
                 if (tLRPC$User == null) {
                     tLRPC$User = tLRPC$Chat;
                 }
@@ -2546,7 +2553,7 @@ public class MessageObject {
                 return;
             }
         }
-        String string15 = LocaleController.getString("ActionPinnedNoText", R.string.ActionPinnedNoText);
+        String string15 = LocaleController.getString(R.string.ActionPinnedNoText);
         if (tLRPC$User == null) {
             tLRPC$User = tLRPC$Chat;
         }
@@ -2983,7 +2990,7 @@ public class MessageObject {
                 sb2.append(i);
                 sb2.append(i3);
                 if ((tLRPC$KeyboardButton instanceof TLRPC$TL_keyboardButtonBuy) && (getMedia(this.messageOwner).flags & 4) != 0) {
-                    replaceEmoji = LocaleController.getString("PaymentReceipt", R.string.PaymentReceipt);
+                    replaceEmoji = LocaleController.getString(R.string.PaymentReceipt);
                 } else {
                     String str = tLRPC$KeyboardButton.text;
                     if (str == null) {
@@ -3035,7 +3042,7 @@ public class MessageObject {
         return tLRPC$Chat == null ? MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(j)) : tLRPC$Chat;
     }
 
-    private void updateMessageText(java.util.AbstractMap<java.lang.Long, org.telegram.tgnet.TLRPC$User> r35, java.util.AbstractMap<java.lang.Long, org.telegram.tgnet.TLRPC$Chat> r36, androidx.collection.LongSparseArray<org.telegram.tgnet.TLRPC$User> r37, androidx.collection.LongSparseArray<org.telegram.tgnet.TLRPC$Chat> r38) {
+    private void updateMessageText(java.util.AbstractMap<java.lang.Long, org.telegram.tgnet.TLRPC$User> r30, java.util.AbstractMap<java.lang.Long, org.telegram.tgnet.TLRPC$Chat> r31, androidx.collection.LongSparseArray<org.telegram.tgnet.TLRPC$User> r32, androidx.collection.LongSparseArray<org.telegram.tgnet.TLRPC$Chat> r33) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.updateMessageText(java.util.AbstractMap, java.util.AbstractMap, androidx.collection.LongSparseArray, androidx.collection.LongSparseArray):void");
     }
 
@@ -3120,7 +3127,7 @@ public class MessageObject {
                 } else if (isMediaEmpty()) {
                     this.type = 0;
                     if (TextUtils.isEmpty(this.messageText) && this.eventId == 0) {
-                        this.messageText = LocaleController.getString("EventLogOriginalCaptionEmpty", R.string.EventLogOriginalCaptionEmpty);
+                        this.messageText = LocaleController.getString(R.string.EventLogOriginalCaptionEmpty);
                     }
                 } else if (hasExtendedMediaPreview()) {
                     this.type = 20;
@@ -3933,7 +3940,7 @@ public class MessageObject {
             return null;
         }
         if (TextUtils.isEmpty(str)) {
-            SpannableString spannableString = new SpannableString(LocaleController.getString("NoWordsRecognized", R.string.NoWordsRecognized));
+            SpannableString spannableString = new SpannableString(LocaleController.getString(R.string.NoWordsRecognized));
             spannableString.setSpan(new CharacterStyle() {
                 @Override
                 public void updateDrawState(TextPaint textPaint) {
@@ -6066,7 +6073,7 @@ public class MessageObject {
                         return str;
                     }
                     String documentFileName = FileLoader.getDocumentFileName(document);
-                    return (TextUtils.isEmpty(documentFileName) && z) ? LocaleController.getString("AudioUnknownTitle", R.string.AudioUnknownTitle) : documentFileName;
+                    return (TextUtils.isEmpty(documentFileName) && z) ? LocaleController.getString(R.string.AudioUnknownTitle) : documentFileName;
                 }
                 if ((tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeVideo) && tLRPC$DocumentAttribute.round_message) {
                     if (isQuickReply()) {
@@ -6080,7 +6087,7 @@ public class MessageObject {
                 return documentFileName2;
             }
         }
-        return LocaleController.getString("AudioUnknownTitle", R.string.AudioUnknownTitle);
+        return LocaleController.getString(R.string.AudioUnknownTitle);
     }
 
     public double getDuration() {
@@ -6164,7 +6171,7 @@ public class MessageObject {
         return getMusicAuthor(true);
     }
 
-    public java.lang.String getMusicAuthor(boolean r12) {
+    public java.lang.String getMusicAuthor(boolean r11) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.getMusicAuthor(boolean):java.lang.String");
     }
 

@@ -1034,7 +1034,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             return;
         }
         if (id == 9) {
-            Browser.openUrl(this, LocaleController.getString("TelegramFaqUrl", R.string.TelegramFaqUrl));
+            Browser.openUrl(this, LocaleController.getString(R.string.TelegramFaqUrl));
             this.drawerLayoutContainer.closeDrawer(false);
             return;
         }
@@ -1077,7 +1077,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             return;
         }
         if (id == 13) {
-            Browser.openUrl(this, LocaleController.getString("TelegramFeaturesUrl", R.string.TelegramFeaturesUrl));
+            Browser.openUrl(this, LocaleController.getString(R.string.TelegramFeaturesUrl));
             this.drawerLayoutContainer.closeDrawer(false);
             return;
         }
@@ -1222,18 +1222,15 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 botWebViewSheet.setNeedsContext(false);
                 botWebViewSheet.setDefaultFullsize(z);
                 botWebViewSheet.setParentActivity(this);
-                botWebViewSheet.requestWebView(null, of);
+                botWebViewSheet.requestWebView(lastFragment, of);
                 botWebViewSheet.show();
                 return;
             }
-            if (lastFragment.getParentLayout() instanceof ActionBarLayout) {
-                lastFragment = ((ActionBarLayout) lastFragment.getParentLayout()).getSheetFragment();
-            }
-            BotWebViewAttachedSheet createBotViewer = lastFragment.createBotViewer();
+            BotWebViewAttachedSheet createBotViewer = (lastFragment.getParentLayout() instanceof ActionBarLayout ? ((ActionBarLayout) lastFragment.getParentLayout()).getSheetFragment() : lastFragment).createBotViewer();
             createBotViewer.setNeedsContext(false);
             createBotViewer.setDefaultFullsize(z);
             createBotViewer.setParentActivity(this);
-            createBotViewer.requestWebView(null, of);
+            createBotViewer.requestWebView(lastFragment, of);
             createBotViewer.show();
         }
     }
@@ -1505,7 +1502,6 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             @Override
             protected void onEmojiSelected(View view3, Long l, TLRPC$Document tLRPC$Document, Integer num) {
                 TLRPC$EmojiStatus tLRPC$EmojiStatus;
-                String string;
                 int i3;
                 if (l == null) {
                     tLRPC$EmojiStatus = new TLRPC$TL_emojiStatusEmpty();
@@ -1535,11 +1531,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                         } else if ((childAt2 instanceof DrawerActionCell) && LaunchActivity.this.drawerLayoutAdapter.getId(LaunchActivity.this.sideMenu.getChildAdapterPosition(childAt2)) == 15) {
                             boolean z2 = DialogObject.getEmojiStatusDocumentId(currentUser.emoji_status) != 0;
                             DrawerActionCell drawerActionCell = (DrawerActionCell) childAt2;
-                            if (z2) {
-                                string = LocaleController.getString("ChangeEmojiStatus", R.string.ChangeEmojiStatus);
-                            } else {
-                                string = LocaleController.getString("SetEmojiStatus", R.string.SetEmojiStatus);
-                            }
+                            String string = LaunchActivity.this.getString(z2 ? R.string.ChangeEmojiStatus : R.string.SetEmojiStatus);
                             if (z2) {
                                 i3 = R.drawable.msg_status_edit;
                             } else {
@@ -2189,7 +2181,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     public static void lambda$handleIntent$25(ActionIntroActivity actionIntroActivity, TLRPC$TL_error tLRPC$TL_error) {
-        AlertsCreator.showSimpleAlert(actionIntroActivity, LocaleController.getString("AuthAnotherClient", R.string.AuthAnotherClient), LocaleController.getString("ErrorOccurred", R.string.ErrorOccurred) + "\n" + tLRPC$TL_error.text);
+        AlertsCreator.showSimpleAlert(actionIntroActivity, LocaleController.getString(R.string.AuthAnotherClient), LocaleController.getString(R.string.ErrorOccurred) + "\n" + tLRPC$TL_error.text);
     }
 
     public void lambda$handleIntent$29(BaseFragment baseFragment, String str, String str2, DialogInterface dialogInterface, int i) {
@@ -2238,12 +2230,12 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         ArrayList<TLRPC$User> arrayList = this.contactsToSend;
         if (arrayList != null) {
             if (arrayList.size() != 1) {
-                bundle.putString("selectAlertString", LocaleController.getString("SendContactToText", R.string.SendMessagesToText));
-                bundle.putString("selectAlertStringGroup", LocaleController.getString("SendContactToGroupText", R.string.SendContactToGroupText));
+                bundle.putString("selectAlertString", LocaleController.getString(R.string.SendMessagesToText));
+                bundle.putString("selectAlertStringGroup", LocaleController.getString(R.string.SendContactToGroupText));
             }
         } else {
-            bundle.putString("selectAlertString", LocaleController.getString("SendMessagesToText", R.string.SendMessagesToText));
-            bundle.putString("selectAlertStringGroup", LocaleController.getString("SendMessagesToGroupText", R.string.SendMessagesToGroupText));
+            bundle.putString("selectAlertString", LocaleController.getString(R.string.SendMessagesToText));
+            bundle.putString("selectAlertStringGroup", LocaleController.getString(R.string.SendMessagesToGroupText));
         }
         DialogsActivity dialogsActivity = new DialogsActivity(bundle) {
             @Override
@@ -2847,8 +2839,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                         bundle.putBoolean("onlySelect", true);
                         bundle.putBoolean("cantSendToChannels", true);
                         bundle.putInt("dialogsType", 1);
-                        bundle.putString("selectAlertString", LocaleController.getString("SendGameToText", R.string.SendGameToText));
-                        bundle.putString("selectAlertStringGroup", LocaleController.getString("SendGameToGroupText", R.string.SendGameToGroupText));
+                        bundle.putString("selectAlertString", LocaleController.getString(R.string.SendGameToText));
+                        bundle.putString("selectAlertStringGroup", LocaleController.getString(R.string.SendGameToGroupText));
                         DialogsActivity dialogsActivity = new DialogsActivity(bundle);
                         final TLRPC$User user4 = MessagesController.getInstance(i2).getUser(l3);
                         dialogsActivity.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
@@ -2887,7 +2879,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                                 if (arrayList3.isEmpty()) {
                                     return;
                                 }
-                                BulletinFactory.of(arrayList3.get(arrayList3.size() - 1)).createErrorBulletin(LocaleController.getString("BotCantJoinGroups", R.string.BotCantJoinGroups)).show();
+                                BulletinFactory.of(arrayList3.get(arrayList3.size() - 1)).createErrorBulletin(LocaleController.getString(R.string.BotCantJoinGroups)).show();
                                 return;
                             } catch (Exception e) {
                                 FileLog.e(e);
@@ -3033,9 +3025,9 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                                 ((ChatActivity) lastFragment).shakeContent();
                             }
                             if (AndroidUtilities.isNumeric(str5)) {
-                                BulletinFactory.of(lastFragment).createErrorBulletin(LocaleController.getString("NoPhoneFound", R.string.NoPhoneFound)).show();
+                                BulletinFactory.of(lastFragment).createErrorBulletin(LocaleController.getString(R.string.NoPhoneFound)).show();
                             } else {
-                                BulletinFactory.of(lastFragment).createErrorBulletin(LocaleController.getString("NoUsernameFound", R.string.NoUsernameFound)).show();
+                                BulletinFactory.of(lastFragment).createErrorBulletin(LocaleController.getString(R.string.NoUsernameFound)).show();
                             }
                         }
                     } catch (Exception e4) {
@@ -3061,7 +3053,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         if (tL_stories$StoryItem == null) {
             BulletinFactory global = BulletinFactory.global();
             if (global != null) {
-                global.createSimpleBulletin(R.raw.story_bomb2, LocaleController.getString("StoryNotFound", R.string.StoryNotFound)).show();
+                global.createSimpleBulletin(R.raw.story_bomb2, LocaleController.getString(R.string.StoryNotFound)).show();
                 return;
             }
             return;
@@ -3069,7 +3061,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         if (tL_stories$StoryItem instanceof TL_stories$TL_storyItemDeleted) {
             BulletinFactory global2 = BulletinFactory.global();
             if (global2 != null) {
-                global2.createSimpleBulletin(R.raw.story_bomb1, LocaleController.getString("StoryNotFound", R.string.StoryNotFound)).show();
+                global2.createSimpleBulletin(R.raw.story_bomb1, LocaleController.getString(R.string.StoryNotFound)).show();
                 return;
             }
             return;
@@ -3240,10 +3232,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             int i2 = R.string.AddBot;
-            builder.setTitle(LocaleController.getString("AddBot", i2));
+            builder.setTitle(LocaleController.getString(i2));
             builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("AddMembersAlertNamesText", R.string.AddMembersAlertNamesText, UserObject.getUserName(tLRPC$User), chat == null ? "" : chat.title)));
-            builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
-            builder.setPositiveButton(LocaleController.getString("AddBot", i2), new DialogInterface.OnClickListener() {
+            builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
+            builder.setPositiveButton(LocaleController.getString(i2), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i3) {
                     LaunchActivity.this.lambda$runLinkRequest$70(j, i, tLRPC$User, str2, dialogInterface, i3);
@@ -3380,7 +3372,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 if (chatFull != null) {
                     if (chatFull.call == null) {
                         if (baseFragment.getParentActivity() != null) {
-                            BulletinFactory.of(baseFragment).createSimpleBulletin(R.raw.linkbroken, LocaleController.getString("InviteExpired", R.string.InviteExpired)).show();
+                            BulletinFactory.of(baseFragment).createSimpleBulletin(R.raw.linkbroken, LocaleController.getString(R.string.InviteExpired)).show();
                             return;
                         }
                         return;
@@ -3413,7 +3405,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         @Override
         public void onError() {
             if (!LaunchActivity.this.isFinishing()) {
-                AlertsCreator.showSimpleAlert((BaseFragment) LaunchActivity.mainFragmentsStack.get(LaunchActivity.mainFragmentsStack.size() - 1), LocaleController.getString("JoinToGroupErrorNotExist", R.string.JoinToGroupErrorNotExist));
+                AlertsCreator.showSimpleAlert((BaseFragment) LaunchActivity.mainFragmentsStack.get(LaunchActivity.mainFragmentsStack.size() - 1), LocaleController.getString(R.string.JoinToGroupErrorNotExist));
             }
             try {
                 this.val$dismissLoading.run();
@@ -3520,15 +3512,15 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             return;
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(LocaleController.getString("AppName", R.string.AppName));
+        builder.setTitle(LocaleController.getString(R.string.AppName));
         if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
-            builder.setMessage(LocaleController.getString("FloodWait", R.string.FloodWait));
+            builder.setMessage(LocaleController.getString(R.string.FloodWait));
         } else if (tLRPC$TL_error.text.equals("USERS_TOO_MUCH")) {
-            builder.setMessage(LocaleController.getString("JoinToGroupErrorFull", R.string.JoinToGroupErrorFull));
+            builder.setMessage(LocaleController.getString(R.string.JoinToGroupErrorFull));
         } else {
-            builder.setMessage(LocaleController.getString("JoinToGroupErrorNotExist", R.string.JoinToGroupErrorNotExist));
+            builder.setMessage(LocaleController.getString(R.string.JoinToGroupErrorNotExist));
         }
-        builder.setPositiveButton(LocaleController.getString("OK", R.string.OK), null);
+        builder.setPositiveButton(LocaleController.getString(R.string.OK), null);
         showAlertDialog(builder);
     }
 
@@ -3596,9 +3588,9 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         try {
             runnable.run();
             if ("APP_VERSION_OUTDATED".equals(tLRPC$TL_error.text)) {
-                AlertsCreator.showUpdateAppAlert(this, LocaleController.getString("UpdateAppAlert", R.string.UpdateAppAlert), true);
+                AlertsCreator.showUpdateAppAlert(this, LocaleController.getString(R.string.UpdateAppAlert), true);
             } else {
-                showAlertDialog(AlertsCreator.createSimpleAlert(this, LocaleController.getString("ErrorOccurred", R.string.ErrorOccurred) + "\n" + tLRPC$TL_error.text));
+                showAlertDialog(AlertsCreator.createSimpleAlert(this, LocaleController.getString(R.string.ErrorOccurred) + "\n" + tLRPC$TL_error.text));
             }
         } catch (Exception e) {
             FileLog.e(e);
@@ -3647,10 +3639,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
         if (tLRPC$TL_error != null) {
             if ("LANG_CODE_NOT_SUPPORTED".equals(tLRPC$TL_error.text)) {
-                showAlertDialog(AlertsCreator.createSimpleAlert(this, LocaleController.getString("LanguageUnsupportedError", R.string.LanguageUnsupportedError)));
+                showAlertDialog(AlertsCreator.createSimpleAlert(this, LocaleController.getString(R.string.LanguageUnsupportedError)));
                 return;
             }
-            showAlertDialog(AlertsCreator.createSimpleAlert(this, LocaleController.getString("ErrorOccurred", R.string.ErrorOccurred) + "\n" + tLRPC$TL_error.text));
+            showAlertDialog(AlertsCreator.createSimpleAlert(this, LocaleController.getString(R.string.ErrorOccurred) + "\n" + tLRPC$TL_error.text));
         }
     }
 
@@ -3684,7 +3676,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             lambda$runLinkRequest$91(themePreviewActivity);
             return;
         }
-        showAlertDialog(AlertsCreator.createSimpleAlert(this, LocaleController.getString("ErrorOccurred", R.string.ErrorOccurred) + "\n" + tLRPC$TL_error.text));
+        showAlertDialog(AlertsCreator.createSimpleAlert(this, LocaleController.getString(R.string.ErrorOccurred) + "\n" + tLRPC$TL_error.text));
     }
 
     public void lambda$runLinkRequest$94(Browser.Progress progress) {
@@ -3764,9 +3756,9 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 FileLog.e(e2);
             }
             if (c == 1) {
-                showAlertDialog(AlertsCreator.createSimpleAlert(this, LocaleController.getString("Theme", R.string.Theme), LocaleController.getString("ThemeNotSupported", R.string.ThemeNotSupported)));
+                showAlertDialog(AlertsCreator.createSimpleAlert(this, LocaleController.getString(R.string.Theme), LocaleController.getString(R.string.ThemeNotSupported)));
             } else {
-                showAlertDialog(AlertsCreator.createSimpleAlert(this, LocaleController.getString("Theme", R.string.Theme), LocaleController.getString("ThemeNotFound", R.string.ThemeNotFound)));
+                showAlertDialog(AlertsCreator.createSimpleAlert(this, LocaleController.getString(R.string.Theme), LocaleController.getString(R.string.ThemeNotFound)));
             }
         }
     }
@@ -4394,7 +4386,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    private java.util.List<org.telegram.tgnet.TLRPC$TL_contact> findContacts(java.lang.String r18, java.lang.String r19, boolean r20) {
+    private java.util.List<org.telegram.tgnet.TLRPC$TL_contact> findContacts(java.lang.String r19, java.lang.String r20, boolean r21) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.findContacts(java.lang.String, java.lang.String, boolean):java.util.List");
     }
 
@@ -4713,7 +4705,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             return;
         }
         int batteryLevel = LiteMode.getBatteryLevel();
-        BulletinFactory.of(lastFragment).createSimpleBulletin(new BatteryDrawable(batteryLevel / 100.0f, -1, lastFragment.getThemedColor(Theme.key_dialogSwipeRemove), 1.3f), LocaleController.getString("LowPowerEnabledTitle", R.string.LowPowerEnabledTitle), LocaleController.formatString("LowPowerEnabledSubtitle", R.string.LowPowerEnabledSubtitle, String.format("%d%%", Integer.valueOf(batteryLevel))), LocaleController.getString("Disable", R.string.Disable), new Runnable() {
+        BulletinFactory.of(lastFragment).createSimpleBulletin(new BatteryDrawable(batteryLevel / 100.0f, -1, lastFragment.getThemedColor(Theme.key_dialogSwipeRemove), 1.3f), LocaleController.getString(R.string.LowPowerEnabledTitle), LocaleController.formatString("LowPowerEnabledSubtitle", R.string.LowPowerEnabledSubtitle, String.format("%d%%", Integer.valueOf(batteryLevel))), LocaleController.getString(R.string.Disable), new Runnable() {
             @Override
             public final void run() {
                 LaunchActivity.this.lambda$onPowerSaver$132();
@@ -5226,7 +5218,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    public void didReceivedNotification(int r23, final int r24, java.lang.Object... r25) {
+    public void didReceivedNotification(int r21, final int r22, java.lang.Object... r23) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.didReceivedNotification(int, int, java.lang.Object[]):void");
     }
 

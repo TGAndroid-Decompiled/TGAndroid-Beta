@@ -582,7 +582,7 @@ public class CameraScanActivity extends BaseFragment {
         }
         int i2 = this.currentType;
         if (i2 == 2 || i2 == 3) {
-            this.actionBar.setTitle(LocaleController.getString("AuthAnotherClientScan", R.string.AuthAnotherClientScan));
+            this.actionBar.setTitle(LocaleController.getString(R.string.AuthAnotherClientScan));
         }
         Paint paint = new Paint(1);
         paint.setPathEffect(LinkPath.getRoundedEffect());
@@ -700,17 +700,17 @@ public class CameraScanActivity extends BaseFragment {
         this.recognizedMrzView.setAlpha(0.0f);
         int i3 = this.currentType;
         if (i3 == 0) {
-            this.titleTextView.setText(LocaleController.getString("PassportScanPassport", R.string.PassportScanPassport));
-            this.descriptionText.setText(LocaleController.getString("PassportScanPassportInfo", R.string.PassportScanPassportInfo));
+            this.titleTextView.setText(LocaleController.getString(R.string.PassportScanPassport));
+            this.descriptionText.setText(LocaleController.getString(R.string.PassportScanPassportInfo));
             this.titleTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
             this.recognizedMrzView.setTypeface(Typeface.MONOSPACE);
         } else {
             if (!this.needGalleryButton) {
                 if (i3 == 1 || i3 == 3) {
-                    this.titleTextView.setText(LocaleController.getString("AuthAnotherClientScan", R.string.AuthAnotherClientScan));
+                    this.titleTextView.setText(LocaleController.getString(R.string.AuthAnotherClientScan));
                 } else {
-                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString("AuthAnotherClientInfo5", R.string.AuthAnotherClientInfo5));
-                    String[] strArr = {LocaleController.getString("AuthAnotherClientDownloadClientUrl", R.string.AuthAnotherClientDownloadClientUrl), LocaleController.getString("AuthAnotherWebClientUrl", R.string.AuthAnotherWebClientUrl)};
+                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString(R.string.AuthAnotherClientInfo5));
+                    String[] strArr = {LocaleController.getString(R.string.AuthAnotherClientDownloadClientUrl), LocaleController.getString(R.string.AuthAnotherWebClientUrl)};
                     int i4 = 0;
                     for (int i5 = 2; i4 < i5; i5 = 2) {
                         String spannableStringBuilder2 = spannableStringBuilder.toString();
@@ -741,7 +741,7 @@ public class CameraScanActivity extends BaseFragment {
             this.recognizedMrzView.setTextSize(1, 16.0f);
             this.recognizedMrzView.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f));
             if (!this.needGalleryButton) {
-                this.recognizedMrzView.setText(LocaleController.getString("AuthAnotherClientNotFound", R.string.AuthAnotherClientNotFound));
+                this.recognizedMrzView.setText(LocaleController.getString(R.string.AuthAnotherClientNotFound));
             }
             anonymousClass3.addView(this.recognizedMrzView);
             if (this.needGalleryButton) {

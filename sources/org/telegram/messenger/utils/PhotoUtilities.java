@@ -161,7 +161,7 @@ public class PhotoUtilities {
             if (runnable != null) {
                 runnable.run();
             }
-            BulletinFactory.of(iNavigationLayout.getLastFragment()).createUsersBulletin(Collections.singletonList(user), AndroidUtilities.replaceTags(LocaleController.getString("ApplyAvatarHintTitle", R.string.ApplyAvatarHintTitle)), AndroidUtilities.replaceSingleTag(LocaleController.getString("ApplyAvatarHint", R.string.ApplyAvatarHint), new Runnable() {
+            BulletinFactory.of(iNavigationLayout.getLastFragment()).createUsersBulletin(Collections.singletonList(user), AndroidUtilities.replaceTags(LocaleController.getString(R.string.ApplyAvatarHintTitle)), AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ApplyAvatarHint), new Runnable() {
                 @Override
                 public final void run() {
                     PhotoUtilities.lambda$setImageAsAvatar$0(i, iNavigationLayout);
@@ -289,7 +289,7 @@ public class PhotoUtilities {
             TLRPC$UserFull userFull = chatActivity.getMessagesController().getUserFull(j);
             userFull.profile_photo = tLRPC$TL_photos_photo.photo;
             chatActivity.getMessagesStorage().updateUserInfo(userFull, false);
-            BulletinFactory.of(chatActivity).createUsersBulletin(Collections.singletonList(user), AndroidUtilities.replaceTags(LocaleController.getString("ApplyAvatarHintTitle", R.string.ApplyAvatarHintTitle)), AndroidUtilities.replaceSingleTag(LocaleController.getString("ApplyAvatarHint", R.string.ApplyAvatarHint), new Runnable() {
+            BulletinFactory.of(chatActivity).createUsersBulletin(Collections.singletonList(user), AndroidUtilities.replaceTags(LocaleController.getString(R.string.ApplyAvatarHintTitle)), AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ApplyAvatarHint), new Runnable() {
                 @Override
                 public final void run() {
                     PhotoUtilities.lambda$showAvatartConstructorForUpdateUserPhoto$5(j, chatActivity);

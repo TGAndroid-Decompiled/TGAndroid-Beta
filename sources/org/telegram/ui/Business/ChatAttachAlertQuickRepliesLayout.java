@@ -113,7 +113,7 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
             TLRPC$User tLRPC$User = this.currentUser;
             if (tLRPC$User != null) {
                 if (TextUtils.isEmpty(tLRPC$User.phone)) {
-                    this.statusTextView.setText(LocaleController.getString("NumberUnknown", R.string.NumberUnknown));
+                    this.statusTextView.setText(LocaleController.getString(R.string.NumberUnknown));
                 } else if (this.formattedPhoneNumberUser != this.currentUser && (charSequence2 = this.formattedPhoneNumber) != null) {
                     this.statusTextView.setText(charSequence2);
                 } else {
@@ -174,7 +174,7 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
             public void onTextChange(String str) {
                 if (str.length() != 0) {
                     if (ChatAttachAlertQuickRepliesLayout.this.emptyView != null) {
-                        ChatAttachAlertQuickRepliesLayout.this.emptyView.setText(LocaleController.getString("NoResult", R.string.NoResult));
+                        ChatAttachAlertQuickRepliesLayout.this.emptyView.setText(LocaleController.getString(R.string.NoResult));
                     }
                 } else if (ChatAttachAlertQuickRepliesLayout.this.listView.getAdapter() != ChatAttachAlertQuickRepliesLayout.this.listAdapter) {
                     int currentTop = ChatAttachAlertQuickRepliesLayout.this.getCurrentTop();

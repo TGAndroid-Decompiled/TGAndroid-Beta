@@ -107,11 +107,11 @@ public class SettingsSuggestionCell extends LinearLayout {
         this.currentType = i;
         if (i != 0) {
             if (i == 1) {
-                this.textView.setText(LocaleController.getString("YourPasswordHeader", R.string.YourPasswordHeader));
-                this.detailTextView.setText(LocaleController.getString("YourPasswordRemember", R.string.YourPasswordRemember));
-                this.yesButton.setText(LocaleController.getString("YourPasswordRememberYes", R.string.YourPasswordRememberYes));
+                this.textView.setText(LocaleController.getString(R.string.YourPasswordHeader));
+                this.detailTextView.setText(LocaleController.getString(R.string.YourPasswordRemember));
+                this.yesButton.setText(LocaleController.getString(R.string.YourPasswordRememberYes));
                 this.noButton.setVisibility(0);
-                this.noButton.setText(LocaleController.getString("YourPasswordRememberNo", R.string.YourPasswordRememberNo));
+                this.noButton.setText(LocaleController.getString(R.string.YourPasswordRememberNo));
                 return;
             }
             if (i == 2) {
@@ -125,7 +125,7 @@ public class SettingsSuggestionCell extends LinearLayout {
         }
         TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(UserConfig.getInstance(this.currentAccount).clientUserId));
         this.textView.setText(LocaleController.formatString("CheckPhoneNumber", R.string.CheckPhoneNumber, PhoneFormat.getInstance().format("+" + user.phone)));
-        String string = LocaleController.getString("CheckPhoneNumberInfo", R.string.CheckPhoneNumberInfo);
+        String string = LocaleController.getString(R.string.CheckPhoneNumberInfo);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
         int indexOf = string.indexOf("**");
         int lastIndexOf = string.lastIndexOf("**");
@@ -133,15 +133,15 @@ public class SettingsSuggestionCell extends LinearLayout {
             spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 2, (CharSequence) "");
             spannableStringBuilder.replace(indexOf, indexOf + 2, (CharSequence) "");
             try {
-                spannableStringBuilder.setSpan(new URLSpanNoUnderline(LocaleController.getString("CheckPhoneNumberLearnMoreUrl", R.string.CheckPhoneNumberLearnMoreUrl)), indexOf, lastIndexOf - 2, 33);
+                spannableStringBuilder.setSpan(new URLSpanNoUnderline(LocaleController.getString(R.string.CheckPhoneNumberLearnMoreUrl)), indexOf, lastIndexOf - 2, 33);
             } catch (Exception e) {
                 FileLog.e(e);
             }
         }
         this.detailTextView.setText(spannableStringBuilder);
-        this.yesButton.setText(LocaleController.getString("CheckPhoneNumberYes", R.string.CheckPhoneNumberYes));
+        this.yesButton.setText(LocaleController.getString(R.string.CheckPhoneNumberYes));
         this.noButton.setVisibility(0);
-        this.noButton.setText(LocaleController.getString("CheckPhoneNumberNo", R.string.CheckPhoneNumberNo));
+        this.noButton.setText(LocaleController.getString(R.string.CheckPhoneNumberNo));
     }
 
     @Override

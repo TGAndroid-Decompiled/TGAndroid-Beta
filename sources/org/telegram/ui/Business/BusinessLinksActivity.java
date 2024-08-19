@@ -172,7 +172,7 @@ public class BusinessLinksActivity extends UniversalFragment implements Notifica
                 BusinessLinksActivity.lambda$openRenameAlert$1(EditTextBoldCursor.this, i, tLRPC$TL_businessChatLink, dialogInterface, i3);
             }
         });
-        r11.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), new DialogInterface.OnClickListener() {
+        r11.setNegativeButton(LocaleController.getString(R.string.Cancel), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i3) {
                 dialogInterface.dismiss();

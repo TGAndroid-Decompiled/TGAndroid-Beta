@@ -101,7 +101,7 @@ public class ChatActivityMemberRequestsDelegate {
                 imageView.setBackground(Theme.createSelectorDrawable(this.fragment.getThemedColor(Theme.key_inappPlayerClose) & 436207615, 1, AndroidUtilities.dp(14.0f)));
             }
             this.closeView.setColorFilter(new PorterDuffColorFilter(this.fragment.getThemedColor(Theme.key_chat_topPanelClose), PorterDuff.Mode.MULTIPLY));
-            this.closeView.setContentDescription(LocaleController.getString("Close", R.string.Close));
+            this.closeView.setContentDescription(LocaleController.getString(R.string.Close));
             this.closeView.setImageResource(R.drawable.miniplayer_close);
             this.closeView.setScaleType(ImageView.ScaleType.CENTER);
             this.closeView.setOnClickListener(new View.OnClickListener() {

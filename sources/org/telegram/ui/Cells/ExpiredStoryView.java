@@ -48,14 +48,14 @@ public class ExpiredStoryView {
                     parentWidth = chatMessageCell.getParentWidth();
                 }
                 int i = (int) (parentWidth * 0.4f);
-                String string = LocaleController.getString("From", R.string.From);
+                String string = LocaleController.getString(R.string.From);
                 TextPaint textPaint = Theme.chat_forwardNamePaint;
                 int ceil = (int) Math.ceil(textPaint.measureText(string + " "));
                 if (str2 == null) {
                     str2 = "";
                 }
                 String str3 = (String) TextUtils.ellipsize(str2.replace('\n', ' '), Theme.chat_replyNamePaint, i - ceil, TextUtils.TruncateAt.END);
-                String string2 = LocaleController.getString("FromFormatted", R.string.FromFormatted);
+                String string2 = LocaleController.getString(R.string.FromFormatted);
                 int indexOf = string2.indexOf("%1$s");
                 String format = String.format(string2, str3);
                 if (indexOf >= 0) {

@@ -203,7 +203,7 @@ public class StorageUsageView extends FrameLayout {
                 this.textSettingsCell.setVisibility(0);
                 this.telegramCacheTextView.setVisibility(0);
                 this.telegramDatabaseTextView.setVisibility(8);
-                this.textSettingsCell.setTextAndValue(LocaleController.getString("ClearTelegramCache", R.string.ClearTelegramCache), AndroidUtilities.formatFileSize(j2), true);
+                this.textSettingsCell.setTextAndValue(LocaleController.getString(R.string.ClearTelegramCache), AndroidUtilities.formatFileSize(j2), true);
                 this.telegramCacheTextView.setText(LocaleController.formatString("TelegramCacheSize", R.string.TelegramCacheSize, AndroidUtilities.formatFileSize(j2 + j)));
             } else {
                 this.telegramCacheTextView.setVisibility(8);

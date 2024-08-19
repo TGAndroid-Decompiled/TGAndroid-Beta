@@ -115,7 +115,7 @@ public class SessionCell extends FrameLayout {
             this.nameTextView.setText(sb);
             if ((tLRPC$TL_authorization.flags & 1) != 0) {
                 setTag(Integer.valueOf(Theme.key_windowBackgroundWhiteValueText));
-                stringForMessageListDate = LocaleController.getString("Online", R.string.Online);
+                stringForMessageListDate = LocaleController.getString(R.string.Online);
             } else {
                 setTag(Integer.valueOf(Theme.key_windowBackgroundWhiteGrayText3));
                 stringForMessageListDate = LocaleController.stringForMessageListDate(tLRPC$TL_authorization.date_active);

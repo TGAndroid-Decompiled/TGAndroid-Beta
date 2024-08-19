@@ -358,7 +358,7 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
         ActionBarMenuItem actionBarMenuItemSearchListener = createMenu.addItem(0, R.drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new AnonymousClass12());
         this.searchItem = actionBarMenuItemSearchListener;
         actionBarMenuItemSearchListener.setVisibility(8);
-        actionBarMenuItemSearchListener.setSearchFieldHint(LocaleController.getString("SearchImagesTitle", R.string.SearchImagesTitle));
+        actionBarMenuItemSearchListener.setSearchFieldHint(LocaleController.getString(R.string.SearchImagesTitle));
         recyclerListView2.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
@@ -390,7 +390,7 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
         updateContainsDrafts();
         MediaController.AlbumEntry albumEntry2 = this.selectedAlbum;
         if (albumEntry2 == MediaController.allMediaAlbumEntry) {
-            this.dropDown.setText(LocaleController.getString("ChatGallery", R.string.ChatGallery));
+            this.dropDown.setText(LocaleController.getString(R.string.ChatGallery));
         } else if (albumEntry2 == draftsAlbum) {
             this.dropDown.setText(LocaleController.getString("StoryDraftsAlbum"));
         } else {
@@ -754,7 +754,7 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
         updateContainsDrafts();
         MediaController.AlbumEntry albumEntry2 = this.selectedAlbum;
         if (albumEntry2 == MediaController.allMediaAlbumEntry) {
-            this.dropDown.setText(LocaleController.getString("ChatGallery", R.string.ChatGallery));
+            this.dropDown.setText(LocaleController.getString(R.string.ChatGallery));
         } else if (albumEntry2 == draftsAlbum) {
             this.dropDown.setText(LocaleController.getString("StoryDraftsAlbum"));
         } else {

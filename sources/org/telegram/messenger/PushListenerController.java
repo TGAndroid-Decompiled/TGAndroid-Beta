@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.messaging.FirebaseMessaging;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -135,7 +136,7 @@ public class PushListenerController {
         });
     }
 
-    public static void lambda$processRemoteMessage$5(java.lang.String r69, java.lang.String r70, long r71) {
+    public static void lambda$processRemoteMessage$5(java.lang.String r59, java.lang.String r60, long r61) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.PushListenerController.lambda$processRemoteMessage$5(java.lang.String, java.lang.String, long):void");
     }
 
@@ -509,6 +510,7 @@ public class PushListenerController {
         public void lambda$onRequestPushToken$1() {
             try {
                 SharedConfig.pushStringGetTimeStart = SystemClock.elapsedRealtime();
+                FirebaseApp.initializeApp(ApplicationLoader.applicationContext);
                 FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener() {
                     @Override
                     public final void onComplete(Task task) {

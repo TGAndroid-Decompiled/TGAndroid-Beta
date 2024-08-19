@@ -204,19 +204,10 @@ public class TextRadioCell extends FrameLayout {
 
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        int i;
-        String str;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setCheckable(true);
         accessibilityNodeInfo.setChecked(this.radioButton.isChecked());
-        if (this.radioButton.isChecked()) {
-            i = R.string.NotificationsOn;
-            str = "NotificationsOn";
-        } else {
-            i = R.string.NotificationsOff;
-            str = "NotificationsOff";
-        }
-        accessibilityNodeInfo.setContentDescription(LocaleController.getString(str, i));
+        accessibilityNodeInfo.setContentDescription(LocaleController.getString(this.radioButton.isChecked() ? R.string.NotificationsOn : R.string.NotificationsOff));
         StringBuilder sb = new StringBuilder();
         sb.append(this.textView.getText());
         if (!TextUtils.isEmpty(this.valueTextView.getText())) {

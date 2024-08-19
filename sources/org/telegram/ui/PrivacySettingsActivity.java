@@ -298,12 +298,12 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                 }
                 final AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
                 builder.setTitle(LocaleController.getString("DeleteAccountTitle", R.string.DeleteAccountTitle));
-                String[] strArr = {LocaleController.formatPluralString("Months", 1, new Object[0]), LocaleController.formatPluralString("Months", 3, new Object[0]), LocaleController.formatPluralString("Months", 6, new Object[0]), LocaleController.formatPluralString("Years", 1, new Object[0])};
+                String[] strArr = {LocaleController.formatPluralString("Months", 1, new Object[0]), LocaleController.formatPluralString("Months", 3, new Object[0]), LocaleController.formatPluralString("Months", 6, new Object[0]), LocaleController.formatPluralString("Years", 1, new Object[0]), LocaleController.getString("OneAndHalfYear")};
                 LinearLayout linearLayout = new LinearLayout(getParentActivity());
                 linearLayout.setOrientation(1);
                 builder.setView(linearLayout);
                 int i3 = 0;
-                while (i3 < 4) {
+                while (i3 < 5) {
                     RadioColorCell radioColorCell = new RadioColorCell(getParentActivity());
                     radioColorCell.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
                     radioColorCell.setTag(Integer.valueOf(i3));
@@ -318,7 +318,7 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                     });
                     i3++;
                 }
-                builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
+                builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
                 showDialog(builder.create());
                 return;
             }
@@ -557,8 +557,10 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
             i = 90;
         } else if (num.intValue() == 2) {
             i = 182;
+        } else if (num.intValue() == 3) {
+            i = 365;
         } else {
-            i = num.intValue() == 3 ? 365 : 0;
+            i = num.intValue() == 4 ? 548 : 0;
         }
         final AlertDialog alertDialog = new AlertDialog(getParentActivity(), 3);
         alertDialog.setCanCancel(false);
@@ -1242,6 +1244,8 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                                         str6 = LocaleController.formatPluralString("Months", deleteAccountTTL / 30, new Object[0]);
                                     } else if (deleteAccountTTL == 365) {
                                         str6 = LocaleController.formatPluralString("Years", deleteAccountTTL / 365, new Object[0]);
+                                    } else if (deleteAccountTTL == 548) {
+                                        str6 = LocaleController.getString(R.string.OneAndHalfYear);
                                     } else {
                                         str6 = LocaleController.formatPluralString("Days", deleteAccountTTL, new Object[0]);
                                     }

@@ -54,8 +54,8 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
         this.twoDay = ActionBarMenuItem.addItem(this, R.drawable.msg_autodelete_2d, LocaleController.formatPluralString("Days", 2, new Object[0]), false, null);
         this.oneWeek = ActionBarMenuItem.addItem(this, R.drawable.msg_autodelete_1w, LocaleController.formatPluralString("Weeks", 1, new Object[0]), false, null);
         this.oneMonth = ActionBarMenuItem.addItem(this, R.drawable.msg_autodelete_1m, LocaleController.formatPluralString("Months", 1, new Object[0]), false, null);
-        this.forever = ActionBarMenuItem.addItem(this, R.drawable.msg_cancel, LocaleController.getString("AutoDeleteMediaNever", R.string.AutoDeleteMediaNever), false, null);
-        ActionBarMenuSubItem addItem = ActionBarMenuItem.addItem(this, R.drawable.msg_delete, LocaleController.getString("DeleteException", R.string.DeleteException), false, null);
+        this.forever = ActionBarMenuItem.addItem(this, R.drawable.msg_cancel, LocaleController.getString(R.string.AutoDeleteMediaNever), false, null);
+        ActionBarMenuSubItem addItem = ActionBarMenuItem.addItem(this, R.drawable.msg_delete, LocaleController.getString(R.string.DeleteException), false, null);
         this.delete = addItem;
         int i = Theme.key_text_RedRegular;
         addItem.setColors(Theme.getColor(i), Theme.getColor(i));
@@ -99,7 +99,7 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
         linksTextView.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem));
         linksTextView.setMovementMethod(LinkMovementMethod.getInstance());
         linksTextView.setLinkTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteLinkText));
-        linksTextView.setText(LocaleController.getString("KeepMediaPopupDescription", R.string.KeepMediaPopupDescription));
+        linksTextView.setText(LocaleController.getString(R.string.KeepMediaPopupDescription));
         addView((View) linksTextView, LayoutHelper.createLinear(-1, -2, 0.0f, 0, 0, 8, 0, 0));
     }
 
@@ -208,7 +208,7 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
         ArrayList<CacheByChatsController.KeepMediaException> keepMediaExceptions = this.cacheByChatsController.getKeepMediaExceptions(i);
         this.exceptions = keepMediaExceptions;
         if (keepMediaExceptions.isEmpty()) {
-            this.exceptionsView.titleView.setText(LocaleController.getString("AddAnException", R.string.AddAnException));
+            this.exceptionsView.titleView.setText(LocaleController.getString(R.string.AddAnException));
             this.exceptionsView.titleView.setRightPadding(AndroidUtilities.dp(8.0f));
             this.exceptionsView.avatarsImageView.setObject(0, this.parentFragment.getCurrentAccount(), null);
             this.exceptionsView.avatarsImageView.setObject(1, this.parentFragment.getCurrentAccount(), null);

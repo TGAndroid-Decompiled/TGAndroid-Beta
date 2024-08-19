@@ -152,7 +152,7 @@ public class ProximitySheet extends FrameLayout {
         FrameLayout frameLayout2 = new FrameLayout(context);
         this.customView.addView(frameLayout2, LayoutHelper.createLinear(-1, -2, 51, 22, 0, 0, 4));
         TextView textView = new TextView(context);
-        textView.setText(LocaleController.getString("LocationNotifiation", R.string.LocationNotifiation));
+        textView.setText(LocaleController.getString(R.string.LocationNotifiation));
         textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
         textView.setTextSize(1, 20.0f);
         textView.setTypeface(AndroidUtilities.bold());
@@ -300,7 +300,7 @@ public class ProximitySheet extends FrameLayout {
             if (this.currentUser == null) {
                 this.buttonTextView.setText(LocaleController.formatString("LocationNotifiationButtonGroup", R.string.LocationNotifiationButtonGroup, formatDistance));
             } else {
-                this.buttonTextView.setText(LocaleController.formatString("LocationNotifiationButtonUser", R.string.LocationNotifiationButtonUser, TextUtils.ellipsize(UserObject.getFirstName(this.currentUser), this.buttonTextView.getPaint(), Math.max(AndroidUtilities.dp(10.0f), (int) (((this.totalWidth - AndroidUtilities.dp(94.0f)) * 1.5f) - ((int) Math.ceil(this.buttonTextView.getPaint().measureText(LocaleController.getString("LocationNotifiationButtonUser", r14)))))), TextUtils.TruncateAt.END), formatDistance));
+                this.buttonTextView.setText(LocaleController.formatString("LocationNotifiationButtonUser", R.string.LocationNotifiationButtonUser, TextUtils.ellipsize(UserObject.getFirstName(this.currentUser), this.buttonTextView.getPaint(), Math.max(AndroidUtilities.dp(10.0f), (int) (((this.totalWidth - AndroidUtilities.dp(94.0f)) * 1.5f) - ((int) Math.ceil(this.buttonTextView.getPaint().measureText(LocaleController.getString(r13)))))), TextUtils.TruncateAt.END), formatDistance));
             }
             if (this.buttonTextView.getTag() != null) {
                 this.buttonTextView.setTag(null);

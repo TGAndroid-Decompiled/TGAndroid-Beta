@@ -67,7 +67,7 @@ public class VoIPStatusTextView extends FrameLayout {
         this.badConnectionTextView.setTextColor(-1);
         this.badConnectionTextView.setGravity(1);
         this.badConnectionTextView.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(2.0f));
-        this.badConnectionTextView.setText(LocaleController.getString("VoipWeakNetwork", R.string.VoipWeakNetwork));
+        this.badConnectionTextView.setText(LocaleController.getString(R.string.VoipWeakNetwork));
         this.badConnectionLayer.addView(this.badConnectionTextView, LayoutHelper.createFrame(-2, -2.0f, 1, 0.0f, 0.0f, 0.0f, 0.0f));
         this.badConnectionLayer.setVisibility(8);
         addView(this.badConnectionLayer, LayoutHelper.createFrame(-1, -2.0f, 0, 0.0f, 44.0f, 0.0f, 0.0f));
@@ -77,7 +77,7 @@ public class VoIPStatusTextView extends FrameLayout {
         this.reconnectTextView.setTextColor(-1);
         this.reconnectTextView.setGravity(1);
         addView(this.reconnectTextView, LayoutHelper.createFrame(-1, -2.0f, 0, 0.0f, 22.0f, 0.0f, 0.0f));
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString("VoipReconnecting", R.string.VoipReconnecting));
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString(R.string.VoipReconnecting));
         SpannableString spannableString = new SpannableString(".");
         spannableString.setSpan(new VoIPEllipsizeSpan(this.reconnectTextView), 0, 1, 33);
         spannableStringBuilder.append((CharSequence) spannableString);

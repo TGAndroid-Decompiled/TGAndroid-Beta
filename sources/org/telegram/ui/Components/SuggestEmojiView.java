@@ -300,7 +300,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
             if (!AndroidUtilities.addToClipboard(valueOf) || SuggestEmojiView.this.enterView == null) {
                 return;
             }
-            BulletinFactory.of(SuggestEmojiView.this.enterView.getParentFragment()).createCopyBulletin(LocaleController.getString("EmojiCopied", R.string.EmojiCopied)).show();
+            BulletinFactory.of(SuggestEmojiView.this.enterView.getParentFragment()).createCopyBulletin(LocaleController.getString(R.string.EmojiCopied)).show();
         }
 
         @Override
@@ -341,7 +341,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
             if (parentFragment != null) {
                 if (tLRPC$Document == null) {
                     Bulletin.SimpleLayout simpleLayout = new Bulletin.SimpleLayout(SuggestEmojiView.this.getContext(), SuggestEmojiView.this.resourcesProvider);
-                    simpleLayout.textView.setText(LocaleController.getString("RemoveStatusInfo", R.string.RemoveStatusInfo));
+                    simpleLayout.textView.setText(LocaleController.getString(R.string.RemoveStatusInfo));
                     simpleLayout.imageView.setImageResource(R.drawable.msg_settings_premium);
                     Bulletin.UndoButton undoButton = new Bulletin.UndoButton(SuggestEmojiView.this.getContext(), true, SuggestEmojiView.this.resourcesProvider);
                     undoButton.setUndoAction(runnable);
@@ -349,7 +349,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
                     Bulletin.make(parentFragment, simpleLayout, 1500).show();
                     return;
                 }
-                BulletinFactory.of(parentFragment).createEmojiBulletin(tLRPC$Document, LocaleController.getString("SetAsEmojiStatusInfo", R.string.SetAsEmojiStatusInfo), LocaleController.getString("Undo", R.string.Undo), runnable).show();
+                BulletinFactory.of(parentFragment).createEmojiBulletin(tLRPC$Document, LocaleController.getString(R.string.SetAsEmojiStatusInfo), LocaleController.getString(R.string.Undo), runnable).show();
             }
         }
 

@@ -90,9 +90,9 @@ public class GroupCallRecordAlert extends BottomSheet {
         viewGroup.setPadding(i, 0, i, 0);
         TextView textView = new TextView(getContext());
         if (ChatObject.isChannelOrGiga(tLRPC$Chat)) {
-            textView.setText(LocaleController.getString("VoipChannelRecordVoiceChat", R.string.VoipChannelRecordVoiceChat));
+            textView.setText(LocaleController.getString(R.string.VoipChannelRecordVoiceChat));
         } else {
-            textView.setText(LocaleController.getString("VoipRecordVoiceChat", R.string.VoipRecordVoiceChat));
+            textView.setText(LocaleController.getString(R.string.VoipRecordVoiceChat));
         }
         textView.setTextColor(-1);
         textView.setTextSize(1, 20.0f);
@@ -100,7 +100,7 @@ public class GroupCallRecordAlert extends BottomSheet {
         textView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
         this.containerView.addView(textView, LayoutHelper.createFrame(-2, -2.0f, (LocaleController.isRTL ? 5 : 3) | 48, 24.0f, 29.0f, 24.0f, 0.0f));
         TextView textView2 = new TextView(getContext());
-        textView2.setText(LocaleController.getString("VoipRecordVoiceChatInfo", R.string.VoipRecordVoiceChatInfo));
+        textView2.setText(LocaleController.getString(R.string.VoipRecordVoiceChatInfo));
         textView2.setTextColor(-1);
         textView2.setTextSize(1, 14.0f);
         textView2.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
@@ -185,7 +185,7 @@ public class GroupCallRecordAlert extends BottomSheet {
         textView4.setTextColor(Theme.getColor(i2));
         this.positiveButton.setGravity(17);
         this.positiveButton.setTypeface(AndroidUtilities.bold());
-        this.positiveButton.setText(LocaleController.getString("VoipRecordStart", R.string.VoipRecordStart));
+        this.positiveButton.setText(LocaleController.getString(R.string.VoipRecordStart));
         if (Build.VERSION.SDK_INT >= 23) {
             this.positiveButton.setForeground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), 0, ColorUtils.setAlphaComponent(Theme.getColor(i2), 76)));
         }
@@ -215,11 +215,11 @@ public class GroupCallRecordAlert extends BottomSheet {
             this.titles[i3].setSingleLine(true);
             this.titlesLayout.addView(this.titles[i3], LayoutHelper.createLinear(-2, -1));
             if (i3 == 0) {
-                this.titles[i3].setText(LocaleController.getString("VoipRecordAudio", R.string.VoipRecordAudio));
+                this.titles[i3].setText(LocaleController.getString(R.string.VoipRecordAudio));
             } else if (i3 == 1) {
-                this.titles[i3].setText(LocaleController.getString("VoipRecordPortrait", R.string.VoipRecordPortrait));
+                this.titles[i3].setText(LocaleController.getString(R.string.VoipRecordPortrait));
             } else {
-                this.titles[i3].setText(LocaleController.getString("VoipRecordLandscape", R.string.VoipRecordLandscape));
+                this.titles[i3].setText(LocaleController.getString(R.string.VoipRecordLandscape));
             }
             this.titles[i3].setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -326,11 +326,11 @@ public class GroupCallRecordAlert extends BottomSheet {
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
             imageView.setLayoutParams(new ViewGroup.LayoutParams(AndroidUtilities.dp(200.0f), -1));
             if (i == 0) {
-                imageView.setContentDescription(LocaleController.getString("VoipRecordAudio", R.string.VoipRecordAudio));
+                imageView.setContentDescription(LocaleController.getString(R.string.VoipRecordAudio));
             } else if (i == 1) {
-                imageView.setContentDescription(LocaleController.getString("VoipRecordPortrait", R.string.VoipRecordPortrait));
+                imageView.setContentDescription(LocaleController.getString(R.string.VoipRecordPortrait));
             } else {
-                imageView.setContentDescription(LocaleController.getString("VoipRecordLandscape", R.string.VoipRecordLandscape));
+                imageView.setContentDescription(LocaleController.getString(R.string.VoipRecordLandscape));
             }
             if (i == 0) {
                 i2 = R.raw.record_audio;

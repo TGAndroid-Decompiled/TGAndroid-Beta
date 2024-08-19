@@ -125,7 +125,7 @@ public class AvatarConstructorFragment extends BaseFragment {
         this.actionBar.setItemsBackgroundColor(Theme.getColor(Theme.key_listSelector), false);
         this.actionBar.setBackButtonDrawable(new BackDrawable(false));
         this.actionBar.setAllowOverlayTitle(false);
-        this.actionBar.setTitle(LocaleController.getString("PhotoEditor", R.string.PhotoEditor));
+        this.actionBar.setTitle(LocaleController.getString(R.string.PhotoEditor));
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i2) {
@@ -150,9 +150,9 @@ public class AvatarConstructorFragment extends BaseFragment {
         createMenu.setClipChildren(false);
         ImageUpdater.AvatarFor avatarFor = this.avatarFor;
         if (avatarFor != null && avatarFor.type == 2) {
-            string = LocaleController.getString("SuggestPhoto", R.string.SuggestPhoto);
+            string = LocaleController.getString(R.string.SuggestPhoto);
         } else {
-            string = LocaleController.getString("SetPhoto", R.string.SetPhoto);
+            string = LocaleController.getString(R.string.SetPhoto);
         }
         ActionBarMenuItem addItem = createMenu.addItem(1, string);
         this.setPhotoItem = addItem;
@@ -369,7 +369,7 @@ public class AvatarConstructorFragment extends BaseFragment {
         linearLayout.addView(previewView);
         TextView textView = new TextView(getContext());
         this.chooseBackgroundHint = textView;
-        textView.setText(LocaleController.getString("ChooseBackground", R.string.ChooseBackground));
+        textView.setText(LocaleController.getString(R.string.ChooseBackground));
         TextView textView2 = this.chooseBackgroundHint;
         int i2 = Theme.key_windowBackgroundWhiteGrayText;
         textView2.setTextColor(Theme.getColor(i2));
@@ -399,7 +399,7 @@ public class AvatarConstructorFragment extends BaseFragment {
         this.linearLayout.addView(frameLayout, LayoutHelper.createLinear(-1, 48, 0, 12, 0, 12, 0));
         TextView textView3 = new TextView(getContext());
         this.chooseEmojiHint = textView3;
-        textView3.setText(LocaleController.getString("ChooseEmojiOrSticker", R.string.ChooseEmojiOrSticker));
+        textView3.setText(LocaleController.getString(R.string.ChooseEmojiOrSticker));
         this.chooseEmojiHint.setTextColor(Theme.getColor(i2));
         this.chooseEmojiHint.setTextSize(1, 14.0f);
         this.chooseEmojiHint.setGravity(17);
@@ -438,15 +438,15 @@ public class AvatarConstructorFragment extends BaseFragment {
         textView4.setTextSize(1, 14.0f);
         int i3 = this.imageUpdater.setForType;
         if (i3 == 1) {
-            textView4.setText(LocaleController.getString("SetChannelPhoto", R.string.SetChannelPhoto));
+            textView4.setText(LocaleController.getString(R.string.SetChannelPhoto));
         } else if (i3 == 2) {
-            textView4.setText(LocaleController.getString("SetGroupPhoto", R.string.SetGroupPhoto));
+            textView4.setText(LocaleController.getString(R.string.SetGroupPhoto));
         } else {
             ImageUpdater.AvatarFor avatarFor2 = this.avatarFor;
             if (avatarFor2 != null && avatarFor2.type == 2) {
-                textView4.setText(LocaleController.getString("SuggestPhoto", R.string.SuggestPhoto));
+                textView4.setText(LocaleController.getString(R.string.SuggestPhoto));
             } else {
-                textView4.setText(LocaleController.getString("SetProfilePhotoAvatarConstructor", R.string.SetProfilePhotoAvatarConstructor));
+                textView4.setText(LocaleController.getString(R.string.SetProfilePhotoAvatarConstructor));
             }
         }
         textView4.setGravity(17);
@@ -505,15 +505,15 @@ public class AvatarConstructorFragment extends BaseFragment {
         }
         if (this.wasChanged) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-            builder.setMessage(LocaleController.getString("PhotoEditorDiscardAlert", R.string.PhotoEditorDiscardAlert));
-            builder.setTitle(LocaleController.getString("DiscardChanges", R.string.DiscardChanges));
-            builder.setPositiveButton(LocaleController.getString("PassportDiscard", R.string.PassportDiscard), new DialogInterface.OnClickListener() {
+            builder.setMessage(LocaleController.getString(R.string.PhotoEditorDiscardAlert));
+            builder.setTitle(LocaleController.getString(R.string.DiscardChanges));
+            builder.setPositiveButton(LocaleController.getString(R.string.PassportDiscard), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
                     AvatarConstructorFragment.this.lambda$discardEditor$2(dialogInterface, i);
                 }
             });
-            builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
+            builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
             AlertDialog create = builder.create();
             showDialog(create);
             create.redPositive();
@@ -1169,7 +1169,7 @@ public class AvatarConstructorFragment extends BaseFragment {
         frameLayout.setBackground(Theme.AdaptiveRipple.filledRectByKey(Theme.key_featuredStickers_addButton, 8.0f));
         TextView textView = new TextView(getContext());
         textView.setTextSize(1, 14.0f);
-        textView.setText(LocaleController.getString("SetColor", R.string.SetColor));
+        textView.setText(LocaleController.getString(R.string.SetColor));
         textView.setGravity(17);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));

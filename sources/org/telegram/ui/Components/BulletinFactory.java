@@ -384,7 +384,7 @@ public final class BulletinFactory {
             lottieLayout = lottieLayout2;
         }
         lottieLayout.setTimer();
-        lottieLayout.setButton(new Bulletin.UndoButton(getContext(), true, z, this.resourcesProvider).setText(LocaleController.getString("Undo", R.string.Undo)).setUndoAction(runnable).setDelayedAction(runnable2));
+        lottieLayout.setButton(new Bulletin.UndoButton(getContext(), true, z, this.resourcesProvider).setText(LocaleController.getString(R.string.Undo)).setUndoAction(runnable).setDelayedAction(runnable2));
         return create(lottieLayout, 5000);
     }
 
@@ -460,7 +460,7 @@ public final class BulletinFactory {
             }
         }
         if (undoObject != null) {
-            usersLayout.setButton(new Bulletin.UndoButton(getContext(), true, this.resourcesProvider).setText(LocaleController.getString("Undo", R.string.Undo)).setUndoAction(undoObject.onUndo).setDelayedAction(undoObject.onAction));
+            usersLayout.setButton(new Bulletin.UndoButton(getContext(), true, this.resourcesProvider).setText(LocaleController.getString(R.string.Undo)).setUndoAction(undoObject.onUndo).setDelayedAction(undoObject.onAction));
         }
         return create(usersLayout, 5000);
     }
@@ -631,7 +631,7 @@ public final class BulletinFactory {
                 loadingSpan = null;
             }
             final long currentTimeMillis = System.currentTimeMillis();
-            final Bulletin createEmojiLoadingBulletin = createEmojiLoadingBulletin(tLRPC$Document, spannableStringBuilder, LocaleController.getString("ViewAction", R.string.ViewAction), new Runnable() {
+            final Bulletin createEmojiLoadingBulletin = createEmojiLoadingBulletin(tLRPC$Document, spannableStringBuilder, LocaleController.getString(R.string.ViewAction), new Runnable() {
                 @Override
                 public final void run() {
                     Utilities.Callback.this.run(inputStickerSet);
@@ -648,7 +648,7 @@ public final class BulletinFactory {
             });
             return createEmojiLoadingBulletin;
         }
-        return createEmojiBulletin(tLRPC$Document, i == 1 ? AndroidUtilities.replaceTags(LocaleController.formatString("TopicContainsEmojiPackSingle", R.string.TopicContainsEmojiPackSingle, tLRPC$StickerSet.title)) : i == 2 ? AndroidUtilities.replaceTags(LocaleController.formatString("StoryContainsEmojiPackSingle", R.string.StoryContainsEmojiPackSingle, tLRPC$StickerSet.title)) : AndroidUtilities.replaceTags(LocaleController.formatString("MessageContainsEmojiPackSingle", R.string.MessageContainsEmojiPackSingle, tLRPC$StickerSet.title)), LocaleController.getString("ViewAction", R.string.ViewAction), new Runnable() {
+        return createEmojiBulletin(tLRPC$Document, i == 1 ? AndroidUtilities.replaceTags(LocaleController.formatString("TopicContainsEmojiPackSingle", R.string.TopicContainsEmojiPackSingle, tLRPC$StickerSet.title)) : i == 2 ? AndroidUtilities.replaceTags(LocaleController.formatString("StoryContainsEmojiPackSingle", R.string.StoryContainsEmojiPackSingle, tLRPC$StickerSet.title)) : AndroidUtilities.replaceTags(LocaleController.formatString("MessageContainsEmojiPackSingle", R.string.MessageContainsEmojiPackSingle, tLRPC$StickerSet.title)), LocaleController.getString(R.string.ViewAction), new Runnable() {
             @Override
             public final void run() {
                 Utilities.Callback.this.run(inputStickerSet);
@@ -660,7 +660,7 @@ public final class BulletinFactory {
         final CharSequence string;
         TLRPC$StickerSet tLRPC$StickerSet;
         if (tLRPC$TL_messages_stickerSet == null || (tLRPC$StickerSet = tLRPC$TL_messages_stickerSet.set) == null) {
-            string = LocaleController.getString("AddEmojiNotFound", R.string.AddEmojiNotFound);
+            string = LocaleController.getString(R.string.AddEmojiNotFound);
         } else {
             string = i == 1 ? AndroidUtilities.replaceTags(LocaleController.formatString("TopicContainsEmojiPackSingle", R.string.TopicContainsEmojiPackSingle, tLRPC$StickerSet.title)) : i == 2 ? AndroidUtilities.replaceTags(LocaleController.formatString("StoryContainsEmojiPackSingle", R.string.StoryContainsEmojiPackSingle, tLRPC$StickerSet.title)) : AndroidUtilities.replaceTags(LocaleController.formatString("MessageContainsEmojiPackSingle", R.string.MessageContainsEmojiPackSingle, tLRPC$StickerSet.title));
         }
@@ -687,7 +687,7 @@ public final class BulletinFactory {
     public Bulletin createReportSent(Theme.ResourcesProvider resourcesProvider) {
         Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(getContext(), resourcesProvider);
         lottieLayout.setAnimation(R.raw.chats_infotip, new String[0]);
-        lottieLayout.textView.setText(LocaleController.getString("ReportChatSent", R.string.ReportChatSent));
+        lottieLayout.textView.setText(LocaleController.getString(R.string.ReportChatSent));
         return create(lottieLayout, 1500);
     }
 
@@ -839,13 +839,13 @@ public final class BulletinFactory {
         if (z) {
             Bulletin.TwoLineLottieLayout twoLineLottieLayout = new Bulletin.TwoLineLottieLayout(getContext(), resourcesProvider);
             twoLineLottieLayout.setAnimation(R.raw.voip_invite, 36, 36, "Wibe", "Circle");
-            twoLineLottieLayout.titleTextView.setText(LocaleController.getString("LinkCopied", R.string.LinkCopied));
-            twoLineLottieLayout.subtitleTextView.setText(LocaleController.getString("LinkCopiedPrivateInfo", R.string.LinkCopiedPrivateInfo));
+            twoLineLottieLayout.titleTextView.setText(LocaleController.getString(R.string.LinkCopied));
+            twoLineLottieLayout.subtitleTextView.setText(LocaleController.getString(R.string.LinkCopiedPrivateInfo));
             return create(twoLineLottieLayout, 2750);
         }
         Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(getContext(), resourcesProvider);
         lottieLayout.setAnimation(R.raw.voip_invite, 36, 36, "Wibe", "Circle");
-        lottieLayout.textView.setText(LocaleController.getString("LinkCopied", R.string.LinkCopied));
+        lottieLayout.textView.setText(LocaleController.getString(R.string.LinkCopied));
         return create(lottieLayout, 1500);
     }
 
@@ -924,8 +924,8 @@ public final class BulletinFactory {
         if (z) {
             Bulletin.TwoLineLottieLayout twoLineLottieLayout = new Bulletin.TwoLineLottieLayout(baseFragment.getParentActivity(), resourcesProvider);
             twoLineLottieLayout.setAnimation(R.raw.ic_unpin, 28, 28, "Pin", "Line");
-            twoLineLottieLayout.titleTextView.setText(LocaleController.getString("PinnedMessagesHidden", R.string.PinnedMessagesHidden));
-            twoLineLottieLayout.subtitleTextView.setText(LocaleController.getString("PinnedMessagesHiddenInfo", R.string.PinnedMessagesHiddenInfo));
+            twoLineLottieLayout.titleTextView.setText(LocaleController.getString(R.string.PinnedMessagesHidden));
+            twoLineLottieLayout.subtitleTextView.setText(LocaleController.getString(R.string.PinnedMessagesHiddenInfo));
             lottieLayout = twoLineLottieLayout;
         } else {
             Bulletin.LottieLayout lottieLayout2 = new Bulletin.LottieLayout(baseFragment.getParentActivity(), resourcesProvider);
@@ -975,7 +975,7 @@ public final class BulletinFactory {
             replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("InvLinkToChats", R.string.InvLinkToChats, LocaleController.formatPluralString("Chats", i, new Object[0])));
             lottieLayout.setAnimation(R.raw.forward, 30, 30, new String[0]);
         } else if (j == UserConfig.getInstance(UserConfig.selectedAccount).clientUserId) {
-            replaceTags = AndroidUtilities.replaceTags(LocaleController.getString("InvLinkToSavedMessages", R.string.InvLinkToSavedMessages));
+            replaceTags = AndroidUtilities.replaceTags(LocaleController.getString(R.string.InvLinkToSavedMessages));
             lottieLayout.setAnimation(R.raw.saved_messages, 30, 30, new String[0]);
             i5 = -1;
         } else {
@@ -1096,10 +1096,10 @@ public final class BulletinFactory {
         Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(baseFragment.getParentActivity(), baseFragment.getResourceProvider());
         if (z) {
             lottieLayout.setAnimation(R.raw.ic_ban, "Hand");
-            string = LocaleController.getString("UserBlocked", R.string.UserBlocked);
+            string = LocaleController.getString(R.string.UserBlocked);
         } else {
             lottieLayout.setAnimation(R.raw.ic_unban, "Main", "Finger 1", "Finger 2", "Finger 3", "Finger 4");
-            string = LocaleController.getString("UserUnblocked", R.string.UserUnblocked);
+            string = LocaleController.getString(R.string.UserUnblocked);
         }
         lottieLayout.textView.setText(AndroidUtilities.replaceTags(string));
         return Bulletin.make(baseFragment, lottieLayout, 1500);
@@ -1110,10 +1110,10 @@ public final class BulletinFactory {
         Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(getContext(), this.resourcesProvider);
         if (z) {
             lottieLayout.setAnimation(R.raw.ic_ban, "Hand");
-            string = LocaleController.getString("UserBlocked", R.string.UserBlocked);
+            string = LocaleController.getString(R.string.UserBlocked);
         } else {
             lottieLayout.setAnimation(R.raw.ic_unban, "Main", "Finger 1", "Finger 2", "Finger 3", "Finger 4");
-            string = LocaleController.getString("UserUnblocked", R.string.UserUnblocked);
+            string = LocaleController.getString(R.string.UserUnblocked);
         }
         lottieLayout.textView.setText(AndroidUtilities.replaceTags(string));
         return create(lottieLayout, 1500);
@@ -1150,9 +1150,9 @@ public final class BulletinFactory {
         Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(baseFragment.getParentActivity(), resourcesProvider);
         boolean z = true;
         if (i == 0) {
-            string = LocaleController.getString("SoundOnHint", R.string.SoundOnHint);
+            string = LocaleController.getString(R.string.SoundOnHint);
         } else if (i == 1) {
-            string = LocaleController.getString("SoundOffHint", R.string.SoundOffHint);
+            string = LocaleController.getString(R.string.SoundOffHint);
             z = false;
         } else {
             throw new IllegalArgumentException();

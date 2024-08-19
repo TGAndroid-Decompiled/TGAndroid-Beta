@@ -53,12 +53,12 @@ public class PermissionRequest {
         for (String str2 : strArr) {
             shouldShowRequestPermissionRationale = activity.shouldShowRequestPermissionRationale(str2);
             if (shouldShowRequestPermissionRationale) {
-                new AlertDialog.Builder(activity, null).setTopAnimation(i, 72, false, Theme.getColor(Theme.key_dialogTopBackground)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(i2))).setPositiveButton(LocaleController.getString("PermissionOpenSettings", R.string.PermissionOpenSettings), new DialogInterface.OnClickListener() {
+                new AlertDialog.Builder(activity, null).setTopAnimation(i, 72, false, Theme.getColor(Theme.key_dialogTopBackground)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(i2))).setPositiveButton(LocaleController.getString(R.string.PermissionOpenSettings), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i3) {
                         PermissionRequest.lambda$ensureEitherPermission$0(activity, dialogInterface, i3);
                     }
-                }).setNegativeButton(LocaleController.getString("ContactsPermissionAlertNotNow", R.string.ContactsPermissionAlertNotNow), null).create().show();
+                }).setNegativeButton(LocaleController.getString(R.string.ContactsPermissionAlertNotNow), null).create().show();
                 if (callback != null) {
                     callback.run(Boolean.FALSE);
                     return;

@@ -130,7 +130,7 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
             this.addButton.setTextSize(1, 14.0f);
             this.addButton.setTypeface(AndroidUtilities.bold());
             this.addButton.setBackgroundDrawable(Theme.AdaptiveRipple.filledRectByKey(Theme.key_featuredStickers_addButton, 4.0f));
-            this.addButton.setText(LocaleController.getString("Add", R.string.Add));
+            this.addButton.setText(LocaleController.getString(R.string.Add));
             this.addButton.setPadding(AndroidUtilities.dp(17.0f), 0, AndroidUtilities.dp(17.0f), 0);
             View view = this.addButton;
             boolean z3 = LocaleController.isRTL;
@@ -374,11 +374,11 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
         if (notificationException.story) {
             int i = notificationException.notify;
             if (i <= 0 && notificationException.auto) {
-                string = LocaleController.getString("NotificationEnabledAutomatically");
+                string = LocaleController.getString(R.string.NotificationEnabledAutomatically);
             } else if (i <= 0) {
-                string = LocaleController.getString("NotificationEnabled");
+                string = LocaleController.getString(R.string.NotificationEnabled);
             } else {
-                string = LocaleController.getString("NotificationDisabled");
+                string = LocaleController.getString(R.string.NotificationDisabled);
             }
         } else {
             boolean z3 = notificationException.hasCustom;
@@ -389,17 +389,17 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
                     z2 = false;
                 }
                 if (z2 && z3) {
-                    string = LocaleController.getString("NotificationsCustom", R.string.NotificationsCustom);
+                    string = LocaleController.getString(R.string.NotificationsCustom);
                 } else {
-                    string = z2 ? LocaleController.getString("NotificationsUnmuted", R.string.NotificationsUnmuted) : LocaleController.getString("NotificationsMuted", R.string.NotificationsMuted);
+                    string = LocaleController.getString(z2 ? R.string.NotificationsUnmuted : R.string.NotificationsMuted);
                 }
             } else {
                 int currentTime = i3 - ConnectionsManager.getInstance(this.currentAccount).getCurrentTime();
                 if (currentTime <= 0) {
                     if (z3) {
-                        string = LocaleController.getString("NotificationsCustom", R.string.NotificationsCustom);
+                        string = LocaleController.getString(R.string.NotificationsCustom);
                     } else {
-                        string = LocaleController.getString("NotificationsUnmuted", R.string.NotificationsUnmuted);
+                        string = LocaleController.getString(R.string.NotificationsUnmuted);
                     }
                 } else if (currentTime < 3600) {
                     string = LocaleController.formatString("WillUnmuteIn", R.string.WillUnmuteIn, LocaleController.formatPluralString("Minutes", currentTime / 60, new Object[0]));
@@ -410,7 +410,7 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
                 }
             }
             if (string == null) {
-                string = LocaleController.getString("NotificationsOff", R.string.NotificationsOff);
+                string = LocaleController.getString(R.string.NotificationsOff);
             }
             if (notificationException.auto) {
                 string = string + ", Auto";
@@ -652,7 +652,7 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
             ((FrameLayout.LayoutParams) this.nameTextView.getLayoutParams()).topMargin = AndroidUtilities.dp(10.0f);
             if (tLRPC$User != null) {
                 if (this.selfAsSavedMessages && UserObject.isUserSelf(tLRPC$User)) {
-                    this.nameTextView.setText(LocaleController.getString("SavedMessages", R.string.SavedMessages), true);
+                    this.nameTextView.setText(LocaleController.getString(R.string.SavedMessages), true);
                     this.statusTextView.setText(null);
                     this.avatarDrawable.setAvatarType(1);
                     this.avatarImageView.setImage((ImageLocation) null, "50_50", this.avatarDrawable, tLRPC$User);
@@ -746,13 +746,13 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
             if (tLRPC$User.bot) {
                 this.statusTextView.setTextColor(this.statusColor);
                 if (tLRPC$User.bot_chat_history || ((textView = this.adminTextView) != null && textView.getVisibility() == 0)) {
-                    this.statusTextView.setText(LocaleController.getString("BotStatusRead", R.string.BotStatusRead));
+                    this.statusTextView.setText(LocaleController.getString(R.string.BotStatusRead));
                 } else {
-                    this.statusTextView.setText(LocaleController.getString("BotStatusCantRead", R.string.BotStatusCantRead));
+                    this.statusTextView.setText(LocaleController.getString(R.string.BotStatusCantRead));
                 }
             } else if (tLRPC$User.id == UserConfig.getInstance(this.currentAccount).getClientUserId() || (((tLRPC$UserStatus = tLRPC$User.status) != null && tLRPC$UserStatus.expires > ConnectionsManager.getInstance(this.currentAccount).getCurrentTime()) || MessagesController.getInstance(this.currentAccount).onlinePrivacy.containsKey(Long.valueOf(tLRPC$User.id)))) {
                 this.statusTextView.setTextColor(this.statusOnlineColor);
-                this.statusTextView.setText(LocaleController.getString("Online", R.string.Online));
+                this.statusTextView.setText(LocaleController.getString(R.string.Online));
             } else {
                 this.statusTextView.setTextColor(this.statusColor);
                 this.statusTextView.setText(LocaleController.formatUserStatus(this.currentAccount, tLRPC$User));
@@ -847,11 +847,11 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
             TLRPC$User user = MessagesController.getInstance(i).getUser(Long.valueOf(j));
             if (user != null) {
                 if (user.bot) {
-                    string2 = LocaleController.getString("Bot", R.string.Bot);
+                    string2 = LocaleController.getString(R.string.Bot);
                 } else if (user.contact) {
-                    string2 = LocaleController.getString("FilterContact", R.string.FilterContact);
+                    string2 = LocaleController.getString(R.string.FilterContact);
                 } else {
-                    string2 = LocaleController.getString("FilterNonContact", R.string.FilterNonContact);
+                    string2 = LocaleController.getString(R.string.FilterNonContact);
                 }
                 setData(user, null, string2, 0, z);
                 return;
@@ -868,14 +868,14 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
                 }
             } else if (!ChatObject.isPublic(chat)) {
                 if (ChatObject.isChannel(chat) && !chat.megagroup) {
-                    string = LocaleController.getString("ChannelPrivate", R.string.ChannelPrivate);
+                    string = LocaleController.getString(R.string.ChannelPrivate);
                 } else {
-                    string = LocaleController.getString("MegaPrivate", R.string.MegaPrivate);
+                    string = LocaleController.getString(R.string.MegaPrivate);
                 }
             } else if (ChatObject.isChannel(chat) && !chat.megagroup) {
-                string = LocaleController.getString("ChannelPublic", R.string.ChannelPublic);
+                string = LocaleController.getString(R.string.ChannelPublic);
             } else {
-                string = LocaleController.getString("MegaPublic", R.string.MegaPublic);
+                string = LocaleController.getString(R.string.MegaPublic);
             }
             setData(chat, null, string, 0, z);
         }

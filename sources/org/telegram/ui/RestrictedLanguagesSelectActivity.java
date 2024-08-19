@@ -144,7 +144,7 @@ public class RestrictedLanguagesSelectActivity extends BaseFragment implements N
     public View createView(Context context) {
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(LocaleController.getString("DoNotTranslate", R.string.DoNotTranslate));
+        this.actionBar.setTitle(LocaleController.getString(R.string.DoNotTranslate));
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i) {
@@ -180,7 +180,7 @@ public class RestrictedLanguagesSelectActivity extends BaseFragment implements N
                     RestrictedLanguagesSelectActivity.this.listView.setAdapter(RestrictedLanguagesSelectActivity.this.listAdapter);
                 }
             }
-        }).setSearchFieldHint(LocaleController.getString("Search", R.string.Search));
+        }).setSearchFieldHint(LocaleController.getString(R.string.Search));
         this.listAdapter = new ListAdapter(context, false);
         this.searchListViewAdapter = new ListAdapter(context, true);
         FrameLayout frameLayout = new FrameLayout(context);
@@ -189,7 +189,7 @@ public class RestrictedLanguagesSelectActivity extends BaseFragment implements N
         FrameLayout frameLayout2 = (FrameLayout) this.fragmentView;
         EmptyTextProgressView emptyTextProgressView = new EmptyTextProgressView(context);
         this.emptyView = emptyTextProgressView;
-        emptyTextProgressView.setText(LocaleController.getString("NoResult", R.string.NoResult));
+        emptyTextProgressView.setText(LocaleController.getString(R.string.NoResult));
         this.emptyView.showTextView();
         this.emptyView.setShowAtCenter(true);
         frameLayout2.addView(this.emptyView, LayoutHelper.createFrame(-1, -1.0f));
@@ -424,7 +424,7 @@ public class RestrictedLanguagesSelectActivity extends BaseFragment implements N
             } else if (i == 2) {
                 HeaderCell headerCell = new HeaderCell(this.mContext);
                 headerCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                headerCell.setText(LocaleController.getString("ChooseLanguages", R.string.ChooseLanguages));
+                headerCell.setText(LocaleController.getString(R.string.ChooseLanguages));
                 view = headerCell;
             } else {
                 view = new ShadowSectionCell(this.mContext);

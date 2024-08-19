@@ -241,7 +241,7 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
         this.buttonTextView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
         this.buttonTextView.setTypeface(AndroidUtilities.bold());
         this.buttonTextView.setTextSize(1, 14.0f);
-        this.buttonTextView.setText(LocaleController.getString("CloseTranslation", R.string.CloseTranslation));
+        this.buttonTextView.setText(LocaleController.getString(R.string.CloseTranslation));
         this.buttonTextView.setBackground(Theme.AdaptiveRipple.filledRect(Theme.getColor(Theme.key_featuredStickers_addButton), 6.0f));
         this.buttonTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -331,10 +331,10 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
         }
         if (this.firstTranslation) {
             dismiss();
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.showBulletin, 1, LocaleController.getString("TranslationFailedAlert2", R.string.TranslationFailedAlert2));
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.showBulletin, 1, LocaleController.getString(R.string.TranslationFailedAlert2));
             return;
         }
-        BulletinFactory.of((FrameLayout) this.containerView, this.resourcesProvider).createErrorBulletin(LocaleController.getString("TranslationFailedAlert2", R.string.TranslationFailedAlert2)).show();
+        BulletinFactory.of((FrameLayout) this.containerView, this.resourcesProvider).createErrorBulletin(LocaleController.getString(R.string.TranslationFailedAlert2)).show();
         AnimatedTextView animatedTextView = this.headerView.toLanguageTextView;
         String str = this.prevToLanguage;
         this.toLanguage = str;
@@ -693,7 +693,7 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
             textView.setTextColor(TranslateAlert2.this.getThemedColor(i));
             this.titleTextView.setTextSize(1, 20.0f);
             this.titleTextView.setTypeface(AndroidUtilities.bold());
-            this.titleTextView.setText(LocaleController.getString("AutomaticTranslation", R.string.AutomaticTranslation));
+            this.titleTextView.setText(LocaleController.getString(R.string.AutomaticTranslation));
             this.titleTextView.setPivotX(0.0f);
             this.titleTextView.setPivotY(0.0f);
             addView(this.titleTextView, LayoutHelper.createFrame(-1, -2.0f, 55, 22.0f, 20.0f, 22.0f, 0.0f));

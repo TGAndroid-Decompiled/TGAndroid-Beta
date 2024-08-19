@@ -200,7 +200,7 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
             }
         };
         this.searchView = searchField;
-        searchField.setHint(LocaleController.getString("SearchTrendingStickersHint", R.string.SearchTrendingStickersHint));
+        searchField.setHint(LocaleController.getString(R.string.SearchTrendingStickersHint));
         frameLayout.addView(searchField, LayoutHelper.createFrame(-1, -1, 48));
         RecyclerListView recyclerListView = new RecyclerListView(context) {
             @Override
@@ -792,7 +792,7 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
                 }
                 if (itemViewType != 2) {
                     if (itemViewType == 4) {
-                        ((GraySectionCell) viewHolder.itemView).setText(LocaleController.getString("OtherStickers", R.string.OtherStickers));
+                        ((GraySectionCell) viewHolder.itemView).setText(LocaleController.getString(R.string.OtherStickers));
                         return;
                     } else if (itemViewType != 5) {
                         return;

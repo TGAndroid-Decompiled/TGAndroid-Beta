@@ -68,7 +68,7 @@ public class ChartHeaderView extends FrameLayout {
         addView(this.datesTmp, LayoutHelper.createFrame(-2, -2.0f, 8388629, 16.0f, 0.0f, 16.0f, 0.0f));
         this.datesTmp.setVisibility(8);
         this.back.setVisibility(8);
-        this.back.setText(LocaleController.getString("ZoomOut", R.string.ZoomOut));
+        this.back.setText(LocaleController.getString(R.string.ZoomOut));
         Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.msg_zoomout_stats);
         this.zoomIcon = drawable;
         this.back.setCompoundDrawablesWithIntrinsicBounds(drawable, (Drawable) null, (Drawable) null, (Drawable) null);

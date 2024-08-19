@@ -185,7 +185,7 @@ public class ColorPicker extends FrameLayout {
         @Override
         public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
             super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-            accessibilityNodeInfo.setText(LocaleController.getString("ColorPickerMainColor", R.string.ColorPickerMainColor));
+            accessibilityNodeInfo.setText(LocaleController.getString(R.string.ColorPickerMainColor));
             accessibilityNodeInfo.setClassName(Button.class.getName());
             accessibilityNodeInfo.setChecked(this.checked);
             accessibilityNodeInfo.setCheckable(true);
@@ -424,7 +424,7 @@ public class ColorPicker extends FrameLayout {
                 ColorPicker.this.lambda$new$2(view);
             }
         });
-        this.addButton.setContentDescription(LocaleController.getString("Add", R.string.Add));
+        this.addButton.setContentDescription(LocaleController.getString(R.string.Add));
         addView(this.addButton, LayoutHelper.createFrame(30, 30.0f, 49, 36.0f, 1.0f, 0.0f, 0.0f));
         AnonymousClass6 anonymousClass6 = new ImageView(getContext()) {
             AnonymousClass6(Context context2) {
@@ -452,7 +452,7 @@ public class ColorPicker extends FrameLayout {
                 ColorPicker.this.lambda$new$3(view);
             }
         });
-        this.clearButton.setContentDescription(LocaleController.getString("ClearButton", R.string.ClearButton));
+        this.clearButton.setContentDescription(LocaleController.getString(R.string.ClearButton));
         addView(this.clearButton, LayoutHelper.createFrame(30, 30.0f, 51, 97.0f, 1.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context2);
         this.resetButton = textView;
@@ -473,10 +473,10 @@ public class ColorPicker extends FrameLayout {
             this.menuItem = actionBarMenuItem;
             actionBarMenuItem.setLongClickEnabled(false);
             this.menuItem.setIcon(R.drawable.ic_ab_other);
-            this.menuItem.setContentDescription(LocaleController.getString("AccDescrMoreOptions", R.string.AccDescrMoreOptions));
-            this.menuItem.addSubItem(1, R.drawable.msg_edit, LocaleController.getString("OpenInEditor", R.string.OpenInEditor));
-            this.menuItem.addSubItem(2, R.drawable.msg_share, LocaleController.getString("ShareTheme", R.string.ShareTheme));
-            this.menuItem.addSubItem(3, R.drawable.msg_delete, LocaleController.getString("DeleteTheme", R.string.DeleteTheme));
+            this.menuItem.setContentDescription(LocaleController.getString(R.string.AccDescrMoreOptions));
+            this.menuItem.addSubItem(1, R.drawable.msg_edit, LocaleController.getString(R.string.OpenInEditor));
+            this.menuItem.addSubItem(2, R.drawable.msg_share, LocaleController.getString(R.string.ShareTheme));
+            this.menuItem.addSubItem(3, R.drawable.msg_delete, LocaleController.getString(R.string.DeleteTheme));
             this.menuItem.setMenuYOffset(-AndroidUtilities.dp(80.0f));
             this.menuItem.setSubMenuOpenSide(2);
             this.menuItem.setDelegate(new ActionBarMenuItem.ActionBarMenuItemDelegate() {

@@ -416,7 +416,7 @@ public class FilterTabsView extends FrameLayout {
             accessibilityNodeInfo.setSelected((this.currentTab == null || FilterTabsView.this.selectedTabId == -1 || this.currentTab.id != FilterTabsView.this.selectedTabId) ? false : true);
             accessibilityNodeInfo.addAction(16);
             if (Build.VERSION.SDK_INT >= 21) {
-                accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(32, LocaleController.getString("AccDescrOpenMenu2", R.string.AccDescrOpenMenu2)));
+                accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(32, LocaleController.getString(R.string.AccDescrOpenMenu2)));
             } else {
                 accessibilityNodeInfo.addAction(32);
             }
@@ -1022,7 +1022,6 @@ public class FilterTabsView extends FrameLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        String str;
         if (!this.tabs.isEmpty()) {
             int size = (View.MeasureSpec.getSize(i) - AndroidUtilities.dp(7.0f)) - AndroidUtilities.dp(7.0f);
             Tab findDefaultTab = findDefaultTab();
@@ -1032,11 +1031,8 @@ public class FilterTabsView extends FrameLayout {
                 int width = findDefaultTab.getWidth(false);
                 if (this.allTabsWidth > size) {
                     i3 = R.string.FilterAllChatsShort;
-                    str = "FilterAllChatsShort";
-                } else {
-                    str = "FilterAllChats";
                 }
-                findDefaultTab.setTitle(LocaleController.getString(str, i3));
+                findDefaultTab.setTitle(LocaleController.getString(i3));
                 int width2 = (this.allTabsWidth - width) + findDefaultTab.getWidth(false);
                 int i4 = this.additionalTabWidth;
                 int size2 = width2 < size ? (size - width2) / this.tabs.size() : 0;
@@ -1183,7 +1179,7 @@ public class FilterTabsView extends FrameLayout {
             this.listView.setItemAnimator(this.itemAnimator);
             this.adapter.notifyDataSetChanged();
             this.allTabsWidth = 0;
-            findDefaultTab().setTitle(LocaleController.getString("FilterAllChats", R.string.FilterAllChats));
+            findDefaultTab().setTitle(LocaleController.getString(R.string.FilterAllChats));
             int size = this.tabs.size();
             for (int i3 = 0; i3 < size; i3++) {
                 this.allTabsWidth += this.tabs.get(i3).getWidth(true) + AndroidUtilities.dp(32.0f);

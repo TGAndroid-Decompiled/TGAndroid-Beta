@@ -624,7 +624,7 @@ public class EmbedBottomSheet extends BottomSheet {
         int i6 = Theme.key_dialogButtonSelector;
         textView3.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor(i6), 0));
         textView3.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
-        textView3.setText(LocaleController.getString("Close", R.string.Close).toUpperCase());
+        textView3.setText(LocaleController.getString(R.string.Close).toUpperCase());
         textView3.setTypeface(AndroidUtilities.bold());
         frameLayout3.addView(textView3, LayoutHelper.createLinear(-2, -1, 51));
         textView3.setOnClickListener(new View.OnClickListener() {
@@ -642,7 +642,7 @@ public class EmbedBottomSheet extends BottomSheet {
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
         this.pipButton.setImageResource(R.drawable.ic_goinline);
-        this.pipButton.setContentDescription(LocaleController.getString("AccDescrPipMode", R.string.AccDescrPipMode));
+        this.pipButton.setContentDescription(LocaleController.getString(R.string.AccDescrPipMode));
         this.pipButton.setEnabled(false);
         this.pipButton.setAlpha(0.5f);
         ImageView imageView2 = this.pipButton;
@@ -666,7 +666,7 @@ public class EmbedBottomSheet extends BottomSheet {
         ImageView imageView3 = new ImageView(context);
         imageView3.setScaleType(scaleType);
         imageView3.setImageResource(R.drawable.msg_copy);
-        imageView3.setContentDescription(LocaleController.getString("CopyLink", R.string.CopyLink));
+        imageView3.setContentDescription(LocaleController.getString(R.string.CopyLink));
         imageView3.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i5), mode));
         imageView3.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor(i6), 0));
         this.imageButtonsContainer.addView(imageView3, LayoutHelper.createFrame(48, 48, 51));
@@ -680,7 +680,7 @@ public class EmbedBottomSheet extends BottomSheet {
         this.copyTextButton.setEllipsize(truncateAt);
         this.copyTextButton.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor(i6), 0));
         this.copyTextButton.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
-        this.copyTextButton.setText(LocaleController.getString("Copy", R.string.Copy).toUpperCase());
+        this.copyTextButton.setText(LocaleController.getString(R.string.Copy).toUpperCase());
         this.copyTextButton.setTypeface(AndroidUtilities.bold());
         linearLayout.addView(this.copyTextButton, LayoutHelper.createFrame(-2, -1, 51));
         this.copyTextButton.setOnClickListener(onClickListener);
@@ -692,7 +692,7 @@ public class EmbedBottomSheet extends BottomSheet {
         textView5.setEllipsize(truncateAt);
         textView5.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor(i6), 0));
         textView5.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
-        textView5.setText(LocaleController.getString("OpenInBrowser", R.string.OpenInBrowser).toUpperCase());
+        textView5.setText(LocaleController.getString(R.string.OpenInBrowser).toUpperCase());
         textView5.setTypeface(AndroidUtilities.bold());
         linearLayout.addView(textView5, LayoutHelper.createFrame(-2, -1, 51));
         textView5.setOnClickListener(new View.OnClickListener() {

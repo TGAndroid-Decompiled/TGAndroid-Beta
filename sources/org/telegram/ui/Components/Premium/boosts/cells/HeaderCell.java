@@ -162,7 +162,7 @@ public class HeaderCell extends FrameLayout {
 
     public void setGiftLinkToUserText(long j, final Utilities.Callback<TLObject> callback) {
         this.titleView.setText(LocaleController.formatString("BoostingGiftLink", R.string.BoostingGiftLink, new Object[0]));
-        SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.getString("BoostingLinkAllowsToUser", R.string.BoostingLinkAllowsToUser));
+        SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.getString(R.string.BoostingLinkAllowsToUser));
         final TLRPC$User user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(j));
         this.subtitleView.setText(AndroidUtilities.replaceCharSequence("%1$s", replaceTags, AndroidUtilities.replaceSingleTag("**" + UserObject.getUserName(user) + "**", Theme.key_chat_messageLinkIn, 2, new Runnable() {
             @Override

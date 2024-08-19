@@ -9878,7 +9878,7 @@ public class MessagesController extends BaseController implements NotificationCe
         TLRPC$TL_folder tLRPC$TL_folder = new TLRPC$TL_folder();
         tLRPC$TL_dialogFolder.folder = tLRPC$TL_folder;
         tLRPC$TL_folder.id = i;
-        tLRPC$TL_folder.title = LocaleController.getString("ArchivedChats", R.string.ArchivedChats);
+        tLRPC$TL_folder.title = LocaleController.getString(R.string.ArchivedChats);
         tLRPC$TL_dialogFolder.pinned = true;
         int i2 = 0;
         for (int i3 = 0; i3 < this.allDialogs.size(); i3++) {
@@ -16224,7 +16224,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 if (baseFragment instanceof ChatActivity) {
                     ((ChatActivity) baseFragment).shakeContent();
                 }
-                BulletinFactory.of(baseFragment).createErrorBulletin(LocaleController.getString("NoUsernameFound", R.string.NoUsernameFound)).show();
+                BulletinFactory.of(baseFragment).createErrorBulletin(LocaleController.getString(R.string.NoUsernameFound)).show();
             } catch (Exception e) {
                 FileLog.e(e);
             }
@@ -18252,7 +18252,7 @@ public class MessagesController extends BaseController implements NotificationCe
                     botWebViewSheet.setDefaultFullsize(true);
                     botWebViewSheet.setNeedsContext(true);
                     botWebViewSheet.setParentActivity(baseFragment2.getParentActivity());
-                    botWebViewSheet.requestWebView(null, of);
+                    botWebViewSheet.requestWebView(baseFragment2, of);
                     botWebViewSheet.show();
                     return;
                 }
@@ -18260,7 +18260,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 createBotViewer.setDefaultFullsize(true);
                 createBotViewer.setNeedsContext(false);
                 createBotViewer.setParentActivity(baseFragment2.getParentActivity());
-                createBotViewer.requestWebView(null, of);
+                createBotViewer.requestWebView(baseFragment2, of);
                 createBotViewer.show();
                 return;
             }
@@ -18284,7 +18284,7 @@ public class MessagesController extends BaseController implements NotificationCe
                     botWebViewSheet2.setDefaultFullsize(false);
                     botWebViewSheet2.setNeedsContext(true);
                     botWebViewSheet2.setParentActivity(baseFragment3.getParentActivity());
-                    botWebViewSheet2.requestWebView(null, of2);
+                    botWebViewSheet2.requestWebView(baseFragment3, of2);
                     botWebViewSheet2.show();
                     return;
                 }
@@ -18292,7 +18292,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 createBotViewer2.setDefaultFullsize(false);
                 createBotViewer2.setNeedsContext(false);
                 createBotViewer2.setParentActivity(baseFragment3.getParentActivity());
-                createBotViewer2.requestWebView(null, of2);
+                createBotViewer2.requestWebView(baseFragment3, of2);
                 createBotViewer2.show();
                 return;
             }

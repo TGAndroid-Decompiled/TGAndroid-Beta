@@ -174,15 +174,15 @@ public class HashtagHistoryView extends FrameLayout {
         }
         final String str = this.history.get(i2 - 1);
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), this.resourcesProvider);
-        builder.setTitle(LocaleController.getString("ClearSearchSingleAlertTitle", R.string.ClearSearchSingleAlertTitle));
+        builder.setTitle(LocaleController.getString(R.string.ClearSearchSingleAlertTitle));
         builder.setMessage(LocaleController.formatString(R.string.ClearSearchSingleHashtagAlertText, str));
-        builder.setPositiveButton(LocaleController.getString("ClearSearchRemove", R.string.ClearSearchRemove), new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(LocaleController.getString(R.string.ClearSearchRemove), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i3) {
                 HashtagHistoryView.this.lambda$onLongClick$0(str, dialogInterface, i3);
             }
         });
-        builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
+        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
         builder.create().show();
         return true;
     }

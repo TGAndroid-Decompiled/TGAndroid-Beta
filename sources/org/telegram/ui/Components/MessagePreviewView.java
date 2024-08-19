@@ -1485,9 +1485,9 @@ public class MessagePreviewView extends FrameLayout {
                     if (tLRPC$User != null) {
                         string = LocaleController.formatString("ForwardPreviewSendersNameVisible", R.string.ForwardPreviewSendersNameVisible, ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name));
                     } else if (ChatObject.isChannel(messagePreviewView.currentChat) && !MessagePreviewView.this.currentChat.megagroup) {
-                        string = LocaleController.getString("ForwardPreviewSendersNameVisibleChannel", R.string.ForwardPreviewSendersNameVisibleChannel);
+                        string = LocaleController.getString(R.string.ForwardPreviewSendersNameVisibleChannel);
                     } else {
-                        string = LocaleController.getString("ForwardPreviewSendersNameVisibleGroup", R.string.ForwardPreviewSendersNameVisibleGroup);
+                        string = LocaleController.getString(R.string.ForwardPreviewSendersNameVisibleGroup);
                     }
                 } else {
                     TLRPC$User tLRPC$User2 = messagePreviewView.currentUser;

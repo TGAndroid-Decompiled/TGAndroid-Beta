@@ -74,7 +74,7 @@ public class RequestPeerRequirementsCell extends LinearLayout {
                 return;
             }
             HeaderCell headerCell = new HeaderCell(getContext(), 20);
-            headerCell.setText(LocaleController.getString("PeerRequirements", R.string.PeerRequirements));
+            headerCell.setText(LocaleController.getString(R.string.PeerRequirements));
             int i = Theme.key_windowBackgroundWhite;
             headerCell.setBackgroundColor(Theme.getColor(i));
             addView(headerCell, LayoutHelper.createLinear(-1, -2));
@@ -114,65 +114,56 @@ public class RequestPeerRequirementsCell extends LinearLayout {
     }
 
     public static CharSequence rightsToString(TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights, boolean z) {
-        int i;
-        String str;
         String string;
         ArrayList arrayList = new ArrayList();
         if (tLRPC$TL_chatAdminRights.change_info) {
             if (z) {
-                string = LocaleController.getString("EditAdminChangeChannelInfo", R.string.EditAdminChangeChannelInfo);
+                string = LocaleController.getString(R.string.EditAdminChangeChannelInfo);
             } else {
-                string = LocaleController.getString("EditAdminChangeGroupInfo", R.string.EditAdminChangeGroupInfo);
+                string = LocaleController.getString(R.string.EditAdminChangeGroupInfo);
             }
             arrayList.add(Requirement.make(1, string));
         }
         if (tLRPC$TL_chatAdminRights.post_messages && z) {
-            arrayList.add(Requirement.make(1, LocaleController.getString("EditAdminPostMessages", R.string.EditAdminPostMessages)));
+            arrayList.add(Requirement.make(1, LocaleController.getString(R.string.EditAdminPostMessages)));
         }
         if (tLRPC$TL_chatAdminRights.edit_messages && z) {
-            arrayList.add(Requirement.make(1, LocaleController.getString("EditAdminEditMessages", R.string.EditAdminEditMessages)));
+            arrayList.add(Requirement.make(1, LocaleController.getString(R.string.EditAdminEditMessages)));
         }
         if (tLRPC$TL_chatAdminRights.delete_messages) {
-            if (z) {
-                i = R.string.EditAdminDeleteMessages;
-                str = "EditAdminDeleteMessages";
-            } else {
-                i = R.string.EditAdminGroupDeleteMessages;
-                str = "EditAdminGroupDeleteMessages";
-            }
-            arrayList.add(Requirement.make(1, LocaleController.getString(str, i)));
+            arrayList.add(Requirement.make(1, LocaleController.getString(z ? R.string.EditAdminDeleteMessages : R.string.EditAdminGroupDeleteMessages)));
         }
         if (tLRPC$TL_chatAdminRights.ban_users && !z) {
-            arrayList.add(Requirement.make(1, LocaleController.getString("EditAdminBanUsers", R.string.EditAdminBanUsers)));
+            arrayList.add(Requirement.make(1, LocaleController.getString(R.string.EditAdminBanUsers)));
         }
         if (tLRPC$TL_chatAdminRights.invite_users) {
-            arrayList.add(Requirement.make(1, LocaleController.getString("EditAdminAddUsers", R.string.EditAdminAddUsers)));
+            arrayList.add(Requirement.make(1, LocaleController.getString(R.string.EditAdminAddUsers)));
         }
         if (tLRPC$TL_chatAdminRights.pin_messages && !z) {
-            arrayList.add(Requirement.make(1, LocaleController.getString("EditAdminPinMessages", R.string.EditAdminPinMessages)));
+            arrayList.add(Requirement.make(1, LocaleController.getString(R.string.EditAdminPinMessages)));
         }
         if (tLRPC$TL_chatAdminRights.add_admins) {
-            arrayList.add(Requirement.make(1, LocaleController.getString("EditAdminAddAdmins", R.string.EditAdminAddAdmins)));
+            arrayList.add(Requirement.make(1, LocaleController.getString(R.string.EditAdminAddAdmins)));
         }
         if (tLRPC$TL_chatAdminRights.anonymous && !z) {
-            arrayList.add(Requirement.make(1, LocaleController.getString("EditAdminSendAnonymously", R.string.EditAdminSendAnonymously)));
+            arrayList.add(Requirement.make(1, LocaleController.getString(R.string.EditAdminSendAnonymously)));
         }
         if (tLRPC$TL_chatAdminRights.manage_call) {
-            arrayList.add(Requirement.make(1, LocaleController.getString("StartVoipChatPermission", R.string.StartVoipChatPermission)));
+            arrayList.add(Requirement.make(1, LocaleController.getString(R.string.StartVoipChatPermission)));
         }
         if (tLRPC$TL_chatAdminRights.manage_topics && !z) {
-            arrayList.add(Requirement.make(1, LocaleController.getString("ManageTopicsPermission", R.string.ManageTopicsPermission)));
+            arrayList.add(Requirement.make(1, LocaleController.getString(R.string.ManageTopicsPermission)));
         }
         if (arrayList.size() == 1) {
             return ((Requirement) arrayList.get(0)).text.toString().toLowerCase();
         }
         if (!arrayList.isEmpty()) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-            for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                if (i2 > 0) {
+            for (int i = 0; i < arrayList.size(); i++) {
+                if (i > 0) {
                     spannableStringBuilder.append((CharSequence) ", ");
                 }
-                spannableStringBuilder.append((CharSequence) ((Requirement) arrayList.get(i2)).text.toString().toLowerCase());
+                spannableStringBuilder.append((CharSequence) ((Requirement) arrayList.get(i)).text.toString().toLowerCase());
             }
             return spannableStringBuilder;
         }
@@ -180,8 +171,6 @@ public class RequestPeerRequirementsCell extends LinearLayout {
     }
 
     private void checkAdminRights(TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights, boolean z, CharSequence charSequence, CharSequence charSequence2) {
-        int i;
-        String str;
         String string;
         if (tLRPC$TL_chatAdminRights == null) {
             return;
@@ -189,48 +178,41 @@ public class RequestPeerRequirementsCell extends LinearLayout {
         ArrayList arrayList = new ArrayList();
         if (tLRPC$TL_chatAdminRights.change_info) {
             if (z) {
-                string = LocaleController.getString("EditAdminChangeChannelInfo", R.string.EditAdminChangeChannelInfo);
+                string = LocaleController.getString(R.string.EditAdminChangeChannelInfo);
             } else {
-                string = LocaleController.getString("EditAdminChangeGroupInfo", R.string.EditAdminChangeGroupInfo);
+                string = LocaleController.getString(R.string.EditAdminChangeGroupInfo);
             }
             arrayList.add(Requirement.make(1, string));
         }
         if (tLRPC$TL_chatAdminRights.post_messages && z) {
-            arrayList.add(Requirement.make(1, LocaleController.getString("EditAdminPostMessages", R.string.EditAdminPostMessages)));
+            arrayList.add(Requirement.make(1, LocaleController.getString(R.string.EditAdminPostMessages)));
         }
         if (tLRPC$TL_chatAdminRights.edit_messages && z) {
-            arrayList.add(Requirement.make(1, LocaleController.getString("EditAdminEditMessages", R.string.EditAdminEditMessages)));
+            arrayList.add(Requirement.make(1, LocaleController.getString(R.string.EditAdminEditMessages)));
         }
         if (tLRPC$TL_chatAdminRights.delete_messages) {
-            if (z) {
-                i = R.string.EditAdminDeleteMessages;
-                str = "EditAdminDeleteMessages";
-            } else {
-                i = R.string.EditAdminGroupDeleteMessages;
-                str = "EditAdminGroupDeleteMessages";
-            }
-            arrayList.add(Requirement.make(1, LocaleController.getString(str, i)));
+            arrayList.add(Requirement.make(1, LocaleController.getString(z ? R.string.EditAdminDeleteMessages : R.string.EditAdminGroupDeleteMessages)));
         }
         if (tLRPC$TL_chatAdminRights.ban_users && !z) {
-            arrayList.add(Requirement.make(1, LocaleController.getString("EditAdminBanUsers", R.string.EditAdminBanUsers)));
+            arrayList.add(Requirement.make(1, LocaleController.getString(R.string.EditAdminBanUsers)));
         }
         if (tLRPC$TL_chatAdminRights.invite_users) {
-            arrayList.add(Requirement.make(1, LocaleController.getString("EditAdminAddUsers", R.string.EditAdminAddUsers)));
+            arrayList.add(Requirement.make(1, LocaleController.getString(R.string.EditAdminAddUsers)));
         }
         if (tLRPC$TL_chatAdminRights.pin_messages && !z) {
-            arrayList.add(Requirement.make(1, LocaleController.getString("EditAdminPinMessages", R.string.EditAdminPinMessages)));
+            arrayList.add(Requirement.make(1, LocaleController.getString(R.string.EditAdminPinMessages)));
         }
         if (tLRPC$TL_chatAdminRights.add_admins) {
-            arrayList.add(Requirement.make(1, LocaleController.getString("EditAdminAddAdmins", R.string.EditAdminAddAdmins)));
+            arrayList.add(Requirement.make(1, LocaleController.getString(R.string.EditAdminAddAdmins)));
         }
         if (tLRPC$TL_chatAdminRights.anonymous && !z) {
-            arrayList.add(Requirement.make(1, LocaleController.getString("EditAdminSendAnonymously", R.string.EditAdminSendAnonymously)));
+            arrayList.add(Requirement.make(1, LocaleController.getString(R.string.EditAdminSendAnonymously)));
         }
         if (tLRPC$TL_chatAdminRights.manage_call) {
-            arrayList.add(Requirement.make(1, LocaleController.getString("StartVoipChatPermission", R.string.StartVoipChatPermission)));
+            arrayList.add(Requirement.make(1, LocaleController.getString(R.string.StartVoipChatPermission)));
         }
         if (tLRPC$TL_chatAdminRights.manage_topics && !z) {
-            arrayList.add(Requirement.make(1, LocaleController.getString("ManageTopicsPermission", R.string.ManageTopicsPermission)));
+            arrayList.add(Requirement.make(1, LocaleController.getString(R.string.ManageTopicsPermission)));
         }
         if (arrayList.size() == 1) {
             this.requirements.add(Requirement.make(TextUtils.concat(charSequence2, " ", ((Requirement) arrayList.get(0)).text)));
@@ -241,11 +223,11 @@ public class RequestPeerRequirementsCell extends LinearLayout {
         }
         SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(charSequence);
         valueOf.append((CharSequence) " ");
-        for (int i2 = 0; i2 < arrayList.size(); i2++) {
-            if (i2 > 0) {
+        for (int i = 0; i < arrayList.size(); i++) {
+            if (i > 0) {
                 valueOf.append((CharSequence) ", ");
             }
-            valueOf.append((CharSequence) ((Requirement) arrayList.get(i2)).text.toString().toLowerCase());
+            valueOf.append((CharSequence) ((Requirement) arrayList.get(i)).text.toString().toLowerCase());
         }
         valueOf.append((CharSequence) ".");
         this.requirements.add(Requirement.make(valueOf));

@@ -198,7 +198,7 @@ public class EditTextCaption extends EditTextBoldCursor {
             builder = new AlertDialog.Builder(getContext(), this.resourcesProvider);
         }
         ?? r2 = builder;
-        r2.setTitle(LocaleController.getString("CreateLink", R.string.CreateLink));
+        r2.setTitle(LocaleController.getString(R.string.CreateLink));
         ?? frameLayout = new FrameLayout(getContext());
         final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(getContext()) {
             @Override
@@ -209,7 +209,7 @@ public class EditTextCaption extends EditTextBoldCursor {
         editTextBoldCursor.setTextSize(1, 18.0f);
         editTextBoldCursor.setText("http://");
         editTextBoldCursor.setTextColor(getThemedColor(Theme.key_dialogTextBlack));
-        editTextBoldCursor.setHintText(LocaleController.getString("URL", R.string.URL));
+        editTextBoldCursor.setHintText(LocaleController.getString(R.string.URL));
         editTextBoldCursor.setHeaderHintColor(getThemedColor(Theme.key_windowBackgroundWhiteBlueHeader));
         editTextBoldCursor.setSingleLine(true);
         editTextBoldCursor.setFocusable(true);
@@ -282,13 +282,13 @@ public class EditTextCaption extends EditTextBoldCursor {
             i = getSelectionStart();
             selectionEnd = getSelectionEnd();
         }
-        r2.setPositiveButton(LocaleController.getString("OK", R.string.OK), new DialogInterface.OnClickListener() {
+        r2.setPositiveButton(LocaleController.getString(R.string.OK), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i2) {
                 EditTextCaption.this.lambda$makeSelectedUrl$2(i, selectionEnd, editTextBoldCursor, dialogInterface, i2);
             }
         });
-        r2.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
+        r2.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
         if (this.adaptiveCreateLinkDialog) {
             AlertDialog create = r2.create();
             this.creationLinkDialog = create;
@@ -671,14 +671,14 @@ public class EditTextCaption extends EditTextBoldCursor {
             i++;
         }
         if (hasSelection()) {
-            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_spoiler, LocaleController.getString("Spoiler", R.string.Spoiler)));
-            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_bold, LocaleController.getString("Bold", R.string.Bold)));
-            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_italic, LocaleController.getString("Italic", R.string.Italic)));
-            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_mono, LocaleController.getString("Mono", R.string.Mono)));
-            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_strike, LocaleController.getString("Strike", R.string.Strike)));
-            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_underline, LocaleController.getString("Underline", R.string.Underline)));
-            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_link, LocaleController.getString("CreateLink", R.string.CreateLink)));
-            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_regular, LocaleController.getString("Regular", R.string.Regular)));
+            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_spoiler, LocaleController.getString(R.string.Spoiler)));
+            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_bold, LocaleController.getString(R.string.Bold)));
+            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_italic, LocaleController.getString(R.string.Italic)));
+            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_mono, LocaleController.getString(R.string.Mono)));
+            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_strike, LocaleController.getString(R.string.Strike)));
+            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_underline, LocaleController.getString(R.string.Underline)));
+            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_link, LocaleController.getString(R.string.CreateLink)));
+            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_regular, LocaleController.getString(R.string.Regular)));
         }
     }
 

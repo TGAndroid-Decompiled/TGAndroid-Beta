@@ -265,15 +265,15 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
             }
             if (viewHolder.getItemViewType() == 0) {
                 StatisticActivity.OverviewCell overviewCell = (StatisticActivity.OverviewCell) viewHolder.itemView;
-                overviewCell.setData(0, Integer.toString(BoostsActivity.this.boostsStatus.level), null, LocaleController.getString("BoostsLevel2", R.string.BoostsLevel2));
+                overviewCell.setData(0, Integer.toString(BoostsActivity.this.boostsStatus.level), null, LocaleController.getString(R.string.BoostsLevel2));
                 if (BoostsActivity.this.boostsStatus.premium_audience == null || BoostsActivity.this.boostsStatus.premium_audience.total == 0.0d) {
                     overviewCell.setData(1, "~0", "0%", LocaleController.getString(BoostsActivity.this.isChannel() ? R.string.PremiumSubscribers : R.string.PremiumMembers));
                 } else {
                     float f = (((float) BoostsActivity.this.boostsStatus.premium_audience.part) / ((float) BoostsActivity.this.boostsStatus.premium_audience.total)) * 100.0f;
                     overviewCell.setData(1, "≈" + ((int) BoostsActivity.this.boostsStatus.premium_audience.part), String.format(Locale.US, "%.1f", Float.valueOf(f)) + "%", LocaleController.getString(BoostsActivity.this.isChannel() ? R.string.PremiumSubscribers : R.string.PremiumMembers));
                 }
-                overviewCell.setData(2, String.valueOf(BoostsActivity.this.boostsStatus.boosts), null, LocaleController.getString("BoostsExisting", R.string.BoostsExisting));
-                overviewCell.setData(3, String.valueOf(Math.max(0, BoostsActivity.this.boostsStatus.next_level_boosts - BoostsActivity.this.boostsStatus.boosts)), null, LocaleController.getString("BoostsToLevel", R.string.BoostsToLevel));
+                overviewCell.setData(2, String.valueOf(BoostsActivity.this.boostsStatus.boosts), null, LocaleController.getString(R.string.BoostsExisting));
+                overviewCell.setData(3, String.valueOf(Math.max(0, BoostsActivity.this.boostsStatus.next_level_boosts - BoostsActivity.this.boostsStatus.boosts)), null, LocaleController.getString(R.string.BoostsToLevel));
                 overviewCell.setPadding(AndroidUtilities.dp(23.0f), overviewCell.getPaddingTop(), AndroidUtilities.dp(23.0f), overviewCell.getPaddingBottom());
                 return;
             }
@@ -365,19 +365,19 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
         this.items.clear();
         this.items.add(new ItemInternal(14, false));
         if (this.boostsStatus != null) {
-            this.items.add(new ItemInternal(16, LocaleController.getString("StatisticOverview", R.string.StatisticOverview)));
+            this.items.add(new ItemInternal(16, LocaleController.getString(R.string.StatisticOverview)));
             this.items.add(new ItemInternal(0, false));
             this.items.add(new ItemInternal(2, false));
             if (this.boostsStatus.prepaid_giveaways.size() > 0) {
-                this.items.add(new ItemInternal(12, LocaleController.getString("BoostingPreparedGiveaways", R.string.BoostingPreparedGiveaways)));
+                this.items.add(new ItemInternal(12, LocaleController.getString(R.string.BoostingPreparedGiveaways)));
                 int i = 0;
                 while (i < this.boostsStatus.prepaid_giveaways.size()) {
                     this.items.add(new ItemInternal(11, this.boostsStatus.prepaid_giveaways.get(i), i == this.boostsStatus.prepaid_giveaways.size() - 1));
                     i++;
                 }
-                this.items.add(new ItemInternal(6, LocaleController.getString("BoostingSelectPaidGiveaway", R.string.BoostingSelectPaidGiveaway)));
+                this.items.add(new ItemInternal(6, LocaleController.getString(R.string.BoostingSelectPaidGiveaway)));
             }
-            this.items.add(new ItemInternal(13, LocaleController.getString("Boosters", R.string.Boosters)));
+            this.items.add(new ItemInternal(13, LocaleController.getString(R.string.Boosters)));
             if (this.selectedTab == 0) {
                 if (this.boosters.isEmpty()) {
                     this.items.add(new ItemInternal(8, false));
@@ -411,7 +411,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
                 }
                 this.items.add(new ItemInternal(6, LocaleController.getString(isChannel() ? R.string.BoostersInfoDescription : R.string.BoostersInfoGroupDescription)));
             }
-            this.items.add(new ItemInternal(1, LocaleController.getString("LinkForBoosting", R.string.LinkForBoosting)));
+            this.items.add(new ItemInternal(1, LocaleController.getString(R.string.LinkForBoosting)));
             this.items.add(new ItemInternal(3, this.boostsStatus.boost_url));
             if (MessagesController.getInstance(this.currentAccount).giveawayGiftsPurchaseAvailable && ChatObject.hasAdminRights(this.currentChat)) {
                 this.items.add(new ItemInternal(6, LocaleController.getString(isChannel() ? R.string.BoostingShareThisLink : R.string.BoostingShareThisLinkGroup)));
@@ -1000,7 +1000,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
                 if (z2 && boost.user_id == -1) {
                     Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(getParentActivity(), getResourceProvider());
                     lottieLayout.setAnimation(R.raw.chats_infotip, 36, 36, new String[0]);
-                    lottieLayout.textView.setText(LocaleController.getString("BoostingRecipientWillBeSelected", R.string.BoostingRecipientWillBeSelected));
+                    lottieLayout.textView.setText(LocaleController.getString(R.string.BoostingRecipientWillBeSelected));
                     lottieLayout.textView.setSingleLine(false);
                     lottieLayout.textView.setMaxLines(2);
                     Bulletin.make(this, lottieLayout, 2750).show();

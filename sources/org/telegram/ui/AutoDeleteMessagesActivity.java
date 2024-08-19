@@ -71,7 +71,7 @@ public class AutoDeleteMessagesActivity extends BaseFragment implements Notifica
     public View createView(Context context) {
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(LocaleController.getString("AutoDeleteMessages", R.string.AutoDeleteMessages));
+        this.actionBar.setTitle(LocaleController.getString(R.string.AutoDeleteMessages));
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i) {
@@ -99,35 +99,35 @@ public class AutoDeleteMessagesActivity extends BaseFragment implements Notifica
         this.checkBoxContainer.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
         linearLayout.addView(this.checkBoxContainer, LayoutHelper.createLinear(-1, -2));
         HeaderCell headerCell = new HeaderCell(getContext());
-        headerCell.setText(LocaleController.getString("MessageLifetime", R.string.MessageLifetime));
+        headerCell.setText(LocaleController.getString(R.string.MessageLifetime));
         this.checkBoxContainer.addView(headerCell);
         RadioCellInternal radioCellInternal = new RadioCellInternal(getContext());
         this.offCell = radioCellInternal;
-        radioCellInternal.setText(LocaleController.getString("ShortMessageLifetimeForever", R.string.ShortMessageLifetimeForever), false, true);
+        radioCellInternal.setText(LocaleController.getString(R.string.ShortMessageLifetimeForever), false, true);
         RadioCellInternal radioCellInternal2 = this.offCell;
         radioCellInternal2.time = 0;
         this.checkBoxContainer.addView(radioCellInternal2);
         RadioCellInternal radioCellInternal3 = new RadioCellInternal(getContext());
         this.afterOneDay = radioCellInternal3;
-        radioCellInternal3.setText(LocaleController.getString("AutoDeleteAfter1Day", R.string.AutoDeleteAfter1Day), false, true);
+        radioCellInternal3.setText(LocaleController.getString(R.string.AutoDeleteAfter1Day), false, true);
         RadioCellInternal radioCellInternal4 = this.afterOneDay;
         radioCellInternal4.time = 1440;
         this.checkBoxContainer.addView(radioCellInternal4);
         RadioCellInternal radioCellInternal5 = new RadioCellInternal(getContext());
         this.afterOneWeek = radioCellInternal5;
-        radioCellInternal5.setText(LocaleController.getString("AutoDeleteAfter1Week", R.string.AutoDeleteAfter1Week), false, true);
+        radioCellInternal5.setText(LocaleController.getString(R.string.AutoDeleteAfter1Week), false, true);
         RadioCellInternal radioCellInternal6 = this.afterOneWeek;
         radioCellInternal6.time = 10080;
         this.checkBoxContainer.addView(radioCellInternal6);
         RadioCellInternal radioCellInternal7 = new RadioCellInternal(getContext());
         this.afterOneMonth = radioCellInternal7;
-        radioCellInternal7.setText(LocaleController.getString("AutoDeleteAfter1Month", R.string.AutoDeleteAfter1Month), false, true);
+        radioCellInternal7.setText(LocaleController.getString(R.string.AutoDeleteAfter1Month), false, true);
         RadioCellInternal radioCellInternal8 = this.afterOneMonth;
         radioCellInternal8.time = 44640;
         this.checkBoxContainer.addView(radioCellInternal8);
         RadioCellInternal radioCellInternal9 = new RadioCellInternal(getContext());
         this.customTimeButton = radioCellInternal9;
-        radioCellInternal9.setText(LocaleController.getString("SetCustomTime", R.string.SetCustomTime), false, false);
+        radioCellInternal9.setText(LocaleController.getString(R.string.SetCustomTime), false, false);
         this.customTimeButton.hideRadioButton();
         this.checkBoxContainer.addView(this.customTimeButton);
         this.arrayList.add(this.offCell);
@@ -137,7 +137,7 @@ public class AutoDeleteMessagesActivity extends BaseFragment implements Notifica
         this.arrayList.add(this.customTimeButton);
         updateItems();
         TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(context);
-        textInfoPrivacyCell.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString("GlobalAutoDeleteInfo", R.string.GlobalAutoDeleteInfo), new AnonymousClass2()));
+        textInfoPrivacyCell.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.GlobalAutoDeleteInfo), new AnonymousClass2()));
         linearLayout.addView(textInfoPrivacyCell, LayoutHelper.createLinear(-1, -2));
         selectDate(this.startFromTtl, false);
         return this.fragmentView;
@@ -223,15 +223,15 @@ public class AutoDeleteMessagesActivity extends BaseFragment implements Notifica
         int i = ((RadioCellInternal) view).time;
         if (getSelectedTime() == 0 && i > 0) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-            builder.setTitle(LocaleController.getString("MessageLifetime", R.string.MessageLifetime));
+            builder.setTitle(LocaleController.getString(R.string.MessageLifetime));
             builder.setMessage(LocaleController.formatString("AutoDeleteConfirmMessage", R.string.AutoDeleteConfirmMessage, LocaleController.formatTTLString(i * 60)));
-            builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), new DialogInterface.OnClickListener() {
+            builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i2) {
                     dialogInterface.dismiss();
                 }
             });
-            builder.setPositiveButton(LocaleController.getString("Enable", R.string.Enable), new DialogInterface.OnClickListener() {
+            builder.setPositiveButton(LocaleController.getString(R.string.Enable), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i2) {
                     AutoDeleteMessagesActivity.this.lambda$updateItems$1(view, dialogInterface, i2);

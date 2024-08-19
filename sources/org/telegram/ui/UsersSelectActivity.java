@@ -451,9 +451,9 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
         int i3 = this.type;
         if (i3 == 0 || i3 == 2) {
             if (this.isInclude) {
-                this.actionBar.setTitle(LocaleController.getString("FilterAlwaysShow", R.string.FilterAlwaysShow));
+                this.actionBar.setTitle(LocaleController.getString(R.string.FilterAlwaysShow));
             } else {
-                this.actionBar.setTitle(LocaleController.getString("FilterNeverShow", R.string.FilterNeverShow));
+                this.actionBar.setTitle(LocaleController.getString(R.string.FilterNeverShow));
             }
         } else if (i3 == 1) {
             updateHint();
@@ -570,7 +570,7 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
         int i4 = 5;
         this.editText.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         this.spansContainer.addView(this.editText);
-        this.editText.setHintText(LocaleController.getString("SearchForPeopleAndGroups", R.string.SearchForPeopleAndGroups));
+        this.editText.setHintText(LocaleController.getString(R.string.SearchForPeopleAndGroups));
         this.editText.setCustomSelectionActionModeCallback(new ActionMode.Callback() {
             @Override
             public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
@@ -658,7 +658,7 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
                     UsersSelectActivity.this.adapter.setSearching(true);
                     UsersSelectActivity.this.listView.setFastScrollVisible(false);
                     UsersSelectActivity.this.listView.setVerticalScrollBarEnabled(true);
-                    UsersSelectActivity.this.emptyView.title.setText(LocaleController.getString("NoResult", R.string.NoResult));
+                    UsersSelectActivity.this.emptyView.title.setText(LocaleController.getString(R.string.NoResult));
                 }
                 UsersSelectActivity.this.emptyView.showProgress(true);
                 UsersSelectActivity.this.adapter.searchDialogs(UsersSelectActivity.this.editText.getText().toString());
@@ -685,7 +685,7 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
         };
         this.emptyView = stickerEmptyView;
         stickerEmptyView.showProgress(ContactsController.getInstance(this.currentAccount).isLoadingContacts());
-        this.emptyView.title.setText(LocaleController.getString("NoContacts", R.string.NoContacts));
+        this.emptyView.title.setText(LocaleController.getString(R.string.NoContacts));
         viewGroup.addView(this.emptyView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, 1, false);
         RecyclerListView recyclerListView = new RecyclerListView(context);
@@ -752,7 +752,7 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
                 UsersSelectActivity.this.lambda$createView$2(view);
             }
         });
-        this.floatingButton.setContentDescription(LocaleController.getString("Next", R.string.Next));
+        this.floatingButton.setContentDescription(LocaleController.getString(R.string.Next));
         if (this.isInclude) {
             i = 1;
         } else {
@@ -1042,7 +1042,7 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
         this.adapter.searchDialogs(null);
         this.listView.setFastScrollVisible(true);
         this.listView.setVerticalScrollBarEnabled(false);
-        this.emptyView.title.setText(LocaleController.getString("NoContacts", R.string.NoContacts));
+        this.emptyView.title.setText(LocaleController.getString(R.string.NoContacts));
     }
 
     public void updateHint() {
@@ -1062,12 +1062,12 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
             this.actionBar.setTitle("");
             this.actionBar.setSubtitle("");
             if (this.selectedCount == 0) {
-                this.animatedAvatarContainer.getTitle().setText(LocaleController.getString("SelectChats", R.string.SelectChats), true);
+                this.animatedAvatarContainer.getTitle().setText(LocaleController.getString(R.string.SelectChats), true);
                 if (this.ttlPeriod > 0) {
-                    this.animatedAvatarContainer.getSubtitleTextView().setText(LocaleController.getString("SelectChatsForAutoDelete", R.string.SelectChatsForAutoDelete), true);
+                    this.animatedAvatarContainer.getSubtitleTextView().setText(LocaleController.getString(R.string.SelectChatsForAutoDelete), true);
                     return;
                 } else {
-                    this.animatedAvatarContainer.getSubtitleTextView().setText(LocaleController.getString("SelectChatsForDisableAutoDelete", R.string.SelectChatsForDisableAutoDelete), true);
+                    this.animatedAvatarContainer.getSubtitleTextView().setText(LocaleController.getString(R.string.SelectChatsForDisableAutoDelete), true);
                     return;
                 }
             }

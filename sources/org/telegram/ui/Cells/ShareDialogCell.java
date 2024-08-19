@@ -193,11 +193,11 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
             invalidate();
             this.avatarDrawable.setInfo(this.currentAccount, this.user);
             if (this.currentType != 2 && UserObject.isReplyUser(this.user)) {
-                this.nameTextView.setText(LocaleController.getString("RepliesTitle", R.string.RepliesTitle));
+                this.nameTextView.setText(LocaleController.getString(R.string.RepliesTitle));
                 this.avatarDrawable.setAvatarType(12);
                 this.imageView.setImage((ImageLocation) null, (String) null, this.avatarDrawable, this.user);
             } else if (this.currentType != 2 && UserObject.isUserSelf(this.user)) {
-                this.nameTextView.setText(LocaleController.getString("SavedMessages", R.string.SavedMessages));
+                this.nameTextView.setText(LocaleController.getString(R.string.SavedMessages));
                 this.avatarDrawable.setAvatarType(1);
                 this.imageView.setImage((ImageLocation) null, (String) null, this.avatarDrawable, this.user);
             } else {

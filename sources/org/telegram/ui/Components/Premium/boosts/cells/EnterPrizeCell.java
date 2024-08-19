@@ -59,7 +59,7 @@ public class EnterPrizeCell extends LinearLayout {
         editTextCaption.setCursorColor(Theme.getColor(Theme.key_chat_messagePanelCursor, resourcesProvider));
         editTextCaption.setHandlesColor(Theme.getColor(Theme.key_chat_TextSelectionCursor, resourcesProvider));
         editTextCaption.setBackground(null);
-        editTextCaption.setHint(LocaleController.getString("BoostingGiveawayEnterYourPrize", R.string.BoostingGiveawayEnterYourPrize));
+        editTextCaption.setHint(LocaleController.getString(R.string.BoostingGiveawayEnterYourPrize));
         editTextCaption.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i2, int i3, int i4) {

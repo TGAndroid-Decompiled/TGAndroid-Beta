@@ -102,24 +102,24 @@ public class VoIpSwitchLayout extends FrameLayout {
         int i = AnonymousClass4.$SwitchMap$org$telegram$ui$Components$voip$VoIpSwitchLayout$Type[type.ordinal()];
         if (i != 1) {
             if (i == 2) {
-                string = LocaleController.getString("VoipFlip", R.string.VoipFlip);
+                string = LocaleController.getString(R.string.VoipFlip);
             } else if (i != 3) {
                 if (i == 4) {
-                    string = LocaleController.getString("VoipAudioRoutingBluetooth", R.string.VoipAudioRoutingBluetooth);
+                    string = LocaleController.getString(R.string.VoipAudioRoutingBluetooth);
                 } else if (i == 5) {
-                    string = LocaleController.getString("VoipSpeaker", R.string.VoipSpeaker);
+                    string = LocaleController.getString(R.string.VoipSpeaker);
                 } else {
                     string = "";
                 }
             } else if (z) {
-                string = LocaleController.getString("VoipStartVideo", R.string.VoipStartVideo);
+                string = LocaleController.getString(R.string.VoipStartVideo);
             } else {
-                string = LocaleController.getString("VoipStopVideo", R.string.VoipStopVideo);
+                string = LocaleController.getString(R.string.VoipStopVideo);
             }
         } else if (z) {
-            string = LocaleController.getString("VoipUnmute", R.string.VoipUnmute);
+            string = LocaleController.getString(R.string.VoipUnmute);
         } else {
-            string = LocaleController.getString("VoipMute", R.string.VoipMute);
+            string = LocaleController.getString(R.string.VoipMute);
         }
         setContentDescription(string);
         if (this.currentTextView.getVisibility() == 8 && this.newTextView.getVisibility() == 8) {

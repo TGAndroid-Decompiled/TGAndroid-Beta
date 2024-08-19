@@ -43,7 +43,7 @@ public class MemberRequestsBottomSheet extends UsersAlertBase {
         this.delegate = memberRequestsDelegate;
         memberRequestsDelegate.setShowLastItemDivider(false);
         setDimBehindAlpha(75);
-        this.searchView.searchEditText.setHint(LocaleController.getString("SearchMemberRequests", R.string.SearchMemberRequests));
+        this.searchView.searchEditText.setHint(LocaleController.getString(R.string.SearchMemberRequests));
         MemberRequestsDelegate.Adapter adapter = memberRequestsDelegate.getAdapter();
         this.listViewAdapter = adapter;
         this.searchListViewAdapter = adapter;

@@ -175,7 +175,7 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
             this.deleteImageView.setImageResource(R.drawable.poll_remove);
             this.deleteImageView.setOnClickListener(onClickListener);
             this.deleteImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i3), mode));
-            this.deleteImageView.setContentDescription(LocaleController.getString("Delete", R.string.Delete));
+            this.deleteImageView.setContentDescription(LocaleController.getString(R.string.Delete));
             ImageView imageView5 = this.deleteImageView;
             boolean z3 = LocaleController.isRTL;
             addView(imageView5, LayoutHelper.createFrame(48, 50.0f, (z3 ? 3 : 5) | 48, z3 ? 3.0f : 0.0f, 0.0f, z3 ? 0.0f : 3.0f, 0.0f));
@@ -189,7 +189,7 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
             CheckBox2 checkBox2 = new CheckBox2(context, 21);
             this.checkBox = checkBox2;
             checkBox2.setColor(-1, i3, Theme.key_checkboxCheck);
-            this.checkBox.setContentDescription(LocaleController.getString("AccDescrQuizCorrectAnswer", R.string.AccDescrQuizCorrectAnswer));
+            this.checkBox.setContentDescription(LocaleController.getString(R.string.AccDescrQuizCorrectAnswer));
             this.checkBox.setDrawUnchecked(true);
             this.checkBox.setChecked(true, false);
             this.checkBox.setAlpha(0.0f);
@@ -229,7 +229,7 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
                     PollEditTextCell.this.lambda$new$1(view);
                 }
             });
-            this.emojiButton.setContentDescription(LocaleController.getString("Emoji", R.string.Emoji));
+            this.emojiButton.setContentDescription(LocaleController.getString(R.string.Emoji));
         }
     }
 

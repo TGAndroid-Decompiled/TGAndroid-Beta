@@ -220,7 +220,7 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
         textView2.setTextColor(Theme.getColor(i));
         this.positiveButton.setGravity(17);
         this.positiveButton.setTypeface(AndroidUtilities.bold());
-        this.positiveButton.setText(LocaleController.getString("VoipShareVideo", R.string.VoipShareVideo));
+        this.positiveButton.setText(LocaleController.getString(R.string.VoipShareVideo));
         if (Build.VERSION.SDK_INT >= 23) {
             this.positiveButton.setForeground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), 0, ColorUtils.setAlphaComponent(Theme.getColor(i), 76)));
         }
@@ -250,11 +250,11 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
             this.titles[i2].setSingleLine(true);
             this.titlesLayout.addView(this.titles[i2], LayoutHelper.createLinear(-2, -1));
             if (i2 == 0 && this.needScreencast) {
-                this.titles[i2].setText(LocaleController.getString("VoipPhoneScreen", R.string.VoipPhoneScreen));
+                this.titles[i2].setText(LocaleController.getString(R.string.VoipPhoneScreen));
             } else if (i2 == 0 || (i2 == 1 && this.needScreencast)) {
-                this.titles[i2].setText(LocaleController.getString("VoipFrontCamera", R.string.VoipFrontCamera));
+                this.titles[i2].setText(LocaleController.getString(R.string.VoipFrontCamera));
             } else {
-                this.titles[i2].setText(LocaleController.getString("VoipBackCamera", R.string.VoipBackCamera));
+                this.titles[i2].setText(LocaleController.getString(R.string.VoipBackCamera));
             }
             this.titles[i2].setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -568,7 +568,7 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
                 imageView2.setImageResource(R.drawable.screencast_big);
                 frameLayout.addView(imageView2, LayoutHelper.createFrame(82, 82.0f, 17, 0.0f, 0.0f, 0.0f, 60.0f));
                 TextView textView = new TextView(PrivateVideoPreviewDialog.this.getContext());
-                textView.setText(LocaleController.getString("VoipVideoPrivateScreenSharing", R.string.VoipVideoPrivateScreenSharing));
+                textView.setText(LocaleController.getString(R.string.VoipVideoPrivateScreenSharing));
                 textView.setGravity(17);
                 textView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
                 textView.setTextColor(-1);

@@ -397,7 +397,7 @@ public class QrActivity extends BaseFragment {
                 QrActivity.this.lambda$createView$2(emojiThemes, i);
             }
         });
-        this.themesViewController.titleView.setText(LocaleController.getString("QrCode", R.string.QrCode));
+        this.themesViewController.titleView.setText(LocaleController.getString(R.string.QrCode));
         this.themesViewController.progressView.setViewType(17);
         this.themesViewController.shareButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -875,7 +875,7 @@ public class QrActivity extends BaseFragment {
         Uri bitmapShareUri = AndroidUtilities.getBitmapShareUri(createBitmap, "qr_tmp.jpg", Bitmap.CompressFormat.JPEG);
         if (bitmapShareUri != null) {
             try {
-                getParentActivity().startActivityForResult(Intent.createChooser(new Intent("android.intent.action.SEND").setType("image/*").putExtra("android.intent.extra.STREAM", bitmapShareUri), LocaleController.getString("InviteByQRCode", R.string.InviteByQRCode)), 500);
+                getParentActivity().startActivityForResult(Intent.createChooser(new Intent("android.intent.action.SEND").setType("image/*").putExtra("android.intent.extra.STREAM", bitmapShareUri), LocaleController.getString(R.string.InviteByQRCode)), 500);
             } catch (ActivityNotFoundException e) {
                 e.printStackTrace();
             }
@@ -1513,9 +1513,9 @@ public class QrActivity extends BaseFragment {
                 public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
                     super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
                     if (QrActivity.this.isCurrentThemeDark) {
-                        accessibilityNodeInfo.setText(LocaleController.getString("AccDescrSwitchToDayTheme", R.string.AccDescrSwitchToDayTheme));
+                        accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrSwitchToDayTheme));
                     } else {
-                        accessibilityNodeInfo.setText(LocaleController.getString("AccDescrSwitchToNightTheme", R.string.AccDescrSwitchToNightTheme));
+                        accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrSwitchToNightTheme));
                     }
                 }
             };
@@ -1584,7 +1584,7 @@ public class QrActivity extends BaseFragment {
             textView2.setGravity(17);
             textView2.setLines(1);
             textView2.setSingleLine(true);
-            textView2.setText(LocaleController.getString("ShareQrCode", R.string.ShareQrCode));
+            textView2.setText(LocaleController.getString(R.string.ShareQrCode));
             textView2.setTextColor(baseFragment.getThemedColor(Theme.key_featuredStickers_buttonText));
             textView2.setTextSize(1, 15.0f);
             textView2.setTypeface(AndroidUtilities.bold());

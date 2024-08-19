@@ -115,7 +115,7 @@ public class StickerSetCell extends FrameLayout {
                 PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
                 imageView3.setColorFilter(new PorterDuffColorFilter(color, mode));
                 this.optionsButton.setImageResource(R.drawable.msg_actions);
-                this.optionsButton.setContentDescription(LocaleController.getString("AccDescrMoreOptions", R.string.AccDescrMoreOptions));
+                this.optionsButton.setContentDescription(LocaleController.getString(R.string.AccDescrMoreOptions));
                 addView(this.optionsButton, LayoutHelper.createFrame(40, 40, (LocaleController.isRTL ? 3 : 5) | 16));
                 ImageView imageView4 = new ImageView(context);
                 this.reorderButton = imageView4;
@@ -144,7 +144,7 @@ public class StickerSetCell extends FrameLayout {
         this.addButtonView = textView;
         textView.setTextSize(1, 14.0f);
         this.addButtonView.setTypeface(AndroidUtilities.bold());
-        this.addButtonView.setText(LocaleController.getString("Add", R.string.Add));
+        this.addButtonView.setText(LocaleController.getString(R.string.Add));
         this.addButtonView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText, resourcesProvider));
         TextView textView2 = this.addButtonView;
         int i3 = Theme.key_featuredStickers_addButton;
@@ -162,7 +162,7 @@ public class StickerSetCell extends FrameLayout {
         this.removeButtonView = textView3;
         textView3.setTextSize(1, 14.0f);
         this.removeButtonView.setTypeface(AndroidUtilities.bold());
-        this.removeButtonView.setText(LocaleController.getString("StickersRemove", R.string.StickersRemove));
+        this.removeButtonView.setText(LocaleController.getString(R.string.StickersRemove));
         this.removeButtonView.setTextColor(Theme.getColor(Theme.key_featuredStickers_removeButtonText, resourcesProvider));
         this.removeButtonView.setBackground(Theme.AdaptiveRipple.createRect(0, Theme.getColor(i3, resourcesProvider) & 452984831, 4.0f));
         this.removeButtonView.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
@@ -177,7 +177,7 @@ public class StickerSetCell extends FrameLayout {
         PremiumButtonView premiumButtonView = new PremiumButtonView(context, AndroidUtilities.dp(4.0f), false, resourcesProvider);
         this.premiumButtonView = premiumButtonView;
         premiumButtonView.setIcon(R.raw.unlock_icon);
-        this.premiumButtonView.setButton(LocaleController.getString("Unlock", R.string.Unlock), new View.OnClickListener() {
+        this.premiumButtonView.setButton(LocaleController.getString(R.string.Unlock), new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
                 StickerSetCell.this.lambda$new$2(view);
@@ -658,14 +658,14 @@ public class StickerSetCell extends FrameLayout {
             this.stateAnimator = null;
         }
         if (i == 1) {
-            this.premiumButtonView.setButton(LocaleController.getString("Unlock", R.string.Unlock), new View.OnClickListener() {
+            this.premiumButtonView.setButton(LocaleController.getString(R.string.Unlock), new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
                     StickerSetCell.this.lambda$updateButtonState$9(view);
                 }
             });
         } else if (i == 2) {
-            this.premiumButtonView.setButton(LocaleController.getString("Restore", R.string.Restore), new View.OnClickListener() {
+            this.premiumButtonView.setButton(LocaleController.getString(R.string.Restore), new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
                     StickerSetCell.this.lambda$updateButtonState$10(view);

@@ -92,23 +92,23 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
         this.actionBar.setAllowOverlayTitle(true);
         int i = this.currentType;
         if (i == 1) {
-            this.actionBar.setTitle(LocaleController.getString("BlockedUsers", R.string.BlockedUsers));
+            this.actionBar.setTitle(LocaleController.getString(R.string.BlockedUsers));
         } else if (i == 2) {
             if (this.isAlwaysShare) {
-                this.actionBar.setTitle(LocaleController.getString("FilterAlwaysShow", R.string.FilterAlwaysShow));
+                this.actionBar.setTitle(LocaleController.getString(R.string.FilterAlwaysShow));
             } else {
-                this.actionBar.setTitle(LocaleController.getString("FilterNeverShow", R.string.FilterNeverShow));
+                this.actionBar.setTitle(LocaleController.getString(R.string.FilterNeverShow));
             }
         } else if (this.isGroup) {
             if (this.isAlwaysShare) {
-                this.actionBar.setTitle(LocaleController.getString("AlwaysAllow", R.string.AlwaysAllow));
+                this.actionBar.setTitle(LocaleController.getString(R.string.AlwaysAllow));
             } else {
-                this.actionBar.setTitle(LocaleController.getString("NeverAllow", R.string.NeverAllow));
+                this.actionBar.setTitle(LocaleController.getString(R.string.NeverAllow));
             }
         } else if (this.isAlwaysShare) {
-            this.actionBar.setTitle(LocaleController.getString("AlwaysShareWithTitle", R.string.AlwaysShareWithTitle));
+            this.actionBar.setTitle(LocaleController.getString(R.string.AlwaysShareWithTitle));
         } else {
-            this.actionBar.setTitle(LocaleController.getString("NeverShareWithTitle", R.string.NeverShareWithTitle));
+            this.actionBar.setTitle(LocaleController.getString(R.string.NeverShareWithTitle));
         }
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
@@ -124,9 +124,9 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
         EmptyTextProgressView emptyTextProgressView = new EmptyTextProgressView(context);
         this.emptyView = emptyTextProgressView;
         if (this.currentType == 1) {
-            emptyTextProgressView.setText(LocaleController.getString("NoBlocked", R.string.NoBlocked));
+            emptyTextProgressView.setText(LocaleController.getString(R.string.NoBlocked));
         } else {
-            emptyTextProgressView.setText(LocaleController.getString("NoContacts", R.string.NoContacts));
+            emptyTextProgressView.setText(LocaleController.getString(R.string.NoContacts));
         }
         frameLayout.addView(this.emptyView, LayoutHelper.createFrame(-1, -1.0f));
         RecyclerListView recyclerListView = new RecyclerListView(context);
@@ -287,14 +287,14 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
         if (getParentActivity() == null) {
             return;
         }
-        ItemOptions addIf = ItemOptions.makeOptions(this, view).setScrimViewBackground(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundWhite))).addIf(this.currentType == 1, 0, LocaleController.getString("Unblock", R.string.Unblock), new Runnable() {
+        ItemOptions addIf = ItemOptions.makeOptions(this, view).setScrimViewBackground(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundWhite))).addIf(this.currentType == 1, 0, LocaleController.getString(R.string.Unblock), new Runnable() {
             @Override
             public final void run() {
                 PrivacyUsersActivity.this.lambda$showUnblockAlert$5(l);
             }
         });
         int i = this.currentType;
-        addIf.addIf(i != 1, i == 0 ? R.drawable.msg_user_remove : 0, (CharSequence) LocaleController.getString("Remove", R.string.Remove), true, new Runnable() {
+        addIf.addIf(i != 1, i == 0 ? R.drawable.msg_user_remove : 0, (CharSequence) LocaleController.getString(R.string.Remove), true, new Runnable() {
             @Override
             public final void run() {
                 PrivacyUsersActivity.this.lambda$showUnblockAlert$6(l);
@@ -468,7 +468,7 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
                 frameLayout = headerCell;
             } else {
                 TextCell textCell = new TextCell(viewGroup.getContext());
-                textCell.setText(LocaleController.getString("NotificationsDeleteAllException", R.string.NotificationsDeleteAllException), false);
+                textCell.setText(LocaleController.getString(R.string.NotificationsDeleteAllException), false);
                 textCell.setColors(-1, Theme.key_text_RedRegular);
                 textCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                 frameLayout = textCell;
@@ -487,10 +487,10 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
                         ManageChatTextCell manageChatTextCell = (ManageChatTextCell) viewHolder.itemView;
                         manageChatTextCell.setColors(Theme.key_windowBackgroundWhiteBlueIcon, Theme.key_windowBackgroundWhiteBlueButton);
                         if (PrivacyUsersActivity.this.currentType != 1) {
-                            manageChatTextCell.setText(LocaleController.getString("PrivacyAddAnException", R.string.PrivacyAddAnException), null, R.drawable.msg_contact_add, PrivacyUsersActivity.this.uidArray.size() > 0);
+                            manageChatTextCell.setText(LocaleController.getString(R.string.PrivacyAddAnException), null, R.drawable.msg_contact_add, PrivacyUsersActivity.this.uidArray.size() > 0);
                             return;
                         } else {
-                            manageChatTextCell.setText(LocaleController.getString("BlockUser", R.string.BlockUser), null, R.drawable.msg_contact_add, false);
+                            manageChatTextCell.setText(LocaleController.getString(R.string.BlockUser), null, R.drawable.msg_contact_add, false);
                             return;
                         }
                     }
@@ -503,7 +503,7 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
                             headerCell.setText(LocaleController.formatPluralString("BlockedUsersCount", PrivacyUsersActivity.this.getMessagesController().totalBlockedCount, new Object[0]));
                             return;
                         } else {
-                            headerCell.setText(LocaleController.getString("PrivacyExceptions", R.string.PrivacyExceptions));
+                            headerCell.setText(LocaleController.getString(R.string.PrivacyExceptions));
                             return;
                         }
                     }
@@ -513,7 +513,7 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
                 if (i == PrivacyUsersActivity.this.blockUserDetailRow) {
                     if (PrivacyUsersActivity.this.currentType == 1) {
                         textInfoPrivacyCell.setFixedSize(0);
-                        textInfoPrivacyCell.setText(LocaleController.getString("BlockedUsersInfo", R.string.BlockedUsersInfo));
+                        textInfoPrivacyCell.setText(LocaleController.getString(R.string.BlockedUsersInfo));
                     } else {
                         textInfoPrivacyCell.setFixedSize(8);
                         textInfoPrivacyCell.setText(null);
@@ -543,15 +543,15 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
                     if (user.bot) {
                         StringBuilder sb = new StringBuilder();
                         int i2 = R.string.Bot;
-                        sb.append(LocaleController.getString("Bot", i2).substring(0, 1).toUpperCase());
-                        sb.append(LocaleController.getString("Bot", i2).substring(1));
+                        sb.append(LocaleController.getString(i2).substring(0, 1).toUpperCase());
+                        sb.append(LocaleController.getString(i2).substring(1));
                         string2 = sb.toString();
                     } else {
                         String str = user.phone;
                         if (str != null && str.length() != 0) {
                             string2 = PhoneFormat.getInstance().format("+" + user.phone);
                         } else {
-                            string2 = LocaleController.getString("NumberUnknown", R.string.NumberUnknown);
+                            string2 = LocaleController.getString(R.string.NumberUnknown);
                         }
                     }
                     manageChatUserCell.setData(user, null, string2, i != PrivacyUsersActivity.this.usersEndRow - 1);
@@ -565,11 +565,11 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
                 if (i3 != 0) {
                     string = LocaleController.formatPluralString("Members", i3, new Object[0]);
                 } else if (chat.has_geo) {
-                    string = LocaleController.getString("MegaLocation", R.string.MegaLocation);
+                    string = LocaleController.getString(R.string.MegaLocation);
                 } else if (!ChatObject.isPublic(chat)) {
-                    string = LocaleController.getString("MegaPrivate", R.string.MegaPrivate);
+                    string = LocaleController.getString(R.string.MegaPrivate);
                 } else {
-                    string = LocaleController.getString("MegaPublic", R.string.MegaPublic);
+                    string = LocaleController.getString(R.string.MegaPublic);
                 }
                 manageChatUserCell.setData(chat, null, string, i != PrivacyUsersActivity.this.usersEndRow - 1);
             }

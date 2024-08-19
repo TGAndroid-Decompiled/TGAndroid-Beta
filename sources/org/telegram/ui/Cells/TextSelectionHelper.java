@@ -1148,7 +1148,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
             menu.add(0, 16908321, 0, 17039361);
             menu.add(0, R.id.menu_quote, 1, LocaleController.getString(R.string.Quote));
             menu.add(0, 16908319, 2, 17039373);
-            menu.add(0, 3, 3, LocaleController.getString("TranslateMessage", R.string.TranslateMessage));
+            menu.add(0, 3, 3, LocaleController.getString(R.string.TranslateMessage));
             return true;
         }
 

@@ -31,21 +31,12 @@ public class ChatListCell extends LinearLayout {
 
         public ListView(Context context, boolean z) {
             super(context);
-            int i;
-            String str;
             this.rect = new RectF();
             boolean z2 = true;
             this.textPaint = new TextPaint(1);
             setWillNotDraw(false);
             this.isThreeLines = z;
-            if (z) {
-                i = R.string.ChatListExpanded;
-                str = "ChatListExpanded";
-            } else {
-                i = R.string.ChatListDefault;
-                str = "ChatListDefault";
-            }
-            setContentDescription(LocaleController.getString(str, i));
+            setContentDescription(LocaleController.getString(z ? R.string.ChatListExpanded : R.string.ChatListDefault));
             this.textPaint.setTextSize(AndroidUtilities.dp(13.0f));
             RadioButton radioButton = new RadioButton(context) {
                 @Override
@@ -67,8 +58,6 @@ public class ChatListCell extends LinearLayout {
 
         @Override
         protected void onDraw(Canvas canvas) {
-            int i;
-            String str;
             int color = Theme.getColor(Theme.key_switchTrack);
             int red = Color.red(color);
             int green = Color.green(color);
@@ -80,59 +69,43 @@ public class ChatListCell extends LinearLayout {
             this.rect.set(0.0f, 0.0f, getMeasuredWidth(), AndroidUtilities.dp(74.0f));
             Theme.dialogs_onlineCirclePaint.setColor(Color.argb((int) ((1.0f - this.button.getProgress()) * 31.0f), red, green, blue));
             canvas.drawRoundRect(this.rect, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), Theme.dialogs_onlineCirclePaint);
-            if (this.isThreeLines) {
-                i = R.string.ChatListExpanded;
-                str = "ChatListExpanded";
-            } else {
-                i = R.string.ChatListDefault;
-                str = "ChatListDefault";
-            }
-            String string = LocaleController.getString(str, i);
+            String string = LocaleController.getString(this.isThreeLines ? R.string.ChatListExpanded : R.string.ChatListDefault);
             int ceil = (int) Math.ceil(this.textPaint.measureText(string));
             this.textPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
             int measuredWidth = getMeasuredWidth() - ceil;
             canvas.drawText(string, measuredWidth / 2, AndroidUtilities.dp(96.0f), this.textPaint);
-            int i2 = 0;
-            for (int i3 = 2; i2 < i3; i3 = 2) {
-                int dp = AndroidUtilities.dp(i2 == 0 ? 21.0f : 53.0f);
-                Theme.dialogs_onlineCirclePaint.setColor(Color.argb(i2 == 0 ? 204 : 90, red, green, blue));
+            int i = 0;
+            for (int i2 = 2; i < i2; i2 = 2) {
+                int dp = AndroidUtilities.dp(i == 0 ? 21.0f : 53.0f);
+                Theme.dialogs_onlineCirclePaint.setColor(Color.argb(i == 0 ? 204 : 90, red, green, blue));
                 canvas.drawCircle(AndroidUtilities.dp(22.0f), dp, AndroidUtilities.dp(11.0f), Theme.dialogs_onlineCirclePaint);
-                int i4 = 0;
+                int i3 = 0;
                 while (true) {
-                    if (i4 < (this.isThreeLines ? 3 : 2)) {
-                        Theme.dialogs_onlineCirclePaint.setColor(Color.argb(i4 == 0 ? 204 : 90, red, green, blue));
+                    if (i3 < (this.isThreeLines ? 3 : 2)) {
+                        Theme.dialogs_onlineCirclePaint.setColor(Color.argb(i3 == 0 ? 204 : 90, red, green, blue));
                         if (this.isThreeLines) {
-                            float f = i4 * 7;
-                            this.rect.set(AndroidUtilities.dp(41.0f), dp - AndroidUtilities.dp(8.3f - f), getMeasuredWidth() - AndroidUtilities.dp(i4 == 0 ? 72.0f : 48.0f), dp - AndroidUtilities.dp(5.3f - f));
+                            float f = i3 * 7;
+                            this.rect.set(AndroidUtilities.dp(41.0f), dp - AndroidUtilities.dp(8.3f - f), getMeasuredWidth() - AndroidUtilities.dp(i3 == 0 ? 72.0f : 48.0f), dp - AndroidUtilities.dp(5.3f - f));
                             canvas.drawRoundRect(this.rect, AndroidUtilities.dpf2(1.5f), AndroidUtilities.dpf2(1.5f), Theme.dialogs_onlineCirclePaint);
                         } else {
-                            int i5 = i4 * 10;
-                            this.rect.set(AndroidUtilities.dp(41.0f), dp - AndroidUtilities.dp(7 - i5), getMeasuredWidth() - AndroidUtilities.dp(i4 == 0 ? 72.0f : 48.0f), dp - AndroidUtilities.dp(3 - i5));
+                            int i4 = i3 * 10;
+                            this.rect.set(AndroidUtilities.dp(41.0f), dp - AndroidUtilities.dp(7 - i4), getMeasuredWidth() - AndroidUtilities.dp(i3 == 0 ? 72.0f : 48.0f), dp - AndroidUtilities.dp(3 - i4));
                             canvas.drawRoundRect(this.rect, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), Theme.dialogs_onlineCirclePaint);
                         }
-                        i4++;
+                        i3++;
                     }
                 }
-                i2++;
+                i++;
             }
         }
 
         @Override
         public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-            int i;
-            String str;
             super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
             accessibilityNodeInfo.setClassName(RadioButton.class.getName());
             accessibilityNodeInfo.setChecked(this.button.isChecked());
             accessibilityNodeInfo.setCheckable(true);
-            if (this.isThreeLines) {
-                i = R.string.ChatListExpanded;
-                str = "ChatListExpanded";
-            } else {
-                i = R.string.ChatListDefault;
-                str = "ChatListDefault";
-            }
-            accessibilityNodeInfo.setContentDescription(LocaleController.getString(str, i));
+            accessibilityNodeInfo.setContentDescription(LocaleController.getString(this.isThreeLines ? R.string.ChatListExpanded : R.string.ChatListDefault));
         }
     }
 

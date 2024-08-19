@@ -140,7 +140,7 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
             return;
         }
         if (this.items.get(i).viewType == 4) {
-            AlertDialog create = AlertsCreator.createSimpleAlert(getContext(), LocaleController.getString("NotificationsDeleteAllExceptionTitle", R.string.NotificationsDeleteAllExceptionTitle), LocaleController.getString("NotificationsDeleteAllExceptionAlert", R.string.NotificationsDeleteAllExceptionAlert), LocaleController.getString("Delete", R.string.Delete), new Runnable() {
+            AlertDialog create = AlertsCreator.createSimpleAlert(getContext(), LocaleController.getString(R.string.NotificationsDeleteAllExceptionTitle), LocaleController.getString(R.string.NotificationsDeleteAllExceptionAlert), LocaleController.getString(R.string.Delete), new Runnable() {
                 @Override
                 public final void run() {
                     CacheChatsExceptionsFragment.this.lambda$createView$2();
@@ -331,7 +331,7 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
             View view2;
             if (i == 1) {
                 TextCell textCell = new TextCell(viewGroup.getContext());
-                textCell.setTextAndIcon((CharSequence) LocaleController.getString("NotificationsAddAnException", R.string.NotificationsAddAnException), R.drawable.msg_contact_add, true);
+                textCell.setTextAndIcon((CharSequence) LocaleController.getString(R.string.NotificationsAddAnException), R.drawable.msg_contact_add, true);
                 textCell.setColors(Theme.key_windowBackgroundWhiteBlueIcon, Theme.key_windowBackgroundWhiteBlueButton);
                 textCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                 view = textCell;
@@ -343,7 +343,7 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
                 view = new ShadowSectionCell(viewGroup.getContext());
             } else if (i == 4) {
                 TextCell textCell2 = new TextCell(viewGroup.getContext());
-                textCell2.setText(LocaleController.getString("NotificationsDeleteAllException", R.string.NotificationsDeleteAllException), false);
+                textCell2.setText(LocaleController.getString(R.string.NotificationsDeleteAllException), false);
                 textCell2.setColors(-1, Theme.key_text_RedRegular);
                 textCell2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                 view = textCell2;
@@ -367,7 +367,7 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
                 if (userOrChat instanceof TLRPC$User) {
                     TLRPC$User tLRPC$User = (TLRPC$User) userOrChat;
                     if (tLRPC$User.self) {
-                        str = LocaleController.getString("SavedMessages", R.string.SavedMessages);
+                        str = LocaleController.getString(R.string.SavedMessages);
                     } else {
                         str = ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name);
                     }

@@ -376,7 +376,7 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
                     runnable.run();
                 }
             });
-            builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), new DialogInterface.OnClickListener() {
+            builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i8) {
                     dialogInterface.dismiss();

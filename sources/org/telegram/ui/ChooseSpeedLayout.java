@@ -29,7 +29,7 @@ public class ChooseSpeedLayout {
         ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(context, 0, null);
         this.speedSwipeBackLayout = actionBarPopupWindowLayout;
         actionBarPopupWindowLayout.setFitItems(true);
-        ActionBarMenuSubItem addItem = ActionBarMenuItem.addItem(this.speedSwipeBackLayout, R.drawable.msg_arrow_back, LocaleController.getString("Back", R.string.Back), false, null);
+        ActionBarMenuSubItem addItem = ActionBarMenuItem.addItem(this.speedSwipeBackLayout, R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), false, null);
         addItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
@@ -83,7 +83,7 @@ public class ChooseSpeedLayout {
         layoutParams2.width = -1;
         layoutParams2.height = AndroidUtilities.dp(8.0f);
         frameLayout2.setLayoutParams(layoutParams2);
-        ActionBarMenuSubItem addItem2 = ActionBarMenuItem.addItem(this.speedSwipeBackLayout, R.drawable.msg_speed_0_2, LocaleController.getString("SpeedVerySlow", R.string.SpeedVerySlow), false, null);
+        ActionBarMenuSubItem addItem2 = ActionBarMenuItem.addItem(this.speedSwipeBackLayout, R.drawable.msg_speed_0_2, LocaleController.getString(R.string.SpeedVerySlow), false, null);
         addItem2.setColors(-328966, -328966);
         addItem2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,7 +93,7 @@ public class ChooseSpeedLayout {
         });
         addItem2.setSelectorColor(268435455);
         this.speedItems[0] = addItem2;
-        ActionBarMenuSubItem addItem3 = ActionBarMenuItem.addItem(this.speedSwipeBackLayout, R.drawable.msg_speed_slow, LocaleController.getString("SpeedSlow", R.string.SpeedSlow), false, null);
+        ActionBarMenuSubItem addItem3 = ActionBarMenuItem.addItem(this.speedSwipeBackLayout, R.drawable.msg_speed_slow, LocaleController.getString(R.string.SpeedSlow), false, null);
         addItem3.setColors(-328966, -328966);
         addItem3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,7 +103,7 @@ public class ChooseSpeedLayout {
         });
         addItem3.setSelectorColor(268435455);
         this.speedItems[1] = addItem3;
-        ActionBarMenuSubItem addItem4 = ActionBarMenuItem.addItem(this.speedSwipeBackLayout, R.drawable.msg_speed_normal, LocaleController.getString("SpeedNormal", R.string.SpeedNormal), false, null);
+        ActionBarMenuSubItem addItem4 = ActionBarMenuItem.addItem(this.speedSwipeBackLayout, R.drawable.msg_speed_normal, LocaleController.getString(R.string.SpeedNormal), false, null);
         addItem4.setColors(-328966, -328966);
         addItem4.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,7 +113,7 @@ public class ChooseSpeedLayout {
         });
         addItem4.setSelectorColor(268435455);
         this.speedItems[2] = addItem4;
-        ActionBarMenuSubItem addItem5 = ActionBarMenuItem.addItem(this.speedSwipeBackLayout, R.drawable.msg_speed_fast, LocaleController.getString("SpeedFast", R.string.SpeedFast), false, null);
+        ActionBarMenuSubItem addItem5 = ActionBarMenuItem.addItem(this.speedSwipeBackLayout, R.drawable.msg_speed_fast, LocaleController.getString(R.string.SpeedFast), false, null);
         addItem5.setColors(-328966, -328966);
         addItem5.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,7 +123,7 @@ public class ChooseSpeedLayout {
         });
         addItem5.setSelectorColor(268435455);
         this.speedItems[3] = addItem5;
-        ActionBarMenuSubItem addItem6 = ActionBarMenuItem.addItem(this.speedSwipeBackLayout, R.drawable.msg_speed_superfast, LocaleController.getString("SpeedVeryFast", R.string.SpeedVeryFast), false, null);
+        ActionBarMenuSubItem addItem6 = ActionBarMenuItem.addItem(this.speedSwipeBackLayout, R.drawable.msg_speed_superfast, LocaleController.getString(R.string.SpeedVeryFast), false, null);
         addItem6.setColors(-328966, -328966);
         addItem6.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -254,7 +254,7 @@ public class DataSettingsActivity extends BaseFragment {
     @Override
     public View createView(final Context context) {
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        this.actionBar.setTitle(LocaleController.getString("DataSettings", R.string.DataSettings));
+        this.actionBar.setTitle(LocaleController.getString(R.string.DataSettings));
         if (AndroidUtilities.isTablet()) {
             this.actionBar.setOccupyStatusBar(false);
         }
@@ -314,7 +314,7 @@ public class DataSettingsActivity extends BaseFragment {
         return this.fragmentView;
     }
 
-    public void lambda$createView$8(android.content.Context r20, android.view.View r21, final int r22, float r23, float r24) {
+    public void lambda$createView$8(android.content.Context r21, android.view.View r22, final int r23, float r24, float r25) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DataSettingsActivity.lambda$createView$8(android.content.Context, android.view.View, int, float, float):void");
     }
 
@@ -382,16 +382,16 @@ public class DataSettingsActivity extends BaseFragment {
         }
         if (!z) {
             AlertDialog.Builder builder2 = new AlertDialog.Builder(getContext());
-            builder2.setTitle(LocaleController.getString("DecreaseSpeed", R.string.DecreaseSpeed));
-            builder2.setMessage(LocaleController.getString("SdCardAlert", R.string.SdCardAlert));
-            builder2.setPositiveButton(LocaleController.getString("Proceed", R.string.Proceed), new DialogInterface.OnClickListener() {
+            builder2.setTitle(LocaleController.getString(R.string.DecreaseSpeed));
+            builder2.setMessage(LocaleController.getString(R.string.SdCardAlert));
+            builder2.setPositiveButton(LocaleController.getString(R.string.Proceed), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     DataSettingsActivity.this.setStorageDirectory(str);
                     builder.getDismissRunnable().run();
                 }
             });
-            builder2.setNegativeButton(LocaleController.getString("Back", R.string.Back), null);
+            builder2.setNegativeButton(LocaleController.getString(R.string.Back), null);
             builder2.show();
             return;
         }

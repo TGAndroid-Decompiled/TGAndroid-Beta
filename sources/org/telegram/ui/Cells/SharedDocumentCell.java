@@ -434,7 +434,7 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
             }
             String documentFileName = (messageObject.isVideo() || (messageObject.messageOwner.media instanceof TLRPC$TL_messageMediaPhoto) || MessageObject.isGifDocument(document)) ? null : FileLoader.getDocumentFileName(document);
             if (TextUtils.isEmpty(documentFileName) && (str = document.mime_type) != null) {
-                documentFileName = str.startsWith("video") ? MessageObject.isGifDocument(document) ? LocaleController.getString("AttachGif", R.string.AttachGif) : LocaleController.getString("AttachVideo", R.string.AttachVideo) : document.mime_type.startsWith("image") ? MessageObject.isGifDocument(document) ? LocaleController.getString("AttachGif", R.string.AttachGif) : LocaleController.getString("AttachPhoto", R.string.AttachPhoto) : document.mime_type.startsWith("audio") ? LocaleController.getString("AttachAudio", R.string.AttachAudio) : LocaleController.getString("AttachDocument", R.string.AttachDocument);
+                documentFileName = str.startsWith("video") ? MessageObject.isGifDocument(document) ? LocaleController.getString(R.string.AttachGif) : LocaleController.getString(R.string.AttachVideo) : document.mime_type.startsWith("image") ? MessageObject.isGifDocument(document) ? LocaleController.getString(R.string.AttachGif) : LocaleController.getString(R.string.AttachPhoto) : document.mime_type.startsWith("audio") ? LocaleController.getString(R.string.AttachAudio) : LocaleController.getString(R.string.AttachDocument);
             }
             if (str4 == null) {
                 str4 = documentFileName;

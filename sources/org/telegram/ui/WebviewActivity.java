@@ -187,7 +187,7 @@ public class WebviewActivity extends BaseFragment {
         this.progressItem = createMenu.addItemWithWidth(1, R.drawable.share, AndroidUtilities.dp(54.0f));
         int i = this.type;
         if (i == 0) {
-            createMenu.addItem(0, R.drawable.ic_ab_other).addSubItem(2, R.drawable.msg_openin, LocaleController.getString("OpenInExternalApp", R.string.OpenInExternalApp));
+            createMenu.addItem(0, R.drawable.ic_ab_other).addSubItem(2, R.drawable.msg_openin, LocaleController.getString(R.string.OpenInExternalApp));
             this.actionBar.setTitle(this.currentGame);
             this.actionBar.setSubtitle("@" + this.currentBot);
             ContextProgressView contextProgressView = new ContextProgressView(context, 1);
@@ -206,7 +206,7 @@ public class WebviewActivity extends BaseFragment {
             this.actionBar.setItemsBackgroundColor(Theme.getColor(Theme.key_player_actionBarSelector), false);
             this.actionBar.setTitleColor(Theme.getColor(Theme.key_player_actionBarTitle));
             this.actionBar.setSubtitleColor(Theme.getColor(Theme.key_player_actionBarSubtitle));
-            this.actionBar.setTitle(LocaleController.getString("Statistics", R.string.Statistics));
+            this.actionBar.setTitle(LocaleController.getString(R.string.Statistics));
             ContextProgressView contextProgressView2 = new ContextProgressView(context, 3);
             this.progressView = contextProgressView2;
             this.progressItem.addView(contextProgressView2, LayoutHelper.createFrame(-1, -1.0f));

@@ -192,7 +192,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
     private void updateDatabaseItemSize() {
         if (this.clearDatabaseItem != null) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-            spannableStringBuilder.append((CharSequence) LocaleController.getString("ClearLocalDatabase", R.string.ClearLocalDatabase));
+            spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.ClearLocalDatabase));
             this.clearDatabaseItem.setText(spannableStringBuilder);
         }
     }
@@ -926,7 +926,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         this.actionBar.setItemsBackgroundColor(Theme.getColor(Theme.key_listSelector), false);
         this.actionBar.setBackButtonDrawable(new BackDrawable(false));
         this.actionBar.setAllowOverlayTitle(false);
-        this.actionBar.setTitle(LocaleController.getString("StorageUsage", R.string.StorageUsage));
+        this.actionBar.setTitle(LocaleController.getString(R.string.StorageUsage));
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i2) {
@@ -985,7 +985,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         this.actionModeClearButton.setBackground(Theme.AdaptiveRipple.filledRectByKey(Theme.key_featuredStickers_addButton, 6.0f));
         this.actionModeClearButton.setTypeface(AndroidUtilities.bold());
         this.actionModeClearButton.setGravity(17);
-        this.actionModeClearButton.setText(LocaleController.getString("CacheClear", R.string.CacheClear));
+        this.actionModeClearButton.setText(LocaleController.getString(R.string.CacheClear));
         this.actionModeClearButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
@@ -999,7 +999,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         }
         ActionBarMenuItem addItem = this.actionBar.createMenu().addItem(2, R.drawable.ic_ab_other);
         int i2 = R.drawable.msg_delete;
-        ActionBarMenuSubItem addSubItem = addItem.addSubItem(3, i2, LocaleController.getString("ClearLocalDatabase", R.string.ClearLocalDatabase));
+        ActionBarMenuSubItem addSubItem = addItem.addSubItem(3, i2, LocaleController.getString(R.string.ClearLocalDatabase));
         this.clearDatabaseItem = addSubItem;
         int i3 = Theme.key_text_RedRegular;
         addSubItem.setIconColor(Theme.getColor(i3));
@@ -1157,15 +1157,15 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             return;
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setTitle(LocaleController.getString("ClearCache", R.string.ClearCache));
-        builder.setMessage(LocaleController.getString("ClearCacheForChats", R.string.ClearCacheForChats));
-        builder.setPositiveButton(LocaleController.getString("Clear", R.string.Clear), new DialogInterface.OnClickListener() {
+        builder.setTitle(LocaleController.getString(R.string.ClearCache));
+        builder.setMessage(LocaleController.getString(R.string.ClearCacheForChats));
+        builder.setPositiveButton(LocaleController.getString(R.string.Clear), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
                 CacheControlActivity.this.lambda$clearSelectedFiles$20(dialogInterface, i);
             }
         });
-        builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
+        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
         AlertDialog create = builder.create();
         showDialog(create);
         TextView textView = (TextView) create.getButton(-1);
@@ -1391,14 +1391,14 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
 
     public void clearDatabase(final boolean z) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-        builder.setTitle(LocaleController.getString("LocalDatabaseClearTextTitle", R.string.LocalDatabaseClearTextTitle));
+        builder.setTitle(LocaleController.getString(R.string.LocalDatabaseClearTextTitle));
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        spannableStringBuilder.append((CharSequence) LocaleController.getString("LocalDatabaseClearText", R.string.LocalDatabaseClearText));
+        spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.LocalDatabaseClearText));
         spannableStringBuilder.append((CharSequence) "\n\n");
         spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatString("LocalDatabaseClearText2", R.string.LocalDatabaseClearText2, AndroidUtilities.formatFileSize(this.databaseSize))));
         builder.setMessage(spannableStringBuilder);
-        builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
-        builder.setPositiveButton(LocaleController.getString("CacheClear", R.string.CacheClear), new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
+        builder.setPositiveButton(LocaleController.getString(R.string.CacheClear), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
                 CacheControlActivity.this.lambda$clearDatabase$24(z, dialogInterface, i);
@@ -1491,7 +1491,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             animatedTextView.setAnimationProperties(0.35f, 0L, 350L, cubicBezierInterpolator);
             this.title.setTypeface(AndroidUtilities.bold());
             this.title.setTextSize(AndroidUtilities.dp(20.0f));
-            this.title.setText(LocaleController.getString("StorageUsage", R.string.StorageUsage));
+            this.title.setText(LocaleController.getString(R.string.StorageUsage));
             this.title.setGravity(17);
             this.title.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
             addView(this.title, LayoutHelper.createFrame(-2, 26, 49));
@@ -1502,13 +1502,13 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                 this.subtitle[i].setGravity(17);
                 this.subtitle[i].setPadding(AndroidUtilities.dp(24.0f), 0, AndroidUtilities.dp(24.0f), 0);
                 if (i == 0) {
-                    this.subtitle[i].setText(LocaleController.getString("StorageUsageCalculating", R.string.StorageUsageCalculating));
+                    this.subtitle[i].setText(LocaleController.getString(R.string.StorageUsageCalculating));
                 } else if (i == 1) {
                     this.subtitle[i].setAlpha(0.0f);
-                    this.subtitle[i].setText(LocaleController.getString("StorageUsageTelegram", R.string.StorageUsageTelegram));
+                    this.subtitle[i].setText(LocaleController.getString(R.string.StorageUsageTelegram));
                     this.subtitle[i].setVisibility(4);
                 } else if (i == 2) {
-                    this.subtitle[i].setText(LocaleController.getString("StorageCleared2", R.string.StorageCleared2));
+                    this.subtitle[i].setText(LocaleController.getString(R.string.StorageCleared2));
                     this.subtitle[i].setAlpha(0.0f);
                     this.subtitle[i].setVisibility(4);
                 }
@@ -1539,9 +1539,9 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             String string;
             AnimatedTextView animatedTextView = this.title;
             if (z) {
-                string = LocaleController.getString("StorageUsage", R.string.StorageUsage);
+                string = LocaleController.getString(R.string.StorageUsage);
             } else {
-                string = LocaleController.getString("StorageCleared", R.string.StorageCleared);
+                string = LocaleController.getString(R.string.StorageCleared);
             }
             animatedTextView.setText(string);
             if (z) {
@@ -1747,14 +1747,14 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             this.title.setTextColor(Theme.getColor(i));
             this.title.setTextSize(1, 16.0f);
             this.title.setTypeface(AndroidUtilities.bold());
-            this.title.setText(LocaleController.getString("ClearingCache", R.string.ClearingCache));
+            this.title.setText(LocaleController.getString(R.string.ClearingCache));
             addView(this.title, LayoutHelper.createFrame(-1, -2.0f, 49, 0.0f, 261.0f, 0.0f, 0.0f));
             TextView textView2 = new TextView(context);
             this.subtitle = textView2;
             textView2.setGravity(1);
             this.subtitle.setTextColor(Theme.getColor(i));
             this.subtitle.setTextSize(1, 14.0f);
-            this.subtitle.setText(LocaleController.getString("ClearingCacheDescription", R.string.ClearingCacheDescription));
+            this.subtitle.setText(LocaleController.getString(R.string.ClearingCacheDescription));
             addView(this.subtitle, LayoutHelper.createFrame(240, -2.0f, 49, 0.0f, 289.0f, 0.0f, 0.0f));
             setProgress(0.0f);
         }
@@ -1820,19 +1820,19 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             String str;
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             StringBuilder sb = new StringBuilder();
-            sb.append(LocaleController.getString("ClearCache", R.string.ClearCache));
+            sb.append(LocaleController.getString(R.string.ClearCache));
             if (TextUtils.isEmpty(this.valueTextView.getText())) {
                 str = "";
             } else {
                 str = " (" + ((Object) this.valueTextView.getText()) + ")";
             }
             sb.append(str);
-            AlertDialog create = builder.setTitle(sb.toString()).setMessage(LocaleController.getString("StorageUsageInfo", R.string.StorageUsageInfo)).setPositiveButton(this.textView.getText(), new DialogInterface.OnClickListener() {
+            AlertDialog create = builder.setTitle(sb.toString()).setMessage(LocaleController.getString(R.string.StorageUsageInfo)).setPositiveButton(this.textView.getText(), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
                     CacheControlActivity.ClearCacheButtonInternal.this.lambda$new$0(dialogInterface, i);
                 }
-            }).setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null).create();
+            }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create();
             CacheControlActivity.this.showDialog(create);
             View button = create.getButton(-1);
             if (button instanceof TextView) {
@@ -1997,7 +1997,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             if (LocaleController.isRTL) {
                 TextView textView = new TextView(context);
                 this.rtlTextView = textView;
-                textView.setText(LocaleController.getString("ClearCache", R.string.ClearCache));
+                textView.setText(LocaleController.getString(R.string.ClearCache));
                 this.rtlTextView.setGravity(17);
                 this.rtlTextView.setTextSize(1, 14.0f);
                 this.rtlTextView.setTypeface(AndroidUtilities.bold());
@@ -2010,7 +2010,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             animatedTextDrawable.setAnimationProperties(0.25f, 0L, 300L, cubicBezierInterpolator);
             this.textView.setCallback(this.button);
             this.textView.setTextSize(AndroidUtilities.dp(14.0f));
-            this.textView.setText(LocaleController.getString("ClearCache", R.string.ClearCache));
+            this.textView.setText(LocaleController.getString(R.string.ClearCache));
             this.textView.setGravity(5);
             this.textView.setTypeface(AndroidUtilities.bold());
             AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = this.textView;
@@ -2038,9 +2038,9 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             String string;
             AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.textView;
             if (z) {
-                string = LocaleController.getString("ClearCache", R.string.ClearCache);
+                string = LocaleController.getString(R.string.ClearCache);
             } else {
-                string = LocaleController.getString("ClearSelectedCache", R.string.ClearSelectedCache);
+                string = LocaleController.getString(R.string.ClearSelectedCache);
             }
             animatedTextDrawable.setText(string);
             this.valueTextView.setText(j <= 0 ? "" : AndroidUtilities.formatFileSize(j));
@@ -2299,7 +2299,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                             }
                         });
                         int i2 = SharedConfig.keepMedia;
-                        slideChooseView.setOptions(i2 == 3 ? 0 : i2 + 1, LocaleController.formatPluralString("Days", 3, new Object[0]), LocaleController.formatPluralString("Weeks", 1, new Object[0]), LocaleController.formatPluralString("Months", 1, new Object[0]), LocaleController.getString("KeepMediaForever", R.string.KeepMediaForever));
+                        slideChooseView.setOptions(i2 == 3 ? 0 : i2 + 1, LocaleController.formatPluralString("Days", 3, new Object[0]), LocaleController.formatPluralString("Weeks", 1, new Object[0]), LocaleController.formatPluralString("Months", 1, new Object[0]), LocaleController.getString(R.string.KeepMediaForever));
                         view = slideChooseView;
                         break;
                     case 5:
@@ -2434,7 +2434,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                             if (((Integer) arrayList.get(i3)).intValue() == 1) {
                                 strArr[i3] = String.format("300 MB", new Object[0]);
                             } else if (((Integer) arrayList.get(i3)).intValue() == Integer.MAX_VALUE) {
-                                strArr[i3] = LocaleController.getString("NoLimit", R.string.NoLimit);
+                                strArr[i3] = LocaleController.getString(R.string.NoLimit);
                             } else {
                                 strArr[i3] = String.format("%d GB", arrayList.get(i3));
                             }
@@ -2476,7 +2476,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             if (itemViewType == 0) {
                 TextSettingsCell textSettingsCell = (TextSettingsCell) viewHolder.itemView;
                 if (i == CacheControlActivity.this.migrateOldFolderRow) {
-                    textSettingsCell.setTextAndValue(LocaleController.getString("MigrateOldFolder", R.string.MigrateOldFolder), null, false);
+                    textSettingsCell.setTextAndValue(LocaleController.getString(R.string.MigrateOldFolder), null, false);
                     return;
                 }
                 return;
@@ -2562,16 +2562,16 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                 if (((ItemInner) CacheControlActivity.this.itemInners.get(i)).keepMediaType != 1) {
                     if (((ItemInner) CacheControlActivity.this.itemInners.get(i)).keepMediaType != 2) {
                         if (((ItemInner) CacheControlActivity.this.itemInners.get(i)).keepMediaType == 3) {
-                            textCell.setTextAndValueAndColorfulIcon(LocaleController.getString("CacheStories", R.string.CacheStories), keepMediaString, false, R.drawable.msg_filled_stories, CacheControlActivity.this.getThemedColor(Theme.key_statisticChartLine_red), false);
+                            textCell.setTextAndValueAndColorfulIcon(LocaleController.getString(R.string.CacheStories), keepMediaString, false, R.drawable.msg_filled_stories, CacheControlActivity.this.getThemedColor(Theme.key_statisticChartLine_red), false);
                         }
                     } else {
-                        textCell.setTextAndValueAndColorfulIcon(LocaleController.getString("CacheChannels", R.string.CacheChannels), keepMediaString, true, R.drawable.msg_filled_menu_channels, CacheControlActivity.this.getThemedColor(Theme.key_statisticChartLine_golden), true);
+                        textCell.setTextAndValueAndColorfulIcon(LocaleController.getString(R.string.CacheChannels), keepMediaString, true, R.drawable.msg_filled_menu_channels, CacheControlActivity.this.getThemedColor(Theme.key_statisticChartLine_golden), true);
                     }
                 } else {
-                    textCell.setTextAndValueAndColorfulIcon(LocaleController.getString("GroupChats", R.string.GroupChats), keepMediaString, true, R.drawable.msg_filled_menu_groups, CacheControlActivity.this.getThemedColor(Theme.key_statisticChartLine_green), true);
+                    textCell.setTextAndValueAndColorfulIcon(LocaleController.getString(R.string.GroupChats), keepMediaString, true, R.drawable.msg_filled_menu_groups, CacheControlActivity.this.getThemedColor(Theme.key_statisticChartLine_green), true);
                 }
             } else {
-                textCell.setTextAndValueAndColorfulIcon(LocaleController.getString("PrivateChats", R.string.PrivateChats), keepMediaString, true, R.drawable.msg_filled_menu_users, CacheControlActivity.this.getThemedColor(Theme.key_statisticChartLine_lightblue), true);
+                textCell.setTextAndValueAndColorfulIcon(LocaleController.getString(R.string.PrivateChats), keepMediaString, true, R.drawable.msg_filled_menu_users, CacheControlActivity.this.getThemedColor(Theme.key_statisticChartLine_lightblue), true);
             }
             textCell.setSubtitle(formatPluralString);
         }

@@ -121,7 +121,7 @@ public class DefaultThemesPreviewCell extends LinearLayout {
             addView(textCell2, LayoutHelper.createFrame(-1, -2.0f));
             TextCell textCell3 = new TextCell(context);
             this.browseThemesCell = textCell3;
-            textCell3.setTextAndIcon((CharSequence) LocaleController.getString("SettingsBrowseThemes", R.string.SettingsBrowseThemes), R.drawable.msg_colors, false);
+            textCell3.setTextAndIcon((CharSequence) LocaleController.getString(R.string.SettingsBrowseThemes), R.drawable.msg_colors, false);
             addView(this.browseThemesCell, LayoutHelper.createFrame(-1, -2.0f));
             this.dayNightCell.setOnClickListener(new AnonymousClass2(context, baseFragment));
             this.darkThemeDrawable.setPlayInDirectionOfCustomEndFrame(true);
@@ -134,9 +134,9 @@ public class DefaultThemesPreviewCell extends LinearLayout {
             if (!Theme.isCurrentThemeDay()) {
                 RLottieDrawable rLottieDrawable2 = this.darkThemeDrawable;
                 rLottieDrawable2.setCurrentFrame(rLottieDrawable2.getFramesCount() - 1);
-                this.dayNightCell.setTextAndIcon((CharSequence) LocaleController.getString("SettingsSwitchToDayMode", R.string.SettingsSwitchToDayMode), (Drawable) this.darkThemeDrawable, true);
+                this.dayNightCell.setTextAndIcon((CharSequence) LocaleController.getString(R.string.SettingsSwitchToDayMode), (Drawable) this.darkThemeDrawable, true);
             } else {
-                this.dayNightCell.setTextAndIcon((CharSequence) LocaleController.getString("SettingsSwitchToNightMode", R.string.SettingsSwitchToNightMode), (Drawable) this.darkThemeDrawable, true);
+                this.dayNightCell.setTextAndIcon((CharSequence) LocaleController.getString(R.string.SettingsSwitchToNightMode), (Drawable) this.darkThemeDrawable, true);
             }
         }
         if (!MediaDataController.getInstance(baseFragment.getCurrentAccount()).defaultEmojiThemes.isEmpty()) {
@@ -266,9 +266,9 @@ public class DefaultThemesPreviewCell extends LinearLayout {
                 DefaultThemesPreviewCell.this.navBarAnimator.start();
             }
             if (Theme.isCurrentThemeDay()) {
-                DefaultThemesPreviewCell.this.dayNightCell.setTextAndIcon((CharSequence) LocaleController.getString("SettingsSwitchToNightMode", R.string.SettingsSwitchToNightMode), (Drawable) DefaultThemesPreviewCell.this.darkThemeDrawable, true);
+                DefaultThemesPreviewCell.this.dayNightCell.setTextAndIcon((CharSequence) LocaleController.getString(R.string.SettingsSwitchToNightMode), (Drawable) DefaultThemesPreviewCell.this.darkThemeDrawable, true);
             } else {
-                DefaultThemesPreviewCell.this.dayNightCell.setTextAndIcon((CharSequence) LocaleController.getString("SettingsSwitchToDayMode", R.string.SettingsSwitchToDayMode), (Drawable) DefaultThemesPreviewCell.this.darkThemeDrawable, true);
+                DefaultThemesPreviewCell.this.dayNightCell.setTextAndIcon((CharSequence) LocaleController.getString(R.string.SettingsSwitchToDayMode), (Drawable) DefaultThemesPreviewCell.this.darkThemeDrawable, true);
             }
             Theme.turnOffAutoNight(baseFragment);
         }

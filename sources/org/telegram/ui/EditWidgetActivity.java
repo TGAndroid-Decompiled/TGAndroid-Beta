@@ -186,7 +186,7 @@ public class EditWidgetActivity extends BaseFragment {
             linearLayout.setOrientation(1);
             addView(linearLayout, LayoutHelper.createFrame(-2, -2, 17));
             ChatActionCell chatActionCell = new ChatActionCell(context);
-            chatActionCell.setCustomText(LocaleController.getString("WidgetPreview", R.string.WidgetPreview));
+            chatActionCell.setCustomText(LocaleController.getString(R.string.WidgetPreview));
             linearLayout.addView(chatActionCell, LayoutHelper.createLinear(-2, -2, 17, 0, 0, 0, 4));
             LinearLayout linearLayout2 = new LinearLayout(context);
             linearLayout2.setOrientation(1);
@@ -361,11 +361,11 @@ public class EditWidgetActivity extends BaseFragment {
             this.actionBar.setOccupyStatusBar(false);
         }
         if (this.widgetType == 0) {
-            this.actionBar.setTitle(LocaleController.getString("WidgetChats", R.string.WidgetChats));
+            this.actionBar.setTitle(LocaleController.getString(R.string.WidgetChats));
         } else {
-            this.actionBar.setTitle(LocaleController.getString("WidgetShortcuts", R.string.WidgetShortcuts));
+            this.actionBar.setTitle(LocaleController.getString(R.string.WidgetShortcuts));
         }
-        this.actionBar.createMenu().addItem(1, LocaleController.getString("Done", R.string.Done).toUpperCase());
+        this.actionBar.createMenu().addItem(1, LocaleController.getString(R.string.Done).toUpperCase());
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i) {
@@ -471,7 +471,7 @@ public class EditWidgetActivity extends BaseFragment {
                 ((ImageView) view.getTag(R.id.object_tag)).getHitRect(this.rect);
                 if (!this.rect.contains((int) f, (int) f2)) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(EditWidgetActivity.this.getParentActivity());
-                    builder.setItems(new CharSequence[]{LocaleController.getString("Delete", R.string.Delete)}, new DialogInterface.OnClickListener() {
+                    builder.setItems(new CharSequence[]{LocaleController.getString(R.string.Delete)}, new DialogInterface.OnClickListener() {
                         @Override
                         public final void onClick(DialogInterface dialogInterface, int i2) {
                             EditWidgetActivity.AnonymousClass2.this.lambda$onItemClick$0(i, dialogInterface, i2);
@@ -577,13 +577,13 @@ public class EditWidgetActivity extends BaseFragment {
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                     if (EditWidgetActivity.this.widgetType != 0) {
                         if (EditWidgetActivity.this.widgetType == 1) {
-                            spannableStringBuilder.append((CharSequence) LocaleController.getString("EditWidgetContactsInfo", R.string.EditWidgetContactsInfo));
+                            spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.EditWidgetContactsInfo));
                         }
                     } else {
-                        spannableStringBuilder.append((CharSequence) LocaleController.getString("EditWidgetChatsInfo", R.string.EditWidgetChatsInfo));
+                        spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.EditWidgetChatsInfo));
                     }
                     if (SharedConfig.passcodeHash.length() > 0) {
-                        spannableStringBuilder.append((CharSequence) "\n\n").append((CharSequence) AndroidUtilities.replaceTags(LocaleController.getString("WidgetPasscode2", R.string.WidgetPasscode2)));
+                        spannableStringBuilder.append((CharSequence) "\n\n").append((CharSequence) AndroidUtilities.replaceTags(LocaleController.getString(R.string.WidgetPasscode2)));
                     }
                     textInfoPrivacyCell.setText(spannableStringBuilder);
                     return;
@@ -613,7 +613,7 @@ public class EditWidgetActivity extends BaseFragment {
             PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
             drawable.setColorFilter(new PorterDuffColorFilter(color, mode));
             drawable2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_checkboxCheck), mode));
-            textCell.setTextAndIcon(LocaleController.getString("SelectChats", R.string.SelectChats), new CombinedDrawable(drawable, drawable2), EditWidgetActivity.this.chatsStartRow != -1);
+            textCell.setTextAndIcon(LocaleController.getString(R.string.SelectChats), new CombinedDrawable(drawable, drawable2), EditWidgetActivity.this.chatsStartRow != -1);
             textCell.getImageView().setPadding(0, AndroidUtilities.dp(7.0f), 0, 0);
         }
 

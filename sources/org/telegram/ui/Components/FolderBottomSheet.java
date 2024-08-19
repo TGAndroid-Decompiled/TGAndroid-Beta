@@ -130,12 +130,12 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
             }
         };
         if (dialogFilter != null && dialogFilter.isMyChatlist()) {
-            AlertDialog create = new AlertDialog.Builder(baseFragment.getContext()).setTitle(LocaleController.getString("FilterDelete", R.string.FilterDelete)).setMessage(LocaleController.getString("FilterDeleteAlertLinks", R.string.FilterDeleteAlertLinks)).setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), new DialogInterface.OnClickListener() {
+            AlertDialog create = new AlertDialog.Builder(baseFragment.getContext()).setTitle(LocaleController.getString(R.string.FilterDelete)).setMessage(LocaleController.getString(R.string.FilterDeleteAlertLinks)).setNegativeButton(LocaleController.getString(R.string.Cancel), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i3) {
                     FolderBottomSheet.lambda$showForDeletion$3(Utilities.Callback.this, dialogInterface, i3);
                 }
-            }).setPositiveButton(LocaleController.getString("Delete", R.string.Delete), new DialogInterface.OnClickListener() {
+            }).setPositiveButton(LocaleController.getString(R.string.Delete), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i3) {
                     runnable.run();
@@ -702,9 +702,9 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
                 } else {
                     TLRPC$Chat chat = getBaseFragment().getMessagesController().getChat(Long.valueOf(-peerDialogId));
                     if (ChatObject.isChannelAndNotMegaGroup(chat)) {
-                        string = LocaleController.getString("FolderLinkAlreadySubscribed", R.string.FolderLinkAlreadySubscribed);
+                        string = LocaleController.getString(R.string.FolderLinkAlreadySubscribed);
                     } else {
-                        string = LocaleController.getString("FolderLinkAlreadyJoined", R.string.FolderLinkAlreadyJoined);
+                        string = LocaleController.getString(R.string.FolderLinkAlreadyJoined);
                     }
                     arrayList.add(chat);
                     str = string;
@@ -729,28 +729,19 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
     }
 
     public void updateCount(boolean z) {
-        int i;
-        String str;
         int size = this.selectedPeers.size();
         Button button = this.button;
         if (button != null) {
             if (this.deleting) {
-                if (size > 0) {
-                    i = R.string.FolderLinkButtonRemoveChats;
-                    str = "FolderLinkButtonRemoveChats";
-                } else {
-                    i = R.string.FolderLinkButtonRemove;
-                    str = "FolderLinkButtonRemove";
-                }
-                button.setText(LocaleController.getString(str, i), z);
+                button.setText(LocaleController.getString(size > 0 ? R.string.FolderLinkButtonRemoveChats : R.string.FolderLinkButtonRemove), z);
             } else {
                 ArrayList<TLRPC$Peer> arrayList = this.peers;
                 if (arrayList == null || arrayList.isEmpty()) {
-                    this.button.setText(LocaleController.getString("OK", R.string.OK), z);
+                    this.button.setText(LocaleController.getString(R.string.OK), z);
                 } else if (this.invite instanceof TL_chatlists$TL_chatlists_chatlistInvite) {
                     this.button.setText(LocaleController.formatString("FolderLinkButtonAdd", R.string.FolderLinkButtonAdd, this.title), z);
                 } else {
-                    this.button.setText(size > 0 ? LocaleController.formatPluralString("FolderLinkButtonJoinPlural", size, new Object[0]) : LocaleController.getString("FolderLinkButtonNone", R.string.FolderLinkButtonNone), z);
+                    this.button.setText(size > 0 ? LocaleController.formatPluralString("FolderLinkButtonJoinPlural", size, new Object[0]) : LocaleController.getString(R.string.FolderLinkButtonNone), z);
                 }
             }
             this.button.setCount(size, z);
@@ -1031,16 +1022,16 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
     @Override
     protected CharSequence getTitle() {
         if (this.deleting) {
-            return LocaleController.getString("FolderLinkTitleRemove", R.string.FolderLinkTitleRemove);
+            return LocaleController.getString(R.string.FolderLinkTitleRemove);
         }
         if (this.invite instanceof TL_chatlists$TL_chatlists_chatlistInvite) {
-            return LocaleController.getString("FolderLinkTitleAdd", R.string.FolderLinkTitleAdd);
+            return LocaleController.getString(R.string.FolderLinkTitleAdd);
         }
         ArrayList<TLRPC$Peer> arrayList = this.peers;
         if (arrayList == null || arrayList.isEmpty()) {
-            return LocaleController.getString("FolderLinkTitleAlready", R.string.FolderLinkTitleAlready);
+            return LocaleController.getString(R.string.FolderLinkTitleAlready);
         }
-        return LocaleController.getString("FolderLinkTitleAddChats", R.string.FolderLinkTitleAddChats);
+        return LocaleController.getString(R.string.FolderLinkTitleAddChats);
     }
 
     @Override
@@ -1324,7 +1315,7 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
 
             private StaticLayout makeLayout(CharSequence charSequence, boolean z) {
                 if (charSequence == null || "ALL_CHATS".equals(charSequence.toString())) {
-                    charSequence = LocaleController.getString("FilterAllChats", R.string.FilterAllChats);
+                    charSequence = LocaleController.getString(R.string.FilterAllChats);
                 }
                 return new StaticLayout(charSequence, z ? this.selectedTextPaint : this.paint, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             }

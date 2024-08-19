@@ -160,8 +160,6 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
 
         @Override
         public void onItemClick(int i) {
-            int i2;
-            String str;
             if (i == -1) {
                 if (MediaActivity.this.sharedMediaLayout.closeActionMode(true)) {
                     return;
@@ -185,8 +183,8 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
             }
             if (MediaActivity.this.actionModeMessageObjects != null) {
                 final ArrayList arrayList = new ArrayList();
-                for (int i3 = 0; i3 < MediaActivity.this.actionModeMessageObjects.size(); i3++) {
-                    TL_stories$StoryItem tL_stories$StoryItem = ((MessageObject) MediaActivity.this.actionModeMessageObjects.valueAt(i3)).storyItem;
+                for (int i2 = 0; i2 < MediaActivity.this.actionModeMessageObjects.size(); i2++) {
+                    TL_stories$StoryItem tL_stories$StoryItem = ((MessageObject) MediaActivity.this.actionModeMessageObjects.valueAt(i2)).storyItem;
                     if (tL_stories$StoryItem != null) {
                         arrayList.add(tL_stories$StoryItem);
                     }
@@ -195,25 +193,18 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
                     return;
                 }
                 AlertDialog.Builder builder = new AlertDialog.Builder(MediaActivity.this.getContext(), MediaActivity.this.getResourceProvider());
-                if (arrayList.size() > 1) {
-                    i2 = R.string.DeleteStoriesTitle;
-                    str = "DeleteStoriesTitle";
-                } else {
-                    i2 = R.string.DeleteStoryTitle;
-                    str = "DeleteStoryTitle";
-                }
-                builder.setTitle(LocaleController.getString(str, i2));
+                builder.setTitle(LocaleController.getString(arrayList.size() > 1 ? R.string.DeleteStoriesTitle : R.string.DeleteStoryTitle));
                 builder.setMessage(LocaleController.formatPluralString("DeleteStoriesSubtitle", arrayList.size(), new Object[0]));
-                builder.setPositiveButton(LocaleController.getString("Delete", R.string.Delete), new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(LocaleController.getString(R.string.Delete), new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i4) {
+                    public void onClick(DialogInterface dialogInterface, int i3) {
                         MediaActivity.this.getMessagesController().getStoriesController().deleteStories(MediaActivity.this.dialogId, arrayList);
                         MediaActivity.this.sharedMediaLayout.closeActionMode(false);
                     }
                 });
-                builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new DialogInterface.OnClickListener() {
                     @Override
-                    public final void onClick(DialogInterface dialogInterface, int i4) {
+                    public final void onClick(DialogInterface dialogInterface, int i3) {
                         dialogInterface.dismiss();
                     }
                 });
@@ -460,7 +451,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
                         SparseArray<MessageObject> sparseArray = this.actionModeMessageObjects;
                         buttonWithCounterView.setText(LocaleController.formatPluralString("ArchiveStories", sparseArray == null ? 0 : sparseArray.size(), new Object[0]), z3);
                     } else {
-                        buttonWithCounterView.setText(LocaleController.getString("SaveToProfile", R.string.SaveToProfile), z3);
+                        buttonWithCounterView.setText(LocaleController.getString(R.string.SaveToProfile), z3);
                     }
                     this.lastTab = closestTab;
                 }
@@ -689,7 +680,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
 
         @Override
         public BottomPagerTabs.Tab[] createTabs() {
-            return new BottomPagerTabs.Tab[]{new BottomPagerTabs.Tab(0, R.raw.msg_stories_saved, 20, 40, LocaleController.getString("ProfileMyStoriesTab", R.string.ProfileMyStoriesTab)), new BottomPagerTabs.Tab(1, R.raw.msg_stories_archive, 0, 0, LocaleController.getString("ProfileStoriesArchiveTab", R.string.ProfileStoriesArchiveTab))};
+            return new BottomPagerTabs.Tab[]{new BottomPagerTabs.Tab(0, R.raw.msg_stories_saved, 20, 40, LocaleController.getString(R.string.ProfileMyStoriesTab)), new BottomPagerTabs.Tab(1, R.raw.msg_stories_archive, 0, 0, LocaleController.getString(R.string.ProfileStoriesArchiveTab))};
         }
     }
 

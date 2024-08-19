@@ -110,7 +110,7 @@ public class CustomReactionEditText extends EditTextCaption {
     public void extendActionMode(ActionMode actionMode, Menu menu) {
         menu.clear();
         int i = R.id.menu_delete;
-        menu.add(i, i, 0, LocaleController.getString("Delete", R.string.Delete));
+        menu.add(i, i, 0, LocaleController.getString(R.string.Delete));
     }
 
     public void setOnFocused(Runnable runnable) {

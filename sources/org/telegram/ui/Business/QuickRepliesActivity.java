@@ -528,7 +528,7 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
                 QuickRepliesActivity.lambda$openRenameReplyAlert$6(EditTextBoldCursor.this, callback2, i, quickReply, textView2, callback, dialogInterface, i3);
             }
         });
-        r14.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), new DialogInterface.OnClickListener() {
+        r14.setNegativeButton(LocaleController.getString(R.string.Cancel), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i3) {
                 dialogInterface.dismiss();

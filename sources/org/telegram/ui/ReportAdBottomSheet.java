@@ -325,7 +325,7 @@ public class ReportAdBottomSheet extends BottomSheet {
                     ReportAdBottomSheet.Page.this.lambda$new$0();
                 }
             });
-            bigHeaderCell.setText(LocaleController.getString("ReportAd", R.string.ReportAd));
+            bigHeaderCell.setText(LocaleController.getString(R.string.ReportAd));
             bigHeaderCell.backDrawable.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, ((BottomSheet) ReportAdBottomSheet.this).resourcesProvider));
             bigHeaderCell.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, ((BottomSheet) ReportAdBottomSheet.this).resourcesProvider));
             addView(bigHeaderCell, LayoutHelper.createFrame(-1, -2, 55));
@@ -447,7 +447,7 @@ public class ReportAdBottomSheet extends BottomSheet {
                     frameLayout.setBackground(combinedDrawable);
                     LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(getContext());
                     linksTextView.setTextSize(1, 14.0f);
-                    linksTextView.setText(AndroidUtilities.replaceLinks(LocaleController.getString("ReportAdLearnMore", R.string.ReportAdLearnMore), ((BottomSheet) ReportAdBottomSheet.this).resourcesProvider));
+                    linksTextView.setText(AndroidUtilities.replaceLinks(LocaleController.getString(R.string.ReportAdLearnMore), ((BottomSheet) ReportAdBottomSheet.this).resourcesProvider));
                     linksTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText3, ((BottomSheet) ReportAdBottomSheet.this).resourcesProvider));
                     linksTextView.setGravity(17);
                     frameLayout.addView(linksTextView, LayoutHelper.createFrame(-1, -2.0f, 17, 16.0f, 16.0f, 16.0f, 16.0f));

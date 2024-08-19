@@ -69,12 +69,12 @@ public class ChatActivityEnterViewAnimatedIconView extends RLottieImageView {
         }
         int i = AnonymousClass2.$SwitchMap$org$telegram$ui$Components$ChatActivityEnterViewAnimatedIconView$State[state.ordinal()];
         if (i == 1) {
-            setContentDescription(LocaleController.getString("AccDescrVoiceMessage", R.string.AccDescrVoiceMessage));
+            setContentDescription(LocaleController.getString(R.string.AccDescrVoiceMessage));
         } else {
             if (i != 2) {
                 return;
             }
-            setContentDescription(LocaleController.getString("AccDescrVideoMessage", R.string.AccDescrVideoMessage));
+            setContentDescription(LocaleController.getString(R.string.AccDescrVideoMessage));
         }
     }
 

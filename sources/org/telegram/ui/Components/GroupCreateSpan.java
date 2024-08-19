@@ -180,6 +180,6 @@ public class GroupCreateSpan extends View {
         }
         accessibilityAction = AccessibilityNodeInfo.AccessibilityAction.ACTION_CLICK;
         id = accessibilityAction.getId();
-        accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(id, LocaleController.getString("Delete", R.string.Delete)));
+        accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(id, LocaleController.getString(R.string.Delete)));
     }
 }

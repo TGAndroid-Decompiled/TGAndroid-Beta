@@ -104,7 +104,7 @@ public class CountrySelectActivity extends BaseFragment {
     public View createView(Context context) {
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(false);
-        this.actionBar.setTitle(LocaleController.getString("ChooseCountry", R.string.ChooseCountry));
+        this.actionBar.setTitle(LocaleController.getString(R.string.ChooseCountry));
         this.actionBar.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
         ActionBar actionBar = this.actionBar;
         int i = Theme.key_windowBackgroundWhiteBlackText;
@@ -149,7 +149,7 @@ public class CountrySelectActivity extends BaseFragment {
                     CountrySelectActivity.this.searchWas = true;
                 }
             }
-        }).setSearchFieldHint(LocaleController.getString("Search", R.string.Search));
+        }).setSearchFieldHint(LocaleController.getString(R.string.Search));
         this.actionBar.setSearchTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText), true);
         this.actionBar.setSearchTextColor(Theme.getColor(i), false);
         this.actionBar.setSearchCursorColor(Theme.getColor(i));
@@ -164,7 +164,7 @@ public class CountrySelectActivity extends BaseFragment {
         this.emptyView = emptyTextProgressView;
         emptyTextProgressView.showTextView();
         this.emptyView.setShowAtCenter(true);
-        this.emptyView.setText(LocaleController.getString("NoResult", R.string.NoResult));
+        this.emptyView.setText(LocaleController.getString(R.string.NoResult));
         frameLayout.addView(this.emptyView, LayoutHelper.createFrame(-1, -1.0f));
         RecyclerListView recyclerListView = new RecyclerListView(context);
         this.listView = recyclerListView;

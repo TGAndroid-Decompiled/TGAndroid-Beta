@@ -119,7 +119,7 @@ public class SenderSelectPopup extends ActionBarPopupWindow {
         this.headerText = textView;
         textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlue));
         this.headerText.setTextSize(1, 16.0f);
-        this.headerText.setText(LocaleController.getString("SendMessageAsTitle", R.string.SendMessageAsTitle));
+        this.headerText.setText(LocaleController.getString(R.string.SendMessageAsTitle));
         this.headerText.setTypeface(AndroidUtilities.bold(), 1);
         int dp2 = AndroidUtilities.dp(18.0f);
         this.headerText.setPadding(dp2, AndroidUtilities.dp(12.0f), dp2, AndroidUtilities.dp(12.0f));
@@ -185,7 +185,7 @@ public class SenderSelectPopup extends ActionBarPopupWindow {
                 TLRPC$User user = messagesController.getUser(Long.valueOf(j2));
                 if (user != null) {
                     senderView.title.setText(UserObject.getUserName(user));
-                    senderView.subtitle.setText(LocaleController.getString("VoipGroupPersonalAccount", R.string.VoipGroupPersonalAccount));
+                    senderView.subtitle.setText(LocaleController.getString(R.string.VoipGroupPersonalAccount));
                     senderView.avatar.setAvatar(user);
                 }
                 SimpleAvatarView simpleAvatarView2 = senderView.avatar;

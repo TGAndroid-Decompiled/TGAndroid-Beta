@@ -317,8 +317,6 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
         String str3;
         String str4;
         PlaybackState.Builder state;
-        int i3;
-        String str5;
         Notification.Action build;
         Notification.Action build2;
         Notification.Action build3;
@@ -408,15 +406,15 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
                 bitmap = null;
             }
             bitmap2 = (avatarBitmap != null || bitmap == null) ? avatarBitmap : bitmap;
-            musicAuthor = messageObject.isVoice() ? LocaleController.getString("AttachAudio", R.string.AttachAudio) : LocaleController.getString("AttachRound", R.string.AttachRound);
+            musicAuthor = messageObject.isVoice() ? LocaleController.getString(R.string.AttachAudio) : LocaleController.getString(R.string.AttachRound);
             bitmap3 = bitmap2;
         } else {
             bitmap3 = null;
             bitmap = null;
         }
-        int i4 = Build.VERSION.SDK_INT;
+        int i3 = Build.VERSION.SDK_INT;
         Bitmap bitmap5 = bitmap;
-        if (i4 >= 21) {
+        if (i3 >= 21) {
             boolean z6 = !MediaController.getInstance().isMessagePaused();
             PendingIntent broadcast = PendingIntent.getBroadcast(getApplicationContext(), 0, new Intent("org.telegram.android.musicplayer.previous").setComponent(new ComponentName(this, (Class<?>) MusicPlayerReceiver.class)), fixIntentFlags(301989888));
             PendingIntent service = PendingIntent.getService(getApplicationContext(), 0, new Intent(this, getClass()).setAction(getPackageName() + ".STOP_PLAYER"), fixIntentFlags(301989888));
@@ -439,7 +437,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
             Notification.Builder builder = new Notification.Builder(this);
             category = builder.setSmallIcon(R.drawable.player).setOngoing(z6).setContentTitle(musicTitle).setContentText(musicAuthor).setSubText((audioInfo == null || !messageObject.isMusic()) ? null : audioInfo.getAlbum()).setContentIntent(activity).setDeleteIntent(service).setShowWhen(false).setCategory("transport");
             category.setPriority(2).setStyle(mediaSession);
-            if (i4 >= 26) {
+            if (i3 >= 26) {
                 NotificationsController.checkOtherNotificationsChannel();
                 builder.setChannelId(NotificationsController.OTHER_NOTIFICATIONS_CHANNEL);
             }
@@ -448,17 +446,17 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
             } else {
                 builder.setLargeIcon(this.albumArtPlaceholder);
             }
-            String string = LocaleController.getString("Next", R.string.Next);
-            String string2 = LocaleController.getString("AccDescrPrevious", R.string.AccDescrPrevious);
+            String string = LocaleController.getString(R.string.Next);
+            String string2 = LocaleController.getString(R.string.AccDescrPrevious);
             if (MediaController.getInstance().isDownloadingCurrentMessage()) {
-                i2 = i4;
+                i2 = i3;
                 state2 = this.playbackState.setState(6, 0L, 1.0f);
                 state2.setActions(0L);
                 if (messageObject.isMusic()) {
                     build8 = new Notification.Action.Builder(R.drawable.ic_action_previous, string2, broadcast).build();
                     builder.addAction(build8);
                 }
-                build6 = new Notification.Action.Builder(R.drawable.loading_animation2, LocaleController.getString("Loading", R.string.Loading), (PendingIntent) null).build();
+                build6 = new Notification.Action.Builder(R.drawable.loading_animation2, LocaleController.getString(R.string.Loading), (PendingIntent) null).build();
                 builder.addAction(build6);
                 if (messageObject.isMusic()) {
                     build7 = new Notification.Action.Builder(R.drawable.ic_action_next, string, broadcast3).build();
@@ -467,20 +465,13 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
                 str3 = musicTitle;
                 str4 = musicAuthor;
             } else {
-                i2 = i4;
+                i2 = i3;
                 long j2 = messageObject.isMusic() ? 822L : 774L;
                 str3 = musicTitle;
                 str4 = musicAuthor;
                 state = this.playbackState.setState(z6 ? 3 : 2, MediaController.getInstance().getPlayingMessageObject().audioProgressSec * 1000, getPlaybackSpeed(z6, messageObject));
                 state.setActions(j2);
-                if (z6) {
-                    i3 = R.string.AccActionPause;
-                    str5 = "AccActionPause";
-                } else {
-                    i3 = R.string.AccActionPlay;
-                    str5 = "AccActionPlay";
-                }
-                String string3 = LocaleController.getString(str5, i3);
+                String string3 = LocaleController.getString(z6 ? R.string.AccActionPause : R.string.AccActionPlay);
                 if (messageObject.isMusic()) {
                     build3 = new Notification.Action.Builder(R.drawable.ic_action_previous, string2, broadcast).build();
                     builder.addAction(build3);
@@ -539,46 +530,46 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
             }
             if (bitmap5 != null) {
                 RemoteViews remoteViews3 = build10.contentView;
-                int i5 = R.id.player_album_art;
-                remoteViews3.setImageViewBitmap(i5, bitmap5);
+                int i4 = R.id.player_album_art;
+                remoteViews3.setImageViewBitmap(i4, bitmap5);
                 if (supportBigNotifications) {
-                    build10.bigContentView.setImageViewBitmap(i5, bitmap5);
+                    build10.bigContentView.setImageViewBitmap(i4, bitmap5);
                 }
             } else {
                 RemoteViews remoteViews4 = build10.contentView;
-                int i6 = R.id.player_album_art;
-                remoteViews4.setImageViewResource(i6, R.drawable.nocover_small);
+                int i5 = R.id.player_album_art;
+                remoteViews4.setImageViewResource(i5, R.drawable.nocover_small);
                 if (supportBigNotifications) {
-                    build10.bigContentView.setImageViewResource(i6, R.drawable.nocover_big);
+                    build10.bigContentView.setImageViewResource(i5, R.drawable.nocover_big);
                 }
             }
             if (MediaController.getInstance().isDownloadingCurrentMessage()) {
                 RemoteViews remoteViews5 = build10.contentView;
-                int i7 = R.id.player_pause;
-                remoteViews5.setViewVisibility(i7, 8);
+                int i6 = R.id.player_pause;
+                remoteViews5.setViewVisibility(i6, 8);
                 RemoteViews remoteViews6 = build10.contentView;
-                int i8 = R.id.player_play;
-                remoteViews6.setViewVisibility(i8, 8);
+                int i7 = R.id.player_play;
+                remoteViews6.setViewVisibility(i7, 8);
                 RemoteViews remoteViews7 = build10.contentView;
-                int i9 = R.id.player_next;
-                remoteViews7.setViewVisibility(i9, 8);
+                int i8 = R.id.player_next;
+                remoteViews7.setViewVisibility(i8, 8);
                 RemoteViews remoteViews8 = build10.contentView;
-                int i10 = R.id.player_previous;
-                remoteViews8.setViewVisibility(i10, 8);
+                int i9 = R.id.player_previous;
+                remoteViews8.setViewVisibility(i9, 8);
                 RemoteViews remoteViews9 = build10.contentView;
-                int i11 = R.id.player_progress_bar;
-                remoteViews9.setViewVisibility(i11, 0);
+                int i10 = R.id.player_progress_bar;
+                remoteViews9.setViewVisibility(i10, 0);
                 if (supportBigNotifications) {
+                    build10.bigContentView.setViewVisibility(i6, 8);
                     build10.bigContentView.setViewVisibility(i7, 8);
                     build10.bigContentView.setViewVisibility(i8, 8);
                     build10.bigContentView.setViewVisibility(i9, 8);
-                    build10.bigContentView.setViewVisibility(i10, 8);
-                    build10.bigContentView.setViewVisibility(i11, 0);
+                    build10.bigContentView.setViewVisibility(i10, 0);
                 }
             } else {
                 RemoteViews remoteViews10 = build10.contentView;
-                int i12 = R.id.player_progress_bar;
-                remoteViews10.setViewVisibility(i12, 8);
+                int i11 = R.id.player_progress_bar;
+                remoteViews10.setViewVisibility(i11, 8);
                 if (messageObject.isMusic()) {
                     build10.contentView.setViewVisibility(R.id.player_next, 0);
                     build10.contentView.setViewVisibility(R.id.player_previous, 0);
@@ -596,43 +587,43 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
                         build10.bigContentView.setViewVisibility(R.id.player_next, 8);
                         build10.bigContentView.setViewVisibility(R.id.player_previous, 8);
                     }
-                    build10.bigContentView.setViewVisibility(i12, i);
+                    build10.bigContentView.setViewVisibility(i11, i);
                 } else {
                     i = 8;
                 }
                 if (MediaController.getInstance().isMessagePaused()) {
                     RemoteViews remoteViews11 = build10.contentView;
-                    int i13 = R.id.player_pause;
-                    remoteViews11.setViewVisibility(i13, i);
+                    int i12 = R.id.player_pause;
+                    remoteViews11.setViewVisibility(i12, i);
                     RemoteViews remoteViews12 = build10.contentView;
-                    int i14 = R.id.player_play;
-                    remoteViews12.setViewVisibility(i14, 0);
+                    int i13 = R.id.player_play;
+                    remoteViews12.setViewVisibility(i13, 0);
                     if (supportBigNotifications) {
-                        build10.bigContentView.setViewVisibility(i13, i);
-                        build10.bigContentView.setViewVisibility(i14, 0);
+                        build10.bigContentView.setViewVisibility(i12, i);
+                        build10.bigContentView.setViewVisibility(i13, 0);
                     }
                 } else {
                     RemoteViews remoteViews13 = build10.contentView;
-                    int i15 = R.id.player_pause;
-                    remoteViews13.setViewVisibility(i15, 0);
+                    int i14 = R.id.player_pause;
+                    remoteViews13.setViewVisibility(i14, 0);
                     RemoteViews remoteViews14 = build10.contentView;
-                    int i16 = R.id.player_play;
-                    remoteViews14.setViewVisibility(i16, i);
+                    int i15 = R.id.player_play;
+                    remoteViews14.setViewVisibility(i15, i);
                     if (supportBigNotifications) {
-                        build10.bigContentView.setViewVisibility(i15, 0);
-                        build10.bigContentView.setViewVisibility(i16, i);
+                        build10.bigContentView.setViewVisibility(i14, 0);
+                        build10.bigContentView.setViewVisibility(i15, i);
                     }
                 }
             }
             RemoteViews remoteViews15 = build10.contentView;
-            int i17 = R.id.player_song_name;
-            remoteViews15.setTextViewText(i17, str);
+            int i16 = R.id.player_song_name;
+            remoteViews15.setTextViewText(i16, str);
             RemoteViews remoteViews16 = build10.contentView;
-            int i18 = R.id.player_author_name;
-            remoteViews16.setTextViewText(i18, str2);
+            int i17 = R.id.player_author_name;
+            remoteViews16.setTextViewText(i17, str2);
             if (supportBigNotifications) {
-                build10.bigContentView.setTextViewText(i17, str);
-                build10.bigContentView.setTextViewText(i18, str2);
+                build10.bigContentView.setTextViewText(i16, str);
+                build10.bigContentView.setTextViewText(i17, str2);
                 build10.bigContentView.setTextViewText(R.id.player_album_title, (audioInfo == null || TextUtils.isEmpty(audioInfo.getAlbum())) ? "" : audioInfo.getAlbum());
             }
             build10.flags |= 2;

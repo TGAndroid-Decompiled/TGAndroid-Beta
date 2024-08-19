@@ -4535,7 +4535,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                     AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), this.resourcesProvider);
                     builder.setTitle(LocaleController.getString(arrayList3.size() > 1 ? R.string.DeleteBotPreviewsTitle : R.string.DeleteBotPreviewTitle));
                     builder.setMessage(LocaleController.formatPluralString("DeleteBotPreviewsSubtitle", arrayList3.size(), new Object[0]));
-                    builder.setPositiveButton(LocaleController.getString("Delete", R.string.Delete), new DialogInterface.OnClickListener() {
+                    builder.setPositiveButton(LocaleController.getString(R.string.Delete), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i6) {
                             currentList.delete(arrayList3);
@@ -4543,7 +4543,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                             SharedMediaLayout.this.closeActionMode(false);
                         }
                     });
-                    builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), new DialogInterface.OnClickListener() {
+                    builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new DialogInterface.OnClickListener() {
                         @Override
                         public final void onClick(DialogInterface dialogInterface, int i6) {
                             dialogInterface.dismiss();
@@ -4567,7 +4567,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                 AlertDialog.Builder builder2 = new AlertDialog.Builder(getContext(), this.resourcesProvider);
                 builder2.setTitle(LocaleController.getString(arrayList4.size() > 1 ? R.string.DeleteStoriesTitle : R.string.DeleteStoryTitle));
                 builder2.setMessage(LocaleController.formatPluralString("DeleteStoriesSubtitle", arrayList4.size(), new Object[0]));
-                builder2.setPositiveButton(LocaleController.getString("Delete", R.string.Delete), new DialogInterface.OnClickListener() {
+                builder2.setPositiveButton(LocaleController.getString(R.string.Delete), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i7) {
                         SharedMediaLayout.this.profileActivity.getMessagesController().getStoriesController().deleteStories(SharedMediaLayout.this.dialog_id, arrayList4);
@@ -4575,7 +4575,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                         SharedMediaLayout.this.closeActionMode(false);
                     }
                 });
-                builder2.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), new DialogInterface.OnClickListener() {
+                builder2.setNegativeButton(LocaleController.getString(R.string.Cancel), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i7) {
                         dialogInterface.dismiss();
@@ -6284,43 +6284,43 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         EmptyStubView emptyStubView = new EmptyStubView(context, resourcesProvider);
         if (i == 0) {
             if (DialogObject.isEncryptedDialog(j)) {
-                emptyStubView.emptyTextView.setText(LocaleController.getString("NoMediaSecret", R.string.NoMediaSecret));
+                emptyStubView.emptyTextView.setText(LocaleController.getString(R.string.NoMediaSecret));
             } else {
-                emptyStubView.emptyTextView.setText(LocaleController.getString("NoMedia", R.string.NoMedia));
+                emptyStubView.emptyTextView.setText(LocaleController.getString(R.string.NoMedia));
             }
         } else if (i == 1) {
             if (DialogObject.isEncryptedDialog(j)) {
-                emptyStubView.emptyTextView.setText(LocaleController.getString("NoSharedFilesSecret", R.string.NoSharedFilesSecret));
+                emptyStubView.emptyTextView.setText(LocaleController.getString(R.string.NoSharedFilesSecret));
             } else {
-                emptyStubView.emptyTextView.setText(LocaleController.getString("NoSharedFiles", R.string.NoSharedFiles));
+                emptyStubView.emptyTextView.setText(LocaleController.getString(R.string.NoSharedFiles));
             }
         } else if (i == 2) {
             if (DialogObject.isEncryptedDialog(j)) {
-                emptyStubView.emptyTextView.setText(LocaleController.getString("NoSharedVoiceSecret", R.string.NoSharedVoiceSecret));
+                emptyStubView.emptyTextView.setText(LocaleController.getString(R.string.NoSharedVoiceSecret));
             } else {
-                emptyStubView.emptyTextView.setText(LocaleController.getString("NoSharedVoice", R.string.NoSharedVoice));
+                emptyStubView.emptyTextView.setText(LocaleController.getString(R.string.NoSharedVoice));
             }
         } else if (i == 3) {
             if (DialogObject.isEncryptedDialog(j)) {
-                emptyStubView.emptyTextView.setText(LocaleController.getString("NoSharedLinksSecret", R.string.NoSharedLinksSecret));
+                emptyStubView.emptyTextView.setText(LocaleController.getString(R.string.NoSharedLinksSecret));
             } else {
-                emptyStubView.emptyTextView.setText(LocaleController.getString("NoSharedLinks", R.string.NoSharedLinks));
+                emptyStubView.emptyTextView.setText(LocaleController.getString(R.string.NoSharedLinks));
             }
         } else if (i == 4) {
             if (DialogObject.isEncryptedDialog(j)) {
-                emptyStubView.emptyTextView.setText(LocaleController.getString("NoSharedAudioSecret", R.string.NoSharedAudioSecret));
+                emptyStubView.emptyTextView.setText(LocaleController.getString(R.string.NoSharedAudioSecret));
             } else {
-                emptyStubView.emptyTextView.setText(LocaleController.getString("NoSharedAudio", R.string.NoSharedAudio));
+                emptyStubView.emptyTextView.setText(LocaleController.getString(R.string.NoSharedAudio));
             }
         } else if (i == 5) {
             if (DialogObject.isEncryptedDialog(j)) {
-                emptyStubView.emptyTextView.setText(LocaleController.getString("NoSharedGifSecret", R.string.NoSharedGifSecret));
+                emptyStubView.emptyTextView.setText(LocaleController.getString(R.string.NoSharedGifSecret));
             } else {
-                emptyStubView.emptyTextView.setText(LocaleController.getString("NoGIFs", R.string.NoGIFs));
+                emptyStubView.emptyTextView.setText(LocaleController.getString(R.string.NoGIFs));
             }
         } else if (i == 6) {
             emptyStubView.emptyImageView.setImageDrawable(null);
-            emptyStubView.emptyTextView.setText(LocaleController.getString("NoGroupsInCommon", R.string.NoGroupsInCommon));
+            emptyStubView.emptyTextView.setText(LocaleController.getString(R.string.NoGroupsInCommon));
         } else if (i == 7) {
             emptyStubView.emptyImageView.setImageDrawable(null);
             emptyStubView.emptyTextView.setText("");

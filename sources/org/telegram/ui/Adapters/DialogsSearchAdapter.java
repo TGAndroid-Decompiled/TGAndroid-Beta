@@ -974,7 +974,7 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
         updateSearchResults(arrayList, arrayList2, arrayList3, arrayList4, i);
         FiltersView.fillTipDates(str, this.localTipDates);
         this.localTipArchive = false;
-        if (str.length() >= 3 && (LocaleController.getString("ArchiveSearchFilter", R.string.ArchiveSearchFilter).toLowerCase().startsWith(str) || "archive".startsWith(str2))) {
+        if (str.length() >= 3 && (LocaleController.getString(R.string.ArchiveSearchFilter).toLowerCase().startsWith(str) || "archive".startsWith(str2))) {
             this.localTipArchive = true;
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
@@ -1631,24 +1631,13 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
     }
 
     public void lambda$onBindViewHolder$22(GraySectionCell graySectionCell) {
-        int i;
-        String str;
         boolean z = !this.phoneCollapsed;
         this.phoneCollapsed = z;
-        if (z) {
-            i = R.string.ShowMore;
-            str = "ShowMore";
-        } else {
-            i = R.string.ShowLess;
-            str = "ShowLess";
-        }
-        graySectionCell.setRightText(LocaleController.getString(str, i));
+        graySectionCell.setRightText(LocaleController.getString(z ? R.string.ShowMore : R.string.ShowLess));
         notifyDataSetChanged();
     }
 
     public void lambda$onBindViewHolder$25(ArrayList arrayList, final int i, GraySectionCell graySectionCell) {
-        int i2;
-        String str;
         long elapsedRealtime = SystemClock.elapsedRealtime();
         if (elapsedRealtime - this.lastShowMoreUpdate < 300) {
             return;
@@ -1664,30 +1653,23 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
         }
         boolean z2 = !this.globalSearchCollapsed;
         this.globalSearchCollapsed = z2;
-        if (z2) {
-            i2 = R.string.ShowMore;
-            str = "ShowMore";
-        } else {
-            i2 = R.string.ShowLess;
-            str = "ShowLess";
-        }
-        graySectionCell.setRightText(LocaleController.getString(str, i2), this.globalSearchCollapsed);
+        graySectionCell.setRightText(LocaleController.getString(z2 ? R.string.ShowMore : R.string.ShowLess), this.globalSearchCollapsed);
         this.showMoreHeader = null;
         final View view = (View) graySectionCell.getParent();
         if (view instanceof RecyclerView) {
             RecyclerView recyclerView = (RecyclerView) view;
-            int i3 = !this.globalSearchCollapsed ? i + 4 : i + size + 1;
-            int i4 = 0;
+            int i2 = !this.globalSearchCollapsed ? i + 4 : i + size + 1;
+            int i3 = 0;
             while (true) {
-                if (i4 >= recyclerView.getChildCount()) {
+                if (i3 >= recyclerView.getChildCount()) {
                     break;
                 }
-                View childAt = recyclerView.getChildAt(i4);
-                if (recyclerView.getChildAdapterPosition(childAt) == i3) {
+                View childAt = recyclerView.getChildAt(i3);
+                if (recyclerView.getChildAdapterPosition(childAt) == i2) {
                     this.showMoreHeader = childAt;
                     break;
                 }
-                i4++;
+                i3++;
             }
         }
         if (!this.globalSearchCollapsed) {

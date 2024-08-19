@@ -98,8 +98,8 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
             view = new SelectorUserCell(this.context, this.needChecks, this.resourcesProvider, this.isGreenSelector);
         } else if (i == 5) {
             StickerEmptyView stickerEmptyView = new StickerEmptyView(this.context, null, 1, this.resourcesProvider);
-            stickerEmptyView.title.setText(LocaleController.getString("NoResult", R.string.NoResult));
-            stickerEmptyView.subtitle.setText(LocaleController.getString("SearchEmptyViewFilteredSubtitle2", R.string.SearchEmptyViewFilteredSubtitle2));
+            stickerEmptyView.title.setText(LocaleController.getString(R.string.NoResult));
+            stickerEmptyView.subtitle.setText(LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitle2));
             stickerEmptyView.linearLayout.setTranslationY(AndroidUtilities.dp(24.0f));
             view = stickerEmptyView;
         } else if (i == 7) {

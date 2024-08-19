@@ -44,7 +44,7 @@ public class ArchiveHelp extends FrameLayout implements NotificationCenter.Notif
         textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, resourcesProvider));
         textView.setTypeface(AndroidUtilities.bold());
         textView.setGravity(1);
-        textView.setText(LocaleController.getString("ArchiveHintHeader1", R.string.ArchiveHintHeader1));
+        textView.setText(LocaleController.getString(R.string.ArchiveHintHeader1));
         linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 1, 32, 0, 32, 9));
         LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context);
         this.subtitleTextView = linksTextView;

@@ -36,7 +36,7 @@ public class DatabaseMigrationHint extends FrameLayout {
         TextView textView = new TextView(context);
         this.title = textView;
         textView.setTextSize(1, 24.0f);
-        this.title.setText(LocaleController.getString("OptimizingTelegram", R.string.OptimizingTelegram));
+        this.title.setText(LocaleController.getString(R.string.OptimizingTelegram));
         TextView textView2 = this.title;
         int i2 = Theme.key_windowBackgroundWhiteBlackText;
         textView2.setTextColor(Theme.getColor(i2));
@@ -46,14 +46,14 @@ public class DatabaseMigrationHint extends FrameLayout {
         this.description1 = textView3;
         textView3.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
         this.description1.setTextSize(1, 14.0f);
-        this.description1.setText(LocaleController.getString("OptimizingTelegramDescription1", R.string.OptimizingTelegramDescription1));
+        this.description1.setText(LocaleController.getString(R.string.OptimizingTelegramDescription1));
         this.description1.setTextColor(Theme.getColor(i2));
         this.description1.setGravity(1);
         this.container.addView(this.description1, LayoutHelper.createLinear(-1, -2, 0.0f, 0, 36, 20, 36, 0));
         TextView textView4 = new TextView(context);
         this.description2 = textView4;
         textView4.setTextSize(1, 14.0f);
-        this.description2.setText(LocaleController.getString("OptimizingTelegramDescription2", R.string.OptimizingTelegramDescription2));
+        this.description2.setText(LocaleController.getString(R.string.OptimizingTelegramDescription2));
         this.description2.setTextColor(Theme.getColor(i2));
         this.description2.setGravity(1);
         this.container.addView(this.description2, LayoutHelper.createLinear(-1, -2, 0.0f, 0, 36, 24, 36, 0));

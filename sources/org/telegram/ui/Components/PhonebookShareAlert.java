@@ -266,7 +266,7 @@ public class PhonebookShareAlert extends BottomSheet {
         this(baseFragment, contact, tLRPC$User, uri, file, null, str, str2, resourcesProvider);
     }
 
-    public PhonebookShareAlert(org.telegram.ui.ActionBar.BaseFragment r18, org.telegram.messenger.ContactsController.Contact r19, org.telegram.tgnet.TLRPC$User r20, android.net.Uri r21, java.io.File r22, java.lang.String r23, java.lang.String r24, java.lang.String r25, final org.telegram.ui.ActionBar.Theme.ResourcesProvider r26) {
+    public PhonebookShareAlert(org.telegram.ui.ActionBar.BaseFragment r16, org.telegram.messenger.ContactsController.Contact r17, org.telegram.tgnet.TLRPC$User r18, android.net.Uri r19, java.io.File r20, java.lang.String r21, java.lang.String r22, java.lang.String r23, final org.telegram.ui.ActionBar.Theme.ResourcesProvider r24) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.PhonebookShareAlert.<init>(org.telegram.ui.ActionBar.BaseFragment, org.telegram.messenger.ContactsController$Contact, org.telegram.tgnet.TLRPC$User, android.net.Uri, java.io.File, java.lang.String, java.lang.String, java.lang.String, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
     }
 
@@ -313,7 +313,7 @@ public class PhonebookShareAlert extends BottomSheet {
                 return;
             }
             AlertDialog.Builder builder = new AlertDialog.Builder(this.parentFragment.getParentActivity());
-            builder.setItems(new CharSequence[]{LocaleController.getString("Copy", R.string.Copy)}, new DialogInterface.OnClickListener() {
+            builder.setItems(new CharSequence[]{LocaleController.getString(R.string.Copy)}, new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i5) {
                     PhonebookShareAlert.this.lambda$new$1(vcardItem, dialogInterface, i5);
@@ -351,7 +351,7 @@ public class PhonebookShareAlert extends BottomSheet {
             try {
                 ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", vcardItem.getValue(false)));
                 if (AndroidUtilities.shouldShowClipboardToast()) {
-                    Toast.makeText(this.parentFragment.getParentActivity(), LocaleController.getString("TextCopied", R.string.TextCopied), 0).show();
+                    Toast.makeText(this.parentFragment.getParentActivity(), LocaleController.getString(R.string.TextCopied), 0).show();
                 }
             } catch (Exception e) {
                 FileLog.e(e);
@@ -379,13 +379,13 @@ public class PhonebookShareAlert extends BottomSheet {
                 Bulletin.SimpleLayout simpleLayout = new Bulletin.SimpleLayout(context, resourcesProvider);
                 int i4 = vcardItem.type;
                 if (i4 == 0) {
-                    simpleLayout.textView.setText(LocaleController.getString("PhoneCopied", R.string.PhoneCopied));
+                    simpleLayout.textView.setText(LocaleController.getString(R.string.PhoneCopied));
                     simpleLayout.imageView.setImageResource(R.drawable.msg_calls);
                 } else if (i4 == 1) {
-                    simpleLayout.textView.setText(LocaleController.getString("EmailCopied", R.string.EmailCopied));
+                    simpleLayout.textView.setText(LocaleController.getString(R.string.EmailCopied));
                     simpleLayout.imageView.setImageResource(R.drawable.msg_mention);
                 } else {
-                    simpleLayout.textView.setText(LocaleController.getString("TextCopied", R.string.TextCopied));
+                    simpleLayout.textView.setText(LocaleController.getString(R.string.TextCopied));
                     simpleLayout.imageView.setImageResource(R.drawable.msg_info);
                 }
                 if (AndroidUtilities.shouldShowClipboardToast()) {
@@ -400,9 +400,9 @@ public class PhonebookShareAlert extends BottomSheet {
         StringBuilder sb;
         if (this.isImport) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-            builder.setTitle(LocaleController.getString("AddContactTitle", R.string.AddContactTitle));
-            builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
-            builder.setItems(new CharSequence[]{LocaleController.getString("CreateNewContact", R.string.CreateNewContact), LocaleController.getString("AddToExistingContact", R.string.AddToExistingContact)}, new DialogInterface.OnClickListener() {
+            builder.setTitle(LocaleController.getString(R.string.AddContactTitle));
+            builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
+            builder.setItems(new CharSequence[]{LocaleController.getString(R.string.CreateNewContact), LocaleController.getString(R.string.AddToExistingContact)}, new DialogInterface.OnClickListener() {
                 private void fillRowWithType(String str, ContentValues contentValues) {
                     if (str.startsWith("X-")) {
                         contentValues.put("data2", (Integer) 0);

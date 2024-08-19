@@ -2877,7 +2877,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                     }
                     AlertDialog.Builder builder = new AlertDialog.Builder(chatActivity.getParentActivity());
                     builder.setTitle(str2);
-                    builder.setPositiveButton(LocaleController.getString("OK", R.string.OK), null);
+                    builder.setPositiveButton(LocaleController.getString(R.string.OK), null);
                     builder.setMessage(tLRPC$TL_messages_botCallbackAnswer.message);
                     chatActivity.showDialog(builder.create());
                     return;
@@ -2914,15 +2914,15 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         if ("PASSWORD_HASH_INVALID".equals(tLRPC$TL_error.text)) {
             if (tLRPC$InputCheckPasswordSRP == null) {
                 AlertDialog.Builder builder2 = new AlertDialog.Builder(chatActivity.getParentActivity());
-                builder2.setTitle(LocaleController.getString("BotOwnershipTransfer", R.string.BotOwnershipTransfer));
+                builder2.setTitle(LocaleController.getString(R.string.BotOwnershipTransfer));
                 builder2.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("BotOwnershipTransferReadyAlertText", R.string.BotOwnershipTransferReadyAlertText, new Object[0])));
-                builder2.setPositiveButton(LocaleController.getString("BotOwnershipTransferChangeOwner", R.string.BotOwnershipTransferChangeOwner), new DialogInterface.OnClickListener() {
+                builder2.setPositiveButton(LocaleController.getString(R.string.BotOwnershipTransferChangeOwner), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i) {
                         SendMessagesHelper.this.lambda$sendCallback$28(z2, messageObject, tLRPC$KeyboardButton, chatActivity, dialogInterface, i);
                     }
                 });
-                builder2.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
+                builder2.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
                 chatActivity.showDialog(builder2.create());
                 return;
             }
@@ -2933,7 +2933,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                 twoStepVerificationActivity.needHideProgress();
             }
             AlertDialog.Builder builder3 = new AlertDialog.Builder(chatActivity.getParentActivity());
-            builder3.setTitle(LocaleController.getString("EditAdminTransferAlertTitle", R.string.EditAdminTransferAlertTitle));
+            builder3.setTitle(LocaleController.getString(R.string.EditAdminTransferAlertTitle));
             LinearLayout linearLayout = new LinearLayout(chatActivity.getParentActivity());
             linearLayout.setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(24.0f), 0);
             linearLayout.setOrientation(1);
@@ -2959,7 +2959,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             textView2.setTextColor(Theme.getColor(i));
             textView2.setTextSize(1, 16.0f);
             textView2.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
-            textView2.setText(AndroidUtilities.replaceTags(LocaleController.getString("EditAdminTransferAlertText1", R.string.EditAdminTransferAlertText1)));
+            textView2.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.EditAdminTransferAlertText1)));
             if (LocaleController.isRTL) {
                 linearLayout2.addView(textView2, LayoutHelper.createLinear(-1, -2));
                 linearLayout2.addView(imageView, LayoutHelper.createLinear(-2, -2, 5));
@@ -2978,7 +2978,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             textView3.setTextColor(Theme.getColor(i));
             textView3.setTextSize(1, 16.0f);
             textView3.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
-            textView3.setText(AndroidUtilities.replaceTags(LocaleController.getString("EditAdminTransferAlertText2", R.string.EditAdminTransferAlertText2)));
+            textView3.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.EditAdminTransferAlertText2)));
             if (LocaleController.isRTL) {
                 linearLayout3.addView(textView3, LayoutHelper.createLinear(-1, -2));
                 linearLayout3.addView(imageView2, LayoutHelper.createLinear(-2, -2, 5));
@@ -2987,21 +2987,21 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                 linearLayout3.addView(textView3, LayoutHelper.createLinear(-1, -2));
             }
             if ("PASSWORD_MISSING".equals(tLRPC$TL_error.text)) {
-                builder3.setPositiveButton(LocaleController.getString("EditAdminTransferSetPassword", R.string.EditAdminTransferSetPassword), new DialogInterface.OnClickListener() {
+                builder3.setPositiveButton(LocaleController.getString(R.string.EditAdminTransferSetPassword), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i3) {
                         SendMessagesHelper.lambda$sendCallback$29(ChatActivity.this, dialogInterface, i3);
                     }
                 });
-                builder3.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
+                builder3.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
             } else {
                 TextView textView4 = new TextView(chatActivity.getParentActivity());
                 textView4.setTextColor(Theme.getColor(i));
                 textView4.setTextSize(1, 16.0f);
                 textView4.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
-                textView4.setText(LocaleController.getString("EditAdminTransferAlertText3", R.string.EditAdminTransferAlertText3));
+                textView4.setText(LocaleController.getString(R.string.EditAdminTransferAlertText3));
                 linearLayout.addView(textView4, LayoutHelper.createLinear(-1, -2, 0.0f, 11.0f, 0.0f, 0.0f));
-                builder3.setNegativeButton(LocaleController.getString("OK", R.string.OK), null);
+                builder3.setNegativeButton(LocaleController.getString(R.string.OK), null);
             }
             chatActivity.showDialog(builder3.create());
             return;
@@ -4662,7 +4662,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
     }
 
     public static void lambda$prepareImportHistory$70(MessagesStorage.LongCallback longCallback) {
-        Toast.makeText(ApplicationLoader.applicationContext, LocaleController.getString("ImportFileTooLarge", R.string.ImportFileTooLarge), 0).show();
+        Toast.makeText(ApplicationLoader.applicationContext, LocaleController.getString(R.string.ImportFileTooLarge), 0).show();
         longCallback.run(0L);
     }
 
@@ -5019,7 +5019,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
     public static void lambda$handleError$81(int i, AccountInstance accountInstance) {
         try {
             if (i == 1) {
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.showBulletin, 1, LocaleController.getString("UnsupportedAttachment", R.string.UnsupportedAttachment));
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.showBulletin, 1, LocaleController.getString(R.string.UnsupportedAttachment));
             } else if (i != 2) {
             } else {
                 NotificationCenter.getInstance(accountInstance.getCurrentAccount()).lambda$postNotificationNameOnUIThread$1(NotificationCenter.currentUserShowLimitReachedDialog, 6);

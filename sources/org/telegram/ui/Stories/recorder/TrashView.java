@@ -55,7 +55,7 @@ public class TrashView extends View {
         animatedTextDrawable.setTextSize(AndroidUtilities.dp(14.0f));
         animatedTextDrawable.setTextColor(-1);
         animatedTextDrawable.setShadowLayer(AndroidUtilities.dpf2(1.33f), 0.0f, AndroidUtilities.dp(1.0f), 1073741824);
-        animatedTextDrawable.setText(LocaleController.getString("TrashHintDrag", R.string.TrashHintDrag));
+        animatedTextDrawable.setText(LocaleController.getString(R.string.TrashHintDrag));
         animatedTextDrawable.setGravity(17);
     }
 
@@ -85,18 +85,8 @@ public class TrashView extends View {
     }
 
     public void onDragInfo(boolean z, boolean z2) {
-        int i;
-        String str;
         this.bounce.setPressed(z);
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.textDrawable;
-        if (z || z2) {
-            i = R.string.TrashHintRelease;
-            str = "TrashHintRelease";
-        } else {
-            i = R.string.TrashHintDrag;
-            str = "TrashHintDrag";
-        }
-        animatedTextDrawable.setText(LocaleController.getString(str, i));
+        this.textDrawable.setText(LocaleController.getString((z || z2) ? R.string.TrashHintRelease : R.string.TrashHintDrag));
         boolean z3 = z && !z2;
         this.dragged = z3;
         if (z3) {

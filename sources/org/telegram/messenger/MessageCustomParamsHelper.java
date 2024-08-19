@@ -50,7 +50,7 @@ public class MessageCustomParamsHelper {
         }
     }
 
-    public static class Params_v1 extends TLObject {
+    private static class Params_v1 extends TLObject {
         private static final int VERSION = 1;
         int flags;
         final TLRPC$Message message;

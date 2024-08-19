@@ -60,7 +60,7 @@ public class DownloadsInfoBottomSheet extends BottomSheet {
         int i2 = Theme.key_dialogTextBlack;
         textView.setTextColor(Theme.getColor(i2));
         textView.setTextSize(1, 20.0f);
-        textView.setText(LocaleController.getString("DownloadedFiles", R.string.DownloadedFiles));
+        textView.setText(LocaleController.getString(R.string.DownloadedFiles));
         linearLayout.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 0, 21.0f, 20.0f, 21.0f, 0.0f));
         TextView textView2 = new TextView(context);
         textView2.setGravity(1);
@@ -76,7 +76,7 @@ public class DownloadsInfoBottomSheet extends BottomSheet {
         textView3.setSingleLine(true);
         textView3.setTextSize(1, 14.0f);
         textView3.setTypeface(AndroidUtilities.bold());
-        textView3.setText(LocaleController.getString("ManageDeviceStorage", R.string.ManageDeviceStorage));
+        textView3.setText(LocaleController.getString(R.string.ManageDeviceStorage));
         textView3.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
         int dp2 = AndroidUtilities.dp(8.0f);
         int i3 = Theme.key_featuredStickers_addButton;
@@ -88,7 +88,7 @@ public class DownloadsInfoBottomSheet extends BottomSheet {
         textView4.setSingleLine(true);
         textView4.setTextSize(1, 14.0f);
         textView4.setTypeface(AndroidUtilities.bold());
-        textView4.setText(LocaleController.getString("ClearDownloadsList", R.string.ClearDownloadsList));
+        textView4.setText(LocaleController.getString(R.string.ClearDownloadsList));
         textView4.setTextColor(Theme.getColor(i3));
         textView4.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), 0, ColorUtils.setAlphaComponent(Theme.getColor(i3), 120)));
         if (Build.VERSION.SDK_INT >= 21) {

@@ -75,13 +75,13 @@ public class GiftedUserCell extends UserCell {
             this.badgeLayout.setVisibility(0);
             int i = ((tL_stories$TL_boost.expires - tL_stories$TL_boost.date) / 30) / 86400;
             if (tL_stories$TL_boost.unclaimed) {
-                this.nameTextView.setText(LocaleController.getString("BoostingUnclaimed", R.string.BoostingUnclaimed));
+                this.nameTextView.setText(LocaleController.getString(R.string.BoostingUnclaimed));
                 this.avatarDrawable.setAvatarType(18);
                 setAvatarColorByMonths(i);
                 this.avatarImageView.setForUserOrChat(null, this.avatarDrawable);
                 this.nameTextView.setRightDrawable((Drawable) null);
             } else if (tL_stories$TL_boost.user_id == -1) {
-                this.nameTextView.setText(LocaleController.getString("BoostingToBeDistributed", R.string.BoostingToBeDistributed));
+                this.nameTextView.setText(LocaleController.getString(R.string.BoostingToBeDistributed));
                 this.avatarDrawable.setAvatarType(19);
                 setAvatarColorByMonths(i);
                 this.avatarImageView.setForUserOrChat(null, this.avatarDrawable);
@@ -99,7 +99,7 @@ public class GiftedUserCell extends UserCell {
                 this.badgeTextView.setTextColor(-3240417);
                 this.badgeTextView.setCompoundDrawablesWithIntrinsicBounds(this.giftDrawable, (Drawable) null, (Drawable) null, (Drawable) null);
                 this.badgeTextView.setCompoundDrawablePadding(AndroidUtilities.dp(4.0f));
-                this.badgeTextView.setText(LocaleController.getString("BoostingGift", R.string.BoostingGift));
+                this.badgeTextView.setText(LocaleController.getString(R.string.BoostingGift));
                 this.badgeLayout.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), Theme.multAlpha(-3240417, 0.2f)));
             }
             if (tL_stories$TL_boost.giveaway) {
@@ -111,7 +111,7 @@ public class GiftedUserCell extends UserCell {
                 this.badgeTextView.setTextColor(-13397548);
                 this.badgeTextView.setCompoundDrawablesWithIntrinsicBounds(this.giveawayDrawable, (Drawable) null, (Drawable) null, (Drawable) null);
                 this.badgeTextView.setCompoundDrawablePadding(AndroidUtilities.dp(4.0f));
-                this.badgeTextView.setText(LocaleController.getString("BoostingGiveaway", R.string.BoostingGiveaway));
+                this.badgeTextView.setText(LocaleController.getString(R.string.BoostingGiveaway));
                 this.badgeLayout.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), Theme.multAlpha(-13397548, 0.2f)));
             }
         } else {

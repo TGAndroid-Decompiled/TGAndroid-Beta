@@ -344,7 +344,7 @@ public class SharingLiveLocationCell extends FrameLayout {
         if (str2 != null) {
             this.distanceTextView.setText(str2);
         } else if (!z) {
-            this.distanceTextView.setText(LocaleController.getString("Loading", R.string.Loading));
+            this.distanceTextView.setText(LocaleController.getString(R.string.Loading));
         } else {
             this.distanceTextView.setText("");
         }

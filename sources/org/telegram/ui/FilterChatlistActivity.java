@@ -138,7 +138,7 @@ public class FilterChatlistActivity extends BaseFragment {
 
     public void updateActionBarTitle(boolean z) {
         TL_chatlists$TL_exportedChatlistInvite tL_chatlists$TL_exportedChatlistInvite = this.invite;
-        String string = TextUtils.isEmpty(tL_chatlists$TL_exportedChatlistInvite == null ? null : tL_chatlists$TL_exportedChatlistInvite.title) ? LocaleController.getString("FilterShare", R.string.FilterShare) : this.invite.title;
+        String string = TextUtils.isEmpty(tL_chatlists$TL_exportedChatlistInvite == null ? null : tL_chatlists$TL_exportedChatlistInvite.title) ? LocaleController.getString(R.string.FilterShare) : this.invite.title;
         if (z) {
             this.actionBar.setTitleAnimated(string, false, 220L);
         } else {
@@ -173,7 +173,7 @@ public class FilterChatlistActivity extends BaseFragment {
         mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
         CrossfadeDrawable crossfadeDrawable = new CrossfadeDrawable(mutate, new CircularProgressDrawable(Theme.getColor(i)));
         this.doneButtonDrawable = crossfadeDrawable;
-        this.doneButton = createMenu.addItemWithWidth(1, crossfadeDrawable, AndroidUtilities.dp(56.0f), LocaleController.getString("Done", R.string.Done));
+        this.doneButton = createMenu.addItemWithWidth(1, crossfadeDrawable, AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done));
         checkDoneButton();
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
@@ -262,22 +262,22 @@ public class FilterChatlistActivity extends BaseFragment {
                     arrayList.add(getMessagesController().getUser(l));
                     TLRPC$User user = getMessagesController().getUser(l);
                     if (user != null && user.bot) {
-                        str = LocaleController.getString("FilterInviteBotToast", R.string.FilterInviteBotToast);
+                        str = LocaleController.getString(R.string.FilterInviteBotToast);
                     } else {
-                        str = LocaleController.getString("FilterInviteUserToast", R.string.FilterInviteUserToast);
+                        str = LocaleController.getString(R.string.FilterInviteUserToast);
                     }
                 } else {
                     TLRPC$Chat chat = getMessagesController().getChat(Long.valueOf(-longValue));
                     if (ChatObject.isChannelAndNotMegaGroup(chat)) {
                         if (ChatObject.isPublic(chat)) {
-                            string = LocaleController.getString("FilterInviteChannelToast", R.string.FilterInviteChannelToast);
+                            string = LocaleController.getString(R.string.FilterInviteChannelToast);
                         } else {
-                            string = LocaleController.getString("FilterInvitePrivateChannelToast", R.string.FilterInvitePrivateChannelToast);
+                            string = LocaleController.getString(R.string.FilterInvitePrivateChannelToast);
                         }
                     } else if (ChatObject.isPublic(chat)) {
-                        string = LocaleController.getString("FilterInviteGroupToast", R.string.FilterInviteGroupToast);
+                        string = LocaleController.getString(R.string.FilterInviteGroupToast);
                     } else {
-                        string = LocaleController.getString("FilterInvitePrivateGroupToast", R.string.FilterInvitePrivateGroupToast);
+                        string = LocaleController.getString(R.string.FilterInvitePrivateGroupToast);
                     }
                     arrayList.add(chat);
                     str = string;
@@ -423,7 +423,7 @@ public class FilterChatlistActivity extends BaseFragment {
     public void lambda$saveTitle$3(TLRPC$TL_error tLRPC$TL_error) {
         this.savingTitleReqId = 0;
         if (tLRPC$TL_error == null) {
-            BulletinFactory.of(this).createSimpleBulletin(R.raw.contact_check, LocaleController.getString("FilterInviteNameEdited", R.string.FilterInviteNameEdited)).show();
+            BulletinFactory.of(this).createSimpleBulletin(R.raw.contact_check, LocaleController.getString(R.string.FilterInviteNameEdited)).show();
         }
     }
 
@@ -442,7 +442,7 @@ public class FilterChatlistActivity extends BaseFragment {
             return;
         }
         if (this.invite == null) {
-            hintInnerCell.setText(LocaleController.getString("FilterInviteHeaderNo", R.string.FilterInviteHeaderNo), z);
+            hintInnerCell.setText(LocaleController.getString(R.string.FilterInviteHeaderNo), z);
         } else {
             hintInnerCell.setText(AndroidUtilities.replaceTags(LocaleController.formatPluralString("FilterInviteHeader", this.selectedPeers.size(), this.filter.name)), z);
         }
@@ -597,8 +597,8 @@ public class FilterChatlistActivity extends BaseFragment {
                 editTextBoldCursor.setBackgroundDrawable(Theme.createEditTextDrawable(getContext(), true));
                 final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setDialogButtonColorKey(Theme.key_dialogButton);
-                builder.setTitle(LocaleController.getString("FilterInviteEditName", R.string.FilterInviteEditName));
-                builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), new DialogInterface.OnClickListener() {
+                builder.setTitle(LocaleController.getString(R.string.FilterInviteEditName));
+                builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i) {
                         AndroidUtilities.hideKeyboard(EditTextBoldCursor.this);
@@ -657,7 +657,7 @@ public class FilterChatlistActivity extends BaseFragment {
                     editTextBoldCursor.setText(FilterChatlistActivity.this.invite.title);
                     editTextBoldCursor.setSelection(editTextBoldCursor.length());
                 }
-                builder.setPositiveButton(LocaleController.getString("Save", R.string.Save), new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(LocaleController.getString(R.string.Save), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i2) {
                         FilterChatlistActivity.ListAdapter.AnonymousClass1.this.lambda$editname$6(editTextBoldCursor, builder, dialogInterface, i2);
@@ -729,10 +729,10 @@ public class FilterChatlistActivity extends BaseFragment {
                     textInfoPrivacyCell.setFixedSize(0);
                     FilterChatlistActivity filterChatlistActivity = FilterChatlistActivity.this;
                     if (filterChatlistActivity.invite == null || filterChatlistActivity.allowedPeers.isEmpty()) {
-                        textInfoPrivacyCell.setText(LocaleController.getString("FilterInviteHintNo", R.string.FilterInviteHintNo));
+                        textInfoPrivacyCell.setText(LocaleController.getString(R.string.FilterInviteHintNo));
                         return;
                     } else {
-                        textInfoPrivacyCell.setText(LocaleController.getString("FilterInviteHint", R.string.FilterInviteHint));
+                        textInfoPrivacyCell.setText(LocaleController.getString(R.string.FilterInviteHint));
                         return;
                     }
                 }
@@ -758,12 +758,12 @@ public class FilterChatlistActivity extends BaseFragment {
                             FilterChatlistActivity.this.updateHeaderCell(false);
                             return;
                         } else {
-                            headerCell.setText(LocaleController.getString("FilterInviteHeaderChatsNo", R.string.FilterInviteHeaderChatsNo), false);
+                            headerCell.setText(LocaleController.getString(R.string.FilterInviteHeaderChatsNo), false);
                             headerCell.setAction("", null);
                             return;
                         }
                     }
-                    headerCell.setText(LocaleController.getString("InviteLink", R.string.InviteLink), false);
+                    headerCell.setText(LocaleController.getString(R.string.InviteLink), false);
                     headerCell.setAction("", null);
                     return;
                 }
@@ -814,15 +814,15 @@ public class FilterChatlistActivity extends BaseFragment {
                 groupCreateUserCell.setChecked(false, false);
                 if (tLRPC$Chat2 instanceof TLRPC$User) {
                     if (((TLRPC$User) tLRPC$Chat2).bot) {
-                        string = LocaleController.getString("FilterInviteBot", R.string.FilterInviteBot);
+                        string = LocaleController.getString(R.string.FilterInviteBot);
                     } else {
-                        string = LocaleController.getString("FilterInviteUser", R.string.FilterInviteUser);
+                        string = LocaleController.getString(R.string.FilterInviteUser);
                     }
                 } else if (tLRPC$Chat2 instanceof TLRPC$Chat) {
                     if (ChatObject.isChannelAndNotMegaGroup(tLRPC$Chat2)) {
-                        string = LocaleController.getString("FilterInviteChannel", R.string.FilterInviteChannel);
+                        string = LocaleController.getString(R.string.FilterInviteChannel);
                     } else {
-                        string = LocaleController.getString("FilterInviteGroup", R.string.FilterInviteGroup);
+                        string = LocaleController.getString(R.string.FilterInviteGroup);
                     }
                 }
             }
@@ -992,15 +992,15 @@ public class FilterChatlistActivity extends BaseFragment {
             return true;
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-        builder.setTitle(LocaleController.getString("UnsavedChanges", R.string.UnsavedChanges));
-        builder.setMessage(LocaleController.getString("UnsavedChangesMessage", R.string.UnsavedChangesMessage));
-        builder.setPositiveButton(LocaleController.getString("ApplyTheme", R.string.ApplyTheme), new DialogInterface.OnClickListener() {
+        builder.setTitle(LocaleController.getString(R.string.UnsavedChanges));
+        builder.setMessage(LocaleController.getString(R.string.UnsavedChangesMessage));
+        builder.setPositiveButton(LocaleController.getString(R.string.ApplyTheme), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
                 FilterChatlistActivity.this.lambda$checkDiscard$9(dialogInterface, i);
             }
         });
-        builder.setNegativeButton(LocaleController.getString("PassportDiscard", R.string.PassportDiscard), new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(LocaleController.getString(R.string.PassportDiscard), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
                 FilterChatlistActivity.this.lambda$checkDiscard$10(dialogInterface, i);
@@ -1139,7 +1139,7 @@ public class FilterChatlistActivity extends BaseFragment {
             this.optionsIcon.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogTextGray3), PorterDuff.Mode.SRC_IN));
             this.optionsIcon.setAlpha(0.0f);
             this.optionsIcon.setVisibility(8);
-            this.optionsIcon.setContentDescription(LocaleController.getString("AccDescrMoreOptions", R.string.AccDescrMoreOptions));
+            this.optionsIcon.setContentDescription(LocaleController.getString(R.string.AccDescrMoreOptions));
             this.optionsIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
@@ -1167,7 +1167,7 @@ public class FilterChatlistActivity extends BaseFragment {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             spannableStringBuilder.append((CharSequence) "..").setSpan(new ColoredImageSpan(ContextCompat.getDrawable(context, R.drawable.msg_copy_filled)), 0, 1, 0);
             spannableStringBuilder.setSpan(new DialogCell.FixedWidthSpan(AndroidUtilities.dp(8.0f)), 1, 2, 0);
-            spannableStringBuilder.append((CharSequence) LocaleController.getString("LinkActionCopy", R.string.LinkActionCopy));
+            spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.LinkActionCopy));
             spannableStringBuilder.append((CharSequence) ".").setSpan(new DialogCell.FixedWidthSpan(AndroidUtilities.dp(5.0f)), spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 0);
             this.copyButton.setText(spannableStringBuilder);
             this.copyButton.setOnClickListener(new View.OnClickListener() {
@@ -1194,7 +1194,7 @@ public class FilterChatlistActivity extends BaseFragment {
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
             spannableStringBuilder2.append((CharSequence) "..").setSpan(new ColoredImageSpan(ContextCompat.getDrawable(context, R.drawable.msg_share_filled)), 0, 1, 0);
             spannableStringBuilder2.setSpan(new DialogCell.FixedWidthSpan(AndroidUtilities.dp(8.0f)), 1, 2, 0);
-            spannableStringBuilder2.append((CharSequence) LocaleController.getString("LinkActionShare", R.string.LinkActionShare));
+            spannableStringBuilder2.append((CharSequence) LocaleController.getString(R.string.LinkActionShare));
             spannableStringBuilder2.append((CharSequence) ".").setSpan(new DialogCell.FixedWidthSpan(AndroidUtilities.dp(5.0f)), spannableStringBuilder2.length() - 1, spannableStringBuilder2.length(), 0);
             this.shareButton.setText(spannableStringBuilder2);
             this.shareButton.setOnClickListener(new View.OnClickListener() {
@@ -1351,7 +1351,7 @@ public class FilterChatlistActivity extends BaseFragment {
             }
             ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(getContext());
             ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(getContext(), true, false);
-            actionBarMenuSubItem.setTextAndIcon(LocaleController.getString("EditName", R.string.EditName), R.drawable.msg_edit);
+            actionBarMenuSubItem.setTextAndIcon(LocaleController.getString(R.string.EditName), R.drawable.msg_edit);
             actionBarPopupWindowLayout.addView((View) actionBarMenuSubItem, LayoutHelper.createLinear(-1, 48));
             actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -1360,7 +1360,7 @@ public class FilterChatlistActivity extends BaseFragment {
                 }
             });
             ActionBarMenuSubItem actionBarMenuSubItem2 = new ActionBarMenuSubItem(getContext(), false, false);
-            actionBarMenuSubItem2.setTextAndIcon(LocaleController.getString("GetQRCode", R.string.GetQRCode), R.drawable.msg_qrcode);
+            actionBarMenuSubItem2.setTextAndIcon(LocaleController.getString(R.string.GetQRCode), R.drawable.msg_qrcode);
             actionBarPopupWindowLayout.addView((View) actionBarMenuSubItem2, LayoutHelper.createLinear(-1, 48));
             actionBarMenuSubItem2.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -1369,7 +1369,7 @@ public class FilterChatlistActivity extends BaseFragment {
                 }
             });
             ActionBarMenuSubItem actionBarMenuSubItem3 = new ActionBarMenuSubItem(getContext(), false, true);
-            actionBarMenuSubItem3.setTextAndIcon(LocaleController.getString("DeleteLink", R.string.DeleteLink), R.drawable.msg_delete);
+            actionBarMenuSubItem3.setTextAndIcon(LocaleController.getString(R.string.DeleteLink), R.drawable.msg_delete);
             int i = Theme.key_text_RedRegular;
             actionBarMenuSubItem3.setColors(Theme.getColor(i), Theme.getColor(i));
             actionBarMenuSubItem3.setSelectorColor(Theme.multAlpha(Theme.getColor(i), 0.12f));
@@ -1488,7 +1488,7 @@ public class FilterChatlistActivity extends BaseFragment {
                 return;
             }
             AndroidUtilities.addToClipboard(str);
-            BulletinFactory.of(this.parentFragment).createCopyBulletin(LocaleController.getString("LinkCopied", R.string.LinkCopied)).show();
+            BulletinFactory.of(this.parentFragment).createCopyBulletin(LocaleController.getString(R.string.LinkCopied)).show();
         }
 
         protected void share() {
@@ -1499,7 +1499,7 @@ public class FilterChatlistActivity extends BaseFragment {
                 Intent intent = new Intent("android.intent.action.SEND");
                 intent.setType("text/plain");
                 intent.putExtra("android.intent.extra.TEXT", this.lastUrl);
-                this.parentFragment.startActivityForResult(Intent.createChooser(intent, LocaleController.getString("InviteToGroupByLink", R.string.InviteToGroupByLink)), 500);
+                this.parentFragment.startActivityForResult(Intent.createChooser(intent, LocaleController.getString(R.string.InviteToGroupByLink)), 500);
             } catch (Exception e) {
                 FileLog.e(e);
             }
@@ -1509,7 +1509,7 @@ public class FilterChatlistActivity extends BaseFragment {
             if (this.lastUrl == null) {
                 return;
             }
-            QRCodeBottomSheet qRCodeBottomSheet = new QRCodeBottomSheet(getContext(), LocaleController.getString("InviteByQRCode", R.string.InviteByQRCode), this.lastUrl, LocaleController.getString("QRCodeLinkHelpFolder", R.string.QRCodeLinkHelpFolder), false);
+            QRCodeBottomSheet qRCodeBottomSheet = new QRCodeBottomSheet(getContext(), LocaleController.getString(R.string.InviteByQRCode), this.lastUrl, LocaleController.getString(R.string.QRCodeLinkHelpFolder), false);
             qRCodeBottomSheet.setCenterAnimation(R.raw.qr_code_logo);
             qRCodeBottomSheet.show();
         }

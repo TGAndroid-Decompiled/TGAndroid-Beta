@@ -162,6 +162,7 @@ import org.telegram.tgnet.TLRPC$messages_DhConfig;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.JoinCallAlert;
+import org.telegram.ui.Components.PermissionRequest;
 import org.telegram.ui.Components.voip.VoIPHelper;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.VoIPFeedbackActivity;
@@ -396,7 +397,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 if (BuildVars.LOGS_ENABLED) {
                     FileLog.e("Bluetooth SCO state updated: " + intExtra);
                 }
-                if (intExtra == 0 && VoIPService.this.isBtHeadsetConnected && (!VoIPService.this.btAdapter.isEnabled() || VoIPService.this.btAdapter.getProfileConnectionState(1) != 2)) {
+                if (intExtra == 0 && VoIPService.this.isBtHeadsetConnected && (!VoIPService.this.btAdapter.isEnabled() || !PermissionRequest.hasPermission("android.permission.BLUETOOTH_CONNECT") || VoIPService.this.btAdapter.getProfileConnectionState(1) != 2)) {
                     VoIPService.this.updateBluetoothHeadsetState(false);
                     return;
                 }
@@ -3434,55 +3435,36 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
     }
 
     private void showNotification(String str, Bitmap bitmap) {
-        int i;
-        String str2;
-        int i2;
-        String str3;
         Intent action = new Intent(this, (Class<?>) LaunchActivity.class).setAction(this.groupCall != null ? "voip_chat" : "voip");
         if (this.groupCall != null) {
             action.putExtra("currentAccount", this.currentAccount);
         }
         Notification.Builder contentIntent = new Notification.Builder(this).setContentText(str).setContentIntent(PendingIntent.getActivity(this, 50, action, 33554432));
         if (this.groupCall != null) {
-            if (ChatObject.isChannelOrGiga(this.chat)) {
-                i2 = R.string.VoipLiveStream;
-                str3 = "VoipLiveStream";
-            } else {
-                i2 = R.string.VoipVoiceChat;
-                str3 = "VoipVoiceChat";
-            }
-            contentIntent.setContentTitle(LocaleController.getString(str3, i2));
+            contentIntent.setContentTitle(LocaleController.getString(ChatObject.isChannelOrGiga(this.chat) ? R.string.VoipLiveStream : R.string.VoipVoiceChat));
             contentIntent.setSmallIcon(isMicMute() ? R.drawable.voicechat_muted : R.drawable.voicechat_active);
         } else {
-            contentIntent.setContentTitle(LocaleController.getString("VoipOutgoingCall", R.string.VoipOutgoingCall));
+            contentIntent.setContentTitle(LocaleController.getString(R.string.VoipOutgoingCall));
             contentIntent.setSmallIcon(R.drawable.ic_call);
             contentIntent.setOngoing(true);
         }
-        int i3 = Build.VERSION.SDK_INT;
+        int i = Build.VERSION.SDK_INT;
         Intent intent = new Intent(this, (Class<?>) VoIPActionsReceiver.class);
         intent.setAction(getPackageName() + ".END_CALL");
         if (this.groupCall != null) {
-            int i4 = R.drawable.ic_call_end_white_24dp;
-            if (ChatObject.isChannelOrGiga(this.chat)) {
-                i = R.string.VoipChannelLeaveAlertTitle;
-                str2 = "VoipChannelLeaveAlertTitle";
-            } else {
-                i = R.string.VoipGroupLeaveAlertTitle;
-                str2 = "VoipGroupLeaveAlertTitle";
-            }
-            contentIntent.addAction(i4, LocaleController.getString(str2, i), PendingIntent.getBroadcast(this, 0, intent, 167772160));
+            contentIntent.addAction(R.drawable.ic_call_end_white_24dp, LocaleController.getString(ChatObject.isChannelOrGiga(this.chat) ? R.string.VoipChannelLeaveAlertTitle : R.string.VoipGroupLeaveAlertTitle), PendingIntent.getBroadcast(this, 0, intent, 167772160));
         } else {
-            contentIntent.addAction(R.drawable.ic_call_end_white_24dp, LocaleController.getString("VoipEndCall", R.string.VoipEndCall), PendingIntent.getBroadcast(this, 0, intent, 167772160));
+            contentIntent.addAction(R.drawable.ic_call_end_white_24dp, LocaleController.getString(R.string.VoipEndCall), PendingIntent.getBroadcast(this, 0, intent, 167772160));
         }
         contentIntent.setPriority(2);
         contentIntent.setShowWhen(false);
-        if (i3 >= 26) {
+        if (i >= 26) {
             contentIntent.setColor(-14143951);
             contentIntent.setColorized(true);
-        } else if (i3 >= 21) {
+        } else if (i >= 21) {
             contentIntent.setColor(-13851168);
         }
-        if (i3 >= 26) {
+        if (i >= 26) {
             NotificationsController.checkOtherNotificationsChannel();
             contentIntent.setChannelId(NotificationsController.OTHER_NOTIFICATIONS_CHANNEL);
         }
@@ -4266,14 +4248,17 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 }
                 return;
             }
-            deviceType = mediaRouter.getSelectedRoute(1).getDeviceType();
-            if (deviceType == 3) {
-                updateBluetoothHeadsetState(this.btAdapter.getProfileConnectionState(1) == 2);
-                Iterator<StateListener> it2 = this.stateListeners.iterator();
-                while (it2.hasNext()) {
-                    it2.next().onAudioSettingsChanged();
+            MediaRouter.RouteInfo selectedRoute = mediaRouter.getSelectedRoute(1);
+            if (PermissionRequest.hasPermission("android.permission.BLUETOOTH_CONNECT")) {
+                deviceType = selectedRoute.getDeviceType();
+                if (deviceType == 3) {
+                    updateBluetoothHeadsetState(this.btAdapter.getProfileConnectionState(1) == 2);
+                    Iterator<StateListener> it2 = this.stateListeners.iterator();
+                    while (it2.hasNext()) {
+                        it2.next().onAudioSettingsChanged();
+                    }
+                    return;
                 }
-                return;
             }
             updateBluetoothHeadsetState(audioManager.isBluetoothA2dpOn());
         } catch (Throwable th) {
@@ -4668,7 +4653,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.voip.VoIPService.getRoundAvatarBitmap(android.content.Context, int, org.telegram.tgnet.TLObject):android.graphics.Bitmap");
     }
 
-    private void showIncomingNotification(java.lang.String r20, org.telegram.tgnet.TLObject r21, boolean r22, int r23) {
+    private void showIncomingNotification(java.lang.String r17, org.telegram.tgnet.TLObject r18, boolean r19, int r20) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.voip.VoIPService.showIncomingNotification(java.lang.String, org.telegram.tgnet.TLObject, boolean, int):void");
     }
 

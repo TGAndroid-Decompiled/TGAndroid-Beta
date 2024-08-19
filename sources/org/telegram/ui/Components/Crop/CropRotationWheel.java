@@ -85,7 +85,7 @@ public class CropRotationWheel extends FrameLayout {
                 return lambda$new$1;
             }
         });
-        this.mirrorButton.setContentDescription(LocaleController.getString("AccDescrMirror", R.string.AccDescrMirror));
+        this.mirrorButton.setContentDescription(LocaleController.getString(R.string.AccDescrMirror));
         addView(this.mirrorButton, LayoutHelper.createFrame(70, 64, 19));
         ImageView imageView3 = new ImageView(context);
         this.aspectRatioButton = imageView3;
@@ -99,7 +99,7 @@ public class CropRotationWheel extends FrameLayout {
             }
         });
         this.aspectRatioButton.setVisibility(8);
-        this.aspectRatioButton.setContentDescription(LocaleController.getString("AccDescrAspectRatio", R.string.AccDescrAspectRatio));
+        this.aspectRatioButton.setContentDescription(LocaleController.getString(R.string.AccDescrAspectRatio));
         addView(this.aspectRatioButton, LayoutHelper.createFrame(70, 64, 19));
         ImageView imageView4 = new ImageView(context);
         this.rotation90Button = imageView4;
@@ -112,7 +112,7 @@ public class CropRotationWheel extends FrameLayout {
                 CropRotationWheel.this.lambda$new$3(view);
             }
         });
-        this.rotation90Button.setContentDescription(LocaleController.getString("AccDescrRotate", R.string.AccDescrRotate));
+        this.rotation90Button.setContentDescription(LocaleController.getString(R.string.AccDescrRotate));
         addView(this.rotation90Button, LayoutHelper.createFrame(70, 64, 21));
         TextPaint textPaint = new TextPaint(1);
         this.degreesTextPaint = textPaint;

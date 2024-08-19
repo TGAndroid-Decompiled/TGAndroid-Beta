@@ -733,7 +733,7 @@ public class ThemesHorizontalListCell extends RecyclerListView implements Notifi
             if (Build.VERSION.SDK_INT >= 21) {
                 accessibilityAction = AccessibilityNodeInfo.AccessibilityAction.ACTION_CLICK;
                 accessibilityNodeInfo.addAction(accessibilityAction);
-                accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(32, LocaleController.getString("AccDescrMoreOptions", R.string.AccDescrMoreOptions)));
+                accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(32, LocaleController.getString(R.string.AccDescrMoreOptions)));
             }
         }
     }

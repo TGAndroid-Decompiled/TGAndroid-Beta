@@ -504,7 +504,7 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
             return;
         }
         if (getParentActivity() != null) {
-            Toast.makeText(getParentActivity(), LocaleController.getString("ErrorOccurred", R.string.ErrorOccurred) + "\n" + tLRPC$TL_error.text, 0).show();
+            Toast.makeText(getParentActivity(), LocaleController.getString(R.string.ErrorOccurred) + "\n" + tLRPC$TL_error.text, 0).show();
         }
     }
 

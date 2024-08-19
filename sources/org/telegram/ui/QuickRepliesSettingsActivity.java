@@ -51,7 +51,7 @@ public class QuickRepliesSettingsActivity extends BaseFragment {
     @Override
     public View createView(Context context) {
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        this.actionBar.setTitle(LocaleController.getString("VoipQuickReplies", R.string.VoipQuickReplies));
+        this.actionBar.setTitle(LocaleController.getString(R.string.VoipQuickReplies));
         if (AndroidUtilities.isTablet()) {
             this.actionBar.setOccupyStatusBar(false);
         }
@@ -132,7 +132,7 @@ public class QuickRepliesSettingsActivity extends BaseFragment {
             if (itemViewType == 0) {
                 TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
                 textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
-                textInfoPrivacyCell.setText(LocaleController.getString("VoipQuickRepliesExplain", R.string.VoipQuickRepliesExplain));
+                textInfoPrivacyCell.setText(LocaleController.getString(R.string.VoipQuickRepliesExplain));
                 return;
             }
             if (itemViewType == 1) {
@@ -149,22 +149,22 @@ public class QuickRepliesSettingsActivity extends BaseFragment {
                             if (i != QuickRepliesSettingsActivity.this.reply2Row) {
                                 if (i != QuickRepliesSettingsActivity.this.reply3Row) {
                                     if (i == QuickRepliesSettingsActivity.this.reply4Row) {
-                                        str = LocaleController.getString("QuickReplyDefault4", R.string.QuickReplyDefault4);
+                                        str = LocaleController.getString(R.string.QuickReplyDefault4);
                                         str2 = "quick_reply_msg4";
                                     } else {
                                         str = null;
                                         str2 = null;
                                     }
                                 } else {
-                                    str = LocaleController.getString("QuickReplyDefault3", R.string.QuickReplyDefault3);
+                                    str = LocaleController.getString(R.string.QuickReplyDefault3);
                                     str2 = "quick_reply_msg3";
                                 }
                             } else {
-                                str = LocaleController.getString("QuickReplyDefault2", R.string.QuickReplyDefault2);
+                                str = LocaleController.getString(R.string.QuickReplyDefault2);
                                 str2 = "quick_reply_msg2";
                             }
                         } else {
-                            str = LocaleController.getString("QuickReplyDefault1", R.string.QuickReplyDefault1);
+                            str = LocaleController.getString(R.string.QuickReplyDefault1);
                             str2 = "quick_reply_msg1";
                         }
                         editTextSettingsCell.setTextAndHint(QuickRepliesSettingsActivity.this.getParentActivity().getSharedPreferences("mainconfig", 0).getString(str2, ""), str, i != QuickRepliesSettingsActivity.this.reply4Row);
@@ -173,7 +173,7 @@ public class QuickRepliesSettingsActivity extends BaseFragment {
                         return;
                 }
             }
-            ((TextCheckCell) viewHolder.itemView).setTextAndCheck(LocaleController.getString("AllowCustomQuickReply", R.string.AllowCustomQuickReply), QuickRepliesSettingsActivity.this.getParentActivity().getSharedPreferences("mainconfig", 0).getBoolean("quick_reply_allow_custom", true), false);
+            ((TextCheckCell) viewHolder.itemView).setTextAndCheck(LocaleController.getString(R.string.AllowCustomQuickReply), QuickRepliesSettingsActivity.this.getParentActivity().getSharedPreferences("mainconfig", 0).getBoolean("quick_reply_allow_custom", true), false);
         }
 
         @Override

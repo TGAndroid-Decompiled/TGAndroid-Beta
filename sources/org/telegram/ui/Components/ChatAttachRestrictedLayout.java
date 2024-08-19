@@ -26,7 +26,7 @@ public class ChatAttachRestrictedLayout extends ChatAttachAlert.AttachAlertLayou
         this.id = i;
         EmptyTextProgressView emptyTextProgressView = new EmptyTextProgressView(context, null, resourcesProvider);
         this.progressView = emptyTextProgressView;
-        emptyTextProgressView.setText(LocaleController.getString("NoPhotos", R.string.NoPhotos));
+        emptyTextProgressView.setText(LocaleController.getString(R.string.NoPhotos));
         emptyTextProgressView.setOnTouchListener(null);
         emptyTextProgressView.setTextSize(16);
         addView(emptyTextProgressView, LayoutHelper.createFrame(-1, -2.0f));

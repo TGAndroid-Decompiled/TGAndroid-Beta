@@ -479,7 +479,7 @@ public class GroupCreateUserCell extends FrameLayout {
             if (obj2 instanceof TLRPC$User) {
                 TLRPC$User tLRPC$User = (TLRPC$User) obj2;
                 if (this.showSelfAsSaved && UserObject.isUserSelf(tLRPC$User)) {
-                    this.nameTextView.setText(LocaleController.getString("SavedMessages", R.string.SavedMessages), true);
+                    this.nameTextView.setText(LocaleController.getString(R.string.SavedMessages), true);
                     this.statusTextView.setText(null);
                     this.avatarDrawable.setAvatarType(1);
                     this.avatarImageView.setImage((ImageLocation) null, "50_50", this.avatarDrawable, tLRPC$User);
@@ -534,7 +534,7 @@ public class GroupCreateUserCell extends FrameLayout {
                             i2 = Theme.key_voipgroup_lastSeenText;
                         }
                         simpleTextView2.setTextColor(Theme.getColor(i2, this.resourcesProvider));
-                        this.statusTextView.setText(LocaleController.getString("Bot", R.string.Bot));
+                        this.statusTextView.setText(LocaleController.getString(R.string.Bot));
                     } else if (tLRPC$User.id == UserConfig.getInstance(this.currentAccount).getClientUserId() || (((tLRPC$UserStatus = tLRPC$User.status) != null && tLRPC$UserStatus.expires > ConnectionsManager.getInstance(this.currentAccount).getCurrentTime()) || MessagesController.getInstance(this.currentAccount).onlinePrivacy.containsKey(Long.valueOf(tLRPC$User.id)))) {
                         SimpleTextView simpleTextView3 = this.statusTextView;
                         int i3 = Theme.key_windowBackgroundWhiteBlueText;
@@ -544,7 +544,7 @@ public class GroupCreateUserCell extends FrameLayout {
                             i3 = Theme.key_voipgroup_listeningText;
                         }
                         simpleTextView4.setTextColor(Theme.getColor(i3, this.resourcesProvider));
-                        this.statusTextView.setText(LocaleController.getString("Online", R.string.Online));
+                        this.statusTextView.setText(LocaleController.getString(R.string.Online));
                     } else {
                         SimpleTextView simpleTextView5 = this.statusTextView;
                         int i4 = Theme.key_windowBackgroundWhiteGrayText;
@@ -606,17 +606,17 @@ public class GroupCreateUserCell extends FrameLayout {
                             this.statusTextView.setText(LocaleController.formatPluralString("Members", tLRPC$Chat2.participants_count, new Object[0]));
                         }
                     } else if (tLRPC$Chat2.has_geo) {
-                        this.statusTextView.setText(LocaleController.getString("MegaLocation", R.string.MegaLocation));
+                        this.statusTextView.setText(LocaleController.getString(R.string.MegaLocation));
                     } else if (!ChatObject.isPublic(tLRPC$Chat2)) {
                         if (ChatObject.isChannel(tLRPC$Chat2) && !tLRPC$Chat2.megagroup) {
-                            this.statusTextView.setText(LocaleController.getString("ChannelPrivate", R.string.ChannelPrivate));
+                            this.statusTextView.setText(LocaleController.getString(R.string.ChannelPrivate));
                         } else {
-                            this.statusTextView.setText(LocaleController.getString("MegaPrivate", R.string.MegaPrivate));
+                            this.statusTextView.setText(LocaleController.getString(R.string.MegaPrivate));
                         }
                     } else if (ChatObject.isChannel(tLRPC$Chat2) && !tLRPC$Chat2.megagroup) {
-                        this.statusTextView.setText(LocaleController.getString("ChannelPublic", R.string.ChannelPublic));
+                        this.statusTextView.setText(LocaleController.getString(R.string.ChannelPublic));
                     } else {
-                        this.statusTextView.setText(LocaleController.getString("MegaPublic", R.string.MegaPublic));
+                        this.statusTextView.setText(LocaleController.getString(R.string.MegaPublic));
                     }
                 }
                 this.avatarImageView.setForUserOrChat(tLRPC$Chat2, this.avatarDrawable);

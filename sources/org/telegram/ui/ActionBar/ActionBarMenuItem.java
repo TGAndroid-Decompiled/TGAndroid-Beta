@@ -1719,7 +1719,7 @@ public class ActionBarMenuItem extends FrameLayout {
                     ActionBarMenuItem.this.lambda$checkCreateSearchField$14(view);
                 }
             });
-            this.clearButton.setContentDescription(LocaleController.getString("ClearButton", R.string.ClearButton));
+            this.clearButton.setContentDescription(LocaleController.getString(R.string.ClearButton));
             if (this.wrapSearchInScrollView) {
                 this.wrappedSearchFrameLayout.addView(this.clearButton, LayoutHelper.createFrame(48, -1, 21));
             } else {

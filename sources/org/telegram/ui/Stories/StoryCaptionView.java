@@ -945,7 +945,7 @@ public class StoryCaptionView extends NestedScrollView {
                 if (storyCaptionTextView3.shouldCollapse) {
                     float lineTop = this.fullLayout.getLineTop(2) + this.fullLayout.getTopPadding();
                     if (this == StoryCaptionTextView.this.state[0]) {
-                        String string = LocaleController.getString("ShowMore", R.string.ShowMore);
+                        String string = LocaleController.getString(R.string.ShowMore);
                         StoryCaptionTextView storyCaptionTextView4 = StoryCaptionTextView.this;
                         storyCaptionTextView4.showMore = storyCaptionTextView4.makeTextLayout(storyCaptionTextView4.showMorePaint, string, i);
                         StoryCaptionTextView.this.showMoreY = ((r8.verticalPadding + i2) + lineTop) - AndroidUtilities.dpf2(0.3f);

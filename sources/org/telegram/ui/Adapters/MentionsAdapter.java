@@ -627,16 +627,16 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
                 if (!MessagesController.getNotificationsSettings(this.currentAccount).getBoolean("inlinegeo_" + this.foundContextBot.id, false) && (chatActivity = this.parentFragment) != null && chatActivity.getParentActivity() != null) {
                     final TLRPC$User tLRPC$User2 = this.foundContextBot;
                     AlertDialog.Builder builder = new AlertDialog.Builder(this.parentFragment.getParentActivity());
-                    builder.setTitle(LocaleController.getString("ShareYouLocationTitle", R.string.ShareYouLocationTitle));
-                    builder.setMessage(LocaleController.getString("ShareYouLocationInline", R.string.ShareYouLocationInline));
+                    builder.setTitle(LocaleController.getString(R.string.ShareYouLocationTitle));
+                    builder.setMessage(LocaleController.getString(R.string.ShareYouLocationInline));
                     final boolean[] zArr = new boolean[1];
-                    builder.setPositiveButton(LocaleController.getString("OK", R.string.OK), new DialogInterface.OnClickListener() {
+                    builder.setPositiveButton(LocaleController.getString(R.string.OK), new DialogInterface.OnClickListener() {
                         @Override
                         public final void onClick(DialogInterface dialogInterface, int i) {
                             MentionsAdapter.this.lambda$processFoundUser$2(zArr, tLRPC$User2, dialogInterface, i);
                         }
                     });
-                    builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), new DialogInterface.OnClickListener() {
+                    builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new DialogInterface.OnClickListener() {
                         @Override
                         public final void onClick(DialogInterface dialogInterface, int i) {
                             MentionsAdapter.this.lambda$processFoundUser$3(zArr, dialogInterface, i);
@@ -880,7 +880,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         if (str == null || !str.equals("gif")) {
             return null;
         }
-        return LocaleController.getString("SearchGifsTitle", R.string.SearchGifsTitle);
+        return LocaleController.getString(R.string.SearchGifsTitle);
     }
 
     public void searchForContextBotForNextOffset() {
@@ -1455,10 +1455,10 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             TLRPC$Chat currentChat = this.parentFragment.getCurrentChat();
             if (currentChat != null) {
                 if (!ChatObject.hasAdminRights(currentChat) && (tLRPC$TL_chatBannedRights = currentChat.default_banned_rights) != null && tLRPC$TL_chatBannedRights.send_inline) {
-                    textView.setText(LocaleController.getString("GlobalAttachInlineRestricted", R.string.GlobalAttachInlineRestricted));
+                    textView.setText(LocaleController.getString(R.string.GlobalAttachInlineRestricted));
                     return;
                 } else if (AndroidUtilities.isBannedForever(currentChat.banned_rights)) {
-                    textView.setText(LocaleController.getString("AttachInlineRestrictedForever", R.string.AttachInlineRestrictedForever));
+                    textView.setText(LocaleController.getString(R.string.AttachInlineRestrictedForever));
                     return;
                 } else {
                     textView.setText(LocaleController.formatString("AttachInlineRestricted", R.string.AttachInlineRestricted, LocaleController.formatDateForBan(currentChat.banned_rights.until_date)));

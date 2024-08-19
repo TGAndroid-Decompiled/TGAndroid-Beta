@@ -203,49 +203,49 @@ public class ChatObject {
     public static String getAllowedSendString(TLRPC$Chat tLRPC$Chat) {
         StringBuilder sb = new StringBuilder();
         if (canSendPhoto(tLRPC$Chat)) {
-            sb.append(LocaleController.getString("SendMediaPermissionPhotos", R.string.SendMediaPermissionPhotos));
+            sb.append(LocaleController.getString(R.string.SendMediaPermissionPhotos));
         }
         if (canSendVideo(tLRPC$Chat)) {
             if (sb.length() > 0) {
                 sb.append(", ");
             }
-            sb.append(LocaleController.getString("SendMediaPermissionVideos", R.string.SendMediaPermissionVideos));
+            sb.append(LocaleController.getString(R.string.SendMediaPermissionVideos));
         }
         if (canSendStickers(tLRPC$Chat)) {
             if (sb.length() > 0) {
                 sb.append(", ");
             }
-            sb.append(LocaleController.getString("SendMediaPermissionStickersGifs", R.string.SendMediaPermissionStickersGifs));
+            sb.append(LocaleController.getString(R.string.SendMediaPermissionStickersGifs));
         }
         if (canSendMusic(tLRPC$Chat)) {
             if (sb.length() > 0) {
                 sb.append(", ");
             }
-            sb.append(LocaleController.getString("SendMediaPermissionMusic", R.string.SendMediaPermissionMusic));
+            sb.append(LocaleController.getString(R.string.SendMediaPermissionMusic));
         }
         if (canSendDocument(tLRPC$Chat)) {
             if (sb.length() > 0) {
                 sb.append(", ");
             }
-            sb.append(LocaleController.getString("SendMediaPermissionFiles", R.string.SendMediaPermissionFiles));
+            sb.append(LocaleController.getString(R.string.SendMediaPermissionFiles));
         }
         if (canSendVoice(tLRPC$Chat)) {
             if (sb.length() > 0) {
                 sb.append(", ");
             }
-            sb.append(LocaleController.getString("SendMediaPermissionVoice", R.string.SendMediaPermissionVoice));
+            sb.append(LocaleController.getString(R.string.SendMediaPermissionVoice));
         }
         if (canSendRoundVideo(tLRPC$Chat)) {
             if (sb.length() > 0) {
                 sb.append(", ");
             }
-            sb.append(LocaleController.getString("SendMediaPermissionRound", R.string.SendMediaPermissionRound));
+            sb.append(LocaleController.getString(R.string.SendMediaPermissionRound));
         }
         if (canSendEmbed(tLRPC$Chat)) {
             if (sb.length() > 0) {
                 sb.append(", ");
             }
-            sb.append(LocaleController.getString("SendMediaEmbededLinks", R.string.SendMediaEmbededLinks));
+            sb.append(LocaleController.getString(R.string.SendMediaEmbededLinks));
         }
         return sb.toString();
     }
@@ -1993,61 +1993,61 @@ public class ChatObject {
     public static String getRestrictedErrorText(TLRPC$Chat tLRPC$Chat, int i) {
         if (i == 23) {
             if (tLRPC$Chat == null || isActionBannedByDefault(tLRPC$Chat, i)) {
-                return LocaleController.getString("GlobalAttachGifRestricted", R.string.GlobalAttachGifRestricted);
+                return LocaleController.getString(R.string.GlobalAttachGifRestricted);
             }
             return AndroidUtilities.isBannedForever(tLRPC$Chat.banned_rights) ? LocaleController.formatString("AttachGifRestrictedForever", R.string.AttachGifRestrictedForever, new Object[0]) : LocaleController.formatString("AttachGifRestricted", R.string.AttachGifRestricted, LocaleController.formatDateForBan(tLRPC$Chat.banned_rights.until_date));
         }
         if (i == 8) {
             if (tLRPC$Chat == null || isActionBannedByDefault(tLRPC$Chat, i)) {
-                return LocaleController.getString("GlobalAttachStickersRestricted", R.string.GlobalAttachStickersRestricted);
+                return LocaleController.getString(R.string.GlobalAttachStickersRestricted);
             }
             return AndroidUtilities.isBannedForever(tLRPC$Chat.banned_rights) ? LocaleController.formatString("AttachStickersRestrictedForever", R.string.AttachStickersRestrictedForever, new Object[0]) : LocaleController.formatString("AttachStickersRestricted", R.string.AttachStickersRestricted, LocaleController.formatDateForBan(tLRPC$Chat.banned_rights.until_date));
         }
         if (i == 16) {
             if (tLRPC$Chat == null || isActionBannedByDefault(tLRPC$Chat, i)) {
-                return LocaleController.getString("GlobalAttachPhotoRestricted", R.string.GlobalAttachPhotoRestricted);
+                return LocaleController.getString(R.string.GlobalAttachPhotoRestricted);
             }
             return AndroidUtilities.isBannedForever(tLRPC$Chat.banned_rights) ? LocaleController.formatString("AttachPhotoRestrictedForever", R.string.AttachPhotoRestrictedForever, new Object[0]) : LocaleController.formatString("AttachPhotoRestricted", R.string.AttachPhotoRestricted, LocaleController.formatDateForBan(tLRPC$Chat.banned_rights.until_date));
         }
         if (i == 17) {
             if (tLRPC$Chat == null || isActionBannedByDefault(tLRPC$Chat, i)) {
-                return LocaleController.getString("GlobalAttachVideoRestricted", R.string.GlobalAttachVideoRestricted);
+                return LocaleController.getString(R.string.GlobalAttachVideoRestricted);
             }
             return AndroidUtilities.isBannedForever(tLRPC$Chat.banned_rights) ? LocaleController.formatString("AttachVideoRestrictedForever", R.string.AttachVideoRestrictedForever, new Object[0]) : LocaleController.formatString("AttachVideoRestricted", R.string.AttachVideoRestricted, LocaleController.formatDateForBan(tLRPC$Chat.banned_rights.until_date));
         }
         if (i == 19) {
             if (tLRPC$Chat == null || isActionBannedByDefault(tLRPC$Chat, i)) {
-                return LocaleController.getString("GlobalAttachDocumentsRestricted", R.string.GlobalAttachDocumentsRestricted);
+                return LocaleController.getString(R.string.GlobalAttachDocumentsRestricted);
             }
             return AndroidUtilities.isBannedForever(tLRPC$Chat.banned_rights) ? LocaleController.formatString("AttachDocumentsRestrictedForever", R.string.AttachDocumentsRestrictedForever, new Object[0]) : LocaleController.formatString("AttachDocumentsRestricted", R.string.AttachDocumentsRestricted, LocaleController.formatDateForBan(tLRPC$Chat.banned_rights.until_date));
         }
         if (i == 7) {
             if (tLRPC$Chat == null || isActionBannedByDefault(tLRPC$Chat, i)) {
-                return LocaleController.getString("GlobalAttachMediaRestricted", R.string.GlobalAttachMediaRestricted);
+                return LocaleController.getString(R.string.GlobalAttachMediaRestricted);
             }
             return AndroidUtilities.isBannedForever(tLRPC$Chat.banned_rights) ? LocaleController.formatString("AttachMediaRestrictedForever", R.string.AttachMediaRestrictedForever, new Object[0]) : LocaleController.formatString("AttachMediaRestricted", R.string.AttachMediaRestricted, LocaleController.formatDateForBan(tLRPC$Chat.banned_rights.until_date));
         }
         if (i == 18) {
             if (tLRPC$Chat == null || isActionBannedByDefault(tLRPC$Chat, i)) {
-                return LocaleController.getString("GlobalAttachAudioRestricted", R.string.GlobalAttachAudioRestricted);
+                return LocaleController.getString(R.string.GlobalAttachAudioRestricted);
             }
             return AndroidUtilities.isBannedForever(tLRPC$Chat.banned_rights) ? LocaleController.formatString("AttachAudioRestrictedForever", R.string.AttachAudioRestrictedForever, new Object[0]) : LocaleController.formatString("AttachAudioRestricted", R.string.AttachAudioRestricted, LocaleController.formatDateForBan(tLRPC$Chat.banned_rights.until_date));
         }
         if (i == 22) {
             if (tLRPC$Chat == null || isActionBannedByDefault(tLRPC$Chat, i)) {
-                return LocaleController.getString("GlobalAttachPlainRestricted", R.string.GlobalAttachPlainRestricted);
+                return LocaleController.getString(R.string.GlobalAttachPlainRestricted);
             }
             return AndroidUtilities.isBannedForever(tLRPC$Chat.banned_rights) ? LocaleController.formatString("AttachPlainRestrictedForever", R.string.AttachPlainRestrictedForever, new Object[0]) : LocaleController.formatString("AttachPlainRestricted", R.string.AttachPlainRestricted, LocaleController.formatDateForBan(tLRPC$Chat.banned_rights.until_date));
         }
         if (i == 21) {
             if (tLRPC$Chat == null || isActionBannedByDefault(tLRPC$Chat, i)) {
-                return LocaleController.getString("GlobalAttachRoundRestricted", R.string.GlobalAttachRoundRestricted);
+                return LocaleController.getString(R.string.GlobalAttachRoundRestricted);
             }
             return AndroidUtilities.isBannedForever(tLRPC$Chat.banned_rights) ? LocaleController.formatString("AttachRoundRestrictedForever", R.string.AttachRoundRestrictedForever, new Object[0]) : LocaleController.formatString("AttachRoundRestricted", R.string.AttachRoundRestricted, LocaleController.formatDateForBan(tLRPC$Chat.banned_rights.until_date));
         }
         if (i == 20) {
             if (tLRPC$Chat == null || isActionBannedByDefault(tLRPC$Chat, i)) {
-                return LocaleController.getString("GlobalAttachVoiceRestricted", R.string.GlobalAttachVoiceRestricted);
+                return LocaleController.getString(R.string.GlobalAttachVoiceRestricted);
             }
             return AndroidUtilities.isBannedForever(tLRPC$Chat.banned_rights) ? LocaleController.formatString("AttachVoiceRestrictedForever", R.string.AttachVoiceRestrictedForever, new Object[0]) : LocaleController.formatString("AttachVoiceRestricted", R.string.AttachVoiceRestricted, LocaleController.formatDateForBan(tLRPC$Chat.banned_rights.until_date));
         }

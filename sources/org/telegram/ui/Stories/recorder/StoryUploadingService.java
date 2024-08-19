@@ -101,11 +101,11 @@ public class StoryUploadingService extends Service implements NotificationCenter
             builder.setSmallIcon(17301640);
             this.builder.setWhen(System.currentTimeMillis());
             this.builder.setChannelId(NotificationsController.OTHER_NOTIFICATIONS_CHANNEL);
-            this.builder.setContentTitle(LocaleController.getString("AppName", R.string.AppName));
+            this.builder.setContentTitle(LocaleController.getString(R.string.AppName));
             NotificationCompat.Builder builder2 = this.builder;
             int i5 = R.string.StoryUploading;
-            builder2.setTicker(LocaleController.getString("StoryUploading", i5));
-            this.builder.setContentText(LocaleController.getString("StoryUploading", i5));
+            builder2.setTicker(LocaleController.getString(i5));
+            this.builder.setContentText(LocaleController.getString(i5));
         }
         this.currentProgress = 0.0f;
         this.builder.setProgress(100, Math.round(0.0f), false);

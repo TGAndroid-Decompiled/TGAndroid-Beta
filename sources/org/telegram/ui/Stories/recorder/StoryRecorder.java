@@ -2347,7 +2347,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.captionContainer.addView(this.coverTimelineView, LayoutHelper.createFrame(-1, TimelineView.heightDp(), 87, 0.0f, 0.0f, 0.0f, 6.0f));
         FlashViews.ImageViewInvertable imageViewInvertable = new FlashViews.ImageViewInvertable(context2);
         this.backButton = imageViewInvertable;
-        imageViewInvertable.setContentDescription(LocaleController.getString("AccDescrGoBack", R.string.AccDescrGoBack));
+        imageViewInvertable.setContentDescription(LocaleController.getString(R.string.AccDescrGoBack));
         FlashViews.ImageViewInvertable imageViewInvertable2 = this.backButton;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageViewInvertable2.setScaleType(scaleType);
@@ -2941,7 +2941,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                     }, indexOf, indexOf2, 33);
                 }
             }
-            Bulletin createSimpleBulletin = BulletinFactory.of(StoryRecorder.this.captionContainer, this.resourcesProvider).createSimpleBulletin(R.raw.caption_limit, LocaleController.getString("CaptionPremiumTitle"), replaceTags);
+            Bulletin createSimpleBulletin = BulletinFactory.of(StoryRecorder.this.captionContainer, this.resourcesProvider).createSimpleBulletin(R.raw.caption_limit, LocaleController.getString(R.string.CaptionPremiumTitle), replaceTags);
             createSimpleBulletin.tag = 2;
             createSimpleBulletin.setDuration(5000);
             createSimpleBulletin.show(false);
@@ -3435,7 +3435,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             if (text instanceof Spannable) {
                 Spannable spannable = (Spannable) text;
                 if (((TextStyleSpan[]) spannable.getSpans(0, text.length(), TextStyleSpan.class)).length > 0 || ((URLSpan[]) spannable.getSpans(0, text.length(), URLSpan.class)).length > 0) {
-                    BulletinFactory.of(this.windowView, this.resourcesProvider).createSimpleBulletin(R.raw.voip_invite, premiumText(LocaleController.getString("StoryPremiumFormatting", R.string.StoryPremiumFormatting))).show(true);
+                    BulletinFactory.of(this.windowView, this.resourcesProvider).createSimpleBulletin(R.raw.voip_invite, premiumText(LocaleController.getString(R.string.StoryPremiumFormatting))).show(true);
                     CaptionStory captionStory3 = this.captionEdit;
                     int i3 = -this.shiftDp;
                     this.shiftDp = i3;
@@ -3885,13 +3885,13 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         }
         if (c == 0) {
             i = R.drawable.media_photo_flash_on2;
-            this.flashButton.setContentDescription(LocaleController.getString("AccDescrCameraFlashOn", R.string.AccDescrCameraFlashOn));
+            this.flashButton.setContentDescription(LocaleController.getString(R.string.AccDescrCameraFlashOn));
         } else if (c == 1) {
             i = R.drawable.media_photo_flash_auto2;
-            this.flashButton.setContentDescription(LocaleController.getString("AccDescrCameraFlashAuto", R.string.AccDescrCameraFlashAuto));
+            this.flashButton.setContentDescription(LocaleController.getString(R.string.AccDescrCameraFlashAuto));
         } else {
             i = R.drawable.media_photo_flash_off2;
-            this.flashButton.setContentDescription(LocaleController.getString("AccDescrCameraFlashOff", R.string.AccDescrCameraFlashOff));
+            this.flashButton.setContentDescription(LocaleController.getString(R.string.AccDescrCameraFlashOff));
         }
         ToggleButton2 toggleButton2 = this.flashButton;
         this.flashButtonResId = i;
@@ -4095,18 +4095,8 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         }
 
         public void lambda$startRecording$6(Runnable runnable, boolean z) {
-            int i;
-            String str;
             runnable.run();
-            HintTextView hintTextView = StoryRecorder.this.hintTextView;
-            if (z) {
-                i = R.string.StoryHintSwipeToZoom;
-                str = "StoryHintSwipeToZoom";
-            } else {
-                i = R.string.StoryHintPinchToZoom;
-                str = "StoryHintPinchToZoom";
-            }
-            hintTextView.setText(LocaleController.getString(str, i), false);
+            StoryRecorder.this.hintTextView.setText(LocaleController.getString(z ? R.string.StoryHintSwipeToZoom : R.string.StoryHintPinchToZoom), false);
             StoryRecorder.this.animateRecording(true, true);
             StoryRecorder.this.setAwakeLock(true);
             StoryRecorder.this.videoTimerView.setRecording(true, true);
@@ -4115,7 +4105,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
 
         @Override
         public void onVideoRecordLocked() {
-            StoryRecorder.this.hintTextView.setText(LocaleController.getString("StoryHintPinchToZoom", R.string.StoryHintPinchToZoom), true);
+            StoryRecorder.this.hintTextView.setText(LocaleController.getString(R.string.StoryHintPinchToZoom), true);
         }
 
         @Override
@@ -5369,7 +5359,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
     }
 
     public void lambda$onNavigateStart$52() {
-        BulletinFactory.of(this.windowView, this.resourcesProvider).createSimpleBulletin(R.raw.voip_invite, premiumText(LocaleController.getString("StoryPremiumFormatting", R.string.StoryPremiumFormatting))).show(true);
+        BulletinFactory.of(this.windowView, this.resourcesProvider).createSimpleBulletin(R.raw.voip_invite, premiumText(LocaleController.getString(R.string.StoryPremiumFormatting))).show(true);
     }
 
     public void lambda$onNavigateStart$53(FilterGLThread filterGLThread) {
@@ -6615,11 +6605,11 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
 
     private void showDismissEntry() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), this.resourcesProvider);
-        builder.setTitle(LocaleController.getString("DiscardChanges", R.string.DiscardChanges));
-        builder.setMessage(LocaleController.getString("PhotoEditorDiscardAlert", R.string.PhotoEditorDiscardAlert));
+        builder.setTitle(LocaleController.getString(R.string.DiscardChanges));
+        builder.setMessage(LocaleController.getString(R.string.PhotoEditorDiscardAlert));
         StoryEntry storyEntry = this.outputEntry;
         if (storyEntry != null && !storyEntry.isEdit) {
-            builder.setNeutralButton(LocaleController.getString(storyEntry.isDraft ? "StoryKeepDraft" : "StorySaveDraft"), new DialogInterface.OnClickListener() {
+            builder.setNeutralButton(LocaleController.getString(storyEntry.isDraft ? R.string.StoryKeepDraft : R.string.StorySaveDraft), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
                     StoryRecorder.this.lambda$showDismissEntry$64(dialogInterface, i);
@@ -6627,13 +6617,13 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             });
         }
         StoryEntry storyEntry2 = this.outputEntry;
-        builder.setPositiveButton((storyEntry2 == null || !storyEntry2.isDraft || storyEntry2.isEdit) ? LocaleController.getString("Discard", R.string.Discard) : LocaleController.getString("StoryDeleteDraft"), new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(LocaleController.getString((storyEntry2 == null || !storyEntry2.isDraft || storyEntry2.isEdit) ? R.string.Discard : R.string.StoryDeleteDraft), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
                 StoryRecorder.this.lambda$showDismissEntry$65(dialogInterface, i);
             }
         });
-        builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
+        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
         AlertDialog create = builder.create();
         create.show();
         View button = create.getButton(-1);
@@ -6741,12 +6731,12 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                         this.activity.requestPermissions(new String[]{"android.permission.CAMERA"}, 111);
                         this.requestedCameraPermission = true;
                     } else {
-                        new AlertDialog.Builder(getContext(), this.resourcesProvider).setTopAnimation(R.raw.permission_request_camera, 72, false, Theme.getColor(Theme.key_dialogTopBackground)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString("PermissionNoCameraWithHint", R.string.PermissionNoCameraWithHint))).setPositiveButton(LocaleController.getString("PermissionOpenSettings", R.string.PermissionOpenSettings), new DialogInterface.OnClickListener() {
+                        new AlertDialog.Builder(getContext(), this.resourcesProvider).setTopAnimation(R.raw.permission_request_camera, 72, false, Theme.getColor(Theme.key_dialogTopBackground)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PermissionNoCameraWithHint))).setPositiveButton(LocaleController.getString(R.string.PermissionOpenSettings), new DialogInterface.OnClickListener() {
                             @Override
                             public final void onClick(DialogInterface dialogInterface, int i) {
                                 StoryRecorder.this.lambda$requestCameraPermission$68(dialogInterface, i);
                             }
-                        }).setNegativeButton(LocaleController.getString("ContactsPermissionAlertNotNow", R.string.ContactsPermissionAlertNotNow), null).create().show();
+                        }).setNegativeButton(LocaleController.getString(R.string.ContactsPermissionAlertNotNow), null).create().show();
                         return;
                     }
                 }
@@ -6887,12 +6877,12 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                 lambda$animateGalleryListView$48(true);
                 return;
             } else {
-                new AlertDialog.Builder(getContext(), this.resourcesProvider).setTopAnimation(R.raw.permission_request_folder, 72, false, Theme.getColor(Theme.key_dialogTopBackground)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PermissionStorageWithHint))).setPositiveButton(LocaleController.getString("PermissionOpenSettings", R.string.PermissionOpenSettings), new DialogInterface.OnClickListener() {
+                new AlertDialog.Builder(getContext(), this.resourcesProvider).setTopAnimation(R.raw.permission_request_folder, 72, false, Theme.getColor(Theme.key_dialogTopBackground)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PermissionStorageWithHint))).setPositiveButton(LocaleController.getString(R.string.PermissionOpenSettings), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i2) {
                         StoryRecorder.this.lambda$onRequestPermissionsResultInternal$70(dialogInterface, i2);
                     }
-                }).setNegativeButton(LocaleController.getString("ContactsPermissionAlertNotNow", R.string.ContactsPermissionAlertNotNow), null).create().show();
+                }).setNegativeButton(LocaleController.getString(R.string.ContactsPermissionAlertNotNow), null).create().show();
                 return;
             }
         }
@@ -6900,20 +6890,20 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             if (z) {
                 return;
             }
-            new AlertDialog.Builder(getContext(), this.resourcesProvider).setTopAnimation(R.raw.permission_request_camera, 72, false, Theme.getColor(Theme.key_dialogTopBackground)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString("PermissionNoCameraMicVideo", R.string.PermissionNoCameraMicVideo))).setPositiveButton(LocaleController.getString("PermissionOpenSettings", R.string.PermissionOpenSettings), new DialogInterface.OnClickListener() {
+            new AlertDialog.Builder(getContext(), this.resourcesProvider).setTopAnimation(R.raw.permission_request_camera, 72, false, Theme.getColor(Theme.key_dialogTopBackground)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PermissionNoCameraMicVideo))).setPositiveButton(LocaleController.getString(R.string.PermissionOpenSettings), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i2) {
                     StoryRecorder.this.lambda$onRequestPermissionsResultInternal$71(dialogInterface, i2);
                 }
-            }).setNegativeButton(LocaleController.getString("ContactsPermissionAlertNotNow", R.string.ContactsPermissionAlertNotNow), null).create().show();
+            }).setNegativeButton(LocaleController.getString(R.string.ContactsPermissionAlertNotNow), null).create().show();
         } else if (i == 115) {
             if (!z) {
-                new AlertDialog.Builder(getContext(), this.resourcesProvider).setTopAnimation(R.raw.permission_request_folder, 72, false, Theme.getColor(Theme.key_dialogTopBackground)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString("PermissionNoAudioStorageStory", R.string.PermissionNoAudioStorageStory))).setPositiveButton(LocaleController.getString("PermissionOpenSettings", R.string.PermissionOpenSettings), new DialogInterface.OnClickListener() {
+                new AlertDialog.Builder(getContext(), this.resourcesProvider).setTopAnimation(R.raw.permission_request_folder, 72, false, Theme.getColor(Theme.key_dialogTopBackground)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PermissionNoAudioStorageStory))).setPositiveButton(LocaleController.getString(R.string.PermissionOpenSettings), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i2) {
                         StoryRecorder.this.lambda$onRequestPermissionsResultInternal$72(dialogInterface, i2);
                     }
-                }).setNegativeButton(LocaleController.getString("ContactsPermissionAlertNotNow", R.string.ContactsPermissionAlertNotNow), null).create().show();
+                }).setNegativeButton(LocaleController.getString(R.string.ContactsPermissionAlertNotNow), null).create().show();
             }
             if (z && (runnable = this.audioGrantedCallback) != null) {
                 runnable.run();

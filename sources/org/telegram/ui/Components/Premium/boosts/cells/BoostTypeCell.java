@@ -61,7 +61,7 @@ public class BoostTypeCell extends BaseCell {
             } else if (i2 > 0) {
                 setSubtitle(withArrow(LocaleController.formatPluralString("Recipient", i2, new Object[0])));
             } else {
-                setSubtitle(withArrow(LocaleController.getString("BoostingSelectRecipients", R.string.BoostingSelectRecipients)));
+                setSubtitle(withArrow(LocaleController.getString(R.string.BoostingSelectRecipients)));
             }
             this.subtitleTextView.setTextColor(Theme.getColor(Theme.key_dialogTextBlue2, this.resourcesProvider));
             this.avatarDrawable.setAvatarType(6);

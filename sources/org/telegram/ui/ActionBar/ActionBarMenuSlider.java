@@ -510,7 +510,7 @@ public class ActionBarMenuSlider extends FrameLayout {
 
                 @Override
                 public CharSequence getContentDescription(View view) {
-                    return SpeedIconDrawable.formatNumber(SpeedSlider.this.getSpeed()) + "x  " + LocaleController.getString("AccDescrSpeedSlider", R.string.AccDescrSpeedSlider);
+                    return SpeedIconDrawable.formatNumber(SpeedSlider.this.getSpeed()) + "x  " + LocaleController.getString(R.string.AccDescrSpeedSlider);
                 }
             };
             this.seekBarAccessibilityDelegate = floatSeekBarAccessibilityDelegate;

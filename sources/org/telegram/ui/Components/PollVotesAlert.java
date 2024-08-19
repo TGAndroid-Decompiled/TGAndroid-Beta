@@ -285,9 +285,9 @@ public class PollVotesAlert extends BottomSheet {
                 }
             }
             if (i3 == 1) {
-                this.righTextView.setText(LocaleController.getString("PollExpand", R.string.PollExpand), z);
+                this.righTextView.setText(LocaleController.getString(R.string.PollExpand), z);
             } else {
-                this.righTextView.setText(LocaleController.getString("PollCollapse", R.string.PollCollapse), z);
+                this.righTextView.setText(LocaleController.getString(R.string.PollCollapse), z);
             }
         }
     }
@@ -800,7 +800,7 @@ public class PollVotesAlert extends BottomSheet {
         this.actionBar.setSubtitleColor(Theme.getColor(Theme.key_player_actionBarSubtitle));
         this.actionBar.setOccupyStatusBar(false);
         this.actionBar.setAlpha(0.0f);
-        this.actionBar.setTitle(LocaleController.getString("PollResults", R.string.PollResults));
+        this.actionBar.setTitle(LocaleController.getString(R.string.PollResults));
         if (this.poll.quiz) {
             this.actionBar.setSubtitle(LocaleController.formatPluralString("Answer", tLRPC$TL_messageMediaPoll.results.total_voters, new Object[0]));
         } else {

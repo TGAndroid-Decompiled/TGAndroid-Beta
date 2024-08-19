@@ -246,7 +246,7 @@ public class EndCloseLayout extends FrameLayout {
             paint2.setColor(-16777216);
             setLayerType(2, null);
             setClickable(true);
-            this.closeText = LocaleController.getString("Close", R.string.Close);
+            this.closeText = LocaleController.getString(R.string.Close);
         }
 
         @Override

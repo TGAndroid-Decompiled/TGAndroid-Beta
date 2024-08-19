@@ -11,10 +11,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
 import android.view.View;
-import com.google.gson.Gson;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.InputStream;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -33,7 +31,6 @@ import org.telegram.messenger.utils.BitmapsCache;
 import org.telegram.ui.Components.RLottieDrawable;
 
 public class RLottieDrawable extends BitmapDrawable implements Animatable, BitmapsCache.Cacheable {
-    public static Gson gson;
     public static DispatchQueue lottieCacheGenerateQueue;
     private boolean allowDrawFramesWhileCacheGenerating;
     private boolean allowVibration;
@@ -122,12 +119,6 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
     private static ThreadLocal<byte[]> readBufferLocal = new ThreadLocal<>();
     private static ThreadLocal<byte[]> bufferLocal = new ThreadLocal<>();
     private static final DispatchQueuePool loadFrameRunnableQueue = new DispatchQueuePool(4);
-
-    public class LottieMetadata {
-        float fr;
-        float ip;
-        float op;
-    }
 
     public static native long create(String str, String str2, int i, int i2, int[] iArr, boolean z, int[] iArr2, boolean z2, int i3);
 
@@ -523,35 +514,8 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
         this.timeBetweenFrames = Math.max(this.shouldLimitFps ? 33 : 16, (int) (1000.0f / iArr2[c]));
     }
 
-    private void parseLottieMetadata(File file, String str, int[] iArr) {
-        LottieMetadata lottieMetadata;
-        if (gson == null) {
-            gson = new Gson();
-        }
-        try {
-            if (file != null) {
-                FileReader fileReader = new FileReader(file.getAbsolutePath());
-                lottieMetadata = (LottieMetadata) gson.fromJson(fileReader, LottieMetadata.class);
-                try {
-                    fileReader.close();
-                } catch (Exception unused) {
-                }
-            } else {
-                lottieMetadata = (LottieMetadata) gson.fromJson(str, LottieMetadata.class);
-            }
-            iArr[0] = (int) (lottieMetadata.op - lottieMetadata.ip);
-            iArr[1] = (int) lottieMetadata.fr;
-        } catch (Exception e) {
-            FileLog.e((Throwable) e, false);
-            String absolutePath = file.getAbsolutePath();
-            int i = this.width;
-            int i2 = this.height;
-            NativePtrArgs nativePtrArgs = this.args;
-            long create = create(absolutePath, str, i, i2, iArr, false, nativePtrArgs.colorReplacement, this.shouldLimitFps, nativePtrArgs.fitzModifier);
-            if (create != 0) {
-                destroy(create);
-            }
-        }
+    private void parseLottieMetadata(java.io.File r15, java.lang.String r16, int[] r17) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.RLottieDrawable.parseLottieMetadata(java.io.File, java.lang.String, int[]):void");
     }
 
     public RLottieDrawable(int i, String str, int i2, int i3) {

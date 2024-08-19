@@ -523,7 +523,7 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
                 SearchTagsList.lambda$openRenameTagAlert$5(EditTextBoldCursor.this, i, tLRPC$Reaction, dialogInterface, i3);
             }
         });
-        r15.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), new DialogInterface.OnClickListener() {
+        r15.setNegativeButton(LocaleController.getString(R.string.Cancel), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i3) {
                 dialogInterface.dismiss();

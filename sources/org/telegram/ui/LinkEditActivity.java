@@ -212,15 +212,15 @@ public class LinkEditActivity extends BaseFragment {
 
     public void lambda$createView$10(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-        builder.setMessage(LocaleController.getString("RevokeAlert", R.string.RevokeAlert));
-        builder.setTitle(LocaleController.getString("RevokeLink", R.string.RevokeLink));
-        builder.setPositiveButton(LocaleController.getString("RevokeButton", R.string.RevokeButton), new DialogInterface.OnClickListener() {
+        builder.setMessage(LocaleController.getString(R.string.RevokeAlert));
+        builder.setTitle(LocaleController.getString(R.string.RevokeLink));
+        builder.setPositiveButton(LocaleController.getString(R.string.RevokeButton), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
                 LinkEditActivity.this.lambda$createView$9(dialogInterface, i);
             }
         });
-        builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
+        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
         showDialog(builder.create());
     }
 
@@ -318,7 +318,7 @@ public class LinkEditActivity extends BaseFragment {
         String[] strArr = new String[i5];
         for (int i6 = 0; i6 < i5; i6++) {
             if (i6 == size) {
-                strArr[i6] = LocaleController.getString("NoLimit", R.string.NoLimit);
+                strArr[i6] = LocaleController.getString(R.string.NoLimit);
             } else {
                 strArr[i6] = this.dispalyedUses.get(i6).toString();
             }
@@ -356,7 +356,7 @@ public class LinkEditActivity extends BaseFragment {
         String[] strArr = new String[i4];
         for (int i5 = 0; i5 < i4; i5++) {
             if (i5 == size) {
-                strArr[i5] = LocaleController.getString("NoLimit", R.string.NoLimit);
+                strArr[i5] = LocaleController.getString(R.string.NoLimit);
             } else if (this.dispalyedDates.get(i5).intValue() == this.defaultDates[0]) {
                 strArr[i5] = LocaleController.formatPluralString("Hours", 1, new Object[0]);
             } else if (this.dispalyedDates.get(i5).intValue() == this.defaultDates[1]) {
@@ -366,7 +366,7 @@ public class LinkEditActivity extends BaseFragment {
             } else {
                 long j2 = currentTime;
                 if (j2 < 86400) {
-                    strArr[i5] = LocaleController.getString("MessageScheduleToday", R.string.MessageScheduleToday);
+                    strArr[i5] = LocaleController.getString(R.string.MessageScheduleToday);
                 } else if (j2 < 31449600) {
                     strArr[i5] = LocaleController.getInstance().getFormatterScheduleDay().format(j * 1000);
                 } else {
@@ -386,7 +386,7 @@ public class LinkEditActivity extends BaseFragment {
                 this.dispalyedDates.add(Integer.valueOf(iArr[i]));
                 i++;
             } else {
-                this.timeChooseView.setOptions(3, LocaleController.formatPluralString("Hours", 1, new Object[0]), LocaleController.formatPluralString("Days", 1, new Object[0]), LocaleController.formatPluralString("Weeks", 1, new Object[0]), LocaleController.getString("NoLimit", R.string.NoLimit));
+                this.timeChooseView.setOptions(3, LocaleController.formatPluralString("Hours", 1, new Object[0]), LocaleController.formatPluralString("Days", 1, new Object[0]), LocaleController.formatPluralString("Weeks", 1, new Object[0]), LocaleController.getString(R.string.NoLimit));
                 return;
             }
         }
@@ -405,7 +405,7 @@ public class LinkEditActivity extends BaseFragment {
                 this.dispalyedUses.add(Integer.valueOf(iArr[i]));
                 i++;
             } else {
-                this.usesChooseView.setOptions(3, "1", "10", "100", LocaleController.getString("NoLimit", R.string.NoLimit));
+                this.usesChooseView.setOptions(3, "1", "10", "100", LocaleController.getString(R.string.NoLimit));
                 return;
             }
         }

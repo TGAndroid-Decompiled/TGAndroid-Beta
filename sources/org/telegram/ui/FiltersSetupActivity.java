@@ -179,7 +179,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             addView(this.valueTextView, LayoutHelper.createFrame(-2, -2.0f, LocaleController.isRTL ? 5 : 3, 22.0f, 35.0f, 22.0f, 0.0f));
             ProgressButton progressButton = new ProgressButton(context);
             this.addButton = progressButton;
-            progressButton.setText(LocaleController.getString("Add", R.string.Add));
+            progressButton.setText(LocaleController.getString(R.string.Add));
             this.addButton.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
             this.addButton.setProgressColor(Theme.getColor(Theme.key_featuredStickers_buttonProgress));
             this.addButton.setBackgroundRoundRect(Theme.getColor(Theme.key_featuredStickers_addButton), Theme.getColor(Theme.key_featuredStickers_addButtonPressed));
@@ -300,7 +300,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             int color = Theme.getColor(i);
             PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
             imageView.setColorFilter(new PorterDuffColorFilter(color, mode));
-            imageView.setContentDescription(LocaleController.getString("FilterReorder", R.string.FilterReorder));
+            imageView.setContentDescription(LocaleController.getString(R.string.FilterReorder));
             imageView.setClickable(true);
             addView(imageView, LayoutHelper.createFrame(48, 48.0f, (LocaleController.isRTL ? 5 : 3) | 16, 7.0f, 0.0f, 6.0f, 0.0f));
             View view = new View(context);
@@ -363,7 +363,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             imageView2.setScaleType(scaleType);
             imageView2.setBackground(Theme.createSelectorDrawable(color2));
             imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), mode));
-            imageView2.setContentDescription(LocaleController.getString("FilterShare", R.string.FilterShare));
+            imageView2.setContentDescription(LocaleController.getString(R.string.FilterShare));
             imageView2.setVisibility(8);
             imageView2.setImageResource(R.drawable.msg_link_folder);
             imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), mode));
@@ -382,7 +382,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             imageView3.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor(i2)));
             imageView3.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), mode));
             imageView3.setImageResource(R.drawable.msg_actions);
-            imageView3.setContentDescription(LocaleController.getString("AccDescrMoreOptions", R.string.AccDescrMoreOptions));
+            imageView3.setContentDescription(LocaleController.getString(R.string.AccDescrMoreOptions));
             addView(imageView3, LayoutHelper.createFrame(40, 40.0f, (LocaleController.isRTL ? 3 : 5) | 16, 6.0f, 0.0f, 6.0f, 0.0f));
         }
 
@@ -492,7 +492,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         ArrayList<MessagesController.DialogFilter> dialogFilters = getMessagesController().getDialogFilters();
         this.items.add(ItemInner.asHint());
         if (!arrayList.isEmpty() && dialogFilters.size() < 10) {
-            this.items.add(ItemInner.asHeader(LocaleController.getString("FilterRecommended", R.string.FilterRecommended)));
+            this.items.add(ItemInner.asHeader(LocaleController.getString(R.string.FilterRecommended)));
             for (int i = 0; i < arrayList.size(); i++) {
                 this.items.add(ItemInner.asSuggested(arrayList.get(i)));
             }
@@ -500,7 +500,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         }
         if (!dialogFilters.isEmpty()) {
             this.filtersSectionStart = this.items.size();
-            this.items.add(ItemInner.asHeader(LocaleController.getString("Filters", R.string.Filters)));
+            this.items.add(ItemInner.asHeader(LocaleController.getString(R.string.Filters)));
             this.filtersStartPosition = this.items.size();
             for (int i2 = 0; i2 < dialogFilters.size(); i2++) {
                 this.items.add(ItemInner.asFilter(dialogFilters.get(i2)));
@@ -514,7 +514,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             this.filtersSectionStart = -1;
         }
         if (dialogFilters.size() < getMessagesController().dialogFiltersLimitPremium) {
-            this.items.add(ItemInner.asButton(LocaleController.getString("CreateNewFilter", R.string.CreateNewFilter)));
+            this.items.add(ItemInner.asButton(LocaleController.getString(R.string.CreateNewFilter)));
         }
         this.items.add(ItemInner.asShadow(null));
         this.folderTagsPosition = this.items.size();
@@ -568,7 +568,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
     public View createView(final Context context) {
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(LocaleController.getString("Filters", R.string.Filters));
+        this.actionBar.setTitle(LocaleController.getString(R.string.Filters));
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i) {
@@ -895,13 +895,13 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             FilterCell filterCell = (FilterCell) view.getParent();
             final MessagesController.DialogFilter currentFilter = filterCell.getCurrentFilter();
             ItemOptions makeOptions = ItemOptions.makeOptions(FiltersSetupActivity.this, filterCell);
-            makeOptions.add(R.drawable.msg_edit, LocaleController.getString("FilterEditItem", R.string.FilterEditItem), new Runnable() {
+            makeOptions.add(R.drawable.msg_edit, LocaleController.getString(R.string.FilterEditItem), new Runnable() {
                 @Override
                 public final void run() {
                     FiltersSetupActivity.ListAdapter.this.lambda$onCreateViewHolder$1(currentFilter);
                 }
             });
-            makeOptions.add(R.drawable.msg_delete, (CharSequence) LocaleController.getString("FilterDeleteItem", R.string.FilterDeleteItem), true, new Runnable() {
+            makeOptions.add(R.drawable.msg_delete, (CharSequence) LocaleController.getString(R.string.FilterDeleteItem), true, new Runnable() {
                 @Override
                 public final void run() {
                     FiltersSetupActivity.ListAdapter.this.lambda$onCreateViewHolder$6(currentFilter);
@@ -934,10 +934,10 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
                 return;
             }
             AlertDialog.Builder builder = new AlertDialog.Builder(FiltersSetupActivity.this.getParentActivity());
-            builder.setTitle(LocaleController.getString("FilterDelete", R.string.FilterDelete));
-            builder.setMessage(LocaleController.getString("FilterDeleteAlert", R.string.FilterDeleteAlert));
-            builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
-            builder.setPositiveButton(LocaleController.getString("Delete", R.string.Delete), new DialogInterface.OnClickListener() {
+            builder.setTitle(LocaleController.getString(R.string.FilterDelete));
+            builder.setMessage(LocaleController.getString(R.string.FilterDeleteAlert));
+            builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
+            builder.setPositiveButton(LocaleController.getString(R.string.Delete), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
                     FiltersSetupActivity.ListAdapter.this.lambda$onCreateViewHolder$5(dialogFilter, dialogInterface, i);
@@ -1299,7 +1299,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             this.fragmentView.performHapticFeedback(3, 1);
         } catch (Exception unused) {
         }
-        BulletinFactory.of(this).createSimpleBulletin(R.raw.filter_reorder, AndroidUtilities.replaceTags(LocaleController.formatString("LimitReachedReorderFolder", R.string.LimitReachedReorderFolder, LocaleController.getString(R.string.FilterAllChats))), LocaleController.getString("PremiumMore", R.string.PremiumMore), 5000, new Runnable() {
+        BulletinFactory.of(this).createSimpleBulletin(R.raw.filter_reorder, AndroidUtilities.replaceTags(LocaleController.formatString("LimitReachedReorderFolder", R.string.LimitReachedReorderFolder, LocaleController.getString(R.string.FilterAllChats))), LocaleController.getString(R.string.PremiumMore), 5000, new Runnable() {
             @Override
             public final void run() {
                 FiltersSetupActivity.this.lambda$onDefaultTabMoved$7();

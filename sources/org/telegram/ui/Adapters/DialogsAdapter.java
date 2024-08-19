@@ -564,12 +564,12 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                 break;
             case 2:
                 flickerLoadingView = new HeaderCell(this.mContext);
-                flickerLoadingView.setText(LocaleController.getString("RecentlyViewed", R.string.RecentlyViewed));
+                flickerLoadingView.setText(LocaleController.getString(R.string.RecentlyViewed));
                 TextView textView = new TextView(this.mContext);
                 textView.setTextSize(1, 15.0f);
                 textView.setTypeface(AndroidUtilities.bold());
                 textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueHeader));
-                textView.setText(LocaleController.getString("RecentlyViewedHide", R.string.RecentlyViewedHide));
+                textView.setText(LocaleController.getString(R.string.RecentlyViewedHide));
                 textView.setGravity((LocaleController.isRTL ? 3 : 5) | 16);
                 flickerLoadingView.addView(textView, LayoutHelper.createFrame(-1, -1.0f, (LocaleController.isRTL ? 3 : 5) | 48, 17.0f, 15.0f, 17.0f, 0.0f));
                 textView.setOnClickListener(new View.OnClickListener() {
@@ -769,20 +769,20 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                         if (i3 != 0) {
                             lowerCase = LocaleController.formatPluralStringComma("Subscribers", i3);
                         } else if (!ChatObject.isPublic(tLRPC$Chat)) {
-                            lowerCase = LocaleController.getString("ChannelPrivate", R.string.ChannelPrivate).toLowerCase();
+                            lowerCase = LocaleController.getString(R.string.ChannelPrivate).toLowerCase();
                         } else {
-                            lowerCase = LocaleController.getString("ChannelPublic", R.string.ChannelPublic).toLowerCase();
+                            lowerCase = LocaleController.getString(R.string.ChannelPublic).toLowerCase();
                         }
                     } else {
                         int i4 = tLRPC$Chat.participants_count;
                         if (i4 != 0) {
                             lowerCase = LocaleController.formatPluralStringComma("Members", i4);
                         } else if (tLRPC$Chat.has_geo) {
-                            lowerCase = LocaleController.getString("MegaLocation", R.string.MegaLocation);
+                            lowerCase = LocaleController.getString(R.string.MegaLocation);
                         } else if (!ChatObject.isPublic(tLRPC$Chat)) {
-                            lowerCase = LocaleController.getString("MegaPrivate", R.string.MegaPrivate).toLowerCase();
+                            lowerCase = LocaleController.getString(R.string.MegaPrivate).toLowerCase();
                         } else {
-                            lowerCase = LocaleController.getString("MegaPublic", R.string.MegaPublic).toLowerCase();
+                            lowerCase = LocaleController.getString(R.string.MegaPublic).toLowerCase();
                         }
                     }
                     str2 = lowerCase;
@@ -795,7 +795,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                         String userName = UserObject.getUserName(user);
                         if (!UserObject.isReplyUser(user)) {
                             if (user.bot) {
-                                str4 = LocaleController.getString("Bot", R.string.Bot);
+                                str4 = LocaleController.getString(R.string.Bot);
                             } else {
                                 str4 = LocaleController.formatUserStatus(this.currentAccount, user);
                             }
@@ -878,13 +878,13 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
             if (i7 != 11 && i7 != 12 && i7 != 13) {
                 headerCell.setText(LocaleController.getString((this.dialogsCount == 0 && this.forceUpdatingContacts) ? R.string.ConnectingYourContacts : R.string.YourContacts));
             } else if (i == 0) {
-                headerCell.setText(LocaleController.getString("ImportHeader", R.string.ImportHeader));
+                headerCell.setText(LocaleController.getString(R.string.ImportHeader));
             } else {
-                headerCell.setText(LocaleController.getString("ImportHeaderContacts", R.string.ImportHeaderContacts));
+                headerCell.setText(LocaleController.getString(R.string.ImportHeaderContacts));
             }
         } else if (itemViewType == 11) {
             TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
-            textInfoPrivacyCell.setText(LocaleController.getString("TapOnThePencil", R.string.TapOnThePencil));
+            textInfoPrivacyCell.setText(LocaleController.getString(R.string.TapOnThePencil));
             if (this.arrowDrawable == null) {
                 Drawable drawable = this.mContext.getResources().getDrawable(R.drawable.arrow_newchat);
                 this.arrowDrawable = drawable;
@@ -904,13 +904,13 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                     headerCell2.setBackgroundColor(Theme.getColor(Theme.key_graySection));
                     int i8 = ((DialogsActivity.DialogsHeader) getItem(i)).headerType;
                     if (i8 == 0) {
-                        headerCell2.setText(LocaleController.getString("MyChannels", R.string.MyChannels));
+                        headerCell2.setText(LocaleController.getString(R.string.MyChannels));
                         break;
                     } else if (i8 == 1) {
-                        headerCell2.setText(LocaleController.getString("MyGroups", R.string.MyGroups));
+                        headerCell2.setText(LocaleController.getString(R.string.MyGroups));
                         break;
                     } else if (i8 == 2) {
-                        headerCell2.setText(LocaleController.getString("FilterGroups", R.string.FilterGroups));
+                        headerCell2.setText(LocaleController.getString(R.string.FilterGroups));
                         break;
                     }
                     break;
@@ -941,12 +941,12 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
             TLRPC$RequestPeerType tLRPC$RequestPeerType = this.requestPeerType;
             if (tLRPC$RequestPeerType != null) {
                 if (tLRPC$RequestPeerType instanceof TLRPC$TL_requestPeerTypeBroadcast) {
-                    textCell.setTextAndIcon((CharSequence) LocaleController.getString("CreateChannelForThis", R.string.CreateChannelForThis), R.drawable.msg_channel_create, true);
+                    textCell.setTextAndIcon((CharSequence) LocaleController.getString(R.string.CreateChannelForThis), R.drawable.msg_channel_create, true);
                 } else {
-                    textCell.setTextAndIcon((CharSequence) LocaleController.getString("CreateGroupForThis", R.string.CreateGroupForThis), R.drawable.msg_groups_create, true);
+                    textCell.setTextAndIcon((CharSequence) LocaleController.getString(R.string.CreateGroupForThis), R.drawable.msg_groups_create, true);
                 }
             } else {
-                textCell.setTextAndIcon(LocaleController.getString("CreateGroupForImport", R.string.CreateGroupForImport), R.drawable.msg_groups_create, this.dialogsCount != 0);
+                textCell.setTextAndIcon(LocaleController.getString(R.string.CreateGroupForImport), R.drawable.msg_groups_create, this.dialogsCount != 0);
             }
             textCell.setIsInDialogs();
             textCell.setOffsetFromImage(75);

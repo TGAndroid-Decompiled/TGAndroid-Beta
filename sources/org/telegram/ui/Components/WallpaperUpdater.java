@@ -50,12 +50,12 @@ public class WallpaperUpdater {
         CharSequence[] charSequenceArr;
         int[] iArr;
         BottomSheet.Builder builder = new BottomSheet.Builder(this.parentActivity);
-        builder.setTitle(LocaleController.getString("ChoosePhoto", R.string.ChoosePhoto), true);
+        builder.setTitle(LocaleController.getString(R.string.ChoosePhoto), true);
         if (z) {
-            charSequenceArr = new CharSequence[]{LocaleController.getString("ChooseTakePhoto", R.string.ChooseTakePhoto), LocaleController.getString("SelectFromGallery", R.string.SelectFromGallery), LocaleController.getString("SelectColor", R.string.SelectColor), LocaleController.getString("Default", R.string.Default)};
+            charSequenceArr = new CharSequence[]{LocaleController.getString(R.string.ChooseTakePhoto), LocaleController.getString(R.string.SelectFromGallery), LocaleController.getString(R.string.SelectColor), LocaleController.getString(R.string.Default)};
             iArr = null;
         } else {
-            charSequenceArr = new CharSequence[]{LocaleController.getString("ChooseTakePhoto", R.string.ChooseTakePhoto), LocaleController.getString("SelectFromGallery", R.string.SelectFromGallery)};
+            charSequenceArr = new CharSequence[]{LocaleController.getString(R.string.ChooseTakePhoto), LocaleController.getString(R.string.SelectFromGallery)};
             iArr = new int[]{R.drawable.msg_camera, R.drawable.msg_photos};
         }
         builder.setItems(charSequenceArr, iArr, new DialogInterface.OnClickListener() {

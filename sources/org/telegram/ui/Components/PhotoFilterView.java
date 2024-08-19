@@ -953,7 +953,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
             }
             View childAt = this.recyclerListView.getChildAt(i);
             if ((childAt instanceof PhotoEditToolCell) && this.recyclerListView.getChildAdapterPosition(childAt) == this.enhanceTool) {
-                ((PhotoEditToolCell) childAt).setIconAndTextAndValue(LocaleController.getString("Enhance", R.string.Enhance), this.enhanceValue, 0, 100);
+                ((PhotoEditToolCell) childAt).setIconAndTextAndValue(LocaleController.getString(R.string.Enhance), this.enhanceValue, 0, 100);
                 break;
             }
             i++;
@@ -1066,11 +1066,11 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
                 PhotoEditRadioCell photoEditRadioCell = (PhotoEditRadioCell) viewHolder.itemView;
                 photoEditRadioCell.setTag(Integer.valueOf(i));
                 if (i == PhotoFilterView.this.tintShadowsTool) {
-                    photoEditRadioCell.setIconAndTextAndValue(LocaleController.getString("TintShadows", R.string.TintShadows), 0, PhotoFilterView.this.tintShadowsColor);
+                    photoEditRadioCell.setIconAndTextAndValue(LocaleController.getString(R.string.TintShadows), 0, PhotoFilterView.this.tintShadowsColor);
                     return;
                 } else {
                     if (i == PhotoFilterView.this.tintHighlightsTool) {
-                        photoEditRadioCell.setIconAndTextAndValue(LocaleController.getString("TintHighlights", R.string.TintHighlights), 0, PhotoFilterView.this.tintHighlightsColor);
+                        photoEditRadioCell.setIconAndTextAndValue(LocaleController.getString(R.string.TintHighlights), 0, PhotoFilterView.this.tintHighlightsColor);
                         return;
                     }
                     return;
@@ -1079,47 +1079,47 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
             PhotoEditToolCell photoEditToolCell = (PhotoEditToolCell) viewHolder.itemView;
             photoEditToolCell.setTag(Integer.valueOf(i));
             if (i == PhotoFilterView.this.enhanceTool) {
-                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString("Enhance", R.string.Enhance), PhotoFilterView.this.enhanceValue, 0, 100);
+                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString(R.string.Enhance), PhotoFilterView.this.enhanceValue, 0, 100);
                 return;
             }
             if (i == PhotoFilterView.this.highlightsTool) {
-                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString("Highlights", R.string.Highlights), PhotoFilterView.this.highlightsValue, -100, 100);
+                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString(R.string.Highlights), PhotoFilterView.this.highlightsValue, -100, 100);
                 return;
             }
             if (i == PhotoFilterView.this.contrastTool) {
-                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString("Contrast", R.string.Contrast), PhotoFilterView.this.contrastValue, -100, 100);
+                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString(R.string.Contrast), PhotoFilterView.this.contrastValue, -100, 100);
                 return;
             }
             if (i == PhotoFilterView.this.exposureTool) {
-                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString("Exposure", R.string.Exposure), PhotoFilterView.this.exposureValue, -100, 100);
+                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString(R.string.Exposure), PhotoFilterView.this.exposureValue, -100, 100);
                 return;
             }
             if (i == PhotoFilterView.this.warmthTool) {
-                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString("Warmth", R.string.Warmth), PhotoFilterView.this.warmthValue, -100, 100);
+                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString(R.string.Warmth), PhotoFilterView.this.warmthValue, -100, 100);
                 return;
             }
             if (i == PhotoFilterView.this.saturationTool) {
-                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString("Saturation", R.string.Saturation), PhotoFilterView.this.saturationValue, -100, 100);
+                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString(R.string.Saturation), PhotoFilterView.this.saturationValue, -100, 100);
                 return;
             }
             if (i == PhotoFilterView.this.vignetteTool) {
-                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString("Vignette", R.string.Vignette), PhotoFilterView.this.vignetteValue, 0, 100);
+                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString(R.string.Vignette), PhotoFilterView.this.vignetteValue, 0, 100);
                 return;
             }
             if (i == PhotoFilterView.this.shadowsTool) {
-                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString("Shadows", R.string.Shadows), PhotoFilterView.this.shadowsValue, -100, 100);
+                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString(R.string.Shadows), PhotoFilterView.this.shadowsValue, -100, 100);
                 return;
             }
             if (i == PhotoFilterView.this.grainTool) {
-                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString("Grain", R.string.Grain), PhotoFilterView.this.grainValue, 0, 100);
+                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString(R.string.Grain), PhotoFilterView.this.grainValue, 0, 100);
                 return;
             }
             if (i == PhotoFilterView.this.sharpenTool) {
-                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString("Sharpen", R.string.Sharpen), PhotoFilterView.this.sharpenValue, 0, 100);
+                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString(R.string.Sharpen), PhotoFilterView.this.sharpenValue, 0, 100);
             } else if (i == PhotoFilterView.this.fadeTool) {
-                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString("Fade", R.string.Fade), PhotoFilterView.this.fadeValue, 0, 100);
+                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString(R.string.Fade), PhotoFilterView.this.fadeValue, 0, 100);
             } else if (i == PhotoFilterView.this.softenSkinTool) {
-                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString("SoftenSkin", R.string.SoftenSkin), PhotoFilterView.this.softenSkinValue, 0, 100);
+                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString(R.string.SoftenSkin), PhotoFilterView.this.softenSkinValue, 0, 100);
             }
         }
 
@@ -1182,7 +1182,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
             this.bottomTextPaint.setShadowLayer(AndroidUtilities.dp(12.0f), 0.0f, 0.0f, 805306368);
             this.bottomTextPaint.setTextSize(AndroidUtilities.dp(58.0f));
             if (this.topText == null) {
-                StaticLayout staticLayout = new StaticLayout(LocaleController.getString("Enhance", R.string.Enhance), this.topTextPaint, getMeasuredWidth(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                StaticLayout staticLayout = new StaticLayout(LocaleController.getString(R.string.Enhance), this.topTextPaint, getMeasuredWidth(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
                 this.topText = staticLayout;
                 this.topTextWidth = staticLayout.getLineCount() > 0 ? this.topText.getLineWidth(0) : 0.0f;
                 this.topTextLeft = this.topText.getLineCount() > 0 ? this.topText.getLineLeft(0) : 0.0f;

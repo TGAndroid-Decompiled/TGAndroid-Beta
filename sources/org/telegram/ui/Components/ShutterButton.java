@@ -219,10 +219,10 @@ public class ShutterButton extends View {
         if (Build.VERSION.SDK_INT >= 21) {
             accessibilityAction = AccessibilityNodeInfo.AccessibilityAction.ACTION_CLICK;
             id = accessibilityAction.getId();
-            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(id, LocaleController.getString("AccActionTakePicture", R.string.AccActionTakePicture)));
+            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(id, LocaleController.getString(R.string.AccActionTakePicture)));
             accessibilityAction2 = AccessibilityNodeInfo.AccessibilityAction.ACTION_LONG_CLICK;
             id2 = accessibilityAction2.getId();
-            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(id2, LocaleController.getString("AccActionRecordVideo", R.string.AccActionRecordVideo)));
+            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(id2, LocaleController.getString(R.string.AccActionRecordVideo)));
         }
     }
 }

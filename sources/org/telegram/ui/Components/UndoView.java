@@ -218,7 +218,7 @@ public class UndoView extends FrameLayout {
         textView2.setTextSize(1, 14.0f);
         this.undoTextView.setTypeface(AndroidUtilities.bold());
         this.undoTextView.setTextColor(getThemedColor(i2));
-        this.undoTextView.setText(LocaleController.getString("Undo", R.string.Undo));
+        this.undoTextView.setText(LocaleController.getString(R.string.Undo));
         this.undoButton.addView(this.undoTextView, LayoutHelper.createLinear(-2, -2, 19, 6, 4, 8, 4));
         this.rect = new RectF(AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), AndroidUtilities.dp(33.0f), AndroidUtilities.dp(33.0f));
         Paint paint = new Paint(1);
@@ -366,7 +366,7 @@ public class UndoView extends FrameLayout {
         showWithAction(arrayList, i, obj, obj2, runnable, runnable2);
     }
 
-    public void showWithAction(java.util.ArrayList<java.lang.Long> r28, int r29, java.lang.Object r30, java.lang.Object r31, java.lang.Runnable r32, java.lang.Runnable r33) {
+    public void showWithAction(java.util.ArrayList<java.lang.Long> r25, int r26, java.lang.Object r27, java.lang.Object r28, java.lang.Runnable r29, java.lang.Runnable r30) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.UndoView.showWithAction(java.util.ArrayList, int, java.lang.Object, java.lang.Object, java.lang.Runnable, java.lang.Runnable):void");
     }
 

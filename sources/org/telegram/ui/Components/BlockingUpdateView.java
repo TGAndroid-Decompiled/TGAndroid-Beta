@@ -93,7 +93,7 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
         textView.setTextSize(1, 20.0f);
         textView.setGravity(49);
         textView.setTypeface(AndroidUtilities.bold());
-        textView.setText(LocaleController.getString("UpdateTelegram", R.string.UpdateTelegram));
+        textView.setText(LocaleController.getString(R.string.UpdateTelegram));
         frameLayout2.addView(textView, LayoutHelper.createFrame(-2, -2, 49));
         TextView textView2 = new TextView(context);
         this.textView = textView2;
@@ -329,9 +329,9 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
         MessageObject.addEntitiesToText(spannableStringBuilder, tLRPC$TL_help_appUpdate.entities, false, false, false, false);
         this.textView.setText(spannableStringBuilder);
         if (tLRPC$TL_help_appUpdate.document instanceof TLRPC$TL_document) {
-            this.acceptTextView.setText(LocaleController.getString("Update", R.string.Update) + String.format(Locale.US, " (%1$s)", AndroidUtilities.formatFileSize(tLRPC$TL_help_appUpdate.document.size)));
+            this.acceptTextView.setText(LocaleController.getString(R.string.Update) + String.format(Locale.US, " (%1$s)", AndroidUtilities.formatFileSize(tLRPC$TL_help_appUpdate.document.size)));
         } else {
-            this.acceptTextView.setText(LocaleController.getString("Update", R.string.Update));
+            this.acceptTextView.setText(LocaleController.getString(R.string.Update));
         }
         NotificationCenter.getInstance(this.accountNum).addObserver(this, NotificationCenter.fileLoaded);
         NotificationCenter.getInstance(this.accountNum).addObserver(this, NotificationCenter.fileLoadFailed);

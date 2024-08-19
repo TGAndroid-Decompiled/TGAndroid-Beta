@@ -56,13 +56,13 @@ public class ChatBigEmptyView extends LinearLayout {
         }
         TextView textView3 = new TextView(context);
         if (i == 0) {
-            textView3.setText(LocaleController.getString("EncryptedDescriptionTitle", R.string.EncryptedDescriptionTitle));
+            textView3.setText(LocaleController.getString(R.string.EncryptedDescriptionTitle));
             textView3.setTextSize(1, 15.0f);
         } else if (i == 1) {
-            textView3.setText(LocaleController.getString("GroupEmptyTitle2", R.string.GroupEmptyTitle2));
+            textView3.setText(LocaleController.getString(R.string.GroupEmptyTitle2));
             textView3.setTextSize(1, 15.0f);
         } else {
-            textView3.setText(LocaleController.getString("ChatYourSelfTitle", R.string.ChatYourSelfTitle));
+            textView3.setText(LocaleController.getString(R.string.ChatYourSelfTitle));
             textView3.setTextSize(1, 16.0f);
             textView3.setTypeface(AndroidUtilities.bold());
             textView3.setGravity(1);
@@ -105,33 +105,33 @@ public class ChatBigEmptyView extends LinearLayout {
                     if (i5 != 2) {
                         if (i5 == 3) {
                             if (i == 0) {
-                                textView4.setText(LocaleController.getString("EncryptedDescription4", R.string.EncryptedDescription4));
+                                textView4.setText(LocaleController.getString(R.string.EncryptedDescription4));
                             } else if (i == 2) {
-                                textView4.setText(LocaleController.getString("ChatYourSelfDescription4", R.string.ChatYourSelfDescription4));
+                                textView4.setText(LocaleController.getString(R.string.ChatYourSelfDescription4));
                             } else {
-                                textView4.setText(LocaleController.getString("GroupDescription4", R.string.GroupDescription4));
+                                textView4.setText(LocaleController.getString(R.string.GroupDescription4));
                             }
                         }
                     } else if (i == 0) {
-                        textView4.setText(LocaleController.getString("EncryptedDescription3", R.string.EncryptedDescription3));
+                        textView4.setText(LocaleController.getString(R.string.EncryptedDescription3));
                     } else if (i == 2) {
-                        textView4.setText(LocaleController.getString("ChatYourSelfDescription3", R.string.ChatYourSelfDescription3));
+                        textView4.setText(LocaleController.getString(R.string.ChatYourSelfDescription3));
                     } else {
-                        textView4.setText(LocaleController.getString("GroupDescription3", R.string.GroupDescription3));
+                        textView4.setText(LocaleController.getString(R.string.GroupDescription3));
                     }
                 } else if (i == 0) {
-                    textView4.setText(LocaleController.getString("EncryptedDescription2", R.string.EncryptedDescription2));
+                    textView4.setText(LocaleController.getString(R.string.EncryptedDescription2));
                 } else if (i == 2) {
-                    textView4.setText(LocaleController.getString("ChatYourSelfDescription2", R.string.ChatYourSelfDescription2));
+                    textView4.setText(LocaleController.getString(R.string.ChatYourSelfDescription2));
                 } else {
-                    textView4.setText(LocaleController.getString("GroupDescription2", R.string.GroupDescription2));
+                    textView4.setText(LocaleController.getString(R.string.GroupDescription2));
                 }
             } else if (i == 0) {
-                textView4.setText(LocaleController.getString("EncryptedDescription1", R.string.EncryptedDescription1));
+                textView4.setText(LocaleController.getString(R.string.EncryptedDescription1));
             } else if (i == 2) {
-                textView4.setText(LocaleController.getString("ChatYourSelfDescription1", R.string.ChatYourSelfDescription1));
+                textView4.setText(LocaleController.getString(R.string.ChatYourSelfDescription1));
             } else {
-                textView4.setText(LocaleController.getString("GroupDescription1", R.string.GroupDescription1));
+                textView4.setText(LocaleController.getString(R.string.GroupDescription1));
             }
             if (LocaleController.isRTL) {
                 linearLayout.addView(textView4, LayoutHelper.createLinear(-2, -2));

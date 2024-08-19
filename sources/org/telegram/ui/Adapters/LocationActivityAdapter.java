@@ -197,7 +197,7 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
                 } else if (!TextUtils.isEmpty(this.addressName)) {
                     string = this.addressName;
                 } else if (this.fetchingLocation) {
-                    string = LocaleController.getString("Loading", R.string.Loading);
+                    string = LocaleController.getString(R.string.Loading);
                 } else {
                     string = LocaleController.getString(R.string.UnknownLocation);
                 }
@@ -214,7 +214,7 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
                 } else {
                     Location location = this.customLocation;
                     if ((location == null && this.gpsLocation == null) || this.fetchingLocation) {
-                        str = LocaleController.getString("Loading", R.string.Loading);
+                        str = LocaleController.getString(R.string.Loading);
                     } else if (location != null) {
                         str = String.format(Locale.US, "(%f,%f)", Double.valueOf(location.getLatitude()), Double.valueOf(this.customLocation.getLongitude()));
                     } else {
@@ -222,14 +222,14 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
                         if (location2 != null) {
                             str = String.format(Locale.US, "(%f,%f)", Double.valueOf(location2.getLatitude()), Double.valueOf(this.gpsLocation.getLongitude()));
                         } else if (!this.myLocationDenied) {
-                            str = LocaleController.getString("Loading", R.string.Loading);
+                            str = LocaleController.getString(R.string.Loading);
                         }
                     }
                 }
                 if (this.locationType == 4) {
-                    this.sendLocationCell.setText(LocaleController.getString("ChatSetThisLocation", R.string.ChatSetThisLocation), str);
+                    this.sendLocationCell.setText(LocaleController.getString(R.string.ChatSetThisLocation), str);
                 } else {
-                    this.sendLocationCell.setText(LocaleController.getString("SendSelectedLocation", R.string.SendSelectedLocation), str);
+                    this.sendLocationCell.setText(LocaleController.getString(R.string.SendSelectedLocation), str);
                 }
                 this.sendLocationCell.setHasLocation(true);
                 return;
@@ -238,7 +238,7 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
                 sendLocationCell.setText(LocaleController.getString(R.string.SendLocation), LocaleController.formatString(R.string.AccurateTo, LocaleController.formatPluralString("Meters", (int) this.gpsLocation.getAccuracy(), new Object[0])));
                 this.sendLocationCell.setHasLocation(true);
             } else {
-                sendLocationCell.setText(LocaleController.getString("SendLocation", R.string.SendLocation), this.myLocationDenied ? "" : LocaleController.getString("Loading", R.string.Loading));
+                sendLocationCell.setText(LocaleController.getString(R.string.SendLocation), this.myLocationDenied ? "" : LocaleController.getString(R.string.Loading));
                 this.sendLocationCell.setHasLocation(!this.myLocationDenied);
             }
         }
@@ -453,10 +453,10 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
             case 2:
                 HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
                 if (this.currentMessageObject != null) {
-                    headerCell.setText(LocaleController.getString("LiveLocations", R.string.LiveLocations));
+                    headerCell.setText(LocaleController.getString(R.string.LiveLocations));
                     return;
                 } else {
-                    headerCell.setText(LocaleController.getString("NearbyVenue", R.string.NearbyVenue));
+                    headerCell.setText(LocaleController.getString(R.string.NearbyVenue));
                     return;
                 }
             case 3:

@@ -202,7 +202,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
             TLRPC$User tLRPC$User = this.currentUser;
             if (tLRPC$User != null) {
                 if (TextUtils.isEmpty(tLRPC$User.phone)) {
-                    this.statusTextView.setText(LocaleController.getString("NumberUnknown", R.string.NumberUnknown));
+                    this.statusTextView.setText(LocaleController.getString(R.string.NumberUnknown));
                 } else if (this.formattedPhoneNumberUser != this.currentUser && (charSequence2 = this.formattedPhoneNumber) != null) {
                     this.statusTextView.setText(charSequence2);
                 } else {
@@ -309,11 +309,11 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
             public void onTextChange(String str) {
                 if (str.length() != 0) {
                     if (ChatAttachAlertContactsLayout.this.emptyView != null) {
-                        ChatAttachAlertContactsLayout.this.emptyView.setText(LocaleController.getString("NoResult", R.string.NoResult));
+                        ChatAttachAlertContactsLayout.this.emptyView.setText(LocaleController.getString(R.string.NoResult));
                     }
                 } else if (ChatAttachAlertContactsLayout.this.listView.getAdapter() != ChatAttachAlertContactsLayout.this.listAdapter) {
                     int currentTop = ChatAttachAlertContactsLayout.this.getCurrentTop();
-                    ChatAttachAlertContactsLayout.this.emptyView.setText(LocaleController.getString("NoContacts", R.string.NoContacts));
+                    ChatAttachAlertContactsLayout.this.emptyView.setText(LocaleController.getString(R.string.NoContacts));
                     ChatAttachAlertContactsLayout.this.emptyView.showTextView();
                     ChatAttachAlertContactsLayout.this.listView.setAdapter(ChatAttachAlertContactsLayout.this.listAdapter);
                     ChatAttachAlertContactsLayout.this.listAdapter.notifyDataSetChanged();
@@ -346,12 +346,12 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
             }
         };
         this.searchField = searchField;
-        searchField.setHint(LocaleController.getString("SearchFriends", R.string.SearchFriends));
+        searchField.setHint(LocaleController.getString(R.string.SearchFriends));
         this.frameLayout.addView(this.searchField, LayoutHelper.createFrame(-1, -1, 51));
         EmptyTextProgressView emptyTextProgressView = new EmptyTextProgressView(context, null, resourcesProvider);
         this.emptyView = emptyTextProgressView;
         emptyTextProgressView.showTextView();
-        this.emptyView.setText(LocaleController.getString("NoContacts", R.string.NoContacts));
+        this.emptyView.setText(LocaleController.getString(R.string.NoContacts));
         addView(this.emptyView, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, 52.0f, 0.0f, 0.0f));
         RecyclerListView recyclerListView = new RecyclerListView(context, resourcesProvider) {
             @Override
@@ -545,7 +545,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
     }
 
     private void showErrorBox(String str) {
-        new AlertDialog.Builder(getContext(), this.resourcesProvider).setTitle(LocaleController.getString("AppName", R.string.AppName)).setMessage(str).setPositiveButton(LocaleController.getString("OK", R.string.OK), null).show();
+        new AlertDialog.Builder(getContext(), this.resourcesProvider).setTitle(LocaleController.getString(R.string.AppName)).setMessage(str).setPositiveButton(LocaleController.getString(R.string.OK), null).show();
     }
 
     private org.telegram.tgnet.TLRPC$User prepareContact(java.lang.Object r15) {

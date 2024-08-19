@@ -188,7 +188,7 @@ public class AboutLinkCell extends FrameLayout {
         this.showMoreTextView.setLines(1);
         this.showMoreTextView.setMaxLines(1);
         this.showMoreTextView.setSingleLine(true);
-        this.showMoreTextView.setText(LocaleController.getString("DescriptionMore", R.string.DescriptionMore));
+        this.showMoreTextView.setText(LocaleController.getString(R.string.DescriptionMore));
         this.showMoreTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
@@ -425,7 +425,7 @@ public class AboutLinkCell extends FrameLayout {
                 final ClickableSpan clickableSpan = (ClickableSpan) AboutLinkCell.this.pressedLink.getSpan();
                 BottomSheet.Builder builder = new BottomSheet.Builder(AboutLinkCell.this.parentFragment.getParentActivity());
                 builder.setTitle(url);
-                builder.setItems(new CharSequence[]{LocaleController.getString("Open", R.string.Open), LocaleController.getString("Copy", R.string.Copy)}, new DialogInterface.OnClickListener() {
+                builder.setItems(new CharSequence[]{LocaleController.getString(R.string.Open), LocaleController.getString(R.string.Copy)}, new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i) {
                         AboutLinkCell.AnonymousClass2.this.lambda$run$0(clickableSpan, layout, f, url, dialogInterface, i);
@@ -451,11 +451,11 @@ public class AboutLinkCell extends FrameLayout {
                 AndroidUtilities.addToClipboard(str);
                 if (AndroidUtilities.shouldShowClipboardToast()) {
                     if (str.startsWith("@")) {
-                        BulletinFactory.of(AboutLinkCell.this.parentFragment).createSimpleBulletin(R.raw.copy, LocaleController.getString("UsernameCopied", R.string.UsernameCopied)).show();
+                        BulletinFactory.of(AboutLinkCell.this.parentFragment).createSimpleBulletin(R.raw.copy, LocaleController.getString(R.string.UsernameCopied)).show();
                     } else if (str.startsWith("#") || str.startsWith("$")) {
-                        BulletinFactory.of(AboutLinkCell.this.parentFragment).createSimpleBulletin(R.raw.copy, LocaleController.getString("HashtagCopied", R.string.HashtagCopied)).show();
+                        BulletinFactory.of(AboutLinkCell.this.parentFragment).createSimpleBulletin(R.raw.copy, LocaleController.getString(R.string.HashtagCopied)).show();
                     } else {
-                        BulletinFactory.of(AboutLinkCell.this.parentFragment).createSimpleBulletin(R.raw.copy, LocaleController.getString("LinkCopied", R.string.LinkCopied)).show();
+                        BulletinFactory.of(AboutLinkCell.this.parentFragment).createSimpleBulletin(R.raw.copy, LocaleController.getString(R.string.LinkCopied)).show();
                     }
                 }
             }

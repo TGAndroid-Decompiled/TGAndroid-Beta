@@ -65,7 +65,7 @@ public class BackSpaceButtonView extends FrameLayout {
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
         imageView.setColorFilter(new PorterDuffColorFilter(themedColor, mode));
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setContentDescription(LocaleController.getString("AccDescrBackspace", R.string.AccDescrBackspace));
+        imageView.setContentDescription(LocaleController.getString(R.string.AccDescrBackspace));
         imageView.setFocusable(true);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override

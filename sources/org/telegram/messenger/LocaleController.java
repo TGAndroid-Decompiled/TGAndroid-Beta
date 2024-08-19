@@ -1848,18 +1848,22 @@ public class LocaleController {
         return getString(str, i);
     }
 
+    @Deprecated
     public static String getString(String str, int i) {
         return getInstance().getStringInternal(str, i);
     }
 
+    @Deprecated
     public static String getString(String str, String str2, int i, int i2) {
         return getInstance().getStringInternal(str, str2, i, i2);
     }
 
+    @Deprecated
     public static String getString(String str, String str2, int i) {
         return getInstance().getStringInternal(str, str2, 0, i);
     }
 
+    @Deprecated
     public static String getString(String str) {
         if (TextUtils.isEmpty(str)) {
             return "LOC_ERR:" + str;
@@ -1997,18 +2001,22 @@ public class LocaleController {
                 if (BuildVars.USE_CLOUD_STRINGS && str2 != null) {
                     str3 = getInstance().localeValues.get(str2);
                 }
-                if (str3 == null && i != 0) {
+                if (str3 == null) {
                     try {
-                        string = ApplicationLoader.applicationContext.getString(i);
-                    } catch (Exception unused) {
-                        if (i2 != 0) {
+                        if (i != 0) {
                             try {
-                                string = ApplicationLoader.applicationContext.getString(i2);
-                            } catch (Exception unused2) {
+                                string = ApplicationLoader.applicationContext.getString(i);
+                            } catch (Exception unused) {
+                                if (i2 != 0) {
+                                    str3 = ApplicationLoader.applicationContext.getString(i2);
+                                }
                             }
+                        } else if (i2 != 0) {
+                            string = ApplicationLoader.applicationContext.getString(i2);
                         }
+                        str3 = string;
+                    } catch (Exception unused2) {
                     }
-                    str3 = string;
                 }
             }
             if (getInstance().currentLocale != null) {
@@ -3112,7 +3120,7 @@ public class LocaleController {
             int i4 = calendar.get(1);
             long j3 = timeInMillis - j2;
             if (j3 < 60000) {
-                return getString("RightNow", R.string.RightNow);
+                return getString(R.string.RightNow);
             }
             if (j3 < 3600000) {
                 int i5 = (int) (j3 / 60000);
@@ -3222,7 +3230,7 @@ public class LocaleController {
             if (i3 == i && i2 == i4) {
                 int currentTime = ((int) (ConnectionsManager.getInstance(UserConfig.selectedAccount).getCurrentTime() - (j2 / 1000))) / 60;
                 if (currentTime < 1) {
-                    return getString("LocationUpdatedJustNow", R.string.LocationUpdatedJustNow);
+                    return getString(R.string.LocationUpdatedJustNow);
                 }
                 return currentTime < 60 ? formatPluralString("UpdatedMinutes", currentTime, new Object[0]) : formatString("LocationUpdatedFormatted", R.string.LocationUpdatedFormatted, formatString("TodayAtFormatted", R.string.TodayAtFormatted, getInstance().getFormatterDay().format(new Date(j2))));
             }
@@ -3377,7 +3385,7 @@ public class LocaleController {
             calendar.setTimeInMillis(j2);
             int i2 = calendar.get(1);
             int i3 = calendar.get(2);
-            String[] strArr = {getString("January", R.string.January), getString("February", R.string.February), getString("March", R.string.March), getString("April", R.string.April), getString("May", R.string.May), getString("June", R.string.June), getString("July", R.string.July), getString("August", R.string.August), getString("September", R.string.September), getString("October", R.string.October), getString("November", R.string.November), getString("December", R.string.December)};
+            String[] strArr = {getString(R.string.January), getString(R.string.February), getString(R.string.March), getString(R.string.April), getString(R.string.May), getString(R.string.June), getString(R.string.July), getString(R.string.August), getString(R.string.September), getString(R.string.October), getString(R.string.November), getString(R.string.December)};
             if (i == i2 && !z) {
                 return strArr[i3];
             }

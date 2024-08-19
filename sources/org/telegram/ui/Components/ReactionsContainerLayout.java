@@ -2376,7 +2376,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
             this.enterImageView.getImageReceiver().setImageBitmap(new RLottieDrawable(R.raw.star_reaction, "star_reaction", AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f)));
             this.loopImageView.getImageReceiver().setImageBitmap(getContext().getResources().getDrawable(R.drawable.star_reaction));
             if (this.particles == null) {
-                this.particles = new StarsReactionsSheet.Particles(1, 45);
+                this.particles = new StarsReactionsSheet.Particles(1, SharedConfig.getDevicePerformanceClass() == 2 ? 45 : 18);
             }
         }
 

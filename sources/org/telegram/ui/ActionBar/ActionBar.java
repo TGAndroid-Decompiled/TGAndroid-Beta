@@ -203,7 +203,7 @@ public class ActionBar extends FrameLayout {
                 ActionBar.this.lambda$createBackButtonImage$1(view);
             }
         });
-        this.backButtonImageView.setContentDescription(LocaleController.getString("AccDescrGoBack", R.string.AccDescrGoBack));
+        this.backButtonImageView.setContentDescription(LocaleController.getString(R.string.AccDescrGoBack));
     }
 
     public void lambda$createBackButtonImage$1(View view) {

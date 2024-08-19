@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionCode="51609"
+    android:versionCode="51709"
     android:versionName="11.0.1"
     android:installLocation="auto"
     android:compileSdkVersion="34"
@@ -625,11 +625,6 @@
             android:enabled="true"
             android:exported="true"
             android:foregroundServiceType="location|dataSync"/>
-        <service
-            android:name="org.telegram.messenger.voip.VoIPPreNotificationService"
-            android:enabled="true"
-            android:exported="false"
-            android:foregroundServiceType="dataSync"/>
         <service
             android:name="org.telegram.messenger.voip.VoIPService"
             android:enabled="true"

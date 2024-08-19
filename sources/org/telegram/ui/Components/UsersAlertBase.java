@@ -146,8 +146,8 @@ public class UsersAlertBase extends BottomSheet {
         StickerEmptyView stickerEmptyView = new StickerEmptyView(context, this.flickerLoadingView, 1);
         this.emptyView = stickerEmptyView;
         stickerEmptyView.addView(this.flickerLoadingView, 0, LayoutHelper.createFrame(-1, -1.0f, 0, 0.0f, 2.0f, 0.0f, 0.0f));
-        this.emptyView.title.setText(LocaleController.getString("NoResult", R.string.NoResult));
-        this.emptyView.subtitle.setText(LocaleController.getString("SearchEmptyViewFilteredSubtitle2", R.string.SearchEmptyViewFilteredSubtitle2));
+        this.emptyView.title.setText(LocaleController.getString(R.string.NoResult));
+        this.emptyView.subtitle.setText(LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitle2));
         this.emptyView.setVisibility(8);
         this.emptyView.setAnimateLayoutChange(true);
         this.emptyView.showProgress(true, false);
@@ -286,7 +286,7 @@ public class UsersAlertBase extends BottomSheet {
             this.searchEditText.setLines(1);
             this.searchEditText.setSingleLine(true);
             this.searchEditText.setImeOptions(268435459);
-            this.searchEditText.setHint(LocaleController.getString("VoipGroupSearchMembers", R.string.VoipGroupSearchMembers));
+            this.searchEditText.setHint(LocaleController.getString(R.string.VoipGroupSearchMembers));
             this.searchEditText.setCursorColor(Theme.getColor(UsersAlertBase.this.keySearchText));
             this.searchEditText.setCursorSize(AndroidUtilities.dp(20.0f));
             this.searchEditText.setCursorWidth(1.5f);

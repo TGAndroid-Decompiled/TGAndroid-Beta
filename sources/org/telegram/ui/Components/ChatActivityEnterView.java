@@ -4893,7 +4893,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             botWebViewSheet.setDefaultFullsize(false);
             botWebViewSheet.setNeedsContext(true);
             botWebViewSheet.setParentActivity(this.parentActivity);
-            botWebViewSheet.requestWebView(null, of);
+            botWebViewSheet.requestWebView(this.parentFragment, of);
             botWebViewSheet.show();
             BotCommandsMenuView botCommandsMenuView2 = this.botCommandsMenuButton;
             if (botCommandsMenuView2 != null) {
@@ -4910,7 +4910,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         createBotViewer.setDefaultFullsize(false);
         createBotViewer.setNeedsContext(false);
         createBotViewer.setParentActivity(this.parentFragment.getParentActivity());
-        createBotViewer.requestWebView(null, of);
+        createBotViewer.requestWebView(this.parentFragment, of);
         createBotViewer.show();
         BotCommandsMenuView botCommandsMenuView3 = this.botCommandsMenuButton;
         if (botCommandsMenuView3 != null) {
@@ -10907,13 +10907,13 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                                     createBotViewer.setDefaultFullsize(false);
                                     createBotViewer.setNeedsContext(true);
                                     createBotViewer.setParentActivity(ChatActivityEnterView.this.parentActivity);
-                                    createBotViewer.requestWebView(null, of2);
+                                    createBotViewer.requestWebView(ChatActivityEnterView.this.parentFragment, of2);
                                     createBotViewer.show();
                                     return;
                                 }
                                 BotWebViewSheet botWebViewSheet = new BotWebViewSheet(ChatActivityEnterView.this.getContext(), ChatActivityEnterView.this.resourcesProvider);
                                 botWebViewSheet.setParentActivity(ChatActivityEnterView.this.parentActivity);
-                                botWebViewSheet.requestWebView(null, of2);
+                                botWebViewSheet.requestWebView(ChatActivityEnterView.this.parentFragment, of2);
                                 botWebViewSheet.show();
                                 return;
                             }
@@ -11097,13 +11097,13 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                         createBotViewer.setDefaultFullsize(false);
                         createBotViewer.setNeedsContext(true);
                         createBotViewer.setParentActivity(ChatActivityEnterView.this.parentActivity);
-                        createBotViewer.requestWebView(null, of2);
+                        createBotViewer.requestWebView(ChatActivityEnterView.this.parentFragment, of2);
                         createBotViewer.show();
                         return;
                     }
                     BotWebViewSheet botWebViewSheet = new BotWebViewSheet(ChatActivityEnterView.this.getContext(), ChatActivityEnterView.this.resourcesProvider);
                     botWebViewSheet.setParentActivity(ChatActivityEnterView.this.parentActivity);
-                    botWebViewSheet.requestWebView(null, of2);
+                    botWebViewSheet.requestWebView(ChatActivityEnterView.this.parentFragment, of2);
                     botWebViewSheet.show();
                     return;
                 }

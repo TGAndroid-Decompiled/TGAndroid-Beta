@@ -351,7 +351,7 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
                 EditTextEmoji.this.lambda$new$0(sizeNotifierFrameLayout, resourcesProvider, view);
             }
         });
-        this.emojiButton.setContentDescription(LocaleController.getString("Emoji", R.string.Emoji));
+        this.emojiButton.setContentDescription(LocaleController.getString(R.string.Emoji));
     }
 
     public void lambda$new$0(SizeNotifierFrameLayout sizeNotifierFrameLayout, Theme.ResourcesProvider resourcesProvider, View view) {
@@ -1035,15 +1035,15 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
         @Override
         public void onClearEmojiRecent() {
             AlertDialog.Builder builder = new AlertDialog.Builder(EditTextEmoji.this.getContext(), EditTextEmoji.this.resourcesProvider);
-            builder.setTitle(LocaleController.getString("ClearRecentEmojiTitle", R.string.ClearRecentEmojiTitle));
-            builder.setMessage(LocaleController.getString("ClearRecentEmojiText", R.string.ClearRecentEmojiText));
-            builder.setPositiveButton(LocaleController.getString("ClearButton", R.string.ClearButton), new DialogInterface.OnClickListener() {
+            builder.setTitle(LocaleController.getString(R.string.ClearRecentEmojiTitle));
+            builder.setMessage(LocaleController.getString(R.string.ClearRecentEmojiText));
+            builder.setPositiveButton(LocaleController.getString(R.string.ClearButton), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
                     EditTextEmoji.AnonymousClass7.this.lambda$onClearEmojiRecent$0(dialogInterface, i);
                 }
             });
-            builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
+            builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
             if (EditTextEmoji.this.parentFragment != null) {
                 EditTextEmoji.this.parentFragment.showDialog(builder.create());
             } else {

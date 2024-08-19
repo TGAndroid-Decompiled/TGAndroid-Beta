@@ -815,7 +815,7 @@ public final class FloatingToolbar {
                 this.mOverflowPanel.setAlpha(1.0f);
                 this.mOverflowPanel.setVisibility(0);
                 this.mOverflowButtonIcon.setImageDrawable(this.mArrow);
-                this.mOverflowButton.setContentDescription(LocaleController.getString("AccDescrMoreOptions", R.string.AccDescrMoreOptions));
+                this.mOverflowButton.setContentDescription(LocaleController.getString(R.string.AccDescrMoreOptions));
                 if (isInRTLMode()) {
                     this.mContentContainer.setX(this.mMarginHorizontal);
                     this.mMainPanel.setX(0.0f);
@@ -860,7 +860,7 @@ public final class FloatingToolbar {
             this.mOverflowPanel.setAlpha(0.0f);
             this.mOverflowPanel.setVisibility(4);
             this.mOverflowButtonIcon.setImageDrawable(this.mOverflow);
-            this.mOverflowButton.setContentDescription(LocaleController.getString("AccDescrMoreOptions", R.string.AccDescrMoreOptions));
+            this.mOverflowButton.setContentDescription(LocaleController.getString(R.string.AccDescrMoreOptions));
             if (hasOverflow()) {
                 if (isInRTLMode()) {
                     this.mContentContainer.setX(this.mMarginHorizontal);

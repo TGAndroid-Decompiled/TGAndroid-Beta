@@ -980,7 +980,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                 } else if (tLRPC$User == null) {
                     continue;
                 } else if (UserObject.isDeleted(tLRPC$User)) {
-                    removeDiacritics = LocaleController.getString("HiddenName", R.string.HiddenName);
+                    removeDiacritics = LocaleController.getString(R.string.HiddenName);
                 } else {
                     removeDiacritics = AndroidUtilities.removeDiacritics(ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name).replace('\n', ' '));
                 }
@@ -1605,7 +1605,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             accessibilityNodeInfo.addAction(16);
             accessibilityNodeInfo.addAction(32);
             if (!isFolderCell() && this.parentFragment != null && Build.VERSION.SDK_INT >= 21) {
-                accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(R.id.acc_action_chat_preview, LocaleController.getString("AccActionChatPreview", R.string.AccActionChatPreview)));
+                accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(R.id.acc_action_chat_preview, LocaleController.getString(R.string.AccActionChatPreview)));
             }
         }
         CheckBox2 checkBox2 = this.checkBox;
@@ -1624,15 +1624,15 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         super.onPopulateAccessibilityEvent(accessibilityEvent);
         StringBuilder sb = new StringBuilder();
         if (this.currentDialogFolderId == 1) {
-            sb.append(LocaleController.getString("ArchivedChats", R.string.ArchivedChats));
+            sb.append(LocaleController.getString(R.string.ArchivedChats));
             sb.append(". ");
         } else {
             if (this.encryptedChat != null) {
-                sb.append(LocaleController.getString("AccDescrSecretChat", R.string.AccDescrSecretChat));
+                sb.append(LocaleController.getString(R.string.AccDescrSecretChat));
                 sb.append(". ");
             }
             if (this.isTopic && this.forumTopic != null) {
-                sb.append(LocaleController.getString("AccDescrTopic", R.string.AccDescrTopic));
+                sb.append(LocaleController.getString(R.string.AccDescrTopic));
                 sb.append(". ");
                 sb.append(this.forumTopic.title);
                 sb.append(". ");
@@ -1640,17 +1640,17 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                 TLRPC$User tLRPC$User = this.user;
                 if (tLRPC$User != null) {
                     if (UserObject.isReplyUser(tLRPC$User)) {
-                        sb.append(LocaleController.getString("RepliesTitle", R.string.RepliesTitle));
+                        sb.append(LocaleController.getString(R.string.RepliesTitle));
                     } else if (UserObject.isAnonymous(this.user)) {
                         sb.append(LocaleController.getString(R.string.AnonymousForward));
                     } else {
                         if (this.user.bot) {
-                            sb.append(LocaleController.getString("Bot", R.string.Bot));
+                            sb.append(LocaleController.getString(R.string.Bot));
                             sb.append(". ");
                         }
                         TLRPC$User tLRPC$User2 = this.user;
                         if (tLRPC$User2.self) {
-                            sb.append(LocaleController.getString("SavedMessages", R.string.SavedMessages));
+                            sb.append(LocaleController.getString(R.string.SavedMessages));
                         } else {
                             sb.append(ContactsController.formatName(tLRPC$User2.first_name, tLRPC$User2.last_name));
                         }
@@ -1660,9 +1660,9 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                     TLRPC$Chat tLRPC$Chat = this.chat;
                     if (tLRPC$Chat != null) {
                         if (tLRPC$Chat.broadcast) {
-                            sb.append(LocaleController.getString("AccDescrChannel", R.string.AccDescrChannel));
+                            sb.append(LocaleController.getString(R.string.AccDescrChannel));
                         } else {
-                            sb.append(LocaleController.getString("AccDescrGroup", R.string.AccDescrGroup));
+                            sb.append(LocaleController.getString(R.string.AccDescrGroup));
                         }
                         sb.append(". ");
                         sb.append(this.chat.title);
@@ -1672,15 +1672,15 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             }
         }
         if (this.drawVerified) {
-            sb.append(LocaleController.getString("AccDescrVerified", R.string.AccDescrVerified));
+            sb.append(LocaleController.getString(R.string.AccDescrVerified));
             sb.append(". ");
         }
         if (this.dialogMuted) {
-            sb.append(LocaleController.getString("AccDescrNotificationsMuted", R.string.AccDescrNotificationsMuted));
+            sb.append(LocaleController.getString(R.string.AccDescrNotificationsMuted));
             sb.append(". ");
         }
         if (isOnline()) {
-            sb.append(LocaleController.getString("AccDescrUserOnline", R.string.AccDescrUserOnline));
+            sb.append(LocaleController.getString(R.string.AccDescrUserOnline));
             sb.append(". ");
         }
         int i = this.unreadCount;
@@ -1694,7 +1694,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             sb.append(". ");
         }
         if (this.reactionMentionCount > 0) {
-            sb.append(LocaleController.getString("AccDescrMentionReaction", R.string.AccDescrMentionReaction));
+            sb.append(LocaleController.getString(R.string.AccDescrMentionReaction));
             sb.append(". ");
         }
         MessageObject messageObject = this.message;
@@ -1977,7 +1977,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             return null;
         }
         if (this.message.isOutOwner()) {
-            return LocaleController.getString("FromYou", R.string.FromYou);
+            return LocaleController.getString(R.string.FromYou);
         }
         if (!this.isSavedDialog && (messageObject = this.message) != null && (tLRPC$Message2 = messageObject.messageOwner) != null && (tLRPC$Message2.from_id instanceof TLRPC$TL_peerUser) && (user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.message.messageOwner.from_id.user_id))) != null) {
             return AndroidUtilities.removeDiacritics(UserObject.getFirstName(user).replace("\n", ""));
@@ -1994,7 +1994,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         }
         if (this.useForceThreeLines || SharedConfig.useThreeLinesLayout) {
             if (UserObject.isDeleted(tLRPC$User)) {
-                return LocaleController.getString("HiddenName", R.string.HiddenName);
+                return LocaleController.getString(R.string.HiddenName);
             }
             return AndroidUtilities.removeDiacritics(ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name).replace("\n", ""));
         }
@@ -2415,7 +2415,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                     }
                     if (!MessagesController.getInstance(i).getTopicsController().endIsReached(tLRPC$Chat.id)) {
                         MessagesController.getInstance(i).getTopicsController().preloadTopics(tLRPC$Chat.id);
-                        this.formattedNames = LocaleController.getString("Loading", R.string.Loading);
+                        this.formattedNames = LocaleController.getString(R.string.Loading);
                         this.isLoadingState = true;
                         return;
                     }

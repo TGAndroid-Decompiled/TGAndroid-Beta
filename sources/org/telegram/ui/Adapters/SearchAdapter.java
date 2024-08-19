@@ -201,9 +201,9 @@ public class SearchAdapter extends RecyclerListView.SelectionAdapter {
                     strArr4[1] = null;
                 }
                 if (UserObject.isReplyUser(user)) {
-                    strArr4[2] = LocaleController.getString("RepliesTitle", R.string.RepliesTitle).toLowerCase();
+                    strArr4[2] = LocaleController.getString(R.string.RepliesTitle).toLowerCase();
                 } else if (user.self) {
-                    strArr4[2] = LocaleController.getString("SavedMessages", R.string.SavedMessages).toLowerCase();
+                    strArr4[2] = LocaleController.getString(R.string.SavedMessages).toLowerCase();
                 }
                 int i7 = i6;
                 int i8 = 0;

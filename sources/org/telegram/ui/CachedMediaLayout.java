@@ -117,10 +117,10 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
         Page[] pageArr = new Page[5];
         this.allPages = pageArr;
         this.parentFragment = baseFragment;
-        pageArr[0] = new Page(this, LocaleController.getString("FilterChats", R.string.FilterChats), 0, new DialogsAdapter(this, null), null);
-        this.allPages[1] = new Page(this, LocaleController.getString("MediaTab", R.string.MediaTab), 1, new MediaAdapter(this, false, null), null);
-        this.allPages[2] = new Page(this, LocaleController.getString("SharedFilesTab2", R.string.SharedFilesTab2), 2, new DocumentsAdapter(this, null), null);
-        this.allPages[3] = new Page(this, LocaleController.getString("Music", R.string.Music), 3, new MusicAdapter(this, null), null);
+        pageArr[0] = new Page(this, LocaleController.getString(R.string.FilterChats), 0, new DialogsAdapter(this, null), null);
+        this.allPages[1] = new Page(this, LocaleController.getString(R.string.MediaTab), 1, new MediaAdapter(this, false, null), null);
+        this.allPages[2] = new Page(this, LocaleController.getString(R.string.SharedFilesTab2), 2, new DocumentsAdapter(this, null), null);
+        this.allPages[3] = new Page(this, LocaleController.getString(R.string.Music), 3, new MusicAdapter(this, null), null);
         int i = 0;
         while (true) {
             Page[] pageArr2 = this.allPages;
@@ -161,7 +161,7 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
                 backDrawable.setColor(Theme.getColor(i2));
                 int i3 = Theme.key_actionBarActionModeDefaultSelector;
                 imageView.setBackground(Theme.createSelectorDrawable(Theme.getColor(i3), 1));
-                imageView.setContentDescription(LocaleController.getString("Close", R.string.Close));
+                imageView.setContentDescription(LocaleController.getString(R.string.Close));
                 linearLayout.addView(imageView, new LinearLayout.LayoutParams(AndroidUtilities.dp(54.0f), -1));
                 this.actionModeViews.add(imageView);
                 imageView.setOnClickListener(new View.OnClickListener() {
@@ -180,7 +180,7 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
                 ActionBarMenuItem actionBarMenuItem = new ActionBarMenuItem(context, (ActionBarMenu) null, Theme.getColor(i3), Theme.getColor(i2), false);
                 this.clearItem = actionBarMenuItem;
                 actionBarMenuItem.setIcon(R.drawable.msg_clear);
-                actionBarMenuItem.setContentDescription(LocaleController.getString("Delete", R.string.Delete));
+                actionBarMenuItem.setContentDescription(LocaleController.getString(R.string.Delete));
                 actionBarMenuItem.setDuplicateParentStateEnabled(false);
                 linearLayout.addView(actionBarMenuItem, new LinearLayout.LayoutParams(AndroidUtilities.dp(54.0f), -1));
                 this.actionModeViews.add(actionBarMenuItem);
@@ -321,28 +321,26 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
         }
 
         public boolean lambda$createView$5(final RecyclerListView recyclerListView, final BaseFragment baseFragment, final View view, int i, float f, float f2) {
-            int i2;
-            String str;
             final BaseAdapter baseAdapter = (BaseAdapter) recyclerListView.getAdapter();
             final ItemInner itemInner = baseAdapter.itemInners.get(i);
             if ((view instanceof CacheCell) || (view instanceof SharedPhotoVideoCell2)) {
                 ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(CachedMediaLayout.this.getContext());
                 if (view instanceof SharedPhotoVideoCell2) {
-                    ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_view_file, LocaleController.getString("CacheOpenFile", R.string.CacheOpenFile), false, null).setOnClickListener(new View.OnClickListener() {
+                    ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_view_file, LocaleController.getString(R.string.CacheOpenFile), false, null).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view2) {
                             CachedMediaLayout.AnonymousClass1.this.lambda$createView$0(itemInner, baseAdapter, recyclerListView, view, view2);
                         }
                     });
                 } else if (((CacheCell) view).container.getChildAt(0) instanceof SharedAudioCell) {
-                    ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_played, LocaleController.getString("PlayFile", R.string.PlayFile), false, null).setOnClickListener(new View.OnClickListener() {
+                    ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_played, LocaleController.getString(R.string.PlayFile), false, null).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view2) {
                             CachedMediaLayout.AnonymousClass1.this.lambda$createView$1(itemInner, view, view2);
                         }
                     });
                 } else {
-                    ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_view_file, LocaleController.getString("CacheOpenFile", R.string.CacheOpenFile), false, null).setOnClickListener(new View.OnClickListener() {
+                    ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_view_file, LocaleController.getString(R.string.CacheOpenFile), false, null).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view2) {
                             CachedMediaLayout.AnonymousClass1.this.lambda$createView$2(itemInner, view, view2);
@@ -351,22 +349,14 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
                 }
                 CacheModel.FileInfo fileInfo = itemInner.file;
                 if (fileInfo.dialogId != 0 && fileInfo.messageId != 0) {
-                    ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_viewintopic, LocaleController.getString("ViewInChat", R.string.ViewInChat), false, null).setOnClickListener(new View.OnClickListener() {
+                    ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_viewintopic, LocaleController.getString(R.string.ViewInChat), false, null).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view2) {
                             CachedMediaLayout.AnonymousClass1.this.lambda$createView$3(itemInner, baseFragment, view2);
                         }
                     });
                 }
-                int i3 = R.drawable.msg_select;
-                if (CachedMediaLayout.this.cacheModel.selectedFiles.contains(itemInner.file)) {
-                    i2 = R.string.Deselect;
-                    str = "Deselect";
-                } else {
-                    i2 = R.string.Select;
-                    str = "Select";
-                }
-                ActionBarMenuItem.addItem(actionBarPopupWindowLayout, i3, LocaleController.getString(str, i2), false, null).setOnClickListener(new View.OnClickListener() {
+                ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_select, LocaleController.getString(!CachedMediaLayout.this.cacheModel.selectedFiles.contains(itemInner.file) ? R.string.Select : R.string.Deselect), false, null).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view2) {
                         CachedMediaLayout.AnonymousClass1.this.lambda$createView$4(itemInner, view2);
@@ -642,7 +632,7 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
             CacheControlActivity.DialogFileEntities dialogFileEntities2 = userCell.dialogFileEntities;
             boolean z = dialogFileEntities2 != null && dialogFileEntities2.dialogId == dialogFileEntities.dialogId;
             if (dialogFileEntities.dialogId == Long.MAX_VALUE) {
-                dialogPhotoTitle = LocaleController.getString("CacheOtherChats", R.string.CacheOtherChats);
+                dialogPhotoTitle = LocaleController.getString(R.string.CacheOtherChats);
                 userCell.getImageView().getAvatarDrawable().setAvatarType(14);
                 userCell.getImageView().setForUserOrChat(null, userCell.getImageView().getAvatarDrawable());
             } else {
@@ -889,7 +879,7 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
             boolean z = fileInfo == viewHolder.itemView.getTag();
             boolean z2 = i != this.itemInners.size() - 1;
             viewHolder.itemView.setTag(fileInfo);
-            sharedDocumentCell.setTextAndValueAndTypeAndThumb(fileInfo.messageType == 5 ? LocaleController.getString("AttachRound", R.string.AttachRound) : fileInfo.file.getName(), LocaleController.formatDateAudio(fileInfo.file.lastModified() / 1000, true), Utilities.getExtension(fileInfo.file.getName()), null, 0, z2);
+            sharedDocumentCell.setTextAndValueAndTypeAndThumb(fileInfo.messageType == 5 ? LocaleController.getString(R.string.AttachRound) : fileInfo.file.getName(), LocaleController.formatDateAudio(fileInfo.file.lastModified() / 1000, true), Utilities.getExtension(fileInfo.file.getName()), null, 0, z2);
             if (!z) {
                 sharedDocumentCell.setPhoto(fileInfo.file.getPath());
             }

@@ -223,29 +223,29 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         } else if (i == 2) {
             builder.setTitle(LocaleController.formatString("SuggestPhotoFor", R.string.SuggestPhotoFor, this.user.first_name), true);
         } else {
-            builder.setTitle(LocaleController.getString("ChoosePhoto", R.string.ChoosePhoto), true);
+            builder.setTitle(LocaleController.getString(R.string.ChoosePhoto), true);
         }
         ArrayList arrayList = new ArrayList();
         ArrayList arrayList2 = new ArrayList();
         final ArrayList arrayList3 = new ArrayList();
-        arrayList.add(LocaleController.getString("ChooseTakePhoto", R.string.ChooseTakePhoto));
+        arrayList.add(LocaleController.getString(R.string.ChooseTakePhoto));
         arrayList2.add(Integer.valueOf(R.drawable.msg_camera));
         arrayList3.add(0);
         if (this.canSelectVideo) {
-            arrayList.add(LocaleController.getString("ChooseRecordVideo", R.string.ChooseRecordVideo));
+            arrayList.add(LocaleController.getString(R.string.ChooseRecordVideo));
             arrayList2.add(Integer.valueOf(R.drawable.msg_video));
             arrayList3.add(4);
         }
-        arrayList.add(LocaleController.getString("ChooseFromGallery", R.string.ChooseFromGallery));
+        arrayList.add(LocaleController.getString(R.string.ChooseFromGallery));
         arrayList2.add(Integer.valueOf(R.drawable.msg_photos));
         arrayList3.add(1);
         if (this.searchAvailable) {
-            arrayList.add(LocaleController.getString("ChooseFromSearch", R.string.ChooseFromSearch));
+            arrayList.add(LocaleController.getString(R.string.ChooseFromSearch));
             arrayList2.add(Integer.valueOf(R.drawable.msg_search));
             arrayList3.add(2);
         }
         if (z) {
-            arrayList.add(LocaleController.getString("DeletePhoto", R.string.DeletePhoto));
+            arrayList.add(LocaleController.getString(R.string.DeletePhoto));
             arrayList2.add(Integer.valueOf(R.drawable.msg_delete));
             arrayList3.add(3);
         }

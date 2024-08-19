@@ -449,7 +449,7 @@ public class FiltersListBottomSheet extends BottomSheet implements NotificationC
             drawable2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_checkboxCheck), mode));
             CombinedDrawable combinedDrawable = new CombinedDrawable(drawable, drawable2);
             bottomSheetCell.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText4));
-            bottomSheetCell.setTextAndIcon(LocaleController.getString("CreateNewFilter", R.string.CreateNewFilter), combinedDrawable);
+            bottomSheetCell.setTextAndIcon(LocaleController.getString(R.string.CreateNewFilter), combinedDrawable);
         }
     }
 }

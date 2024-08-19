@@ -1609,7 +1609,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
         builder.setTitle(str2);
         builder.setTitleMultipleLines(true);
-        builder.setItems(new CharSequence[]{LocaleController.getString("Open", R.string.Open), LocaleController.getString("Copy", R.string.Copy)}, new DialogInterface.OnClickListener() {
+        builder.setItems(new CharSequence[]{LocaleController.getString(R.string.Open), LocaleController.getString(R.string.Copy)}, new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
                 ArticleViewer.this.lambda$showCopyPopup$0(str, dialogInterface, i);
@@ -1705,7 +1705,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             this.deleteView.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
             this.deleteView.setTextSize(1, 15.0f);
             this.deleteView.setTypeface(AndroidUtilities.bold());
-            this.deleteView.setText(LocaleController.getString("Copy", R.string.Copy).toUpperCase());
+            this.deleteView.setText(LocaleController.getString(R.string.Copy).toUpperCase());
             this.deleteView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
@@ -1765,7 +1765,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         if (drawingText != null) {
             AndroidUtilities.addToClipboard(drawingText.getText());
             if (AndroidUtilities.shouldShowClipboardToast()) {
-                Toast.makeText(this.parentActivity, LocaleController.getString("TextCopied", R.string.TextCopied), 0).show();
+                Toast.makeText(this.parentActivity, LocaleController.getString(R.string.TextCopied), 0).show();
             }
         }
         ActionBarPopupWindow actionBarPopupWindow = this.popupWindow;
@@ -2480,7 +2480,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 };
                 textView.setTextSize(1, 16.0f);
                 textView.setTypeface(AndroidUtilities.bold());
-                textView.setText(LocaleController.getString("InstantViewReference", R.string.InstantViewReference));
+                textView.setText(LocaleController.getString(R.string.InstantViewReference));
                 textView.setGravity((this.pages[0].adapter.isRtl ? 5 : 3) | 16);
                 textView.setTextColor(getTextColor());
                 textView.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
@@ -3795,7 +3795,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 ArticleViewer.this.lambda$setParentActivity$43(view);
             }
         });
-        this.searchUpButton.setContentDescription(LocaleController.getString("AccDescrSearchNext", R.string.AccDescrSearchNext));
+        this.searchUpButton.setContentDescription(LocaleController.getString(R.string.AccDescrSearchNext));
         ImageView imageView4 = new ImageView(this.parentActivity);
         this.searchDownButton = imageView4;
         imageView4.setScaleType(scaleType);
@@ -3809,7 +3809,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 ArticleViewer.this.lambda$setParentActivity$44(view);
             }
         });
-        this.searchDownButton.setContentDescription(LocaleController.getString("AccDescrSearchPrev", R.string.AccDescrSearchPrev));
+        this.searchDownButton.setContentDescription(LocaleController.getString(R.string.AccDescrSearchPrev));
         AnimatedTextView animatedTextView = new AnimatedTextView(this.parentActivity, true, true, true);
         this.searchCountText = animatedTextView;
         animatedTextView.setScaleProperty(0.6f);
@@ -3865,7 +3865,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             @Override
             public void onTextCopied() {
                 if (AndroidUtilities.shouldShowClipboardToast()) {
-                    BulletinFactory.of(ArticleViewer.this.containerView, null).createCopyBulletin(LocaleController.getString("TextCopied", R.string.TextCopied)).show();
+                    BulletinFactory.of(ArticleViewer.this.containerView, null).createCopyBulletin(LocaleController.getString(R.string.TextCopied)).show();
                 }
             }
         });
@@ -4603,13 +4603,13 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             linearLayout2.addView(headerCell, LayoutHelper.createLinear(-2, -2, 51, 3, 1, 3, 0));
             linearLayout2.addView(new TextSizeCell(this.parentActivity), LayoutHelper.createLinear(-1, -2, 51, 3, 0, 3, 0));
             HeaderCell headerCell2 = new HeaderCell(this.parentActivity, getResourcesProvider());
-            headerCell2.setText(LocaleController.getString("FontType", R.string.FontType));
+            headerCell2.setText(LocaleController.getString(R.string.FontType));
             linearLayout2.addView(headerCell2, LayoutHelper.createLinear(-2, -2, 51, 3, 4, 3, 2));
             int i = 0;
             while (i < 2) {
                 this.fontCells[i] = new FontCell(this.parentActivity);
                 if (i == 0) {
-                    this.fontCells[i].setTextAndTypeface(LocaleController.getString("Default", R.string.Default), Typeface.DEFAULT);
+                    this.fontCells[i].setTextAndTypeface(LocaleController.getString(R.string.Default), Typeface.DEFAULT);
                 } else if (i == 1) {
                     this.fontCells[i].setTextAndTypeface("Serif", Typeface.SERIF);
                 }
@@ -4899,9 +4899,9 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 return;
             }
             if (size == 0) {
-                this.searchCountText.setText(LocaleController.getString("NoResult", R.string.NoResult));
+                this.searchCountText.setText(LocaleController.getString(R.string.NoResult));
             } else if (size == 1) {
-                this.searchCountText.setText(LocaleController.getString("OneResult", R.string.OneResult));
+                this.searchCountText.setText(LocaleController.getString(R.string.OneResult));
             } else {
                 this.searchCountText.setText(String.format(LocaleController.getPluralString("CountOfResults", size), Integer.valueOf(i + 1), Integer.valueOf(size)));
             }
@@ -7656,7 +7656,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
             super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
             accessibilityNodeInfo.setEnabled(true);
-            StringBuilder sb = new StringBuilder(LocaleController.getString("AttachVideo", R.string.AttachVideo));
+            StringBuilder sb = new StringBuilder(LocaleController.getString(R.string.AttachVideo));
             if (this.captionLayout != null) {
                 sb.append(", ");
                 sb.append(this.captionLayout.getText());
@@ -10699,7 +10699,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             if (this.textLayout == null) {
                 return;
             }
-            accessibilityNodeInfo.setText(((Object) this.textLayout.getText()) + ", " + LocaleController.getString("AccDescrIVHeading", R.string.AccDescrIVHeading));
+            accessibilityNodeInfo.setText(((Object) this.textLayout.getText()) + ", " + LocaleController.getString(R.string.AccDescrIVHeading));
         }
 
         @Override
@@ -10797,7 +10797,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             if (this.textLayout == null) {
                 return;
             }
-            accessibilityNodeInfo.setText(((Object) this.textLayout.getText()) + ", " + LocaleController.getString("AccDescrIVHeading", R.string.AccDescrIVHeading));
+            accessibilityNodeInfo.setText(((Object) this.textLayout.getText()) + ", " + LocaleController.getString(R.string.AccDescrIVHeading));
         }
 
         @Override
@@ -11260,7 +11260,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
             super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
             accessibilityNodeInfo.setEnabled(true);
-            StringBuilder sb = new StringBuilder(LocaleController.getString("AttachPhoto", R.string.AttachPhoto));
+            StringBuilder sb = new StringBuilder(LocaleController.getString(R.string.AttachPhoto));
             if (this.captionLayout != null) {
                 sb.append(", ");
                 sb.append(this.captionLayout.getText());
@@ -11389,7 +11389,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
             super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
             accessibilityNodeInfo.setEnabled(true);
-            StringBuilder sb = new StringBuilder(LocaleController.getString("Map", R.string.Map));
+            StringBuilder sb = new StringBuilder(LocaleController.getString(R.string.Map));
             if (this.captionLayout != null) {
                 sb.append(", ");
                 sb.append(this.captionLayout.getText());
@@ -11438,7 +11438,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             this.textView = textView;
             textView.setTextSize(1, 14.0f);
             this.textView.setTypeface(AndroidUtilities.bold());
-            this.textView.setText(LocaleController.getString("ChannelJoin", R.string.ChannelJoin));
+            this.textView.setText(LocaleController.getString(R.string.ChannelJoin));
             this.textView.setGravity(19);
             addView(this.textView, LayoutHelper.createFrame(-2, 39, 53));
             this.textView.setOnClickListener(new View.OnClickListener() {
@@ -11789,7 +11789,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             if (this.textLayout == null) {
                 return;
             }
-            accessibilityNodeInfo.setText(((Object) this.textLayout.getText()) + ", " + LocaleController.getString("AccDescrIVTitle", R.string.AccDescrIVTitle));
+            accessibilityNodeInfo.setText(((Object) this.textLayout.getText()) + ", " + LocaleController.getString(R.string.AccDescrIVTitle));
         }
 
         @Override
@@ -12164,7 +12164,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             if (this.textLayout == null) {
                 return;
             }
-            accessibilityNodeInfo.setText(((Object) this.textLayout.getText()) + ", " + LocaleController.getString("AccDescrIVHeading", R.string.AccDescrIVHeading));
+            accessibilityNodeInfo.setText(((Object) this.textLayout.getText()) + ", " + LocaleController.getString(R.string.AccDescrIVHeading));
         }
 
         @Override
@@ -12186,7 +12186,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             setTag(90);
             TextView textView = new TextView(context);
             this.textView = textView;
-            textView.setText(LocaleController.getString("PreviewFeedback2", R.string.PreviewFeedback2));
+            textView.setText(LocaleController.getString(R.string.PreviewFeedback2));
             this.textView.setTextSize(1, 12.0f);
             this.textView.setGravity(17);
             this.textView.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);

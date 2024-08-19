@@ -2362,7 +2362,7 @@ public class StoriesController {
                 if (str5 == null || !str4.equals(str5)) {
                     return;
                 }
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.showBulletin, 1, LocaleController.getString("StoryUploadError", R.string.StoryUploadError));
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.showBulletin, 1, LocaleController.getString(R.string.StoryUploadError));
                 cleanup();
                 return;
             }

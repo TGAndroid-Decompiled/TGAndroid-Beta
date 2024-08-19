@@ -36,7 +36,7 @@ public class AddChannelCell extends FrameLayout {
         this.imageView = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         addView(imageView);
-        simpleTextView.setText(LocaleController.getString("BoostingAddChannelOrGroup", R.string.BoostingAddChannelOrGroup));
+        simpleTextView.setText(LocaleController.getString(R.string.BoostingAddChannelOrGroup));
         Drawable drawable = getResources().getDrawable(R.drawable.poll_add_circle);
         Drawable drawable2 = getResources().getDrawable(R.drawable.poll_add_plus);
         int color = Theme.getColor(Theme.key_switchTrackChecked, resourcesProvider);

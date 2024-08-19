@@ -146,7 +146,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         this.parentFragment = baseFragment;
         this.chatId = j;
         fixNavigationBar();
-        this.searchView.searchEditText.setHint(LocaleController.getString("SearchForChats", R.string.SearchForChats));
+        this.searchView.searchEditText.setHint(LocaleController.getString(R.string.SearchForChats));
         this.touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
         SearchAdapter searchAdapter = new SearchAdapter();
         this.searchAdapter = searchAdapter;
@@ -230,7 +230,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         imageView.setScaleX(0.0f);
         imageView.setScaleY(0.0f);
         imageView.setAlpha(0.0f);
-        imageView.setContentDescription(LocaleController.getString("Next", R.string.Next));
+        imageView.setContentDescription(LocaleController.getString(R.string.Next));
         this.containerView.addView(imageView, LayoutHelper.createFrame(i3 >= 21 ? 56 : 60, i3 >= 21 ? 56 : 60, 85, 14.0f, 14.0f, 14.0f, 14.0f));
         ((ViewGroup.MarginLayoutParams) this.emptyView.getLayoutParams()).topMargin = AndroidUtilities.dp(20.0f);
         ((ViewGroup.MarginLayoutParams) this.emptyView.getLayoutParams()).leftMargin = AndroidUtilities.dp(4.0f);
@@ -281,13 +281,13 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         } else {
             builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("AddMembersAlertNamesText", R.string.AddMembersAlertNamesText, sb, chat.title)));
         }
-        builder.setPositiveButton(LocaleController.getString("Add", R.string.Add), new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(LocaleController.getString(R.string.Add), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i3) {
                 InviteMembersBottomSheet.this.lambda$new$1(dialogInterface, i3);
             }
         });
-        builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
+        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
         builder.create();
         builder.show();
     }
@@ -485,7 +485,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
                     view = new View(context);
                 } else if (i != 5) {
                     ManageChatTextCell manageChatTextCell = new ManageChatTextCell(context);
-                    manageChatTextCell.setText(LocaleController.getString("VoipGroupCopyInviteLink", R.string.VoipGroupCopyInviteLink), null, R.drawable.msg_link, 7, true);
+                    manageChatTextCell.setText(LocaleController.getString(R.string.VoipGroupCopyInviteLink), null, R.drawable.msg_link, 7, true);
                     int i3 = Theme.key_dialogTextBlue2;
                     manageChatTextCell.setColors(i3, i3);
                     view = manageChatTextCell;
@@ -500,9 +500,9 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
                     stickerEmptyView.setLayoutParams(new RecyclerView.LayoutParams(-1, -1));
                     stickerEmptyView.subtitle.setVisibility(8);
                     if (InviteMembersBottomSheet.this.dialogsDelegate != null) {
-                        stickerEmptyView.title.setText(LocaleController.getString("FilterNoChats", R.string.FilterNoChats));
+                        stickerEmptyView.title.setText(LocaleController.getString(R.string.FilterNoChats));
                     } else {
-                        stickerEmptyView.title.setText(LocaleController.getString("NoContacts", R.string.NoContacts));
+                        stickerEmptyView.title.setText(LocaleController.getString(R.string.NoContacts));
                     }
                     stickerEmptyView.setAnimateLayoutChange(true);
                     view = stickerEmptyView;

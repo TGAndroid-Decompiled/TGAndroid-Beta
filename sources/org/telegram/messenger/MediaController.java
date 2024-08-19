@@ -4308,7 +4308,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             this.currentAccount.getNotificationCenter().addObserver(this, NotificationCenter.fileLoadFailed);
             AlertDialog alertDialog = new AlertDialog(context, 2);
             this.progressDialog = alertDialog;
-            alertDialog.setMessage(LocaleController.getString("Loading", R.string.Loading));
+            alertDialog.setMessage(LocaleController.getString(R.string.Loading));
             this.progressDialog.setCanceledOnTouchOutside(false);
             this.progressDialog.setCancelable(true);
             this.progressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
@@ -4760,7 +4760,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         thread.start();
     }
 
-    public static void lambda$loadGalleryPhotosAlbums$51(int r56) {
+    public static void lambda$loadGalleryPhotosAlbums$51(int r55) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.lambda$loadGalleryPhotosAlbums$51(int):void");
     }
 

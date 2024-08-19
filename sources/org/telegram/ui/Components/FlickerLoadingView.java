@@ -952,19 +952,9 @@ public class FlickerLoadingView extends View implements Theme.Colorable {
     }
 
     public void setMemberRequestButton(boolean z) {
-        int i;
-        String str;
         TextPaint textPaint = new TextPaint(1);
         textPaint.setTypeface(AndroidUtilities.bold());
         textPaint.setTextSize(AndroidUtilities.dp(14.0f));
-        float dp = AndroidUtilities.dp(34.0f);
-        if (z) {
-            i = R.string.AddToChannel;
-            str = "AddToChannel";
-        } else {
-            i = R.string.AddToGroup;
-            str = "AddToGroup";
-        }
-        this.memberRequestButtonWidth = dp + textPaint.measureText(LocaleController.getString(str, i));
+        this.memberRequestButtonWidth = AndroidUtilities.dp(34.0f) + textPaint.measureText(LocaleController.getString(z ? R.string.AddToChannel : R.string.AddToGroup));
     }
 }

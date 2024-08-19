@@ -34,8 +34,6 @@ public class MemberRequestCell extends FrameLayout {
 
     public MemberRequestCell(Context context, final OnClickListener onClickListener, boolean z) {
         super(context);
-        int i;
-        String str;
         this.avatarDrawable = new AvatarDrawable();
         BackupImageView backupImageView = new BackupImageView(getContext());
         this.avatarImageView = backupImageView;
@@ -64,14 +62,7 @@ public class MemberRequestCell extends FrameLayout {
         textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         textView.setMaxLines(1);
         textView.setPadding(dp, 0, dp, 0);
-        if (z) {
-            i = R.string.AddToChannel;
-            str = "AddToChannel";
-        } else {
-            i = R.string.AddToGroup;
-            str = "AddToGroup";
-        }
-        textView.setText(LocaleController.getString(str, i));
+        textView.setText(LocaleController.getString(z ? R.string.AddToChannel : R.string.AddToGroup));
         textView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
         textView.setTextSize(14.0f);
         textView.setTypeface(AndroidUtilities.bold());
@@ -89,7 +80,7 @@ public class MemberRequestCell extends FrameLayout {
         textView2.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         textView2.setMaxLines(1);
         textView2.setPadding(dp, 0, dp, 0);
-        textView2.setText(LocaleController.getString("Dismiss", R.string.Dismiss));
+        textView2.setText(LocaleController.getString(R.string.Dismiss));
         textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText));
         textView2.setTextSize(14.0f);
         textView2.setTypeface(AndroidUtilities.bold());
@@ -132,7 +123,7 @@ public class MemberRequestCell extends FrameLayout {
         this.nameTextView.setText(UserObject.getUserName(tLRPC$User));
         String formatDateAudio = LocaleController.formatDateAudio(tLRPC$TL_chatInviteImporter.date, false);
         if (tLRPC$TL_chatInviteImporter.via_chatlist) {
-            this.statusTextView.setText(LocaleController.getString("JoinedViaFolder", R.string.JoinedViaFolder));
+            this.statusTextView.setText(LocaleController.getString(R.string.JoinedViaFolder));
             return;
         }
         long j = tLRPC$TL_chatInviteImporter.approved_by;
