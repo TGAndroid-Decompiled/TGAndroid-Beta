@@ -55,7 +55,12 @@ public class AudioDecoder {
         this.decoder = createDecoderByType;
         createDecoderByType.configure(trackFormat, (Surface) null, (MediaCrypto) null, 0);
         this.startTimeUs = 0L;
-        this.endTimeUs = getDurationUs();
+        try {
+            this.endTimeUs = this.extractor.getTrackFormat(this.trackIndex).getLong("durationUs");
+        } catch (Exception e) {
+            FileLog.e(e);
+            this.endTimeUs = -1L;
+        }
     }
 
     private void selectTrack() {
@@ -86,7 +91,25 @@ public class AudioDecoder {
 
     public MediaFormat getMediaFormat() {
         try {
+            return getOutputMediaFormat() != null ? getOutputMediaFormat() : getInputMediaFormat();
+        } catch (Exception e) {
+            FileLog.e(e);
+            return null;
+        }
+    }
+
+    public MediaFormat getInputMediaFormat() {
+        try {
             return this.extractor.getTrackFormat(this.trackIndex);
+        } catch (Exception e) {
+            FileLog.e(e);
+            return null;
+        }
+    }
+
+    public MediaFormat getOutputMediaFormat() {
+        try {
+            return this.decoder.getOutputFormat();
         } catch (Exception e) {
             FileLog.e(e);
             return null;
@@ -95,36 +118,55 @@ public class AudioDecoder {
 
     public long getDurationUs() {
         try {
-            return getMediaFormat().getLong("durationUs");
+            return getOutputMediaFormat().getLong("durationUs");
         } catch (Exception e) {
             FileLog.e(e);
-            return -1L;
+            try {
+                return getInputMediaFormat().getLong("durationUs");
+            } catch (Exception e2) {
+                FileLog.e(e2);
+                return -1L;
+            }
         }
     }
 
     public int getSampleRate() {
         try {
-            return getMediaFormat().getInteger("sample-rate");
+            return getOutputMediaFormat().getInteger("sample-rate");
         } catch (Exception e) {
             FileLog.e(e);
-            return -1;
+            try {
+                return getInputMediaFormat().getInteger("sample-rate");
+            } catch (Exception e2) {
+                FileLog.e(e2);
+                return -1;
+            }
         }
     }
 
     public int getBitrateRate() {
         try {
-            return getMediaFormat().getInteger("bitrate");
-        } catch (Exception unused) {
+            try {
+                return getOutputMediaFormat().getInteger("bitrate");
+            } catch (Exception unused) {
+                return getInputMediaFormat().getInteger("bitrate");
+            }
+        } catch (Exception unused2) {
             return -1;
         }
     }
 
     public int getChannelCount() {
         try {
-            return getMediaFormat().getInteger("channel-count");
+            return getOutputMediaFormat().getInteger("channel-count");
         } catch (Exception e) {
             FileLog.e(e);
-            return -1;
+            try {
+                return getInputMediaFormat().getInteger("channel-count");
+            } catch (Exception e2) {
+                FileLog.e(e2);
+                return -1;
+            }
         }
     }
 

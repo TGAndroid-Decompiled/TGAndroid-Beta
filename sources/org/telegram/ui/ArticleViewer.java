@@ -13436,7 +13436,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
-        public void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
             super.onLayout(z, i, i2, i3, i4);
             int childCount = getChildCount();
             for (int i5 = 0; i5 < childCount; i5++) {
@@ -13474,7 +13474,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
-        public void dispatchDraw(Canvas canvas) {
+        protected void dispatchDraw(Canvas canvas) {
             ArticleViewer.this.checkVideoPlayer();
             super.dispatchDraw(canvas);
         }

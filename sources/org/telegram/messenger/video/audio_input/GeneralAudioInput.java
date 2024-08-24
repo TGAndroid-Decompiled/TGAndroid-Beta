@@ -98,9 +98,9 @@ public class GeneralAudioInput extends AudioInput {
             if (decode.index >= 0) {
                 this.buffer = this.audioBufferConverter.convert(decode.byteBuffer.asShortBuffer(), this.decoder.getSampleRate(), this.decoder.getChannelCount(), this.outputSampleRate, this.outputChannelCount);
                 this.decoder.releaseOutputBuffer(decode.index);
-            } else {
-                this.buffer = null;
+                return;
             }
+            this.buffer = null;
         }
     }
 

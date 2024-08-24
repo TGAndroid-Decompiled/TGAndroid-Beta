@@ -39,14 +39,14 @@ public class AudioBufferConverter {
         double d4 = i;
         Double.isNaN(d4);
         ShortBuffer createBuffer2 = createBuffer(((int) Math.ceil(d3 / d4)) + 10);
-        this.mResampler.resample(createBuffer, i, createBuffer2, i3, i2);
+        this.mResampler.resample(createBuffer, i, createBuffer2, i3, i4);
         createBuffer2.limit(createBuffer2.position());
         createBuffer2.rewind();
         return createBuffer2;
     }
 
     private void checkChannels(int i, int i2) {
-        if (i == 6 && i2 == 2) {
+        if (i == 6 && (i2 == 1 || i2 == 2)) {
             return;
         }
         if (i != 1 && i != 2) {

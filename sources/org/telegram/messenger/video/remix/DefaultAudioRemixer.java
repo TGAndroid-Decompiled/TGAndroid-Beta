@@ -6,8 +6,8 @@ public class DefaultAudioRemixer implements AudioRemixer {
     @Override
     public void remix(ShortBuffer shortBuffer, int i, ShortBuffer shortBuffer2, int i2) {
         AudioRemixer audioRemixer;
-        if (i == 6 && i2 == 2) {
-            audioRemixer = AudioRemixer.PASSTHROUGH;
+        if (i == 6) {
+            audioRemixer = AudioRemixer.SURROUND;
         } else if (i > i2) {
             audioRemixer = AudioRemixer.DOWNMIX;
         } else if (i < i2) {
@@ -21,8 +21,8 @@ public class DefaultAudioRemixer implements AudioRemixer {
     @Override
     public int getRemixedSize(int i, int i2, int i3) {
         AudioRemixer audioRemixer;
-        if (i2 == 6 && i3 == 2) {
-            audioRemixer = AudioRemixer.PASSTHROUGH;
+        if (i2 == 6) {
+            audioRemixer = AudioRemixer.SURROUND;
         } else if (i2 > i3) {
             audioRemixer = AudioRemixer.DOWNMIX;
         } else if (i2 < i3) {

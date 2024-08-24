@@ -16,7 +16,7 @@ public class DownMixAudioRemixer implements AudioRemixer {
         return i / 2;
     }
 
-    private short mix(short s, short s2) {
+    public static short mix(short s, short s2) {
         int i;
         int i2 = s + 32768;
         int i3 = s2 + 32768;
