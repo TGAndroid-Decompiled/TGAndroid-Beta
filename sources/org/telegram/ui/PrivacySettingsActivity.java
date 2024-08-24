@@ -283,7 +283,7 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                 presentFragment(this.webSessionsActivityPreload);
                 return;
             }
-            int i2 = 2;
+            int i2 = 4;
             if (i == this.deleteAccountRow) {
                 if (getParentActivity() == null) {
                     return;
@@ -293,12 +293,14 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                     i2 = 0;
                 } else if (deleteAccountTTL <= 93) {
                     i2 = 1;
-                } else if (deleteAccountTTL > 182) {
+                } else if (deleteAccountTTL <= 182) {
+                    i2 = 2;
+                } else if (deleteAccountTTL != 548) {
                     i2 = 3;
                 }
                 final AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
                 builder.setTitle(LocaleController.getString("DeleteAccountTitle", R.string.DeleteAccountTitle));
-                String[] strArr = {LocaleController.formatPluralString("Months", 1, new Object[0]), LocaleController.formatPluralString("Months", 3, new Object[0]), LocaleController.formatPluralString("Months", 6, new Object[0]), LocaleController.formatPluralString("Years", 1, new Object[0]), LocaleController.getString("OneAndHalfYear")};
+                String[] strArr = {LocaleController.formatPluralString("Months", 1, new Object[0]), LocaleController.formatPluralString("Months", 3, new Object[0]), LocaleController.formatPluralString("Months", 6, new Object[0]), LocaleController.formatPluralString("Months", 12, new Object[0]), LocaleController.formatPluralString("Months", 18, new Object[0])};
                 LinearLayout linearLayout = new LinearLayout(getParentActivity());
                 linearLayout.setOrientation(1);
                 builder.setView(linearLayout);
@@ -1243,9 +1245,9 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                                     if (deleteAccountTTL <= 182) {
                                         str6 = LocaleController.formatPluralString("Months", deleteAccountTTL / 30, new Object[0]);
                                     } else if (deleteAccountTTL == 365) {
-                                        str6 = LocaleController.formatPluralString("Years", deleteAccountTTL / 365, new Object[0]);
+                                        str6 = LocaleController.formatPluralString("Months", 12, new Object[0]);
                                     } else if (deleteAccountTTL == 548) {
-                                        str6 = LocaleController.getString(R.string.OneAndHalfYear);
+                                        str6 = LocaleController.formatPluralString("Months", 18, new Object[0]);
                                     } else {
                                         str6 = LocaleController.formatPluralString("Days", deleteAccountTTL, new Object[0]);
                                     }

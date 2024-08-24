@@ -723,6 +723,21 @@ public class DownloadController extends BaseController implements NotificationCe
         return false;
     }
 
+    public int canDownloadMediaType(MessageObject messageObject) {
+        TL_stories$StoryItem tL_stories$StoryItem;
+        TLRPC$MessageMedia tLRPC$MessageMedia;
+        if (messageObject.type == 23) {
+            return (!SharedConfig.isAutoplayVideo() || (tL_stories$StoryItem = ((TLRPC$TL_messageMediaStory) MessageObject.getMedia(messageObject)).storyItem) == null || (tLRPC$MessageMedia = tL_stories$StoryItem.media) == null || tLRPC$MessageMedia.document == null || !tL_stories$StoryItem.isPublic) ? 0 : 2;
+        }
+        if (messageObject.sponsoredMedia != null) {
+            return 2;
+        }
+        if (messageObject.isHiddenSensitive()) {
+            return 0;
+        }
+        return canDownloadMedia(messageObject.messageOwner);
+    }
+
     public int canDownloadMedia(org.telegram.tgnet.TLRPC$Message r18) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.DownloadController.canDownloadMedia(org.telegram.tgnet.TLRPC$Message):int");
     }

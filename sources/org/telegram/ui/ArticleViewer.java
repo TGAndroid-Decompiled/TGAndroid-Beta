@@ -3103,7 +3103,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 sheet.dismiss(true);
             }
         }
-        Browser.openUrl(this.parentActivity, Uri.parse(str), true, true, false, progress, null, true);
+        Browser.openUrl(this.parentActivity, Uri.parse(str), true, true, false, progress, null, true, true);
         return Boolean.TRUE;
     }
 
@@ -3148,8 +3148,13 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     if (((Boolean) callback0Return.run()).booleanValue()) {
                         return;
                     }
-                    addPageToStack(tLRPC$TL_messages_getWebPage.url, 1);
-                    return;
+                    if (SharedConfig.inappBrowser) {
+                        addPageToStack(tLRPC$TL_messages_getWebPage.url, 1);
+                        return;
+                    } else {
+                        Browser.openUrl(this.parentActivity, tLRPC$TL_messages_getWebPage.url);
+                        return;
+                    }
                 }
             }
             if (tLObject instanceof TLRPC$TL_webPage) {
@@ -3162,7 +3167,11 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             if (((Boolean) callback0Return.run()).booleanValue()) {
                 return;
             }
-            addPageToStack(tLRPC$TL_messages_getWebPage.url, 1);
+            if (SharedConfig.inappBrowser) {
+                addPageToStack(tLRPC$TL_messages_getWebPage.url, 1);
+            } else {
+                Browser.openUrl(this.parentActivity, tLRPC$TL_messages_getWebPage.url);
+            }
         }
     }
 
@@ -4120,7 +4129,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         Uri uriParseSafe = Utilities.uriParseSafe(str);
         if ((uRLSpanArr.length > 0 && length == 0 && i > 0) || (uriParseSafe != null && uriParseSafe.getScheme() != null)) {
             if (uriParseSafe != null && uriParseSafe.getScheme() == null && uriParseSafe.getHost() == null && uriParseSafe.getPath() != null) {
-                str = Browser.replace(uriParseSafe, "https", uriParseSafe.getPath(), "/");
+                str = Browser.replace(uriParseSafe, "https", null, uriParseSafe.getPath(), "/");
             }
             pageLayout.getWebView().loadUrl(str);
             return;
@@ -4165,7 +4174,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         Uri uriParseSafe = Utilities.uriParseSafe(str);
         if ((uRLSpanArr.length > 0 && length == 0 && i > 0) || (uriParseSafe != null && uriParseSafe.getScheme() != null)) {
             if (uriParseSafe.getScheme() == null && uriParseSafe.getHost() == null && uriParseSafe.getPath() != null) {
-                str = Browser.replace(uriParseSafe, "https", uriParseSafe.getPath(), "/");
+                str = Browser.replace(uriParseSafe, "https", null, uriParseSafe.getPath(), "/");
             }
             pageLayout.getWebView().loadUrl(str);
             return;
@@ -13079,48 +13088,48 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
         public String getSubtitle() {
             BotWebViewContainer.MyWebView webView;
-            if (isWeb() && (webView = this.webViewContainer.getWebView()) != null) {
-                if (TextUtils.equals(this.lastUrl, webView.getUrl())) {
-                    return this.lastFormattedUrl;
-                }
-                try {
-                    String url = webView.getUrl();
-                    this.lastUrl = url;
-                    Uri parse = Uri.parse(BotWebViewContainer.magic2tonsite(url));
-                    String uri = (parse.getScheme() == null || !(parse.getScheme().equalsIgnoreCase("http") || parse.getScheme().equalsIgnoreCase("https"))) ? parse.toString() : parse.getSchemeSpecificPart();
-                    try {
-                        if (!isTonsite()) {
-                            try {
-                                Uri parse2 = Uri.parse(uri);
-                                uri = Browser.replaceHostname(parse2, Browser.IDN_toUnicode(parse2.getHost()), null);
-                            } catch (Exception e) {
-                                FileLog.e((Throwable) e, false);
-                            }
-                            uri = URLDecoder.decode(uri.replaceAll("\\+", "%2b"), "UTF-8");
-                        }
-                    } catch (Exception e2) {
-                        FileLog.e(e2);
-                    }
-                    if (uri.startsWith("//")) {
-                        uri = uri.substring(2);
-                    }
-                    if (uri.startsWith("www.")) {
-                        uri = uri.substring(4);
-                    }
-                    if (uri.endsWith("/")) {
-                        uri = uri.substring(0, uri.length() - 1);
-                    }
-                    int indexOf = uri.indexOf("#");
-                    if (indexOf >= 0) {
-                        uri = uri.substring(0, indexOf);
-                    }
-                    this.lastFormattedUrl = uri;
-                    return uri;
-                } catch (Exception unused) {
-                    return webView.getUrl();
-                }
+            if (!isWeb() || (webView = this.webViewContainer.getWebView()) == null) {
+                return "";
             }
-            return "";
+            if (TextUtils.equals(this.lastUrl, webView.getUrl())) {
+                return this.lastFormattedUrl;
+            }
+            try {
+                String url = webView.getUrl();
+                this.lastUrl = url;
+                Uri parse = Uri.parse(BotWebViewContainer.magic2tonsite(url));
+                String uri = (parse.getScheme() == null || !(parse.getScheme().equalsIgnoreCase("http") || parse.getScheme().equalsIgnoreCase("https"))) ? parse.toString() : parse.getSchemeSpecificPart();
+                try {
+                    if (!isTonsite()) {
+                        try {
+                            Uri parse2 = Uri.parse(uri);
+                            uri = Browser.replace(parse2, null, "", Browser.IDN_toUnicode(parse2.getHost()), null);
+                        } catch (Exception e) {
+                            FileLog.e((Throwable) e, false);
+                        }
+                        uri = URLDecoder.decode(uri.replaceAll("\\+", "%2b"), "UTF-8");
+                    }
+                } catch (Exception e2) {
+                    FileLog.e(e2);
+                }
+                if (uri.startsWith("//")) {
+                    uri = uri.substring(2);
+                }
+                if (uri.startsWith("www.")) {
+                    uri = uri.substring(4);
+                }
+                if (uri.endsWith("/")) {
+                    uri = uri.substring(0, uri.length() - 1);
+                }
+                int indexOf = uri.indexOf("#");
+                if (indexOf >= 0) {
+                    uri = uri.substring(0, indexOf);
+                }
+                this.lastFormattedUrl = uri;
+                return uri;
+            } catch (Exception unused) {
+                return webView.getUrl();
+            }
         }
 
         public void setLastVisible(boolean z) {
@@ -13555,7 +13564,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
-        public WindowView mo991getWindowView() {
+        public WindowView mo985getWindowView() {
             return this.windowView;
         }
 
@@ -13939,7 +13948,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 bottomSheetTabDialog2.updateNavigationBarColor();
             } else {
                 LaunchActivity.instance.checkSystemBarColors(true, true, true, false);
-                AndroidUtilities.setLightNavigationBar(mo991getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
+                AndroidUtilities.setLightNavigationBar(mo985getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
             }
         }
 

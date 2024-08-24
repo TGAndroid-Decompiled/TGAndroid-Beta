@@ -58,7 +58,6 @@ import android.text.style.CharacterStyle;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.ImageSpan;
 import android.text.style.URLSpan;
-import android.util.Log;
 import android.util.Pair;
 import android.util.Property;
 import android.util.SparseArray;
@@ -6876,7 +6875,6 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 messageObject2.stableId = i3;
             }
             messageObject2.isOutOwnerCached = null;
-            Log.i("lolkek", "msg " + messageObject2.getId() + " isOutOwnerCached is reset (2)");
             TLRPC$Message tLRPC$Message2 = messageObject2.messageOwner;
             if (tLRPC$Message2 != null) {
                 tLRPC$Message2.out = true;
@@ -6959,7 +6957,6 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         for (int i8 = 0; i8 < arrayList2.size(); i8++) {
             MessageObject messageObject4 = (MessageObject) arrayList2.get(i8);
             if (!this.filteredMessagesDict.containsKey(messageObject4.getId())) {
-                Log.i("lolkek", "msg " + messageObject4.getId() + " isOutOwnerCached is reset (3)");
                 messageObject4.isOutOwnerCached = null;
                 TLRPC$Message tLRPC$Message3 = messageObject4.messageOwner;
                 if (tLRPC$Message3 != null) {
@@ -18018,7 +18015,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     @android.annotation.SuppressLint({"ClickableViewAccessibility"})
-    public boolean createMenu(final android.view.View r69, boolean r70, boolean r71, float r72, float r73, boolean r74, boolean r75) {
+    public boolean createMenu(final android.view.View r71, boolean r72, boolean r73, float r74, float r75, boolean r76, boolean r77) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.createMenu(android.view.View, boolean, boolean, float, float, boolean, boolean):boolean");
     }
 
@@ -18364,7 +18361,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             return;
         }
         logSponsoredClicked(messageObject);
-        Browser.openUrl(getContext(), this.selectedObject.sponsoredUrl, true, false);
+        Browser.openUrl(getContext(), Uri.parse(this.selectedObject.sponsoredUrl), true, false, false, null, null, false, getMessagesController().sponsoredLinksInappAllow);
     }
 
     public boolean lambda$createMenu$240(View view) {
@@ -24723,7 +24720,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
             ChatActivity.this.progressDialogCurrent = (chatMessageCell == null || chatMessageCell.getMessageObject() == null) ? null : new AnonymousClass7(chatMessageCell);
             if (z || Browser.isInternalUri(parse, null)) {
-                Browser.openUrl(ChatActivity.this.getContext(), parse, true, true, false, ChatActivity.this.progressDialogCurrent, null, false);
+                Browser.openUrl(ChatActivity.this.getContext(), parse, true, true, false, ChatActivity.this.progressDialogCurrent, null, false, true);
             } else {
                 ChatActivity chatActivity = ChatActivity.this;
                 AlertsCreator.showOpenUrlAlert(chatActivity, str, true, true, true, !z, chatActivity.progressDialogCurrent, ChatActivity.this.themeDelegate);
@@ -25132,7 +25129,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                         return;
                     }
                 }
-                Browser.openUrl(ChatActivity.this.getParentActivity(), Uri.parse(tLRPC$WebPage2.url), true, true, false, ChatActivity.this.progressDialogCurrent, null, false);
+                Browser.openUrl(ChatActivity.this.getParentActivity(), Uri.parse(tLRPC$WebPage2.url), true, true, false, ChatActivity.this.progressDialogCurrent, null, false, true);
                 return;
             }
             if (messageObject.isSponsored()) {
@@ -25143,7 +25140,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                         ChatActivity.this.progressDialogCurrent.cancel(true);
                     }
                     ChatActivity.this.progressDialogCurrent = chatMessageCell.getMessageObject() != null ? new AnonymousClass12(chatMessageCell) : null;
-                    Browser.openUrl(ChatActivity.this.getContext(), Uri.parse(messageObject.sponsoredUrl), true, false, false, ChatActivity.this.progressDialogCurrent, null, false);
+                    Browser.openUrl(ChatActivity.this.getContext(), Uri.parse(messageObject.sponsoredUrl), true, false, false, ChatActivity.this.progressDialogCurrent, null, false, ChatActivity.this.getMessagesController().sponsoredLinksInappAllow);
                     return;
                 }
                 return;
@@ -25173,7 +25170,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 ChatActivity.this.progressDialogCurrent.cancel(true);
             }
             ChatActivity.this.progressDialogCurrent = chatMessageCell.getMessageObject() != null ? new AnonymousClass13(chatMessageCell) : null;
-            Browser.openUrl(ChatActivity.this.getParentActivity(), Uri.parse(storyMentionWebpage.url), true, true, false, ChatActivity.this.progressDialogCurrent, null, false);
+            Browser.openUrl(ChatActivity.this.getParentActivity(), Uri.parse(storyMentionWebpage.url), true, true, false, ChatActivity.this.progressDialogCurrent, null, false, true);
         }
 
         public class AnonymousClass9 extends Browser.Progress {

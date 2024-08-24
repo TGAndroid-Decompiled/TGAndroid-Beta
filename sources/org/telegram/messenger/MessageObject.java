@@ -678,7 +678,7 @@ public class MessageObject {
         if (!this.messageOwner.restriction_reason.isEmpty()) {
             for (int i = 0; i < this.messageOwner.restriction_reason.size(); i++) {
                 TLRPC$RestrictionReason tLRPC$RestrictionReason = this.messageOwner.restriction_reason.get(i);
-                if ("sensitive".equals(tLRPC$RestrictionReason.reason) && ("all".equals(tLRPC$RestrictionReason.platform) || (!ApplicationLoader.isStandaloneBuild() && !BuildVars.isBetaApp() && "android".equals(tLRPC$RestrictionReason.platform)))) {
+                if ("sensitive".equals(tLRPC$RestrictionReason.reason) && ("all".equals(tLRPC$RestrictionReason.platform) || (((!ApplicationLoader.isStandaloneBuild() && !BuildVars.isBetaApp()) || BuildVars.DEBUG_PRIVATE_VERSION) && "android".equals(tLRPC$RestrictionReason.platform)))) {
                     this.isSensitiveCached = Boolean.TRUE;
                     return true;
                 }
@@ -687,7 +687,7 @@ public class MessageObject {
         if (getDialogId() < 0 && (chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-getDialogId()))) != null && chat.restriction_reason != null) {
             for (int i2 = 0; i2 < chat.restriction_reason.size(); i2++) {
                 TLRPC$RestrictionReason tLRPC$RestrictionReason2 = chat.restriction_reason.get(i2);
-                if ("sensitive".equals(tLRPC$RestrictionReason2.reason) && ("all".equals(tLRPC$RestrictionReason2.platform) || (!ApplicationLoader.isStandaloneBuild() && !BuildVars.isBetaApp() && "android".equals(tLRPC$RestrictionReason2.platform)))) {
+                if ("sensitive".equals(tLRPC$RestrictionReason2.reason) && ("all".equals(tLRPC$RestrictionReason2.platform) || (((!ApplicationLoader.isStandaloneBuild() && !BuildVars.isBetaApp()) || BuildVars.DEBUG_PRIVATE_VERSION) && "android".equals(tLRPC$RestrictionReason2.platform)))) {
                     this.isSensitiveCached = Boolean.TRUE;
                     return true;
                 }

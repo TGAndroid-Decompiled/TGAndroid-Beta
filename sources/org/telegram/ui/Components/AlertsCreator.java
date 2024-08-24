@@ -940,7 +940,7 @@ public class AlertsCreator {
         showOpenUrlAlert(baseFragment, str, z, z2, z3, false, progress, resourcesProvider);
     }
 
-    public static void showOpenUrlAlert(final org.telegram.ui.ActionBar.BaseFragment r13, final java.lang.String r14, boolean r15, final boolean r16, boolean r17, boolean r18, final org.telegram.messenger.browser.Browser.Progress r19, org.telegram.ui.ActionBar.Theme.ResourcesProvider r20) {
+    public static void showOpenUrlAlert(final org.telegram.ui.ActionBar.BaseFragment r21, final java.lang.String r22, boolean r23, final boolean r24, boolean r25, boolean r26, final org.telegram.messenger.browser.Browser.Progress r27, org.telegram.ui.ActionBar.Theme.ResourcesProvider r28) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AlertsCreator.showOpenUrlAlert(org.telegram.ui.ActionBar.BaseFragment, java.lang.String, boolean, boolean, boolean, boolean, org.telegram.messenger.browser.Browser$Progress, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
     }
 

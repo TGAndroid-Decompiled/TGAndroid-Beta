@@ -247,15 +247,15 @@ public class Browser {
     }
 
     public static void openUrl(Context context, Uri uri, boolean z, boolean z2) {
-        openUrl(context, uri, z, z2, false, null, null, false);
+        openUrl(context, uri, z, z2, false, null, null, false, true);
     }
 
     public static void openUrl(Context context, Uri uri, boolean z, boolean z2, Progress progress) {
-        openUrl(context, uri, z, z2, false, progress, null, false);
+        openUrl(context, uri, z, z2, false, progress, null, false, true);
     }
 
-    public static void openUrl(final android.content.Context r21, final android.net.Uri r22, boolean r23, boolean r24, boolean r25, final org.telegram.messenger.browser.Browser.Progress r26, java.lang.String r27, boolean r28) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.browser.Browser.openUrl(android.content.Context, android.net.Uri, boolean, boolean, boolean, org.telegram.messenger.browser.Browser$Progress, java.lang.String, boolean):void");
+    public static void openUrl(final android.content.Context r21, final android.net.Uri r22, boolean r23, boolean r24, boolean r25, final org.telegram.messenger.browser.Browser.Progress r26, java.lang.String r27, boolean r28, boolean r29) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.browser.Browser.openUrl(android.content.Context, android.net.Uri, boolean, boolean, boolean, org.telegram.messenger.browser.Browser$Progress, java.lang.String, boolean, boolean):void");
     }
 
     public static void lambda$openUrl$1(final Progress progress, final AlertDialog[] alertDialogArr, final int i, final Uri uri, final Context context, final boolean z, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -423,7 +423,7 @@ public class Browser {
         try {
             if (!isTonsite(str) && !isInternalUrl(str, null)) {
                 Uri parse = Uri.parse(str);
-                String replace = replace(parse, parse.getScheme() == null ? "https" : parse.getScheme(), parse.getHost() != null ? parse.getHost().toLowerCase() : parse.getHost(), TextUtils.isEmpty(parse.getPath()) ? "/" : parse.getPath());
+                String replace = replace(parse, parse.getScheme() == null ? "https" : parse.getScheme(), null, parse.getHost() != null ? parse.getHost().toLowerCase() : parse.getHost(), TextUtils.isEmpty(parse.getPath()) ? "/" : parse.getPath());
                 Uri parse2 = Uri.parse(replace);
                 boolean z2 = parse2.getScheme() != null && parse2.getScheme().equalsIgnoreCase("intent");
                 if (z2 && !z) {
@@ -439,7 +439,7 @@ public class Browser {
                     intent.addCategory("android.intent.category.DEFAULT");
                     intent.addFlags(268435456);
                     intent.addFlags(1024);
-                } else if (!hasAppToOpen(context, replace)) {
+                } else if (!z2 && !hasAppToOpen(context, replace)) {
                     return false;
                 }
                 context.startActivity(intent);
@@ -804,10 +804,10 @@ public class Browser {
     }
 
     public static String replaceHostname(Uri uri, String str, String str2) {
-        return replace(uri, str2, str, null);
+        return replace(uri, str2, null, str, null);
     }
 
-    public static String replace(Uri uri, String str, String str2, String str3) {
+    public static String replace(Uri uri, String str, String str2, String str3, String str4) {
         StringBuilder sb = new StringBuilder();
         if (str == null) {
             str = uri.getScheme();
@@ -816,23 +816,28 @@ public class Browser {
             sb.append(str);
             sb.append("://");
         }
-        if (uri.getUserInfo() != null) {
-            sb.append(uri.getUserInfo());
+        if (str2 == null) {
+            if (uri.getUserInfo() != null) {
+                sb.append(uri.getUserInfo());
+                sb.append("@");
+            }
+        } else if (!TextUtils.isEmpty(str2)) {
+            sb.append(str2);
             sb.append("@");
         }
-        if (str2 == null) {
+        if (str3 == null) {
             if (uri.getHost() != null) {
                 sb.append(uri.getHost());
             }
         } else {
-            sb.append(str2);
+            sb.append(str3);
         }
         if (uri.getPort() != -1) {
             sb.append(":");
             sb.append(uri.getPort());
         }
-        if (str3 != null) {
-            sb.append(str3);
+        if (str4 != null) {
+            sb.append(str4);
         } else {
             sb.append(uri.getPath());
         }

@@ -55,6 +55,7 @@ public class StarReactionsOverlay extends View {
     private final int[] pos2;
     private boolean pressed;
     private final RectF reactionBounds;
+    private final Paint redPaint;
     private final Paint shadowPaint;
 
     public StarReactionsOverlay(final ChatActivity chatActivity) {
@@ -64,6 +65,7 @@ public class StarReactionsOverlay extends View {
         this.reactionBounds = new RectF();
         this.clickBounds = new RectF();
         this.shadowPaint = new Paint();
+        this.redPaint = new Paint();
         this.counterAlpha = new AnimatedFloat(this, 0L, 420L, CubicBezierInterpolator.EASE_OUT_QUINT);
         AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable();
         this.counter = animatedTextDrawable;

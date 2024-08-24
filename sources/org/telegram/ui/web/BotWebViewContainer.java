@@ -51,6 +51,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.net.HttpURLConnection;
 import java.net.IDN;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.util.ArrayList;
@@ -169,6 +170,9 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
     private boolean lastExpanded;
     private long lastPostStoryMs;
     private String lastQrText;
+    private float lastViewportHeightReported;
+    private boolean lastViewportIsExpanded;
+    private boolean lastViewportStateStable;
     private ValueCallback<Uri[]> mFilePathCallback;
     private String mUrl;
     private Runnable onCloseListener;
@@ -501,7 +505,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             if (Browser.isInternalUri(uri, zArr) && !zArr[0] && this.delegate != null) {
                 setKeyboardFocusable(false);
             }
-            Browser.openUrl(getContext(), uri, true, z, false, null, str, false);
+            Browser.openUrl(getContext(), uri, true, z, false, null, str, false, true);
         }
     }
 
@@ -747,15 +751,20 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             if (z) {
                 this.lastExpanded = webViewSwipeContainer.getSwipeOffsetY() == (-webViewSwipeContainer.getOffsetY()) + webViewSwipeContainer.getTopActionBarOffsetY();
             }
-            int measuredHeight = (int) (((webViewSwipeContainer.getMeasuredHeight() - webViewSwipeContainer.getOffsetY()) - webViewSwipeContainer.getSwipeOffsetY()) + webViewSwipeContainer.getTopActionBarOffsetY());
+            float measuredHeight = ((int) (((webViewSwipeContainer.getMeasuredHeight() - webViewSwipeContainer.getOffsetY()) - webViewSwipeContainer.getSwipeOffsetY()) + webViewSwipeContainer.getTopActionBarOffsetY())) / AndroidUtilities.density;
+            if (Math.abs(measuredHeight - this.lastViewportHeightReported) <= 0.1f && this.lastViewportStateStable == z && this.lastViewportIsExpanded == this.lastExpanded) {
+                return;
+            }
+            this.lastViewportHeightReported = measuredHeight;
+            this.lastViewportStateStable = z;
+            this.lastViewportIsExpanded = this.lastExpanded;
             try {
                 JSONObject jSONObject = new JSONObject();
-                jSONObject.put("height", measuredHeight / AndroidUtilities.density);
+                jSONObject.put("height", measuredHeight);
                 jSONObject.put("is_state_stable", z);
                 jSONObject.put("is_expanded", this.lastExpanded);
                 notifyEvent("viewport_changed", jSONObject);
-            } catch (JSONException e) {
-                e.printStackTrace();
+            } catch (JSONException unused) {
             }
         }
     }
@@ -2718,50 +2727,63 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                     return false;
                 }
                 Uri parse = Uri.parse(str);
-                if (!this.val$bot && Browser.openInExternalApp(this.val$context, str, true)) {
-                    MyWebView.this.d("shouldOverrideUrlLoading(" + str + ") = true (openInExternalBrowser)");
-                    if (!MyWebView.this.isPageLoaded && !MyWebView.this.canGoBack()) {
-                        if (MyWebView.this.botWebViewContainer.delegate != null) {
-                            MyWebView.this.botWebViewContainer.delegate.onInstantClose();
-                        } else if (MyWebView.this.onCloseListener != null) {
-                            MyWebView.this.onCloseListener.run();
-                            MyWebView.this.onCloseListener = null;
-                        }
-                    }
-                    return true;
-                }
-                if (this.val$bot || parse == null || parse.getScheme() == null || "https".equals(parse.getScheme()) || "http".equals(parse.getScheme()) || "tonsite".equals(parse.getScheme())) {
-                    if (MyWebView.this.botWebViewContainer != null && Browser.isInternalUri(parse, null)) {
-                        if (!this.val$bot && "1".equals(parse.getQueryParameter("embed")) && "t.me".equals(parse.getAuthority())) {
-                            return false;
-                        }
-                        if (MessagesController.getInstance(MyWebView.this.botWebViewContainer.currentAccount).webAppAllowedProtocols != null && MessagesController.getInstance(MyWebView.this.botWebViewContainer.currentAccount).webAppAllowedProtocols.contains(parse.getScheme())) {
-                            MyWebView myWebView = MyWebView.this;
-                            if (myWebView.opener != null) {
-                                if (myWebView.botWebViewContainer.delegate != null) {
-                                    MyWebView.this.botWebViewContainer.delegate.onInstantClose();
-                                } else if (MyWebView.this.onCloseListener != null) {
-                                    MyWebView.this.onCloseListener.run();
-                                    MyWebView.this.onCloseListener = null;
-                                }
-                                if (MyWebView.this.opener.botWebViewContainer != null && MyWebView.this.opener.botWebViewContainer.delegate != null) {
-                                    MyWebView.this.opener.botWebViewContainer.delegate.onCloseToTabs();
-                                }
+                if (!this.val$bot) {
+                    if (Browser.openInExternalApp(this.val$context, str, true)) {
+                        MyWebView.this.d("shouldOverrideUrlLoading(" + str + ") = true (openInExternalBrowser)");
+                        if (!MyWebView.this.isPageLoaded && !MyWebView.this.canGoBack()) {
+                            if (MyWebView.this.botWebViewContainer.delegate != null) {
+                                MyWebView.this.botWebViewContainer.delegate.onInstantClose();
+                            } else if (MyWebView.this.onCloseListener != null) {
+                                MyWebView.this.onCloseListener.run();
+                                MyWebView.this.onCloseListener = null;
                             }
-                            MyWebView.this.botWebViewContainer.onOpenUri(parse);
                         }
-                        MyWebView.this.d("shouldOverrideUrlLoading(" + str + ") = true");
                         return true;
                     }
-                    if (parse != null) {
-                        MyWebView.this.currentUrl = parse.toString();
+                    if (parse != null && parse.getScheme() != null && parse.getScheme().equalsIgnoreCase("intent")) {
+                        try {
+                            String stringExtra = Intent.parseUri(parse.toString(), 1).getStringExtra("browser_fallback_url");
+                            if (!TextUtils.isEmpty(stringExtra)) {
+                                MyWebView.this.loadUrl(stringExtra);
+                                return true;
+                            }
+                        } catch (URISyntaxException e) {
+                            throw new RuntimeException(e);
+                        }
                     }
-                    MyWebView.this.d("shouldOverrideUrlLoading(" + str + ") = false");
-                    return false;
+                    if (parse != null && parse.getScheme() != null && !"https".equals(parse.getScheme()) && !"http".equals(parse.getScheme()) && !"tonsite".equals(parse.getScheme())) {
+                        MyWebView.this.d("shouldOverrideUrlLoading(" + str + ") = true (browser open)");
+                        Browser.openUrl(MyWebView.this.getContext(), parse);
+                        return true;
+                    }
                 }
-                MyWebView.this.d("shouldOverrideUrlLoading(" + str + ") = true (browser open)");
-                Browser.openUrl(MyWebView.this.getContext(), parse);
-                return true;
+                if (MyWebView.this.botWebViewContainer != null && Browser.isInternalUri(parse, null)) {
+                    if (!this.val$bot && "1".equals(parse.getQueryParameter("embed")) && "t.me".equals(parse.getAuthority())) {
+                        return false;
+                    }
+                    if (MessagesController.getInstance(MyWebView.this.botWebViewContainer.currentAccount).webAppAllowedProtocols != null && MessagesController.getInstance(MyWebView.this.botWebViewContainer.currentAccount).webAppAllowedProtocols.contains(parse.getScheme())) {
+                        MyWebView myWebView = MyWebView.this;
+                        if (myWebView.opener != null) {
+                            if (myWebView.botWebViewContainer.delegate != null) {
+                                MyWebView.this.botWebViewContainer.delegate.onInstantClose();
+                            } else if (MyWebView.this.onCloseListener != null) {
+                                MyWebView.this.onCloseListener.run();
+                                MyWebView.this.onCloseListener = null;
+                            }
+                            if (MyWebView.this.opener.botWebViewContainer != null && MyWebView.this.opener.botWebViewContainer.delegate != null) {
+                                MyWebView.this.opener.botWebViewContainer.delegate.onCloseToTabs();
+                            }
+                        }
+                        MyWebView.this.botWebViewContainer.onOpenUri(parse);
+                    }
+                    MyWebView.this.d("shouldOverrideUrlLoading(" + str + ") = true");
+                    return true;
+                }
+                if (parse != null) {
+                    MyWebView.this.currentUrl = parse.toString();
+                }
+                MyWebView.this.d("shouldOverrideUrlLoading(" + str + ") = false");
+                return false;
             }
 
             public void lambda$$3() {
@@ -3915,6 +3937,6 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         StringBuilder sb = new StringBuilder();
         sb.append(".");
         sb.append(MessagesController.getInstance(UserConfig.selectedAccount).tonProxyAddress);
-        return (hostAuthority.endsWith(sb.toString()) && (str2 = rotatedTONHosts.get(hostAuthority)) != null) ? Browser.replace(Uri.parse(str), "tonsite", str2, null) : str;
+        return (hostAuthority.endsWith(sb.toString()) && (str2 = rotatedTONHosts.get(hostAuthority)) != null) ? Browser.replace(Uri.parse(str), "tonsite", null, str2, null) : str;
     }
 }

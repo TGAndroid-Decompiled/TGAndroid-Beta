@@ -1206,8 +1206,8 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
         }
 
         private void updateTranslateButton(Menu menu) {
-            String str;
-            menu.getItem(3).setVisible(TextSelectionHelper.this.onTranslateListener != null && (((str = this.translateFromLanguage) != null && ((!str.equals(LocaleController.getInstance().getCurrentLocale().getLanguage()) || this.translateFromLanguage.equals("und")) && !RestrictedLanguagesSelectActivity.getRestrictedLanguages().contains(this.translateFromLanguage))) || !LanguageDetector.hasSupport()));
+            LocaleController.getInstance().getCurrentLocale().getLanguage();
+            menu.getItem(3).setVisible((TextSelectionHelper.this.onTranslateListener == null || ((this.translateFromLanguage == null || RestrictedLanguagesSelectActivity.getRestrictedLanguages().contains(this.translateFromLanguage)) && LanguageDetector.hasSupport())) ? false : true);
         }
 
         @Override

@@ -844,6 +844,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public int smallQueueMaxActiveOperations;
     public boolean smsjobsStickyNotificationEnabled;
     private DialogFilter sortingDialogFilter;
+    public boolean sponsoredLinksInappAllow;
     private LongSparseArray<SponsoredMessagesInfo> sponsoredMessages;
     public boolean starsGiftsEnabled;
     public boolean starsLocked;
@@ -2301,6 +2302,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.starsSubscriptionAmountMax = this.mainPreferences.getLong("starsSubscriptionAmountMax", 2500L);
         this.starsUsdSellRate1000 = this.mainPreferences.getFloat("starsUsdSellRate1000", 2000.0f);
         this.starsUsdWithdrawRate1000 = this.mainPreferences.getFloat("starsUsdWithdrawRate1000", 1200.0f);
+        this.sponsoredLinksInappAllow = this.mainPreferences.getBoolean("sponsoredLinksInappAllow", false);
         scheduleTranscriptionUpdate();
         BuildVars.GOOGLE_AUTH_CLIENT_ID = this.mainPreferences.getString("googleAuthClientId", BuildVars.GOOGLE_AUTH_CLIENT_ID);
         if (this.mainPreferences.contains("dcDomainName2")) {

@@ -4604,17 +4604,17 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         if (messageObject == null || messageObject.mediaExists) {
             return;
         }
-        int canDownloadMedia = DownloadController.getInstance(this.currentAccount).canDownloadMedia(messageObject.messageOwner);
+        int canDownloadMediaType = DownloadController.getInstance(this.currentAccount).canDownloadMediaType(messageObject);
         TLRPC$Document document = messageObject.getDocument();
         if (MessageObject.isStickerDocument(document) || MessageObject.isAnimatedStickerDocument(document, true) || MessageObject.isGifDocument(document) || MessageObject.isRoundVideoDocument(document) || this.isSmallImage) {
             return;
         }
         TLRPC$PhotoSize closestPhotoSizeWithSize = document == null ? FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, AndroidUtilities.getPhotoSize()) : null;
-        if (canDownloadMedia == 2 || (canDownloadMedia == 1 && messageObject.isVideo())) {
-            if (canDownloadMedia != 2 && document != null && !messageObject.shouldEncryptPhotoOrVideo() && messageObject.canStreamVideo()) {
+        if (canDownloadMediaType == 2 || (canDownloadMediaType == 1 && messageObject.isVideo())) {
+            if (canDownloadMediaType != 2 && document != null && !messageObject.shouldEncryptPhotoOrVideo() && messageObject.canStreamVideo()) {
                 FileLoader.getInstance(this.currentAccount).loadFile(document, messageObject, 1, 0);
             }
-        } else if (canDownloadMedia != 0) {
+        } else if (canDownloadMediaType != 0) {
             if (document != null) {
                 FileLoader.getInstance(this.currentAccount).loadFile(document, messageObject, 1, ((MessageObject.isVideoDocument(document) || messageObject.isVoiceOnce() || messageObject.isRoundOnce()) && messageObject.shouldEncryptPhotoOrVideo()) ? 2 : 0);
             } else if (closestPhotoSizeWithSize != null) {
@@ -5316,7 +5316,9 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         if (tLRPC$MessageMedia != null) {
             this.documentAttach = tLRPC$MessageMedia.document;
         } else if (messageObject.type == 0) {
-            this.documentAttach = MessageObject.getMedia(messageObject.messageOwner).webpage.document;
+            TLRPC$MessageMedia media = MessageObject.getMedia(messageObject.messageOwner);
+            TLRPC$WebPage tLRPC$WebPage = media == null ? null : media.webpage;
+            this.documentAttach = tLRPC$WebPage == null ? null : tLRPC$WebPage.document;
         } else {
             this.documentAttach = messageObject.getDocument();
         }
@@ -5365,20 +5367,19 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             if (dp2 < 0) {
                 dp2 = AndroidUtilities.dp(100.0f);
             }
-            int i6 = dp2;
             String replace = messageObject.getMusicTitle().replace('\n', ' ');
             TextPaint textPaint = Theme.chat_audioTitlePaint;
-            float dp3 = i6 - AndroidUtilities.dp(12.0f);
+            float dp3 = dp2 - AndroidUtilities.dp(12.0f);
             TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
             CharSequence ellipsize = TextUtils.ellipsize(replace, textPaint, dp3, truncateAt);
             TextPaint textPaint2 = Theme.chat_audioTitlePaint;
             Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
-            StaticLayout staticLayout = new StaticLayout(ellipsize, textPaint2, i6, alignment, 1.0f, 0.0f, false);
+            StaticLayout staticLayout = new StaticLayout(ellipsize, textPaint2, dp2, alignment, 1.0f, 0.0f, false);
             this.songLayout = staticLayout;
             if (staticLayout.getLineCount() > 0) {
                 this.songX = -((int) Math.ceil(this.songLayout.getLineLeft(0)));
             }
-            StaticLayout staticLayout2 = new StaticLayout(TextUtils.ellipsize(messageObject.getMusicAuthor().replace('\n', ' '), Theme.chat_audioPerformerPaint, i6, truncateAt), Theme.chat_audioPerformerPaint, i6, alignment, 1.0f, 0.0f, false);
+            StaticLayout staticLayout2 = new StaticLayout(TextUtils.ellipsize(messageObject.getMusicAuthor().replace('\n', ' '), Theme.chat_audioPerformerPaint, dp2, truncateAt), Theme.chat_audioPerformerPaint, dp2, alignment, 1.0f, 0.0f, false);
             this.performerLayout = staticLayout2;
             if (staticLayout2.getLineCount() > 0) {
                 this.performerX = -((int) Math.ceil(this.performerLayout.getLineLeft(0)));
@@ -5394,8 +5395,8 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                 }
                 i4++;
             }
-            int i7 = (int) d;
-            int ceil = (int) Math.ceil(Theme.chat_audioTimePaint.measureText(AndroidUtilities.formatShortDuration(i7, i7)));
+            int i6 = (int) d;
+            int ceil = (int) Math.ceil(Theme.chat_audioTimePaint.measureText(AndroidUtilities.formatShortDuration(i6, i6)));
             this.widthBeforeNewTimeLine = (this.backgroundWidth - AndroidUtilities.dp(86.0f)) - ceil;
             this.availableTimeWidth = this.backgroundWidth - AndroidUtilities.dp(28.0f);
             return ceil;
@@ -5406,9 +5407,9 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                 String string = LocaleController.getString("AttachGif", R.string.AttachGif);
                 this.infoWidth = (int) Math.ceil(Theme.chat_infoPaint.measureText(string));
                 TextPaint textPaint3 = Theme.chat_infoPaint;
-                int i8 = this.infoWidth;
+                int i7 = this.infoWidth;
                 Layout.Alignment alignment2 = Layout.Alignment.ALIGN_NORMAL;
-                this.infoLayout = new StaticLayout(string, textPaint3, i8, alignment2, 1.0f, 0.0f, false);
+                this.infoLayout = new StaticLayout(string, textPaint3, i7, alignment2, 1.0f, 0.0f, false);
                 String format2 = String.format("%s", AndroidUtilities.formatFileSize(this.documentAttach.size));
                 this.docTitleWidth = (int) Math.ceil(Theme.chat_infoPaint.measureText(format2));
                 this.docTitleLayout = new StaticLayout(format2, Theme.chat_infoPaint, this.docTitleWidth, alignment2, 1.0f, 0.0f, false);
@@ -5430,13 +5431,13 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         this.docTitleLayout = createStaticLayout;
         this.docTitleOffsetX = Integer.MIN_VALUE;
         if (createStaticLayout != null && createStaticLayout.getLineCount() > 0) {
-            int i9 = 0;
+            int i8 = 0;
             while (i4 < this.docTitleLayout.getLineCount()) {
-                i9 = Math.max(i9, (int) Math.ceil(this.docTitleLayout.getLineWidth(i4)));
+                i8 = Math.max(i8, (int) Math.ceil(this.docTitleLayout.getLineWidth(i4)));
                 this.docTitleOffsetX = Math.max(this.docTitleOffsetX, (int) Math.ceil(-this.docTitleLayout.getLineLeft(i4)));
                 i4++;
             }
-            i2 = Math.min(i3, i9);
+            i2 = Math.min(i3, i8);
         } else {
             this.docTitleOffsetX = 0;
             i2 = i3;

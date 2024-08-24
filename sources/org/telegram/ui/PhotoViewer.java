@@ -18531,7 +18531,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         if (baseFragment instanceof ChatActivity) {
             ((ChatActivity) baseFragment).logSponsoredClicked(this.currentMessageObject);
         }
-        Browser.openUrl(this.activityContext, this.currentMessageObject.sponsoredUrl, true, false);
+        Browser.openUrl(this.activityContext, Uri.parse(this.currentMessageObject.sponsoredUrl), true, false, false, null, null, false, MessagesController.getInstance(this.currentAccount).sponsoredLinksInappAllow);
     }
 
     public boolean lambda$openAdsMenu$108(Theme.ResourcesProvider resourcesProvider, View view) {
@@ -18664,7 +18664,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             if (context == null) {
                 context = this.activityContext;
             }
-            Browser.openUrl(context, Uri.parse(str), true, false, false, null, null, false);
+            Browser.openUrl(context, Uri.parse(str), true, false, false, null, null, false, MessagesController.getInstance(this.currentAccount).sponsoredLinksInappAllow);
         }
     }
 }
